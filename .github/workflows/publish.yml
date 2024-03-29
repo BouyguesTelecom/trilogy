@@ -20,7 +20,9 @@ jobs:
       - name: Install dependencies
         run: | 
           npm ci
-          npm run build
+          npm run build --workspace packages/styles
+          npm run build --workspace packages/assets
+          npm run build --workspace packages/react
 
       - name: Publish React package on NPM 📦
         run: npm publish --workspace packages/react --access public
