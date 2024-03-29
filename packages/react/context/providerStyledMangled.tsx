@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { TrilogyContext } from './index'
-import '@trilogy-ds/styles/dist/default/trilogy-mangled.css'
+// import '@trilogy-ds/styles/dist/default/trilogy-mangled.css'
 
 /**
  * Trilogy Provider With Mangled Style
