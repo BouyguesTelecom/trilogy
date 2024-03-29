@@ -29,9 +29,9 @@ const TrilogyProviderStyled = ({ children, theme }: TrilogyProviderStyledProps):
         document.head.removeChild(link)
       }
     }
-    // else if (!theme) {
-    //   import('@trilogy-ds/styles/dist/default/trilogy.css')
-    // }
+    else if (!theme) {
+      import('@trilogy-ds/styles/dist/default/trilogy.css')
+    }
   }, [theme])
 
   return <TrilogyContext.Provider value={{ styled, setStyled }}>{children}</TrilogyContext.Provider>
