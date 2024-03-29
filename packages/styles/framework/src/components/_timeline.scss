@@ -1,0 +1,367 @@
+@use 'sass:math';
+@import "../utilities/spacing";
+
+$timeline-marker-color: getColor('grey-lighter') !default;
+$timeline-marker-icon-size: 2.85em !default;
+$timeline-line-color: getColor('grey-lighter') !default;
+$timeline-marker-size: 0.8em !default;
+$timeline-marker-border-size: 0.1em !default;
+$timeline-marker-border: $timeline-marker-border-size solid
+$timeline-marker-color !default;
+$timeline-line-width: 0.125em !default;
+$timeline-line-style: solid !default;
+$timeline-line: $timeline-line-width $timeline-line-style $timeline-line-color !default;
+$timeline-content-padding: 1em 0 0 16px !default;
+$timeline-rtl-content-padding: 1em 2em 0 0 !default;
+$timeline-icon-size: $size-small !default;
+$timeline-header-width: 4em !default;
+$timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+
+  .timeline-header {
+    width: $timeline-header-width;
+    min-width: $timeline-header-width;
+    max-width: $timeline-header-width * 2;
+    word-wrap: normal;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .timeline-item,
+  .undone {
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    position: relative;
+    margin-left: 0;
+    padding-bottom: $spacing-2;
+
+    &::before {
+      content: '';
+      background-color: getColor('grey-lighter');
+      display: block;
+      width: $timeline-line-width;
+      position: absolute;
+      top: 49.80px;
+      left: 3rem;
+      bottom: 8px;
+      height: auto;
+      border-radius: 2px;
+    }
+
+    .timeline-marker.is-icon {
+      background-color: getColor('alternate');
+      .icon {
+        color: aside;
+      }
+    }
+
+
+
+    &.active {
+      .timeline-marker.is-icon {
+        background-color: getColor('alternate');
+        .icon {
+          color: getColor('background');
+        }
+      }
+      .timeline-content {
+        p.main-content {
+          font-weight: 800;
+        }
+      }
+      &::before {
+        content: '';
+        background-color: getColor('alternate');
+        display: block;
+        width: $timeline-line-width;
+        position: absolute;
+        top: 49.80px;
+        left: 3rem;
+        bottom: 8px;
+        height: auto;
+        border-radius: 2px;
+      }
+
+    }
+    &.done {
+      .timeline-marker.is-icon {
+        background-color: getColor('font');
+        .icon {
+          color: getColor('background')
+        }
+      }
+      &::before {
+        content: '';
+        background-color: getColor('font');
+        display: block;
+        width: $timeline-line-width;
+        position: absolute;
+        top: 49.80px;
+        left: 3rem;
+        bottom: 8px;
+        height: auto;
+        border-radius: 2px;
+      }
+    }
+
+    &.cancel {
+      .timeline-marker.is-icon {
+        background-color: getColor('grey-light');
+        .icon {
+          color: getColor('grey-darker');
+        }
+      }
+      &::before {
+        content: '';
+        background-color: getColor('grey-light');
+        display: block;
+        width: $timeline-line-width;
+        position: absolute;
+        top: 49.80px;
+        left: 3rem;
+        bottom: 8px;
+        height: auto;
+        border-radius: 2px;
+      }
+    }
+
+    .timeline-marker {
+      position: absolute;
+      background: $timeline-marker-color;
+      border-radius: 100%;
+      content: '';
+      display: block;
+      height: $timeline-marker-size;
+      left: -($timeline-marker-size * 0.5 - $timeline-marker-border-size *
+                        0.5);
+      top: 0;
+      width: $timeline-marker-size;
+      margin-left: 30px;
+
+      &.is-image {
+        @each $dimension in $timeline-image-dimensions {
+          &.is-#{$dimension}x#{$dimension} {
+            height: $dimension * 1px;
+            width: $dimension * 1px;
+            left: $dimension * 0.5 * -1px;
+          }
+        }
+
+        background: $timeline-marker-color;
+        border-radius: 100%;
+        display: block;
+        overflow: hidden;
+      }
+
+      &.is-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $timeline-marker-icon-size;
+        width: $timeline-marker-icon-size;
+        left: -($timeline-marker-icon-size * 0.5 -
+                            $timeline-marker-border-size * 0.5);
+        line-height: size(0.75rem);
+        padding: math.div($timeline-icon-size, 3);
+        background: $timeline-marker-color;
+        border-radius: 100%;
+
+        > i {
+          color: getColor('background');
+          font-size: $timeline-icon-size !important;
+        }
+      }
+
+      &.is-outlined {
+        .image {
+          background: getColor('background');
+        }
+
+        &.is-icon {
+          background: getColor('background');
+
+          > i {
+            color: $timeline-marker-color;
+          }
+        }
+      }
+    }
+
+    .timeline-content {
+      margin-left: 3.7em;
+      padding: $spacing-3 0 $spacing-4 $spacing-4;
+
+      .heading {
+        font-size: $text-12;
+        color: getColor('grey');
+        font-family: $family-sans-serif;
+        text-transform: none;
+        letter-spacing: 0;
+        line-height: 15px;
+        font-weight: 500;
+        color: #707070;
+      }
+
+      p {
+        margin-bottom: 4px;
+      }
+    }
+
+    @each $name in $colors-brand-funcionnal {
+      $color: getColor($name);
+      $brandName: getColorBrandName($name);
+
+      &.is-#{$brandName} {
+        &::before {
+          background-color: $color;
+        }
+      }
+    }
+  }
+
+  &.is-centered {
+    .timeline-header {
+      display: flex;
+      width: 100%;
+      align-self: center;
+    }
+
+    .timeline-item {
+      width: 50%;
+      align-self: flex-end;
+
+      &:nth-of-type(2n) {
+        align-self: flex-start;
+        margin-left: 0;
+        margin-right: $timeline-header-width * 0.5;
+
+        &::before {
+          right: -$timeline-line-width;
+          left: auto;
+        }
+
+        .timeline-marker {
+          left: auto;
+          right: -(
+                            $timeline-marker-size * 0.5 -
+                                $timeline-marker-border-size * 0.5
+                        ) - $timeline-line-width;
+
+          &.is-image {
+            @each $dimension in $timeline-image-dimensions {
+              &.is-#{$dimension}x#{$dimension} {
+                left: auto;
+                right: $dimension * 0.5 * -1px;
+              }
+            }
+          }
+
+          &.is-icon {
+            left: auto;
+            right: -(
+                                $timeline-marker-icon-size * 0.5 -
+                                    $timeline-marker-border-size * 0.5
+                            ) - $timeline-line-width;
+          }
+        }
+
+        .timeline-content {
+          padding: $timeline-rtl-content-padding;
+          text-align: right;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          flex-basis: 100%;
+        }
+      }
+
+      &:nth-of-type(2n + 1) {
+        &::before {
+          content: '';
+          background-color: $timeline-line-color;
+          display: block;
+          width: $timeline-line-width;
+          height: 100%;
+          position: absolute;
+          top: 0;
+        }
+      }
+
+      @each $name, $pair in $colors-brand-funcionnal {
+        $color: getColor($name);
+        $brandName: getColorBrandName($name);
+
+        &.is-#{$brandName} {
+          &::before {
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    &.is-horizontal {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .timeline-item {
+        flex-direction: column;
+        width: 100%;
+        &:not(:last-child) {
+          margin-right: 16px;
+        }
+
+        &::before {
+          content: '';
+          background-color: $timeline-line-color;
+          display: block;
+          width: calc(100% - 58px);
+          position: absolute;
+          top: 22.89px;
+          left: 59px;
+          bottom: 8px;
+          height: 2px;
+          border-radius: 2px;
+        }
+        &.active::before  {
+          background-color: getColor('alternate');
+        }
+        &.undone
+        {
+          i {
+            background-color: getColor('font');
+          }
+          &::before  {
+            background-color: getColor('grey-lighter');
+          }
+        }
+        &.done::before {
+          background-color: getColor('font');
+        }
+        &.cancel::before {
+          background-color: getColor('grey-light');
+        }
+        .timeline-marker {
+          position: static ;
+          margin-left:0
+        }
+        .timeline-content {
+          margin-left: 0;
+          padding:0;
+          margin-top: 8px;
+          .main-content {
+            margin-left: 0;
+          }
+
+        }
+      }
+    }
+  }
+}

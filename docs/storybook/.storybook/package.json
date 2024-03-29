@@ -1,0 +1,7 @@
+{
+  "name": "mon-projet",
+  "type": "commonjs",
+  "dependencies": {
+    "typescript": "version"
+  }
+}

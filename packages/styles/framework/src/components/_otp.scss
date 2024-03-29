@@ -1,0 +1,92 @@
+.otp-list {
+  display: flex;
+  flex-wrap: nowrap;
+
+  .otp {
+    outline: none;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    background: transparent;
+    width: 33px;
+    height: 40px;
+    margin: 4px 4px 0 4px;
+    text-align: center;
+    color: getColor('grey');
+    &:first-child {
+      margin: 4px 4px 0 0;
+    }
+
+    &:last-child {
+      margin: 4px 0 0 4px;
+    }
+
+  }
+
+  &.is-danger {
+    .otp {
+      border: 2px solid  getColor('error');
+    }
+  }
+
+  &.is-tertiary {
+    .otp {
+      border: 2px solid getColor('font');
+    }
+  }
+
+  &.is-filled {
+    .otp {
+      color: getColor('font')
+    }
+  }
+
+  &.is-focus {
+    .otp {
+      border: 2px solid getColor('alternate');;
+      color: getColor('font')
+    }
+  }
+
+
+  &.is-error {
+    .otp {
+      border: 2px solid getColor('error');
+      color: getColor('font')
+    }
+  }
+
+  &.is-tertiary {
+    .otp {
+      border: 2px solid getColor('font');
+    }
+  }
+
+  &.is-disabled {
+    .otp {
+      border: none !important;
+      background: getColor('grey-disabled');
+      pointer-events: none;
+      color: getColor('grey');
+    }
+  }
+
+}
+
+.otp-list:focus-within {
+  .otp {
+    border: 2px solid getColor('alternate');;
+    color: getColor('font');
+  }
+}
+
+.otp-list.is-error:focus-within {
+  .otp {
+    border: 2px solid getColor('error');
+    color: getColor('font');
+  }
+}
+
+.otp-error-message {
+  font-size: $text-12;
+  margin-top: 4px;
+}

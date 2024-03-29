@@ -1,0 +1,315 @@
+[data-blur-select] {
+    position: absolute;
+    z-index: zindex('large');
+    min-width: 100%;
+    min-height: 100%;
+    left:0;
+    top: 0;
+}
+
+
+@mixin arrow-style($isDisabled:false, $direction:"up") {
+    $color: getColor('font');
+    @if($isDisabled) { $color: getColor('grey') }
+
+    @include arrow($color,$direction);
+    right: 16px;
+    margin-left: 16px;
+    top: calc(50% - 7px);
+}
+
+.select {
+    border: 1px solid getColor('grey');
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    font-family: $body-family;
+    border-radius: 4px;
+    background-color: getColor('background');
+    display: block;
+    font-size: 1em;
+    max-width: 100%;
+    outline: none;
+    cursor: pointer;
+    height: 56px;
+
+    select {
+        height: 100%;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        max-width: 100%;
+        width: 100%;
+        font-size: 1em;
+        font-family: $body-family;
+        color: getColor('font');
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        z-index: 10;
+        background-color: transparent;
+        opacity: 100;
+        outline: none;
+        padding-left: $spacing-4;
+        &::-ms-expand {
+            display: none !important;
+        }
+        &:focus, &:hover {
+            outline: 1px auto getColor('alternate');
+        }
+
+    }
+
+    label {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 16px !important;
+        color: getColor('grey') !important
+    }
+
+    &.select-native {
+        .icon {
+            position: absolute;
+        }
+
+        &.has-icon {
+            select {
+                padding-left: 50px;
+                &:not(.no-label) {
+                    padding-bottom: 5px;
+                }
+            }
+        }
+    }
+
+    .has-dynamic-placeholder {
+        label {
+            top: 18px;
+            color: getColor('grey') !important
+        }
+    }
+
+
+    &-value {
+        position: absolute ;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-20%);
+
+        &.no-label {
+            transform: translateY(-50%);
+
+        }
+    }
+
+
+
+    &-disabled {
+        background-color: getColor('grey-disabled');
+        border: 1px solid getColor('grey-disabled');
+        cursor:default ;
+        label {
+            color: #565656  !important;
+        }
+        .icon {
+            color: #565656;
+        }
+    }
+
+
+
+    .icon {
+        height: 100%;
+        width: 50px;
+    }
+
+    &.has-icon {
+        label {
+            left: 50px !important;
+        }
+        .select-value {
+            left: 50px !important;
+        }
+    }
+
+
+    &:not(.is-loading) {
+        &:not(.select-disabled) {
+            &::after {
+                @include arrow-style(false,"down")
+            }
+            &:not(.select-native):hover, &:not(.select-native):focus {
+                outline: 1px auto getColor('alternate');
+            }
+        }
+        &.select-disabled {
+            &::after {
+                @include arrow-style(true,"down")
+            }
+        }
+
+    }
+
+    &.select-show-options:not(.is-loading) {
+        outline: 1px auto getColor('alternate');
+        &::after {
+            @include arrow-style()
+        }
+        &:hover {
+            &::after {
+                border-color: getColor('font');
+            }
+        }
+    }
+
+    // Colors
+    @each $name in $colors-brand {
+      $brandName: getColorBrandName($name);
+      $color: getColor($name);
+
+        &.is-#{$brandName} {
+            &:not(:hover) {
+                outline: 1px auto $color;
+            }
+            &:hover,
+            &.is-hovered {
+                outline: 1px auto getVariantColor($name, 1);
+            }
+        }
+    }
+
+    // Sizes
+    &.is-small {
+        @include control-small;
+    }
+
+    &.is-large {
+        @include control-large;
+    }
+
+
+    &.is-loading {
+        &::after {
+            @include spinner;
+            margin-top: 0;
+            position: absolute;
+            right: 0.625em;
+            top: 0.625em;
+            transform: none;
+        }
+        &.is-small::after {
+            font-size: $size-small;
+        }
+        &.is-large::after {
+            font-size: $size-large;
+        }
+    }
+}
+
+.select-options {
+    position: absolute;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: getColor('background');
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: auto;
+    width: 100%;
+    max-height: 260px;
+    z-index:  zindex('large') ;
+
+
+    &-option {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px $spacing-4;
+        width: 100%;
+        .has-icon {
+            display: flex;
+            align-items: center;
+            .icon {
+              margin-right: 16px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        &-activated {
+            color: getColor('alternate');
+            font-weight: $weight-bold;
+            &::after {
+                content: "";
+                mask-image: url('./assets/icons/all/check.svg');
+                background-color: getColor('alternate');
+                min-width: 15px;
+                min-height: 15px;
+                display:inline-block;
+                margin-left: 16px;
+                mask-size: 20px;
+            }
+        }
+        &-disabled {
+            background-color: getColor('grey-disabled');
+            color: #565656
+        }
+    }
+
+    .option-container, &-option {
+        outline:none;
+        &:focus {
+            background-color: #E4EAED;
+        }
+
+        &:not([data-is-disabled='true']){
+            cursor: pointer;
+        }
+    }
+}
+
+[data-is-open-options="false"] {
+    display: none;
+}
+
+[data-is-open-options="true"] {
+    display:block
+}
+
+//AutoComplete
+.is-autocomplete {
+    .autocomplete-menu {
+        display: none;
+    }
+
+    &.is-active {
+        .autocomplete-menu {
+            display: block;
+            border: 1px solid rgba(0,38,60,.4);
+            padding: 5px 10px;
+            border-radius: 4px;
+            max-height: 220px;
+            overflow-y: auto;
+            background-color: getColor('background');
+            z-index: 10000;
+        }
+
+        .autocomplete-item {
+            cursor: pointer;
+            padding: 3.75px calc(15px - 10px);
+
+            &.is-active, &[data-autocomplete-item-hover] {
+                background-color: rgba(16,157,185,.08);
+                border-top: 1px solid getColor('alternate');
+                border-bottom: 1px solid getColor('alternate');
+                margin-left: -10px;
+                margin-right: -10px;
+                padding: 2.75px 15px;
+            }
+        }
+    }
+}
+
+

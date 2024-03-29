@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    {
+      "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    {
+      "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    {
+      "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    }
+  ]
+}

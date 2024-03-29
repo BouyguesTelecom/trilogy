@@ -1,0 +1,397 @@
+@use "sass:math";
+
+$step-width: 30px;
+$step-font-size: 18px;
+$step-gap: $step-width;
+$step-gap-desktop: $step-width * 3;
+
+
+// old stepper , déprécié since ( v2 )
+.stepper {
+  display: inline-flex;
+  position: relative;
+
+  @include mobile {
+    &::after {
+      content: attr(data-label-mobile);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      font-weight: $weight-semibold;
+      color: getColor('alternate');
+    }
+  }
+
+  .step {
+    position: relative;
+    z-index: zindex('void');
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: $step-width;
+    height: $step-width;
+    border-radius: 100%;
+    background: getColor('grey-disabled');
+    color: getColor('background');
+    font-size: $step-font-size;
+    transition: background .15s ease;
+
+    &.is-done {
+      background: getColor('font');
+    }
+
+    &.is-current,
+    &.is-active {
+      background: getColor('alternate');
+    }
+  }
+
+  .step + .step {
+    margin-left: $step-gap;
+
+    @include desktop {
+      margin-left: $step-gap-desktop;
+    }
+
+    &::before {
+      content: '';
+      height: 4px;
+      width: $step-gap;
+      display: block;
+      position: absolute;
+      z-index: zindex('subzero');
+      left: -$step-gap;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background .15s ease;
+      background-color: getColor('grey-disabled');
+
+      @include desktop {
+        width: $step-gap-desktop;
+        margin-left: -$step-gap-desktop + $step-width;
+      }
+    }
+  }
+
+  // done steps successively
+  .step.is-done + .step.is-done::before {
+    background: getColor('font');
+  }
+
+  // done step followed by current step
+  .step.is-done + .step.is-current::before {
+    background: linear-gradient(90deg, getColor('font'), getColor('alternate'));
+  }
+
+  // active step followed by done step(s)
+  .step.is-active + .step.is-done::before {
+    background: linear-gradient(90deg, getColor('alternate'), getColor('font'));
+  }
+
+  // current step followed by unvisited step(s)
+  .step.is-current + .step::before {
+    background: linear-gradient(90deg, getColor('alternate'), getColor('grey-disabled') 75%);
+  }
+
+  // labels
+  .step[data-label] {
+    margin-bottom: 40px;
+
+    &::after {
+      position: absolute;
+      left: -$step-gap-desktop * 0.5;
+      right: -$step-gap-desktop * 0.5;
+      color: getColor('grey');
+      font-size: $size-7;
+      font-weight: $weight-semibold;
+      top: 50px;
+      text-align: center;
+
+      @include desktop {
+        content: attr(data-label);
+      }
+    }
+
+    // active or current step
+    &.is-current::after,
+    &.is-active::after {
+      color: getColor('alternate');
+    }
+  }
+}
+
+// back to grey label when going back in steps: the current step is followed by the active step
+.step[data-label].is-active ~ .step[data-label].is-current::after {
+  color: getColor('grey');
+}
+
+
+// Nouveau stepper
+
+.stepper-wrapper {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  min-height: 44px;
+  margin-left: -8px;
+  margin-right: -8px;
+
+  @include touch {
+    margin-left: -4px !important;
+    margin-right: -4px !important;
+  }
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: $spacing-2;
+
+  &:before{
+    content: "";
+    display: block;
+    height: 4px;
+    background: getColor('grey-disabled');
+    border-radius: 4px;
+  }
+
+  &.is-error {
+
+    &:before{
+      background: getColor('error') !important;
+    }
+    .step-bars {
+      background: getColor('error') !important;
+    }
+    color: getColor('font');
+
+    .step-label {
+
+      padding-left: $spacing-2;
+
+      @include touch {
+        padding-left: $spacing-1;
+      }
+
+      &::before {
+        content: "";
+        mask-image: url('./assets/icons/all/times-circle.svg') !important;
+        background-color: getColor('error') !important;
+        border-width: 0;
+        width: 20px;
+        height: 20px;
+        margin: 2px 8px 0 -8px;
+        align-self: baseline;
+      }
+
+      .icon {
+        display: none;
+      }
+    }
+  }
+
+  &.is-done {
+
+    &:before{
+      background: getColor('font');
+      transition: background-color 2s ease-in-out;
+    }
+    .step-bars {
+      background: getColor('font');
+      transition: background-color 2s ease-in-out;
+    }
+
+    .step-label {
+      color: getColor('font');
+      padding-left: $spacing-2;
+
+      &::before {
+        content: "";
+        mask-image: url('./assets/icons/all/check-circle.svg');
+        background-color: getColor('success');
+        border-width: 0;
+        min-width: 20px;
+        height: 20px;
+        margin: 2px 8px 0 -8px;
+        align-self: baseline;
+      }
+    }
+  }
+
+  &.is-current,
+  &.is-active {
+
+    &:before{
+      background: getColor('alternate');
+      animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -moz-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+    }
+    .step-bars {
+      background: getColor('alternate');
+      animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      -moz-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+    }
+
+    .step-label {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 24px;
+      color: getColor('font');
+      transition: color 1.45s ease;
+      width: max-content;
+
+      .icon [class^=tri-], .icon [class*=" tri-"] {
+        height: 22px;
+        width: 22px;
+        margin: 0 4px 0 -4px;
+      }
+
+      @include tablet-only {
+        width: 90% !important;
+      }
+
+      @include mobile {
+        font-size: 18px;
+        width: 90%;
+      }
+    }
+  }
+
+  @include touch {
+    padding: $spacing-1 !important;
+  }
+}
+
+.step-bars {
+  height: 4px;
+  background: getColor('grey-disabled');
+  border-radius: 4px;
+  display: none;
+}
+
+.step-label {
+  display: flex;
+  align-items: center;
+  color: getColor('grey');
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: $spacing-2;
+
+  .icon {
+    font-size: 20px;
+    margin-left: 8px;
+    height: auto;
+  }
+
+  .icon [class^=tri-], .icon [class*=" tri-"] {
+    margin: 0 4px 0 -4px;
+  }
+
+
+  @include touch {
+    position: absolute;
+    top: 10px;
+    left: 4px;
+  }
+}
+
+@include desktop {
+  .step-count {
+    display: none;
+  }
+}
+
+@include mobile {
+  .step-count {
+    position: absolute;
+    top: 23px;
+    right: 8px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+  }
+
+  .stepper-item:not(.is-current) {
+    display: flex;
+
+    .step-label {
+      display: none;
+    }
+  }
+}
+
+@include tablet-only {
+  .step-count {
+    position: absolute;
+    top: 24px;
+    right: 8px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+  }
+
+  .stepper-item:not(.is-current) {
+    display: flex;
+
+    .step-label {
+      display: none;
+    }
+  }
+}
+
+@keyframes cssload-width {
+  0%, 100% {
+    transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+  }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-o-keyframes cssload-width {
+  0%, 100% {
+    -o-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+  }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes cssload-width {
+  0%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+  }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-moz-keyframes cssload-width {
+  0%, 100% {
+    -moz-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+  }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+

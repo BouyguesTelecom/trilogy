@@ -1,0 +1,201 @@
+$modal-content-width: 640px !default;
+$modal-content-margin-mobile: 20px !default;
+$modal-close-dimensions: 40px !default;
+$modal-dimensions: (
+    'xsmall': 40vw,
+    'small': 50vw,
+    'medium': 60vw,
+    'large': 70vw,
+    'xlarge': 80vw
+);
+
+body:has(.modal.is-active) {
+    height: 100%;
+    overflow: hidden
+}
+
+.modal {
+    @include overlay;
+
+    position: fixed;
+    z-index: zindex('modal');
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+        opacity 250ms ease-in-out,
+        visibility 0ms linear 250ms;
+
+    // overlay
+    &::after {
+        @include overlay;
+
+        content: '';
+        background-color: rgba(#000, 0.86);
+    }
+
+    &.is-active {
+        opacity: 1;
+        visibility: inherit;
+        transition:
+            opacity 250ms ease-in-out,
+            visibility 0ms linear;
+        .modal-content {
+            transform: translateY(0);
+        }
+    }
+
+    // gestion des tailles
+    @include tablet {
+        justify-content: center;
+        @each $dimension in $dimensions-extended {
+            &.is-#{$dimension} {
+                .modal-content {
+                    width: map-get($modal-dimensions, $dimension);
+                }
+            }
+        }
+    }
+
+    // spécificité pour le bouton en position: relative par défaut
+    .button {
+        position: static;
+    }
+
+    // ancien overlay : n'a plus d'utilité mais conservée pour rétrocompatibilité
+    .modal-background {
+        display: none;
+    }
+
+    .modal-content {
+        background-color: getColor('background');
+        border-radius: $radius $radius 0 0;
+        color: getColor('font');
+        overflow: auto;
+        position: relative;
+        padding: 0 30px 30px;
+        margin: 0 $modal-content-margin-mobile;
+        max-height: calc(100vh - 40px);
+        text-align: center;
+        width: 100%;
+        z-index: zindex('tiny');
+        transition: transform ease-in-out 250ms;
+        transform: translateY(100%);
+
+        &.is-fullwidth {
+          width: 100% !important;
+        }
+
+        @include tablet {
+            max-height: calc(100vh - 120px);
+            width: $modal-content-width;
+            border-radius: $radius;
+        }
+
+        // Annulation des propriétés du composant box, se trouvant dans une modal
+        > .box {
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            max-height: inherit;
+
+            .box-content {
+                background-color: transparent;
+                border-radius: 0;
+                padding: 0;
+                padding-bottom: 30px;
+                margin: 0;
+                text-align: inherit;
+            }
+        }
+
+        .modal-footer {
+            position: sticky;
+            background: getColor('background');
+            bottom: -30px;
+            margin: 30px -30px -30px;
+            padding: 20px 30px;
+        }
+
+        // If Close Icon Modal & Title Modal are sibling elements, override margin
+        .modal-close ~ .modal-title   {
+          margin-top: -32px;
+        }
+    }
+
+    .modal-close {
+        @include delete;
+
+        background-color: getColor('background');
+        position: sticky;
+        top: 20px;
+        left: 100%;
+        display: block;
+        height: $modal-close-dimensions;
+        width: $modal-close-dimensions;
+        z-index: zindex('medium');
+
+        &:hover {
+            background-color: getColor('grey-light');
+        }
+
+        &::after,
+        &::before {
+            background-color: getColor('font');
+        }
+    }
+
+    .modal-title {
+        color: getColor('font');
+        font-family: $family-sans-serif;
+        font-size: $size-3;
+        font-weight: $weight-semibold;
+        line-height: 1.1;
+        background-color: getColor('background');
+        z-index: zindex('small');
+        position: sticky;
+        top: 0;
+        padding: 20px 0;
+        width: 100%;
+        word-wrap: break-word;
+
+        @include desktop {
+            font-size: $size-3-desktop;
+        }
+    }
+
+    // version "panel" de la modal
+    &.is-panel {
+        &::after {
+            position: fixed;
+        }
+
+        .modal-content {
+            border-radius: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            min-height: 100%;
+            height: 100%;
+            max-height: none;
+            margin: 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            @include tablet {
+                max-width: 375px;
+            }
+
+            .modal-footer {
+                margin-top: auto;
+            }
+        }
+    }
+}

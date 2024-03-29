@@ -1,0 +1,108 @@
+.container {
+  margin: 0 auto;
+  position: relative;
+
+  &.is-fullhd {
+    width: auto;
+  }
+
+  &.is-sticky-top,
+  &.is-sticky-bottom {
+    background-color: getColor('background');
+  }
+
+  &.is-sticky-top {
+    z-index: 1000;
+  }
+
+  &.is-sticky-bottom {
+    z-index: 999;
+  }
+
+  @include desktop {
+    max-width: $desktop - 2 * $gap;
+    width: $desktop - 2 * $gap;
+
+    &.is-fluid {
+      margin-left: $gap;
+      margin-right: $gap;
+      max-width: none;
+      width: auto;
+    }
+  }
+
+  @include until-widescreen {
+    &.is-widescreen {
+      max-width: $widescreen - 2 * $gap;
+      width: auto;
+    }
+  }
+
+  @include until-fullhd {
+    &.is-fullhd {
+      max-width: $fullhd - 2 * $gap;
+      width: auto;
+    }
+  }
+
+  @include widescreen {
+    max-width: $widescreen - 2 * $gap;
+    width: $widescreen - 2 * $gap;
+  }
+
+  @include fullhd {
+    max-width: $fullhd - 2 * $gap;
+    width: $fullhd - 2 * $gap;
+  }
+
+  &:not(.is-fluid) {
+    @include desktop {
+      width: 904px;
+      max-width: 904px;
+    }
+
+    @include widescreen {
+      width: 1160px;
+      max-width: 1160px;
+    }
+
+    @include fullhd {
+      width: 1308px;
+      max-width: 1308px;
+    }
+  }
+
+  &.is-fluid {
+    @include fullhd {
+      margin: 0 auto;
+      max-width: $fullhd - 2 * $gap;
+    }
+  }
+
+  &.is-medium {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  &.is-fullwidth {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+main,
+header .navbar,
+header,
+footer {
+  > .container {
+    &.is-fluid {
+      @include desktop {
+        margin: 0 auto;
+      }
+
+      @include fullhd {
+        max-width: 100%;
+      }
+    }
+  }
+}

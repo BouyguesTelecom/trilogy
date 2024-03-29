@@ -1,0 +1,126 @@
+$loader-item-width: 60px;
+$loader-item-height: 30px;
+$loader-items-lateral-offset: -25px;
+$loader-items-bottom-offset: -40px;
+
+.loader {
+    width: $loader-item-width;
+    height: $loader-item-height;
+    background-color: transparent;
+    position: relative;
+
+    &::after,
+    &::before,
+    .loader-body {
+        content: '';
+        display: block;
+        width: $loader-item-width;
+        height: $loader-item-height;
+        border-radius: 50%;
+    }
+
+    .loader-body {
+        visibility: hidden;
+        background-color: getColor('alternate');
+        animation: 2.5s linear 0s forwards infinite top_item;
+    }
+
+    &::after,
+    &::before {
+        position: absolute;
+        bottom: $loader-items-bottom-offset;
+    }
+
+    &::before {
+        width: 20px;
+        height: 20px;
+        left: calc(50% - 10px);
+        z-index: zindex('small');
+        background-color: getColor('font');
+        animation: 2.5s linear 0s forwards infinite left_item;
+    }
+
+    &::after {
+        width: 20px;
+        height: 20px;
+        right: calc(50% - 20px);
+        background-color: getColor('main');
+        animation: 2.5s linear 0s forwards infinite right_item;
+    }
+
+    @keyframes top_item {
+        0% {
+            visibility: visible;
+            transform: scale(0, 0);
+        }
+
+        50% {
+            visibility: visible;
+            transform: scale(1, 0);
+        }
+
+        65%,
+        100% {
+            visibility: visible;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes left_item {
+        0% {
+            transform: rotate(55deg) scale(1);
+        }
+
+        45% {
+            width: $loader-item-width;
+            height: $loader-item-height;
+            transform: rotate(55deg) scale(1);
+        }
+
+        50%,
+        54% {
+            transform: rotate(55deg) scale(1.5);
+        }
+
+        60% {
+            transform: rotate(55deg) scale(1);
+        }
+
+        65%,
+        100% {
+            transform: rotate(55deg) scale(1);
+            width: $loader-item-width;
+            height: $loader-item-height;
+            left: $loader-items-lateral-offset;
+        }
+    }
+
+    @keyframes right_item {
+        0% {
+            transform: rotate(-55deg) scale(1);
+        }
+
+        45% {
+            width: $loader-item-width;
+            height: $loader-item-height;
+            transform: rotate(-55deg) scale(1);
+        }
+
+        50%,
+        54% {
+            transform: rotate(-55deg) scale(1.5);
+        }
+
+        60% {
+            transform: rotate(-55deg) scale(1);
+        }
+
+        65%,
+        100% {
+            transform: rotate(-55deg) scale(1);
+            width: $loader-item-width;
+            height: $loader-item-height;
+            right: $loader-items-lateral-offset;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+.fab {
+  background-color: getColor('alternate');
+  border: 1px getColor('alternate');
+  border-radius: 16px;
+  cursor: pointer;
+  height: 56px;
+  color: white;
+  padding: $spacing-4;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: 0.4s;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0;
+  line-height: 20px;
+
+  z-index: 9;
+
+  &:hover, &.is-extended {
+    background-color: getVariantColor('alternate',1);
+    border-color:getVariantColor('alternate',2);
+    transition: 0.5s;
+    font-size: initial;
+
+    .icon,
+    .icon .is-small,
+    .icon .is-medium,
+    .icon .is-large {
+      margin-right: 16px;
+    }
+  }
+
+  &:focus, &:focus-visible, &:focus-within {
+    background-color:getVariantColor('alternate', 4);
+    border-color: getVariantColor('alternate', 4);
+    outline: 1px auto getVariantColor('alternate', 4);
+  }
+
+  &:active {
+    background-color: getVariantColor('alternate', 5);
+    border-color: getVariantColor('alternate', 5);
+  }
+
+  .disabled {
+    background-color: getColor('bg-disabled');
+    color: getColor('grey-disabled');
+  }
+
+  .icon {
+    font-size: 24px !important;
+    margin-left: -6px;
+    margin-right: -6px;
+    color: white;
+  }
+
+}

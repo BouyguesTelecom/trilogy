@@ -1,0 +1,197 @@
+$searchbar-height: 60px;
+$searchbar-height-desktop: 80px;
+
+.search-modal {
+    opacity: 0;
+    pointer-events: none;
+
+    &.is-active,
+    &.is-expanded { // TODO: deprecate .is-expanded (replacement: is-active)
+        opacity: 1;
+        pointer-events: all;
+        height: 100%;
+        position: absolute;
+        top: -$searchbar-height;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        @include tablet {
+            top: -$searchbar-height-desktop;
+        }
+
+        .search-bar {
+            height: $searchbar-height;
+            border-bottom: 1px solid getColor('grey-light');
+            opacity: 1;
+
+            @include desktop {
+                height:$searchbar-height-desktop;
+            }
+        }
+
+        .search-results {
+            opacity: 1;
+        }
+
+        .modal-background {
+            opacity: 1;
+        }
+    }
+
+    .modal-background {
+        opacity: 0;
+        position: fixed;
+        z-index: zindex('small');
+
+        @include mobile {
+            z-index: zindex('medium');
+        }
+    }
+
+    .search-bar {
+        position: absolute;
+        z-index: zindex('large');
+        display: flex;
+        align-items: center;
+        background-color: getColor('background');
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        opacity: 0;
+
+        @include mobile {
+            padding: 0 20px;
+        }
+
+        @include tablet {
+            left: $logo-width-desktop;
+            padding-left: calc(25% - #{$logo-width-desktop});
+        }
+
+        .field {
+            margin-top: 0;
+            margin-bottom: 0;
+            flex-grow: 1;
+
+            > .control {
+                > .input {
+                    border: 0;
+                    border-radius: 0;
+                    background-color: getColor('background');
+
+                    @include mobile {
+                        background-color: getColor('grey-lighter');
+                    }
+
+                    &:hover {
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .search-results {
+        position: absolute;
+        top: $searchbar-height-desktop;
+        left: 25%;
+        right: 25%;
+        background-color: getColor('background');
+        z-index: zindex('large');
+        padding: 20px;
+        opacity: 0;
+        display: none;
+
+        @include tablet {
+            padding-left: 55px;
+        }
+
+        @include mobile {
+            top: $searchbar-height;
+            left: 0;
+            right: 0;
+        }
+
+        &.is-active {
+            display: block;
+        }
+
+        li {
+            a {
+                display: block;
+                margin-left: -55px;
+                margin-right: -20px;
+                padding: 5px 20px 5px 55px;
+
+                &:hover,
+                &.is-active {
+                    color: getVariantColor('alternate',2);
+                    background-color: getColor('grey-lighter');
+                }
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+        }
+
+        .search-autosuggest {
+            a {
+                span {
+                    display: inline-block;
+                    margin-left: 10px;
+                    font-size: $text-10;
+                    color: getColor('grey');
+                }
+            }
+        }
+
+        .search-autocomplete {
+            a {
+                span {
+                    color: getVariantColor('alternate',2);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.search-no-modal {
+    .search-results {
+        li {
+            a {
+                display: block;
+                margin-left: -55px;
+                margin-right: -20px;
+                padding: 5px 20px 5px 55px;
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+        }
+
+        .search-autosuggest {
+            a {
+                span {
+                    display: inline-block;
+                    margin-left: 10px;
+                    font-size: $text-10;
+                    color: getColor('grey');
+                }
+            }
+        }
+
+        .search-autocomplete {
+            a {
+                span {
+                    color: getVariantColor('alternate',2);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

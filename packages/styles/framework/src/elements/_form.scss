@@ -1,0 +1,593 @@
+$file-radius: $radius;
+$file-name-max-width: 16em;
+$field-margin: 20px;
+$help-size: $size-small;
+$label-weight: $weight-bold;
+
+.field {
+  &:not(:first-child) {
+    margin-top: $field-margin;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 7.5px;
+  }
+
+  &.is-fullwidth {
+    div.control {
+      flex: 1;
+    }
+  }
+
+  @include mobile {
+    &.is-very-short,
+    &.is-short {
+      width: 50%;
+    }
+
+    &.is-long,
+    &.is-very-long {
+      width: 100%;
+    }
+  }
+
+  @include tablet {
+    &.is-very-short {
+      width: 130px;
+    }
+
+    &.is-short {
+      width: 270px;
+    }
+
+    &.is-long {
+      width: 400px;
+    }
+
+    &.is-very-long {
+      width: 500px;
+    }
+  }
+
+  .select {
+    @extend .is-fullwidth;
+  }
+
+  &.has-addons {
+    display: flex;
+    justify-content: flex-start;
+
+    .control {
+      &:not(:last-child) {
+        margin-right: -1px;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        .button,
+        .input,
+        .select select {
+          border-radius: 0;
+        }
+      }
+
+      &:first-child {
+        .button,
+        .input,
+        .select select {
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+
+      &:last-child {
+        .button,
+        .input,
+        .select select {
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+        }
+      }
+
+      .button,
+      .input,
+      .textarea,
+      .select select {
+        &:hover,
+        &.is-hovered {
+          z-index: zindex('tiny');
+        }
+
+        &:focus,
+        &.is-focused,
+        &:active,
+        &.is-active {
+          z-index: zindex('small');
+
+          &:hover {
+            z-index: zindex('medium');
+          }
+        }
+      }
+
+      &.is-expanded {
+        flex-grow: 1;
+      }
+    }
+
+    &.has-addons-centered {
+      justify-content: center;
+    }
+
+    &.has-addons-right {
+      justify-content: flex-end;
+    }
+
+    &.has-addons-fullwidth {
+      .control {
+        flex-grow: 1;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &.is-grouped {
+    display: flex;
+    justify-content: flex-start;
+
+    & > .control {
+      flex-shrink: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: 7.5px;
+      }
+
+      &.is-expanded {
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    }
+
+    &.is-grouped-centered {
+      justify-content: center;
+    }
+
+    &.is-grouped-right {
+      justify-content: flex-end;
+    }
+
+    &.is-grouped-multiline {
+      flex-wrap: wrap;
+
+      & > .control {
+        &:last-child,
+        &:not(:last-child) {
+          margin-bottom: 7.5px;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: -7.5px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.is-horizontal {
+    @include tablet {
+      display: flex;
+    }
+  }
+}
+
+.control {
+  font-size: $size-normal;
+  position: relative;
+  text-align: left;
+
+  &.has-icons-left,
+  &.has-icons-right {
+    .input,
+    .textarea,
+    .select {
+      &:focus {
+        & ~ .icon {
+          color: getColor('grey');
+        }
+      }
+
+      ~ .icon {
+        [class^='tri-'],
+        [class*=' tri-'] {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .icon {
+      color: getColor('grey-light');
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 40px;
+      pointer-events: auto;
+      z-index: zindex('void');
+      padding: 10px;
+    }
+
+    .input {
+      @each $name, $pair in $colors-feedback {
+        $bg-color: nth($pair, 1);
+        &.is-#{$name} {
+          ~ .icon {
+            color: getColor($bg-color);
+          }
+        }
+      }
+
+      &.is-error {
+        border-color: getColor('error');
+      }
+    }
+
+    .textarea {
+      @each $name, $pair in $colors-feedback {
+        $bg-color: nth($pair, 1);
+        &.is-#{$name} {
+          ~ .icon {
+            color: getColor($bg-color)
+          }
+        }
+      }
+
+      &.is-error {
+        border-color: getColor('error');
+      }
+    }
+  }
+
+  &.has-icons-left {
+    .input,
+    .select select {
+      padding-left: 45px;
+    }
+
+    .icon {
+      left: 0;
+      border-top-left-radius: $radius;
+      border-bottom-left-radius: $radius;
+    }
+
+    .textarea {
+      padding-left: 50px;
+      padding-right: $spacing-4;
+      padding-bottom: $spacing-4 !important;
+      padding-top: $spacing-4;
+    }
+
+    & .textarea + label {
+      left: 5rem;
+    }
+
+    & .textarea + label + .icon {
+      display: inherit;
+      padding-top: $spacing-4;
+      margin: 0 16px;
+      width: auto;
+    }
+
+    .textarea-counter {
+      position: absolute;
+      bottom: 5px;
+      right: 16px;
+      font-size: $size-xsmall;
+    }
+
+    .is-error ~ .textarea-counter {
+      bottom: 28px;
+    }
+  }
+
+  &.has-icons-right {
+    .input,
+    .select select {
+      padding-right: 45px;
+    }
+
+    .icon {
+      right: 0;
+      border-top-right-radius: $radius;
+      border-bottom-right-radius: $radius;
+    }
+  }
+
+  /** Dynamic placeholders **/
+  &.has-dynamic-placeholder {
+
+    ::placeholder {
+      color: black;
+    }
+
+
+    textarea:not(:placeholder-shown) {
+      padding-top: $spacing-5;
+    }
+
+
+    .input ~ label {
+      top: 10px;
+    }
+
+    .icon {
+      color: getColor('font');
+    }
+
+    label {
+      position: absolute;
+      top: 10px;
+      left: 16px;
+      border-left: transparent 1px solid;
+      font-size: $text-12;
+      color: getColor('grey');
+      transform: translateY(0);
+      transition: all 0.2s ease-out;
+      z-index: zindex('small');
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: calc(100% - 4em);
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+      line-height: 14px;
+    }
+
+    &.has-icons-left label {
+      left: 45px;
+    }
+
+    select:not(.no-label) {
+      padding-top: 19px;
+    }
+
+    .input {
+      padding-top: 19px;
+
+      &:placeholder-shown {
+        padding-top: 0.375em;
+      }
+
+      &:-ms-input-placeholder {
+        padding-top: 0.375em;
+      }
+    }
+
+    textarea {
+      padding-top: $spacing-4;
+      padding-bottom: $spacing-2 !important;
+    }
+
+    input:placeholder-shown ~ label,
+    textarea:placeholder-shown ~ label {
+      visibility: hidden;
+      opacity: 0;
+      font-size: $size-normal;
+      transform: translateY(10px);
+    }
+
+    input:-ms-input-placeholder ~ label {
+      visibility: hidden;
+      opacity: 0;
+      font-size: $size-normal;
+      transform: translateY(10px);
+    }
+  }
+
+  &.has-icons-left.has-dynamic-placeholder .textarea + label {
+    left: 50px;
+  }
+
+  &.has-password-discover {
+    .input {
+      ~ .icon:not(:last-child) {
+        color: getColor('grey');
+        background-color: transparent;
+        right: 45px;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+          color: getColor('grey-darker');
+        }
+      }
+    }
+  }
+
+  + .help {
+    margin: 4px 0;
+    font-size: $text-12;
+    font-weight: $weight-medium;
+  }
+
+  .is-searching {
+    background-color: transparent;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+
+    &::after {
+      @include spinner;
+      @include center(1em);
+    }
+  }
+
+  &.is-loading {
+    &::after {
+      @include spinner;
+
+      position: absolute !important;
+      right: 0.625em;
+      top: 0.625em;
+      z-index: zindex('small');
+    }
+
+    &.is-small::after {
+      font-size: $size-small;
+    }
+
+    &.is-large::after {
+      font-size: $size-large;
+    }
+  }
+}
+
+.field-label {
+  .label {
+    font-size: inherit;
+  }
+
+  @include mobile {
+    margin-bottom: 5px;
+  }
+
+  @include tablet {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin-right: 16px;
+    text-align: right;
+
+    &.is-small {
+      font-size: $size-small;
+      padding-top: 0.375em;
+    }
+
+    &.is-normal {
+      padding-top: 0.375em;
+    }
+
+    &.is-large {
+      font-size: $size-large;
+      padding-top: 0.375em;
+    }
+  }
+}
+
+.field-body {
+  .field .field {
+    margin-bottom: 0;
+  }
+
+  @include tablet {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 5;
+    flex-shrink: 1;
+
+    .field {
+      margin-bottom: 0;
+    }
+
+    & > .field {
+      flex-shrink: 1;
+
+      &:not(.is-narrow) {
+        flex-grow: 1;
+      }
+
+      &:not(:last-child) {
+        margin-right: 7.5px;
+      }
+    }
+  }
+}
+
+.file {
+  @include unselectable;
+
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+  // Sizes
+  &.is-small {
+    font-size: $size-small;
+  }
+
+  &.is-large {
+    font-size: $size-large;
+  }
+
+  &.is-centered {
+    justify-content: center;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+  }
+}
+
+.is-horizontal {
+  .field:not(:first-child) {
+    margin-top: 0;
+  }
+
+  &.is-mobile {
+    @include mobile {
+      .field-body {
+        display: flex;
+
+        .field {
+          margin-bottom: 0;
+        }
+
+        & > .field {
+          &:not(:last-child) {
+            margin-right: 7.5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.label {
+  color: getColor('grey-dark');
+  display: block;
+  font-size: $size-normal;
+  font-weight: $label-weight;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+
+  // Sizes
+  &.is-small {
+    font-size: $size-small;
+  }
+
+  &.is-large {
+    font-size: $size-large;
+  }
+}
+
+.help {
+  display: block;
+  font-size: $help-size;
+  margin-top: 2.5px;
+
+  @each $name, $pair in $colors-brand-funcionnal {
+    $color: getColor($name);
+    $brandName: getColorBrandName($name);
+
+    &.is-#{$brandName} {
+      color: $color;
+    }
+  }
+}

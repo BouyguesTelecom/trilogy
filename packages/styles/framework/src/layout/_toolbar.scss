@@ -1,0 +1,100 @@
+$toolbar-height: 60px !default;
+
+.toolbar {
+    height: $toolbar-height;
+    border-bottom: 1px solid getColor('grey-light');
+    display: flex;
+    align-items: center;
+
+    > .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    > .container > .toolbar-row,
+    > .toolbar-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+        border-right: 1px solid getColor('grey-light');
+
+        &:empty {
+            border-right: none;
+        }
+    }
+
+    > .container > .toolbar-group,
+    > .container > .toolbar-row > .toolbar-group,
+    > .toolbar-group,
+    > .toolbar-row > .toolbar-group {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &:not(:first-of-type) {
+            border-left: 1px solid getColor('grey-light');
+        }
+
+        > .toolbar-item {
+            padding-left: 10px;
+            padding-right: 10px;
+            white-space: nowrap;
+
+            &.is-clipped-to-bottom {
+                align-self: flex-end;
+            }
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        padding: 0;
+
+        > .container {
+            flex-direction: column;
+            align-items: stretch;
+            height: auto;
+            padding: 0;
+        }
+
+        > .container > .toolbar-group,
+        > .container > .toolbar-row > .toolbar-group,
+        > .toolbar-group,
+        > .toolbar-row > .toolbar-group {
+            height: $toolbar-height;
+
+            &:not(:last-of-type) {
+                border-right: 0;
+                border-bottom: 1px solid getColor('grey-light');
+            }
+        }
+
+        > .container > .toolbar-row,
+        > .toolbar-row {
+            height: $toolbar-height;
+            border-right: 0;
+
+            > .toolbar-group {
+                border-bottom: 1px solid getColor('grey-light');
+                flex-grow: 1;
+
+                &:not(:last-of-type) {
+                    border-right: 1px solid getColor('grey-light');
+                }
+            }
+        }
+    }
+
+    .is-elastic,
+    .toolbar-space {
+        flex-grow: 1;
+    }
+}

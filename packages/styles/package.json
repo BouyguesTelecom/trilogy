@@ -1,0 +1,22 @@
+{
+  "name": "@trilogy-ds/styles",
+  "version": "0.0.1",
+  "author": "bouygues-telecom",
+  "license": "UNLICENSED",
+  "files": [
+    "framework/src",
+    "themes/default/src",
+    "themes/common/src",
+    "dist/default/assets/icons"
+  ],
+  "scripts": {
+    "build:autolayout": "esbuild --platform=node --bundle scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
+    "build:spacing": "esbuild --platform=node --bundle scripts/spacing.ts --outfile=scripts/dist/spacing.cjs --sourcemap",
+    "create:autolayout": "node scripts/dist/autolayout.cjs",
+    "create:spacing": "node scripts/dist/spacing.cjs",
+    "prebuild": "npm run copy:icons",
+    "build": "vite --config vite.config.js build",
+    "watch:css": "vite --config vite.config.js watch",
+    "copy:icons": "mkdir -p ./dist/default/assets/icons/all && cp -R ../assets/lib/icons/all/ ./dist/default/assets/icons/all/"
+  }
+}

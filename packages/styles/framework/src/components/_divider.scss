@@ -1,0 +1,18 @@
+.divider {
+    position: relative;
+    text-align: center;
+    background-color: getColor('grey');
+    height: 1px;
+    width: 100%;
+    margin: 16px 0;
+
+    p.divider-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        padding: 0 $spacing-4;
+        background-color: invertColor('grey');
+    }
+}

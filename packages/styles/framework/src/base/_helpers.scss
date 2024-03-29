@@ -1,0 +1,880 @@
+.is-sticky-top {
+  position: sticky !important;
+  top: 0;
+  z-index: 999;
+}
+
+.is-sticky-bottom {
+  position: sticky !important;
+  bottom: 0;
+  z-index: 999;
+}
+
+// Float
+.is-clearfix {
+  @include clearfix;
+}
+
+.is-pulled-left {
+  float: left !important;
+}
+
+.is-pulled-right {
+  float: right !important;
+}
+
+// Overflow
+.is-clipped {
+  overflow: hidden !important;
+}
+
+// Overlay
+.is-overlay {
+  @include overlay;
+}
+
+// Nowrap
+.is-nowrap {
+  white-space: nowrap;
+}
+
+$alignments: (
+  'centered': 'center',
+  'justified': 'justify',
+  'left': 'left',
+  'right': 'right',
+);
+
+@each $alignment, $text-align in $alignments {
+  .has-text-#{$alignment} {
+    text-align: #{$text-align} !important;
+  }
+}
+
+@each $alignment, $text-align in $alignments {
+  @include mobile {
+    .has-text-#{$alignment}-mobile {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include tablet {
+    .has-text-#{$alignment}-tablet {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include tablet-only {
+    .has-text-#{$alignment}-tablet-only {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include touch {
+    .has-text-#{$alignment}-touch {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include desktop {
+    .has-text-#{$alignment}-desktop {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include desktop-only {
+    .has-text-#{$alignment}-desktop-only {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include widescreen {
+    .has-text-#{$alignment}-widescreen {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include widescreen-only {
+    .has-text-#{$alignment}-widescreen-only {
+      text-align: #{$text-align} !important;
+    }
+  }
+
+  @include fullhd {
+    .has-text-#{$alignment}-fullhd {
+      text-align: #{$text-align} !important;
+    }
+  }
+}
+
+// Typography
+@mixin typography-size($target: '') {
+  @each $size in $sizes {
+    $i: index($sizes, $size);
+
+    .is-size-#{$i}#{if($target == '', '', '-' + $target)} {
+      font-size: $size !important;
+    }
+  }
+}
+
+@include typography-size;
+
+@include mobile {
+  @include typography-size('mobile');
+}
+
+@include tablet {
+  @include typography-size('tablet');
+}
+
+@include touch {
+  @include typography-size('touch');
+}
+
+@include desktop {
+  @include typography-size('desktop');
+}
+
+@include widescreen {
+  @include typography-size('widescreen');
+}
+
+@include fullhd {
+  @include typography-size('fullhd');
+}
+
+.is-underline {
+  text-decoration: underline;
+}
+
+.is-capitalized {
+  text-transform: capitalize !important;
+}
+
+.is-lowercase {
+  text-transform: lowercase !important;
+}
+
+.is-uppercase {
+  text-transform: uppercase !important;
+}
+
+.is-italic {
+  font-style: italic !important;
+}
+
+.has-variant {
+  font-feature-settings: 'ss01';
+}
+
+// rétrocompatibilité, cette classe ne doit plus être utilisée
+.has-text-weight-light {
+  font-weight: $weight-normal !important;
+}
+
+.has-text-weight-normal {
+  font-weight: $weight-normal !important;
+}
+
+.has-text-weight-medium {
+  font-weight: $weight-medium !important;
+}
+
+.has-text-weight-semibold {
+  font-weight: $weight-semibold !important;
+}
+
+// rétrocompatibilité, cette classe ne doit plus être utilisée
+.has-text-weight-bold {
+  font-weight: $weight-semibold !important;
+}
+
+// rétrocompatibilité, cette classe ne doit plus être utilisée
+.has-text-weight-extrabold {
+  font-weight: $weight-semibold !important;
+}
+
+@mixin typography-colors($target: '') {
+  @each $name, $color in $colors {
+    $brandName:nth($color, 1);
+    $color: nth($color, 2);
+    $color-invert: invertColor($name);
+
+    .has-text-#{$brandName}#{if($target == '', '', '-' + $target)} {
+      color: $color !important;
+    }
+    .has-text-#{$brandName}-invert#{if($target == '', '', '-' + $target)} {
+      color: $color-invert !important;
+    }
+  }
+}
+
+@include typography-colors;
+
+@include mobile {
+  @include typography-colors('mobile');
+}
+
+@include tablet {
+  @include typography-colors('tablet');
+}
+
+@include touch {
+  @include typography-colors('touch');
+}
+
+@include desktop {
+  @include typography-colors('desktop');
+}
+
+@include widescreen {
+  @include typography-colors('widescreen');
+}
+
+@include fullhd {
+  @include typography-colors('fullhd');
+}
+
+// Visibility
+$displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
+
+@each $display in $displays {
+  .is-#{$display} {
+    display: #{$display} !important;
+  }
+
+  @include mobile {
+    .is-#{$display}-mobile {
+      display: #{$display} !important;
+    }
+  }
+
+  @include tablet {
+    .is-#{$display}-tablet {
+      display: #{$display} !important;
+    }
+  }
+
+  @include tablet-only {
+    .is-#{$display}-tablet-only {
+      display: #{$display} !important;
+    }
+  }
+
+  @include touch {
+    .is-#{$display}-touch {
+      display: #{$display} !important;
+    }
+  }
+
+  @include desktop {
+    .is-#{$display}-desktop {
+      display: #{$display} !important;
+    }
+  }
+
+  @include desktop-only {
+    .is-#{$display}-desktop-only {
+      display: #{$display} !important;
+    }
+  }
+
+  @include widescreen {
+    .is-#{$display}-widescreen {
+      display: #{$display} !important;
+    }
+  }
+
+  @include widescreen-only {
+    .is-#{$display}-widescreen-only {
+      display: #{$display} !important;
+    }
+  }
+
+  @include fullhd {
+    .is-#{$display}-fullhd {
+      display: #{$display} !important;
+    }
+  }
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+@include mobile {
+  .is-hidden-mobile {
+    display: none !important;
+  }
+}
+
+@include tablet {
+  .is-hidden-tablet {
+    display: none !important;
+  }
+}
+
+@include tablet-only {
+  .is-hidden-tablet-only {
+    display: none !important;
+  }
+}
+
+@include touch {
+  .is-hidden-touch {
+    display: none !important;
+  }
+}
+
+@include desktop {
+  .is-hidden-desktop {
+    display: none !important;
+  }
+}
+
+@include desktop-only {
+  .is-hidden-desktop-only {
+    display: none !important;
+  }
+}
+
+@include widescreen {
+  .is-hidden-widescreen {
+    display: none !important;
+  }
+}
+
+@include widescreen-only {
+  .is-hidden-widescreen-only {
+    display: none !important;
+  }
+}
+
+@include fullhd {
+  .is-hidden-fullhd {
+    display: none !important;
+  }
+}
+
+.is-invisible {
+  visibility: hidden !important;
+}
+
+@include mobile {
+  .is-invisible-mobile {
+    visibility: hidden !important;
+  }
+}
+
+@include tablet {
+  .is-invisible-tablet {
+    visibility: hidden !important;
+  }
+}
+
+@include tablet-only {
+  .is-invisible-tablet-only {
+    visibility: hidden !important;
+  }
+}
+
+@include touch {
+  .is-invisible-touch {
+    visibility: hidden !important;
+  }
+}
+
+@include desktop {
+  .is-invisible-desktop {
+    visibility: hidden !important;
+  }
+}
+
+@include desktop-only {
+  .is-invisible-desktop-only {
+    visibility: hidden !important;
+  }
+}
+
+@include widescreen {
+  .is-invisible-widescreen {
+    visibility: hidden !important;
+  }
+}
+
+@include widescreen-only {
+  .is-invisible-widescreen-only {
+    visibility: hidden !important;
+  }
+}
+
+@include fullhd {
+  .is-invisible-fullhd {
+    visibility: hidden !important;
+  }
+}
+
+// Other
+.is-marginless {
+  margin: 0 !important;
+}
+
+.is-paddingless {
+  padding: 0 !important;
+}
+
+.is-radiusless {
+  border-radius: 0 !important;
+}
+
+.is-shadowless {
+  box-shadow: none !important;
+}
+
+.is-unselectable {
+  @include unselectable;
+}
+
+.is-multiline {
+  flex-wrap: wrap !important;
+}
+
+.is-rounded {
+  border-radius: 50% !important;
+}
+
+.is-bordered {
+  border: 1px solid getColor('grey-light');
+}
+
+.is-vertical-paddingless {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// Radius
+$radius-list: (
+  'radius-small': $radius-small,
+  'radius': $radius,
+  'radius-large': $radius-large,
+);
+
+@each $label, $radius-size in $radius-list {
+  .has-border-#{$label} {
+    border-radius: $radius-size;
+  }
+}
+
+// Dimensions
+.is-fullheight {
+  height: 100%;
+}
+
+.is-fullwidth {
+  width: 100%;
+}
+
+.is-borderless {
+  border: none !important;
+}
+
+@include mobile {
+  .is-fullwidth-mobile {
+    width: 100%;
+  }
+}
+
+// Alignement FLEXBOX
+// FIXME : n'a pas sa place dans un design system
+.is-spaced-evenly {
+  justify-content: space-evenly !important;
+}
+
+// FIXME : n'a pas sa place dans un design system
+.is-spaced-around {
+  justify-content: space-around !important;
+}
+
+// FIXME : n'a pas sa place dans un design system
+.is-spaced-between {
+  justify-content: space-between !important;
+}
+
+// FIXME : n'a pas sa place dans un design system
+.is-order-reversed {
+  flex-direction: row-reverse !important;
+}
+
+// FIXME : n'a pas sa place dans un design system
+.is-vertical {
+  flex-direction: column !important;
+
+  &.is-order-reversed {
+    flex-direction: column-reverse !important;
+  }
+
+  &.is-aligned-left {
+    align-items: flex-start !important;
+  }
+
+  &.is-aligned-right {
+    align-items: flex-end !important;
+  }
+
+  &.is-positionned-top {
+    justify-content: flex-start !important;
+  }
+
+  &.is-positionned-bottom {
+    justify-content: flex-end !important;
+  }
+}
+
+// FIXME : n'a pas sa place dans un design system
+@include mobile {
+  .is-vertical-mobile {
+    flex-direction: column !important;
+
+    &.is-order-reversed-mobile {
+      flex-direction: column-reverse !important;
+    }
+
+    &.is-aligned-left-mobile {
+      align-items: flex-start !important;
+    }
+
+    &.is-aligned-center-mobile {
+      align-items: center !important;
+    }
+
+    &.is-aligned-right-mobile {
+      align-items: flex-end !important;
+    }
+
+    &.is-positionned-top-mobile {
+      justify-content: flex-start !important;
+    }
+
+    &.is-positionned-center-mobile {
+      justify-content: center !important;
+    }
+
+    &.is-positionned-bottom-mobile {
+      justify-content: flex-end !important;
+    }
+  }
+}
+
+/**
+ * alignement sur l'axe principal (justify-content)
+*/
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+.is-centered {
+  justify-content: center;
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include mobile {
+  .is-centered-mobile {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include tablet {
+  .is-centered-tablet {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include tablet-only {
+  .is-centered-tablet-only {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include touch {
+  .is-centered-touch {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include desktop {
+  .is-centered-desktop {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include desktop-only {
+  .is-centered-desktop-only {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include widescreen {
+  .is-centered-widescreen {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include widescreen-only {
+  .is-centered-widescreen-only {
+    justify-content: center !important;
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
+@include fullhd {
+  .is-centered-fullhd {
+    justify-content: center !important;
+  }
+}
+
+$positions: (
+  'center': 'center',
+  'start': 'flex-start',
+  'end': 'flex-end',
+);
+
+@each $justification, $justify-content in $positions {
+  .is-justified-#{$justification} {
+    justify-content: #{$justify-content} !important;
+  }
+
+  @include mobile {
+    .is-justified-#{$justification}-mobile {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include tablet {
+    .is-justified-#{$justification}-tablet {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include tablet-only {
+    .is-justified-#{$justification}-tablet-only {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include touch {
+    .is-justified-#{$justification}-touch {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include desktop {
+    .is-justified-#{$justification}-desktop {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include desktop-only {
+    .is-justified-#{$justification}-desktop-only {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include widescreen {
+    .is-justified-#{$justification}-widescreen {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include widescreen-only {
+    .is-justified-#{$justification}-widescreen-only {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+
+  @include fullhd {
+    .is-justified-#{$justification}-fullhd {
+      justify-content: #{$justify-content} !important;
+    }
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec .is-justified-start (et même pas de spécificité par breakpoint)
+.is-positionned-left {
+  justify-content: flex-start !important;
+}
+
+// FIXME : à supprimer car double-emploi avec .is-justified-center (et même pas de spécificité par breakpoint)
+.is-positionned-center {
+  justify-content: center !important;
+}
+
+// FIXME : à supprimer car double-emploi avec .is-justified-end (et même pas de spécificité par breakpoint)
+.is-positionned-right {
+  justify-content: flex-end !important;
+}
+
+/**
+ * alignement sur l'axe perpendiculaire (align-items)
+*/
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+.is-vcentered {
+  align-items: center;
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include mobile {
+  .is-vcentered-mobile {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include tablet {
+  .is-vcentered-tablet {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include tablet-only {
+  .is-vcentered-tablet-only {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include touch {
+  .is-vcentered-touch {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include desktop {
+  .is-vcentered-desktop {
+    align-items: center !important;
+  }
+}
+
+@include desktop-only {
+  .is-vcentered-desktop-only {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include widescreen {
+  .is-vcentered-widescreen {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include widescreen-only {
+  .is-vcentered-widescreen-only {
+    align-items: center !important;
+  }
+}
+
+// FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
+@include fullhd {
+  .is-vcentered-fullhd {
+    align-items: center !important;
+  }
+}
+
+@each $alignment, $align-items in $positions {
+  .is-aligned-#{$alignment} {
+    align-items: #{$align-items} !important;
+  }
+
+  @include mobile {
+    .is-aligned-#{$alignment}-mobile {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include tablet {
+    .is-aligned-#{$alignment}-tablet {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include tablet-only {
+    .is-aligned-#{$alignment}-tablet-only {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include touch {
+    .is-aligned-#{$alignment}-touch {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include desktop {
+    .is-aligned-#{$alignment}-desktop {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include desktop-only {
+    .is-aligned-#{$alignment}-desktop-only {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include widescreen {
+    .is-aligned-#{$alignment}-widescreen {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include widescreen-only {
+    .is-aligned-#{$alignment}-widescreen-only {
+      align-items: #{$align-items} !important;
+    }
+  }
+
+  @include fullhd {
+    .is-aligned-#{$alignment}-fullhd {
+      align-items: #{$align-items} !important;
+    }
+  }
+}
+
+// FIXME : à supprimer car double-emploi avec .is-aligned-start (et même pas de spécificité par breakpoint)
+.is-aligned-top {
+  align-items: flex-start !important;
+}
+
+// FIXME : à supprimer car double-emploi avec .is-aligned-center (et même pas de spécificité par breakpoint)
+.is-aligned-center {
+  align-items: center !important;
+}
+
+// FIXME : à supprimer car double-emploi avec .is-aligned-end (et même pas de spécificité par breakpoint)
+.is-aligned-bottom {
+  align-items: flex-end !important;
+}
+
+//absolute
+.is-absolute {
+  position: absolute !important;
+}
+
+.is-text-ellipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}

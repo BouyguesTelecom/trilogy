@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "target": "es2019",
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": false,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["components"],
+      "@config": ["config"],
+      "@context": ["context"],
+      "@events": ["events"],
+      "@helpers": ["helpers"],
+      "@objects": ["objects"],
+      "@services": ["services"],
+    }
+  },
+  "include": [
+    "./**/*.json",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    "./components/**/*.stories.tsx",
+    "node_modules",
+    "**/test/**",
+    "./jest*",
+    "./snapshotResolver.ts",
+    "./fileTransformer.cjs",
+    "./package.json",
+    "./coverage"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

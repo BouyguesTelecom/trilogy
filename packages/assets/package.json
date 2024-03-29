@@ -1,0 +1,24 @@
+{
+  "name": "@trilogy-ds/assets",
+  "version": "0.0.1",
+  "description": "Trilogy assets include all Open Source Fonts & Icons",
+  "type": "module",
+  "module": "index.js",
+  "main": "index.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "optimise:icons": "svgo -f ./assets/icons/all -o ./lib/icons/all",
+    "build": "rimraf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/",
+    "pack": "npm pack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.26",
+    "svgo": "^3.0.2",
+    "rimraf": "^5.0.5",
+    "esbuild": "^0.20.1"
+  }
+}

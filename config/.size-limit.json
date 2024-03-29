@@ -1,0 +1,12 @@
+[
+  {
+    "path": "../packages/styles/dist/default/trilogy.css",
+    "limit": "70 kB",
+    "webpack": false
+  },
+  {
+    "path": "../packages/styles/dist/default/trilogy-mangled.css",
+    "limit": "80 kB",
+    "webpack": false
+  }
+]

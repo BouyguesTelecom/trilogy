@@ -1,0 +1,71 @@
+[class*="animate"] {
+    animation: $animation-duration $animation-timing-function;
+}
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes from-right {
+    0% {
+        transform: scaleX(0);
+    }
+
+    0%,
+    100% {
+        transform-origin: 100% 100%;
+    }
+}
+
+@keyframes from-top {
+    0% {
+        transform: scaleY(0);
+    }
+
+    0%,
+    100% {
+        transform-origin: 0% 0%;
+    }
+}
+
+.animate-from-right {
+    animation-name: from-right;
+}
+
+.animate-from-top {
+    animation-name: from-top;
+}
+
+// animation for skeletons
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -46.8px 0;
+    }
+
+    100% {
+        background-position: 46.8px 0;
+    }
+}
+
+// @TODO: Replace all raw values
+@mixin animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #e1e1e1 8%, #ddd 18%, #e1e1e1 33%) !important;
+    background-size: 800px 104px;
+    position: relative;
+}
+
+@mixin disable-animation {
+    animation: none;
+}

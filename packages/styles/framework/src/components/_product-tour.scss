@@ -1,0 +1,131 @@
+$product-tour-target-outline: rgba(10,10,10,.86); // comes from Bulma's .modal-background defaults
+
+.product-tour {
+    position: absolute;
+    z-index: zindex('modal');
+    visibility: hidden;
+    opacity: 0;
+    background-color: getColor('background');
+    border-radius: $radius;
+    box-shadow: $shadow;
+    width: 350px;
+    padding: $spacing-3 * 2;
+
+    @include mobile {
+        max-width: inherit;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 0;
+        right: auto !important;
+        bottom: auto !important;
+        left: 50%;
+        margin-top: -4px;
+        margin-left: -4px;
+        border-width: 4px;
+        border-style: solid;
+        border-color: transparent transparent #fff #fff;
+        transform: rotate(135deg);
+        height: 0;
+        width: 0;
+        box-shadow: -1px 1px 2px rgba(10, 10, 10, 0.2);
+        transform-origin: center;
+        pointer-events: none;
+
+        @include mobile {
+            display: none;
+        }
+
+        &.is-one-fifth { left: 20%; }
+        &.is-one-quarter { left: 25%; }
+        &.is-one-third { left: 33%; }
+        &.is-two-fifths { left: 40%; }
+        &.is-three-fifths { left: 60%; }
+        &.is-two-thirds { left: 66%; }
+        &.is-three-quarters { left: 75%; }
+        &.is-four-fifths { left: 80%; }
+
+        &.is-right {
+            top: 50% !important;
+            right: 0 !important;
+            bottom: auto !important;
+            left: 100% !important;
+            transform: rotate(-135deg);
+        }
+
+        &.is-bottom {
+            top: 100% !important;
+            bottom: auto !important;
+            right: auto !important;
+            transform: rotate(-45deg);
+        }
+
+        &.is-left {
+            top: 50% !important;
+            bottom: auto !important;
+            left: 0 !important;
+            right: 100% !important;
+            transform: rotate(45deg);
+        }
+
+        &.is-left,
+        &.is-right {
+            &.is-one-fifth { top: 20% !important; }
+            &.is-one-quarter { top: 25% !important; }
+            &.is-one-third { top: 33% !important; }
+            &.is-two-fifths { top: 40% !important; }
+            &.is-three-fifths { top: 60% !important; }
+            &.is-two-thirds { top: 66% !important; }
+            &.is-three-quarters { top: 75% !important; }
+            &.is-four-fifths { top: 80% !important; }
+        }
+    }
+
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.has-icon-left,
+    &.has-icon-right {
+        > .icon:not(.close) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            border-radius: 100%;
+            box-shadow: $shadow;
+            transform: translate(-50%, -50%);
+
+            @include mobile {
+                display: none;
+            }
+
+            img {
+                flex-shrink: 0; // IE11 fix
+            }
+        }
+    }
+
+    &.has-icon-right {
+        > .icon:not(.close) {
+            left: 100% !important;
+            right: 0;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.product-tour-target {
+    &-active {
+        outline: 999em solid $product-tour-target-outline !important;
+        outline-offset: 10px !important;
+        z-index: zindex('modal');
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "collectCoverage": true,
+
+  "projects": [
+    {
+      "name": "lib",
+      "displayName": "trilogy/lib",
+      "preset": "ts-jest",
+      "testEnvironment": "jsdom",
+      "setupFiles": [
+        "<rootDir>/packages/lib/src/jest.setup.ts"
+      ],
+      "roots": ["<rootDir>/BytelId/src"],
+      "transform": {
+        "^.+\\.[tj]s$": ["ts-jest",{
+          "allowJs": true
+        }]
+      },
+      "transformIgnorePatterns": [
+        "node_modules/(?!(?:.pnpm/file.*))"
+      ]
+    },
