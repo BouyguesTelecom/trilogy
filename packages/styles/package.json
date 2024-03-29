@@ -1,13 +1,13 @@
 {
   "name": "@trilogy-ds/styles",
-  "version": "0.0.1-beta-2",
+  "version": "0.0.1-beta-3",
   "author": "bouygues-telecom",
   "license": "UNLICENSED",
   "files": [
     "framework/src",
     "themes/default/src",
     "themes/common/src",
-    "dist/default/assets/icons"
+    "dist"
   ],
   "scripts": {
     "build:autolayout": "esbuild --platform=node --bundle scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",

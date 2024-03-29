@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/react",
-  "version": "0.0.1-beta-2",
+  "version": "0.0.1-beta-3",
   "type": "module",
   "files": [
     "lib"
