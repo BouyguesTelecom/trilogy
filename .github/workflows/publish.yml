@@ -23,20 +23,20 @@ jobs:
       - name: Publish React package on NPM 📦
         run: |
           cd packages/react
-          npm publish
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Assets package on NPM 📦
         run: |
           cd packages/assets
-          npm publish
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Styles package on NPM 📦
         run: |
           cd packages/styles
-          npm publish
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
