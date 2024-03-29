@@ -8,7 +8,7 @@ Trilogy DS, developed by Bouygues Telecom, is a multiplatform design system ( We
 
 </div>
 
-[![npm](https://img.shields.io/npm/v/trilogy-ds?style=for-the-badge&logo=npm&logoColor=white&color=D44A4A)](https://www.npmjs.com/package/trilogy-ds)
+[![npm](https://img.shields.io/npm/v/trilogy-ds?style=for-the-badge&logo=npm&logoColor=white&color=D44A4A)](https://www.npmjs.com/package/@trilogy-ds/react)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
