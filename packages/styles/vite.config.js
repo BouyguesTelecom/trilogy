@@ -7,7 +7,7 @@ import copy from "rollup-plugin-copy";
 export default defineConfig({
   plugins: [
     generateIconsScss({
-      iconsDir: path.resolve(__dirname, '../../node_modules/@trilogy-ds/assets/lib/icons/all'),
+      iconsDir: path.resolve(__dirname, './assets/icons/all'),
       scssOutputPath: path.resolve(__dirname, './assets/icons/_all.scss'),
       prefix: '',
       sizeAuto: false,
