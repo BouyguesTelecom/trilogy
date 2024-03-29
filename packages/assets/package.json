@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/assets",
-  "version": "0.0.1-beta-3",
+  "version": "0.0.1-beta-4",
   "description": "Trilogy assets include all Open Source Fonts & Icons",
   "type": "module",
   "module": "lib/index.js",
