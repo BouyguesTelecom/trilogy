@@ -18,28 +18,21 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm ci
+        run: | 
+          npm ci
+          npm run build
 
       - name: Publish React package on NPM 📦
-        run: |
-          cd packages/react
-          npm run build
-          npm publish --access public
+        run: npm publish --workspace packages/react --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Assets package on NPM 📦
-        run: |
-          cd packages/assets
-          npm run build
-          npm publish --access public
+        run: npm publish --workspace packages/assets --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Styles package on NPM 📦
-        run: |
-          cd packages/styles
-          npm run build
-          npm publish --access public
+        run: npm publish --workspace packages/styles --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
