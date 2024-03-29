@@ -29,6 +29,7 @@
     "shortid": "^2.2.16",
     "@trilogy-ds/assets": "*",
     "@trilogy-ds/styles": "*",
-    "@ptomasroos/react-native-multi-slider": "^2.2.2"
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
+    "react-native-gesture-handler": "^2.16.0"
   }
 }
