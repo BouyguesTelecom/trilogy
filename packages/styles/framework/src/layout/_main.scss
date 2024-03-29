@@ -1,0 +1,36 @@
+body > header,
+body > footer,
+.main-content {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    flex-shrink: 0;
+    position: relative;
+
+    &.is-fullwidth {
+        @include fullhd {
+            max-width: 100%;
+        }
+    }
+}
+
+.main-content {
+    flex-grow: 1;
+    max-width: 1500px;
+
+    &::before {
+        content: ' ';
+        background-color: transparent;
+        transition: background-color 250ms ease-in-out;
+    }
+
+    &.has-overlay {
+        &::before {
+            @include overlay;
+
+            position: fixed;
+            background-color: rgba(#000, 0.86);
+            z-index: zindex('small');
+        }
+    }
+}

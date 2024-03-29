@@ -1,0 +1,45 @@
+{
+  "esModuleInterop": true,
+  "moduleResolution": "node",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "target": "es2019",
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": false,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+  },
+  "include": [
+    "packages/lib",
+    "packages/types",
+    "packages/jest-setup",
+    "packages/lib/**/*.json",
+  ],
+}

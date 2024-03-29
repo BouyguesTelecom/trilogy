@@ -1,0 +1,19 @@
+.scroll-view {
+  overflow: auto;
+
+  &.scroll-horizontal {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    &.scroll-snap {
+      scroll-snap-type: x mandatory;
+      >.div {
+        scroll-snap-align: start;
+      }
+    }
+  }
+
+  &.scroll-vertical {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}

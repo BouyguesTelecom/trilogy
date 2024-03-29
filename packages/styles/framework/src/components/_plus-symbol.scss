@@ -1,0 +1,32 @@
+$plus-symbol-size: 40px;
+
+@mixin plus-symbol($color: getColor('grey-light'), $text-color: getColor('grey-dark')) {
+    &::after {
+        content: "+";
+        display: inline-block;
+        width: $plus-symbol-size;
+        height: $plus-symbol-size;
+        border-radius: $plus-symbol-size;
+        font-size: 24px;
+        text-align: center;
+        line-height: $plus-symbol-size;
+        background-color: $color;
+        color: $text-color;
+    }
+}
+
+.plus-symbol {
+    @include plus-symbol();
+
+    display: inline-block;
+
+    @each $name in $colors-brand {
+      $brandName: getColorBrandName($name);
+      $color: getColor($name);
+      $color-invert: invertColor($name);
+
+        &.is-#{$brandName} {
+            @include plus-symbol($color, $color-invert);
+        }
+    }
+}

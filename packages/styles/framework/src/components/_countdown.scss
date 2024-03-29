@@ -1,0 +1,55 @@
+.countdown {
+    border: 1px solid currentcolor;
+    border-radius: 8px;
+    display: inline-flex;
+    padding: $spacing-2;
+    color: getColor('font');
+
+    .count {
+        font-family: $family-sans-serif;
+        font-size: $text-14;
+        font-weight: 400;
+        list-style-type: none;
+        text-align: center;
+        padding: 0 $spacing-2;
+        position: relative;
+
+        &:not(:last-child)::before {
+            content: ' ';
+            border-left: 1px solid currentcolor;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .value {
+            font-size: $text-24;
+            font-weight: 600;
+        }
+    }
+
+    &.is-small {
+        padding: $spacing-2 0;
+        border-radius: 4px;
+        .count {
+            font-size: $text-12;
+            padding: 0 $spacing-2;
+            font-weight: 500;
+
+            .value {
+                font-size: $text-16;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &.is-inverted {
+        color: invertColor('font');
+        .count {
+              &:not(:last-child)::before {
+            }
+        }
+    }
+}

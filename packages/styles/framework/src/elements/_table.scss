@@ -1,0 +1,298 @@
+@use "sass:math";
+
+/**
+* @deprecated "Use box.is-paddingless instead"
+*/
+.table-container.box {
+    padding: 0;
+}
+
+.table {
+    @include block;
+
+    background-color: transparent;
+    color: getColor('grey-dark');
+
+    &:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+    /**
+    * @deprecated "Use multiples <tr><th> instead"
+    */
+    tbody .is-body-header {
+        background-color: getColor('grey-light');
+    }
+
+    td,
+    th {
+        border: 1px solid getColor('grey-light');
+        border-width: 0;
+        padding: 20px;
+        vertical-align: top;
+        text-align: left;
+
+        // Modifiers
+        &.is-narrow {
+            white-space: nowrap;
+            width: 1%;
+        }
+
+        &.is-selected {
+            background-color: getColor('main');
+            color: getColor('background');
+            a,
+            strong {
+                color: currentColor;
+            }
+        }
+    }
+
+    th {
+        color: getColor('font');
+    }
+
+    tr {
+        @each $name, $pair in $colors-feedback {
+          $bg-color: nth($pair, 1);
+          &.is-#{$name} {
+                background-color:getColor($bg-color);
+            }
+        }
+
+        th {
+            background-color: getColor('background');
+        }
+
+        th,
+        td {
+            color: getColor('font');
+            vertical-align: middle;
+        }
+
+        td {
+            border-bottom: 1px solid getColor('grey-light');
+
+            > p {
+                margin: 0;
+            }
+        }
+
+        &.is-selected {
+            background-color: getColor('main');
+            color: getColor('background');
+
+            a,
+            strong {
+                color: currentColor;
+            }
+
+            td,
+            th {
+                border-color: currentColor;
+                color: currentColor;
+            }
+        }
+
+        &.is-expanded,
+        &.is-expandable:hover {
+            td {
+                color: getColor('alternate');
+                cursor: pointer;
+            }
+        }
+
+        &.is-expandable + .is-expansion {
+            display: none;
+        }
+
+        &.is-expanded + .is-expansion {
+            display: table-row;
+        }
+
+        &.is-expanded {
+            > td {
+                border-bottom: 0;
+            }
+
+            .toggle {
+                transform: rotate(180deg);
+                color: inherit;
+            }
+
+            + tr > td {
+                border-top: 0;
+            }
+        }
+    }
+
+    thead {
+        td,
+        th {
+            border-width: 0 0 1px;
+            color: getColor('font');
+        }
+    }
+
+    tfoot {
+        td,
+        th {
+            border-width: 2px 0 0;
+            color: getColor('font');
+        }
+    }
+
+    tbody {
+        tr {
+            &:last-child {
+                td,
+                th {
+                    border-bottom-width: 0;
+                }
+            }
+        }
+    }
+
+    &:not(.is-bordered).is-comparative {
+        th {
+            border-right: 1px solid getColor('grey-lighter');
+        }
+
+        td {
+            &:not(:last-child) {
+                border-right: 1px solid getColor('grey-light');
+            }
+        }
+    }
+
+    &.is-compact {
+        td,
+        th {
+            padding: math.div(20px, 3) math.div(20px, 3);
+        }
+    }
+
+    &.is-large {
+        thead {
+            height: 50px;
+
+            th {
+                color: getVariantColor('alternate',2);
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+        }
+
+        tbody {
+            border-top: 1px solid #d8d8d8;
+
+            tr {
+                td {
+                    height: 40px;
+                }
+
+                &:not(.is-body-header) td {
+                    height: 96px;
+                }
+            }
+        }
+    }
+
+    &.is-bordered {
+        td,
+        th {
+            border-width: 1px;
+        }
+
+        tr {
+            &:last-child {
+                td,
+                th {
+                    border-bottom-width: 1px;
+                }
+            }
+        }
+    }
+
+    &.is-fullwidth {
+        width: 100%;
+    }
+
+    &.is-hoverable {
+        tbody {
+            tr:not(.is-selected) {
+                &:hover {
+                    background-color: getColor('grey-lighter');
+                }
+            }
+        }
+
+        &.is-striped {
+            tbody {
+                tr:not(.is-selected) {
+                    &:hover {
+                        background-color: getColor('grey-light');
+                    }
+                }
+            }
+        }
+    }
+
+    &.is-narrow {
+        td,
+        th {
+            padding: 0.25em 0.5em;
+        }
+    }
+
+    &.is-striped {
+        tbody {
+            tr:not(.is-selected) {
+                &:nth-child(even) {
+                    background-color: getColor('grey-lighter');
+                }
+            }
+        }
+    }
+
+    .subtable {
+        background-color: getColor('grey-lighter');
+        border-radius: $radius;
+        padding: $box-padding * 2;
+
+        @include mobile() {
+            padding: 15px;
+        }
+
+        .table {
+            background: transparent;
+
+            tr:not(:first-child) {
+                td {
+                    border-top: 1px solid getColor('grey-dark');
+                }
+            }
+
+            td {
+                border: 0;
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
+.table-container {
+    @include block;
+    @include overflow-touch;
+
+    overflow: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}

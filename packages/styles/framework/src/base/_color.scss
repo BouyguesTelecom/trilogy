@@ -1,0 +1,58 @@
+@use "sass:map";
+
+@function getColor( $name ) {
+  @return var(--color-#{nth(map-get($colors,$name),1)})
+}
+
+@function getColorValue( $name ) {
+  @return #{nth(map-get($colors,$name),2)}
+}
+
+@function getColorBrandName( $name ) {
+  @return #{nth(map-get($colors,$name),1)}
+}
+
+@function getVariantColor($name, $n:1)  {
+  @return #{nth(map-get($colors,$name),$n+3)}
+};
+
+:root {
+  @each $name, $color in $colors {
+    --color-#{nth($color,1)}: #{nth($color,2)};
+  }
+
+  // Colors
+  @each $name, $color in $colors {
+    $colorname: nth($color, 1);
+    $bgcolorval: nth($color, 2);
+    $colorval: nth($color, 3);
+    .has-background-#{$colorname} {
+      background-color: var(--color-#{$colorname}) !important;
+      color: var(--color-#{$colorval});
+    }
+  }
+}
+
+.is-hovered {
+  background-color: var(--color-hovered);
+}
+
+@function invertColor ($colorName, $context:'') {
+  $invertcolormap: ('tertiary': 'grey-dark', 'grey-dark': 'grey-light', 'grey-light': 'grey-dark');
+  $defaultInvert: white;
+
+  @if ($context == 'dark') {
+    $invertcolormap: ('tertiary':'var(--color-success)');
+    $defaultInvert: black;
+  }
+
+  @if ($context == 'accordion') {
+    $defaultInvert: 'grey-lighter'
+  }
+
+  $result: map.get($invertcolormap, $colorName);
+  @if ($result) {
+    @return $result
+  }
+  @return $defaultInvert
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@trilogy-ds/react",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "sideEffect": false,
+  "description": "Trilogy react framework design system for Bouygues Telecom",
+  "author": "bouygues-telecom",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",
+    "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent",
+    "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
+    "build": "rimraf lib && npm run prebuild && tsc -p . && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib/"
+  },
+  "dependencies": {
+    "@react-native-picker/picker": "^2.6.1",
+    "clsx": "^2.1.0",
+    "color": "^4.2.3",
+    "react-content-loader": "^6.2.1",
+    "react-native-modal": "^13.0.1",
+    "react-native-toast-message": "^2.2.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "shortid": "^2.2.16",
+    "@trilogy-ds/assets": "*",
+    "@trilogy-ds/styles": "*",
+    "@ptomasroos/react-native-multi-slider": "^2.2.2"
+  }
+}

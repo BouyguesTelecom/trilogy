@@ -1,0 +1,23 @@
+.progress-radial {
+    background: radial-gradient(white 58%, transparent 51%),
+        conic-gradient(gainsboro 0deg 360deg, gainsboro 0deg 360deg);
+    border-radius: 50%;
+    width: 124px;
+    height: 124px;
+    position: relative;
+
+    .progress-radial-content {
+        border: 1px solid white;
+        border-radius: 50%;
+        width: 102px;
+        height: 102px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

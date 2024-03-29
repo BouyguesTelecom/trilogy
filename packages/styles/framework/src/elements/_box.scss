@@ -1,0 +1,267 @@
+@use 'sass:math';
+@import "../utilities/spacing";
+
+$space-between-tiles: 5px;
+$padding-box: $spacing-5;
+$padding-box-mobile: $spacing-4;
+
+a.box {
+  cursor: pointer;
+  transition: box-shadow $animation-duration;
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: $focus-shadow;
+  }
+}
+
+.box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: getColor('background');
+  border-radius: $radius;
+  color: getColor('font');
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: 24px;
+
+  @include mobile {
+    padding: 16px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &.has-background {
+    background-repeat: no-repeat;
+
+    &.is-inverted {
+      .box-content {
+        color: getColor('background');
+      }
+
+      .title,
+      .subtitle,
+      .text,
+      .paragraph,
+      p {
+        color: getColor('background');
+      }
+    }
+
+    .box-content {
+      background-color: transparent;
+    }
+  }
+
+
+  &.is-active {
+    border: 2px solid getColor('alternate');
+
+    > .box-header {
+      border-radius: ($radius - 2px) ($radius - 2px) 0 0;
+      padding-top: 6px;
+      padding-left: 22px;
+      padding-right: 6px;
+    }
+
+    ~ .box-content {
+      border-radius: 0 0 ($radius - 2px) ($radius - 2px);
+
+    }
+
+    > .box-content {
+      padding-left: 22px;
+      padding-right: 22px;
+      @include mobile {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      &:first-child {
+        border-radius: ($radius - 2px) ($radius - 2px) 0 0;
+        padding-top: 22px;
+        @include mobile {
+          padding-top: 14px;
+        }
+
+      }
+
+      &:last-child {
+        border-radius: 0 0 ($radius - 2px) ($radius - 2px);
+        padding-bottom: 22px;
+        @include mobile {
+          padding-bottom: 14px;
+        }
+      }
+
+      &:only-child {
+        border-radius: ($radius - 2px);
+        padding: 22px;
+        @include mobile {
+          padding: 14px;
+        }
+      }
+    }
+
+    > .box-footer {
+      margin: 12.5px 5.5px 5.5px;
+    }
+  }
+
+  &.is-fullheight {
+    .box-content {
+      flex-grow: 1;
+    }
+  }
+
+  &.is-highlighted {
+    .box-content {
+      padding-left: 23px;
+      border-left: 8px solid transparent;
+    }
+
+    @each $name, $pair in $colors-brand-funcionnal {
+      $color: getColor($name);
+      $brandName: getColorBrandName($name);
+
+      &.is-#{$brandName} .box-content {
+        border-left-color: $color;
+        border-left-width: 4px;
+      }
+    }
+  }
+
+  &.is-flat {
+    box-shadow: none;
+    border: 1px solid getColor('grey-dark');
+
+    &.has-hat > .is-hat {
+      left: -1px;
+      right: -1px;
+    }
+
+    .box-header {
+      margin-top: calc(-#{$padding-box} - 1px);
+      margin-left: calc(-#{$padding-box} - 1px);
+      margin-right: calc(-#{$padding-box} - 1px);
+    }
+  }
+
+  .box-header {
+    z-index: inherit;
+    background-color: getColor('font');
+    color: getColor('background');
+    margin-top: -$padding-box;
+    margin-left: -$padding-box;
+    margin-right: -$padding-box;
+    padding: 8px;
+    padding-left: 24px;
+    box-shadow: none;
+    border-radius: $radius $radius 0 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-weight: $weight-semibold;
+
+    @include mobile {
+      margin-top: -16px;
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    > p:not(:last-child),
+    > .paragraph:not(:last-child) {
+      margin: 0 0 0.3em;
+
+      @include tablet {
+        align-self: center;
+        margin: 0 3em 0 0;
+      }
+    }
+
+    ~ .box-content {
+      margin-top: 0;
+      border-radius: 0 0 $radius $radius;
+    }
+  }
+
+  .box-content {
+    background-color: getColor('background');
+    color: getColor('font');
+    margin: -$padding-box;
+    padding: $padding-box;
+
+    @include mobile {
+      margin: -$padding-box-mobile;
+      padding: $padding-box-mobile;
+    }
+
+    @include mobile {
+      text-align: left;
+    }
+
+    &:first-child {
+      border-radius: $radius $radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $radius $radius;
+    }
+
+    &:only-child {
+      border-radius: $radius;
+    }
+
+    > .is-unboxed {
+      margin-left: -$padding-box;
+      margin-right: -$padding-box;
+      width: auto;
+
+      @include desktop {
+        margin-left: -$padding-box;
+        margin-right: -$padding-box;
+      }
+    }
+
+    &.is-grey,
+    &.tiles-container {
+      padding: $padding-box;
+
+      .tile.is-parent,
+      .tile.is-child:not(.box) {
+        padding: $space-between-tiles;
+      }
+
+      .tile.is-vertical > .tile.is-child:not(:last-child) {
+        margin-bottom: ($space-between-tiles * 2) !important;
+      }
+
+      .box {
+        box-shadow: none;
+        padding: $padding-box;
+      }
+    }
+
+    &.is-transparent {
+      background-color: transparent;
+    }
+  }
+
+  .box-footer {
+    padding-top: $padding-box;
+    border-top: 1px solid getColor('grey-disabled');
+    margin: 12.5px 7.5px 7.5px;
+  }
+}

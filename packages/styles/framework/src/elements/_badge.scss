@@ -1,0 +1,81 @@
+.title .badge {
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+}
+
+@mixin badge {
+    display: inline-flex;
+    border-radius: 99em;
+    color: getColor('background');
+    background: getColor('alternate');;
+    font-size: $text-10;
+    min-height: $text-20;
+    min-width: $text-20;
+    justify-content: center;
+    align-items: center;
+
+    &:empty {
+        min-width: $text-10;
+        min-height: $text-10;
+    }
+
+    &.is-up {
+        position: absolute;
+        left: 50%;
+        top: $text-10;
+        right: $text-24;
+    }
+
+    &.is-inverted {
+        color: getColor('main');
+        background: getColor('background');
+    }
+
+    ul.menu-list li a & {
+        margin: 0 $text-15;
+        max-height: 17px;
+    }
+}
+
+.badge {
+    @include badge;
+}
+
+.badge-and-text {
+    display: flex;
+    align-items: center;
+
+    p {
+        margin-bottom: 0 !important;
+
+        + .badge {
+            @include badge;
+
+            &.is-level {
+                position: relative;
+                margin-left: 60px;
+            }
+        }
+    }
+}
+
+[data-badge-number] {
+    position: relative;
+
+    &::after {
+        content: attr(data-badge-number);
+        position: absolute;
+        margin-left: -15px;
+        top: -7px;
+        color: getColor('background');
+        left: 100%;
+        background: getColor('main');
+        font-size: $text-10;
+        min-height: $text-20;
+        min-width: $text-20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+    }
+}

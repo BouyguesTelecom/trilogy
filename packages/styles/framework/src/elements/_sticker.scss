@@ -1,0 +1,151 @@
+$sticker-height: 35px;
+$sticker-radius: $radius-large;
+
+.sticker {
+  border-radius: 24px;
+  font-size: 16px;
+  flex-grow: 0;
+  display: inline-flex;
+  padding: 8px 16px;
+  color: getColor('background') !important;
+  line-height: 20px;
+  flex-shrink: 0;
+  background-color: getColor('font');
+  font-weight: 600;
+
+  &:not(.is-hat) {
+    width: fit-content;
+
+    @include mobile{
+      border-radius: 16px;
+      font-size: 12px;
+      padding: $spacing-1 $spacing-2;
+      height: auto;
+      line-height: 15px;
+
+      &.is-flag {
+        border-radius: 0 $sticker-radius 0 0;
+      }
+
+    }
+  }
+
+
+  &.is-primary {
+    background-color: getColor('main');
+    color: getColor('background') !important;
+  }
+
+  &.is-flag {
+    border-radius: 0 16px 0 0;
+  }
+
+  &.is-outlined,
+  &.is-inverted {
+    background-color: white !important;
+    border-style: solid;
+    border-width: 2px;
+    border-color: currentColor;
+    color: getColor('font') !important;
+
+    &.is-primary {
+      color: getColor('main') !important;
+    }
+  }
+
+  &.is-small {
+    border-radius: 16px;
+    font-size: 12px;
+    padding: $spacing-1 $spacing-2;
+    height: auto;
+    line-height: 15px;
+
+    &.is-flag {
+      border-radius: 0 $sticker-radius 0 0;
+    }
+  }
+
+  // deprecated
+  &.is-stretched {
+    border-radius: $radius 0;
+    padding: 0 10px;
+    position: relative;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      content: " ";
+      transform: skew(-20deg);
+      padding-left: 7px;
+      padding-right: 7px;
+      line-height: 2em;
+      height: 100%;
+      display: block;
+    }
+
+    &::before {
+      border-radius: $radius 0 0 $radius;
+      left: -6px;
+    }
+
+    &::after {
+      border-radius: 0 $radius $radius 0;
+      right: -7px;
+    }
+  }
+}
+
+@mixin hat-margins {
+  position: relative;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  text-align: center;
+  margin-top: $sticker-height !important;
+}
+
+.has-hat,
+.has-hat-desktop,
+.has-hat-mobile {
+  .is-hat {
+    display: inline-block;
+    border-radius: $radius $radius 0 0;
+    position: absolute;
+    top: -$sticker-height;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.is-fullheight {
+    height: calc(100% - #{$sticker-height}) !important;
+  }
+}
+
+.has-hat {
+  @include hat-margins();
+}
+
+.has-hat-desktop {
+  @include desktop() {
+    @include hat-margins();
+  }
+}
+
+.has-hat-tablet {
+  @include tablet() {
+    @include hat-margins();
+  }
+}
+
+.has-hat-mobile {
+  @include mobile() {
+    @include hat-margins();
+  }
+}

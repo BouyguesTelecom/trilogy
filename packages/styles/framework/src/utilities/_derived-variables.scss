@@ -1,0 +1,104 @@
+@import './initial-variables';
+
+// Typography
+$family-primary: $family-sans-serif !default;
+$family-secondary: $family-serif !default;
+$family-code: $family-monospace !default;
+
+$size-xsmall: $text-10 !default;
+$size-small: $text-13 !default;
+$size-normal: $text-16 !default;
+$size-medium: $text-16 !default;
+$size-large: $text-24 !default;
+
+
+// Brand Color
+$colors-brand: (
+  'background', 'main', 'font'
+);
+
+// Brand Color Functionnal
+$colors-brand-funcionnal: (
+  'background', 'main', 'alternate', 'font', 'info', 'success', 'error', 'warning'
+);
+
+$colors-feedback: (
+  'success': (
+    'bg-success',
+  ),
+  'error': (
+    'bg-error',
+  ),
+  'warning': (
+    'bg-warning',
+  ),
+  'info': (
+    'bg-info',
+  ),
+);
+
+// Gestion des z-index
+$zindex: (
+  subzero: -1,
+  void: 0,
+  tiny: 1,
+  small: 10,
+  medium: 100,
+  large: 1000,
+  dropdown: 5000,
+  sticky: 6000,
+  fixed: 7000,
+  modal: 8000,
+  popover: 9000,
+  tooltip: 9999,
+);
+
+// Gestion des tailles de police
+$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 $size-8;
+$sizes-desktop: $size-1-desktop $size-2-desktop $size-3-desktop $size-4-desktop $size-5-desktop $size-6-desktop $size-7-desktop $size-8-desktop;
+$sizes-fluid: (
+    ($size-1, $size-1-desktop),
+    ($size-2, $size-2-desktop),
+    ($size-3, $size-3-desktop),
+    ($size-4, $size-4-desktop),
+    ($size-5, $size-5-desktop),
+    ($size-6, $size-6-desktop),
+    ($size-7, $size-7-desktop),
+    ($size-8, $size-8-desktop)
+);
+$sizes-desktop-interim: $size-7-desktop $size-6-desktop $size-5-desktop $size-4-desktop $size-3-desktop $size-2-desktop $size-1-desktop;
+$sizes-fluid-interim: (
+    ($size-7, $size-7-desktop),
+    ($size-6, $size-6-desktop),
+    ($size-5, $size-5-desktop),
+    ($size-4, $size-4-desktop),
+    ($size-3, $size-3-desktop),
+    ($size-2, $size-2-desktop),
+    ($size-1, $size-1-desktop)
+);
+
+// Gestion des déclinaisons de tailles utilisables par les composants (préfixées par is-)
+$dimension-xxsmall: 'xxsmall';
+$dimension-xsmall: 'xsmall';
+$dimension-small: 'small';
+$dimension-medium: 'medium';
+$dimension-large: 'large';
+$dimension-xlarge: 'xlarge';
+$dimension-xxlarge: 'xxlarge';
+
+$dimensions-limited: $dimension-small $dimension-medium $dimension-large;
+$dimensions-extended: $dimension-xsmall $dimension-small $dimension-medium $dimension-large $dimension-xlarge;
+$dimensions-all: $dimension-xxsmall $dimension-xsmall $dimension-small $dimension-medium $dimension-large $dimension-xlarge $dimension-xxlarge;
+
+$shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+$focus-shadow: 0 1px 3px 0 rgba(69, 69, 69, 0.15),
+0 2px 20px -3px rgba(69, 69, 69, 0.3);
+
+$box-padding-mobile: 15px !default;
+$box-padding: 12.5px !default;
+$column-gap-mobile: 8px !default;
+$column-gap-tablet-desktop: 12px !default;
+$row-gap-mobile: 8px !default;
+$row-gap-tablet-desktop: 12px !default;
+
+$control-border-width: 1px !default;

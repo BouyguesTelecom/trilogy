@@ -1,0 +1,94 @@
+@use "sass:math";
+@import "./derived-variables";
+
+@function encodecolor($string) {
+  @if type-of($string) == 'string' and str-index($string, '#') == 1 {
+    @return '%23' + str-slice( $string, 2);
+  }
+
+  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1 {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote('#{$hex}');
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}
+
+@function powernumber($number, $exp) {
+    $value: 1;
+
+    @if $exp > 0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    }
+
+    @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: math.div($value, $number);
+        }
+    }
+
+    @return $value;
+}
+
+@function colorLuminance($color) {
+    $color-rgb: ("red": red($color), "green": green($color), "blue": blue($color));
+
+    @each $name, $value in $color-rgb {
+        $adjusted: 0;
+        $value: math.div($value, 255);
+
+        @if $value < 0.03928 {
+            $value: math.div($value, 12.92);
+        }
+
+        @else {
+            $value: math.div($value + 0.055, 1.055);
+            $value: powernumber($value, 2);
+        }
+
+        $color-rgb: map-merge($color-rgb, ($name: $value));
+    }
+
+    @return map-get($color-rgb, "red") * 0.2126 + map-get($color-rgb, "green") * 0.7152 + map-get($color-rgb, "blue") * 0.0722;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return math.div($number, $number * 0 + 1);
+    }
+
+    @return $number;
+}
+
+@function num($input) {
+    @if type-of($input) != number {
+        @return null;
+    }
+
+    @return math.div($input, $input*0+1);
+}
+
+@function size($size) {
+    @if $font-convert-to-px {
+        /* stylelint-disable */
+        $pxSize: num($size * $font-ratio * 10) + 0px;
+
+        @return $pxSize;
+    }
+
+    @else {
+        $remSize: $size * $font-ratio;
+
+        @return $remSize;
+    }
+}
+
+@function zindex($key) {
+    @return map-get($zindex, $key);
+}

@@ -1,0 +1,131 @@
+$tag-radius: $radius-rounded !default;
+$tag-delete-margin: 1px !default;
+
+// container pour multi-tags ou tags avec actions
+.tags {
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+
+    // multi-tags : ajout d'une marge bottom, supprimable par facette
+    &:not(.is-gapless) {
+        &:not(:last-child) {
+            margin-right: 8px;
+        }
+
+        .tag {
+            margin-bottom: 10px;
+        }
+    }
+
+    // multi-tags : ajout d'une marge à droite de chaque tag
+    .tag:not(:last-child) {
+        margin-right: 8px;
+    }
+
+    // centrage des tags
+    &.is-centered {
+        justify-content: center;
+    }
+
+    // tags avec actions
+    &.has-addons {
+        cursor: pointer;
+
+        .tag {
+            margin-right: 0;
+
+            &:not(:first-child) {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+            }
+
+            &:not(:last-child) {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+            &:first-child {
+                padding-right: 5px;
+            }
+
+            + .tag {
+                padding: 0;
+                position: relative;
+                width: 25px;
+                border-width: 0;
+
+                // fixme : cette règle ne devrait-elle pas s'appliquer à TOUS les buttons ?
+                cursor: inherit;
+
+                // affichage d'une fausse croix avec 2 traits penchés
+                &:empty {
+                    &::before,
+                    &::after {
+                        position: absolute;
+                        content: '';
+                        height: 10px;
+                        width: 2px;
+                        background-color: currentColor;
+                        top: 50%;
+                        left: 30%;
+                    }
+
+                    &::before {
+                        transform: translate(50%, -50%) rotate(45deg);
+                    }
+
+                    &::after {
+                        transform: translate(50%, -50%) rotate(-45deg);
+                    }
+                }
+            }
+        }
+
+        &.is-inverted {
+            .tag {
+                background-color: getColor(getColor('background'));
+            }
+        }
+
+    }
+}
+
+.tag {
+    align-items: center;
+    background-color: getColor('background');
+    border-radius: $tag-radius;
+    color: getColor('font');
+    display: inline-flex;
+    font-size: $size-medium;
+    font-weight: $weight-medium;
+    height: 28px;
+    justify-content: center;
+    line-height: 20px;
+    padding: $spacing-1 $spacing-2;
+    white-space: nowrap;
+
+    &.is-small {
+        font-size: $text-12;
+        line-height: 15px;
+        height: 23px;
+    }
+
+
+    @include mobile {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+  @each $name, $pair in $colors-feedback {
+    $bg-color: nth($pair, 1);
+    &.is-#{$name}:not(.is-inverted) {
+      background-color: getColor($bg-color);
+    }
+    &.is-inverted.is-#{$name} {
+      color: getColor($name);
+    }
+  }
+}

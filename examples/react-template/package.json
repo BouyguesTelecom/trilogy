@@ -1,0 +1,14 @@
+{
+  "name": "@trilogy-ds/react-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trilogy Demo screens",
+  "author": "bouygues-telecom",
+  "scripts": {
+    "start": "vite serve",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@trilogy-ds/react": "*"
+  }
+}

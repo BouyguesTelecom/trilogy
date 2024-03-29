@@ -1,0 +1,37 @@
+
+    .field .security-gauge-container {
+        width: 100%;
+        .security-gauge {
+            height: 4px;
+            background: getColor('grey-disabled');
+            border-radius: 4px;
+            margin: 8px 0;
+            .gauge {
+                height: 100%;
+                border-radius: 4px;
+            }
+        }
+
+        .security-gauge-verifies {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .security {
+                display: flex;
+                align-items: center;
+                margin-bottom: 4px;
+                .icon {
+                    position: relative;
+                    color: getColor('grey');
+                    width: 16px;
+                    margin-right: 8px;
+                    font-size: 16px;
+                    margin-bottom:  -1px;
+
+                    .is-success {
+                        background-color: getColor('success')
+                    }
+                }
+            }
+        }
+    }

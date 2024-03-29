@@ -1,0 +1,41 @@
+.field {
+
+    .has-icons-left {
+        input {
+            padding-left: 45px;
+        }
+        label {
+            left: 45px;
+        }
+        .icon-left
+         {
+            position: absolute;
+            height: 100%;
+            width: 45px;
+            left: 0;
+
+            i {
+                font-size: 20px;
+            }
+        }
+
+
+    }
+
+    .has-icons-right {
+        .icon-right
+         {
+            position: absolute;
+            height: 100%;
+            width: 45px;
+            z-index: 10;
+            right: 0;
+            left: auto;
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+
+
+}

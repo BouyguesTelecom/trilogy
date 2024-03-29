@@ -1,0 +1,192 @@
+$button-border-width: 2px !default;
+$button-padding-vertical: calc(0.375em - #{$button-border-width}) !default;
+
+$button-disabled-shadow: none !default;
+$button-disabled-opacity: 1 !default;
+
+$is-check-button-icon-pos-left: 5px;
+
+.buttons {
+  width: 100%;
+  column-gap: 16px;
+
+  &.is-vertical {
+    row-gap: 16px;
+  }
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+    width: auto;
+  }
+
+  &.is-centered,
+  &.has-text-centered,
+  .has-text-centered & {
+    justify-content: center;
+  }
+
+  &.is-mobile {
+    flex-wrap: wrap;
+
+    .button {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.button {
+  @include control;
+  @include unselectable;
+
+  background-color: white;
+  border-width: $button-border-width;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+  font-family: $body-family;
+  white-space: nowrap;
+  height: 44px;
+  padding: 0 $spacing-4;
+  font-size: $text-15;
+  text-decoration: inherit;
+  font-weight: $weight-semibold;
+
+  &:focus {
+    outline: 1px auto getVariantColor('font', 1);
+  }
+
+  @include mobile {
+    width: 100%;
+    margin: 8px 0 !important;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      @include spinner;
+      @include center(1em);
+
+      position: absolute !important;
+    }
+  }
+
+  &[class*='is-'] {
+    &[disabled] {
+      @extend %disabled;
+
+      background-color: getColor('bg-disabled');
+      border-color: transparent;
+      box-shadow: none;
+      color: getColor('disabled');
+
+      &:hover {
+        color: getColor('disabled');
+        background-color: getColor('bg-disabled');
+        border-color: getColor('bg-disabled');
+      }
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $invColor: nth($pair, 3);
+
+    &.is-#{$color} {
+      background-color: getColor($name);
+      color: invertColor($name);
+    }
+  }
+
+  %disabled {
+    background-color: getColor('bg-disabled');
+    color: getColor('disabled');
+    box-shadow: $button-disabled-shadow;
+    opacity: $button-disabled-opacity;
+
+    &:hover {
+      color: getColor('disabled');
+    }
+  }
+
+
+  &.is-primary {
+    background-color: getColor('main');
+    border-color: getColor('main');
+    color: getColor('background');
+
+    &:hover,
+    &.is-hovered {
+      background-color: getVariantColor('main',2);
+      border-color: getVariantColor('main',2);
+      opacity: 1;
+    }
+
+    &:focus,
+    &.is-focused,
+    &:active,
+    &.is-active {
+      background-color: getVariantColor('main',1);
+      border-color: getVariantColor('main',1);
+    }
+  }
+
+  &.is-secondary {
+    background-color: getColor('alternate');
+    color: getColor('background');
+    border-color: getColor('alternate');
+
+    &:hover,
+    &.is-hovered {
+      color: getColor('background');
+      background-color: getVariantColor('alternate',1);
+    }
+
+    &:focus,
+    &.is-focused,
+    &:active,
+    &.is-active {
+      color: getColor('background');
+      background-color: getVariantColor('alternate',2);
+    }
+  }
+
+  &.is-tertiary {
+    background-color: getColor('background');
+    border: 2px solid getVariantColor('alternate',2);
+    color: getColor('alternate');
+
+    &:hover,
+    &.is-hovered{
+      color: getColor('alternate');
+      background-color: getVariantColor('alternate',3);
+      border-color: getVariantColor('alternate',2);
+
+    }
+
+    &:focus,
+    &.is-focused{
+      color: getColor('alternate');
+      background-color: getVariantColor('alternate',3);
+      border-color: getColor('alternate');
+    }
+
+    &:active,
+    &.is-active {
+      color: getVariantColor('alternate',1);
+      background-color: getVariantColor('alternate',3);
+      border: 2px solid currentColor;
+    }
+
+    &:disabled,
+    &[disabled],
+    &[disabled]:hover{
+      background-color: getColor('background');
+      border: 2px solid getColor('grey-light');
+      color: getColor('disabled');
+    }
+  }
+}

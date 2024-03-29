@@ -1,0 +1,39 @@
+@include checkbox-and-radio('checkbox');
+
+.checkbox,
+.checkbox-tile {
+    input:checked ~ label.checkbox-label {
+      &:before {
+        background-color: getColor('alternate');
+      }
+      &:after {
+        content: "";
+        mask-image: url('./assets/icons/all/check.svg');
+        background-color: getColor('background');
+        mask-size: 18px;
+      }
+    }
+
+    label.checkbox-label {
+        &:before,
+        &:after {
+            border-radius: 4px;
+        }
+    }
+}
+
+.checkbox-tile {
+    input:checked ~ label.checkbox-label {
+        &:after {
+            top: 15px;
+            right: 15px;
+        }
+    }
+    input:checked:disabled ~ label.checkbox-label {
+        &:after {
+            background-color: getColor('grey');
+            top: $spacing-4;
+            right: $spacing-4;
+        }
+    }
+}

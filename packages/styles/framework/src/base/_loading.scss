@@ -1,0 +1,102 @@
+@use "sass:math";
+
+@keyframes loading-pulse {
+    100% {
+        opacity: .1;
+    }
+}
+
+@mixin text-blocks() {
+    p.suptitle {
+        @content;
+    }
+}
+
+@mixin loading {
+    &.is-loading,
+    .is-loading & {
+        @content;
+    }
+}
+
+p.is-loading,
+.is-loading p {
+    @include text-tags {
+        visibility: hidden;
+    }
+}
+
+.is-loading {
+    @include unselectable;
+
+    &.is-checkradio[type="checkbox"] + label::before,
+    .is-checkradio[type="checkbox"] + label::before,
+    &.is-checkradio[type="checkbox"] + label::after,
+    .is-checkradio[type="checkbox"] + label::after {
+        visibility: hidden;
+    }
+
+    &.field,
+    .field {
+        .icon {
+            display: none;
+        }
+
+        .input {
+            border: 0;
+            pointer-events: none;
+
+            &::placeholder {
+                color: transparent;
+            }
+        }
+    }
+
+    filter: grayscale(1);
+    cursor: default !important;
+
+    // make the text elements like subtle animated lines
+    @include text-tags {
+        display: inline;
+        border-radius: 99em;
+        background: currentColor !important;
+        box-decoration-break: clone;
+        font-size: 70%;
+        letter-spacing: 2px;
+        -webkit-animation: loading-pulse 1.5s ease-out infinite alternate;
+        -moz-animation: none;
+        opacity: .2;
+    }
+
+    @include text-blocks {
+        display: block;
+    }
+
+    // we need the headings to have margins AND be inline
+    @include heading-tags {
+        display: table; // FIXME: well... `@include clearfix;` didn't do the trick
+    }
+
+    & & {
+        @include disable-animation;
+    }
+}
+
+// skeleton transitions
+//
+.is-loaded {
+    /**
+    The shape of the animation are designed so that the final state appears
+    as quick as possible. This should enhance the speed index
+    */
+    @include text-tags {
+        transition-duration: math.div($animation-duration, 2);
+        transition-timing-function: $animation-timing-function;
+        transition-property: font-size, letter-spacing;
+
+        /**
+        Animations are too slow on FF. We choose to disable it until they fix the problem
+        */
+        -moz-transition: none;
+    }
+}

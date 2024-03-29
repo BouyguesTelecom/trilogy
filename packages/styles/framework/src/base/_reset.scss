@@ -1,0 +1,138 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+// Blocks
+.reset-wrap {
+    p,
+    ol,
+    ul,
+    li,
+    dl,
+    dt,
+    dd,
+    blockquote,
+    figure,
+    fieldset,
+    legend,
+    textarea,
+    pre,
+    iframe,
+    hr,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+        padding: 0;
+    }
+
+    // Headings
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%;
+        font-weight: normal;
+    }
+
+    p:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    a {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    // List
+    ul {
+        list-style: none;
+    }
+
+    // Form
+    button,
+    input,
+    select,
+    textarea {
+        margin: 0;
+    }
+
+    // Media
+    img,
+    audio,
+    video {
+        height: auto;
+        max-width: 100%;
+    }
+
+    // Iframe
+    iframe {
+        border: 0;
+    }
+
+    // Table
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td,
+    th {
+        padding: 0;
+        text-align: left;
+
+        &:not([align]) {
+            text-align: left;
+        }
+    }
+
+    span {
+        font-style: inherit;
+        font-weight: inherit;
+    }
+
+    strong {
+        color: inherit;
+        font-weight: $weight-bold;
+    }
+
+    sup {
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+        top: -.4em;
+        font-size: .7em;
+    }
+
+    small {
+        font-size: 0.875em;
+    }
+
+    code {
+        font-size: $size-7;
+        padding: 4px 8px;
+    }
+
+    code,
+    pre {
+        -moz-osx-font-smoothing: auto;
+        -webkit-font-smoothing: auto;
+        font-family: $family-code;
+    }
+
+    pre {
+        @include overflow-touch;
+        font-size: 0.875em;
+        overflow-x: auto;
+        padding: 12.5px 15px;
+        white-space: pre;
+        word-wrap: normal;
+
+        code {
+            font-size: 1em;
+            padding: 0;
+        }
+    }
+}

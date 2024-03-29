@@ -1,0 +1,34 @@
+html {
+    @extend .html-wrap;
+}
+
+body {
+    @extend .main-wrap;
+    @extend .body-wrap;
+    @extend .reset-wrap;
+    font-family: $family-sans-serif;
+}
+
+header {
+    @extend .header;
+}
+
+/**
+To be used when standalone namespaced builds are used
+*/
+.trilogy-root {
+    text-size-adjust: 100%;
+    font-family: $body-family;
+    box-sizing: border-box;
+    color: getColor('font');
+    font-size: 10px;
+    font-weight: $body-weight;
+    line-height: $body-line-height;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: $body-rendering;
+
+    > * {
+        font-size: $text-16;
+    }
+}

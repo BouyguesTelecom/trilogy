@@ -1,0 +1,65 @@
+$section-padding-y: $spacing-6;
+$section-padding-x: $spacing-5;
+$section-padding-desktop-y: $spacing-8;
+$section-padding-desktop-x: $spacing-5;
+$overlap-section: $spacing-4 !default;
+$overlap-section-desktop: $spacing-4 !default;
+
+.section {
+  padding: $section-padding-y $section-padding-x;
+
+  @include desktop {
+    padding: $section-padding-desktop-y $section-padding-desktop-x;
+  }
+
+  &.has-overlap > .container {
+    margin-top: -$section-padding-y - $overlap-section;
+
+    @include desktop {
+      margin-top: -$section-padding-desktop-y - $overlap-section-desktop;
+    }
+  }
+
+  &:nth-child(even) {
+    background-color: getColor('grey-lighter');
+  }
+
+  &:nth-child(odd) {
+    background-color: getColor('background');
+  }
+
+  &.is-info {
+    background-color: getVariantColor('alternate',2);
+    color: getColor('background');
+  }
+
+  &.has-overlay {
+    position: relative;
+    z-index: zindex('void');
+    color: getColor('background');
+
+    &::before {
+      @include overlay;
+      content: '';
+      z-index: zindex('subzero');
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &.has-pattern-light {
+    @include pattern-light(70%, 180px, -30px);
+  }
+
+  &.has-pattern-dark {
+    @include pattern-dark(120%, 260px, -30%);
+  }
+
+}
+
+.section:nth-child(2n).is-inverted {
+  background-color: getColor('background');
+}
+
+.section:nth-child(2n-1).is-inverted {
+  background-color: getColor('grey-lighter');
+}

@@ -1,0 +1,212 @@
+.tab-context {
+  @include overflow-touch;
+  @include unselectable;
+
+  align-items: stretch;
+  justify-content: space-between;
+  font-weight: $weight-normal;
+  background: white;
+  width: 100%;
+  text-align: center;
+  overflow: scroll;
+  overflow: -moz-scrollbars-none !important;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none;
+
+  @include mobile {
+    text-align: left;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  &.is-inverted {
+    background-color: getColor('font');
+    .tabs > .tab {
+        color: getColor('background') !important;
+
+        &.is-active {
+            &::after {
+                content: "";
+                width: calc(100% - 16px);
+                height: 2px;
+                border-radius: 2px;
+                font-size: 20px;
+                background-color: getColor('background');
+                bottom: -2px;
+                left: 8px;
+            }
+        }
+        &:hover:not(.is-disabled) {
+          color: getColor('background') !important;
+          cursor: pointer;
+        }
+
+        &:focus-visible {
+          border-color: getColor('background');
+        }
+
+        &.is-disabled {
+            color: getColor('grey-light');
+        }
+    }
+  }
+
+  &.has-text-left {
+    .tabs > .tab:first-child {
+      margin-left: 24px;
+    }
+  }
+
+  .tabs {
+    background-color: transparent;
+    height: 48px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: inline-flex;
+
+    &.is-centered {
+        justify-content: center;
+    }
+
+    &.is-right {
+        justify-content: flex-end;
+    }
+
+    &.is-left {
+        justify-content: flex-start;
+    }
+
+
+    &.is-fullwidth {
+      @include desktop {
+        > * {
+          flex-grow: 1;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &.is-clipped {
+      box-shadow: none;
+    }
+
+    &.is-icons {
+      height: 64px;
+    }
+
+    @include mobile {
+      justify-content: flex-start ;
+      > .tab:first-child {
+        margin-left: 24px;
+      }
+    }
+
+    > .tab {
+      height: calc(100% - 4px);
+      background-color: transparent;
+      border: none;
+      color: getColor('font');
+      font-family: $body-family;
+      text-decoration: none;
+      outline: none;
+      padding:  6px;
+      font-size: $text-14;
+      border: 2px solid transparent;
+      border-radius: 4px;
+
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+
+      .tab-icon {
+        margin-top: 2px;
+      }
+
+      &:not(button) {
+        .tab-icon {
+            margin-top: 4px;
+        }
+      }
+
+      @include mobile {
+        font-size: $text-14;
+      }
+
+
+
+      &.is-active {
+        color: getColor('alternate');
+        font-weight: $weight-semibold;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: calc(100% - 16px);
+          height: 2px;
+          border-radius: 2px;
+          font-size: 20px;
+          background-color: getColor('alternate');
+          position: absolute;
+          bottom: -2px;
+          left: 8px
+        }
+      }
+
+      &:hover:not(.is-disabled) {
+        color: getColor('alternate');
+        cursor: pointer;
+
+        .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
+          font-size: 22px !important;
+          background-color: currentColor;
+        }
+      }
+
+      &:focus-visible{
+        border-color: currentColor;
+        color: getColor('alternate');
+      }
+
+      .icon {
+        height: 0;
+      }
+
+      .icon.is-small, .icon.is-small{
+        font-size: 22px;
+      }
+
+      &.is-disabled {
+        color: getColor('grey');
+        cursor: default;
+      }
+    }
+  }
+
+  .tab-panels {
+    padding-top: $spacing-3;
+    padding-bottom: $spacing-3;
+
+    .tab-panel {
+      transition: opacity 2s ease-in-out;
+      transition-delay: 1s;
+      &:not(.is-active) {
+        display: none;
+      }
+
+      &.is-active {
+        animation: fade-in 250ms;
+      }
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

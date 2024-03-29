@@ -1,0 +1,78 @@
+@use "sass:math";
+
+.tile {
+    align-items: stretch;
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: min-content;
+
+    &.is-ancestor {
+        margin-left: -7.5px;
+        margin-right: -7.5px;
+        margin-top: -7.5px;
+
+        &:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 7.5px;
+        }
+    }
+
+    &.is-child {
+        margin: 0 !important;
+    }
+
+    &.is-parent {
+        padding: 7.5px;
+
+        &.is-multiline {
+            > .tile.is-child {
+                > *:last-child {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    &.is-vertical {
+        flex-direction: column;
+
+        & > .tile.is-child:not(:last-child) {
+            margin-bottom: 15px !important;
+        }
+    }
+
+    &:not(.is-child) {
+        display: flex;
+    }
+
+    @include mobile {
+        @for $i from 1 through 12 {
+            &.is-#{$i}-mobile {
+                flex: none;
+                width: math.div($i, 12) * 100%;
+            }
+        }
+
+        &.is-vertical-mobile {
+            flex-direction: column;
+        }
+    }
+
+    @include tablet {
+        &:not(.is-child) {
+            display: flex;
+        }
+
+        @for $i from 1 through 12 {
+            &.is-#{$i} {
+                flex: none;
+                width: math.div($i, 12) * 100%;
+            }
+        }
+    }
+}

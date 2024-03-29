@@ -1,0 +1,18 @@
+/*
+  Hack to fix "show code" buttons see:
+*/
+pre.prismjs {
+  color: inherit;
+}
+pre.prismjs .language-jsx .tag, pre.prismjs .language-jsx {
+  display: inline;
+  margin-right: 0px;
+  cursor: auto;
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 1em;
+  font-weight: normal;
+}
+
