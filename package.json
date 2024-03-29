@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "build": "npm run build --workspaces",
+    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
