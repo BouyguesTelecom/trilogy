@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/styles",
-  "version": "0.0.1-beta-4",
+  "version": "0.0.1-beta.5",
   "author": "bouygues-telecom",
   "license": "UNLICENSED",
   "files": [
@@ -17,6 +17,6 @@
     "prebuild": "npm run copy:icons",
     "build": "vite --config vite.config.js build",
     "watch:css": "vite --config vite.config.js watch",
-    "copy:icons": "mkdir -p ./dist/default/assets/icons/all && cp -R ../assets/lib/icons/all/ ./dist/default/assets/icons/all/"
+    "copy:icons": "mkdir -p ./dist/default/assets/icons && cp -R ../assets/lib/icons/all ./dist/default/assets/icons/."
   }
 }
