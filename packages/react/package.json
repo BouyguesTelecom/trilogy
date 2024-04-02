@@ -27,8 +27,8 @@
     "react-native-toast-message": "^2.2.0",
     "rollup-plugin-copy": "^3.5.0",
     "shortid": "^2.2.16",
-    "@trilogy-ds/assets": "^0.0.1-beta-3",
-    "@trilogy-ds/styles": "^0.0.1-beta-3",
+    "@trilogy-ds/assets": "^0.0.1-beta.5",
+    "@trilogy-ds/styles": "^0.0.1-beta.5",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "react-native-gesture-handler": "^2.16.0"
   }
