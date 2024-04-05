@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "license": "UNLICENSED",
+  "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
     "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react",
