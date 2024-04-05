@@ -5,7 +5,6 @@
 </div>
 
 [![npm](https://img.shields.io/npm/v/@trilogy-ds/styles?style=for-the-badge&logo=npm&logoColor=white&color=D44A4A)](https://www.npmjs.com/package/@trilogy-ds/styles)
-[![UNPKG](https://img.shields.io/unpkg/)](https://cdnjs.com/libraries/muicss)
 
 ---
 
