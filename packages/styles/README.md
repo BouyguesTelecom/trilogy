@@ -17,7 +17,7 @@ This package is a vital part of [Trilogy's design system](https://github.com/Bou
 
 ## CDN
 
-For a faster setup, you can utilize the JSDelivr CDN to include Trilogy Design System's CSS and JavaScript files directly in your project's HTML:
+For a faster setup, you can utilize the JSDelivr CDN to include Trilogy Design System's CSS directly in your project's HTML:
 
 ```html
 <!-- ... -->
