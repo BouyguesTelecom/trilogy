@@ -8,9 +8,9 @@
 
 ## Description
 
-`@trilogy-ds/assets` is a direct dependency of the `@trilogy-ds/react` package. It includes all open-source fonts and icons from Trilogy.
+`@trilogy-ds/assets` is a direct dependency of [@trilogy-ds/react](https://www.npmjs.com/package/@trilogy-ds/REACT). It includes all open-source fonts and icons from [Trilogy](https://github.com/BouyguesTelecom/trilogy).
 
-It provides to the `<Icon/>` component of the `@trilogy-ds/react` package, the path information from the `IconPath.ts` file (which is the paths to the icons) and the `IconName` file (which is an enum for the icon names).
+It provides to the `<Icon/>` component, the path information from the `IconPath.ts` file (which is the paths to the icons) and the `IconName` file (which is an enum for the icon names).
 
 ## Installation
 
@@ -24,9 +24,7 @@ This package includes the following scripts using **npm**:
 
 1. `optimise:icons`: This script uses [SVGO](https://github.com/svg/svgo) to optimize all icons in the `assets/icons/all` directory. The optimized icons are stored in `lib/icons/all`.
 
-2. `build`: This script first deletes the `lib` directory (if it exists). Then, it runs the `optimise:icons` script, compiles Typescript files, and finally, copies all fonts from `assets/fonts/` to `lib/fonts/`.
-
-3. `pack`: This script runs the `npm pack` command which creates a tarball (.tgz file) of the package.
+2. `build`: This script runs the `optimise:icons` script, compiles Typescript files, and finally, copies all fonts from `assets/fonts/` to `lib/fonts/`.
 
 ## License
 
