@@ -9,8 +9,7 @@
   ],
   "scripts": {
     "optimise:icons": "svgo -f ./assets/icons/all -o ./lib/icons/all",
-    "build": "rimraf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/",
-    "pack": "npm pack"
+    "build": "rimraf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/"
   },
   "author": "",
   "license": "ISC",
