@@ -1,7 +1,7 @@
 {
   "name": "@trilogy-ds/styles",
   "version": "0.0.1-beta.5",
-  "author": "bouygues-telecom",
+  "author": "Bouygues Telecom",
   "license": "UNLICENSED",
   "files": [
     "framework/src",

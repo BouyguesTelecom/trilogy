@@ -2,6 +2,7 @@
   "name": "@trilogy-ds/react",
   "version": "0.0.1-beta.5",
   "type": "module",
+  "author": "Bouygues Telecom",
   "files": [
     "lib"
   ],
@@ -10,7 +11,6 @@
   "main": "lib/index.js",
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
-  "author": "bouygues-telecom",
   "license": "UNLICENSED",
   "scripts": {
     "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",

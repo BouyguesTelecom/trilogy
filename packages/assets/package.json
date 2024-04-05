@@ -2,6 +2,7 @@
   "name": "@trilogy-ds/assets",
   "version": "0.0.1-beta.5",
   "description": "Trilogy assets include all Open Source Fonts & Icons",
+  "author": "Bouygues Telecom",
   "type": "module",
   "module": "lib/index.js",
   "files": [
@@ -11,7 +12,6 @@
     "optimise:icons": "svgo -f ./assets/icons/all -o ./lib/icons/all",
     "build": "rimraf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.26",
