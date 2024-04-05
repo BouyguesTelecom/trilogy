@@ -9,6 +9,7 @@
     "themes/common/src",
     "dist"
   ],
+  "main": "dist/default/trilogy.css",
   "scripts": {
     "build:autolayout": "esbuild --platform=node --bundle scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:spacing": "esbuild --platform=node --bundle scripts/spacing.ts --outfile=scripts/dist/spacing.cjs --sourcemap",
