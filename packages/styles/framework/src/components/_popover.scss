@@ -68,7 +68,7 @@
 
 .popover {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
 
     .popover-content {
         @include position-top();
