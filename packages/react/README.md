@@ -26,6 +26,7 @@ Trilogy DS, developed by Bouygues Telecom, is a multiplatform design system ( We
    ├── services        # Hooks
    └── types           # Typescript types
 ```
+
 ---
 
 ## Usage
@@ -34,7 +35,7 @@ Trilogy DS, developed by Bouygues Telecom, is a multiplatform design system ( We
 npm i @trilogy-ds/react
 ```
 
-```tsx
+```typescript jsx
 import { Button, Text } from '@trilogy-ds/react';
 
 <Button variant='PRIMARY'>My Button</Button>
@@ -52,13 +53,13 @@ The **TrilogyProvider** simplifies integrating Trilogy style into your app by wr
 
 1. Import the `TrilogyProvider` component:
 
-   ```tsx
+   ```typescript jsx
    import { TrilogyProvider } from "@trilogy-ds/react/lib/context/provider"
    ```
 
 2. Wrap your app's root component with it:
 
-   ```tsx
+   ```typescript jsx
      <TrilogyProvider mangled injectTrilogyAssets>
        <App />
      </TrilogyProvider>
@@ -68,14 +69,14 @@ The **TrilogyProvider** simplifies integrating Trilogy style into your app by wr
 
 1. Import the `TrilogyThemeProvider` along with `SVGicons` & colors from [@trilogy-ds/assets](https://www.npmjs.com/package/@trilogy-ds/assets) library:
 
-   ```tsx
+   ```typescript jsx
    import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/lib/context/providerTheme'
    import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
    ```
 
 2. Wrap your app's root component with it:
 
-   ```tsx
+   ```typescript jsx
      const theme = {
        ...defaultTheme,
        icons: SVGicons,
@@ -86,6 +87,7 @@ The **TrilogyProvider** simplifies integrating Trilogy style into your app by wr
        <AppNative />
      </TrilogyThemeProvider>
    ```
+
 ### Environment
 
 #### Web
@@ -107,6 +109,7 @@ See how to setup your environment for [Android](https://reactnative.dev/docs/env
 Check out our [example project](https://github.com/BouyguesTelecom/trilogy/tree/master/examples/react-template) using Trilogy for consumption.
 
 ### Contributing
+
 Read [the contributing guide](https://github.com/BouyguesTelecom/trilogy/blob/master/CONTRIBUTING.md) to become familiar with our development process, suggest fixes for bugs and improvements, and understand how to construct and assess your modifications
 
 ### Changelog
