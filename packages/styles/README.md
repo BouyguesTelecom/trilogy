@@ -35,3 +35,14 @@ For a faster setup, you can utilize the JSDelivr CDN to include Trilogy Design S
 ├── scripts         # Scripts autolayout , spacing
 ├── themes          # Themes default
 ```
+## Features
+
+In addition to our minified CSS file, we also provide a mangled CSS version.
+
+To use the mangled version:
+
+```html
+<!-- ... -->
+<link href="https://cdn.jsdelivr.net/npm/@trilogy-ds/styles/dist/default/trilogy-mangled.css" rel="stylesheet" />
+<!-- ... -->
+```
