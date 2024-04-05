@@ -8,7 +8,7 @@
 
 ## Description
 
-`@trilogy-ds/assets` is a direct dependency of [@trilogy-ds/react](https://www.npmjs.com/package/@trilogy-ds/REACT). It includes all open-source fonts and icons from [Trilogy](https://github.com/BouyguesTelecom/trilogy).
+`@trilogy-ds/assets` is a direct dependency of [@trilogy-ds/react](https://www.npmjs.com/package/@trilogy-ds/react). It includes all open-source fonts and icons from [Trilogy](https://github.com/BouyguesTelecom/trilogy).
 
 It provides to the `<Icon/>` component, the path information from the `IconPath.ts` file (which is the paths to the icons) and the `IconName` file (which is an enum for the icon names).
 
