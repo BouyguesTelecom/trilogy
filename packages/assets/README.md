@@ -6,7 +6,7 @@
 
 [![npm](https://img.shields.io/npm/v/@trilogy-ds/assets?style=for-the-badge&logo=npm&logoColor=white&color=D44A4A)](https://www.npmjs.com/package/@trilogy-ds/assets)
 
-## Description
+---
 
 `@trilogy-ds/assets` is a direct dependency of [@trilogy-ds/react](https://www.npmjs.com/package/@trilogy-ds/react). It includes all open-source fonts and icons from [Trilogy](https://github.com/BouyguesTelecom/trilogy).
 
