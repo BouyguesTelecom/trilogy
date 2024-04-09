@@ -12,8 +12,9 @@ import { useTrilogyContext } from '../../context'
  * @param label {string} label of range
  * @param labelValueCursorMin {string} label to display next to value display
  * @param labelValueCursorMax {string} label to display next to value display
- * @param onChange {function}
- * @param nameMin {string} name input min
+ * @param onChangeMin
+ * @param onChangeMax
+ * @param onChange {function} (Native) * @param nameMin {string} name input min
  * @param idMin {string} id input min
  * @param nameMax{string} name input max
  * @param idMax {string} id input max
@@ -48,81 +49,89 @@ const Range = ({
   React.useEffect(() => {
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
-      track.style.background = `linear-gradient(to right,
-      ${getColorStyle(TrilogyColor.GREY_LIGHT)} ${(cursorMin / max) * 100}%,
-      currentColor ${(cursorMin / max) * 100}%,
-      currentColor ${(cursorMax / max) * 100}%,
-      ${getColorStyle(TrilogyColor.GREY_LIGHT)} ${(cursorMax / max) * 100}%)`
+      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.GREY_LIGHT)} ${
+          (cursorMin / max) * 100
+      }% , ${getColorStyle(TrilogyColor.SECONDARY)} ${(cursorMin / max) * 100}% , ${getColorStyle(
+          TrilogyColor.SECONDARY,
+      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.GREY_LIGHT)} ${(cursorMax / max) * 100}%) `
     }
   }, [cursorMin, cursorMax])
 
   const handleChangeCursorMin = React.useCallback(
-    (e:ChangeEvent<HTMLInputElement>) => {
-      if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
-      if (onChangeMin) {
-        onChangeMin({
-          inputName: e.target.name,
-          inputValue: e.target.value,
-        })
-      }
-    },
-    [cursorMax, cursorMin],
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
+      },
+      [cursorMax, cursorMin],
   )
 
   const handleChangeCursorMax = React.useCallback(
-    (e:ChangeEvent<HTMLInputElement>) => {
-      if (Number(e.target.value) > cursorMin + gap) setCursorMax(Number(e.target.value))
-      if (onChangeMax) {
-        onChangeMax({
-          inputName: e.target.name,
-          inputValue: e.target.value,
-        })
-      }
-    },
-    [cursorMax, cursorMin],
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) > cursorMin + gap) setCursorMax(Number(e.target.value))
+      },
+      [cursorMax, cursorMin],
   )
 
+  const handleMouseUpMin = React.useCallback(() => {
+    if (onChangeMin) {
+      onChangeMin({
+        inputName: nameMin,
+        inputValue: cursorMin,
+      })
+    }
+  }, [onChangeMin, nameMin, cursorMin])
+
+  const handleMouseUpMax = React.useCallback(() => {
+    if (onChangeMax) {
+      onChangeMax({
+        inputName: nameMax,
+        inputValue: cursorMax,
+      })
+    }
+  }, [onChangeMax, nameMax, cursorMax])
+
   return (
-    <div data-testid={testId} className={hashClass(styled, clsx('range-container'))}>
-      <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
-      <div className={hashClass(styled, clsx('range'))}>
-        <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
-        <input
-          data-testid={`${testId}_min`}
-          className={hashClass(styled, clsx('range-cursor range-cursor-min'))}
-          onChange={handleChangeCursorMin}
-          value={cursorMin}
-          type='range'
-          min={min}
-          max={max}
-          name={nameMin}
-          id={idMin}
-          aria-label={label}
-        />
-        <input
-          data-testid={`${testId}_max`}
-          className={hashClass(styled, clsx('range-cursor range-cursor-max'))}
-          onChange={handleChangeCursorMax}
-          value={cursorMax}
-          type='range'
-          min={min}
-          max={max}
-          name={nameMax}
-          id={idMax}
-          aria-label={label}
-        />
-      </div>
-      <div className={hashClass(styled, clsx('range-values'))}>
-        <div>
-          <span className={hashClass(styled, clsx('range-value-min'))}>{cursorMin}</span>
-          {labelValueCursorMin && <span> {labelValueCursorMin}</span>}
+      <div data-testid={testId} className={hashClass(styled, clsx('range-container'))}>
+        <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
+        <div className={hashClass(styled, clsx('range'))}>
+          <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
+          <input
+              data-testid={`${testId}_min`}
+              className={hashClass(styled, clsx('range-cursor range-cursor-min'))}
+              onMouseUp={handleMouseUpMin}
+              onChange={handleChangeCursorMin}
+              value={cursorMin}
+              type='range'
+              min={min}
+              max={max}
+              name={nameMin}
+              id={idMin}
+              aria-label={label}
+          />
+          <input
+              data-testid={`${testId}_max`}
+              className={hashClass(styled, clsx('range-cursor range-cursor-max'))}
+              onMouseUp={handleMouseUpMax}
+              onChange={handleChangeCursorMax}
+              value={cursorMax}
+              type='range'
+              min={min}
+              max={max}
+              name={nameMax}
+              id={idMax}
+              aria-label={label}
+          />
         </div>
-        <div>
-          <span className={hashClass(styled, clsx('range-value-max'))}>{cursorMax}</span>
-          {labelValueCursorMax && <span> {labelValueCursorMax}</span>}
+        <div className={hashClass(styled, clsx('range-values'))}>
+          <div>
+            <span className={hashClass(styled, clsx('range-value-min'))}>{cursorMin}</span>
+            {labelValueCursorMin && <span> {labelValueCursorMin}</span>}
+          </div>
+          <div>
+            <span className={hashClass(styled, clsx('range-value-max'))}>{cursorMax}</span>
+            {labelValueCursorMax && <span> {labelValueCursorMax}</span>}
+          </div>
         </div>
       </div>
-    </div>
   )
 }
 
