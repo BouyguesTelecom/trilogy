@@ -7,7 +7,6 @@ import { is, has } from '../../services'
 import { hashClass } from '../../helpers'
 import { Spacer, SpacerSize } from '../spacer'
 import { useTrilogyContext } from '../../context'
-import './utils/slider.js'
 
 /**
  * Slider component
