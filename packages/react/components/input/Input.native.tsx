@@ -65,6 +65,7 @@ interface IVerifies {
  * @param maxLength {number} Textarea max length
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
+ * @param required {boolean} Required input
  * @param accessibilityActivate {boolean}
  */
 const Input = ({
@@ -98,6 +99,7 @@ const Input = ({
   securityGauge,
   validationRules,
   onIconClick,
+  required,
   ...others
 }: InputNativeProps): JSX.Element => {
   const [value, setValue] = useState<string>(defaultValue || '')
