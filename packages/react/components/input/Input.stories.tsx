@@ -72,7 +72,7 @@ Password.args = {
   help: 'this is my help message',
   minLength: 8,
   maxLength: 15,
-  dataVerifies: {
+  validationRules: {
     lowercase: true,
     uppercase: true,
     number: true,
