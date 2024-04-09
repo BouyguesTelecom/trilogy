@@ -195,7 +195,7 @@ $label-weight: $weight-bold;
     .select {
       &:focus {
         & ~ .icon {
-          color: getColor('grey');
+          color: getColor('font');
         }
       }
 
