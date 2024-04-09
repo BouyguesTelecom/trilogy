@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/react",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "type": "module",
   "author": "Bouygues Telecom",
   "files": [
@@ -31,5 +31,9 @@
     "@trilogy-ds/styles": "*",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "react-native-gesture-handler": "^2.16.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "design system"
+  ]
 }
