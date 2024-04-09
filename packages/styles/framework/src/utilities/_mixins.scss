@@ -709,8 +709,7 @@
                         &:focus,
                         &:active,
                         &:hover {
-                            padding: 16px !important;
-                            padding-right: 48px;
+                            padding: 16px 48px 16px 16px !important;
                         }
                     }
                 }
