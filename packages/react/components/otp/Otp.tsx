@@ -185,7 +185,7 @@ const Otp = ({
             type='text'
             inputMode='numeric'
             autoComplete='one-time-code'
-            autoFocus={idx === 1 && autoFocus}
+            autoFocus={idx === 0 && autoFocus}
             pattern='\d{1}'
             maxLength={codeSize}
             className='otp'

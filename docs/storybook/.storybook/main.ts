@@ -28,7 +28,7 @@ module.exports = {
     sourceType: "module"
   }),
   framework: '@storybook/react',
-  stories: [path.resolve(__dirname, '../../../packages/lib/components/**/**.stories.tsx')],
+  stories: [path.resolve(__dirname, '../../../packages/react/components/**/**.stories.tsx')],
   staticDirs: ["../../../react/components"],
   exclude: ['../../../styles'],
   plugins: [

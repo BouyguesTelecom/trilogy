@@ -31,6 +31,19 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section>
+
+        <Input
+            hovered
+            hasIcon
+            placeholder={'Input, search icon'}
+            help="Search helper input"
+            type={InputType.TEXT}
+            onIconClick={() => {
+                window.alert('close')
+            }}
+            search
+        />
+
       <Input
         type={InputType.DATE}
         placeholder='Start'
@@ -64,7 +77,6 @@ export const InputScreen = (): JSX.Element => {
         onIconClick={() => {
           window.alert('test')
         }}
-        search
       />
 
       <Input
@@ -177,7 +189,6 @@ export const InputScreen = (): JSX.Element => {
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
         <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input type={InputType.SEARCH} placeholder='Input type search' />
         <Input type={InputType.PASSWORD} placeholder='Input type password' />
         <Input type={InputType.DATE} placeholder='Input type date' />
         <Input type={InputType.EMAIL} placeholder='Input type mail' />
@@ -192,7 +203,6 @@ export const InputScreen = (): JSX.Element => {
 
         <Input
           hasIcon
-          search
           help='this is my help message'
           type={InputType.TEXT}
           placeholder='This is my placeholder'
@@ -204,7 +214,6 @@ export const InputScreen = (): JSX.Element => {
           type={InputType.TEXT}
           placeholder='This is my placeholder'
           customIconLeft={IconName.INFOS_CIRCLE}
-          customIconRight={IconName.SEARCH}
         />
 
         <Input
