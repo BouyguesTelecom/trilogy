@@ -3,12 +3,8 @@
  */
 import { Accessibility } from '../../objects'
 
-export interface InputChangeEvent {
-  inputName: string
-  inputValue: string | number[]
-}
-
-export type InputChangeEventHandler = (event: InputChangeEvent) => void
+export type InputChangeEventHandlerNative = (event: { inputValue: number[]; inputName: string }) => void
+export type InputChangeEventHandlerWeb = (event: { inputValue: number; inputName: string | undefined }) => void
 
 export interface RangeProps extends Accessibility {
   min: number
@@ -18,12 +14,12 @@ export interface RangeProps extends Accessibility {
   valueCursorMax?: number
   labelValueCursorMin?: string
   labelValueCursorMax?: string
-  onChangeMin?: InputChangeEventHandler
-  onChangeMax?: InputChangeEventHandler
+  onChangeMin?: InputChangeEventHandlerWeb
+  onChangeMax?: InputChangeEventHandlerWeb
   nameMin?: string
   idMin?: string
   nameMax?: string
   idMax?: string
   gap?: number
-  onChange?: InputChangeEventHandler
+  onChange?: InputChangeEventHandlerNative
 }
