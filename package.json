@@ -23,7 +23,7 @@
     "preview": "vite build --config config/vite.config.js && http-server ./dist",
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
-    "test": "npm --workspace=@trilogy-ds run test",
+    "test": "npm --workspace=@trilogy-ds/react run test",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
     "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
   },

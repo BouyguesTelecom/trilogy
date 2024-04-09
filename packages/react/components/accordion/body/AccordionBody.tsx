@@ -17,7 +17,10 @@ const AccordionBody = ({ children, className, dataId, testId, ...others }: Accor
   return (
     <div data-accordion-body={true}
          data-id={dataId}
-        data-testid={testId} className={hashClass(styled, clsx('accordion-body is-clipped', className))} {...others}>
+        data-testid={testId} className={hashClass(styled, clsx('accordion-body is-clipped', className))} {...others}
+         onClick={(e) => {
+             e.stopPropagation()
+         }}>
       <div className={hashClass(styled, clsx('accordion-content'))}>{children}</div>
     </div>
   )

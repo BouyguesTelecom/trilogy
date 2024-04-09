@@ -27,7 +27,7 @@ export interface InputChangeEvent {
   inputSelectionStart: number | null
 }
 
-type InputChangeEventHandler = (event: InputChangeEvent) => void
+export type InputChangeEventHandler = (event: InputChangeEvent) => void
 
 export interface InputKeyboardEvent {
   inputName: string
@@ -35,14 +35,14 @@ export interface InputKeyboardEvent {
   inputKeyCode: number
 }
 
-type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
+export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 
 export interface InputClickEvent {
   inputName: string
   inputValue: string
 }
 
-type InputClickEventHandler = (event: InputClickEvent) => void
+export type InputClickEventHandler = (event: InputClickEvent) => void
 
 export interface InputNativeEvents {
   onClick?: InputClickEventHandler
@@ -58,7 +58,7 @@ export interface InputWebEvents {
   onClick?: InputClickEventHandler
 }
 
-type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'default'
+export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'default'
 
 /**
  * Input Interface
@@ -107,12 +107,12 @@ export interface InputProps extends Accessibility {
   required?: boolean
 }
 
-interface ILengthVerify {
+export interface ILengthVerify {
   min?: number
   max?: number
 }
 
-interface IValidationRules {
+export interface IValidationRules {
   length?: ILengthVerify
   number?: boolean
   uppercase?: boolean

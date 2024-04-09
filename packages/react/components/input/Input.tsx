@@ -54,6 +54,7 @@ interface InputProp extends InputProps, InputWebEvents {}
  * @param minLength {number} Textarea min length
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
+ * @param required {boolean} Required input
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
@@ -98,6 +99,7 @@ const Input = ({
   customIconRight,
   securityGauge,
   validationRules,
+  required,
   ...others
 }: InputProp): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -170,10 +172,10 @@ const Input = ({
 
   const controlClasses = hashClass(
     styled,
-    clsx('control', hasPlaceholder && has('dynamic-placeholder'), {
-      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password' || search),
+    clsx('control', hasPlaceholder && !search && has('dynamic-placeholder'), {
+      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
       [is('disabled')]: disabled,
-      ['has-icons-left']: customIconLeft,
+      ['has-icons-left']: customIconLeft || search ,
     }),
   )
 
@@ -293,6 +295,7 @@ const Input = ({
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       <div className={controlClasses}>
         <input
+          required={required}
           role={'textbox'}
           {...others}
           data-testid={testId}
@@ -381,7 +384,7 @@ const Input = ({
           }}
           placeholder={placeholder}
         />
-        {hasPlaceholder && <label>{placeholder}</label>}
+        {hasPlaceholder && !search && <label>{placeholder}</label>}
         {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
           <div
             onClick={() => {
@@ -478,6 +481,16 @@ const Input = ({
             }}
           >
             <Icon className={iconClassname} name={IconName.SEARCH} size={IconSize.SMALL} />
+
+            {/* Close icon search */}
+            {_value && _value.length > 0 && (
+                <Icon
+                    onClick={() => setValue('')}
+                    className={hashClass(styled, clsx(is('justified-self')))}
+                    name={IconName.TIMES_CIRCLE}
+                    size={IconSize.SMALL}
+                />
+            )}
           </div>
         )}
         {loading && <span className={hashClass(styled, clsx(is('searching')))} />}

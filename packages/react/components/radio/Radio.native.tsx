@@ -25,6 +25,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param iconTile {IconName} Icon for Radio
  * @param narrow {boolean} Apply narrow
  * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
+ * @param description {string | React.ReactNode} Custom children
  */
 const Radio = ({
   id = shortid.generate(),
