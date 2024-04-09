@@ -1,13 +1,13 @@
-import React, { RefObject, useEffect, useState } from 'react'
-import { has, is } from '../../services'
-import { Icon, IconName, IconSize } from '../icon'
-import { Text } from '../text'
-import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
-import { InputProps, InputWebEvents } from './InputProps'
+import React, {RefObject, useEffect, useState} from 'react'
+import {has, is} from '../../services'
+import {Icon, IconColor, IconName, IconSize} from '../icon'
+import {Text} from '../text'
+import {InputStatus, InputStatusValues, InputType, InputTypeValues} from './InputEnum'
+import {InputProps, InputWebEvents} from './InputProps'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import { getColorStyle, TrilogyColor } from '../../objects'
+import {hashClass} from '../../helpers'
+import {useTrilogyContext} from '../../context'
+import {getColorStyle, TrilogyColor} from '../../objects'
 
 interface InputProp extends InputProps, InputWebEvents {}
 
@@ -480,7 +480,7 @@ const Input = ({
               }
             }}
           >
-            <Icon className={iconClassname} name={IconName.SEARCH} size={IconSize.SMALL} />
+            <Icon color={IconColor.TERTIARY} className={iconClassname} name={IconName.SEARCH} size={IconSize.SMALL} />
 
             {/* Close icon search */}
             {_value && _value.length > 0 && (
