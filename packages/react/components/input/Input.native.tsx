@@ -65,6 +65,7 @@ interface IVerifies {
  * @param maxLength {number} Textarea max length
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
+ * @param accessibilityActivate {boolean}
  */
 const Input = ({
   defaultValue,
@@ -120,7 +121,7 @@ const Input = ({
   }, [placeholder, value])
 
   useEffect(() => {
-    if (dynamicPlaceholder) {
+    if (dynamicPlaceholder && !search) {
       Animated.timing(animation, {
         toValue: 3,
         duration: animationDuration,
@@ -156,11 +157,11 @@ const Input = ({
   const [iconPassword, setIconPassword] = useState(IconName.EYE)
 
   const paddingTopByPlatform = (os: PlatformOSType, dynamicPlaceholder: boolean): number => {
-    if (dynamicPlaceholder && os === 'ios') {
+    if (dynamicPlaceholder && !search && os === 'ios') {
       return 10
     }
 
-    if (dynamicPlaceholder && os === 'android') {
+    if (dynamicPlaceholder && !search && os === 'android') {
       return 15
     }
 
@@ -310,10 +311,10 @@ const Input = ({
     return '#D1D1D1'
   }, [points, nbAllVerifies])
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     input: {
-      paddingLeft: customIconLeft ? 40 : 10,
-      paddingRight: customIcon || customIconRight ? 21 : 0,
+      paddingLeft: customIconLeft || search ? 40 : 10,
+      paddingRight: customIcon || customIconRight || search ? 32 : 0,
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
       width: hasIcon && (status || customIcon) ? '85%' : '95%',
       height: 46,
@@ -357,6 +358,20 @@ const Input = ({
       position: 'absolute',
       right: 0,
       justifyContent: 'center',
+    },
+    inputContainerLeft: {
+        height: 46,
+        width: 46,
+        position: 'absolute',
+        left: 0,
+        justifyContent: 'center',
+    },
+    inputContainerRight: {
+        height: 46,
+        width: 46,
+        position: 'absolute',
+        right: 0,
+        justifyContent: 'center',
     },
     inputIcon: {
       position: 'absolute',
@@ -525,59 +540,78 @@ const Input = ({
             </TouchableOpacity>
           )}
         {hasIcon && type === InputType.PASSWORD && (
-          <TouchableOpacity
-            style={styles.inputContainer}
+    <>
+        {hasIcon && customIconLeft && (
+            <View style={[{paddingLeft: 10}, styles.inputContainerLeft]}>
+                <Icon name={customIconLeft}/>
+            </View>
+        )}
+        <TouchableOpacity
+            style={styles.inputContainerRight}
             onPress={() => {
-              onIconClick?.({
-                inputName: (name && name) || '',
-                inputValue: value,
-              })
-              if (iconPassword === IconName.EYE) {
-                setIconPassword(IconName.EYE_SLASH)
-              } else {
-                setIconPassword(IconName.EYE)
-              }
+                onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: value,
+                })
+                if (iconPassword === IconName.EYE) {
+                    setIconPassword(IconName.EYE_SLASH)
+                } else {
+                    setIconPassword(IconName.EYE)
+                }
             }}
-          >
+        >
             <Icon
-              testId='password-id'
-              align={Alignable.ALIGNED_CENTER}
-              name={iconPassword}
-              size={IconSize.SMALL}
-              color={
-                (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                (status && status === 'default' && inputColor) ||
-                inputColor
-              }
+                testId='password-id'
+                align={Alignable.ALIGNED_CENTER}
+                name={iconPassword}
+                size={IconSize.SMALL}
+                color={
+                    (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
+                    (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
+                    (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+                    (status && status === 'default' && inputColor) ||
+                    inputColor
+                }
             />
-          </TouchableOpacity>
+        </TouchableOpacity>
+    </>
         )}
         {search && !status && (
-          <TouchableOpacity
-            testID='search-id'
-            style={styles.inputContainer}
-            onPressIn={() => {
-              onChange?.({
-                inputName: (name && name) || '',
-                inputValue: '',
-                inputSelectionStart: null,
-              })
-              onIconClick?.({
-                inputName: (name && name) || '',
-                inputValue: '',
-              })
-              setValue('')
-            }}
-          >
-            <Icon
-              align={Alignable.ALIGNED_CENTER}
-              name={value ? IconName.TIMES : IconName.SEARCH}
-              size={IconSize.SMALL}
-              color={getColorStyle(TrilogyColor.GREY)}
-            />
-          </TouchableOpacity>
+        <>
+            <View style={styles.inputContainerLeft}>
+                <Icon
+                    align={Alignable.ALIGNED_CENTER}
+                    name={IconName.SEARCH}
+                    size={IconSize.SMALL}
+                    color={getColorStyle(TrilogyColor.GREY)}
+                />
+            </View>
+            {value.length > 0 && (
+                <TouchableOpacity
+                    testID='search-id'
+                    style={styles.inputContainerRight}
+                    onPressIn={() => {
+                        onChange?.({
+                            inputName: (name && name) || '',
+                            inputValue: '',
+                            inputSelectionStart: null,
+                        })
+                        onIconClick?.({
+                            inputName: (name && name) || '',
+                            inputValue: '',
+                        })
+                        setValue('')
+                    }}
+                >
+                    <Icon
+                        align={Alignable.ALIGNED_CENTER}
+                        name={IconName.TIMES_CIRCLE}
+                        size={IconSize.SMALL}
+                        color={getColorStyle(TrilogyColor.GREY)}
+                    />
+                </TouchableOpacity>
+            )}
+        </>
         )}
       </View>
       {help && (

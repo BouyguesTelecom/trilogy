@@ -13,6 +13,7 @@ export enum IconName {
   INFOS_CIRCLE = 'tri-infos-circle',
   SEARCH = 'tri-search',
   TIMES = 'tri-times',
+  TIMES_CIRCLE = 'tri-times',
   TRASH = 'tri-trash',
   PICTO_FACILITI = 'tri-picto-faciliti',
   PICTO_HANDICAPZERO = 'tri-picto-handicapzero',
