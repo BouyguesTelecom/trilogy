@@ -168,7 +168,6 @@ export enum ComponentName {
   TextMarkup = 'TextMarkup',
   TextIconMarkup = 'TextIconMarkup',
   Textarea = 'Textarea',
-  Tile = 'Tile',
   Timeline = 'Timeline',
   TimelineItem = 'TimelineItem',
   TimelineContent = 'TimelineContent',
