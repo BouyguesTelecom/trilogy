@@ -70,7 +70,7 @@ export interface CheckboxProps extends Accessibility {
    */
   inverted?: boolean
   tile?: boolean
-  description?: string
+  description?: string | React.ReactNode
   iconTile?: IconName | IconNameValues
   horizontalTile?: boolean
 }

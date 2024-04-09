@@ -160,9 +160,9 @@ const Checkbox = ({
                   {String(label)}
                 </Text>
               )}
-              {description && typeof description.valueOf() === 'string' && (
+              {description && typeof description.valueOf() === 'string' ? (
                 <Text style={styles.tileDescription}>{String(description)}</Text>
-              )}
+              ) : description}
             </View>
           </View>
           <View
