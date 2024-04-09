@@ -188,6 +188,7 @@ body:has(.modal.is-active) {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            transform: translateX(100%);
 
             @include tablet {
                 max-width: 375px;
@@ -195,6 +196,12 @@ body:has(.modal.is-active) {
 
             .modal-footer {
                 margin-top: auto;
+            }
+        }
+
+        &.is-active {
+            .modal-content {
+                transform: translateX(0);
             }
         }
     }
