@@ -285,7 +285,7 @@ describe('Input', () => {
         placeholder='this is my placeholder'
         minLength={8}
         maxLength={15}
-        dataVerifies={{
+        validationRules={{
           lowercase: true,
           uppercase: true,
           number: true,
@@ -334,7 +334,7 @@ describe('Input', () => {
           placeholder='this is my placeholder'
           minLength={8}
           maxLength={15}
-          dataVerifies={{
+          validationRules={{
             lowercase: true,
             uppercase: true,
             number: true,
