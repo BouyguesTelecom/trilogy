@@ -6,7 +6,7 @@
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react",
+    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
@@ -146,6 +146,7 @@
     "packages/react",
     "packages/styles",
     "packages/assets",
+    "packages/vanilla",
     "examples/react-template"
   ],
   "engineStrict": true,
