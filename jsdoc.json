@@ -1,0 +1,9 @@
+{
+  "source": {
+    "include": ["./packages/react/components/src/alert/Alert.tsx"],
+    "includePattern": ".+\\.js(doc|x)?$"
+  },
+  "opts": {
+    "destination": "./docs/"
+  }
+}
