@@ -1,4 +1,4 @@
-import { Button } from '../../react/lib'
+import { Button } from '../../packages/react'
 
 function App() {
   return (

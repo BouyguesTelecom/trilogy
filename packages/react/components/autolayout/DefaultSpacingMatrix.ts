@@ -28,16 +28,16 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Image', 'Title', LARGE],
 
   [INSERT_SPACE_BETWEEN, 'Input', 'Input', LARGE],
-  [INSERT_SPACE_BETWEEN, 'Input', 'Progress', MEDIUM],
+  // [INSERT_SPACE_BETWEEN, 'Input', 'Progress', MEDIUM],
 
   [INSERT_SPACE_BETWEEN, 'Link', 'Button', LARGE],
   [INSERT_SPACE_BETWEEN, 'Link', 'Link', LARGE],
 
   [INSERT_SPACE_BETWEEN, 'Notification', 'Notification', MEDIUM],
 
-  [INSERT_SPACE_BETWEEN, 'Progress', 'Progress', SMALL],
+  // [INSERT_SPACE_BETWEEN, 'Progress', 'Progress', SMALL],
 
-  [INSERT_SPACE_BETWEEN, 'ProgressRadial', 'ProgressRadial', SMALL],
+  // [INSERT_SPACE_BETWEEN, 'ProgressRadial', 'ProgressRadial', SMALL],
 
   [INSERT_SPACE_BETWEEN, 'Radio', 'Button', MEDIUM],
 
