@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import React from 'react'
-import { getAlertClassName, getAlertIconName } from '../../objects'
+import { getAlertClassName, getAlertIconName } from '../../objects/facets/Alert'
 import { has, is } from '../../services/classify'
 import { Icon, IconName } from '../icon'
 import { Text } from '../text'
 import { Title, TitleLevels } from '../title'
 import { AlertProps } from './AlertProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Alert Component

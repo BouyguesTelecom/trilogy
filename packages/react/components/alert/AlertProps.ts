@@ -1,5 +1,6 @@
 import { Clickable } from './../../objects/facets/Clickable'
-import { Accessibility, AlertProps as PropsAlert } from '../../objects/facets'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { AlertProps as PropsAlert } from '../../objects/facets/Alert'
 import { IconName, IconNameValues } from '../icon/IconNameEnum'
 /**
  * Notification Interface

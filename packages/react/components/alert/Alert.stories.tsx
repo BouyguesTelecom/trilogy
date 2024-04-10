@@ -2,7 +2,7 @@ import React from 'react'
 import { Meta, Story } from '@storybook/react'
 import Alert from './Alert'
 import { AlertProps } from './AlertProps'
-import { AlertState } from '../../objects'
+import { AlertState } from '../../objects/facets/Alert'
 
 export default {
   title: 'Components/Alert',

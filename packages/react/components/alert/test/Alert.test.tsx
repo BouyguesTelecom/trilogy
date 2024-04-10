@@ -2,7 +2,7 @@ import React from 'react'
 import {fireEvent, render} from '@testing-library/react'
 import {Alert} from '../index'
 import {AlertProps} from '../AlertProps'
-import {AlertState} from '../../../objects'
+import {AlertState} from '../../../objects/facets/Alert'
 import {IconName} from '../../icon'
 import renderer from 'react-test-renderer'
 

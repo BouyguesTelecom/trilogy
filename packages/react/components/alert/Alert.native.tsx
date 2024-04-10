@@ -7,7 +7,7 @@ import { getAlertIconName, getAlertStyle } from '../../objects/facets/Alert'
 import { getBackgroundOfVariant, getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { AlertProps } from './AlertProps'
 import { Icon } from '../icon'
-import { TypographyBold } from '../../objects'
+import { TypographyBold } from '../../objects/Typography/TypographyBold'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
