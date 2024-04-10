@@ -2,7 +2,7 @@ import React, { createContext } from 'react'
 import { AccordionProps } from './AccordionProps'
 import clsx from 'clsx'
 import { useTrilogyContext } from '../../context/index'
-import { hashClass } from '../..//helpers/hashClassesHelpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 
 export const AccordionContext = createContext({ inverted: false })
 

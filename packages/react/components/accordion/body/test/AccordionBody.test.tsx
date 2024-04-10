@@ -3,7 +3,7 @@ import React from 'react'
 
 // Testing methods
 import { render, screen } from '@testing-library/react'
-import { AccordionBody } from '../../..'
+import AccordionBody from '../../body/AccordionBody'
 
 // Component to test
 
