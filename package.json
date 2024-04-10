@@ -29,14 +29,17 @@
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
+    "@trilogy-ds/assets": "*",
     "clsx": "^2.1.0",
     "color": "^4.2.3",
+    "glob": "^10.3.12",
     "react-content-loader": "^6.2.1",
     "react-native-modal": "^13.0.1",
     "react-native-toast-message": "^2.2.0",
     "rollup-plugin-copy": "^3.5.0",
     "shortid": "^2.2.16",
-    "@trilogy-ds/assets": "*"
+    "vite-plugin-dts": "^3.8.1",
+    "vite-plugin-lib-inject-css": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
