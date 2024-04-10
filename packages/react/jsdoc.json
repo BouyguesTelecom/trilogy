@@ -1,9 +1,0 @@
-{
-  "source": {
-    "include": ["./components/src/alert/Alert.tsx"],
-    "includePattern": ".+\\.js(doc|x)?$"
-  },
-  "opts": {
-    "destination": "./docs/"
-  }
-}
