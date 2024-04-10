@@ -36,3 +36,10 @@ jobs:
         run: npm publish --workspace packages/styles --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+      - name: Publish Vanilla package on NPM 📦
+        run: npm publish --workspace packages/vanilla --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+
