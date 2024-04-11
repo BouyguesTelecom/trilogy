@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { IconName } from '../icon/IconNameEnum'
-import { CheckboxProps } from './CheckboxProps'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, TouchableOpacity} from 'react-native'
+import {IconName} from '../icon/IconNameEnum'
+import {CheckboxProps} from './CheckboxProps'
 import shortid from 'shortid'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { Text, TextLevels } from '../text'
-import { View } from '../view'
-import { Icon, IconSize } from '../icon'
-import { TypographyBold } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {Text, TextLevels} from '../text'
+import {View} from '../view'
+import {Icon, IconSize} from '../icon'
+import {TypographyAlign, TypographyBold} from '../../objects'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Checkbox Native Component
@@ -21,26 +21,22 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
  * @param inverted {boolean} Inveted Checkbox color
- * @param spaced {boolean} Spaced Label
- * @param reversed {boolean} Reversed Checkbox Input with Label
  */
 const Checkbox = ({
-  id = shortid.generate(),
-  checked,
-  name,
-  onClick,
-  onChange,
-  disabled,
-  readonly,
-  label,
-  inverted,
-  spaced,
-  reversed,
-  tile,
-  description,
-  iconTile,
-  horizontalTile,
-}: CheckboxProps): JSX.Element => {
+                    id = shortid.generate(),
+                    checked,
+                    name,
+                    onClick,
+                    onChange,
+                    disabled,
+                    readonly,
+                    label,
+                    inverted,
+                    tile,
+                    description,
+                    iconTile,
+                    horizontalTile,
+                  }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
   useEffect(() => {
@@ -49,42 +45,40 @@ const Checkbox = ({
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: reversed ? 'row-reverse' : 'row',
-      justifyContent: spaced ? 'space-between' : 'flex-start',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
     },
     checkBox: {
       alignItems: 'center',
       justifyContent: horizontalTile ? 'center' : 'flex-start',
       borderColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
-      borderWidth: 0.5,
+      borderWidth: 0.6,
       width: 19,
       height: 19,
       borderRadius: 4,
-      marginRight: (!spaced && reversed && 0) || (spaced && reversed && 0) || (!spaced && !reversed && 10) || 0,
-      marginLeft: !spaced && reversed ? 10 : 0,
+      marginRight: 10,
+      marginLeft: 0,
       backgroundColor:
-        (tile && disabled && '#4f4f4f') || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || 'transparent',
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || 'transparent',
     },
     label: {
-      color: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.TERTIARY),
-      alignSelf: 'center',
+      fontWeight: "600",
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
     },
     tile: {
+      padding: 4,
       paddingBottom: 8,
       maxWidth: 140,
-      borderWidth: 2,
+      borderWidth: _checked && 2 || 1,
+      width: 126,
       borderColor:
-        (disabled && '#e1e1e1') ||
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
       alignItems: 'center',
-      backgroundColor: disabled ? '#e1e1e1' : 'transparent',
-    },
-    tileLabel: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
-      alignSelf: horizontalTile ? 'flex-start' : 'center',
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
       color: getColorStyle(TrilogyColor.TERTIARY),
@@ -94,9 +88,9 @@ const Checkbox = ({
       paddingVertical: 16,
       width: '100%',
       height: 'auto',
-      borderWidth: 2,
+      borderWidth: _checked && 2 || 1,
       borderColor:
-        (disabled && '#e1e1e1') ||
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
@@ -128,8 +122,8 @@ const Checkbox = ({
 
   if (horizontalTile) {
     return (
-      <TouchableOpacity style={styles.horizontalTile} onPress={() => handleClick()}>
-        <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick()}>
+        <View style={{flexDirection: 'row'}}>
           <View
             style={{
               width: '10%',
@@ -141,7 +135,7 @@ const Checkbox = ({
           >
             {iconTile && (
               <View>
-                <Icon size={IconSize.SMALL} name={iconTile} />
+                <Icon size={IconSize.SMALL} name={iconTile}/>
               </View>
             )}
           </View>
@@ -156,12 +150,12 @@ const Checkbox = ({
           >
             <View>
               {label && typeof label.valueOf() === 'string' && (
-                <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                <Text style={styles.label} level={TextLevels.TWO} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                   {String(label)}
                 </Text>
               )}
               {description && typeof description.valueOf() === 'string' ? (
-                <Text style={styles.tileDescription}>{String(description)}</Text>
+                <Text level={TextLevels.TWO} style={styles.tileDescription}>{String(description)}</Text>
               ) : description}
             </View>
           </View>
@@ -174,7 +168,7 @@ const Checkbox = ({
             }}
           >
             <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-              {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK} />}
+              {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK}/>}
             </TouchableOpacity>
           </View>
         </View>
@@ -184,16 +178,17 @@ const Checkbox = ({
 
   if (tile) {
     return (
-      <TouchableOpacity style={horizontalTile ? styles.horizontalTile : styles.tile} onPress={() => handleClick()}>
+      <TouchableOpacity disabled={disabled} style={horizontalTile ? styles.horizontalTile : styles.tile}
+                        onPress={() => handleClick()}>
         <TouchableOpacity
-          style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.checkBox]}
+          style={[{alignSelf: 'flex-end', marginTop: 10}, styles.checkBox]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick()}
         >
-          {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK} />}
+          {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK}/>}
         </TouchableOpacity>
-        <View style={{ width: '70%' }}>
+        <View style={{width: '70%'}}>
           {iconTile && (
             <View
               style={{
@@ -203,15 +198,17 @@ const Checkbox = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.SMALL} name={iconTile} />
+              <Icon size={IconSize.MEDIUM} name={iconTile}/>
             </View>
           )}
           {label && typeof label.valueOf() === 'string' && (
-            <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD} style={styles.label}>
+            <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
+                  style={styles.label}>
               {String(label)}
             </Text>
           )}
-          {description && typeof description.valueOf() === 'string' && <Text>{String(description)}</Text>}
+          {description && typeof description.valueOf() === 'string' && <Text level={TextLevels.THREE}
+                                                                             typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>{String(description)}</Text>}
         </View>
       </TouchableOpacity>
     )
@@ -220,7 +217,7 @@ const Checkbox = ({
   return (
     <TouchableOpacity style={styles.container} onPress={() => handleClick()}>
       <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-        {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK} />}
+        {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK}/>}
       </TouchableOpacity>
       {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
     </TouchableOpacity>

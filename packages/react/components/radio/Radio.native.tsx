@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { RadioProps } from './RadioProps'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, TouchableOpacity} from 'react-native'
+import {RadioProps} from './RadioProps'
 import shortid from 'shortid'
-import { getColorStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { Icon, IconSize } from '../icon'
-import { Text, TextLevels } from '../text'
-import { View } from '../view'
-import { ComponentName } from '../enumsComponentsName'
+import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold} from '../../objects'
+import {Icon, IconSize} from '../icon'
+import {Text, TextLevels} from '../text'
+import {View} from '../view'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Radio Native Component
@@ -20,33 +20,29 @@ import { ComponentName } from '../enumsComponentsName'
  * @param name {string} Name for checkbox
  * @param value {string} Value for checkbox
  * @param inverted {boolean} Inveted Checkbox color
- * @param spaced {boolean} Spaced Label
- * @param reversed {boolean} Reversed Radio Input with Label
  * @param iconTile {IconName} Icon for Radio
  * @param narrow {boolean} Apply narrow
  * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
  * @param description {string | React.ReactNode} Custom children
  */
 const Radio = ({
-  id = shortid.generate(),
-  checked,
-  name,
-  onClick,
-  onChange,
-  disabled,
-  readonly,
-  label,
-  inverted,
-  value,
-  spaced,
-  reversed,
-  horizontalTile,
-  tile,
-  description,
-  iconTile,
-  children,
-  narrow,
-}: RadioProps): JSX.Element => {
+                 id = shortid.generate(),
+                 checked,
+                 name,
+                 onClick,
+                 onChange,
+                 disabled,
+                 readonly,
+                 label,
+                 inverted,
+                 value,
+                 horizontalTile,
+                 tile,
+                 description,
+                 iconTile,
+                 children,
+                 narrow,
+               }: RadioProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -55,9 +51,9 @@ const Radio = ({
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: reversed ? 'row-reverse' : 'row',
+      flexDirection: 'row',
       paddingBottom: 5,
-      justifyContent: spaced ? 'space-between' : 'flex-start',
+      justifyContent: 'flex-start',
     },
     radio: {
       flexDirection: 'row',
@@ -67,8 +63,8 @@ const Radio = ({
       width: 19,
       height: 19,
       borderRadius: 10,
-      marginRight: (!spaced && reversed && 0) || (spaced && reversed && 0) || (!spaced && !reversed && 10) || 0,
-      marginLeft: !spaced && reversed ? 10 : 0,
+      marginRight: 10,
+      marginLeft: 0,
     },
     icon: {
       position: 'absolute',
@@ -79,25 +75,23 @@ const Radio = ({
       backgroundColor: !inverted ? getColorStyle(TrilogyColor.INFO) : getColorStyle(TrilogyColor.WHITE),
     },
     label: {
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || getColorStyle(TrilogyColor.TERTIARY),
+      fontWeight: "600",
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
     },
     tile: {
+      padding: 4,
       paddingBottom: 8,
       maxWidth: 140,
-      width: 100,
-      borderWidth: 2,
+      width: 126,
+      borderWidth: _checked && 2 || 1,
       borderColor:
-        (disabled && '#e1e1e1') ||
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
       alignItems: 'center',
-      backgroundColor: disabled ? '#e1e1e1' : 'transparent',
-    },
-    tileLabel: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
-      alignSelf: horizontalTile ? 'flex-start' : 'center',
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
       color: getColorStyle(TrilogyColor.TERTIARY),
@@ -107,13 +101,13 @@ const Radio = ({
       paddingVertical: 16,
       width: narrow ? 'auto' : '100%',
       height: 'auto',
-      borderWidth: 2,
+      borderWidth: _checked && 2 || 1,
       borderColor:
-        (disabled && '#e1e1e1') ||
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
-      backgroundColor: disabled ? '#e1e1e1' : 'transparent',
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
   })
 
@@ -142,8 +136,8 @@ const Radio = ({
 
   if (horizontalTile) {
     return (
-      <TouchableOpacity style={styles.horizontalTile} onPress={() => handleClick(value || false)}>
-        <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick(value || false)}>
+        <View style={{flexDirection: 'row'}}>
           {children ? (
             <View
               style={{
@@ -170,7 +164,7 @@ const Radio = ({
               >
                 {iconTile && (
                   <View>
-                    <Icon size={IconSize.SMALL} name={iconTile} />
+                    <Icon size={IconSize.SMALL} name={iconTile}/>
                   </View>
                 )}
               </View>
@@ -185,12 +179,12 @@ const Radio = ({
               >
                 <View>
                   {label && typeof label.valueOf() === 'string' && (
-                    <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                    <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                       {String(label)}
                     </Text>
                   )}
                   {description && typeof description.valueOf() === 'string' ? (
-                    <Text style={styles.tileDescription}>{String(description)}</Text>
+                    <Text level={TextLevels.TWO} style={styles.tileDescription}>{String(description)}</Text>
                   ) : (
                     description
                   )}
@@ -212,7 +206,7 @@ const Radio = ({
               testID={id}
               onPressIn={() => handleClick(value || false)}
             >
-              {_checked && !disabled && <View style={styles.icon} />}
+              {_checked && !disabled && <View style={styles.icon}/>}
             </TouchableOpacity>
           </View>
         </View>
@@ -223,18 +217,19 @@ const Radio = ({
   if (tile) {
     return (
       <TouchableOpacity
-        style={horizontalTile ? styles.horizontalTile : styles.tile}
+        disabled={disabled}
+        style={styles.tile}
         onPress={() => handleClick(value || false)}
       >
         <TouchableOpacity
-          style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.radio]}
+          style={[{alignSelf: 'flex-end', marginTop: 10}, styles.radio]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick(value || false)}
         >
-          {_checked && !disabled && <View style={styles.icon} />}
+          {_checked && !disabled && <View style={styles.icon}/>}
         </TouchableOpacity>
-        <View style={{ width: '70%', alignItems: 'center' }}>
+        <View style={{width: '70%', alignItems: 'center'}}>
           {iconTile && (
             <View
               style={{
@@ -244,15 +239,17 @@ const Radio = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.SMALL} name={iconTile} />
+              <Icon size={IconSize.MEDIUM} name={iconTile}/>
             </View>
           )}
           {label && typeof label.valueOf() === 'string' && (
-            <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD} style={styles.label}>
+            <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
+                  style={styles.label}>
               {String(label)}
             </Text>
           )}
-          {description && typeof description.valueOf() === 'string' ? <Text>{String(description)}</Text> : description}
+          {description && typeof description.valueOf() === 'string' ? <Text level={TextLevels.THREE}
+                                                                            typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>{String(description)}</Text> : description}
         </View>
       </TouchableOpacity>
     )
@@ -266,7 +263,7 @@ const Radio = ({
         testID={id}
         onPress={() => handleClick(value || false)}
       >
-        {_checked && <View style={styles.icon} />}
+        {_checked && <View style={styles.icon}/>}
       </TouchableOpacity>
       {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
     </TouchableOpacity>
