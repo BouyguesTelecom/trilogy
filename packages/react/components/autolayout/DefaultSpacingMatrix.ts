@@ -1,9 +1,9 @@
-import { SpacerSize } from '../spacer'
-import { SpacingMatrixMode, SpacingMatrix } from './SpacingMatrix'
+import {SpacerSize} from '../spacer'
+import {SpacingMatrix, SpacingMatrixMode} from './SpacingMatrix'
 
-const { HUGE, LARGE, MEDIUM, SMALL, NONE } = SpacerSize
+const {HUGE, LARGE, MEDIUM, SMALL, NONE} = SpacerSize
 
-export const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
+export const {INSERT_SPACE_BETWEEN} = SpacingMatrixMode
 
 /**
  * Spacing matrix for defining spacings between component types
@@ -108,4 +108,12 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
 
   [INSERT_SPACE_BETWEEN, 'View', 'Card', MEDIUM],
   [INSERT_SPACE_BETWEEN, 'Card', 'View', MEDIUM],
+
+  [INSERT_SPACE_BETWEEN, 'Radio', 'Divider', SMALL],
+  [INSERT_SPACE_BETWEEN, 'Divider', 'Radio', SMALL],
+  [INSERT_SPACE_BETWEEN, 'Radio', 'Radio', MEDIUM],
+
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'Divider', SMALL],
+  [INSERT_SPACE_BETWEEN, 'Divider', 'Checkbox', SMALL],
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'Checkbox', SMALL],
 ]
