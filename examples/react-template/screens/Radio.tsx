@@ -76,17 +76,17 @@ export const RadioScreen = (): JSX.Element => {
         </Columns>
         <Spacer size={20}/>
         <RadioList isMobile>
-          <Radio checked iconTile={IconName.EYE} horizontalTile label='abc narrow' narrow marginless/>
-          <Radio disabled horizontalTile label='abc narrow' narrow marginless/>
-          <Radio description={'lorem kenenf ns k '} horizontalTile label='abc narrow' narrow marginless/>
-
+          <Radio checked iconTile={IconName.EYE} tile horizontalTile label='abc narrow' narrow marginless/>
+          <Radio disabled horizontalTile label='abc narrow' tile narrow marginless/>
+          <Radio description={'lorem kenenf ns k '} tile horizontalTile label='abc narrow' narrow marginless/>
 
           <Radio
+            tile
             horizontalTile
             label='Radio tile'
             name='radio'
             value='default value 1'
-            description='toto est content detre dans une tuile horizontal'
+            description='Neque porro quisquam est qui dolorem ipsum quia dolor sit amet'
             // eslint-disable-next-line no-console
             onChange={(e) => console.log(e.radioValue, e.radioChecked)}
             checked={false}
@@ -97,6 +97,7 @@ export const RadioScreen = (): JSX.Element => {
           </Radio>
         </RadioList>
         <Radio
+          tile
           horizontalTile
           // eslint-disable-next-line no-console
           onChange={(e) => console.log(e.radioValue, e.radioChecked)}

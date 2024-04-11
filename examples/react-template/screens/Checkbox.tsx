@@ -5,9 +5,7 @@ import {
   Columns,
   ColumnsItem,
   Container,
-  Icon,
   IconName,
-  IconSize,
   Spacer,
   SpacerSize,
   Text,
@@ -72,27 +70,11 @@ export const CheckboxScreen = (): JSX.Element => {
           </ColumnsItem>
         </Columns>
         <Spacer size={20}/>
-        <AutoLayout>
-          <Checkbox checked iconTile={IconName.EYE} horizontalTile label='Checkbox checked'/>
-          <Checkbox disabled horizontalTile label='Checkbox Disabled'/>
-          <Checkbox description={'lorem kenenf ns k '} horizontalTile label='Checkbox simple'/>
 
-          <Checkbox
-            iconTile={IconName.CHECK_CIRCLE}
-            horizontalTile
-            label='Checkbox tile'
-            name='radio'
-            value='default value 1'
-            description='Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...'
-            // eslint-disable-next-line no-console
-            onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-            checked={false}
-          >
-            <Icon name={IconName.EYE} size={IconSize.LARGE}/>
-            <Icon name={IconName.EYE_SLASH} size={IconSize.LARGE}/>
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.LARGE}/>
-          </Checkbox>
-        </AutoLayout>
+        <Checkbox checked iconTile={IconName.EYE} horizontalTile tile label='Checkbox checked'/>
+        <Checkbox disabled horizontalTile tile label='Checkbox Disabled'/>
+        <Checkbox description={'lorem kenenf'} tile horizontalTile label='Checkbox simple'/>
+
       </Container>
     </AutoLayout>
   )
