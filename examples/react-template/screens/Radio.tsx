@@ -106,14 +106,14 @@ export const RadioScreen = (): JSX.Element => {
           <Rows>
             <RowItem>
               <Title level={TitleLevels.THREE} markup={'div'} className={'is-marginless'}>
-                Tahfjkhdkshfkhs jhqsfjsqhfjklhsq fhjskqhf ljqh
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </Title>
             </RowItem>
             <RowItem>
               <Text level={TitleLevels.THREE} markup={'div'} className={'is-marginless'}>
-                Tahfjkhdkshfkhs jhqsfjsqhfjklhsq fhjskqhf ljqhflhlkjhsfljkh qsjklfh shfkljhqsfh jkhfkjl
-                qjlhkfkjlhfjklqhsf
-                hkjhf kfjhdhkdf jkhfj qshfkjhqs mere
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium id sem quis auctor. Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula semper leo, a scelerisque erat tristique
+                id.
               </Text>
             </RowItem>
           </Rows>

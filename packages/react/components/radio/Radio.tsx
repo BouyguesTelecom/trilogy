@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import shortid from 'shortid'
-import { RadioProps } from './RadioProps'
-import { has, is } from '../../services/classify'
-import { Icon, IconSize } from '../icon'
-import { hashClass } from '../../helpers'
+import {RadioProps} from './RadioProps'
+import {has, is} from '../../services/classify'
+import {Icon, IconSize} from '../icon'
+import {hashClass} from '../../helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import {useTrilogyContext} from '../../context'
 
 /**
  * Radio Component
@@ -26,35 +26,33 @@ import { useTrilogyContext } from '../../context'
  */
 
 const Radio = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = shortid.generate(),
-  label,
-  onChange,
-  onClick,
-  name,
-  value,
-  tile,
-  description,
-  iconTile,
-  horizontalTile,
-  children,
-  labelClassName,
-  spaced,
-  inverted,
-  testId,
-  narrow,
-  marginless,
-  ...others
-}: RadioProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [inputState, setInputState] = useState<{ checked: boolean }>({ checked: checked || false })
+                 checked,
+                 className,
+                 disabled,
+                 readonly,
+                 id = shortid.generate(),
+                 label,
+                 onChange,
+                 onClick,
+                 name,
+                 value,
+                 tile,
+                 description,
+                 iconTile,
+                 horizontalTile,
+                 children,
+                 inverted,
+                 testId,
+                 narrow,
+                 marginless,
+                 ...others
+               }: RadioProps): JSX.Element => {
+  const {styled} = useTrilogyContext()
+  const [inputState, setInputState] = useState<{ checked: boolean }>({checked: checked || false})
 
   useEffect(() => {
     if (!readonly) {
-      setInputState({ checked: checked || false })
+      setInputState({checked: checked || false})
     }
   }, [checked, readonly])
 
@@ -72,11 +70,11 @@ const Radio = ({
   )
   const labelClasses = hashClass(
     styled,
-    clsx(checked && has('text-info'), spaced && is('spaced-between'), labelClassName),
+    clsx(checked && has('text-info')),
   )
 
   // Support legacy checkbox
-  if (labelClassName || inverted || spaced) {
+  if (inverted) {
     return (
       <div className={hashClass(styled, clsx('field'))}>
         <div className={hashClass(styled, clsx('control', disabled && is('disabled')))}>
@@ -96,7 +94,7 @@ const Radio = ({
             onClick={(e: React.MouseEvent) => {
               const target = e.target as HTMLInputElement
               if (!readonly && target.checked !== undefined) {
-                setInputState({ checked: target.checked })
+                setInputState({checked: target.checked})
               }
               target.value = value || ''
               if (onChange) {
@@ -153,7 +151,7 @@ const Radio = ({
         onClick={(e: React.MouseEvent) => {
           const target = e.target as HTMLInputElement
           if (!readonly && target.checked) {
-            setInputState({ checked: target.checked })
+            setInputState({checked: target.checked})
           }
           target.value = value || ''
           if (onChange) {
@@ -181,7 +179,7 @@ const Radio = ({
           children
         ) : (
           <>
-            {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM} />}
+            {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM}/>}
             {horizontalTile ? (
               <span>
                 {tile ? <span className={hashClass(styled, clsx('radio-title'))}>{label}</span> : label}
