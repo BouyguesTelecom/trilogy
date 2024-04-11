@@ -110,7 +110,7 @@ const Price = ({
           <Text className={'main'}>{`${whole}`}</Text>
           <span className={hashClass(styled, clsx('price-details'))}>
             <span className={hashClass(styled, clsx('cents'))}>
-              {centsDisplayed}
+              {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
               {mention && <sup>{mention}</sup>}
             </span>
             {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
