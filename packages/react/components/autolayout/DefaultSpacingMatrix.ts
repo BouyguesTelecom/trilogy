@@ -83,7 +83,7 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', HUGE],
   [INSERT_SPACE_BETWEEN, 'default', 'Checkbox', HUGE],
 
-  [INSERT_SPACE_BETWEEN, 'Columns', 'Columns', MEDIUM],
+  [INSERT_SPACE_BETWEEN, 'Columns', 'Columns', SMALL],
   [INSERT_SPACE_BETWEEN, 'Columns', 'default', MEDIUM],
   [INSERT_SPACE_BETWEEN, 'default', 'Columns', MEDIUM],
 
