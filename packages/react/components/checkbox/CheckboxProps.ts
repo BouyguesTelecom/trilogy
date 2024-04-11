@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from './../icon/IconNameEnum'
-import { Accessibility } from '../../objects'
+import {IconName, IconNameValues} from './../icon/IconNameEnum'
+import {Accessibility} from '../../objects'
 
 export interface CheckboxChangeEvent {
   checkboxId: string
@@ -39,32 +39,11 @@ export interface CheckboxProps extends Accessibility {
   readonly?: boolean
   id?: string
   label?: string | React.ReactNode
-  /**
-   * @deprecated
-   */
-  labelClassName?: string
   onClick?: CheckboxClickEventHandler
   onChange?: CheckboxChangeEventHandler
-  /**
-   * @deprecated
-   */
-  removeControl?: boolean
-  /**
-   * @deprecated
-   */
-  removeField?: boolean
   className?: string
   name?: string
   value?: string
-  /**
-   * @deprecated
-   */
-  spaced?: boolean
-  /**
-   * @deprecated
-   */
-  reversed?: boolean
-
   /**
    * @deprecated
    */
