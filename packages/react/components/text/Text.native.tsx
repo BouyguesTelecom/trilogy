@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text as TextNative, View, Platform } from 'react-native'
-import { TextProps } from './TextProps'
-import { setTypographyAlign, setTypographyColor, getTypographyBoldStyle } from '../../objects/Typography'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { TextLevels, TextLevelValues } from './TextEnum'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { ComponentName } from '../enumsComponentsName'
+import {Platform, StyleSheet, Text as TextNative, View} from 'react-native'
+import {TextProps} from './TextProps'
+import {getTypographyBoldStyle, setTypographyAlign, setTypographyColor} from '../../objects/Typography'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {TextLevels, TextLevelValues} from './TextEnum'
+import ContentLoader, {Rect} from 'react-content-loader/native'
+import {ComponentName} from '../enumsComponentsName'
+
 /**
  * Text Native Component
  * @param children {string} Text child
@@ -22,19 +23,19 @@ import { ComponentName } from '../enumsComponentsName'
  * @param others
  */
 const Text = ({
-  children,
-  level,
-  style,
-  inverted,
-  typo,
-  onClick,
-  skeleton,
-  testId,
-  accessibilityLabel,
-  link,
-  numberOfLines = 0,
-  ...others
-}: TextProps): JSX.Element => {
+                children,
+                level,
+                style,
+                inverted,
+                typo,
+                onClick,
+                skeleton,
+                testId,
+                accessibilityLabel,
+                link,
+                numberOfLines = 0,
+                ...others
+              }: TextProps): JSX.Element => {
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
       (level && level == 'ONE' && 16) ||
@@ -54,7 +55,7 @@ const Text = ({
         (link && getColorStyle(TrilogyColor.SECONDARY)) ||
         'transparent',
       textAlign: setTypographyAlign(typo),
-      lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.5,
+      lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.4,
       textDecorationLine: link ? 'underline' : 'none',
       alignSelf:
         (setTypographyAlign(typo) === 'left' && 'flex-start') ||
@@ -83,8 +84,8 @@ const Text = ({
   const textAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
-    ? children
-    : undefined
+      ? children
+      : undefined
 
   let textView: JSX.Element = (
     <TextNative
@@ -107,7 +108,7 @@ const Text = ({
         {textView}
         {Platform.OS === 'android' && (
           <View>
-            <Rect rx='7' ry='7' width='100%' height='100%' />
+            <Rect rx='7' ry='7' width='100%' height='100%'/>
           </View>
         )}
       </ContentLoader>

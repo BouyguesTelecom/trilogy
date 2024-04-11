@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from '../icon'
-import { Accessibility } from '../../objects'
+import {IconName, IconNameValues} from '../icon'
+import {Accessibility} from '../../objects'
 
 type RadioChangeEventHandler = (event: {
   radioChecked: boolean
@@ -25,24 +25,11 @@ export interface RadioProps extends Accessibility {
   readonly?: boolean
   id?: string
   label?: string | React.ReactNode
-
-  /**
-   * @deprecated
-   */
-  labelClassName?: string
   onClick?: RadioClickEventHandler
   onChange?: RadioChangeEventHandler
   className?: string
   name?: string
   value?: string
-  /**
-   * @deprecated
-   */
-  spaced?: boolean
-  /**
-   * @deprecated
-   */
-  reversed?: boolean
   /**
    * @deprecated
    */
