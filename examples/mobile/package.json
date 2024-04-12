@@ -6,7 +6,7 @@
   "author": "bouygues-telecom",
   "license": "UNLICENSED",
   "scripts": {
-    "setup:native": "npx react-native-asset && (cd ios && pod install)",
+    "setup:native": "(cd ios && pod install)  && npx react-native-asset ",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
