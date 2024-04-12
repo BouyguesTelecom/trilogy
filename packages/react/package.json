@@ -35,5 +35,11 @@
   "keywords": [
     "react",
     "design system"
-  ]
+  ],
+  "exports": {
+    "./button": "./lib/components/button",
+    "./*": "./lib/*",
+    "./components/*": "./lib/components/*",
+    "./utils/*": "./lib/utils/*",
+  }
 }
