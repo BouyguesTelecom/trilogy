@@ -23,10 +23,6 @@
     &.is-active {
         .dropdown-menu {
             z-index: zindex('dropdown');
-
-            .dropdown-content {
-                border: 1px solid getColor('alternate');;
-            }
         }
     }
 
@@ -86,7 +82,6 @@
             box-shadow: 0 2px 3px rgba(#000, 0.1),
             0 0 0 1px rgba(#000, 0.1);
             font-size: inherit;
-            padding: 5px 10px;
 
             .dropdown-item {
                 display: block;
@@ -104,15 +99,13 @@
     }
 }
 
+.dropdown-item {
+    @include hover();
+}
+
 a.dropdown-item {
     padding-right: 30px;
     white-space: nowrap;
-
-    &:hover {
-        background-color: getColor('background');
-        color: invertColor('background');;
-    }
-
     &.is-active {
         background-color: getColor('alternate');
         color: invertColor('alternate');

@@ -54,9 +54,7 @@
         &::-ms-expand {
             display: none !important;
         }
-        &:focus, &:hover {
-            outline: 1px auto getColor('alternate');
-        }
+       @include hover();
 
     }
 
@@ -139,8 +137,8 @@
             &::after {
                 @include arrow-style(false,"down")
             }
-            &:not(.select-native):hover, &:not(.select-native):focus {
-                outline: 1px auto getColor('alternate');
+            &:not(.select-native) {
+                @include hover();
             }
         }
         &.select-disabled {

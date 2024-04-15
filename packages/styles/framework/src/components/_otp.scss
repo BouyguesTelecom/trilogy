@@ -3,6 +3,7 @@
   flex-wrap: nowrap;
 
   .otp {
+    @include hover();
     outline: none;
     border: 1px solid currentColor;
     border-radius: 4px;
