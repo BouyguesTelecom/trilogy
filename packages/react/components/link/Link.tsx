@@ -4,8 +4,8 @@ import { Text, TextMarkup } from '../text'
 import { LinkProps } from './LinkProps'
 import { has, is } from '../../services/classify'
 import { Icon, IconSize } from '../icon'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Link Component

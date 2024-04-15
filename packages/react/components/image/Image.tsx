@@ -1,9 +1,9 @@
 import React from 'react'
 import { ImageProps } from './ImageProps'
-import { is } from '../../services'
+import { is } from '../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Image Component

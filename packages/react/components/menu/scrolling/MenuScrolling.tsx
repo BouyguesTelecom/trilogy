@@ -1,8 +1,8 @@
 import React from 'react'
-import { hashClass } from '../../../helpers'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { MenuScrollingProps } from './MenuScrollingProps'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '../../../context/index'
 
 const a11y = { role: 'scrolling-menu' }
 

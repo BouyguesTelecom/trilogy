@@ -4,7 +4,8 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { ComponentName } from '../../enumsComponentsName'
 import { Text } from '../../text'
 import { Icon } from '../../icon'
-import { TrilogyColor, TypographyColor, getColorStyle } from '../../../objects'
+import { TypographyColor } from '../../../objects/Typography/TypographyColor'
+import { TrilogyColor, getColorStyle } from '../../../objects/facets/Color'
 import { Badge } from '../../badge'
 
 /**

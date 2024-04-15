@@ -1,7 +1,7 @@
 import React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '../../objects'
+import { TypographyAlign } from '../../objects/Typography/TypographyAlign'
 import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { TextLevels } from '../text'
 import { Icon } from '../icon'

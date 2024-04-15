@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import React from 'react'
-import { has } from '../../../services'
+import { has } from '../../../services/classify'
 import { Icon, IconName } from '../../icon'
 import { InfoBlockStatus } from '../InfoBlockEnum'
 import { InfoBlockHeaderProps } from './InfoBlockHeaderProps'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 import { Text, TextLevels } from '../../text'
-import { TypographyBold } from '../../../objects'
+import { TypographyBold } from '../../../objects/Typography/TypographyBold'
 
 /**
  * Info Block Header

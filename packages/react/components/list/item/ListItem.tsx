@@ -2,10 +2,10 @@ import React from 'react'
 import clsx from 'clsx'
 import { ListItemProps } from './ListItemProps'
 import { Icon, IconSize } from '../../icon'
-import { is } from '../../../services'
-import { getColorClassName } from '../../../objects'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { is } from '../../../services/classify'
+import { getColorClassName } from '../../../objects/facets/Color'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * ListItem Component

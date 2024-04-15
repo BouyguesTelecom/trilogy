@@ -1,10 +1,10 @@
 import React from 'react'
 import clsx from 'clsx'
 import { InfoBlockActionProps } from './InfoBlockActionProps'
-import { has } from '../../../services'
+import { has } from '../../../services/classify'
 import { Button, ButtonColor } from '../../button'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Info Block Action

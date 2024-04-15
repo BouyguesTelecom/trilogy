@@ -1,6 +1,6 @@
 import React from 'react'
 import { MenuItemWebProps } from './MenuItemProps'
-import { is } from '../../../services'
+import { is } from '../../../services/classify'
 import { Link } from '../../link'
 import { Icon } from '../../icon'
 import { Badge } from '../../badge'

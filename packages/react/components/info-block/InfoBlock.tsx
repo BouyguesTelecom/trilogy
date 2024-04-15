@@ -2,8 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 import { Box, BoxContent } from '../box'
 import { InfoBlockProps } from './InfoBlockProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Info Block Component

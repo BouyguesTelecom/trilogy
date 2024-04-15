@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
 import { ListProps } from './ListProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * ListItem Component

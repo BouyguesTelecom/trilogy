@@ -1,11 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
 import { InfoBlockContentProps } from './InfoBlockContentProps'
-import { is, has } from '../../../services'
+import { is, has } from '../../../services/classify'
 import { Columns, ColumnsItem } from '../../columns'
 import { Text } from '../../text'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Info Block Content

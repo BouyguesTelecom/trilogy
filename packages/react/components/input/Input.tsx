@@ -1,13 +1,13 @@
 import React, {RefObject, useEffect, useState} from 'react'
-import {has, is} from '../../services'
+import {has, is} from '../../services/classify'
 import {Icon, IconColor, IconName, IconSize} from '../icon'
 import {Text} from '../text'
 import {InputStatus, InputStatusValues, InputType, InputTypeValues} from './InputEnum'
 import {InputProps, InputWebEvents} from './InputProps'
 import clsx from 'clsx'
-import {hashClass} from '../../helpers'
-import {useTrilogyContext} from '../../context'
-import {getColorStyle, TrilogyColor} from '../../objects'
+import {hashClass} from '../../helpers/hashClassesHelpers'
+import {useTrilogyContext} from '../../context/index'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
 
 interface InputProp extends InputProps, InputWebEvents {}
 
