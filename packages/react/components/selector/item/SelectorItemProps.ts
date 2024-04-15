@@ -1,4 +1,5 @@
-import { Accessibility, Clickable } from '../../../objects'
+import { Accessibility } from '../../../objects/facets/Accessibility'
+import { Clickable } from '../../../objects/facets/Clickable'
 
 /**
  * Selector Item Interface

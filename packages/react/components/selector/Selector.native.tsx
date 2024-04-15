@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, View } from 'react-native'
 import { SelectorProps } from './SelectorProps'
 import { Text, TextLevels } from '../text'
 import SelectorItem from './item'
-import { getAlignStyle } from '../../objects'
+import { getAlignStyle } from '../../objects/facets/Alignable'
 
 /**
  * Selector Component

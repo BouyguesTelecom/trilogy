@@ -1,4 +1,4 @@
-import { Clickable } from '../../../objects'
+import { Clickable } from '../../../objects/facets/Clickable'
 
 /**
  * SegmentedControl Item Interface

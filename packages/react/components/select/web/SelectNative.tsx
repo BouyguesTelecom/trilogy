@@ -1,9 +1,9 @@
 import React from 'react'
 import { Icon } from '../../icon'
 import { IAccessibleSelect } from '../SelectProps'
-import { hashClass } from '../../../helpers'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { has } from '../../../services'
+import { has } from '../../../services/classify'
 
 const SelectNative = ({
   selecteClasses,

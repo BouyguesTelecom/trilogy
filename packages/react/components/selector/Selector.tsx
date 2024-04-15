@@ -4,7 +4,7 @@ import SelectorItem from './item'
 import { Text } from '../text'
 import { SelectorProps } from './SelectorProps'
 import { is } from '../../services/classify'
-import { getAlignClassName } from '../../objects'
+import { getAlignClassName } from '../../objects/facets/Alignable'
 
 /**
  * Selector Component

@@ -2,7 +2,8 @@ import { ClickEvent } from '../../events/OnClickEvent'
 import { Centerable } from '../../objects/facets/Centerable'
 import { AlignableProps } from '../../objects/facets/Alignable'
 import { JustifiableProps } from '../../objects/facets/Justifiable'
-import { Accessibility, Clickable } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
 
 /**
  * Selector Interface

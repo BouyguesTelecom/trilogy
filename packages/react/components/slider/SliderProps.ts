@@ -1,5 +1,8 @@
 import { Small } from '../../objects/facets/Small'
-import { Accessibility, AlertProps, VariantProps } from '../../objects/facets'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { AlertProps } from '../../objects/facets/Alert'
+import { VariantProps } from '../../objects/facets/Variant'
+
 import { Hat } from '../../objects/facets/Hat'
 import { ContentSize } from './SliderEnum'
 import { IconSize, IconSizeValues } from '../icon'

@@ -2,8 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 import { SliceIconProps } from './SliceIconProps'
 import { Icon } from '../../icon'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Slice Icon Component

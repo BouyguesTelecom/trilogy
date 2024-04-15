@@ -1,4 +1,4 @@
-import { hashClass } from '../../../helpers'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useUtils } from '../hooks/utils'
 import { useAccessibility } from '../hooks/accessibility'
@@ -6,7 +6,7 @@ import React, { PropsWithChildren } from 'react'
 import { Icon } from '../../icon'
 import SelectOption from '../option'
 import { ICustomSelect } from '../SelectProps'
-import { has } from '../../../services'
+import { has } from '../../../services/classify'
 
 const SelectDynamic = ({
   styled,

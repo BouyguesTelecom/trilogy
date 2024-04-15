@@ -1,9 +1,9 @@
 import React from 'react'
 import { SliceImageProps } from './SliceImageProps'
 import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Slice Image Component
