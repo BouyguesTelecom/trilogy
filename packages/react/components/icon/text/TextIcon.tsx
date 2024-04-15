@@ -2,10 +2,10 @@ import React from 'react'
 import Icon from '../Icon'
 import { IconProps } from '../IconProps'
 import { IconPosition, TextIconMarkup, TextIconMarkupValues } from '../IconEnum'
-import { is } from '../../../services'
+import { is } from '../../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 const TextIcon = ({ className, textClassName, name, content, position, markup, ...others }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()

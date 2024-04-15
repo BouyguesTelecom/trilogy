@@ -15,7 +15,10 @@ import {
 import { IconName, IconNameValues } from './IconNameEnum'
 import { Stacked } from '../../objects/facets/Stacked'
 import { AlignableProps } from '../../objects/facets/Alignable'
-import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
+
 
 type Styles = { [key: string]: unknown }
 

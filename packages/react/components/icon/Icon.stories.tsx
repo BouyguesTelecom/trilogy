@@ -5,7 +5,7 @@ import Icon from './Icon'
 import { IconProps } from './IconProps'
 import { IconColor, IconSize, IconStatus } from './IconEnum'
 import { IconName } from './IconNameEnum'
-import { Alignable } from '../../objects'
+import { Alignable } from '../../objects/facets/Alignable'
 
 export default {
   title: 'Components/Icon',

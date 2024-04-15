@@ -7,8 +7,8 @@ import TextIcon from './text/index'
 import { has, is } from '../../services/index'
 import { getColorClassName } from '../../objects/facets/Color'
 import { getAlignClassName } from '../../objects/facets/Alignable'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 import { IconName } from './IconNameEnum'
 
 /**

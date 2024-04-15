@@ -2,10 +2,12 @@ import React from 'react'
 import { IconProps } from '../IconProps'
 import { IconStatus } from '../IconEnum'
 import { getStatusBackground, has, is } from '../../../services/index'
-import { getBackgroundClassName, getTextClassName, TrilogyColor } from '../../../objects'
+import { getBackgroundClassName } from '../../../objects/atoms/Background'
+import { getTextClassName } from '../../../objects/atoms/Text'
+import { TrilogyColor } from '../../../objects/facets/Color'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 const CircleIcon = ({ className, name, status, size, color, backgroundColor, testId }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()

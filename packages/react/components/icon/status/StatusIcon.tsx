@@ -4,8 +4,8 @@ import { IconName } from '../IconNameEnum'
 import { IconStatus } from '../IconEnum'
 import { has, is } from '../../../services/index'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 const StatusIcon = ({ className, name, status, statusPosition, size, testId }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()

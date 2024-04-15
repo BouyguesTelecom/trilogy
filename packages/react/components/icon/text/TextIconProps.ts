@@ -1,7 +1,7 @@
 import { IconPosition, IconPositionValues } from '../IconEnum'
 import { IconName, IconNameValues } from '../IconNameEnum'
 import { Stacked } from '../../../objects/facets/Stacked'
-import { AlignableProps } from '../../../objects'
+import { AlignableProps } from '../../../objects/facets/Alignable'
 
 export interface TextIconProps extends Stacked, AlignableProps {
   color?: string
