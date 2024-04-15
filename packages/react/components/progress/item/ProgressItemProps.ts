@@ -1,4 +1,5 @@
-import { Accessibility, AlertProps } from '../../../objects/facets'
+import { Accessibility } from '../../../objects/facets/Accessibility'
+import { AlertProps } from '../../../objects/facets/Alert'
 
 /**
  * Progress Item Interface

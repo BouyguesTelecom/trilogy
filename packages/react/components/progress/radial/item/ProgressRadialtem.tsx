@@ -1,8 +1,8 @@
 import React from 'react'
 import { ProgressRadialItemProps } from './ProgressRadialItemProps'
-import { hashClass } from '../../../../helpers'
+import { hashClass } from '../../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../../../context'
+import { useTrilogyContext } from '../../../../context/index'
 
 const ProgressRadialItem = ({ color, className }: ProgressRadialItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()

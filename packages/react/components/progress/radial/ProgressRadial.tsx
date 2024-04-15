@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react'
 import { ProgressRadialProps } from './ProgressRadialProps'
-import { is } from '../../../services/index'
-import { hashClass } from '../../../helpers'
+import { is } from '../../../services/classify'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import ProgressRadialItem from './item'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Progress Radial component

@@ -1,4 +1,5 @@
-import type { Centerable, Layout } from '../../../objects'
+import type { Centerable } from '../../../objects/facets/Centerable'
+import type { Layout } from '../../../objects/facets/Layout'
 import type { DividerProps } from '../../divider/DividerProps'
 import type { RadioProps } from '../RadioProps'
 

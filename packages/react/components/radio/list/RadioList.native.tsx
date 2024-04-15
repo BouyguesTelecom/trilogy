@@ -1,6 +1,6 @@
 import React from 'react'
 import { AutoLayoutWrapper } from '../../autolayout'
-import { SpacerSize } from '../../spacer'
+import { SpacerSize } from '../../spacer/SpacerEnum'
 import { SpacingMatrixMode } from '../../autolayout/SpacingMatrix'
 
 // eslint-disable-next-line no-duplicate-imports

@@ -3,9 +3,9 @@ import shortid from 'shortid'
 import {RadioProps} from './RadioProps'
 import {has, is} from '../../services/classify'
 import {Icon, IconSize} from '../icon'
-import {hashClass} from '../../helpers'
+import {hashClass} from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import {useTrilogyContext} from '../../context'
+import {useTrilogyContext} from '../../context/index'
 
 /**
  * Radio Component

@@ -3,7 +3,7 @@ import { Animated, StyleSheet } from 'react-native'
 import { ProgressProps } from './ProgressProps'
 import { View } from '../view'
 import { Text, TextLevels } from '../text'
-import { getAlertStyle } from '../../objects'
+import { getAlertStyle } from '../../objects/facets/Alert'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

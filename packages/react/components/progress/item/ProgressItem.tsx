@@ -1,10 +1,10 @@
 import React from 'react'
 import { ProgressItemProps } from './ProgressItemProps'
-import { is } from '../../../services/index'
-import { getAlertClassName } from '../../../objects'
-import { hashClass } from '../../../helpers'
+import { is } from '../../../services/classify'
+import { getAlertClassName } from '../../../objects/facets/Alert'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Progress Item component - Only if stacked
