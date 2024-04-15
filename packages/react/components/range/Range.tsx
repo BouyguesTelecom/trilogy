@@ -1,9 +1,9 @@
-import React, { ChangeEvent } from 'react'
-import { getColorStyle, TrilogyColor } from '../../objects'
+import React from 'react'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { RangeProps } from './RangeProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Range Component
