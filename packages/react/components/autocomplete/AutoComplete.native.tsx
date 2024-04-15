@@ -6,7 +6,7 @@ import { InputChangeEvent } from '../input/InputProps'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
 import { getLabel, defaultMatching } from './Autocomplete.helpers'
 import { ComponentName } from '../enumsComponentsName'
-import { debounce } from './utils'
+import { debounce } from './utils/debounce'
 
 const AutoComplete = ({
   value,

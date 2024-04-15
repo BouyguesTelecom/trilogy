@@ -1,5 +1,5 @@
-import {SpacerSize} from '../spacer'
-import {SpacingMatrix, SpacingMatrixMode} from './SpacingMatrix'
+import { SpacerSize } from '../spacer/SpacerEnum'
+import { SpacingMatrix, SpacingMatrixMode } from './SpacingMatrix'
 
 const {HUGE, LARGE, MEDIUM, SMALL, NONE} = SpacerSize
 

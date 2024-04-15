@@ -1,6 +1,5 @@
 import React from 'react'
 import AutoLayout from './AutoLayout'
-
 import type { SpacingMatrix } from './SpacingMatrix'
 
 /**

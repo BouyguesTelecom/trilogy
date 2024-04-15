@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
 import AutoCompleteItemNative from '../item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 import { ComponentName } from '../../enumsComponentsName'

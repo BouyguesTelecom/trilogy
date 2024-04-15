@@ -1,4 +1,6 @@
-import { Accessibility, Clickable, Fullheight } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { Fullheight } from '../../objects/facets/Fullheight'
 import { BackgroundProps } from '../../objects/atoms/Background'
 import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
 

@@ -2,11 +2,11 @@ import React from 'react'
 import { BadgeProps } from './BadgeProps'
 import { Text, TextMarkup } from '../text'
 import { BadgeTextDirection } from './BadgeEnum'
-import { has } from '../../services'
-import { getColorClassName } from '../../objects/facets'
+import { has } from '../../services/classify'
+import { getColorClassName } from '../../objects/facets/Color'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Badge Component

@@ -1,9 +1,9 @@
 import React from 'react'
 import { AutoCompleteItemProps } from './AutoCompleteItemProps'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { is } from '../../../services'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
+import { is } from '../../../services/classify'
 import { Item } from '../AutoCompleteProps'
 
 /**

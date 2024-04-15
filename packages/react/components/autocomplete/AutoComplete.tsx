@@ -4,12 +4,12 @@ import { Input, InputAutoCompleteType } from '../input'
 import { InputChangeEvent, InputKeyboardEvent } from '../input/InputProps'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
-import { is } from '../../services'
+import { is } from '../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 import { getLabel, defaultMatching } from './Autocomplete.helpers'
-import { debounce } from './utils'
+import { debounce } from './utils/debounce'
 
 /**
  * AutoComplete Component
