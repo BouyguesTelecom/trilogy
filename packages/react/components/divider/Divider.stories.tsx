@@ -3,8 +3,8 @@ import React from 'react'
 import { Meta, Story } from '@storybook/react'
 import Divider from './Divider'
 import { DividerProps } from './DividerProps'
-import { IconName } from '../icon'
-import { TrilogyColor } from '../../objects'
+import { IconName } from '../icon/IconNameEnum'
+import { TrilogyColor } from '../../objects/facets/Color'
 import { Box, BoxContent } from '../box'
 
 export default {

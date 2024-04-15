@@ -1,12 +1,12 @@
 import React from 'react'
 import { DisclaimerWebProps } from './DisclaimerProps'
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from '../accordion'
-import { is } from '../../services/index'
+import { is } from '../../services/classify'
 import { Text, TextLevels } from '../text'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { TypographyBold } from '../../objects'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { TypographyBold } from '../../objects/Typography/TypographyBold'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Disclaimer component

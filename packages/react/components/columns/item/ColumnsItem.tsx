@@ -2,9 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 import { ColumnsItemProps } from './ColumnsItemProps'
 import { has, is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { getAlignClassName } from '../../../objects'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
+import { getAlignClassName } from '../../../objects/facets/Alignable'
 
 /**
  * Columns Item Component - Columns Child

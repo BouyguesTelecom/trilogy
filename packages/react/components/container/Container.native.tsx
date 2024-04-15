@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ContainerProps } from './ContainerProps'
-import { getBackgroundStyle, getColorStyle, TrilogyColor, StickyPosition } from '../../objects'
+import { getBackgroundStyle } from '../../objects/atoms/Background'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { StickyPosition } from '../../objects/facets/Sticky'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

@@ -1,9 +1,9 @@
 import React from 'react'
-import { is } from '../../../services'
+import { is } from '../../../services/classify'
 import { ChipsListProps } from './ChipsListProps'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * ChipsList Component - Container for Chips

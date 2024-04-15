@@ -7,7 +7,8 @@ import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
 import {Text, TextLevels} from '../text'
 import {View} from '../view'
 import {Icon, IconSize} from '../icon'
-import {TypographyAlign, TypographyBold} from '../../objects'
+import {TypographyAlign} from '../../objects/Typography/TypographyAlign'
+import {TypographyBold} from '../../objects/Typography/TypographyBold'
 import {ComponentName} from '../enumsComponentsName'
 
 /**

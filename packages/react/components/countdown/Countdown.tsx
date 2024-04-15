@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { CountdownProps } from './CountdownProps'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { is } from '../../services'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { is } from '../../services/classify'
+import { useTrilogyContext } from '../../context/index'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)

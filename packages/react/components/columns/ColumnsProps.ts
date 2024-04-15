@@ -1,5 +1,5 @@
 import { ColumnsSize } from './ColumnsTypes'
-import { Marginless } from "../../objects"
+import { Marginless } from '../../objects/facets/Marginless'
 
 /**
  * Columns Interface

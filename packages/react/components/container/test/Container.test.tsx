@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Container from '../Container'
-import { StickyPosition } from '../../../objects'
+import { StickyPosition } from '../../../objects/facets/Sticky'
 
 describe('Container', () => {
   it('should render with correct classes and props', () => {

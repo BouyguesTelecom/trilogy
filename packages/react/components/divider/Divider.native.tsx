@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { Icon, IconColor } from '../icon'
 import { Text } from '../text'
 import { DividerProps } from './DividerProps'
-import { getColorStyle, TrilogyColor } from '../../objects'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

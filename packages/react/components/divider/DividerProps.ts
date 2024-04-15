@@ -1,4 +1,5 @@
-import { Marginless, TrilogyColor, TrilogyColorValues } from '../../objects'
+import { Marginless } from '../../objects/facets/Marginless'
+import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
 import { IconName, IconNameValues } from '../icon'
 
 /**

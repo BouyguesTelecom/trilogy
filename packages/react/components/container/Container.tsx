@@ -2,9 +2,10 @@ import React from 'react'
 import { ContainerProps } from './ContainerProps'
 import { has, is } from '../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import { useTrilogyContext } from '../../context'
-import { getBackgroundClassName, StickyPosition } from '../../objects'
+import { getBackgroundClassName } from '../../objects/atoms/Background'
+import { StickyPosition } from '../../objects/facets/Sticky'
 
 /**
  * Container Component

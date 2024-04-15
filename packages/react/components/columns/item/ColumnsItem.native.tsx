@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { ColumnsItemProps } from './ColumnsItemProps'
 import { ColumnsContext } from '../Columns.native'
-import { getAlignStyle } from '../../../objects'
+import { getAlignStyle } from '../../../objects/facets/Alignable'
 import { ComponentName } from '../../enumsComponentsName'
 
 /**

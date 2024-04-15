@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import shortid from 'shortid'
 import {CheckboxProps} from './CheckboxProps'
 import clsx from 'clsx'
-import {hashClass} from '../../helpers'
+import {hashClass} from '../../helpers/hashClassesHelpers'
 import {Icon, IconSize} from '../icon'
-import {has, is} from '../../services'
-import {useTrilogyContext} from '../../context'
+import {has, is} from '../../services/classify'
+import {useTrilogyContext} from '../../context/index'
 
 /**
  * Checkbox Component

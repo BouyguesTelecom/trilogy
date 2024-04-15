@@ -1,8 +1,8 @@
 import React from 'react'
 import { DisclaimerItemWebProps } from './DisclaimerItemProps'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Disclaimer Item component

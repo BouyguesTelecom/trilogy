@@ -3,7 +3,7 @@ import { DisclaimerWebProps } from './DisclaimerProps'
 import { ComponentName } from '../enumsComponentsName'
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '../accordion'
 import { Text, TextLevels } from '../text'
-import { TypographyBold } from '../../objects'
+import { TypographyBold } from '../../objects/Typography/TypographyBold'
 
 /**
  * Disclaimer component
