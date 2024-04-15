@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Meta, Story } from '@storybook/react'
 import Range from './Range'
-import { InputChangeEvent, RangeProps } from './RangeProps'
+import { RangeProps } from './RangeProps'
 
 export default {
   title: 'Components/Range',

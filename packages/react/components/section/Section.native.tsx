@@ -2,7 +2,8 @@ import React from 'react'
 import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionProps } from './SectionProps'
 import { AutoLayoutWrapper } from '../autolayout'
-import { getBackgroundStyle, getColorStyle, TrilogyColor } from '../../objects'
+import { getBackgroundStyle } from '../../objects/atoms/Background'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Platform, ScrollView as ScrollViewNative, View, RefreshControl } from 'react-native'
-import { getColorStyle, ScrollDirectionEnum } from '../../objects'
+import { getColorStyle } from '../../objects/facets/color'
+import { ScrollDirectionEnum } from '../../objects/facets/scrollDirection'
 import { ScrollViewProps } from './ScrollViewProps'
 import { ComponentName } from '../enumsComponentsName'
 

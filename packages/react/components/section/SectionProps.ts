@@ -1,12 +1,10 @@
-import type {
-  BackgroundProps,
-  Fullwidth,
-  Layout,
-  Paddingless,
-  Position,
-  VerticalPaddingless,
-  ChildrenWithNoText,
-} from '../../objects'
+import type { BackgroundProps } from '../../objects/atoms/Background'
+import type { Fullwidth } from '../../objects/facets/Fullwidth'
+import type { Layout } from '../../objects/facets/Layout'
+import type { Paddingless } from '../../objects/facets/Paddingless'
+import type { Position } from '../../objects/facets/Position'
+import type { VerticalPaddingless } from '../../objects/facets/VerticalPaddingless'
+import type { ChildrenWithNoText } from '../../objects/facets/ChildrenWithNoText'
 
 /**
  * Section Interface

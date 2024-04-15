@@ -1,4 +1,5 @@
-import { ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '../../objects'
+import { ScrollDirectionEnum, ScrollDirectionEnumValues } from '../../objects/facets/scrollDirection'
+import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
 
 /**
  * ScroView Interface
