@@ -3,7 +3,7 @@ import { ComponentName } from '../../enumsComponentsName'
 import { BreadcrumbItemProps } from './BreadcrumbItemProps'
 import { Text } from '../../text'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
-import { getColorStyle } from '../../../objects'
+import { getColorStyle } from '../../../objects/facets/Color'
 
 /**
  * Breadcrumb Item Component

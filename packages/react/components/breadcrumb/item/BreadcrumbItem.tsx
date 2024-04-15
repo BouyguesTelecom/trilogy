@@ -3,8 +3,8 @@ import { Text, TextMarkup } from '../../text/index'
 import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
 import { is } from '../../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Breadcrumb Item Component

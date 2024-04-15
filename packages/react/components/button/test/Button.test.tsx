@@ -1,7 +1,7 @@
 // Dependencies
 import React from 'react'
-import { getEnumNames } from '../../../helpers/index'
-import { is } from '../../../services/index'
+import { getEnumNames } from '../../../helpers/enumHelpers'
+import { is } from '../../../services/classify'
 
 // Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
@@ -9,7 +9,7 @@ import renderer from 'react-test-renderer'
 
 // Component to test
 import { Button, ButtonColor, ButtonMarkup } from '../'
-import { getColorClassName } from '../../..'
+import { getColorClassName } from '../../../objects/facets/Color'
 
 describe('Button component', () => {
   test('should have "button" className', () => {

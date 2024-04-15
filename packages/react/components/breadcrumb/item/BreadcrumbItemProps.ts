@@ -1,4 +1,5 @@
-import { Accessibility, Clickable } from '../../../objects'
+import { Accessibility } from '../../../objects/facets/Accessibility'
+import { Clickable } from '../../../objects/facets/Clickable'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable {
   children?: string
