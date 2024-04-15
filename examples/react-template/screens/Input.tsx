@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import {
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
-  InputType,
-  InputStatus,
-  AutoLayout,
-  IconName,
-  Input,
-  Link,
+    AutoLayout,
+    Divider,
+    IconName,
+    Input,
+    InputStatus,
+    InputType,
+    Link,
+    Section,
+    Title,
+    TitleLevels,
 } from '@trilogy-ds/react/components'
+import {TrilogyColor} from "@trilogy-ds/react";
 
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
@@ -30,8 +31,7 @@ export const InputScreen = (): JSX.Element => {
   }
 
   return (
-    <Section>
-
+    <Section background={TrilogyColor.WHITE}>
         <Input
             hovered
             hasIcon
