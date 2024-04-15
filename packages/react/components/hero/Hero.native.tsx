@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { StyleSheet, ImageBackground, TouchableOpacity, View } from 'react-native'
 import { HeroProps } from './HeroProps'
-import { getVariantStyle, TrilogyColor } from '../../objects'
+import { getVariantStyle } from '../../objects/facets/Variant'
+import { TrilogyColor } from '../../objects/facets/Color'
 import { Box } from '../box'
 import { ComponentName } from '../enumsComponentsName'
 

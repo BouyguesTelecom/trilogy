@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { DropdownWebProps } from './DropdownProps'
 import { is } from '../../services/classify'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 interface IContextropdown {
   displayDropdown: boolean

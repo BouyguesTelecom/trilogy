@@ -1,10 +1,11 @@
 import React from 'react'
 import { HeroProps } from './HeroProps'
 import { is, has } from '../../services/classify'
-import { getAlignClassName, getVariantClassName } from '../../objects'
+import { getAlignClassName } from '../../objects/facets/Alignable'
+import { getVariantClassName } from '../../objects/facets/Variant'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Hero Component

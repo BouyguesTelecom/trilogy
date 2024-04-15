@@ -1,4 +1,5 @@
-import { Clickable, VariantProps } from '../../objects/facets'
+import { Clickable } from '../../objects/facets/Clickable'
+import { VariantProps } from '../../objects/facets/Variant'
 import { AlignableProps } from '../../objects/facets/Alignable'
 import { JustifiableProps } from '../../objects/facets/Justifiable'
 import { BackgroundHeight } from './heroEnum'

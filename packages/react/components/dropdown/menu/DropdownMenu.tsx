@@ -1,8 +1,8 @@
 import React from 'react'
 import { DropdownMenuWebProps } from './DropdownMenuProps'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Dropdown Menu Component

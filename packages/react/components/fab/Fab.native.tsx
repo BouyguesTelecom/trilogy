@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { FabProps } from './FabProps'
-import { Alignable, getColorStyle, TrilogyColor } from '../../objects'
+import { Alignable } from '../../objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { Icon, IconColor, IconName, IconSize } from '../icon'
 import { ComponentName } from '../enumsComponentsName'
 

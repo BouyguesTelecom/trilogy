@@ -1,5 +1,7 @@
 import { IconName, IconNameValues } from '../icon'
-import { Accessibility, Clickable, Position } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { Position } from '../../objects/facets/Position'
 import { DimensionValue } from 'react-native'
 
 /**

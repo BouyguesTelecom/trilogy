@@ -3,8 +3,8 @@ import { DropdownItemWebProps } from './DropdownItemProps'
 import { Checkbox } from '../../checkbox'
 import shortid from 'shortid'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Dropdown Item Component - Working like radio component

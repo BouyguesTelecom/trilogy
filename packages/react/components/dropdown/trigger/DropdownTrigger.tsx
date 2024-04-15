@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { DropdownTriggerWebProps } from './DropdownTriggerProps'
-import { has, is } from '../../../services'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { has, is } from '../../../services/classify'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 import { useDrodownContext } from '../Dropdown'
 
 /**
