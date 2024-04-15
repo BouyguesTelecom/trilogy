@@ -1,16 +1,6 @@
 import React from 'react'
-import {
-  IconName,
-  Link,
-  Section,
-  Spacer,
-  SpacerSize,
-  Text,
-  TextLevels,
-  Title,
-  TitleLevels,
-} from '@trilogy-ds/react/components'
-import { AutoLayout } from '@trilogy-ds/react'
+import {IconName, Link, Section, Text, TextLevels, Title, TitleLevels,} from '@trilogy-ds/react/components'
+import {AutoLayout} from '@trilogy-ds/react'
 
 export const LinkScreen = (): JSX.Element => {
   return (
@@ -26,6 +16,9 @@ export const LinkScreen = (): JSX.Element => {
         External link
       </Link>
       <Title level={TitleLevels.THREE}>Link with icon</Title>
+          <Link level={TextLevels.FOUR} href='https://google.com' blank iconName={IconName.ARROW_RIGHT}>
+              External link
+          </Link>
       </AutoLayout>
     </Section>
   )
