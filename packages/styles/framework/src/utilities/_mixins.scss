@@ -569,12 +569,10 @@
         input:checked ~ label.#{$type}-label {
             font-weight: bold;
         }
-
-        input:not(:disabled) ~ label.#{$type}-label {
-            &:hover {
+        &:hover {
+            label.#{$type}-label {
                 &:before {
-                    border-color: getColor('alternate');
-                    border-width: 2px;
+                    @include hoverRules();
                 }
             }
         }
@@ -624,15 +622,7 @@
                 &:focus,
                 &:active,
                 &:hover {
-                    border-color: getColor('alternate');
-                    border-width: 2px;
-                    padding: 15px;
-                    padding-top: 39px;
-
-                    &:before {
-                        top: 15px;
-                        right: 15px;
-                    }
+                    @include hover();
                 }
             }
 
@@ -656,17 +646,6 @@
                 & ~ label.#{$type}-label {
                     background-color: getColor('grey-disabled');
                     color: getColor('grey-dark') !important;
-
-                    &:hover {
-                        border-width: 1px;
-                    }
-
-                    &:focus,
-                    &:active,
-                    &:hover {
-                        padding: 16px;
-                        padding-top: 40px;
-                    }
 
                     &:before {
                         border-color: getColor('grey') !important;
@@ -704,15 +683,6 @@
                     padding-right: 47px;
                 }
 
-                &:disabled {
-                    & ~ label.#{$type}-label {
-                        &:focus,
-                        &:active,
-                        &:hover {
-                            padding: 16px 48px 16px 16px !important;
-                        }
-                    }
-                }
             }
 
             label.#{$type}-label {
@@ -722,12 +692,6 @@
                 justify-content: flex-start;
                 text-align: left;
                 padding: 16px 48px 16px 16px;
-
-                &:focus,
-                &:active,
-                &:hover {
-                    padding: 15px 48px 15px 15px !important;
-                }
 
                 &:before,
                 &:after {
@@ -740,5 +704,27 @@
                 margin-right: 16px;
             }
         }
+    }
+}
+
+@mixin hoverRules {
+    background-color: var(--color-bg-hovered);
+}
+@mixin hover {
+    &:hover:not(.is-disabled) {
+        @include hoverRules();
+    }
+    &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled){
+        @include hoverRules();
+        border: 1px solid currentColor;
+    }
+}
+
+@mixin hoverActiveRules {
+    background-color: var(--color-bg-active);
+}
+@mixin hoverActive {
+    &:hover:not(.is-disabled) {
+        @include hoverActiveRules();
     }
 }

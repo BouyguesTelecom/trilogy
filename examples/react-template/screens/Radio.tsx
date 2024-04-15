@@ -119,6 +119,13 @@ export const RadioScreen = (): JSX.Element => {
             </RowItem>
           </Rows>
         </Radio>
+        <Spacer size={20}/>
+        <RadioList isMobile>
+          <Radio checked label='abc narrow' narrow marginless/>
+          <Radio disabled  label='abc narrow'  narrow marginless/>
+          <Radio description={'lorem kenenf ns k '} label='abc narrow' narrow marginless/>
+        </RadioList>
+
       </Container>
     </AutoLayout>
   )

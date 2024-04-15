@@ -31,6 +31,9 @@ $colors: (
   'bg-info': ['bg-info', #c8dbec, 'info'],
   'bg-warning': ['bg-warning', #ecdbc6, 'warning'],
   'bg-error': ['bg-error', #eecccc, 'error'],
+  'bg-hovered': ['bg-hovered', #e4eaed, 'font'],
+  'bg-active': ['bg-active', #b64508, 'font'],
+
 ) !default ;
 
 // Typography OS-regular

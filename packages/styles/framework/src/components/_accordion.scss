@@ -4,12 +4,14 @@
   margin: $spacing-4 0;
 
   .accordion {
+    @include hover();
+
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: invertColor(currentColor, 'accordion');
+    background-color: getColor('background');
     font-size: $size-normal;
-    border: 1px solid getColor('grey-disabled');
+    border: 1px solid getColor('grey-light');
     border-radius: 8px;
     margin: 8px 0;
     min-height: 56px;
@@ -32,20 +34,6 @@
 
     &.is-active > .accordion-header:first-child ~ .accordion-body, [data-accordion-toggle]:checked ~ .accordion-body {
       display: block;
-    }
-
-    &:hover:not(.is-disabled) {
-      border: 2px solid getColor('alternate');
-
-      .accordion-header {
-        color: getColor('alternate');
-        padding: 15px;
-      }
-
-      .accordion-body {
-        padding: 15px;
-        padding-top: 1px !important;
-      }
     }
 
     &:not(:first-child) {

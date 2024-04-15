@@ -75,6 +75,10 @@ export const CheckboxScreen = (): JSX.Element => {
         <Checkbox disabled horizontalTile tile label='Checkbox Disabled'/>
         <Checkbox description={'lorem kenenf'} tile horizontalTile label='Checkbox simple'/>
 
+        <Checkbox checked label='Checkbox checked'/>
+        <Checkbox disabled  label='Checkbox Disabled'/>
+        <Checkbox description={'lorem kenenf'} label='Checkbox simple'/>
+
       </Container>
     </AutoLayout>
   )

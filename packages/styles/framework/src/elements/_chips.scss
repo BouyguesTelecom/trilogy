@@ -59,10 +59,7 @@ $chip-radius: 30px !default;
 
         &:not(.is-disabled) {
             &:hover {
-                background-color: getColor('grey-light');
-                border: 2px solid currentColor;
-                color: getColor('alternate');
-                padding: 5px 15px;
+                @include hoverRules();
             }
 
             &:focus,
@@ -73,6 +70,7 @@ $chip-radius: 30px !default;
                 font-weight: 600;
                 border: 2px solid getColor('alternate');
                 padding: 5px 15px;
+                @include hoverActive();
             }
         }
 
