@@ -1,39 +1,25 @@
 .link:not([disabled]) {
     position: relative;
-    font-size: 14px;
-    font-weight: $weight-medium;
-    color: getColor('alternate');
+    font-weight: $weight-semibold;
+    color: getColor('font');
     box-decoration-break: clone;
-    padding: $spacing-2;
-    margin: -8px;
     text-decoration: underline;
     cursor: pointer;
 
-    &:not(p .link) {
-        text-decoration-line: underline;
-        text-decoration-style: solid;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 4px;
-    }
-
     &:hover {
-        filter: brightness(70%);
+        font-weight: $weight-normal;
     }
 
       &:focus,
       &:focus-visible,
+      &:focus:focus-visible,
       &.is-focused,
       &:active,
       &.is-active {
-        filter: brightness(50%);
+          border: 1px solid;
+          border-radius: 4px;
+          padding: 4px;
       }
-
-    @include desktop {
-        &:not(.is-static) {
-            display: inline-flex;
-            border-bottom-width: 0;
-        }
-    }
 
     &.has-icon {
         display: inline-flex;
