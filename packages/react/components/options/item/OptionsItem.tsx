@@ -5,9 +5,9 @@ import { has, is } from '../../../services/classify'
 import shortid from 'shortid'
 import { OptionsItemVariant } from '../OptionsEnum'
 import { Text, TextMarkup } from '../../text'
-import { hashClass } from '../../../helpers'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Options Item Component

@@ -5,7 +5,7 @@ import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { Icon, IconSize, IconColor, IconName } from '../icon'
 import { Title, TitleLevels } from '../title'
 import { Text, TextLevels } from '../text'
-import { TypographyAlign } from '../../objects'
+import { TypographyAlign } from '../../objects/Typography/TypographyAlign'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

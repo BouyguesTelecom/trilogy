@@ -1,7 +1,7 @@
 import React from 'react'
 import { Animated, StyleSheet, TouchableOpacity } from 'react-native'
 import { View } from '../../view'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
 import { Columns, ColumnsItem } from '../../columns'
 import { Icon, IconColor, IconName, IconSize } from '../../icon'
 import { DeletableNotificationProps } from './DeletableNotificationProps'

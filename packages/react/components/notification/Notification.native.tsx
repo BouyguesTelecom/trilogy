@@ -11,7 +11,7 @@ import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { getInfoColorStyle } from './NotificationEnum'
 import DeletableNotification from './deletable'
 import { Icon, IconSize } from '../icon'
-import { TypographyBold } from '../../objects'
+import { TypographyBold } from '../../objects/Typography/TypographyBold'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

@@ -1,6 +1,8 @@
 import { PriceVariant, PriceLevel, PriceVariantValues, PriceLevelValues } from './PriceEnum'
 import { Invertable } from '../../objects/facets/Invertable'
-import { Accessibility, AlertProps, AlignableProps } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { AlertProps } from '../../objects/facets/Alert'
+import { AlignableProps } from '../../objects/facets/Alignable'
 
 /**
  * Price Interface

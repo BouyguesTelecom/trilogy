@@ -1,9 +1,9 @@
 import React from 'react'
 import { OptionsProps } from './OptionsProps'
-import { is } from '../../services'
-import { hashClass } from '../../helpers'
+import { is } from '../../services/classify'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Options Component

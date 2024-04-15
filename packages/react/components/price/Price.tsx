@@ -3,10 +3,10 @@ import clsx from 'clsx'
 import { PriceProps } from './PriceProps'
 import { has, is } from '../../services/classify'
 import { Text } from '../text'
-import { Alignable } from '../../objects'
+import { Alignable } from '../../objects/facets/Alignable'
 import { checkCents } from './PriceHelpers'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Price Component

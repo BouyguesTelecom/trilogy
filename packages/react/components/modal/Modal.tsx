@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { is } from '../../services'
+import { is } from '../../services/classify'
 import { CloseButtonProps, ModalContentButtonProps, ModalProps } from './ModalProps'
 import { Button, ButtonList, ButtonType } from '../button'
 import { Text } from '../text'
@@ -7,9 +7,9 @@ import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
 import ModalTitle from './ModalTitle'
 import ModalFooter from './ModalFooter'
 import { ClickEvent, OnClickEvent } from '../../events/OnClickEvent'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Modal Component

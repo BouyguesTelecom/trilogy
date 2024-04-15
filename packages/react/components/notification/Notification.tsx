@@ -6,9 +6,9 @@ import { Icon, IconName, IconSize } from '../icon'
 import { Text } from '../text'
 import { Title, TitleLevels } from '../title'
 import { NotificationProps } from './NotificationProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Notification Component

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { is } from '../../services/index'
+import { is } from '../../services/classify'
 import { Icon, IconName } from '../icon'
 import { PaginationProps } from './PaginationProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 import { Pager } from './PaginationEnum'
 
 /**

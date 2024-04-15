@@ -1,8 +1,8 @@
 import React from 'react'
 import { ModalFooterProps } from './ModalFooterProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Modal Title Component

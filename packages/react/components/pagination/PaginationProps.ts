@@ -1,4 +1,4 @@
-import { Accessibility } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
 import { Pager } from './PaginationEnum'
 
 /**

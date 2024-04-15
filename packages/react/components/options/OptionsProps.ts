@@ -1,5 +1,5 @@
 import { Invertable } from '../../objects/facets/Invertable'
-import { Accessibility } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
 
 /**
  * Options Interface

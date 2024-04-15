@@ -1,4 +1,7 @@
-import { Accessibility, Clickable, Clipped, Fullwidth } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { Clipped } from '../../objects/facets/Clipped'
+import { Fullwidth } from '../../objects/facets/Fullwidth'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
 import { ClickEvent } from '../../events/OnClickEvent'
 import { IconColor, IconColorValues, IconName, IconNameValues } from '../icon'

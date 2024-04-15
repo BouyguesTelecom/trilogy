@@ -1,5 +1,5 @@
 import { ClickEvent } from '../../../events/OnClickEvent'
-import { AlertProps } from '../../../objects/facets'
+import { AlertProps } from '../../../objects/facets/Alert'
 import { IconName, IconNameValues } from '../../icon/IconNameEnum'
 
 /**
