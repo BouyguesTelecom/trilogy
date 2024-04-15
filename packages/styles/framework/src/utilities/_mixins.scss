@@ -425,12 +425,7 @@
         transition: all 0.2s ease-out;
     }
 
-    &:hover,
-    &.is-hovered,
-    &:focus,
-    &.is-focused {
-        outline: 1px auto getVariantColor('alternate', 1);
-    }
+    @include hover();
 
     &[disabled] {
         background-color: getColor('grey-disabled');

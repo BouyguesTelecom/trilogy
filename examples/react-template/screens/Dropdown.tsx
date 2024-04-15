@@ -5,7 +5,7 @@ export const DropdownScreen = (): JSX.Element => {
   const [itemDropdown, setItemDropdown] = React.useState<Array<string | undefined>>([])
 
   return (
-    <Section>
+    <Section {...{style:{minHeight:500}}}>
       {/* N EXISTE PAS EN MOBILE */}
       <Dropdown>
         <DropdownTrigger value={itemDropdown} label='Dropdown label' placeholder='Dropdown placeholder' />
@@ -34,7 +34,8 @@ export const DropdownScreen = (): JSX.Element => {
               })
             }}
           />
-          <DropdownItem
+            <DropdownDivider />
+            <DropdownItem
             label='Item label 3Item'
             name='item3'
             value='Value 3'
@@ -45,7 +46,6 @@ export const DropdownScreen = (): JSX.Element => {
               })
             }}
           />
-          <DropdownDivider />
         </DropdownMenu>
       </Dropdown>
     </Section>

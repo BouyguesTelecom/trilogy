@@ -286,7 +286,6 @@
         .autocomplete-menu {
             display: block;
             border: 1px solid rgba(0,38,60,.4);
-            padding: 5px 10px;
             border-radius: 4px;
             max-height: 220px;
             overflow-y: auto;
@@ -296,15 +295,13 @@
 
         .autocomplete-item {
             cursor: pointer;
-            padding: 3.75px calc(15px - 10px);
+            padding: 16px;
+
+            @include hover();
 
             &.is-active, &[data-autocomplete-item-hover] {
-                background-color: rgba(16,157,185,.08);
-                border-top: 1px solid getColor('alternate');
-                border-bottom: 1px solid getColor('alternate');
-                margin-left: -10px;
-                margin-right: -10px;
-                padding: 2.75px 15px;
+                @include hoverRules();
+                font-weight: bold;
             }
         }
     }

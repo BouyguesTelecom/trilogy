@@ -15,7 +15,7 @@
             &.has-icon ~ label {
                 left: $spacing-9;
                 margin-right: 2px;
-                width: calc(100% - 96px - 2px);
+                width: calc(100% - 98px);
             }
 
             ~ label {
@@ -28,7 +28,6 @@
                 font-size: 12px;
                 color: getColor('grey');
                 transition: top 0.2s ease-out;
-                background-color: getColor('background');
             }
 
             &:placeholder-shown {
