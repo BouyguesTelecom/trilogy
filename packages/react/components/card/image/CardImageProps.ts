@@ -1,4 +1,4 @@
-import { Clickable } from '../../../objects'
+import { Clickable } from '../../../objects/facets/Clickable'
 import { CardImageSize, CardImageSizeValues } from './CardImageEnum'
 
 /**

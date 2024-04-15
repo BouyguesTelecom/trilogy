@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { CardMarkup, CardProps } from './CardProps'
 import { is } from '../../services/classify'
-import { getAlignClassName } from '../../objects'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { getAlignClassName } from '../../objects/facets/Alignable'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 /**
  * Card Component
  * @param flat {boolean} Adding border for Card content

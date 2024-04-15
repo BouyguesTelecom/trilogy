@@ -4,8 +4,8 @@ import { CardContentProps } from './CardContentProps'
 import { Title, TitleLevels } from '../../title'
 import { Text } from '../../text'
 import { Button, ButtonMarkup } from '../../button'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Card Content Component

@@ -1,5 +1,8 @@
 import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility, Clickable, Fullheight, TrilogyColor } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { Fullheight } from '../../objects/facets/Fullheight'
+import { TrilogyColor } from '../../objects/facets/Color'
 import { AlignableProps } from '../../objects/facets/Alignable'
 import { JustifiableProps } from '../../objects/facets/Justifiable'
 
