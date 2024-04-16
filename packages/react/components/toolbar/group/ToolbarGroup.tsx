@@ -2,8 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 import { ToolbarGroupWebProps } from './ToolbarGroupProps'
 import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Toolbar Group

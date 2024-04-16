@@ -1,6 +1,7 @@
 import React from 'react'
 import { View as ViewNative, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
-import { getAlignStyle, getJustifyStyle } from '../../objects'
+import { getAlignStyle } from '../../objects/facets/Alignable'
+import { getJustifyStyle } from '../../objects/facets/Justifiable'
 import { getColorStyle } from '../../objects/facets/Color'
 import { ViewProps } from './ViewProps'
 import { ComponentName } from '../enumsComponentsName'

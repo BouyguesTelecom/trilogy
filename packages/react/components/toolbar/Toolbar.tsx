@@ -1,10 +1,10 @@
 import React from 'react'
 import { ToolbarWebProps } from './ToolbarProps'
 import { has } from '../../services/classify'
-import { getBackgroundClassName } from '../../objects'
-import { hashClass } from '../../helpers'
+import { getBackgroundClassName } from '../../objects/atoms/Background'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Toolbar Component

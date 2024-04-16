@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
 import { ToolbarSpaceWebProps } from './ToolbarSpaceProps'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Toolbar Space Component

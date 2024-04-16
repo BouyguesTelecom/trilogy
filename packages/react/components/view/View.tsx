@@ -1,10 +1,12 @@
 import React from 'react'
 import { ViewMarkup, ViewMarkupValues, ViewProps } from './ViewProps'
 import clsx from 'clsx'
-import { has, is } from '../../services'
-import { getLoadingClassName, getJustifyClassName, getAlignClassName } from "../../objects"
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { has, is } from '../../services/classify'
+import { getLoadingClassName } from "../../objects/facets/Loadable"
+import { getJustifyClassName } from "../../objects/facets/Justifiable"
+import { getAlignClassName } from "../../objects/facets/Alignable"
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * View Component (DIV EQUIVALENT)

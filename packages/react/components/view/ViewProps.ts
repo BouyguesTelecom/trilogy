@@ -1,12 +1,9 @@
-import {
-  Loadable,
-  TrilogyColor,
-  TrilogyColorValues,
-  Clickable,
-  Fullwidth,
-  JustifiableProps,
-  AlignableProps
-} from "../../objects"
+import { Loadable } from "../../objects/facets/Loadable"
+import { TrilogyColor, TrilogyColorValues } from "../../objects/facets/Color"
+import { Clickable } from "../../objects/facets/Clickable"
+import { Fullwidth } from "../../objects/facets/Fullwidth"
+import { JustifiableProps } from "../../objects/facets/Justifiable"
+import { AlignableProps } from "../../objects/facets/Alignable"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
