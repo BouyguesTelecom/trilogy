@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { FabProps } from './FabProps'
-import { Alignable, getColorStyle, TrilogyColor } from '../../objects'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { ComponentName } from '../enumsComponentsName'
+import {StyleSheet, Text, TouchableOpacity} from 'react-native'
+import {FabProps} from './FabProps'
+import {Alignable, getColorStyle, TrilogyColor} from '../../objects'
+import {Icon, IconColor, IconName, IconSize} from '../icon'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Fab Native Component
@@ -18,26 +18,26 @@ import { ComponentName } from '../enumsComponentsName'
  * @param right {number} position right
  */
 const Fab = ({
-  children,
-  accessibilityLabel,
-  iconName,
-  extended,
-  onClick,
-  top,
-  bottom,
-  left,
-  right,
-}: FabProps): JSX.Element => {
+               children,
+               accessibilityLabel,
+               iconName,
+               extended,
+               onClick,
+               top,
+               bottom,
+               left,
+               right,
+             }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: getColorStyle(TrilogyColor.SECONDARY),
+      backgroundColor: getColorStyle(TrilogyColor.TERTIARY),
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 16,
       minHeight: 56,
       height: 'auto',
       shadowColor: '#000',
-      shadowOffset: { width: 0, height: 3 },
+      shadowOffset: {width: 0, height: 3},
       shadowOpacity: 0.2,
       shadowRadius: 6,
       elevation: 3,

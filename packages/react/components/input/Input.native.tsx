@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {
   Animated,
   Keyboard,
@@ -11,8 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { InputNativeEvents, InputProps } from './InputProps'
-import { AlertState, getAlertStyle } from '../../objects/facets/Alert'
+import {InputNativeEvents, InputProps} from './InputProps'
+import {AlertState, getAlertStyle} from '../../objects/facets/Alert'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -21,13 +21,14 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { Text } from '../text'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { Alignable } from '../../objects/facets/Alignable'
-import { ComponentName } from '../enumsComponentsName'
+import {Icon, IconColor, IconName, IconSize} from '../icon'
+import {Text} from '../text'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {Alignable} from '../../objects/facets/Alignable'
+import {ComponentName} from '../enumsComponentsName'
 
-interface InputNativeProps extends InputProps, InputNativeEvents {}
+interface InputNativeProps extends InputProps, InputNativeEvents {
+}
 
 interface IStateVerify {
   isVerify: boolean
@@ -69,39 +70,39 @@ interface IVerifies {
  * @param accessibilityActivate {boolean}
  */
 const Input = ({
-  defaultValue,
-  name,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled,
-  status,
-  help,
-  placeholder,
-  type,
-  hasIcon,
-  customIcon,
-  search,
-  reference,
-  keyboardStyle,
-  autoCapitalize,
-  autoCorrect,
-  autoCompleteType,
-  textContentType,
-  keyboardType,
-  keyType,
-  onSubmit,
-  maxLength,
-  testId,
-  accessibilityLabel,
-  customIconRight,
-  customIconLeft,
-  securityGauge,
-  validationRules,
-  onIconClick,
-  required,
-  ...others
-}: InputNativeProps): JSX.Element => {
+                 defaultValue,
+                 name,
+                 onChange,
+                 onFocus,
+                 onBlur,
+                 disabled,
+                 status,
+                 help,
+                 placeholder,
+                 type,
+                 hasIcon,
+                 customIcon,
+                 search,
+                 reference,
+                 keyboardStyle,
+                 autoCapitalize,
+                 autoCorrect,
+                 autoCompleteType,
+                 textContentType,
+                 keyboardType,
+                 keyType,
+                 onSubmit,
+                 maxLength,
+                 testId,
+                 accessibilityLabel,
+                 customIconRight,
+                 customIconLeft,
+                 securityGauge,
+                 validationRules,
+                 onIconClick,
+                 required,
+                 ...others
+               }: InputNativeProps): JSX.Element => {
   const [value, setValue] = useState<string>(defaultValue || '')
   const [email, setEmail] = useState<string>('')
   const [dynamicPlaceholder, setDynamicPlaceholder] = useState<boolean>(false)
@@ -213,7 +214,7 @@ const Input = ({
     handleClick()
   }, [isKeyboardVisible])
 
-  const initStateVerifies = { isVerify: false, color: IconColor.GREY }
+  const initStateVerifies = {isVerify: false, color: IconColor.GREY}
   const [points, setPoints] = React.useState<number>(0)
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
   const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
@@ -266,13 +267,13 @@ const Input = ({
   React.useEffect(() => {
     const data = {}
     validationRules &&
-      Object.keys(validationRules).map((key) => {
-        if (key === 'number') Object.assign(data, { numberVerify })
-        if (key === 'length') Object.assign(data, { lengthVerify })
-        if (key === 'lowercase') Object.assign(data, { lowercaseVerify })
-        if (key === 'uppercase') Object.assign(data, { uppercaseVerify })
-        if (key === 'specialChars') Object.assign(data, { specialCharsverify })
-      })
+    Object.keys(validationRules).map((key) => {
+      if (key === 'number') Object.assign(data, {numberVerify})
+      if (key === 'length') Object.assign(data, {lengthVerify})
+      if (key === 'lowercase') Object.assign(data, {lowercaseVerify})
+      if (key === 'uppercase') Object.assign(data, {uppercaseVerify})
+      if (key === 'specialChars') Object.assign(data, {specialCharsverify})
+    })
     setVerifies(data)
     setNbAllVerifies(Object.keys(data).length)
   }, [validationRules])
@@ -285,7 +286,7 @@ const Input = ({
       verifiesTests.push(test)
 
       if (test) {
-        verifies[key].setVerify({ isVerify: true, color: IconColor.SUCCESS })
+        verifies[key].setVerify({isVerify: true, color: IconColor.SUCCESS})
       } else {
         verifies[key].setVerify(initStateVerifies)
       }
@@ -313,7 +314,7 @@ const Input = ({
     return '#D1D1D1'
   }, [points, nbAllVerifies])
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     input: {
       paddingLeft: customIconLeft || search ? 40 : 10,
       paddingRight: customIcon || customIconRight || search ? 32 : 0,
@@ -362,18 +363,18 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     inputContainerLeft: {
-        height: 46,
-        width: 46,
-        position: 'absolute',
-        left: 0,
-        justifyContent: 'center',
+      height: 46,
+      width: 46,
+      position: 'absolute',
+      left: 0,
+      justifyContent: 'center',
     },
     inputContainerRight: {
-        height: 46,
-        width: 46,
-        position: 'absolute',
-        right: 0,
-        justifyContent: 'center',
+      height: 46,
+      width: 46,
+      position: 'absolute',
+      right: 0,
+      justifyContent: 'center',
     },
     inputIcon: {
       position: 'absolute',
@@ -430,14 +431,14 @@ const styles = StyleSheet.create({
 
   return (
     <View
-      style={{ width: '100%' }}
+      style={{width: '100%'}}
       accessible={!!inputAccessibilityLabel}
       accessibilityLabel={inputAccessibilityLabel}
       testID={inputTestId}
     >
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
-        {dynamicPlaceholder && (
-          <Animated.Text style={[styles.dynamicPlaceholder, { top: animation, fontSize: sizeAnimation }]}>
+        {dynamicPlaceholder && !search && (
+          <Animated.Text style={[styles.dynamicPlaceholder, {top: animation, fontSize: sizeAnimation}]}>
             {placeholder}
           </Animated.Text>
         )}
@@ -542,78 +543,78 @@ const styles = StyleSheet.create({
             </TouchableOpacity>
           )}
         {hasIcon && type === InputType.PASSWORD && (
-    <>
-        {hasIcon && customIconLeft && (
-            <View style={[{paddingLeft: 10}, styles.inputContainerLeft]}>
+          <>
+            {hasIcon && customIconLeft && (
+              <View style={[{paddingLeft: 10}, styles.inputContainerLeft]}>
                 <Icon name={customIconLeft}/>
-            </View>
-        )}
-        <TouchableOpacity
-            style={styles.inputContainerRight}
-            onPress={() => {
+              </View>
+            )}
+            <TouchableOpacity
+              style={styles.inputContainerRight}
+              onPress={() => {
                 onIconClick?.({
-                    inputName: (name && name) || '',
-                    inputValue: value,
+                  inputName: (name && name) || '',
+                  inputValue: value,
                 })
                 if (iconPassword === IconName.EYE) {
-                    setIconPassword(IconName.EYE_SLASH)
+                  setIconPassword(IconName.EYE_SLASH)
                 } else {
-                    setIconPassword(IconName.EYE)
+                  setIconPassword(IconName.EYE)
                 }
-            }}
-        >
-            <Icon
+              }}
+            >
+              <Icon
                 testId='password-id'
                 align={Alignable.ALIGNED_CENTER}
                 name={iconPassword}
                 size={IconSize.SMALL}
                 color={
-                    (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                    (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                    (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                    (status && status === 'default' && inputColor) ||
-                    inputColor
+                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
+                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
+                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+                  (status && status === 'default' && inputColor) ||
+                  inputColor
                 }
-            />
-        </TouchableOpacity>
-    </>
+              />
+            </TouchableOpacity>
+          </>
         )}
         {search && !status && (
-        <>
+          <>
             <View style={styles.inputContainerLeft}>
-                <Icon
-                    align={Alignable.ALIGNED_CENTER}
-                    name={IconName.SEARCH}
-                    size={IconSize.SMALL}
-                    color={getColorStyle(TrilogyColor.GREY)}
-                />
+              <Icon
+                align={Alignable.ALIGNED_CENTER}
+                name={IconName.SEARCH}
+                size={IconSize.SMALL}
+                color={getColorStyle(TrilogyColor.GREY)}
+              />
             </View>
             {value.length > 0 && (
-                <TouchableOpacity
-                    testID='search-id'
-                    style={styles.inputContainerRight}
-                    onPressIn={() => {
-                        onChange?.({
-                            inputName: (name && name) || '',
-                            inputValue: '',
-                            inputSelectionStart: null,
-                        })
-                        onIconClick?.({
-                            inputName: (name && name) || '',
-                            inputValue: '',
-                        })
-                        setValue('')
-                    }}
-                >
-                    <Icon
-                        align={Alignable.ALIGNED_CENTER}
-                        name={IconName.TIMES_CIRCLE}
-                        size={IconSize.SMALL}
-                        color={getColorStyle(TrilogyColor.GREY)}
-                    />
-                </TouchableOpacity>
+              <TouchableOpacity
+                testID='search-id'
+                style={styles.inputContainerRight}
+                onPressIn={() => {
+                  onChange?.({
+                    inputName: (name && name) || '',
+                    inputValue: '',
+                    inputSelectionStart: null,
+                  })
+                  onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: '',
+                  })
+                  setValue('')
+                }}
+              >
+                <Icon
+                  align={Alignable.ALIGNED_CENTER}
+                  name={IconName.TIMES_CIRCLE}
+                  size={IconSize.SMALL}
+                  color={getColorStyle(TrilogyColor.GREY)}
+                />
+              </TouchableOpacity>
             )}
-        </>
+          </>
         )}
       </View>
       {help && (

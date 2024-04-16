@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react'
 import {
-    AutoLayout,
-    Divider,
-    IconName,
-    Input,
-    InputStatus,
-    InputType,
-    Link,
-    Section,
-    Title,
-    TitleLevels,
+  AutoLayout,
+  Divider,
+  IconName,
+  Input,
+  InputStatus,
+  InputType,
+  Link,
+  Section,
+  Title,
+  TitleLevels,
 } from '@trilogy-ds/react/components'
 import {TrilogyColor} from "@trilogy-ds/react";
 
@@ -32,17 +32,16 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section background={TrilogyColor.WHITE}>
-        <Input
-            hovered
-            hasIcon
-            placeholder={'Input, search icon'}
-            help="Search helper input"
-            type={InputType.TEXT}
-            onIconClick={() => {
-                window.alert('close')
-            }}
-            search
-        />
+      <Input
+        hovered
+        placeholder={'Input, search icon'}
+        help="Search helper input"
+        type={InputType.TEXT}
+        onIconClick={() => {
+          window.alert('close')
+        }}
+        search
+      />
 
       <Input
         type={InputType.DATE}
@@ -52,7 +51,7 @@ export const InputScreen = (): JSX.Element => {
         onChange={(e) => setLeavingDate(e.inputValue)}
       />
 
-      <Input accessibilityLabel={'input base'} placeholder={'Label input'} />
+      <Input accessibilityLabel={'input base'} placeholder={'Label input'}/>
 
       <Input
         minLength={10}
@@ -168,7 +167,7 @@ export const InputScreen = (): JSX.Element => {
 
       <AutoLayout>
         <Title level={TitleLevels.THREE}>Champs</Title>
-        <Divider />
+        <Divider/>
 
         <Input
           hovered
@@ -187,11 +186,11 @@ export const InputScreen = (): JSX.Element => {
           }}
         />
 
-        <Input type={InputType.TEXT} placeholder='Input type texte' />
-        <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input type={InputType.PASSWORD} placeholder='Input type password' />
-        <Input type={InputType.DATE} placeholder='Input type date' />
-        <Input type={InputType.EMAIL} placeholder='Input type mail' />
+        <Input type={InputType.TEXT} placeholder='Input type texte'/>
+        <Input type={InputType.NUMBER} placeholder='Input type number'/>
+        <Input type={InputType.PASSWORD} placeholder='Input type password'/>
+        <Input type={InputType.DATE} placeholder='Input type date'/>
+        <Input type={InputType.EMAIL} placeholder='Input type mail'/>
 
         <Input
           hasIcon
@@ -230,11 +229,11 @@ export const InputScreen = (): JSX.Element => {
             uppercase: true,
             number: true,
             specialChars: true,
-            length: { max: 4, min: 2 },
+            length: {max: 4, min: 2},
           }}
         />
 
-        <Input type='password' help='test' placeholder='this is my placeholder' />
+        <Input type='password' help='test' placeholder='this is my placeholder'/>
         <Input
           defaultValue='My 2nd default input value'
           help='this is my help message'

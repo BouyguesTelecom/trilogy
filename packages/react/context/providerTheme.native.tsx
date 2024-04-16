@@ -1,5 +1,5 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react'
-import { ITrilogyTheme } from "./interfaces";
+import React, {Dispatch, ReactNode, SetStateAction} from 'react'
+import {ITrilogyTheme} from "./interfaces";
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode
@@ -24,7 +24,7 @@ export const defaultColors = {
   white: '#fff',
   grey: '#707070',
   greyDark: '#646464',
-  greyLigth: '#E9E9E9',
+  greyLight: '#E9E9E9',
   greyLighter: '#F4F4F4',
   greyDisabled: '#D1D1D1',
   bgInfo: 'hsl(200, 50%, 70%)',
@@ -40,14 +40,14 @@ export const defaultTheme: ITrilogyTheme = {
   colors: defaultColors,
 }
 
-export const defaultContextValue = { theme: defaultTheme, setTheme: () => undefined }
+export const defaultContextValue = {theme: defaultTheme, setTheme: () => undefined}
 export const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>(defaultContextValue)
 
-export const TrilogyThemeProvider = ({ children, theme }: ITrilogyThemeProvider): JSX.Element => {
+export const TrilogyThemeProvider = ({children, theme}: ITrilogyThemeProvider): JSX.Element => {
   const [trilogyTheme, setTrilogyTheme] = React.useState<ITrilogyTheme>(theme || defaultTheme)
 
   return (
-    <TrilogyThemeContext.Provider value={{ theme: trilogyTheme, setTheme: setTrilogyTheme }}>
+    <TrilogyThemeContext.Provider value={{theme: trilogyTheme, setTheme: setTrilogyTheme}}>
       {children}
     </TrilogyThemeContext.Provider>
   )
