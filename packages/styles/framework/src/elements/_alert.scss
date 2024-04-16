@@ -53,7 +53,7 @@ a.alert {
 
     &.is-#{$name} {
       background-color: getColor($bg-color);
-      border: 2px solid getColor($name);
+      border: 1px solid getColor($name);
 
       .icon {
         color: getColor($name);

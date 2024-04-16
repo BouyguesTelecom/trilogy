@@ -59,11 +59,11 @@ const Checkbox = ({
       marginRight: 10,
       marginLeft: 0,
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || 'transparent',
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || 'transparent',
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || getColorStyle(TrilogyColor.TERTIARY),
     },
     tile: {
       padding: 4,
@@ -73,7 +73,7 @@ const Checkbox = ({
       width: 126,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -91,7 +91,7 @@ const Checkbox = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? '#e1e1e1' : 'transparent',

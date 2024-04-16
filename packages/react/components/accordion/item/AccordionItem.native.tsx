@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import { AccordionItemProps } from './AccordionItemProps'
-import { getColorStyle, mixColors, TrilogyColor } from '../../../objects/facets/Color'
-import { hasDisplayName } from './AccordionItem.helper'
-import { IconName } from '../../icon/IconNameEnum'
+import React, {useContext, useEffect, useRef, useState} from 'react'
+import {Animated, Easing, StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
+import {AccordionItemProps} from './AccordionItemProps'
+import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
+import {hasDisplayName} from './AccordionItem.helper'
+import {IconName} from '../../icon/IconNameEnum'
+import {Spacer, SpacerSize} from '../../spacer'
+import {Icon, IconSize} from '../../icon'
+import {ComponentName} from '../../enumsComponentsName'
+import {AccordionContext} from '../Accordion.native'
 
 interface AccordionChild {
   header?: React.ReactNode
   body?: React.ReactNode
 }
-import { Spacer, SpacerSize } from '../../spacer'
-import { Icon, IconSize } from '../../icon'
-import { ComponentName } from '../../enumsComponentsName'
-import { AccordionContext } from '../Accordion.native'
 
 /**
  * Accordion Item Component
@@ -25,23 +25,23 @@ import { AccordionContext } from '../Accordion.native'
  * @param children
  */
 const AccordionItem = ({
-  active,
-  id,
-  onClick,
-  disabled,
-  onOpen,
-  onClose,
-  children,
-  ...others
-}: AccordionItemProps): JSX.Element => {
+                         active,
+                         id,
+                         onClick,
+                         disabled,
+                         onOpen,
+                         onClose,
+                         children,
+                         ...others
+                       }: AccordionItemProps): JSX.Element => {
   const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
-  const [childs, setChilds] = useState<AccordionChild>({ header: undefined, body: undefined })
+  const [childs, setChilds] = useState<AccordionChild>({header: undefined, body: undefined})
   const accordionContextValues = useContext(AccordionContext)
   const itemColor = accordionContextValues.inverted
     ? getColorStyle(TrilogyColor.WHITE)
-    : mixColors(TrilogyColor.GREY, -96)
+    : getColorStyle(TrilogyColor.GREY_LIGHT)
 
   const styles = StyleSheet.create({
     item: {
@@ -50,7 +50,7 @@ const AccordionItem = ({
       borderRadius: 6,
       backgroundColor: itemColor,
       borderWidth: 1,
-      borderColor: mixColors(TrilogyColor.GREY, -80),
+      borderColor: isActive ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     bodyBackground: {
       borderRadius: 6,
@@ -162,16 +162,16 @@ const AccordionItem = ({
         >
           <View style={styles.titleContainer}>
             {childs.header && <View>{childs.header}</View>}
-            <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
+            <Animated.View style={{transform: [{rotateZ: arrowAngle}]}}>
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
-                color={isActive ? TrilogyColor.SECONDARY : TrilogyColor.GREY_DARK}
+                color={isActive ? TrilogyColor.TERTIARY : TrilogyColor.GREY_DARK}
               />
             </Animated.View>
           </View>
         </TouchableWithoutFeedback>
-        <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
+        <Animated.View style={[styles.bodyBackground, {height: bodyHeight}]}>
           <View
             style={styles.bodyContainer}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -183,7 +183,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.SMALL}/>
     </>
   )
 }
