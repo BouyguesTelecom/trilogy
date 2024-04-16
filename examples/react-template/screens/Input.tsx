@@ -193,7 +193,6 @@ export const InputScreen = (): JSX.Element => {
         <Input type={InputType.EMAIL} placeholder='Input type mail'/>
 
         <Input
-          hasIcon
           help='This password does not meet the security requirements.'
           type={InputType.TEXT}
           status={InputStatus.ERROR}
@@ -218,7 +217,6 @@ export const InputScreen = (): JSX.Element => {
         <Input
           type='password'
           hasIcon
-          customIconLeft={IconName.EYE}
           securityGauge
           help={<Link>1ère connexion / Mot de passe oublié ?</Link>}
           placeholder='this is my placeholder'

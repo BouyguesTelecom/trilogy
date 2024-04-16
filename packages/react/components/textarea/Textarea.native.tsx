@@ -1,16 +1,16 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
-import { TextareaNativeProps } from './TextareaProps'
+import React, {forwardRef, useEffect, useRef, useState} from 'react'
+import {Animated, StyleSheet, Text, TextInput, View} from 'react-native'
+import {TextareaNativeProps} from './TextareaProps'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
 } from '../input/InputEnum'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { AlertState, getAlertStyle } from '../../objects/facets/Alert'
-import { Icon, IconColor } from '../icon'
-import { ComponentName } from '../enumsComponentsName'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {AlertState, getAlertStyle} from '../../objects/facets/Alert'
+import {Icon, IconColor} from '../icon'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Textarea Native Component
@@ -49,7 +49,7 @@ const Textarea = (
     label,
     iconName,
     statusIconName,
-    customHeight = 100,
+    customHeight = 120,
     value,
     ...others
   }: TextareaNativeProps,
@@ -62,7 +62,7 @@ const Textarea = (
   const [height, setHeight] = useState<number>(customHeight)
 
   const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
-  const textareaColor = isFocus ? getColorStyle(TrilogyColor.SECONDARY) : getColorStyle(TrilogyColor.GREY)
+  const textareaColor = isFocus ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.GREY_LIGHT)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -93,7 +93,7 @@ const Textarea = (
       paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
       textAlignVertical: 'top',
       color: getColorStyle(TrilogyColor.TERTIARY),
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED): getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : getColorStyle(TrilogyColor.WHITE),
       /*  width: '',*/
     },
     help: {
@@ -142,7 +142,7 @@ const Textarea = (
     <View>
       {!dynamicPlaceholder && <Text>{label}</Text>}
 
-      {iconName && <Icon style={styles.leftIcon} name={iconName} size='small' />}
+      {iconName && <Icon style={styles.leftIcon} name={iconName} size='small'/>}
 
       <TextInput
         maxLength={maxLength}
@@ -176,7 +176,7 @@ const Textarea = (
 
       {statusIconName && (
         <Text style={styles.rightIcon}>
-          <Icon name={statusIconName} size='small' color={status && (status.toUpperCase() as IconColor)} />
+          <Icon name={statusIconName} size='small' color={status && (status.toUpperCase() as IconColor)}/>
         </Text>
       )}
 

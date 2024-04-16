@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react'
-import { Animated, StyleSheet } from 'react-native'
-import { ProgressProps } from './ProgressProps'
-import { View } from '../view'
-import { Text, TextLevels } from '../text'
-import { getAlertStyle } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import React, {useEffect, useRef} from 'react'
+import {Animated, StyleSheet} from 'react-native'
+import {ProgressProps} from './ProgressProps'
+import {View} from '../view'
+import {Text, TextLevels} from '../text'
+import {getAlertStyle, getColorStyle, TrilogyColor} from '../../objects'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Progress component
@@ -17,25 +17,25 @@ import { ComponentName } from '../enumsComponentsName'
  * @param secondExtremLegend {string} Second extremity legend, only with firstExtremLegend property
  */
 const Progress = ({
-  children,
-  percent,
-  alert,
-  stacked,
-  uniqueLegend,
-  firstExtremLegend,
-  secondExtremLegend,
-  ...others
-}: ProgressProps): JSX.Element => {
+                    children,
+                    percent,
+                    alert,
+                    stacked,
+                    uniqueLegend,
+                    firstExtremLegend,
+                    secondExtremLegend,
+                    ...others
+                  }: ProgressProps): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     typeof percent === 'number' &&
-      Animated.timing(animation, {
-        toValue: percent,
-        duration: 1000,
-        useNativeDriver: false,
-      }).start()
+    Animated.timing(animation, {
+      toValue: percent,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start()
   }, [animation, percent])
 
   const height = 6
@@ -50,13 +50,13 @@ const Progress = ({
       flexDirection: 'row',
       width: '100%',
       height: height,
-      backgroundColor: '#f8f8f8',
+      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
       borderRadius: 15,
     },
     percent: {
       alignSelf: 'flex-start',
       height: height,
-      backgroundColor: getAlertStyle(alert) || '#fe544b',
+      backgroundColor: getAlertStyle(alert) || getColorStyle(TrilogyColor.TERTIARY),
       borderRadius: 15,
     },
     progressItemFirst: {
@@ -100,7 +100,7 @@ const Progress = ({
                   style: [
                     index === 0 && styles.progressItemFirst,
                     index === children.length - 1 && styles.progressItemSecond,
-                    { backgroundColor: getAlertStyle(child.props.alert), height: height },
+                    {backgroundColor: getAlertStyle(child.props.alert), height: height},
                   ],
                 })) ||
               child,
@@ -112,7 +112,7 @@ const Progress = ({
   return (
     <>
       <View style={styles.progress} {...others}>
-        <Animated.View style={[styles.percent, { width }]}>{children}</Animated.View>
+        <Animated.View style={[styles.percent, {width}]}>{children}</Animated.View>
       </View>
       {uniqueLegend && (
         <Text style={styles.uniqueLegend} level={TextLevels.THREE}>

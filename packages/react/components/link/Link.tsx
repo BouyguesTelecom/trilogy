@@ -1,18 +1,17 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Text, TextMarkup } from '../text'
-import { LinkProps } from './LinkProps'
-import { has, is } from '../../services/classify'
-import { Icon, IconSize } from '../icon'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import {Text, TextMarkup} from '../text'
+import {LinkProps} from './LinkProps'
+import {has, is} from '../../services/classify'
+import {Icon, IconSize} from '../icon'
+import {hashClass} from '../../helpers'
+import {useTrilogyContext} from '../../context'
 
 /**
  * Link Component
  * @param children {React.ReactNode} Content children for Link
  * @param href {string} Link to open
  * @param to {string} use for router
- * @param tertiary {boolean} Tertiary variant
  * @param title {string} Title attribute
  * @param onClick {Function} onClick Event
  * @param typo {TypographyAlign} Typos align link
@@ -21,7 +20,6 @@ import { useTrilogyContext } from '../../context'
  * @param testId {string} Test Id for Test Integration
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param fixed {boolean} Static link with no animation
  * @param className {string} Additionnal CSS Classes
  * @param href {string} Href link
  * @param removeLinkClass {boolean}
@@ -33,30 +31,26 @@ import { useTrilogyContext } from '../../context'
  */
 
 const Link = ({
-  children,
-  className,
-  removeLinkClass,
-  fixed,
-  to,
-  href,
-  tertiary,
-  title,
-  onClick,
-  typo,
-  testId,
-  accessibilityLabel,
-  routerLink,
-  iconName,
-  inverted,
-  blank,
-  ...others
-}: LinkProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+                children,
+                className,
+                removeLinkClass,
+                to,
+                href,
+                title,
+                onClick,
+                typo,
+                testId,
+                accessibilityLabel,
+                routerLink,
+                iconName,
+                inverted,
+                blank,
+                ...others
+              }: LinkProps): JSX.Element => {
+  const {styled} = useTrilogyContext()
 
   const classes = clsx(
     !removeLinkClass && 'link',
-    fixed && is('static'),
-    tertiary && has('text-tertiary'),
     iconName && has('icon'),
     typo,
     inverted && is('inverted'),
@@ -87,12 +81,12 @@ const Link = ({
     if (typo) {
       return (
         <div className={hashClass(styled, clsx(typo))}>
-          <RouterLinkTrilogy />
+          <RouterLinkTrilogy/>
         </div>
       )
     }
 
-    return <RouterLinkTrilogy />
+    return <RouterLinkTrilogy/>
   }
 
   const LinkTrilogy = (): JSX.Element => {
@@ -113,7 +107,7 @@ const Link = ({
         {iconName ? (
           <>
             <Text markup='span'>{children}</Text>
-            <Icon name={iconName} size={IconSize.SMALL} />
+            <Icon name={iconName} size={IconSize.SMALL}/>
           </>
         ) : (
           children
@@ -125,12 +119,12 @@ const Link = ({
   if (typo) {
     return (
       <div className={hashClass(styled, clsx(typo))}>
-        <LinkTrilogy />
+        <LinkTrilogy/>
       </div>
     )
   }
 
-  return <LinkTrilogy />
+  return <LinkTrilogy/>
 }
 
 export default Link

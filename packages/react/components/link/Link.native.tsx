@@ -1,18 +1,17 @@
 import React from 'react'
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '../../objects'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { TextLevels } from '../text'
-import { Icon } from '../icon'
-import { Spacer, SpacerSize } from '../spacer'
-import { ComponentName } from '../enumsComponentsName'
+import {Linking, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {LinkProps} from './LinkProps'
+import {TypographyAlign} from '../../objects'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {TextLevels} from '../text'
+import {Icon} from '../icon'
+import {Spacer, SpacerSize} from '../spacer'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Link Component
  * @param plain {boolean} Link without underline
  * @param to {string} Url to open
- * @param tertiary {boolean} Tertiary variant
  * @param title {string} Title attribute
  * @param typo {TypographyAlign} Typos align link
  * @param onClick {Function} onClick Event
@@ -24,20 +23,19 @@ import { ComponentName } from '../enumsComponentsName'
  * @param iconName {IconName} Adding Icon Link
  */
 const Link = ({
-  children,
-  to,
-  tertiary,
-  title,
-  typo,
-  onClick,
-  testId,
-  accessibilityLabel,
-  inline,
-  level,
-  iconName,
-  inverted,
-  ...others
-}: LinkProps): JSX.Element => {
+                children,
+                to,
+                title,
+                typo,
+                onClick,
+                testId,
+                accessibilityLabel,
+                inline,
+                level,
+                iconName,
+                inverted,
+                ...others
+              }: LinkProps): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
     return (
       (level && level == 'ONE' && 16) ||
@@ -85,8 +83,7 @@ const Link = ({
     link: {
       color:
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        (tertiary && getColorStyle(TrilogyColor.TERTIARY)) ||
-        getColorStyle(TrilogyColor.SECONDARY),
+        getColorStyle(TrilogyColor.TERTIARY),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       textDecorationStyle: 'solid',
@@ -95,8 +92,7 @@ const Link = ({
     androidLink: {
       color:
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        (tertiary && getColorStyle(TrilogyColor.TERTIARY)) ||
-        getColorStyle(TrilogyColor.SECONDARY),
+        getColorStyle(TrilogyColor.TERTIARY),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       height: inline && level ? getHeightLinkAndroid(level) : 'auto',
@@ -118,8 +114,8 @@ const Link = ({
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
-    ? children
-    : 'NotSpecified'
+      ? children
+      : 'NotSpecified'
 
   return (
     <View
@@ -148,8 +144,8 @@ const Link = ({
               <Text accessibilityLabel={title || ''} style={styles.link} {...others}>
                 {children}
               </Text>
-              <Spacer size={SpacerSize.SMALLER} horizontal />
-              <Icon color={'INFO'} name={iconName} style={styles.icon} size='small' />
+              <Spacer size={SpacerSize.SMALLER} horizontal/>
+              <Icon color={'TERTIARY'} name={iconName} style={styles.icon} size='small'/>
             </View>
           ) : (
             <Text

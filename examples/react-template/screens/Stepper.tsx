@@ -1,16 +1,16 @@
 import React from 'react'
 import {
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
   Box,
   BoxContent,
+  Button,
+  Divider,
   IconName,
+  Section,
+  Spacer,
   Stepper,
   StepperStep,
-  Spacer,
-  Button,
+  Title,
+  TitleLevels,
 } from '@trilogy-ds/react/components'
 
 export const StepperScreen = (): JSX.Element => {
@@ -27,7 +27,7 @@ export const StepperScreen = (): JSX.Element => {
   return (
     <Section>
       <Title level={TitleLevels.THREE}>Etapes</Title>
-      <Divider />
+      <Divider/>
 
       <Box>
         <BoxContent>
@@ -35,27 +35,26 @@ export const StepperScreen = (): JSX.Element => {
           <Spacer size={30}></Spacer>
           <Stepper>
             <StepperStep
-              error
               done={1 < activeStep}
               current={activeStep === 1}
-              iconName={IconName.CREDIT_CARD}
-              label='Récapitulatif'
+              iconName={IconName.EYE}
+              label='Recup'
               step={1}
             />
-            <StepperStep done={2 < activeStep} current={activeStep === 2} label='Compléments' step={2} />
+            <StepperStep done={2 < activeStep} current={activeStep === 2} label='Compléments' step={2}/>
             <StepperStep
               done={3 < activeStep}
               current={activeStep === 3}
               iconName={IconName.SEARCH}
-              label='Coordonnées'
+              label='Coordonate'
               step={3}
             />
-            <StepperStep done={4 < activeStep} current={activeStep === 4} label='Livraison' step={4} />
+            <StepperStep done={4 < activeStep} current={activeStep === 4} label='Livraison' step={4}/>
             <StepperStep
               done={5 < activeStep}
               current={activeStep === 5}
-              iconName={IconName.FACEID}
-              label='Confirmation'
+              iconName={IconName.EYE}
+              label='Confirm'
               step={5}
             />
           </Stepper>

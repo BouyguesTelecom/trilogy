@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TimelineContentProps } from './TimelineContentProps'
-import { Text, TextLevels } from '../../text'
-import { Link } from '../../link'
-import { TypographyBold, TypographyColor } from '../../../objects'
-import { TimelineItemContext } from '../item/TimelineItem.native'
-import { AutoLayout } from '../../autolayout'
-import { ComponentName } from '../../enumsComponentsName'
+import React, {useContext} from 'react'
+import {StyleSheet, TouchableOpacity, View} from 'react-native'
+import {TimelineContentProps} from './TimelineContentProps'
+import {Text, TextLevels} from '../../text'
+import {Link} from '../../link'
+import {TypographyBold, TypographyColor} from '../../../objects'
+import {TimelineItemContext} from '../item/TimelineItem.native'
+import {AutoLayout} from '../../autolayout'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * TimelineContent Native Component
@@ -18,19 +18,20 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param Onclick {string} Provide event onCLick
  */
 const TimelineContent = ({
-  content,
-  contentLink,
-  heading,
-  link,
-  onClick,
-  children,
-}: TimelineContentProps): JSX.Element => {
+                           content,
+                           contentLink,
+                           heading,
+                           link,
+                           onClick,
+                           children,
+                         }: TimelineContentProps): JSX.Element => {
   const timelineContextValues = useContext(TimelineItemContext)
 
   const styles = StyleSheet.create({
     container: {
       flex: 6,
       marginBottom: 8,
+      marginLeft: 4
     },
     heading: {
       marginBottom: 4,
@@ -40,7 +41,7 @@ const TimelineContent = ({
       marginBottom: 4,
     },
     link: {
-      marginLeft: -8,
+      marginTop: 6,
     },
   })
 
