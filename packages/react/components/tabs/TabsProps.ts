@@ -1,6 +1,8 @@
 import { Centerable } from '../../objects/facets/Centerable'
 import { JustifiableProps } from '../../objects/facets/Justifiable'
-import { Accessibility, Clickable, TypographyAlign, TypographyAlignValues } from '../../objects'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
 
 /**
  * Tabs Interface

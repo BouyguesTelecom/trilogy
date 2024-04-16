@@ -1,5 +1,5 @@
 import { IconColor, IconColorValues, IconName, IconNameValues } from '../../icon'
-import { Accessibility } from '../../../objects'
+import { Accessibility } from '../../../objects/facets/Accessibility'
 
 /**
  * Timeline Marker Interface

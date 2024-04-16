@@ -1,5 +1,6 @@
-import { Accessibility, AlertProps } from '../../../objects'
-import { IconName, IconNameValues } from '../../icon'
+import { Accessibility } from '../../../objects/facets/Accessibility'
+import { AlertProps } from '../../../objects/facets/Alert'
+import { IconName, IconNameValues } from '../../icon/IconNameEnum'
 import { ToasterPosition } from '../ToasterProps'
 
 /**

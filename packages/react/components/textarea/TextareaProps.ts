@@ -1,6 +1,5 @@
 import { IconName, IconNameValues } from './../icon/IconNameEnum'
 import { Referenceable, ReferenceableNative } from './../../objects/facets/Referenceable'
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,

@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
 import { TimelineItemWebProps } from './TimelineItemProps'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
+import { useTrilogyContext } from '../../../context/index'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 
 /**
  * Timeline Item Component

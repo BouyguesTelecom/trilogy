@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '../../context'
-import { hashClass } from '../../helpers'
-import { has, is } from '../../services'
+import { useTrilogyContext } from '../../context/index'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { has, is } from '../../services/classify'
 import { TabsProps } from './TabsProps'
 
 /**

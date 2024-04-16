@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 import React, { CSSProperties, useEffect, useRef, useState } from 'react'
-import { getAlertClassName } from '../../objects'
+import { getAlertClassName } from '../../objects/facets/Alert'
 import { Icon, IconName, IconSize } from '../icon'
 import { Text } from '../text'
 import { Title, TitleLevels } from '../title'
 import { ToasterPosition, ToasterProps } from './ToasterProps'
-import { is } from '../../services'
+import { is } from '../../services/classify'
 import ToasterContext from './context'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Toaster Component

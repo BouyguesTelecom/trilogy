@@ -3,8 +3,8 @@ import clsx from 'clsx'
 import { TimelineMarkerWebProps } from './TimelineMarkerProps'
 import { is } from '../../../services/classify'
 import { Icon, IconColor, IconSize } from '../../icon'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
+import { useTrilogyContext } from '../../../context/index'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
 
 /**
  * Timeline Marker Component

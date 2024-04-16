@@ -3,8 +3,8 @@ import clsx from 'clsx'
 import { TimelineContentWebProps } from './TimelineContentProps'
 import { Text, TextMarkup } from '../../text'
 import { Link } from '../../link'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Timeline Content Component

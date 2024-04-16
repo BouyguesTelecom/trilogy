@@ -1,9 +1,9 @@
 import React from 'react'
 import { TimelineProps } from './TimelineProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
-import { is } from '../../services'
+import { useTrilogyContext } from '../../context/index'
+import { is } from '../../services/classify'
 
 /**
  * Timeline Component

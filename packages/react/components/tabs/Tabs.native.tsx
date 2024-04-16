@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native'
 import { TabsProps } from './TabsProps'
 import { Text, TextLevels } from '../text'
 import TabsItem from './item'
-import { getColorStyle, TrilogyColor } from '../../objects'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { ComponentName } from '../enumsComponentsName'
 
 /**

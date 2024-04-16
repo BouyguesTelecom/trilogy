@@ -4,7 +4,8 @@ import { TypographyColor, TypographyColorValues } from '../../objects/Typography
 import { TypographyTransform, TypographyTransformValues } from '../../objects/Typography/TypographyTransform'
 import { TypographyBold, TypographyBoldValues } from '../../objects/Typography/TypographyBold'
 import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
-import { Accessibility, Invertable } from '../../objects/facets'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Invertable } from '../../objects/facets/Invertable'
 
 type Styles = { [key: string]: unknown }
 

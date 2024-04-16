@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { TimelineMarkerProps } from './TimelineMarkerProps'
 import { Icon, IconSize } from '../../icon'
 import { TimelineItemContext } from '../item/TimelineItem.native'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
 import { TimelineHeightContext } from '../Timeline.native'
 import { ComponentName } from '../../enumsComponentsName'
 

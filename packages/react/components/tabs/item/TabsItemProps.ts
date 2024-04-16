@@ -1,5 +1,6 @@
-import { Accessibility, Clickable } from '../../../objects'
-import { IconName, IconNameValues } from '../../icon'
+import { Accessibility } from '../../../objects/facets/Accessibility'
+import { Clickable } from '../../../objects/facets/Clickable'
+import { IconName, IconNameValues } from '../../icon/IconNameEnum'
 
 /**
  * Tabs Item Interface
