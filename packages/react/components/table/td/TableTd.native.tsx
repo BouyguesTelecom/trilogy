@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TableTdProps } from './TableTdProps'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
 import { ComponentName } from '../../enumsComponentsName'
 
 /**

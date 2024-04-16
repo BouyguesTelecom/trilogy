@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Switch as SwitchNative, Platform } from 'react-native'
 import { SwitchProps } from './SwitchProps'
 import shortid from 'shortid'
-import { getAlertStyle } from '../../objects'
+import { getAlertStyle } from '../../objects/facets/Alert'
 import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { ComponentName } from '../enumsComponentsName'
 

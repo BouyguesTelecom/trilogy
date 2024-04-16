@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native'
 import { TableThProps } from './TableThProps'
 import { View } from '../../view'
 import { Text } from '../../text'
-import { getColorStyle, mixColors, TrilogyColor, TypographyBold } from '../../../objects'
+import { getColorStyle, mixColors, TrilogyColor } from '../../../objects/facets/Color'
+import { TypographyBold } from '../../../objects/Typography/TypographyBold'
 import { ComponentName } from '../../enumsComponentsName'
 
 /**

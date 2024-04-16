@@ -3,9 +3,9 @@ import shortid from 'shortid'
 import clsx from 'clsx'
 import { SwitchProps } from './SwitchProps'
 import { is } from '../../services/classify'
-import { getAlertClassName } from '../../objects'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { getAlertClassName } from '../../objects/facets/Alert'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Switch Component

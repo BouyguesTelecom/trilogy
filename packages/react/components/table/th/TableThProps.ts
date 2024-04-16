@@ -1,4 +1,4 @@
-import { Clickable } from '../../../objects'
+import { Clickable } from '../../../objects/facets/Clickable'
 
 export interface TableThProps extends Clickable {
   children: React.ReactNode
