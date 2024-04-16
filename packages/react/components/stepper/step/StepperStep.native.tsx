@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { StepperStepProps } from './StepperStepProps'
 import { View } from '../../view'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/color'
 import { ComponentName } from '../../enumsComponentsName'
 
 /**

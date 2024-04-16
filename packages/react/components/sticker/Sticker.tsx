@@ -3,9 +3,10 @@ import clsx from 'clsx'
 import { StickerProps } from './StickerProps'
 import { is } from '../../services/classify'
 import { StickerMarkup, StickerMarkupValues } from './StickerEnum'
-import { getAlertClassName, getVariantClassName } from '../../objects'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { getAlertClassName } from '../../objects/facets/Alert'
+import { getVariantClassName } from '../../objects/facets/Variant'
+import { hashClass } from '../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Sticker component

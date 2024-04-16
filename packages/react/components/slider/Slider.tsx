@@ -3,10 +3,10 @@ import clsx from 'clsx'
 import { SliderProps } from './SliderProps'
 import { Columns } from '../columns'
 import { Icon, IconName, IconSize } from '../icon'
-import { is, has } from '../../services'
-import { hashClass } from '../../helpers'
+import { is, has } from '../../services/classify'
+import { hashClass } from '../../helpers/hashClassesHelpers'
 import { Spacer, SpacerSize } from '../spacer'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 
 /**
  * Slider component

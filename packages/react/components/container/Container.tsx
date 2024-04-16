@@ -3,7 +3,7 @@ import { ContainerProps } from './ContainerProps'
 import { has, is } from '../../services/classify'
 import clsx from 'clsx'
 import { hashClass } from '../../helpers/hashClassesHelpers'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '../../context/index'
 import { getBackgroundClassName } from '../../objects/atoms/Background'
 import { StickyPosition } from '../../objects/facets/Sticky'
 

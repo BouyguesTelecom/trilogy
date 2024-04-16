@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TypographyBold } from '../../objects'
+import { TypographyBold } from '../../objects/Typography/TypographyBold'
 import { Text, TextLevels } from '../text'
 import { Title, TitleLevels } from '../title'
 import { StepperProps } from './StepperProps'

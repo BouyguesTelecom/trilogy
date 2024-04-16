@@ -3,10 +3,10 @@ import clsx from "clsx"
 import { StepperStepProps } from "./StepperStepProps"
 import { StepperStepMarkup, StepperStepMarkupValues } from "./StepperStepEnum"
 import { is } from "../../../services/classify"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "../../../helpers/hashClassesHelpers"
+import { useTrilogyContext } from "../../../context/index"
 import Icon from "../../icon/Icon"
-import { IconSize } from "../../icon"
+import { IconSize } from "../../icon/IconEnum"
 
 /**
  * Stepper Step Component

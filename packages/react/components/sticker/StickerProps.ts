@@ -1,6 +1,7 @@
 import { Invertable } from '../../objects/facets/Invertable'
 import { Small } from '../../objects/facets/Small'
-import { AlertProps, VariantProps } from '../../objects/facets'
+import { AlertProps } from '../../objects/facets/Alert'
+import { VariantProps } from '../../objects/facets/Variant'
 import { Hat } from '../../objects/facets/Hat'
 import { StickerMarkup, StickerMarkupValues } from './StickerEnum'
 

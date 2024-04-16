@@ -2,9 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 import { ColumnsItem } from '../../columns'
 import { SliderItemProps } from './SliderItemProps'
-import { is } from '../../../services'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { is } from '../../../services/classify'
+import { hashClass } from '../../../helpers/hashClassesHelpers'
+import { useTrilogyContext } from '../../../context/index'
 
 /**
  * Slider Item component

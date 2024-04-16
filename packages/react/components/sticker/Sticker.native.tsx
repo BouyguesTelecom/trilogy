@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, Platform, View } from 'react-native'
 import { StickerProps } from './StickerProps'
-import { getAlertStyle, getColorStyle, getVariantStyle, TrilogyColor } from '../../objects'
+import { getAlertStyle } from '../../objects/facets/alert'
+import { getVariantStyle } from '../../objects/facets/Variant'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/color'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
