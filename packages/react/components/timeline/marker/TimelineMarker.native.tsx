@@ -1,19 +1,19 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { TimelineMarkerProps } from './TimelineMarkerProps'
-import { Icon, IconSize } from '../../icon'
-import { TimelineItemContext } from '../item/TimelineItem.native'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { TimelineHeightContext } from '../Timeline.native'
-import { ComponentName } from '../../enumsComponentsName'
+import React, {useContext} from 'react'
+import {StyleSheet, View} from 'react-native'
+import {TimelineMarkerProps} from './TimelineMarkerProps'
+import {Icon, IconSize} from '../../icon'
+import {TimelineItemContext} from '../item/TimelineItem.native'
+import {getColorStyle, TrilogyColor} from '../../../objects'
+import {TimelineHeightContext} from '../Timeline.native'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * TimelineMarker Native Component
  * @param children {ReactNode} Text child
  */
-const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Element => {
-  const { active, undone, done, cancel } = useContext(TimelineItemContext)
-  const { height } = useContext(TimelineHeightContext)
+const TimelineMarker = ({iconName, iconColor}: TimelineMarkerProps): JSX.Element => {
+  const {active, undone, done, cancel} = useContext(TimelineItemContext)
+  const {height} = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
     marker: {
@@ -28,7 +28,7 @@ const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Eleme
       marginLeft: 'auto',
       marginRight: 'auto',
       borderColor:
-        (active && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (active && getColorStyle(TrilogyColor.TERTIARY)) ||
         (undone && getColorStyle(TrilogyColor.GREY_LIGHT)) ||
         (cancel && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         (done && getColorStyle(TrilogyColor.TERTIARY)) ||
@@ -48,14 +48,14 @@ const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Eleme
           color={
             !iconColor
               ? (active && TrilogyColor.WHITE) ||
-                (undone && TrilogyColor.TERTIARY) ||
-                (cancel && TrilogyColor.GREY_LIGHT) ||
-                (done && TrilogyColor.WHITE) ||
-                TrilogyColor.WHITE
+              (undone && TrilogyColor.TERTIARY) ||
+              (cancel && TrilogyColor.GREY_LIGHT) ||
+              (done && TrilogyColor.WHITE) ||
+              TrilogyColor.WHITE
               : iconColor
           }
           backgroundColor={
-            (active && TrilogyColor.SECONDARY) ||
+            (active && TrilogyColor.TERTIARY) ||
             (undone && TrilogyColor.GREY_LIGHT) ||
             (cancel && TrilogyColor.GREY_LIGHT) ||
             (done && TrilogyColor.TERTIARY) ||

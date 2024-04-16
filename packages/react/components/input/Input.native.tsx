@@ -510,7 +510,7 @@ const Input = ({
               }
             />
           )}
-        {hasIcon &&
+        {hasIcon && !search &&
           ((status && status !== InputStatus.DEFAULT) || customIcon || customIconRight) &&
           type !== InputType.PASSWORD && (
             <TouchableOpacity

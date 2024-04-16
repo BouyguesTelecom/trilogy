@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { TableTrPropsNative } from './TableTrProps'
-import { View } from '../../view'
-import { Text, TextLevels } from '../../text'
-import { ComponentName } from '../../enumsComponentsName'
+import React, {useState} from 'react'
+import {StyleSheet, TouchableOpacity} from 'react-native'
+import {TableTrPropsNative} from './TableTrProps'
+import {View} from '../../view'
+import {Text, TextLevels} from '../../text'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * TableTr Component
@@ -11,7 +11,7 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param expandable {boolean} Lines can display additional information
  * @param expanded {ReactNode|string} Expended Table TR content
  */
-const TableTr = ({ children, expandable, expanded, ...others }: TableTrPropsNative): JSX.Element => {
+const TableTr = ({children, expandable, expanded, ...others}: TableTrPropsNative): JSX.Element => {
   const [isExpanded, setIsExpended] = useState<boolean>(false)
 
   const styles = StyleSheet.create({
@@ -21,7 +21,7 @@ const TableTr = ({ children, expandable, expanded, ...others }: TableTrPropsNati
     },
     expendable: {
       width: '100%',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
       padding: 10,
     },
   })

@@ -72,11 +72,11 @@ const Radio = ({
       borderRadius: 30,
       width: 13,
       height: 13,
-      backgroundColor: !inverted ? getColorStyle(TrilogyColor.INFO) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || getColorStyle(TrilogyColor.TERTIARY),
     },
     tile: {
       padding: 4,
@@ -86,7 +86,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -104,7 +104,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',

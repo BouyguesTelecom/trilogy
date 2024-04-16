@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { TypographyBold } from '../../objects'
-import { Text, TextLevels } from '../text'
-import { Title, TitleLevels } from '../title'
-import { StepperProps } from './StepperProps'
-import { Icon, IconName, IconSize } from '../icon'
-import { ComponentName } from '../enumsComponentsName'
+import {StyleSheet, View} from 'react-native'
+import {TypographyBold, TypographyColor} from '../../objects'
+import {Text, TextLevels} from '../text'
+import {TitleLevels} from '../title'
+import {StepperProps} from './StepperProps'
+import {Icon, IconName, IconSize} from '../icon'
+import {ComponentName} from '../enumsComponentsName'
 
 interface ICurrentStep {
   step: number
@@ -18,8 +18,8 @@ interface ICurrentStep {
  * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({ children, centered, ...others }: StepperProps): JSX.Element => {
-  const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({ step: 0, name: '', iconName: '' })
+const Stepper = ({children, centered, ...others}: StepperProps): JSX.Element => {
+  const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({step: 0, name: '', iconName: ''})
 
   const styles = StyleSheet.create({
     steppers: {
@@ -36,8 +36,11 @@ const Stepper = ({ children, centered, ...others }: StepperProps): JSX.Element =
       flexDirection: 'row',
     },
     icon: {
-      marginLeft: 10,
-      marginTop: 3
+      marginRight: 4,
+      marginTop: 3,
+    },
+    counter: {
+      marginRight: 10
     },
   })
 
@@ -86,16 +89,17 @@ const Stepper = ({ children, centered, ...others }: StepperProps): JSX.Element =
       </View>
       <View style={styles.step}>
         <View style={styles.hasIcon}>
-          <Title level={TitleLevels.THREE}>{currentStep.name}</Title>
-          <Text style={styles.icon}>
+
           {currentStep.iconName && (
-
-              <Icon name={currentStep.iconName as IconName} size={IconSize.SMALL} />
-
+            <Text style={styles.icon}>
+              <Icon name={currentStep.iconName as IconName} size={IconSize.SMALL}/>
+            </Text>
           )}
-          </Text>
+          <Text level={TitleLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>{currentStep.name}</Text>
+
         </View>
-        <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+        <Text style={styles.counter} level={TextLevels.THREE}
+              typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_TERTIARY]}>
           {currentStep.step}/{nbChild}
         </Text>
       </View>

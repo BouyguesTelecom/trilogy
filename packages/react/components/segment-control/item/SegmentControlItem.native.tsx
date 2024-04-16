@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, TouchableOpacity, Text } from 'react-native'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { ComponentName } from '../../enumsComponentsName'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, Text, TouchableOpacity} from 'react-native'
+import {SegmentControlItemProps} from './SegmentControlItemProps'
+import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * SegmentControlItem Item Component
@@ -13,13 +13,13 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param inverted {boolean} invert color of active item
  */
 const SegmentControlItem = ({
-  active,
-  children,
-  onClick,
-  inverted,
-  disabled,
-  ...others
-}: SegmentControlItemProps): JSX.Element => {
+                              active,
+                              children,
+                              onClick,
+                              inverted,
+                              disabled,
+                              ...others
+                            }: SegmentControlItemProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
 
   const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ const SegmentControlItem = ({
       borderRadius: 4,
       alignItems: 'center',
       backgroundColor:
-        (activeItem && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (activeItem && getColorStyle(TrilogyColor.TERTIARY)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
@@ -39,7 +39,7 @@ const SegmentControlItem = ({
       paddingHorizontal: 16,
       color:
         (activeItem && !inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        (!activeItem && !inverted && disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+        (!activeItem && !inverted && disabled && getColorStyle(TrilogyColor.TERTIARY)) ||
         getColorStyle(TrilogyColor.TERTIARY),
       marginVertical: 10,
       fontSize: 16,
