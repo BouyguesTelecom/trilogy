@@ -7,7 +7,7 @@ $suffix: '';
  @string slug name used in classname (You can use your brand name)
  @color A valid css color value
  @invert The slug name of the best inverted color
- @hover A valid css color value (a variant color for the hover case) -- optional
+ @hover A valid css color value (a variant color for the hover case)
  @visited A valid css color value (a variant color for the pressed case) -- optional
  @background A valid css color value (a variant color for background) -- optional
  */
@@ -34,6 +34,15 @@ $colors: (
   'bg-hovered': ['bg-hovered', #e4eaed, 'font'],
   'hovered': ['hovered', #24374a, 'font'],
 ) !default;
+
+/*
+Colors for buttons
+  @string slug name used in classname (You can use your brand name)
+  @color A valid css color value
+  @color-text A valid css color value (a variant color for the text color)
+  @color-hover A valid css color value (a variant color for the hover case)
+  @color-active A valid css color value (a variant color for the pressed case)
+  */
 
 $btn-colors: (
   'accent':['accent', #CC4E0A, white, #B64508, #9E3C07, #e3bcbc],
