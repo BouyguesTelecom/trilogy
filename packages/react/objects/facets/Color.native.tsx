@@ -1,17 +1,16 @@
-import { TrilogyThemeContext } from '../../context/providerTheme.native'
-import { useContext } from 'react'
-import Color from 'color'
+import {TrilogyThemeContext} from '../../context/providerTheme.native'
+import {useContext} from 'react'
+
 /**
  * Trilogy color
  */
 export enum TrilogyColor {
+  MAIN = 'MAIN',
+  ACCENT = 'ACCENT',
   SUCCESS = 'SUCCESS',
   INFO = 'INFO',
   WARNING = 'WARNING',
   ERROR = 'ERROR',
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
-  TERTIARY = 'TERTIARY',
   WHITE = 'WHITE',
   GREY = 'GREY',
   GREY_DARK = 'GREY_DARK',
@@ -28,19 +27,19 @@ export enum TrilogyColor {
 
 export type TrilogyColorValues = `${TrilogyColor}`
 
-export const mixColors = (baseColor: TrilogyColor, tint: number) => {
-  const color = getColorStyle(baseColor)
-  const newColor = Color(color)
-  return newColor.lightness(-tint).hex()
-}
-
 export const getColorStyle = (trilogyColor?: string): string => {
   const {
-    theme: { colors },
+    theme: {colors},
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useContext(TrilogyThemeContext)
 
   switch (trilogyColor) {
+    case 'MAIN':
+      return colors.main
+    case 'ACCENT':
+      return colors.accent
+    case 'FONT':
+      return colors.font
     case 'SUCCESS':
       return colors.success
     case 'INFO':
@@ -49,12 +48,6 @@ export const getColorStyle = (trilogyColor?: string): string => {
       return colors.warning
     case 'ERROR':
       return colors.error
-    case 'PRIMARY':
-      return colors.primary
-    case 'SECONDARY':
-      return colors.secondary
-    case 'TERTIARY':
-      return colors.tertiary
     case 'WHITE':
       return colors.white
     case 'GREY':
@@ -84,7 +77,7 @@ export const getColorStyle = (trilogyColor?: string): string => {
 
 export const getBackgroundOfVariant = (variant?: string): string => {
   const {
-    theme: { colors },
+    theme: {colors},
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useContext(TrilogyThemeContext)
 
@@ -99,5 +92,25 @@ export const getBackgroundOfVariant = (variant?: string): string => {
       return colors.bgError
     default:
       return colors.bgDefault
+  }
+}
+
+export const getButtonColorStyle = (buttonVariant?: string): string => {
+  const {
+    theme: {colors},
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useContext(TrilogyThemeContext)
+
+  switch (buttonVariant) {
+    case 'ACCENT':
+      return colors.accent
+    case 'PRIMARY':
+      return colors.main
+    case 'SECONDARY':
+      return colors.btnSecondary
+    case 'GHOST':
+      return colors.btnGhost
+    default:
+      return colors.main
   }
 }

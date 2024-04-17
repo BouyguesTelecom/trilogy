@@ -50,7 +50,7 @@ const AccordionItem = ({
       borderRadius: 6,
       backgroundColor: itemColor,
       borderWidth: 1,
-      borderColor: isActive ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.GREY_LIGHT),
+      borderColor: isActive ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     bodyBackground: {
       borderRadius: 6,
@@ -166,7 +166,7 @@ const AccordionItem = ({
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
-                color={isActive ? TrilogyColor.TERTIARY : TrilogyColor.GREY_DARK}
+                color={isActive ? TrilogyColor.MAIN : TrilogyColor.GREY_DARK}
               />
             </Animated.View>
           </View>

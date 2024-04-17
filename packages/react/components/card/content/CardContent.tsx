@@ -1,11 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import { CardContentProps } from './CardContentProps'
-import { Title, TitleLevels } from '../../title'
-import { Text } from '../../text'
-import { Button, ButtonMarkup } from '../../button'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import {CardContentProps} from './CardContentProps'
+import {Title, TitleLevels} from '../../title'
+import {Text} from '../../text'
+import {Button, ButtonMarkup} from '../../button'
+import {hashClass} from '../../../helpers'
+import {useTrilogyContext} from '../../../context'
 
 /**
  * Card Content Component
@@ -15,7 +15,7 @@ import { useTrilogyContext } from '../../../context'
  * @param title {string} Add a title
  * @param titleLevel {TitleLevels} Title level
  * @param buttonText {string} if textButton, it will add a Button with content text
- * @param buttonVariant {ButtonColor} Add variant for Button - Default is primary
+ * @param buttonVariant {ButtonVariant} Add variant for Button - Default is primary
  * @param buttonClick {Function} Click event for Button
  * @param text {string} Content text of Card
  * @param textLevel {TextLevels} Text level
@@ -25,23 +25,23 @@ import { useTrilogyContext } from '../../../context'
  * @param buttonMarkup {ButtonMarkup} if Button, can change the button tag
  */
 const CardContent = ({
-  children,
-  className,
-  titleSup,
-  titleSupLevel,
-  title,
-  titleLevel,
-  buttonText,
-  buttonMarkup,
-  buttonVariant,
-  buttonClick,
-  text,
-  textLevel,
-  onClick,
-  testId,
-  ...others
-}: CardContentProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+                       children,
+                       className,
+                       titleSup,
+                       titleSupLevel,
+                       title,
+                       titleLevel,
+                       buttonText,
+                       buttonMarkup,
+                       buttonVariant,
+                       buttonClick,
+                       text,
+                       textLevel,
+                       onClick,
+                       testId,
+                       ...others
+                     }: CardContentProps): JSX.Element => {
+  const {styled} = useTrilogyContext()
 
   if (children) {
     return (

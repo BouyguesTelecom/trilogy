@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { TagClickEvent, TagProps } from './TagProps'
-import { Icon, IconName, IconSize } from '../icon'
-import { getBackgroundOfVariant, getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {TagClickEvent, TagProps} from './TagProps'
+import {Icon, IconName, IconSize} from '../icon'
+import {getBackgroundOfVariant, getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Tag Component
@@ -17,22 +17,22 @@ import { ComponentName } from '../enumsComponentsName'
  * @param others
  */
 const Tag = ({
-  children,
-  variant,
-  deletable,
-  onClick,
-  inverted,
-  iconName,
-  small,
-  ...others
-}: TagProps): JSX.Element => {
+               children,
+               variant,
+               deletable,
+               onClick,
+               inverted,
+               iconName,
+               small,
+               ...others
+             }: TagProps): JSX.Element => {
   const [display, setDisplay] = useState<boolean>(deletable || false)
 
   useEffect(() => {
     setDisplay(deletable || false)
   }, [deletable])
 
-  const textColor = inverted ? getColorStyle(variant) : getColorStyle(TrilogyColor.TERTIARY)
+  const textColor = inverted ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
   const backgroundColor = getBackgroundOfVariant(variant) || getColorStyle(TrilogyColor.BG_INFO)
 
   const styles = StyleSheet.create({
@@ -97,7 +97,7 @@ const Tag = ({
         <View style={styles.tag} {...others}>
           <TouchableOpacity style={styles.button} onPress={(e) => onClick(e)}>
             {iconName && (
-              <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} style={styles.iconLeft} name={iconName} />
+              <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} style={styles.iconLeft} name={iconName}/>
             )}
             <Text style={styles.text}>{children}</Text>
           </TouchableOpacity>
@@ -106,13 +106,13 @@ const Tag = ({
     }
     return (
       <View style={styles.tag} {...others}>
-        {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} style={styles.iconLeft} name={iconName} />}
+        {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} style={styles.iconLeft} name={iconName}/>}
         <Text style={styles.text}>{children}</Text>
       </View>
     )
   }
 
-  return <View />
+  return <View/>
 }
 
 Tag.displayName = ComponentName.Tag

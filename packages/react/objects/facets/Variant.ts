@@ -1,9 +1,11 @@
-import { getColorStyle } from './Color'
+import {getColorStyle} from './Color'
 
 /**
  * Variant State
  */
 export enum VariantState {
+  MAIN = 'MAIN',
+  ACCENT = 'ACCENT',
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',
   TERTIARY = 'TERTIARY',
@@ -26,12 +28,18 @@ export interface VariantProps {
 export const getVariantClassName = (variantType?: string): string => {
   if (!variantType) return ''
   switch (variantType) {
+    case 'MAIN':
+      return 'main'
+    case 'ACCENT':
+      return 'accent'
     case 'PRIMARY':
       return 'primary'
     case 'SECONDARY':
       return 'secondary'
     case 'TERTIARY':
       return 'tertiary'
+    case 'GHOST':
+      return 'ghost'
     default:
       return ''
   }
@@ -46,6 +54,10 @@ export const getVariantStyle = (variantType?: string): string => {
   switch (variantType) {
     case 'PRIMARY':
       return getColorStyle('PRIMARY')
+    case 'ACCENT':
+      return getColorStyle('ACCENT')
+    case 'MAIN':
+      return getColorStyle('MAIN')
     case 'SECONDARY':
       return getColorStyle('SECONDARY')
     case 'TERTIARY':

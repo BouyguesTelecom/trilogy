@@ -26,9 +26,9 @@ const StepperStep = ({active, current, done, error, ...others}: StepperStepProps
       borderRadius: 4,
       backgroundColor:
         (error && getColorStyle(TrilogyColor.ERROR)) ||
-        (active && getColorStyle(TrilogyColor.TERTIARY)) ||
-        (current && getColorStyle(TrilogyColor.TERTIARY)) ||
-        (done && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (active && getColorStyle(TrilogyColor.MAIN)) ||
+        (current && getColorStyle(TrilogyColor.MAIN)) ||
+        (done && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
       zIndex: 1,
     },

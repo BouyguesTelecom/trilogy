@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
-import { View, StyleSheet, Platform, TouchableOpacity } from 'react-native'
-import { WithLocalSvg } from 'react-native-svg/css'
-import ContentLoader, { Circle } from 'react-content-loader/native'
-import { IconProps } from './IconProps'
-import { IconSize } from './IconEnum'
+import React, {useContext} from 'react'
+import {View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
+import {WithLocalSvg} from 'react-native-svg/css'
+import ContentLoader, {Circle} from 'react-content-loader/native'
+import {IconProps} from './IconProps'
+import {IconSize} from './IconEnum'
 import CircleIcon from './circle/CircleIcon.native'
 import StatusIcon from './status/StatusIcon.native'
 import TextIcon from './text/TextIcon.native'
-import { getAlignStyle } from '../../objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
-import { TrilogyThemeContext } from '../../context/providerTheme.native'
+import {getAlignStyle} from '../../objects/facets/Alignable'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {ComponentName} from '../enumsComponentsName'
+import {TrilogyThemeContext} from '../../context/providerTheme.native'
 
 /**
  * Icon Component
@@ -32,27 +32,27 @@ import { TrilogyThemeContext } from '../../context/providerTheme.native'
  * @param skeleton {boolean} Icon Skeleton
  */
 const Icon = ({
-  size,
-  name,
-  status,
-  circled,
-  content,
-  position,
-  stacked,
-  badgeContent,
-  statusPosition,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  align,
-  skeleton,
-  style,
-  testId,
-  ...others
-}: IconProps): JSX.Element => {
+                size,
+                name,
+                status,
+                circled,
+                content,
+                position,
+                stacked,
+                badgeContent,
+                statusPosition,
+                stretched,
+                color,
+                backgroundColor,
+                onClick,
+                align,
+                skeleton,
+                style,
+                testId,
+                ...others
+              }: IconProps): JSX.Element => {
   const {
-    theme: { icons },
+    theme: {icons},
   } = useContext(TrilogyThemeContext)
 
   const defaultSize =
@@ -64,7 +64,7 @@ const Icon = ({
     20
 
   const iconColor =
-    (color && getColorStyle(color)) || (status && getColorStyle(status)) || getColorStyle(TrilogyColor.TERTIARY)
+    (color && getColorStyle(color)) || (status && getColorStyle(status)) || getColorStyle(TrilogyColor.MAIN)
 
   const iconSkeletonRadius =
     (size === IconSize.HUGE && 50) ||
@@ -92,7 +92,7 @@ const Icon = ({
       alignItems: 'center',
     },
     icon: {
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '20deg'}]) || [{skewX: '0deg'}] : [],
     },
     stretched: {
       justifyContent: 'center',
@@ -101,7 +101,7 @@ const Icon = ({
       height: circledWidth,
       backgroundColor: iconColor,
       borderTopRightRadius: 10,
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '-20deg'}]) || [{skewX: '0deg'}] : [],
     },
     skeleton: {
       width: circledWidth,
@@ -114,20 +114,20 @@ const Icon = ({
 
   const IconSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{ opacity: 0 }} />
+      <View style={{opacity: 0}}/>
       {Platform.OS === 'android' && (
         <View>
-          {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50' />) ||
-            (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33' />) ||
-            (size === IconSize.MEDIUM && <Circle cx='23' cy='23' r='23' />) ||
-            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15' />) || <Circle cx='15' cy='15' r='15' />}
+          {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50'/>) ||
+            (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33'/>) ||
+            (size === IconSize.MEDIUM && <Circle cx='23' cy='23' r='23'/>) ||
+            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15'/>) || <Circle cx='15' cy='15' r='15'/>}
         </View>
       )}
     </ContentLoader>
   )
 
   if (skeleton) {
-    return <IconSkeleton />
+    return <IconSkeleton/>
   }
 
   let iconView: JSX.Element = <View></View>
@@ -199,7 +199,7 @@ const Icon = ({
 
   return onClick ? (
     <View style={styles.rootView} testID={testId}>
-      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
+      <TouchableOpacity style={{width: '100%'}} onPress={onClick} activeOpacity={0.85}>
         {iconView}
       </TouchableOpacity>
     </View>

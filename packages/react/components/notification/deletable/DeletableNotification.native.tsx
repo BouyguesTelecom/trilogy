@@ -1,14 +1,14 @@
 import React from 'react'
-import { Animated, StyleSheet, TouchableOpacity } from 'react-native'
-import { View } from '../../view'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { Columns, ColumnsItem } from '../../columns'
-import { Icon, IconColor, IconName, IconSize } from '../../icon'
-import { DeletableNotificationProps } from './DeletableNotificationProps'
-import { Text, TextLevels } from '../../text'
+import {Animated, StyleSheet, TouchableOpacity} from 'react-native'
+import {View} from '../../view'
+import {getColorStyle, TrilogyColor} from '../../../objects'
+import {Columns, ColumnsItem} from '../../columns'
+import {Icon, IconColor, IconName, IconSize} from '../../icon'
+import {DeletableNotificationProps} from './DeletableNotificationProps'
+import {Text, TextLevels} from '../../text'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { ClickEvent } from '../../../events/OnClickEvent'
-import { ComponentName } from '../../enumsComponentsName'
+import {ClickEvent} from '../../../events/OnClickEvent'
+import {ComponentName} from '../../enumsComponentsName'
 
 interface RightActionsProps {
   dragX: Animated.AnimatedInterpolation<'string | number'>
@@ -22,7 +22,7 @@ interface RightActionsProps {
  * @param deletable {ClickEvent | boolean} Click event, pass true if you want deletable style without swipe
  * @param read {boolean} If notification has been read
  */
-const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNotificationProps): JSX.Element => {
+const DeletableNotification = ({iconName, title, deletable, read}: DeletableNotificationProps): JSX.Element => {
   const backgroundColor = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({
@@ -91,7 +91,7 @@ const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNo
     },
   })
 
-  const RightActions = ({ dragX, onPress }: RightActionsProps) => {
+  const RightActions = ({dragX, onPress}: RightActionsProps) => {
     const scale = dragX.interpolate({
       inputRange: [-100, 0],
       outputRange: [1.5, 0.9],
@@ -99,7 +99,7 @@ const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNo
     })
     return (
       <TouchableOpacity onPress={onPress}>
-        <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
+        <Animated.View style={[styles.rightAction, {transform: [{scale}]}]}>
           <Icon
             backgroundColor={TrilogyColor.ERROR}
             color={IconColor.WHITE}
@@ -124,7 +124,7 @@ const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNo
         <Columns>
           <ColumnsItem verticalCenter size={2}>
             <Icon
-              backgroundColor={TrilogyColor.TERTIARY}
+              backgroundColor={TrilogyColor.MAIN}
               color={IconColor.WHITE}
               size={IconSize.SMALL}
               circled
@@ -133,15 +133,15 @@ const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNo
           </ColumnsItem>
           {title && (
             <ColumnsItem verticalCenter size={12}>
-              <Text style={{ color: getColorStyle(TrilogyColor.TERTIARY) }} level={TextLevels.TWO}>
+              <Text style={{color: getColorStyle(TrilogyColor.MAIN)}} level={TextLevels.TWO}>
                 {title}
               </Text>
             </ColumnsItem>
           )}
           <ColumnsItem verticalCenter size={1}>
-            <View style={{ flexDirection: 'row' }}>
-              {!read ? <View style={styles.badge} /> : null}
-              {typeof deletable !== 'boolean' && <View style={styles.swipeInfo} />}
+            <View style={{flexDirection: 'row'}}>
+              {!read ? <View style={styles.badge}/> : null}
+              {typeof deletable !== 'boolean' && <View style={styles.swipeInfo}/>}
             </View>
           </ColumnsItem>
         </Columns>
@@ -155,7 +155,7 @@ const DeletableNotification = ({ iconName, title, deletable, read }: DeletableNo
         rightActionTrigger(progress, deletable)
         return (
           <View>
-            <RightActions dragX={dragX} onPress={deletable} />
+            <RightActions dragX={dragX} onPress={deletable}/>
             {notification}
           </View>
         )

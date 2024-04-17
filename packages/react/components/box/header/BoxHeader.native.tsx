@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { BoxHeaderProps } from './BoxHeaderProps'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { ComponentName } from '../../enumsComponentsName'
+import {StyleSheet, Text, View} from 'react-native'
+import {BoxHeaderProps} from './BoxHeaderProps'
+import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * Box Header Component
@@ -15,15 +15,15 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param others
  */
 const BoxHeader = ({
-  children,
-  variant,
-  pulledRight,
-  pulledLeft,
-  centered,
-  help,
-  ...others
-}: BoxHeaderProps): JSX.Element => {
-  const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.TERTIARY)
+                     children,
+                     variant,
+                     pulledRight,
+                     pulledLeft,
+                     centered,
+                     help,
+                     ...others
+                   }: BoxHeaderProps): JSX.Element => {
+  const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({

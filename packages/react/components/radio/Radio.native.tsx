@@ -58,7 +58,7 @@ const Radio = ({
     radio: {
       flexDirection: 'row',
       alignItems: 'center',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -72,11 +72,11 @@ const Radio = ({
       borderRadius: 30,
       width: 13,
       height: 13,
-      backgroundColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,
@@ -86,7 +86,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -94,7 +94,7 @@ const Radio = ({
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? 'flex-start' : 'center',
     },
     horizontalTile: {
@@ -104,7 +104,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',

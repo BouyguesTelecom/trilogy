@@ -61,7 +61,7 @@ const Slider = ({
       fontSize: 30,
     },
     activeTextDot: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       fontSize: 30,
     },
     progressBar: {
@@ -75,13 +75,13 @@ const Slider = ({
       overflow: 'hidden',
     },
     activeProgressBar: {
-      backgroundColor: getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
       fontSize: 30,
       width: `${100 / React.Children.count(children)}%`,
       height: 6,
       borderRadius: 4,
       borderWidth: 1,
-      borderColor: getColorStyle(TrilogyColor.TERTIARY),
+      borderColor: getColorStyle(TrilogyColor.MAIN),
       overflow: 'hidden',
     },
   })

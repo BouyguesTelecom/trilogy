@@ -23,7 +23,7 @@ import {ComponentName} from '../enumsComponentsName'
 
 const Alert = ({alert, iconName, title, description, onClick, display, ...others}: AlertProps): JSX.Element => {
   const backgroundColor = getBackgroundOfVariant(alert)
-  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.TERTIARY)
+  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   let alertView: JSX.Element
 
   const styles = StyleSheet.create({
@@ -42,7 +42,7 @@ const Alert = ({alert, iconName, title, description, onClick, display, ...others
     icon: {
       justifyContent: 'center',
       alignItems: 'center',
-      color: alert !== undefined ? fontColor : getColorStyle(TrilogyColor.TERTIARY),
+      color: alert !== undefined ? fontColor : getColorStyle(TrilogyColor.MAIN),
     },
     description: {
       justifyContent: 'center',

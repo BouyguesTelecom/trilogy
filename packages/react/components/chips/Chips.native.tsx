@@ -30,7 +30,7 @@ const Chips = ({children, onClick, disabled, active, inverted, ...others}: Chips
     chips: {
       backgroundColor:
         (disabled && getColorStyle(TrilogyColor.BG_DISABLED)) ||
-        (activeItem && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
       borderRadius: 30,
@@ -49,7 +49,7 @@ const Chips = ({children, onClick, disabled, active, inverted, ...others}: Chips
       color:
         (disabled && getColorStyle(TrilogyColor.GREY_DARK)) ||
         (active && getColorStyle(TrilogyColor.WHITE)) ||
-        getColorStyle(TrilogyColor.TERTIARY),
+        getColorStyle(TrilogyColor.MAIN),
     },
     icon: {
       top: 3,

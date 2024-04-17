@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {
   AutoComplete,
   Button,
-  ButtonColor,
+  ButtonVariant,
   Columns,
   ColumnsItem,
   Container,
@@ -12,17 +12,17 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { Item } from '@trilogy-ds/react/components/autocomplete/AutoCompleteProps'
-import { InputChangeEvent, InputClickEvent } from '@trilogy-ds/react/components/input/InputProps'
-import { ButtonList, Section } from '@trilogy-ds/react'
+import {Item} from '@trilogy-ds/react/components/autocomplete/AutoCompleteProps'
+import {InputChangeEvent, InputClickEvent} from '@trilogy-ds/react/components/input/InputProps'
+import {ButtonList, Section} from '@trilogy-ds/react'
 
 const getSuggestions = async () => {
   return [
-    { label: 'name', data: { info: 1 } },
-    { label: 'age', data: { info: 2 } },
-    { label: 'car', data: { info: 3 } },
-    { label: 'test', data: { info: 4 } },
-    { label: 'trilogy', data: { info: 5 } },
+    {label: 'name', data: {info: 1}},
+    {label: 'age', data: {info: 2}},
+    {label: 'car', data: {info: 3}},
+    {label: 'test', data: {info: 4}},
+    {label: 'trilogy', data: {info: 5}},
   ]
 }
 
@@ -50,30 +50,30 @@ export const AutoCompleteScreen = (): JSX.Element => {
           getSuggestions={async (search) => {
             const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)
             const data = await res.json()
-            return data.d.map((item: any) => ({ label: item.l, data: { description: item.s } }))
+            return data.d.map((item: any) => ({label: item.l, data: {description: item.s}}))
           }}
           data={[]}
           placeholder="Marque et modèle de votre ancien téléphone"
-          onItemSelected={({ value }) => {
+          onItemSelected={({value}) => {
             console.log('value : ', value)
           }}
           inputValue={autoCompleteInputValue}
-          onChange={({ inputValue }) => setAutoCompleteInputValue(inputValue)}
+          onChange={({inputValue}) => setAutoCompleteInputValue(inputValue)}
           debounceSuggestionsTimeout={500}
         />
       </Section>
-      <Divider />
+      <Divider/>
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete custom data</Title>
         <AutoComplete<Item<{ info: number }>>
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[
-            { label: 'name', data: { info: 1 } },
-            { label: 'age', data: { info: 2 } },
-            { label: 'car', data: { info: 3 } },
-            { label: 'test', data: { info: 4 } },
-            { label: 'trilogy', data: { info: 5 } },
+            {label: 'name', data: {info: 1}},
+            {label: 'age', data: {info: 2}},
+            {label: 'car', data: {info: 3}},
+            {label: 'test', data: {info: 4}},
+            {label: 'trilogy', data: {info: 5}},
           ]}
           placeholder="Autocomplete"
           onItemSelected={(e) => console.log('itemSelected => ', e)}
@@ -82,7 +82,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           {(item) => <Text>La super info : {item.data.info}</Text>}
         </AutoComplete>
       </Section>
-      <Divider />
+      <Divider/>
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete with getSuggestions function</Title>
         <AutoComplete<Item<{ info: number }>>
@@ -97,7 +97,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           {(item) => <Text>La super info : {item.data.info}</Text>}
         </AutoComplete>
       </Section>
-      <Divider />
+      <Divider/>
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete</Title>
         <Columns>
@@ -106,8 +106,8 @@ export const AutoCompleteScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem>
             <ButtonList>
-              <Button variant={ButtonColor.SECONDARY} onClick={() => setValue('')}>reset</Button>
-              <Button variant={ButtonColor.PRIMARY}
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setValue('')}>reset</Button>
+              <Button variant={ButtonVariant.PRIMARY}
                       onClick={() => setStatus(!status)}>{status ? 'enable' : 'disable'}</Button>
             </ButtonList>
           </ColumnsItem>

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { Meta, Story } from '@storybook/react'
+import {Meta, Story} from '@storybook/react'
 import Divider from './Divider'
-import { DividerProps } from './DividerProps'
-import { IconName } from '../icon'
-import { TrilogyColor } from '../../objects'
-import { Box, BoxContent } from '../box'
+import {DividerProps} from './DividerProps'
+import {IconName} from '../icon'
+import {TrilogyColor} from '../../objects'
+import {Box, BoxContent} from '../box'
 
 export default {
   title: 'Components/Divider',
@@ -26,7 +26,7 @@ AvecUneIcône.args = {
 
 export const AvecBackground: Story<DividerProps> = (args) => <Divider {...args} />
 AvecBackground.args = {
-  backgroundColor: TrilogyColor.TERTIARY,
+  backgroundColor: TrilogyColor.MAIN,
   textColor: TrilogyColor.WHITE,
   iconName: IconName.PLUS,
 }

@@ -30,7 +30,7 @@ const SegmentControlItem = ({
       borderRadius: 4,
       alignItems: 'center',
       backgroundColor:
-        (activeItem && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
@@ -39,8 +39,8 @@ const SegmentControlItem = ({
       paddingHorizontal: 16,
       color:
         (activeItem && !inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        (!activeItem && !inverted && disabled && getColorStyle(TrilogyColor.TERTIARY)) ||
-        getColorStyle(TrilogyColor.TERTIARY),
+        (!activeItem && !inverted && disabled && getColorStyle(TrilogyColor.MAIN)) ||
+        getColorStyle(TrilogyColor.MAIN),
       marginVertical: 10,
       fontSize: 16,
       textAlign: 'center',

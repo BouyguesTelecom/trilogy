@@ -1,15 +1,16 @@
 import Color from 'color'
+
 /**
  * Trilogy color
  */
 export enum TrilogyColor {
+  FONT = 'FONT',
+  MAIN = 'MAIN',
+  ACCENT = 'ACCENT',
   SUCCESS = 'SUCCESS',
   INFO = 'INFO',
   WARNING = 'WARNING',
   ERROR = 'ERROR',
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
-  TERTIARY = 'TERTIARY',
   WHITE = 'WHITE',
   GREY = 'GREY',
   GREY_DARK = 'GREY_DARK',
@@ -47,12 +48,10 @@ export const getColorClassName = (trilogyColor?: string): string => {
       return 'warning'
     case 'ERROR':
       return 'error'
-    case 'PRIMARY':
-      return 'primary'
-    case 'SECONDARY':
-      return 'secondary'
-    case 'TERTIARY':
-      return 'tertiary'
+    case 'MAIN':
+      return 'main'
+    case 'ACCENT':
+      return 'accent'
     case 'WHITE':
       return 'white'
     case 'GREY':
@@ -83,12 +82,63 @@ export const getColorClassName = (trilogyColor?: string): string => {
 }
 
 /**
+ * Returns color button's className depending on Trilogy Color
+ * @param trilogyColor {string} - Trilogy Color
+ * @returns {string} - Variant Button value
+ */
+export const getButtonVariantClassName = (trilogyColor?: string): string => {
+  switch (trilogyColor) {
+    case 'ACCENT':
+      return 'accent'
+    case 'PRIMARY':
+      return 'main'
+    case 'SECONDARY':
+      return 'secondary'
+    case 'GHOST':
+      return 'ghost'
+    case 'SUCCESS':
+      return 'success'
+    case 'INFO':
+      return 'info'
+    case 'WARNING':
+      return 'warning'
+    case 'ERROR':
+      return 'error'
+    case 'DISABLED':
+      return 'disabled'
+    default:
+      return 'primary'
+  }
+}
+
+export const getButtonColorStyle = (buttonVariant?: string): string => {
+  switch (buttonVariant) {
+    case 'ACCENT':
+      return '#CC4E0A'
+    case 'PRIMARY':
+      return '#2D455D'
+    case 'SECONDARY':
+      return '#F5F6F8'
+    case 'GHOST':
+      return '#FFFFFF'
+    default:
+      return '#2D455D'
+  }
+}
+
+/**
  * Returns color's style depending on Trilogy Color
  * @param trilogyColor {string} - Trilogy Color
  * @returns {string} - Color style value
  */
 export const getColorStyle = (trilogyColor?: string): string => {
   switch (trilogyColor) {
+    case 'MAIN':
+      return '#2D455D'
+    case 'FONT':
+      return '#2D455D'
+    case 'ACCENT':
+      return '#CC4E0A'
     case 'SUCCESS':
       return '#007B52'
     case 'INFO':
@@ -97,12 +147,6 @@ export const getColorStyle = (trilogyColor?: string): string => {
       return '#FFBB33'
     case 'ERROR':
       return '#D42D02'
-    case 'PRIMARY':
-      return '#1A688A'
-    case 'SECONDARY':
-      return '#D44A4A'
-    case 'TERTIARY':
-      return '#333'
     case 'WHITE':
       return '#fff'
     case 'GREY':

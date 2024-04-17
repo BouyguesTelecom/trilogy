@@ -51,7 +51,7 @@ const Checkbox = ({
     checkBox: {
       alignItems: 'center',
       justifyContent: horizontalTile ? 'center' : 'flex-start',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -59,11 +59,11 @@ const Checkbox = ({
       marginRight: 10,
       marginLeft: 0,
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || 'transparent',
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || 'transparent',
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.TERTIARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,
@@ -73,7 +73,7 @@ const Checkbox = ({
       width: 126,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -81,7 +81,7 @@ const Checkbox = ({
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? 'flex-start' : 'center',
     },
     horizontalTile: {
@@ -91,7 +91,7 @@ const Checkbox = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? '#e1e1e1' : 'transparent',

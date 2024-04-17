@@ -155,7 +155,7 @@ const Input = ({
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
   const placeholderColor = getColorStyle(TrilogyColor.GREY)
-  const inputColor = getColorStyle(TrilogyColor.TERTIARY)
+  const inputColor = getColorStyle(TrilogyColor.MAIN)
 
   const [iconPassword, setIconPassword] = useState(IconName.EYE)
 

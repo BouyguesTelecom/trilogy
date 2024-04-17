@@ -56,7 +56,7 @@ const Progress = ({
     percent: {
       alignSelf: 'flex-start',
       height: height,
-      backgroundColor: getAlertStyle(alert) || getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN),
       borderRadius: 15,
     },
     progressItemFirst: {

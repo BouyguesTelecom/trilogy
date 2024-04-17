@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { OptionsItemProps } from './OptionsItemProps'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, TouchableOpacity, View} from 'react-native'
+import {OptionsItemProps} from './OptionsItemProps'
 import shortid from 'shortid'
-import { Text } from '../../text'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { OptionsItemVariant } from '../OptionsEnum'
-import { Icon, IconName, IconSize } from '../../icon'
-import { Spacer, SpacerSize } from '../../spacer'
-import { ComponentName } from '../../enumsComponentsName'
+import {Text} from '../../text'
+import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
+import {OptionsItemVariant} from '../OptionsEnum'
+import {Icon, IconName, IconSize} from '../../icon'
+import {Spacer, SpacerSize} from '../../spacer'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * Options Item Component
@@ -25,23 +25,23 @@ import { ComponentName } from '../../enumsComponentsName'
  */
 
 const OptionsItem = ({
-  id = shortid.generate(),
-  disabled,
-  name,
-  value,
-  checked,
-  iconName,
-  label,
-  readonly,
-  onClick,
-  onChange,
-  variant,
-  description,
-  ...others
-}: OptionsItemProps): JSX.Element => {
+                       id = shortid.generate(),
+                       disabled,
+                       name,
+                       value,
+                       checked,
+                       iconName,
+                       label,
+                       readonly,
+                       onClick,
+                       onChange,
+                       variant,
+                       description,
+                       ...others
+                     }: OptionsItemProps): JSX.Element => {
   const [_checked, setChecked] = useState<string | string[]>(checked || '')
   const selectedColor = TrilogyColor.INFO
-  const defaultColor = TrilogyColor.TERTIARY
+  const defaultColor = TrilogyColor.MAIN
   const disabledColor = TrilogyColor.GREY
 
   const isChecked = (checked: string | string[]) => {
@@ -146,29 +146,29 @@ const OptionsItem = ({
       <View style={styles.horizontal}>
         <View style={typeof checked === 'string' ? styles.radio : styles.checkBox}>
           {isChecked(_checked) && (
-            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK} />
+            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK}/>
           )}
         </View>
-        <Spacer size={SpacerSize.SMALL} horizontal />
+        <Spacer size={SpacerSize.SMALL} horizontal/>
         <Text style={styles.text}>{label}</Text>
-        <Spacer size={SpacerSize.SMALL} horizontal />
-        <Icon style={styles.icon} size={IconSize.SMALL} name={iconName} color={color} />
+        <Spacer size={SpacerSize.SMALL} horizontal/>
+        <Icon style={styles.icon} size={IconSize.SMALL} name={iconName} color={color}/>
       </View>
     )
   } else if (variant === OptionsItemVariant.MULTILINE && iconName) {
     optionContent = (
       <View>
-        <View style={[typeof checked === 'string' ? styles.radio : styles.checkBox, { position: 'absolute', left: 0 }]}>
+        <View style={[typeof checked === 'string' ? styles.radio : styles.checkBox, {position: 'absolute', left: 0}]}>
           {isChecked(_checked) && (
-            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK} />
+            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK}/>
           )}
         </View>
         <View style={styles.center}>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.SMALL}/>
           <View>
-            <Icon style={styles.icon} size={IconSize.MEDIUM} name={iconName} color={color} />
+            <Icon style={styles.icon} size={IconSize.MEDIUM} name={iconName} color={color}/>
           </View>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.SMALL}/>
           <Text style={styles.text}>{label}</Text>
         </View>
       </View>
@@ -178,10 +178,10 @@ const OptionsItem = ({
       <View style={styles.horizontal}>
         <View style={typeof checked === 'string' ? styles.radio : styles.checkBox}>
           {isChecked(_checked) && (
-            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK} />
+            <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK}/>
           )}
         </View>
-        <Spacer size={SpacerSize.SMALL} horizontal />
+        <Spacer size={SpacerSize.SMALL} horizontal/>
         <Text style={styles.text}>{label}</Text>
       </View>
     )

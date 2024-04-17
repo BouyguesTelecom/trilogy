@@ -1,38 +1,38 @@
-import React, { useContext } from 'react'
-import { CircleIconProps } from './CircleIconProps'
-import { View, StyleSheet } from 'react-native'
-import { IconPosition } from '../IconEnum'
-import { Text, TextLevels } from '../../text'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../../enumsComponentsName'
-import { TrilogyThemeContext } from "../../../context/providerTheme.native"
+import React, {useContext} from 'react'
+import {CircleIconProps} from './CircleIconProps'
+import {View, StyleSheet} from 'react-native'
+import {IconPosition} from '../IconEnum'
+import {Text, TextLevels} from '../../text'
+import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
+import {WithLocalSvg} from 'react-native-svg/css'
+import {ComponentName} from '../../enumsComponentsName'
+import {TrilogyThemeContext} from "../../../context/providerTheme.native"
 
 const CircleIcon = ({
-  name,
-  size,
-  color,
-  backgroundColor,
-  content,
-  circledWidth,
-  position,
-  stacked,
-}: CircleIconProps): JSX.Element => {
+                      name,
+                      size,
+                      color,
+                      backgroundColor,
+                      content,
+                      circledWidth,
+                      position,
+                      stacked,
+                    }: CircleIconProps): JSX.Element => {
   const {
-    theme: { icons },
+    theme: {icons},
   } = useContext(TrilogyThemeContext)
 
   const styles = StyleSheet.create({
     circled: {
       width: circledWidth,
       height: circledWidth,
-      backgroundColor: getColorStyle(backgroundColor) || getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getColorStyle(backgroundColor) || getColorStyle(TrilogyColor.MAIN),
       borderRadius: circledWidth,
       justifyContent: 'center',
       alignItems: 'center',
       margin: 4,
       shadowColor: 'rgba(0,0,0,.1)',
-      shadowOffset: { width: 0, height: 1 },
+      shadowOffset: {width: 0, height: 1},
       shadowOpacity: 0.8,
       shadowRadius: 2,
       elevation: 5,
@@ -67,7 +67,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </View>
       )}
 
@@ -76,7 +76,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </>
       )}
 
@@ -85,7 +85,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledH} />
+          <View style={styles.spaceTextCircledH}/>
         </>
       )}
 
@@ -94,7 +94,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </>
       )}
 
@@ -112,7 +112,7 @@ const CircleIcon = ({
 
       {position === IconPosition.LEFT && content && (
         <>
-          <View style={styles.spaceTextCircledH} />
+          <View style={styles.spaceTextCircledH}/>
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>

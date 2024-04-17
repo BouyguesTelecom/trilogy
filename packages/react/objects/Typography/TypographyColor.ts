@@ -1,9 +1,11 @@
-import { TrilogyColor, getColorStyle } from '../facets/Color'
+import {getColorStyle, TrilogyColor} from '../facets/Color'
 
 /**
  * Typo color
  */
 export enum TypographyColor {
+  TEXT_MAIN = 'has-text-main',
+  TEXT_ACCENT = 'has-text-accent',
   TEXT_PRIMARY = 'has-text-primary',
   TEXT_SECONDARY = 'has-text-secondary',
   TEXT_TERTIARY = 'has-text-tertiary',
@@ -31,18 +33,18 @@ export type TypographyColorValues = `${TypographyColor}`
  */
 export const setTypographyColor = (typo: Array<string> | string = '', inverted = false): string => {
   return (
-    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_PRIMARY)
-      ? getColorStyle(TrilogyColor.PRIMARY)
-      : typo === TypographyColor.TEXT_PRIMARY && getColorStyle(TrilogyColor.PRIMARY)) ||
+    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN)
+      ? getColorStyle(TrilogyColor.MAIN)
+      : typo === TypographyColor.TEXT_ACCENT && getColorStyle(TrilogyColor.ACCENT)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_SECONDARY)
-      ? getColorStyle(TrilogyColor.SECONDARY)
-      : typo === TypographyColor.TEXT_SECONDARY && getColorStyle(TrilogyColor.SECONDARY)) ||
+      ? getColorStyle(TrilogyColor.MAIN)
+      : typo === TypographyColor.TEXT_SECONDARY && getColorStyle(TrilogyColor.MAIN)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_INFO)
       ? getColorStyle(TrilogyColor.INFO)
       : typo === TypographyColor.TEXT_INFO && getColorStyle(TrilogyColor.INFO)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_TERTIARY)
-      ? getColorStyle(TrilogyColor.TERTIARY)
-      : typo === TypographyColor.TEXT_TERTIARY && getColorStyle(TrilogyColor.TERTIARY)) ||
+      ? getColorStyle(TrilogyColor.MAIN)
+      : typo === TypographyColor.TEXT_TERTIARY && getColorStyle(TrilogyColor.MAIN)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_QUATERNARY)
       ? getColorStyle(TrilogyColor.SUCCESS)
       : typo === TypographyColor.TEXT_QUATERNARY && getColorStyle(TrilogyColor.SUCCESS)) ||
@@ -71,6 +73,6 @@ export const setTypographyColor = (typo: Array<string> | string = '', inverted =
       ? getColorStyle(TrilogyColor.WHITE)
       : typo === TypographyColor.TEXT_WHITE && getColorStyle(TrilogyColor.WHITE)) ||
     (inverted && !typo && getColorStyle(TrilogyColor.WHITE)) ||
-    getColorStyle(TrilogyColor.TERTIARY)
+    getColorStyle(TrilogyColor.MAIN)
   )
 }

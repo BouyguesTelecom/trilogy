@@ -17,12 +17,14 @@ enum ButtonType {
 }
 
 /**
- * Button Color
+ * Button Variant
  */
-export enum ButtonColor {
-  SECONDARY = 'SECONDARY',
+
+export enum ButtonVariant {
+  ACCENT = 'ACCENT',
   PRIMARY = 'PRIMARY',
-  TERTIARY = 'TERTIARY',
+  SECONDARY = 'SECONDARY',
+  GHOST = 'GHOST'
 }
 
 /**
@@ -32,6 +34,6 @@ export type ButtonMarkupValues = `${ButtonMarkup}`
 
 export type ButtonTypeValues = `${ButtonType}`
 
-export type ButtonColorValues = `${ButtonColor}`
+export type ButtonVariantValues = `${ButtonVariant}`
 
-export { ButtonMarkup, ButtonType }
+export {ButtonMarkup, ButtonType}
