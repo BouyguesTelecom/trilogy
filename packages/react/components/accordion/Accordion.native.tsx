@@ -1,15 +1,13 @@
-import React, { createContext } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { AccordionProps } from './AccordionProps'
-import { ComponentName } from '../enumsComponentsName'
-
-export const AccordionContext = createContext({ inverted: false })
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {AccordionProps} from './AccordionProps'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Accordion Component
  * @param children {ReactNode}
  */
-const Accordion = ({  inverted, ...others }: AccordionProps): JSX.Element => {
+const Accordion = ({...others}: AccordionProps): JSX.Element => {
   const styles = StyleSheet.create({
     accordion: {
       width: '100%',
@@ -19,9 +17,7 @@ const Accordion = ({  inverted, ...others }: AccordionProps): JSX.Element => {
   })
 
   return (
-    <AccordionContext.Provider value={{ inverted: inverted || false }}>
-      <View style={styles.accordion} {...others} />
-    </AccordionContext.Provider>
+    <View style={styles.accordion} {...others} />
   )
 }
 

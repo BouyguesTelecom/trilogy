@@ -1,9 +1,9 @@
 import React from 'react'
-import { ComponentName } from '../../enumsComponentsName'
-import { BreadcrumbItemProps } from './BreadcrumbItemProps'
-import { Text } from '../../text'
-import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
-import { getColorStyle } from '../../../objects'
+import {ComponentName} from '../../enumsComponentsName'
+import {BreadcrumbItemProps} from './BreadcrumbItemProps'
+import {Text} from '../../text'
+import {Linking, StyleSheet, TouchableOpacity} from 'react-native'
+import {getColorStyle, TrilogyColor} from '../../../objects'
 
 /**
  * Breadcrumb Item Component
@@ -12,10 +12,12 @@ import { getColorStyle } from '../../../objects'
  * @param to {string} Url. Use  Router Link
  * @param onClick {Function} Click Event
  */
-const BreadcrumbItem = ({ children, active, to, testId, onClick, ...others }: BreadcrumbItemProps): JSX.Element => {
-  const { textStyle } = StyleSheet.create({
+const BreadcrumbItem = ({children, active, to, testId, onClick, ...others}: BreadcrumbItemProps): JSX.Element => {
+  const {textStyle} = StyleSheet.create({
     textStyle: {
-      color: getColorStyle(active ? 'TERTIARY' : 'SECONDARY'),
+      color: getColorStyle(TrilogyColor.FONT),
+      textDecorationLine: !active ? 'underline' : 'none',
+      textDecorationStyle: 'solid',
     },
   })
 
@@ -28,7 +30,7 @@ const BreadcrumbItem = ({ children, active, to, testId, onClick, ...others }: Br
       }}
       {...others}
     >
-      <Text style={{ ...textStyle }}>{children}</Text>
+      <Text style={{...textStyle}}>{children}</Text>
     </TouchableOpacity>
   )
 }
