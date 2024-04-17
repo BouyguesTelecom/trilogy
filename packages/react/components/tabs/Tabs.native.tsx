@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
-import { TabsProps } from './TabsProps'
-import { Text, TextLevels } from '../text'
+import React, {useState} from 'react'
+import {StyleSheet, ScrollView} from 'react-native'
+import {TabsProps} from './TabsProps'
+import {Text, TextLevels} from '../text'
 import TabsItem from './item'
-import { getColorStyle, TrilogyColor } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import {getColorStyle, TrilogyColor} from '../../objects'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Tabs Component
@@ -14,7 +14,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param disabled {boolean} Disabled tabs
  * @param inverted {boolean} dark mode
  */
-const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }: TabsProps): JSX.Element => {
+const Tabs = ({children, onClick, activeIndex, disabled, inverted, ...others}: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 
@@ -41,7 +41,7 @@ const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }:
     tabs: {
       height: isIcons ? 64 : 48,
       flexDirection: 'row',
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       overflow: 'visible',
     },
   })

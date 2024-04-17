@@ -83,7 +83,7 @@ const Link = ({
     link: {
       color:
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        getColorStyle(TrilogyColor.TERTIARY),
+        getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       textDecorationStyle: 'solid',
@@ -92,7 +92,7 @@ const Link = ({
     androidLink: {
       color:
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        getColorStyle(TrilogyColor.TERTIARY),
+        getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       height: inline && level ? getHeightLinkAndroid(level) : 'auto',

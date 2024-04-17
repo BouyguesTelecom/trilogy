@@ -1,41 +1,41 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import {render} from '@testing-library/react'
 import ProgressRadial from '../ProgressRadial'
 import ProgressRadialItem from '../item'
-import { TrilogyColor } from '../../../../objects'
+import {TrilogyColor} from '../../../../objects'
 
 describe('ProgressRadial', () => {
   it('renders the label when provided', () => {
-    const { getByText } = render(<ProgressRadial percent={50} label='Test label' />)
+    const {getByText} = render(<ProgressRadial percent={50} label='Test label'/>)
     expect(getByText('Test label')).toBeInTheDocument()
   })
 
   it('renders the description when provided', () => {
-    const { getByText } = render(<ProgressRadial percent={50} description='Test description' />)
+    const {getByText} = render(<ProgressRadial percent={50} description='Test description'/>)
     expect(getByText('Test description')).toBeInTheDocument()
   })
 
   it('renders with default props', () => {
-    const { container } = render(<ProgressRadialItem color={TrilogyColor.SECONDARY} percent={20}></ProgressRadialItem>)
+    const {container} = render(<ProgressRadialItem color={TrilogyColor.MAIN} percent={20}></ProgressRadialItem>)
     expect(container.firstChild).toHaveClass('progress-circle-slice')
   })
 
   it('renders with custom color', () => {
-    const { container } = render(<ProgressRadialItem color={TrilogyColor.SECONDARY} percent={20} />)
+    const {container} = render(<ProgressRadialItem color={TrilogyColor.MAIN} percent={20}/>)
     expect(container.firstChild).toHaveClass('progress-circle-background-SECONDARY')
   })
 
   it('renders with custom className', () => {
-    const { container } = render(
-      <ProgressRadialItem color={TrilogyColor.SECONDARY} className='custom-class' percent={20} />,
+    const {container} = render(
+      <ProgressRadialItem color={TrilogyColor.MAIN} className='custom-class' percent={20}/>,
     )
     expect(container.firstChild).toHaveClass('custom-class')
   })
 
   it('renders with children', () => {
-    const { getByText } = render(
+    const {getByText} = render(
       <ProgressRadial stacked label='Test label'>
-        <ProgressRadialItem color='warning' percent={20} />
+        <ProgressRadialItem color='warning' percent={20}/>
       </ProgressRadial>,
     )
     expect(getByText('Test label')).toBeInTheDocument()

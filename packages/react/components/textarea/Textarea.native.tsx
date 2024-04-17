@@ -62,7 +62,7 @@ const Textarea = (
   const [height, setHeight] = useState<number>(customHeight)
 
   const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
-  const textareaColor = isFocus ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.GREY_LIGHT)
+  const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -92,7 +92,7 @@ const Textarea = (
       paddingRight: maxLength ? 48 : 16,
       paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
       textAlignVertical: 'top',
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : getColorStyle(TrilogyColor.WHITE),
       /*  width: '',*/
     },
@@ -109,7 +109,7 @@ const Textarea = (
     },
     counter: {
       fontSize: 10,
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       position: 'absolute',
       bottom: help ? 24 : 8,
       right: 8,

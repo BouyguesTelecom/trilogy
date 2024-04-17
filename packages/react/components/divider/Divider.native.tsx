@@ -59,7 +59,7 @@ const Divider = ({
     },
     textContent: {
       textAlign: 'center',
-      color: textColor ? getColorStyle(textColor) : getColorStyle(TrilogyColor.TERTIARY),
+      color: textColor ? getColorStyle(textColor) : getColorStyle(TrilogyColor.MAIN),
     },
   })
 

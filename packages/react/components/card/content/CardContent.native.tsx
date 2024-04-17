@@ -13,7 +13,7 @@ import {ComponentName} from '../../enumsComponentsName'
  * @param titleSup {string} Add a sup title
  * @param title {string} Add a title
  * @param buttonText {string} if textButton, it will add a Button with content text
- * @param buttonVariant {ButtonColor} Add variant for Button - Default is primary
+ * @param buttonVariant {ButtonVariant} Add variant for Button - Default is primary
  * @param buttonClick {Function} Click event for Button
  * @param text {string} Content text of Card
  * @param onClick {Function} onClick Event for all content
@@ -50,7 +50,7 @@ const CardContent = ({
       width: '100%',
     },
     text: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       fontSize: 12,
     },
     padding: {

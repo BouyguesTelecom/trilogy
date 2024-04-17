@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, Platform, View } from 'react-native'
-import { StickerProps } from './StickerProps'
-import { getAlertStyle, getColorStyle, getVariantStyle, TrilogyColor } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import {StyleSheet, Text, Platform, View} from 'react-native'
+import {StickerProps} from './StickerProps'
+import {getAlertStyle, getColorStyle, getVariantStyle, TrilogyColor} from '../../objects'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Sticker Native component
@@ -15,22 +15,22 @@ import { ComponentName } from '../enumsComponentsName'
  * @param others
  */
 const Sticker = ({
-  children,
-  /* deprecated*/
-  variant,
-  /* deprecated*/
-  alert,
-  small,
-  /* deprecated*/
-  stretched,
-  hat,
-  /* deprecated*/
-  inverted,
-  flag,
-  outlined,
-  ...others
-}: StickerProps): JSX.Element => {
-  const defaultColor = getColorStyle(TrilogyColor.TERTIARY)
+                   children,
+                   /* deprecated*/
+                   variant,
+                   /* deprecated*/
+                   alert,
+                   small,
+                   /* deprecated*/
+                   stretched,
+                   hat,
+                   /* deprecated*/
+                   inverted,
+                   flag,
+                   outlined,
+                   ...others
+                 }: StickerProps): JSX.Element => {
+  const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
       justifyContent: 'center',
@@ -56,7 +56,7 @@ const Sticker = ({
       top: hat ? 4 : 0,
     },
     stretched: {
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '-20deg'}]) || [{skewX: '0deg'}] : [],
       justifyContent: 'center',
       alignItems: 'center',
       height: 35,
@@ -71,7 +71,7 @@ const Sticker = ({
       alignItems: 'center',
       fontWeight: 'bold',
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '20deg'}]) || [{skewX: '0deg'}] : [],
     },
     stretchedAndroid: {
       justifyContent: 'center',

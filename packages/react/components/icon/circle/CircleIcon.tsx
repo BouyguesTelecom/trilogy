@@ -1,19 +1,19 @@
 import React from 'react'
-import { IconProps } from '../IconProps'
-import { IconStatus } from '../IconEnum'
-import { getStatusBackground, has, is } from '../../../services/index'
-import { getBackgroundClassName, getTextClassName, TrilogyColor } from '../../../objects'
+import {IconProps} from '../IconProps'
+import {IconStatus} from '../IconEnum'
+import {getStatusBackground, has, is} from '../../../services/index'
+import {getBackgroundClassName, getTextClassName, TrilogyColor} from '../../../objects'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import {hashClass} from '../../../helpers'
+import {useTrilogyContext} from '../../../context'
 
-const CircleIcon = ({ className, name, status, size, color, backgroundColor, testId }: IconProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const CircleIcon = ({className, name, status, size, color, backgroundColor, testId}: IconProps): JSX.Element => {
+  const {styled} = useTrilogyContext()
 
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
     getStatusBackground(status || '', IconStatus.TERTIARY) ||
-    has(getBackgroundClassName(TrilogyColor.TERTIARY))
+    has(getBackgroundClassName(TrilogyColor.MAIN))
 
   const classes = hashClass(
     styled,
@@ -32,7 +32,7 @@ const CircleIcon = ({ className, name, status, size, color, backgroundColor, tes
 
   return (
     <span className={classes} data-testid={testId}>
-      <i className={circledIconClasses} />
+      <i className={circledIconClasses}/>
     </span>
   )
 }

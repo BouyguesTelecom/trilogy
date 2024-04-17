@@ -37,9 +37,9 @@ const Otp = ({
   const [focused, setFocused] = useState(false)
   const color =
     (disabled && getColorStyle(TrilogyColor.GREY)) ||
-    (activated && getColorStyle(TrilogyColor.TERTIARY)) ||
+    (activated && getColorStyle(TrilogyColor.MAIN)) ||
     (error && getColorStyle(TrilogyColor.ERROR)) ||
-    (focused && getColorStyle(TrilogyColor.TERTIARY)) ||
+    (focused && getColorStyle(TrilogyColor.MAIN)) ||
     getColorStyle(TrilogyColor.GREY)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Otp = ({
     inputContainer: {
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY)) ||
-        (activated && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (activated && getColorStyle(TrilogyColor.MAIN)) ||
         (error && getColorStyle(TrilogyColor.ERROR)) ||
         getColorStyle(TrilogyColor.GREY),
       borderWidth: 1,
@@ -111,7 +111,7 @@ const Otp = ({
     currentInput: {
       width: 15,
       height: 1,
-      backgroundColor: (focused && getColorStyle(TrilogyColor.TERTIARY)) || 'transparent',
+      backgroundColor: (focused && getColorStyle(TrilogyColor.MAIN)) || 'transparent',
     },
     text: {
       paddingLeft: 5,

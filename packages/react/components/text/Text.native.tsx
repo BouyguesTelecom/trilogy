@@ -52,7 +52,7 @@ const Text = ({
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
         (!skeleton && setTypographyColor(typo, inverted)) ||
-        (link && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (link && getColorStyle(TrilogyColor.MAIN)) ||
         'transparent',
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.4,

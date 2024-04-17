@@ -34,8 +34,8 @@ const TabsItem = ({
       return TrilogyColor.WHITE
     }
     if (disabled) return TrilogyColor.GREY
-    if (active) return TrilogyColor.TERTIARY
-    return TrilogyColor.TERTIARY
+    if (active) return TrilogyColor.MAIN
+    return TrilogyColor.MAIN
   }, [inverted, disabled, active])
 
   const styles = StyleSheet.create({
@@ -48,12 +48,12 @@ const TabsItem = ({
       position: 'relative',
     },
     text: {
-      color: isPressIn && !inverted && !disabled ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(getIconColor),
+      color: isPressIn && !inverted && !disabled ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(getIconColor),
       textAlign: 'center',
     },
     activeBar: {
       height: 2,
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
       width: '100%',
       position: 'absolute',
       bottom: 4,

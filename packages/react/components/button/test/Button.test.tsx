@@ -1,19 +1,19 @@
 // Dependencies
 import React from 'react'
-import { getEnumNames } from '../../../helpers/index'
-import { is } from '../../../services/index'
+import {getEnumNames} from '../../../helpers/index'
+import {is} from '../../../services/index'
 
 // Testing methods
-import { fireEvent, render, screen } from '@testing-library/react'
+import {fireEvent, render, screen} from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Button, ButtonColor, ButtonMarkup } from '../'
-import { getColorClassName } from '../../..'
+import {Button, ButtonVariant, ButtonMarkup} from '../'
+import {getColorClassName} from '../../..'
 
 describe('Button component', () => {
   test('should have "button" className', () => {
-    render(<Button />)
+    render(<Button/>)
 
     expect(screen.getByRole('button')).toBeInTheDocument()
     expect(screen.getByRole('button')).toHaveClass('button')
@@ -70,7 +70,7 @@ describe('Button component', () => {
   })
 
   test('should have a correct variant className', () => {
-    getEnumNames(ButtonColor).forEach((element) => {
+    getEnumNames(ButtonVariant).forEach((element) => {
       render(<Button variant={element}>{element}</Button>)
       expect(screen.getByText(element)).toHaveClass(is(getColorClassName(element)))
     })
@@ -112,7 +112,7 @@ describe('Button component', () => {
 
   test('should be disabled with input tag', () => {
     const mockCallBack = jest.fn()
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <Button testId='btn' markup='input' disabled onClick={mockCallBack}>
         DEFAULT
       </Button>,
@@ -125,7 +125,7 @@ describe('Button component', () => {
 
   test('should be disabled with <a> tag', () => {
     const mockCallBack = jest.fn()
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <Button testId='btn' markup='a' disabled onClick={mockCallBack}>
         DEFAULT
       </Button>,
@@ -137,7 +137,7 @@ describe('Button component', () => {
 
   test('should execute onclick with input tag', () => {
     const mockCallBack = jest.fn()
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <Button testId='btn' markup='input' onClick={mockCallBack}>
         DEFAULT
       </Button>,
@@ -148,7 +148,7 @@ describe('Button component', () => {
   })
 
   test('should be routerlink', () => {
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <Button routerLink='a' to='test' testId='btn' markup='a'>
         DEFAULT
       </Button>,
@@ -167,7 +167,7 @@ describe('Button component', () => {
           className={'className'}
           id={'id'}
           disabled={false}
-          variant={ButtonColor.TERTIARY}
+          variant={ButtonVariant.TERTIARY}
           fullwidth={true}
         >
           SnapShot

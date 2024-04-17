@@ -5,7 +5,7 @@ import {
   Columns,
   ColumnsItem,
   ButtonList,
-  ButtonColor,
+  ButtonVariant,
   Box,
   BoxContent,
   Text,
@@ -31,7 +31,9 @@ export const TextScreen = (): JSX.Element => {
         illo inventore minima optio pariatur ratione similique suscipit vero. Accusamus dicta impedit laudantium neque
         nulla!
         <Text link onClick={(e) => console.log(e)}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur consequuntur dicta esse eum inventore, ipsum magnam minima modi nobis nulla placeat quas qui saepe voluptate voluptates voluptatibus. Doloribus, unde?
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur consequuntur dicta esse eum
+          inventore, ipsum magnam minima modi nobis nulla placeat quas qui saepe voluptate voluptates voluptatibus.
+          Doloribus, unde?
         </Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem culpa, dignissimos distinctio, eum in ipsum
         magni nihil officia pariatur perferendis, recusandae rem reprehenderit. Aliquid eius expedita quasi quia
@@ -41,7 +43,7 @@ export const TextScreen = (): JSX.Element => {
         <ColumnsItem centered>
           <Text>Mon texte</Text>
           <ButtonList>
-            <Button variant={ButtonColor.PRIMARY}>
+            <Button variant={ButtonVariant.PRIMARY}>
               <Text>Centered button</Text>
             </Button>
           </ButtonList>

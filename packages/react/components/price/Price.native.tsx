@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { PriceProps } from './PriceProps'
-import { PriceVariant, PriceLevel } from './PriceEnum'
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor } from '../../objects'
-import { checkCents } from './PriceHelpers'
-import { ComponentName } from '../enumsComponentsName'
+import React, {useMemo} from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import {PriceProps} from './PriceProps'
+import {PriceVariant, PriceLevel} from './PriceEnum'
+import {Alignable, getAlertStyle, getColorStyle, TrilogyColor} from '../../objects'
+import {checkCents} from './PriceHelpers'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Price Component
@@ -25,23 +25,23 @@ import { ComponentName } from '../enumsComponentsName'
  * @param suptitle {string} Price Suptitle
  */
 const Price = ({
-  variant,
-  amount,
-  mention,
-  period,
-  showCents,
-  level,
-  huge,
-  inverted,
-  align,
-  alert,
-  inline,
-  testId,
-  accessibilityLabel,
-  striked,
-  suptitle,
-  ...others
-}: PriceProps): JSX.Element => {
+                 variant,
+                 amount,
+                 mention,
+                 period,
+                 showCents,
+                 level,
+                 huge,
+                 inverted,
+                 align,
+                 alert,
+                 inline,
+                 testId,
+                 accessibilityLabel,
+                 striked,
+                 suptitle,
+                 ...others
+               }: PriceProps): JSX.Element => {
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
   // Math.floor on negative decimal decrease its value (as expected), ex: Math.floor(-17.09) => -18
@@ -59,8 +59,8 @@ const Price = ({
 
   const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
 
-  const primaryColor = getColorStyle(TrilogyColor.TERTIARY)
-  const secondaryColor = getColorStyle(TrilogyColor.SECONDARY)
+  const primaryColor = getColorStyle(TrilogyColor.MAIN)
+  const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.WHITE)
 
   const priceLevel =
@@ -182,7 +182,7 @@ const Price = ({
         (variant === PriceVariant.SECONDARY && secondaryColor) ||
         primaryColor,
       width: period ? '96%' : '100%',
-      transform: [{ rotate: inline ? '-10deg' : strikedRotateByLevel() }],
+      transform: [{rotate: inline ? '-10deg' : strikedRotateByLevel()}],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -211,7 +211,7 @@ const Price = ({
         {...others}
       >
         {inline ? (
-          <View style={[styles.priceContainer, { flexDirection: 'row' }]}>
+          <View style={[styles.priceContainer, {flexDirection: 'row'}]}>
             {striked && <Text style={styles.striked}></Text>}
             <Text style={styles.price}>
               {whole}€{showCents && cents}
@@ -222,7 +222,7 @@ const Price = ({
             </Text>
           </View>
         ) : (
-          <View style={[{ flexDirection: 'row' }]}>
+          <View style={[{flexDirection: 'row'}]}>
             {striked && <Text style={styles.striked}></Text>}
             <View style={styles.priceContainer}>
               <Text style={styles.price}>{`${whole}`}</Text>

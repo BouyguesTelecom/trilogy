@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { BadgeProps } from './BadgeProps'
-import { BadgeTextDirection, BadgeColor } from './BadgeEnum'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {BadgeProps} from './BadgeProps'
+import {BadgeTextDirection, BadgeColor} from './BadgeEnum'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Badge Native Component
@@ -14,7 +14,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onClick {Function} onClick Event for Badge
  * @param color {BadgeColor} Change color for Badge
  */
-const Badge = ({ children, textContent, content, direction, color, onClick, ...others }: BadgeProps): JSX.Element => {
+const Badge = ({children, textContent, content, direction, color, onClick, ...others}: BadgeProps): JSX.Element => {
   const badgeColor = color ? getColorStyle(color) : getColorStyle(BadgeColor.SECONDARY)
   const textColor = getColorStyle(TrilogyColor.WHITE)
 
@@ -39,7 +39,7 @@ const Badge = ({ children, textContent, content, direction, color, onClick, ...o
       fontSize: 15,
       marginRight: 5,
       marginLeft: 5,
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
     },
   })
 

@@ -1,14 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TableTdProps } from './TableTdProps'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { ComponentName } from '../../enumsComponentsName'
+import {StyleSheet, Text, View} from 'react-native'
+import {TableTdProps} from './TableTdProps'
+import {getColorStyle, TrilogyColor} from '../../../objects'
+import {ComponentName} from '../../enumsComponentsName'
 
 /**
  * Table TD Component
  * @param children {ReactNode} Table TD children
  */
-const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
+const TableTd = ({children, ...others}: TableTdProps): JSX.Element => {
   const styles = StyleSheet.create({
     table: {
       flexDirection: 'column',
@@ -20,7 +20,7 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
       borderRightColor: getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     text: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
     },
   })
 

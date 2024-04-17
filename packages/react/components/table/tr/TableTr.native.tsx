@@ -4,6 +4,7 @@ import {TableTrPropsNative} from './TableTrProps'
 import {View} from '../../view'
 import {Text, TextLevels} from '../../text'
 import {ComponentName} from '../../enumsComponentsName'
+import {getColorStyle, TrilogyColor} from '../../../objects';
 
 /**
  * TableTr Component

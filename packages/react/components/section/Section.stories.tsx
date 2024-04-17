@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Meta, Story } from '@storybook/react'
+import {Meta, Story} from '@storybook/react'
 import Section from './Section'
-import { SectionProps } from './SectionProps'
-import { TrilogyColor } from '../../objects'
-import { Title, TitleLevels } from '../title'
+import {SectionProps} from './SectionProps'
+import {TrilogyColor} from '../../objects'
+import {Title, TitleLevels} from '../title'
 
 export default {
   title: 'Components/Section',
@@ -45,7 +45,7 @@ export const CouleurDeFond: Story<SectionProps> = (args) => (
   </Section>
 )
 CouleurDeFond.args = {
-  background: TrilogyColor.TERTIARY,
+  background: TrilogyColor.MAIN,
 }
 
 export const ImageDeFond: Story<SectionProps> = (args) => (

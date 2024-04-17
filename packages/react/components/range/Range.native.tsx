@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { RangeProps } from './RangeProps'
+import {StyleSheet, View} from 'react-native'
+import {RangeProps} from './RangeProps'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import { Text, TextLevels } from '../text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import {Text, TextLevels} from '../text'
+import {getColorStyle, TrilogyColor, TypographyBold} from '../../objects'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Range Component
@@ -24,7 +24,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param valueCursorMin {number} number of input min
  * @param valueCursorMax {number} number of input max
  */
-const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onChange }: RangeProps): JSX.Element => {
+const Range = ({min, max, label, labelValueCursorMin, labelValueCursorMax, onChange}: RangeProps): JSX.Element => {
   const [values, setValues] = React.useState<number[]>([0, 100])
   const [width, setWidth] = React.useState<number>(0)
 
@@ -43,7 +43,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
       shadowRadius: 3.84,
       elevation: 5,
     },
-    markerLabels: { flexDirection: 'row', justifyContent: 'space-between', marginTop: -6 },
+    markerLabels: {flexDirection: 'row', justifyContent: 'space-between', marginTop: -6},
   })
 
   const Marker = (): JSX.Element => <View style={styles.marker}></View>
@@ -51,11 +51,11 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
   return (
     <View
       onLayout={(event) => {
-        const { width } = event.nativeEvent.layout
+        const {width} = event.nativeEvent.layout
         setWidth(width)
       }}
     >
-      <View style={{ marginBottom: -4 }}>
+      <View style={{marginBottom: -4}}>
         <Text level={TextLevels.THREE}>{label && label}</Text>
       </View>
 
@@ -64,7 +64,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
         sliderLength={width}
         onValuesChange={(e) => {
           setValues(e)
-          onChange && onChange({ inputName: 'range', inputValue: e })
+          onChange && onChange({inputName: 'range', inputValue: e})
         }}
         min={min}
         max={max}
@@ -73,7 +73,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
         snapped
         customMarker={Marker}
         selectedStyle={{
-          backgroundColor: getColorStyle(TrilogyColor.SECONDARY),
+          backgroundColor: getColorStyle(TrilogyColor.MAIN),
           height: 4,
         }}
         unselectedStyle={{
@@ -82,7 +82,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
         }}
       />
       <View style={styles.markerLabels}>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{flexDirection: 'row'}}>
           <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
             {values[0]}
           </Text>
@@ -93,7 +93,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
           )}
         </View>
 
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{flexDirection: 'row'}}>
           <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
             {values[1]}
           </Text>

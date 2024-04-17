@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { setTypographyAlign, setTypographyColor } from '../../objects'
-import { TitleProps } from './TitleProps'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import {StyleSheet, Text, TouchableOpacity, View, Platform} from 'react-native'
+import ContentLoader, {Rect} from 'react-content-loader/native'
+import {setTypographyAlign, setTypographyColor} from '../../objects'
+import {TitleProps} from './TitleProps'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {ComponentName} from '../enumsComponentsName'
 
 /**
  * Title Native Component
@@ -20,19 +20,19 @@ import { ComponentName } from '../enumsComponentsName'
  */
 
 const Title = ({
-  children,
-  level,
-  style,
-  inverted,
-  typo,
-  onClick,
-  skeleton,
-  testId,
-  accessibilityLabel,
-  subtitle,
-  overline,
-  ...others
-}: TitleProps): JSX.Element => {
+                 children,
+                 level,
+                 style,
+                 inverted,
+                 typo,
+                 onClick,
+                 skeleton,
+                 testId,
+                 accessibilityLabel,
+                 subtitle,
+                 overline,
+                 ...others
+               }: TitleProps): JSX.Element => {
   const titlesLevels = () => {
     switch (level) {
       case 'ONE':
@@ -73,7 +73,7 @@ const Title = ({
     text: {
       fontFamily: getFontFamily(),
       fontSize: titlesLevels(),
-      color: (((overline || subtitle) && !level) && getColorStyle(TrilogyColor.SECONDARY))
+      color: (((overline || subtitle) && !level) && getColorStyle(TrilogyColor.MAIN))
         || (!skeleton && setTypographyColor(typo, inverted)) ||
         'transparent',
       textAlign: setTypographyAlign(typo),
@@ -94,8 +94,8 @@ const Title = ({
   const titleAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
-    ? children
-    : undefined
+      ? children
+      : undefined
 
   let titleView = (
     <Text
@@ -116,7 +116,7 @@ const Title = ({
         {titleView}
         {Platform.OS === 'android' && (
           <View>
-            <Rect rx='15' ry='15' width='100%' height='100%' />
+            <Rect rx='15' ry='15' width='100%' height='100%'/>
           </View>
         )}
       </ContentLoader>

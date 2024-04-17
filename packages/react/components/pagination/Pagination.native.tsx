@@ -98,7 +98,7 @@ const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}:
       // marginRight: 12,
     },
     rounded: {
-      backgroundColor: getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
       width: 30,
       height: 30,
       borderRadius: 30,
@@ -110,7 +110,7 @@ const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}:
     },
     currentPage: {
       fontSize: 18,
-      color: getColorStyle(TrilogyColor.SECONDARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       fontWeight: '500',
       alignSelf: 'center',
       alignItems: 'center',

@@ -30,7 +30,7 @@ const Fab = ({
              }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 16,
