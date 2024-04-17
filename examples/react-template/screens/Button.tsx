@@ -10,49 +10,49 @@ import {
   Spacer,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import React from 'react'
+} from "@trilogy-ds/react/components";
+import React from "react";
 
 const Separator = () => {
   return (
     <>
-      <Spacer size={10}/>
-      <Divider/>
-      <Spacer size={50}/>
+      <Spacer size={10} />
+      <Divider />
+      <Spacer size={50} />
     </>
-  )
-}
+  );
+};
 
 export const ButtonScreen = (): JSX.Element => {
   return (
     <AutoLayout>
       {/*  ======== variants ======== */}
       <Title level={TitleLevels.TWO}>Variant </Title>
-      <Spacer size={10}/>
-      {Object.values(ButtonVariant).map((variant, index) => {
-        return (
-          <Button variant={variant} fullwidth>
-            {variant}
-          </Button>
-        )
-      })}
-      <Separator/>
+      <Spacer size={10} />
+      <ButtonList>
+        {Object.values(ButtonVariant).map((variant, index) => {
+          return <Button variant={variant}>{variant}</Button>;
+        })}
+      </ButtonList>
+      <Separator />
 
       {/*  ======== loading & variant ======== */}
       <Title level={TitleLevels.TWO}>loading + variant </Title>
-      <Spacer size={10}/>
-      {Object.values(ButtonVariant).map((color, index) => {
-        return (
-          <Button variant={color} fullwidth loading>
-            {color}
-          </Button>
-        )
-      })}
-      <Separator/>
+      <Spacer size={10} />
+      <ButtonList>
+        {Object.values(ButtonVariant).map((color, index) => {
+          return (
+            <Button variant={color} loading>
+              {color}
+            </Button>
+          );
+        })}
+      </ButtonList>
+      <Separator />
 
       {/*  ======== disabled & variant ======== */}
       <Title level={TitleLevels.TWO}>disabled + variant </Title>
-      <Spacer size={10}/>
+      <Spacer size={10} />
       <Columns inlined>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
@@ -61,36 +61,36 @@ export const ButtonScreen = (): JSX.Element => {
                 {color}
               </Button>
             </ColumnsItem>
-          )
+          );
         })}
       </Columns>
-      <Separator/>
+      <Separator />
 
       {/*  ======== fullwidth ======== */}
       <Title level={TitleLevels.TWO}>fullwidth </Title>
-      <Spacer size={10}/>
-      <Button fullwidth variant={'PRIMARY'}>
+      <Spacer size={10} />
+      <Button fullwidth variant={"PRIMARY"}>
         Cliquer
       </Button>
-      <Separator/>
+      <Separator />
 
       {/*  ======== icons ======== */}
       <Title level={TitleLevels.TWO}>iconName </Title>
-      <Spacer size={10}/>
+      <Spacer size={10} />
       <ButtonList>
-        <Button iconName={IconName.TIMES} variant={'ACCENT'}>
+        <Button iconName={IconName.TIMES} variant={"ACCENT"}>
           Icon Accent
         </Button>
-        <Button iconName={IconName.ARROW_DOWN} variant={'PRIMARY'}>
+        <Button iconName={IconName.ARROW_DOWN} variant={"PRIMARY"}>
           Icon Primary
         </Button>
-        <Button iconName={IconName.EYE} variant={'SECONDARY'}>
+        <Button iconName={IconName.EYE} variant={"SECONDARY"}>
           Icon Secondary
         </Button>
-        <Button iconName={IconName.SEARCH} variant={'GHOST'}>
+        <Button iconName={IconName.SEARCH} variant={"GHOST"}>
           Icon Ghost
         </Button>
       </ButtonList>
     </AutoLayout>
-  )
-}
+  );
+};

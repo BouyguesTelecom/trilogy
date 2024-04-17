@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import shortid from 'shortid'
-import {CheckboxProps} from './CheckboxProps'
-import clsx from 'clsx'
-import {hashClass} from '../../helpers'
-import {Icon, IconSize} from '../icon'
-import {has, is} from '../../services'
-import {useTrilogyContext} from '../../context'
+import React, {useEffect, useState} from "react";
+import shortid from "shortid";
+import {CheckboxProps} from "./CheckboxProps";
+import clsx from "clsx";
+import {hashClass} from "../../helpers";
+import {Icon, IconSize} from "../icon";
+import {has, is} from "../../services";
+import {useTrilogyContext} from "../../context";
 
 /**
  * Checkbox Component
@@ -25,59 +25,62 @@ import {useTrilogyContext} from '../../context'
  * @param value {string} Value for checkbox
  */
 const Checkbox = ({
-                    checked,
-                    className,
-                    disabled,
-                    readonly,
-                    id = shortid.generate(),
-                    label,
-                    onChange,
-                    onClick,
-                    name,
-                    value,
-                    tile,
-                    description,
-                    iconTile,
-                    horizontalTile,
-                    inverted,
-                    testId,
-                    ...others
-                  }: CheckboxProps): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  checked,
+  className,
+  disabled,
+  readonly,
+  id = shortid.generate(),
+  label,
+  onChange,
+  onClick,
+  name,
+  value,
+  tile,
+  description,
+  iconTile,
+  horizontalTile,
+  inverted,
+  testId,
+  ...others
+}: CheckboxProps): JSX.Element => {
+  const { styled } = useTrilogyContext();
 
-  const [_checked, setChecked] = useState<boolean>(checked || false)
+  const [_checked, setChecked] = useState<boolean>(checked || false);
 
   useEffect(() => {
     if (!readonly) {
-      setChecked(checked || false)
+      setChecked(checked || false);
     }
-  }, [checked, readonly])
+  }, [checked, readonly]);
 
   const classes = hashClass(
     styled,
     clsx(
-      'input',
-      is('checkradio'),
-      is('info'),
-      is('hidden'),
-      inverted && is('inverted'),
-      className && !className.includes(is('inverted')) && has('background-color'),
-      className,
-    ),
-  )
+      "input",
+      is("checkradio"),
+      is("info"),
+      is("hidden"),
+      inverted && is("inverted"),
+      className &&
+        !className.includes(is("inverted")) &&
+        has("background-color"),
+      className
+    )
+  );
 
-  const labelClasses = hashClass(
-    styled,
-    clsx(checked && has('text-info')),
-  )
+  const labelClasses = hashClass(styled, clsx(checked && has("text-info")));
 
   // Support legacy checkbox
   if (inverted) {
     return (
-      <div className={hashClass(styled, clsx(disabled && is('disabled')))}>
+      <div
+        tabIndex={0}
+        className={hashClass(styled, clsx(disabled && is("disabled")))}
+      >
         <input
+          aria-checked={checked}
           className={classes}
-          type='checkbox'
+          type="checkbox"
           readOnly={readonly}
           id={id}
           data-testid={testId}
@@ -86,21 +89,21 @@ const Checkbox = ({
           value={value}
           checked={readonly ? checked : _checked}
           onChange={(e: React.ChangeEvent) => {
-            return e
+            return e;
           }}
           onClick={(e: React.MouseEvent) => {
-            const target = e.target as HTMLInputElement
+            const target = e.target as HTMLInputElement;
             if (!readonly && target.checked !== undefined) {
-              setChecked(target.checked)
+              setChecked(target.checked);
             }
-            target.value = value || ''
+            target.value = value || "";
             if (onChange) {
               onChange({
                 checkboxId: target.id,
                 checkboxValue: target.value,
                 checkboxName: target.name,
                 checkboxChecked: target.checked,
-              })
+              });
             }
             if (onClick) {
               onClick({
@@ -108,7 +111,7 @@ const Checkbox = ({
                 checkboxValue: target.value,
                 checkboxName: target.name,
                 checkboxChecked: target.checked,
-              })
+              });
             }
           }}
           {...others}
@@ -117,18 +120,24 @@ const Checkbox = ({
           {label}
         </label>
       </div>
-    )
+    );
   }
 
   return (
     <div
       className={hashClass(
         styled,
-        clsx(tile ? 'checkbox-tile' : 'checkbox', horizontalTile && is('horizontal'), className),
+        clsx(
+          tile ? "checkbox-tile" : "checkbox",
+          horizontalTile && is("horizontal"),
+          className
+        )
       )}
+      tabIndex={0}
     >
       <input
-        type='checkbox'
+        aria-checked={checked}
+        type="checkbox"
         readOnly={readonly}
         id={id}
         data-testid={testId}
@@ -137,21 +146,21 @@ const Checkbox = ({
         value={value}
         checked={readonly ? checked : _checked}
         onChange={(e: React.ChangeEvent) => {
-          return e
+          return e;
         }}
         onClick={(e: React.MouseEvent) => {
-          const target = e.target as HTMLInputElement
+          const target = e.target as HTMLInputElement;
           if (!readonly && target.checked !== undefined) {
-            setChecked(target.checked)
+            setChecked(target.checked);
           }
-          target.value = value || ''
+          target.value = value || "";
           if (onChange) {
             onChange({
               checkboxId: target.id,
               checkboxValue: target.value,
               checkboxName: target.name,
               checkboxChecked: target.checked,
-            })
+            });
           }
           if (onClick) {
             onClick({
@@ -159,31 +168,47 @@ const Checkbox = ({
               checkboxValue: target.value,
               checkboxName: target.name,
               checkboxChecked: target.checked,
-            })
+            });
           }
         }}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
-        {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM}/>}
+      <label htmlFor={id} className={hashClass(styled, clsx("checkbox-label"))}>
+        {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM} />}
         {horizontalTile ? (
           <span>
-            {tile ? <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span> : label}
+            {tile ? (
+              <span className={hashClass(styled, clsx("checkbox-title"))}>
+                {label}
+              </span>
+            ) : (
+              label
+            )}
             {tile && description && (
-              <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>
+              <span className={hashClass(styled, clsx("checkbox-description"))}>
+                {description}
+              </span>
             )}
           </span>
         ) : (
           <>
-            {tile ? <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span> : label}
+            {tile ? (
+              <span className={hashClass(styled, clsx("checkbox-title"))}>
+                {label}
+              </span>
+            ) : (
+              label
+            )}
             {tile && description && (
-              <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>
+              <span className={hashClass(styled, clsx("checkbox-description"))}>
+                {description}
+              </span>
             )}
           </>
         )}
       </label>
     </div>
-  )
-}
+  );
+};
 
-export default Checkbox
+export default Checkbox;

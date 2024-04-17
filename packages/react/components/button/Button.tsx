@@ -1,14 +1,13 @@
-import React from 'react'
-import clsx from 'clsx'
-import {is} from '../../services/index'
-import {Loading, LoadingValues} from '../../objects/facets/Loadable'
-import {getButtonVariantClassName} from '../../objects/facets/Color'
-import {ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues} from './ButtonEnum'
-import {ButtonProps} from './ButtonProps'
-import {hashClass} from '../../helpers'
-import {useTrilogyContext} from '../../context'
-import {Icon} from "../icon"
-import {VariantState} from "../../objects"
+import React from "react";
+import clsx from "clsx";
+import {is} from "../../services/index";
+import {Loading, LoadingValues} from "../../objects/facets/Loadable";
+import {getButtonVariantClassName} from "../../objects/facets/Color";
+import {ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues,} from "./ButtonEnum";
+import {ButtonProps} from "./ButtonProps";
+import {hashClass} from "../../helpers";
+import {useTrilogyContext} from "../../context";
+import {Icon} from "../icon";
 
 /**
  * Button component
@@ -34,54 +33,58 @@ import {VariantState} from "../../objects"
  */
 
 const Button = ({
-                  markup,
-                  loading,
-                  variant,
-                  href,
-                  id,
-                  fullwidth,
-                  children,
-                  className,
-                  to,
-                  accessibilityLabel,
-                  testId,
-                  onClick,
-                  name,
-                  routerLink,
-                  type,
-                  iconName,
-                  ...others
-                }: ButtonProps): JSX.Element => {
-  const isDisabled = others.disabled || false
-  const {styled} = useTrilogyContext()
+  markup,
+  loading,
+  variant,
+  href,
+  id,
+  fullwidth,
+  children,
+  className,
+  to,
+  accessibilityLabel,
+  testId,
+  onClick,
+  name,
+  routerLink,
+  type,
+  iconName,
+  ...others
+}: ButtonProps): JSX.Element => {
+  const isDisabled = others.disabled || false;
+  const { styled } = useTrilogyContext();
 
   /** Check if specified markup is valid */
   const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
-    if (stringMarkup in ButtonMarkup || Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)) return true
-  }
+    if (
+      stringMarkup in ButtonMarkup ||
+      Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)
+    )
+      return true;
+  };
 
   const getClassNames = (
     loading?: Loading | LoadingValues | boolean,
     variant?: ButtonVariant | ButtonVariantValues,
     fullwidth?: boolean,
-    className?: string,
+    className?: string
   ) => {
     return clsx(
-      'button',
-      loading ? is('loading') : is('loaded'),
+      "button",
+      loading ? is("loading") : is("loaded"),
       variant && is(getButtonVariantClassName(variant)),
-      fullwidth && is('fullwidth'),
-      className,
-    )
-  }
+      fullwidth && is("fullwidth"),
+      className
+    );
+  };
 
   const classes = hashClass(
     styled,
-    getClassNames(loading, variant, fullwidth, className),
-  )
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
+    getClassNames(loading, variant, fullwidth, className)
+  );
+  const Tag = markup && isCorrectMarkup(markup) ? markup : "button";
 
-  if (Tag === 'button') {
+  if (Tag === "button") {
     return (
       <button
         id={id}
@@ -92,20 +95,21 @@ const Button = ({
         name={name}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
+          !isDisabled && onClick?.(e);
+          e.stopPropagation();
         }}
-        type={type ?? 'button'}
+        type={type ?? "button"}
         {...others}
       >
-        {iconName && <Icon className={!children ? 'is-marginless' : ''}
-                           color={variant === VariantState.PRIMARY ? 'MAIN' : 'WHITE'} name={iconName}/>}
+        {iconName && (
+          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+        )}
         {children}
       </button>
-    )
+    );
   }
 
-  if (Tag === 'input') {
+  if (Tag === "input") {
     return (
       <input
         id={id}
@@ -115,26 +119,33 @@ const Button = ({
         name={name}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
+          !isDisabled && onClick?.(e);
+          e.stopPropagation();
         }}
         disabled={isDisabled}
-        type={type ?? 'submit'}
+        type={type ?? "submit"}
         value={`${children}`}
         {...others}
       />
-    )
+    );
   }
 
   if (routerLink && to && !isDisabled) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType;
     return (
-      <RouterLink aria-label={accessibilityLabel} data-testid={testId} to={to} className={classes} {...others}>
-        {iconName && <Icon className={!children ? 'is-marginless' : ''}
-                           color={variant === VariantState.PRIMARY ? 'MAIN' : 'WHITE'} name={iconName}/>}
+      <RouterLink
+        aria-label={accessibilityLabel}
+        data-testid={testId}
+        to={to}
+        className={classes}
+        {...others}
+      >
+        {iconName && (
+          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+        )}
         {children}
       </RouterLink>
-    )
+    );
   }
 
   return (
@@ -146,16 +157,17 @@ const Button = ({
       href={href}
       onClick={(e) => {
         // eslint-disable-next-line no-unused-expressions
-        !isDisabled && onClick?.(e)
-        e.stopPropagation()
+        !isDisabled && onClick?.(e);
+        e.stopPropagation();
       }}
       {...others}
     >
-      {iconName && <Icon className={!children ? 'is-marginless' : ''}
-                         color={variant === VariantState.PRIMARY ? 'MAIN' : 'WHITE'} name={iconName}/>}
+      {iconName && (
+        <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+      )}
       {children}
     </a>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
