@@ -16,7 +16,7 @@ $sticker-radius: $radius-large;
   &:not(.is-hat) {
     width: fit-content;
 
-    @include mobile{
+    @include mobile {
       border-radius: 16px;
       font-size: 12px;
       padding: $spacing-1 $spacing-2;
@@ -30,9 +30,13 @@ $sticker-radius: $radius-large;
     }
   }
 
+  &.is-accent {
+    background-color: getColor('alternate');
+    color: getColor('background') !important;
+  }
 
-  &.is-primary {
-    background-color: getColor('main');
+  &.is-info {
+    background-color: getColor('info');
     color: getColor('background') !important;
   }
 
@@ -40,17 +44,12 @@ $sticker-radius: $radius-large;
     border-radius: 0 16px 0 0;
   }
 
-  &.is-outlined,
   &.is-inverted {
     background-color: white !important;
     border-style: solid;
     border-width: 2px;
     border-color: currentColor;
-    color: getColor('font') !important;
-
-    &.is-primary {
-      color: getColor('main') !important;
-    }
+    color: currentColor;
   }
 
   &.is-small {

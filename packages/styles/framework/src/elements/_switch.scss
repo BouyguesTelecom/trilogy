@@ -1,108 +1,108 @@
 .switch {
-    position: relative;
-    margin: 8px;
+  position: relative;
+  margin: 8px;
 
-    input {
-        display: none;
+  input {
+    display: none;
 
-        &:disabled ~ label,
-        &:disabled:checked ~ label {
-          &:hover {
-            cursor: no-drop;
-          }
+    &:disabled ~ label,
+    &:disabled:checked ~ label {
+      &:hover {
+        cursor: no-drop;
+      }
 
-          &:before {
-            background-color: getColor('grey-disabled');
-          }
-        }
-
-        &:disabled ~ label {
-          &:after {
-            $colorSvg: encodecolor(getColorValue('grey-dark'));
-            content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
-          }
-        }
-
-        &:disabled:checked ~ label {
-            &:after {
-              $colorSvg: encodecolor(getColorValue('grey-dark'));
-              content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
-            }
-        }
+      &:before {
+        background-color: getColor('grey-disabled');
+      }
     }
 
+    &:disabled ~ label {
+      &:after {
+        $colorSvg: encodecolor(getColorValue('grey-dark'));
+        content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
+      }
+    }
+
+    &:disabled:checked ~ label {
+      &:after {
+        $colorSvg: encodecolor(getColorValue('grey-dark'));
+        content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
+      }
+    }
+  }
+
+  label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: $spacing-1;
+    padding-right: 60px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      border-radius: 24px;
+      width: 44px;
+      height: 22px;
+      background-color: getColorValue('grey');
+      margin-left: 16px;
+    }
+
+    &:after {
+      $colorSvg: encodecolor(getColorValue('grey'));
+      content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: calc(44px - 18px - 2px);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      background-color: getColorValue('background');
+      transition: 0.3s;
+    }
+  }
+
+  input:checked {
+    & ~ label {
+      font-weight: bold;
+
+      &:before {
+        background-color: getColorValue('main');
+      }
+
+      &:after {
+        right: 2px;
+        $colorSvg: encodecolor(getColorValue('main'));
+        content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
+        background-color: getColorValue('background');
+      }
+    }
+  }
+
+  &.is-reversed {
     label {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        padding: $spacing-1;
-        padding-right: 60px;
+      flex-direction: row-reverse;
+      padding-right: 0;
+      padding-left: 60px;
 
-        &:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0;
-            border-radius: 24px;
-            width: 44px;
-            height: 22px;
-            background-color: getColorValue('grey');
-            margin-left: 16px;
-        }
+      &:before {
+        left: 0;
+        margin-left: 0;
+        margin-right: 16px;
+      }
 
-        &:after {
-            $colorSvg: encodecolor(getColorValue('grey'));
-            content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: calc(44px - 18px - 2px);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            background-color: getColorValue('background');
-            transition: 0.3s;
-        }
+      &:after {
+        left: 2px;
+      }
     }
 
-    input:checked {
-        & ~ label {
-            font-weight: bold;
-
-            &:before {
-                background-color: getColorValue('alternate');
-            }
-
-            &:after {
-                right: 2px;
-                $colorSvg: encodecolor(getColorValue('alternate'));
-                content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
-                background-color: getColorValue('background');
-            }
-        }
+    input:checked ~ label:after {
+      left: calc(44px - 18px - 2px);
     }
-
-    &.is-reversed {
-        label {
-            flex-direction: row-reverse;
-            padding-right: 0;
-            padding-left: 60px;
-
-            &:before {
-                left: 0;
-                margin-left: 0;
-                margin-right: 16px;
-            }
-
-            &:after {
-                left: 2px;
-            }
-        }
-
-        input:checked ~ label:after {
-            left: calc(44px - 18px - 2px);
-        }
-    }
+  }
 }
