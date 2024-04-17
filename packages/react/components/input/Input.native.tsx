@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import {
   Animated,
   Keyboard,
@@ -10,9 +10,9 @@ import {
   TextInputSubmitEditingEventData,
   TouchableOpacity,
   View,
-} from 'react-native'
-import {InputNativeEvents, InputProps} from './InputProps'
-import {AlertState, getAlertStyle} from '../../objects/facets/Alert'
+} from "react-native"
+import { InputNativeEvents, InputProps } from "./InputProps"
+import { AlertState, getAlertStyle } from "../../objects/facets/Alert"
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -20,23 +20,25 @@ import {
   InputStatus,
   InputTextContentType,
   InputType,
-} from './InputEnum'
-import {Icon, IconColor, IconName, IconSize} from '../icon'
-import {Text} from '../text'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {Alignable} from '../../objects/facets/Alignable'
-import {ComponentName} from '../enumsComponentsName'
+} from "./InputEnum"
+import { Icon, IconColor, IconName, IconSize } from "../icon"
+import { Text } from "../text"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { Alignable } from "../../objects/facets/Alignable"
+import { ComponentName } from "../enumsComponentsName"
 
-interface InputNativeProps extends InputProps, InputNativeEvents {
-}
+interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 interface IStateVerify {
-  isVerify: boolean
-  color: IconColor
+  isVerify: boolean;
+  color: IconColor;
 }
 
 interface IVerifies {
-  [key: string]: { test: (e: string) => boolean; setVerify: (e: IStateVerify) => void }
+  [key: string]: {
+    test: (e: string) => boolean;
+    setVerify: (e: IStateVerify) => void;
+  };
 }
 
 /**
@@ -70,49 +72,51 @@ interface IVerifies {
  * @param accessibilityActivate {boolean}
  */
 const Input = ({
-                 defaultValue,
-                 name,
-                 onChange,
-                 onFocus,
-                 onBlur,
-                 disabled,
-                 status,
-                 help,
-                 placeholder,
-                 type,
-                 hasIcon,
-                 customIcon,
-                 search,
-                 reference,
-                 keyboardStyle,
-                 autoCapitalize,
-                 autoCorrect,
-                 autoCompleteType,
-                 textContentType,
-                 keyboardType,
-                 keyType,
-                 onSubmit,
-                 maxLength,
-                 testId,
-                 accessibilityLabel,
-                 customIconRight,
-                 customIconLeft,
-                 securityGauge,
-                 validationRules,
-                 onIconClick,
-                 required,
-                 ...others
-               }: InputNativeProps): JSX.Element => {
-  const [value, setValue] = useState<string>(defaultValue || '')
-  const [email, setEmail] = useState<string>('')
+  defaultValue,
+  name,
+  onChange,
+  onFocus,
+  onBlur,
+  disabled,
+  status,
+  help,
+  placeholder,
+  type,
+  hasIcon,
+  customIcon,
+  search,
+  reference,
+  keyboardStyle,
+  autoCapitalize,
+  autoCorrect,
+  autoCompleteType,
+  textContentType,
+  keyboardType,
+  keyType,
+  onSubmit,
+  maxLength,
+  testId,
+  accessibilityLabel,
+  customIconRight,
+  customIconLeft,
+  securityGauge,
+  validationRules,
+  onIconClick,
+  required,
+  ...others
+}: InputNativeProps): JSX.Element => {
+  const [value, setValue] = useState<string>(defaultValue || "")
+  const [email, setEmail] = useState<string>("")
   const [dynamicPlaceholder, setDynamicPlaceholder] = useState<boolean>(false)
   const animationDuration = 200
   const placeholderDefaultSize = 20
   const animation = useRef(new Animated.Value(25)).current
-  const sizeAnimation = useRef(new Animated.Value(placeholderDefaultSize)).current
+  const sizeAnimation = useRef(
+    new Animated.Value(placeholderDefaultSize)
+  ).current
 
   useEffect(() => {
-    setValue(defaultValue || '')
+    setValue(defaultValue || "")
   }, [defaultValue, placeholder])
 
   useEffect(() => {
@@ -159,50 +163,72 @@ const Input = ({
 
   const [iconPassword, setIconPassword] = useState(IconName.EYE)
 
-  const paddingTopByPlatform = (os: PlatformOSType, dynamicPlaceholder: boolean): number => {
-    if (dynamicPlaceholder && !search && os === 'ios') {
+  const paddingTopByPlatform = (
+    os: PlatformOSType,
+    dynamicPlaceholder: boolean
+  ): number => {
+    if (dynamicPlaceholder && !search && os === "ios") {
       return 10
     }
 
-    if (dynamicPlaceholder && !search && os === 'android') {
+    if (dynamicPlaceholder && !search && os === "android") {
       return 15
     }
 
     return 0
   }
 
-  const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
-  const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
+  const inputTestId = testId
+    ? testId
+    : placeholder
+    ? placeholder
+    : "NotSpecified"
+  const inputAccessibilityLabel = accessibilityLabel
+    ? accessibilityLabel
+    : placeholder
+    ? placeholder
+    : "NotSpecified"
 
   const handleChange = useCallback((text: string) => {
     setValue(text)
-    setEmail('')
-    const domain = text.split('@')?.[1]
+    setEmail("")
+    const domain = text.split("@")?.[1]
     if (domain) {
-      const domains = ['gmail.com', 'bbox.fr']
+      const domains = ["gmail.com", "bbox.fr"]
       domains.forEach((item) => {
-        const domainSplit = domain.split('')
-        const itemSplit = item.split('').slice(0, domainSplit.length)
-        if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
+        const domainSplit = domain.split("")
+        const itemSplit = item.split("").slice(0, domainSplit.length)
+        if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit))
+          setEmail(item.slice(domain.length))
       })
     }
   }, [])
 
   const handleClick = () => {
     setValue(value + email)
-    setEmail('')
+    setEmail("")
   }
 
-  const handleSubmit = (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
+  const handleSubmit = (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => {
     onSubmit?.(e)
     type === InputType.EMAIL && handleClick()
   }
 
-  const [isKeyboardVisible, setKeyboardVisible] = useState<null | boolean>(null)
+  const [isKeyboardVisible, setKeyboardVisible] = useState<null | boolean>(
+    null
+  )
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true))
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false))
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => setKeyboardVisible(true)
+    )
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => setKeyboardVisible(false)
+    )
 
     return () => {
       keyboardDidHideListener.remove()
@@ -214,13 +240,16 @@ const Input = ({
     handleClick()
   }, [isKeyboardVisible])
 
-  const initStateVerifies = {isVerify: false, color: IconColor.GREY}
+  const initStateVerifies = { isVerify: false, color: IconColor.GREY }
   const [points, setPoints] = React.useState<number>(0)
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
-  const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
+  const [isSpecialCharsVerify, setIsSpecialCharsVerify] =
+    React.useState(initStateVerifies)
   const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
-  const [isUppercaseVerify, setIsUppercaseVerify] = React.useState(initStateVerifies)
-  const [isLowerercaseVerify, setisLowerercaseVerify] = React.useState(initStateVerifies)
+  const [isUppercaseVerify, setIsUppercaseVerify] =
+    React.useState(initStateVerifies)
+  const [isLowerercaseVerify, setisLowerercaseVerify] =
+    React.useState(initStateVerifies)
   const [nbAllVerifies, setNbAllVerifies] = React.useState<number>(0)
   const [verifies, setVerifies] = React.useState<IVerifies>({})
 
@@ -233,7 +262,10 @@ const Input = ({
         return e.length >= validationRules.length.min
       }
       if (validationRules?.length?.max && validationRules.length.min) {
-        return e.length >= validationRules.length.min && e.length <= validationRules.length.max
+        return (
+          e.length >= validationRules.length.min &&
+          e.length <= validationRules.length.max
+        )
       }
       return false
     },
@@ -267,13 +299,13 @@ const Input = ({
   React.useEffect(() => {
     const data = {}
     validationRules &&
-    Object.keys(validationRules).map((key) => {
-      if (key === 'number') Object.assign(data, {numberVerify})
-      if (key === 'length') Object.assign(data, {lengthVerify})
-      if (key === 'lowercase') Object.assign(data, {lowercaseVerify})
-      if (key === 'uppercase') Object.assign(data, {uppercaseVerify})
-      if (key === 'specialChars') Object.assign(data, {specialCharsverify})
-    })
+      Object.keys(validationRules).map((key) => {
+        if (key === "number") Object.assign(data, { numberVerify })
+        if (key === "length") Object.assign(data, { lengthVerify })
+        if (key === "lowercase") Object.assign(data, { lowercaseVerify })
+        if (key === "uppercase") Object.assign(data, { uppercaseVerify })
+        if (key === "specialChars") Object.assign(data, { specialCharsverify })
+      })
     setVerifies(data)
     setNbAllVerifies(Object.keys(data).length)
   }, [validationRules])
@@ -286,7 +318,7 @@ const Input = ({
       verifiesTests.push(test)
 
       if (test) {
-        verifies[key].setVerify({isVerify: true, color: IconColor.SUCCESS})
+        verifies[key].setVerify({ isVerify: true, color: IconColor.SUCCESS })
       } else {
         verifies[key].setVerify(initStateVerifies)
       }
@@ -296,10 +328,10 @@ const Input = ({
 
   const widthGauge = React.useMemo(() => {
     const calc = Number(((points / nbAllVerifies) * 100).toFixed(0))
-    if (calc <= 50 && calc > 0) return '50%'
-    if (calc <= 99 && calc > 50) return '75%'
-    if (calc === 100) return '100%'
-    return '0%'
+    if (calc <= 50 && calc > 0) return "50%"
+    if (calc <= 99 && calc > 50) return "75%"
+    if (calc === 100) return "100%"
+    return "0%"
   }, [points, nbAllVerifies])
 
   const errorColor = getColorStyle(TrilogyColor.ERROR)
@@ -311,7 +343,7 @@ const Input = ({
     if (calc <= 50 && calc > 0) return errorColor
     if (calc <= 99 && calc > 50) return warningColor
     if (calc === 100) return successColor
-    return '#D1D1D1'
+    return "#D1D1D1"
   }, [points, nbAllVerifies])
 
   const styles = StyleSheet.create({
@@ -319,88 +351,94 @@ const Input = ({
       paddingLeft: customIconLeft || search ? 40 : 10,
       paddingRight: customIcon || customIconRight || search ? 32 : 0,
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
-      width: hasIcon && (status || customIcon) ? '85%' : '95%',
+      width: hasIcon && (status || customIcon) ? "85%" : "95%",
       height: 46,
       color: inputColor,
     },
     dynamicPlaceholder: {
-      position: 'absolute',
+      position: "absolute",
       left: customIconLeft ? 40 : 10,
       color: getColorStyle(TrilogyColor.GREY),
     },
     help: {
       fontSize: 12,
       color:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-        (status && status === 'default' && inputColor) ||
+        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
+        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
+        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "default" && inputColor) ||
         inputColor,
       paddingLeft: 4,
       paddingTop: 2,
     },
     inputWrapper: {
-      position: 'relative',
-      justifyContent: 'center',
-      alignSelf: 'stretch',
+      position: "relative",
+      justifyContent: "center",
+      alignSelf: "stretch",
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
       borderRadius: 3,
       borderColor:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-        (status && status === 'default' && inputColor) ||
+        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
+        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
+        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "default" && inputColor) ||
         inputColor,
       height: 46,
-      width: '100%',
+      width: "100%",
     },
     inputContainer: {
       height: 46,
       width: 46,
-      position: 'absolute',
+      position: "absolute",
       right: 0,
-      justifyContent: 'center',
+      justifyContent: "center",
     },
     inputContainerLeft: {
       height: 46,
       width: 46,
-      position: 'absolute',
+      position: "absolute",
       left: 0,
-      justifyContent: 'center',
+      justifyContent: "center",
     },
     inputContainerRight: {
       height: 46,
       width: 46,
-      position: 'absolute',
+      position: "absolute",
       right: 0,
-      justifyContent: 'center',
+      justifyContent: "center",
     },
     inputIcon: {
-      position: 'absolute',
+      position: "absolute",
       right: 10,
       top: !value ? -33 : -38,
     },
     inputIconLeft: {
-      position: 'absolute',
+      position: "absolute",
       left: 10,
       top: !value ? -33 : -38,
     },
     textWhitte: {
       zIndex: -1,
-      position: 'absolute',
+      position: "absolute",
       fontSize: 14,
-      color: '#ffffff00',
-      bottom: Platform.OS === 'ios' ? 9 : 5,
-      left: customIconLeft ? (Platform.OS === 'ios' ? 38 : 37.5) : Platform.OS === 'ios' ? 8 : 7.5,
+      color: "#ffffff00",
+      bottom: Platform.OS === "ios" ? 9 : 5,
+      left: customIconLeft
+        ? Platform.OS === "ios"
+          ? 38
+          : 37.5
+        : Platform.OS === "ios"
+        ? 8
+        : 7.5,
     },
     domain: {
       zIndex: 1,
       color: getColorStyle(TrilogyColor.GREY),
       fontSize: 13,
-      height: '100%',
+      height: "100%",
       marginTop: 3,
-      marginBottom: Platform.OS === 'ios' ? 0 : -3,
+      marginBottom: Platform.OS === "ios" ? 0 : -3,
     },
     gauge: {
       backgroundColor: colorGauge,
@@ -409,19 +447,19 @@ const Input = ({
       borderRadius: 4,
     },
     verifies: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
+      flexDirection: "row",
+      justifyContent: "space-between",
     },
     containerGauge: {
-      backgroundColor: '#D1D1D1',
+      backgroundColor: "#D1D1D1",
       height: 4,
-      width: '100%',
+      width: "100%",
       borderRadius: 4,
       marginVertical: 8,
     },
     verify: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      flexDirection: "row",
+      alignItems: "center",
       marginBottom: 4,
     },
     textVerify: {
@@ -431,14 +469,19 @@ const Input = ({
 
   return (
     <View
-      style={{width: '100%'}}
+      style={{ width: "100%" }}
       accessible={!!inputAccessibilityLabel}
       accessibilityLabel={inputAccessibilityLabel}
       testID={inputTestId}
     >
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
         {dynamicPlaceholder && !search && (
-          <Animated.Text style={[styles.dynamicPlaceholder, {top: animation, fontSize: sizeAnimation}]}>
+          <Animated.Text
+            style={[
+              styles.dynamicPlaceholder,
+              { top: animation, fontSize: sizeAnimation },
+            ]}
+          >
             {placeholder}
           </Animated.Text>
         )}
@@ -446,7 +489,13 @@ const Input = ({
         <TextInput
           testID='input-id'
           clearTextOnFocus={false}
-          secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
+          secureTextEntry={
+            !!(
+              type &&
+              type === InputType.PASSWORD &&
+              iconPassword === IconName.EYE
+            )
+          }
           value={value}
           editable={!disabled}
           ref={reference}
@@ -463,7 +512,7 @@ const Input = ({
             handleChange(text)
             if (onChange) {
               onChange({
-                inputName: (name && name) || '',
+                inputName: (name && name) || "",
                 inputValue: text,
                 inputSelectionStart: null,
               })
@@ -483,7 +532,7 @@ const Input = ({
           style={styles.input}
           {...others}
         />
-        {type === 'email' && (
+        {type === "email" && (
           <Text style={styles.textWhitte}>
             {value}
             <Text style={styles.domain}>{email}</Text>
@@ -497,28 +546,38 @@ const Input = ({
               style={styles.inputIconLeft}
               align={Alignable.ALIGNED_START}
               name={
-                (customIconLeft && customIconLeft.replace('tri-', '').replace('ui-', '')) ||
-                inputIcon.get(status).replace('tri-', '').replace('ui-', '')
+                (customIconLeft &&
+                  customIconLeft.replace("tri-", "").replace("ui-", "")) ||
+                inputIcon.get(status).replace("tri-", "").replace("ui-", "")
               }
               size={IconSize.SMALL}
               color={
-                (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                (status && status === 'default' && inputColor) ||
+                (status &&
+                  status === "success" &&
+                  getAlertStyle(AlertState.SUCCESS)) ||
+                (status &&
+                  status === "warning" &&
+                  getAlertStyle(AlertState.WARNING)) ||
+                (status &&
+                  status === "error" &&
+                  getAlertStyle(AlertState.ERROR)) ||
+                (status && status === "default" && inputColor) ||
                 inputColor
               }
             />
           )}
-        {hasIcon && !search &&
-          ((status && status !== InputStatus.DEFAULT) || customIcon || customIconRight) &&
+        {hasIcon &&
+          !search &&
+          ((status && status !== InputStatus.DEFAULT) ||
+            customIcon ||
+            customIconRight) &&
           type !== InputType.PASSWORD && (
             <TouchableOpacity
               style={styles.inputContainer}
               activeOpacity={onIconClick ? 0.2 : 1}
               onPress={() => {
                 onIconClick?.({
-                  inputName: (name && name) || '',
+                  inputName: (name && name) || "",
                   inputValue: value,
                 })
               }}
@@ -527,16 +586,24 @@ const Input = ({
                 testId='icon-status-id'
                 align={Alignable.ALIGNED_CENTER}
                 name={
-                  (customIcon && customIcon.replace('tri-', '').replace('ui-', '')) ||
-                  (customIconRight && customIconRight.replace('tri-', '').replace('ui-', '')) ||
-                  inputIcon.get(status).replace('tri-', '').replace('ui-', '')
+                  (customIcon &&
+                    customIcon.replace("tri-", "").replace("ui-", "")) ||
+                  (customIconRight &&
+                    customIconRight.replace("tri-", "").replace("ui-", "")) ||
+                  inputIcon.get(status).replace("tri-", "").replace("ui-", "")
                 }
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
+                  (status &&
+                    status === "success" &&
+                    getAlertStyle(AlertState.SUCCESS)) ||
+                  (status &&
+                    status === "warning" &&
+                    getAlertStyle(AlertState.WARNING)) ||
+                  (status &&
+                    status === "error" &&
+                    getAlertStyle(AlertState.ERROR)) ||
+                  (status && status === "default" && inputColor) ||
                   inputColor
                 }
               />
@@ -545,15 +612,15 @@ const Input = ({
         {hasIcon && type === InputType.PASSWORD && (
           <>
             {hasIcon && customIconLeft && (
-              <View style={[{paddingLeft: 10}, styles.inputContainerLeft]}>
-                <Icon name={customIconLeft}/>
+              <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
+                <Icon name={customIconLeft} />
               </View>
             )}
             <TouchableOpacity
               style={styles.inputContainerRight}
               onPress={() => {
                 onIconClick?.({
-                  inputName: (name && name) || '',
+                  inputName: (name && name) || "",
                   inputValue: value,
                 })
                 if (iconPassword === IconName.EYE) {
@@ -569,10 +636,16 @@ const Input = ({
                 name={iconPassword}
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
+                  (status &&
+                    status === "success" &&
+                    getAlertStyle(AlertState.SUCCESS)) ||
+                  (status &&
+                    status === "warning" &&
+                    getAlertStyle(AlertState.WARNING)) ||
+                  (status &&
+                    status === "error" &&
+                    getAlertStyle(AlertState.ERROR)) ||
+                  (status && status === "default" && inputColor) ||
                   inputColor
                 }
               />
@@ -595,15 +668,15 @@ const Input = ({
                 style={styles.inputContainerRight}
                 onPressIn={() => {
                   onChange?.({
-                    inputName: (name && name) || '',
-                    inputValue: '',
+                    inputName: (name && name) || "",
+                    inputValue: "",
                     inputSelectionStart: null,
                   })
                   onIconClick?.({
-                    inputName: (name && name) || '',
-                    inputValue: '',
+                    inputName: (name && name) || "",
+                    inputValue: "",
                   })
-                  setValue('')
+                  setValue("")
                 }}
               >
                 <Icon
@@ -633,7 +706,11 @@ const Input = ({
                 <View style={styles.verify}>
                   <Icon
                     color={isLengthVerify.color}
-                    name={isLengthVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+                    name={
+                      isLengthVerify.isVerify
+                        ? IconName.CHECK_CIRCLE
+                        : IconName.TIMES
+                    }
                     size={IconSize.SMALLER}
                   />
                   <Text style={styles.textVerify}>
@@ -653,7 +730,11 @@ const Input = ({
                 <View style={styles.verify}>
                   <Icon
                     color={isSpecialCharsVerify.color}
-                    name={isSpecialCharsVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+                    name={
+                      isSpecialCharsVerify.isVerify
+                        ? IconName.CHECK_CIRCLE
+                        : IconName.TIMES
+                    }
                     size={IconSize.SMALLER}
                   />
                   <Text style={styles.textVerify}>Caractères spéciaux</Text>
@@ -663,7 +744,11 @@ const Input = ({
                 <View style={styles.verify}>
                   <Icon
                     color={isNumberVerify.color}
-                    name={isNumberVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+                    name={
+                      isNumberVerify.isVerify
+                        ? IconName.CHECK_CIRCLE
+                        : IconName.TIMES
+                    }
                     size={IconSize.SMALLER}
                   />
                   <Text style={styles.textVerify}>Chiffre</Text>
@@ -675,7 +760,11 @@ const Input = ({
                 <View style={styles.verify}>
                   <Icon
                     color={isUppercaseVerify.color}
-                    name={isUppercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+                    name={
+                      isUppercaseVerify.isVerify
+                        ? IconName.CHECK_CIRCLE
+                        : IconName.TIMES
+                    }
                     size={IconSize.SMALLER}
                   />
                   <Text style={styles.textVerify}>Majuscule</Text>
@@ -685,7 +774,11 @@ const Input = ({
                 <View style={styles.verify}>
                   <Icon
                     color={isLowerercaseVerify.color}
-                    name={isLowerercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+                    name={
+                      isLowerercaseVerify.isVerify
+                        ? IconName.CHECK_CIRCLE
+                        : IconName.TIMES
+                    }
                     size={IconSize.SMALLER}
                   />
                   <Text style={styles.textVerify}>Minuscule</Text>

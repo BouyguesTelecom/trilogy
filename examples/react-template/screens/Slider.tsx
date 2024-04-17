@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Title,
   TitleLevels,
@@ -10,8 +10,8 @@ import {
   IconSize,
   Spacer,
   SpacerSize,
-} from '@trilogy-ds/react/components'
-import { Divider } from '@trilogy-ds/react'
+} from "@trilogy-ds/react/components";
+import { Divider } from "@trilogy-ds/react";
 
 export const SliderScreen = (): JSX.Element => {
   return (
@@ -48,7 +48,13 @@ export const SliderScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Multiple Cards Slider</Title>
 
-      <Slider motionLess arrowSize={IconSize.MEDIUM} arrowsOut doted invertedDoted>
+      <Slider
+        motionLess
+        arrowSize={IconSize.MEDIUM}
+        arrowsOut
+        doted
+        invertedDoted
+      >
         <SliderItem size={4}>
           <Card>
             <CardContent>
@@ -113,8 +119,9 @@ export const SliderScreen = (): JSX.Element => {
 
       <Divider />
 
-      <Title level={TitleLevels.THREE}>Multiple Cards Slider without dots</Title>
-
+      <Title level={TitleLevels.THREE}>
+        Multiple Cards Slider without dots
+      </Title>
 
       <Slider arrowSize={IconSize.SMALL} arrowsOut doted invertedDoted>
         <SliderItem size={3}>
@@ -175,5 +182,5 @@ export const SliderScreen = (): JSX.Element => {
         </SliderItem>
       </Slider>
     </Container>
-  )
-}
+  );
+};

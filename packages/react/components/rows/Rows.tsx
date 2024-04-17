@@ -1,8 +1,8 @@
-import React from 'react'
-import { RowsProps } from './RowsProps'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { RowsProps } from "./RowsProps"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Rows Component
@@ -12,7 +12,9 @@ import { useTrilogyContext } from '../../context'
  */
 const Rows = ({ className, ...others }: RowsProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  return <div className={hashClass(styled, clsx('rows', className))} {...others} />
+  return (
+    <div className={hashClass(styled, clsx("rows", className))} {...others} />
+  )
 }
 
 export default Rows

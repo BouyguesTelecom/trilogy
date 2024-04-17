@@ -1,5 +1,5 @@
-import React from "react";
-import { ITrilogyTheme } from "./interfaces";
+import React from "react"
+import { ITrilogyTheme } from "./interfaces"
 
 export const defaultTheme: ITrilogyTheme = {
   icons: {},
@@ -7,5 +7,6 @@ export const defaultTheme: ITrilogyTheme = {
 }
 
 export const TrilogyThemeProvider = () => {
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>
 }

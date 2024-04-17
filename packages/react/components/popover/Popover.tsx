@@ -1,9 +1,9 @@
-import React from 'react'
-import { is } from '../../services/classify'
-import { PopoverWebProps } from './PopoverProps'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { is } from "../../services/classify"
+import { PopoverWebProps } from "./PopoverProps"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Popover Component
@@ -29,19 +29,22 @@ const Popover = ({
   const classes = hashClass(
     styled,
     clsx(
-      'popover',
+      "popover",
       direction && is(`popover-${direction}`),
-      active && is('popover-active'),
+      active && is("popover-active"),
       arrowPosition && is(`arrow-${arrowPosition}`),
-      className,
-    ),
+      className
+    )
   )
 
   return (
     <div data-testid={testId} className={classes} {...others}>
       {children}
       {content && (
-        <div data-testid={`${testId}_content`} className={hashClass(styled, clsx('popover-content'))}>
+        <div
+          data-testid={`${testId}_content`}
+          className={hashClass(styled, clsx("popover-content"))}
+        >
           {content}
         </div>
       )}

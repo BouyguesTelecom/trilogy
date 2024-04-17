@@ -1,8 +1,13 @@
-import React from 'react'
-import {StyleSheet, Text, Platform, View} from 'react-native'
-import {StickerProps} from './StickerProps'
-import {getAlertStyle, getColorStyle, getVariantStyle, TrilogyColor} from '../../objects'
-import {ComponentName} from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, Text, Platform, View } from "react-native"
+import { StickerProps } from "./StickerProps"
+import {
+  getAlertStyle,
+  getColorStyle,
+  getVariantStyle,
+  TrilogyColor,
+} from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Sticker Native component
@@ -15,84 +20,116 @@ import {ComponentName} from '../enumsComponentsName'
  * @param others
  */
 const Sticker = ({
-                   children,
-                   /* deprecated*/
-                   variant,
-                   /* deprecated*/
-                   alert,
-                   small,
-                   /* deprecated*/
-                   stretched,
-                   hat,
-                   /* deprecated*/
-                   inverted,
-                   flag,
-                   outlined,
-                   ...others
-                 }: StickerProps): JSX.Element => {
+  children,
+  /* deprecated*/
+  variant,
+  /* deprecated*/
+  alert,
+  small,
+  /* deprecated*/
+  stretched,
+  hat,
+  /* deprecated*/
+  inverted,
+  flag,
+  outlined,
+  ...others
+}: StickerProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
-      justifyContent: 'center',
+      justifyContent: "center",
       paddingTop: small ? 4 : 8,
       paddingBottom: small ? 4 : 8,
       paddingLeft: small ? 8 : 16,
       paddingRight: small ? 8 : 16,
-      alignSelf: hat ? 'auto' : 'flex-start',
+      alignSelf: hat ? "auto" : "flex-start",
       borderWidth: outlined ? 2 : 0,
-      borderColor: (outlined && defaultColor) || 'transparent',
+      borderColor: (outlined && defaultColor) || "transparent",
       backgroundColor:
-        (inverted && 'white') ||
-        (outlined && 'white') ||
+        (inverted && "white") ||
+        (outlined && "white") ||
         (variant && !alert && getVariantStyle(variant)) ||
         (!variant && alert && getAlertStyle(alert)) ||
         defaultColor,
-      borderTopLeftRadius: (hat && 8) || (!flag && !small && 24) || (!flag && small && 16) || 0,
+      borderTopLeftRadius:
+        (hat && 8) || (!flag && !small && 24) || (!flag && small && 16) || 0,
       borderTopRightRadius: (small && 16) || (hat && 8) || 24,
-      borderBottomLeftRadius: (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
-      borderBottomRightRadius: (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
+      borderBottomLeftRadius:
+        (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
+      borderBottomRightRadius:
+        (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
       marginTop: hat ? -35 : 0,
       fontSize: small ? 12 : 16,
       top: hat ? 4 : 0,
     },
     stretched: {
-      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '-20deg'}]) || [{skewX: '0deg'}] : [],
-      justifyContent: 'center',
-      alignItems: 'center',
+      transform:
+        Platform.OS === "ios"
+          ? (stretched && [{ skewX: "-20deg" }]) || [{ skewX: "0deg" }]
+          : [],
+      justifyContent: "center",
+      alignItems: "center",
       height: 35,
       backgroundColor:
-        (variant && !alert && getVariantStyle(variant)) || (!variant && alert && getAlertStyle(alert)) || defaultColor,
+        (variant && !alert && getVariantStyle(variant)) ||
+        (!variant && alert && getAlertStyle(alert)) ||
+        defaultColor,
     },
     text: {
       lineHeight: (!small && 20) || 15,
-      textAlign: 'center',
-      color: (outlined && defaultColor) || (inverted && defaultColor) || getColorStyle(TrilogyColor.WHITE),
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontWeight: 'bold',
+      textAlign: "center",
+      color:
+        (outlined && defaultColor) ||
+        (inverted && defaultColor) ||
+        getColorStyle(TrilogyColor.WHITE),
+      justifyContent: "center",
+      alignItems: "center",
+      fontWeight: "bold",
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === 'ios' ? (stretched && [{skewX: '20deg'}]) || [{skewX: '0deg'}] : [],
+      transform:
+        Platform.OS === "ios"
+          ? (stretched && [{ skewX: "20deg" }]) || [{ skewX: "0deg" }]
+          : [],
     },
     stretchedAndroid: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       height: 35,
       backgroundColor:
-        (variant && !alert && getVariantStyle(variant)) || (!variant && alert && getAlertStyle(alert)) || defaultColor,
+        (variant && !alert && getVariantStyle(variant)) ||
+        (!variant && alert && getAlertStyle(alert)) ||
+        defaultColor,
     },
   })
 
-  if (stretched && Platform.OS === 'android') {
+  if (stretched && Platform.OS === "android") {
     return (
-      <View style={(!small && stretched && styles.stretchedAndroid) || styles.sticker} {...others}>
-        {children && typeof children === 'string' ? <Text style={styles.text}>{children}</Text> : children}
+      <View
+        style={
+          (!small && stretched && styles.stretchedAndroid) || styles.sticker
+        }
+        {...others}
+      >
+        {children && typeof children === "string" ? (
+          <Text style={styles.text}>{children}</Text>
+        ) : (
+          children
+        )}
       </View>
     )
   }
 
   return (
-    <View style={(!small && stretched && styles.stretched) || styles.sticker} {...others}>
-      {children && typeof children === 'string' ? <Text style={styles.text}>{children}</Text> : children}
+    <View
+      style={(!small && stretched && styles.stretched) || styles.sticker}
+      {...others}
+    >
+      {children && typeof children === "string" ? (
+        <Text style={styles.text}>{children}</Text>
+      ) : (
+        children
+      )}
     </View>
   )
 }

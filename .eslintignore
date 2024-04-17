@@ -1,0 +1,13 @@
+node_modules
+lib
+coverage
+build
+public
+packages/react/components/progress/radial/react-native-circular-progress
+examples
+config/**
+styles/**
+**/test/**
+*.stories.tsx
+*jest*
+*snapshotResolver.ts

@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { ColumnsProps } from './ColumnsProps'
-import { is } from '../../services/classify'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { ColumnsProps } from "./ColumnsProps"
+import { is } from "../../services/classify"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Columns Component
@@ -38,18 +38,18 @@ const Columns = ({
   const classes = hashClass(
     styled,
     clsx(
-      'columns',
-      multiline && is('multiline'),
-      inlined && is('inlined'),
-      mobile && is('mobile'),
-      centered && is('centered'),
-      verticalCentered && is('vcentered'),
-      !marginSize && gapless && is('gapless'),
-      !gapless && marginSize && [is('variable'), is(`${marginSize}`)],
-      flex && is('flex'),
-      marginless && is('marginless'),
-      className,
-    ),
+      "columns",
+      multiline && is("multiline"),
+      inlined && is("inlined"),
+      mobile && is("mobile"),
+      centered && is("centered"),
+      verticalCentered && is("vcentered"),
+      !marginSize && gapless && is("gapless"),
+      !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
+      flex && is("flex"),
+      marginless && is("marginless"),
+      className
+    )
   )
 
   return <div className={classes} {...others} />

@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {Pressable, SafeAreaView, StyleSheet, TextInput, View} from 'react-native'
-import {OtpProps} from './OtpProps'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {Icon, IconColor, IconName, IconSize} from '../icon'
-import {Title, TitleLevels} from '../title'
-import {Text, TextLevels} from '../text'
-import {TypographyAlign} from '../../objects'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useEffect, useRef, useState } from 'react'
+import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
+import { OtpProps } from './OtpProps'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { Icon, IconColor, IconName, IconSize } from '../icon'
+import { Title, TitleLevels } from '../title'
+import { Text, TextLevels } from '../text'
+import { TypographyAlign } from '../../objects'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * OTP Code Component
@@ -143,7 +143,7 @@ const Otp = ({
 
   return (
     <SafeAreaView style={style.container} {...others}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {Boolean(label) && (
           <Text style={style.text} level={TextLevels.FOUR}>
             {label}

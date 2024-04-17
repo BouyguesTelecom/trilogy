@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, TouchableOpacity, View} from 'react-native'
-import {OptionsItemProps} from './OptionsItemProps'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { OptionsItemProps } from './OptionsItemProps'
 import shortid from 'shortid'
-import {Text} from '../../text'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {OptionsItemVariant} from '../OptionsEnum'
-import {Icon, IconName, IconSize} from '../../icon'
-import {Spacer, SpacerSize} from '../../spacer'
-import {ComponentName} from '../../enumsComponentsName'
+import { Text } from '../../text'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { OptionsItemVariant } from '../OptionsEnum'
+import { Icon, IconName, IconSize } from '../../icon'
+import { Spacer, SpacerSize } from '../../spacer'
+import { ComponentName } from '../../enumsComponentsName'
 
 /**
  * Options Item Component
@@ -158,7 +158,7 @@ const OptionsItem = ({
   } else if (variant === OptionsItemVariant.MULTILINE && iconName) {
     optionContent = (
       <View>
-        <View style={[typeof checked === 'string' ? styles.radio : styles.checkBox, {position: 'absolute', left: 0}]}>
+        <View style={[typeof checked === 'string' ? styles.radio : styles.checkBox, { position: 'absolute', left: 0 }]}>
           {isChecked(_checked) && (
             <Icon style={styles.icon} size={IconSize.SMALLER} color={color} name={IconName.CHECK}/>
           )}

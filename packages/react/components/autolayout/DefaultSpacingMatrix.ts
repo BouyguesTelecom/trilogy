@@ -1,9 +1,9 @@
-import {SpacerSize} from '../spacer'
-import {SpacingMatrix, SpacingMatrixMode} from './SpacingMatrix'
+import { SpacerSize } from '../spacer'
+import { SpacingMatrix, SpacingMatrixMode } from './SpacingMatrix'
 
-const {HUGE, LARGE, MEDIUM, SMALL, NONE} = SpacerSize
+const { HUGE, LARGE, MEDIUM, SMALL, NONE } = SpacerSize
 
-export const {INSERT_SPACE_BETWEEN} = SpacingMatrixMode
+export const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
 /**
  * Spacing matrix for defining spacings between component types

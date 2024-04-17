@@ -1,11 +1,13 @@
-import React from 'react'
-import { Text } from '../../../text'
-import { View } from '../../../view'
-import { ListItemDescriptionProps } from './ListItemDescriptionProps'
-import { ComponentName } from '../../../enumsComponentsName'
+import * as React from "react"
+import { Text } from "../../../text"
+import { View } from "../../../view"
+import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
+import { ComponentName } from "../../../enumsComponentsName"
 
-const ListItemDescription = ({ children }: ListItemDescriptionProps): JSX.Element => {
-  if (['string', 'number'].includes(typeof children)) {
+const ListItemDescription = ({
+  children,
+}: ListItemDescriptionProps): JSX.Element => {
+  if (["string", "number"].includes(typeof children)) {
     return <Text>{children}</Text>
   }
 

@@ -1,14 +1,19 @@
-import React from 'react'
-import {Section, Divider, Box, BoxContent, IconName, Text} from '@trilogy-ds/react/components'
-import {TrilogyColor} from '@trilogy-ds/react/objects'
+import * as React from "react";
+import {
+  Section,
+  Divider,
+  Box,
+  BoxContent,
+  IconName,
+  Text,
+} from "@trilogy-ds/react/components";
+import { TrilogyColor } from "@trilogy-ds/react/objects";
 
 export const DividerScreen = (): JSX.Element => {
   return (
     <Section>
       <Box>
-        <Divider
-          iconName={IconName.EYE_SLASH}
-        />
+        <Divider iconName={IconName.EYE_SLASH} />
         <Text>Lorem ipsum dolor sit amet</Text>
 
         <Divider
@@ -18,7 +23,6 @@ export const DividerScreen = (): JSX.Element => {
           iconName={IconName.EYE_SLASH}
         />
         <Text>Lorem ipsum dolor sit amet</Text>
-
       </Box>
       <Box>
         <Text>Lorem ipsum dolor sit amet</Text>
@@ -27,17 +31,16 @@ export const DividerScreen = (): JSX.Element => {
           color={TrilogyColor.MAIN}
           textColor={TrilogyColor.MAIN}
           backgroundColor={TrilogyColor.WHITE}
-          content={'New Message'}
+          content={"New Message"}
         />
         <Text>Lorem ipsum dolor sit amet</Text>
-
       </Box>
       <Box>
         <BoxContent>
-          <Divider unboxed/>
+          <Divider unboxed />
         </BoxContent>
       </Box>
-      <Divider/>
+      <Divider />
     </Section>
-  )
-}
+  );
+};

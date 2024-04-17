@@ -1,11 +1,11 @@
-import React, {ReactNode} from 'react'
-import {MenuItemNativeProps} from './MenuItemProps'
-import {StyleSheet, View, TouchableOpacity} from 'react-native'
-import {ComponentName} from '../../enumsComponentsName'
-import {Text} from '../../text'
-import {Icon} from '../../icon'
-import {TrilogyColor, TypographyColor, getColorStyle} from '../../../objects'
-import {Badge} from '../../badge'
+import React, { ReactNode } from 'react'
+import { MenuItemNativeProps } from './MenuItemProps'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import { ComponentName } from '../../enumsComponentsName'
+import { Text } from '../../text'
+import { Icon } from '../../icon'
+import { TrilogyColor, TypographyColor, getColorStyle } from '../../../objects'
+import { Badge } from '../../badge'
 
 /**
  * Menu Item Component
@@ -42,7 +42,7 @@ const MenuItem = ({
     },
   })
 
-  const Tag = ({children}: { children: ReactNode }) => {
+  const Tag = ({ children }: { children: ReactNode }) => {
     if (onClick) {
       return (
         <TouchableOpacity

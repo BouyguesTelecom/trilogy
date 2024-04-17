@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {GestureResponderEvent, StyleSheet, TouchableOpacity} from 'react-native'
-import {ChipsProps} from './ChipsProps'
-import {Text, TextLevels} from '../text'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {Icon, IconColor, IconName, IconSize} from '../icon'
-import {ChipsContext} from './list/ChipsList.native'
-import {Spacer, SpacerSize} from '../spacer'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useContext, useEffect, useState } from 'react'
+import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
+import { ChipsProps } from './ChipsProps'
+import { Text, TextLevels } from '../text'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { Icon, IconColor, IconName, IconSize } from '../icon'
+import { ChipsContext } from './list/ChipsList.native'
+import { Spacer, SpacerSize } from '../spacer'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -18,7 +18,7 @@ import {ComponentName} from '../enumsComponentsName'
  * @param inverted {boolean} Background color
  */
 
-const Chips = ({children, onClick, disabled, active, inverted, ...others}: ChipsProps): JSX.Element => {
+const Chips = ({ children, onClick, disabled, active, inverted, ...others }: ChipsProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const chipsContext = useContext(ChipsContext)
 

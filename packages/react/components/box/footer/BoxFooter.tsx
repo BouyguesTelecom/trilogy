@@ -1,10 +1,10 @@
-import React from 'react'
-import { BoxFooterProps } from './BoxFooterProps'
-import { getBackgroundClassName } from '../../../objects'
-import { has } from '../../../services/classify'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { BoxFooterProps } from "./BoxFooterProps"
+import { getBackgroundClassName } from "../../../objects"
+import { has } from "../../../services/classify"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Box Footer Component
@@ -12,7 +12,13 @@ import { useTrilogyContext } from '../../../context'
  * @param children {React.ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  */
-const BoxFooter = ({ className, children, backgroundColor, testId, ...others }: BoxFooterProps): JSX.Element => {
+const BoxFooter = ({
+  className,
+  children,
+  backgroundColor,
+  testId,
+  ...others
+}: BoxFooterProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
@@ -20,7 +26,11 @@ const BoxFooter = ({ className, children, backgroundColor, testId, ...others }: 
       data-testid={testId}
       className={hashClass(
         styled,
-        clsx('box-footer', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
+        clsx(
+          "box-footer",
+          backgroundColor && has(getBackgroundClassName(backgroundColor)),
+          className
+        )
       )}
       {...others}
     >

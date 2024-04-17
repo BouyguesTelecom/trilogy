@@ -1,12 +1,12 @@
-import React from 'react'
-import { BadgeProps } from './BadgeProps'
-import { Text, TextMarkup } from '../text'
-import { BadgeTextDirection } from './BadgeEnum'
-import { has } from '../../services'
-import { getColorClassName } from '../../objects/facets'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { BadgeProps } from "./BadgeProps"
+import { Text, TextMarkup } from "../text"
+import { BadgeTextDirection } from "./BadgeEnum"
+import { has } from "../../services"
+import { getColorClassName } from "../../objects/facets"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Badge Component
@@ -34,7 +34,7 @@ const Badge = ({
 
   const classes = hashClass(
     styled,
-    clsx(textContent ? 'badge-and-text' : 'badge', className),
+    clsx(textContent ? "badge-and-text" : "badge", className)
   )
 
   if (textContent) {
@@ -48,9 +48,23 @@ const Badge = ({
         className={classes}
         {...others}
       >
-        {(!direction || direction === BadgeTextDirection.LEFT) && <Text markup={TextMarkup.P}>{textContent}</Text>}
-        <span className={hashClass(styled, clsx(color && has(`background-${getColorClassName(color)}`), 'badge is-level'))}>{content || children}</span>
-        {direction === BadgeTextDirection.RIGHT && <Text markup={TextMarkup.P}>{textContent}</Text>}
+        {(!direction || direction === BadgeTextDirection.LEFT) && (
+          <Text markup={TextMarkup.P}>{textContent}</Text>
+        )}
+        <span
+          className={hashClass(
+            styled,
+            clsx(
+              color && has(`background-${getColorClassName(color)}`),
+              "badge is-level"
+            )
+          )}
+        >
+          {content || children}
+        </span>
+        {direction === BadgeTextDirection.RIGHT && (
+          <Text markup={TextMarkup.P}>{textContent}</Text>
+        )}
       </div>
     )
   }
@@ -66,8 +80,8 @@ const Badge = ({
       <Text
         className={clsx(
           color && has(`background-${getColorClassName(color)}`),
-          textContent ? 'badge-and-text' : 'badge',
-          className,
+          textContent ? "badge-and-text" : "badge",
+          className
         )}
         markup={TextMarkup.SPAN}
         {...others}

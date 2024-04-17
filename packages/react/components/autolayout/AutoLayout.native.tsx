@@ -1,9 +1,9 @@
-import React from 'react'
-import { DEFAULT_SPACING_MATRIX } from './DefaultSpacingMatrix'
-import { autoLayoutChildrenHandler, parseChildren } from './AutoLayout.helpers'
-import { Spacer, SpacerSize } from '../spacer'
-import { AutoLayoutProps } from './AutoLayoutProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { DEFAULT_SPACING_MATRIX } from "./DefaultSpacingMatrix"
+import { autoLayoutChildrenHandler, parseChildren } from "./AutoLayout.helpers"
+import { Spacer, SpacerSize } from "../spacer"
+import { AutoLayoutProps } from "./AutoLayoutProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * AutoLayout Component
@@ -20,8 +20,8 @@ const AutoLayout: React.FC<AutoLayoutProps> = ({
   edgeSize = SpacerSize.SMALL,
   noSpace,
 }): JSX.Element => {
-  const hasBottomEdge = edges?.includes('bottom')
-  const hasTopEdge = edges?.includes('top')
+  const hasBottomEdge = edges?.includes("bottom")
+  const hasTopEdge = edges?.includes("top")
   return (
     <>
       {hasTopEdge && <Spacer size={edgeSize} />}
@@ -29,7 +29,8 @@ const AutoLayout: React.FC<AutoLayoutProps> = ({
         ? children
         : parseChildren({
             children,
-            handleBetweenChildren: (props) => autoLayoutChildrenHandler(matrix, props),
+            handleBetweenChildren: (props) =>
+              autoLayoutChildrenHandler(matrix, props),
           })}
       {hasBottomEdge && <Spacer size={edgeSize} />}
     </>

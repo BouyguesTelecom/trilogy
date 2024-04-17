@@ -1,11 +1,11 @@
-import React from 'react'
-import clsx from 'clsx'
-import {CardContentProps} from './CardContentProps'
-import {Title, TitleLevels} from '../../title'
-import {Text} from '../../text'
-import {Button, ButtonMarkup} from '../../button'
-import {hashClass} from '../../../helpers'
-import {useTrilogyContext} from '../../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { CardContentProps } from "./CardContentProps"
+import { Title, TitleLevels } from "../../title"
+import { Text } from "../../text"
+import { Button, ButtonMarkup } from "../../button"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Card Content Component
@@ -25,27 +25,31 @@ import {useTrilogyContext} from '../../../context'
  * @param buttonMarkup {ButtonMarkup} if Button, can change the button tag
  */
 const CardContent = ({
-                       children,
-                       className,
-                       titleSup,
-                       titleSupLevel,
-                       title,
-                       titleLevel,
-                       buttonText,
-                       buttonMarkup,
-                       buttonVariant,
-                       buttonClick,
-                       text,
-                       textLevel,
-                       onClick,
-                       testId,
-                       ...others
-                     }: CardContentProps): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  children,
+  className,
+  titleSup,
+  titleSupLevel,
+  title,
+  titleLevel,
+  buttonText,
+  buttonMarkup,
+  buttonVariant,
+  buttonClick,
+  text,
+  textLevel,
+  onClick,
+  testId,
+  ...others
+}: CardContentProps): JSX.Element => {
+  const { styled } = useTrilogyContext()
 
   if (children) {
     return (
-      <div data-testid={testId} className={hashClass(styled, clsx('card-content', className))} {...others}>
+      <div
+        data-testid={testId}
+        className={hashClass(styled, clsx("card-content", className))}
+        {...others}
+      >
         {children}
       </div>
     )
@@ -59,16 +63,19 @@ const CardContent = ({
         onClick?.(e)
         e.stopPropagation()
       }}
-      className={hashClass(styled, clsx('card-content', className))}
+      className={hashClass(styled, clsx("card-content", className))}
       {...others}
     >
       {titleSup && (
-        <Text level={titleSupLevel} className={'suptitle'}>
+        <Text level={titleSupLevel} className={"suptitle"}>
           {titleSup}
         </Text>
       )}
       {title && (
-        <Title testId={testId ? `${testId}-title` : undefined} level={titleLevel ? titleLevel : TitleLevels.THREE}>
+        <Title
+          testId={testId ? `${testId}-title` : undefined}
+          level={titleLevel ? titleLevel : TitleLevels.THREE}
+        >
           {title}
         </Title>
       )}
@@ -77,7 +84,7 @@ const CardContent = ({
         <Button
           testId={testId ? `${testId}-btn` : undefined}
           onClick={buttonClick}
-          variant={buttonVariant ? buttonVariant : 'PRIMARY'}
+          variant={buttonVariant ? buttonVariant : "PRIMARY"}
           markup={buttonMarkup ? buttonMarkup : ButtonMarkup.BUTTON}
         >
           {buttonText}

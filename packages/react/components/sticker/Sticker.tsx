@@ -1,11 +1,11 @@
-import React from "react";
-import clsx from "clsx";
-import {StickerProps} from "./StickerProps";
-import {is} from "../../services/classify";
-import {StickerMarkup, StickerMarkupValues} from "./StickerEnum";
-import {getAlertClassName, getVariantClassName} from "../../objects";
-import {hashClass} from "../../helpers";
-import {useTrilogyContext} from "../../context";
+import React from "react"
+import clsx from "clsx"
+import { StickerProps } from "./StickerProps"
+import { is } from "../../services/classify"
+import { StickerMarkup, StickerMarkupValues } from "./StickerEnum"
+import { getAlertClassName, getVariantClassName } from "../../objects"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Sticker component
@@ -37,7 +37,7 @@ const Sticker = ({
   flag,
   ...others
 }: StickerProps): JSX.Element => {
-  const { styled } = useTrilogyContext();
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -52,7 +52,7 @@ const Sticker = ({
       flag && is("flag"),
       className
     )
-  );
+  )
 
   const isCorrectMarkup = (
     stringMarkup: StickerMarkup | StickerMarkupValues
@@ -61,16 +61,16 @@ const Sticker = ({
       stringMarkup in StickerMarkup ||
       Object.values(StickerMarkup).includes(stringMarkup as StickerMarkup)
     )
-      return true;
-  };
+      return true
+  }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "div";
+  const Tag = markup && isCorrectMarkup(markup) ? markup : "div"
 
   return (
     <Tag className={classes} {...others}>
       {children}
     </Tag>
-  );
-};
+  )
+}
 
-export default Sticker;
+export default Sticker

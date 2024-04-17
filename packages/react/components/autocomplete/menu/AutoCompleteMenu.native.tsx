@@ -1,11 +1,14 @@
-import React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import AutoCompleteItemNative from '../item/AutoCompleteIem.native'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { FlatList, StyleSheet } from "react-native"
+import { getColorStyle, TrilogyColor } from "../../../objects"
+import AutoCompleteItemNative from "../item/AutoCompleteIem.native"
+import { AutoCompleteMenuProps } from "./AutoCompleteMenuProps"
+import { ComponentName } from "../../enumsComponentsName"
 
-const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
+const AutoCompleteMenuNative = ({
+  suggestions,
+  handleSelectItem,
+}: AutoCompleteMenuProps): JSX.Element => {
   const styles = StyleSheet.create({
     list: {
       marginTop: 6,
@@ -14,7 +17,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       borderWidth: 1,
       borderRadius: 3,
       borderColor: getColorStyle(TrilogyColor.GREY),
-      width: '100%',
+      width: "100%",
       maxHeight: 165,
       flexGrow: 1,
     },

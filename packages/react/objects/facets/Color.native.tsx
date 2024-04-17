@@ -1,5 +1,5 @@
-import {TrilogyThemeContext} from '../../context/providerTheme.native'
-import {useContext} from 'react'
+import { TrilogyThemeContext } from '../../context/providerTheme.native'
+import { useContext } from 'react'
 
 /**
  * Trilogy color
@@ -29,7 +29,7 @@ export type TrilogyColorValues = `${TrilogyColor}`
 
 export const getColorStyle = (trilogyColor?: string): string => {
   const {
-    theme: {colors},
+    theme: { colors },
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useContext(TrilogyThemeContext)
 
@@ -77,7 +77,7 @@ export const getColorStyle = (trilogyColor?: string): string => {
 
 export const getBackgroundOfVariant = (variant?: string): string => {
   const {
-    theme: {colors},
+    theme: { colors },
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useContext(TrilogyThemeContext)
 
@@ -97,7 +97,7 @@ export const getBackgroundOfVariant = (variant?: string): string => {
 
 export const getButtonColorStyle = (buttonVariant?: string): string => {
   const {
-    theme: {colors},
+    theme: { colors },
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useContext(TrilogyThemeContext)
 

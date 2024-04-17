@@ -1,12 +1,12 @@
 import * as React from 'react'
-import {Platform, StyleSheet, View} from 'react-native'
-import {ProgressRadialProps} from './ProgressRadialProps'
-import {AnimatedCircularProgress} from './react-native-circular-progress'
-import {Text, TextLevels} from '../../text'
-import {getAlertStyle, getAlignStyle, TypographyAlign} from '../../../objects'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import ContentLoader, {Circle} from 'react-content-loader/native'
-import {ComponentName} from '../../enumsComponentsName'
+import { Platform, StyleSheet, View } from 'react-native'
+import { ProgressRadialProps } from './ProgressRadialProps'
+import { AnimatedCircularProgress } from './react-native-circular-progress'
+import { Text, TextLevels } from '../../text'
+import { getAlertStyle, getAlignStyle, TypographyAlign } from '../../../objects'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import ContentLoader, { Circle } from 'react-content-loader/native'
+import { ComponentName } from '../../enumsComponentsName'
 
 /**
  * Progress Radial component
@@ -38,8 +38,8 @@ const ProgressRadial = ({
   const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.GREY_LIGHT)
   const percentWidth = percent || 0
-  const secondFill = secondPercent ? {secondFill: secondPercent} : null
-  const secondFillColor = secondAlert ? {secondFillTintColor: getAlertStyle(secondAlert)} : null
+  const secondFill = secondPercent ? { secondFill: secondPercent } : null
+  const secondFillColor = secondAlert ? { secondFillTintColor: getAlertStyle(secondAlert) } : null
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
 
@@ -89,7 +89,7 @@ const ProgressRadial = ({
 
   const ProgressRadialSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{opacity: 0}}/>
+      <View style={{ opacity: 0 }}/>
       {Platform.OS === 'android' && (
         <View>
           <Circle cx='50' cy='50' r='50'/>

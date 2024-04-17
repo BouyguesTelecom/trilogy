@@ -1,4 +1,4 @@
-import {TextLevels, TextLevelValues} from '../..'
+import { TextLevels, TextLevelValues } from '../..'
 
 /**
  * Typo bold

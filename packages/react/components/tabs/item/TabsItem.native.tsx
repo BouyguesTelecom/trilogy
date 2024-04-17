@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, TouchableOpacity, View} from 'react-native'
-import {TabsItemProps} from './TabsItemProps'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {TypographyBold} from '../../../objects'
-import {ComponentName} from '../../enumsComponentsName'
-import {Icon} from '../../icon'
-import {Text, TextLevels} from '../../text'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TabsItemProps } from './TabsItemProps'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { TypographyBold } from '../../../objects'
+import { ComponentName } from '../../enumsComponentsName'
+import { Icon } from '../../icon'
+import { Text, TextLevels } from '../../text'
 
 /**
  * Tabs Item Component
@@ -43,7 +43,7 @@ const TabsItem = ({
       marginRight: 8,
       alignItems: 'center',
       justifyContent: 'center',
-      ...(tabIndex === 0 && {marginLeft: 24}),
+      ...(tabIndex === 0 && { marginLeft: 24 }),
       padding: 8,
       position: 'relative',
     },

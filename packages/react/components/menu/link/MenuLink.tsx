@@ -1,8 +1,8 @@
-import React from 'react'
-import { MenuLinkProps } from './MenuLinkProps'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { MenuLinkProps } from "./MenuLinkProps"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Menu Link Component
@@ -10,9 +10,16 @@ import { useTrilogyContext } from '../../../context'
  * @param arrow {boolean} Adding Right Arrow For Menu Link
  * @param onClick {Function} onClick Event
  */
-const MenuLink = ({ children, className, arrow, onClick, testId, ...others }: MenuLinkProps): JSX.Element => {
+const MenuLink = ({
+  children,
+  className,
+  arrow,
+  onClick,
+  testId,
+  ...others
+}: MenuLinkProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx(arrow && 'with-arrow', className))
+  const classes = hashClass(styled, clsx(arrow && "with-arrow", className))
   return (
     <a data-testid={testId} onClick={onClick} className={classes} {...others}>
       {children}

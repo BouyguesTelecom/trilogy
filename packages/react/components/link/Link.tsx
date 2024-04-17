@@ -1,11 +1,11 @@
-import React from 'react'
-import clsx from 'clsx'
-import {Text, TextMarkup} from '../text'
-import {LinkProps} from './LinkProps'
-import {has, is} from '../../services/classify'
-import {Icon, IconSize} from '../icon'
-import {hashClass} from '../../helpers'
-import {useTrilogyContext} from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { Text, TextMarkup } from "../text"
+import { LinkProps } from "./LinkProps"
+import { has, is } from "../../services/classify"
+import { Icon, IconSize } from "../icon"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Link Component
@@ -31,34 +31,34 @@ import {useTrilogyContext} from '../../context'
  */
 
 const Link = ({
-                children,
-                className,
-                removeLinkClass,
-                to,
-                href,
-                title,
-                onClick,
-                typo,
-                testId,
-                accessibilityLabel,
-                routerLink,
-                iconName,
-                inverted,
-                blank,
-                ...others
-              }: LinkProps): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  children,
+  className,
+  removeLinkClass,
+  to,
+  href,
+  title,
+  onClick,
+  typo,
+  testId,
+  accessibilityLabel,
+  routerLink,
+  iconName,
+  inverted,
+  blank,
+  ...others
+}: LinkProps): JSX.Element => {
+  const { styled } = useTrilogyContext()
 
   const classes = clsx(
-    !removeLinkClass && 'link',
-    iconName && has('icon'),
+    !removeLinkClass && "link",
+    iconName && has("icon"),
     typo,
-    inverted && is('inverted'),
-    className,
+    inverted && is("inverted"),
+    className
   )
 
   if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
 
     const RouterLinkTrilogy = (): JSX.Element => {
       return (
@@ -67,9 +67,9 @@ const Link = ({
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
           className={hashClass(styled, clsx(classes))}
-          to={to || ''}
+          to={to || ""}
           {...(blank && {
-            target: '_blank',
+            target: "_blank",
           })}
           {...others}
         >
@@ -81,12 +81,12 @@ const Link = ({
     if (typo) {
       return (
         <div className={hashClass(styled, clsx(typo))}>
-          <RouterLinkTrilogy/>
+          <RouterLinkTrilogy />
         </div>
       )
     }
 
-    return <RouterLinkTrilogy/>
+    return <RouterLinkTrilogy />
   }
 
   const LinkTrilogy = (): JSX.Element => {
@@ -100,14 +100,14 @@ const Link = ({
         className={classes}
         href={href}
         {...(blank && {
-          target: '_blank',
+          target: "_blank",
         })}
         {...others}
       >
         {iconName ? (
           <>
             <Text markup='span'>{children}</Text>
-            <Icon name={iconName} size={IconSize.SMALL}/>
+            <Icon name={iconName} size={IconSize.SMALL} />
           </>
         ) : (
           children
@@ -119,12 +119,12 @@ const Link = ({
   if (typo) {
     return (
       <div className={hashClass(styled, clsx(typo))}>
-        <LinkTrilogy/>
+        <LinkTrilogy />
       </div>
     )
   }
 
-  return <LinkTrilogy/>
+  return <LinkTrilogy />
 }
 
 export default Link

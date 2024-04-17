@@ -1,5 +1,5 @@
-import React from 'react'
-import { SpacerProps } from './SpacerProps'
+import * as React from "react"
+import { SpacerProps } from "./SpacerProps"
 
 /**
  * Spacer Component
@@ -9,8 +9,8 @@ import { SpacerProps } from './SpacerProps'
 const Spacer = ({ size, horizontal }: SpacerProps): JSX.Element => {
   const styles = {
     spacer: {
-      marginLeft: horizontal ? `${size}px` : '0px',
-      marginTop: !horizontal ? `${size}px` : '0px',
+      marginLeft: horizontal ? `${size}px` : "0px",
+      marginTop: !horizontal ? `${size}px` : "0px",
     },
   }
   return <div style={styles.spacer} />

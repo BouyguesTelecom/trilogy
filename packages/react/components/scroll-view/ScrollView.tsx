@@ -1,5 +1,5 @@
-import React from 'react'
-import { ScrollViewProps } from './ScrollViewProps'
+import * as React from "react"
+import { ScrollViewProps } from "./ScrollViewProps"
 import { useTrilogyContext } from "../../context"
 import { hashClass } from "../../helpers"
 import clsx from "clsx"
@@ -20,34 +20,33 @@ import { ScrollDirectionEnum } from "../../objects"
  * @param refresh {boolean} Is Refreshable ScrollView
  * @param onRefresh {void} On Refreshing ScrollView
  */
-const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(({ id, scrollDirection, children }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
+  ({ id, scrollDirection, children }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const scrollDirectionClassName = () => {
-    switch (scrollDirection) {
-      case ScrollDirectionEnum?.HORIZONTAL:
-        return is('horizontal')
-      case ScrollDirectionEnum?.VERTICAL:
-        return is('vertical')
-      default:
-        return ''
+    const scrollDirectionClassName = () => {
+      switch (scrollDirection) {
+        case ScrollDirectionEnum?.HORIZONTAL:
+          return is("horizontal")
+        case ScrollDirectionEnum?.VERTICAL:
+          return is("vertical")
+        default:
+          return ""
+      }
     }
+
+    const classes = hashClass(
+      styled,
+      clsx("scroll-view", scrollDirection && scrollDirectionClassName())
+    )
+    return (
+      <div ref={ref} className={classes} id={id}>
+        {children}
+      </div>
+    )
   }
+)
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'scroll-view',
-      scrollDirection && scrollDirectionClassName()
-    ),
-  )
-  return <div ref={ref} className={classes} id={id} >
-    {
-      children
-    }
-  </div>
-})
-
-ScrollView.displayName = 'ScrollView'
+ScrollView.displayName = "ScrollView"
 
 export default ScrollView

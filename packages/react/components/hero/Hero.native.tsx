@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {ImageBackground, StyleSheet, TouchableOpacity, View,} from "react-native";
-import {HeroProps} from "./HeroProps";
-import {getVariantStyle, TrilogyColor} from "../../objects";
-import {Box} from "../box";
-import {ComponentName} from "../enumsComponentsName";
+import React, { useState } from "react"
+import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
+import { HeroProps } from "./HeroProps"
+import { getVariantStyle, TrilogyColor } from "../../objects"
+import { Box } from "../box"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Hero Component
@@ -24,17 +24,17 @@ const Hero = ({
   backgroundHeight,
   ...others
 }: HeroProps): JSX.Element => {
-  const [overlapHeight, setOverlapHeight] = useState<number>(0);
-  const [secondOverlapHeight, setSecondOverlapHeight] = useState<number>(0);
+  const [overlapHeight, setOverlapHeight] = useState<number>(0)
+  const [secondOverlapHeight, setSecondOverlapHeight] = useState<number>(0)
 
   const isSecondOverlap =
-    overlap && Array.isArray(overlap) ? overlap?.length > 1 : false;
-  const isSecondOverlapNotEmpty = isSecondOverlap && secondOverlapHeight > 0;
+    overlap && Array.isArray(overlap) ? overlap?.length > 1 : false
+  const isSecondOverlapNotEmpty = isSecondOverlap && secondOverlapHeight > 0
 
   const overlapMargin = backgroundHeight
     ? overlapHeight - backgroundHeight / 2
-    : overlapHeight - 60;
-  const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60;
+    : overlapHeight - 60
+  const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60
 
   const styles = StyleSheet.create({
     hero: {
@@ -67,15 +67,15 @@ const Hero = ({
     subOverlap: {
       height: isSecondOverlapNotEmpty ? overlapHeight - 40 : overlapMargin,
     },
-  });
-  let heroView: JSX.Element;
+  })
+  let heroView: JSX.Element
 
   if (variant) {
     heroView = (
       <View style={[styles.variant, styles.hero]}>
         <View style={styles.content}>{children}</View>
       </View>
-    );
+    )
   } else {
     heroView = (
       <ImageBackground
@@ -89,10 +89,10 @@ const Hero = ({
       >
         <View style={styles.content}>{children}</View>
       </ImageBackground>
-    );
+    )
   }
 
-  let overlapView: JSX.Element;
+  let overlapView: JSX.Element
 
   if (isSecondOverlap) {
     overlapView = (
@@ -100,8 +100,8 @@ const Hero = ({
         <View
           style={styles.overlap}
           onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setOverlapHeight(height);
+            const { height } = event.nativeEvent.layout
+            setOverlapHeight(height)
           }}
         >
           <Box background={TrilogyColor.GREY_LIGHTER}>
@@ -112,28 +112,28 @@ const Hero = ({
         <View
           style={styles.secondOverlap}
           onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setSecondOverlapHeight(height);
+            const { height } = event.nativeEvent.layout
+            setSecondOverlapHeight(height)
           }}
         >
           {overlap && typeof overlap !== "boolean" ? overlap[1] : null}
         </View>
       </View>
-    );
+    )
   } else {
     overlapView = (
       <View style={styles.subOverlap}>
         <View
           style={styles.overlap}
           onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setOverlapHeight(height);
+            const { height } = event.nativeEvent.layout
+            setOverlapHeight(height)
           }}
         >
           {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
         </View>
       </View>
-    );
+    )
   }
 
   return onClick ? (
@@ -147,9 +147,9 @@ const Hero = ({
       {heroView}
       {overlapView}
     </View>
-  );
-};
+  )
+}
 
-Hero.displayName = ComponentName.Hero;
+Hero.displayName = ComponentName.Hero
 
-export default Hero;
+export default Hero

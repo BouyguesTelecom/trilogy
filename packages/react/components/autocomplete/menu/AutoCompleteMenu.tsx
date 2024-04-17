@@ -1,9 +1,9 @@
-import React from 'react'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { is } from '../../../services'
+import * as React from "react"
+import { AutoCompleteMenuProps } from "./AutoCompleteMenuProps"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { is } from "../../../services"
 
 /**
  * AutoCompleteMenu Component
@@ -13,7 +13,13 @@ import { is } from '../../../services'
  * @param absolute {boolean} Absolute position for Menu
  * @param fullwidth {boolean} Fullwidth size for Menu
  */
-const AutoCompleteMenu = ({ children, className, absolute, fullwidth, testId }: AutoCompleteMenuProps): JSX.Element => {
+const AutoCompleteMenu = ({
+  children,
+  className,
+  absolute,
+  fullwidth,
+  testId,
+}: AutoCompleteMenuProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
@@ -22,7 +28,12 @@ const AutoCompleteMenu = ({ children, className, absolute, fullwidth, testId }: 
       data-testid={testId}
       className={hashClass(
         styled,
-        clsx('autocomplete-menu', absolute && is('absolute'), fullwidth && is('fullwidth'), className),
+        clsx(
+          "autocomplete-menu",
+          absolute && is("absolute"),
+          fullwidth && is("fullwidth"),
+          className
+        )
       )}
     >
       {children}

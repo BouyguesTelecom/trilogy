@@ -1,16 +1,16 @@
-import React from 'react'
+import * as React from "react";
 
-import { Meta, Story } from '@storybook/react'
-import { RowItem } from './index'
-import { RowsItemProps } from './item/RowItemProps'
-import { Columns, ColumnsItem } from '../columns'
-import Rows from './Rows'
+import { Meta, Story } from "@storybook/react";
+import { RowItem } from "./index";
+import { RowsItemProps } from "./item/RowItemProps";
+import { Columns, ColumnsItem } from "../columns";
+import Rows from "./Rows";
 
 export default {
-  title: 'Components/Rows',
+  title: "Components/Rows",
   component: RowItem,
   subcomponents: { Rows },
-} as Meta
+} as Meta;
 
 export const Base: Story<RowsItemProps> = (args) => (
   <Columns>
@@ -29,4 +29,4 @@ export const Base: Story<RowsItemProps> = (args) => (
       </Rows>
     </ColumnsItem>
   </Columns>
-)
+);

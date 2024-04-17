@@ -1,35 +1,35 @@
-import React from 'react'
-import { Section, Switch } from '@trilogy-ds/react/components'
+import * as React from "react";
+import { Section, Switch } from "@trilogy-ds/react/components";
 
 export const SwitchScreen = (): JSX.Element => {
   return (
     <Section>
       <Switch
-        label='Switch one'
-        name='switch one'
+        label="Switch one"
+        name="switch one"
         // eslint-disable-next-line no-console
         onChange={(e) => {
-          console.log('SwitchState =>', e.switchState)
-          console.log('SwitchSName =>', e.switchName)
+          console.log("SwitchState =>", e.switchState);
+          console.log("SwitchSName =>", e.switchName);
         }}
         // eslint-disable-next-line no-console
         onClick={(e) => {
-          console.log('SwitchState =>', e.switchState)
-          console.log('SwitchSName =>', e.switchName)
+          console.log("SwitchState =>", e.switchState);
+          console.log("SwitchSName =>", e.switchName);
         }}
       />
 
       <Switch
-        label='Switch two'
-        name='switch'
+        label="Switch two"
+        name="switch"
         checked
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
       />
       <Switch
         disabled
-        label='Switch two disabled checked'
-        name='switch'
+        label="Switch two disabled checked"
+        name="switch"
         checked
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
@@ -37,8 +37,8 @@ export const SwitchScreen = (): JSX.Element => {
       />
       <Switch
         disabled
-        label='Switch two disabled'
-        name='switch'
+        label="Switch two disabled"
+        name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
         readonly
@@ -46,16 +46,16 @@ export const SwitchScreen = (): JSX.Element => {
       <Switch
         reversed
         disabled
-        label='Switch two disabled'
-        name='switch'
+        label="Switch two disabled"
+        name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
         readonly
       />
       <Switch
         reversed
-        label='Switch two disabled'
-        name='switch'
+        label="Switch two disabled"
+        name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
         readonly
@@ -63,13 +63,13 @@ export const SwitchScreen = (): JSX.Element => {
       <Switch
         reversed
         disabled
-        label='Switch two disabled'
-        name='switch'
+        label="Switch two disabled"
+        name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
         readonly
         checked
       />
     </Section>
-  )
-}
+  );
+};

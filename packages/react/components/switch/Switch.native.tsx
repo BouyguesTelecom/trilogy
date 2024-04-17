@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import {Platform, StyleSheet, Switch as SwitchNative} from 'react-native'
-import {SwitchProps} from './SwitchProps'
+import React, { useEffect, useState } from 'react'
+import { Platform, StyleSheet, Switch as SwitchNative } from 'react-native'
+import { SwitchProps } from './SwitchProps'
 import shortid from 'shortid'
-import {getAlertStyle} from '../../objects'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {ComponentName} from '../enumsComponentsName'
+import { getAlertStyle } from '../../objects'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Switch Native Component
@@ -40,7 +40,7 @@ const Switch = ({
 
   const styles = StyleSheet.create({
     switchIos: {
-      transform: [{scaleX: 0.7}, {scaleY: 0.7}],
+      transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }],
     },
   })
 
@@ -56,7 +56,7 @@ const Switch = ({
       ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
       onValueChange={(state) => {
         if (onChange) {
-          onChange({switchState: state, switchName: name || ''})
+          onChange({ switchState: state, switchName: name || '' })
         }
       }}
       nativeID={name ? `${name}_${id}` : id}

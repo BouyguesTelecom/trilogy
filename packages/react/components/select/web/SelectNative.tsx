@@ -1,9 +1,9 @@
-import React from 'react'
-import { Icon } from '../../icon'
-import { IAccessibleSelect } from '../SelectProps'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { has } from '../../../services'
+import * as React from "react"
+import { Icon } from "../../icon"
+import { IAccessibleSelect } from "../SelectProps"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { has } from "../../../services"
 
 const SelectNative = ({
   selecteClasses,
@@ -22,15 +22,18 @@ const SelectNative = ({
   selected,
   ...others
 }: IAccessibleSelect): JSX.Element => {
-  const controlClasses = React.useMemo(() => hashClass(styled, clsx('control', has('dynamic-placeholder'))), [styled])
+  const controlClasses = React.useMemo(
+    () => hashClass(styled, clsx("control", has("dynamic-placeholder"))),
+    [styled]
+  )
 
   return (
-    <div className={hashClass(styled, clsx('field'))}>
+    <div className={hashClass(styled, clsx("field"))}>
       <div className={controlClasses}>
         <div className={selecteClasses}>
           {iconName && <Icon name={iconName} size='small' />}
           <select
-            className={hashClass(styled, clsx(!label && 'no-label'))}
+            className={hashClass(styled, clsx(!label && "no-label"))}
             value={selected}
             aria-label={accessibilityLabel}
             data-testid={testId}

@@ -1,9 +1,9 @@
-import React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { Icon } from '../../icon'
+import * as React from "react"
+import { SelectOptionProps } from "./SelectOptionProps"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { Icon } from "../../icon"
 
 /**
  * Select Option Component
@@ -41,12 +41,12 @@ const SelectOption = ({
       className={hashClass(
         styled,
         clsx(
-          'select-options-option',
-          selected && !disabled && 'select-options-option-activated',
-          disabled && !selected && 'select-options-option-disabled',
-          iconName && 'has-icon',
-          className,
-        ),
+          "select-options-option",
+          selected && !disabled && "select-options-option-activated",
+          disabled && !selected && "select-options-option-disabled",
+          iconName && "has-icon",
+          className
+        )
       )}
       data-testid={testId}
       id={id}
@@ -54,10 +54,10 @@ const SelectOption = ({
       data-option-value={value}
       onMouseUp={onClick}
       aria-disabled={disabled}
-      aria-selected={selected ? 'true' : 'false'}
+      aria-selected={selected ? "true" : "false"}
       {...others}
     >
-      <div className={hashClass(styled, clsx(iconName && 'has-icon'))}>
+      <div className={hashClass(styled, clsx(iconName && "has-icon"))}>
         {iconName && <Icon name={iconName} size='small' />}
         {children || label}
       </div>

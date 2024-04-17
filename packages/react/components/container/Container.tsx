@@ -1,10 +1,10 @@
-import React from 'react'
-import { ContainerProps } from './ContainerProps'
-import { has, is } from '../../services/classify'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import { getBackgroundClassName, StickyPosition } from '../../objects'
+import * as React from "react"
+import { ContainerProps } from "./ContainerProps"
+import { has, is } from "../../services/classify"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
+import { getBackgroundClassName, StickyPosition } from "../../objects"
 
 /**
  * Container Component
@@ -43,29 +43,29 @@ const Container = ({
   const stickyClassName = () => {
     switch (sticky) {
       case StickyPosition.TOP:
-        return is('sticky-top')
+        return is("sticky-top")
       case StickyPosition.BOTTOM:
-        return is('sticky-bottom')
+        return is("sticky-bottom")
       default:
-        return ''
+        return ""
     }
   }
 
   const classes = hashClass(
     styled,
     clsx(
-      'container',
-      fluid && is('fluid'),
-      medium && is('medium'),
-      centered && is('centered'),
-      fullwidth && is('fullwidth'),
-      verticalCentered && is('vcentered'),
-      pulledRight && is('pulled-right'),
-      pulledLeft && is('pulled-left'),
+      "container",
+      fluid && is("fluid"),
+      medium && is("medium"),
+      centered && is("centered"),
+      fullwidth && is("fullwidth"),
+      verticalCentered && is("vcentered"),
+      pulledRight && is("pulled-right"),
+      pulledLeft && is("pulled-left"),
       sticky && background && has(getBackgroundClassName(background)),
       sticky && stickyClassName(),
-      className,
-    ),
+      className
+    )
   )
 
   const styles = {

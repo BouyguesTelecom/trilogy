@@ -1,10 +1,10 @@
-import React from 'react'
-import clsx from 'clsx'
-import { TimelineMarkerWebProps } from './TimelineMarkerProps'
-import { is } from '../../../services/classify'
-import { Icon, IconColor, IconSize } from '../../icon'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
+import * as React from "react"
+import clsx from "clsx"
+import { TimelineMarkerWebProps } from "./TimelineMarkerProps"
+import { is } from "../../../services/classify"
+import { Icon, IconColor, IconSize } from "../../icon"
+import { useTrilogyContext } from "../../../context"
+import { hashClass } from "../../../helpers"
 
 /**
  * Timeline Marker Component
@@ -23,13 +23,21 @@ const TimelineMarker = ({
   ...others
 }: TimelineMarkerWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
+  const classes = hashClass(
+    styled,
+    clsx("timeline-marker", is("icon"), className)
+  )
   const iconClasses = clsx(iconClassname)
 
   return (
     <div className={classes} {...others} data-testid={testId}>
       <div className='card-header-icon'>
-        <Icon color={iconColor || IconColor.WHITE} className={iconClasses} name={iconName} size={IconSize.SMALL} />
+        <Icon
+          color={iconColor || IconColor.WHITE}
+          className={iconClasses}
+          name={iconName}
+          size={IconSize.SMALL}
+        />
       </div>
     </div>
   )

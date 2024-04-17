@@ -1,14 +1,18 @@
-import React from 'react'
-import { AlertState, getAlertClassName, getAlertIconName } from '../../objects/facets/Alert'
-import { has, is } from '../../services/classify'
-import { Button } from '../button'
-import { Icon, IconName, IconSize } from '../icon'
-import { Text } from '../text'
-import { Title, TitleLevels } from '../title'
-import { NotificationProps } from './NotificationProps'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import {
+  AlertState,
+  getAlertClassName,
+  getAlertIconName,
+} from "../../objects/facets/Alert"
+import { has, is } from "../../services/classify"
+import { Button } from "../button"
+import { Icon, IconName, IconSize } from "../icon"
+import { Text } from "../text"
+import { Title, TitleLevels } from "../title"
+import { NotificationProps } from "./NotificationProps"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Notification Component
@@ -57,14 +61,19 @@ const Notification = ({
   const classes = hashClass(
     styled,
     clsx(
-      'notification',
-      has('body'),
-      !buttonContent && !arrow && info != null && is('small'),
-      banner && !buttonContent && !arrow && !info && [is('banner'), !description && has('description')],
-      description && has('description'),
-      !!alert && (!info || (alert !== AlertState.INFO && info)) && is(getAlertClassName(alert)),
-      className,
-    ),
+      "notification",
+      has("body"),
+      !buttonContent && !arrow && info != null && is("small"),
+      banner &&
+        !buttonContent &&
+        !arrow &&
+        !info && [is("banner"), !description && has("description")],
+      description && has("description"),
+      !!alert &&
+        (!info || (alert !== AlertState.INFO && info)) &&
+        is(getAlertClassName(alert)),
+      className
+    )
   )
 
   const _iconNotif = React.useMemo(() => {
@@ -85,28 +94,43 @@ const Notification = ({
       {...others}
     >
       {hasIcon && <Icon className={iconClassname} name={_iconNotif} />}
-      <div className={hashClass(styled, clsx('body'))}>
-        {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.THREE}>{title}</Title> : title}
-        {description && typeof description.valueOf() === 'string' ? <Text>{description}</Text> : description}
+      <div className={hashClass(styled, clsx("body"))}>
+        {title && typeof title.valueOf() === "string" ? (
+          <Title level={TitleLevels.THREE}>{title}</Title>
+        ) : (
+          title
+        )}
+        {description && typeof description.valueOf() === "string" ? (
+          <Text>{description}</Text>
+        ) : (
+          description
+        )}
       </div>
       {buttonContent && !arrow && (
-        <div className={hashClass(styled, clsx('call-to-action'))}>
-          <Button variant={'PRIMARY'} markup={buttonMarkup} onClick={buttonClick}>
+        <div className={hashClass(styled, clsx("call-to-action"))}>
+          <Button
+            variant={"PRIMARY"}
+            markup={buttonMarkup}
+            onClick={buttonClick}
+          >
             {buttonContent}
           </Button>
         </div>
       )}
       {arrow && !buttonContent && (
-        <div onClick={buttonClick} className={hashClass(styled, clsx('call-to-action'))}>
+        <div
+          onClick={buttonClick}
+          className={hashClass(styled, clsx("call-to-action"))}
+        >
           <Icon name={IconName.ARROW_RIGHT} size={IconSize.SMALL} />
         </div>
       )}
       {closable && !buttonContent && (
         <div
           data-testid={`${testId}_close_button`}
-          role={'button'}
+          role={"button"}
           onClick={closable}
-          className={hashClass(styled, clsx('call-to-action'))}
+          className={hashClass(styled, clsx("call-to-action"))}
         >
           <Icon name={IconName.TIMES} size={IconSize.SMALL} />
         </div>

@@ -1,8 +1,8 @@
-import React from 'react'
-import clsx from 'clsx'
-import { TimelineItemWebProps } from './TimelineItemProps'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
+import * as React from "react"
+import clsx from "clsx"
+import { TimelineItemWebProps } from "./TimelineItemProps"
+import { useTrilogyContext } from "../../../context"
+import { hashClass } from "../../../helpers"
 
 /**
  * Timeline Item Component
@@ -13,11 +13,25 @@ import { hashClass } from '../../../helpers'
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = ({ className, done, active, undone, cancel, ...others }: TimelineItemWebProps): JSX.Element => {
+const TimelineItem = ({
+  className,
+  done,
+  active,
+  undone,
+  cancel,
+  ...others
+}: TimelineItemWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
-    clsx('timeline-item', done && 'done', active && 'active', undone && 'undone', cancel && 'cancel', className),
+    clsx(
+      "timeline-item",
+      done && "done",
+      active && "active",
+      undone && "undone",
+      cancel && "cancel",
+      className
+    )
   )
   return <div className={classes} {...others} />
 }

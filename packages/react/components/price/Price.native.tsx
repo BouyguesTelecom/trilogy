@@ -1,10 +1,10 @@
-import React, {useMemo} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {PriceProps} from './PriceProps'
-import {PriceVariant, PriceLevel} from './PriceEnum'
-import {Alignable, getAlertStyle, getColorStyle, TrilogyColor} from '../../objects'
-import {checkCents} from './PriceHelpers'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useMemo } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { PriceProps } from './PriceProps'
+import { PriceVariant, PriceLevel } from './PriceEnum'
+import { Alignable, getAlertStyle, getColorStyle, TrilogyColor } from '../../objects'
+import { checkCents } from './PriceHelpers'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Price Component
@@ -182,7 +182,7 @@ const Price = ({
         (variant === PriceVariant.SECONDARY && secondaryColor) ||
         primaryColor,
       width: period ? '96%' : '100%',
-      transform: [{rotate: inline ? '-10deg' : strikedRotateByLevel()}],
+      transform: [{ rotate: inline ? '-10deg' : strikedRotateByLevel() }],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -211,7 +211,7 @@ const Price = ({
         {...others}
       >
         {inline ? (
-          <View style={[styles.priceContainer, {flexDirection: 'row'}]}>
+          <View style={[styles.priceContainer, { flexDirection: 'row' }]}>
             {striked && <Text style={styles.striked}></Text>}
             <Text style={styles.price}>
               {whole}€{showCents && cents}
@@ -222,7 +222,7 @@ const Price = ({
             </Text>
           </View>
         ) : (
-          <View style={[{flexDirection: 'row'}]}>
+          <View style={[{ flexDirection: 'row' }]}>
             {striked && <Text style={styles.striked}></Text>}
             <View style={styles.priceContainer}>
               <Text style={styles.price}>{`${whole}`}</Text>

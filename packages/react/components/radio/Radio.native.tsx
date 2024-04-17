@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, TouchableOpacity} from 'react-native'
-import {RadioProps} from './RadioProps'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { RadioProps } from './RadioProps'
 import shortid from 'shortid'
-import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold} from '../../objects'
-import {Icon, IconSize} from '../icon'
-import {Text, TextLevels} from '../text'
-import {View} from '../view'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '../../objects'
+import { Icon, IconSize } from '../icon'
+import { Text, TextLevels } from '../text'
+import { View } from '../view'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Radio Native Component
@@ -137,7 +137,7 @@ const Radio = ({
   if (horizontalTile) {
     return (
       <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick(value || false)}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           {children ? (
             <View
               style={{
@@ -222,14 +222,14 @@ const Radio = ({
         onPress={() => handleClick(value || false)}
       >
         <TouchableOpacity
-          style={[{alignSelf: 'flex-end', marginTop: 10}, styles.radio]}
+          style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.radio]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick(value || false)}
         >
           {_checked && !disabled && <View style={styles.icon}/>}
         </TouchableOpacity>
-        <View style={{width: '70%', alignItems: 'center'}}>
+        <View style={{ width: '70%', alignItems: 'center' }}>
           {iconTile && (
             <View
               style={{

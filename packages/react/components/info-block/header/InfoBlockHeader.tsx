@@ -1,13 +1,13 @@
-import clsx from 'clsx'
-import React from 'react'
-import { has } from '../../../services'
-import { Icon, IconName } from '../../icon'
-import { InfoBlockStatus } from '../InfoBlockEnum'
-import { InfoBlockHeaderProps } from './InfoBlockHeaderProps'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { Text, TextLevels } from '../../text'
-import { TypographyBold } from '../../../objects'
+import clsx from "clsx"
+import * as React from "react"
+import { has } from "../../../services"
+import { Icon, IconName } from "../../icon"
+import { InfoBlockStatus } from "../InfoBlockEnum"
+import { InfoBlockHeaderProps } from "./InfoBlockHeaderProps"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { Text, TextLevels } from "../../text"
+import { TypographyBold } from "../../../objects"
 
 /**
  * Info Block Header
@@ -17,14 +17,24 @@ import { TypographyBold } from '../../../objects'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const InfoBlockHeader = ({ className, status, children, customIcon, ...others }: InfoBlockHeaderProps): JSX.Element => {
+const InfoBlockHeader = ({
+  className,
+  status,
+  children,
+  customIcon,
+  ...others
+}: InfoBlockHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('info-block-header', has('text-centered'), className))
+  const classes = hashClass(
+    styled,
+    clsx("info-block-header", has("text-centered"), className)
+  )
 
   const _iconName = React.useMemo(() => {
     if (customIcon != null) return customIcon
-    else if (status === InfoBlockStatus.WARNING) return IconName.EXCLAMATION_CIRCLE
+    else if (status === InfoBlockStatus.WARNING)
+      return IconName.EXCLAMATION_CIRCLE
     else if (status === InfoBlockStatus.ERROR) return IconName.TIMES
     else return IconName.CHECK_CIRCLE
   }, [status, customIcon])
@@ -37,17 +47,20 @@ const InfoBlockHeader = ({ className, status, children, customIcon, ...others }:
         <Icon
           name={_iconName as IconName}
           className={clsx(
-            'is-large',
-            status === InfoBlockStatus.ERROR && 'is-error',
-            status === InfoBlockStatus.WARNING && 'is-warning',
-            status === InfoBlockStatus.SUCCESS && 'is-success',
+            "is-large",
+            status === InfoBlockStatus.ERROR && "is-error",
+            status === InfoBlockStatus.WARNING && "is-warning",
+            status === InfoBlockStatus.SUCCESS && "is-success"
           )}
         />
       )}
 
       <span>
-        {children && typeof children.valueOf() === 'string' ? (
-          <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+        {children && typeof children.valueOf() === "string" ? (
+          <Text
+            level={TextLevels.ONE}
+            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+          >
             {children}
           </Text>
         ) : (

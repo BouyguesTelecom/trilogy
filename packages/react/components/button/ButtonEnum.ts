@@ -36,4 +36,4 @@ export type ButtonTypeValues = `${ButtonType}`
 
 export type ButtonVariantValues = `${ButtonVariant}`
 
-export {ButtonMarkup, ButtonType}
+export { ButtonMarkup, ButtonType }

@@ -1,16 +1,16 @@
-import React, {forwardRef, useEffect, useRef, useState} from 'react'
-import {Animated, StyleSheet, Text, TextInput, View} from 'react-native'
-import {TextareaNativeProps} from './TextareaProps'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
+import { TextareaNativeProps } from './TextareaProps'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
 } from '../input/InputEnum'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {AlertState, getAlertStyle} from '../../objects/facets/Alert'
-import {Icon, IconColor} from '../icon'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { AlertState, getAlertStyle } from '../../objects/facets/Alert'
+import { Icon, IconColor } from '../icon'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Textarea Native Component

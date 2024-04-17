@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { Box, BoxContent } from '../box'
-import { InfoBlockProps } from './InfoBlockProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { Box, BoxContent } from "../box"
+import { InfoBlockProps } from "./InfoBlockProps"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Info Block Component
@@ -13,14 +13,24 @@ import { useTrilogyContext } from '../../context'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const InfoBlock = ({ className, boxed, children, onClick, testId, ...others }: InfoBlockProps): JSX.Element => {
+const InfoBlock = ({
+  className,
+  boxed,
+  children,
+  onClick,
+  testId,
+  ...others
+}: InfoBlockProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   if (boxed) {
     return (
       <Box onClick={onClick && onClick}>
         <BoxContent>
-          <div className={hashClass(styled, clsx('info-block', className))} {...others}>
+          <div
+            className={hashClass(styled, clsx("info-block", className))}
+            {...others}
+          >
             {children}
           </div>
         </BoxContent>
@@ -29,8 +39,12 @@ const InfoBlock = ({ className, boxed, children, onClick, testId, ...others }: I
   }
 
   return (
-    <div data-testid={testId} style={{ padding: '2.5rem' }}>
-      <div onClick={onClick && onClick} className={clsx('info-block', className)} {...others}>
+    <div data-testid={testId} style={{ padding: "2.5rem" }}>
+      <div
+        onClick={onClick && onClick}
+        className={clsx("info-block", className)}
+        {...others}
+      >
         {children}
       </div>
     </div>

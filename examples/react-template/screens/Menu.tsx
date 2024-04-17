@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Divider,
   IconName,
@@ -12,30 +12,30 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from "@trilogy-ds/react/components";
 
 export const MenuScreen = (): JSX.Element => {
   return (
     <>
       <Section>
         <Menu>
-          <MenuItem onClick={() => alert('Click on item 1')} to='/'>
+          <MenuItem onClick={() => alert("Click on item 1")} to="/">
             <Text>Item 1</Text>
           </MenuItem>
-          <MenuItem to='/' active>
+          <MenuItem to="/" active>
             <Text>Item 2</Text>
           </MenuItem>
           <MenuItem>
             <SubMenuItem>
-              <MenuItem to='/'>
+              <MenuItem to="/">
                 <Text>Item 3.1</Text>
               </MenuItem>
-              <MenuItem to='/'>
+              <MenuItem to="/">
                 <Text>Item 3.2</Text>
               </MenuItem>
             </SubMenuItem>
           </MenuItem>
-          <MenuItem to='/'>
+          <MenuItem to="/">
             <Text>Item 3.3</Text>
           </MenuItem>
         </Menu>
@@ -51,7 +51,7 @@ export const MenuScreen = (): JSX.Element => {
         <MenuScrolling hasBackgroundWhite>
           <Text level={TextLevels.ONE}>Miguel</Text>
 
-          <Input placeholder='Search' hasIcon search />
+          <Input placeholder="Search" hasIcon search />
           <Menu notASide>
             <MenuItem active arrow>
               Personnal information
@@ -78,9 +78,9 @@ export const MenuScreen = (): JSX.Element => {
             </MenuItem>
           </Menu>
         </MenuScrolling>
-        <MenuScrolling pulled='right' hasBackgroundWhite>
+        <MenuScrolling pulled="right" hasBackgroundWhite>
           <Text level={TextLevels.ONE}>Miguel</Text>
-          <Input placeholder='Search' hasIcon search />
+          <Input placeholder="Search" hasIcon search />
           <Menu notASide>
             <MenuItem active arrow>
               Personnal information
@@ -109,5 +109,5 @@ export const MenuScreen = (): JSX.Element => {
         </MenuScrolling>
       </Section>
     </>
-  )
-}
+  );
+};

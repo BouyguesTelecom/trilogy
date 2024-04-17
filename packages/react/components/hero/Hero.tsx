@@ -1,10 +1,10 @@
-import React from "react";
-import {HeroProps} from "./HeroProps";
-import {has, is} from "../../services/classify";
-import {getAlignClassName, getVariantClassName} from "../../objects";
-import clsx from "clsx";
-import {hashClass} from "../../helpers";
-import {useTrilogyContext} from "../../context";
+import React from "react"
+import { HeroProps } from "./HeroProps"
+import { has, is } from "../../services/classify"
+import { getAlignClassName, getVariantClassName } from "../../objects"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Hero Component
@@ -30,7 +30,7 @@ const Hero = ({
   overlap,
   ...others
 }: HeroProps): JSX.Element => {
-  const { styled } = useTrilogyContext();
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -43,14 +43,14 @@ const Hero = ({
       overlap && is("overlapped"),
       className
     )
-  );
+  )
 
   if (variant) {
     return (
       <section onClick={onClick && onClick} className={classes} {...others}>
         <div className={hashClass(styled, clsx("hero-body"))}>{children}</div>
       </section>
-    );
+    )
   }
 
   return (
@@ -64,7 +64,7 @@ const Hero = ({
     >
       <div className={hashClass(styled, clsx("hero-body"))}>{children}</div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

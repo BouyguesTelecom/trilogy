@@ -1,7 +1,7 @@
-import React from 'react'
-import { View } from 'react-native'
-import { ComponentName } from '../../enumsComponentsName'
-import { SubMenuItem as IProps } from './SubMenuItemProps'
+import * as React from "react"
+import { View } from "react-native"
+import { ComponentName } from "../../enumsComponentsName"
+import { SubMenuItem as IProps } from "./SubMenuItemProps"
 
 /**
  * Menu Component

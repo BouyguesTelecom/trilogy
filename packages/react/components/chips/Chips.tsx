@@ -1,9 +1,9 @@
-import React from "react";
-import {has, is} from "../../services";
-import {ChipsProps} from "./ChipsProps";
-import clsx from "clsx";
-import {hashClass} from "../../helpers";
-import {useTrilogyContext} from "../../context";
+import React from "react"
+import { has, is } from "../../services"
+import { ChipsProps } from "./ChipsProps"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -28,7 +28,7 @@ const Chips = ({
   testId,
   ...others
 }: ChipsProps): JSX.Element => {
-  const { styled } = useTrilogyContext();
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -39,7 +39,7 @@ const Chips = ({
       inverted && has(`background-white`),
       className
     )
-  );
+  )
 
   return (
     <div
@@ -48,13 +48,13 @@ const Chips = ({
       id={id}
       className={classes}
       onClick={(e) => {
-        onClick?.(e);
+        onClick?.(e)
       }}
       {...others}
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default Chips;
+export default Chips

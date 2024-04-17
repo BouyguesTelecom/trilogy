@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {StyleSheet, ScrollView} from 'react-native'
-import {TabsProps} from './TabsProps'
-import {Text, TextLevels} from '../text'
+import React, { useState } from 'react'
+import { StyleSheet, ScrollView } from 'react-native'
+import { TabsProps } from './TabsProps'
+import { Text, TextLevels } from '../text'
 import TabsItem from './item'
-import {getColorStyle, TrilogyColor} from '../../objects'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '../../objects'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Tabs Component
@@ -14,7 +14,7 @@ import {ComponentName} from '../enumsComponentsName'
  * @param disabled {boolean} Disabled tabs
  * @param inverted {boolean} dark mode
  */
-const Tabs = ({children, onClick, activeIndex, disabled, inverted, ...others}: TabsProps): JSX.Element => {
+const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 

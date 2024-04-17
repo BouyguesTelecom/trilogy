@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Container,
   Divider,
@@ -10,7 +10,7 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from "@trilogy-ds/react/components";
 
 export const TagScreen = (): JSX.Element => {
   return (
@@ -18,13 +18,13 @@ export const TagScreen = (): JSX.Element => {
       <Container>
         <TagList>
           <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
-          <Tag onClick={() => alert('test')} variant={TagVariant.ERROR}>
+          <Tag onClick={() => alert("test")} variant={TagVariant.ERROR}>
             Tag error
           </Tag>
-          <Tag onClick={() => alert('test')} variant={TagVariant.SUCCESS}>
+          <Tag onClick={() => alert("test")} variant={TagVariant.SUCCESS}>
             Tag success
           </Tag>
-          <Tag onClick={() => alert('test')} variant={TagVariant.WARNING}>
+          <Tag onClick={() => alert("test")} variant={TagVariant.WARNING}>
             Tag warning
           </Tag>
         </TagList>
@@ -46,7 +46,10 @@ export const TagScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Tag avec icone</Title>
         <Divider />
         <TagList>
-          <Tag iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR}>
+          <Tag
+            iconName={IconName.EXCLAMATION_CIRCLE}
+            variant={TagVariant.ERROR}
+          >
             Tag error
           </Tag>
           <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS}>
@@ -58,7 +61,9 @@ export const TagScreen = (): JSX.Element => {
           <Tag iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO}>
             Tag info
           </Tag>
-          <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.DEFAULT}>Tag default</Tag>
+          <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.DEFAULT}>
+            Tag default
+          </Tag>
         </TagList>
       </Container>
 
@@ -93,5 +98,5 @@ export const TagScreen = (): JSX.Element => {
         </Tag>
       </Section>
     </>
-  )
-}
+  );
+};

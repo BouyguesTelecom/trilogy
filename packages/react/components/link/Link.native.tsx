@@ -1,12 +1,19 @@
-import React from 'react'
-import {Linking, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {LinkProps} from './LinkProps'
-import {TypographyAlign} from '../../objects'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {TextLevels} from '../text'
-import {Icon} from '../icon'
-import {Spacer, SpacerSize} from '../spacer'
-import {ComponentName} from '../enumsComponentsName'
+import * as React from "react"
+import {
+  Linking,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native"
+import { LinkProps } from "./LinkProps"
+import { TypographyAlign } from "../../objects"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { TextLevels } from "../text"
+import { Icon } from "../icon"
+import { Spacer, SpacerSize } from "../spacer"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Link Component
@@ -23,35 +30,35 @@ import {ComponentName} from '../enumsComponentsName'
  * @param iconName {IconName} Adding Icon Link
  */
 const Link = ({
-                children,
-                to,
-                title,
-                typo,
-                onClick,
-                testId,
-                accessibilityLabel,
-                inline,
-                level,
-                iconName,
-                inverted,
-                ...others
-              }: LinkProps): JSX.Element => {
+  children,
+  to,
+  title,
+  typo,
+  onClick,
+  testId,
+  accessibilityLabel,
+  inline,
+  level,
+  iconName,
+  inverted,
+  ...others
+}: LinkProps): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
     return (
-      (level && level == 'ONE' && 16) ||
-      (level && level == 'TWO' && 14) ||
-      (level && level == 'THREE' && 12) ||
-      (level && level == 'FOUR' && 10) ||
+      (level && level == "ONE" && 16) ||
+      (level && level == "TWO" && 14) ||
+      (level && level == "THREE" && 12) ||
+      (level && level == "FOUR" && 10) ||
       10
     )
   }
 
   const getHeightLinkAndroid = (level: TextLevels) => {
     return (
-      (level && level == 'ONE' && 20) ||
-      (level && level == 'TWO' && 18) ||
-      (level && level == 'THREE' && 15) ||
-      (level && level == 'FOUR' && 13) ||
+      (level && level == "ONE" && 20) ||
+      (level && level == "TWO" && 18) ||
+      (level && level == "THREE" && 15) ||
+      (level && level == "FOUR" && 13) ||
       14
     )
   }
@@ -59,15 +66,39 @@ const Link = ({
   const styles = StyleSheet.create({
     linkAlignement: {
       alignSelf:
-        (typo && !Array.isArray(typo) && typo === TypographyAlign.TEXT_CENTERED && 'center') ||
-        (typo && Array.isArray(typo) && typo.includes(TypographyAlign.TEXT_CENTERED) && 'center') ||
-        (typo && !Array.isArray(typo) && typo === TypographyAlign.TEXT_LEFT && 'flex-start') ||
-        (typo && Array.isArray(typo) && typo.includes(TypographyAlign.TEXT_LEFT) && 'flex-start') ||
-        (typo && !Array.isArray(typo) && typo === TypographyAlign.TEXT_RIGHT && 'flex-end') ||
-        (typo && Array.isArray(typo) && typo.includes(TypographyAlign.TEXT_RIGHT) && 'flex-end') ||
-        (typo && !Array.isArray(typo) && typo === TypographyAlign.TEXT_JUSTIFIED && 'auto') ||
-        (typo && Array.isArray(typo) && typo.includes(TypographyAlign.TEXT_JUSTIFIED) && 'auto') ||
-        'baseline',
+        (typo &&
+          !Array.isArray(typo) &&
+          typo === TypographyAlign.TEXT_CENTERED &&
+          "center") ||
+        (typo &&
+          Array.isArray(typo) &&
+          typo.includes(TypographyAlign.TEXT_CENTERED) &&
+          "center") ||
+        (typo &&
+          !Array.isArray(typo) &&
+          typo === TypographyAlign.TEXT_LEFT &&
+          "flex-start") ||
+        (typo &&
+          Array.isArray(typo) &&
+          typo.includes(TypographyAlign.TEXT_LEFT) &&
+          "flex-start") ||
+        (typo &&
+          !Array.isArray(typo) &&
+          typo === TypographyAlign.TEXT_RIGHT &&
+          "flex-end") ||
+        (typo &&
+          Array.isArray(typo) &&
+          typo.includes(TypographyAlign.TEXT_RIGHT) &&
+          "flex-end") ||
+        (typo &&
+          !Array.isArray(typo) &&
+          typo === TypographyAlign.TEXT_JUSTIFIED &&
+          "auto") ||
+        (typo &&
+          Array.isArray(typo) &&
+          typo.includes(TypographyAlign.TEXT_JUSTIFIED) &&
+          "auto") ||
+        "baseline",
     },
     container: {
       padding: inline ? 4 : 8,
@@ -86,8 +117,8 @@ const Link = ({
         getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      textDecorationStyle: 'solid',
-      textDecorationLine: 'underline',
+      textDecorationStyle: "solid",
+      textDecorationLine: "underline",
     },
     androidLink: {
       color:
@@ -95,14 +126,14 @@ const Link = ({
         getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      height: inline && level ? getHeightLinkAndroid(level) : 'auto',
-      textDecorationStyle: 'solid',
-      textDecorationLine: 'underline',
+      height: inline && level ? getHeightLinkAndroid(level) : "auto",
+      textDecorationStyle: "solid",
+      textDecorationLine: "underline",
     },
     iconView: {
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-end',
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "flex-end",
     },
     icon: {
       paddingLeft: 4,
@@ -110,17 +141,21 @@ const Link = ({
     },
   })
 
-  const linkTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
+  const linkTestId = testId
+    ? testId
+    : typeof children === "string"
+    ? children
+    : "NotSpecified"
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === 'string'
-      ? children
-      : 'NotSpecified'
+    : typeof children === "string"
+    ? children
+    : "NotSpecified"
 
   return (
     <View
       style={
-        Platform.OS === 'android'
+        Platform.OS === "android"
           ? [styles.linkAlignement, styles.androidContainer]
           : [styles.linkAlignement, styles.container]
       }
@@ -128,11 +163,11 @@ const Link = ({
       accessibilityLabel={linkAccessibilityLabel}
       testID={linkTestId}
     >
-      {children && typeof children.valueOf() === 'string' ? (
+      {children && typeof children.valueOf() === "string" ? (
         <TouchableOpacity
           onPress={(e) => {
             if (to) {
-              Linking.openURL(to || '')
+              Linking.openURL(to || "")
             }
             if (onClick) {
               onClick(e)
@@ -141,16 +176,27 @@ const Link = ({
         >
           {iconName ? (
             <View style={styles.iconView}>
-              <Text accessibilityLabel={title || ''} style={styles.link} {...others}>
+              <Text
+                accessibilityLabel={title || ""}
+                style={styles.link}
+                {...others}
+              >
                 {children}
               </Text>
-              <Spacer size={SpacerSize.SMALLER} horizontal/>
-              <Icon color={'TERTIARY'} name={iconName} style={styles.icon} size='small'/>
+              <Spacer size={SpacerSize.SMALLER} horizontal />
+              <Icon
+                color={"TERTIARY"}
+                name={iconName}
+                style={styles.icon}
+                size='small'
+              />
             </View>
           ) : (
             <Text
-              accessibilityLabel={title || ''}
-              style={Platform.OS === 'android' ? styles.androidLink : styles.link}
+              accessibilityLabel={title || ""}
+              style={
+                Platform.OS === "android" ? styles.androidLink : styles.link
+              }
               {...others}
             >
               {children}
@@ -161,7 +207,7 @@ const Link = ({
         <TouchableOpacity
           onPress={(e) => {
             if (to) {
-              Linking.openURL(to || '')
+              Linking.openURL(to || "")
             }
             if (onClick) {
               onClick(e)

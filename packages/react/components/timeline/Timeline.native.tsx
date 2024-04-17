@@ -1,11 +1,11 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { TimelineProps } from './TimelineProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { TimelineProps } from "./TimelineProps"
+import { ComponentName } from "../enumsComponentsName"
 
 interface IContext {
-  height: number
-  setHeight: React.Dispatch<React.SetStateAction<number>>
+  height: number;
+  setHeight: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const TimelineHeightContext = React.createContext<IContext>({
@@ -21,7 +21,7 @@ export const TimelineHeightContext = React.createContext<IContext>({
 const Timeline = ({ children }: TimelineProps): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
-      flexDirection: 'column',
+      flexDirection: "column",
     },
   })
 
