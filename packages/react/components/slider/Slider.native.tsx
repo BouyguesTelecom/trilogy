@@ -1,12 +1,12 @@
 /* eslint-disable indent */
-import React, {useRef, useState} from 'react'
-import {Dimensions, Platform, ScrollView, StyleSheet, Text, View} from 'react-native'
-import {SliderProps} from './SliderProps'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {Spacer, SpacerSize} from '../spacer'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useRef, useState } from 'react'
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { SliderProps } from './SliderProps'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { Spacer, SpacerSize } from '../spacer'
+import { ComponentName } from '../enumsComponentsName'
 
-const {width} = Dimensions.get('screen')
+const { width } = Dimensions.get('screen')
 
 // const height = (width.width * 100) / 60 // 60%
 
@@ -87,7 +87,7 @@ const Slider = ({
   })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const changeHandler = ({nativeEvent}: any) => {
+  const changeHandler = ({ nativeEvent }: any) => {
     if (nativeEvent.layoutMeasurement.width === 0) return
     const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width)
     if (slide !== activeItem) {
@@ -109,21 +109,21 @@ const Slider = ({
       return styles.textDots
     }
     if (bar || progressBar) {
-      if (index === activeItem) return {...styles.activeProgressBar, marginRight: 8}
-      return {...styles.progressBar, marginRight: 8}
+      if (index === activeItem) return { ...styles.activeProgressBar, marginRight: 8 }
+      return { ...styles.progressBar, marginRight: 8 }
     }
   }
 
   return (
     <View
-      style={{height: height}}
+      style={{ height: height }}
       {...others}
       testID={testId}
       accessibilityLabel={accessibilityLabel}
       accessible={!!accessibilityLabel}
     >
       <ScrollView
-        style={{position: 'absolute', alignSelf: 'center', width: width}}
+        style={{ position: 'absolute', alignSelf: 'center', width: width }}
         onScroll={changeHandler}
         snapToInterval={contentWidth}
         pagingEnabled
@@ -132,7 +132,7 @@ const Slider = ({
         showsHorizontalScrollIndicator={false}
         snapToAlignment='center'
         onLayout={(e) => {
-          scrollViewRef?.current?.scrollTo({x: -SPACING_FOR_CARD_INSET, animated: false})
+          scrollViewRef?.current?.scrollTo({ x: -SPACING_FOR_CARD_INSET, animated: false })
           setHeight(e.nativeEvent.layout.height)
         }}
         ref={scrollViewRef}

@@ -1,16 +1,16 @@
-import React from 'react'
-import {StyleSheet, View} from 'react-native'
-import {TypographyBold, TypographyColor} from '../../objects'
-import {Text, TextLevels} from '../text'
-import {TitleLevels} from '../title'
-import {StepperProps} from './StepperProps'
-import {Icon, IconName, IconSize} from '../icon'
-import {ComponentName} from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { TypographyBold, TypographyColor } from "../../objects"
+import { Text, TextLevels } from "../text"
+import { TitleLevels } from "../title"
+import { StepperProps } from "./StepperProps"
+import { Icon, IconName, IconSize } from "../icon"
+import { ComponentName } from "../enumsComponentsName"
 
 interface ICurrentStep {
-  step: number
-  name: string
-  iconName?: string | IconName
+  step: number;
+  name: string;
+  iconName?: string | IconName;
 }
 
 /**
@@ -18,29 +18,37 @@ interface ICurrentStep {
  * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({children, centered, ...others}: StepperProps): JSX.Element => {
-  const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({step: 0, name: '', iconName: ''})
+const Stepper = ({
+  children,
+  centered,
+  ...others
+}: StepperProps): JSX.Element => {
+  const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({
+    step: 0,
+    name: "",
+    iconName: "",
+  })
 
   const styles = StyleSheet.create({
     steppers: {
-      flexDirection: 'row',
-      alignSelf: centered ? 'center' : 'flex-start',
+      flexDirection: "row",
+      alignSelf: centered ? "center" : "flex-start",
     },
     step: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
       marginTop: 10,
     },
     hasIcon: {
-      flexDirection: 'row',
+      flexDirection: "row",
     },
     icon: {
       marginRight: 4,
       marginTop: 3,
     },
     counter: {
-      marginRight: 10
+      marginRight: 10,
     },
   })
 
@@ -89,17 +97,29 @@ const Stepper = ({children, centered, ...others}: StepperProps): JSX.Element => 
       </View>
       <View style={styles.step}>
         <View style={styles.hasIcon}>
-
           {currentStep.iconName && (
             <Text style={styles.icon}>
-              <Icon name={currentStep.iconName as IconName} size={IconSize.SMALL}/>
+              <Icon
+                name={currentStep.iconName as IconName}
+                size={IconSize.SMALL}
+              />
             </Text>
           )}
-          <Text level={TitleLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>{currentStep.name}</Text>
-
+          <Text
+            level={TitleLevels.ONE}
+            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+          >
+            {currentStep.name}
+          </Text>
         </View>
-        <Text style={styles.counter} level={TextLevels.THREE}
-              typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_TERTIARY]}>
+        <Text
+          style={styles.counter}
+          level={TextLevels.THREE}
+          typo={[
+            TypographyBold.TEXT_WEIGHT_SEMIBOLD,
+            TypographyColor.TEXT_TERTIARY,
+          ]}
+        >
           {currentStep.step}/{nbChild}
         </Text>
       </View>

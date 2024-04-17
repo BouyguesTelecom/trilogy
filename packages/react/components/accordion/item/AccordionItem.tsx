@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import shortid from 'shortid'
-import {AccordionItemProps} from './AccordionItemProps'
-import {is} from '../../../services'
+import { AccordionItemProps } from './AccordionItemProps'
+import { is } from '../../../services'
 import clsx from 'clsx'
-import {hashClass} from '../../../helpers'
-import {useTrilogyContext} from '../../../context'
+import { hashClass } from '../../../helpers'
+import { useTrilogyContext } from '../../../context'
 
 /**
  * Accordion Item Component
@@ -29,7 +29,7 @@ const AccordionItem = ({
                          ...others
                        }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
   const [expandedHeight, setExpandedHeight] = useState<string>()
@@ -47,7 +47,7 @@ const AccordionItem = ({
     if (!e) {
       return
     }
-    const {floor, abs} = Math
+    const { floor, abs } = Math
     const firstChild = e.children[1].firstChild as HTMLElement
     const expandedInactive = floor(abs(e.clientHeight + firstChild?.clientHeight)).toString()
     const expandedActive = floor(abs(e.clientHeight)).toString()
@@ -97,7 +97,7 @@ const AccordionItem = ({
           type='checkbox'
           data-accordion-toggle={true}
           id={`toggle_header-${id}`}
-          style={{display: 'none'}}
+          style={{ display: 'none' }}
           defaultChecked={isActive}
         />
       )}

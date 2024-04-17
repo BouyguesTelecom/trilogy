@@ -6,9 +6,9 @@ import {
   ButtonVariant,
   ButtonVariantValues,
 } from './ButtonEnum'
-import {Fullwidth} from '../../objects/facets/Fullwidth'
-import {Accessibility, Clickable} from '../../objects/facets'
-import {IconName, IconNameValues} from '..'
+import { Fullwidth } from '../../objects/facets/Fullwidth'
+import { Accessibility, Clickable } from '../../objects/facets'
+import { IconName, IconNameValues } from '..'
 
 /**
  * Button Interface

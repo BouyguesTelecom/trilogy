@@ -1,10 +1,14 @@
-import React from 'react'
-import { ViewMarkup, ViewMarkupValues, ViewProps } from './ViewProps'
-import clsx from 'clsx'
-import { has, is } from '../../services'
-import { getLoadingClassName, getJustifyClassName, getAlignClassName } from "../../objects"
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { ViewMarkup, ViewMarkupValues, ViewProps } from "./ViewProps"
+import clsx from "clsx"
+import { has, is } from "../../services"
+import {
+  getLoadingClassName,
+  getJustifyClassName,
+  getAlignClassName,
+} from "../../objects"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -43,24 +47,28 @@ const View = ({
   const { styled } = useTrilogyContext()
 
   const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
-    if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
+    if (
+      stringMarkup in ViewMarkup ||
+      Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)
+    )
+      return true
   }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
+  const Tag = markup && isCorrectMarkup(markup) ? markup : "div"
 
   const classes = hashClass(
     styled,
     clsx(
-      typeof loading === 'string' && is(getLoadingClassName(loading)),
-      typeof loading === 'boolean' ? is('loading') : is('loaded'),
+      typeof loading === "string" && is(getLoadingClassName(loading)),
+      typeof loading === "boolean" ? is("loading") : is("loaded"),
       color && has(`background-${color}`),
-      backgroundSrc && has('background'),
-      fullwidth && is('fullwidth'),
-      flexable && is('flex'),
-      typeof justify === 'string' && is(getJustifyClassName(justify)),
-      typeof align === 'string' && is(getAlignClassName(align)),
-      className,
-    ),
+      backgroundSrc && has("background"),
+      fullwidth && is("fullwidth"),
+      flexable && is("flex"),
+      typeof justify === "string" && is(getJustifyClassName(justify)),
+      typeof align === "string" && is(getAlignClassName(align)),
+      className
+    )
   )
 
   return (
@@ -69,7 +77,11 @@ const View = ({
       style={style}
       className={classes}
       {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover', backgroundPosition: '50%' },
+        style: {
+          backgroundImage: `url(${backgroundSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "50%",
+        },
       })}
       {...others}
     >

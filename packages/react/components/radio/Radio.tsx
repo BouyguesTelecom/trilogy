@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import shortid from "shortid";
-import {RadioProps} from "./RadioProps";
-import {has, is} from "../../services/classify";
-import {Icon, IconSize} from "../icon";
-import {hashClass} from "../../helpers";
-import clsx from "clsx";
-import {useTrilogyContext} from "../../context";
+import React, { useEffect, useState } from "react"
+import shortid from "shortid"
+import { RadioProps } from "./RadioProps"
+import { has, is } from "../../services/classify"
+import { Icon, IconSize } from "../icon"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Radio Component
@@ -47,16 +47,16 @@ const Radio = ({
   marginless,
   ...others
 }: RadioProps): JSX.Element => {
-  const { styled } = useTrilogyContext();
+  const { styled } = useTrilogyContext()
   const [inputState, setInputState] = useState<{ checked: boolean }>({
     checked: checked || false,
-  });
+  })
 
   useEffect(() => {
     if (!readonly) {
-      setInputState({ checked: checked || false });
+      setInputState({ checked: checked || false })
     }
-  }, [checked, readonly]);
+  }, [checked, readonly])
 
   const classes = hashClass(
     styled,
@@ -71,8 +71,8 @@ const Radio = ({
         has("background-color"),
       className
     )
-  );
-  const labelClasses = hashClass(styled, clsx(checked && has("text-info")));
+  )
+  const labelClasses = hashClass(styled, clsx(checked && has("text-info")))
 
   // Support legacy checkbox
   if (inverted) {
@@ -87,7 +87,7 @@ const Radio = ({
           <input
             data-testid={testId}
             className={classes}
-            type="radio"
+            type='radio'
             readOnly={readonly}
             id={id}
             disabled={disabled}
@@ -95,21 +95,21 @@ const Radio = ({
             value={value}
             checked={readonly ? checked : inputState.checked}
             onChange={(e: React.ChangeEvent) => {
-              return e;
+              return e
             }}
             onClick={(e: React.MouseEvent) => {
-              const target = e.target as HTMLInputElement;
+              const target = e.target as HTMLInputElement
               if (!readonly && target.checked !== undefined) {
-                setInputState({ checked: target.checked });
+                setInputState({ checked: target.checked })
               }
-              target.value = value || "";
+              target.value = value || ""
               if (onChange) {
                 onChange({
                   radioId: target.id,
                   radioValue: target.value,
                   radioName: target.name,
                   radioChecked: target.checked,
-                });
+                })
               }
               if (onClick) {
                 onClick({
@@ -117,7 +117,7 @@ const Radio = ({
                   radioValue: target.value,
                   radioName: target.name,
                   radioChecked: target.checked,
-                });
+                })
               }
             }}
             {...others}
@@ -127,7 +127,7 @@ const Radio = ({
           </label>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -145,7 +145,7 @@ const Radio = ({
       )}
     >
       <input
-        type="radio"
+        type='radio'
         readOnly={readonly}
         id={id}
         disabled={disabled}
@@ -153,21 +153,21 @@ const Radio = ({
         value={value}
         checked={readonly ? checked : inputState.checked}
         onChange={(e: React.ChangeEvent) => {
-          return e;
+          return e
         }}
         onClick={(e: React.MouseEvent) => {
-          const target = e.target as HTMLInputElement;
+          const target = e.target as HTMLInputElement
           if (!readonly && target.checked) {
-            setInputState({ checked: target.checked });
+            setInputState({ checked: target.checked })
           }
-          target.value = value || "";
+          target.value = value || ""
           if (onChange) {
             onChange({
               radioId: target.id,
               radioValue: target.value,
               radioName: target.name,
               radioChecked: target.checked,
-            });
+            })
           }
           if (onClick) {
             onClick({
@@ -175,7 +175,7 @@ const Radio = ({
               radioValue: target.value,
               radioName: target.name,
               radioChecked: target.checked,
-            });
+            })
           }
         }}
         {...others}
@@ -226,7 +226,7 @@ const Radio = ({
         )}
       </label>
     </div>
-  );
-};
+  )
+}
 
-export default Radio;
+export default Radio

@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { SliceCtaProps } from './SliceCtaProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { SliceCtaProps } from "./SliceCtaProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Slice Cta Component
@@ -10,7 +10,7 @@ import { ComponentName } from '../../enumsComponentsName'
 const SliceCta = ({ children, ...others }: SliceCtaProps): JSX.Element => {
   const styles = StyleSheet.create({
     sliceCta: {
-      position: 'absolute',
+      position: "absolute",
       right: 10,
     },
   })

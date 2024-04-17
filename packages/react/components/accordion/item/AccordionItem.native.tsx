@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {Animated, Easing, StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
-import {AccordionItemProps} from './AccordionItemProps'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {hasDisplayName} from './AccordionItem.helper'
-import {IconName} from '../../icon/IconNameEnum'
-import {Spacer, SpacerSize} from '../../spacer'
-import {Icon, IconSize} from '../../icon'
-import {ComponentName} from '../../enumsComponentsName'
+import React, { useEffect, useRef, useState } from 'react'
+import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import { AccordionItemProps } from './AccordionItemProps'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { hasDisplayName } from './AccordionItem.helper'
+import { IconName } from '../../icon/IconNameEnum'
+import { Spacer, SpacerSize } from '../../spacer'
+import { Icon, IconSize } from '../../icon'
+import { ComponentName } from '../../enumsComponentsName'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -36,8 +36,8 @@ const AccordionItem = ({
   const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
-  const [childs, setChilds] = useState<AccordionChild>({header: undefined, body: undefined})
-  
+  const [childs, setChilds] = useState<AccordionChild>({ header: undefined, body: undefined })
+
   const styles = StyleSheet.create({
     item: {
       width: '100%',
@@ -157,7 +157,7 @@ const AccordionItem = ({
         >
           <View style={styles.titleContainer}>
             {childs.header && <View>{childs.header}</View>}
-            <Animated.View style={{transform: [{rotateZ: arrowAngle}]}}>
+            <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
@@ -166,7 +166,7 @@ const AccordionItem = ({
             </Animated.View>
           </View>
         </TouchableWithoutFeedback>
-        <Animated.View style={[styles.bodyBackground, {height: bodyHeight}]}>
+        <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
           <View
             style={styles.bodyContainer}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any

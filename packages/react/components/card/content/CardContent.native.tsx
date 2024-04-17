@@ -1,11 +1,11 @@
-import React, {useContext} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {CardContentProps} from './CardContentProps'
-import {Title, TitleLevels} from '../../title'
-import {Button} from '../../button'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {CardContext} from '../Card.native'
-import {ComponentName} from '../../enumsComponentsName'
+import React, { useContext } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { CardContentProps } from './CardContentProps'
+import { Title, TitleLevels } from '../../title'
+import { Button } from '../../button'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { CardContext } from '../Card.native'
+import { ComponentName } from '../../enumsComponentsName'
 
 /**
  * Card Content Component
@@ -62,7 +62,7 @@ const CardContent = ({
     if (onClick) {
       return (
         <View style={styles.card}>
-          <TouchableOpacity style={{width: '100%', paddingBottom: 16}} onPress={onClick}>
+          <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
             {children}
           </TouchableOpacity>
         </View>
@@ -81,13 +81,13 @@ const CardContent = ({
       {title && <Title level={TitleLevels.ONE}>{title}</Title>}
       {text && (
         <>
-          <View style={{marginBottom: 16}}/>
+          <View style={{ marginBottom: 16 }}/>
           <Text style={styles.text}>{text}</Text>
         </>
       )}
       {buttonText && (
         <>
-          <View style={{marginBottom: 16}}/>
+          <View style={{ marginBottom: 16 }}/>
           <Button variant={buttonVariant} onClick={buttonClick}>
             {buttonText}
           </Button>
@@ -98,7 +98,7 @@ const CardContent = ({
 
   return onClick ? (
     <View style={styles.view}>
-      <TouchableOpacity style={{width: '100%'}} onPress={onClick} activeOpacity={0.85}>
+      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
         {cardContent}
       </TouchableOpacity>
     </View>

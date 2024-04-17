@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Image } from '../../image'
-import { SliceImageProps } from './SliceImageProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { Image } from "../../image"
+import { SliceImageProps } from "./SliceImageProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Slice Image Component
@@ -10,7 +10,12 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param src {string} Image source
  * @param alt {string} Image alt
  */
-const SliceImage = ({ children, src, alt, ...others }: SliceImageProps): JSX.Element => {
+const SliceImage = ({
+  children,
+  src,
+  alt,
+  ...others
+}: SliceImageProps): JSX.Element => {
   const styles = StyleSheet.create({
     sliceImage: {},
   })
@@ -23,7 +28,9 @@ const SliceImage = ({ children, src, alt, ...others }: SliceImageProps): JSX.Ele
     )
   }
 
-  return <Image rounded width={60} height={60} src={src || ''} alt={alt || ''} />
+  return (
+    <Image rounded width={60} height={60} src={src || ""} alt={alt || ""} />
+  )
 }
 
 SliceImage.displayName = ComponentName.SliceImage

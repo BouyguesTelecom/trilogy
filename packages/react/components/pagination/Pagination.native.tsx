@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {PaginationProps} from './PaginationProps'
-import {Icon, IconName, IconSize} from '../icon'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {ComponentName} from '../enumsComponentsName'
-import {Pager} from './PaginationEnum'
+import React, { useEffect, useRef, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { PaginationProps } from './PaginationProps'
+import { Icon, IconName, IconSize } from '../icon'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { ComponentName } from '../enumsComponentsName'
+import { Pager } from './PaginationEnum'
 
 /**
  * Pagination Component
@@ -13,7 +13,7 @@ import {Pager} from './PaginationEnum'
  * @param pageSize {number} Element per page (default is 10)
  * @param onClick {Function} Return pagination object
  */
-const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}: PaginationProps): JSX.Element => {
+const Pagination = ({ count, defaultPage = 1, pageSize = 10, onClick, ...others }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const [arrayPage] = useState<Array<number>>(Array.from(Array(count + 1).keys()))
   const prevCurrentPage = useRef<number>(currentPage)
@@ -136,7 +136,7 @@ const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}:
   return (
     <View style={styles.container} {...others}>
       <TouchableOpacity
-        style={{marginRight: 5}}
+        style={{ marginRight: 5 }}
         onPress={() => {
           if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -154,7 +154,7 @@ const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}:
         {/* )} */}
       </TouchableOpacity>
 
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         {!pager.pages.includes(1) && (
           <View>
             <Text style={styles.dotsLeft}>…</Text>
@@ -174,13 +174,13 @@ const Pagination = ({count, defaultPage = 1, pageSize = 10, onClick, ...others}:
           </View>
         ))}
         {!pager.pages.includes(totalCountPages) && (
-          <View style={{marginRight: 15}}>
+          <View style={{ marginRight: 15 }}>
             <Text style={styles.dotsRight}>…</Text>
           </View>
         )}
       </View>
       <TouchableOpacity
-        style={{marginLeft: 5}}
+        style={{ marginLeft: 5 }}
         onPress={() => {
           if (currentPage !== Math.max(pager.totalPages)) {
             setCurrentPage(currentPage + 1)

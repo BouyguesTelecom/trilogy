@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { SliceIconProps } from './SliceIconProps'
-import { Icon } from '../../icon'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { SliceIconProps } from "./SliceIconProps"
+import { Icon } from "../../icon"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Slice Icon Component
@@ -11,7 +11,12 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param iconColor {IconColor} Custom color for icon
  * @param children {ReactNode}
  */
-const SliceIcon = ({ iconSize, iconName, iconColor, ...others }: SliceIconProps): JSX.Element => {
+const SliceIcon = ({
+  iconSize,
+  iconName,
+  iconColor,
+  ...others
+}: SliceIconProps): JSX.Element => {
   const styles = StyleSheet.create({
     sliceIcon: {
       margin: 15,
@@ -20,7 +25,11 @@ const SliceIcon = ({ iconSize, iconName, iconColor, ...others }: SliceIconProps)
 
   return (
     <View style={styles.sliceIcon} {...others}>
-      <Icon name={iconName} {...(iconColor && { color: iconColor })} {...(iconSize && { size: iconSize })} />
+      <Icon
+        name={iconName}
+        {...(iconColor && { color: iconColor })}
+        {...(iconSize && { size: iconSize })}
+      />
     </View>
   )
 }

@@ -1,12 +1,12 @@
-import React, {useContext} from 'react'
-import {CircleIconProps} from './CircleIconProps'
-import {View, StyleSheet} from 'react-native'
-import {IconPosition} from '../IconEnum'
-import {Text, TextLevels} from '../../text'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {WithLocalSvg} from 'react-native-svg/css'
-import {ComponentName} from '../../enumsComponentsName'
-import {TrilogyThemeContext} from "../../../context/providerTheme.native"
+import React, { useContext } from 'react'
+import { CircleIconProps } from './CircleIconProps'
+import { View, StyleSheet } from 'react-native'
+import { IconPosition } from '../IconEnum'
+import { Text, TextLevels } from '../../text'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { WithLocalSvg } from 'react-native-svg/css'
+import { ComponentName } from '../../enumsComponentsName'
+import { TrilogyThemeContext } from "../../../context/providerTheme.native"
 
 const CircleIcon = ({
                       name,
@@ -19,7 +19,7 @@ const CircleIcon = ({
                       stacked,
                     }: CircleIconProps): JSX.Element => {
   const {
-    theme: {icons},
+    theme: { icons },
   } = useContext(TrilogyThemeContext)
 
   const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const CircleIcon = ({
       alignItems: 'center',
       margin: 4,
       shadowColor: 'rgba(0,0,0,.1)',
-      shadowOffset: {width: 0, height: 1},
+      shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.8,
       shadowRadius: 2,
       elevation: 5,

@@ -1,7 +1,7 @@
-import {Accessibility, Clickable} from '../../objects/facets'
-import {TypographyAlign, TypographyAlignValues} from '../../objects/Typography/TypographyAlign'
-import {IconName, IconNameValues} from '../icon'
-import {TextLevels} from '../text'
+import { Accessibility, Clickable } from '../../objects/facets'
+import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
+import { IconName, IconNameValues } from '../icon'
+import { TextLevels } from '../text'
 
 /**
  * Link Interface

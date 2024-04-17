@@ -1,8 +1,8 @@
-import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {BoxHeaderProps} from './BoxHeaderProps'
-import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
-import {ComponentName} from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { BoxHeaderProps } from "./BoxHeaderProps"
+import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Box Header Component
@@ -15,48 +15,54 @@ import {ComponentName} from '../../enumsComponentsName'
  * @param others
  */
 const BoxHeader = ({
-                     children,
-                     variant,
-                     pulledRight,
-                     pulledLeft,
-                     centered,
-                     help,
-                     ...others
-                   }: BoxHeaderProps): JSX.Element => {
-  const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
+  children,
+  variant,
+  pulledRight,
+  pulledLeft,
+  centered,
+  help,
+  ...others
+}: BoxHeaderProps): JSX.Element => {
+  const headerBgc = variant
+    ? getColorStyle(variant)
+    : getColorStyle(TrilogyColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({
     boxHeader: {
-      width: '100%',
+      width: "100%",
       backgroundColor: headerBgc,
       padding: 10,
       paddingLeft: 16,
       borderTopLeftRadius: 6,
       borderTopRightRadius: 6,
-      justifyContent: 'space-between',
-      alignItems: (centered && 'center') || (pulledRight && 'flex-end') || (pulledLeft && 'flex-start') || 'flex-start',
-      flexDirection: 'row',
+      justifyContent: "space-between",
+      alignItems:
+        (centered && "center") ||
+        (pulledRight && "flex-end") ||
+        (pulledLeft && "flex-start") ||
+        "flex-start",
+      flexDirection: "row",
     },
     text: {
       color: textColor,
       fontSize: 15,
-      fontWeight: '600',
+      fontWeight: "600",
     },
     helpContainer: {
-      alignSelf: 'center',
+      alignSelf: "center",
     },
     help: {
       fontSize: 12,
       color: textColor,
-      fontWeight: '600',
+      fontWeight: "600",
       lineHeight: 15,
     },
   })
 
   return (
     <View style={[styles.boxHeader]} {...others}>
-      {children && typeof children.valueOf() === 'string' ? (
+      {children && typeof children.valueOf() === "string" ? (
         <Text style={styles.text}>{String(children)}</Text>
       ) : (
         children

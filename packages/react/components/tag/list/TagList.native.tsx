@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { TagListProps } from './TagListProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { TagListProps } from "./TagListProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Tag List Component
@@ -9,15 +9,20 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param centered {boolean} Center tags
  * @param gapless {boolean} Delete margins between tags
  */
-const TagList = ({ children, centered, gapless, ...others }: TagListProps): JSX.Element => {
+const TagList = ({
+  children,
+  centered,
+  gapless,
+  ...others
+}: TagListProps): JSX.Element => {
   const styles = StyleSheet.create({
     tagList: {
-      width: '100%',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
+      width: "100%",
+      flexDirection: "row",
+      flexWrap: "wrap",
     },
     centered: {
-      alignSelf: 'center',
+      alignSelf: "center",
     },
     gapless: {
       margin: 0,
@@ -26,7 +31,14 @@ const TagList = ({ children, centered, gapless, ...others }: TagListProps): JSX.
   })
 
   return (
-    <View style={[styles.tagList, centered && styles.centered, gapless && styles.gapless]} {...others}>
+    <View
+      style={[
+        styles.tagList,
+        centered && styles.centered,
+        gapless && styles.gapless,
+      ]}
+      {...others}
+    >
       {children}
     </View>
   )

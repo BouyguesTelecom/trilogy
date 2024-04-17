@@ -1,8 +1,8 @@
-import React from 'react'
-import { DisclaimerItemProps } from './DisclaimerItemProps'
-import { ComponentName } from '../../enumsComponentsName'
-import { Text } from '../../text'
-import { View } from '../../view'
+import * as React from "react"
+import { DisclaimerItemProps } from "./DisclaimerItemProps"
+import { ComponentName } from "../../enumsComponentsName"
+import { Text } from "../../text"
+import { View } from "../../view"
 
 /**
  * Disclaimer component
@@ -12,7 +12,8 @@ import { View } from '../../view'
  * @param active {boolean} Active Disclaimer Bar
  */
 const DisclaimerItem = ({ children }: DisclaimerItemProps): JSX.Element => {
-  if (children && typeof children.valueOf() === 'string') return <Text>{children}</Text>
+  if (children && typeof children.valueOf() === "string")
+    return <Text>{children}</Text>
   return <View>{children}</View>
 }
 

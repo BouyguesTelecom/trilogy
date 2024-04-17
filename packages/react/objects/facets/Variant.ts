@@ -1,4 +1,4 @@
-import {getColorStyle} from "./Color";
+import { getColorStyle } from "./Color"
 
 /**
  * Variant State
@@ -23,24 +23,24 @@ export interface VariantProps {
  * @returns {string} - Variant value
  */
 export const getVariantClassName = (variantType?: string): string => {
-  if (!variantType) return "";
+  if (!variantType) return ""
   switch (variantType) {
     case "MAIN":
-      return "main";
+      return "main"
     case "ACCENT":
-      return "accent";
+      return "accent"
     case "PRIMARY":
-      return "primary";
+      return "primary"
     case "SECONDARY":
-      return "secondary";
+      return "secondary"
     case "TERTIARY":
-      return "tertiary";
+      return "tertiary"
     case "GHOST":
-      return "ghost";
+      return "ghost"
     default:
-      return "";
+      return ""
   }
-};
+}
 
 /**
  * Returns variant's style depending on variant type
@@ -50,16 +50,16 @@ export const getVariantClassName = (variantType?: string): string => {
 export const getVariantStyle = (variantType?: string): string => {
   switch (variantType) {
     case "PRIMARY":
-      return getColorStyle("PRIMARY");
+      return getColorStyle("PRIMARY")
     case "ACCENT":
-      return getColorStyle("ACCENT");
+      return getColorStyle("ACCENT")
     case "MAIN":
-      return getColorStyle("MAIN");
+      return getColorStyle("MAIN")
     case "SECONDARY":
-      return getColorStyle("SECONDARY");
+      return getColorStyle("SECONDARY")
     case "TERTIARY":
-      return getColorStyle("WHITE");
+      return getColorStyle("WHITE")
     default:
-      return "";
+      return ""
   }
-};
+}

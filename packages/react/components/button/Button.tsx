@@ -1,13 +1,13 @@
-import React from "react";
-import clsx from "clsx";
-import {is} from "../../services/index";
-import {Loading, LoadingValues} from "../../objects/facets/Loadable";
-import {getButtonVariantClassName} from "../../objects/facets/Color";
-import {ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues,} from "./ButtonEnum";
-import {ButtonProps} from "./ButtonProps";
-import {hashClass} from "../../helpers";
-import {useTrilogyContext} from "../../context";
-import {Icon} from "../icon";
+import React from "react"
+import clsx from "clsx"
+import { is } from "../../services/index"
+import { Loading, LoadingValues } from "../../objects/facets/Loadable"
+import { getButtonVariantClassName } from "../../objects/facets/Color"
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "./ButtonEnum"
+import { ButtonProps } from "./ButtonProps"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
+import { Icon } from "../icon"
 
 /**
  * Button component
@@ -51,8 +51,8 @@ const Button = ({
   iconName,
   ...others
 }: ButtonProps): JSX.Element => {
-  const isDisabled = others.disabled || false;
-  const { styled } = useTrilogyContext();
+  const isDisabled = others.disabled || false
+  const { styled } = useTrilogyContext()
 
   /** Check if specified markup is valid */
   const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
@@ -60,8 +60,8 @@ const Button = ({
       stringMarkup in ButtonMarkup ||
       Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)
     )
-      return true;
-  };
+      return true
+  }
 
   const getClassNames = (
     loading?: Loading | LoadingValues | boolean,
@@ -75,14 +75,14 @@ const Button = ({
       variant && is(getButtonVariantClassName(variant)),
       fullwidth && is("fullwidth"),
       className
-    );
-  };
+    )
+  }
 
   const classes = hashClass(
     styled,
     getClassNames(loading, variant, fullwidth, className)
-  );
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "button";
+  )
+  const Tag = markup && isCorrectMarkup(markup) ? markup : "button"
 
   if (Tag === "button") {
     return (
@@ -95,8 +95,8 @@ const Button = ({
         name={name}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e);
-          e.stopPropagation();
+          !isDisabled && onClick?.(e)
+          e.stopPropagation()
         }}
         type={type ?? "button"}
         {...others}
@@ -106,7 +106,7 @@ const Button = ({
         )}
         {children}
       </button>
-    );
+    )
   }
 
   if (Tag === "input") {
@@ -119,19 +119,19 @@ const Button = ({
         name={name}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e);
-          e.stopPropagation();
+          !isDisabled && onClick?.(e)
+          e.stopPropagation()
         }}
         disabled={isDisabled}
         type={type ?? "submit"}
         value={`${children}`}
         {...others}
       />
-    );
+    )
   }
 
   if (routerLink && to && !isDisabled) {
-    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType;
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
       <RouterLink
         aria-label={accessibilityLabel}
@@ -145,7 +145,7 @@ const Button = ({
         )}
         {children}
       </RouterLink>
-    );
+    )
   }
 
   return (
@@ -157,8 +157,8 @@ const Button = ({
       href={href}
       onClick={(e) => {
         // eslint-disable-next-line no-unused-expressions
-        !isDisabled && onClick?.(e);
-        e.stopPropagation();
+        !isDisabled && onClick?.(e)
+        e.stopPropagation()
       }}
       {...others}
     >
@@ -167,7 +167,7 @@ const Button = ({
       )}
       {children}
     </a>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

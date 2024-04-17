@@ -1,12 +1,12 @@
-import React, {useEffect, useMemo, useState} from 'react'
-import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native'
-import {SelectProps} from './SelectProps'
-import {Text, TextLevels} from '../text'
-import {Icon, IconName, IconSize} from '../icon'
-import {Picker} from '@react-native-picker/picker'
-import {getColorStyle, TrilogyColor, TypographyColor} from '../../objects'
-import {ComponentName} from '../enumsComponentsName'
-import {Modal} from '../modal'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { SelectProps } from './SelectProps'
+import { Text, TextLevels } from '../text'
+import { Icon, IconName, IconSize } from '../icon'
+import { Picker } from '@react-native-picker/picker'
+import { getColorStyle, TrilogyColor, TypographyColor } from '../../objects'
+import { ComponentName } from '../enumsComponentsName'
+import { Modal } from '../modal'
 
 /**
  * Select Component
@@ -86,18 +86,18 @@ const Select = ({
               />
             </View>
           )}
-          <View style={{width: '75%'}}>
+          <View style={{ width: '75%' }}>
             {label && (
               <Text
                 level={selectedOptionName && TextLevels.THREE}
                 typo={[TypographyColor.TEXT_GREY_DARK]}
-                style={{fontSize: selectedOptionName ? undefined : 16, lineHeight: 20}}
+                style={{ fontSize: selectedOptionName ? undefined : 16, lineHeight: 20 }}
               >
                 {label}
               </Text>
             )}
             {selectedOptionName && (
-              <Text style={{...styles.text}} numberOfLines={1}>
+              <Text style={{ ...styles.text }} numberOfLines={1}>
                 {selectedOptionName}
               </Text>
             )}
@@ -118,8 +118,8 @@ const Select = ({
         </TouchableOpacity>
         <Modal active={display} onClose={() => setDisplay(false)} bottom closeIcon swipable={false}>
           <Picker
-            itemStyle={{color: getColorStyle(TrilogyColor.MAIN)}}
-            style={{width: '100%'}}
+            itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
+            style={{ width: '100%' }}
             nativeID={`${`${id}_${name}`}`}
             selectedValue={selectedValue}
             onValueChange={(itemValue: number | string) => {
@@ -141,7 +141,7 @@ const Select = ({
       <Picker
         placeholder={placeholder}
         selectedValue={selectedValue}
-        style={{width: '100%', height: '100%'}}
+        style={{ width: '100%', height: '100%' }}
         onValueChange={(itemValue: number | string) => {
           if (onChange) {
             onChange(itemValue)

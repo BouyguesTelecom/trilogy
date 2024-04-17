@@ -1,15 +1,22 @@
-import React from 'react'
-import { AutoLayout, Chips, ChipsList, Container, Title, TitleLevels } from '@trilogy-ds/react/components'
+import * as React from "react";
+import {
+  AutoLayout,
+  Chips,
+  ChipsList,
+  Container,
+  Title,
+  TitleLevels,
+} from "@trilogy-ds/react/components";
 
 export const ChipsScreen = (): JSX.Element => {
-  const [skeleton] = React.useState<boolean>(false)
-  const [active, setActive] = React.useState(false)
-  const [active2, setActive2] = React.useState(false)
-  const [active3, setActive3] = React.useState(false)
-  const [activeBis, setActiveBis] = React.useState(false)
-  const [active2Bis, setActive2Bis] = React.useState(false)
-  const [active3Bis, setActive3Bis] = React.useState(false)
-  const [active4Bis, setActive4Bis] = React.useState(false)
+  const [skeleton] = React.useState<boolean>(false);
+  const [active, setActive] = React.useState(false);
+  const [active2, setActive2] = React.useState(false);
+  const [active3, setActive3] = React.useState(false);
+  const [activeBis, setActiveBis] = React.useState(false);
+  const [active2Bis, setActive2Bis] = React.useState(false);
+  const [active3Bis, setActive3Bis] = React.useState(false);
+  const [active4Bis, setActive4Bis] = React.useState(false);
 
   return (
     <Container>
@@ -20,7 +27,7 @@ export const ChipsScreen = (): JSX.Element => {
           <Chips
             id="1"
             onClick={() => {
-              setActive(!active)
+              setActive(!active);
             }}
             active={active}
           >
@@ -28,7 +35,7 @@ export const ChipsScreen = (): JSX.Element => {
           </Chips>
           <Chips
             onClick={() => {
-              setActive2(!active2)
+              setActive2(!active2);
             }}
             active={active2}
           >
@@ -36,7 +43,7 @@ export const ChipsScreen = (): JSX.Element => {
           </Chips>
           <Chips
             onClick={() => {
-              setActive3(!active3)
+              setActive3(!active3);
             }}
             active={active3}
           >
@@ -50,7 +57,7 @@ export const ChipsScreen = (): JSX.Element => {
         <ChipsList>
           <Chips
             onClick={() => {
-              setActiveBis(!activeBis)
+              setActiveBis(!activeBis);
             }}
             active={activeBis}
           >
@@ -58,7 +65,7 @@ export const ChipsScreen = (): JSX.Element => {
           </Chips>
           <Chips
             onClick={() => {
-              setActive2Bis(!active2Bis)
+              setActive2Bis(!active2Bis);
             }}
             active={active2Bis}
           >
@@ -66,7 +73,7 @@ export const ChipsScreen = (): JSX.Element => {
           </Chips>
           <Chips
             onClick={() => {
-              setActive3Bis(!active3Bis)
+              setActive3Bis(!active3Bis);
             }}
             active={active3Bis}
           >
@@ -74,7 +81,7 @@ export const ChipsScreen = (): JSX.Element => {
           </Chips>
           <Chips
             onClick={() => {
-              setActive4Bis(!active4Bis)
+              setActive4Bis(!active4Bis);
             }}
             active={active4Bis}
           >
@@ -83,5 +90,5 @@ export const ChipsScreen = (): JSX.Element => {
         </ChipsList>
       </AutoLayout>
     </Container>
-  )
-}
+  );
+};

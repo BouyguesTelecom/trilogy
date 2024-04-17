@@ -1,7 +1,7 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { SliderItemProps } from './SliderItemProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { View, StyleSheet } from "react-native"
+import { SliderItemProps } from "./SliderItemProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Slider Item component
@@ -18,18 +18,23 @@ const SliderItem = ({
 }: SliderItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     height: {
-      height: '100%',
+      height: "100%",
     },
   })
 
   return (
-    <View testID={testId} accessibilityLabel={accessibilityLabel} accessible={!!accessibilityLabel} {...others}>
+    <View
+      testID={testId}
+      accessibilityLabel={accessibilityLabel}
+      accessible={!!accessibilityLabel}
+      {...others}
+    >
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         React.Children.map(children, (child: any) =>
           React.cloneElement(child, {
             style: [styles.height, child.props.style],
-          }),
+          })
         )
       }
     </View>

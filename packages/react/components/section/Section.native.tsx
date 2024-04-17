@@ -1,9 +1,9 @@
-import React from 'react'
-import { ImageBackground, StyleSheet, View } from 'react-native'
-import { SectionProps } from './SectionProps'
-import { AutoLayoutWrapper } from '../autolayout'
-import { getBackgroundStyle, getColorStyle, TrilogyColor } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { ImageBackground, StyleSheet, View } from "react-native"
+import { SectionProps } from "./SectionProps"
+import { AutoLayoutWrapper } from "../autolayout"
+import { getBackgroundStyle, getColorStyle, TrilogyColor } from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -33,12 +33,12 @@ const Section = ({
       paddingBottom: paddingless || verticalPaddingless ? 0 : 32,
       paddingRight: paddingless ? 0 : 24,
       paddingLeft: paddingless ? 0 : 24,
-      width: fullwidth ? '100%' : 'auto',
+      width: fullwidth ? "100%" : "auto",
     },
     sectionImage: {
-      width: '100%',
+      width: "100%",
       minHeight: 100,
-      height: 'auto',
+      height: "auto",
     },
   })
 
@@ -47,7 +47,11 @@ const Section = ({
       {backgroundSrc ? (
         <ImageBackground
           style={styles.sectionImage}
-          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+          source={
+            typeof backgroundSrc === "number"
+              ? backgroundSrc
+              : { uri: backgroundSrc }
+          }
         >
           <AutoLayoutWrapper {...{ autolayout }}>{children}</AutoLayoutWrapper>
         </ImageBackground>

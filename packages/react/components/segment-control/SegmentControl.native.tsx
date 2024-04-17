@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import {StyleSheet} from 'react-native'
-import {SegmentControlProps} from './SegmentControlProps'
-import {View} from '../view'
-import {Text, TextLevels} from '../text'
+import React, { useState } from 'react'
+import { StyleSheet } from 'react-native'
+import { SegmentControlProps } from './SegmentControlProps'
+import { View } from '../view'
+import { Text, TextLevels } from '../text'
 import SegmentedControlItem from './item'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * SegmentControl Component

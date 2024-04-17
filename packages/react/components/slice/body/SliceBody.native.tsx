@@ -1,5 +1,5 @@
-import React from 'react'
-import { SliceBodyProps } from './SliceBodyProps'
+import * as React from "react"
+import { SliceBodyProps } from "./SliceBodyProps"
 import { View } from "react-native"
 import { ComponentName } from "../../enumsComponentsName"
 
@@ -9,12 +9,7 @@ import { ComponentName } from "../../enumsComponentsName"
  * @param children {ReactNode} Children for Slice
  */
 const SliceBody = ({ children }: SliceBodyProps): JSX.Element => {
-
-  return (
-    <View>
-      {children}
-    </View>
-  )
+  return <View>{children}</View>
 }
 
 SliceBody.displayName = ComponentName.SliceBody

@@ -1,14 +1,14 @@
-import React from 'react'
+import * as React from "react";
 
-import { Meta, Story } from '@storybook/react'
-import { Select, SelectOption } from './index'
-import { SelectProps } from './SelectProps'
+import { Meta, Story } from "@storybook/react";
+import { Select, SelectOption } from "./index";
+import { SelectProps } from "./SelectProps";
 
 export default {
-  title: 'Components/Select',
+  title: "Components/Select",
   component: Select,
   subcomponents: { SelectOption },
-} as Meta
+} as Meta;
 
 export const Base: Story<SelectProps> = (args) => (
   /* L'utilisation du select nécessite l'injection de Trilogy-Vanilla pour fonctioner :
@@ -16,66 +16,114 @@ export const Base: Story<SelectProps> = (args) => (
 */
 
   <Select {...args}>
-    <SelectOption iconName='tri-advisor' id='id_one' value='opt_one' label='option1'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_one"
+      value="opt_one"
+      label="option1"
+    >
       option 1
     </SelectOption>
-    <SelectOption iconName='tri-advisor' id='id_two' value='opt_two' label='option2'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_two"
+      value="opt_two"
+      label="option2"
+    >
       option 2
     </SelectOption>
-    <SelectOption iconName='tri-advisor' disabled id='id_three' value='opt_three' label='option3'>
+    <SelectOption
+      iconName="tri-advisor"
+      disabled
+      id="id_three"
+      value="opt_three"
+      label="option3"
+    >
       option 3
     </SelectOption>
   </Select>
-)
+);
 Base.args = {
-  label: 'Choisir une option',
-  onFocus: (e) => console.log('OUVERT', e),
-  onBlur: (e) => console.log('FERMÉ', e),
+  label: "Choisir une option",
+  onFocus: (e) => console.log("OUVERT", e),
+  onBlur: (e) => console.log("FERMÉ", e),
   onChange: (e) => console.log(e),
-  iconName: 'tri-advisor',
-}
+  iconName: "tri-advisor",
+};
 export const Disabled: Story<SelectProps> = (args) => (
   <Select {...args}>
-    <SelectOption iconName='tri-advisor' id='id_one' value='opt_one' label='option1'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_one"
+      value="opt_one"
+      label="option1"
+    >
       option 1
     </SelectOption>
-    <SelectOption iconName='tri-advisor' id='id_two' value='opt_two' label='option2'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_two"
+      value="opt_two"
+      label="option2"
+    >
       option 2
     </SelectOption>
-    <SelectOption iconName='tri-advisor' disabled id='id_three' value='opt_three' label='option3'>
+    <SelectOption
+      iconName="tri-advisor"
+      disabled
+      id="id_three"
+      value="opt_three"
+      label="option3"
+    >
       option 3
     </SelectOption>
   </Select>
-)
+);
 Disabled.args = {
   disabled: true,
-  label: 'Choisir une option',
-  onFocus: (e) => console.log('OUVERT', e),
-  onBlur: (e) => console.log('FERMÉ', e),
+  label: "Choisir une option",
+  onFocus: (e) => console.log("OUVERT", e),
+  onBlur: (e) => console.log("FERMÉ", e),
   onChange: (e) => console.log(e),
-  iconName: 'tri-advisor',
-}
+  iconName: "tri-advisor",
+};
 
 export const Native: Story<SelectProps> = (args) => (
   <Select {...args}>
-    <SelectOption iconName='tri-advisor' id='id_one' value='opt_one' label='option1'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_one"
+      value="opt_one"
+      label="option1"
+    >
       option 1
     </SelectOption>
-    <SelectOption iconName='tri-advisor' id='id_two' value='opt_two' label='option2'>
+    <SelectOption
+      iconName="tri-advisor"
+      id="id_two"
+      value="opt_two"
+      label="option2"
+    >
       option 2
     </SelectOption>
-    <SelectOption iconName='tri-advisor' disabled id='id_three' value='opt_three' label='option3'>
+    <SelectOption
+      iconName="tri-advisor"
+      disabled
+      id="id_three"
+      value="opt_three"
+      label="option3"
+    >
       option 3
     </SelectOption>
   </Select>
-)
+);
 Native.args = {
   native: true,
-  label: 'Choisir une option',
-  id: 'option',
-  name: 'option',
-  onFocus: () => console.log('Focus'),
-  onBlur: () => console.log('Blur'),
-  onChange: () => console.log('onchange'),
-  iconName: 'tri-advisor',
-}
+  label: "Choisir une option",
+  id: "option",
+  name: "option",
+  onFocus: () => console.log("Focus"),
+  onBlur: () => console.log("Blur"),
+  onChange: () => console.log("onchange"),
+  iconName: "tri-advisor",
+};

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {TagClickEvent, TagProps} from './TagProps'
-import {Icon, IconName, IconSize} from '../icon'
-import {getBackgroundOfVariant, getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { TagClickEvent, TagProps } from './TagProps'
+import { Icon, IconName, IconSize } from '../icon'
+import { getBackgroundOfVariant, getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Tag Component

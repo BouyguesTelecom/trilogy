@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react'
-import { ProgressRadialProps } from './ProgressRadialProps'
-import { is } from '../../../services/index'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import ProgressRadialItem from './item'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { ProgressRadialProps } from "./ProgressRadialProps"
+import { is } from "../../../services/index"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import ProgressRadialItem from "./item"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Progress Radial component
@@ -31,14 +31,25 @@ const ProgressRadial = ({
 }: ProgressRadialProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('progress-circle', skeleton && is('loading'), className))
+  const classes = hashClass(
+    styled,
+    clsx("progress-circle", skeleton && is("loading"), className)
+  )
 
   const ProgressContent = () => {
     if (label || description) {
       return (
-        <div className={hashClass(styled, clsx('progress-circle-content'))}>
-          {label && <div className={hashClass(styled, clsx('progress-circle-title'))}>{label}</div>}
-          {description && <div className={hashClass(styled, clsx('progress-circle-sub'))}>{description}</div>}
+        <div className={hashClass(styled, clsx("progress-circle-content"))}>
+          {label && (
+            <div className={hashClass(styled, clsx("progress-circle-title"))}>
+              {label}
+            </div>
+          )}
+          {description && (
+            <div className={hashClass(styled, clsx("progress-circle-sub"))}>
+              {description}
+            </div>
+          )}
         </div>
       )
     }
@@ -48,7 +59,7 @@ const ProgressRadial = ({
   // If we have children
   // & if children = array or string
   if (stacked && children) {
-    const colors = ['--secondary', '--tertiary', '--warning', '--empty']
+    const colors = ["--secondary", "--tertiary", "--warning", "--empty"]
     const percents: { [key: string]: number } = {}
     if (React.isValidElement(children) && Array.isArray(children)) {
       const childs = children.map((child, i) => {
@@ -56,7 +67,13 @@ const ProgressRadial = ({
         const percent = child?.props?.percent
         if (color && percent && !percents[`--${color}`]) {
           percents[`--${color}`] = percent
-          return <ProgressRadialItem key={`radial${i}`} percent={percent} color={color} />
+          return (
+            <ProgressRadialItem
+              key={`radial${i}`}
+              percent={percent}
+              color={color}
+            />
+          )
         }
         return null
       })
@@ -73,10 +90,19 @@ const ProgressRadial = ({
       )
     }
 
-    if (React.isValidElement(children) && children?.props?.percent && children?.props.color) {
+    if (
+      React.isValidElement(children) &&
+      children?.props?.percent &&
+      children?.props.color
+    ) {
       const color = children?.props?.color
       const percent = children?.props?.percent
-      const style: { [key: string]: number } = { [color]: percent, '--tertiary': 0, '--warning': 0, '--empty': 0 }
+      const style: { [key: string]: number } = {
+        [color]: percent,
+        "--tertiary": 0,
+        "--warning": 0,
+        "--empty": 0,
+      }
       return (
         <div className={classes} {...others} style={style}>
           <ProgressRadialItem percent={percent} color={color} />
@@ -88,14 +114,19 @@ const ProgressRadial = ({
 
   // If we don't have multiple pourcents
   const style2: { [key: string]: number } = {
-    '--secondary': percent ?? 1,
-    '--tertiary': 0,
-    '--warning': 0,
-    '--empty': 0,
+    "--secondary": percent ?? 1,
+    "--tertiary": 0,
+    "--warning": 0,
+    "--empty": 0,
   }
   return (
     <div className={classes} {...others} style={style2}>
-      <div className={hashClass(styled, clsx('progress-circle-slice progress-circle-background-secondary'))}></div>
+      <div
+        className={hashClass(
+          styled,
+          clsx("progress-circle-slice progress-circle-background-secondary")
+        )}
+      ></div>
       {<ProgressContent />}
     </div>
   )

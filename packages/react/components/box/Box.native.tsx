@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {StyleSheet, TouchableOpacity, View, Platform, ImageBackground} from 'react-native'
-import {BoxProps} from './BoxProps'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import ContentLoader, {Rect} from 'react-content-loader/native'
-import {getBackgroundStyle} from '../../objects/atoms/Background'
-import {ComponentName} from '../enumsComponentsName'
+import React, { useState } from 'react'
+import { StyleSheet, TouchableOpacity, View, Platform, ImageBackground } from 'react-native'
+import { BoxProps } from './BoxProps'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { getBackgroundStyle } from '../../objects/atoms/Background'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Box Component
@@ -104,7 +104,7 @@ const Box = ({
 
   const BoxSkeleton = () => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{opacity: 0}}>{children}</View>
+      <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === 'android' && (
         <View>
@@ -125,16 +125,16 @@ const Box = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
         onLayout={(event) => {
-          const {height} = event.nativeEvent.layout
+          const { height } = event.nativeEvent.layout
           setBoxHeight(height)
         }}
         testID={boxTestId}
       >
         {backgroundSrc ? (
           <ImageBackground
-            imageStyle={{borderRadius: boxRadius}}
+            imageStyle={{ borderRadius: boxRadius }}
             style={styles.boxImage}
-            source={typeof backgroundSrc === 'number' ? backgroundSrc : {uri: backgroundSrc}}
+            source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
           >
             {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
             <View style={styles.column}>{children}</View>
@@ -152,7 +152,7 @@ const Box = ({
   return (
     <View
       onLayout={(event) => {
-        const {height} = event.nativeEvent.layout
+        const { height } = event.nativeEvent.layout
         setBoxHeight(height)
       }}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -161,9 +161,9 @@ const Box = ({
     >
       {backgroundSrc ? (
         <ImageBackground
-          imageStyle={{borderRadius: boxRadius}}
+          imageStyle={{ borderRadius: boxRadius }}
           style={styles.boxImage}
-          source={typeof backgroundSrc === 'number' ? backgroundSrc : {uri: backgroundSrc}}
+          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
         >
           {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
           <View style={styles.column}>{children}</View>

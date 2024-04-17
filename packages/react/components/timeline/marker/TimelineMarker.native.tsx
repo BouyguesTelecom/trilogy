@@ -1,19 +1,19 @@
-import React, {useContext} from 'react'
-import {StyleSheet, View} from 'react-native'
-import {TimelineMarkerProps} from './TimelineMarkerProps'
-import {Icon, IconSize} from '../../icon'
-import {TimelineItemContext} from '../item/TimelineItem.native'
-import {getColorStyle, TrilogyColor} from '../../../objects'
-import {TimelineHeightContext} from '../Timeline.native'
-import {ComponentName} from '../../enumsComponentsName'
+import React, { useContext } from 'react'
+import { StyleSheet, View } from 'react-native'
+import { TimelineMarkerProps } from './TimelineMarkerProps'
+import { Icon, IconSize } from '../../icon'
+import { TimelineItemContext } from '../item/TimelineItem.native'
+import { getColorStyle, TrilogyColor } from '../../../objects'
+import { TimelineHeightContext } from '../Timeline.native'
+import { ComponentName } from '../../enumsComponentsName'
 
 /**
  * TimelineMarker Native Component
  * @param children {ReactNode} Text child
  */
-const TimelineMarker = ({iconName, iconColor}: TimelineMarkerProps): JSX.Element => {
-  const {active, undone, done, cancel} = useContext(TimelineItemContext)
-  const {height} = useContext(TimelineHeightContext)
+const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Element => {
+  const { active, undone, done, cancel } = useContext(TimelineItemContext)
+  const { height } = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
     marker: {

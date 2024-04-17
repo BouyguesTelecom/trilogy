@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { CardImageProps } from './CardImageProps'
-import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { CardImageProps } from "./CardImageProps"
+import { is } from "../../../services/classify"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Card Image Component
@@ -16,9 +16,19 @@ import { useTrilogyContext } from '../../../context'
  * @param horizontal {boolean} Horizontal Card orientation
  * @param contain {boolean} Resize mode contain
  */
-const CardImage = ({ src, alt, className, size, onClick, ...others }: CardImageProps): JSX.Element => {
+const CardImage = ({
+  src,
+  alt,
+  className,
+  size,
+  onClick,
+  ...others
+}: CardImageProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('card-image', size && is(`${size}`), className))
+  const classes = hashClass(
+    styled,
+    clsx("card-image", size && is(`${size}`), className)
+  )
 
   return (
     <div
@@ -29,8 +39,8 @@ const CardImage = ({ src, alt, className, size, onClick, ...others }: CardImageP
       }}
       className={classes}
     >
-      <figure className={hashClass(styled, clsx('image'))} {...others}>
-        <img {...{ src: typeof src === 'string' ? src : '', alt }} />
+      <figure className={hashClass(styled, clsx("image"))} {...others}>
+        <img {...{ src: typeof src === "string" ? src : "", alt }} />
       </figure>
     </div>
   )

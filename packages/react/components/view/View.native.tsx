@@ -1,9 +1,14 @@
-import React from 'react'
-import { View as ViewNative, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
-import { getAlignStyle, getJustifyStyle } from '../../objects'
-import { getColorStyle } from '../../objects/facets/Color'
-import { ViewProps } from './ViewProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import {
+  View as ViewNative,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native"
+import { getAlignStyle, getJustifyStyle } from "../../objects"
+import { getColorStyle } from "../../objects/facets/Color"
+import { ViewProps } from "./ViewProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -35,42 +40,57 @@ const View = ({
   align,
   ...others
 }: ViewProps): JSX.Element => {
-  const viewColor = (color && getColorStyle(color)) || 'transparent'
+  const viewColor = (color && getColorStyle(color)) || "transparent"
 
   const styles = StyleSheet.create({
     view: {
       flex: flexable ? 1 : 0,
       backgroundColor: viewColor,
-      width: fullwidth ? '100%' : 'auto',
+      width: fullwidth ? "100%" : "auto",
       ...(justify && { justifyContent: getJustifyStyle(justify) }),
       ...(align && { alignItems: getAlignStyle(align) }),
     },
     bottom: {
-      position: 'absolute',
+      position: "absolute",
       bottom: 0,
-      width: fullwidth ? '100%' : 'auto',
+      width: fullwidth ? "100%" : "auto",
     },
     sectionImage: {
       flex: flexable ? 1 : 0,
-      width: '100%',
-      height: 'auto',
+      width: "100%",
+      height: "auto",
     },
   })
 
   let returnView = (
-    <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+    <ViewNative
+      testID={id}
+      nativeID={id}
+      style={[styles.view, bottom && styles.bottom, style]}
+      {...others}
+    >
       {children}
     </ViewNative>
   )
   if (!children) {
     returnView = (
-      <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others} />
+      <ViewNative
+        testID={id}
+        nativeID={id}
+        style={[styles.view, bottom && styles.bottom, style]}
+        {...others}
+      />
     )
   }
 
   if (onClick) {
     returnView = (
-      <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+      <ViewNative
+        testID={id}
+        nativeID={id}
+        style={[styles.view, bottom && styles.bottom, style]}
+        {...others}
+      >
         <TouchableOpacity activeOpacity={1} onPress={onClick}>
           {children}
         </TouchableOpacity>
@@ -81,7 +101,11 @@ const View = ({
   return backgroundSrc ? (
     <ImageBackground
       style={styles.sectionImage}
-      source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+      source={
+        typeof backgroundSrc === "number"
+          ? backgroundSrc
+          : { uri: backgroundSrc }
+      }
     >
       {returnView}
     </ImageBackground>

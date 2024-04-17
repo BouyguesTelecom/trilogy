@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { SliceProps } from './SliceProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, TouchableOpacity } from "react-native"
+import { SliceProps } from "./SliceProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Slice component
@@ -11,16 +11,20 @@ import { ComponentName } from '../enumsComponentsName'
 const Slice = ({ children, onClick, ...others }: SliceProps): JSX.Element => {
   const styles = StyleSheet.create({
     slice: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      flexWrap: 'wrap',
+      flexDirection: "row",
+      alignItems: "center",
+      flexWrap: "wrap",
       padding: 5,
-      width: '100%',
+      width: "100%",
     },
   })
 
   return (
-    <TouchableOpacity onPress={(e?: unknown) => onClick?.(e)} style={styles.slice} {...others}>
+    <TouchableOpacity
+      onPress={(e?: unknown) => onClick?.(e)}
+      style={styles.slice}
+      {...others}
+    >
       {children}
     </TouchableOpacity>
   )

@@ -1,9 +1,9 @@
-import React from 'react'
-import { SliceProps } from './SliceProps'
-import { has, is } from '../../services/classify'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { SliceProps } from "./SliceProps"
+import { has, is } from "../../services/classify"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Slice Component
@@ -27,13 +27,26 @@ const Slice = ({
 }: SliceProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('slice', disabled && is('disabled'), longCta && has('long-cta'), className))
+  const classes = hashClass(
+    styled,
+    clsx(
+      "slice",
+      disabled && is("disabled"),
+      longCta && has("long-cta"),
+      className
+    )
+  )
 
   if (selectable) {
     return (
-      <div data-testid={testId} onClick={onClick && onClick} className={classes} {...others}>
-        <div className={hashClass(styled, clsx('field'))}>
-          <div className={hashClass(styled, clsx('control'))}>{children}</div>
+      <div
+        data-testid={testId}
+        onClick={onClick && onClick}
+        className={classes}
+        {...others}
+      >
+        <div className={hashClass(styled, clsx("field"))}>
+          <div className={hashClass(styled, clsx("control"))}>{children}</div>
         </div>
       </div>
     )
