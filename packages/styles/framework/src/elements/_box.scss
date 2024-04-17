@@ -60,7 +60,7 @@ a.box {
 
 
   &.is-active {
-    border: 2px solid getColor('alternate');
+    border: 2px solid getColor('main');
 
     > .box-header {
       border-radius: ($radius - 2px) ($radius - 2px) 0 0;

@@ -74,7 +74,7 @@
   }
 
   &.is-active {
-    border: 2px solid getColor('alternate');
+    border: 2px solid getColor('main');
 
     .card-image {
       border-radius: 6px 6px 0px 0px;
