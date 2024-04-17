@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Button,
   ButtonMarkup,
+  ButtonVariant,
   Container,
   Divider,
   Hero,
@@ -11,8 +12,8 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { TypographyColor, VariantState } from '@trilogy-ds/react/objects'
-import { Box, TitleMarkup } from '@trilogy-ds/react'
+import {TypographyColor, VariantState} from '@trilogy-ds/react/objects'
+import {Box, TitleMarkup} from '@trilogy-ds/react'
 
 export const HeroScreen = (): JSX.Element => {
   return (
@@ -32,7 +33,7 @@ export const HeroScreen = (): JSX.Element => {
           </Box>
         </Container>
       </Section>
-      <Divider />
+      <Divider/>
       <Hero backgroundSrc={'https://picsum.photos/id/1/1500/600'}>
         <Container>
           <Text>Welcome Message</Text>
@@ -43,15 +44,16 @@ export const HeroScreen = (): JSX.Element => {
           </Button>
         </Container>
       </Hero>
-      <Divider />
+      <Divider/>
       <Hero variant={VariantState.PRIMARY}>
         <Container>
-          <Text>Welcome Message</Text>
-          <Title level="TWO">
+          <Text inverted>Welcome Message</Text>
+          <Title level="TWO" inverted>
             Hero with Background Color
           </Title>
           {/* <button className='button'>Click me !</button> */}
-          <Button markup={ButtonMarkup.BUTTON} variant={'SECONDARY'} onClick={() => alert('Click on hero btn')}>
+          <Button markup={ButtonMarkup.BUTTON} variant={ButtonVariant.ACCENT}
+                  onClick={() => alert('Click on hero btn')}>
             Click me !
           </Button>
         </Container>

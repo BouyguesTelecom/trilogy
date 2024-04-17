@@ -1,26 +1,27 @@
 import React from 'react'
 import {
-  Section,
-  Divider,
   Box,
   BoxContent,
-  InfoBlock,
-  InfoBlockHeader,
-  InfoBlockContent,
-  TextLevels,
+  Button,
   ButtonList,
-  InfoBlockStatus,
-  InfoBlockAction,
+  ButtonVariant,
+  Divider,
   Icon,
-  IconName,
   IconColor,
+  IconName,
   IconSize,
+  InfoBlock,
+  InfoBlockAction,
+  InfoBlockContent,
+  InfoBlockHeader,
+  InfoBlockStatus,
+  Section,
   Spacer,
   SpacerSize,
   Text,
-  Button,
+  TextLevels,
 } from '@trilogy-ds/react/components'
-import { TypographyAlign, TypographyBold, VariantState } from '@trilogy-ds/react/objects'
+import {TypographyAlign, TypographyBold, VariantState} from '@trilogy-ds/react/objects'
 
 export const InfoBlockScreen = (): JSX.Element => {
   return (
@@ -29,7 +30,7 @@ export const InfoBlockScreen = (): JSX.Element => {
         <BoxContent>
           <InfoBlock>
             <InfoBlockHeader
-              customIcon={<Icon name={IconName.ARROW_RIGHT} color={IconColor.PRIMARY} size={IconSize.MEDIUM} />}
+              customIcon={<Icon name={IconName.ARROW_RIGHT} color={IconColor.PRIMARY} size={IconSize.MEDIUM}/>}
             >
               Infos Title
             </InfoBlockHeader>
@@ -42,16 +43,16 @@ export const InfoBlockScreen = (): JSX.Element => {
             </InfoBlockContent>
 
             <ButtonList centered>
-              <Button variant={VariantState.SECONDARY} onClick={() => console.log('toto')} fullwidth>
+              <Button variant={ButtonVariant.ACCENT} onClick={() => console.log('toto')} fullwidth>
                 CTA info
               </Button>
             </ButtonList>
           </InfoBlock>
         </BoxContent>
       </Box>
-      <Spacer size={SpacerSize.LARGE} />
-      <Divider />
-      <Spacer size={SpacerSize.LARGE} />
+      <Spacer size={SpacerSize.LARGE}/>
+      <Divider/>
+      <Spacer size={SpacerSize.LARGE}/>
 
       <Box shadowless>
         <BoxContent>
@@ -74,9 +75,9 @@ export const InfoBlockScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Spacer size={SpacerSize.LARGE} />
-      <Divider />
-      <Spacer size={SpacerSize.LARGE} />
+      <Spacer size={SpacerSize.LARGE}/>
+      <Divider/>
+      <Spacer size={SpacerSize.LARGE}/>
 
       <Box shadowless>
         <BoxContent>
@@ -99,9 +100,9 @@ export const InfoBlockScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Spacer size={SpacerSize.LARGE} />
-      <Divider />
-      <Spacer size={SpacerSize.LARGE} />
+      <Spacer size={SpacerSize.LARGE}/>
+      <Divider/>
+      <Spacer size={SpacerSize.LARGE}/>
 
       <Box shadowless>
         <BoxContent>
@@ -129,7 +130,7 @@ export const InfoBlockScreen = (): JSX.Element => {
           <InfoBlock>
             <InfoBlockHeader
               status={InfoBlockStatus.WARNING}
-              customIcon={<Icon name={IconName.INFOS_CIRCLE} size={IconSize.LARGE} />}
+              customIcon={<Icon name={IconName.INFOS_CIRCLE} size={IconSize.LARGE}/>}
             >
               Infos Title Here
             </InfoBlockHeader>
@@ -163,7 +164,7 @@ export const InfoBlockScreen = (): JSX.Element => {
         </InfoBlockAction>
       </InfoBlock>
 
-      <Divider />
+      <Divider/>
 
       <InfoBlock boxed>
         <InfoBlockHeader status={InfoBlockStatus.ERROR}>An error has occurred</InfoBlockHeader>
@@ -178,7 +179,7 @@ export const InfoBlockScreen = (): JSX.Element => {
         </InfoBlockAction>
       </InfoBlock>
 
-      <Divider />
+      <Divider/>
 
       <InfoBlock boxed>
         <InfoBlockHeader status={InfoBlockStatus.SUCCESS}>Treatment successfully completed</InfoBlockHeader>

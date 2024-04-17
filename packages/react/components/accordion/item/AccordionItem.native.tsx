@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {Animated, Easing, StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
 import {AccordionItemProps} from './AccordionItemProps'
 import {getColorStyle, TrilogyColor} from '../../../objects/facets/Color'
@@ -7,7 +7,6 @@ import {IconName} from '../../icon/IconNameEnum'
 import {Spacer, SpacerSize} from '../../spacer'
 import {Icon, IconSize} from '../../icon'
 import {ComponentName} from '../../enumsComponentsName'
-import {AccordionContext} from '../Accordion.native'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -38,23 +37,19 @@ const AccordionItem = ({
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
   const [childs, setChilds] = useState<AccordionChild>({header: undefined, body: undefined})
-  const accordionContextValues = useContext(AccordionContext)
-  const itemColor = accordionContextValues.inverted
-    ? getColorStyle(TrilogyColor.WHITE)
-    : getColorStyle(TrilogyColor.GREY_LIGHT)
-
+  
   const styles = StyleSheet.create({
     item: {
       width: '100%',
       padding: 5,
       borderRadius: 6,
-      backgroundColor: itemColor,
+      backgroundColor: getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
       borderColor: isActive ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     bodyBackground: {
       borderRadius: 6,
-      backgroundColor: itemColor,
+      backgroundColor: getColorStyle(TrilogyColor.WHITE),
       overflow: 'hidden',
     },
     titleContainer: {
@@ -67,7 +62,7 @@ const AccordionItem = ({
       paddingRight: 5,
       paddingTop: 5,
       paddingBottom: 5,
-      borderColor: itemColor,
+      borderColor: getColorStyle(TrilogyColor.WHITE),
     },
     bodyContainer: {
       padding: 10,

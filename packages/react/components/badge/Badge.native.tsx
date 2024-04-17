@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {BadgeProps} from './BadgeProps'
-import {BadgeTextDirection, BadgeColor} from './BadgeEnum'
+import {BadgeColor, BadgeTextDirection} from './BadgeEnum'
 import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
 import {ComponentName} from '../enumsComponentsName'
 

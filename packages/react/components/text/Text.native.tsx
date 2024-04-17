@@ -52,10 +52,10 @@ const Text = ({
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
         (!skeleton && setTypographyColor(typo, inverted)) ||
-        (link && getColorStyle(TrilogyColor.MAIN)) ||
+        (link && getColorStyle(TrilogyColor.FONT)) ||
         'transparent',
       textAlign: setTypographyAlign(typo),
-      lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.4,
+      lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
       textDecorationLine: link ? 'underline' : 'none',
       alignSelf:
         (setTypographyAlign(typo) === 'left' && 'flex-start') ||
