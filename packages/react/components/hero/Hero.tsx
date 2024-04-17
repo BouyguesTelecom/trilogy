@@ -10,7 +10,7 @@ import {useTrilogyContext} from "../../context";
  * Hero Component
  * @param children {React.ReactNode} Hero Children
  * @param backgroundSrc {string} If source, it will display background option
- * @param variant {VariantState} Hero background color : primary|secondary|tertiary
+ * @param variant {VariantState} Hero background color : main/accent
  * @param onClick {Function} onClick Event
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)

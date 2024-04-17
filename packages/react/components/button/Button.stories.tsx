@@ -1,67 +1,77 @@
-import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
-import Button from './Button'
-import {ButtonList} from './list'
-import {ButtonVariant} from './ButtonEnum'
-import {Icon, IconName} from '../icon'
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import Button from "./Button";
+import { ButtonList } from "./list";
+import { ButtonVariant } from "./ButtonEnum";
+import { IconName } from "../icon";
 
 export default {
-  title: 'Components/Button',
+  title: "Components/Button",
   component: Button,
-  subcomponents: {ButtonList},
-} as ComponentMeta<typeof Button>
+  subcomponents: { ButtonList },
+} as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 const TemplateMultiple: ComponentStory<typeof Button> = (args) => (
   <ButtonList>
     <Button variant={ButtonVariant.PRIMARY} {...args} />
     <Button variant={ButtonVariant.SECONDARY} {...args} />
-    <Button variant={ButtonVariant.TERTIARY} {...args} />
-    <Button variant={ButtonVariant.PRIMARY} disabled {...args} />
-    <Button variant={ButtonVariant.PRIMARY} loading {...args} />
+    <Button variant={ButtonVariant.ACCENT} disabled {...args} />
+    <Button variant={ButtonVariant.GHOST} loading {...args} />
   </ButtonList>
-)
+);
 
-export const Base = TemplateMultiple.bind({})
+export const Base = TemplateMultiple.bind({});
 Base.args = {
-  children: 'Button',
-}
+  children: "Button",
+};
 
-export const Primary = Template.bind({})
+export const Primary = Template.bind({});
 Primary.args = {
-  children: 'Button primary',
+  children: "Button primary",
   variant: ButtonVariant.PRIMARY,
-}
+};
 
-export const Secondary = Template.bind({})
+export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Button secondary',
+  children: "Button secondary",
   variant: ButtonVariant.SECONDARY,
-}
+};
 
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  children: 'Button tertiary',
-  variant: ButtonVariant.TERTIARY,
-}
+export const Accent = Template.bind({});
+Accent.args = {
+  children: "Button accent",
+  variant: ButtonVariant.ACCENT,
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  children: "Button ghost",
+  variant: ButtonVariant.GHOST,
+};
 
 export const Group: ComponentStory<typeof ButtonList> = (args) => (
   <ButtonList {...args}>
-    <Button variant={ButtonVariant.PRIMARY}>Button 1</Button>
-    <Button variant={ButtonVariant.SECONDARY}>Button 2</Button>
-    <Button variant={ButtonVariant.TERTIARY}>Button 3</Button>
+    <Button variant={ButtonVariant.PRIMARY}>Button Primary</Button>
+    <Button variant={ButtonVariant.SECONDARY}>Button Secondary</Button>
+    <Button variant={ButtonVariant.ACCENT}>Button Accent</Button>
+    <Button variant={ButtonVariant.GHOST}>Button Ghost</Button>
   </ButtonList>
-)
-Group.args = {}
+);
+Group.args = {};
 
-export const WithIcon: ComponentStory<typeof Button> = (args) => <Button {...args}>Valider</Button>
+export const WithIcon: ComponentStory<typeof Button> = (args) => (
+  <Button {...args}>Valider</Button>
+);
 WithIcon.args = {
   variant: ButtonVariant.PRIMARY,
   iconName: IconName.CHECK_CIRCLE,
-}
+};
 
-export const ButtonLoading: ComponentStory<typeof Button> = (args) => <Button {...args}>Loading</Button>
+export const ButtonLoading: ComponentStory<typeof Button> = (args) => (
+  <Button {...args}>Loading</Button>
+);
 ButtonLoading.args = {
   loading: true,
   variant: ButtonVariant.PRIMARY,
-}
+};
