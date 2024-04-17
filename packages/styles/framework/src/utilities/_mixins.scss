@@ -722,13 +722,3 @@
     border: 1px solid currentColor;
   }
 }
-
-@mixin hoverActiveRules {
-  background-color: var(--color-bg-active);
-}
-
-@mixin hoverActive {
-  &:hover:not(.is-disabled) {
-    @include hoverActiveRules();
-  }
-}

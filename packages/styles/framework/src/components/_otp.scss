@@ -13,6 +13,7 @@
     margin: 4px 4px 0 4px;
     text-align: center;
     color: getColor('grey');
+
     &:first-child {
       margin: 4px 4px 0 0;
     }
@@ -25,13 +26,7 @@
 
   &.is-danger {
     .otp {
-      border: 2px solid  getColor('error');
-    }
-  }
-
-  &.is-tertiary {
-    .otp {
-      border: 2px solid getColor('font');
+      border: 1px solid getColor('error');
     }
   }
 
@@ -43,7 +38,7 @@
 
   &.is-focus {
     .otp {
-      border: 2px solid getColor('alternate');;
+      border: 1px solid getColor('font');;
       color: getColor('font')
     }
   }
@@ -51,14 +46,8 @@
 
   &.is-error {
     .otp {
-      border: 2px solid getColor('error');
+      border: 1px solid getColor('error');
       color: getColor('font')
-    }
-  }
-
-  &.is-tertiary {
-    .otp {
-      border: 2px solid getColor('font');
     }
   }
 
@@ -75,14 +64,14 @@
 
 .otp-list:focus-within {
   .otp {
-    border: 2px solid getColor('alternate');;
+    border: 1px solid getColor('font');;
     color: getColor('font');
   }
 }
 
 .otp-list.is-error:focus-within {
   .otp {
-    border: 2px solid getColor('error');
+    border: 1px solid getColor('error');
     color: getColor('font');
   }
 }

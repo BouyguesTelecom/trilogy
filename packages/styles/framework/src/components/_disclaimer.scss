@@ -67,13 +67,14 @@
     }
 
     &:hover:not(.is-disabled) {
-      border-color: getColor('alternate');
+      border-color: getColor('main');
     }
 
     &.is-active {
-      color: getColor('alternate');
+      color: getColor('main');
     }
-/* @todo : deprecated ? remove ? add doc ? */
+
+    /* @todo : deprecated ? remove ? add doc ? */
     .heading {
       font-size: $text-13;
       color: getColor('grey');
