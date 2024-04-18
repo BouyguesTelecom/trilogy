@@ -4,8 +4,7 @@
   vertical-align: top;
   width: 100%;
 
-  &.is-active,
-  &.is-hoverable:hover {
+  #{$hoverSelector}, &:active {
     .dropdown-menu {
       display: block;
     }

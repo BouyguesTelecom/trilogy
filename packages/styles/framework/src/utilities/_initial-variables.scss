@@ -74,6 +74,10 @@ $btn-colors: (
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
 ) !default;
 
+
+$hoverSelector: "&:hover:not([disabled]),&:hover:not([aria-disabled=true])";
+
+
 // Typography OS-regular
 $family-sans-serif: 'Poppins Read', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif !default;
 $family-serif: 'Poppins Speak', 'Poppins', 'Arial Black', 'Arial Bold', serif !default;

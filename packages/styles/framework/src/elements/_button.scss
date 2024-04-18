@@ -52,6 +52,14 @@ $button-border-width: 2px !default;
     margin: 8px 0 !important;
   }
 
+  #{$hoverSelector} {
+    filter: brightness(0.8)
+  }
+
+  &:active {
+    filter: brightness(0.7)
+  }
+
   @each $name, $pair in $btn-colors {
     $variantName: nth($pair, 1);
     $colorBG: getColor(nth($pair, 2));
@@ -59,19 +67,12 @@ $button-border-width: 2px !default;
     $effectHover: nth($pair, 4);
     $effectActive: nth($pair, 5);
 
-    &:hover:not([disabled]) {
-      filter: brightness(0.8)
-    }
-    &:active {
-      filter: brightness(0.7)
-    }
-
     &.is-#{$variantName} {
       background-color: $colorBG;
       color: $colorText;
 
       @if $effectHover {
-        &:hover {
+        #{$hoverSelector} {
           filter: $effectHover;
         }
       }

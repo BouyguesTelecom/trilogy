@@ -41,7 +41,6 @@ const Radio = ({
   iconTile,
   horizontalTile,
   children,
-  inverted,
   testId,
   narrow,
   marginless,
@@ -57,78 +56,6 @@ const Radio = ({
       setInputState({ checked: checked || false })
     }
   }, [checked, readonly])
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      "input",
-      is("checkradio"),
-      is("info"),
-      is("hidden"),
-      inverted && is("inverted"),
-      className &&
-        !className.includes(is("inverted")) &&
-        has("background-color"),
-      className
-    )
-  )
-  const labelClasses = hashClass(styled, clsx(checked && has("text-info")))
-
-  // Support legacy checkbox
-  if (inverted) {
-    return (
-      <div className={hashClass(styled, clsx("field"))} tabIndex={0}>
-        <div
-          className={hashClass(
-            styled,
-            clsx("control", disabled && is("disabled"))
-          )}
-        >
-          <input
-            data-testid={testId}
-            className={classes}
-            type='radio'
-            readOnly={readonly}
-            id={id}
-            disabled={disabled}
-            name={name}
-            value={value}
-            checked={readonly ? checked : inputState.checked}
-            onChange={(e: React.ChangeEvent) => {
-              return e
-            }}
-            onClick={(e: React.MouseEvent) => {
-              const target = e.target as HTMLInputElement
-              if (!readonly && target.checked !== undefined) {
-                setInputState({ checked: target.checked })
-              }
-              target.value = value || ""
-              if (onChange) {
-                onChange({
-                  radioId: target.id,
-                  radioValue: target.value,
-                  radioName: target.name,
-                  radioChecked: target.checked,
-                })
-              }
-              if (onClick) {
-                onClick({
-                  radioId: target.id,
-                  radioValue: target.value,
-                  radioName: target.name,
-                  radioChecked: target.checked,
-                })
-              }
-            }}
-            {...others}
-          />
-          <label htmlFor={id} className={labelClasses}>
-            {label}
-          </label>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div

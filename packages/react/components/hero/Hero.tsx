@@ -36,7 +36,7 @@ const Hero = ({
     styled,
     clsx(
       "hero",
-      variant && has(`background-${getVariantClassName(variant)}`),
+      variant && is(`${getVariantClassName(variant)}`),
       backgroundSrc && [is("main"), has("background")],
       align && is(getAlignClassName(align)),
       justify && is(justify),

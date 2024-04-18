@@ -66,13 +66,13 @@ $chip-radius: 30px !default;
         border: 2px solid getColor('main');
         padding: 5px 15px;
 
-        &:hover {
+        #{$hoverSelector} {
           background-color: getColor('main');
           color: white;
         }
       }
 
-      &:hover {
+      #{$hoverSelector} {
         background-color: var(--color-bg-hovered);
 
       }

@@ -19,7 +19,6 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
  * @param value {string} Value for checkbox
- * @param inverted {boolean} Inveted Checkbox color
  * @param iconTile {IconName} Icon for Radio
  * @param narrow {boolean} Apply narrow
  * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
@@ -34,7 +33,6 @@ const Radio = ({
                  disabled,
                  readonly,
                  label,
-                 inverted,
                  value,
                  horizontalTile,
                  tile,
@@ -58,7 +56,7 @@ const Radio = ({
     radio: {
       flexDirection: 'row',
       alignItems: 'center',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: getColorStyle(TrilogyColor.MAIN),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -72,11 +70,11 @@ const Radio = ({
       borderRadius: 30,
       width: 13,
       height: 13,
-      backgroundColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
+      color: (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,
