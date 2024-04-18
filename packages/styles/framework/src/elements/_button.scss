@@ -1,10 +1,4 @@
 $button-border-width: 2px !default;
-$button-padding-vertical: calc(0.375em - #{$button-border-width}) !default;
-
-$button-disabled-shadow: none !default;
-$button-disabled-opacity: 1 !default;
-
-$is-check-button-icon-pos-left: 5px;
 
 .buttons {
   width: 100%;
@@ -76,12 +70,12 @@ $is-check-button-icon-pos-left: 5px;
       background-color: $colorBG;
       color: $colorText;
 
-      @if $effectHover{
+      @if $effectHover {
         &:hover {
           filter: $effectHover;
         }
       }
-      @if $effectActive{
+      @if $effectActive {
         &:active {
           filter: $effectActive;
         }
