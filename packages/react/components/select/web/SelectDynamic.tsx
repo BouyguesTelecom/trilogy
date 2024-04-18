@@ -80,6 +80,7 @@ const SelectDynamic = ({
     <div className={hashClass(styled, clsx("field"))}>
       <div className={controlClasses}>
         <div
+          {...{ disabled: disabled }}
           ref={selectRef}
           onKeyDown={handleKeyDown}
           tabIndex={disabled ? -1 : 0}
