@@ -106,22 +106,6 @@
     }
   }
 
-
-  &-disabled {
-    background-color: getColor('grey-disabled');
-    border: 1px solid getColor('grey-disabled');
-    cursor: default;
-
-    label {
-      color: #565656 !important;
-    }
-
-    .icon {
-      color: #565656;
-    }
-  }
-
-
   .icon {
     height: 100%;
     width: 50px;
@@ -148,13 +132,6 @@
         @include hover();
       }
     }
-
-    &.select-disabled {
-      &::after {
-        @include arrow-style(true, "down")
-      }
-    }
-
   }
 
   &.select-show-options:not(.is-loading) {
@@ -268,10 +245,6 @@
       }
     }
 
-    &-disabled {
-      background-color: getColor('grey-disabled');
-      color: #565656
-    }
   }
 
   .option-container, &-option {

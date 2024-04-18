@@ -1,124 +1,111 @@
 .textarea-wrapper {
-    position: relative;
-    margin: 16px 0;
+  position: relative;
+  margin: 16px 0;
 
-    textarea.textarea {
-        padding: $spacing-4;
-        border-radius: 4px;
-        outline: none;
+  textarea.textarea {
+    padding: $spacing-4;
+    border-radius: 4px;
+    outline: none;
 
-        &::placeholder {
-            font-size: 16px;
-        }
-
-        &.has-dynamic-label {
-            &.has-icon ~ label {
-                left: $spacing-9;
-                margin-right: 2px;
-                width: calc(100% - 98px);
-            }
-
-            ~ label {
-                visibility: visible;
-                position: absolute;
-                top: 2px;
-                left: $spacing-4;
-                padding-top: $spacing-2;
-                width: calc(100% - 28px - 2px);
-                font-size: 12px;
-                color: getColor('grey');
-                transition: top 0.2s ease-out;
-            }
-
-            &:placeholder-shown {
-                ~ label {
-                    visibility: hidden;
-                    top: $spacing-4;
-                    background-color: getColor('background');
-                    transition: none;
-                }
-            }
-
-            &:not(:placeholder-shown) {
-                padding-top: $spacing-5;
-            }
-        }
-
-        &:disabled {
-            background-color: getColor('grey-disabled');
-            border-color: getColor('grey-disabled');
-            color: getColor('grey-dark');
-
-            &::placeholder {
-                color: black;
-            }
-
-            & ~ span.icon {
-              color:  getColor('grey');
-            }
-        }
-
-        &.has-icon {
-            padding-left: $spacing-9;
-            padding-right: $spacing-9;
-
-            &:hover,
-            &:focus,
-            &:focus-visible {
-                padding-left: 55px;
-                padding-right: 55px;
-            }
-        }
+    &::placeholder {
+      font-size: 16px;
     }
 
-    label {
-        font-size: 16px;
-    }
+    &.has-dynamic-label {
+      &.has-icon ~ label {
+        left: $spacing-9;
+        margin-right: 2px;
+        width: calc(100% - 98px);
+      }
 
-    span.icon {
+      ~ label {
+        visibility: visible;
         position: absolute;
-        top: $spacing-4;
+        top: 2px;
+        left: $spacing-4;
+        padding-top: $spacing-2;
+        width: calc(100% - 28px - 2px);
+        font-size: 12px;
+        color: getColor('grey');
+        transition: top 0.2s ease-out;
+      }
 
-        &:first-of-type {
-            left: $spacing-4;
+      &:placeholder-shown {
+        ~ label {
+          visibility: hidden;
+          top: $spacing-4;
+          background-color: getColor('background');
+          transition: none;
         }
+      }
 
-        &:nth-of-type(2) {
-            right: $spacing-4;
+      &:not(:placeholder-shown) {
+        padding-top: $spacing-5;
+      }
+    }
+
+    &.has-icon {
+      padding-left: $spacing-9;
+      padding-right: $spacing-9;
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        padding-left: 55px;
+        padding-right: 55px;
+      }
+    }
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  span.icon {
+    position: absolute;
+    top: $spacing-4;
+
+    &:first-of-type {
+      left: $spacing-4;
+    }
+
+    &:nth-of-type(2) {
+      right: $spacing-4;
+    }
+  }
+
+  // Colors
+  @each $name, $pair in $colors-brand-funcionnal {
+    $color: getColor($name);
+    $color-invert: invertColor($name);
+    $brandName: getColorBrandName($name);
+    &.is-#{$brandName} {
+      textarea.textarea {
+        border-color: $color;
+
+        &:active,
+        &:focus,
+        &:focus-visible {
+          &:not(:placeholder-shown) {
+            padding-top: 29px;
+          }
         }
-    }
+      }
 
-    // Colors
-    @each $name, $pair in $colors-brand-funcionnal {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
-        &.is-#{$brandName} {
-            textarea.textarea {
-                border-color: $color;
-                &:active,
-                &:focus,
-                &:focus-visible {
-                    &:not(:placeholder-shown) {
-                        padding-top: 29px;
-                    }
-                }
-            }
-
-            span.icon:nth-of-type(2) {
-              color: $color;
-            }
-        }
+      span.icon:nth-of-type(2) {
+        color: $color;
+      }
     }
+  }
 
-    .counter {
-        position: absolute;
-        bottom: $spacing-2;
-        right: $spacing-4;
-        font-size: 10px;
-    }
+  .counter {
+    position: absolute;
+    bottom: $spacing-2;
+    right: $spacing-4;
+    font-size: 10px;
+  }
 
-    .help ~ .counter {
-        bottom: $spacing-6;
-    }
+  .help ~ .counter {
+    bottom: $spacing-6;
+  }
 }
