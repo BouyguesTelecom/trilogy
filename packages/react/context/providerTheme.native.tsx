@@ -14,9 +14,9 @@ export interface ITrilogyThemeContext {
 export const defaultIcons = {}
 
 export const defaultColors = {
-  main: "#2D455D",
-  font: "#2D455D",
-  accent: "#CC4E0A",
+  main: "#3d5d7e",
+  font: "#3d5d7e",
+  accent: "#da641b",
   success: "#007B52",
   info: "#1A688A",
   warning: "#FFBB33",
@@ -32,9 +32,9 @@ export const defaultColors = {
   bgWarning: "hsl(40, 50%, 70%)",
   bgError: "hsl(0, 50%, 70%)",
   bgDefault: "#E4E6E8",
-  btnSecondary: "#F5F6F8",
+  btnSecondary: "#eff2f8",
   btnGhost: "#FFFFFF",
-  default: "#2D455D",
+  default: "#3d5d7e",
 }
 
 export const defaultTheme: ITrilogyTheme = {

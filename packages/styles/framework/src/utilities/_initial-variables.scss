@@ -14,9 +14,9 @@ $suffix: '';
 
 $colors: (
   'background': ['white', #fff, 'tertiary', #E9E9E9, #F4F4F4],
-  'main':['main', #2D455D, 'white', #2E3E53, #243041],
-  'alternate':['accent', #CC4E0A, 'white',  #B64508, #9E3C07, #e3bcbc, #912b2b],
-  'font':['main', #2D455D, 'white', #0C7B91, #646464],
+  'main':['main', #3d5d7e, 'white', #30435b, #26354b],
+  'alternate':['accent', #da641b, 'white',  #bb5118, #984011, #e3bcbc, #912b2b],
+  'font':['main', #3d5d7e, 'white', #217d8f, #646464],
   'success':['success', #007B52, 'white'],
   'info':['info', #1A688A, 'white'],
   'warning':['warning', #FFBB33, 'tertiary'],
@@ -45,10 +45,10 @@ Colors for buttons
   */
 
 $btn-colors: (
-  'accent':['accent', #CC4E0A, white, #B64508, #9E3C07, #e3bcbc],
-  'primary': ['main', #2D455D, white, #2E3E53, #243041, #243041],
-  'secondary': ['secondary', #F5F6F8, #2D455D, #BBC6CD, #9BAAB5],
-  'ghost': ['ghost', #FFFFFF, #2D455D, #E4EAED, #E4EAED],
+  'accent':['accent', #da641b, white, #bb5118, #984011, #e3bcbc,],
+  'primary': ['main', #3d5d7e, white, #30435b, #273852, #243041],
+  'secondary': ['secondary', #eff2f8, #2D455D, #b7c5ce, #92a4b0],
+  'ghost': ['ghost', #FFFFFF, #3d5d7e, #d8dbdc, #c6ccd0],
 ) !default;
 
 // Typography OS-regular

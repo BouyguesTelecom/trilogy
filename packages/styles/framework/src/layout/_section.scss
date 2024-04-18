@@ -29,7 +29,7 @@ $overlap-section-desktop: $spacing-4 !default;
   }
 
   &.is-info {
-    background-color: getVariantColor('alternate',2);
+    background-color: getColor('info');
     color: getColor('background');
   }
 

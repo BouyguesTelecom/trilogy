@@ -4,6 +4,7 @@ coverage
 build
 public
 packages/react/components/progress/radial/react-native-circular-progress
+packages/react/components/slider/utils/
 examples
 config/**
 styles/**
