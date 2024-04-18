@@ -16,6 +16,7 @@ import { ComponentName } from "../enumsComponentsName"
  * @param left {number} position left
  * @param bottom {number} position bottom
  * @param right {number} position right
+ * @param disabled {boolean} disabled button
  */
 const Fab = ({
   children,
@@ -27,6 +28,7 @@ const Fab = ({
   bottom,
   left,
   right,
+  disabled,
 }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
@@ -72,6 +74,7 @@ const Fab = ({
       style={[styles.button, extended && styles.extended]}
       accessibilityLabel={accessibilityLabel}
       onPress={(e?: unknown) => onClick?.(e)}
+      disabled={disabled}
     >
       {extended ? (
         <>

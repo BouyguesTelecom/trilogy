@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import clsx from 'clsx'
-import { SwitchProps } from './SwitchProps'
-import { is } from '../../services/classify'
-import { getAlertClassName } from '../../objects'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import React, { useEffect, useState } from "react"
+import shortid from "shortid"
+import clsx from "clsx"
+import { SwitchProps } from "./SwitchProps"
+import { is } from "../../services/classify"
+import { getAlertClassName } from "../../objects"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Switch Component
@@ -53,14 +53,22 @@ const Switch = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('switch', reversed && is('reversed'), className))}>
+    <div
+      className={hashClass(
+        styled,
+        clsx("switch", reversed && is("reversed"), className)
+      )}
+    >
       <input
         onChange={(e) => {
           if (!readonly) {
             setChecked(!_checked)
           }
           if (onChange) {
-            onChange({ switchState: e.target.checked, switchName: e.target.name })
+            onChange({
+              switchState: e.target.checked,
+              switchName: e.target.name,
+            })
           }
         }}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -69,7 +77,10 @@ const Switch = ({
             setChecked(!_checked)
           }
           if (onClick) {
-            onClick({ switchState: e.target.checked, switchName: e.target.name })
+            onClick({
+              switchState: e.target.checked,
+              switchName: e.target.name,
+            })
           }
         }}
         name={name}
@@ -79,7 +90,10 @@ const Switch = ({
         id={`switch-${id}`}
         type='checkbox'
         disabled={disabled}
-        className={hashClass(styled, clsx(alert && is(getAlertClassName(alert))))}
+        className={hashClass(
+          styled,
+          clsx(alert && is(getAlertClassName(alert)))
+        )}
         {...others}
       />
       <label htmlFor={`switch-${id}`}>{label}</label>

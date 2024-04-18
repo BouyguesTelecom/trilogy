@@ -92,15 +92,12 @@ $label-weight: $weight-bold;
       .input,
       .textarea,
       .select select {
-        &:hover,
-        &.is-hovered {
+        &:hover {
           z-index: zindex('tiny');
         }
 
         &:focus,
-        &.is-focused,
-        &:active,
-        &.is-active {
+        &:active {
           z-index: zindex('small');
 
           &:hover {
@@ -396,6 +393,7 @@ $label-weight: $weight-bold;
         background-color: transparent;
         right: 45px;
         cursor: pointer;
+
         &:hover,
         &:focus {
           color: getColor('grey-darker');

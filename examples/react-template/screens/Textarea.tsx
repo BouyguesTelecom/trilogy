@@ -9,7 +9,7 @@ import {
 export const TextareaScreen = (): JSX.Element => {
   return (
     <Section>
-      <Textarea placeholder="placeholder" label="Dynamic label" />
+      <Textarea disabled placeholder="placeholder" label="Dynamic label" />
       <Divider />
 
       <Textarea

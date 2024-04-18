@@ -30,12 +30,4 @@
       right: 15px;
     }
   }
-
-  input:checked:disabled ~ label.checkbox-label {
-    &:after {
-      background-color: getColor('grey');
-      top: $spacing-4;
-      right: $spacing-4;
-    }
-  }
 }

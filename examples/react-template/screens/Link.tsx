@@ -19,12 +19,8 @@ export const LinkScreen = (): JSX.Element => {
           I'm in a paragraph and this is a <Link>standard link</Link> while this
           is a <Link plain> standard ununderlined link.</Link> If I want a
           tertiary colored link, I can also use this{" "}
-          <Link tertiary>underlined link</Link>, or this{" "}
-          <Link tertiary plain>
-            {" "}
-            ununderlined one.
-          </Link>
-          .
+          <Link>underlined link</Link>, or this{" "}
+          <Link plain> ununderlined one.</Link>.
         </Text>
         <Title level={TitleLevels.THREE}>External links</Title>
         <Link level={TextLevels.FOUR} href="https://google.com" blank>

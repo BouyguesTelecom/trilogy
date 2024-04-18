@@ -50,16 +50,6 @@
           mask-size: 20px;
         }
       }
-
-      &[disabled] + label {
-        cursor: not-allowed;
-        color: getColor('grey');
-        border-color: currentColor;
-
-        &::before {
-          border-color: currentColor;
-        }
-      }
     }
 
     &.has-icon {
@@ -82,12 +72,7 @@
             color: getColor('main');
           }
         }
-
-        &[disabled] + label {
-          .icon {
-            color: getColor('grey');
-          }
-        }
+        
       }
     }
 
@@ -126,10 +111,6 @@
             margin-top: -5px;
           }
 
-        }
-
-        &[disabled] + label {
-          color: getColor('grey');
         }
       }
     }
