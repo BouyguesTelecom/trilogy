@@ -47,7 +47,7 @@ const TabsItem = ({
     setActiveItem(active || false)
   }, [active])
 
-  const classes = hashClass(styled, clsx('tab', disabled && is('disabled'), className, { 'is-active': activeItem }))
+  const classes = hashClass(styled, clsx('tab', className, { 'is-active': activeItem }))
 
   if (routerLink && (to || href)) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
@@ -79,6 +79,8 @@ const TabsItem = ({
 
   return (
     <button
+      aria-disabled={disabled}
+      disabled={disabled}
       className={classes}
       role='tab'
       data-testid={testId}

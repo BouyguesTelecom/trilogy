@@ -62,7 +62,7 @@ export const Tile: Story<RadioProps> = (args) => (
       description={"Je suis la description de la checkbox"}
       disabled
       tile={true}
-      iconTile={IconName.UI_5G}
+      iconTile={IconName.EYE}
     />
   </>
 );
@@ -100,7 +100,7 @@ export const TileHorizontal: Story<RadioProps> = (args) => (
       description={"Je suis la description de la checkbox"}
       disabled
       tile={true}
-      iconTile={IconName.WATCH}
+      iconTile={IconName.BELL}
       horizontalTile={true}
     />
   </>

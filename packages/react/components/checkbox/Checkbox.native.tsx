@@ -20,7 +20,6 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onClick {ClickEvent}
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
- * @param inverted {boolean} Inveted Checkbox color
  */
 const Checkbox = ({
                     id = shortid.generate(),
@@ -31,7 +30,6 @@ const Checkbox = ({
                     disabled,
                     readonly,
                     label,
-                    inverted,
                     tile,
                     description,
                     iconTile,
@@ -51,7 +49,7 @@ const Checkbox = ({
     checkBox: {
       alignItems: 'center',
       justifyContent: horizontalTile ? 'center' : 'flex-start',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: getColorStyle(TrilogyColor.MAIN),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -63,7 +61,7 @@ const Checkbox = ({
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
+      color: (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,

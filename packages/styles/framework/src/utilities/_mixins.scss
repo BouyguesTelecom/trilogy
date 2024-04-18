@@ -516,16 +516,17 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
+          filter: grayscale(1);
           cursor: no-drop;
-          color: getColor('grey-darker');
-          border-color: getColor('grey-disabled');
+          color: getColor('grey-disabled');
+          border-color: transparent;
 
           &:before {
-            border-color: getColor('grey-disabled');
+            border-color: getColor('bg-disabled');
           }
 
           &:after {
-            background-color: getColor('grey-disabled');
+            background-color: getColor('bg-disabled');
           }
         }
       }

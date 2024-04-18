@@ -83,7 +83,7 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
     case "ACCENT":
       return "accent"
     case "PRIMARY":
-      return "main"
+      return "primary"
     case "SECONDARY":
       return "secondary"
     case "GHOST":

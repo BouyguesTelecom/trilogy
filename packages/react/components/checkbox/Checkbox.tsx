@@ -39,7 +39,6 @@ const Checkbox = ({
   description,
   iconTile,
   horizontalTile,
-  inverted,
   testId,
   ...others
 }: CheckboxProps): JSX.Element => {
@@ -52,76 +51,6 @@ const Checkbox = ({
       setChecked(checked || false)
     }
   }, [checked, readonly])
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      "input",
-      is("checkradio"),
-      is("info"),
-      is("hidden"),
-      inverted && is("inverted"),
-      className &&
-        !className.includes(is("inverted")) &&
-        has("background-color"),
-      className
-    )
-  )
-
-  const labelClasses = hashClass(styled, clsx(checked && has("text-info")))
-
-  // Support legacy checkbox
-  if (inverted) {
-    return (
-      <div
-        tabIndex={0}
-        className={hashClass(styled, clsx(disabled && is("disabled")))}
-      >
-        <input
-          aria-checked={checked}
-          className={classes}
-          type='checkbox'
-          readOnly={readonly}
-          id={id}
-          data-testid={testId}
-          disabled={disabled}
-          name={name}
-          value={value}
-          checked={readonly ? checked : _checked}
-          onChange={(e: React.ChangeEvent) => {
-            return e
-          }}
-          onClick={(e: React.MouseEvent) => {
-            const target = e.target as HTMLInputElement
-            if (!readonly && target.checked !== undefined) {
-              setChecked(target.checked)
-            }
-            target.value = value || ""
-            if (onChange) {
-              onChange({
-                checkboxId: target.id,
-                checkboxValue: target.value,
-                checkboxName: target.name,
-                checkboxChecked: target.checked,
-              })
-            }
-            if (onClick) {
-              onClick({
-                checkboxId: target.id,
-                checkboxValue: target.value,
-                checkboxName: target.name,
-                checkboxChecked: target.checked,
-              })
-            }
-          }}
-          {...others}
-        />
-        <label htmlFor={id} className={labelClasses}>
-          {label}
-        </label>
-      </div>
-    )
-  }
 
   return (
     <div

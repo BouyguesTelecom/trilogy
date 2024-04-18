@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '../../context'
-import { FabProps } from './FabProps'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { IconName } from '../icon'
-import Icon from '../icon/Icon'
-import { is } from '../../services'
+import React, { useEffect, useState } from "react"
+import { useTrilogyContext } from "../../context"
+import { FabProps } from "./FabProps"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { IconName } from "../icon"
+import Icon from "../icon/Icon"
+import { is } from "../../services"
 
 /**
  * Fab Component - Floating Button Action
@@ -20,6 +20,7 @@ import { is } from '../../services'
  * @param left {number} position left
  * @param bottom {number} position bottom
  * @param right {number} position right
+ * @param disabled {boolean} disabled button
  **/
 
 const Fab = ({
@@ -35,6 +36,7 @@ const Fab = ({
   left,
   right,
   testId,
+  disabled,
   ...others
 }: FabProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -48,20 +50,24 @@ const Fab = ({
   const positionStyle: React.CSSProperties | any =
     top || bottom || left || right
       ? {
-          position: fixed ? 'fixed' : 'absolute',
-          top: top ?? 'auto',
-          bottom: bottom ?? 'auto',
-          left: left ?? 'auto',
-          right: right ?? 'auto',
+          position: fixed ? "fixed" : "absolute",
+          top: top ?? "auto",
+          bottom: bottom ?? "auto",
+          left: left ?? "auto",
+          right: right ?? "auto",
         }
       : {
-          position: 'relative',
+          position: "relative",
         }
 
-  const _className = hashClass(styled, clsx('fab', extended && is('extended'), className))
+  const _className = hashClass(
+    styled,
+    clsx("fab", extended && is("extended"), className)
+  )
 
   return (
     <button
+      disabled={disabled}
       data-testid={testId}
       aria-label={accessibilityLabel}
       onClick={(e) => {

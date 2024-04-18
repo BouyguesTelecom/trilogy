@@ -140,7 +140,7 @@ body:has(.modal.is-active) {
         width: $modal-close-dimensions;
         z-index: zindex('medium');
 
-        &:hover {
+        #{$hoverSelector} {
             background-color: getColor('grey-light');
         }
 

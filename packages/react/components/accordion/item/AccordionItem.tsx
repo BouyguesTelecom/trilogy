@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import shortid from 'shortid'
-import { AccordionItemProps } from './AccordionItemProps'
-import { is } from '../../../services'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import React, { useEffect, useRef, useState } from "react"
+import shortid from "shortid"
+import { AccordionItemProps } from "./AccordionItemProps"
+import { is } from "../../../services"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Accordion Item Component
@@ -18,16 +18,16 @@ import { useTrilogyContext } from '../../../context'
  * @param onClose {Function} onClose Accordion Item Function
  */
 const AccordionItem = ({
-                         active,
-                         className,
-                         children,
-                         id = shortid.generate(),
-                         onClick,
-                         disabled,
-                         onClose,
-                         onOpen,
-                         ...others
-                       }: AccordionItemProps): JSX.Element => {
+  active,
+  className,
+  children,
+  id = shortid.generate(),
+  onClick,
+  disabled,
+  onClose,
+  onOpen,
+  ...others
+}: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
   const { styled } = useTrilogyContext()
 
@@ -49,7 +49,9 @@ const AccordionItem = ({
     }
     const { floor, abs } = Math
     const firstChild = e.children[1].firstChild as HTMLElement
-    const expandedInactive = floor(abs(e.clientHeight + firstChild?.clientHeight)).toString()
+    const expandedInactive = floor(
+      abs(e.clientHeight + firstChild?.clientHeight)
+    ).toString()
     const expandedActive = floor(abs(e.clientHeight)).toString()
     const collapsedInactive = floor(abs(e.clientHeight + 1)).toString()
     const collapsedActive = floor(abs(e.children[0].clientHeight)).toString()
@@ -61,24 +63,27 @@ const AccordionItem = ({
     setIsActive(active || false)
   }, [active])
 
-  const classes = hashClass(styled, clsx('accordion', className, isActive && is('active'), disabled && is('disabled'),
-  ))
+  const classes = hashClass(
+    styled,
+    clsx("accordion", className, isActive && is("active"))
+  )
 
   let childrenElement
   if (children) {
     childrenElement = Array.isArray(children)
       ? children.map((child, index: number) => {
-        return React.cloneElement(child as React.ReactElement, {
-          key: `article-${index}`,
-          dataId: index === 0 ? `header-${id}` : `body-${id}`,
-          disabled,
+          return React.cloneElement(child as React.ReactElement, {
+            key: `article-${index}`,
+            dataId: index === 0 ? `header-${id}` : `body-${id}`,
+            disabled,
+          })
         })
-      })
       : children
   }
 
   return (
     <article
+      aria-disabled={disabled}
       data-testid={id}
       className={classes}
       ref={ref}
@@ -97,7 +102,7 @@ const AccordionItem = ({
           type='checkbox'
           data-accordion-toggle={true}
           id={`toggle_header-${id}`}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           defaultChecked={isActive}
         />
       )}

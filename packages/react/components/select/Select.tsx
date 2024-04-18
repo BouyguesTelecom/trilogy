@@ -3,7 +3,7 @@ import { SelectProps } from "./SelectProps"
 import clsx from "clsx"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
-import { SelectNative, SelectDynamic } from "./web"
+import { SelectDynamic, SelectNative } from "./web"
 import SelectNativeOption from "./option/SelectNativeOption"
 
 /**
@@ -53,7 +53,6 @@ const Select = ({
         styled,
         clsx(
           "select",
-          disabled && "select-disabled",
           iconName && "has-icon",
           native && "select-native",
           className

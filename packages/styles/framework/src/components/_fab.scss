@@ -19,7 +19,7 @@
 
   z-index: 9;
 
-  &:hover, &.is-extended, &:focus, &:focus-visible, &:focus-within {
+  #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
     background-color: getColor('hovered');
     transition: 0.5s;
     font-size: initial;
@@ -34,11 +34,6 @@
 
   &:active {
     background-color: getColor('hovered');
-  }
-
-  .disabled {
-    background-color: getColor('bg-disabled');
-    color: getColor('grey-disabled');
   }
 
   .icon {

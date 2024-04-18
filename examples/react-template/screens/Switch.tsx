@@ -46,7 +46,7 @@ export const SwitchScreen = (): JSX.Element => {
       <Switch
         reversed
         disabled
-        label="Switch two disabled"
+        label="Switch two reversed disabled"
         name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
@@ -54,7 +54,7 @@ export const SwitchScreen = (): JSX.Element => {
       />
       <Switch
         reversed
-        label="Switch two disabled"
+        label="Switch two reversed"
         name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}
@@ -63,7 +63,7 @@ export const SwitchScreen = (): JSX.Element => {
       <Switch
         reversed
         disabled
-        label="Switch two disabled"
+        label="Switch two disabled reversed checked"
         name="switch"
         // eslint-disable-next-line no-console
         onChange={(e) => console.log(e.switchState)}

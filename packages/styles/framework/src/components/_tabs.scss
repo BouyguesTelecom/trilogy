@@ -41,7 +41,7 @@
         }
       }
 
-      &:hover:not(.is-disabled) {
+      #{$hoverSelector} {
         color: getColor('background') !important;
         cursor: pointer;
       }
@@ -50,9 +50,6 @@
         border-color: getColor('background');
       }
 
-      &.is-disabled {
-        color: getColor('grey-light');
-      }
     }
   }
 
@@ -179,10 +176,10 @@
         font-size: 22px;
       }
 
-      &.is-disabled {
-        color: getColor('grey');
-        cursor: default;
+      &[disabled], &[aria-disabled=true] {
+        background-color: transparent !important;
       }
+
     }
   }
 

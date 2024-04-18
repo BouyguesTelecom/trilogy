@@ -60,7 +60,7 @@ $menu-dropdown-item-height: 2em;
         flex-direction: row;
         text-decoration: inherit;
 
-        &:hover {
+      #{$hoverSelector} {
             background-color: transparent;
             color:  getColor('alternate');
         }
@@ -147,7 +147,7 @@ $menu-dropdown-item-height: 2em;
             text-overflow: ellipsis;
             overflow: hidden;
 
-            &:hover {
+          #{$hoverSelector} {
                 color: getVariantColor('alternate',2);
                 background-color: getColor('grey-lighter');
             }
@@ -176,7 +176,7 @@ $menu-dropdown-item-height: 2em;
             line-height: $menu-item-line-height;
             color: getColor('font');
 
-            &:hover {
+            #{$hoverSelector} {
                 color: getVariantColor('alternate',2);
                 background-color: getColor('grey-lighter');
             }

@@ -30,10 +30,6 @@ export interface RadioProps extends Accessibility {
   className?: string
   name?: string
   value?: string
-  /**
-   * @deprecated
-   */
-  inverted?: boolean
   tile?: boolean
   description?: string | React.ReactNode
   iconTile?: IconName | IconNameValues
