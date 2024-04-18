@@ -13,23 +13,12 @@
 }
 
 @function getVariantColor($name, $n:1)  {
-  @return #{nth(map-get($colors,$name),$n+3)}
+  @return #{nth(map-get($colorsOld,$name),$n+3)}
 };
 
 :root {
   @each $name, $color in $colors {
     --color-#{nth($color,1)}: #{nth($color,2)};
-  }
-
-  // Colors
-  @each $name, $color in $colors {
-    $colorname: nth($color, 1);
-    $bgcolorval: nth($color, 2);
-    $colorval: nth($color, 3);
-    .has-background-#{$colorname} {
-      background-color: var(--color-#{$colorname}) !important;
-      color: var(--color-#{$colorval});
-    }
   }
 }
 
