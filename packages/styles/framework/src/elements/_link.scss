@@ -1,65 +1,59 @@
 .link:not([disabled]) {
-    position: relative;
-    font-weight: $weight-semibold;
-    color: getColor('font');
-    box-decoration-break: clone;
-    text-decoration: underline;
-    cursor: pointer;
+  position: relative;
+  font-weight: $weight-semibold;
+  color: getColor('font');
+  box-decoration-break: clone;
+  text-decoration: underline;
+  cursor: pointer;
 
-    &:hover {
-        font-weight: $weight-normal;
+  &:hover {
+    font-weight: $weight-normal;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus:focus-visible,
+  &:active {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  &.has-icon {
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      width: calc(100% - 48px);
+      bottom: 5.5px;
     }
+  }
 
-      &:focus,
-      &:focus-visible,
-      &:focus:focus-visible,
-      &.is-focused,
-      &:active,
-      &.is-active {
-          border: 1px solid;
-          border-radius: 4px;
-          padding: 4px;
-      }
+  &.is-inverted {
+    color: getColor('background');
 
     &.has-icon {
-        display: inline-flex;
-        align-items: center;
-
-        &::after {
-            width: calc(100% - 48px);
-            bottom: 5.5px;
-        }
-    }
-
-    &.is-static::after {
-        margin-bottom: 4px;
-    }
-
-    &.is-inverted {
+      > .icon {
         color: getColor('background');
-
-      &.has-icon {
-        > .icon {
-          color: getColor('background');
-        }
       }
     }
+  }
 
-    @include touch {
-        white-space: normal !important;
-        box-decoration-break: clone;
-        display: inline;
-    }
+  @include touch {
+    white-space: normal !important;
+    box-decoration-break: clone;
+    display: inline;
+  }
 }
 
 @keyframes sliding-link {
-    50% {
-        left: 100%;
-        right: 0;
-    }
+  50% {
+    left: 100%;
+    right: 0;
+  }
 
-    50.01% {
-        left: 0;
-        right: 100%;
-    }
+  50.01% {
+    left: 0;
+    right: 100%;
+  }
 }

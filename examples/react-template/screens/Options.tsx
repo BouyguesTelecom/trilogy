@@ -1,13 +1,13 @@
 import * as React from "react";
 import {
+  Divider,
+  IconName,
+  Options,
+  OptionsItem,
+  OptionsItemVariant,
   Section,
   Title,
   TitleLevels,
-  Divider,
-  OptionsItem,
-  OptionsItemVariant,
-  Options,
-  IconName,
 } from "@trilogy-ds/react/components";
 
 export const OptionsScreen = (): JSX.Element => {
@@ -17,6 +17,18 @@ export const OptionsScreen = (): JSX.Element => {
       <Divider />
 
       <Options>
+        <OptionsItem
+          disabled
+          label="50 Go"
+          name="option"
+          value="50go"
+          variant={OptionsItemVariant.MULTILINE}
+          iconName={IconName.TIMES}
+          description="Adipisicing deserunt nulla incididunt aliqua sunt."
+          // eslint-disable-next-line no-console
+          readonly
+          onChange={(e) => console.log(e.optionValue, e.optionChecked)}
+        />
         <OptionsItem
           label="50 Go"
           name="option"
