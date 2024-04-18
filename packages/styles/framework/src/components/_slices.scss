@@ -22,7 +22,7 @@
     display: flex;
     background-color: getColor('background');
 
-    &:not(.is-disabled):hover {
+    #{$hoverSelector} {
         cursor: pointer;
 
         .title {

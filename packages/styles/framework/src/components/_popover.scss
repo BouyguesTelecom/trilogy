@@ -79,7 +79,6 @@
         color: getColor('background');
         display: inline-block;
         font-size: 12px;
-        opacity: 0.95;
         visibility: hidden;
         padding: $spacing-2;
         font-weight: 500;
@@ -329,12 +328,10 @@
 
     &.is-popover-active .popover-content,
     &:hover .popover-content {
-        opacity: 1;
         visibility: visible;
     }
 
     .popover-trigger:focus ~ .popover-content {
-        opacity: 1;
         visibility: visible;
     }
 }
