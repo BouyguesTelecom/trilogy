@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Icon } from '../../icon'
-import { OptionsItemProps } from './OptionsItemProps'
-import { has, is } from '../../../services/classify'
-import shortid from 'shortid'
-import { OptionsItemVariant } from '../OptionsEnum'
-import { Text, TextMarkup } from '../../text'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import React, { useEffect, useState } from "react"
+import { Icon } from "../../icon"
+import { OptionsItemProps } from "./OptionsItemProps"
+import { has, is } from "../../../services/classify"
+import shortid from "shortid"
+import { OptionsItemVariant } from "../OptionsEnum"
+import { Text, TextMarkup } from "../../text"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Options Item Component
@@ -47,12 +47,20 @@ const OptionsItem = ({
 
   const classes = hashClass(
     styled,
-    clsx('field', variant && variant === OptionsItemVariant.ICON ? has(`${variant}`) : is(`${variant}`), className),
+    clsx(
+      "field",
+      variant && variant === OptionsItemVariant.ICON
+        ? has(`${variant}`)
+        : is(`${variant}`),
+      className
+    )
   )
   const [_checked, setChecked] = useState<boolean>(Boolean(checked) || false)
   const multilineClass = hashClass(
     styled,
-    clsx(variant && variant == OptionsItemVariant.MULTILINE ? 'is-descriptive' : ''),
+    clsx(
+      variant && variant == OptionsItemVariant.MULTILINE ? "is-descriptive" : ""
+    )
   )
 
   useEffect(() => {
@@ -63,14 +71,13 @@ const OptionsItem = ({
 
   return (
     <div className={classes} {...others}>
-      <div className={hashClass(styled, clsx('control'))}>
+      <div className={hashClass(styled, clsx("control"))}>
         <input
           type='radio'
           id={id}
           data-testid={testId}
           name={name}
           value={value}
-          disabled={disabled}
           checked={readonly ? checked : _checked}
           onChange={(e: React.ChangeEvent) => {
             return e
@@ -81,7 +88,7 @@ const OptionsItem = ({
             if (!readonly && target.checked !== undefined) {
               setChecked(target.checked)
             }
-            target.value = value || ''
+            target.value = value || ""
             if (onChange) {
               onChange({
                 optionId: target.id,
@@ -100,12 +107,16 @@ const OptionsItem = ({
             }
           }}
         />
-        <label htmlFor={id} className={multilineClass}>
+        <label
+          htmlFor={id}
+          className={multilineClass}
+          {...{ disabled: disabled }}
+        >
           {label}
           {variant && iconName && <Icon name={iconName} {...others} />}
-          {variant && variant == OptionsItemVariant.MULTILINE && description && (
-            <Text markup={TextMarkup.SPAN}>{description}</Text>
-          )}
+          {variant &&
+            variant == OptionsItemVariant.MULTILINE &&
+            description && <Text markup={TextMarkup.SPAN}>{description}</Text>}
         </label>
       </div>
     </div>
