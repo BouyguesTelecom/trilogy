@@ -1,12 +1,12 @@
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useUtils } from '../hooks/utils'
-import { useAccessibility } from '../hooks/accessibility'
-import React, { PropsWithChildren } from 'react'
-import { Icon } from '../../icon'
-import SelectOption from '../option'
-import { ICustomSelect } from '../SelectProps'
-import { has } from '../../../services'
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useUtils } from "../hooks/utils"
+import { useAccessibility } from "../hooks/accessibility"
+import React, { PropsWithChildren } from "react"
+import { Icon } from "../../icon"
+import SelectOption from "../option"
+import { ICustomSelect } from "../SelectProps"
+import { has } from "../../../services"
 
 const SelectDynamic = ({
   styled,
@@ -54,26 +54,30 @@ const SelectDynamic = ({
     setIsOpenSelect,
     optionRefs,
     selectRef,
-    handleFocusCurrentOption,
+    handleFocusCurrentOption
   )
 
   const optionsClasses = React.useMemo(
-    () => hashClass(styled, clsx('select-options', classNameOptions)),
-    [classNameOptions, styled],
+    () => hashClass(styled, clsx("select-options", classNameOptions)),
+    [classNameOptions, styled]
   )
 
   const selectedValueClasses = React.useMemo(
-    () => hashClass(styled, clsx('select-value', !label && 'no-label')),
-    [styled],
+    () => hashClass(styled, clsx("select-value", !label && "no-label")),
+    [styled]
   )
 
   const controlClasses = React.useMemo(
-    () => hashClass(styled, clsx('control', selectedOption?.value && has('dynamic-placeholder'))),
-    [styled, selectedOption?.value],
+    () =>
+      hashClass(
+        styled,
+        clsx("control", selectedOption?.value && has("dynamic-placeholder"))
+      ),
+    [styled, selectedOption?.value]
   )
 
   return (
-    <div className={hashClass(styled, clsx('field'))}>
+    <div className={hashClass(styled, clsx("field"))}>
       <div className={controlClasses}>
         <div
           ref={selectRef}
@@ -93,7 +97,9 @@ const SelectDynamic = ({
         >
           {iconName && <Icon name={iconName} size='small' />}
           {label && <label>{label}</label>}
-          {selectedOption?.name && <span className={selectedValueClasses}>{selectedOption?.name}</span>}
+          {selectedOption?.name && (
+            <span className={selectedValueClasses}>{selectedOption?.name}</span>
+          )}
         </div>
         <div
           data-is-open-options={isOpenSelect}
@@ -118,15 +124,18 @@ const SelectDynamic = ({
               }
               return (
                 <div
+                  {...{ disabled: disabled }}
                   data-is-disabled={child.props.disabled}
-                  className={hashClass(styled, clsx('option-container'))}
+                  className={hashClass(styled, clsx("option-container"))}
                   data-is-active={child.props.value === selectedOption?.value}
                   data-index={child.props.value}
                   data-id={child.props.id}
                   data-textcontent={child.props.children || child.props.label}
                   onKeyDown={(e) => handleKeyDown(e, child)}
                   ref={(element) => (optionRefs.current[index] = element)}
-                  tabIndex={child.props.value === selectedOption?.value ? 0 : -1}
+                  tabIndex={
+                    child.props.value === selectedOption?.value ? 0 : -1
+                  }
                   onMouseEnter={() => optionRefs.current[index]?.focus()}
                   onMouseLeave={() => optionRefs.current[index]?.blur()}
                 >

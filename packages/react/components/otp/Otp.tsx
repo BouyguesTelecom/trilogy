@@ -40,12 +40,7 @@ const Otp = ({
   const testDigit = /^-?\d*\.?\d*$/
   const classes = hashClass(
     styled,
-    clsx(
-      "otp-list",
-      error && is("error"),
-      disabled && is("disabled"),
-      className
-    )
+    clsx("otp-list", error && is("error"), className)
   )
 
   useEffect(() => {
@@ -193,6 +188,7 @@ const Otp = ({
       >
         {valueItems.map((digit, idx) => (
           <input
+            aria-disabled={disabled}
             tabIndex={0}
             key={idx}
             type='text'

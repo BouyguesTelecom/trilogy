@@ -25,6 +25,7 @@
 
     &.is-active > .accordion-header:first-child, [data-accordion-toggle]:checked ~ .accordion-header {
       font-weight: bold;
+
       & .toggle {
         &::before {
           @include arrow(getColor('font'), 'up');
@@ -38,7 +39,7 @@
 
     &:not(:first-child) {
       .accordion-header {
-        border-radius: 0;
+        border-radius: $radius;
       }
     }
 
@@ -55,23 +56,7 @@
     &:last-child {
       margin-bottom: 0;
     }
-
-    &.is-disabled {
-      background-color: getColor('bg-disabled');
-      cursor: no-drop;
-      .accordion-header,
-      .accordion-header .toggle::before {
-        color: getColor('disabled');
-        cursor: no-drop;
-      }
-
-      &.is-active {
-        .accordion-header:not(input) + .accordion-body {
-          color: getColor('grey');
-        }
-      }
-    }
-
+    
     .accordion-header {
       align-items: center;
       display: flex;
@@ -144,6 +129,7 @@
 
       & + .accordion-body {
         overflow-y: hidden;
+
         .accordion-content {
           border-radius: $radius;
           margin-bottom: 10px;
