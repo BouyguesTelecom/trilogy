@@ -70,7 +70,7 @@ Colors for buttons
 $btn-colors: (
   'accent':['accent', 'alternate', 'background', null, null],
   'primary': ['primary', 'main', 'background', brightness(0.8), brightness(0.7)],
-  'secondary': ['secondary', 'bg-main', #2D455D, brightness(0.8), brightness(0.7)],
+  'secondary': ['secondary', 'bg-main', 'main', brightness(0.8), brightness(0.7)],
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
 ) !default;
 
