@@ -1,13 +1,13 @@
-import clsx from 'clsx'
-import React from 'react'
-import { getAlertClassName, getAlertIconName } from '../../objects'
-import { has, is } from '../../services/classify'
-import { Icon, IconName } from '../icon'
-import { Text } from '../text'
-import { Title, TitleLevels } from '../title'
-import { AlertProps } from './AlertProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import clsx from "clsx"
+import * as React from "react"
+import { getAlertClassName, getAlertIconName } from "../../objects"
+import { has, is } from "../../services/classify"
+import { Icon, IconName } from "../icon"
+import { Text } from "../text"
+import { Title, TitleLevels } from "../title"
+import { AlertProps } from "./AlertProps"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Alert Component
@@ -35,7 +35,10 @@ const Alert = ({
 }: AlertProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('alert', has('body'), alert && is(getAlertClassName(alert)), className))
+  const classes = hashClass(
+    styled,
+    clsx("alert", has("body"), alert && is(getAlertClassName(alert)), className)
+  )
 
   const iconAlert = React.useMemo(() => {
     if (iconName != null) return iconName
@@ -56,9 +59,17 @@ const Alert = ({
         {...others}
       >
         <Icon className={iconClassname} name={iconAlert} />
-        <div className={hashClass(styled, clsx('body'))}>
-          {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.THREE}>{title}</Title> : title}
-          {description && typeof description.valueOf() === 'string' ? <Text>{description}</Text> : description}
+        <div className={hashClass(styled, clsx("body"))}>
+          {title && typeof title.valueOf() === "string" ? (
+            <Title level={TitleLevels.THREE}>{title}</Title>
+          ) : (
+            title
+          )}
+          {description && typeof description.valueOf() === "string" ? (
+            <Text>{description}</Text>
+          ) : (
+            description
+          )}
         </div>
       </div>
     )

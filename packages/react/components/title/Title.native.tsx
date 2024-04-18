@@ -1,10 +1,16 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { setTypographyAlign, setTypographyColor } from '../../objects'
-import { TitleProps } from './TitleProps'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Platform,
+} from "react-native"
+import ContentLoader, { Rect } from "react-content-loader/native"
+import { setTypographyAlign, setTypographyColor } from "../../objects"
+import { TitleProps } from "./TitleProps"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Title Native Component
@@ -35,17 +41,17 @@ const Title = ({
 }: TitleProps): JSX.Element => {
   const titlesLevels = () => {
     switch (level) {
-      case 'ONE':
+      case "ONE":
         return 32
-      case 'TWO':
+      case "TWO":
         return 28
-      case 'THREE':
+      case "THREE":
         return 22
-      case 'FOUR':
+      case "FOUR":
         return 20
-      case 'FIVE':
+      case "FIVE":
         return 18
-      case 'SIX':
+      case "SIX":
         return 16
       default:
         return 16
@@ -54,30 +60,33 @@ const Title = ({
 
   const getAlignSelf = () => {
     switch (true) {
-      case setTypographyAlign(typo) === 'left':
-        return 'flex-start'
-      case setTypographyAlign(typo) === 'center':
-        return 'center'
-      case setTypographyAlign(typo) === 'right':
-        return 'flex-end'
+      case setTypographyAlign(typo) === "left":
+        return "flex-start"
+      case setTypographyAlign(typo) === "center":
+        return "center"
+      case setTypographyAlign(typo) === "right":
+        return "flex-end"
       default:
-        return 'flex-start'
+        return "flex-start"
     }
   }
   const getFontFamily = () => {
-    if (level && ['ONE', 'TWO'].includes(level)) return 'poppins-bold'
-    return 'poppins-semibold'
+    if (level && ["ONE", "TWO"].includes(level)) return "poppins-bold"
+    return "poppins-semibold"
   }
 
   const styles = StyleSheet.create({
     text: {
       fontFamily: getFontFamily(),
       fontSize: titlesLevels(),
-      color: (((overline || subtitle) && !level) && getColorStyle(TrilogyColor.SECONDARY))
-        || (!skeleton && setTypographyColor(typo, inverted)) ||
-        'transparent',
+      color:
+        ((overline || subtitle) &&
+          !level &&
+          getColorStyle(TrilogyColor.MAIN)) ||
+        (!skeleton && setTypographyColor(typo, inverted)) ||
+        "transparent",
       textAlign: setTypographyAlign(typo),
-      textTransform: overline && !level ? 'uppercase' : undefined,
+      textTransform: overline && !level ? "uppercase" : undefined,
       alignSelf: getAlignSelf(),
     },
     skeleton: {
@@ -86,14 +95,18 @@ const Title = ({
       borderRadius: 5,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.GREY_LIGHTER),
-      overflow: 'hidden',
+      overflow: "hidden",
       height: titlesLevels(),
     },
   })
-  const titleTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
+  const titleTestId = testId
+    ? testId
+    : typeof children === "string"
+    ? children
+    : "NotSpecified"
   const titleAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === 'string'
+    : typeof children === "string"
     ? children
     : undefined
 
@@ -114,7 +127,7 @@ const Title = ({
     titleView = (
       <ContentLoader style={styles.skeleton}>
         {titleView}
-        {Platform.OS === 'android' && (
+        {Platform.OS === "android" && (
           <View>
             <Rect rx='15' ry='15' width='100%' height='100%' />
           </View>

@@ -1,4 +1,4 @@
-import { ButtonMarkup, ButtonMarkupValues, ButtonColor, ButtonColorValues } from '../../button/ButtonEnum'
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from '../../button/ButtonEnum'
 import { TitleLevels, TitleLevelValues } from '../../title/TitleEnum'
 import { TextLevelValues } from '../../text/TextEnum'
 import { ClickEvent } from '../../../events/OnClickEvent'
@@ -16,7 +16,7 @@ export interface CardContentProps extends Clickable, Accessibility {
   buttonText?: string
   text?: string
   textLevel?: TextLevelValues
-  buttonVariant?: ButtonColor | ButtonColorValues
+  buttonVariant?: ButtonVariant | ButtonVariantValues
   buttonClick?: ClickEvent
   className?: string
   buttonMarkup?: ButtonMarkup | ButtonMarkupValues

@@ -1,6 +1,11 @@
-import { AlertProps, AlertState, AlertStateValues, AlignableProps } from '../../../objects'
-import React from 'react'
-import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
+import {
+  AlertProps,
+  AlertState,
+  AlertStateValues,
+  AlignableProps,
+} from "../../../objects"
+import * as React from "react"
+import { ProgressRadialItemProps } from "./item/ProgressRadialItemProps"
 
 /**
  * Progress Radial Interface
@@ -8,16 +13,16 @@ import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
 
 export interface ProgressRadialProps extends AlertProps, AlignableProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: React.ReactElement<ProgressRadialItemProps>
-  percent?: number
-  label?: string | React.ReactNode
-  description?: string | React.ReactNode
-  className?: string
-  full?: boolean
-  disk?: boolean
-  secondPercent?: number
-  secondAlert?: AlertState | AlertStateValues
-  skeleton?: boolean
+  children?: React.ReactElement<ProgressRadialItemProps>;
+  percent?: number;
+  label?: string | React.ReactNode;
+  description?: string | React.ReactNode;
+  className?: string;
+  full?: boolean;
+  disk?: boolean;
+  secondPercent?: number;
+  secondAlert?: AlertState | AlertStateValues;
+  skeleton?: boolean;
 
-  stacked?: boolean
+  stacked?: boolean;
 }

@@ -1,31 +1,43 @@
-import React from 'react'
-import { IconProps } from '../IconProps'
-import { IconStatus } from '../IconEnum'
-import { getStatusBackground, has, is } from '../../../services/index'
-import { getBackgroundClassName, getTextClassName, TrilogyColor } from '../../../objects'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { IconProps } from "../IconProps"
+import { IconStatus } from "../IconEnum"
+import { getStatusBackground, has, is } from "../../../services/index"
+import {
+  getBackgroundClassName,
+  getTextClassName,
+  TrilogyColor,
+} from "../../../objects"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
-const CircleIcon = ({ className, name, status, size, color, backgroundColor, testId }: IconProps): JSX.Element => {
+const CircleIcon = ({
+  className,
+  name,
+  status,
+  size,
+  color,
+  backgroundColor,
+  testId,
+}: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-    getStatusBackground(status || '', IconStatus.TERTIARY) ||
-    has(getBackgroundClassName(TrilogyColor.TERTIARY))
+    getStatusBackground(status || "", IconStatus.TERTIARY) ||
+    has(getBackgroundClassName(TrilogyColor.MAIN))
 
   const classes = hashClass(
     styled,
     clsx(
-      'icon',
-      color ? has(getTextClassName(color)) : has('text-white'),
+      "icon",
+      color ? has(getTextClassName(color)) : has("text-white"),
       color ? is(color) : is(TrilogyColor.WHITE),
       [is(`${size}`)],
-      is('circled'),
+      is("circled"),
       background,
-      className,
-    ),
+      className
+    )
   )
 
   const circledIconClasses = hashClass(styled, clsx(name))

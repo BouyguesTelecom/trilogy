@@ -1,128 +1,123 @@
 .dropdown {
-    display: inline-flex;
-    position: relative;
-    vertical-align: top;
-    width: 100%;
-    &.is-active,
-    &.is-hoverable:hover {
-        .dropdown-menu {
-            display: block;
-        }
-    }
+  display: inline-flex;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
 
-    select {
-        width: 95% !important;
-        border:none;
-        height: 97% !important;
-        margin-left: 16px;
-        -moz-appearance:none; /* Firefox */
-        -webkit-appearance:none; /* Safari and Chrome */
-        appearance:none;
-    }
-
-    &.is-active {
-        .dropdown-menu {
-            z-index: zindex('dropdown');
-
-            .dropdown-content {
-                border: 1px solid getColor('alternate');;
-            }
-        }
-    }
-
-    &.is-right {
-        .dropdown-menu {
-            left: auto;
-            right: 0;
-        }
-    }
-
-    &.is-up {
-        .dropdown-menu {
-            bottom: 100%;
-            padding-bottom: $spacing-1;
-            padding-top: initial;
-            top: auto;
-        }
-    }
-
-    .react-autosuggest__container {
-        width: 100%;
-
-        .dropdown-menu .dropdown-content {
-            overflow-y: auto;
-            max-height: 25vh;
-
-            .dropdown-item {
-                cursor: pointer;
-            }
-        }
-    }
-
-    .dropdown-trigger {
-        width: 100%;
-
-        .select {
-            cursor: pointer;
-
-            select {
-                pointer-events: none;
-            }
-        }
-    }
-
+  &.is-active,
+  &.is-hoverable:hover {
     .dropdown-menu {
-        display: none;
-        left: 0;
-        min-width: 120px;
-        padding-top: $spacing-1;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        z-index: 20;
-
-        .dropdown-content {
-            border-radius: 8px;
-            box-shadow: 0 2px 3px rgba(#000, 0.1),
-            0 0 0 1px rgba(#000, 0.1);
-            font-size: inherit;
-            padding: 5px 10px;
-
-            .dropdown-item {
-                display: block;
-                font-size: inherit;
-                line-height: 1.5;
-                padding: 3.75px 10px;
-                position: relative;
-            }
-        }
+      display: block;
     }
+  }
 
-    .control.has-dynamic-placeholder .select > select:active ~ label,
-    .control.has-dynamic-placeholder .select > select:focus ~ label {
-        display: flex;
+  select {
+    width: 95% !important;
+    border: none;
+    height: 97% !important;
+    margin-left: 16px;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+  }
+
+  &.is-active {
+    .dropdown-menu {
+      z-index: zindex('dropdown');
     }
+  }
+
+  &.is-right {
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &.is-up {
+    .dropdown-menu {
+      bottom: 100%;
+      padding-bottom: $spacing-1;
+      padding-top: initial;
+      top: auto;
+    }
+  }
+
+  .react-autosuggest__container {
+    width: 100%;
+
+    .dropdown-menu .dropdown-content {
+      overflow-y: auto;
+      max-height: 25vh;
+
+      .dropdown-item {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dropdown-trigger {
+    width: 100%;
+
+    .select {
+      cursor: pointer;
+
+      select {
+        pointer-events: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    display: none;
+    left: 0;
+    min-width: 120px;
+    padding-top: $spacing-1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 20;
+
+    .dropdown-content {
+      border-radius: 8px;
+      box-shadow: 0 2px 3px rgba(#000, 0.1),
+      0 0 0 1px rgba(#000, 0.1);
+      font-size: inherit;
+
+      .dropdown-item {
+        display: block;
+        font-size: inherit;
+        line-height: 1.5;
+        padding: 3.75px 10px;
+        position: relative;
+      }
+    }
+  }
+
+  .control.has-dynamic-placeholder .select > select:active ~ label,
+  .control.has-dynamic-placeholder .select > select:focus ~ label {
+    display: flex;
+  }
+}
+
+.dropdown-item {
+  @include hover();
 }
 
 a.dropdown-item {
-    padding-right: 30px;
-    white-space: nowrap;
+  padding-right: 30px;
+  white-space: nowrap;
 
-    &:hover {
-        background-color: getColor('background');
-        color: invertColor('background');;
-    }
-
-    &.is-active {
-        background-color: getColor('alternate');
-        color: invertColor('alternate');
-    }
+  &.is-active {
+    background-color: getColor('main');
+    color: invertColor('main');
+  }
 }
 
 .dropdown-divider {
-    background-color: rgba(getColor('grey'), 0.5);
-    border: none;
-    display: block;
-    height: 1px;
-    margin: 5px 0;
+  background-color: rgba(getColor('grey'), 0.5);
+  border: none;
+  display: block;
+  height: 1px;
+  margin: 5px 0;
 }

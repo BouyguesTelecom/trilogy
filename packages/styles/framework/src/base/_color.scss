@@ -33,10 +33,6 @@
   }
 }
 
-.is-hovered {
-  background-color: var(--color-hovered);
-}
-
 @function invertColor ($colorName, $context:'') {
   $invertcolormap: ('tertiary': 'grey-dark', 'grey-dark': 'grey-light', 'grey-light': 'grey-dark');
   $defaultInvert: white;

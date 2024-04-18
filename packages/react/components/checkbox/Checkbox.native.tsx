@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, TouchableOpacity} from 'react-native'
-import {IconName} from '../icon/IconNameEnum'
-import {CheckboxProps} from './CheckboxProps'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { IconName } from '../icon/IconNameEnum'
+import { CheckboxProps } from './CheckboxProps'
 import shortid from 'shortid'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
-import {Text, TextLevels} from '../text'
-import {View} from '../view'
-import {Icon, IconSize} from '../icon'
-import {TypographyAlign, TypographyBold} from '../../objects'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
+import { Text, TextLevels } from '../text'
+import { View } from '../view'
+import { Icon, IconSize } from '../icon'
+import { TypographyAlign, TypographyBold } from '../../objects'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Checkbox Native Component
@@ -51,7 +51,7 @@ const Checkbox = ({
     checkBox: {
       alignItems: 'center',
       justifyContent: horizontalTile ? 'center' : 'flex-start',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -59,11 +59,11 @@ const Checkbox = ({
       marginRight: 10,
       marginLeft: 0,
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || 'transparent',
+        (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || 'transparent',
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,
@@ -73,7 +73,7 @@ const Checkbox = ({
       width: 126,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -81,7 +81,7 @@ const Checkbox = ({
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? 'flex-start' : 'center',
     },
     horizontalTile: {
@@ -91,7 +91,7 @@ const Checkbox = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? '#e1e1e1' : 'transparent',
@@ -123,7 +123,7 @@ const Checkbox = ({
   if (horizontalTile) {
     return (
       <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick()}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <View
             style={{
               width: '10%',
@@ -181,14 +181,14 @@ const Checkbox = ({
       <TouchableOpacity disabled={disabled} style={horizontalTile ? styles.horizontalTile : styles.tile}
                         onPress={() => handleClick()}>
         <TouchableOpacity
-          style={[{alignSelf: 'flex-end', marginTop: 10}, styles.checkBox]}
+          style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.checkBox]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick()}
         >
           {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.WHITE} name={IconName.CHECK}/>}
         </TouchableOpacity>
-        <View style={{width: '70%'}}>
+        <View style={{ width: '70%' }}>
           {iconTile && (
             <View
               style={{

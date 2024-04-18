@@ -1,12 +1,12 @@
-import React from 'react'
-import clsx from 'clsx'
-import { PriceProps } from './PriceProps'
-import { has, is } from '../../services/classify'
-import { Text } from '../text'
-import { Alignable } from '../../objects'
-import { checkCents } from './PriceHelpers'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { PriceProps } from "./PriceProps"
+import { has, is } from "../../services/classify"
+import { Text } from "../text"
+import { Alignable } from "../../objects"
+import { checkCents } from "./PriceHelpers"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Price Component
@@ -53,27 +53,27 @@ const Price = ({
   const classes = hashClass(
     styled,
     clsx(
-      'price',
+      "price",
       !alert && variant && is(`${variant}`),
       !variant && alert && is(`${alert}`),
       level && !huge && is(`level-${level}`),
-      huge && !level && is('huge'),
-      inverted && is('inverted'),
-      inline && is('inlined'),
-      striked && is('striked'),
-      suptitle && has('suptitle'),
-      className,
-    ),
+      huge && !level && is("huge"),
+      inverted && is("inverted"),
+      inline && is("inlined"),
+      striked && is("striked"),
+      suptitle && has("suptitle"),
+      className
+    )
   )
 
   const priceParentNode = hashClass(
     styled,
     clsx(
-      (align == Alignable.ALIGNED_START && has('text-left')) ||
-        (align == Alignable.ALIGNED_CENTER && has('text-centered')) ||
-        (align == Alignable.ALIGNED_END && has('text-right')) ||
-        '',
-    ),
+      (align == Alignable.ALIGNED_START && has("text-left")) ||
+        (align == Alignable.ALIGNED_CENTER && has("text-centered")) ||
+        (align == Alignable.ALIGNED_END && has("text-right")) ||
+        ""
+    )
   )
 
   // const fixedCents = (n: any) => {
@@ -96,24 +96,42 @@ const Price = ({
   //   .toString()
   //   .padStart(2, '0')
 
-  let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
+  let cents = checkCents(
+    absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
+  )
 
   cents = (cents && cents.length === 1 && `${cents}0`) || cents
 
-  const centsDisplayed = inline && showCents && `,${cents || '00'} €` || showCents && `€${cents || '00'}` || '€'
+  const centsDisplayed =
+    (inline && showCents && `,${cents || "00"} €`) ||
+    (showCents && `€${cents || "00"}`) ||
+    "€"
 
   if (align) {
     return (
       <div className={priceParentNode}>
-        <div data-testid={testId} aria-label={accessibilityLabel} className={classes} {...others}>
+        <div
+          data-testid={testId}
+          aria-label={accessibilityLabel}
+          className={classes}
+          {...others}
+        >
           {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-          <Text className={'main'}>{`${whole}`}</Text>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
-              {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
+          <Text className={"main"}>{`${whole}`}</Text>
+          <span className={hashClass(styled, clsx("price-details"))}>
+            <span className={hashClass(styled, clsx("cents"))}>
+              {inline && centsDisplayed === "€" ? (
+                <>&nbsp;{centsDisplayed}</>
+              ) : (
+                centsDisplayed
+              )}
               {mention && <sup>{mention}</sup>}
             </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+            {period && (
+              <span className={hashClass(styled, clsx("period"))}>
+                /{period}
+              </span>
+            )}
           </span>
         </div>
       </div>
@@ -121,15 +139,22 @@ const Price = ({
   }
 
   return (
-    <div data-testid={testId} aria-label={accessibilityLabel} className={classes} {...others}>
+    <div
+      data-testid={testId}
+      aria-label={accessibilityLabel}
+      className={classes}
+      {...others}
+    >
       {suptitle && <span className='price-suptitle'>{suptitle}</span>}
       <Text className='main'>{`${whole}`}</Text>
-      <span className={hashClass(styled, clsx('price-details'))}>
-        <span className={hashClass(styled, clsx('cents'))}>
-          {centsDisplayed || '00'}
+      <span className={hashClass(styled, clsx("price-details"))}>
+        <span className={hashClass(styled, clsx("cents"))}>
+          {centsDisplayed || "00"}
           {mention && <sup>{mention}</sup>}
         </span>
-        {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+        {period && (
+          <span className={hashClass(styled, clsx("period"))}>/{period}</span>
+        )}
       </span>
     </div>
   )

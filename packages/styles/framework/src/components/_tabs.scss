@@ -24,33 +24,35 @@
 
   &.is-inverted {
     background-color: getColor('font');
+
     .tabs > .tab {
+      color: getColor('background') !important;
+
+      &.is-active {
+        &::after {
+          content: "";
+          width: calc(100% - 16px);
+          height: 2px;
+          border-radius: 2px;
+          font-size: 20px;
+          background-color: getColor('background');
+          bottom: -2px;
+          left: 8px;
+        }
+      }
+
+      &:hover:not(.is-disabled) {
         color: getColor('background') !important;
+        cursor: pointer;
+      }
 
-        &.is-active {
-            &::after {
-                content: "";
-                width: calc(100% - 16px);
-                height: 2px;
-                border-radius: 2px;
-                font-size: 20px;
-                background-color: getColor('background');
-                bottom: -2px;
-                left: 8px;
-            }
-        }
-        &:hover:not(.is-disabled) {
-          color: getColor('background') !important;
-          cursor: pointer;
-        }
+      &:focus-visible {
+        border-color: getColor('background');
+      }
 
-        &:focus-visible {
-          border-color: getColor('background');
-        }
-
-        &.is-disabled {
-            color: getColor('grey-light');
-        }
+      &.is-disabled {
+        color: getColor('grey-light');
+      }
     }
   }
 
@@ -68,15 +70,15 @@
     display: inline-flex;
 
     &.is-centered {
-        justify-content: center;
+      justify-content: center;
     }
 
     &.is-right {
-        justify-content: flex-end;
+      justify-content: flex-end;
     }
 
     &.is-left {
-        justify-content: flex-start;
+      justify-content: flex-start;
     }
 
 
@@ -98,7 +100,7 @@
     }
 
     @include mobile {
-      justify-content: flex-start ;
+      justify-content: flex-start;
       > .tab:first-child {
         margin-left: 24px;
       }
@@ -112,7 +114,7 @@
       font-family: $body-family;
       text-decoration: none;
       outline: none;
-      padding:  6px;
+      padding: 6px;
       font-size: $text-14;
       border: 2px solid transparent;
       border-radius: 4px;
@@ -127,7 +129,7 @@
 
       &:not(button) {
         .tab-icon {
-            margin-top: 4px;
+          margin-top: 4px;
         }
       }
 
@@ -136,9 +138,8 @@
       }
 
 
-
       &.is-active {
-        color: getColor('alternate');
+        color: getColor('main');
         font-weight: $weight-semibold;
         position: relative;
 
@@ -148,7 +149,7 @@
           height: 2px;
           border-radius: 2px;
           font-size: 20px;
-          background-color: getColor('alternate');
+          background-color: getColor('main');
           position: absolute;
           bottom: -2px;
           left: 8px
@@ -156,7 +157,7 @@
       }
 
       &:hover:not(.is-disabled) {
-        color: getColor('alternate');
+        color: getColor('main');
         cursor: pointer;
 
         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
@@ -165,16 +166,16 @@
         }
       }
 
-      &:focus-visible{
+      &:focus-visible {
         border-color: currentColor;
-        color: getColor('alternate');
+        color: getColor('main');
       }
 
       .icon {
         height: 0;
       }
 
-      .icon.is-small, .icon.is-small{
+      .icon.is-small, .icon.is-small {
         font-size: 22px;
       }
 
@@ -192,6 +193,7 @@
     .tab-panel {
       transition: opacity 2s ease-in-out;
       transition-delay: 1s;
+
       &:not(.is-active) {
         display: none;
       }
@@ -199,6 +201,7 @@
       &.is-active {
         animation: fade-in 250ms;
       }
+
       @keyframes fade-in {
         from {
           opacity: 0;

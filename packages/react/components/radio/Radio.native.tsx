@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, TouchableOpacity} from 'react-native'
-import {RadioProps} from './RadioProps'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { RadioProps } from './RadioProps'
 import shortid from 'shortid'
-import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold} from '../../objects'
-import {Icon, IconSize} from '../icon'
-import {Text, TextLevels} from '../text'
-import {View} from '../view'
-import {ComponentName} from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '../../objects'
+import { Icon, IconSize } from '../icon'
+import { Text, TextLevels } from '../text'
+import { View } from '../view'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Radio Native Component
@@ -58,7 +58,7 @@ const Radio = ({
     radio: {
       flexDirection: 'row',
       alignItems: 'center',
-      borderColor: !inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      borderColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -72,11 +72,11 @@ const Radio = ({
       borderRadius: 30,
       width: 13,
       height: 13,
-      backgroundColor: !inverted ? getColorStyle(TrilogyColor.INFO) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: !inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
     },
     label: {
       fontWeight: "600",
-      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.SECONDARY)) || getColorStyle(TrilogyColor.TERTIARY),
+      color: (inverted && getColorStyle(TrilogyColor.WHITE)) || (_checked && getColorStyle(TrilogyColor.MAIN)) || getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
       padding: 4,
@@ -86,7 +86,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       textAlign: 'center',
@@ -94,7 +94,7 @@ const Radio = ({
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? 'flex-start' : 'center',
     },
     horizontalTile: {
@@ -104,7 +104,7 @@ const Radio = ({
       borderWidth: _checked && 2 || 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY),
       borderRadius: 6,
       backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'transparent',
@@ -137,7 +137,7 @@ const Radio = ({
   if (horizontalTile) {
     return (
       <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick(value || false)}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           {children ? (
             <View
               style={{
@@ -222,14 +222,14 @@ const Radio = ({
         onPress={() => handleClick(value || false)}
       >
         <TouchableOpacity
-          style={[{alignSelf: 'flex-end', marginTop: 10}, styles.radio]}
+          style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.radio]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick(value || false)}
         >
           {_checked && !disabled && <View style={styles.icon}/>}
         </TouchableOpacity>
-        <View style={{width: '70%', alignItems: 'center'}}>
+        <View style={{ width: '70%', alignItems: 'center' }}>
           {iconTile && (
             <View
               style={{

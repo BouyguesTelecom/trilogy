@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { StepperProps } from './StepperProps'
-import { has } from '../../services/classify'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { StepperProps } from "./StepperProps"
+import { has } from "../../services/classify"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Stepper Component
@@ -11,11 +11,19 @@ import { useTrilogyContext } from '../../context'
  * @param centered Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({ className, centered, children, ...others }: StepperProps): JSX.Element => {
+const Stepper = ({
+  className,
+  centered,
+  children,
+  ...others
+}: StepperProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('stepper-wrapper', className))
-  const centerClasses = hashClass(styled, clsx('section', has('text-centered'), className))
+  const classes = hashClass(styled, clsx("stepper-wrapper", className))
+  const centerClasses = hashClass(
+    styled,
+    clsx("section", has("text-centered"), className)
+  )
   const [currentStep, setCurrentStep] = React.useState<number>(0)
 
   const nbChild = React.useMemo<number>(() => {

@@ -1,12 +1,12 @@
-import React from 'react'
-import clsx from 'clsx'
-import { SliderProps } from './SliderProps'
-import { Columns } from '../columns'
-import { Icon, IconName, IconSize } from '../icon'
-import { is, has } from '../../services'
-import { hashClass } from '../../helpers'
-import { Spacer, SpacerSize } from '../spacer'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { SliderProps } from "./SliderProps"
+import { Columns } from "../columns"
+import { Icon, IconName, IconSize } from "../icon"
+import { is, has } from "../../services"
+import { hashClass } from "../../helpers"
+import { Spacer, SpacerSize } from "../spacer"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Slider component
@@ -42,18 +42,25 @@ const Slider = ({
 }: SliderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx(motionLess && is('motionless-desktop'), className))
-  const iconSliderClasses = `${has('background-white')} ${has('text-secondary')} ${is('circled')} ${
-    iconClassName && iconClassName
-  }`
+  const classes = hashClass(
+    styled,
+    clsx(motionLess && is("motionless-desktop"), className)
+  )
+  const iconSliderClasses = `${has("background-white")} ${has(
+    "text-secondary"
+  )} ${is("circled")} ${iconClassName && iconClassName}`
 
   return (
     <div className={classes} data-slider {...others}>
       <div data-slider-duration={autoSlideDelay || 0} />
-      <Columns className={arrowsOut ? 'is-variable is-10' : ''} mobile data-slides-container>
+      <Columns
+        className={arrowsOut ? "is-variable is-10" : ""}
+        mobile
+        data-slides-container
+      >
         {!motionLess && (
           <Icon
-            style={{ left: arrowsOut ? 0 : '3rem' }}
+            style={{ left: arrowsOut ? 0 : "3rem" }}
             data-slider-prev
             size={arrowSize || IconSize.MEDIUM}
             className={iconSliderClasses}
@@ -63,7 +70,7 @@ const Slider = ({
         {children}
         {!motionLess && (
           <Icon
-            style={{ right: arrowsOut ? 0 : '3rem' }}
+            style={{ right: arrowsOut ? 0 : "3rem" }}
             data-slider-next
             size={arrowSize || IconSize.MEDIUM}
             className={iconSliderClasses}
@@ -72,12 +79,20 @@ const Slider = ({
         )}
       </Columns>
       {doted && !progressBar && (
-        <div data-slider-dots className={invertedDoted ? hashClass(styled, clsx(is('inverted'))) : ''} />
+        <div
+          data-slider-dots
+          className={
+            invertedDoted ? hashClass(styled, clsx(is("inverted"))) : ""
+          }
+        />
       )}
       {progressBar && !doted && <div data-progress-bar-container />}
       {bars && !doted && (
         <>
-          <div data-slider-bars className={isBarsOut ? hashClass(styled, clsx('is-outside')) : ''} />
+          <div
+            data-slider-bars
+            className={isBarsOut ? hashClass(styled, clsx("is-outside")) : ""}
+          />
           <Spacer size={SpacerSize.HUGE} />
         </>
       )}

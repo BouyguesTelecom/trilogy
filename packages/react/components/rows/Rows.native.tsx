@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { RowsProps } from './RowsProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { RowsProps } from "./RowsProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Rows Component
@@ -10,8 +10,8 @@ import { ComponentName } from '../enumsComponentsName'
 const Rows = ({ children, ...others }: RowsProps): JSX.Element => {
   const styles = StyleSheet.create({
     rows: {
-      display: 'flex',
-      flexDirection: 'column',
+      display: "flex",
+      flexDirection: "column",
       flex: 1,
     },
   })

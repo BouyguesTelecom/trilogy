@@ -117,7 +117,7 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     }
   }, [timer, event, init])
 
-  const countdownColor = getColorStyle(TrilogyColor.TERTIARY)
+  const countdownColor = getColorStyle(TrilogyColor.MAIN)
 
   const styles = StyleSheet.create({
     countdown: {

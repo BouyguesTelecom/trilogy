@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { BoxItemProps } from './BoxItemProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { BoxItemProps } from "./BoxItemProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Box Content Component
@@ -13,9 +13,9 @@ const BoxItem = ({ children, size, ...others }: BoxItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     boxItem: {
       height: height,
-      alignItems: 'center',
-      alignContent: 'center',
-      flexWrap: 'wrap',
+      alignItems: "center",
+      alignContent: "center",
+      flexWrap: "wrap",
       flex: 1,
     },
   })

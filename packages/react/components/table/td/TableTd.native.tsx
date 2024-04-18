@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TableTdProps } from './TableTdProps'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { TableTdProps } from "./TableTdProps"
+import { getColorStyle, TrilogyColor } from "../../../objects"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Table TD Component
@@ -11,7 +11,7 @@ import { ComponentName } from '../../enumsComponentsName'
 const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
   const styles = StyleSheet.create({
     table: {
-      flexDirection: 'column',
+      flexDirection: "column",
       flex: 1,
       padding: 10,
       borderBottomWidth: 0.2,
@@ -20,13 +20,13 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
       borderRightColor: getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     text: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
     },
   })
 
   return (
     <View style={styles.table} {...others}>
-      {children && typeof children.valueOf() === 'string' ? (
+      {children && typeof children.valueOf() === "string" ? (
         <Text style={styles.text}>{String(children)}</Text>
       ) : (
         children

@@ -1,9 +1,9 @@
-import React from 'react'
-import { SliceImageProps } from './SliceImageProps'
-import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { SliceImageProps } from "./SliceImageProps"
+import { is } from "../../../services/classify"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Slice Image Component
@@ -14,10 +14,17 @@ import { useTrilogyContext } from '../../../context'
  * @param rounded {boolean} Rounded Slice Image
  * @param className {string} Additionnal CSS Classes
  */
-const SliceImage = ({ children, className, src, alt, rounded, ...others }: SliceImageProps): JSX.Element => {
+const SliceImage = ({
+  children,
+  className,
+  src,
+  alt,
+  rounded,
+  ...others
+}: SliceImageProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('slice-image', className))
+  const classes = hashClass(styled, clsx("slice-image", className))
 
   if (children) {
     return (
@@ -29,10 +36,10 @@ const SliceImage = ({ children, className, src, alt, rounded, ...others }: Slice
 
   return (
     <div className={classes} {...others}>
-      <div className={hashClass(styled, clsx('image'))}>
+      <div className={hashClass(styled, clsx("image"))}>
         <img
-          className={hashClass(styled, clsx(rounded && is('rounded')) || '')}
-          src={typeof src === 'string' ? src : ''}
+          className={hashClass(styled, clsx(rounded && is("rounded")) || "")}
+          src={typeof src === "string" ? src : ""}
           alt={alt}
         />
       </div>

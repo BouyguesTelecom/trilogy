@@ -5,7 +5,13 @@ import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import { ComponentName } from '../enumsComponentsName'
 
-export const CardContext = createContext({ floating: false, backgroundColor: '', horizontal: false, reversed: false, active: false })
+export const CardContext = createContext({
+  floating: false,
+  backgroundColor: '',
+  horizontal: false,
+  reversed: false,
+  active: false
+})
 
 /**
  * Card Component
@@ -22,18 +28,18 @@ export const CardContext = createContext({ floating: false, backgroundColor: '',
  * @param others
  */
 const Card = ({
-  children,
-  flat,
-  horizontal,
-  floating,
-  onClick,
-  skeleton,
-  backgroundColor = TrilogyColor.WHITE,
-  reversed,
-  fullheight,
-  active,
-  ...others
-}: CardProps): JSX.Element => {
+                children,
+                flat,
+                horizontal,
+                floating,
+                onClick,
+                skeleton,
+                backgroundColor = TrilogyColor.WHITE,
+                reversed,
+                fullheight,
+                active,
+                ...others
+              }: CardProps): JSX.Element => {
   const borderColor = '#ccc'
   const cardRadius = 6
 
@@ -42,10 +48,10 @@ const Card = ({
       width: '100%',
       minHeight: 100,
       borderWidth: flat && 1 || active && 2 || 0,
-      borderColor: flat && borderColor || active && getColorStyle(TrilogyColor.SECONDARY) || 'transparent',
+      borderColor: flat && borderColor || active && getColorStyle(TrilogyColor.MAIN) || 'transparent',
       borderRadius: cardRadius,
       backgroundColor: backgroundColor === 'transparent' ? 'rgba(0, 0, 0, 0.0)' : getColorStyle(TrilogyColor.WHITE),
-      flex: fullheight? 1: 0,
+      flex: fullheight ? 1 : 0,
     },
     horizontal: {
       flexDirection: 'row',
@@ -82,7 +88,7 @@ const Card = ({
       <View style={{ opacity: 0 }}>{children}</View>
       {Platform.OS === 'android' && (
         <View>
-          <Rect rx='10' ry='10' width='100%' height='100%' />
+          <Rect rx='10' ry='10' width='100%' height='100%'/>
         </View>
       )}
     </ContentLoader>
@@ -91,7 +97,7 @@ const Card = ({
   let cardView: JSX.Element
 
   if (skeleton) {
-    return <CardSkeleton />
+    return <CardSkeleton/>
   }
 
   if (horizontal) {

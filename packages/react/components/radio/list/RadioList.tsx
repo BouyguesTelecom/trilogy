@@ -1,9 +1,9 @@
-import React from 'react'
-import { RadioListWebProps } from './RadioListProps'
-import { has, is } from '../../../services'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { RadioListWebProps } from "./RadioListProps"
+import { has, is } from "../../../services"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Radio List Component
@@ -15,7 +15,13 @@ import { useTrilogyContext } from '../../../context'
  * @param isMobile {boolean} espect mobile screen
  */
 
-const RadioList = ({ className, centered, isMobile, vertical, ...others }: RadioListWebProps): JSX.Element => {
+const RadioList = ({
+  className,
+  centered,
+  isMobile,
+  vertical,
+  ...others
+}: RadioListWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
@@ -23,12 +29,12 @@ const RadioList = ({ className, centered, isMobile, vertical, ...others }: Radio
       className={hashClass(
         styled,
         clsx(
-          'radios',
+          "radios",
           className,
-          centered && has('text-centered'),
-          isMobile && is('mobile'),
-          vertical && is('vertical'),
-        ),
+          centered && has("text-centered"),
+          isMobile && is("mobile"),
+          vertical && is("vertical")
+        )
       )}
       {...others}
     />

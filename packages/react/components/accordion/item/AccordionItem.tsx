@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import shortid from 'shortid'
 import { AccordionItemProps } from './AccordionItemProps'
-import { is, has } from '../../../services'
+import { is } from '../../../services'
 import clsx from 'clsx'
 import { hashClass } from '../../../helpers'
 import { useTrilogyContext } from '../../../context'
-import { AccordionContext } from '../Accordion'
 
 /**
  * Accordion Item Component
@@ -19,23 +18,22 @@ import { AccordionContext } from '../Accordion'
  * @param onClose {Function} onClose Accordion Item Function
  */
 const AccordionItem = ({
-  active,
-  className,
-  children,
-  id = shortid.generate(),
-  onClick,
-  disabled,
-  onClose,
-  onOpen,
-  ...others
-}: AccordionItemProps): JSX.Element => {
+                         active,
+                         className,
+                         children,
+                         id = shortid.generate(),
+                         onClick,
+                         disabled,
+                         onClose,
+                         onOpen,
+                         ...others
+                       }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
   const { styled } = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
   const [expandedHeight, setExpandedHeight] = useState<string>()
   const [collapsedHeight, setCollapsedHeight] = useState<string>()
-  const accordionContextValues = useContext(AccordionContext)
 
   // Faire à l'avance un pré-calcul de la hauteur de l'accordéon plié et déplié,
   // Ces infos sont enregistrées dans les data-attributs "data-collapsed" et "data-expanded".
@@ -63,19 +61,19 @@ const AccordionItem = ({
     setIsActive(active || false)
   }, [active])
 
-  const classes = hashClass(styled, clsx('accordion', className, isActive && is('active'), disabled && is('disabled'), (accordionContextValues.inverted) && has('background-white'),
+  const classes = hashClass(styled, clsx('accordion', className, isActive && is('active'), disabled && is('disabled'),
   ))
 
   let childrenElement
   if (children) {
     childrenElement = Array.isArray(children)
       ? children.map((child, index: number) => {
-          return React.cloneElement(child as React.ReactElement, {
-            key: `article-${index}`,
-            dataId: index === 0 ? `header-${id}` : `body-${id}`,
-            disabled,
-          })
+        return React.cloneElement(child as React.ReactElement, {
+          key: `article-${index}`,
+          dataId: index === 0 ? `header-${id}` : `body-${id}`,
+          disabled,
         })
+      })
       : children
   }
 

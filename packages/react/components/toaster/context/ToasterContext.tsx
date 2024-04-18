@@ -1,8 +1,14 @@
-import React from 'react'
-import { ToasterShowContext } from './ToasterContextProps'
+import * as React from "react"
+import { ToasterShowContext } from "./ToasterContextProps"
 
 const emptyFn = () => 0
 
- const ToasterContext = React.createContext<{ show: ToasterShowContext; hide:() => void }>({ show: emptyFn, hide: emptyFn })
+const ToasterContext = React.createContext<{
+  show: ToasterShowContext;
+  hide:() => void;
+}>({
+  show: emptyFn,
+  hide: emptyFn,
+})
 
- export default ToasterContext
+export default ToasterContext

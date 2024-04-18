@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { OptionsProps } from './OptionsProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { OptionsProps } from "./OptionsProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Options Component
@@ -10,8 +10,8 @@ import { ComponentName } from '../enumsComponentsName'
 const Options = ({ children }: OptionsProps): JSX.Element => {
   const styles = StyleSheet.create({
     options: {
-      flexDirection: 'row',
-      width: '100%',
+      flexDirection: "row",
+      width: "100%",
     },
   })
 

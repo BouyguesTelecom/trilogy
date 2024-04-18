@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import React, { useRef, useState } from 'react'
-import { StyleSheet, Dimensions, Text, View, Platform, ScrollView } from 'react-native'
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SliderProps } from './SliderProps'
 import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { Spacer, SpacerSize } from '../spacer'
@@ -23,16 +23,16 @@ const { width } = Dimensions.get('screen')
  * @param others
  */
 const Slider = ({
-  children,
-  doted,
-  showNextSlide,
-  contentSize,
-  testId,
-  accessibilityLabel,
-  progressBar,
-  bars,
-  ...others
-}: SliderProps): JSX.Element => {
+                  children,
+                  doted,
+                  showNextSlide,
+                  contentSize,
+                  testId,
+                  accessibilityLabel,
+                  progressBar,
+                  bars,
+                  ...others
+                }: SliderProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<number>(0)
   const [height, setHeight] = useState<number>(0)
 
@@ -61,7 +61,7 @@ const Slider = ({
       fontSize: 30,
     },
     activeTextDot: {
-      color: getColorStyle(TrilogyColor.SECONDARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       fontSize: 30,
     },
     progressBar: {
@@ -75,13 +75,13 @@ const Slider = ({
       overflow: 'hidden',
     },
     activeProgressBar: {
-      backgroundColor: getColorStyle(TrilogyColor.SECONDARY),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
       fontSize: 30,
       width: `${100 / React.Children.count(children)}%`,
       height: 6,
       borderRadius: 4,
       borderWidth: 1,
-      borderColor: getColorStyle(TrilogyColor.SECONDARY),
+      borderColor: getColorStyle(TrilogyColor.MAIN),
       overflow: 'hidden',
     },
   })
@@ -151,23 +151,23 @@ const Slider = ({
       >
         {children
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(children, (child: any) =>
-              React.cloneElement(child, {
-                style: [styles.content, child.props.style],
-              }),
-            )
+          React.Children.map(children, (child: any) =>
+            React.cloneElement(child, {
+              style: [styles.content, child.props.style],
+            }),
+          )
           : children}
       </ScrollView>
       {(progressBar || doted || bars) && (
         <View style={styles.dots}>
           {children
             ? React.Children.map(children, (_child: React.ReactNode, index: number) => (
-                <Text key={index} style={getStyles(doted, progressBar, bars, index)}>
-                  {doted && '•'}
-                </Text>
-              ))
+              <Text key={index} style={getStyles(doted, progressBar, bars, index)}>
+                {doted && '•'}
+              </Text>
+            ))
             : children}
-          <Spacer size={SpacerSize.HUGE} />
+          <Spacer size={SpacerSize.HUGE}/>
         </View>
       )}
     </View>

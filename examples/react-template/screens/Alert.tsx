@@ -1,6 +1,15 @@
-import React from 'react'
-import { Alert, Container, Spacer, TitleLevels, View, Title, Divider, AutoLayout } from '@trilogy-ds/react/components'
-import { AlertState } from '@trilogy-ds/react/objects'
+import * as React from "react";
+import {
+  Alert,
+  Container,
+  Spacer,
+  TitleLevels,
+  View,
+  Title,
+  Divider,
+  AutoLayout,
+} from "@trilogy-ds/react/components";
+import { AlertState } from "@trilogy-ds/react/objects";
 
 export const AlertScreen = (): JSX.Element => {
   return (
@@ -19,9 +28,9 @@ export const AlertScreen = (): JSX.Element => {
               />
               <Divider />
             </AutoLayout>
-          )
+          );
         })}
       </View>
     </Container>
-  )
-}
+  );
+};

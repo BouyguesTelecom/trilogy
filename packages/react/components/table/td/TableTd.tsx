@@ -1,8 +1,8 @@
-import React from 'react'
-import clsx from 'clsx'
-import { TableTdProps } from './TableTdProps'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { TableTdProps } from "./TableTdProps"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Table TD Component
@@ -13,11 +13,18 @@ import { useTrilogyContext } from '../../../context'
  * @param colSpan {number} Defines the number of columns a cell should span
  * @param onClick {ClickEvent} On click event
  */
-const TableTd = ({ className, rowSpan, colSpan, ...others }: TableTdProps): JSX.Element => {
+const TableTd = ({
+  className,
+  rowSpan,
+  colSpan,
+  ...others
+}: TableTdProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx(className))
-  return <td className={classes} rowSpan={rowSpan} colSpan={colSpan} {...others} />
+  return (
+    <td className={classes} rowSpan={rowSpan} colSpan={colSpan} {...others} />
+  )
 }
 
 export default TableTd

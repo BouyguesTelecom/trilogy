@@ -1,45 +1,50 @@
 .breadcrumb {
-    @include block;
-    @include unselectable;
+  @include block;
+  @include unselectable;
 
-    ul,
-    ol {
-        @include desktop {
-            display: flex;
-            flex-wrap: wrap;
-        }
+  ul,
+  ol {
+    @include desktop {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  li {
+    display: inline;
+    position: relative;
+
+    @include desktop {
+      display: flex;
+      align-items: center;
     }
 
-    li {
-        display: inline;
-        position: relative;
-
-        @include desktop {
-            display: flex;
-            align-items: center;
-        }
-
-        &:first-child a {
-            margin-left: 0;
-        }
-
-        &.is-active {
-            a {
-                color: getColor('font');
-                cursor: default;
-                pointer-events: none;
-            }
-        }
-
-        + li a::before {
-            content: ">";
-            text-align: center;
-            padding-right: 0.5em;
-        }
+    &:first-child a {
+      margin-left: 0;
     }
 
-    a {
-        color: getColor('alternate');
-        margin: 0 0.5em;
+    &.is-active {
+      a {
+        color: getColor('font');
+        cursor: default;
+        pointer-events: none;
+        text-decoration: none;
+      }
     }
+
+    + li a::before {
+      content: ">";
+      text-align: center;
+      padding-right: 0.5em;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
+
+  a {
+    color: getColor('main');
+    margin: 0 0.5em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 }

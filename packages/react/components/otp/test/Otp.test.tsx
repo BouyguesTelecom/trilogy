@@ -1,10 +1,10 @@
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Otp from '../Otp'
+import * as React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import Otp from "../Otp";
 
-describe('Otp', () => {
+describe("Otp", () => {
   const defaultProps = {
-    code: '',
+    code: "",
     codeSize: 6,
     disabled: false,
     error: false,
@@ -13,17 +13,17 @@ describe('Otp', () => {
     onChange: jest.fn(),
     onFocus: jest.fn(),
     autoFocus: true,
-  }
+  };
 
-  it('renders without error', () => {
-    const { container } = render(<Otp {...defaultProps} />)
-    expect(container).toMatchSnapshot()
-  })
+  it("renders without error", () => {
+    const { container } = render(<Otp {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 
-  it('calls onFocus when the component is focused', () => {
-    const { getByTestId } = render(<Otp {...defaultProps} />)
-    const container = getByTestId('otp-input')
-    fireEvent.click(container)
-    expect(defaultProps.onFocus).toHaveBeenCalledWith(true)
-  })
-})
+  it("calls onFocus when the component is focused", () => {
+    const { getByTestId } = render(<Otp {...defaultProps} />);
+    const container = getByTestId("otp-input");
+    fireEvent.click(container);
+    expect(defaultProps.onFocus).toHaveBeenCalledWith(true);
+  });
+});

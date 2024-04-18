@@ -1,18 +1,25 @@
-import React from 'react'
+import * as React from "react";
 
-import { Meta, Story } from '@storybook/react'
+import { Meta, Story } from "@storybook/react";
 
-import { Table, TableBody, TableHead, TableTd, TableTh, TableTr } from './index'
-import { TableProps } from './TableProps'
-import { View } from '../view'
-import { Text, TextLevels } from '../text'
-import { Icon, IconName } from '../icon'
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableTd,
+  TableTh,
+  TableTr,
+} from "./index";
+import { TableProps } from "./TableProps";
+import { View } from "../view";
+import { Text, TextLevels } from "../text";
+import { Icon, IconName } from "../icon";
 
 export default {
-  title: 'Components/Table',
+  title: "Components/Table",
   component: Table,
   subcomponents: { TableBody, TableHead, TableTd, TableTh, TableTr },
-} as Meta
+} as Meta;
 
 export const Base: Story<TableProps> = (args) => (
   <Table {...args}>
@@ -36,7 +43,7 @@ export const Base: Story<TableProps> = (args) => (
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 export const AvecBordures: Story<TableProps> = (args) => (
   <Table {...args}>
     <TableHead>
@@ -59,10 +66,10 @@ export const AvecBordures: Story<TableProps> = (args) => (
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 AvecBordures.args = {
   bordered: true,
-}
+};
 export const PleineLargeur: Story<TableProps> = (args) => (
   <Table {...args}>
     <TableHead>
@@ -85,11 +92,11 @@ export const PleineLargeur: Story<TableProps> = (args) => (
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 PleineLargeur.args = {
   fullwidth: true,
   bordered: true,
-}
+};
 export const TableauComparatif: Story<TableProps> = (args) => (
   <Table {...args}>
     <TableHead>
@@ -112,12 +119,12 @@ export const TableauComparatif: Story<TableProps> = (args) => (
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 TableauComparatif.args = {
   bordered: true,
   fullwidth: true,
   comparative: true,
-}
+};
 export const LignesAffichéesOuMasquées: Story<TableProps> = (args) => (
   <Table {...args}>
     <TableHead>
@@ -130,7 +137,7 @@ export const LignesAffichéesOuMasquées: Story<TableProps> = (args) => (
       </TableTr>
     </TableHead>
     <TableBody>
-      <TableTr expandable expanded data-expandable-row=''>
+      <TableTr expandable expanded data-expandable-row="">
         <TableTd>09/11/2018</TableTd>
         <TableTd>
           <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -138,26 +145,35 @@ export const LignesAffichéesOuMasquées: Story<TableProps> = (args) => (
         </TableTd>
         <TableTd>-100,00 €</TableTd>
         <TableTd>0,00 €</TableTd>
-        <TableTd data-expandable-trigger=''>
-          <Icon name={IconName.ARROW_DOWN} content='Afficher' />
+        <TableTd data-expandable-trigger="">
+          <Icon name={IconName.ARROW_DOWN} content="Afficher" />
         </TableTd>
       </TableTr>
-      <TableTr className='is-expansion'>
+      <TableTr className="is-expansion">
         <TableTd colSpan={7}>
-          <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
+          <View
+            className="subtable"
+            backgroundSrc={
+              "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
+            }
+          >
             <Text level={TextLevels.FOUR}>
-              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
+              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure
+              ullamco exercitation nulla eiusmod in
             </Text>
-            <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
+            <Text>
+              Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
+              nostrud aliquip.
+            </Text>
           </View>
         </TableTd>
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 LignesAffichéesOuMasquées.args = {
   bordered: true,
-}
+};
 export const LignesEnSurbrillance: Story<TableProps> = (args) => (
   <Table {...args}>
     <TableHead>
@@ -170,7 +186,7 @@ export const LignesEnSurbrillance: Story<TableProps> = (args) => (
       </TableTr>
     </TableHead>
     <TableBody>
-      <TableTr expandable expanded data-expandable-row=''>
+      <TableTr expandable expanded data-expandable-row="">
         <TableTd>09/11/2018</TableTd>
         <TableTd>
           <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -178,23 +194,32 @@ export const LignesEnSurbrillance: Story<TableProps> = (args) => (
         </TableTd>
         <TableTd>-100,00 €</TableTd>
         <TableTd>0,00 €</TableTd>
-        <TableTd data-expandable-trigger=''>
-          <Icon name={IconName.ARROW_DOWN} content='Afficher' />
+        <TableTd data-expandable-trigger="">
+          <Icon name={IconName.ARROW_DOWN} content="Afficher" />
         </TableTd>
       </TableTr>
-      <TableTr className='is-expansion'>
+      <TableTr className="is-expansion">
         <TableTd colSpan={7}>
-          <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
+          <View
+            className="subtable"
+            backgroundSrc={
+              "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
+            }
+          >
             <Text level={TextLevels.FOUR}>
-              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
+              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure
+              ullamco exercitation nulla eiusmod in
             </Text>
-            <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
+            <Text>
+              Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
+              nostrud aliquip.
+            </Text>
           </View>
         </TableTd>
       </TableTr>
     </TableBody>
   </Table>
-)
+);
 LignesEnSurbrillance.args = {
   bordered: true,
-}
+};

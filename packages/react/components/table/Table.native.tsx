@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { getColorStyle, TrilogyColor } from '../../objects'
-import { TableProps } from './TableProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { getColorStyle, TrilogyColor } from "../../objects"
+import { TableProps } from "./TableProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Table Component
@@ -14,8 +14,8 @@ const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
 
   const styles = StyleSheet.create({
     table: {
-      width: '100%',
-      backgroundColor: 'transparent',
+      width: "100%",
+      backgroundColor: "transparent",
     },
     bordered: {
       borderWidth: 1,
@@ -23,12 +23,19 @@ const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
     },
     noBorder: {
       borderWidth: 0,
-      borderColor: 'transparent',
+      borderColor: "transparent",
     },
   })
 
   return (
-    <View style={[bordered && styles.bordered, !bordered && styles.noBorder, styles.table]} {...others}>
+    <View
+      style={[
+        bordered && styles.bordered,
+        !bordered && styles.noBorder,
+        styles.table,
+      ]}
+      {...others}
+    >
       {children}
     </View>
   )

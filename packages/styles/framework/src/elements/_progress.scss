@@ -76,7 +76,7 @@ $progressbar-small: 5px;
 
   .progress-bar {
     height: $progressbar-height;
-    background-color: getVariantColor('alternate',2);
+    background-color: getVariantColor('alternate', 2);
 
     &:first-child {
       border-radius: $progressbar-height 0 0 $progressbar-height;
@@ -100,7 +100,7 @@ $progressbar-small: 5px;
 
 // Progress Bar circle
 $progress-circle-slices: (
-  secondary: getColor('alternate'),
+  secondary: getColor('info'),
   tertiary: getColor('font'),
   warning: getColor('warning'),
   empty: getColor('grey-light')
@@ -151,7 +151,7 @@ $progress-circle-slices: (
 
 .progress-circle-slice::before,
 .progress-circle-slice::after {
-  border: var(--progress-circle-border-width) solid rgba(0,0,0,0);
+  border: var(--progress-circle-border-width) solid rgba(0, 0, 0, 0);
   border-radius: 50%;
   content: '';
   height: 100%;
@@ -181,9 +181,7 @@ $slides-concat: '';
 
       clip-path: inset(0 calc(50% * (var(--#{$name}-check) / var(--#{$name}-check))) 0 0);
     }
-  }
-
-  @else {
+  } @else {
     .progress-circle-background-#{$name} {
       --#{$name}-start: 0;
     }
@@ -204,9 +202,7 @@ $slides-concat: '';
 
   @if $i == 1 {
     $slides-concat: var(--#{$name});
-  }
-
-  @else {
+  } @else {
     $slides-concat: $slides-concat + ' + ' + var(--#{$name});
   }
 }

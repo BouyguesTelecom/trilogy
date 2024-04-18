@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { TagListProps } from './TagListProps'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { is } from '../../../services'
+import * as React from "react"
+import clsx from "clsx"
+import { TagListProps } from "./TagListProps"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { is } from "../../../services"
 
 /**
  * Tag List Component
@@ -14,14 +14,26 @@ import { is } from '../../../services'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = ({ className, gapless, centered, marginless, ...others }: TagListProps): JSX.Element => {
+const TagList = ({
+  className,
+  gapless,
+  centered,
+  marginless,
+  ...others
+}: TagListProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
     <span
       className={hashClass(
         styled,
-        clsx('tags', centered && is('centered'), gapless && is('gapless'), marginless && is('marginless'), className),
+        clsx(
+          "tags",
+          centered && is("centered"),
+          gapless && is("gapless"),
+          marginless && is("marginless"),
+          className
+        )
       )}
       {...others}
     />

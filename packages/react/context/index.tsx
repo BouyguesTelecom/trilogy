@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from "react"
 
 interface ITrilogyContext {
-  styled: boolean
-  setStyled: (e: boolean) => void
+  styled: boolean;
+  setStyled: (e: boolean) => void;
 }
 
 const TrilogyContext = React.createContext<ITrilogyContext>({
@@ -13,7 +13,7 @@ const TrilogyContext = React.createContext<ITrilogyContext>({
 const useTrilogyContext = () => {
   const context = React.useContext(TrilogyContext)
   if (context === undefined) {
-    throw new Error('useTrilogyContext must be used within a TrilogyProvider')
+    throw new Error("useTrilogyContext must be used within a TrilogyProvider")
   }
   return context
 }

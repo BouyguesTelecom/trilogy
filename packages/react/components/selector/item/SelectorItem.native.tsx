@@ -14,16 +14,16 @@ import { Spacer, SpacerSize } from '../../spacer'
  * @param end {boolean} Change last SelectorItem style to SECONDAY color
  */
 const SelectorItem = ({
-  active,
-  children,
-  onClick,
-  inverted,
-  end,
-  selectorIndex,
-  testId,
-  accessibilityLabel,
-  ...others
-}: SelectorItemProps): JSX.Element => {
+                        active,
+                        children,
+                        onClick,
+                        inverted,
+                        end,
+                        selectorIndex,
+                        testId,
+                        accessibilityLabel,
+                        ...others
+                      }: SelectorItemProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
 
   const styles = StyleSheet.create({
@@ -38,29 +38,29 @@ const SelectorItem = ({
       paddingRight: 16,
       paddingTop: 8,
       backgroundColor: 'transparent',
-      borderColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.TERTIARY),
+      borderColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
       borderWidth: 1,
     },
     text: {
-      color: activeItem ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.TERTIARY),
+      color: activeItem ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
       textAlign: 'center',
       paddingBottom: 10,
     },
     invertedText: {
-      color: activeItem ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      color: activeItem ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       textAlign: 'center',
       paddingBottom: 10,
     },
     active: {
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.TERTIARY),
-      borderColor: inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
+      borderColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
     },
     end: {
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
-      borderColor: getColorStyle(TrilogyColor.SECONDARY),
+      borderColor: getColorStyle(TrilogyColor.MAIN),
     },
     endText: {
-      color: getColorStyle(TrilogyColor.SECONDARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       textAlign: 'center',
       paddingBottom: 10,
     },
@@ -75,7 +75,7 @@ const SelectorItem = ({
 
   return (
     <>
-      {selectorIndex === 0 && <View style={styles.firstItem} />}
+      {selectorIndex === 0 && <View style={styles.firstItem}/>}
       <TouchableOpacity
         testID={testId}
         accessibilityLabel={accessibilityLabel}
@@ -95,7 +95,7 @@ const SelectorItem = ({
           </Text>
         )}
       </TouchableOpacity>
-      <Spacer horizontal size={SpacerSize.SMALL} />
+      <Spacer horizontal size={SpacerSize.SMALL}/>
     </>
   )
 }

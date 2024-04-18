@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react"
 import { ProductTourProps } from "./ProductTourProps"
 import { ComponentName } from "../enumsComponentsName"
 import { View } from "react-native"
@@ -7,13 +7,8 @@ import { View } from "react-native"
  * Product Tour Component
  * @param children {React.ReactNode} Title child
  */
-const ProductTour = ({
-  children,
-}: ProductTourProps): JSX.Element => {
-
-  return (
-    <View>{children}</View>
-  )
+const ProductTour = ({ children }: ProductTourProps): JSX.Element => {
+  return <View>{children}</View>
 }
 
 ProductTour.displayName = ComponentName.ProductTour

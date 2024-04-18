@@ -1,5 +1,5 @@
-import React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
+import * as React from "react"
+import { SelectOptionProps } from "./SelectOptionProps"
 
 const SelectNativeOption = ({
   id,

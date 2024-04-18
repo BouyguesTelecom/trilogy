@@ -1,5 +1,11 @@
-import React from 'react'
-import { Section, Title, TitleLevels, Divider, Pagination } from '@trilogy-ds/react/components'
+import * as React from "react";
+import {
+  Section,
+  Title,
+  TitleLevels,
+  Divider,
+  Pagination,
+} from "@trilogy-ds/react/components";
 
 export const PaginationScreen = (): JSX.Element => {
   return (
@@ -9,10 +15,18 @@ export const PaginationScreen = (): JSX.Element => {
         <Divider />
       </Section>
       <Section>
-        <Pagination onClick={(e) => console.log('event', e)} count={50} href={(page) => `?page=${page}`} />
+        <Pagination
+          onClick={(e) => console.log("event", e)}
+          count={50}
+          href={(page) => `?page=${page}`}
+        />
         <Divider />
-        <Pagination onClick={(e) => console.log('event', e)} count={50} defaultPage={2} />
+        <Pagination
+          onClick={(e) => console.log("event", e)}
+          count={50}
+          defaultPage={2}
+        />
       </Section>
     </Section>
-  )
-}
+  );
+};

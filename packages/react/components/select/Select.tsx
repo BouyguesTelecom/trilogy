@@ -1,10 +1,10 @@
-import React from 'react'
-import { SelectProps } from './SelectProps'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import { SelectNative, SelectDynamic } from './web'
-import SelectNativeOption from './option/SelectNativeOption'
+import * as React from "react"
+import { SelectProps } from "./SelectProps"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
+import { SelectNative, SelectDynamic } from "./web"
+import SelectNativeOption from "./option/SelectNativeOption"
 
 /**
  * Select Component
@@ -51,9 +51,15 @@ const Select = ({
     () =>
       hashClass(
         styled,
-        clsx('select', disabled && 'select-disabled', iconName && 'has-icon', native && 'select-native', className),
+        clsx(
+          "select",
+          disabled && "select-disabled",
+          iconName && "has-icon",
+          native && "select-native",
+          className
+        )
       ),
-    [styled, disabled, iconName, className],
+    [styled, disabled, iconName, className]
   )
 
   if (native) {

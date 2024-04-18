@@ -1,18 +1,17 @@
-import React from 'react'
-import clsx from 'clsx'
-import { Text, TextMarkup } from '../text'
-import { LinkProps } from './LinkProps'
-import { has, is } from '../../services/classify'
-import { Icon, IconSize } from '../icon'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { Text, TextMarkup } from "../text"
+import { LinkProps } from "./LinkProps"
+import { has, is } from "../../services/classify"
+import { Icon, IconSize } from "../icon"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Link Component
  * @param children {React.ReactNode} Content children for Link
  * @param href {string} Link to open
  * @param to {string} use for router
- * @param tertiary {boolean} Tertiary variant
  * @param title {string} Title attribute
  * @param onClick {Function} onClick Event
  * @param typo {TypographyAlign} Typos align link
@@ -21,7 +20,6 @@ import { useTrilogyContext } from '../../context'
  * @param testId {string} Test Id for Test Integration
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param fixed {boolean} Static link with no animation
  * @param className {string} Additionnal CSS Classes
  * @param href {string} Href link
  * @param removeLinkClass {boolean}
@@ -36,10 +34,8 @@ const Link = ({
   children,
   className,
   removeLinkClass,
-  fixed,
   to,
   href,
-  tertiary,
   title,
   onClick,
   typo,
@@ -54,17 +50,15 @@ const Link = ({
   const { styled } = useTrilogyContext()
 
   const classes = clsx(
-    !removeLinkClass && 'link',
-    fixed && is('static'),
-    tertiary && has('text-tertiary'),
-    iconName && has('icon'),
+    !removeLinkClass && "link",
+    iconName && has("icon"),
     typo,
-    inverted && is('inverted'),
-    className,
+    inverted && is("inverted"),
+    className
   )
 
   if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
 
     const RouterLinkTrilogy = (): JSX.Element => {
       return (
@@ -73,9 +67,9 @@ const Link = ({
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
           className={hashClass(styled, clsx(classes))}
-          to={to || ''}
+          to={to || ""}
           {...(blank && {
-            target: '_blank',
+            target: "_blank",
           })}
           {...others}
         >
@@ -106,7 +100,7 @@ const Link = ({
         className={classes}
         href={href}
         {...(blank && {
-          target: '_blank',
+          target: "_blank",
         })}
         {...others}
       >

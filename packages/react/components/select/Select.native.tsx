@@ -19,17 +19,17 @@ import { Modal } from '../modal'
  * @param placeholder {string} Select Placeholder
  */
 const Select = ({
-  children,
-  name,
-  id,
-  selected,
-  label,
-  iconName,
-  onChange,
-  placeholder,
-  disabled,
-  ...others
-}: SelectProps): JSX.Element => {
+                  children,
+                  name,
+                  id,
+                  selected,
+                  label,
+                  iconName,
+                  onChange,
+                  placeholder,
+                  disabled,
+                  ...others
+                }: SelectProps): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<string | number>(selected || '')
   const [display, setDisplay] = useState<boolean>(false)
 
@@ -41,7 +41,7 @@ const Select = ({
     select: {
       width: '100%',
       backgroundColor: getColorStyle(disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.WHITE),
-      borderColor: getColorStyle(disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.GREY),
+      borderColor: getColorStyle(disabled ? TrilogyColor.GREY_DISABLED : TrilogyColor.GREY_LIGHT),
       borderWidth: 1,
       borderRadius: 4,
       zIndex: 3, // works on ios
@@ -52,7 +52,7 @@ const Select = ({
     },
     iconLeft: {
       left: 10,
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       paddingRight: 8,
       paddingLeft: 8,
       marginRight: 25,
@@ -60,7 +60,7 @@ const Select = ({
     text: {
       fontSize: 16,
       lineHeight: 20,
-      color: getColorStyle(disabled ? TrilogyColor.GREY_DARK : TrilogyColor.TERTIARY),
+      color: getColorStyle(disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN),
     },
   })
 
@@ -81,7 +81,7 @@ const Select = ({
               <Icon
                 name={iconName}
                 size={IconSize.SMALL}
-                color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.TERTIARY}
+                color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN}
                 style={styles.iconLeft}
               />
             </View>
@@ -112,13 +112,13 @@ const Select = ({
             <Icon
               name={IconName.ARROW_DOWN}
               size={IconSize.SMALL}
-              color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.TERTIARY}
+              color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN}
             />
           </View>
         </TouchableOpacity>
         <Modal active={display} onClose={() => setDisplay(false)} bottom closeIcon swipable={false}>
           <Picker
-            itemStyle={{ color: getColorStyle(TrilogyColor.TERTIARY) }}
+            itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
             style={{ width: '100%' }}
             nativeID={`${`${id}_${name}`}`}
             selectedValue={selectedValue}

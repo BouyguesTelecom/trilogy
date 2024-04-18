@@ -1,35 +1,39 @@
-import React from 'react'
+import * as React from "react";
 
-import { Meta, Story } from '@storybook/react'
-import Divider from './Divider'
-import { DividerProps } from './DividerProps'
-import { IconName } from '../icon'
-import { TrilogyColor } from '../../objects'
-import { Box, BoxContent } from '../box'
+import { Meta, Story } from "@storybook/react";
+import Divider from "./Divider";
+import { DividerProps } from "./DividerProps";
+import { IconName } from "../icon";
+import { TrilogyColor } from "../../objects";
+import { Box, BoxContent } from "../box";
 
 export default {
-  title: 'Components/Divider',
+  title: "Components/Divider",
   component: Divider,
-} as Meta
+} as Meta;
 
-export const Base: Story<DividerProps> = (args) => <Divider {...args} />
+export const Base: Story<DividerProps> = (args) => <Divider {...args} />;
 
-export const AvecText: Story<DividerProps> = (args) => <Divider {...args} />
+export const AvecText: Story<DividerProps> = (args) => <Divider {...args} />;
 AvecText.args = {
-  content: 'Nouveau Message',
-}
+  content: "Nouveau Message",
+};
 
-export const AvecUneIcône: Story<DividerProps> = (args) => <Divider {...args} />
+export const AvecUneIcône: Story<DividerProps> = (args) => (
+  <Divider {...args} />
+);
 AvecUneIcône.args = {
   iconName: IconName.PLUS,
-}
+};
 
-export const AvecBackground: Story<DividerProps> = (args) => <Divider {...args} />
+export const AvecBackground: Story<DividerProps> = (args) => (
+  <Divider {...args} />
+);
 AvecBackground.args = {
-  backgroundColor: TrilogyColor.TERTIARY,
+  backgroundColor: TrilogyColor.MAIN,
   textColor: TrilogyColor.WHITE,
   iconName: IconName.PLUS,
-}
+};
 
 export const Unboxed: Story<DividerProps> = (args) => (
   <Box>
@@ -37,7 +41,7 @@ export const Unboxed: Story<DividerProps> = (args) => (
       <Divider {...args} />
     </BoxContent>
   </Box>
-)
+);
 Unboxed.args = {
   unboxed: true,
-}
+};

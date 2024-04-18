@@ -1,60 +1,57 @@
 .segmented-control {
-    border-radius: 6px;
-    padding: $spacing-1;
-    border: 1px solid getColor('grey-light');
+  border-radius: 6px;
+  padding: $spacing-1;
+  background-color: getColor('grey-lighter');
+  display: inline-block;
+  margin: 16px 0;
+
+  @include mobile {
+    display: flex;
+    margin: 24px auto;
+    width: 100%;
+  }
+
+  .segmented-control-item {
+    padding: 0 $spacing-5;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid transparent;
+    height: 42px;
+    color: getColor('font');
     background-color: getColor('grey-lighter');
-    display: inline-block;
-    margin: 16px 0;
+    font-family: $body-family;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
 
     @include mobile {
-        display: flex;
-        margin: 24px auto;
-        width: 100%;
+      padding: 0 $spacing-4;
+      flex: 1 1 0;
+      width: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
-    .segmented-control-item {
-        padding: 0 $spacing-5;
-        border-radius: 4px;
-        font-size: 16px;
-        text-align: center;
-        border: 2px solid transparent;
-        height: 42px;
-        color: getColor('font');
-        background-color: getColor('grey-lighter');
-        font-family: $body-family;
-
-        &:not(:last-child) {
-            margin-right: 4px;
-        }
-
-        @include mobile {
-            padding: 0 $spacing-4;
-            flex: 1 1 0;
-            width: 0;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background-color: transparent;
-            color: getColor('alternate');
-            border-color: currentColor;
-        }
-
-        &.is-active {
-            background-color: getColor('alternate');
-            color: invertColor('alternate');
-            font-weight: 600;
-        }
-
-        &[disabled] {
-            background-color: getColor('grey-disabled');
-            border-color: getColor('grey-disabled');
-            color: getColor('grey-darker');
-            &:hover {
-                cursor: not-allowed;
-            }
-        }
+    &:hover {
+      cursor: pointer;
+      @include hoverRules()
     }
+
+    &.is-active {
+      background-color: getColor('main');
+      color: invertColor('main');
+      font-weight: 600;
+    }
+
+    &[disabled] {
+      background-color: getColor('grey-disabled');
+      color: getColor('grey-darker');
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
 }

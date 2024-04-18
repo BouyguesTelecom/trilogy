@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { SafeAreaView, StyleSheet, View, TextInput, Pressable } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 import { OtpProps } from './OtpProps'
 import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { Icon, IconSize, IconColor, IconName } from '../icon'
+import { Icon, IconColor, IconName, IconSize } from '../icon'
 import { Title, TitleLevels } from '../title'
 import { Text, TextLevels } from '../text'
 import { TypographyAlign } from '../../objects'
@@ -20,26 +20,26 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onChange {Function} onChange Input return current code
  */
 const Otp = ({
-  code,
-  codeSize = 6,
-  disabled,
-  error,
-  onCompleted,
-  onFocus,
-  activated,
-  onChange,
-  label,
-  ...others
-}: OtpProps): JSX.Element => {
+               code,
+               codeSize = 6,
+               disabled,
+               error,
+               onCompleted,
+               onFocus,
+               activated,
+               onChange,
+               label,
+               ...others
+             }: OtpProps): JSX.Element => {
   const [codeInput, setCodeInput] = useState<string>(code || '')
   // eslint-disable-next-line prefer-spread
   const [codeDigitsArray] = useState(Array.apply(null, Array(codeSize)).map((_val, idx) => idx))
   const [focused, setFocused] = useState(false)
   const color =
     (disabled && getColorStyle(TrilogyColor.GREY)) ||
-    (activated && getColorStyle(TrilogyColor.GREY)) ||
+    (activated && getColorStyle(TrilogyColor.MAIN)) ||
     (error && getColorStyle(TrilogyColor.ERROR)) ||
-    (focused && getColorStyle(TrilogyColor.TERTIARY)) ||
+    (focused && getColorStyle(TrilogyColor.MAIN)) ||
     getColorStyle(TrilogyColor.GREY)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Otp = ({
     inputContainer: {
       borderColor:
         (disabled && getColorStyle(TrilogyColor.GREY)) ||
-        (activated && getColorStyle(TrilogyColor.GREY)) ||
+        (activated && getColorStyle(TrilogyColor.MAIN)) ||
         (error && getColorStyle(TrilogyColor.ERROR)) ||
         getColorStyle(TrilogyColor.GREY),
       borderWidth: 1,
@@ -111,7 +111,7 @@ const Otp = ({
     currentInput: {
       width: 15,
       height: 1,
-      backgroundColor: (focused && getColorStyle(TrilogyColor.TERTIARY)) || 'transparent',
+      backgroundColor: (focused && getColorStyle(TrilogyColor.MAIN)) || 'transparent',
     },
     text: {
       paddingLeft: 5,
@@ -126,17 +126,17 @@ const Otp = ({
     if (idx <= codeInput.length) {
       return (
         <View key={idx} style={style.inputSelectedContainer}>
-          <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE}>
+          <Text typo={TypographyAlign.TEXT_CENTERED} level={TextLevels.TWO}>
             {digit}
-          </Title>
-          {Boolean(idx === codeInput.length) && <View style={style.currentInput} />}
+          </Text>
+          {Boolean(idx === codeInput.length) && <View style={style.currentInput}/>}
         </View>
       )
     }
 
     return (
       <View key={idx} style={style.inputContainer}>
-        <Title level={TitleLevels.THREE}>{digit}</Title>
+        <Title level={TitleLevels.FOUR}>{digit}</Title>
       </View>
     )
   }
@@ -145,12 +145,12 @@ const Otp = ({
     <SafeAreaView style={style.container} {...others}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {Boolean(label) && (
-          <Text style={style.text} level={TextLevels.THREE}>
+          <Text style={style.text} level={TextLevels.FOUR}>
             {label}
           </Text>
         )}
         {error && (
-          <Icon style={style.icon} name={IconName.EXCLAMATION_CIRCLE} color={IconColor.ERROR} size={IconSize.SMALL} />
+          <Icon style={style.icon} name={IconName.EXCLAMATION_CIRCLE} color={IconColor.ERROR} size={IconSize.SMALL}/>
         )}
       </View>
       <Pressable style={style.inputsContainer} onPress={handleOnPress}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Section,
   Divider,
@@ -8,8 +8,8 @@ import {
   PriceVariant,
   PriceLevel,
   Hero,
-} from '@trilogy-ds/react/components'
-import { Alignable, VariantState } from '@trilogy-ds/react/objects'
+} from "@trilogy-ds/react/components";
+import { Alignable, VariantState } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -18,7 +18,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         variant={PriceVariant.PRIMARY}
-        level={'2'}
+        level={"2"}
         amount={18.99}
         showCents
       />
@@ -28,13 +28,13 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         variant={PriceVariant.PRIMARY}
-        level={'7'}
+        level={"7"}
         amount={1000}
         mention="(1)"
         period="months"
         showCents
         align={Alignable.ALIGNED_START}
-        suptitle={'From '}
+        suptitle={"From "}
         inline
       />
 
@@ -42,7 +42,7 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Alignement</Title>
       <Price
         variant={PriceVariant.PRIMARY}
-        level={'1'}
+        level={"1"}
         amount={1000}
         mention="(1)"
         period="months"
@@ -52,7 +52,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         variant={PriceVariant.PRIMARY}
-        level={'1'}
+        level={"1"}
         amount={1000}
         mention="(1)"
         period="months"
@@ -62,7 +62,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         variant={PriceVariant.PRIMARY}
-        level={'1'}
+        level={"1"}
         amount={1000}
         mention="(1)"
         period="months"
@@ -141,18 +141,44 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
       <Hero variant={VariantState.TERTIARY}>
-        <Price inverted level={PriceLevel.LEVEL1} amount={18.99} mention="(1)" period="months" showCents />
+        <Price
+          inverted
+          level={PriceLevel.LEVEL1}
+          amount={18.99}
+          mention="(1)"
+          period="months"
+          showCents
+        />
 
-        <Price striked inverted level={PriceLevel.LEVEL1} amount={18.99} mention="(1)" period="months" showCents />
+        <Price
+          striked
+          inverted
+          level={PriceLevel.LEVEL1}
+          amount={18.99}
+          mention="(1)"
+          period="months"
+          showCents
+        />
       </Hero>
 
       <Divider />
 
       <Title level={TitleLevels.THREE}>With or Without cents</Title>
 
-      <Price variant={PriceVariant.PRIMARY} level={PriceLevel.LEVEL4} amount={18} period="months" />
+      <Price
+        variant={PriceVariant.PRIMARY}
+        level={PriceLevel.LEVEL4}
+        amount={18}
+        period="months"
+      />
 
-      <Price variant={PriceVariant.PRIMARY} level={PriceLevel.LEVEL4} amount={18} period="months" showCents />
+      <Price
+        variant={PriceVariant.PRIMARY}
+        level={PriceLevel.LEVEL4}
+        amount={18}
+        period="months"
+        showCents
+      />
     </Section>
-  )
-}
+  );
+};

@@ -24,20 +24,20 @@ import { ComponentName } from '../enumsComponentsName'
  * @param others
  */
 const Box = ({
-  children,
-  onClick,
-  skeleton,
-  background,
-  leftBorder,
-  testId,
-  shadowless,
-  backgroundSrc,
-  flat,
-  hat,
-  fullheight,
-  active,
-  ...others
-}: BoxProps): JSX.Element => {
+               children,
+               onClick,
+               skeleton,
+               background,
+               leftBorder,
+               testId,
+               shadowless,
+               backgroundSrc,
+               flat,
+               hat,
+               fullheight,
+               active,
+               ...others
+             }: BoxProps): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.WHITE)
   const boxRadius = 6
 
@@ -53,22 +53,22 @@ const Box = ({
       position: 'relative',
       borderStyle: flat ? 'solid' : undefined,
       borderWidth: flat && 1 || active && 2 || 0,
-      borderColor: active ? getColorStyle(TrilogyColor.SECONDARY) : getColorStyle(TrilogyColor.GREY),
+      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY),
       marginTop: hat ? 35 : 0,
-      flex: fullheight? 1: 0,
+      flex: fullheight ? 1 : 0,
     },
     shadow: shadowless
       ? {}
       : {
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.22,
-          shadowRadius: 2.22,
-          elevation: 1,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 1,
         },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
+      },
     skeleton: {
       width: '100%',
       minHeight: 50,
@@ -108,14 +108,14 @@ const Box = ({
 
       {Platform.OS === 'android' && (
         <View>
-          <Rect rx='10' ry='10' width='100%' height='100%' />
+          <Rect rx='10' ry='10' width='100%' height='100%'/>
         </View>
       )}
     </ContentLoader>
   )
 
   if (skeleton) {
-    return <BoxSkeleton />
+    return <BoxSkeleton/>
   }
 
   if (onClick) {
@@ -136,12 +136,12 @@ const Box = ({
             style={styles.boxImage}
             source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
           >
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
             <View style={styles.column}>{children}</View>
           </ImageBackground>
         ) : (
           <>
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
             <View style={styles.column}>{children}</View>
           </>
         )}
@@ -165,12 +165,12 @@ const Box = ({
           style={styles.boxImage}
           source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
         >
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
           <View style={styles.column}>{children}</View>
         </ImageBackground>
       ) : (
         <>
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(leftBorder) && <View style={styles.leftBorder}/>}
           <View style={styles.column}>{children}</View>
         </>
       )}

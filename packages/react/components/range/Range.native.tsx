@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { RangeProps } from './RangeProps'
-import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import { Text, TextLevels } from '../text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { RangeProps } from "./RangeProps"
+import MultiSlider from "@ptomasroos/react-native-multi-slider"
+import { Text, TextLevels } from "../text"
+import { getColorStyle, TrilogyColor, TypographyBold } from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Range Component
@@ -24,7 +24,14 @@ import { ComponentName } from '../enumsComponentsName'
  * @param valueCursorMin {number} number of input min
  * @param valueCursorMax {number} number of input max
  */
-const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onChange }: RangeProps): JSX.Element => {
+const Range = ({
+  min,
+  max,
+  label,
+  labelValueCursorMin,
+  labelValueCursorMax,
+  onChange,
+}: RangeProps): JSX.Element => {
   const [values, setValues] = React.useState<number[]>([0, 100])
   const [width, setWidth] = React.useState<number>(0)
 
@@ -33,8 +40,8 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
       width: 20,
       height: 20,
       borderRadius: 20,
-      backgroundColor: 'white',
-      shadowColor: '#000',
+      backgroundColor: "white",
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 2,
@@ -43,7 +50,11 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
       shadowRadius: 3.84,
       elevation: 5,
     },
-    markerLabels: { flexDirection: 'row', justifyContent: 'space-between', marginTop: -6 },
+    markerLabels: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: -6,
+    },
   })
 
   const Marker = (): JSX.Element => <View style={styles.marker}></View>
@@ -64,7 +75,7 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
         sliderLength={width}
         onValuesChange={(e) => {
           setValues(e)
-          onChange && onChange({ inputName: 'range', inputValue: e })
+          onChange && onChange({ inputName: "range", inputValue: e })
         }}
         min={min}
         max={max}
@@ -73,32 +84,44 @@ const Range = ({ min, max, label, labelValueCursorMin, labelValueCursorMax, onCh
         snapped
         customMarker={Marker}
         selectedStyle={{
-          backgroundColor: getColorStyle(TrilogyColor.SECONDARY),
+          backgroundColor: getColorStyle(TrilogyColor.MAIN),
           height: 4,
         }}
         unselectedStyle={{
-          backgroundColor: '#e1e1e1',
+          backgroundColor: "#e1e1e1",
           height: 4,
         }}
       />
       <View style={styles.markerLabels}>
-        <View style={{ flexDirection: 'row' }}>
-          <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            level={TextLevels.THREE}
+            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+          >
             {values[0]}
           </Text>
           {labelValueCursorMin && (
-            <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+            <Text
+              level={TextLevels.THREE}
+              typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+            >
               {labelValueCursorMin}
             </Text>
           )}
         </View>
 
-        <View style={{ flexDirection: 'row' }}>
-          <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            level={TextLevels.THREE}
+            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+          >
             {values[1]}
           </Text>
           {labelValueCursorMax && (
-            <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+            <Text
+              level={TextLevels.THREE}
+              typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+            >
               {labelValueCursorMax}
             </Text>
           )}

@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { is } from '../../services'
-import { CloseButtonProps, ModalContentButtonProps, ModalProps } from './ModalProps'
-import { Button, ButtonList, ButtonType } from '../button'
-import { Text } from '../text'
-import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
-import ModalTitle from './ModalTitle'
-import ModalFooter from './ModalFooter'
-import { ClickEvent, OnClickEvent } from '../../events/OnClickEvent'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import React, { useEffect, useRef, useState } from "react"
+import { is } from "../../services"
+import { CloseButtonProps, ModalContentButtonProps, ModalProps, } from "./ModalProps"
+import { Button, ButtonList, ButtonType } from "../button"
+import { Text } from "../text"
+import { ModalMarkup, ModalMarkupValues } from "./ModalEnum"
+import ModalTitle from "./ModalTitle"
+import ModalFooter from "./ModalFooter"
+import { ClickEvent, OnClickEvent } from "../../events/OnClickEvent"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Modal Component
@@ -47,7 +47,7 @@ const Modal = ({
   content,
   triggerMarkup,
   triggerContent,
-  triggerClassNames,
+  triggerClassNames = "button is-main",
   ctaContent,
   ctaOnClick,
   onClose,
@@ -82,12 +82,12 @@ const Modal = ({
 
   useEffect(() => {
     if (display && !disableHandlingClickOutside) {
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener("mousedown", handleClickOutside)
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [display, disableHandlingClickOutside])
 
@@ -95,15 +95,24 @@ const Modal = ({
     () =>
       hashClass(
         styled,
-        clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
+        clsx(
+          "modal",
+          display && is("active"),
+          panel && is("panel"),
+          fullwidth && is("fullwidth"),
+          className
+        )
       ),
-    [active, display, panel, className, styled],
+    [active, display, panel, className, styled]
   )
   const contentClasses = React.useMemo(
-    () => hashClass(styled, clsx('modal-content', contentClassNames)),
-    [contentClassNames, styled],
+    () => hashClass(styled, clsx("modal-content", contentClassNames)),
+    [contentClassNames, styled]
   )
-  const footerClasses = React.useMemo(() => clsx('modal-footer', footerClassNames), [footerClassNames, styled])
+  const footerClasses = React.useMemo(
+    () => clsx("modal-footer", footerClassNames),
+    [footerClassNames, styled]
+  )
 
   function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
     setDisplay(false)
@@ -125,20 +134,31 @@ const Modal = ({
    * string enum aren't reverse mapped so the first solution doesn't work
    */
   const isCorrectMarkup = (stringMarkup: ModalMarkup | ModalMarkupValues) => {
-    if (stringMarkup in ModalMarkup || Object.values(ModalMarkup).includes(stringMarkup as ModalMarkup)) return true
+    if (
+      stringMarkup in ModalMarkup ||
+      Object.values(ModalMarkup).includes(stringMarkup as ModalMarkup)
+    )
+      return true
   }
   const TriggerTag = React.useMemo(
-    () => (triggerMarkup && isCorrectMarkup(triggerMarkup) ? triggerMarkup : 'button'),
-    [triggerMarkup],
+    () =>
+      (triggerMarkup && isCorrectMarkup(triggerMarkup)
+        ? triggerMarkup
+        : "button"),
+    [triggerMarkup]
   )
 
-  const ModalContentButton = ({ ...props }: ModalContentButtonProps): JSX.Element => (
-    <Button markup={'button'} className={is('primary')} {...props} />
+  const ModalContentButton = ({
+    ...props
+  }: ModalContentButtonProps): JSX.Element => (
+    <Button markup={"button"} className={is("MAIN")} {...props} />
   )
 
-  const ModalCancelButton = ({ onCloseFunc }: CloseButtonProps): JSX.Element => (
+  const ModalCancelButton = ({
+    onCloseFunc,
+  }: CloseButtonProps): JSX.Element => (
     <Button
-      variant={'SECONDARY'}
+      variant={"ACCENT"}
       onClick={(e) => {
         handleClose(onCloseFunc, e)
       }}
@@ -153,7 +173,7 @@ const Modal = ({
       onClick={(e: React.MouseEvent) => {
         handleClose(onCloseFunc, e)
       }}
-      className={hashClass(styled, clsx('modal-close', is('large')))}
+      className={hashClass(styled, clsx("modal-close", is("large")))}
       aria-label='close'
       type={ButtonType.BUTTON}
     />
@@ -172,7 +192,7 @@ const Modal = ({
         </TriggerTag>
       )}
       <div className={classes} {...others}>
-        <div className={hashClass(styled, clsx('modal-background'))} />
+        <div className={hashClass(styled, clsx("modal-background"))} />
         <div ref={modal} className={contentClasses}>
           {closeIcon && <CloseButton onCloseFunc={onClose} />}
           {(title || iconName) && (
@@ -180,15 +200,27 @@ const Modal = ({
               {title}
             </ModalTitle>
           )}
-          {content && typeof content === 'string' ? <Text>{content}</Text> : content}
+          {content && typeof content === "string" ? (
+            <Text>{content}</Text>
+          ) : (
+            content
+          )}
           {children != null && children}
           {(ctaOnClick != null || ctaCancelOnClick != null) && (
-            <ButtonList centered className={is('flex')}>
-              {ctaOnClick && <ModalContentButton onClick={ctaOnClick}>{ctaContent}</ModalContentButton>}
-              {ctaCancelOnClick && <ModalCancelButton onCloseFunc={ctaCancelOnClick} />}
+            <ButtonList centered className={is("flex")}>
+              {ctaOnClick && (
+                <ModalContentButton onClick={ctaOnClick}>
+                  {ctaContent}
+                </ModalContentButton>
+              )}
+              {ctaCancelOnClick && (
+                <ModalCancelButton onCloseFunc={ctaCancelOnClick} />
+              )}
             </ButtonList>
           )}
-          {footer && <ModalFooter className={footerClasses}>{footer}</ModalFooter>}
+          {footer && (
+            <ModalFooter className={footerClasses}>{footer}</ModalFooter>
+          )}
         </div>
       </div>
     </div>

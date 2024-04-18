@@ -1,8 +1,14 @@
-import React from 'react'
-import { StyleSheet, Platform, ScrollView as ScrollViewNative, View, RefreshControl } from 'react-native'
-import { getColorStyle, ScrollDirectionEnum } from '../../objects'
-import { ScrollViewProps } from './ScrollViewProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import {
+  StyleSheet,
+  Platform,
+  ScrollView as ScrollViewNative,
+  View,
+  RefreshControl,
+} from "react-native"
+import { getColorStyle, ScrollDirectionEnum } from "../../objects"
+import { ScrollViewProps } from "./ScrollViewProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Scroll View Component
@@ -21,7 +27,7 @@ type ScrollviewRef =
   | ((instance: ScrollViewNative | null) => void)
   | React.RefObject<ScrollViewNative>
   | null
-  | undefined
+  | undefined;
 
 const ScrollView = React.forwardRef(
   (
@@ -37,7 +43,7 @@ const ScrollView = React.forwardRef(
       scrollDirection,
       ...others
     }: ScrollViewProps,
-    ref: ScrollviewRef,
+    ref: ScrollviewRef
   ): JSX.Element => {
     const [refreshing, setRefreshing] = React.useState(false)
 
@@ -51,7 +57,11 @@ const ScrollView = React.forwardRef(
     }, [])
 
     const styles = StyleSheet.create({
-      stickyContent: { flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' },
+      stickyContent: {
+        flexGrow: 1,
+        justifyContent: "space-between",
+        flexDirection: "column",
+      },
     })
 
     if (footer) {
@@ -61,13 +71,19 @@ const ScrollView = React.forwardRef(
           testID={id}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.stickyContent}
-          bounces={bounce && Platform.OS === 'ios' && true}
-          overScrollMode={(bounce && Platform.OS === 'android' && 'always') || 'never'}
+          bounces={bounce && Platform.OS === "ios" && true}
+          overScrollMode={
+            (bounce && Platform.OS === "android" && "always") || "never"
+          }
           {...(refresh && {
             refreshControl: (
               <RefreshControl
-                tintColor={refreshControlColor && getColorStyle(refreshControlColor)}
-                colors={refreshControlColor && [getColorStyle(refreshControlColor)]}
+                tintColor={
+                  refreshControlColor && getColorStyle(refreshControlColor)
+                }
+                colors={
+                  refreshControlColor && [getColorStyle(refreshControlColor)]
+                }
                 refreshing={refreshing}
                 onRefresh={() => {
                   onRefreshing()
@@ -80,8 +96,15 @@ const ScrollView = React.forwardRef(
           })}
           {...others}
         >
-          <View style={{ flex: 1, justifyContent: centerContent ? 'center' : 'flex-start' }}>{children}</View>
-          <View style={{ justifyContent: 'flex-end' }}>{footer}</View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: centerContent ? "center" : "flex-start",
+            }}
+          >
+            {children}
+          </View>
+          <View style={{ justifyContent: "flex-end" }}>{footer}</View>
         </ScrollViewNative>
       )
     }
@@ -93,13 +116,19 @@ const ScrollView = React.forwardRef(
         contentContainerStyle={{ flexGrow: 1 }}
         ref={ref}
         showsVerticalScrollIndicator={false}
-        bounces={bounce && Platform.OS === 'ios' && true}
-        overScrollMode={(bounce && Platform.OS === 'android' && 'always') || 'never'}
+        bounces={bounce && Platform.OS === "ios" && true}
+        overScrollMode={
+          (bounce && Platform.OS === "android" && "always") || "never"
+        }
         {...(refresh && {
           refreshControl: (
             <RefreshControl
-              tintColor={refreshControlColor && getColorStyle(refreshControlColor)}
-              colors={refreshControlColor && [getColorStyle(refreshControlColor)]}
+              tintColor={
+                refreshControlColor && getColorStyle(refreshControlColor)
+              }
+              colors={
+                refreshControlColor && [getColorStyle(refreshControlColor)]
+              }
               refreshing={refreshing}
               onRefresh={() => {
                 onRefreshing()
@@ -112,10 +141,14 @@ const ScrollView = React.forwardRef(
         })}
         {...others}
       >
-        {centerContent ? <View style={{ flex: 1, justifyContent: 'center' }}>{children}</View> : children}
+        {centerContent ? (
+          <View style={{ flex: 1, justifyContent: "center" }}>{children}</View>
+        ) : (
+          children
+        )}
       </ScrollViewNative>
     )
-  },
+  }
 )
 
 ScrollView.displayName = ComponentName.ScrollView

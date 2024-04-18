@@ -1,10 +1,10 @@
 import {
-  ButtonColor,
-  ButtonColorValues,
   ButtonMarkup,
   ButtonMarkupValues,
   ButtonType,
   ButtonTypeValues,
+  ButtonVariant,
+  ButtonVariantValues,
 } from './ButtonEnum'
 import { Fullwidth } from '../../objects/facets/Fullwidth'
 import { Accessibility, Clickable } from '../../objects/facets'
@@ -31,5 +31,5 @@ export interface ButtonProps
   // Valeur de la propriété "type" d'un <button/> ou <input/>
   type?: ButtonType | ButtonTypeValues
   iconName?: IconName | IconNameValues
-  variant?: ButtonColor | ButtonColorValues
+  variant?: ButtonVariant | ButtonVariantValues
 }
