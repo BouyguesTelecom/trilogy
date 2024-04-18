@@ -34,7 +34,7 @@
       overflow: hidden;
     }
 
-    &:hover {
+    #{$hoverSelector} {
       cursor: pointer;
       @include hoverRules()
     }
@@ -43,15 +43,6 @@
       background-color: getColor('main');
       color: invertColor('main');
       font-weight: 600;
-    }
-
-    &[disabled] {
-      background-color: getColor('grey-disabled');
-      color: getColor('grey-darker');
-
-      &:hover {
-        cursor: not-allowed;
-      }
     }
   }
 }
