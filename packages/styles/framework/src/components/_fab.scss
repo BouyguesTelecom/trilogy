@@ -35,12 +35,7 @@
   &:active {
     background-color: getColor('hovered');
   }
-
-  .disabled {
-    background-color: getColor('bg-disabled');
-    color: getColor('grey-disabled');
-  }
-
+  
   .icon {
     font-size: 24px !important;
     margin-left: -6px;

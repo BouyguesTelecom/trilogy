@@ -50,16 +50,7 @@
       color: getColor('font')
     }
   }
-
-  &.is-disabled {
-    .otp {
-      border: none !important;
-      background: getColor('grey-disabled');
-      pointer-events: none;
-      color: getColor('grey');
-    }
-  }
-
+  
 }
 
 .otp-list:focus-within {

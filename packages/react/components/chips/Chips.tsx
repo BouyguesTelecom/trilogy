@@ -35,7 +35,6 @@ const Chips = ({
     clsx(
       "chips",
       active && is("active"),
-      disabled && is("disabled"),
       inverted && has(`background-white`),
       className
     )
@@ -43,6 +42,7 @@ const Chips = ({
 
   return (
     <div
+      {...{ disabled: disabled }}
       tabIndex={0}
       data-testid={testId}
       id={id}
