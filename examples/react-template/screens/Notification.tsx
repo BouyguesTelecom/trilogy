@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Section,
   Title,
@@ -7,8 +7,8 @@ import {
   ButtonMarkup,
   Notification,
   IconName,
-} from '@trilogy-ds/react/components'
-import { AlertState } from '@trilogy-ds/react/objects'
+} from "@trilogy-ds/react/components";
+import { AlertState } from "@trilogy-ds/react/objects";
 
 export const NotificationScreen = (): JSX.Element => {
   return (
@@ -19,8 +19,16 @@ export const NotificationScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Status</Title>
 
       <Notification title="Notification info" info />
-      <Notification title="Notification success" alert={AlertState.SUCCESS} info />
-      <Notification title="Notification warning" alert={AlertState.WARNING} info />
+      <Notification
+        title="Notification success"
+        alert={AlertState.SUCCESS}
+        info
+      />
+      <Notification
+        title="Notification warning"
+        alert={AlertState.WARNING}
+        info
+      />
       <Notification title="Notification error" alert={AlertState.ERROR} info />
 
       <Notification alert={AlertState.INFO} title="Notification" />
@@ -41,12 +49,16 @@ export const NotificationScreen = (): JSX.Element => {
         buttonMarkup={ButtonMarkup.BUTTON}
         // buttonVariant={VariantState.PRIMARY}
         // eslint-disable-next-line no-alert
-        buttonClick={() => alert('Test call to action click event')}
+        buttonClick={() => alert("Test call to action click event")}
       />
       <Notification title="Notification with arrow" arrow />
       <Notification title="Notification info" info hasIcon={false} />
       <Title level={TitleLevels.THREE}>Banner version</Title>
-      <Notification description="Banner notification description" banner iconName={IconName.BELL} />
+      <Notification
+        description="Banner notification description"
+        banner
+        iconName={IconName.BELL}
+      />
     </Section>
-  )
-}
+  );
+};

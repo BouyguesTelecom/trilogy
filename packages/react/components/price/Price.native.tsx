@@ -25,23 +25,23 @@ import { ComponentName } from '../enumsComponentsName'
  * @param suptitle {string} Price Suptitle
  */
 const Price = ({
-  variant,
-  amount,
-  mention,
-  period,
-  showCents,
-  level,
-  huge,
-  inverted,
-  align,
-  alert,
-  inline,
-  testId,
-  accessibilityLabel,
-  striked,
-  suptitle,
-  ...others
-}: PriceProps): JSX.Element => {
+                 variant,
+                 amount,
+                 mention,
+                 period,
+                 showCents,
+                 level,
+                 huge,
+                 inverted,
+                 align,
+                 alert,
+                 inline,
+                 testId,
+                 accessibilityLabel,
+                 striked,
+                 suptitle,
+                 ...others
+               }: PriceProps): JSX.Element => {
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
   // Math.floor on negative decimal decrease its value (as expected), ex: Math.floor(-17.09) => -18
@@ -59,8 +59,8 @@ const Price = ({
 
   const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
 
-  const primaryColor = getColorStyle(TrilogyColor.TERTIARY)
-  const secondaryColor = getColorStyle(TrilogyColor.SECONDARY)
+  const primaryColor = getColorStyle(TrilogyColor.MAIN)
+  const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.WHITE)
 
   const priceLevel =

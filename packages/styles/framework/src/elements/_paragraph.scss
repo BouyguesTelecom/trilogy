@@ -54,26 +54,6 @@ $text-levels-mobile: (
 }
 
 
-.paragraph,
-.text {
-    & a.link:not([disabled]),
-    a {
-        padding: $spacing-1;
-        margin: -4px;
-        text-decoration: underline;
-        font-size: unset;
-        font-weight: $weight-medium;
-
-        &::after {
-            content: none;
-        }
-
-        &.is-static::after {
-            margin-bottom: 0;
-        }
-    }
-}
-
 .paragraph:not(:last-child) {
     margin-bottom: 10px;
 }

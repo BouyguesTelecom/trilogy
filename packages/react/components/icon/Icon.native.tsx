@@ -32,25 +32,25 @@ import { TrilogyThemeContext } from '../../context/providerTheme.native'
  * @param skeleton {boolean} Icon Skeleton
  */
 const Icon = ({
-  size,
-  name,
-  status,
-  circled,
-  content,
-  position,
-  stacked,
-  badgeContent,
-  statusPosition,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  align,
-  skeleton,
-  style,
-  testId,
-  ...others
-}: IconProps): JSX.Element => {
+                size,
+                name,
+                status,
+                circled,
+                content,
+                position,
+                stacked,
+                badgeContent,
+                statusPosition,
+                stretched,
+                color,
+                backgroundColor,
+                onClick,
+                align,
+                skeleton,
+                style,
+                testId,
+                ...others
+              }: IconProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
@@ -64,7 +64,7 @@ const Icon = ({
     20
 
   const iconColor =
-    (color && getColorStyle(color)) || (status && getColorStyle(status)) || getColorStyle(TrilogyColor.TERTIARY)
+    (color && getColorStyle(color)) || (status && getColorStyle(status)) || getColorStyle(TrilogyColor.MAIN)
 
   const iconSkeletonRadius =
     (size === IconSize.HUGE && 50) ||
@@ -114,20 +114,20 @@ const Icon = ({
 
   const IconSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{ opacity: 0 }} />
+      <View style={{ opacity: 0 }}/>
       {Platform.OS === 'android' && (
         <View>
-          {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50' />) ||
-            (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33' />) ||
-            (size === IconSize.MEDIUM && <Circle cx='23' cy='23' r='23' />) ||
-            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15' />) || <Circle cx='15' cy='15' r='15' />}
+          {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50'/>) ||
+            (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33'/>) ||
+            (size === IconSize.MEDIUM && <Circle cx='23' cy='23' r='23'/>) ||
+            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15'/>) || <Circle cx='15' cy='15' r='15'/>}
         </View>
       )}
     </ContentLoader>
   )
 
   if (skeleton) {
-    return <IconSkeleton />
+    return <IconSkeleton/>
   }
 
   let iconView: JSX.Element = <View></View>

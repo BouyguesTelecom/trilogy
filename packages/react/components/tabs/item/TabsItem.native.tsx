@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { TabsItemProps } from './TabsItemProps'
 import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
@@ -15,15 +15,15 @@ import { Text, TextLevels } from '../../text'
  * @param iconName {IconNameValues | IconName} add icon name
  */
 const TabsItem = ({
-  active,
-  children,
-  onClick,
-  tabIndex,
-  iconName,
-  inverted,
-  disabled,
-  ...others
-}: TabsItemProps): JSX.Element => {
+                    active,
+                    children,
+                    onClick,
+                    tabIndex,
+                    iconName,
+                    inverted,
+                    disabled,
+                    ...others
+                  }: TabsItemProps): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const [isPressIn, setInPressIn] = useState<boolean>(false)
@@ -34,8 +34,8 @@ const TabsItem = ({
       return TrilogyColor.WHITE
     }
     if (disabled) return TrilogyColor.GREY
-    if (active) return TrilogyColor.SECONDARY
-    return TrilogyColor.TERTIARY
+    if (active) return TrilogyColor.MAIN
+    return TrilogyColor.MAIN
   }, [inverted, disabled, active])
 
   const styles = StyleSheet.create({
@@ -48,12 +48,12 @@ const TabsItem = ({
       position: 'relative',
     },
     text: {
-      color: isPressIn && !inverted && !disabled ? getColorStyle(TrilogyColor.SECONDARY) : getColorStyle(getIconColor),
+      color: isPressIn && !inverted && !disabled ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(getIconColor),
       textAlign: 'center',
     },
     activeBar: {
       height: 2,
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.SECONDARY),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
       width: '100%',
       position: 'absolute',
       bottom: 4,
@@ -83,7 +83,7 @@ const TabsItem = ({
     >
       {iconName && (
         <View>
-          <Icon color={getIconColor} size='small' name={iconName} />
+          <Icon color={getIconColor} size='small' name={iconName}/>
         </View>
       )}
 

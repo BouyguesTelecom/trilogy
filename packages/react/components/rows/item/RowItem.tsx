@@ -1,9 +1,9 @@
-import React from 'react'
-import { RowsItemProps } from './RowItemProps'
-import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { RowsItemProps } from "./RowItemProps"
+import { is } from "../../../services/classify"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Rows Item Component
@@ -12,9 +12,16 @@ import { useTrilogyContext } from '../../../context'
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} additionnal CSS Classes
  */
-const RowItem = ({ className, narrow, ...others }: RowsItemProps): JSX.Element => {
+const RowItem = ({
+  className,
+  narrow,
+  ...others
+}: RowsItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('row', narrow && is('narrow'), className))
+  const classes = hashClass(
+    styled,
+    clsx("row", narrow && is("narrow"), className)
+  )
   return <div className={classes} {...others} />
 }
 

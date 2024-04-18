@@ -18,7 +18,7 @@ $step-gap-desktop: $step-width * 3;
       bottom: 0;
       width: 100%;
       font-weight: $weight-semibold;
-      color: getColor('alternate');
+      color: getColor('main');
     }
   }
 
@@ -37,12 +37,12 @@ $step-gap-desktop: $step-width * 3;
     transition: background .15s ease;
 
     &.is-done {
-      background: getColor('font');
+      background: getColor('main');
     }
 
     &.is-current,
     &.is-active {
-      background: getColor('alternate');
+      background: getColor('main');
     }
   }
 
@@ -80,17 +80,17 @@ $step-gap-desktop: $step-width * 3;
 
   // done step followed by current step
   .step.is-done + .step.is-current::before {
-    background: linear-gradient(90deg, getColor('font'), getColor('alternate'));
+    background: linear-gradient(90deg, getColor('font'), getColor('main'));
   }
 
   // active step followed by done step(s)
   .step.is-active + .step.is-done::before {
-    background: linear-gradient(90deg, getColor('alternate'), getColor('font'));
+    background: linear-gradient(90deg, getColor('main'), getColor('font'));
   }
 
   // current step followed by unvisited step(s)
   .step.is-current + .step::before {
-    background: linear-gradient(90deg, getColor('alternate'), getColor('grey-disabled') 75%);
+    background: linear-gradient(90deg, getColor('main'), getColor('grey-disabled') 75%);
   }
 
   // labels
@@ -115,7 +115,7 @@ $step-gap-desktop: $step-width * 3;
     // active or current step
     &.is-current::after,
     &.is-active::after {
-      color: getColor('alternate');
+      color: getColor('main');
     }
   }
 }
@@ -148,7 +148,7 @@ $step-gap-desktop: $step-width * 3;
   width: 100%;
   padding: $spacing-2;
 
-  &:before{
+  &:before {
     content: "";
     display: block;
     height: 4px;
@@ -158,12 +158,14 @@ $step-gap-desktop: $step-width * 3;
 
   &.is-error {
 
-    &:before{
+    &:before {
       background: getColor('error') !important;
     }
+
     .step-bars {
       background: getColor('error') !important;
     }
+
     color: getColor('font');
 
     .step-label {
@@ -193,10 +195,11 @@ $step-gap-desktop: $step-width * 3;
 
   &.is-done {
 
-    &:before{
+    &:before {
       background: getColor('font');
       transition: background-color 2s ease-in-out;
     }
+
     .step-bars {
       background: getColor('font');
       transition: background-color 2s ease-in-out;
@@ -222,15 +225,16 @@ $step-gap-desktop: $step-width * 3;
   &.is-current,
   &.is-active {
 
-    &:before{
-      background: getColor('alternate');
+    &:before {
+      background: getColor('main');
       animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
       -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
       -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
       -moz-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
     }
+
     .step-bars {
-      background: getColor('alternate');
+      background: getColor('main');
       animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
       -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
       -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);

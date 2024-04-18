@@ -1,13 +1,13 @@
-import React, {RefObject, useEffect, useState} from 'react'
-import {has, is} from '../../services'
-import {Icon, IconColor, IconName, IconSize} from '../icon'
-import {Text} from '../text'
-import {InputStatus, InputStatusValues, InputType, InputTypeValues} from './InputEnum'
-import {InputProps, InputWebEvents} from './InputProps'
+import React, { RefObject, useEffect, useState } from 'react'
+import { has, is } from '../../services'
+import { Icon, IconColor, IconName, IconSize } from '../icon'
+import { Text } from '../text'
+import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
+import { InputProps, InputWebEvents } from './InputProps'
 import clsx from 'clsx'
-import {hashClass} from '../../helpers'
-import {useTrilogyContext} from '../../context'
-import {getColorStyle, TrilogyColor} from '../../objects'
+import { hashClass } from '../../helpers'
+import { useTrilogyContext } from '../../context'
+import { getColorStyle, TrilogyColor } from '../../objects'
 
 interface InputProp extends InputProps, InputWebEvents {}
 
@@ -175,7 +175,7 @@ const Input = ({
     clsx('control', hasPlaceholder && !search && has('dynamic-placeholder'), {
       [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
       [is('disabled')]: disabled,
-      ['has-icons-left']: customIconLeft || search ,
+      ['has-icons-left']: customIconLeft || search,
     }),
   )
 

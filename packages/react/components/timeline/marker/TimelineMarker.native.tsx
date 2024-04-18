@@ -28,10 +28,10 @@ const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Eleme
       marginLeft: 'auto',
       marginRight: 'auto',
       borderColor:
-        (active && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (active && getColorStyle(TrilogyColor.MAIN)) ||
         (undone && getColorStyle(TrilogyColor.GREY_LIGHT)) ||
         (cancel && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-        (done && getColorStyle(TrilogyColor.TERTIARY)) ||
+        (done && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     icon: {
@@ -48,17 +48,17 @@ const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Eleme
           color={
             !iconColor
               ? (active && TrilogyColor.WHITE) ||
-                (undone && TrilogyColor.TERTIARY) ||
-                (cancel && TrilogyColor.GREY_LIGHT) ||
-                (done && TrilogyColor.WHITE) ||
-                TrilogyColor.WHITE
+              (undone && TrilogyColor.MAIN) ||
+              (cancel && TrilogyColor.GREY_LIGHT) ||
+              (done && TrilogyColor.WHITE) ||
+              TrilogyColor.WHITE
               : iconColor
           }
           backgroundColor={
-            (active && TrilogyColor.SECONDARY) ||
+            (active && TrilogyColor.MAIN) ||
             (undone && TrilogyColor.GREY_LIGHT) ||
             (cancel && TrilogyColor.GREY_LIGHT) ||
-            (done && TrilogyColor.TERTIARY) ||
+            (done && TrilogyColor.MAIN) ||
             TrilogyColor.GREY_LIGHT
           }
           size={IconSize.SMALL}

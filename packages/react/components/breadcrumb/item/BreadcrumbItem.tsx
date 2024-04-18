@@ -1,10 +1,10 @@
-import React from 'react'
-import { Text, TextMarkup } from '../../text/index'
-import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
-import { is } from '../../../services/classify'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { Text, TextMarkup } from "../../text/index"
+import { BreadcrumbItemPropsWeb } from "./BreadcrumbItemProps"
+import { is } from "../../../services/classify"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Breadcrumb Item Component
@@ -30,10 +30,10 @@ const BreadcrumbItem = ({
 }: BreadcrumbItemPropsWeb): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx(active && is('active'), className))
+  const classes = hashClass(styled, clsx(active && is("active"), className))
 
   if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
       <li data-testid={testId} className={classes} onClick={onClick}>
         <RouterLink to={to} {...others}>

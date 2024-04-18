@@ -1,9 +1,9 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { FabProps } from './FabProps'
-import { Alignable, getColorStyle, TrilogyColor } from '../../objects'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { FabProps } from "./FabProps"
+import { Alignable, getColorStyle, TrilogyColor } from "../../objects"
+import { Icon, IconColor, IconName, IconSize } from "../icon"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Fab Native Component
@@ -30,29 +30,29 @@ const Fab = ({
 }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: getColorStyle(TrilogyColor.SECONDARY),
-      justifyContent: 'center',
-      alignItems: 'center',
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
+      justifyContent: "center",
+      alignItems: "center",
       borderRadius: 16,
       minHeight: 56,
-      height: 'auto',
-      shadowColor: '#000',
+      height: "auto",
+      shadowColor: "#000",
       shadowOffset: { width: 0, height: 3 },
       shadowOpacity: 0.2,
       shadowRadius: 6,
       elevation: 3,
-      position: top || bottom || left || right ? 'absolute' : 'relative',
-      top: top ? top : 'auto',
-      right: right ? right : 'auto',
-      left: left ? left : 'auto',
-      bottom: bottom ? bottom : 'auto',
-      width: extended ? 'auto' : 60,
-      flexDirection: 'row',
+      position: top || bottom || left || right ? "absolute" : "relative",
+      top: top ? top : "auto",
+      right: right ? right : "auto",
+      left: left ? left : "auto",
+      bottom: bottom ? bottom : "auto",
+      width: extended ? "auto" : 60,
+      flexDirection: "row",
       zIndex: 999,
     },
     label: {
-      color: 'white',
-      fontWeight: '600',
+      color: "white",
+      fontWeight: "600",
       fontSize: 16,
       lineHeight: 20,
       marginLeft: 10,

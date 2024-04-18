@@ -1,10 +1,10 @@
-import React from 'react'
+import * as React from "react";
 
-import { Meta, Story } from '@storybook/react'
-import { SpacerProps } from './SpacerProps'
-import Spacer from './Spacer'
-import { SpacerSize } from './SpacerEnum'
-import { Tag, TagVariant } from '../tag'
+import { Meta, Story } from "@storybook/react";
+import { SpacerProps } from "./SpacerProps";
+import Spacer from "./Spacer";
+import { SpacerSize } from "./SpacerEnum";
+import { Tag, TagVariant } from "../tag";
 
 const spacerSizeOptions = [
   SpacerSize.NONE,
@@ -13,24 +13,24 @@ const spacerSizeOptions = [
   SpacerSize.MEDIUM,
   SpacerSize.LARGE,
   SpacerSize.HUGE,
-]
+];
 
 export default {
-  title: 'Components/Spacer',
+  title: "Components/Spacer",
   component: Spacer,
   argTypes: {
     // ...autres propriétés...
     size: {
       control: {
-        type: 'select',
+        type: "select",
         options: spacerSizeOptions, // Remplacez MyEnum par votre propre enum
       },
     },
   },
-} as Meta
+} as Meta;
 
 export const Base: Story<SpacerProps> = (args) => {
-  const { size, ...otherProps } = args
+  const { size, ...otherProps } = args;
 
   return (
     <>
@@ -38,9 +38,7 @@ export const Base: Story<SpacerProps> = (args) => {
         Play with the props <code>size</code>
       </Tag>
       <Spacer {...otherProps} size={size} />
-      <Tag >
-        Dans le pannel de contrôle ⬇
-      </Tag>
+      <Tag>Dans le pannel de contrôle ⬇</Tag>
     </>
-  )
-}
+  );
+};

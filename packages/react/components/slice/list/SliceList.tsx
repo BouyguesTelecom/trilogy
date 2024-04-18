@@ -1,9 +1,9 @@
-import React from 'react'
-import { SliceListProps } from './SliceListProps'
-import { is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import { SliceListProps } from "./SliceListProps"
+import { is } from "../../../services/classify"
+import { hashClass } from "../../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Slice List Component
@@ -12,12 +12,23 @@ import { useTrilogyContext } from '../../../context'
  * @param transparent {boolean} Apply transparent on Slices container
  * @param selectable {boolean} List of checkable Slice
  */
-const SliceList = ({ children, className, transparent, selectable, ...others }: SliceListProps): JSX.Element => {
+const SliceList = ({
+  children,
+  className,
+  transparent,
+  selectable,
+  ...others
+}: SliceListProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
-    clsx('slices', transparent && is('transparent'), selectable && 'slice-select', className),
+    clsx(
+      "slices",
+      transparent && is("transparent"),
+      selectable && "slice-select",
+      className
+    )
   )
 
   return (

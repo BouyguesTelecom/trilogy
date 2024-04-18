@@ -1,8 +1,13 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { ContainerProps } from './ContainerProps'
-import { getBackgroundStyle, getColorStyle, TrilogyColor, StickyPosition } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { ContainerProps } from "./ContainerProps"
+import {
+  getBackgroundStyle,
+  getColorStyle,
+  TrilogyColor,
+  StickyPosition,
+} from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Container Native Component
@@ -34,19 +39,25 @@ const Container = ({
 }: ContainerProps): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
-      width: '100%',
+      width: "100%",
       paddingTop: paddingless || verticalPaddingless ? 0 : 24,
       paddingBottom: paddingless || verticalPaddingless ? 0 : 24,
       paddingRight: paddingless ? 0 : 24,
       paddingLeft: paddingless ? 0 : 24,
-      alignItems: (centered && 'center') || (pulledLeft && 'flex-start') || (pulledRight && 'flex-end') || 'stretch',
-      justifyContent: verticalCentered ? 'center' : 'flex-start',
+      alignItems:
+        (centered && "center") ||
+        (pulledLeft && "flex-start") ||
+        (pulledRight && "flex-end") ||
+        "stretch",
+      justifyContent: verticalCentered ? "center" : "flex-start",
       flex: verticalCentered ? 1 : 0,
     },
 
     stickyTop: {
-      position: 'absolute',
-      backgroundColor: background ? getBackgroundStyle(background) : getColorStyle(TrilogyColor.WHITE),
+      position: "absolute",
+      backgroundColor: background
+        ? getBackgroundStyle(background)
+        : getColorStyle(TrilogyColor.WHITE),
       left: 0,
       right: 0,
       top: stickyOffSetTop ? stickyOffSetTop : 0,
@@ -54,9 +65,11 @@ const Container = ({
       zIndex: 999,
     },
     stickyBottom: {
-      backgroundColor: background ? getBackgroundStyle(background) : getColorStyle(TrilogyColor.WHITE),
-      width: '100%',
-      position: 'absolute',
+      backgroundColor: background
+        ? getBackgroundStyle(background)
+        : getColorStyle(TrilogyColor.WHITE),
+      width: "100%",
+      position: "absolute",
       left: 0,
       right: 0,
       bottom: stickyOffSetBottom ? stickyOffSetBottom : 0,

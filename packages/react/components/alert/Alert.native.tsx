@@ -1,14 +1,19 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { Columns, ColumnsItem } from '../columns'
-import { View } from '../view'
-import { Text, TextLevels } from '../text'
-import { getAlertIconName, getAlertStyle } from '../../objects/facets/Alert'
-import { getBackgroundOfVariant, getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { AlertProps } from './AlertProps'
-import { Icon } from '../icon'
-import { TypographyBold } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, TouchableOpacity } from "react-native"
+import { Columns, ColumnsItem } from "../columns"
+import { Spacer, SpacerSize } from "../spacer"
+import { View } from "../view"
+import { Text, TextLevels } from "../text"
+import { getAlertIconName, getAlertStyle } from "../../objects/facets/Alert"
+import {
+  getBackgroundOfVariant,
+  getColorStyle,
+  TrilogyColor,
+} from "../../objects/facets/Color"
+import { AlertProps } from "./AlertProps"
+import { Icon } from "../icon"
+import { TypographyBold } from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Alert Component
@@ -20,34 +25,46 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onClick {Function} onClick Event for all alert
  */
 
-const Alert = ({ alert, iconName, title, description, onClick, display, ...others }: AlertProps): JSX.Element => {
+const Alert = ({
+  alert,
+  iconName,
+  title,
+  description,
+  onClick,
+  display,
+  ...others
+}: AlertProps): JSX.Element => {
   const backgroundColor = getBackgroundOfVariant(alert)
-  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.TERTIARY)
+  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   let alertView: JSX.Element
 
   const styles = StyleSheet.create({
     container: {
-      width: '100%',
+      width: "100%",
       paddingTop: 10,
       borderColor: alert !== undefined ? fontColor : backgroundColor,
       paddingBottom: 10,
       borderWidth: 1,
       backgroundColor: backgroundColor,
       borderRadius: 6,
-      alignItems: 'baseline',
+      alignItems: "baseline",
       paddingLeft: 12,
       paddingRight: 12,
     },
     icon: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: alert !== undefined ? fontColor : getColorStyle(TrilogyColor.TERTIARY),
+      justifyContent: "center",
+      alignItems: "center",
+      color: alert !== undefined ? fontColor : getColorStyle(TrilogyColor.MAIN),
     },
     description: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       paddingBottom: 5,
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
+      paddingLeft: 8,
+    },
+    containerTitle: {
+      paddingLeft: 8,
     },
   })
 
@@ -57,13 +74,21 @@ const Alert = ({ alert, iconName, title, description, onClick, display, ...other
     <View style={[styles.container, (others as any).style]}>
       <Columns>
         <ColumnsItem size={1}>
-          <Icon style={styles.icon} name={iconName ? iconName : getAlertIconName(alert)} />
+          <Icon
+            style={styles.icon}
+            name={iconName ? iconName : getAlertIconName(alert)}
+          />
         </ColumnsItem>
 
         <ColumnsItem size={11}>
-          <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+          <Text
+            style={styles.containerTitle}
+            level={TextLevels.ONE}
+            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+          >
             {title}
           </Text>
+          <Spacer size={SpacerSize.SMALLER} />
         </ColumnsItem>
       </Columns>
 
@@ -71,7 +96,7 @@ const Alert = ({ alert, iconName, title, description, onClick, display, ...other
         <Columns>
           <ColumnsItem size={1} />
           <ColumnsItem size={11}>
-            {typeof description.valueOf() === 'string' ? (
+            {typeof description.valueOf() === "string" ? (
               <Text level={TextLevels.TWO} style={styles.description}>
                 {description}
               </Text>

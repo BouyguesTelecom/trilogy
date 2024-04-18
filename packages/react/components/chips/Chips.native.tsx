@@ -29,8 +29,8 @@ const Chips = ({ children, onClick, disabled, active, inverted, ...others }: Chi
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && '#E1E1E1') ||
-        (activeItem && getColorStyle(TrilogyColor.SECONDARY)) ||
+        (disabled && getColorStyle(TrilogyColor.BG_DISABLED)) ||
+        (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
       borderRadius: 30,
@@ -49,7 +49,7 @@ const Chips = ({ children, onClick, disabled, active, inverted, ...others }: Chi
       color:
         (disabled && getColorStyle(TrilogyColor.GREY_DARK)) ||
         (active && getColorStyle(TrilogyColor.WHITE)) ||
-        getColorStyle(TrilogyColor.TERTIARY),
+        getColorStyle(TrilogyColor.MAIN),
     },
     icon: {
       top: 3,
@@ -70,8 +70,8 @@ const Chips = ({ children, onClick, disabled, active, inverted, ...others }: Chi
     >
       {chipsContext.isMultiple && active && (
         <>
-          <Icon style={styles.icon} size={IconSize.SMALL} color={IconColor.WHITE} name={IconName.CHECK} />
-          <Spacer horizontal size={SpacerSize.SMALL} />
+          <Icon style={styles.icon} size={IconSize.SMALL} color={IconColor.WHITE} name={IconName.CHECK}/>
+          <Spacer horizontal size={SpacerSize.SMALL}/>
         </>
       )}
       <Text level={TextLevels.ONE} style={styles.text}>

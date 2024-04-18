@@ -1,11 +1,11 @@
-import React from 'react'
-import clsx from 'clsx'
-import { CardContentProps } from './CardContentProps'
-import { Title, TitleLevels } from '../../title'
-import { Text } from '../../text'
-import { Button, ButtonMarkup } from '../../button'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { CardContentProps } from "./CardContentProps"
+import { Title, TitleLevels } from "../../title"
+import { Text } from "../../text"
+import { Button, ButtonMarkup } from "../../button"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * Card Content Component
@@ -15,7 +15,7 @@ import { useTrilogyContext } from '../../../context'
  * @param title {string} Add a title
  * @param titleLevel {TitleLevels} Title level
  * @param buttonText {string} if textButton, it will add a Button with content text
- * @param buttonVariant {ButtonColor} Add variant for Button - Default is primary
+ * @param buttonVariant {ButtonVariant} Add variant for Button - Default is primary
  * @param buttonClick {Function} Click event for Button
  * @param text {string} Content text of Card
  * @param textLevel {TextLevels} Text level
@@ -45,7 +45,11 @@ const CardContent = ({
 
   if (children) {
     return (
-      <div data-testid={testId} className={hashClass(styled, clsx('card-content', className))} {...others}>
+      <div
+        data-testid={testId}
+        className={hashClass(styled, clsx("card-content", className))}
+        {...others}
+      >
         {children}
       </div>
     )
@@ -59,16 +63,19 @@ const CardContent = ({
         onClick?.(e)
         e.stopPropagation()
       }}
-      className={hashClass(styled, clsx('card-content', className))}
+      className={hashClass(styled, clsx("card-content", className))}
       {...others}
     >
       {titleSup && (
-        <Text level={titleSupLevel} className={'suptitle'}>
+        <Text level={titleSupLevel} className={"suptitle"}>
           {titleSup}
         </Text>
       )}
       {title && (
-        <Title testId={testId ? `${testId}-title` : undefined} level={titleLevel ? titleLevel : TitleLevels.THREE}>
+        <Title
+          testId={testId ? `${testId}-title` : undefined}
+          level={titleLevel ? titleLevel : TitleLevels.THREE}
+        >
           {title}
         </Title>
       )}
@@ -77,7 +84,7 @@ const CardContent = ({
         <Button
           testId={testId ? `${testId}-btn` : undefined}
           onClick={buttonClick}
-          variant={buttonVariant ? buttonVariant : 'PRIMARY'}
+          variant={buttonVariant ? buttonVariant : "PRIMARY"}
           markup={buttonMarkup ? buttonMarkup : ButtonMarkup.BUTTON}
         >
           {buttonText}

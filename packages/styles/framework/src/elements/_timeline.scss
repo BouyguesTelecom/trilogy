@@ -53,9 +53,9 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       height: auto;
     }
 
-    &.active{
+    &.active {
       .timeline-marker.is-icon {
-        background-color: getColor('alternate');
+        background-color: getColor('main');
 
         .icon {
           color: getColor('background') !important;
@@ -70,7 +70,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       &::before {
         content: '';
-        background-color: getColor('alternate');
+        background-color: getColor('main');
         display: block;
         width: $timeline-line-width;
         position: absolute;

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from "react";
 import {
   Section,
   Title,
@@ -13,7 +13,7 @@ import {
   Button,
   Icon,
   IconName,
-} from '@trilogy-ds/react/components'
+} from "@trilogy-ds/react/components";
 
 export const PopoverScreen = (): JSX.Element => {
   return (
@@ -22,13 +22,13 @@ export const PopoverScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Popover</Title>
         <Columns>
           <ColumnsItem>
-            <Popover content='Voici une simple popover'>
-              <Button variant={'PRIMARY'}>Simple</Button>
+            <Popover content="Voici une simple popover">
+              <Button variant={"PRIMARY"}>Simple</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
             <Popover>
-              <Button variant={'PRIMARY'}>Without content</Button>
+              <Button variant={"PRIMARY"}>Without content</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
@@ -40,12 +40,12 @@ export const PopoverScreen = (): JSX.Element => {
                 </>
               }
             >
-              <Button variant={'PRIMARY'}>Node content</Button>
+              <Button variant={"PRIMARY"}>Node content</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover active content='Popover active'>
-              <Button variant={'PRIMARY'}>Active</Button>
+            <Popover active content="Popover active">
+              <Button variant={"PRIMARY"}>Active</Button>
             </Popover>
           </ColumnsItem>
         </Columns>
@@ -54,27 +54,27 @@ export const PopoverScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Popover direction</Title>
         <Columns>
           <ColumnsItem>
-            <Popover content='En haut'>
-              <Button variant={'PRIMARY'}>Top</Button>
+            <Popover content="En haut">
+              <Button variant={"PRIMARY"}>Top</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover direction={PopoverDirection.BOTTOM} content='En bas'>
-              <Button variant={'PRIMARY'}>Bottom</Button>
+            <Popover direction={PopoverDirection.BOTTOM} content="En bas">
+              <Button variant={"PRIMARY"}>Bottom</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover direction={PopoverDirection.RIGHT} content='A droite'>
-              <Button variant={'PRIMARY'}>Right</Button>
+            <Popover direction={PopoverDirection.RIGHT} content="A droite">
+              <Button variant={"PRIMARY"}>Right</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover direction={PopoverDirection.LEFT} content='A gauche'>
-              <Button variant={'PRIMARY'}>Left</Button>
+            <Popover direction={PopoverDirection.LEFT} content="A gauche">
+              <Button variant={"PRIMARY"}>Left</Button>
             </Popover>
           </ColumnsItem>
         </Columns>
       </Section>
     </Section>
-  )
-}
+  );
+};

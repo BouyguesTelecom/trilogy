@@ -49,7 +49,7 @@ const Textarea = (
     label,
     iconName,
     statusIconName,
-    customHeight = 100,
+    customHeight = 120,
     value,
     ...others
   }: TextareaNativeProps,
@@ -62,7 +62,7 @@ const Textarea = (
   const [height, setHeight] = useState<number>(customHeight)
 
   const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
-  const textareaColor = isFocus ? getColorStyle(TrilogyColor.SECONDARY) : getColorStyle(TrilogyColor.GREY)
+  const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -92,8 +92,8 @@ const Textarea = (
       paddingRight: maxLength ? 48 : 16,
       paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
       textAlignVertical: 'top',
-      color: getColorStyle(TrilogyColor.TERTIARY),
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED): getColorStyle(TrilogyColor.WHITE),
+      color: getColorStyle(TrilogyColor.MAIN),
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : getColorStyle(TrilogyColor.WHITE),
       /*  width: '',*/
     },
     help: {
@@ -109,7 +109,7 @@ const Textarea = (
     },
     counter: {
       fontSize: 10,
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       position: 'absolute',
       bottom: help ? 24 : 8,
       right: 8,
@@ -142,7 +142,7 @@ const Textarea = (
     <View>
       {!dynamicPlaceholder && <Text>{label}</Text>}
 
-      {iconName && <Icon style={styles.leftIcon} name={iconName} size='small' />}
+      {iconName && <Icon style={styles.leftIcon} name={iconName} size='small'/>}
 
       <TextInput
         maxLength={maxLength}
@@ -176,7 +176,7 @@ const Textarea = (
 
       {statusIconName && (
         <Text style={styles.rightIcon}>
-          <Icon name={statusIconName} size='small' color={status && (status.toUpperCase() as IconColor)} />
+          <Icon name={statusIconName} size='small' color={status && (status.toUpperCase() as IconColor)}/>
         </Text>
       )}
 

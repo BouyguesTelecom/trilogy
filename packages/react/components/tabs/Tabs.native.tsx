@@ -41,7 +41,7 @@ const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }:
     tabs: {
       height: isIcons ? 64 : 48,
       flexDirection: 'row',
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.TERTIARY) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
       overflow: 'visible',
     },
   })

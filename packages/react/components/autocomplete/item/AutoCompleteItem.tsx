@@ -1,10 +1,10 @@
-import React from 'react'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
-import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { is } from '../../../services'
-import { Item } from '../AutoCompleteProps'
+import * as React from "react"
+import { AutoCompleteItemProps } from "./AutoCompleteItemProps"
+import clsx from "clsx"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { is } from "../../../services"
+import { Item } from "../AutoCompleteProps"
 
 /**
  * AutoCompleteItem Component
@@ -31,8 +31,15 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
       role='listitem'
       data-testid={testId}
       key={key}
-      className={hashClass(styled, clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
-      onClick={() => (suggestionSelected ? suggestionSelected(item) : '')}
+      className={hashClass(
+        styled,
+        clsx(
+          "autocomplete-item",
+          active && is("active"),
+          isActive && is("active")
+        )
+      )}
+      onClick={() => (suggestionSelected ? suggestionSelected(item) : "")}
     >
       {children}
     </div>

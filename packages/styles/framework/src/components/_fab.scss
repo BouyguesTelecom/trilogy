@@ -1,6 +1,5 @@
 .fab {
-  background-color: getColor('alternate');
-  border: 1px getColor('alternate');
+  background-color: getColor('font');
   border-radius: 16px;
   cursor: pointer;
   height: 56px;
@@ -20,9 +19,8 @@
 
   z-index: 9;
 
-  &:hover, &.is-extended {
-    background-color: getVariantColor('alternate',1);
-    border-color:getVariantColor('alternate',2);
+  &:hover, &.is-extended, &:focus, &:focus-visible, &:focus-within {
+    background-color: getColor('hovered');
     transition: 0.5s;
     font-size: initial;
 
@@ -34,15 +32,8 @@
     }
   }
 
-  &:focus, &:focus-visible, &:focus-within {
-    background-color:getVariantColor('alternate', 4);
-    border-color: getVariantColor('alternate', 4);
-    outline: 1px auto getVariantColor('alternate', 4);
-  }
-
   &:active {
-    background-color: getVariantColor('alternate', 5);
-    border-color: getVariantColor('alternate', 5);
+    background-color: getColor('hovered');
   }
 
   .disabled {

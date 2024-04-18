@@ -26,7 +26,7 @@ export enum ComponentName {
   BreadcrumbItem = 'BreadcrumbItem',
   Button = 'Button',
   ButtonList = 'ButtonList',
-  ButtonColor = 'ButtonColor',
+  ButtonVariant = 'ButtonVariant',
   ButtonMarkup = 'ButtonMarkup',
   ButtonType = 'ButtonType',
   Card = 'Card',

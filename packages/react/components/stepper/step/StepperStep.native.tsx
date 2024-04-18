@@ -1,9 +1,9 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { StepperStepProps } from './StepperStepProps'
-import { View } from '../../view'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet } from "react-native"
+import { StepperStepProps } from "./StepperStepProps"
+import { View } from "../../view"
+import { getColorStyle, TrilogyColor } from "../../../objects"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Stepper Step Component
@@ -15,7 +15,13 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param step {number|string} Step text circle
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StepperStep = ({ active, current, done, error, ...others }: StepperStepProps): JSX.Element => {
+const StepperStep = ({
+  active,
+  current,
+  done,
+  error,
+  ...others
+}: StepperStepProps): JSX.Element => {
   const styles = StyleSheet.create({
     step: {
       flex: 1,
@@ -26,10 +32,10 @@ const StepperStep = ({ active, current, done, error, ...others }: StepperStepPro
       borderRadius: 4,
       backgroundColor:
         (error && getColorStyle(TrilogyColor.ERROR)) ||
-        (active && getColorStyle(TrilogyColor.SECONDARY)) ||
-        (current && getColorStyle(TrilogyColor.SECONDARY)) ||
-        (done && getColorStyle(TrilogyColor.TERTIARY)) ||
-        '#eee',
+        (active && getColorStyle(TrilogyColor.MAIN)) ||
+        (current && getColorStyle(TrilogyColor.MAIN)) ||
+        (done && getColorStyle(TrilogyColor.MAIN)) ||
+        getColorStyle(TrilogyColor.GREY_LIGHT),
       zIndex: 1,
     },
   })

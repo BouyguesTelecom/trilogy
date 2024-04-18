@@ -14,24 +14,24 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import React from 'react'
-import * as Screens from './screens'
-import { TypographyAlign } from '@trilogy-ds/react/objects'
+} from "@trilogy-ds/react/components";
+import * as React from "react";
+import * as Screens from "./screens";
+import { TypographyAlign } from "@trilogy-ds/react/objects";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {
-  const [list, setList] = React.useState(Object.keys(Screens))
+  const [list, setList] = React.useState(Object.keys(Screens));
 
   const handleSearch = React.useCallback((e: string) => {
-    const l = { ...Object.keys(Screens) }
+    const l = { ...Object.keys(Screens) };
     Object.keys(l).forEach((composant: any) => {
       if (!l[composant].toLocaleLowerCase().includes(e.toLocaleLowerCase())) {
-        delete l[composant]
+        delete l[composant];
       }
-    })
-    setList(l)
-  }, [])
+    });
+    setList(l);
+  }, []);
 
   return (
     <ScrollView>
@@ -43,20 +43,26 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
           <Text level={TextLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
             This home screen is only for navigation
           </Text>
-          <Input placeholder='Rechercher un composant' onChange={(e) => handleSearch(e.inputValue)} />
+          <Input
+            placeholder="Rechercher un composant"
+            onChange={(e) => handleSearch(e.inputValue)}
+          />
           <Divider />
-          <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
+          <Title
+            level={TitleLevels.THREE}
+            typo={[TypographyAlign.TEXT_CENTERED]}
+          >
             Screens
           </Title>
           {Object.keys(list).map((name: any, index) => {
-            const [pathName] = list[name].split('Screen')
+            const [pathName] = list[name].split("Screen");
             return (
               <Box
                 key={index}
                 onClick={() => {
-                  console.log(navigation)
+                  console.log(navigation);
                   if (navigation) {
-                    navigation.navigate(pathName)
+                    navigation.navigate(pathName);
                   }
                 }}
               >
@@ -71,10 +77,10 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                   </Columns>
                 </BoxContent>
               </Box>
-            )
+            );
           })}
         </AutoLayout>
       </Container>
     </ScrollView>
-  )
-}
+  );
+};

@@ -20,249 +20,250 @@ $overlap: 30px;
 $overlap-desktop: 30px;
 
 .hero {
-    align-items: stretch;
-    background-color: getColor('background');
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  align-items: stretch;
+  background-color: getColor('background');
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  .hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
 
-    .hero-body {
-        flex-grow: 1;
-        flex-shrink: 0;
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 20px;
-
-        @include desktop {
-            padding: 30px 20px;
-        }
-
-        .hero-back {
-            position: relative;
-            flex-basis: 100%;
-            opacity: .7;
-            margin-bottom: 20px;
-            min-width: 100%;
-            padding-left: 26px;
-            transition: opacity 300ms linear;
-
-            &::before {
-                @include arrow(inherit);
-
-                transform: rotate(90deg);
-                top: 0;
-                bottom: 0;
-                left: 5px;
-                width: 11px;
-                height: 6px;
-                font-size: 12px;
-                margin: auto;
-            }
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
-        > .container {
-            flex: 1;
-            flex-basis: 100%;
-        }
-
-        .title {
-            font-size: 24px;
-
-            @include desktop {
-                font-size: 36px;
-            }
-        }
+    @include desktop {
+      padding: 30px 20px;
     }
 
-    &.has-pattern-dark,
-    &.is-instit {
-        @include pattern-dark(105%, 50%, 35%);
+    .hero-back {
+      position: relative;
+      flex-basis: 100%;
+      opacity: .7;
+      margin-bottom: 20px;
+      min-width: 100%;
+      padding-left: 26px;
+      transition: opacity 300ms linear;
 
-        p,
-        strong,
-        .paragraph,
-        .suptitle,
-        .title,
-        .subtitle,
-        a:not(.button):not(.tag) {
-            color: getColor('background');
-        }
+      &::before {
+        @include arrow(inherit);
 
-        .subtitle {
-            strong,
-            a:not(.button) {
-                color: getColor('background');
-            }
-        }
+        transform: rotate(90deg);
+        top: 0;
+        bottom: 0;
+        left: 5px;
+        width: 11px;
+        height: 6px;
+        font-size: 12px;
+        margin: auto;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
-    &.is-overlapped {
-        .hero-body {
-            padding-bottom: 50px;
-        }
-
-        + .section {
-            @include mobile {
-                margin-left: -$hero-padding-y;
-                margin-right: -$hero-padding-y;
-
-                .box {
-                    box-shadow: none;
-                    border-radius: 24px 24px 0 0;
-
-                    .box-content:only-child {
-                        border-radius: 24px 24px 0 0;
-                    }
-                }
-            }
-
-            > .container {
-                margin-top: -$hero-padding-y - $overlap;
-
-                @include desktop {
-                    margin-top: -$hero-padding-desktop-y - $overlap-desktop;
-                }
-            }
-
-            &.is-small {
-                > .container {
-                    margin-top: -$hero-padding-small-y - $overlap;
-
-                    @include desktop {
-                        margin-top: -$hero-padding-desktop-small-y  - $overlap-desktop;
-                    }
-                }
-            }
-
-            &.is-medium {
-                > .container {
-                    margin-top: -$hero-padding-medium-y - $overlap;
-
-                    @include desktop {
-                        margin-top: -$hero-padding-desktop-medium-y  - $overlap-desktop;
-                    }
-                }
-            }
-
-            &.is-large {
-                > .container {
-                    margin-top: -$hero-padding-large-y - $overlap;
-
-                    @include desktop {
-                        margin-top: -$hero-padding-desktop-large-y - $overlap-desktop;
-                    }
-                }
-            }
-        }
+    > .container {
+      flex: 1;
+      flex-basis: 100%;
     }
 
-    &.has-background {
-        background-repeat: no-repeat;
-        background-size: cover;
+    .title {
+      font-size: 24px;
+
+      @include desktop {
+        font-size: 36px;
+      }
     }
+  }
 
-    &.has-pattern-dark,
-    &.has-background {
-        .hero-body {
-            text-align: center;
-            padding: 100px 20px;
+  &.has-pattern-dark,
+  &.is-instit {
+    @include pattern-dark(105%, 50%, 35%);
 
-            @include desktop {
-                text-align: left;
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
-
-            .suptitle {
-                display: none;
-
-                @include desktop {
-                    display: block;
-                    margin-bottom: 30px;
-                    font-size: 19px;
-                    text-transform: uppercase;
-                }
-            }
-
-            .title {
-                font-size: 32px;
-                margin-bottom: 25px;
-
-                @include desktop {
-                    font-size: 52px;
-                }
-            }
-
-            .button {
-                width: auto;
-            }
-        }
-
-        &.is-overlapped {
-            .hero-body {
-                padding: 30px 20px 60px;
-
-                @include desktop {
-                    padding: 60px 20px;
-                }
-            }
-        }
-    }
-
-    &.is-centered {
-        text-align: center;
-    }
-
-    &.is-primary {
-        color: getColor('background');
-
-        p,
-        strong,
-        .paragraph,
-        .suptitle,
-        .title,
-        .subtitle,
-        a:not(.button):not(.tag) {
-            color: getColor('background');
-        }
-
-        .subtitle {
-            strong,
-            a:not(.button) {
-                color: getColor('background');
-            }
-        }
-    }
-
-    &.is-info {
-        background: getVariantColor('alternate',2);
-
-        p,
-        strong,
-        .paragraph,
-        .suptitle,
-        .title,
-        .subtitle,
-        a:not(.button):not(.tag) {
-            color: getColor('background');
-        }
-
-        .subtitle {
-            strong,
-            a:not(.button) {
-                color: getColor('background');
-            }
-        }
+    p,
+    strong,
+    .paragraph,
+    .suptitle,
+    .title,
+    .subtitle,
+    a:not(.button):not(.tag) {
+      color: getColor('background');
     }
 
     .subtitle {
-        padding-left: 0.2em;
+      strong,
+      a:not(.button) {
+        color: getColor('background');
+      }
     }
+  }
+
+  &.is-overlapped {
+    .hero-body {
+      padding-bottom: 50px;
+    }
+
+    + .section {
+      @include mobile {
+        margin-left: -$hero-padding-y;
+        margin-right: -$hero-padding-y;
+
+        .box {
+          box-shadow: none;
+          border-radius: 24px 24px 0 0;
+
+          .box-content:only-child {
+            border-radius: 24px 24px 0 0;
+          }
+        }
+      }
+
+      > .container {
+        margin-top: -$hero-padding-y - $overlap;
+
+        @include desktop {
+          margin-top: -$hero-padding-desktop-y - $overlap-desktop;
+        }
+      }
+
+      &.is-small {
+        > .container {
+          margin-top: -$hero-padding-small-y - $overlap;
+
+          @include desktop {
+            margin-top: -$hero-padding-desktop-small-y  - $overlap-desktop;
+          }
+        }
+      }
+
+      &.is-medium {
+        > .container {
+          margin-top: -$hero-padding-medium-y - $overlap;
+
+          @include desktop {
+            margin-top: -$hero-padding-desktop-medium-y  - $overlap-desktop;
+          }
+        }
+      }
+
+      &.is-large {
+        > .container {
+          margin-top: -$hero-padding-large-y - $overlap;
+
+          @include desktop {
+            margin-top: -$hero-padding-desktop-large-y - $overlap-desktop;
+          }
+        }
+      }
+    }
+  }
+
+  &.has-background {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &.has-pattern-dark,
+  &.has-background {
+    .hero-body {
+      text-align: center;
+      padding: 100px 20px;
+
+      @include desktop {
+        text-align: left;
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+
+      .suptitle {
+        display: none;
+
+        @include desktop {
+          display: block;
+          margin-bottom: 30px;
+          font-size: 19px;
+          text-transform: uppercase;
+        }
+      }
+
+      .title {
+        font-size: 32px;
+        margin-bottom: 25px;
+
+        @include desktop {
+          font-size: 52px;
+        }
+      }
+
+      .button {
+        width: auto;
+      }
+    }
+
+    &.is-overlapped {
+      .hero-body {
+        padding: 30px 20px 60px;
+
+        @include desktop {
+          padding: 60px 20px;
+        }
+      }
+    }
+  }
+
+  &.is-centered {
+    text-align: center;
+  }
+
+  &.is-main {
+    color: getColor('background');
+
+    p,
+    strong,
+    .paragraph,
+    .suptitle,
+    .title,
+    .subtitle,
+    a:not(.button):not(.tag) {
+      color: getColor('background');
+    }
+
+    .subtitle {
+      strong,
+      a:not(.button) {
+        color: getColor('background');
+      }
+    }
+  }
+
+
+  &.is-info {
+    background: getColor('info');
+
+    p,
+    strong,
+    .paragraph,
+    .suptitle,
+    .title,
+    .subtitle,
+    a:not(.button):not(.tag) {
+      color: getColor('background');
+    }
+
+    .subtitle {
+      strong,
+      a:not(.button) {
+        color: getColor('background');
+      }
+    }
+  }
+
+  .subtitle {
+    padding-left: 0.2em;
+  }
 }

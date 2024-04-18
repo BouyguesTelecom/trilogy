@@ -1,12 +1,12 @@
-import React from 'react'
-import { ProgressProps } from './ProgressProps'
-import { is, has } from '../../services/index'
-import { Text, TextLevels } from '../text'
-import { Columns, ColumnsItem } from '../columns'
-import { getAlertClassName } from '../../objects'
-import { hashClass } from '../../helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import * as React from "react"
+import { ProgressProps } from "./ProgressProps"
+import { is, has } from "../../services/index"
+import { Text, TextLevels } from "../text"
+import { Columns, ColumnsItem } from "../columns"
+import { getAlertClassName } from "../../objects"
+import { hashClass } from "../../helpers"
+import clsx from "clsx"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Progress component
@@ -40,19 +40,22 @@ const Progress = ({
   const classes = hashClass(
     styled,
     clsx(
-      'progress',
+      "progress",
       alert && is(getAlertClassName(alert)),
-      !alert && is('primary'),
-      small && is('small'),
-      className,
-    ),
+      !alert && is("primary"),
+      small && is("small"),
+      className
+    )
   )
 
-  const stackedClasses = hashClass(styled, clsx('progress', stacked && is('stacked'), className))
+  const stackedClasses = hashClass(
+    styled,
+    clsx("progress", stacked && is("stacked"), className)
+  )
 
   if (children && stacked) {
     return (
-      <div className={stackedClasses} {...others} >
+      <div className={stackedClasses} {...others}>
         {children}
       </div>
     )
@@ -60,11 +63,16 @@ const Progress = ({
 
   return (
     <>
-      <progress className={classes} value={percent} max={maxPercent} {...others}>
+      <progress
+        className={classes}
+        value={percent}
+        max={maxPercent}
+        {...others}
+      >
         {percent}
       </progress>
       {uniqueLegend && (
-        <Text className={has('text-centered')} level={TextLevels.TWO}>
+        <Text className={has("text-centered")} level={TextLevels.TWO}>
           {uniqueLegend}
         </Text>
       )}

@@ -18,19 +18,20 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param Onclick {string} Provide event onCLick
  */
 const TimelineContent = ({
-  content,
-  contentLink,
-  heading,
-  link,
-  onClick,
-  children,
-}: TimelineContentProps): JSX.Element => {
+                           content,
+                           contentLink,
+                           heading,
+                           link,
+                           onClick,
+                           children,
+                         }: TimelineContentProps): JSX.Element => {
   const timelineContextValues = useContext(TimelineItemContext)
 
   const styles = StyleSheet.create({
     container: {
       flex: 6,
       marginBottom: 8,
+      marginLeft: 4
     },
     heading: {
       marginBottom: 4,
@@ -40,7 +41,7 @@ const TimelineContent = ({
       marginBottom: 4,
     },
     link: {
-      marginLeft: -8,
+      marginTop: 6,
     },
   })
 

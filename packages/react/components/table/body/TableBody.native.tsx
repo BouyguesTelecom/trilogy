@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TableBodyProps } from './TableBodyProps'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { TableBodyProps } from "./TableBodyProps"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * TableBody Component
@@ -10,15 +10,19 @@ import { ComponentName } from '../../enumsComponentsName'
 const TableBody = ({ children, ...others }: TableBodyProps): JSX.Element => {
   const styles = StyleSheet.create({
     body: {
-      display: 'flex',
-      flexDirection: 'column',
+      display: "flex",
+      flexDirection: "column",
       flex: 1,
     },
   })
 
   return (
     <View style={styles.body} {...others}>
-      {children && typeof children.valueOf() === 'string' ? <Text>{String(children)}</Text> : children}
+      {children && typeof children.valueOf() === "string" ? (
+        <Text>{String(children)}</Text>
+      ) : (
+        children
+      )}
     </View>
   )
 }

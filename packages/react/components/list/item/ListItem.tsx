@@ -1,11 +1,11 @@
-import React from 'react'
-import clsx from 'clsx'
-import { ListItemProps } from './ListItemProps'
-import { Icon, IconSize } from '../../icon'
-import { is } from '../../../services'
-import { getColorClassName } from '../../../objects'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import * as React from "react"
+import clsx from "clsx"
+import { ListItemProps } from "./ListItemProps"
+import { Icon, IconSize } from "../../icon"
+import { is } from "../../../services"
+import { getColorClassName } from "../../../objects"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
 
 /**
  * ListItem Component

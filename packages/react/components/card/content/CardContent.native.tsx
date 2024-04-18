@@ -13,7 +13,7 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param titleSup {string} Add a sup title
  * @param title {string} Add a title
  * @param buttonText {string} if textButton, it will add a Button with content text
- * @param buttonVariant {ButtonColor} Add variant for Button - Default is primary
+ * @param buttonVariant {ButtonVariant} Add variant for Button - Default is primary
  * @param buttonClick {Function} Click event for Button
  * @param text {string} Content text of Card
  * @param onClick {Function} onClick Event for all content
@@ -21,24 +21,24 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param others
  */
 const CardContent = ({
-  children,
-  titleSup,
-  title,
-  text,
-  buttonText,
-  buttonClick,
-  buttonVariant,
-  onClick,
-  ...others
-}: CardContentProps): JSX.Element => {
+                       children,
+                       titleSup,
+                       title,
+                       text,
+                       buttonText,
+                       buttonClick,
+                       buttonVariant,
+                       onClick,
+                       ...others
+                     }: CardContentProps): JSX.Element => {
   const cardContextValues = useContext(CardContext)
 
   const styles = StyleSheet.create({
     card: {
-      paddingTop: cardContextValues.floating ? 0 : 16,
-      paddingLeft: cardContextValues.floating ? 0 : 16,
-      paddingRight: cardContextValues.floating ? 0 : 16,
-      paddingBottom: cardContextValues.floating ? 0 : 16,
+      paddingTop: 16,
+      paddingLeft: 16,
+      paddingRight: 16,
+      paddingBottom: 16,
       minHeight: 10,
       backgroundColor:
         cardContextValues.backgroundColor === 'transparent' ? 'rgba(0, 0, 0, 0)' : getColorStyle(TrilogyColor.WHITE),
@@ -50,11 +50,11 @@ const CardContent = ({
       width: '100%',
     },
     text: {
-      color: getColorStyle(TrilogyColor.TERTIARY),
+      color: getColorStyle(TrilogyColor.MAIN),
       fontSize: 12,
     },
     padding: {
-      marginBottom: cardContextValues.floating ? 0 : 16,
+      marginBottom: 16,
     },
   })
 
@@ -81,13 +81,13 @@ const CardContent = ({
       {title && <Title level={TitleLevels.ONE}>{title}</Title>}
       {text && (
         <>
-          <View style={{ marginBottom: 16 }} />
+          <View style={{ marginBottom: 16 }}/>
           <Text style={styles.text}>{text}</Text>
         </>
       )}
       {buttonText && (
         <>
-          <View style={{ marginBottom: 16 }} />
+          <View style={{ marginBottom: 16 }}/>
           <Button variant={buttonVariant} onClick={buttonClick}>
             {buttonText}
           </Button>

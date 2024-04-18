@@ -5,6 +5,7 @@ $space-between-tiles: 5px;
 $padding-box: $spacing-5;
 $padding-box-mobile: $spacing-4;
 
+/* @toto : add to figma */
 a.box {
   cursor: pointer;
   transition: box-shadow $animation-duration;
@@ -59,7 +60,7 @@ a.box {
 
 
   &.is-active {
-    border: 2px solid getColor('alternate');
+    border: 2px solid getColor('main');
 
     > .box-header {
       border-radius: ($radius - 2px) ($radius - 2px) 0 0;

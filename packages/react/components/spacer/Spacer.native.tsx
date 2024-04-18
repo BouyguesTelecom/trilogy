@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { SpacerProps } from './SpacerProps'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, View } from "react-native"
+import { SpacerProps } from "./SpacerProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Spacer Component

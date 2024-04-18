@@ -1,13 +1,13 @@
-import React from 'react'
-import { MenuItemWebProps } from './MenuItemProps'
-import { is } from '../../../services'
-import { Link } from '../../link'
-import { Icon } from '../../icon'
-import { Badge } from '../../badge'
-import clsx from 'clsx'
+import * as React from "react"
+import { MenuItemWebProps } from "./MenuItemProps"
+import { is } from "../../../services"
+import { Link } from "../../link"
+import { Icon } from "../../icon"
+import { Badge } from "../../badge"
+import clsx from "clsx"
 
 // accessibility
-const a11y = { role: 'menuitem' }
+const a11y = { role: "menuitem" }
 
 /**
  * Menu Item Component - Menu Item component
@@ -33,7 +33,12 @@ const MenuItem = ({
   testId,
   ...others
 }: MenuItemWebProps): JSX.Element => {
-  const classes = clsx('menu-item', active && is('active'), arrow && 'with-arrow', className)
+  const classes = clsx(
+    "menu-item",
+    active && is("active"),
+    arrow && "with-arrow",
+    className
+  )
   if (!children) {
     return <div />
   }
@@ -49,8 +54,14 @@ const MenuItem = ({
         )
 
         return (
-          (child && typeof child.valueOf() === 'string' && (
-            <Link key={i} className={classes} {...others} to={to} removeLinkClass>
+          (child && typeof child.valueOf() === "string" && (
+            <Link
+              key={i}
+              className={classes}
+              {...others}
+              to={to}
+              removeLinkClass
+            >
               {item}
             </Link>
           )) || <React.Fragment key={i}>{item}</React.Fragment>

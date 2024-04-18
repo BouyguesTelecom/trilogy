@@ -1,18 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemProps } from './AccordionItemProps'
-import { getColorStyle, mixColors, TrilogyColor } from '../../../objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
 import { hasDisplayName } from './AccordionItem.helper'
 import { IconName } from '../../icon/IconNameEnum'
+import { Spacer, SpacerSize } from '../../spacer'
+import { Icon, IconSize } from '../../icon'
+import { ComponentName } from '../../enumsComponentsName'
 
 interface AccordionChild {
   header?: React.ReactNode
   body?: React.ReactNode
 }
-import { Spacer, SpacerSize } from '../../spacer'
-import { Icon, IconSize } from '../../icon'
-import { ComponentName } from '../../enumsComponentsName'
-import { AccordionContext } from '../Accordion.native'
 
 /**
  * Accordion Item Component
@@ -25,36 +24,32 @@ import { AccordionContext } from '../Accordion.native'
  * @param children
  */
 const AccordionItem = ({
-  active,
-  id,
-  onClick,
-  disabled,
-  onOpen,
-  onClose,
-  children,
-  ...others
-}: AccordionItemProps): JSX.Element => {
+                         active,
+                         id,
+                         onClick,
+                         disabled,
+                         onOpen,
+                         onClose,
+                         children,
+                         ...others
+                       }: AccordionItemProps): JSX.Element => {
   const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
   const [childs, setChilds] = useState<AccordionChild>({ header: undefined, body: undefined })
-  const accordionContextValues = useContext(AccordionContext)
-  const itemColor = accordionContextValues.inverted
-    ? getColorStyle(TrilogyColor.WHITE)
-    : mixColors(TrilogyColor.GREY, -96)
 
   const styles = StyleSheet.create({
     item: {
       width: '100%',
       padding: 5,
       borderRadius: 6,
-      backgroundColor: itemColor,
+      backgroundColor: getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
-      borderColor: mixColors(TrilogyColor.GREY, -80),
+      borderColor: isActive ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     bodyBackground: {
       borderRadius: 6,
-      backgroundColor: itemColor,
+      backgroundColor: getColorStyle(TrilogyColor.WHITE),
       overflow: 'hidden',
     },
     titleContainer: {
@@ -67,7 +62,7 @@ const AccordionItem = ({
       paddingRight: 5,
       paddingTop: 5,
       paddingBottom: 5,
-      borderColor: itemColor,
+      borderColor: getColorStyle(TrilogyColor.WHITE),
     },
     bodyContainer: {
       padding: 10,
@@ -166,7 +161,7 @@ const AccordionItem = ({
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
-                color={isActive ? TrilogyColor.SECONDARY : TrilogyColor.GREY_DARK}
+                color={isActive ? TrilogyColor.MAIN : TrilogyColor.GREY_DARK}
               />
             </Animated.View>
           </View>
@@ -183,7 +178,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.SMALL}/>
     </>
   )
 }

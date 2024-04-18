@@ -9,11 +9,6 @@ import { TextLevels } from '../text'
 export interface LinkProps extends Accessibility, Clickable {
   children?: React.ReactNode
   to?: string
-  /**
-   * @deprecated
-   */
-  fixed?: boolean
-  tertiary?: boolean
   className?: string
   removeLinkClass?: boolean
   title?: string

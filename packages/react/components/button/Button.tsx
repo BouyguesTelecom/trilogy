@@ -1,20 +1,19 @@
-import React from 'react'
-import clsx from 'clsx'
-import { is } from '../../services/index'
-import { Loading, LoadingValues } from '../../objects/facets/Loadable'
-import { getColorClassName } from '../../objects/facets/Color'
-import { ButtonColor, ButtonColorValues, ButtonMarkup, ButtonMarkupValues } from './ButtonEnum'
-import { ButtonProps } from './ButtonProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import React from "react"
+import clsx from "clsx"
+import { is } from "../../services/index"
+import { Loading, LoadingValues } from "../../objects/facets/Loadable"
+import { getButtonVariantClassName } from "../../objects/facets/Color"
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "./ButtonEnum"
+import { ButtonProps } from "./ButtonProps"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 import { Icon } from "../icon"
-import { VariantState } from "../../objects"
 
 /**
  * Button component
  * @param loading {boolean} Loading button
  * @param disabled {boolean} Disabled button
- * @param variant {ButtonColor} Button color : primary|secondary|info|warning|success.
+ * @param variant {ButtonVariant} Button variant : accent|primary|secondary|ghost.
  * @param children {ReactNode} Button child
  * @param fullwidth {boolean} Fullwidth button
  * @param onClick {Function} Click Event
@@ -57,31 +56,35 @@ const Button = ({
 
   /** Check if specified markup is valid */
   const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
-    if (stringMarkup in ButtonMarkup || Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)) return true
+    if (
+      stringMarkup in ButtonMarkup ||
+      Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)
+    )
+      return true
   }
 
   const getClassNames = (
     loading?: Loading | LoadingValues | boolean,
-    variant?: ButtonColor | ButtonColorValues,
+    variant?: ButtonVariant | ButtonVariantValues,
     fullwidth?: boolean,
-    className?: string,
+    className?: string
   ) => {
     return clsx(
-      'button',
-      loading ? is('loading') : is('loaded'),
-      variant && is(getColorClassName(variant)),
-      fullwidth && is('fullwidth'),
-      className,
+      "button",
+      loading ? is("loading") : is("loaded"),
+      variant && is(getButtonVariantClassName(variant)),
+      fullwidth && is("fullwidth"),
+      className
     )
   }
 
   const classes = hashClass(
     styled,
-    getClassNames( loading, variant, fullwidth, className),
+    getClassNames(loading, variant, fullwidth, className)
   )
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
+  const Tag = markup && isCorrectMarkup(markup) ? markup : "button"
 
-  if (Tag === 'button') {
+  if (Tag === "button") {
     return (
       <button
         id={id}
@@ -95,16 +98,18 @@ const Button = ({
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}
-        type={type ?? 'button'}
+        type={type ?? "button"}
         {...others}
       >
-        {iconName && <Icon className={!children ? 'is-marginless' : ''} color={variant === VariantState.TERTIARY ? 'SECONDARY' : 'WHITE'} name={iconName} />}
+        {iconName && (
+          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+        )}
         {children}
       </button>
     )
   }
 
-  if (Tag === 'input') {
+  if (Tag === "input") {
     return (
       <input
         id={id}
@@ -118,7 +123,7 @@ const Button = ({
           e.stopPropagation()
         }}
         disabled={isDisabled}
-        type={type ?? 'submit'}
+        type={type ?? "submit"}
         value={`${children}`}
         {...others}
       />
@@ -126,10 +131,18 @@ const Button = ({
   }
 
   if (routerLink && to && !isDisabled) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
-      <RouterLink aria-label={accessibilityLabel} data-testid={testId} to={to} className={classes} {...others}>
-        {iconName && <Icon className={!children ? 'is-marginless' : ''} color={variant === VariantState.TERTIARY ? 'SECONDARY' : 'WHITE'} name={iconName} />}
+      <RouterLink
+        aria-label={accessibilityLabel}
+        data-testid={testId}
+        to={to}
+        className={classes}
+        {...others}
+      >
+        {iconName && (
+          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+        )}
         {children}
       </RouterLink>
     )
@@ -149,7 +162,9 @@ const Button = ({
       }}
       {...others}
     >
-      {iconName && <Icon className={!children ? 'is-marginless' : ''} color={variant === VariantState.TERTIARY ? 'SECONDARY' : 'WHITE'} name={iconName} />}
+      {iconName && (
+        <Icon className={!children ? "is-marginless" : ""} name={iconName} />
+      )}
       {children}
     </a>
   )

@@ -4,6 +4,7 @@ import { TableTrPropsNative } from './TableTrProps'
 import { View } from '../../view'
 import { Text, TextLevels } from '../../text'
 import { ComponentName } from '../../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '../../../objects'
 
 /**
  * TableTr Component
@@ -21,7 +22,7 @@ const TableTr = ({ children, expandable, expanded, ...others }: TableTrPropsNati
     },
     expendable: {
       width: '100%',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
       padding: 10,
     },
   })

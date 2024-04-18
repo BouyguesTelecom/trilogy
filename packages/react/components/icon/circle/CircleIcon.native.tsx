@@ -9,15 +9,15 @@ import { ComponentName } from '../../enumsComponentsName'
 import { TrilogyThemeContext } from "../../../context/providerTheme.native"
 
 const CircleIcon = ({
-  name,
-  size,
-  color,
-  backgroundColor,
-  content,
-  circledWidth,
-  position,
-  stacked,
-}: CircleIconProps): JSX.Element => {
+                      name,
+                      size,
+                      color,
+                      backgroundColor,
+                      content,
+                      circledWidth,
+                      position,
+                      stacked,
+                    }: CircleIconProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
@@ -26,7 +26,7 @@ const CircleIcon = ({
     circled: {
       width: circledWidth,
       height: circledWidth,
-      backgroundColor: getColorStyle(backgroundColor) || getColorStyle(TrilogyColor.TERTIARY),
+      backgroundColor: getColorStyle(backgroundColor) || getColorStyle(TrilogyColor.MAIN),
       borderRadius: circledWidth,
       justifyContent: 'center',
       alignItems: 'center',
@@ -67,7 +67,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </View>
       )}
 
@@ -76,7 +76,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </>
       )}
 
@@ -85,7 +85,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledH} />
+          <View style={styles.spaceTextCircledH}/>
         </>
       )}
 
@@ -94,7 +94,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV} />
+          <View style={styles.spaceTextCircledV}/>
         </>
       )}
 
@@ -112,7 +112,7 @@ const CircleIcon = ({
 
       {position === IconPosition.LEFT && content && (
         <>
-          <View style={styles.spaceTextCircledH} />
+          <View style={styles.spaceTextCircledH}/>
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>

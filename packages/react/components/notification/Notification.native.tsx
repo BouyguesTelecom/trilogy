@@ -1,18 +1,18 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { NotificationProps } from './NotificationProps'
-import { Columns, ColumnsItem } from '../columns'
-import { Button } from '../button'
-import { View } from '../view'
-import { Text, TextLevels } from '../text'
-import { IconName } from '../icon/IconNameEnum'
-import { AlertState, getAlertIconName } from '../../objects/facets/Alert'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { getInfoColorStyle } from './NotificationEnum'
-import DeletableNotification from './deletable'
-import { Icon, IconSize } from '../icon'
-import { TypographyBold } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import * as React from "react"
+import { StyleSheet, TouchableOpacity } from "react-native"
+import { NotificationProps } from "./NotificationProps"
+import { Columns, ColumnsItem } from "../columns"
+import { Button } from "../button"
+import { View } from "../view"
+import { Text, TextLevels } from "../text"
+import { IconName } from "../icon/IconNameEnum"
+import { AlertState, getAlertIconName } from "../../objects/facets/Alert"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { getInfoColorStyle } from "./NotificationEnum"
+import DeletableNotification from "./deletable"
+import { Icon, IconSize } from "../icon"
+import { TypographyBold } from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Notification Component
@@ -50,23 +50,24 @@ const Notification = ({
   const backgroundColor = getColorStyle(TrilogyColor.WHITE)
   const defaultIconSize = IconSize.SMALL
   /*
-  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.TERTIARY)
+  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
 */
-  const infoColor = getInfoColorStyle(alert) || getInfoColorStyle(AlertState.INFO)
-  const infoFontColor = TrilogyColor.TERTIARY
+  const infoColor =
+    getInfoColorStyle(alert) || getInfoColorStyle(AlertState.INFO)
+  const infoFontColor = TrilogyColor.MAIN
 
   const styles = StyleSheet.create({
     container: {
-      width: '100%',
+      width: "100%",
       paddingTop: 16,
       paddingBottom: 16,
       backgroundColor: backgroundColor,
       paddingLeft: 16,
       paddingRight: 16,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
       borderRadius: 6,
-      shadowColor: '#000',
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 1,
@@ -79,44 +80,44 @@ const Notification = ({
       paddingTop: (description && 4) || 0,
       paddingLeft: 16,
       paddingRight: 16,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
     },
     shadow: {},
     icon: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: (arrow && 'absolute') || 'relative',
+      justifyContent: "center",
+      alignItems: "center",
+      position: (arrow && "absolute") || "relative",
     },
     description: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       paddingTop: 4,
-      color: getColorStyle(TrilogyColor.TERTIARY),
-      textAlignVertical: 'center',
+      color: getColorStyle(TrilogyColor.MAIN),
+      textAlignVertical: "center",
     },
     buttonContainer: {
-      width: '100%',
+      width: "100%",
       paddingTop: 17,
       paddingBottom: 17,
       backgroundColor: backgroundColor,
       paddingLeft: 12,
       paddingRight: 12,
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlignVertical: 'center',
+      alignItems: "center",
+      justifyContent: "center",
+      textAlignVertical: "center",
     },
     button: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
     },
     info: {
-      width: '100%',
+      width: "100%",
       paddingTop: 10,
       paddingBottom: 10,
       backgroundColor: infoColor,
       borderRadius: 6,
-      alignItems: 'baseline',
+      alignItems: "baseline",
       paddingLeft: 12,
       paddingRight: 12,
     },
@@ -131,25 +132,39 @@ const Notification = ({
         <Columns>
           {hasIcon && (
             <ColumnsItem size={1}>
-              <Icon style={styles.icon} name={iconName ? iconName : getAlertIconName(alert)} />
+              <Icon
+                style={styles.icon}
+                name={iconName ? iconName : getAlertIconName(alert)}
+              />
             </ColumnsItem>
           )}
           {closable ? (
             <>
               <ColumnsItem size={hasIcon ? 10 : 11}>
-                <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD} level={TextLevels.ONE}>
+                <Text
+                  typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+                  level={TextLevels.ONE}
+                >
                   {title}
                 </Text>
               </ColumnsItem>
               <ColumnsItem size={1}>
                 <TouchableOpacity onPress={closable} activeOpacity={0.85}>
-                  <Icon style={styles.icon} name={IconName.TIMES} size={defaultIconSize} color={infoFontColor} />
+                  <Icon
+                    style={styles.icon}
+                    name={IconName.TIMES}
+                    size={defaultIconSize}
+                    color={infoFontColor}
+                  />
                 </TouchableOpacity>
               </ColumnsItem>
             </>
           ) : (
             <ColumnsItem size={hasIcon ? 11 : 12}>
-              <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD} level={TextLevels.ONE}>
+              <Text
+                typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+                level={TextLevels.ONE}
+              >
                 {title}
               </Text>
             </ColumnsItem>
@@ -160,7 +175,7 @@ const Notification = ({
           <Columns>
             {hasIcon && <ColumnsItem size={1} />}
             <ColumnsItem size={hasIcon ? 11 : 12}>
-              {typeof description.valueOf() === 'string' ? (
+              {typeof description.valueOf() === "string" ? (
                 <Text level={TextLevels.TWO} style={styles.description}>
                   {description}
                 </Text>
@@ -176,8 +191,8 @@ const Notification = ({
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       <View style={[styles.info, (others as any).style]}>
-        <View style={{ width: '90%' }}>
-          {typeof description.valueOf() === 'string' ? (
+        <View style={{ width: "90%" }}>
+          {typeof description.valueOf() === "string" ? (
             <Text level={TextLevels.TWO} style={styles.description}>
               {description}
             </Text>
@@ -194,7 +209,11 @@ const Notification = ({
           <Columns>
             {hasIcon && (
               <ColumnsItem verticalCenter size={1}>
-                <Icon style={styles.icon} name={iconName ?? IconName.BELL} size={defaultIconSize} />
+                <Icon
+                  style={styles.icon}
+                  name={iconName ?? IconName.BELL}
+                  size={defaultIconSize}
+                />
               </ColumnsItem>
             )}
 
@@ -224,7 +243,11 @@ const Notification = ({
           <Columns>
             {hasIcon && (
               <ColumnsItem verticalCenter size={1}>
-                <Icon style={styles.icon} name={iconName ?? IconName.BELL} size={defaultIconSize} />
+                <Icon
+                  style={styles.icon}
+                  name={iconName ?? IconName.BELL}
+                  size={defaultIconSize}
+                />
               </ColumnsItem>
             )}
 
@@ -236,7 +259,7 @@ const Notification = ({
             {buttonContent && (
               <ColumnsItem size={3}>
                 <View style={styles.button}>
-                  <Button onClick={buttonClick} variant={'PRIMARY'}>
+                  <Button onClick={buttonClick} variant={"PRIMARY"}>
                     {buttonContent}
                   </Button>
                 </View>
@@ -248,7 +271,12 @@ const Notification = ({
     )
   } else if (deletable) {
     notificationView = (
-      <DeletableNotification title={title && title} iconName={iconName} deletable={deletable} read={read} />
+      <DeletableNotification
+        title={title && title}
+        iconName={iconName}
+        deletable={deletable}
+        read={read}
+      />
     )
   } else {
     notificationView = (
@@ -257,7 +285,11 @@ const Notification = ({
           <Columns>
             {hasIcon && (
               <ColumnsItem size={1}>
-                <Icon style={styles.icon} name={iconName ?? IconName.BELL} size={defaultIconSize} />
+                <Icon
+                  style={styles.icon}
+                  name={iconName ?? IconName.BELL}
+                  size={defaultIconSize}
+                />
               </ColumnsItem>
             )}
 

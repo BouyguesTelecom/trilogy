@@ -1,28 +1,28 @@
-import React from 'react'
+import * as React from "react";
 import {
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
   Box,
   BoxContent,
+  Button,
+  Divider,
   IconName,
+  Section,
+  Spacer,
   Stepper,
   StepperStep,
-  Spacer,
-  Button,
-} from '@trilogy-ds/react/components'
+  Title,
+  TitleLevels,
+} from "@trilogy-ds/react/components";
 
 export const StepperScreen = (): JSX.Element => {
-  const [activeStep, setActiveStep] = React.useState<number>(1)
+  const [activeStep, setActiveStep] = React.useState<number>(1);
 
   const handleClickNext = React.useCallback(() => {
     if (activeStep === 5) {
-      setActiveStep(1)
+      setActiveStep(1);
     } else {
-      setActiveStep((curr) => curr + 1)
+      setActiveStep((curr) => curr + 1);
     }
-  }, [activeStep])
+  }, [activeStep]);
 
   return (
     <Section>
@@ -35,36 +35,45 @@ export const StepperScreen = (): JSX.Element => {
           <Spacer size={30}></Spacer>
           <Stepper>
             <StepperStep
-              error
               done={1 < activeStep}
               current={activeStep === 1}
-              iconName={IconName.CREDIT_CARD}
-              label='Récapitulatif'
+              iconName={IconName.EYE}
+              label="Recup"
               step={1}
             />
-            <StepperStep done={2 < activeStep} current={activeStep === 2} label='Compléments' step={2} />
+            <StepperStep
+              done={2 < activeStep}
+              current={activeStep === 2}
+              label="Compléments"
+              step={2}
+            />
             <StepperStep
               done={3 < activeStep}
               current={activeStep === 3}
               iconName={IconName.SEARCH}
-              label='Coordonnées'
+              label="Coordonate"
               step={3}
             />
-            <StepperStep done={4 < activeStep} current={activeStep === 4} label='Livraison' step={4} />
+            <StepperStep
+              done={4 < activeStep}
+              current={activeStep === 4}
+              label="Livraison"
+              step={4}
+            />
             <StepperStep
               done={5 < activeStep}
               current={activeStep === 5}
-              iconName={IconName.FACEID}
-              label='Confirmation'
+              iconName={IconName.EYE}
+              label="Confirm"
               step={5}
             />
           </Stepper>
         </BoxContent>
       </Box>
       <Spacer size={30}></Spacer>
-      <Button onClick={handleClickNext} variant={'PRIMARY'}>
+      <Button onClick={handleClickNext} variant={"PRIMARY"}>
         Next
       </Button>
     </Section>
-  )
-}
+  );
+};

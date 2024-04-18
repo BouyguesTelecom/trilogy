@@ -1,10 +1,10 @@
-import React from 'react'
-import clsx from 'clsx'
-import { ColumnsItemProps } from './ColumnsItemProps'
-import { has, is } from '../../../services/classify'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { getAlignClassName } from '../../../objects'
+import * as React from "react"
+import clsx from "clsx"
+import { ColumnsItemProps } from "./ColumnsItemProps"
+import { has, is } from "../../../services/classify"
+import { hashClass } from "../../../helpers"
+import { useTrilogyContext } from "../../../context"
+import { getAlignClassName } from "../../../objects"
 
 /**
  * Columns Item Component - Columns Child
@@ -57,7 +57,7 @@ const ColumnsItem = ({
   const classes = hashClass(
     styled,
     clsx(
-      'column',
+      "column",
       size && is(`${size}`),
       mobileSize && is(`${mobileSize}-mobile`),
       tabletSize && is(`${tabletSize}-tablet`),
@@ -72,12 +72,12 @@ const ColumnsItem = ({
       desktopOffset && is(`offset-${desktopOffset}-desktop`),
       widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
-      narrow && is('narrow'),
-      verticalCenter && is('vcentered'),
-      centered && has('text-centered'),
+      narrow && is("narrow"),
+      verticalCenter && is("vcentered"),
+      centered && has("text-centered"),
       align && is(getAlignClassName(align)),
-      className,
-    ),
+      className
+    )
   )
 
   return <div className={classes} {...others} />

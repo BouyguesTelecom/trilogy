@@ -4,7 +4,7 @@ import { SegmentControlProps } from './SegmentControlProps'
 import { View } from '../view'
 import { Text, TextLevels } from '../text'
 import SegmentedControlItem from './item'
-import { mixColors, TrilogyColor } from '../../objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
@@ -17,14 +17,14 @@ import { ComponentName } from '../enumsComponentsName'
  * @param marginless {boolean} delete margin
  */
 const SegmentControl = ({
-  children,
-  onClick,
-  activeIndex,
-  disabled,
-  marginless,
-  inverted,
-  ...others
-}: SegmentControlProps): JSX.Element => {
+                          children,
+                          onClick,
+                          activeIndex,
+                          disabled,
+                          marginless,
+                          inverted,
+                          ...others
+                        }: SegmentControlProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
@@ -54,11 +54,9 @@ const SegmentControl = ({
     segmentedControl: {
       flexDirection: 'row',
       width: '100%',
-      backgroundColor: mixColors(TrilogyColor.GREY, -96),
+      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
       borderRadius: 4,
       padding: 4,
-      borderWidth: 1,
-      borderColor: mixColors(TrilogyColor.GREY, -80),
       paddingRight: -4,
     },
   })

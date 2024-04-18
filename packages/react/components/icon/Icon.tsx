@@ -1,15 +1,15 @@
-import React from 'react'
-import clsx from 'clsx'
-import { IconProps } from './IconProps'
-import StatusIcon from './status/index'
-import CircleIcon from './circle/index'
-import TextIcon from './text/index'
-import { has, is } from '../../services/index'
-import { getColorClassName } from '../../objects/facets/Color'
-import { getAlignClassName } from '../../objects/facets/Alignable'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import { IconName } from './IconNameEnum'
+import * as React from "react"
+import clsx from "clsx"
+import { IconProps } from "./IconProps"
+import StatusIcon from "./status/index"
+import CircleIcon from "./circle/index"
+import TextIcon from "./text/index"
+import { has, is } from "../../services/index"
+import { getColorClassName } from "../../objects/facets/Color"
+import { getAlignClassName } from "../../objects/facets/Alignable"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
+import { IconName } from "./IconNameEnum"
 
 /**
  * Icon Component
@@ -65,28 +65,34 @@ const Icon = ({
   const classes = hashClass(
     styled,
     clsx(
-      'icon',
-      stretched && is('stretched'),
+      "icon",
+      stretched && is("stretched"),
       size && is(size),
-      stacked && is('stacked'),
+      stacked && is("stacked"),
       color && is(`${getColorClassName(color)}`),
-      skeleton && is('loading'),
-      badgeContent && is('stacked'),
-      marginless && is('marginless'),
-      className,
-    ),
+      skeleton && is("loading"),
+      badgeContent && is("stacked"),
+      marginless && is("marginless"),
+      className
+    )
   )
 
   // TextIcon uses className instead of classes, verticalAlignment only affect TextIcon
-  className = clsx(content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`), className)
+  className = clsx(
+    content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`),
+    className
+  )
 
   const alignClasses = hashClass(
     styled,
     clsx(
-      (align && getAlignClassName(align) === 'aligned-start' && has('text-left')) ||
-        (getAlignClassName(align) === 'aligned-center' && has('text-centered')) ||
-        (getAlignClassName(align) === 'aligned-end' && has('text-right')),
-    ),
+      (align &&
+        getAlignClassName(align) === "aligned-start" &&
+        has("text-left")) ||
+        (getAlignClassName(align) === "aligned-center" &&
+          has("text-centered")) ||
+        (getAlignClassName(align) === "aligned-end" && has("text-right"))
+    )
   )
 
   // circled icons
@@ -201,9 +207,15 @@ const Icon = ({
         <div className={alignClasses}>
           <span onClick={onClick && onClick} className={classes} {...others}>
             <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-            <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>
+            <span className={hashClass(styled, clsx("badge", is("up")))}>
+              {badgeContent}
+            </span>
           </span>
-          {content && <span className={hashClass(styled, clsx(textClassName))}>{content}</span>}
+          {content && (
+            <span className={hashClass(styled, clsx(textClassName))}>
+              {content}
+            </span>
+          )}
         </div>
       )
     }
@@ -211,9 +223,15 @@ const Icon = ({
       <>
         <span onClick={onClick && onClick} className={classes} {...others}>
           <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-          <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>
+          <span className={hashClass(styled, clsx("badge", is("up")))}>
+            {badgeContent}
+          </span>
         </span>
-        {content && <span className={hashClass(styled, clsx(textClassName))}>{content}</span>}
+        {content && (
+          <span className={hashClass(styled, clsx(textClassName))}>
+            {content}
+          </span>
+        )}
       </>
     )
   }
@@ -266,7 +284,12 @@ const Icon = ({
 
   // Static default Icon
   return (
-    <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others}>
+    <span
+      data-testid={testId}
+      onClick={onClick && onClick}
+      className={classes}
+      {...others}
+    >
       <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
     </span>
   )

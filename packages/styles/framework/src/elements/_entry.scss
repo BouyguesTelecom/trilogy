@@ -9,11 +9,6 @@
     max-width: 100%;
     width: 100%;
 
-    &:focus-visible,
-    :focus {
-      outline: 1px auto getColor('alternate');
-    }
-
     // Colors
     @each $name in $colors-brand-funcionnal {
       $color: getColor($name);
@@ -21,14 +16,7 @@
       $brandName: getColorBrandName($name);
 
         &.is-#{$brandName} {
-          border: 2px solid $color;
-          &:focus-visible,
-          &:hover,
-          &.is-hovered,
-          &:focus,
-          &.is-focused {
-            outline: 1px auto $color !important;
-          }
+          border: 1px solid $color;
         }
     }
 
