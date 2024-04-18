@@ -48,7 +48,7 @@
       padding-left: $spacing-9;
       padding-right: $spacing-9;
 
-      &:hover,
+      #{$hoverSelector},
       &:focus,
       &:focus-visible {
         padding-left: 55px;

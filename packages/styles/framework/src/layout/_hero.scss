@@ -40,33 +40,6 @@ $overlap-desktop: 30px;
       padding: 30px 20px;
     }
 
-    .hero-back {
-      position: relative;
-      flex-basis: 100%;
-      opacity: .7;
-      margin-bottom: 20px;
-      min-width: 100%;
-      padding-left: 26px;
-      transition: opacity 300ms linear;
-
-      &::before {
-        @include arrow(inherit);
-
-        transform: rotate(90deg);
-        top: 0;
-        bottom: 0;
-        left: 5px;
-        width: 11px;
-        height: 6px;
-        font-size: 12px;
-        margin: auto;
-      }
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
     > .container {
       flex: 1;
       flex-basis: 100%;
@@ -77,28 +50,6 @@ $overlap-desktop: 30px;
 
       @include desktop {
         font-size: 36px;
-      }
-    }
-  }
-
-  &.has-pattern-dark,
-  &.is-instit {
-    @include pattern-dark(105%, 50%, 35%);
-
-    p,
-    strong,
-    .paragraph,
-    .suptitle,
-    .title,
-    .subtitle,
-    a:not(.button):not(.tag) {
-      color: getColor('background');
-    }
-
-    .subtitle {
-      strong,
-      a:not(.button) {
-        color: getColor('background');
       }
     }
   }
@@ -168,7 +119,6 @@ $overlap-desktop: 30px;
     background-size: cover;
   }
 
-  &.has-pattern-dark,
   &.has-background {
     .hero-body {
       text-align: center;
@@ -221,7 +171,8 @@ $overlap-desktop: 30px;
   }
 
   &.is-main {
-    color: getColor('background');
+    color: invertColor('main');
+    background-color: getColor('main');
 
     p,
     strong,

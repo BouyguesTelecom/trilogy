@@ -19,7 +19,7 @@
 
   z-index: 9;
 
-  &:hover, &.is-extended, &:focus, &:focus-visible, &:focus-within {
+  #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
     background-color: getColor('hovered');
     transition: 0.5s;
     font-size: initial;
@@ -35,7 +35,7 @@
   &:active {
     background-color: getColor('hovered');
   }
-  
+
   .icon {
     font-size: 24px !important;
     margin-left: -6px;

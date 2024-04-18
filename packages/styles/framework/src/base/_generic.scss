@@ -55,7 +55,7 @@ $body-line-height: 1.5 !default;
             z-index: zindex('small');
         }
     }
-  [disabled] {
+  [disabled], [aria-disabled="true"] {
     background-color: getColor('bg-disabled') !important;
     border-color: transparent !important;
     box-shadow: none !important;

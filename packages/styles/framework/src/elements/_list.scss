@@ -19,43 +19,7 @@ ul.icon-list > li {
     display: flex;
     align-items: center;
 
-    span[disabled] {
-        opacity: 0.5;
-    }
-
     .icon {
         flex: none;
-    }
-}
-
-dl.dl {
-    dt {
-        font-weight: $weight-semibold;
-        margin-bottom: 5px;
-
-        &:not(:first-child) {
-            margin-top: 20px;
-        }
-    }
-
-    dd {
-        color: getColor('font');
-        font-size: $size-7;
-    }
-
-    &:not(:first-child) {
-        margin-top: 20px;
-    }
-
-    &.is-alternate {
-        dt {
-            color: getColor('font');
-            font-size: $size-7;
-        }
-
-        dd {
-            color: getColor('font');
-            font-size: $size-6;
-        }
     }
 }

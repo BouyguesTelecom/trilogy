@@ -2,7 +2,7 @@
   cursor: pointer;
   transition: box-shadow $animation-duration;
 
-  &:hover,
+  #{$hoverSelector},
   &:active,
   &:focus {
     box-shadow: $shadow;

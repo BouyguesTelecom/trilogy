@@ -72,7 +72,7 @@
     background-color: getColor('font');
     color: getColor('background');
 
-    &:hover, &:focus, &:focus-within {
+    #{$hoverSelector}, &:focus, &:focus-within {
       background-color: getColor('hovered');
     }
   }

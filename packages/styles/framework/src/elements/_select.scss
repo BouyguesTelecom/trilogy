@@ -141,7 +141,7 @@
       @include arrow-style()
     }
 
-    &:hover {
+    #{$hoverSelector} {
       &::after {
         border-color: getColor('font');
       }
