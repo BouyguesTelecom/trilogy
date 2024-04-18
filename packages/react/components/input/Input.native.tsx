@@ -102,6 +102,7 @@ const Input = ({
   securityGauge,
   validationRules,
   onIconClick,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   required,
   ...others
 }: InputNativeProps): JSX.Element => {
