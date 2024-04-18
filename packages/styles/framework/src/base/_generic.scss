@@ -55,6 +55,14 @@ $body-line-height: 1.5 !default;
             z-index: zindex('small');
         }
     }
+  [disabled] {
+    background-color: getColor('bg-disabled') !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    color: getColor('grey-dark') !important;
+    cursor: not-allowed !important;
+    filter: grayscale(1);
+  }
 }
 
 .body-wrap {

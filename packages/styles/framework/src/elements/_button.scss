@@ -58,68 +58,40 @@ $is-check-button-icon-pos-left: 5px;
     margin: 8px 0 !important;
   }
 
-  &.is-loading {
-    color: transparent !important;
-    pointer-events: none;
-
-    &::after {
-      @include spinner;
-      @include center(1em);
-
-      position: absolute !important;
-    }
-  }
-
   @each $name, $pair in $btn-colors {
-    $color: nth($pair, 1);
-    $invColor: nth($pair, 3);
+    $variantName: nth($pair, 1);
+    $colorBG: getColor(nth($pair, 2));
+    $colorText: getColor(nth($pair, 3));
+    $effectHover: nth($pair, 4);
+    $effectActive: nth($pair, 5);
 
-    &.is-#{$color} {
-      background-color: nth($pair, 2);
-      color: nth($pair, 3);
+    &:hover:not([disabled]) {
+      filter: brightness(0.8)
+    }
+    &:active {
+      filter: brightness(0.7)
+    }
 
-      .icon.is-#{$color} {
-        color: nth($pair, 3);
+    &.is-#{$variantName} {
+      background-color: $colorBG;
+      color: $colorText;
+
+      @if $effectHover{
+        &:hover {
+          filter: $effectHover;
+        }
       }
-    }
-
-    &:focus-within {
-      outline: 2px solid getColor('main');
-      outline-offset: 2px;
-    }
-
-    &:hover.is-#{$color} {
-      background-color: nth($pair, 4);
-      color: nth($pair, 3);
-    }
-
-    &:active.is-#{$color} {
-      background-color: nth($pair, 5);
-      color: invertColor($color);
-    }
-
-    &[class*='is-'] {
-      &[disabled] {
-        @extend %disabled;
-
-        background-color: getColor('bg-disabled');
-        border-color: transparent;
-        box-shadow: none;
-        color: getColor('grey-dark');
-
+      @if $effectActive{
+        &:active {
+          filter: $effectActive;
+        }
       }
     }
   }
 
-  %disabled {
-    background-color: getColor('bg-disabled');
-    color: getColor('disabled');
-    box-shadow: $button-disabled-shadow;
-    opacity: $button-disabled-opacity;
-
-    &:hover {
-      color: getColor('grey-dark');
-    }
+  &:focus-within, &:focus {
+    outline: 2px solid getColor('main');
+    outline-offset: 2px;
   }
 
 }
