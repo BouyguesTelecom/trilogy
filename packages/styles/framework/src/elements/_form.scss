@@ -217,10 +217,9 @@ $label-weight: $weight-bold;
 
     .input {
       @each $name, $pair in $colors-feedback {
-        $bg-color: nth($pair, 1);
         &.is-#{$name} {
           ~ .icon {
-            color: getColor($bg-color);
+            color: getBGColor($name);
           }
         }
       }
@@ -232,10 +231,9 @@ $label-weight: $weight-bold;
 
     .textarea {
       @each $name, $pair in $colors-feedback {
-        $bg-color: nth($pair, 1);
         &.is-#{$name} {
           ~ .icon {
-            color: getColor($bg-color)
+            color: getBGColor($name)
           }
         }
       }
@@ -441,6 +439,10 @@ $label-weight: $weight-bold;
     &.is-large::after {
       font-size: $size-large;
     }
+  }
+
+  &:has(input[disabled]) {
+    @include disabledRules;
   }
 }
 

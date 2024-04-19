@@ -53,10 +53,9 @@
     }
 
     tr {
-        @each $name, $pair in $colors-feedback {
-          $bg-color: nth($pair, 1);
+        @each $name in $colors-feedback {
           &.is-#{$name} {
-                background-color:getColor($bg-color);
+                background-color:getBGColor($name);
             }
         }
 

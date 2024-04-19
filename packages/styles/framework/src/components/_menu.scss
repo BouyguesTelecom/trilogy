@@ -87,7 +87,7 @@ $menu-dropdown-item-height: 2em;
                 top: 0;
                 width: 4px;
                 height: 100%;
-                background-color: getVariantColor('alternate',2);
+                background-color: currentColor;
             }
         }
 
@@ -134,7 +134,7 @@ $menu-dropdown-item-height: 2em;
         li.is-active a,
         a.is-active {
             box-shadow: inset 4px 0 0 0 currentColor;
-            color: getVariantColor('alternate',2);
+            color: getColor('alternate');
             background: inherit;
         }
 
@@ -148,8 +148,8 @@ $menu-dropdown-item-height: 2em;
             overflow: hidden;
 
           #{$hoverSelector} {
-                color: getVariantColor('alternate',2);
-                background-color: getColor('grey-lighter');
+                color: getColor('alternate');
+                background-color: getBGColor('grey');
             }
 
             sub {
@@ -175,17 +175,12 @@ $menu-dropdown-item-height: 2em;
             min-height: $menu-item-height;
             line-height: $menu-item-line-height;
             color: getColor('font');
-
-            #{$hoverSelector} {
-                color: getVariantColor('alternate',2);
-                background-color: getColor('grey-lighter');
-            }
         }
     }
 }
 
 .menu-label {
-    color: getVariantColor('alternate',2);
+    color: getColor('alternate');
     font-size: 14px;
     letter-spacing: 0.1em;
     text-transform: uppercase;

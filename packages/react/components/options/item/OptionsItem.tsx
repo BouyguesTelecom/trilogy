@@ -106,11 +106,11 @@ const OptionsItem = ({
               })
             }
           }}
+          disabled={disabled}
         />
         <label
           htmlFor={id}
           className={multilineClass}
-          {...{ disabled: disabled }}
         >
           {label}
           {variant && iconName && <Icon name={iconName} {...others} />}
