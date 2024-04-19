@@ -141,9 +141,8 @@
     color: getColor('font');
 
     @each $name, $pair in $colors-feedback {
-      $bg-color: nth($pair, 1);
       &.is-#{$name} {
-        background-color: getColor($bg-color);
+        background-color: getBGColor($name);
       }
     }
 

@@ -426,12 +426,6 @@
   }
 
   @include hover();
-
-  &[disabled] {
-    background-color: getColor('grey-disabled');
-    border-color: getColor('grey-disabled');
-    color: getColor('grey');
-  }
 }
 
 @mixin checkradio {
@@ -441,6 +435,9 @@
   vertical-align: baseline;
   position: absolute;
   opacity: 0;
+  &[disabled] + label {
+    cursor: not-allowed;
+  }
 
   + label {
     cursor: pointer;
@@ -516,17 +513,14 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
-          filter: grayscale(1);
-          cursor: no-drop;
-          color: getColor('grey-disabled');
-          border-color: transparent;
+          @include disabledRules;
 
           &:before {
-            border-color: getColor('bg-disabled');
+            border-color: getBGColor('disabled');
           }
 
           &:after {
-            background-color: getColor('bg-disabled');
+            background-color: getBGColor('disabled');
           }
         }
       }
@@ -647,9 +641,7 @@
 
       &:disabled {
         & ~ label.#{$type}-label {
-          background-color: getColor('grey-disabled');
-          color: getColor('grey-dark') !important;
-
+          @include disabledRules;
           &:before {
             border-color: getColor('grey') !important;
           }
@@ -722,4 +714,13 @@
     @include hoverRules();
     border: 1px solid currentColor;
   }
+}
+
+@mixin disabledRules {
+  background-color: getBGColor('disabled') !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: getColor('disabled') !important;
+  cursor: not-allowed !important;
+  filter: grayscale(1);
 }
