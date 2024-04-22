@@ -1,15 +1,15 @@
 import * as React from "react";
 import {
-  Section,
   Divider,
+  Hero,
+  Price,
+  PriceLevel,
+  PriceVariant,
+  Section,
   Title,
   TitleLevels,
-  Price,
-  PriceVariant,
-  PriceLevel,
-  Hero,
 } from "@trilogy-ds/react/components";
-import { Alignable, VariantState } from "@trilogy-ds/react/objects";
+import {Alignable, VariantState} from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -22,6 +22,16 @@ export const PriceScreen = (): JSX.Element => {
         amount={18.99}
         showCents
       />
+
+
+      <Price
+        variant={PriceVariant.PRIMARY}
+        level={"2"}
+        amount={18.99}
+        showCents
+        striked={true}
+      />
+
 
       <Divider />
       <Title level={TitleLevels.THREE}>Inlined</Title>
@@ -140,7 +150,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Hero variant={VariantState.TERTIARY}>
+      <Hero variant={VariantState.MAIN}>
         <Price
           inverted
           level={PriceLevel.LEVEL1}

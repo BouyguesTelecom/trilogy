@@ -14,8 +14,6 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, A
   showCents?: boolean
   inline?: boolean
   level?: PriceLevel | PriceLevelValues
-  /** @deprecated v-1.3.2 */
-  huge?: boolean
   className?: string
   striked?: boolean
   suptitle?: string

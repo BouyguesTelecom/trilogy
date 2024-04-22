@@ -76,7 +76,7 @@ $progressbar-small: 5px;
 
   .progress-bar {
     height: $progressbar-height;
-    background-color: getVariantColor('alternate', 2);
+    background-color: getColor('font');
 
     &:first-child {
       border-radius: $progressbar-height 0 0 $progressbar-height;
