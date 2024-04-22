@@ -16,7 +16,7 @@
     position: relative;
     flex-shrink: 0;
     overflow: hidden;
-    border-radius: 8px 8px 0px 0px;
+    border-radius: $radius $radius 0px 0px;
   }
 
   .card-content {
@@ -113,7 +113,7 @@
 
     .card-image {
       max-width: 100%;
-      border-radius: 8px 0px 0px 8px;
+      border-radius: $radius 0px 0px $radius;
 
       @include tablet {
         img {
