@@ -31,6 +31,18 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     margin-left: 0;
   }
 
+  &::before {
+    content: '';
+    display: block;
+    width: $timeline-line-width;
+    position: absolute;
+    top: 49.80px;
+    left: 3rem;
+    bottom: 8px;
+    height: auto;
+    border-radius: 2px;
+  }
+
   .timeline-item,
   .undone {
     display: flex;
@@ -41,16 +53,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     padding-bottom: $spacing-2;
 
     &::before {
-      content: '';
       background-color: getBGColor('neutral');
-      display: block;
-      width: $timeline-line-width;
-      position: absolute;
-      top: 49.80px;
-      left: 3rem;
-      bottom: 8px;
-      height: auto;
-      border-radius: 2px;
     }
 
     .timeline-marker.is-icon {
@@ -199,13 +202,12 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       .heading {
         font-size: $text-12;
-        color: getColor('neutral');
+        color: getColor('font');
         font-family: $family-sans-serif;
         text-transform: none;
         letter-spacing: 0;
         line-height: 15px;
         font-weight: 500;
-        color: #707070;
       }
 
       p {
@@ -338,8 +340,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
         &.undone {
           color: getBGColor('main');
-          background-color: getBGColor('neutral');
-
           &::before {
             background-color: getBGColor('neutral');
           }
