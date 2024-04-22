@@ -11,7 +11,7 @@
     @include block;
 
     background-color: transparent;
-    color: getColor('grey-dark');
+    color: getColor('neutral-dark');
 
     &:not(:last-child) {
         margin-bottom: 30px;
@@ -21,12 +21,12 @@
     * @deprecated "Use multiples <tr><th> instead"
     */
     tbody .is-body-header {
-        background-color: getColor('grey-light');
+        background-color: getBGColor('neutral-dark');
     }
 
     td,
     th {
-        border: 1px solid getColor('grey-light');
+        border: 1px solid getBGColor('neutral-dark');
         border-width: 0;
         padding: 20px;
         vertical-align: top;
@@ -53,10 +53,9 @@
     }
 
     tr {
-        @each $name, $pair in $colors-feedback {
-          $bg-color: nth($pair, 1);
+        @each $name in $colors-feedback {
           &.is-#{$name} {
-                background-color:getColor($bg-color);
+                background-color:getBGColor($name);
             }
         }
 
@@ -71,7 +70,7 @@
         }
 
         td {
-            border-bottom: 1px solid getColor('grey-light');
+            border-bottom: 1px solid getBGColor('neutral-dark');
 
             > p {
                 margin: 0;
@@ -155,45 +154,12 @@
 
     &:not(.is-bordered).is-comparative {
         th {
-            border-right: 1px solid getColor('grey-lighter');
+            border-right: 1px solid getBGColor('neutral');
         }
 
         td {
             &:not(:last-child) {
-                border-right: 1px solid getColor('grey-light');
-            }
-        }
-    }
-
-    &.is-compact {
-        td,
-        th {
-            padding: math.div(20px, 3) math.div(20px, 3);
-        }
-    }
-
-    &.is-large {
-        thead {
-            height: 50px;
-
-            th {
-                color: getVariantColor('alternate',2);
-                font-weight: 600;
-                text-transform: uppercase;
-            }
-        }
-
-        tbody {
-            border-top: 1px solid #d8d8d8;
-
-            tr {
-                td {
-                    height: 40px;
-                }
-
-                &:not(.is-body-header) td {
-                    height: 96px;
-                }
+                border-right: 1px solid getBGColor('neutral-dark');
             }
         }
     }
@@ -218,45 +184,18 @@
         width: 100%;
     }
 
-    &.is-hoverable {
-        tbody {
-            tr:not(.is-selected) {
-                &:hover {
-                    background-color: getColor('grey-lighter');
-                }
-            }
-        }
-
-        &.is-striped {
-            tbody {
-                tr:not(.is-selected) {
-                    &:hover {
-                        background-color: getColor('grey-light');
-                    }
-                }
-            }
-        }
-    }
-
-    &.is-narrow {
-        td,
-        th {
-            padding: 0.25em 0.5em;
-        }
-    }
-
     &.is-striped {
         tbody {
             tr:not(.is-selected) {
                 &:nth-child(even) {
-                    background-color: getColor('grey-lighter');
+                    background-color: getBGColor('neutral');
                 }
             }
         }
     }
 
     .subtable {
-        background-color: getColor('grey-lighter');
+        background-color: getBGColor('neutral');
         border-radius: $radius;
         padding: $box-padding * 2;
 
@@ -269,7 +208,7 @@
 
             tr:not(:first-child) {
                 td {
-                    border-top: 1px solid getColor('grey-dark');
+                    border-top: 1px solid getColor('neutral-dark');
                 }
             }
 

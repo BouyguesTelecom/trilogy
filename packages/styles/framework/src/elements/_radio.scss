@@ -59,7 +59,7 @@
 
     input:checked:disabled ~ label.radio-label {
         &:after {
-            background-color: getColor('grey');
+            background-color: getColor('neutral');
             top: 19px;
             right: 19px;
         }

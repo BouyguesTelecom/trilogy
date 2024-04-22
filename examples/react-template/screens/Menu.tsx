@@ -3,6 +3,7 @@ import {
   Divider,
   IconName,
   Input,
+  Link,
   Menu,
   MenuItem,
   MenuScrolling,
@@ -20,23 +21,23 @@ export const MenuScreen = (): JSX.Element => {
       <Section>
         <Menu>
           <MenuItem onClick={() => alert("Click on item 1")} to="/">
-            <Text>Item 1</Text>
+            <Link>Item 1</Link>
           </MenuItem>
           <MenuItem to="/" active>
-            <Text>Item 2</Text>
+            <Link>Item 2</Link>
           </MenuItem>
           <MenuItem>
             <SubMenuItem>
               <MenuItem to="/">
-                <Text>Item 3.1</Text>
+                <Link>Item 3.1</Link>
               </MenuItem>
               <MenuItem to="/">
-                <Text>Item 3.2</Text>
+                <Link>Item 3.2</Link>
               </MenuItem>
             </SubMenuItem>
           </MenuItem>
           <MenuItem to="/">
-            <Text>Item 3.3</Text>
+            <Link>Item 3.3</Link>
           </MenuItem>
         </Menu>
       </Section>

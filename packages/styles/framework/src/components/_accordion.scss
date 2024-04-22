@@ -11,8 +11,8 @@
     flex-direction: column;
     background-color: getColor('background');
     font-size: $size-normal;
-    border: 1px solid getColor('grey-light');
-    border-radius: 8px;
+    border: 1px solid getBGColor('font');
+    border-radius: $radius;
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
@@ -28,7 +28,7 @@
 
       & .toggle {
         &::before {
-          @include arrow(getColor('font'), 'up');
+          @include arrow('up');
         }
       }
     }
@@ -56,7 +56,7 @@
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     .accordion-header {
       align-items: center;
       display: flex;
@@ -112,7 +112,7 @@
         }
 
         &::before {
-          @include arrow(getColor('grey-dark'));
+          @include arrow();
           top: -0.25em;
           left: 0;
           right: 0;

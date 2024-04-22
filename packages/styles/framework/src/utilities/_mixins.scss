@@ -96,8 +96,8 @@
   @extend %delete;
 }
 
-@mixin arrow($color, $direction: 'down') {
-  background-color: $color;
+@mixin arrow( $direction: 'down') {
+  background-color: currentColor;
   @if $direction == 'up' {
     content: "";
     mask-image: url('./assets/icons/all/arrow-up.svg');
@@ -115,7 +115,6 @@
   min-width: 15px;
   min-height: 15px;
   mask-size: 15px;
-  color: $color;
   position: absolute;
   display: inline-block;
 }
@@ -148,7 +147,7 @@
 
 @mixin spinner {
   animation: spinAround 500ms infinite linear;
-  border: 2px solid getColor('grey-light');
+  border: 2px solid getBGColor('neutral-dark');
   border-radius: 290486px;
   border-right-color: transparent;
   border-top-color: transparent;
@@ -415,23 +414,17 @@
 @mixin input {
   @include control;
   height: 56px;
-  background-color: #fff;
-  border-color: getColor('grey');
+  background-color: getColor('background');
+  border-color: getBGColor('font');
   color: getColor('font');
 
   @include placeholder {
-    color: getColor('grey') !important;
+    color: getColor('neutral') !important;
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
 
   @include hover();
-
-  &[disabled] {
-    background-color: getColor('grey-disabled');
-    border-color: getColor('grey-disabled');
-    color: getColor('grey');
-  }
 }
 
 @mixin checkradio {
@@ -441,6 +434,9 @@
   vertical-align: baseline;
   position: absolute;
   opacity: 0;
+  &[disabled] + label {
+    cursor: not-allowed;
+  }
 
   + label {
     cursor: pointer;
@@ -462,7 +458,7 @@
     }
 
     &::before {
-      border: 1px solid getColor('grey');
+      border: 1px solid getColor('neutral');
       margin: 0 10px 0 0;
       min-width: 16px;
       min-height: 16px;
@@ -494,7 +490,7 @@
       }
 
       &:before {
-        border: 1px solid getColor('grey');
+        border: 1px solid getBGColor('font');
       }
     }
 
@@ -516,17 +512,13 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
-          filter: grayscale(1);
-          cursor: no-drop;
-          color: getColor('grey-disabled');
-          border-color: transparent;
 
           &:before {
-            border-color: getColor('bg-disabled');
+            border-color: getBGColor('disabled');
           }
 
           &:after {
-            background-color: getColor('bg-disabled');
+            background-color: getBGColor('disabled');
           }
         }
       }
@@ -550,6 +542,13 @@
     display: flex;
     align-items: center;
     margin: 6px 8px;
+
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRulesWithoutBG;
+      }
+    }
 
     label.#{$type}-label {
       padding: 4px;
@@ -591,6 +590,13 @@
     margin-top: 16px;
     text-align: center;
 
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRules;
+      }
+    }
+
     &:first-child {
       margin-left: 0;
     }
@@ -603,7 +609,7 @@
       display: block;
       position: relative;
       padding: 40px 16px 16px;
-      border: 1px solid getColor('font');
+      border: 1px solid getBGColor('font');
       border-radius: 8px;
       box-sizing: border-box;
 
@@ -647,22 +653,22 @@
 
       &:disabled {
         & ~ label.#{$type}-label {
-          background-color: getColor('grey-disabled');
-          color: getColor('grey-dark') !important;
+          background-color: getColor('disabled');
+          color: getColor('neutral-dark') !important;
 
           &:before {
-            border-color: getColor('grey') !important;
+            border-color: getColor('neutral') !important;
           }
         }
       }
 
       &:disabled:checked ~ label.#{$type}-label {
         &:before {
-          border-color: getColor('grey') !important;
+          border-color: getColor('neutral') !important;
         }
 
         .checkbox-title {
-          color: getColor('grey-dark');
+          color: getColor('neutral-dark');
         }
       }
     }
@@ -722,4 +728,18 @@
     @include hoverRules();
     border: 1px solid currentColor;
   }
+}
+
+
+@mixin disabledRulesWithoutBG {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: getColor('disabled') !important;
+  cursor: not-allowed !important;
+  filter: grayscale(1);
+}
+
+@mixin disabledRules {
+  background-color: getBGColor('disabled') !important;
+  @include disabledRulesWithoutBG;
 }

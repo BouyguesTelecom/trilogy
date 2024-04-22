@@ -445,7 +445,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-bordered {
-  border: 1px solid getColor('grey-light');
+  border: 1px solid getBGColor('neutral-dark');
 }
 
 .is-vertical-paddingless {
