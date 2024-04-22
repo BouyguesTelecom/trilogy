@@ -16,10 +16,6 @@
   @return #{nth(map-get($colors,$name),1)}
 }
 
-@function getVariantColor($name, $n:1)  {
-  @return var(--color-#{nth(map-get($colorsOld,$name),$n+3)})
-};
-
 @function getBGColor( $name ) {
   @return var(--color-bg-#{nth(map-get($colors,$name),1)})
 }

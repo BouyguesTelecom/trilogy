@@ -326,7 +326,7 @@ $label-weight: $weight-bold;
       left: 16px;
       border-left: transparent 1px solid;
       font-size: $text-12;
-      color: getColor('grey');
+      color: getColor('neutral');
       transform: translateY(0);
       transition: all 0.2s ease-out;
       z-index: zindex('small');
@@ -387,7 +387,7 @@ $label-weight: $weight-bold;
   &.has-password-discover {
     .input {
       ~ .icon:not(:last-child) {
-        color: getColor('grey');
+        color: getColor('neutral');
         background-color: transparent;
         right: 45px;
         cursor: pointer;
@@ -558,7 +558,7 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('grey-dark');
+  color: getColor('neutral-dark');
   display: block;
   font-size: $size-normal;
   font-weight: $label-weight;

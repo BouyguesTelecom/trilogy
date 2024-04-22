@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$timeline-marker-color: getColor('grey-lighter') !default;
+$timeline-marker-color: getBGColor('neutral') !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getColor('grey-lighter') !default;
+$timeline-line-color: getBGColor('neutral') !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -42,7 +42,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     &::before {
       content: '';
-      background-color: getColor('grey-lighter');
+      background-color: getBGColor('neutral');
       display: block;
       width: $timeline-line-width;
       position: absolute;
@@ -55,12 +55,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     .timeline-marker.is-icon {
       background-color: getColor('main');
-
-      .icon {
-        color: white;
-      }
+      color: getColor('font');
     }
-
 
     &.active {
       .timeline-marker.is-icon {
@@ -117,16 +113,13 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     &.cancel {
       .timeline-marker.is-icon {
-        background-color: getColor('grey-light');
-
-        .icon {
-          color: getColor('grey-darker');
-        }
+        background-color: getColor('neutral-dark');
+        color: getBGColor('neutral');
       }
 
       &::before {
         content: '';
-        background-color: getColor('grey-light');
+        background-color: getBGColor('neutral-dark');
         display: block;
         width: $timeline-line-width;
         position: absolute;
@@ -206,7 +199,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       .heading {
         font-size: $text-12;
-        color: getColor('grey');
+        color: getColor('neutral');
         font-family: $family-sans-serif;
         text-transform: none;
         letter-spacing: 0;
@@ -344,12 +337,11 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &.undone {
-          i {
-            background-color: getColor('font');
-          }
+          color: getBGColor('main');
+          background-color: getBGColor('neutral');
 
           &::before {
-            background-color: getColor('grey-lighter');
+            background-color: getBGColor('neutral');
           }
         }
 
@@ -358,7 +350,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &.cancel::before {
-          background-color: getColor('grey-light');
+          background-color: getBGColor('neutral-dark');
         }
 
         .timeline-marker {

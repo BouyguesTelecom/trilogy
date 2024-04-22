@@ -5,7 +5,7 @@
 
     > .slice:not(:last-child),
     > .slice-group:not(:last-child) {
-        border-bottom: 1px solid getColor('grey-light');
+        border-bottom: 1px solid getBGColor('neutral-dark');
     }
 
     &.is-transparent {

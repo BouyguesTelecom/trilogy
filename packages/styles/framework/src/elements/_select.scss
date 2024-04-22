@@ -16,7 +16,7 @@
 }
 
 .select {
-  border: 1px solid getColor('grey');
+  border: 1px solid getColor('neutral');
   display: inline-block;
   max-width: 100%;
   position: relative;
@@ -62,7 +62,7 @@
     top: 50%;
     transform: translate(0, -50%);
     left: 16px !important;
-    color: getColor('grey') !important
+    color: getColor('neutral') !important
   }
 
   &.select-native {
@@ -84,7 +84,7 @@
   .has-dynamic-placeholder {
     label {
       top: 18px;
-      color: getColor('grey') !important
+      color: getColor('neutral') !important
     }
   }
 
@@ -143,23 +143,6 @@
     }
   }
 
-  // Colors
-  @each $name in $colors-brand {
-    $brandName: getColorBrandName($name);
-    $color: getColor($name);
-
-    &.is-#{$brandName} {
-      &:not(:hover) {
-        outline: 1px auto $color;
-      }
-
-      &:hover,
-      &.is-hovered {
-        outline: 1px auto getVariantColor($name, 1);
-      }
-    }
-  }
-
   // Sizes
   &.is-small {
     @include control-small;
@@ -168,7 +151,6 @@
   &.is-large {
     @include control-large;
   }
-
 
   &.is-loading {
     &::after {

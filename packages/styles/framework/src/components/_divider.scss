@@ -1,7 +1,7 @@
 .divider {
     position: relative;
     text-align: center;
-    background-color: getColor('grey');
+    background-color: getColor('neutral');
     height: 1px;
     width: 100%;
     margin: 16px 0;
@@ -13,6 +13,6 @@
         transform: translate(-50%, -50%);
         white-space: nowrap;
         padding: 0 $spacing-4;
-        background-color: invertColor('grey');
+        background-color: invertColor('neutral');
     }
 }

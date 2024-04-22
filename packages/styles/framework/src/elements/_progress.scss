@@ -19,7 +19,7 @@ $progressbar-small: 5px;
   -webkit-appearance: none;
 
   &::-webkit-progress-bar {
-    background-color: getColor('grey-light');
+    background-color: getBGColor('neutral-dark');
     border-radius: $progressbar-height;
   }
 
@@ -71,7 +71,7 @@ $progressbar-small: 5px;
 
 .progress.is-stacked {
   display: flex;
-  background-color: getColor('grey-light');
+  background-color: getBGColor('neutral-dark');
   border-radius: $progressbar-height;
 
   .progress-bar {
@@ -103,7 +103,7 @@ $progress-circle-slices: (
   secondary: getColor('info'),
   tertiary: getColor('font'),
   warning: getColor('warning'),
-  empty: getColor('grey-light')
+  empty: getBGColor('neutral-dark')
 );
 
 .progress-circle {

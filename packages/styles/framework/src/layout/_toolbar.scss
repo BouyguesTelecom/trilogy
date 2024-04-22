@@ -2,7 +2,7 @@ $toolbar-height: 60px !default;
 
 .toolbar {
     height: $toolbar-height;
-    border-bottom: 1px solid getColor('grey-light');
+    border-bottom: 1px solid getBGColor('neutral-dark');
     display: flex;
     align-items: center;
 
@@ -19,7 +19,7 @@ $toolbar-height: 60px !default;
         flex-direction: row;
         align-items: center;
         height: 100%;
-        border-right: 1px solid getColor('grey-light');
+        border-right: 1px solid getBGColor('neutral-dark');
 
         &:empty {
             border-right: none;
@@ -38,7 +38,7 @@ $toolbar-height: 60px !default;
         align-items: center;
 
         &:not(:first-of-type) {
-            border-left: 1px solid getColor('grey-light');
+            border-left: 1px solid getBGColor('neutral-dark');
         }
 
         > .toolbar-item {
@@ -73,7 +73,7 @@ $toolbar-height: 60px !default;
 
             &:not(:last-of-type) {
                 border-right: 0;
-                border-bottom: 1px solid getColor('grey-light');
+                border-bottom: 1px solid getBGColor('neutral-dark');
             }
         }
 
@@ -83,11 +83,11 @@ $toolbar-height: 60px !default;
             border-right: 0;
 
             > .toolbar-group {
-                border-bottom: 1px solid getColor('grey-light');
+                border-bottom: 1px solid getBGColor('neutral-dark');
                 flex-grow: 1;
 
                 &:not(:last-of-type) {
-                    border-right: 1px solid getColor('grey-light');
+                    border-right: 1px solid getBGColor('neutral-dark');
                 }
             }
         }

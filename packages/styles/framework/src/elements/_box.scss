@@ -138,7 +138,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid getColor('grey-dark');
+    border: 1px solid getColor('neutral-dark');
 
     &.has-hat > .is-hat {
       left: -1px;

@@ -24,7 +24,7 @@ $menu-dropdown-item-height: 2em;
     }
 
     li {
-        border-bottom: 1px solid getColor('grey-lighter');
+        border-bottom: 1px solid getBGColor('neutral');
 
         &:last-child {
             border-bottom: none;
@@ -48,7 +48,7 @@ $menu-dropdown-item-height: 2em;
 .menu-list {
     line-height: 1.25;
     padding: 10px 0;
-    border-bottom: 1px solid getColor('grey-light');
+    border-bottom: 1px solid getBGColor('neutral-dark');
 
     a {
         @include unselectable;
@@ -77,7 +77,7 @@ $menu-dropdown-item-height: 2em;
         }
 
         &.is-active {
-            background-color: getColor('grey-light');
+            background-color: getBGColor('neutral-dark');
             color: getColor('alternate');
 
             &::before {
@@ -149,7 +149,7 @@ $menu-dropdown-item-height: 2em;
 
           #{$hoverSelector} {
                 color: getColor('alternate');
-                background-color: getBGColor('grey');
+                background-color: getBGColor('neutral');
             }
 
             sub {
@@ -167,7 +167,7 @@ $menu-dropdown-item-height: 2em;
     }
 
     &.aside-menu-list {
-        border-right: 1px solid getColor('grey-light');
+        border-right: 1px solid getBGColor('neutral-dark');
 
         a {
             padding-left: 1.2em;
