@@ -16,7 +16,7 @@
 }
 
 .select {
-  border: 1px solid getColor('neutral');
+  border: 1px solid getBGColor('font');
   display: inline-block;
   max-width: 100%;
   position: relative;

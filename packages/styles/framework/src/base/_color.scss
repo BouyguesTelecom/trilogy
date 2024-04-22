@@ -12,6 +12,10 @@
   @return #{nth(map-get($colors,$name),2)}
 }
 
+@function getBGColorValue( $name ) {
+  @return #{nth(map-get($colors,$name),4)}
+}
+
 @function getColorBrandName( $name ) {
   @return #{nth(map-get($colors,$name),1)}
 }

@@ -414,8 +414,8 @@
 @mixin input {
   @include control;
   height: 56px;
-  background-color: #fff;
-  border-color: getColor('neutral');
+  background-color: getColor('background');
+  border-color: getBGColor('font');
   color: getColor('font');
 
   @include placeholder {
