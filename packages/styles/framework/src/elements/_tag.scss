@@ -95,7 +95,7 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getBGColor('neutral-dark');
+  background-color: getBGColor('font');
   border-radius: $tag-radius;
   color: getColor('font');
   display: inline-flex;
@@ -125,6 +125,7 @@ $tag-delete-margin: 1px !default;
     }
     &.is-inverted.is-#{$name} {
       color: getColor($name);
+      background-color: invertColor($name);
     }
   }
 }
