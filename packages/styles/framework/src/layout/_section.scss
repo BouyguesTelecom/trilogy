@@ -21,7 +21,7 @@ $overlap-section-desktop: $spacing-4 !default;
   }
 
   &:nth-child(even) {
-    background-color: getColor('grey-lighter');
+    background-color: getBGColor('neutral');
   }
 
   &:nth-child(odd) {
@@ -61,5 +61,5 @@ $overlap-section-desktop: $spacing-4 !default;
 }
 
 .section:nth-child(2n-1).is-inverted {
-  background-color: getColor('grey-lighter');
+  background-color: getBGColor('neutral');
 }

@@ -29,16 +29,7 @@
       color: getColor('background') !important;
 
       &.is-active {
-        &::after {
-          content: "";
-          width: calc(100% - 16px);
-          height: 2px;
-          border-radius: 2px;
-          font-size: 20px;
-          background-color: getColor('background');
-          bottom: -2px;
-          left: 8px;
-        }
+        border-bottom-color: currentColor;
       }
 
       #{$hoverSelector} {
@@ -111,14 +102,10 @@
       font-family: $body-family;
       text-decoration: none;
       outline: none;
-      padding: 6px;
+      padding: 6px 14px;
       font-size: $text-14;
-      border: 2px solid transparent;
-      border-radius: 4px;
-
-      &:not(:last-child) {
-        margin-right: 16px;
-      }
+      border: 0px solid transparent;
+      border-bottom: 2px solid getBGColor('font');
 
       .tab-icon {
         margin-top: 2px;
@@ -139,18 +126,8 @@
         color: getColor('main');
         font-weight: $weight-semibold;
         position: relative;
+        border-bottom-color: getColor('main');
 
-        &::after {
-          content: "";
-          width: calc(100% - 16px);
-          height: 2px;
-          border-radius: 2px;
-          font-size: 20px;
-          background-color: getColor('main');
-          position: absolute;
-          bottom: -2px;
-          left: 8px
-        }
       }
 
       &:hover:not(.is-disabled) {

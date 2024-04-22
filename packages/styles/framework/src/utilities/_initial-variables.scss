@@ -2,32 +2,8 @@
 
 $suffix: '';
 
-$colorsOld: (
-        'background': ['white', #fff, 'main', #E9E9E9, #F4F4F4],
-        'main':['main', #3d5d7e, 'white', #30435b, #26354b],
-        'alternate':['accent', #da641b, 'white',  #bb5118, #984011],
-        'font':['main', #3d5d7e, 'white', #217d8f, #646464],
-        'success':['success', #007B52, 'white'],
-        'info':['info', #1A688A, 'white'],
-        'warning':['warning', #FFBB33, 'tertiary'],
-        'error':['error', #D42D02, 'white'],
-        'grey':['grey', #707070, 'white' ],
-        'grey-dark':['grey-dark', #646464, 'white' ],
-        'grey-light':['grey-light', #E9E9E9, 'white' ],
-        'grey-lighter':['grey-lighter', #F4F4F4, 'white' ],
-        'grey-disabled':['grey-disabled', #D1D1D1, 'white' ],
-        'bg-disabled': ['bg-disabled', hsl(0, 0%, 80%), 'disabled'],
-        'bg-success': ['bg-success', #cae8ca, 'success'],
-        'bg-info': ['bg-info', #c8dbec, 'info'],
-        'bg-warning': ['bg-warning', #ecdbc6, 'warning'],
-        'bg-error': ['bg-error', #eecccc, 'error'],
-        'bg-hovered': ['bg-hovered', #e4eaed, 'font'],
-        'hovered': ['hovered', #24374a, 'font'],
-) !default;
-
-
 /*
- All color have a
+ All color variables are defined here
  @string slug name used in classname (You can use your brand name)
  @color A valid css color value
  @invert The slug name of the best inverted color
@@ -36,27 +12,28 @@ $colorsOld: (
  @background A valid css color value (a variant color for background) -- optional
  */
 $colors: (
-  'background': ['white', #fff, 'main', #E9E9E9, #F4F4F4],
-  'main':['main', #3d5d7e, 'white', #30435b, #26354b],
-  'alternate':['accent', #da641b, 'white',  #bb5118, #984011],
-  'font':['main', #3d5d7e, 'white', #217d8f, #646464],
-  'success':['success', #007B52, 'white'],
-  'info':['info', #1A688A, 'white'],
-  'warning':['warning', #FFBB33, 'tertiary'],
-  'error':['error', #D42D02, 'white'],
-  'grey':['grey', #707070, 'white' ],
-  'grey-dark':['grey-dark', #646464, 'white' ],
-  'grey-light':['grey-light', #E9E9E9, 'white' ],
-  'grey-lighter':['grey-lighter', #F4F4F4, 'white' ],
-  'grey-disabled':['grey-disabled', #D1D1D1, 'white' ],
-  'bg-disabled': ['bg-disabled', hsl(0, 0%, 80%), 'disabled'],
-  'bg-success': ['bg-success', #cae8ca, 'success'],
-  'bg-info': ['bg-info', #c8dbec, 'info'],
-  'bg-warning': ['bg-warning', #ecdbc6, 'warning'],
-  'bg-error': ['bg-error', #eecccc, 'error'],
-  'bg-hovered': ['bg-hovered', #e4eaed, 'font'],
-  'hovered': ['hovered', #24374a, 'font'],
-  'bg-main': ['bg-main', #eff2f8]
+  'background': ['white', #fff, 'main', #E9E9E9],
+  'main':['main', #3d5d7e, 'white', #eff2f8],
+  'alternate':['accent', #da641b, 'white',  #bb5118],
+  'font':['main', #3d5d7e, 'white', #BBC6CD],
+  'success':['success', #007B52, 'white', #cae8ca],
+  'info':['info', #1A688A, 'white', #c8dbec],
+  'warning':['warning', #FFBB33, 'tertiary', #ecdbc6],
+  'error':['error', #D42D02, 'white',#eecccc],
+  /* Grey disabled // BG : bg-disabled */
+  'disabled':['disabled', #646464, 'white', #D1D1D1],
+  'hovered': ['hovered', #24374a, 'font',#e4eaed],
+  /* grey , BG : grey-lighter */
+  'neutral':['grey', #707070, 'white', #F4F4F4 ],
+  /* grey dark , BG : grey-light */
+  'neutral-dark':['grey-dark', #646464, 'white', #E9E9E9 ],
+
+  /* To be deleted ? */
+  'grey':['grey', #707070, 'white', #F4F4F4 ],
+
+  'grey-dark':['grey-dark', #646464, 'white', #646464 ],
+'grey-light':['grey-light', #E9E9E9, 'white', #E9E9E9 ],
+'grey-lighter':['grey-lighter', #F4F4F4, 'white', #F4F4F4 ],
 ) !default;
 
 /*

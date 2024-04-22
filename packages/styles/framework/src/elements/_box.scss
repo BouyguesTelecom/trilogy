@@ -138,7 +138,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid getColor('grey-dark');
+    border: 1px solid getBGColor('font');
 
     &.has-hat > .is-hat {
       left: -1px;
@@ -262,7 +262,7 @@ a.box {
 
   .box-footer {
     padding-top: $padding-box;
-    border-top: 1px solid getColor('grey-disabled');
+    border-top: 1px solid getColor('disabled');
     margin: 12.5px 7.5px 7.5px;
   }
 }

@@ -35,7 +35,7 @@ $button-border-width: 2px !default;
 
   background-color: white;
   border-width: $button-border-width;
-  border-radius: 4px;
+  border-radius: $radius-small;
   cursor: pointer;
   justify-content: center;
   text-align: center;
@@ -62,7 +62,7 @@ $button-border-width: 2px !default;
 
   @each $name, $pair in $btn-colors {
     $variantName: nth($pair, 1);
-    $colorBG: getColor(nth($pair, 2));
+    $colorBG: getColor(#{nth($pair, 2)});
     $colorText: getColor(nth($pair, 3));
     $effectHover: nth($pair, 4);
     $effectActive: nth($pair, 5);

@@ -7,7 +7,7 @@ $body-line-height: 1.5 !default;
 .html-wrap {
     margin: 0;
     padding: 0;
-    background-color: getColor('grey-lighter');
+    background-color: getBGColor('neutral');
     font-size: $body-size;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -56,12 +56,7 @@ $body-line-height: 1.5 !default;
         }
     }
   [disabled], [aria-disabled="true"] {
-    background-color: getColor('bg-disabled') !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-    color: getColor('grey-dark') !important;
-    cursor: not-allowed !important;
-    filter: grayscale(1);
+    @include disabledRules;
   }
 }
 

@@ -16,11 +16,11 @@ import { Divider, TrilogyColor } from "@trilogy-ds/react";
 
 export const TimelineScreen = (): JSX.Element => {
   return (
-    <Section background={TrilogyColor.WHITE}>
+    <>
       {/* TIMELINE WITH 4 ITEMSS */}
       <Timeline horizontal>
         <TimelineItem cancel>
-          <TimelineMarker iconName={IconName.CHECK} iconColor={"WHITE"} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent
             heading="20 September"
             content="loremp ipsum dolor sit amet"
@@ -31,7 +31,7 @@ export const TimelineScreen = (): JSX.Element => {
         </TimelineItem>
 
         <TimelineItem done>
-          <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent
             heading="20 September"
             content="loremp ipsum dolor sit amet"
@@ -40,7 +40,7 @@ export const TimelineScreen = (): JSX.Element => {
           />
         </TimelineItem>
         <TimelineItem active>
-          <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent
             heading="20 September"
             content="loremp ipsum dolor sit amet"
@@ -49,7 +49,7 @@ export const TimelineScreen = (): JSX.Element => {
           />
         </TimelineItem>
         <TimelineItem undone>
-          <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent
             heading="20 September"
             content="loremp ipsum dolor sit amet"
@@ -63,7 +63,7 @@ export const TimelineScreen = (): JSX.Element => {
 
       <Timeline>
         <TimelineItem cancel>
-          <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent>
             <Title level={TitleLevels.THREE}>20 septembre</Title>
             <Text level={TextLevels.FOUR}>
@@ -106,6 +106,6 @@ export const TimelineScreen = (): JSX.Element => {
           </TimelineContent>
         </TimelineItem>
       </Timeline>
-    </Section>
+    </>
   );
 };

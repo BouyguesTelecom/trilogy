@@ -1,7 +1,7 @@
 .segmented-control {
   border-radius: 6px;
   padding: $spacing-1;
-  background-color: getColor('grey-lighter');
+  background-color: getBGColor('neutral');
   display: inline-block;
   margin: 16px 0;
 
@@ -13,13 +13,13 @@
 
   .segmented-control-item {
     padding: 0 $spacing-5;
-    border-radius: 4px;
+    border-radius: $radius-small;
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
     height: 42px;
     color: getColor('font');
-    background-color: getColor('grey-lighter');
+    background-color: getBGColor('neutral');
     font-family: $body-family;
 
     &:not(:last-child) {

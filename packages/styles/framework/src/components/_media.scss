@@ -8,7 +8,7 @@
     }
 
     .media {
-        border-top: 1px solid getColor('grey-lighter');
+        border-top: 1px solid getBGColor('neutral');
         display: flex;
         padding-top: 7.5px;
 
@@ -27,7 +27,7 @@
     }
 
     & + .media {
-        border-top: 1px solid getColor('grey-lighter');
+        border-top: 1px solid getBGColor('neutral');
         margin-top: 10px;
         padding-top: 10px;
     }

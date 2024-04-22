@@ -48,6 +48,7 @@ export const StepperScreen = (): JSX.Element => {
               step={2}
             />
             <StepperStep
+              error
               done={3 < activeStep}
               current={activeStep === 3}
               iconName={IconName.SEARCH}

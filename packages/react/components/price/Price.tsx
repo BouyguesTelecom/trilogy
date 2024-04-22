@@ -37,7 +37,6 @@ const Price = ({
   period,
   showCents,
   level,
-  huge,
   inverted,
   align,
   alert,
@@ -56,8 +55,7 @@ const Price = ({
       "price",
       !alert && variant && is(`${variant}`),
       !variant && alert && is(`${alert}`),
-      level && !huge && is(`level-${level}`),
-      huge && !level && is("huge"),
+      level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),
       striked && is("striked"),
@@ -75,10 +73,6 @@ const Price = ({
         ""
     )
   )
-
-  // const fixedCents = (n: any) => {
-  //   return n.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-  // }
 
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
@@ -117,7 +111,7 @@ const Price = ({
           {...others}
         >
           {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-          <Text className={"main"}>{`${whole}`}</Text>
+          <Text>{`${whole}`}</Text>
           <span className={hashClass(styled, clsx("price-details"))}>
             <span className={hashClass(styled, clsx("cents"))}>
               {inline && centsDisplayed === "€" ? (
@@ -146,7 +140,7 @@ const Price = ({
       {...others}
     >
       {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-      <Text className='main'>{`${whole}`}</Text>
+      <Text>{`${whole}`}</Text>
       <span className={hashClass(styled, clsx("price-details"))}>
         <span className={hashClass(styled, clsx("cents"))}>
           {centsDisplayed || "00"}
