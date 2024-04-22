@@ -96,8 +96,8 @@
   @extend %delete;
 }
 
-@mixin arrow($color, $direction: 'down') {
-  background-color: $color;
+@mixin arrow( $direction: 'down') {
+  background-color: currentColor;
   @if $direction == 'up' {
     content: "";
     mask-image: url('./assets/icons/all/arrow-up.svg');
@@ -115,7 +115,6 @@
   min-width: 15px;
   min-height: 15px;
   mask-size: 15px;
-  color: $color;
   position: absolute;
   display: inline-block;
 }
@@ -641,7 +640,9 @@
 
       &:disabled {
         & ~ label.#{$type}-label {
-          @include disabledRules;
+          background-color: getColor('disabled');
+          color: getColor('grey-dark') !important;
+
           &:before {
             border-color: getColor('grey') !important;
           }

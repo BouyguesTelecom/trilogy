@@ -3,7 +3,7 @@
         width: 100%;
         .security-gauge {
             height: 4px;
-            background: getColor('grey-disabled');
+            background: getColor('disabled');
             border-radius: 4px;
             margin: 8px 0;
             .gauge {

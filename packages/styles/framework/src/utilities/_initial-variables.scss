@@ -15,8 +15,7 @@ $colorsOld: (
         'grey-dark':['grey-dark', #646464, 'white' ],
         'grey-light':['grey-light', #E9E9E9, 'white' ],
         'grey-lighter':['grey-lighter', #F4F4F4, 'white' ],
-        'grey-disabled':['grey-disabled', #D1D1D1, 'white' ],
-        'bg-disabled': ['bg-disabled', hsl(0, 0%, 80%), 'disabled'],
+        'disabled':['disabled', #D1D1D1, 'white' ],
         'bg-success': ['bg-success', #cae8ca, 'success'],
         'bg-info': ['bg-info', #c8dbec, 'info'],
         'bg-warning': ['bg-warning', #ecdbc6, 'warning'],
@@ -45,7 +44,7 @@ $colors: (
   'warning':['warning', #FFBB33, 'tertiary', #ecdbc6],
   'error':['error', #D42D02, 'white',#eecccc],
   /* Grey disabled // BG : bg-disabled */
-  'disabled':['disabled', #D1D1D1, 'white', #646464],
+  'disabled':['disabled', #646464, 'white', #D1D1D1],
   'hovered': ['hovered', #24374a, 'font',#e4eaed],
   /* grey , BG : grey-lighter */
   'neutral':['grey', #707070, 'white', #F4F4F4 ],
@@ -59,19 +58,8 @@ $colors: (
   'grey-dark':['grey-dark', #646464, 'white', #646464 ],
 'grey-light':['grey-light', #E9E9E9, 'white', #E9E9E9 ],
 'grey-lighter':['grey-lighter', #F4F4F4, 'white', #F4F4F4 ],
-'grey-disabled':['grey-disabled', #D1D1D1, 'white', #D1D1D1 ],
-'bg-disabled': ['bg-disabled', hsl(0, 0%, 80%), 'disabled', hsl(0, 0%, 80%)],
-
 ) !default;
 
-
-/* To be deleted ?
-'grey-dark':['grey-dark', #646464, 'white' ],
-'grey-light':['grey-light', #E9E9E9, 'white' ],
-'grey-lighter':['grey-lighter', #F4F4F4, 'white' ],
-'grey-disabled':['grey-disabled', #D1D1D1, 'white' ],
-'bg-disabled': ['bg-disabled', hsl(0, 0%, 80%), 'disabled'],
-*/
 /*
 Colors for buttons
   @string slug name used in classname (You can use your brand name)
@@ -83,7 +71,7 @@ Colors for buttons
 $btn-colors: (
   'accent':['accent', 'alternate', 'background', null, null],
   'primary': ['primary', 'main', 'background', brightness(0.8), brightness(0.7)],
-  'secondary': ['secondary', 'bg-main', 'main', brightness(0.8), brightness(0.7)],
+  'secondary': ['secondary', getBGColor('main'), 'main', brightness(0.8), brightness(0.7)],
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
 ) !default;
 
