@@ -105,7 +105,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     .timeline-marker {
       position: absolute;
-      background: getColor('grey-light');
+      background: getBGColor('neutral-dark');
       border-radius: 100%;
       content: '';
       display: block;
@@ -125,7 +125,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           }
         }
 
-        background: getColor('grey-light');
+        background: getBGColor('neutral-dark');
         border-radius: 100%;
         display: block;
         overflow: hidden;
@@ -141,7 +141,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
                             $timeline-marker-border-size * 0.5);
         line-height: size(0.75rem);
         padding: math.div($timeline-icon-size, 3);
-        background: getColor('grey-lighter');
+        background: getBGColor('neutral');
         border-radius: 100%;
 
         > i {
@@ -159,7 +159,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           background: getColor('background');
 
           > i {
-            color: getColor('grey-light');
+            color: getBGColor('neutral-dark');
           }
         }
       }
@@ -173,7 +173,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       .heading {
         font-size: $text-12;
-        color: getColor('grey');
+        color: getColor('neutral');
         font-family: $family-sans-serif;
         text-transform: none;
         letter-spacing: 0;

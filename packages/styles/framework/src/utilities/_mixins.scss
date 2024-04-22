@@ -147,7 +147,7 @@
 
 @mixin spinner {
   animation: spinAround 500ms infinite linear;
-  border: 2px solid getColor('grey-light');
+  border: 2px solid getBGColor('neutral-dark');
   border-radius: 290486px;
   border-right-color: transparent;
   border-top-color: transparent;
@@ -415,11 +415,11 @@
   @include control;
   height: 56px;
   background-color: #fff;
-  border-color: getColor('grey');
+  border-color: getColor('neutral');
   color: getColor('font');
 
   @include placeholder {
-    color: getColor('grey') !important;
+    color: getColor('neutral') !important;
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
@@ -458,7 +458,7 @@
     }
 
     &::before {
-      border: 1px solid getColor('grey');
+      border: 1px solid getColor('neutral');
       margin: 0 10px 0 0;
       min-width: 16px;
       min-height: 16px;
@@ -490,7 +490,7 @@
       }
 
       &:before {
-        border: 1px solid getColor('grey');
+        border: 1px solid getColor('neutral');
       }
     }
 
@@ -641,21 +641,21 @@
       &:disabled {
         & ~ label.#{$type}-label {
           background-color: getColor('disabled');
-          color: getColor('grey-dark') !important;
+          color: getColor('neutral-dark') !important;
 
           &:before {
-            border-color: getColor('grey') !important;
+            border-color: getColor('neutral') !important;
           }
         }
       }
 
       &:disabled:checked ~ label.#{$type}-label {
         &:before {
-          border-color: getColor('grey') !important;
+          border-color: getColor('neutral') !important;
         }
 
         .checkbox-title {
-          color: getColor('grey-dark');
+          color: getColor('neutral-dark');
         }
       }
     }

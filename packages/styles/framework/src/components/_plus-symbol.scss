@@ -1,6 +1,6 @@
 $plus-symbol-size: 40px;
 
-@mixin plus-symbol($color: getColor('grey-light'), $text-color: getColor('grey-dark')) {
+@mixin plus-symbol($color: getBGColor('neutral-dark'), $text-color: getColor('neutral-dark')) {
     &::after {
         content: "+";
         display: inline-block;

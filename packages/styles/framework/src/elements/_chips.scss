@@ -55,7 +55,7 @@ $chip-radius: 30px !default;
     padding: 6px $spacing-4;
     white-space: nowrap;
     cursor: pointer;
-    border: 1px solid getColor('grey-light');
+    border: 1px solid getBGColor('neutral-dark');
 
     &:not(.is-disabled) {
 

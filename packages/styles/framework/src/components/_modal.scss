@@ -141,7 +141,7 @@ body:has(.modal.is-active) {
         z-index: zindex('medium');
 
         #{$hoverSelector} {
-            background-color: getColor('grey-light');
+            background-color: getBGColor('neutral-dark');
         }
 
         &::after,

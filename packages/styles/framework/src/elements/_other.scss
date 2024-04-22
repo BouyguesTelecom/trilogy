@@ -30,7 +30,7 @@
 
 .number {
     align-items: center;
-    background-color: getColor('grey-light');
+    background-color: getBGColor('neutral-dark');
     border-radius: $radius-rounded;
     display: inline-flex;
     font-size: $size-medium;

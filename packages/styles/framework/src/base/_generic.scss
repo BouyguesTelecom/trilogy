@@ -7,7 +7,7 @@ $body-line-height: 1.5 !default;
 .html-wrap {
     margin: 0;
     padding: 0;
-    background-color: getColor('grey-lighter');
+    background-color: getBGColor('neutral');
     font-size: $body-size;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;

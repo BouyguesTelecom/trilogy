@@ -49,13 +49,13 @@
 .pagination-previous,
 .pagination-next,
 .pagination-link {
-  color: getColor('grey-dark');
+  color: getColor('neutral-dark');
   min-width: 2.25em;
 
   @include hover();
 
   &:active {
-    box-shadow: inset 0 1px 2px getColor('grey-dark');
+    box-shadow: inset 0 1px 2px getColor('neutral-dark');
   }
 
 }
@@ -79,7 +79,7 @@
 }
 
 .pagination-ellipsis {
-  color: getColor('grey-light');
+  color: getBGColor('neutral-dark');
   pointer-events: none;
 }
 
