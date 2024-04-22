@@ -1,7 +1,7 @@
 .divider {
     position: relative;
     text-align: center;
-    background-color: getColor('neutral');
+    background-color: getBGColor('hovered');
     height: 1px;
     width: 100%;
     margin: 16px 0;

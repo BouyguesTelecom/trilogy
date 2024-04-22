@@ -24,7 +24,7 @@
     content: "";
     display: block;
     height: 4px;
-    background: getColor('disabled');
+    background: getBGColor('font');
     border-radius: 4px;
   }
 
@@ -50,9 +50,10 @@
 
       &::before {
         content: "";
-        mask-image: url('./assets/icons/all/times-circle.svg') !important;
+        mask-image: url('./assets/icons/all/times.svg') !important;
         background-color: getColor('error') !important;
         border-width: 0;
+        mask-size: 20px;
         width: 20px;
         height: 20px;
         margin: 2px 8px 0 -8px;
@@ -78,7 +79,6 @@
     }
 
     .step-label {
-      color: getColor('font');
       padding-left: $spacing-2;
 
       &::before {
@@ -87,6 +87,7 @@
         background-color: getColor('success');
         border-width: 0;
         min-width: 20px;
+        mask-size: 20px;
         height: 20px;
         margin: 2px 8px 0 -8px;
         align-self: baseline;
@@ -118,7 +119,6 @@
       font-weight: 600;
       font-size: 22px;
       line-height: 24px;
-      color: getColor('font');
       transition: color 1.45s ease;
       width: max-content;
 
@@ -154,7 +154,7 @@
 .step-label {
   display: flex;
   align-items: center;
-  color: getColor('neutral');
+  color: getColor('font');
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
