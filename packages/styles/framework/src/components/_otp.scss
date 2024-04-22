@@ -6,7 +6,7 @@
     @include hover();
     outline: none;
     border: 1px solid currentColor;
-    border-radius: 4px;
+    border-radius: $radius-small;
     background: transparent;
     width: 33px;
     height: 40px;

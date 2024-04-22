@@ -12,7 +12,7 @@
     background-color: getColor('background');
     font-size: $size-normal;
     border: 1px solid getBGColor('font');
-    border-radius: 8px;
+    border-radius: $radius;
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
