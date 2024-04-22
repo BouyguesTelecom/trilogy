@@ -1,6 +1,10 @@
 @use "sass:map";
 
 @function getColor( $name ) {
+  @if str-slice($name, 0, 3) == 'bg-' {
+    $submane: str-slice($name, 4);
+  @return getBGColor( $submane );
+  }
   @return var(--color-#{nth(map-get($colors,$name),1)})
 }
 

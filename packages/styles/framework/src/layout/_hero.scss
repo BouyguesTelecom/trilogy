@@ -173,45 +173,11 @@ $overlap-desktop: 30px;
   &.is-main {
     color: invertColor('main');
     background-color: getColor('main');
-
-    p,
-    strong,
-    .paragraph,
-    .suptitle,
-    .title,
-    .subtitle,
-    a:not(.button):not(.tag) {
-      color: getColor('background');
-    }
-
-    .subtitle {
-      strong,
-      a:not(.button) {
-        color: getColor('background');
-      }
-    }
   }
-
 
   &.is-info {
     background: getColor('info');
-
-    p,
-    strong,
-    .paragraph,
-    .suptitle,
-    .title,
-    .subtitle,
-    a:not(.button):not(.tag) {
-      color: getColor('background');
-    }
-
-    .subtitle {
-      strong,
-      a:not(.button) {
-        color: getColor('background');
-      }
-    }
+    color: invertColor('info');
   }
 
   .subtitle {

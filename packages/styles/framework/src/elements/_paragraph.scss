@@ -26,10 +26,10 @@ $text-levels-mobile: (
                 font-family: $family-primary;
                 margin-bottom: $margin-bottom;
             }
+        }
 
-            &.is-inverted {
-                color: getColor('background');
-            }
+        &.is-inverted {
+          color: getColor('background');
         }
 
         @include mobile {

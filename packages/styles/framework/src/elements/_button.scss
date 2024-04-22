@@ -62,7 +62,7 @@ $button-border-width: 2px !default;
 
   @each $name, $pair in $btn-colors {
     $variantName: nth($pair, 1);
-    $colorBG: #{nth($pair, 2)};
+    $colorBG: getColor(#{nth($pair, 2)});
     $colorText: getColor(nth($pair, 3));
     $effectHover: nth($pair, 4);
     $effectActive: nth($pair, 5);

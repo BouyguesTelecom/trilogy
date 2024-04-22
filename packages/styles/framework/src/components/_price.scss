@@ -11,6 +11,10 @@ $price-levels: (
 
 .price {
     display: inline-flex;
+    font-weight: $weight-semibold;
+    line-height: 0.8;
+    margin-bottom: 0;
+
     // flex-wrap: wrap;
     &:not(.is-inlined){
         font-size: 44px;
@@ -70,52 +74,6 @@ $price-levels: (
 
     }
 
-    // FIXME : le nom de cette classe devrait être préfixé de "price-"
-    .main,
-    .price-main {
-        font-weight: $weight-semibold;
-        line-height: 0.8;
-        margin-bottom: 0;
-    }
-
-
-
-
-
-    // rendre les is-n deprecated dans 4 versions -  v1.18.11 -
-
-    &.is-1 {
-        font-size: 56px;
-    }
-
-    &.is-2 {
-        font-size: 44px;
-    }
-
-    &.is-3 {
-        font-size: 32px;
-    }
-
-    &.is-4 {
-        font-size: 29px;
-    }
-
-    &.is-5 {
-        font-size: 23px;
-    }
-
-    &.is-6 {
-        font-size: 14px;
-    }
-
-    &.is-huge {
-        font-size: 62px;
-    }
-
-    &.is-main-price {
-        color: getColor('alternate');
-    }
-
     &.is-inverted {
         color: getColor('background');
     }
@@ -167,7 +125,7 @@ $price-levels: (
 
     &.is-striked {
         position: relative;
-        color: getVariantColor('font', 2);
+        color: getBGColor('font');
 
         &::before {
             position: absolute;
@@ -181,15 +139,8 @@ $price-levels: (
             transform: rotate(-20deg);
         }
 
-        &.is-main-price {
-            color: getVariantColor('alternate', 2);
-            &::before {
-                border-color: getColor('alternate');
-            }
-        }
-
         &.is-inverted {
-            color: getVariantColor('background', 2);
+            color: getBGColor('font');
 
             &::before {
                 border-color: getColor('background');

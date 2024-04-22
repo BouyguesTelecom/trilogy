@@ -38,7 +38,7 @@ $colors: (
   'background': ['white', #fff, 'main', #E9E9E9],
   'main':['main', #3d5d7e, 'white', #eff2f8],
   'alternate':['accent', #da641b, 'white',  #bb5118],
-  'font':['main', #3d5d7e, 'white', #eff2f8],
+  'font':['main', #3d5d7e, 'white', #BBC6CD],
   'success':['success', #007B52, 'white', #cae8ca],
   'info':['info', #1A688A, 'white', #c8dbec],
   'warning':['warning', #FFBB33, 'tertiary', #ecdbc6],
@@ -71,7 +71,7 @@ Colors for buttons
 $btn-colors: (
   'accent':['accent', 'alternate', 'background', null, null],
   'primary': ['primary', 'main', 'background', brightness(0.8), brightness(0.7)],
-  'secondary': ['secondary', getBGColor('main'), 'main', brightness(0.8), brightness(0.7)],
+  'secondary': ['secondary', 'bg-main', 'main', brightness(0.8), brightness(0.7)],
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
 ) !default;
 
