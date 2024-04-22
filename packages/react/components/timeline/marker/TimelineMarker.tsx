@@ -33,7 +33,7 @@ const TimelineMarker = ({
     <div className={classes} {...others} data-testid={testId}>
       <div className='card-header-icon'>
         <Icon
-          color={iconColor || IconColor.WHITE}
+          color={iconColor}
           className={iconClasses}
           name={iconName}
           size={IconSize.SMALL}

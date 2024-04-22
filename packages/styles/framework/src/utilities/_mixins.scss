@@ -490,7 +490,7 @@
       }
 
       &:before {
-        border: 1px solid getColor('neutral');
+        border: 1px solid getBGColor('font');
       }
     }
 
@@ -512,7 +512,7 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
-          @include disabledRules;
+          @include disabledRules(bgDisabled);
 
           &:before {
             border-color: getBGColor('disabled');
@@ -596,7 +596,7 @@
       display: block;
       position: relative;
       padding: 40px 16px 16px;
-      border: 1px solid getColor('font');
+      border: 1px solid getBGColor('font');
       border-radius: 8px;
       box-sizing: border-box;
 
