@@ -512,7 +512,6 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
-          @include disabledRules(bgDisabled);
 
           &:before {
             border-color: getBGColor('disabled');
@@ -543,6 +542,13 @@
     display: flex;
     align-items: center;
     margin: 6px 8px;
+
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRulesWithoutBG;
+      }
+    }
 
     label.#{$type}-label {
       padding: 4px;
@@ -583,6 +589,13 @@
     margin-right: 16px;
     margin-top: 16px;
     text-align: center;
+
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRules;
+      }
+    }
 
     &:first-child {
       margin-left: 0;
@@ -717,11 +730,16 @@
   }
 }
 
-@mixin disabledRules {
-  background-color: getBGColor('disabled') !important;
+
+@mixin disabledRulesWithoutBG {
   border-color: transparent !important;
   box-shadow: none !important;
   color: getColor('disabled') !important;
   cursor: not-allowed !important;
   filter: grayscale(1);
+}
+
+@mixin disabledRules {
+  background-color: getBGColor('disabled') !important;
+  @include disabledRulesWithoutBG;
 }
