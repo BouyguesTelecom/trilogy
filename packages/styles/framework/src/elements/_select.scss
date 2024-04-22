@@ -8,13 +8,8 @@
 }
 
 
-@mixin arrow-style($isDisabled:false, $direction:"up") {
-  $color: getColor('font');
-  @if ($isDisabled) {
-    $color: getColor('grey')
-  }
-
-  @include arrow($color, $direction);
+@mixin arrow-style($direction:"up") {
+  @include arrow( $direction);
   right: 16px;
   margin-left: 16px;
   top: calc(50% - 7px);
@@ -125,7 +120,7 @@
   &:not(.is-loading) {
     &:not(.select-disabled) {
       &::after {
-        @include arrow-style(false, "down")
+        @include arrow-style("down")
       }
 
       &:not(.select-native) {

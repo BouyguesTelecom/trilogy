@@ -1,133 +1,5 @@
 @use "sass:math";
 
-$step-width: 30px;
-$step-font-size: 18px;
-$step-gap: $step-width;
-$step-gap-desktop: $step-width * 3;
-
-
-// old stepper , déprécié since ( v2 )
-.stepper {
-  display: inline-flex;
-  position: relative;
-
-  @include mobile {
-    &::after {
-      content: attr(data-label-mobile);
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      font-weight: $weight-semibold;
-      color: getColor('main');
-    }
-  }
-
-  .step {
-    position: relative;
-    z-index: zindex('void');
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: $step-width;
-    height: $step-width;
-    border-radius: 100%;
-    background: getColor('grey-disabled');
-    color: getColor('background');
-    font-size: $step-font-size;
-    transition: background .15s ease;
-
-    &.is-done {
-      background: getColor('main');
-    }
-
-    &.is-current,
-    &.is-active {
-      background: getColor('main');
-    }
-  }
-
-  .step + .step {
-    margin-left: $step-gap;
-
-    @include desktop {
-      margin-left: $step-gap-desktop;
-    }
-
-    &::before {
-      content: '';
-      height: 4px;
-      width: $step-gap;
-      display: block;
-      position: absolute;
-      z-index: zindex('subzero');
-      left: -$step-gap;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: background .15s ease;
-      background-color: getColor('grey-disabled');
-
-      @include desktop {
-        width: $step-gap-desktop;
-        margin-left: -$step-gap-desktop + $step-width;
-      }
-    }
-  }
-
-  // done steps successively
-  .step.is-done + .step.is-done::before {
-    background: getColor('font');
-  }
-
-  // done step followed by current step
-  .step.is-done + .step.is-current::before {
-    background: linear-gradient(90deg, getColor('font'), getColor('main'));
-  }
-
-  // active step followed by done step(s)
-  .step.is-active + .step.is-done::before {
-    background: linear-gradient(90deg, getColor('main'), getColor('font'));
-  }
-
-  // current step followed by unvisited step(s)
-  .step.is-current + .step::before {
-    background: linear-gradient(90deg, getColor('main'), getColor('grey-disabled') 75%);
-  }
-
-  // labels
-  .step[data-label] {
-    margin-bottom: 40px;
-
-    &::after {
-      position: absolute;
-      left: -$step-gap-desktop * 0.5;
-      right: -$step-gap-desktop * 0.5;
-      color: getColor('grey');
-      font-size: $size-7;
-      font-weight: $weight-semibold;
-      top: 50px;
-      text-align: center;
-
-      @include desktop {
-        content: attr(data-label);
-      }
-    }
-
-    // active or current step
-    &.is-current::after,
-    &.is-active::after {
-      color: getColor('main');
-    }
-  }
-}
-
-// back to grey label when going back in steps: the current step is followed by the active step
-.step[data-label].is-active ~ .step[data-label].is-current::after {
-  color: getColor('grey');
-}
-
-
-// Nouveau stepper
-
 .stepper-wrapper {
   display: flex;
   position: relative;
@@ -152,7 +24,7 @@ $step-gap-desktop: $step-width * 3;
     content: "";
     display: block;
     height: 4px;
-    background: getColor('grey-disabled');
+    background: getColor('disabled');
     border-radius: 4px;
   }
 
@@ -274,7 +146,7 @@ $step-gap-desktop: $step-width * 3;
 
 .step-bars {
   height: 4px;
-  background: getColor('grey-disabled');
+  background: getColor('disabled');
   border-radius: 4px;
   display: none;
 }

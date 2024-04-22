@@ -43,7 +43,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     &::before {
       content: '';
-      background-color: getColor('grey-disabled');
+      background-color: getColor('disabled');
       display: block;
       width: $timeline-line-width;
       position: absolute;
@@ -258,7 +258,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       &:nth-of-type(2n + 1) {
         &::before {
           content: '';
-          background-color: getColor('grey-disabled');
+          background-color: getColor('disabled');
           display: block;
           width: $timeline-line-width;
           height: 100%;

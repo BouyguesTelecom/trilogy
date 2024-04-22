@@ -14,27 +14,16 @@ $size-large: $text-24 !default;
 
 // Brand Color
 $colors-brand: (
-  'background', 'main', 'font'
+  'background', 'main', 'alternate'
 );
 
 // Brand Color Functionnal
 $colors-brand-funcionnal: (
-  'background', 'main', 'alternate', 'font', 'info', 'success', 'error', 'warning'
+  'background', 'main', 'alternate', 'info', 'success', 'error', 'warning'
 );
 
 $colors-feedback: (
-  'success': (
-    'bg-success',
-  ),
-  'error': (
-    'bg-error',
-  ),
-  'warning': (
-    'bg-warning',
-  ),
-  'info': (
-    'bg-info',
-  ),
+  'success', 'error', 'warning', 'info'
 );
 
 // Gestion des z-index
