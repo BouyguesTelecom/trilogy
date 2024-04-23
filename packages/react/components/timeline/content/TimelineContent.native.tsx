@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TimelineContentProps } from './TimelineContentProps'
-import { Text, TextLevels } from '../../text'
-import { Link } from '../../link'
-import { TypographyBold, TypographyColor } from '../../../objects'
-import { TimelineItemContext } from '../item/TimelineItem.native'
-import { AutoLayout } from '../../autolayout'
-import { ComponentName } from '../../enumsComponentsName'
+import React, { useContext } from "react"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { TimelineContentProps } from "./TimelineContentProps"
+import { Text, TextLevels } from "../../text"
+import { Link } from "../../link"
+import { TypographyColor } from "../../../objects"
+import { TimelineItemContext } from "../item/TimelineItem.native"
+import { AutoLayout } from "../../autolayout"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * TimelineContent Native Component
@@ -18,26 +18,27 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param Onclick {string} Provide event onCLick
  */
 const TimelineContent = ({
-                           content,
-                           contentLink,
-                           heading,
-                           link,
-                           onClick,
-                           children,
-                         }: TimelineContentProps): JSX.Element => {
+  content,
+  contentLink,
+  heading,
+  link,
+  onClick,
+  children,
+}: TimelineContentProps): JSX.Element => {
   const timelineContextValues = useContext(TimelineItemContext)
 
   const styles = StyleSheet.create({
     container: {
       flex: 6,
       marginBottom: 8,
-      marginLeft: 4
+      marginLeft: 4,
     },
     heading: {
       marginBottom: 4,
       marginTop: 8,
     },
     content: {
+      fontWeight: timelineContextValues.active ? "600" : "400",
       marginBottom: 4,
     },
     link: {
@@ -52,16 +53,16 @@ const TimelineContent = ({
   ) : (
     <View style={styles.container}>
       {!!heading && (
-        <Text level={TextLevels.THREE} style={styles.heading} typo={TypographyColor.TEXT_GREY_DARK}>
+        <Text
+          level={TextLevels.THREE}
+          style={styles.heading}
+          typo={TypographyColor.TEXT_MAIN}
+        >
           {heading}
         </Text>
       )}
       {!!content && (
-        <Text
-          level={TextLevels.TWO}
-          style={styles.content}
-          typo={timelineContextValues.active ? TypographyBold.TEXT_WEIGHT_SEMIBOLD : TypographyBold.TEXT_WEIGHT_NORMAL}
-        >
+        <Text level={TextLevels.TWO} style={styles.content}>
           {content}
         </Text>
       )}

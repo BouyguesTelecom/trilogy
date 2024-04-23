@@ -45,9 +45,9 @@ const Select = ({
       backgroundColor: getColorStyle(
         disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.WHITE
       ),
-      borderColor: getColorStyle(
-        disabled ? TrilogyColor.DISABLED : TrilogyColor.GREY_LIGHT
-      ),
+      borderColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.FONT, 1),
       borderWidth: 1,
       borderRadius: 4,
       zIndex: 3, // works on ios
@@ -67,7 +67,7 @@ const Select = ({
       fontSize: 16,
       lineHeight: 20,
       color: getColorStyle(
-        disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN
+        disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN
       ),
     },
   })
@@ -88,6 +88,7 @@ const Select = ({
     return (
       <>
         <TouchableOpacity
+          disabled={disabled}
           onPress={() => setDisplay((prev) => !prev)}
           style={styles.select}
         >

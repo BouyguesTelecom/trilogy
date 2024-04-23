@@ -159,7 +159,6 @@ const Input = ({
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const placeholderColor = getColorStyle(TrilogyColor.GREY)
   const inputColor = getColorStyle(TrilogyColor.MAIN)
 
   const [iconPassword, setIconPassword] = useState(IconName.EYE)
@@ -344,7 +343,7 @@ const Input = ({
     if (calc <= 50 && calc > 0) return errorColor
     if (calc <= 99 && calc > 50) return warningColor
     if (calc === 100) return successColor
-    return "#D1D1D1"
+    return getColorStyle(TrilogyColor.FONT, 1)
   }, [points, nbAllVerifies])
 
   const styles = StyleSheet.create({
@@ -354,12 +353,12 @@ const Input = ({
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
       width: hasIcon && (status || customIcon) ? "85%" : "95%",
       height: 46,
-      color: inputColor,
+      color: disabled ? getColorStyle(TrilogyColor.DISABLED) : inputColor,
     },
     dynamicPlaceholder: {
       position: "absolute",
       left: customIconLeft ? 40 : 10,
-      color: getColorStyle(TrilogyColor.GREY),
+      color: getColorStyle(TrilogyColor.MAIN),
     },
     help: {
       fontSize: 12,
@@ -368,6 +367,7 @@ const Input = ({
         (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
         (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
         (status && status === "default" && inputColor) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         inputColor,
       paddingLeft: 4,
       paddingTop: 2,
@@ -376,7 +376,9 @@ const Input = ({
       position: "relative",
       justifyContent: "center",
       alignSelf: "stretch",
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
       borderRadius: 3,
       borderColor:
@@ -452,7 +454,7 @@ const Input = ({
       justifyContent: "space-between",
     },
     containerGauge: {
-      backgroundColor: "#D1D1D1",
+      backgroundColor: getColorStyle(TrilogyColor.FONT, 1),
       height: 4,
       width: "100%",
       borderRadius: 4,
@@ -529,7 +531,11 @@ const Input = ({
             onBlur?.(e)
           }}
           placeholder={placeholder}
-          placeholderTextColor={placeholderColor}
+          placeholderTextColor={
+            disabled
+              ? getColorStyle(TrilogyColor.DISABLED)
+              : getColorStyle(TrilogyColor.MAIN)
+          }
           style={styles.input}
           {...others}
         />
@@ -563,6 +569,7 @@ const Input = ({
                   status === "error" &&
                   getAlertStyle(AlertState.ERROR)) ||
                 (status && status === "default" && inputColor) ||
+                (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
                 inputColor
               }
             />
@@ -605,6 +612,7 @@ const Input = ({
                     status === "error" &&
                     getAlertStyle(AlertState.ERROR)) ||
                   (status && status === "default" && inputColor) ||
+                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
                   inputColor
                 }
               />
@@ -647,6 +655,7 @@ const Input = ({
                     status === "error" &&
                     getAlertStyle(AlertState.ERROR)) ||
                   (status && status === "default" && inputColor) ||
+                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
                   inputColor
                 }
               />
@@ -660,7 +669,7 @@ const Input = ({
                 align={Alignable.ALIGNED_CENTER}
                 name={IconName.SEARCH}
                 size={IconSize.SMALL}
-                color={getColorStyle(TrilogyColor.GREY)}
+                color={getColorStyle(TrilogyColor.NEUTRAL)}
               />
             </View>
             {value.length > 0 && (
@@ -684,7 +693,7 @@ const Input = ({
                   align={Alignable.ALIGNED_CENTER}
                   name={IconName.TIMES_CIRCLE}
                   size={IconSize.SMALL}
-                  color={getColorStyle(TrilogyColor.GREY)}
+                  color={getColorStyle(TrilogyColor.NEUTRAL)}
                 />
               </TouchableOpacity>
             )}

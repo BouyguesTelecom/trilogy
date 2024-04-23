@@ -65,7 +65,7 @@ const Textarea = (
     useState<boolean>(false)
   const textareaColor = isFocus
     ? getColorStyle(TrilogyColor.MAIN)
-    : getColorStyle(TrilogyColor.GREY_LIGHT)
+    : getColorStyle(TrilogyColor.FONT, 1)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -97,7 +97,7 @@ const Textarea = (
       textAlignVertical: "top",
       color: getColorStyle(TrilogyColor.MAIN),
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED)
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
         : getColorStyle(TrilogyColor.WHITE),
       /*  width: '',*/
     },
@@ -147,7 +147,9 @@ const Textarea = (
 
   return (
     <View>
-      {!dynamicPlaceholder && <Text>{label}</Text>}
+      {!dynamicPlaceholder && (
+        <Text style={{ color: getColorStyle(TrilogyColor.MAIN) }}>{label}</Text>
+      )}
 
       {iconName && (
         <Icon style={styles.leftIcon} name={iconName} size='small' />
