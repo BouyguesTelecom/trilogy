@@ -11,12 +11,8 @@ import {
   Section,
   Text,
 } from "@trilogy-ds/react/components";
-import {
-  TrilogyColor,
-  TypographyAlign,
-  TypographyColor,
-} from "@trilogy-ds/react/objects";
-import { Columns, ColumnsItem, Title, TitleLevels } from "@trilogy-ds/react";
+import {TrilogyColor, TypographyAlign, TypographyColor,} from "@trilogy-ds/react/objects";
+import {Button, ButtonVariant, Columns, ColumnsItem, Title, TitleLevels} from "@trilogy-ds/react";
 
 export const BoxScreen = (): JSX.Element => {
   return (
@@ -57,6 +53,9 @@ export const BoxScreen = (): JSX.Element => {
                   Nam quam lacus, suscipit a vehicula ac, vehicula eget risus.
                 </Text>
               </BoxContent>
+              <BoxFooter>
+                <Button variant={ButtonVariant.PRIMARY}>Check out</Button>
+              </BoxFooter>
             </Box>
           </ColumnsItem>
           <ColumnsItem size={10}>
