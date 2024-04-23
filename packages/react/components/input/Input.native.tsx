@@ -384,7 +384,7 @@ const Input = ({
         (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
         (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
         (status && status === "default" && inputColor) ||
-        inputColor,
+        getColorStyle(TrilogyColor.FONT, 1),
       height: 46,
       width: "100%",
     },

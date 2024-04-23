@@ -5,7 +5,7 @@ import { Spacer, SpacerSize } from "../spacer"
 import { View } from "../view"
 import { Text, TextLevels } from "../text"
 import { getAlertIconName, getAlertStyle } from "../../objects/facets/Alert"
-import { getColorStyle, TrilogyColor, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { AlertProps } from "./AlertProps"
 import { Icon } from "../icon"
 import { TypographyBold } from "../../objects"
@@ -61,6 +61,7 @@ const Alert = ({
     },
     containerTitle: {
       paddingLeft: 8,
+      fontWeight: "bold",
     },
   })
 

@@ -54,11 +54,14 @@ const AccordionItem = ({
       width: "100%",
       padding: 5,
       borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
-      borderColor: isActive
-        ? getColorStyle(TrilogyColor.MAIN)
-        : getColorStyle(TrilogyColor.GREY_LIGHT),
+      borderColor:
+        (isActive && getColorStyle(TrilogyColor.MAIN)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        getColorStyle(TrilogyColor.FONT, 1),
     },
     bodyBackground: {
       borderRadius: 6,
@@ -71,7 +74,7 @@ const AccordionItem = ({
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      paddingLeft: 5,
+      paddingLeft: 10,
       paddingRight: 5,
       paddingTop: 5,
       paddingBottom: 5,
@@ -174,7 +177,7 @@ const AccordionItem = ({
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
-                color={isActive ? TrilogyColor.MAIN : TrilogyColor.GREY_DARK}
+                color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
               />
             </Animated.View>
           </View>

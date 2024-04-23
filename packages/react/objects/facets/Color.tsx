@@ -92,15 +92,15 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
 export const getButtonColorStyle = (buttonVariant?: string): string => {
   switch (buttonVariant) {
     case "ACCENT":
-      return "#da641b"
+      return TrilogyColor.ACCENT
     case "PRIMARY":
-      return "#3d5d7e"
+      return TrilogyColor.MAIN
     case "SECONDARY":
-      return "#eff2f8"
+      return TrilogyColor.HOVERED
     case "GHOST":
-      return "#FFFFFF"
+      return TrilogyColor.WHITE
     default:
-      return "#3d5d7e"
+      return TrilogyColor.MAIN
   }
 }
 
