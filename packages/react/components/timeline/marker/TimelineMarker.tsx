@@ -2,7 +2,7 @@ import * as React from "react"
 import clsx from "clsx"
 import { TimelineMarkerWebProps } from "./TimelineMarkerProps"
 import { is } from "../../../services/classify"
-import { Icon, IconColor, IconSize } from "../../icon"
+import { Icon, IconSize } from "../../icon"
 import { useTrilogyContext } from "../../../context"
 import { hashClass } from "../../../helpers"
 

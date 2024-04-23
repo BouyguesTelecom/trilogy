@@ -27,7 +27,6 @@ export const ModalScreen = (): JSX.Element => {
           panel
           triggerMarkup={ModalMarkup.A}
           title={"Modal panel Title"}
-          triggerContent={"Open modal"}
           ctaContent={"Action"}
           ctaOnClick={() => alert("Click on cta")}
           closeIcon

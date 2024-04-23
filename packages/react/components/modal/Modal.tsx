@@ -47,7 +47,7 @@ const Modal = ({
   content,
   triggerMarkup,
   triggerContent,
-  triggerClassNames = "button is-main",
+  triggerClassNames = "button is-primary",
   ctaContent,
   ctaOnClick,
   onClose,
@@ -151,7 +151,7 @@ const Modal = ({
   const ModalContentButton = ({
     ...props
   }: ModalContentButtonProps): JSX.Element => (
-    <Button markup={"button"} className={is("MAIN")} {...props} />
+    <Button markup={"button"} className={is("PRIMARY")} {...props} />
   )
 
   const ModalCancelButton = ({

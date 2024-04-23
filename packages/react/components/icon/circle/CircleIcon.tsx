@@ -24,7 +24,7 @@ const CircleIcon = ({
 
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-    getStatusBackground(status || "", IconStatus.TERTIARY) ||
+    getStatusBackground(status || "", IconStatus.INFO) ||
     has(getBackgroundClassName(TrilogyColor.MAIN))
 
   const classes = hashClass(
