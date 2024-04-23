@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { TagClickEvent, TagProps } from "./TagProps"
 import { Icon, IconName, IconSize } from "../icon"
-import { getBackgroundOfVariant, getColorStyle, TrilogyColor, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
 
 /**
@@ -35,9 +35,8 @@ const Tag = ({
   const textColor = inverted
     ? getColorStyle(variant as TrilogyColor)
     : getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor =
-    getBackgroundOfVariant(variant) ||
-    getBackgroundOfVariant(TrilogyColor.INFO)
+
+  const backgroundColor = variant && getColorStyle(variant as TrilogyColor, 1)
 
   const styles = StyleSheet.create({
     tag: {
@@ -48,9 +47,10 @@ const Tag = ({
       borderRadius: 15,
       paddingHorizontal: 8,
       paddingVertical: 4,
-      backgroundColor: inverted
-        ? getColorStyle(TrilogyColor.WHITE)
-        : (backgroundColor as TrilogyColor),
+      backgroundColor:
+        (inverted && getColorStyle(TrilogyColor.WHITE)) ||
+        (variant && (backgroundColor as TrilogyColor)) ||
+        getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     text: {
       alignSelf: "center",

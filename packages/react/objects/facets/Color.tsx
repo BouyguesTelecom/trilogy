@@ -116,26 +116,3 @@ export const getColorStyle = (
   const color = colors[trilogyColor]
   return color[1]
 }
-
-/**
- * Returns the background color of a variant
- * @param variant {string} - The variant name (success, error, warning or info)
- * @returns {string} - The background color value
- */
-const variantBackgroundMap: Record<string, TrilogyColor> = {
-  success: TrilogyColor.SUCCESS,
-  info: TrilogyColor.INFO,
-  warning: TrilogyColor.WARNING,
-  error: TrilogyColor.ERROR,
-}
-
-export const getBackgroundOfVariant = (variant?: string): string => {
-  if (!variant) return "#FFF"
-
-  const trilogyColor = variantBackgroundMap[variant.toLowerCase()]
-  const color = colors[trilogyColor]
-
-  // La valeur de fond est la 4ème valeur dans la carte de couleurs Sass
-  // Mais comme nous avons exclu l'état hover dans notre objet JavaScript, c'est maintenant la 3ème valeur
-  return color[2]
-}

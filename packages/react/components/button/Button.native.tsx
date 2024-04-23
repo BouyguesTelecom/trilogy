@@ -27,15 +27,13 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
-    (disabled && variant && getColorStyle(TrilogyColor.DISABLED)) ||
-    (variant === ButtonVariant.PRIMARY &&
-      getButtonColorStyle(ButtonVariant.PRIMARY)) ||
+    (disabled && variant && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+    (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
-      getButtonColorStyle(ButtonVariant.SECONDARY)) ||
+      getColorStyle(TrilogyColor.MAIN, 1)) ||
     (variant === ButtonVariant.ACCENT &&
-      getButtonColorStyle(ButtonVariant.ACCENT)) ||
-    (variant === ButtonVariant.GHOST &&
-      getButtonColorStyle(ButtonVariant.GHOST)) ||
+      getColorStyle(TrilogyColor.ACCENT, 1)) ||
+    (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.WHITE)) ||
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||

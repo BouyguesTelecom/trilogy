@@ -67,26 +67,6 @@ export const getColorStyle = (
   return colorArray[colorIndex]
 }
 
-export const getBackgroundOfVariant = (variant?: string): string => {
-  const {
-    theme: { colors },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = useContext(TrilogyThemeContext)
-
-  switch (variant) {
-    case "SUCCESS":
-      return colors.bgSuccess
-    case "INFO":
-      return colors.bgInfo
-    case "WARNING":
-      return colors.bgWarning
-    case "ERROR":
-      return colors.bgError
-    default:
-      return colors.bgDefault
-  }
-}
-
 export const getButtonColorStyle = (buttonVariant?: string): string => {
   const {
     theme: { colors },
