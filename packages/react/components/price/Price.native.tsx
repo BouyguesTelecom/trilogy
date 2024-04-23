@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { PriceProps } from './PriceProps'
-import { PriceVariant, PriceLevel } from './PriceEnum'
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor } from '../../objects'
-import { checkCents } from './PriceHelpers'
-import { ComponentName } from '../enumsComponentsName'
+import React, { useMemo } from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { PriceProps } from "./PriceProps"
+import { PriceLevel, PriceVariant } from "./PriceEnum"
+import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, } from "../../objects"
+import { checkCents } from "./PriceHelpers"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Price Component
@@ -14,7 +14,6 @@ import { ComponentName } from '../enumsComponentsName'
  * @param period {string} Period for Price (mois)
  * @param showCents {boolean} Display cents
  * @param level {PriceLevel} Price custom size
- * @param huge {boolean} Price huge size
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
@@ -25,23 +24,22 @@ import { ComponentName } from '../enumsComponentsName'
  * @param suptitle {string} Price Suptitle
  */
 const Price = ({
-                 variant,
-                 amount,
-                 mention,
-                 period,
-                 showCents,
-                 level,
-                 huge,
-                 inverted,
-                 align,
-                 alert,
-                 inline,
-                 testId,
-                 accessibilityLabel,
-                 striked,
-                 suptitle,
-                 ...others
-               }: PriceProps): JSX.Element => {
+  variant,
+  amount,
+  mention,
+  period,
+  showCents,
+  level,
+  inverted,
+  align,
+  alert,
+  inline,
+  testId,
+  accessibilityLabel,
+  striked,
+  suptitle,
+  ...others
+}: PriceProps): JSX.Element => {
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
   // Math.floor on negative decimal decrease its value (as expected), ex: Math.floor(-17.09) => -18
@@ -57,14 +55,15 @@ const Price = ({
   //   .toString()
   //   .padStart(2, '0')
 
-  const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
+  const cents = checkCents(
+    absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
+  )
 
   const primaryColor = getColorStyle(TrilogyColor.MAIN)
   const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.WHITE)
 
   const priceLevel =
-    (huge && 45) ||
     (level == PriceLevel.LEVEL1 && 64) ||
     (level == PriceLevel.LEVEL2 && 56) ||
     (level == PriceLevel.LEVEL3 && 44) ||
@@ -79,41 +78,51 @@ const Price = ({
   const color = useMemo(
     () =>
       (inverted && !striked && invertedColor) ||
-      (inverted && striked && '#b0b0b0') ||
+      (inverted && striked && "#b0b0b0") ||
       (alert && getAlertStyle(alert)) ||
-      (!striked && !inverted && variant === PriceVariant.PRIMARY && primaryColor) ||
-      (!striked && !inverted && variant === PriceVariant.SECONDARY && secondaryColor) ||
-      (striked && !inverted && (!variant || variant === PriceVariant.PRIMARY) && '#8999a7') ||
-      (striked && !inverted && variant === PriceVariant.SECONDARY && '#8cc9d9') ||
+      (!striked &&
+        !inverted &&
+        variant === PriceVariant.PRIMARY &&
+        primaryColor) ||
+      (!striked &&
+        !inverted &&
+        variant === PriceVariant.SECONDARY &&
+        secondaryColor) ||
+      (striked &&
+        !inverted &&
+        (!variant || variant === PriceVariant.PRIMARY) &&
+        "#8999a7") ||
+      (striked &&
+        !inverted &&
+        variant === PriceVariant.SECONDARY &&
+        "#8cc9d9") ||
       primaryColor,
-    [inverted, striked, alert, variant],
+    [inverted, striked, alert, variant]
   )
 
   const strikedRotateByLevel = () => {
     return (
-      (huge && '-16deg') ||
-      (level == PriceLevel.LEVEL7 && (showCents || period) && '-18deg') ||
-      (level == PriceLevel.LEVEL6 && (showCents || period) && '-19deg') ||
-      (level == PriceLevel.LEVEL5 && (showCents || period) && '-18deg') ||
-      (level == PriceLevel.LEVEL4 && (showCents || period) && '-16deg') ||
-      (level == PriceLevel.LEVEL3 && (showCents || period) && '-16deg') ||
-      (level == PriceLevel.LEVEL2 && (showCents || period) && '-16deg') ||
-      (level == PriceLevel.LEVEL1 && (showCents || period) && '-15deg') ||
-      (level == PriceLevel.LEVEL1 && '-17deg') ||
-      (level == PriceLevel.LEVEL2 && '-18deg') ||
-      (level == PriceLevel.LEVEL3 && '-20deg') ||
-      (level == PriceLevel.LEVEL4 && '-18deg') ||
-      (level == PriceLevel.LEVEL5 && '-18deg') ||
-      (level == PriceLevel.LEVEL6 && '-22deg') ||
-      (level == PriceLevel.LEVEL7 && '-22deg') ||
-      (!level && (showCents || period) && '-15deg') ||
-      '-20deg'
+      (level == PriceLevel.LEVEL7 && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.LEVEL6 && (showCents || period) && "-19deg") ||
+      (level == PriceLevel.LEVEL5 && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.LEVEL4 && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.LEVEL3 && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.LEVEL2 && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.LEVEL1 && (showCents || period) && "-15deg") ||
+      (level == PriceLevel.LEVEL1 && "-17deg") ||
+      (level == PriceLevel.LEVEL2 && "-18deg") ||
+      (level == PriceLevel.LEVEL3 && "-20deg") ||
+      (level == PriceLevel.LEVEL4 && "-18deg") ||
+      (level == PriceLevel.LEVEL5 && "-18deg") ||
+      (level == PriceLevel.LEVEL6 && "-22deg") ||
+      (level == PriceLevel.LEVEL7 && "-22deg") ||
+      (!level && (showCents || period) && "-15deg") ||
+      "-20deg"
     )
   }
 
   const strikedBottomByLevel = () => {
     return (
-      (huge && 32) ||
       (level == PriceLevel.LEVEL7 && (showCents || period) && 12) ||
       (level == PriceLevel.LEVEL6 && (showCents || period) && 15) ||
       (level == PriceLevel.LEVEL5 && (showCents || period) && 18) ||
@@ -135,12 +144,12 @@ const Price = ({
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: 'row',
+      flexDirection: "row",
       alignSelf:
-        (align && align == Alignable.ALIGNED_START && 'flex-start') ||
-        (align && align == Alignable.ALIGNED_CENTER && 'center') ||
-        (align && align == Alignable.ALIGNED_END && 'flex-end') ||
-        'flex-start',
+        (align && align == Alignable.ALIGNED_START && "flex-start") ||
+        (align && align == Alignable.ALIGNED_CENTER && "center") ||
+        (align && align == Alignable.ALIGNED_END && "flex-end") ||
+        "flex-start",
     },
     priceContainer: {
       padding: 0,
@@ -150,18 +159,21 @@ const Price = ({
         (level == PriceLevel.LEVEL6 && 2) ||
         (level == PriceLevel.LEVEL7 && 2) ||
         4,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      width: 'auto',
-      position: 'relative',
+      flexDirection: "column",
+      justifyContent: "center",
+      width: "auto",
+      position: "relative",
     },
     price: {
       fontSize: priceLevel,
-      fontWeight: (level == PriceLevel.LEVEL6 && 'normal') || (level == PriceLevel.LEVEL7 && 'normal') || 'bold',
+      fontWeight:
+        (level == PriceLevel.LEVEL6 && "normal") ||
+        (level == PriceLevel.LEVEL7 && "normal") ||
+        "bold",
       color: color,
     },
     cents: {
-      fontWeight: 'bold',
+      fontWeight: "bold",
       color: color,
       fontSize: centsLevel,
     },
@@ -174,15 +186,15 @@ const Price = ({
       fontSize: priceLevel,
     },
     striked: {
-      position: 'absolute',
+      position: "absolute",
       height: 1,
       backgroundColor:
         (inverted && invertedColor) ||
         (variant === PriceVariant.PRIMARY && primaryColor) ||
         (variant === PriceVariant.SECONDARY && secondaryColor) ||
         primaryColor,
-      width: period ? '96%' : '100%',
-      transform: [{ rotate: inline ? '-10deg' : strikedRotateByLevel() }],
+      width: period ? "96%" : "100%",
+      transform: [{ rotate: inline ? "-10deg" : strikedRotateByLevel() }],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -192,13 +204,22 @@ const Price = ({
       paddingLeft: 4,
       marginBottom: -3,
       color: color,
-      fontWeight: (level == PriceLevel.LEVEL6 && 'normal') || (level == PriceLevel.LEVEL7 && 'normal') || 'bold',
+      fontWeight:
+        (level == PriceLevel.LEVEL6 && "normal") ||
+        (level == PriceLevel.LEVEL7 && "normal") ||
+        "bold",
     },
   })
 
-  const priceText = `${whole}€${showCents ? cents : ''}${mention ? mention : ''}${period ? ` / ${period}` : ''}`
-  const priceTestId = testId ? testId : priceText ? priceText : 'NotSpecified'
-  const priceAccessibilityLabel = accessibilityLabel ? accessibilityLabel : priceText ? priceText : 'NotSpecified'
+  const priceText = `${whole}€${showCents ? cents : ""}${
+    mention ? mention : ""
+  }${period ? ` / ${period}` : ""}`
+  const priceTestId = testId ? testId : priceText ? priceText : "NotSpecified"
+  const priceAccessibilityLabel = accessibilityLabel
+    ? accessibilityLabel
+    : priceText
+    ? priceText
+    : "NotSpecified"
 
   return (
     <>
@@ -211,7 +232,7 @@ const Price = ({
         {...others}
       >
         {inline ? (
-          <View style={[styles.priceContainer, { flexDirection: 'row' }]}>
+          <View style={[styles.priceContainer, { flexDirection: "row" }]}>
             {striked && <Text style={styles.striked}></Text>}
             <Text style={styles.price}>
               {whole}€{showCents && cents}
@@ -222,14 +243,14 @@ const Price = ({
             </Text>
           </View>
         ) : (
-          <View style={[{ flexDirection: 'row' }]}>
+          <View style={[{ flexDirection: "row" }]}>
             {striked && <Text style={styles.striked}></Text>}
             <View style={styles.priceContainer}>
               <Text style={styles.price}>{`${whole}`}</Text>
             </View>
             <View style={styles.priceContainer}>
               <Text style={styles.cents}>
-                €{showCents && (cents || '00')}
+                €{showCents && (cents || "00")}
                 {mention && mention}
               </Text>
               <Text style={styles.period}>{period && `/${period}`}</Text>
