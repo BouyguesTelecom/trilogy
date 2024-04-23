@@ -7,7 +7,6 @@ import {
 } from "react-native"
 import { View } from "../view"
 import {
-  getBackgroundOfVariant,
   getButtonColorStyle,
   getLoadingClassName,
   getVariantClassName,
@@ -82,7 +81,7 @@ const findBorderColor = ({
       getColorStyle(TrilogyColor.DISABLED)) ||
     (!disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getBackgroundOfVariant(TrilogyColor.INFO)) ||
+      getColorStyle(TrilogyColor.INFO, 1)) ||
     getColorStyle(TrilogyColor.WHITE)
   )
 }
