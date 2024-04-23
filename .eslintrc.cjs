@@ -16,7 +16,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parserOptions: {
-    project: ['packages/react/tsconfig.json'],
+    project: ['tsconfig.json'],
     ecmaFeatures: {
       jsx: true,
       tsx: true,
@@ -25,7 +25,6 @@ module.exports = {
   rules: {
     'react/jsx-no-useless-fragment': 'off',
     'import/no-named-as-default': 'off',
-    'import/default': 'off',
     'import/no-named-as-default-member': 'off',
     'jest/expect-expect': [
       'error',
