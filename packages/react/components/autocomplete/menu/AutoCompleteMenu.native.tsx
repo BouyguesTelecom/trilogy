@@ -16,7 +16,7 @@ const AutoCompleteMenuNative = ({
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
       borderRadius: 3,
-      borderColor: getColorStyle(TrilogyColor.GREY),
+      borderColor: getColorStyle(TrilogyColor.FONT, 1),
       width: "100%",
       maxHeight: 165,
       flexGrow: 1,
