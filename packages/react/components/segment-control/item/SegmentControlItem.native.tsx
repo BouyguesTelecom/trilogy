@@ -32,7 +32,7 @@ const SegmentControlItem = ({
       backgroundColor:
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     text: {
@@ -42,7 +42,7 @@ const SegmentControlItem = ({
         (!activeItem &&
           !inverted &&
           disabled &&
-          getColorStyle(TrilogyColor.MAIN)) ||
+          getColorStyle(TrilogyColor.DISABLED)) ||
         getColorStyle(TrilogyColor.MAIN),
       marginVertical: 10,
       fontSize: 16,

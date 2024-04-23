@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
-import NativeModal from 'react-native-modal'
-import { ModalProps } from './ModalProps'
-import { Text } from '../text'
-import { Button } from '../button'
-import { View } from '../view'
-import { Icon, IconName, IconSize } from '../icon'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import React, { useEffect, useRef, useState } from "react"
+import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity, } from "react-native"
+import NativeModal from "react-native-modal"
+import { ModalProps } from "./ModalProps"
+import { Text } from "../text"
+import { Button, ButtonVariant } from "../button"
+import { View } from "../view"
+import { Icon, IconName, IconSize } from "../icon"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Modal Component
@@ -51,12 +51,12 @@ const Modal = ({
 }: ModalProps): JSX.Element => {
   const styles = StyleSheet.create({
     centeredView: {
-      justifyContent: bottom ? 'flex-end' : 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      justifyContent: bottom ? "flex-end" : "center",
+      alignItems: "center",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     iconCenter: {
-      alignSelf: 'center',
+      alignSelf: "center",
       marginBottom: 30,
     },
     modalView: {
@@ -64,7 +64,7 @@ const Modal = ({
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
       borderRadius: 6,
       padding: fullwidth ? 0 : 17,
-      shadowColor: '#000',
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 2,
@@ -75,32 +75,32 @@ const Modal = ({
       flex: 1,
     },
     title: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 21,
-      fontWeight: '600',
+      fontWeight: "600",
     },
     content: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 15,
       paddingTop: 10,
     },
     overlay: {
-      flexDirection: 'row',
-      width: '100%',
-      height: '100%',
+      flexDirection: "row",
+      width: "100%",
+      height: "100%",
     },
     middleModal: {
-      justifyContent: 'center',
+      justifyContent: "center",
     },
     bottomModal: {
-      justifyContent: 'flex-end',
+      justifyContent: "flex-end",
     },
     childrenContainer: {
-      flexWrap: 'wrap',
+      flexWrap: "wrap",
       paddingTop: 10,
       borderRadius: 6,
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
-      width: '100%',
+      width: "100%",
     },
     horizontalMargin: {
       marginTop: 50,
@@ -108,7 +108,7 @@ const Modal = ({
     },
   })
 
-  const defaultAnimPosition = Dimensions.get('window').height
+  const defaultAnimPosition = Dimensions.get("window").height
   const translateAnim = useRef(new Animated.Value(defaultAnimPosition)).current
 
   const [visible, setVisible] = useState(active || false)
@@ -137,7 +137,7 @@ const Modal = ({
     <View style={{ padding: fullwidth ? 0 : 17 }}>
       <TouchableOpacity onPressIn={close}>
         <Icon
-          style={{ flexDirection: 'row', alignSelf: 'flex-end' }}
+          style={{ flexDirection: "row", alignSelf: "flex-end" }}
           name={IconName.TIMES}
           size={IconSize.SMALL}
           color={TrilogyColor.GREY}
@@ -149,10 +149,15 @@ const Modal = ({
         </View>
       )}
       {title && <Text style={styles.title}>{title}</Text>}
-      {content && typeof content === 'string' ? <Text style={styles.content}>{content}</Text> : content}
+      {content && typeof content === "string" ? (
+        <Text style={styles.content}>{content}</Text>
+      ) : (
+        content
+      )}
       {ctaContent && (
         <View style={{ paddingTop: 15 }}>
-          <Button variant={'PRIMARY'} onClick={ctaOnClick}>
+          <Button variant={ButtonVariant.PRIMARY} onClick={ctaOnClick}>
+            totor
             {ctaContent}
           </Button>
         </View>
@@ -160,7 +165,7 @@ const Modal = ({
       {ctaCancelOnClick && (
         <View style={{ paddingTop: 15 }}>
           <Button
-            variant={'SECONDARY'}
+            variant={ButtonVariant.PRIMARY}
             onClick={(e) => {
               ctaCancelOnClick(e)
             }}
@@ -176,6 +181,7 @@ const Modal = ({
     <>
       {triggerContent && (
         <Button
+          variant={ButtonVariant.PRIMARY}
           onClick={(e) => {
             if (onOpen) onOpen(e)
           }}
@@ -190,23 +196,54 @@ const Modal = ({
           close(e)
         }}
         onModalHide={onModalHide}
-        swipeDirection={swipable ? 'down' : undefined}
+        swipeDirection={swipable ? "down" : undefined}
         isVisible={visible}
         statusBarTranslucent={true}
-        style={{ width: '100%', padding: 0, margin: 0 }}
+        style={{ width: "100%", padding: 0, margin: 0 }}
         {...others}
       >
-        <View style={[styles.overlay, bottom ? styles.bottomModal : styles.middleModal]}>
-          <TouchableOpacity activeOpacity={1} style={{ width: bottom ? 0 : 20, height: '100%' }} onPress={close} />
-          <View style={{ display: 'flex', flexDirection: 'column', flex: fullwidth ? 0 : 1 }}>
-            <TouchableOpacity activeOpacity={1} style={{ width: '100%', minHeight: 50, flexGrow: 1 }} onPress={close} />
+        <View
+          style={[
+            styles.overlay,
+            bottom ? styles.bottomModal : styles.middleModal,
+          ]}
+        >
+          <TouchableOpacity
+            activeOpacity={1}
+            style={{ width: bottom ? 0 : 20, height: "100%" }}
+            onPress={close}
+          />
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: fullwidth ? 0 : 1,
+            }}
+          >
+            <TouchableOpacity
+              activeOpacity={1}
+              style={{ width: "100%", minHeight: 50, flexGrow: 1 }}
+              onPress={close}
+            />
 
             <View style={{ flexShrink: 1 }}>
-              <Animated.View style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }] }]}>
+              <Animated.View
+                style={[
+                  styles.childrenContainer,
+                  { transform: [{ translateY: translateAnim }] },
+                ]}
+              >
                 {closeIcon && (
-                  <View style={{ width: '100%' }}>
-                    <TouchableOpacity style={{ alignSelf: 'flex-end', right: 20 }} onPress={close}>
-                      <Icon name={IconName.TIMES} size={IconSize.SMALL} color={TrilogyColor.GREY} />
+                  <View style={{ width: "100%" }}>
+                    <TouchableOpacity
+                      style={{ alignSelf: "flex-end", right: 20 }}
+                      onPress={close}
+                    >
+                      <Icon
+                        name={IconName.TIMES}
+                        size={IconSize.SMALL}
+                        color={TrilogyColor.GREY}
+                      />
                     </TouchableOpacity>
                   </View>
                 )}
@@ -215,11 +252,19 @@ const Modal = ({
             </View>
             <TouchableOpacity
               activeOpacity={1}
-              style={{ width: '100%', minHeight: bottom ? 0 : 50, flexGrow: bottom ? 0 : 1 }}
+              style={{
+                width: "100%",
+                minHeight: bottom ? 0 : 50,
+                flexGrow: bottom ? 0 : 1,
+              }}
               onPress={close}
             />
           </View>
-          <TouchableOpacity onPress={close} activeOpacity={1} style={{ width: bottom ? 0 : 20, height: '100%' }} />
+          <TouchableOpacity
+            onPress={close}
+            activeOpacity={1}
+            style={{ width: bottom ? 0 : 20, height: "100%" }}
+          />
         </View>
       </NativeModal>
     </>

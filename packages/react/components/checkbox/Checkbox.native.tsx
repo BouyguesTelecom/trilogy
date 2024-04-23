@@ -44,12 +44,13 @@ const Checkbox = ({
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
+      paddingBottom: 5,
       justifyContent: "flex-start",
     },
     checkBox: {
       alignItems: "center",
       justifyContent: horizontalTile ? "center" : "flex-start",
-      borderColor: getColorStyle(TrilogyColor.MAIN),
+      borderColor: getColorStyle(TrilogyColor.FONT),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -57,13 +58,14 @@ const Checkbox = ({
       marginRight: 10,
       marginLeft: 0,
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         "transparent",
     },
     label: {
       fontWeight: "600",
       color:
+        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.MAIN),
     },
@@ -74,18 +76,20 @@ const Checkbox = ({
       borderWidth: (_checked && 2) || 1,
       width: 126,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.GREY),
+        getColorStyle(TrilogyColor.FONT, 1),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED)
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
         : "transparent",
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.MAIN),
+      color: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
@@ -94,11 +98,13 @@ const Checkbox = ({
       height: "auto",
       borderWidth: (_checked && 2) || 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.GREY),
+        getColorStyle(TrilogyColor.FONT, 1),
       borderRadius: 6,
-      backgroundColor: disabled ? "#e1e1e1" : "transparent",
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : "transparent",
     },
   })
 
@@ -143,7 +149,11 @@ const Checkbox = ({
           >
             {iconTile && (
               <View>
-                <Icon size={IconSize.SMALL} name={iconTile} />
+                <Icon
+                  size={IconSize.SMALL}
+                  name={iconTile}
+                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+                />
               </View>
             )}
           </View>
@@ -234,7 +244,11 @@ const Checkbox = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.MEDIUM} name={iconTile} />
+              <Icon
+                size={IconSize.MEDIUM}
+                color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+                name={iconTile}
+              />
             </View>
           )}
           {label && typeof label.valueOf() === "string" && (
@@ -266,7 +280,11 @@ const Checkbox = ({
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => handleClick()}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={styles.container}
+      onPress={() => handleClick()}
+    >
       <TouchableOpacity
         style={styles.checkBox}
         disabled={disabled}

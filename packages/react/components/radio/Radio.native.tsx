@@ -56,7 +56,7 @@ const Radio = ({
     radio: {
       flexDirection: "row",
       alignItems: "center",
-      borderColor: getColorStyle(TrilogyColor.MAIN),
+      borderColor: getColorStyle(TrilogyColor.FONT),
       borderWidth: 0.6,
       width: 19,
       height: 19,
@@ -75,6 +75,7 @@ const Radio = ({
     label: {
       fontWeight: "600",
       color:
+        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.MAIN),
     },
@@ -85,18 +86,20 @@ const Radio = ({
       width: 126,
       borderWidth: (_checked && 2) || 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.GREY),
+        getColorStyle(TrilogyColor.FONT, 1),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED)
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
         : "transparent",
     },
     tileDescription: {
-      color: getColorStyle(TrilogyColor.MAIN),
+      color: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
@@ -105,12 +108,12 @@ const Radio = ({
       height: "auto",
       borderWidth: (_checked && 2) || 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.GREY),
+        getColorStyle(TrilogyColor.FONT, 1),
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED)
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
         : "transparent",
     },
   })

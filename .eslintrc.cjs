@@ -16,7 +16,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parserOptions: {
-    project: ['tsconfig.json'],
+    project: ['packages/react/tsconfig.json'],
     ecmaFeatures: {
       jsx: true,
       tsx: true,

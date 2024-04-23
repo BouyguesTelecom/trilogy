@@ -1,12 +1,5 @@
 import * as React from "react"
-import {
-  Linking,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native"
+import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View, } from "react-native"
 import { LinkProps } from "./LinkProps"
 import { TypographyAlign } from "../../objects"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
@@ -102,8 +95,8 @@ const Link = ({
     },
     container: {
       padding: inline ? 4 : 8,
-      marginTop: inline ? -4 : -8,
-      marginBottom: inline ? -3 : -8,
+      marginTop: inline ? -4 : 0,
+      marginBottom: inline ? -3 : -10,
       paddingLeft: inline ? 4 : 0,
       paddingRight: inline ? 4 : 0,
     },
@@ -119,6 +112,7 @@ const Link = ({
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       textDecorationStyle: "solid",
       textDecorationLine: "underline",
+      fontWeight: "600",
     },
     androidLink: {
       color:

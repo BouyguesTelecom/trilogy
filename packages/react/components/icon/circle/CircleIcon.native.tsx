@@ -30,9 +30,9 @@ const CircleIcon = ({
     circled: {
       width: circledWidth,
       height: circledWidth,
-      backgroundColor:
-        getColorStyle(backgroundColor as TrilogyColor | TrilogyColorValues) ||
-        getColorStyle(TrilogyColor.MAIN),
+      backgroundColor: backgroundColor
+        ? getColorStyle(backgroundColor as TrilogyColor | TrilogyColorValues)
+        : "transparent",
       borderRadius: circledWidth,
       justifyContent: "center",
       alignItems: "center",

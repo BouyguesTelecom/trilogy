@@ -29,18 +29,18 @@ const Divider = ({
 }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
-  const dividerColor = getColorStyle(TrilogyColor.GREY_LIGHT)
+  const dividerColor = getColorStyle(TrilogyColor.FONT, 1)
 
   const styles = StyleSheet.create({
     divider: {
       borderBottomColor: dividerColor,
-      borderBottomWidth: 2,
+      borderBottomWidth: 1,
       width: "100%",
       alignSelf: ((unboxed || marginless) && "stretch") || "auto",
     },
     dividerContent: {
       borderBottomColor: color ? getColorStyle(color) : dividerColor,
-      borderBottomWidth: 2,
+      borderBottomWidth: 1,
       alignSelf: "center",
       justifyContent: "center",
       width: `${
@@ -65,7 +65,7 @@ const Divider = ({
       textAlign: "center",
       color: textColor
         ? getColorStyle(textColor)
-        : getColorStyle(TrilogyColor.MAIN),
+        : getColorStyle(TrilogyColor.FONT, 1),
     },
   })
 
