@@ -41,8 +41,10 @@ const findBackgroundColor = ({
     (typeof loading === "string" &&
       getLoadingClassName(loading) === "loading" &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||
-    (typeof loading === "boolean" && loading && "#7F7F7F") ||
-    "pink"
+    (typeof loading === "boolean" &&
+      loading &&
+      getColorStyle(TrilogyColor.NEUTRAL)) ||
+    getColorStyle(TrilogyColor.MAIN, 1)
   )
 }
 

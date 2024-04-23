@@ -1,9 +1,6 @@
-import { TrilogyThemeContext } from "../../context/providerTheme.native"
-import { useContext } from "react"
+import {TrilogyThemeContext} from "../../context/providerTheme.native";
+import {useContext} from "react";
 
-/**
- * Trilogy color
- */
 /**
  * Trilogy color
  */
@@ -45,7 +42,7 @@ export const nativeColors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.GREY_LIGHT]: ["#E9E9E9", "#E9E9E9"],
   [TrilogyColor.GREY_LIGHTER]: ["#F4F4F4", "#F4F4F4"],
   [TrilogyColor.WHITE]: ["#fff", "#E9E9E9"],
-}
+};
 
 export type TrilogyColorValues = `${TrilogyColor}`;
 
@@ -53,36 +50,36 @@ export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
-  const { theme } = useContext(TrilogyThemeContext)
-  const colors = theme?.colors || nativeColors
+  const { theme } = useContext(TrilogyThemeContext);
+  const colors = theme?.colors || nativeColors;
 
   const colorArray =
-    colors[trilogyColor] || nativeColors[trilogyColor] || colors.default
+    colors[trilogyColor] || nativeColors[trilogyColor] || colors.default;
   const colorIndex =
-    index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+    index !== undefined && index >= 0 && index < colorArray.length ? index : 0;
 
   if (!trilogyColor || !colors[trilogyColor]) {
-    return colors.default
+    return colors.default;
   }
-  return colorArray[colorIndex]
-}
+  return colorArray[colorIndex];
+};
 
 export const getButtonColorStyle = (buttonVariant?: string): string => {
   const {
     theme: { colors },
     // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = useContext(TrilogyThemeContext)
+  } = useContext(TrilogyThemeContext);
 
   switch (buttonVariant) {
     case "ACCENT":
-      return TrilogyColor.ACCENT
+      return TrilogyColor.ACCENT;
     case "PRIMARY":
-      return TrilogyColor.MAIN
+      return TrilogyColor.MAIN;
     case "SECONDARY":
-      return TrilogyColor.HOVERED
+      return TrilogyColor.HOVERED;
     case "GHOST":
-      return TrilogyColor.WHITE
+      return TrilogyColor.WHITE;
     default:
-      return TrilogyColor.MAIN
+      return TrilogyColor.MAIN;
   }
-}
+};
