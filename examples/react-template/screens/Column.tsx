@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Button,
+  ButtonVariant,
   Card,
   CardContent,
   CardImage,
@@ -13,7 +14,6 @@ import {
   TitleLevels,
   View,
 } from "@trilogy-ds/react/components";
-import { VariantState } from "@trilogy-ds/react/objects";
 
 export const ColumnScreen = (): JSX.Element => {
   return (
@@ -82,7 +82,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -96,7 +96,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -110,7 +110,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -124,7 +124,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -138,7 +138,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -152,7 +152,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>
@@ -166,7 +166,7 @@ export const ColumnScreen = (): JSX.Element => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   ligula ex, aliquam at neque eu, vulputate vera.
                 </Text>
-                <Button variant={VariantState.PRIMARY}>Skeleton toggle</Button>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
               </CardContent>
             </Card>
           </ColumnsItem>

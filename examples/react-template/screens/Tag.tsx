@@ -38,7 +38,7 @@ export const TagScreen = (): JSX.Element => {
           <Tag variant={TagVariant.ERROR}>Tag error</Tag>
           <Tag variant={TagVariant.INFO}>Tag info</Tag>
           <Tag variant={TagVariant.SUCCESS}>Tag success</Tag>
-          <Tag variant={TagVariant.WARNING}>Tag warning</Tag>
+          <Tag variant={TagVariant.DEFAULT}>Tag warning</Tag>
         </TagList>
       </Container>
 

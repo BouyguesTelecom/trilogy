@@ -1,12 +1,12 @@
 import * as React from "react";
 import {
+  ButtonMarkup,
+  Divider,
+  IconName,
+  Notification,
   Section,
   Title,
   TitleLevels,
-  Divider,
-  ButtonMarkup,
-  Notification,
-  IconName,
 } from "@trilogy-ds/react/components";
 import { AlertState } from "@trilogy-ds/react/objects";
 
@@ -47,7 +47,6 @@ export const NotificationScreen = (): JSX.Element => {
         title="Notification with button"
         buttonContent="Valider"
         buttonMarkup={ButtonMarkup.BUTTON}
-        // buttonVariant={VariantState.PRIMARY}
         // eslint-disable-next-line no-alert
         buttonClick={() => alert("Test call to action click event")}
       />

@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
-  Section,
-  Title,
-  TitleLevels,
   Otp,
+  Section,
   Spacer,
   SpacerSize,
+  Title,
+  TitleLevels,
 } from "@trilogy-ds/react/components";
 
 export const OtpScreen = (): JSX.Element => {
@@ -41,7 +41,7 @@ export const OtpScreen = (): JSX.Element => {
         codeSize={4}
         onChange={(code) => console.log("onChange", code)}
         onCompleted={(code) => console.log("onCompleted", code)}
-        label="OTP Error"
+        label="OTP code Size 4"
       />
     </Section>
   );
