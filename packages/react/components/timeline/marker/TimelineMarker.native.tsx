@@ -1,41 +1,44 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { TimelineMarkerProps } from './TimelineMarkerProps'
-import { Icon, IconSize } from '../../icon'
-import { TimelineItemContext } from '../item/TimelineItem.native'
-import { getColorStyle, TrilogyColor } from '../../../objects'
-import { TimelineHeightContext } from '../Timeline.native'
-import { ComponentName } from '../../enumsComponentsName'
+import React, { useContext } from "react"
+import { StyleSheet, View } from "react-native"
+import { TimelineMarkerProps } from "./TimelineMarkerProps"
+import { Icon, IconSize } from "../../icon"
+import { TimelineItemContext } from "../item/TimelineItem.native"
+import { getColorStyle, TrilogyColor } from "../../../objects"
+import { TimelineHeightContext } from "../Timeline.native"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * TimelineMarker Native Component
  * @param children {ReactNode} Text child
  */
-const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Element => {
+const TimelineMarker = ({
+  iconName,
+  iconColor,
+}: TimelineMarkerProps): JSX.Element => {
   const { active, undone, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
     marker: {
       flex: 1,
-      alignSelf: 'flex-start',
-      flexDirection: 'column',
+      alignSelf: "flex-start",
+      flexDirection: "column",
     },
     divider: {
       height: height ? height - 48 : 74,
-      borderStyle: 'solid',
+      borderStyle: "solid",
       borderLeftWidth: 2,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
       borderColor:
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         (undone && getColorStyle(TrilogyColor.GREY_LIGHT)) ||
-        (cancel && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+        (cancel && getColorStyle(TrilogyColor.GREY)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
     },
     icon: {
-      alignSelf: 'center',
+      alignSelf: "center",
     },
   })
 
@@ -48,10 +51,10 @@ const TimelineMarker = ({ iconName, iconColor }: TimelineMarkerProps): JSX.Eleme
           color={
             !iconColor
               ? (active && TrilogyColor.WHITE) ||
-              (undone && TrilogyColor.MAIN) ||
-              (cancel && TrilogyColor.GREY_LIGHT) ||
-              (done && TrilogyColor.WHITE) ||
-              TrilogyColor.WHITE
+                (undone && TrilogyColor.MAIN) ||
+                (cancel && TrilogyColor.GREY_LIGHT) ||
+                (done && TrilogyColor.WHITE) ||
+                TrilogyColor.WHITE
               : iconColor
           }
           backgroundColor={

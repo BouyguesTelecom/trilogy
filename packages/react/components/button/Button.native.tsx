@@ -7,6 +7,7 @@ import {
 } from "react-native"
 import { View } from "../view"
 import {
+  getBackgroundOfVariant,
   getButtonColorStyle,
   getLoadingClassName,
   getVariantClassName,
@@ -27,7 +28,7 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
-    (disabled && variant && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+    (disabled && variant && getColorStyle(TrilogyColor.DISABLED)) ||
     (variant === ButtonVariant.PRIMARY &&
       getButtonColorStyle(ButtonVariant.PRIMARY)) ||
     (variant === ButtonVariant.SECONDARY &&
@@ -39,7 +40,7 @@ const findBackgroundColor = ({
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||
-    (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+    (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     (typeof loading === "string" &&
       getLoadingClassName(loading) === "loading" &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||
@@ -74,14 +75,14 @@ const findBorderColor = ({
   return (
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED)) ||
     (!disabled &&
       !!loading &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED)) ||
     (!disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.BG_INFO)) ||
+      getBackgroundOfVariant(TrilogyColor.INFO)) ||
     getColorStyle(TrilogyColor.WHITE)
   )
 }
@@ -263,7 +264,7 @@ const Button = ({
             <Icon
               name={iconName}
               size={IconSize.SMALL}
-              color={getColorStyle(TrilogyColor.GREY_DISABLED)}
+              color={getColorStyle(TrilogyColor.DISABLED)}
             />
           )}
           <Text

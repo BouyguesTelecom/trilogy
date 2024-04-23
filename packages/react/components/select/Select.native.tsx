@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { SelectProps } from './SelectProps'
-import { Text, TextLevels } from '../text'
-import { Icon, IconName, IconSize } from '../icon'
-import { Picker } from '@react-native-picker/picker'
-import { getColorStyle, TrilogyColor, TypographyColor } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
-import { Modal } from '../modal'
+import React, { useEffect, useMemo, useState } from "react"
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native"
+import { SelectProps } from "./SelectProps"
+import { Text, TextLevels } from "../text"
+import { Icon, IconName, IconSize } from "../icon"
+import { Picker } from "@react-native-picker/picker"
+import { getColorStyle, TrilogyColor, TypographyColor } from "../../objects"
+import { ComponentName } from "../enumsComponentsName"
+import { Modal } from "../modal"
 
 /**
  * Select Component
@@ -19,35 +19,41 @@ import { Modal } from '../modal'
  * @param placeholder {string} Select Placeholder
  */
 const Select = ({
-                  children,
-                  name,
-                  id,
-                  selected,
-                  label,
-                  iconName,
-                  onChange,
-                  placeholder,
-                  disabled,
-                  ...others
-                }: SelectProps): JSX.Element => {
-  const [selectedValue, setSelectedValue] = useState<string | number>(selected || '')
+  children,
+  name,
+  id,
+  selected,
+  label,
+  iconName,
+  onChange,
+  placeholder,
+  disabled,
+  ...others
+}: SelectProps): JSX.Element => {
+  const [selectedValue, setSelectedValue] = useState<string | number>(
+    selected || ""
+  )
   const [display, setDisplay] = useState<boolean>(false)
 
   useEffect(() => {
-    setSelectedValue(selected || '')
+    setSelectedValue(selected || "")
   }, [selected])
 
   const styles = StyleSheet.create({
     select: {
-      width: '100%',
-      backgroundColor: getColorStyle(disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.WHITE),
-      borderColor: getColorStyle(disabled ? TrilogyColor.GREY_DISABLED : TrilogyColor.GREY_LIGHT),
+      width: "100%",
+      backgroundColor: getColorStyle(
+        disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.WHITE
+      ),
+      borderColor: getColorStyle(
+        disabled ? TrilogyColor.DISABLED : TrilogyColor.GREY_LIGHT
+      ),
       borderWidth: 1,
       borderRadius: 4,
       zIndex: 3, // works on ios
-      overflow: 'hidden',
-      flexDirection: 'row',
-      alignItems: 'center',
+      overflow: "hidden",
+      flexDirection: "row",
+      alignItems: "center",
       height: 50,
     },
     iconLeft: {
@@ -60,22 +66,31 @@ const Select = ({
     text: {
       fontSize: 16,
       lineHeight: 20,
-      color: getColorStyle(disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN),
+      color: getColorStyle(
+        disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN
+      ),
     },
   })
 
   const selectedOptionName = useMemo(() => {
     const selectedChild = React.Children.toArray(children).find((child) => {
-      return React.isValidElement(child) && (child.props.value === selected || child.props.selected === true)
+      return (
+        React.isValidElement(child) &&
+        (child.props.value === selected || child.props.selected === true)
+      )
     })
-    if (React.isValidElement(selectedChild)) return selectedChild.props.children || selectedChild.props.label
+    if (React.isValidElement(selectedChild))
+      return selectedChild.props.children || selectedChild.props.label
     return undefined
   }, [selectedValue, children])
 
-  if (Platform.OS === 'ios') {
+  if (Platform.OS === "ios") {
     return (
       <>
-        <TouchableOpacity onPress={() => setDisplay((prev) => !prev)} style={styles.select}>
+        <TouchableOpacity
+          onPress={() => setDisplay((prev) => !prev)}
+          style={styles.select}
+        >
           {iconName && (
             <View>
               <Icon
@@ -86,12 +101,15 @@ const Select = ({
               />
             </View>
           )}
-          <View style={{ width: '75%' }}>
+          <View style={{ width: "75%" }}>
             {label && (
               <Text
                 level={selectedOptionName && TextLevels.THREE}
                 typo={[TypographyColor.TEXT_GREY_DARK]}
-                style={{ fontSize: selectedOptionName ? undefined : 16, lineHeight: 20 }}
+                style={{
+                  fontSize: selectedOptionName ? undefined : 16,
+                  lineHeight: 20,
+                }}
               >
                 {label}
               </Text>
@@ -105,7 +123,7 @@ const Select = ({
 
           <View
             style={{
-              marginLeft: 'auto',
+              marginLeft: "auto",
               paddingRight: 10,
             }}
           >
@@ -116,10 +134,16 @@ const Select = ({
             />
           </View>
         </TouchableOpacity>
-        <Modal active={display} onClose={() => setDisplay(false)} bottom closeIcon swipable={false}>
+        <Modal
+          active={display}
+          onClose={() => setDisplay(false)}
+          bottom
+          closeIcon
+          swipable={false}
+        >
           <Picker
             itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             nativeID={`${`${id}_${name}`}`}
             selectedValue={selectedValue}
             onValueChange={(itemValue: number | string) => {
@@ -141,7 +165,7 @@ const Select = ({
       <Picker
         placeholder={placeholder}
         selectedValue={selectedValue}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: "100%", height: "100%" }}
         onValueChange={(itemValue: number | string) => {
           if (onChange) {
             onChange(itemValue)
@@ -149,7 +173,7 @@ const Select = ({
           setSelectedValue(itemValue)
           setDisplay(false)
         }}
-        mode={'dialog'}
+        mode={"dialog"}
       >
         {children}
       </Picker>

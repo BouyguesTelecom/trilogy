@@ -5,7 +5,7 @@ import StatusIcon from "./status/index"
 import CircleIcon from "./circle/index"
 import TextIcon from "./text/index"
 import { has, is } from "../../services/index"
-import { getColorClassName } from "../../objects/facets/Color"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
 import { getAlignClassName } from "../../objects/facets/Alignable"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
@@ -69,7 +69,8 @@ const Icon = ({
       stretched && is("stretched"),
       size && is(size),
       stacked && is("stacked"),
-      color && is(`${getColorClassName(color)}`),
+      color &&
+        is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
       skeleton && is("loading"),
       badgeContent && is("stacked"),
       marginless && is("marginless"),
