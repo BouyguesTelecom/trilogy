@@ -110,7 +110,8 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @returns {string} - Color style value
  */
 export const getColorStyle = (
-  trilogyColor: TrilogyColor | TrilogyColorValues
+  trilogyColor: TrilogyColor | TrilogyColorValues,
+  index?: number
 ): string => {
   const color = colors[trilogyColor]
   return color[1]
