@@ -2,75 +2,57 @@
  * Trilogy color
  */
 export enum TrilogyColor {
-  FONT = "FONT",
+  BACKGROUND = "BACKGROUND",
   MAIN = "MAIN",
-  ACCENT = "ACCENT",
+  ALTERNATE = "ALTERNATE",
+  FONT = "FONT",
   SUCCESS = "SUCCESS",
   INFO = "INFO",
   WARNING = "WARNING",
   ERROR = "ERROR",
-  WHITE = "WHITE",
+  DISABLED = "DISABLED",
+  HOVERED = "HOVERED",
+  NEUTRAL = "NEUTRAL",
+  NEUTRAL_DARK = "NEUTRAL_DARK",
   GREY = "GREY",
   GREY_DARK = "GREY_DARK",
   GREY_LIGHT = "GREY_LIGHT",
   GREY_LIGHTER = "GREY_LIGHTER",
-  GREY_DISABLED = "GREY_DISABLED",
-  BG_SUCCESS = "BG-SUCCESS",
-  BG_INFO = "BG-INFO",
-  BG_WARNING = "BG-WARNING",
-  BG_ERROR = "BG-ERROR",
-  BG_DEFAULT = "BG-DEFAULT",
-  BG_DISABLED = "BG-DISABLED",
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`;
 
 /**
+ * Trilogy color values
+ */
+
+export const colors: Record<TrilogyColor, string[]> = {
+  [TrilogyColor.BACKGROUND]: ["white", "#fff", "main", "#E9E9E9"],
+  [TrilogyColor.MAIN]: ["main", "#3d5d7e", "white", "#eff2f8"],
+  [TrilogyColor.ALTERNATE]: ["accent", "#da641b", "white", "#bb5118"],
+  [TrilogyColor.FONT]: ["main", "#3d5d7e", "white", "#BBC6CD"],
+  [TrilogyColor.SUCCESS]: ["success", "#007B52", "white", "#cae8ca"],
+  [TrilogyColor.INFO]: ["info", "#1A688A", "white", "#c8dbec"],
+  [TrilogyColor.WARNING]: ["warning", "#FFBB33", "tertiary", "#ecdbc6"],
+  [TrilogyColor.ERROR]: ["error", "#D42D02", "white", "#eecccc"],
+  [TrilogyColor.DISABLED]: ["disabled", "#646464", "white", "#D1D1D1"],
+  [TrilogyColor.NEUTRAL]: ["grey", "#707070", "white", "#F4F4F4"],
+  [TrilogyColor.NEUTRAL_DARK]: ["grey-dark", "#646464", "white", "#E9E9E9"],
+  [TrilogyColor.GREY]: ["grey", "#707070", "white", "#F4F4F4"],
+  [TrilogyColor.GREY_DARK]: ["grey-dark", "#646464", "white", "#646464"],
+  [TrilogyColor.GREY_LIGHT]: ["grey-light", "#E9E9E9", "white", "#E9E9E9"],
+  [TrilogyColor.GREY_LIGHTER]: ["grey-lighter", "#F4F4F4", "white", "#F4F4F4"],
+  [TrilogyColor.HOVERED]: ["hovered", "#F4F4F4", "white", "#F4F4F4"],
+}
+
+/**
  * Returns color's className depending on Trilogy Color
  * @param trilogyColor {string} - Trilogy Color
- * @returns {string} - Color value
+ * @returns {string} - Color className value
  */
-export const getColorClassName = (trilogyColor?: string): string => {
-  switch (trilogyColor) {
-    case "SUCCESS":
-      return "success"
-    case "INFO":
-      return "info"
-    case "WARNING":
-      return "warning"
-    case "ERROR":
-      return "error"
-    case "MAIN":
-      return "main"
-    case "ACCENT":
-      return "accent"
-    case "WHITE":
-      return "white"
-    case "GREY":
-      return "grey"
-    case "GREY_DARK":
-      return "grey-dark"
-    case "GREY_LIGHT":
-      return "grey-light"
-    case "GREY_LIGHTER":
-      return "grey-lighter"
-    case "GREY_DISABLED":
-      return "grey-disabled"
-    case "BG-SUCCESS":
-      return "bg-success"
-    case "BG-INFO":
-      return "bg-info"
-    case "BG-WARNING":
-      return "bg-warning"
-    case "BG-ERROR":
-      return "bg-error"
-    case "BG-DEFAULT":
-      return "bg-default"
-    case "BG-DISABLED":
-      return "bg-disabled"
-    default:
-      return "tertiary"
-  }
+export const getColorClassName = (trilogyColor: TrilogyColor): string => {
+  const color = colors[trilogyColor]
+  return color[0]
 }
 
 /**
@@ -123,45 +105,9 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @param trilogyColor {string} - Trilogy Color
  * @returns {string} - Color style value
  */
-export const getColorStyle = (trilogyColor?: string): string => {
-  switch (trilogyColor) {
-    case "MAIN":
-      return "#3d5d7e"
-    case "FONT":
-      return "#3d5d7e"
-    case "ACCENT":
-      return "#da641b"
-    case "SUCCESS":
-      return "#007B52"
-    case "INFO":
-      return "#1A688A"
-    case "WARNING":
-      return "#FFBB33"
-    case "ERROR":
-      return "#D42D02"
-    case "WHITE":
-      return "#fff"
-    case "GREY":
-      return "#707070"
-    case "GREY_DARK":
-      return "#646464"
-    case "GREY_LIGHT":
-      return "#E9E9E9"
-    case "GREY_LIGHTER":
-      return "#F4F4F4"
-    case "GREY_DISABLED":
-      return "#D1D1D1"
-    case "BG-SUCCESS":
-      return getBackgroundOfVariant("SUCCESS")
-    case "BG-INFO":
-      return getBackgroundOfVariant("INFO")
-    case "BG-WARNING":
-      return getBackgroundOfVariant("WARNING")
-    case "BG-ERROR":
-      return getBackgroundOfVariant("ERROR")
-    default:
-      return "#333"
-  }
+export const getColorStyle = (trilogyColor: TrilogyColor): string => {
+  const color = colors[trilogyColor]
+  return color[1]
 }
 
 /**
@@ -169,17 +115,20 @@ export const getColorStyle = (trilogyColor?: string): string => {
  * @param variant {string} - The variant name (success, error, warning or info)
  * @returns {string} - The background color value
  */
+const variantBackgroundMap: Record<string, TrilogyColor> = {
+  success: TrilogyColor.SUCCESS,
+  info: TrilogyColor.INFO,
+  warning: TrilogyColor.WARNING,
+  error: TrilogyColor.ERROR,
+}
+
 export const getBackgroundOfVariant = (variant?: string): string => {
-  switch (variant) {
-    case "SUCCESS":
-      return "#cae8ca" // light green
-    case "INFO":
-      return "#c8dbec" // light blue
-    case "WARNING":
-      return "#ecdbc6" // light orange
-    case "ERROR":
-      return "#eecccc" // light red
-    default:
-      return "#FFF"
-  }
+  if (!variant) return "#FFF"
+
+  const trilogyColor = variantBackgroundMap[variant.toLowerCase()]
+  const color = colors[trilogyColor]
+
+  // La valeur de fond est la 4ème valeur dans la carte de couleurs Sass
+  // Mais comme nous avons exclu l'état hover dans notre objet JavaScript, c'est maintenant la 3ème valeur
+  return color[2]
 }
