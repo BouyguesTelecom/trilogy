@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { GestureResponderEvent, StyleSheet, TouchableOpacity, } from "react-native"
 import { ChipsProps } from "./ChipsProps"
 import { Text, TextLevels } from "../text"
-import { getBackgroundOfVariant, getColorStyle, TrilogyColor, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { Icon, IconColor, IconName, IconSize } from "../icon"
 import { ChipsContext } from "./list/ChipsList.native"
 import { Spacer, SpacerSize } from "../spacer"
@@ -36,7 +36,7 @@ const Chips = ({
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && getBackgroundOfVariant(TrilogyColor.DISABLED)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         getColorStyle(TrilogyColor.GREY_LIGHT),
