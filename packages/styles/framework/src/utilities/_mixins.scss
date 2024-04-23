@@ -512,11 +512,6 @@
       &:disabled,
       &:disabled:checked {
         & ~ label.#{$type}-label {
-
-          &:before {
-            border-color: getBGColor('disabled');
-          }
-
           &:after {
             background-color: getBGColor('disabled');
           }
@@ -528,10 +523,6 @@
           &:after {
             background-color: transparent;
           }
-        }
-
-        & .icon {
-          background-color: getColor('grey-darker');
         }
       }
     }
@@ -653,22 +644,15 @@
 
       &:disabled {
         & ~ label.#{$type}-label {
-          background-color: getColor('disabled');
-          color: getColor('neutral-dark') !important;
-
           &:before {
-            border-color: getColor('neutral') !important;
+            border-color: getColor('disabled') !important;
           }
         }
       }
 
       &:disabled:checked ~ label.#{$type}-label {
-        &:before {
-          border-color: getColor('neutral') !important;
-        }
-
         .checkbox-title {
-          color: getColor('neutral-dark');
+          color: getColor('disabled');
         }
       }
     }
