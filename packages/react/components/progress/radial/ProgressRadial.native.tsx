@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
-import { ProgressRadialProps } from './ProgressRadialProps'
-import { AnimatedCircularProgress } from './react-native-circular-progress'
-import { Text, TextLevels } from '../../text'
-import { getAlertStyle, getAlignStyle, TypographyAlign } from '../../../objects'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import ContentLoader, { Circle } from 'react-content-loader/native'
-import { ComponentName } from '../../enumsComponentsName'
+import * as React from "react"
+import { Platform, StyleSheet, View } from "react-native"
+import { ProgressRadialProps } from "./ProgressRadialProps"
+import { AnimatedCircularProgress } from "./react-native-circular-progress"
+import { Text, TextLevels } from "../../text"
+import { getAlertStyle, getAlignStyle, getBackgroundOfVariant, TypographyAlign, } from "../../../objects"
+import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import ContentLoader, { Circle } from "react-content-loader/native"
+import { ComponentName } from "../../enumsComponentsName"
 
 /**
  * Progress Radial component
@@ -23,23 +23,25 @@ import { ComponentName } from '../../enumsComponentsName'
  * @param skeleton {boolean} Skeleton Progress Radial
  */
 const ProgressRadial = ({
-                          percent,
-                          label,
-                          description,
-                          alert,
-                          full,
-                          disk,
-                          secondPercent,
-                          secondAlert,
-                          align,
-                          skeleton,
-                          ...others
-                        }: ProgressRadialProps): JSX.Element => {
+  percent,
+  label,
+  description,
+  alert,
+  full,
+  disk,
+  secondPercent,
+  secondAlert,
+  align,
+  skeleton,
+  ...others
+}: ProgressRadialProps): JSX.Element => {
   const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.GREY_LIGHT)
   const percentWidth = percent || 0
   const secondFill = secondPercent ? { secondFill: secondPercent } : null
-  const secondFillColor = secondAlert ? { secondFillTintColor: getAlertStyle(secondAlert) } : null
+  const secondFillColor = secondAlert
+    ? { secondFillTintColor: getAlertStyle(secondAlert) }
+    : null
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
 
@@ -48,14 +50,14 @@ const ProgressRadial = ({
       alignSelf: getAlignStyle(align),
     },
     label: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 20,
-      fontWeight: '500',
+      fontWeight: "500",
     },
     description: {
-      alignItems: 'center',
-      textAlign: 'center',
-      fontWeight: '400',
+      alignItems: "center",
+      textAlign: "center",
+      fontWeight: "400",
     },
     disk: {
       width: progressRadialWidth,
@@ -65,58 +67,62 @@ const ProgressRadial = ({
     },
     labelDisk: {
       color: getColorStyle(TrilogyColor.WHITE),
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 20,
-      fontWeight: '500',
+      fontWeight: "500",
     },
     descriptionDisk: {
       color: getColorStyle(TrilogyColor.WHITE),
-      textAlign: 'center',
-      fontWeight: '400',
+      textAlign: "center",
+      fontWeight: "400",
     },
     alignCenter: {
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
     },
     skeleton: {
       width: progressRadialWidth,
       height: progressRadialWidth,
       borderRadius: progressRadialSkeletonRadius,
-      backgroundColor: getColorStyle(TrilogyColor.BG_DISABLED),
-      overflow: 'hidden',
+      backgroundColor: getBackgroundOfVariant(TrilogyColor.DISABLED),
+      overflow: "hidden",
     },
   })
 
   const ProgressRadialSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{ opacity: 0 }}/>
-      {Platform.OS === 'android' && (
+      <View style={{ opacity: 0 }} />
+      {Platform.OS === "android" && (
         <View>
-          <Circle cx='50' cy='50' r='50'/>
+          <Circle cx='50' cy='50' r='50' />
         </View>
       )}
     </ContentLoader>
   )
 
   if (skeleton) {
-    return <ProgressRadialSkeleton/>
+    return <ProgressRadialSkeleton />
   }
 
   if (disk) {
     return (
       <View style={styles.container}>
         <View style={[styles.disk, styles.alignCenter]} {...others}>
-          {label && typeof label.valueOf() === 'string' ? (
+          {label && typeof label.valueOf() === "string" ? (
             <Text style={styles.labelDisk} level={TextLevels.TWO}>
-              {label || ''}
+              {label || ""}
             </Text>
           ) : (
             label
           )}
 
-          {description && typeof description.valueOf() === 'string' ? (
-            <Text style={styles.descriptionDisk} level={TextLevels.THREE} typo={TypographyAlign.TEXT_CENTERED}>
-              {description || ''}
+          {description && typeof description.valueOf() === "string" ? (
+            <Text
+              style={styles.descriptionDisk}
+              level={TextLevels.THREE}
+              typo={TypographyAlign.TEXT_CENTERED}
+            >
+              {description || ""}
             </Text>
           ) : (
             description
@@ -140,17 +146,17 @@ const ProgressRadial = ({
       >
         {() => (
           <View style={styles.alignCenter}>
-            {label && typeof label.valueOf() === 'string' ? (
+            {label && typeof label.valueOf() === "string" ? (
               <Text style={styles.label} level={TextLevels.TWO}>
-                {label || ''}
+                {label || ""}
               </Text>
             ) : (
               <View>{label}</View>
             )}
 
-            {description && typeof description.valueOf() === 'string' ? (
+            {description && typeof description.valueOf() === "string" ? (
               <Text style={styles.description} level={TextLevels.FOUR}>
-                {description || ''}
+                {description || ""}
               </Text>
             ) : (
               <View>{description}</View>

@@ -1,16 +1,16 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
-import { TextareaNativeProps } from './TextareaProps'
+import React, { forwardRef, useEffect, useRef, useState } from "react"
+import { Animated, StyleSheet, Text, TextInput, View } from "react-native"
+import { TextareaNativeProps } from "./TextareaProps"
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
-} from '../input/InputEnum'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { AlertState, getAlertStyle } from '../../objects/facets/Alert'
-import { Icon, IconColor } from '../icon'
-import { ComponentName } from '../enumsComponentsName'
+} from "../input/InputEnum"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { AlertState, getAlertStyle } from "../../objects/facets/Alert"
+import { Icon, IconColor } from "../icon"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Textarea Native Component
@@ -54,15 +54,18 @@ const Textarea = (
     ...others
   }: TextareaNativeProps,
   // eslint-disable-next-line
-  ref: any,
+  ref: any
 ): JSX.Element => {
-  const [_value, setValue] = useState<string>(value || '')
+  const [_value, setValue] = useState<string>(value || "")
 
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [height, setHeight] = useState<number>(customHeight)
 
-  const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
-  const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT)
+  const [displayDynamicLabel, setDisplayDynamicLabel] =
+    useState<boolean>(false)
+  const textareaColor = isFocus
+    ? getColorStyle(TrilogyColor.MAIN)
+    : getColorStyle(TrilogyColor.GREY_LIGHT)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -81,28 +84,30 @@ const Textarea = (
       borderWidth: isFocus ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-        (status && status === 'default' && textareaColor) ||
+        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
+        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
+        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "default" && textareaColor) ||
         textareaColor,
       height,
-      justifyContent: 'flex-start',
+      justifyContent: "flex-start",
       paddingLeft: iconName ? 48 : 16,
       paddingRight: maxLength ? 48 : 16,
       paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
-      textAlignVertical: 'top',
+      textAlignVertical: "top",
       color: getColorStyle(TrilogyColor.MAIN),
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED)
+        : getColorStyle(TrilogyColor.WHITE),
       /*  width: '',*/
     },
     help: {
       fontSize: 12,
       color:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-        (status && status === 'default' && textareaColor) ||
+        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
+        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
+        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "default" && textareaColor) ||
         textareaColor,
       paddingLeft: 4,
       paddingTop: 2,
@@ -110,29 +115,31 @@ const Textarea = (
     counter: {
       fontSize: 10,
       color: getColorStyle(TrilogyColor.MAIN),
-      position: 'absolute',
+      position: "absolute",
       bottom: help ? 24 : 8,
       right: 8,
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.GREY_DISABLED) : 'white',
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED)
+        : "white",
       padding: 3,
     },
     dynamicLabel: {
-      position: 'absolute',
+      position: "absolute",
       top: 2,
       left: iconName ? 40 : 8,
       fontSize: 12,
       color: getColorStyle(TrilogyColor.GREY_DARK),
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       padding: 8,
       paddingBottom: 4,
     },
     leftIcon: {
-      position: 'absolute',
+      position: "absolute",
       top: 16,
       left: 16,
     },
     rightIcon: {
-      position: 'absolute',
+      position: "absolute",
       top: dynamicPlaceholder ? 16 : 32,
       right: 16,
     },
@@ -142,7 +149,9 @@ const Textarea = (
     <View>
       {!dynamicPlaceholder && <Text>{label}</Text>}
 
-      {iconName && <Icon style={styles.leftIcon} name={iconName} size='small'/>}
+      {iconName && (
+        <Icon style={styles.leftIcon} name={iconName} size='small' />
+      )}
 
       <TextInput
         maxLength={maxLength}
@@ -160,7 +169,7 @@ const Textarea = (
           setValue(text)
           if (onChange) {
             onChange({
-              textareaName: (name && name) || '',
+              textareaName: (name && name) || "",
               textareaValue: text,
             })
           }
@@ -171,18 +180,29 @@ const Textarea = (
         onBlur={() => setIsFocus(false)}
         {...others}
         ref={ref}
-        onContentSizeChange={(event) => _value.length > 0 && setHeight(event.nativeEvent.contentSize.height + 33)}
+        onContentSizeChange={(event) =>
+          _value.length > 0 &&
+          setHeight(event.nativeEvent.contentSize.height + 33)
+        }
       />
 
       {statusIconName && (
         <Text style={styles.rightIcon}>
-          <Icon name={statusIconName} size='small' color={status && (status.toUpperCase() as IconColor)}/>
+          <Icon
+            name={statusIconName}
+            size='small'
+            color={status && (status.toUpperCase() as IconColor)}
+          />
         </Text>
       )}
 
-      {displayDynamicLabel && dynamicPlaceholder && <Text style={styles.dynamicLabel}>{label}</Text>}
+      {displayDynamicLabel && dynamicPlaceholder && (
+        <Text style={styles.dynamicLabel}>{label}</Text>
+      )}
       {maxLength && (
-        <Text style={styles.counter}>{value ? `${value?.length} / ${maxLength}` : `0 / ${maxLength}`}</Text>
+        <Text style={styles.counter}>
+          {value ? `${value?.length} / ${maxLength}` : `0 / ${maxLength}`}
+        </Text>
       )}
       {help && <Text style={styles.help}>{help}</Text>}
     </View>

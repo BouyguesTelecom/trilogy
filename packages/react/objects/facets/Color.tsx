@@ -4,7 +4,7 @@
 export enum TrilogyColor {
   BACKGROUND = "BACKGROUND",
   MAIN = "MAIN",
-  ALTERNATE = "ALTERNATE",
+  ACCENT = "ACCENT",
   FONT = "FONT",
   SUCCESS = "SUCCESS",
   INFO = "INFO",
@@ -18,6 +18,7 @@ export enum TrilogyColor {
   GREY_DARK = "GREY_DARK",
   GREY_LIGHT = "GREY_LIGHT",
   GREY_LIGHTER = "GREY_LIGHTER",
+  WHITE = "WHITE",
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`;
@@ -28,8 +29,9 @@ export type TrilogyColorValues = `${TrilogyColor}`;
 
 export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]: ["white", "#fff", "main", "#E9E9E9"],
+  [TrilogyColor.WHITE]: ["white", "#fff", "main", "#E9E9E9"],
   [TrilogyColor.MAIN]: ["main", "#3d5d7e", "white", "#eff2f8"],
-  [TrilogyColor.ALTERNATE]: ["accent", "#da641b", "white", "#bb5118"],
+  [TrilogyColor.ACCENT]: ["accent", "#da641b", "white", "#bb5118"],
   [TrilogyColor.FONT]: ["main", "#3d5d7e", "white", "#BBC6CD"],
   [TrilogyColor.SUCCESS]: ["success", "#007B52", "white", "#cae8ca"],
   [TrilogyColor.INFO]: ["info", "#1A688A", "white", "#c8dbec"],
@@ -50,7 +52,9 @@ export const colors: Record<TrilogyColor, string[]> = {
  * @param trilogyColor {string} - Trilogy Color
  * @returns {string} - Color className value
  */
-export const getColorClassName = (trilogyColor: TrilogyColor): string => {
+export const getColorClassName = (
+  trilogyColor: TrilogyColor | TrilogyColorValues
+): string => {
   const color = colors[trilogyColor]
   return color[0]
 }
@@ -105,7 +109,9 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @param trilogyColor {string} - Trilogy Color
  * @returns {string} - Color style value
  */
-export const getColorStyle = (trilogyColor: TrilogyColor): string => {
+export const getColorStyle = (
+  trilogyColor: TrilogyColor | TrilogyColorValues
+): string => {
   const color = colors[trilogyColor]
   return color[1]
 }

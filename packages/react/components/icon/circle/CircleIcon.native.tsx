@@ -1,23 +1,27 @@
-import React, { useContext } from 'react'
-import { CircleIconProps } from './CircleIconProps'
-import { View, StyleSheet } from 'react-native'
-import { IconPosition } from '../IconEnum'
-import { Text, TextLevels } from '../../text'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../../enumsComponentsName'
+import React, { useContext } from "react"
+import { CircleIconProps } from "./CircleIconProps"
+import { StyleSheet, View } from "react-native"
+import { IconPosition } from "../IconEnum"
+import { Text, TextLevels } from "../../text"
+import {
+  getColorStyle,
+  TrilogyColor,
+  TrilogyColorValues,
+} from "../../../objects/facets/Color"
+import { WithLocalSvg } from "react-native-svg/css"
+import { ComponentName } from "../../enumsComponentsName"
 import { TrilogyThemeContext } from "../../../context/providerTheme.native"
 
 const CircleIcon = ({
-                      name,
-                      size,
-                      color,
-                      backgroundColor,
-                      content,
-                      circledWidth,
-                      position,
-                      stacked,
-                    }: CircleIconProps): JSX.Element => {
+  name,
+  size,
+  color,
+  backgroundColor,
+  content,
+  circledWidth,
+  position,
+  stacked,
+}: CircleIconProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
@@ -26,30 +30,34 @@ const CircleIcon = ({
     circled: {
       width: circledWidth,
       height: circledWidth,
-      backgroundColor: getColorStyle(backgroundColor) || getColorStyle(TrilogyColor.MAIN),
+      backgroundColor:
+        getColorStyle(backgroundColor as TrilogyColor | TrilogyColorValues) ||
+        getColorStyle(TrilogyColor.MAIN),
       borderRadius: circledWidth,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       margin: 4,
-      shadowColor: 'rgba(0,0,0,.1)',
+      shadowColor: "rgba(0,0,0,.1)",
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.8,
       shadowRadius: 2,
       elevation: 5,
     },
     iconCircled: {
-      alignSelf: 'center',
-      justifyContent: 'center',
-      alignItems: 'center',
+      alignSelf: "center",
+      justifyContent: "center",
+      alignItems: "center",
     },
     contentContainer: {
-      alignItems: 'center',
+      alignItems: "center",
       flexDirection:
-        (position === IconPosition.DOWN && 'column') || (position === IconPosition.UP && 'column-reverse') || 'row',
+        (position === IconPosition.DOWN && "column") ||
+        (position === IconPosition.UP && "column-reverse") ||
+        "row",
     },
     text: {
       maxWidth: circledWidth + 32,
-      textAlign: 'center',
+      textAlign: "center",
       color: color || getColorStyle(TrilogyColor.WHITE),
     },
     spaceTextCircledV: {
@@ -67,7 +75,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV}/>
+          <View style={styles.spaceTextCircledV} />
         </View>
       )}
 
@@ -76,7 +84,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV}/>
+          <View style={styles.spaceTextCircledV} />
         </>
       )}
 
@@ -85,7 +93,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledH}/>
+          <View style={styles.spaceTextCircledH} />
         </>
       )}
 
@@ -94,7 +102,7 @@ const CircleIcon = ({
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
-          <View style={styles.spaceTextCircledV}/>
+          <View style={styles.spaceTextCircledV} />
         </>
       )}
 
@@ -102,7 +110,11 @@ const CircleIcon = ({
         {icons && (
           <WithLocalSvg
             style={styles.iconCircled}
-            asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
+            asset={
+              icons[
+                name.toString().replace("tri-picto-", "").replace("tri-", "")
+              ]
+            }
             width={size}
             height={size}
             color={color || getColorStyle(TrilogyColor.WHITE)}
@@ -112,7 +124,7 @@ const CircleIcon = ({
 
       {position === IconPosition.LEFT && content && (
         <>
-          <View style={styles.spaceTextCircledH}/>
+          <View style={styles.spaceTextCircledH} />
           <Text style={styles.text} level={TextLevels.TWO}>
             {content}
           </Text>
