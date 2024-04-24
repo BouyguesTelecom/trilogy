@@ -29,8 +29,6 @@ export const getTextClassName = (textType?: string): string => {
       return "text-tertiary"
     case "WHITE":
       return "text-white"
-    case "GREY":
-      return "text-grey"
     case "GREY_LIGHT":
       return "text-grey-light"
     case "GREY_DARK":

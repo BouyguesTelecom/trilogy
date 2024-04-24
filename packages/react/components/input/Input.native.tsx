@@ -240,7 +240,7 @@ const Input = ({
     handleClick()
   }, [isKeyboardVisible])
 
-  const initStateVerifies = { isVerify: false, color: IconColor.GREY }
+  const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
   const [points, setPoints] = React.useState<number>(0)
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
   const [isSpecialCharsVerify, setIsSpecialCharsVerify] =

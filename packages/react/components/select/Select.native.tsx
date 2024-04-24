@@ -97,7 +97,7 @@ const Select = ({
               <Icon
                 name={iconName}
                 size={IconSize.SMALL}
-                color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN}
+                color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
                 style={styles.iconLeft}
               />
             </View>
@@ -131,7 +131,7 @@ const Select = ({
             <Icon
               name={IconName.ARROW_DOWN}
               size={IconSize.SMALL}
-              color={disabled ? TrilogyColor.GREY_DARK : TrilogyColor.MAIN}
+              color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
             />
           </View>
         </TouchableOpacity>

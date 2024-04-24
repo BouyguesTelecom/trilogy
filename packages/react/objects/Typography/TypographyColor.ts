@@ -69,9 +69,9 @@ export const setTypographyColor = (
       : typo === TypographyColor.TEXT_ERROR &&
         getColorStyle(TrilogyColor.ERROR)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_GREY_DARK)
-      ? getColorStyle(TrilogyColor.GREY_DARK)
+      ? getColorStyle(TrilogyColor.NEUTRAL_DARK)
       : typo === TypographyColor.TEXT_GREY_DARK &&
-        getColorStyle(TrilogyColor.GREY_DARK)) ||
+        getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_GREY)
       ? getColorStyle(TrilogyColor.NEUTRAL)
       : typo === TypographyColor.TEXT_GREY &&
