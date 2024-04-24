@@ -11,6 +11,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/ttf/poppins-bold.ttf",
+            "./assets/fonts/ttf/poppins-medium.ttf",
+            "./assets/fonts/ttf/poppins-regular.ttf",
+            "./assets/fonts/ttf/poppins-semibold.ttf"
+          ]
+        }
+      ]
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
