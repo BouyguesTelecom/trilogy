@@ -16,10 +16,10 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/ttf/poppins-bold.ttf",
-            "./assets/fonts/ttf/poppins-medium.ttf",
-            "./assets/fonts/ttf/poppins-regular.ttf",
-            "./assets/fonts/ttf/poppins-semibold.ttf"
+            "@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf",
+            "@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf",
+            "@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf",
+            "@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"
           ]
         }
       ]
