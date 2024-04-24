@@ -71,7 +71,7 @@ const MenuItem = ({
       {icon && <Icon name={icon} size='smaller' />}
       <View style={styles.wrapper}>
         {children && typeof children.valueOf() === "string" ? (
-          <Text typo={active ? [TypographyColor.TEXT_SECONDARY] : undefined}>
+          <Text typo={active ? [TypographyColor.TEXT_ACCENT] : undefined}>
             {String(children)}
           </Text>
         ) : (

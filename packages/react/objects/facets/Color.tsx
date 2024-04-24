@@ -15,7 +15,6 @@ export enum TrilogyColor {
   NEUTRAL = "NEUTRAL",
   NEUTRAL_DARK = "NEUTRAL_DARK",
   NEUTRAL_LIGHT = "NEUTRAL_LIGHT",
-  GREY_LIGHTER = "GREY_LIGHTER",
   WHITE = "WHITE",
 }
 
@@ -39,7 +38,6 @@ export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.NEUTRAL]: ["grey", "#707070", "white", "#F4F4F4"],
   [TrilogyColor.NEUTRAL_DARK]: ["grey-dark", "#646464", "white", "#E9E9E9"],
   [TrilogyColor.NEUTRAL_LIGHT]: ["#E9E9E9", "#E9E9E9"],
-  [TrilogyColor.GREY_LIGHTER]: ["grey-lighter", "#F4F4F4", "white", "#F4F4F4"],
   [TrilogyColor.HOVERED]: ["hovered", "#F4F4F4", "white", "#F4F4F4"],
 }
 

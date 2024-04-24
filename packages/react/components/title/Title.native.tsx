@@ -1,11 +1,5 @@
 import * as React from "react"
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Platform,
-} from "react-native"
+import { Platform, StyleSheet, Text, TouchableOpacity, View, } from "react-native"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { setTypographyAlign, setTypographyColor } from "../../objects"
 import { TitleProps } from "./TitleProps"
@@ -94,7 +88,7 @@ const Title = ({
       alignSelf: getAlignSelf(),
       borderRadius: 5,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.GREY_LIGHTER),
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
       overflow: "hidden",
       height: titlesLevels(),
     },

@@ -106,7 +106,7 @@ const Select = ({
             {label && (
               <Text
                 level={selectedOptionName && TextLevels.THREE}
-                typo={[TypographyColor.TEXT_GREY_DARK]}
+                typo={[TypographyColor.TEXT_NEUTRAL_DARK]}
                 style={{
                   fontSize: selectedOptionName ? undefined : 16,
                   lineHeight: 20,
