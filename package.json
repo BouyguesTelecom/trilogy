@@ -20,6 +20,8 @@
     "start": "npm --workspace=@trilogy-ds/react-template run start",
     "setup:native": "cd examples/mobile && npm i && npm run setup:native",
     "start:native": "cd examples/mobile && npm run start",
+    "setup:native:expo": "cd examples/mobile-expo && npm i",
+    "start:native:expo": "cd examples/mobile-expo && npm run start",
     "preview": "vite build --config config/vite.config.js && http-server ./dist",
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
