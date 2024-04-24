@@ -32,6 +32,8 @@
   },
   "private": true,
   "dependencies": {
+    "expo-font": "~11.10.3",
+    "expo-splash-screen": "^0.26.4",
     "metro-react-native-babel-preset": "^0.77.0"
   }
 }
