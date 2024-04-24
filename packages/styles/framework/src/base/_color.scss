@@ -31,22 +31,6 @@
   }
 }
 
-@function invertColor ($colorName, $context:'') {
-  $invertcolormap: ('tertiary': 'grey-dark', 'grey-dark': 'grey-light', 'grey-light': 'grey-dark');
-  $defaultInvert: white;
-
-  @if ($context == 'dark') {
-    $invertcolormap: ('tertiary':'var(--color-success)');
-    $defaultInvert: black;
-  }
-
-  @if ($context == 'accordion') {
-    $defaultInvert: 'grey-lighter'
-  }
-
-  $result: map.get($invertcolormap, $colorName);
-  @if ($result) {
-    @return $result
-  }
-  @return $defaultInvert
+@function invertColor ($colorName) {
+  @return var(--color-#{nth(map-get($colors,$colorName),3)})
 }
