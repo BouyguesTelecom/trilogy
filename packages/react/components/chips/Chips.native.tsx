@@ -54,7 +54,7 @@ const Chips = ({
       fontWeight: active ? "bold" : "normal",
       fontSize: 16,
       color:
-        (disabled && getColorStyle(TrilogyColor.GREY_DARK)) ||
+        (disabled && getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
         (active && getColorStyle(TrilogyColor.WHITE)) ||
         getColorStyle(TrilogyColor.MAIN),
     },

@@ -128,7 +128,7 @@ const Textarea = (
       top: 2,
       left: iconName ? 40 : 8,
       fontSize: 12,
-      color: getColorStyle(TrilogyColor.GREY_DARK),
+      color: getColorStyle(TrilogyColor.NEUTRAL_DARK),
       backgroundColor: "transparent",
       padding: 8,
       paddingBottom: 4,

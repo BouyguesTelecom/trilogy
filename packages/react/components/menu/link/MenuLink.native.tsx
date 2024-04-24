@@ -46,7 +46,7 @@ const MenuLink = ({
       {arrow && (
         <Icon
           style={styles.menuIcon}
-          color={IconColor.GREY}
+          color={IconColor.NEUTRAL}
           size={IconSize.SMALL}
           name={IconName.ARROW_RIGHT}
         />

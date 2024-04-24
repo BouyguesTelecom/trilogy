@@ -23,7 +23,6 @@ export enum IconStatus {
   WARNING = "warning",
   INFO = "info",
   WHITE = "white",
-  GREY = "grey",
 }
 
 /**
@@ -41,8 +40,8 @@ export enum IconColor {
   WARNING = "WARNING",
   MAIN = "MAIN",
   WHITE = "WHITE",
-  GREY = "GREY",
   ACCENT = "ACCENT",
+  NEUTRAL = "NEUTRAL",
 }
 
 /**
