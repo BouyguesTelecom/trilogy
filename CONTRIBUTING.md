@@ -34,7 +34,8 @@ This guide gives you the lowdown on how to chip into our project.
 ├── scripts                 # Build scripts
 ├── docs                    # Storybook documentation
 ├── examples                # React Native sample project with demo
-│   └── mobile              # React Native sample
+│   └── mobile-expo         # React Native sample (expo)
+│   └── mobile              # React Native sample (react-native-cli)
     └── react-tempalte      # Demo app (ReactJs/React Native)
 ├── packages                # Workspaces
 │   ├── assets           ◀  # - Package assets (only for mobile)
