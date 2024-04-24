@@ -168,9 +168,9 @@ const Otp = ({
         <Text
           markup={TextMarkup.P}
           typo={
-            (disabled && TypographyColor.TEXT_GREY) ||
+            (disabled && TypographyColor.TEXT_NEUTRAL) ||
             (error && TypographyColor.TEXT_ERROR) ||
-            TypographyColor.TEXT_TERTIARY
+            TypographyColor.TEXT_MAIN
           }
         >
           {label}
@@ -212,8 +212,7 @@ const Otp = ({
           className={hashClass(styled, clsx("otp-error-message"))}
           markup={TextMarkup.P}
           typo={
-            (error && TypographyColor.TEXT_ERROR) ||
-            TypographyColor.TEXT_TERTIARY
+            (error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN
           }
         >
           {errorMessage}

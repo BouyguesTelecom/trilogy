@@ -74,7 +74,7 @@ const Box = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHTER),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
       overflow: "hidden",
       borderRadius: boxRadius,
     },
