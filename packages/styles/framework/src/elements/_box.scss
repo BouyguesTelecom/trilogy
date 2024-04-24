@@ -21,7 +21,6 @@ a.box {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: getColor('background');
   border-radius: $radius;
-  color: getColor('font');
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -39,25 +38,10 @@ a.box {
   &.has-background {
     background-repeat: no-repeat;
 
-    &.is-inverted {
-      .box-content {
-        color: getColor('background');
-      }
-
-      .title,
-      .subtitle,
-      .text,
-      .paragraph,
-      p {
-        color: getColor('background');
-      }
-    }
-
     .box-content {
       background-color: transparent;
     }
   }
-
 
   &.is-active {
     border: 2px solid getColor('main');

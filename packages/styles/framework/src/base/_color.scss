@@ -31,6 +31,13 @@
   }
 }
 
+.is-inverted {
+  @each $name, $color in $colors {
+    --color-bg-#{nth($color,1)}: #{nth($color,2)};
+    --color-#{nth($color,1)}: #{nth($color,4)};
+  }
+}
+
 @function invertColor ($colorName, $context:'') {
   $invertcolormap: ('tertiary': 'grey-dark', 'grey-dark': 'grey-light', 'grey-light': 'grey-dark');
   $defaultInvert: white;
