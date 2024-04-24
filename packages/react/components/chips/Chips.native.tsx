@@ -39,7 +39,7 @@ const Chips = ({
         (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
-        getColorStyle(TrilogyColor.GREY_LIGHT),
+        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
       borderRadius: 30,
       paddingLeft: 12,
       paddingRight: 12,
