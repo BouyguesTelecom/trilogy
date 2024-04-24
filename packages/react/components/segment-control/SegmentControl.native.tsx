@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
-import { SegmentControlProps } from './SegmentControlProps'
-import { View } from '../view'
-import { Text, TextLevels } from '../text'
-import SegmentedControlItem from './item'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import React, { useState } from "react"
+import { StyleSheet } from "react-native"
+import { SegmentControlProps } from "./SegmentControlProps"
+import { View } from "../view"
+import { Text, TextLevels } from "../text"
+import SegmentedControlItem from "./item"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * SegmentControl Component
@@ -17,18 +17,18 @@ import { ComponentName } from '../enumsComponentsName'
  * @param marginless {boolean} delete margin
  */
 const SegmentControl = ({
-                          children,
-                          onClick,
-                          activeIndex,
-                          disabled,
-                          marginless,
-                          inverted,
-                          ...others
-                        }: SegmentControlProps): JSX.Element => {
+  children,
+  onClick,
+  activeIndex,
+  disabled,
+  marginless,
+  inverted,
+  ...others
+}: SegmentControlProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
-    if (typeof childPropsActive !== 'undefined' && !activateIndex) {
+    if (typeof childPropsActive !== "undefined" && !activateIndex) {
       return childPropsActive
     }
     if (index === activateIndex) {
@@ -52,9 +52,9 @@ const SegmentControl = ({
       paddingRight: marginless ? 0 : 10,
     },
     segmentedControl: {
-      flexDirection: 'row',
-      width: '100%',
-      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
+      flexDirection: "row",
+      width: "100%",
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
       borderRadius: 4,
       padding: 4,
       paddingRight: -4,
@@ -69,7 +69,9 @@ const SegmentControl = ({
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           children.map((child: any, index: number) => {
             const props = {
-              inverted: Boolean(isActive(index, child.props.active) && inverted) || false,
+              inverted:
+                Boolean(isActive(index, child.props.active) && inverted) ||
+                false,
               active: Boolean(isActive(index, child.props.active)) || false,
               disabled: child.props.disabled,
               key: index,
@@ -84,7 +86,7 @@ const SegmentControl = ({
               },
             }
             if (index < 5) {
-              return typeof child.valueOf() === 'string' ? (
+              return typeof child.valueOf() === "string" ? (
                 <SegmentedControlItem
                   disabled={props.disabled}
                   active={props.active}

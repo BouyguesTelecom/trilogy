@@ -33,7 +33,7 @@ const SegmentControlItem = ({
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.WHITE)) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        getColorStyle(TrilogyColor.GREY_LIGHT),
+        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
     },
     text: {
       paddingHorizontal: 16,

@@ -42,9 +42,9 @@ const Select = ({
   const styles = StyleSheet.create({
     select: {
       width: "100%",
-      backgroundColor: getColorStyle(
-        disabled ? TrilogyColor.GREY_LIGHT : TrilogyColor.WHITE
-      ),
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : TrilogyColor.WHITE,
       borderColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
         : getColorStyle(TrilogyColor.FONT, 1),
