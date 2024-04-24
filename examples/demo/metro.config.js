@@ -16,8 +16,9 @@ const monorepoPackages = {
 const config = getDefaultConfig(projectRoot);
 
 // 1. Watch all files within the monorepo
-config.projectRoot = resolve(__dirname);
-config.watchFolders = [...Object.values(monorepoPackages)];
+config.watchFolders = [
+  ...Object.values(monorepoPackages)
+];
 // 2. Let Metro know where to resolve packages and in what order
 config.resolver.nodeModulesPaths = [
   resolve(__dirname, '../../node_modules'),
@@ -25,7 +26,5 @@ config.resolver.nodeModulesPaths = [
 ];
 
 config.resolver.extraNodeModules = monorepoPackages
-
-config.resolver.disableHierarchicalLookup = true;
 
 module.exports = config;
