@@ -437,7 +437,7 @@ const Input = ({
     },
     domain: {
       zIndex: 1,
-      color: getColorStyle(TrilogyColor.GREY),
+      color: getColorStyle(TrilogyColor.NEUTRAL),
       fontSize: 13,
       height: "100%",
       marginTop: 3,

@@ -140,7 +140,7 @@ const Modal = ({
           style={{ flexDirection: "row", alignSelf: "flex-end" }}
           name={IconName.TIMES}
           size={IconSize.SMALL}
-          color={TrilogyColor.GREY}
+          color={TrilogyColor.NEUTRAL}
         />
       </TouchableOpacity>
       {iconName && (
@@ -242,7 +242,7 @@ const Modal = ({
                       <Icon
                         name={IconName.TIMES}
                         size={IconSize.SMALL}
-                        color={TrilogyColor.GREY}
+                        color={TrilogyColor.NEUTRAL}
                       />
                     </TouchableOpacity>
                   </View>

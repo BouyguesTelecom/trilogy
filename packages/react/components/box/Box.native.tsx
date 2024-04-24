@@ -55,7 +55,7 @@ const Box = ({
       borderWidth: (flat && 1) || (active && 2) || 0,
       borderColor: active
         ? getColorStyle(TrilogyColor.MAIN)
-        : getColorStyle(TrilogyColor.GREY),
+        : getColorStyle(TrilogyColor.FONT, 1),
       marginTop: hat ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
