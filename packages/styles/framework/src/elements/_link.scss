@@ -10,11 +10,9 @@
     font-weight: $weight-semibold;
   }
 
-  &:focus,
   &:focus-visible,
-  &:focus:focus-visible,
-  &:active {
-    border: 1px solid;
+  &:focus:focus-visible {
+    outline: 2px solid getColor('font');
     border-radius: $radius-small;
     padding: 4px;
   }
@@ -47,13 +45,9 @@
 }
 
 .text .link {
-
   &:hover {
     font-weight: $weight-normal;
   }
-
-  text-decoration-line: underline;
-  text-decoration-style: double;
 }
 
 @keyframes sliding-link {
