@@ -117,7 +117,6 @@ describe("Title component", () => {
         <Title
           level={TitleLevels.THREE}
           inverted={true}
-          typo={TypographyColor.TEXT_PRIMARY}
           onClick={jest.fn()}
           skeleton={false}
           markup={TitleMarkup.H3}

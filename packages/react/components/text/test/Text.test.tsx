@@ -171,7 +171,6 @@ describe("Text component", () => {
         <Text
           level={TextLevels.FOUR}
           inverted={true}
-          typo={TypographyColor.TEXT_PRIMARY}
           onClick={jest.fn()}
           skeleton={false}
           markup={TextMarkup.SPAN}

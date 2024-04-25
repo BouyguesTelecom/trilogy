@@ -25,7 +25,7 @@
     "target": "es2019",
     "outDir": "./lib",
     "preserveConstEnums": true,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
