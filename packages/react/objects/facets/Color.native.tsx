@@ -40,6 +40,13 @@ export const nativeColors: Record<TrilogyColor, string[]> = {
 
 export type TrilogyColorValues = `${TrilogyColor}`;
 
+/**
+ * Returns color's style depending on Trilogy Color
+ * @param trilogyColor {string} - Trilogy Color
+ * @param index {number} - Index of color ( 1 for BG )
+ * @returns {string} - Color style value
+ */
+
 export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number

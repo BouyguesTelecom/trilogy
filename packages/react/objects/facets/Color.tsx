@@ -101,12 +101,19 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
 /**
  * Returns color's style depending on Trilogy Color
  * @param trilogyColor {string} - Trilogy Color
+ * @param index {number} - Index of color ( 1 for BG )
  * @returns {string} - Color style value
  */
+
 export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
   const color = colors[trilogyColor]
-  return color[1]
+
+  const colorArray = colors[trilogyColor]
+  const colorIndex =
+    index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+
+  return colorArray[colorIndex]
 }
