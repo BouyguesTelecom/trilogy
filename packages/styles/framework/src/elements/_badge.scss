@@ -30,11 +30,6 @@
     color: getColor('main');
     background: getColor('background');
   }
-
-  ul.menu-list li a & {
-    margin: 0 $text-15;
-    max-height: 17px;
-  }
 }
 
 .badge {
