@@ -522,7 +522,7 @@ const Input = ({
             }}
           >
             <Icon
-              color={IconColor.TERTIARY}
+              color={IconColor.MAIN}
               className={iconClassname}
               name={IconName.SEARCH}
               size={IconSize.SMALL}

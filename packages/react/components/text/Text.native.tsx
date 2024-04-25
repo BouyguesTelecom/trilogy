@@ -1,11 +1,7 @@
 import * as React from "react"
 import { Platform, StyleSheet, Text as TextNative, View } from "react-native"
 import { TextProps } from "./TextProps"
-import {
-  getTypographyBoldStyle,
-  setTypographyAlign,
-  setTypographyColor,
-} from "../../objects/Typography"
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "../../objects/Typography"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { TextLevels, TextLevelValues } from "./TextEnum"
 import ContentLoader, { Rect } from "react-content-loader/native"
@@ -81,7 +77,7 @@ const Text = ({
         (level && level == "THREE" && 5) ||
         3,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.GREY_LIGHTER),
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
       overflow: "hidden",
       height: textLevels(level as TextLevels | TextLevelValues),
     },

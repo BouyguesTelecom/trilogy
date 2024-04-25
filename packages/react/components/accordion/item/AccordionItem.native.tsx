@@ -1,16 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import { AccordionItemProps } from './AccordionItemProps'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
-import { hasDisplayName } from './AccordionItem.helper'
-import { IconName } from '../../icon/IconNameEnum'
-import { Spacer, SpacerSize } from '../../spacer'
-import { Icon, IconSize } from '../../icon'
-import { ComponentName } from '../../enumsComponentsName'
+import React, { useEffect, useRef, useState } from "react"
+import {
+  Animated,
+  Easing,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native"
+import { AccordionItemProps } from "./AccordionItemProps"
+import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import { hasDisplayName } from "./AccordionItem.helper"
+import { IconName } from "../../icon/IconNameEnum"
+import { Spacer, SpacerSize } from "../../spacer"
+import { Icon, IconSize } from "../../icon"
+import { ComponentName } from "../../enumsComponentsName"
 
 interface AccordionChild {
-  header?: React.ReactNode
-  body?: React.ReactNode
+  header?: React.ReactNode;
+  body?: React.ReactNode;
 }
 
 /**
@@ -24,41 +30,51 @@ interface AccordionChild {
  * @param children
  */
 const AccordionItem = ({
-                         active,
-                         id,
-                         onClick,
-                         disabled,
-                         onOpen,
-                         onClose,
-                         children,
-                         ...others
-                       }: AccordionItemProps): JSX.Element => {
-  const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
+  active,
+  id,
+  onClick,
+  disabled,
+  onOpen,
+  onClose,
+  children,
+  ...others
+}: AccordionItemProps): JSX.Element => {
+  const [isActive, setIsActive] = useState<boolean>(
+    Boolean(typeof active !== "undefined" ? active : false)
+  )
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
-  const [childs, setChilds] = useState<AccordionChild>({ header: undefined, body: undefined })
+  const [childs, setChilds] = useState<AccordionChild>({
+    header: undefined,
+    body: undefined,
+  })
 
   const styles = StyleSheet.create({
     item: {
-      width: '100%',
+      width: "100%",
       padding: 5,
       borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: disabled
+        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        : getColorStyle(TrilogyColor.WHITE),
       borderWidth: 1,
-      borderColor: isActive ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.GREY_LIGHT),
+      borderColor:
+        (isActive && getColorStyle(TrilogyColor.MAIN)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        getColorStyle(TrilogyColor.FONT, 1),
     },
     bodyBackground: {
       borderRadius: 6,
       backgroundColor: getColorStyle(TrilogyColor.WHITE),
-      overflow: 'hidden',
+      overflow: "hidden",
     },
     titleContainer: {
-      minWidth: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingLeft: 5,
+      minWidth: "100%",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingLeft: 10,
       paddingRight: 5,
       paddingTop: 5,
       paddingBottom: 5,
@@ -68,7 +84,7 @@ const AccordionItem = ({
       padding: 10,
       paddingLeft: 10,
       paddingRight: 10,
-      position: 'absolute',
+      position: "absolute",
       bottom: 0,
       borderRadius: 6,
     },
@@ -81,7 +97,7 @@ const AccordionItem = ({
 
   const arrowAngle = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0rad', `${Math.PI}rad`],
+    outputRange: ["0rad", `${Math.PI}rad`],
   })
 
   useEffect(() => {
@@ -117,16 +133,16 @@ const AccordionItem = ({
       children.forEach((child) => {
         if (
           child &&
-          typeof child === 'object' &&
-          'type' in child &&
-          typeof child.type === 'function' &&
+          typeof child === "object" &&
+          "type" in child &&
+          typeof child.type === "function" &&
           hasDisplayName(child.type)
         ) {
           switch (child.type.displayName) {
-            case 'AccordionHeader':
+            case "AccordionHeader":
               newChilds.header = child
               break
-            case 'AccordionBody':
+            case "AccordionBody":
               newChilds.body = child
               break
             default:
@@ -143,7 +159,7 @@ const AccordionItem = ({
       <View style={styles.item}>
         <TouchableWithoutFeedback
           style={styles.item}
-          testID={id || ''}
+          testID={id || ""}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onPress={(e: any) => {
             if (!disabled) {
@@ -161,7 +177,7 @@ const AccordionItem = ({
               <Icon
                 name={IconName.ARROW_DOWN}
                 size={IconSize.SMALLER}
-                color={isActive ? TrilogyColor.MAIN : TrilogyColor.GREY_DARK}
+                color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
               />
             </Animated.View>
           </View>
@@ -178,7 +194,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL}/>
+      <Spacer size={SpacerSize.SMALL} />
     </>
   )
 }

@@ -12,17 +12,22 @@ import { getColorStyle, TrilogyColor } from '../../../objects'
  * @param expandable {boolean} Lines can display additional information
  * @param expanded {ReactNode|string} Expended Table TR content
  */
-const TableTr = ({ children, expandable, expanded, ...others }: TableTrPropsNative): JSX.Element => {
+const TableTr = ({
+  children,
+  expandable,
+  expanded,
+  ...others
+}: TableTrPropsNative): JSX.Element => {
   const [isExpanded, setIsExpended] = useState<boolean>(false)
 
   const styles = StyleSheet.create({
     tableTr: {
-      flexDirection: 'row',
+      flexDirection: "row",
       flex: 1,
     },
     expendable: {
-      width: '100%',
-      backgroundColor: getColorStyle(TrilogyColor.GREY_LIGHT),
+      width: "100%",
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
       padding: 10,
     },
   })
@@ -34,15 +39,21 @@ const TableTr = ({ children, expandable, expanded, ...others }: TableTrPropsNati
   if (expandable) {
     return (
       <View>
-        <TouchableOpacity onPress={() => handleExpendedContent()} style={styles.tableTr} {...others}>
+        <TouchableOpacity
+          onPress={() => handleExpendedContent()}
+          style={styles.tableTr}
+          {...others}
+        >
           {children}
         </TouchableOpacity>
-        {isExpanded && expanded && typeof expanded.valueOf() === 'string' && (
+        {isExpanded && expanded && typeof expanded.valueOf() === "string" && (
           <View style={styles.expendable}>
             <Text level={TextLevels.FOUR}>{String(expanded)}</Text>
           </View>
         )}
-        {isExpanded && expanded && React.isValidElement(expanded) && <View style={styles.expendable}>{expanded}</View>}
+        {isExpanded && expanded && React.isValidElement(expanded) && (
+          <View style={styles.expendable}>{expanded}</View>
+        )}
       </View>
     )
   }

@@ -1,22 +1,28 @@
-import React, { useMemo } from 'react'
-import { StyleSheet, View as ReactView } from 'react-native'
-import { Icon, IconColor } from '../../icon'
-import { Text, TextLevels } from '../../text'
-import { View } from '../../view'
-import { ListItemProps } from './ListItemProps'
-import { ComponentName } from '../../enumsComponentsName'
+import React, { useMemo } from "react"
+import { StyleSheet, View as ReactView } from "react-native"
+import { Icon, IconColor } from "../../icon"
+import { Text, TextLevels } from "../../text"
+import { View } from "../../view"
+import { ListItemProps } from "./ListItemProps"
+import { ComponentName } from "../../enumsComponentsName"
 
-const ListItem = ({ children, customIcon, status, title, description }: ListItemProps): JSX.Element => {
+const ListItem = ({
+  children,
+  customIcon,
+  status,
+  title,
+  description,
+}: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
       marginBottom: 4,
-      flexDirection: 'row',
-      alignItems: 'center',
-      position: 'relative',
+      flexDirection: "row",
+      alignItems: "center",
+      position: "relative",
     },
     puce: {
-      fontWeight: 'bold',
-      position: 'absolute',
+      fontWeight: "bold",
+      position: "absolute",
       fontSize: 18,
       top: -3.5,
     },
@@ -28,25 +34,26 @@ const ListItem = ({ children, customIcon, status, title, description }: ListItem
     },
     title: {
       marginLeft: 12,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     titleContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      position: 'relative',
+      flexDirection: "row",
+      alignItems: "center",
+      position: "relative",
     },
   })
 
   const getComponent = useMemo(() => {
-    if (typeof children === 'object') return <View style={styles.text}>{children}</View>
-    if (typeof children === 'undefined' && description) {
+    if (typeof children === "object")
+      return <View style={styles.text}>{children}</View>
+    if (typeof children === "undefined" && description) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
           {description}
         </Text>
       )
     }
-    if (['string', 'number'].includes(typeof children)) {
+    if (["string", "number"].includes(typeof children)) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
           {children}
@@ -59,7 +66,11 @@ const ListItem = ({ children, customIcon, status, title, description }: ListItem
     return (
       <View style={styles.item}>
         <ReactView style={styles.icon}>
-          <Icon size='small' name={customIcon} color={status || IconColor.TERTIARY} />
+          <Icon
+            size='small'
+            name={customIcon}
+            color={status || IconColor.MAIN}
+          />
         </ReactView>
         {getComponent}
       </View>

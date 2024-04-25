@@ -8,201 +8,200 @@ $menu-item-line-height: math.div($menu-item-height, 2);
 $menu-dropdown-item-height: 2em;
 
 .menu {
-    font-size: $text-14;
+  font-size: $text-14;
 
-    &.is-small {
-        font-size: $size-small;
+  &.is-small {
+    font-size: $size-small;
+  }
+
+  &.is-large {
+    font-size: $size-large;
+  }
+
+  &.is-fixed {
+    position: fixed;
+    max-width: 374px;
+  }
+
+  li {
+    border-bottom: 1px solid getBGColor('neutral');
+
+    &:last-child {
+      border-bottom: none;
     }
+  }
 
-    &.is-large {
-        font-size: $size-large;
+  .navbar.navbar-header .navbar-menu & {
+    top: $menu-top;
+
+    @include desktop {
+      top: $menu-top-desktop;
     }
-
-    &.is-fixed {
-        position: fixed;
-        max-width: 374px;
-    }
-
-    li {
-        border-bottom: 1px solid getBGColor('neutral');
-
-        &:last-child {
-            border-bottom: none;
-        }
-    }
-
-    .navbar.navbar-header .navbar-menu & {
-        top: $menu-top;
-
-        @include desktop {
-            top: $menu-top-desktop;
-        }
-    }
+  }
 
 }
 
 .menu-title {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .menu-list {
-    line-height: 1.25;
-    padding: 10px 0;
-    border-bottom: 1px solid getBGColor('neutral-dark');
+  line-height: 1.25;
+  padding: 10px 0;
+  border-bottom: 1px solid getBGColor('neutral-dark');
 
-    a {
-        @include unselectable;
+  a {
+    @include unselectable;
 
-        color: getColor('font');
-        padding: 10px 0.75em;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        text-decoration: inherit;
+    color: getColor('font');
+    padding: 10px 0.75em;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    text-decoration: inherit;
 
-      #{$hoverSelector} {
-            background-color: transparent;
-            color:  getColor('alternate');
-        }
-
-        &.with-arrow::after {
-            content: "";
-            mask-image: url('./assets/icons/all/arrow-right.svg');
-            background-color: getColor('font');
-            right: 0.75em;
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            align-self: center;
-        }
-
-        &.is-active {
-            background-color: getBGColor('neutral-dark');
-            color: getColor('alternate');
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 4px;
-                height: 100%;
-                background-color: currentColor;
-            }
-        }
-
-        .badge {
-            margin-top: 1px;
-        }
-
-        .icon {
-            margin: -1px 10px 0 0;
-        }
+    #{$hoverSelector} {
+      background-color: transparent;
+      color: getColor('alternate');
     }
+
+    &.with-arrow::after {
+      content: "";
+      mask-image: url('./assets/icons/all/arrow-right.svg');
+      background-color: getColor('font');
+      right: 0.75em;
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      align-self: center;
+    }
+
+    &.is-active {
+      color: getColor('alternate');
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background-color: currentColor;
+      }
+    }
+
+    .badge {
+      margin-top: 1px;
+    }
+
+    .icon {
+      margin: -1px 10px 0 0;
+    }
+  }
+
+  li {
+    ul {
+      margin: 0.75em;
+      padding-left: 0.75em;
+    }
+  }
+
+  &.dropdown-menu-list,
+  &.aside-menu-list {
+    color: getColor('font');
+    border: 0;
+    background-color: getColor('background');
+    padding: 0;
 
     li {
-        ul {
-            margin: 0.75em;
-            padding-left: 0.75em;
-        }
-    }
-
-    &.dropdown-menu-list,
-    &.aside-menu-list {
-        color: getColor('font');
-        border: 0;
-        background-color: getColor('background');
+      ul {
         padding: 0;
+        margin: 0.4em 0 0.8em;
 
         li {
-            ul {
-                padding: 0;
-                margin: 0.4em 0 0.8em;
+          padding: 0;
 
-                li {
-                    padding: 0;
-
-                    a {
-                        min-height: $menu-dropdown-item-height;
-                        line-height: $menu-dropdown-item-height;
-                        padding: 0 2.4em;
-                    }
-                }
-            }
-        }
-
-        li.is-active a,
-        a.is-active {
-            box-shadow: inset 4px 0 0 0 currentColor;
-            color: getColor('alternate');
-            background: inherit;
-        }
-
-        a {
-            padding: 0 1.2em;
-            color: getColor('font');
+          a {
             min-height: $menu-dropdown-item-height;
             line-height: $menu-dropdown-item-height;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-
-          #{$hoverSelector} {
-                color: getColor('alternate');
-                background-color: getBGColor('neutral');
-            }
-
-            sub {
-                display: inline-block;
-                height: 20px;
-                margin: 3px;
-            }
-
-            .tag {
-                height: 20px;
-                padding: 5px;
-                margin-left: 5px;
-            }
+            padding: 0 2.4em;
+          }
         }
+      }
     }
 
-    &.aside-menu-list {
-        border-right: 1px solid getBGColor('neutral-dark');
-
-        a {
-            padding-left: 1.2em;
-            padding-top: 0.8em;
-            min-height: $menu-item-height;
-            line-height: $menu-item-line-height;
-            color: getColor('font');
-        }
+    li.is-active a,
+    a.is-active {
+      box-shadow: inset 4px 0 0 0 currentColor;
+      color: getColor('alternate');
+      background: inherit;
     }
+
+    a {
+      padding: 0 1.2em;
+      color: getColor('font');
+      min-height: $menu-dropdown-item-height;
+      line-height: $menu-dropdown-item-height;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      #{$hoverSelector} {
+        color: getColor('alternate');
+        background-color: getBGColor('neutral');
+      }
+
+      sub {
+        display: inline-block;
+        height: 20px;
+        margin: 3px;
+      }
+
+      .tag {
+        height: 20px;
+        padding: 5px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &.aside-menu-list {
+    border-right: 1px solid getBGColor('neutral-dark');
+
+    a {
+      padding-left: 1.2em;
+      padding-top: 0.8em;
+      min-height: $menu-item-height;
+      line-height: $menu-item-line-height;
+      color: getColor('font');
+    }
+  }
 }
 
 .menu-label {
-    color: getColor('alternate');
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: $weight-semibold;
-    padding-bottom: 1em;
-    border-bottom: 2px solid currentColor;
+  color: getColor('alternate');
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: $weight-semibold;
+  padding-bottom: 1em;
+  border-bottom: 2px solid currentColor;
 
-    &:not(:first-child) {
-        margin-top: 1em;
-    }
+  &:not(:first-child) {
+    margin-top: 1em;
+  }
 
-    &:not(:last-child) {
-        margin-bottom: 1em;
-    }
+  &:not(:last-child) {
+    margin-bottom: 1em;
+  }
 }
 
 aside.menu {
-    > div {
-        padding: 10px;
-    }
+  > div {
+    padding: 10px;
+  }
 }
 
 .is-sidebar-menu ul.menu-list {
-    height: 100%;
+  height: 100%;
 }

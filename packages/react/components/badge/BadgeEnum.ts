@@ -1,13 +1,12 @@
 export enum BadgeTextDirection {
-  LEFT = 'left',
-  RIGHT = 'right',
+  LEFT = "left",
+  RIGHT = "right",
 }
 
-export type BadgeTextDirectionValues = `${BadgeTextDirection}`
+export type BadgeTextDirectionValues = `${BadgeTextDirection}`;
 
 export enum BadgeColor {
-  TERTIARY = 'TERTIARY',
-  SECONDARY = 'SECONDARY',
+  MAIN = "MAIN",
 }
 
-export type BadgeColorValues = `${BadgeColor}`
+export type BadgeColorValues = `${BadgeColor}`;

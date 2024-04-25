@@ -11,7 +11,7 @@ import {
   Text,
   View,
 } from "@trilogy-ds/react/components";
-import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
+import { TypographyAlign } from "@trilogy-ds/react/objects";
 
 export const ToolbarScreen = (): JSX.Element => {
   return (
@@ -63,7 +63,7 @@ export const ToolbarScreen = (): JSX.Element => {
           </Tabs>
         </ColumnsItem>
       </Columns>
-      <Divider color={TrilogyColor.GREY_LIGHT} marginless />
+      <Divider marginless />
     </View>
   );
 };
