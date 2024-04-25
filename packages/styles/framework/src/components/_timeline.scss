@@ -339,7 +339,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &.undone {
-          color: getBGColor('main');
+
           &::before {
             background-color: getBGColor('neutral');
           }
