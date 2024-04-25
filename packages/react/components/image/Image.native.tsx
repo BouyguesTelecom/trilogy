@@ -1,10 +1,5 @@
 import * as React from "react"
-import {
-  StyleSheet,
-  Image as ImageNative,
-  View,
-  TouchableOpacity,
-} from "react-native"
+import { Image as ImageNative, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { ImageProps } from "./ImageProps"
 import { ComponentName } from "../enumsComponentsName"
 
@@ -31,9 +26,10 @@ const Image = ({
 }: ImageProps): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
+      backgroundColor: "red",
       width: width ? width : "100%",
       height: height ? height : "100%",
-      borderRadius: rounded ? 50 : 0,
+      borderRadius: rounded ? 100 : 0,
       overflow: rounded ? "hidden" : "visible",
       resizeMode: "contain",
       flex: flex ? 1 : 0,

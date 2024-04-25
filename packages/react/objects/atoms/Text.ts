@@ -2,9 +2,9 @@
  * Text color Style
  */
 enum TextStyle {
-  PRIMARY = "PRIMARY",
-  SECONDARY = "SECONDARY",
-  TERTIARY = "TERTIARY",
+  MAIN = "MAIN",
+  ACCENT = "ACCENT",
+  INFO = "INFO",
 }
 
 /**
@@ -21,26 +21,24 @@ export interface TextVariantProps {
  */
 export const getTextClassName = (textType?: string): string => {
   switch (textType) {
-    case "PRIMARY":
-      return "text-primary"
-    case "SECONDARY":
-      return "text-secondary"
-    case "TERTIARY":
-      return "text-tertiary"
+    case "MAIN":
+      return "text-main"
+    case "ACCENT":
+      return "text-accent"
+    case "INFO":
+      return "text-info"
     case "WHITE":
       return "text-white"
-    case "GREY_LIGHT":
-      return "text-grey-light"
-    case "GREY_DARK":
-      return "text-grey-dark"
+    case "NEUTRAL":
+      return "text-neutral-light"
+    case "NEUTRAL_DARK":
+      return "text-neutral-dark"
     case "SUCCESS":
       return "text-success"
     case "WARNING":
       return "text-warning"
     case "ERROR":
       return "text-error"
-    case "INFO":
-      return "text-info"
     default:
       return ""
   }

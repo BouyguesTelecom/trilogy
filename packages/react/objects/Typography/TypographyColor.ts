@@ -30,10 +30,14 @@ export const setTypographyColor = (
   inverted = false
 ): string => {
   return (
-    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN)
-      ? getColorStyle(TrilogyColor.MAIN)
+    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_ACCENT)
+      ? getColorStyle(TrilogyColor.ACCENT)
       : typo === TypographyColor.TEXT_ACCENT &&
         getColorStyle(TrilogyColor.ACCENT)) ||
+    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN)
+      ? getColorStyle(TrilogyColor.MAIN)
+      : typo === TypographyColor.TEXT_MAIN &&
+        getColorStyle(TrilogyColor.MAIN)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_INFO)
       ? getColorStyle(TrilogyColor.INFO)
       : typo === TypographyColor.TEXT_INFO &&
