@@ -11,29 +11,32 @@ import {
   Section,
   Text,
 } from "@trilogy-ds/react/components";
-import {TrilogyColor, TypographyAlign, TypographyColor,} from "@trilogy-ds/react/objects";
-import {Button, ButtonVariant, Columns, ColumnsItem, Title, TitleLevels} from "@trilogy-ds/react";
+import {
+  TrilogyColor,
+  TypographyAlign,
+  TypographyColor,
+} from "@trilogy-ds/react/objects";
+import {
+  Button,
+  ButtonVariant,
+  Columns,
+  ColumnsItem,
+  Title,
+  TitleLevels,
+} from "@trilogy-ds/react";
 
 export const BoxScreen = (): JSX.Element => {
+  const [active, setActive] = React.useState(false);
+
   return (
     <Section>
       <AutoLayout>
         <Columns multiline>
-          <ColumnsItem size={10}>
-            <Box active>
+          <ColumnsItem size={6}>
+            <Box onClick={() => setActive(!active)} active={active}>
               <BoxHeader>Box active</BoxHeader>
               <BoxContent>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  maximus tellus sed erat maximus porta. Etiam non ex in dolor
-                  faucibus tempor. Sed ullamcorper, ligula sit amet dictum
-                  posuere, urna tortor vulputate justo, ut luctus justo eros sed
-                  erat. Fusce finibus dolor ex. Duis vel velit in lectus
-                  placerat aliquam nec at elit. Aenean metus neque, accumsan id
-                  ipsum sodales, fermentum lacinia eros. Ut gravida aliquet
-                  magna, id efficitur magna ultrices a. In quis bibendum tortor.
-                  Nam quam lacus, suscipit a vehicula ac, vehicula eget risus.
-                </Text>
+                <Text>Click on this box to see the active state.</Text>
               </BoxContent>
             </Box>
           </ColumnsItem>
