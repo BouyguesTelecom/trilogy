@@ -46,6 +46,13 @@
   }
 }
 
+.text .link {
+  &:hover {
+    font-weight: $weight-normal;
+    filter: brightness(0.8);
+  }
+}
+
 @keyframes sliding-link {
   50% {
     left: 100%;
