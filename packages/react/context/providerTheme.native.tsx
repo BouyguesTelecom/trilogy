@@ -1,5 +1,6 @@
 import React, { Dispatch, ReactNode, SetStateAction } from "react"
 import { ITrilogyTheme } from "./interfaces"
+import { nativeColors } from "../objects/facets/Color.native"
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode;
@@ -13,29 +14,7 @@ export interface ITrilogyThemeContext {
 
 export const defaultIcons = {}
 
-export const defaultColors = {
-  main: "#3d5d7e",
-  font: "#3d5d7e",
-  accent: "#da641b",
-  success: "#007B52",
-  info: "#1A688A",
-  warning: "#FFBB33",
-  error: "#D42D02",
-  white: "#fff",
-  grey: "#707070",
-  greyDark: "#646464",
-  greyLight: "#E9E9E9",
-  greyLighter: "#F4F4F4",
-  greyDisabled: "#D1D1D1",
-  bgInfo: "hsl(200, 50%, 70%)",
-  bgSuccess: "hsl(120, 50%, 70%)",
-  bgWarning: "hsl(40, 50%, 70%)",
-  bgError: "hsl(0, 50%, 70%)",
-  bgDefault: "#E4E6E8",
-  btnSecondary: "#eff2f8",
-  btnGhost: "#FFFFFF",
-  default: "#3d5d7e",
-}
+export const defaultColors = nativeColors
 
 export const defaultTheme: ITrilogyTheme = {
   icons: defaultIcons,

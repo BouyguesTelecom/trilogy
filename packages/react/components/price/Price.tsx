@@ -2,7 +2,7 @@ import * as React from "react"
 import clsx from "clsx"
 import { PriceProps } from "./PriceProps"
 import { has, is } from "../../services/classify"
-import { Text } from "../text"
+import { Text, TextMarkup } from "../text"
 import { Alignable } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { hashClass } from "../../helpers"
@@ -10,13 +10,11 @@ import { useTrilogyContext } from "../../context"
 
 /**
  * Price Component
- * @param variant {PriceVariant} Variant for Price (PRIMARY|SECONDARY)
  * @param amount {number} Amount for Price
  * @param mention {string} Mention for price ( (1)* )
  * @param period {string} Period for Price (mois)
  * @param showCents {boolean} Display cents
  * @param level {PriceLevel} Price custom size
- * @param huge {boolean} Price huge size
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
@@ -28,10 +26,10 @@ import { useTrilogyContext } from "../../context"
  * @param className {string} Additionnal CSS Classes
  * @param striked {boolean} Striked Price
  * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param accessibilityActivate {boolean}
  */
 const Price = ({
   className,
-  variant,
   amount,
   mention,
   period,
@@ -53,8 +51,7 @@ const Price = ({
     styled,
     clsx(
       "price",
-      !alert && variant && is(`${variant}`),
-      !variant && alert && is(`${alert}`),
+      alert && is(`${alert}`),
       level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),
@@ -76,19 +73,8 @@ const Price = ({
 
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
-  // Math.floor on negative decimal decrease its value (as expected), ex: Math.floor(-17.09) => -18
-  // Use of Math.abs prevent this in our case
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
-  // Floating point problem Math.floor gives inconsistent results with decimals,
-  // Math.round prevents it and is enough with prices decimals
-  // ex: (17.09 - 17) * 100 = 8.999999999999986 > Floating point problem
-  // ex: Math.round((17.09 - 17) * 100) = 9 > Expected result
-  // For more informations https://floating-point-gui.de/
-
-  // const cents = Math.floor((absoluteAmount - absoluteWhole) * 100)
-  //   .toString()
-  //   .padStart(2, '0')
 
   let cents = checkCents(
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
@@ -101,57 +87,36 @@ const Price = ({
     (showCents && `€${cents || "00"}`) ||
     "€"
 
-  if (align) {
-    return (
-      <div className={priceParentNode}>
-        <div
-          data-testid={testId}
-          aria-label={accessibilityLabel}
-          className={classes}
-          {...others}
-        >
-          {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-          <Text>{`${whole}`}</Text>
-          <span className={hashClass(styled, clsx("price-details"))}>
-            <span className={hashClass(styled, clsx("cents"))}>
-              {inline && centsDisplayed === "€" ? (
-                <>&nbsp;{centsDisplayed}</>
-              ) : (
-                centsDisplayed
-              )}
-              {mention && <sup>{mention}</sup>}
-            </span>
-            {period && (
-              <span className={hashClass(styled, clsx("period"))}>
-                /{period}
-              </span>
-            )}
-          </span>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div
+  const returnComponent = (
+    <span
       data-testid={testId}
       aria-label={accessibilityLabel}
       className={classes}
       {...others}
     >
       {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-      <Text>{`${whole}`}</Text>
+      <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
       <span className={hashClass(styled, clsx("price-details"))}>
         <span className={hashClass(styled, clsx("cents"))}>
-          {centsDisplayed || "00"}
+          {inline && centsDisplayed === "€" ? (
+            <>&nbsp;{centsDisplayed}</>
+          ) : (
+            centsDisplayed
+          )}
           {mention && <sup>{mention}</sup>}
         </span>
         {period && (
           <span className={hashClass(styled, clsx("period"))}>/{period}</span>
         )}
       </span>
-    </div>
+    </span>
   )
+
+  if (align) {
+    return <div className={priceParentNode}>{returnComponent}</div>
+  }
+
+  return returnComponent
 }
 
 export default Price

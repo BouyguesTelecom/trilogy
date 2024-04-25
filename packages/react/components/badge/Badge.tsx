@@ -3,7 +3,7 @@ import { BadgeProps } from "./BadgeProps"
 import { Text, TextMarkup } from "../text"
 import { BadgeTextDirection } from "./BadgeEnum"
 import { has } from "../../services"
-import { getColorClassName } from "../../objects/facets"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "../../objects/facets"
 import clsx from "clsx"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
@@ -55,7 +55,12 @@ const Badge = ({
           className={hashClass(
             styled,
             clsx(
-              color && has(`background-${getColorClassName(color)}`),
+              color &&
+                has(
+                  `background-${getColorClassName(
+                    color as TrilogyColor | TrilogyColorValues
+                  )}`
+                ),
               "badge is-level"
             )
           )}
@@ -79,7 +84,12 @@ const Badge = ({
     >
       <Text
         className={clsx(
-          color && has(`background-${getColorClassName(color)}`),
+          color &&
+            has(
+              `background-${getColorClassName(
+                color as TrilogyColor | TrilogyColorValues
+              )}`
+            ),
           textContent ? "badge-and-text" : "badge",
           className
         )}

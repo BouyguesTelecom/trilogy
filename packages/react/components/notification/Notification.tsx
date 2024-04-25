@@ -1,9 +1,5 @@
 import * as React from "react"
-import {
-  AlertState,
-  getAlertClassName,
-  getAlertIconName,
-} from "../../objects/facets/Alert"
+import { AlertState, getAlertClassName, getAlertIconName, } from "../../objects/facets/Alert"
 import { has, is } from "../../services/classify"
 import { Button } from "../button"
 import { Icon, IconName, IconSize } from "../icon"

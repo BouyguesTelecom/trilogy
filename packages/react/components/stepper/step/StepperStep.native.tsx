@@ -35,7 +35,7 @@ const StepperStep = ({
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         (current && getColorStyle(TrilogyColor.MAIN)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.GREY_LIGHT),
+        getColorStyle(TrilogyColor.FONT, 1),
       zIndex: 1,
     },
   })

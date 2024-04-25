@@ -72,8 +72,20 @@ export const ProgressScreen = (): JSX.Element => {
         </Title>
         <Divider />
 
-        <ProgressRadial percent={15} label="02:00" description="desc" />
-        <ProgressRadial label="02:00" description="desc" />
+        <ProgressRadial
+          alert={AlertState.WARNING}
+          secondAlert={AlertState.SUCCESS}
+          secondPercent={10}
+          percent={25}
+          label="02:00"
+          description="/desc"
+        />
+        <ProgressRadial
+          alert={AlertState.ERROR}
+          percent={90}
+          label="02:00"
+          description="desc"
+        />
       </Section>
     </Section>
   );

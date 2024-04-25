@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Platform, StyleSheet, Switch as SwitchNative } from 'react-native'
-import { SwitchProps } from './SwitchProps'
-import shortid from 'shortid'
-import { getAlertStyle } from '../../objects'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
+import React, { useEffect, useState } from "react"
+import { Platform, StyleSheet, Switch as SwitchNative } from "react-native"
+import { SwitchProps } from "./SwitchProps"
+import shortid from "shortid"
+import { getAlertStyle } from "../../objects"
+import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Switch Native Component
@@ -17,14 +17,14 @@ import { ComponentName } from '../enumsComponentsName'
  * @param name {string} Switch name
  */
 const Switch = ({
-                  id = shortid.generate(),
-                  checked,
-                  onChange,
-                  alert,
-                  disabled,
-                  readonly,
-                  name,
-                }: SwitchProps): JSX.Element => {
+  id = shortid.generate(),
+  checked,
+  onChange,
+  alert,
+  disabled,
+  readonly,
+  name,
+}: SwitchProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const Switch = ({
   }, [checked, readonly])
 
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
-  const backgroundColorOff = getColorStyle(TrilogyColor.GREY_LIGHT)
-  const backgroundColorDisabled = getColorStyle(TrilogyColor.GREY)
+  const backgroundColorOff = getColorStyle(TrilogyColor.FONT, 1)
+  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED, 1)
   const thumbColor = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({
@@ -47,16 +47,20 @@ const Switch = ({
   return (
     <SwitchNative
       testID='switch-id'
-      style={Platform.OS === 'ios' ? styles.switchIos : {}}
+      style={Platform.OS === "ios" ? styles.switchIos : {}}
       trackColor={{
         false: disabled ? backgroundColorDisabled : backgroundColorOff,
-        true: disabled ? backgroundColorDisabled : (alert && getAlertStyle(alert)) || defaultColor,
+        true: disabled
+          ? backgroundColorDisabled
+          : (alert && getAlertStyle(alert)) || defaultColor,
       }}
       thumbColor={thumbColor}
-      ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
+      ios_backgroundColor={
+        disabled ? backgroundColorDisabled : backgroundColorOff
+      }
       onValueChange={(state) => {
         if (onChange) {
-          onChange({ switchState: state, switchName: name || '' })
+          onChange({ switchState: state, switchName: name || "" })
         }
       }}
       nativeID={name ? `${name}_${id}` : id}

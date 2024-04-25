@@ -61,9 +61,7 @@ export const TagScreen = (): JSX.Element => {
           <Tag iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO}>
             Tag info
           </Tag>
-          <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.DEFAULT}>
-            Tag default
-          </Tag>
+          <Tag iconName={IconName.CHECK_CIRCLE}>Tag default</Tag>
         </TagList>
       </Container>
 

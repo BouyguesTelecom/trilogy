@@ -1,20 +1,19 @@
 import * as React from "react";
 import {
+  Container,
+  Divider,
   Icon,
-  IconSize,
   IconColor,
   IconPosition,
-  IconStatusPosition,
+  IconSize,
   IconStatus,
+  IconStatusPosition,
+  Link,
   Section,
+  Text,
   Title,
   TitleLevels,
-  Divider,
-  Text,
-  Container,
-  Box,
   View,
-  Link,
 } from "@trilogy-ds/react/components";
 import { Alignable } from "@trilogy-ds/react/objects";
 import { IconName } from "@trilogy-ds/assets/lib/iconNameEnum";
@@ -131,14 +130,6 @@ export const IconScreen = (): JSX.Element => {
       />
 
       <Icon size={IconSize.LARGE} name={IconName.TIMES} />
-
-      <Box background="ERROR">
-        <Icon
-          color={IconColor.WHITE}
-          size={IconSize.LARGE}
-          name={IconName.TIMES}
-        />
-      </Box>
 
       <Icon
         color={IconColor.ERROR}
