@@ -425,7 +425,7 @@ const Input = ({
       zIndex: -1,
       position: "absolute",
       fontSize: 14,
-      color: "#ffffff00",
+      color: getColorStyle(TrilogyColor.WHITE),
       bottom: Platform.OS === "ios" ? 9 : 5,
       left: customIconLeft
         ? Platform.OS === "ios"

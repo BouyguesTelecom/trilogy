@@ -4,40 +4,25 @@ import {
   Hero,
   Price,
   PriceLevel,
-  PriceVariant,
   Section,
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
-import {Alignable, VariantState} from "@trilogy-ds/react/objects";
+import { Alignable, VariantState } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
     <Section>
       <Title level={TitleLevels.THREE}>Simple</Title>
 
-      <Price
-        variant={PriceVariant.PRIMARY}
-        level={"2"}
-        amount={18.99}
-        showCents
-      />
+      <Price level={"2"} amount={18.99} showCents />
 
-
-      <Price
-        variant={PriceVariant.PRIMARY}
-        level={"2"}
-        amount={18.99}
-        showCents
-        striked={true}
-      />
-
+      <Price level={"2"} amount={18.99} showCents striked={true} />
 
       <Divider />
       <Title level={TitleLevels.THREE}>Inlined</Title>
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={"7"}
         amount={1000}
         mention="(1)"
@@ -51,7 +36,6 @@ export const PriceScreen = (): JSX.Element => {
       <Divider />
       <Title level={TitleLevels.THREE}>Alignement</Title>
       <Price
-        variant={PriceVariant.PRIMARY}
         level={"1"}
         amount={1000}
         mention="(1)"
@@ -61,7 +45,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={"1"}
         amount={1000}
         mention="(1)"
@@ -71,7 +54,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={"1"}
         amount={1000}
         mention="(1)"
@@ -85,7 +67,6 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Size</Title>
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={PriceLevel.LEVEL1}
         amount={100}
         mention="(1)"
@@ -94,7 +75,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={PriceLevel.LEVEL2}
         amount={24.99}
         mention="(1)"
@@ -103,7 +83,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.SECONDARY}
         level={PriceLevel.LEVEL3}
         amount={24.99}
         mention="(1)"
@@ -112,7 +91,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.PRIMARY}
         level={PriceLevel.LEVEL4}
         amount={18.99}
         mention="(1)"
@@ -121,7 +99,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.SECONDARY}
         level={PriceLevel.LEVEL5}
         amount={18.99}
         mention="(1)"
@@ -130,7 +107,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.SECONDARY}
         level={PriceLevel.LEVEL6}
         amount={18.1}
         mention="(1)"
@@ -139,7 +115,6 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        variant={PriceVariant.SECONDARY}
         level={PriceLevel.LEVEL7}
         amount={18.1}
         mention="(1)"
@@ -175,20 +150,9 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>With or Without cents</Title>
 
-      <Price
-        variant={PriceVariant.PRIMARY}
-        level={PriceLevel.LEVEL4}
-        amount={18}
-        period="months"
-      />
+      <Price level={PriceLevel.LEVEL4} amount={18} period="months" />
 
-      <Price
-        variant={PriceVariant.PRIMARY}
-        level={PriceLevel.LEVEL4}
-        amount={18}
-        period="months"
-        showCents
-      />
+      <Price level={PriceLevel.LEVEL4} amount={18} period="months" showCents />
     </Section>
   );
 };

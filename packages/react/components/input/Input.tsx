@@ -304,7 +304,7 @@ const Input = ({
     if (calc <= 50 && calc > 0) return getColorStyle(TrilogyColor.ERROR)
     if (calc <= 99 && calc > 50) return getColorStyle(TrilogyColor.WARNING)
     if (calc === 100) return getColorStyle(TrilogyColor.SUCCESS)
-    return "#D1D1D1"
+    return getColorStyle(TrilogyColor.NEUTRAL_LIGHT)
   }, [points, nbAllVerifies])
 
   return (

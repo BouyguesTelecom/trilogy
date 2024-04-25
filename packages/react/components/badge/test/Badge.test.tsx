@@ -106,7 +106,6 @@ describe("Badge component", () => {
           textContent={"textContent"}
           content={"content"}
           direction={BadgeTextDirection.RIGHT}
-          color={BadgeColor.SECONDARY}
           onClick={jest.fn()}
         >
           SnapShot
