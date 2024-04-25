@@ -427,50 +427,6 @@
   @include hover();
 }
 
-@mixin checkradio {
-  outline: 0;
-  user-select: none;
-  display: inline-block;
-  vertical-align: baseline;
-  position: absolute;
-  opacity: 0;
-  &[disabled] + label {
-    cursor: not-allowed;
-  }
-
-  + label {
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      &::before {
-        animation-duration: 0.4s;
-        animation-fill-mode: both;
-        animation-name: hover-color;
-      }
-    }
-
-    &::before,
-    &::after {
-      content: '';
-    }
-
-    &::before {
-      border: 1px solid getColor('neutral');
-      margin: 0 10px 0 0;
-      min-width: 16px;
-      min-height: 16px;
-    }
-
-    &::after {
-      position: absolute;
-      display: none;
-    }
-  }
-}
-
 @mixin checkbox-and-radio($type) {
   //BOTH
   .#{$type},
