@@ -203,7 +203,7 @@ const Textarea = (
       )}
       {maxLength && (
         <Text style={styles.counter}>
-          {value ? `${value?.length} / ${maxLength}` : `0 / ${maxLength}`}
+          {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
         </Text>
       )}
       {help && <Text style={styles.help}>{help}</Text>}
