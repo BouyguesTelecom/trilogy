@@ -7,7 +7,7 @@ import { Title } from "../title"
 import { Text, TextLevels } from "../text"
 import { Icon, IconName, IconSize } from "../icon"
 import { Columns, ColumnsItem } from "../columns"
-import { getAlertStyle, getBackgroundOfVariant, TrilogyColor, } from "../../objects"
+import { getAlertStyle, getColorStyle, TrilogyColor, } from "../../objects"
 import { Spacer, SpacerSize } from "../spacer"
 import ToasterContext from "./context"
 import { ToasterShowContext } from "./context/ToasterContextProps"
@@ -54,10 +54,8 @@ const showToast: ToasterShowContext = (params: ToasterProps) => {
 const Toaster: React.FC<{ props: ToasterProps }> = ({ props }) => {
   const { title, description, iconName, alert, closable, onClick } = props
 
-  const color =
-    getAlertStyle(alert) || getBackgroundOfVariant(TrilogyColor.INFO)
-
-  const backgroundColor = getBackgroundOfVariant(alert)
+  const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
+  const backgroundColor = getColorStyle(alert as TrilogyColor, 1)
 
   const styles = StyleSheet.create({
     toaster: {

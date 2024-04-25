@@ -7,6 +7,7 @@ import {
   BoxContent,
   BoxHeader,
   Button,
+  ButtonVariant,
   Card,
   CardContent,
   CardImage,
@@ -20,7 +21,7 @@ import {
 } from "@trilogy-ds/react/components";
 import * as React from "react";
 import { CardMarkup } from "@trilogy-ds/react/components/card/CardProps";
-import { TrilogyColor, VariantState } from "@trilogy-ds/react/objects";
+import { TrilogyColor } from "@trilogy-ds/react/objects";
 import { Columns, ColumnsItem } from "@trilogy-ds/react";
 
 const Separator = () => {
@@ -50,7 +51,7 @@ export const CardScreen = (): JSX.Element => {
             ex, aliquam at neque eu, vulputate vera.
           </Text>
           <Button
-            variant={VariantState.PRIMARY}
+            variant={ButtonVariant.PRIMARY}
             onClick={() => setSkeleton(skeleton)}
           >
             Skeleton toogle click
@@ -70,7 +71,7 @@ export const CardScreen = (): JSX.Element => {
             ex, aliquam at neque eu, vulputate vera.
           </Text>
           <Button
-            variant={VariantState.PRIMARY}
+            variant={ButtonVariant.PRIMARY}
             onClick={() => setSkeleton(skeleton)}
           >
             Skeleton toogle click
@@ -90,7 +91,7 @@ export const CardScreen = (): JSX.Element => {
             ex, aliquam at neque eu, vulputate vera.
           </Text>
           <Button
-            variant={VariantState.PRIMARY}
+            variant={ButtonVariant.PRIMARY}
             onClick={() =>
               window.open(
                 "https://fr.wikipedia.org/wiki/Shiba_(chien)",
@@ -114,7 +115,7 @@ export const CardScreen = (): JSX.Element => {
             ex, aliquam at neque eu, vulputate vera.
           </Text>
           <Button
-            variant={VariantState.PRIMARY}
+            variant={ButtonVariant.PRIMARY}
             onClick={() =>
               window.open(
                 "https://fr.wikipedia.org/wiki/Shiba_(chien)",
@@ -143,7 +144,7 @@ export const CardScreen = (): JSX.Element => {
             ex, aliquam at neque eu, vulputate vera.
           </Text>
           <Button
-            variant={VariantState.PRIMARY}
+            variant={ButtonVariant.PRIMARY}
             onClick={() =>
               window.open(
                 "https://fr.wikipedia.org/wiki/Shiba_(chien)",
@@ -175,7 +176,7 @@ export const CardScreen = (): JSX.Element => {
                       Sed ligula ex, aliquam at neque eu, vulputate vera.
                     </Text>
                     <Button
-                      variant={VariantState.PRIMARY}
+                      variant={ButtonVariant.PRIMARY}
                       onClick={() =>
                         window.open(
                           "https://fr.wikipedia.org/wiki/Shiba_(chien)",

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import shortid from "shortid"
 import { RadioProps } from "./RadioProps"
-import { has, is } from "../../services/classify"
+import { is } from "../../services/classify"
 import { Icon, IconSize } from "../icon"
 import { hashClass } from "../../helpers"
 import clsx from "clsx"
@@ -41,7 +41,6 @@ const Radio = ({
   iconTile,
   horizontalTile,
   children,
-  testId,
   narrow,
   marginless,
   ...others

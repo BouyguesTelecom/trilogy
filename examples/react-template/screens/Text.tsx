@@ -1,15 +1,15 @@
 import * as React from "react";
 import {
-  Section,
-  TextLevels,
-  Columns,
-  ColumnsItem,
-  ButtonList,
-  ButtonVariant,
   Box,
   BoxContent,
-  Text,
   Button,
+  ButtonList,
+  ButtonVariant,
+  Columns,
+  ColumnsItem,
+  Section,
+  Text,
+  TextLevels,
 } from "@trilogy-ds/react/components";
 
 export const TextScreen = (): JSX.Element => {
@@ -48,9 +48,7 @@ export const TextScreen = (): JSX.Element => {
         <ColumnsItem centered>
           <Text>Mon texte</Text>
           <ButtonList>
-            <Button variant={ButtonVariant.PRIMARY}>
-              <Text>Centered button</Text>
-            </Button>
+            <Button variant={ButtonVariant.PRIMARY}>Centered button</Button>
           </ButtonList>
           <Box>
             <BoxContent>

@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { ListItemProps } from "./ListItemProps"
 import { Icon, IconSize } from "../../icon"
 import { is } from "../../../services"
-import { getColorClassName } from "../../../objects"
+import { getColorClassName, TrilogyColor, } from "../../../objects"
 import { hashClass } from "../../../helpers"
 import { useTrilogyContext } from "../../../context"
 
@@ -26,7 +26,10 @@ const ListItem = ({
   testId,
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = clsx(is(getColorClassName(status)), className)
+  const classes = clsx(
+    is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.WHITE)),
+    className
+  )
 
   if (customIcon) {
     return (

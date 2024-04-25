@@ -104,7 +104,7 @@ const Hero = ({
             setOverlapHeight(height)
           }}
         >
-          <Box background={TrilogyColor.GREY_LIGHTER}>
+          <Box background={TrilogyColor.NEUTRAL_LIGHT}>
             <View style={{ marginBottom: secondOverlapHeight / 2 }} />
             {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
           </Box>

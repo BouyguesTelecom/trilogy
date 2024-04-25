@@ -21,11 +21,7 @@ import {
   Text,
   TextLevels,
 } from "@trilogy-ds/react/components";
-import {
-  TypographyAlign,
-  TypographyBold,
-  VariantState,
-} from "@trilogy-ds/react/objects";
+import { TypographyAlign, TypographyBold } from "@trilogy-ds/react/objects";
 
 export const InfoBlockScreen = (): JSX.Element => {
   return (
@@ -37,7 +33,7 @@ export const InfoBlockScreen = (): JSX.Element => {
               customIcon={
                 <Icon
                   name={IconName.ARROW_RIGHT}
-                  color={IconColor.PRIMARY}
+                  color={IconColor.MAIN}
                   size={IconSize.MEDIUM}
                 />
               }
@@ -98,7 +94,7 @@ export const InfoBlockScreen = (): JSX.Element => {
 
             <ButtonList centered>
               <Button
-                variant={VariantState.SECONDARY}
+                variant={ButtonVariant.PRIMARY}
                 onClick={() => console.log("toto")}
                 fullwidth
               >
@@ -136,11 +132,11 @@ export const InfoBlockScreen = (): JSX.Element => {
 
             <ButtonList centered>
               <Button
-                variant={VariantState.SECONDARY}
+                variant={ButtonVariant.ACCENT}
                 onClick={() => console.log("toto")}
                 fullwidth
               >
-                CTA info
+                CTA
               </Button>
             </ButtonList>
           </InfoBlock>
@@ -174,7 +170,7 @@ export const InfoBlockScreen = (): JSX.Element => {
 
             <ButtonList centered>
               <Button
-                variant={VariantState.SECONDARY}
+                variant={ButtonVariant.PRIMARY}
                 onClick={() => console.log("toto")}
                 fullwidth
               >
@@ -213,7 +209,7 @@ export const InfoBlockScreen = (): JSX.Element => {
 
             <ButtonList centered>
               <Button
-                variant={VariantState.SECONDARY}
+                variant={ButtonVariant.PRIMARY}
                 onClick={() => console.log("toto")}
               >
                 CTA info

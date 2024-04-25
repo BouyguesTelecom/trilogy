@@ -236,25 +236,6 @@ a.box {
       }
     }
 
-    &.is-grey,
-    &.tiles-container {
-      padding: $padding-box;
-
-      .tile.is-parent,
-      .tile.is-child:not(.box) {
-        padding: $space-between-tiles;
-      }
-
-      .tile.is-vertical > .tile.is-child:not(:last-child) {
-        margin-bottom: ($space-between-tiles * 2) !important;
-      }
-
-      .box {
-        box-shadow: none;
-        padding: $padding-box;
-      }
-    }
-
     &.is-transparent {
       background-color: transparent;
     }
@@ -262,7 +243,7 @@ a.box {
 
   .box-footer {
     padding-top: $padding-box;
-    border-top: 1px solid getColor('disabled');
+    border-top: 1px solid getBGColor('font');
     margin: 12.5px 7.5px 7.5px;
   }
 }

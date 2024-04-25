@@ -117,7 +117,7 @@ const Stepper = ({
           level={TextLevels.THREE}
           typo={[
             TypographyBold.TEXT_WEIGHT_SEMIBOLD,
-            TypographyColor.TEXT_TERTIARY,
+            TypographyColor.TEXT_MAIN,
           ]}
         >
           {currentStep.step}/{nbChild}

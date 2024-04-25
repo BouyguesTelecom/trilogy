@@ -1,11 +1,11 @@
-import clsx from 'clsx'
-import React, { useState } from 'react'
-import { getColorClassName } from '../../objects/facets/Color'
-import { has, is } from '../../services/classify'
-import { Icon } from '../icon'
-import { TagProps } from './TagProps'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import clsx from "clsx"
+import React, { useState } from "react"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { has, is } from "../../services/classify"
+import { Icon } from "../icon"
+import { TagProps } from "./TagProps"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Tag Component
@@ -34,16 +34,24 @@ const Tag = ({
   const tagClassNames = hashClass(
     styled,
     clsx(
-      'tag',
-      !deletable && variant && is(getColorClassName(variant)),
-      !deletable && inverted && is('inverted'),
-      small && is('small'),
+      "tag",
+      !deletable &&
+        variant &&
+        is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+      !deletable && inverted && is("inverted"),
+      small && is("small"),
       !deletable && className,
-      deletable && !display && is('hidden'),
-    ),
+      deletable && !display && is("hidden")
+    )
   )
 
-  const tagIconClassNames = hashClass(styled, clsx(variant && is(getColorClassName(variant))))
+  const tagIconClassNames = hashClass(
+    styled,
+    clsx(
+      variant &&
+        is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))
+    )
+  )
 
   const onClickHandle = (e: React.MouseEvent) => {
     setDisplay(false)
@@ -55,13 +63,14 @@ const Tag = ({
   const deleteClasses = hashClass(
     styled,
     clsx(
-      'tags',
-      variant && is(getColorClassName(variant)),
-      deletable && [has('addons'), is('delete')],
-      inverted && is('inverted'),
-      small && is('small'),
-      className,
-    ),
+      "tags",
+      variant &&
+        is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+      deletable && [has("addons"), is("delete")],
+      inverted && is("inverted"),
+      small && is("small"),
+      className
+    )
   )
 
   // Deletable tag
@@ -69,14 +78,23 @@ const Tag = ({
     return (
       <div data-testid={testId} className={deleteClasses}>
         <span className={tagClassNames}>{children}</span>
-        <a data-testid={`${testId}_close_button`} onClick={onClickHandle} className={tagClassNames} />
+        <a
+          data-testid={`${testId}_close_button`}
+          onClick={onClickHandle}
+          className={tagClassNames}
+        />
       </div>
     )
   }
 
   // Default tag
   return (
-    <span data-testid={testId} onClick={onClick && onClick} className={tagClassNames} {...others}>
+    <span
+      data-testid={testId}
+      onClick={onClick && onClick}
+      className={tagClassNames}
+      {...others}
+    >
       {iconName && <Icon className={tagIconClassNames} name={iconName} />}
       {children}
     </span>

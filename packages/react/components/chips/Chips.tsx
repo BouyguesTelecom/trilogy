@@ -42,7 +42,7 @@ const Chips = ({
 
   return (
     <div
-      {...{ disabled: disabled}}
+      {...{ disabled: disabled }}
       aria-disabled={disabled}
       tabIndex={0}
       data-testid={testId}
