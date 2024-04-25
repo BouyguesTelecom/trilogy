@@ -14,7 +14,8 @@ import { useTrilogyContext } from "../../context"
  * @param labelValueCursorMax {string} label to display next to value display
  * @param onChangeMin
  * @param onChangeMax
- * @param onChange {function} (Native) * @param nameMin {string} name input min
+ * @param onChange {function} (Native)
+ * @param nameMin {string} name input min
  * @param idMin {string} id input min
  * @param nameMax{string} name input max
  * @param idMax {string} id input max
@@ -52,12 +53,13 @@ const Range = ({
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
       track.style.background = `linear-gradient(to right, ${getColorStyle(
-        TrilogyColor.GREY_LIGHT
+        TrilogyColor.NEUTRAL_DARK,
+        1
       )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN)} ${
         (cursorMin / max) * 100
       }% , ${getColorStyle(TrilogyColor.MAIN)} ${
         (cursorMax / max) * 100
-      }%, ${getColorStyle(TrilogyColor.GREY_LIGHT)} ${
+      }%, ${getColorStyle(TrilogyColor.NEUTRAL_DARK, 1)} ${
         (cursorMax / max) * 100
       }%) `
     }

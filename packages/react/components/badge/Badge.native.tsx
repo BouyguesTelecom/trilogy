@@ -2,7 +2,7 @@ import * as React from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { BadgeProps } from "./BadgeProps"
 import { BadgeColor, BadgeTextDirection } from "./BadgeEnum"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
 
 /**
@@ -24,8 +24,8 @@ const Badge = ({
   ...others
 }: BadgeProps): JSX.Element => {
   const badgeColor = color
-    ? getColorStyle(color)
-    : getColorStyle(BadgeColor.SECONDARY)
+    ? getColorStyle(color as TrilogyColor | TrilogyColorValues)
+    : getColorStyle(BadgeColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({

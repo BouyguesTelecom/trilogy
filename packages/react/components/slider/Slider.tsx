@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { SliderProps } from "./SliderProps"
 import { Columns } from "../columns"
 import { Icon, IconName, IconSize } from "../icon"
-import { is, has } from "../../services"
+import { has, is } from "../../services"
 import { hashClass } from "../../helpers"
 import { Spacer, SpacerSize } from "../spacer"
 import { useTrilogyContext } from "../../context"
@@ -47,7 +47,7 @@ const Slider = ({
     clsx(motionLess && is("motionless-desktop"), className)
   )
   const iconSliderClasses = `${has("background-white")} ${has(
-    "text-secondary"
+    "text-main"
   )} ${is("circled")} ${iconClassName && iconClassName}`
 
   return (

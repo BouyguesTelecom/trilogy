@@ -1,4 +1,4 @@
-import { getColorStyle } from "./Color"
+import { getColorStyle, TrilogyColor } from "./Color"
 
 /**
  * Variant State
@@ -50,15 +50,15 @@ export const getVariantClassName = (variantType?: string): string => {
 export const getVariantStyle = (variantType?: string): string => {
   switch (variantType) {
     case "PRIMARY":
-      return getColorStyle("PRIMARY")
+      return getColorStyle(TrilogyColor.MAIN)
     case "ACCENT":
-      return getColorStyle("ACCENT")
+      return getColorStyle(TrilogyColor.ACCENT)
     case "MAIN":
-      return getColorStyle("MAIN")
+      return getColorStyle(TrilogyColor.MAIN)
     case "SECONDARY":
-      return getColorStyle("SECONDARY")
+      return getColorStyle(TrilogyColor.HOVERED)
     case "TERTIARY":
-      return getColorStyle("WHITE")
+      return getColorStyle(TrilogyColor.MAIN)
     default:
       return ""
   }

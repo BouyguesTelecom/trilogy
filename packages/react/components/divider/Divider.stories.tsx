@@ -5,7 +5,6 @@ import Divider from "./Divider";
 import { DividerProps } from "./DividerProps";
 import { IconName } from "../icon";
 import { TrilogyColor } from "../../objects";
-import { Box, BoxContent } from "../box";
 
 export default {
   title: "Components/Divider",
@@ -23,7 +22,7 @@ export const AvecUneIcône: Story<DividerProps> = (args) => (
   <Divider {...args} />
 );
 AvecUneIcône.args = {
-  iconName: IconName.PLUS,
+  iconName: IconName.EYE,
 };
 
 export const AvecBackground: Story<DividerProps> = (args) => (
@@ -32,16 +31,5 @@ export const AvecBackground: Story<DividerProps> = (args) => (
 AvecBackground.args = {
   backgroundColor: TrilogyColor.MAIN,
   textColor: TrilogyColor.WHITE,
-  iconName: IconName.PLUS,
-};
-
-export const Unboxed: Story<DividerProps> = (args) => (
-  <Box>
-    <BoxContent background={TrilogyColor.GREY_LIGHT}>
-      <Divider {...args} />
-    </BoxContent>
-  </Box>
-);
-Unboxed.args = {
-  unboxed: true,
+  iconName: IconName.EYE,
 };

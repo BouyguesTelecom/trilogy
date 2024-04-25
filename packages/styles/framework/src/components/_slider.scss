@@ -1,92 +1,92 @@
 [data-slider] {
-    position: relative;
+  position: relative;
 
-    [data-slider-pages] {
-        overflow: hidden;
+  [data-slider-pages] {
+    overflow: hidden;
+  }
+
+  [data-slider-page] {
+    &.column:not(.is-12-mobile) {
+      min-width: 0;
+    }
+  }
+
+  [data-slides-container] {
+    display: flex;
+  }
+
+  [data-slide] {
+    flex: 0 0 100%;
+  }
+
+  [data-slider-dots] {
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%);
+
+    &:not(.is-inverted) {
+      .slider-dot {
+        background-color: getColor('background');
+      }
     }
 
-    [data-slider-page] {
-        &.column:not(.is-12-mobile) {
-            min-width: 0;
-        }
+    .slider-dot {
+      width: 7px;
+      height: 7px;
+      background-color: getColor('neutral');
+      border-radius: 100%;
+      margin: 4px;
+      padding: 0;
+      opacity: 1;
+
+      &.is-active {
+        background-color: getColor('main');
+      }
     }
+  }
 
-    [data-slides-container] {
-        display: flex;
+  [data-slider-prev],
+  [data-slider-next] {
+    display: none;
+
+    @include desktop {
+      box-shadow: 0 2px 4px 0 rgba(#000, 0.1);
+      display: flex;
+      position: absolute;
+      z-index: zindex("tiny");
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+      cursor: pointer;
     }
+  }
 
-    [data-slide] {
-        flex: 0 0 100%;
+  [data-slider-next] {
+    left: auto;
+    right: 30px;
+  }
+
+  &.is-motionless-desktop {
+    @include desktop {
+      pointer-events: none;
+
+      a,
+      .link,
+      .button {
+        pointer-events: auto;
+      }
+
+      [data-slider-page] {
+        min-width: auto;
+      }
     }
+  }
 
-    [data-slider-dots] {
-        position: absolute;
-        left: 50%;
-        bottom: -20px;
-        transform: translateX(-50%);
-
-        &:not(.is-inverted) {
-            .slider-dot {
-                background-color: getColor('background');
-            }
-        }
-
-        .slider-dot {
-            width: 7px;
-            height: 7px;
-            background-color: getColor('neutral');
-            border-radius: 100%;
-            margin: 4px;
-            padding: 0;
-            opacity: 1;
-
-            &.is-active {
-                background-color: getColor('alternate');
-            }
-        }
+  > .pricing-table {
+    @include mobile {
+      flex-direction: row;
+      flex-wrap: nowrap;
     }
-
-    [data-slider-prev],
-    [data-slider-next] {
-        display: none;
-
-        @include desktop {
-            box-shadow: 0 2px 4px 0 rgba(#000, 0.1);
-            display: flex;
-            position: absolute;
-            z-index: zindex("tiny");
-            top: 50%;
-            left: 30px;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-    }
-
-    [data-slider-next] {
-        left: auto;
-        right: 30px;
-    }
-
-    &.is-motionless-desktop {
-        @include desktop {
-            pointer-events: none;
-
-            a,
-            .link,
-            .button {
-                pointer-events: auto;
-            }
-
-            [data-slider-page] {
-                min-width: auto;
-            }
-        }
-    }
-
-    > .pricing-table {
-        @include mobile {
-            flex-direction: row;
-            flex-wrap: nowrap;
-        }
-    }
+  }
 }

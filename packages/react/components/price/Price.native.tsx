@@ -1,14 +1,13 @@
 import React, { useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { PriceProps } from "./PriceProps"
-import { PriceLevel, PriceVariant } from "./PriceEnum"
+import { PriceLevel } from "./PriceEnum"
 import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Price Component
- * @param variant {PriceVariant} Variant for Price (PRIMARY|SECONDARY)
  * @param amount {number} Amount for Price
  * @param mention {string} Mention for price ( (1)* )
  * @param period {string} Period for Price (mois)
@@ -24,7 +23,6 @@ import { ComponentName } from "../enumsComponentsName"
  * @param suptitle {string} Price Suptitle
  */
 const Price = ({
-  variant,
   amount,
   mention,
   period,
@@ -42,18 +40,8 @@ const Price = ({
 }: PriceProps): JSX.Element => {
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
-  // Math.floor on negative decimal decrease its value (as expected), ex: Math.floor(-17.09) => -18
-  // Use of Math.abs prevent this in our case
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
-  // Floating point problem Math.floor gives inconsistent results with decimals,
-  // Math.round prevents it and is enough with prices decimals
-  // ex: (17.09 - 17) * 100 = 8.999999999999986 > Floating point problem
-  // ex: Math.round((17.09 - 17) * 100) = 9 > Expected result
-  // For more informations https://floating-point-gui.de/
-  // const cents = Math.floor(Math.round((absoluteAmount - absoluteWhole) * 100))
-  //   .toString()
-  //   .padStart(2, '0')
 
   const cents = checkCents(
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
@@ -78,26 +66,13 @@ const Price = ({
   const color = useMemo(
     () =>
       (inverted && !striked && invertedColor) ||
-      (inverted && striked && "#b0b0b0") ||
+      (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
       (alert && getAlertStyle(alert)) ||
-      (!striked &&
-        !inverted &&
-        variant === PriceVariant.PRIMARY &&
-        primaryColor) ||
-      (!striked &&
-        !inverted &&
-        variant === PriceVariant.SECONDARY &&
-        secondaryColor) ||
-      (striked &&
-        !inverted &&
-        (!variant || variant === PriceVariant.PRIMARY) &&
-        "#8999a7") ||
-      (striked &&
-        !inverted &&
-        variant === PriceVariant.SECONDARY &&
-        "#8cc9d9") ||
+      (!striked && !inverted && primaryColor) ||
+      (!striked && !inverted && secondaryColor) ||
+      (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
       primaryColor,
-    [inverted, striked, alert, variant]
+    [inverted, striked, alert]
   )
 
   const strikedRotateByLevel = () => {
@@ -188,11 +163,7 @@ const Price = ({
     striked: {
       position: "absolute",
       height: 1,
-      backgroundColor:
-        (inverted && invertedColor) ||
-        (variant === PriceVariant.PRIMARY && primaryColor) ||
-        (variant === PriceVariant.SECONDARY && secondaryColor) ||
-        primaryColor,
+      backgroundColor: (inverted && invertedColor) || primaryColor,
       width: period ? "96%" : "100%",
       transform: [{ rotate: inline ? "-10deg" : strikedRotateByLevel() }],
       bottom: strikedBottomByLevel(),

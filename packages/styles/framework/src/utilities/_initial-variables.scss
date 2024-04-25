@@ -18,7 +18,7 @@ $colors: (
   'font':['main', #3d5d7e, 'white', #BBC6CD],
   'success':['success', #007B52, 'white', #cae8ca],
   'info':['info', #1A688A, 'white', #c8dbec],
-  'warning':['warning', #FFBB33, 'tertiary', #ecdbc6],
+  'warning':['warning', #FFBB33, 'white', #ecdbc6],
   'error':['error', #D42D02, 'white',#eecccc],
   /* Grey disabled // BG : bg-disabled */
   'disabled':['disabled', #646464, 'white', #D1D1D1],
@@ -26,14 +26,7 @@ $colors: (
   /* grey , BG : grey-lighter */
   'neutral':['grey', #707070, 'white', #F4F4F4 ],
   /* grey dark , BG : grey-light */
-  'neutral-dark':['grey-dark', #646464, 'white', #E9E9E9 ],
-
-  /* To be deleted ? */
-  'grey':['grey', #707070, 'white', #F4F4F4 ],
-
-  'grey-dark':['grey-dark', #646464, 'white', #646464 ],
-'grey-light':['grey-light', #E9E9E9, 'white', #E9E9E9 ],
-'grey-lighter':['grey-lighter', #F4F4F4, 'white', #F4F4F4 ],
+  'neutral-dark':['grey-dark', #646464, 'white', #E9E9E9 ]
 ) !default;
 
 /*

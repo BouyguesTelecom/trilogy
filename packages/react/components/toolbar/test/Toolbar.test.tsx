@@ -15,7 +15,7 @@ describe("Toolbar", () => {
   });
 
   it("renders with custom background", () => {
-    const { container } = render(<Toolbar background={TrilogyColor.PRIMARY} />);
+    const { container } = render(<Toolbar />);
     expect(container.firstChild).toHaveClass(
       "toolbar",
       "has-background-primary"

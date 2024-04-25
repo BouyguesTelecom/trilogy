@@ -4,7 +4,7 @@ import { CheckboxProps } from "./CheckboxProps"
 import clsx from "clsx"
 import { hashClass } from "../../helpers"
 import { Icon, IconSize } from "../icon"
-import { has, is } from "../../services"
+import { is } from "../../services"
 import { useTrilogyContext } from "../../context"
 
 /**

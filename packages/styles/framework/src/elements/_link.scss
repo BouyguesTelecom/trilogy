@@ -1,20 +1,18 @@
 .link:not([disabled]) {
   position: relative;
-  font-weight: $weight-semibold;
+  font-weight: $weight-normal;
   color: getColor('font');
   box-decoration-break: clone;
   text-decoration: underline;
   cursor: pointer;
 
   &:hover {
-    font-weight: $weight-normal;
+    font-weight: $weight-semibold;
   }
 
-  &:focus,
   &:focus-visible,
-  &:focus:focus-visible,
-  &:active {
-    border: 1px solid;
+  &:focus:focus-visible {
+    outline: 2px solid getColor('font');
     border-radius: $radius-small;
     padding: 4px;
   }

@@ -27,24 +27,24 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
-    (disabled && variant && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
-    (variant === ButtonVariant.PRIMARY &&
-      getButtonColorStyle(ButtonVariant.PRIMARY)) ||
+    (disabled && variant && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+    (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
-      getButtonColorStyle(ButtonVariant.SECONDARY)) ||
+      getColorStyle(TrilogyColor.MAIN, 1)) ||
     (variant === ButtonVariant.ACCENT &&
-      getButtonColorStyle(ButtonVariant.ACCENT)) ||
-    (variant === ButtonVariant.GHOST &&
-      getButtonColorStyle(ButtonVariant.GHOST)) ||
+      getColorStyle(TrilogyColor.ACCENT, 1)) ||
+    (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.WHITE)) ||
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||
-    (disabled && getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+    (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     (typeof loading === "string" &&
       getLoadingClassName(loading) === "loading" &&
       getButtonColorStyle(TrilogyColor.WHITE)) ||
-    (typeof loading === "boolean" && loading && "#7F7F7F") ||
-    "pink"
+    (typeof loading === "boolean" &&
+      loading &&
+      getColorStyle(TrilogyColor.NEUTRAL)) ||
+    getColorStyle(TrilogyColor.MAIN, 1)
   )
 }
 
@@ -74,14 +74,14 @@ const findBorderColor = ({
   return (
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED)) ||
     (!disabled &&
       !!loading &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.GREY_DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED)) ||
     (!disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.BG_INFO)) ||
+      getColorStyle(TrilogyColor.INFO, 1)) ||
     getColorStyle(TrilogyColor.WHITE)
   )
 }
@@ -137,14 +137,14 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabled: {
-      color: getColorStyle(TrilogyColor.GREY),
+      color: getColorStyle(TrilogyColor.DISABLED),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
       justifyContent: "center",
     },
     textDisabledIcon: {
-      color: getColorStyle(TrilogyColor.GREY),
+      color: getColorStyle(TrilogyColor.DISABLED),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
@@ -263,7 +263,7 @@ const Button = ({
             <Icon
               name={iconName}
               size={IconSize.SMALL}
-              color={getColorStyle(TrilogyColor.GREY_DISABLED)}
+              color={getColorStyle(TrilogyColor.DISABLED)}
             />
           )}
           <Text

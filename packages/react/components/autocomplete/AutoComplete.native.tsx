@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Keyboard, StyleSheet, View } from 'react-native'
-import Input from '../input/Input.native'
-import { AutoCompleteProps } from './AutoCompleteProps'
-import { InputChangeEvent } from '../input/InputProps'
-import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
-import { getLabel, defaultMatching } from './Autocomplete.helpers'
-import { ComponentName } from '../enumsComponentsName'
-import { debounce } from './utils'
+import React, { useEffect, useMemo, useState } from "react"
+import { Keyboard, StyleSheet, View } from "react-native"
+import Input from "../input/Input.native"
+import { AutoCompleteProps } from "./AutoCompleteProps"
+import { InputChangeEvent } from "../input/InputProps"
+import AutoCompleteMenuNative from "./menu/AutoCompleteMenu.native"
+import { defaultMatching, getLabel } from "./Autocomplete.helpers"
+import { ComponentName } from "../enumsComponentsName"
+import { debounce } from "./utils"
 
 const AutoComplete = ({
   value,
@@ -20,7 +20,7 @@ const AutoComplete = ({
   getSuggestions,
   debounceSuggestionsTimeout,
 }: AutoCompleteProps): JSX.Element => {
-  const [valueInput, setValueInput] = useState<string>(value ?? '')
+  const [valueInput, setValueInput] = useState<string>(value ?? "")
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
 
@@ -36,7 +36,9 @@ const AutoComplete = ({
     }
   }
   const updateSuggestionsFn = useMemo(() => {
-    return debounceSuggestionsTimeout ? debounce(updateSuggestions, debounceSuggestionsTimeout) : updateSuggestions
+    return debounceSuggestionsTimeout
+      ? debounce(updateSuggestions, debounceSuggestionsTimeout)
+      : updateSuggestions
   }, [debounceSuggestionsTimeout])
 
   useEffect(() => {
@@ -62,13 +64,22 @@ const AutoComplete = ({
     setIsOpenMenu(false)
     Keyboard.dismiss()
     if (onItemSelected && (data || suggestions)) {
-      onItemSelected({ value: item, index: (data.length ? data : suggestions).indexOf(item) })
+      onItemSelected({
+        value: item,
+        index: (data.length ? data : suggestions).indexOf(item),
+      })
     }
   }
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setIsOpenMenu(true))
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setIsOpenMenu(false))
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => setIsOpenMenu(true)
+    )
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => setIsOpenMenu(false)
+    )
 
     return () => {
       keyboardDidHideListener.remove()
@@ -89,14 +100,19 @@ const AutoComplete = ({
           onChange={onTextChanged}
         />
       </View>
-      {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}
+      {isOpenMenu && (
+        <AutoCompleteMenuNative
+          suggestions={suggestions}
+          handleSelectItem={handleSelectItem}
+        />
+      )}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   autoComplete: {
-    position: 'relative',
+    position: "relative",
   },
 })
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Chips from "../Chips";
 
 describe("Chips", () => {
@@ -15,7 +15,7 @@ describe("Chips", () => {
 
   it("applies the disabled class if the disabled prop is true", () => {
     const { getByText } = render(<Chips disabled>Hello, world!</Chips>);
-    expect(getByText("Hello, world!")).toHaveClass("is-disabled");
+    expect(getByText("Hello, world!")).toHaveAttribute("disabled");
   });
 
   it("applies the inverted class if the inverted prop is true", () => {
