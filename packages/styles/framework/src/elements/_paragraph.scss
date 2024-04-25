@@ -12,8 +12,7 @@ $text-levels-mobile: (
 );
 
 
-.paragraph {
-    &.text {
+.text {
         @each $text-level in $text-levels {
             $i: index($text-levels, $text-level);
             $font-size: nth($text-level, 1);
@@ -51,7 +50,6 @@ $text-levels-mobile: (
             font-weight: $weight-bold;
         }
     }
-}
 
 
 .paragraph:not(:last-child) {
