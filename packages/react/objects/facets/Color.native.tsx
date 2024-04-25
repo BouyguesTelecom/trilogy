@@ -1,25 +1,7 @@
 import { TrilogyThemeContext } from "../../context/providerTheme.native"
 import { useContext } from "react"
+import { TrilogyColor, TrilogyColorValues } from "./Color"
 
-/**
- * Trilogy color
- */
-export enum TrilogyColor {
-  BACKGROUND = "BACKGROUND",
-  MAIN = "MAIN",
-  ACCENT = "ACCENT",
-  FONT = "FONT",
-  SUCCESS = "SUCCESS",
-  INFO = "INFO",
-  WARNING = "WARNING",
-  ERROR = "ERROR",
-  DISABLED = "DISABLED",
-  HOVERED = "HOVERED",
-  NEUTRAL = "NEUTRAL",
-  NEUTRAL_DARK = "NEUTRAL_DARK",
-  NEUTRAL_LIGHT = "NEUTRAL_LIGHT",
-  WHITE = "WHITE",
-}
 
 export const nativeColors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]: ["#fff", "#E9E9E9"],
@@ -37,8 +19,6 @@ export const nativeColors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.NEUTRAL_LIGHT]: ["#E9E9E9", "#E9E9E9"],
   [TrilogyColor.WHITE]: ["#fff", "#E9E9E9"],
 }
-
-export type TrilogyColorValues = `${TrilogyColor}`;
 
 /**
  * Returns color's style depending on Trilogy Color
