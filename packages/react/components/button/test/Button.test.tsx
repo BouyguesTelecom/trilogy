@@ -9,7 +9,7 @@ import renderer from "react-test-renderer";
 
 // Component to test
 import { Button, ButtonMarkup, ButtonVariant } from "../";
-import { getColorClassName } from "../../..";
+import { getButtonVariantClassName } from "../../..";
 
 describe("Button component", () => {
   test('should have "button" className', () => {
@@ -73,7 +73,7 @@ describe("Button component", () => {
     getEnumNames(ButtonVariant).forEach((element) => {
       render(<Button variant={element}>{element}</Button>);
       expect(screen.getByText(element)).toHaveClass(
-        is(getColorClassName(element))
+        is(getButtonVariantClassName(element))
       );
     });
   });

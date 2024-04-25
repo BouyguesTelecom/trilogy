@@ -1,160 +1,158 @@
 $price-levels: (
-  ($text-64),
-  ($text-56),
-  ($text-44),
-  ($text-32),
-  ($text-28),
-  ($text-24),
-  ($text-20),
+    ($text-64),
+    ($text-56),
+    ($text-44),
+    ($text-32),
+    ($text-28),
+    ($text-24),
+    ($text-20),
 );
 
-
 .price {
-    display: inline-flex;
-    font-weight: $weight-semibold;
-    line-height: 0.8;
-    margin-bottom: 0;
+  display: inline-flex;
+  font-weight: $weight-semibold;
+  line-height: 0.8;
+  margin-bottom: 0;
 
-    // flex-wrap: wrap;
-    &:not(.is-inlined){
-        font-size: 44px;
+  &:not(.is-inlined) {
+    font-size: 44px;
+  }
+
+  @each $price-level in $price-levels {
+    $i: index($price-levels, $price-level);
+    $font-size: nth($price-level, 1);
+
+    &.is-level-#{$i} {
+      font-size: $font-size;
+
+      @if $i > 4 {
+        .price-details {
+          padding-left: 2px !important;
+        }
+      }
     }
-
-
-    @each $price-level in $price-levels {
-        $i: index($price-levels, $price-level);
-        $font-size: nth($price-level , 1);
-
-        &.is-level-#{$i} {
-            font-size: $font-size;
-
-            @if $i > 4 {
-                .price-details {
-                    padding-left: 2px !important;
-                }
-            }
-          }
 
     // the details : cents + period
 
     .price-details {
-        padding-left: $spacing-1;
+      padding-left: $spacing-1;
 
-        .cents,
-        .centimes,
-        .periode,
-        .period {
-            line-height: 1;
-            display: block;
+      .cents,
+      .centimes,
+      .periode,
+      .period {
+        line-height: 1;
+        display: block;
+      }
+
+      .cents,
+      .centimes {
+        font-weight: 600;
+        font-size: 0.475em;
+        vertical-align: top;
+        text-align: left;
+
+        sup {
+          font-weight: $weight-medium;
+          padding-left: 2px;
+          top: -0.3em;
         }
+      }
 
-        .cents,
-        .centimes {
-            font-weight: 600;
-            font-size: 0.475em;
-            vertical-align: top;
-            text-align: left;
-
-            sup {
-                font-weight: $weight-medium;
-                padding-left: 2px;
-                top: -0.3em;
-            }
-        }
-
-        .period,
-        .periode {
-            font-size: 0.375em;
-            margin-top: 0;
-            padding-left: 0.1em;
-            text-align: left;
-        }
+      .period,
+      .periode {
+        font-size: 0.375em;
+        margin-top: 0;
+        padding-left: 0.1em;
+        text-align: left;
+      }
     }
 
 
+  }
+
+  &.is-inverted {
+    color: getColor('background');
+  }
+
+  &.has-suptitle {
+    display: flex;
+    flex-wrap: wrap;
+
+    .price-suptitle {
+      flex-basis: 100%;
+      font-size: 0.375em;
+    }
+  }
+
+  &.has-description {
+    .cents,
+    .centimes {
+      align-items: flex-start;
+      display: flex;
     }
 
-    &.is-inverted {
-        color: getColor('background');
+    .icon {
+      height: inherit;
+      width: inherit;
     }
+  }
 
-    &.has-suptitle {
-        display: flex;
-        flex-wrap: wrap;
+  &.is-inlined {
+    .price-details {
+      display: inline-flex;
+      margin-left: 0;
+      padding-left: 0 !important;
 
-        .price-suptitle {
-            flex-basis: 100%;
-            font-size: 0.375em;
-        }
-    }
-
-    &.has-description {
-        .cents,
-        .centimes {
-            align-items: flex-start;
-            display: flex;
-        }
-
-        .icon {
-            height: inherit;
-            width: inherit;
-        }
-    }
-
-    &.is-inlined {
-        .price-details {
-            display: inline-flex;
-            margin-left: 0;
-            padding-left: 0 !important;
-            .cents,
-            .centimes,
-            .periode,
-            .period {
-                font-size: inherit;
-                line-height: 0.8;
-                padding-left: 0;
-            }
-        }
-
-        &.is-striked {
-            &::before {
-                transform: rotate(-12deg);
-            }
-        }
+      .cents,
+      .centimes,
+      .periode,
+      .period {
+        font-size: inherit;
+        line-height: 0.8;
+        padding-left: 0;
+      }
     }
 
     &.is-striked {
-        position: relative;
-        color: getBGColor('font');
-
-        &::before {
-            position: absolute;
-            content: "";
-            left: 0;
-            top: 50%;
-            right: 0;
-            border-top: 2px solid;
-            border-color: getColor('font');
-            border-radius: 5px;
-            transform: rotate(-20deg);
-        }
-
-        &.is-inverted {
-            color: getBGColor('font');
-
-            &::before {
-                border-color: getColor('background');
-            }
-        }
-
-        &.has-suptitle {
-            display: inline-flex;
-            margin-top: 0.55em;
-
-            .price-suptitle {
-                position: absolute;
-                top: -1.4em;
-            }
-        }
+      &::before {
+        transform: rotate(-12deg);
+      }
     }
+  }
+
+  &.is-striked {
+    position: relative;
+    color: getBGColor('font');
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 50%;
+      right: 0;
+      border-top: 2px solid;
+      border-color: getColor('font');
+      border-radius: 5px;
+      transform: rotate(-20deg);
+    }
+
+    &.is-inverted {
+      color: getBGColor('font');
+
+      &::before {
+        border-color: getColor('background');
+      }
+    }
+
+    &.has-suptitle {
+      display: inline-flex;
+      margin-top: 0.55em;
+
+      .price-suptitle {
+        position: absolute;
+        top: -1.4em;
+      }
+    }
+  }
 }
