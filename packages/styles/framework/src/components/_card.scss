@@ -24,6 +24,7 @@
     border-bottom-right-radius: $radius;
     padding: $spacing-5;
     flex-grow: 1;
+    border-radius: $radius;
 
     @include mobile {
       padding: $spacing-4;
