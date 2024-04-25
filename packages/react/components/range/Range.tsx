@@ -14,7 +14,8 @@ import { useTrilogyContext } from "../../context"
  * @param labelValueCursorMax {string} label to display next to value display
  * @param onChangeMin
  * @param onChangeMax
- * @param onChange {function} (Native) * @param nameMin {string} name input min
+ * @param onChange {function} (Native)
+ * @param nameMin {string} name input min
  * @param idMin {string} id input min
  * @param nameMax{string} name input max
  * @param idMax {string} id input max
