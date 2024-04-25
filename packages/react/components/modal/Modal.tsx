@@ -158,7 +158,7 @@ const Modal = ({
     onCloseFunc,
   }: CloseButtonProps): JSX.Element => (
     <Button
-      variant={"ACCENT"}
+      variant={"SECONDARY"}
       onClick={(e) => {
         handleClose(onCloseFunc, e)
       }}
