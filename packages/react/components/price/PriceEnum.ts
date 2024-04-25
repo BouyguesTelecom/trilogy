@@ -1,10 +1,3 @@
-export enum PriceVariant {
-  PRIMARY = 'main',
-  SECONDARY = 'main-price',
-}
-
-export type PriceVariantValues = 'main' | 'main-price'
-
 export enum PriceLevel {
   LEVEL1 = 1,
   LEVEL2 = 2,
@@ -15,4 +8,4 @@ export enum PriceLevel {
   LEVEL7 = 7,
 }
 
-export type PriceLevelValues = `${PriceLevel}`
+export type PriceLevelValues = `${PriceLevel}`;
