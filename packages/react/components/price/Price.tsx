@@ -2,7 +2,7 @@ import * as React from "react"
 import clsx from "clsx"
 import { PriceProps } from "./PriceProps"
 import { has, is } from "../../services/classify"
-import { Text } from "../text"
+import { Text, TextMarkup } from "../text"
 import { Alignable } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { hashClass } from "../../helpers"
@@ -26,6 +26,7 @@ import { useTrilogyContext } from "../../context"
  * @param className {string} Additionnal CSS Classes
  * @param striked {boolean} Striked Price
  * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param accessibilityActivate {boolean}
  */
 const Price = ({
   className,
@@ -86,57 +87,36 @@ const Price = ({
     (showCents && `€${cents || "00"}`) ||
     "€"
 
-  if (align) {
-    return (
-      <div className={priceParentNode}>
-        <div
-          data-testid={testId}
-          aria-label={accessibilityLabel}
-          className={classes}
-          {...others}
-        >
-          {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-          <Text>{`${whole}`}</Text>
-          <span className={hashClass(styled, clsx("price-details"))}>
-            <span className={hashClass(styled, clsx("cents"))}>
-              {inline && centsDisplayed === "€" ? (
-                <>&nbsp;{centsDisplayed}</>
-              ) : (
-                centsDisplayed
-              )}
-              {mention && <sup>{mention}</sup>}
-            </span>
-            {period && (
-              <span className={hashClass(styled, clsx("period"))}>
-                /{period}
-              </span>
-            )}
-          </span>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div
+  const returnComponent = (
+    <span
       data-testid={testId}
       aria-label={accessibilityLabel}
       className={classes}
       {...others}
     >
       {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-      <Text>{`${whole}`}</Text>
+      <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
       <span className={hashClass(styled, clsx("price-details"))}>
         <span className={hashClass(styled, clsx("cents"))}>
-          {centsDisplayed || "00"}
+          {inline && centsDisplayed === "€" ? (
+            <>&nbsp;{centsDisplayed}</>
+          ) : (
+            centsDisplayed
+          )}
           {mention && <sup>{mention}</sup>}
         </span>
         {period && (
           <span className={hashClass(styled, clsx("period"))}>/{period}</span>
         )}
       </span>
-    </div>
+    </span>
   )
+
+  if (align) {
+    return <div className={priceParentNode}>{returnComponent}</div>
+  }
+
+  return returnComponent
 }
 
 export default Price
