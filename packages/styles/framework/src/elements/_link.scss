@@ -1,13 +1,13 @@
 .link:not([disabled]) {
   position: relative;
-  font-weight: $weight-semibold;
+  font-weight: $weight-normal;
   color: getColor('font');
   box-decoration-break: clone;
   text-decoration: underline;
   cursor: pointer;
 
   &:hover {
-    font-weight: $weight-normal;
+    font-weight: $weight-semibold;
   }
 
   &:focus,
@@ -44,6 +44,16 @@
     box-decoration-break: clone;
     display: inline;
   }
+}
+
+.text .link {
+
+  &:hover {
+    font-weight: $weight-normal;
+  }
+
+  text-decoration-line: underline;
+  text-decoration-style: double;
 }
 
 @keyframes sliding-link {
