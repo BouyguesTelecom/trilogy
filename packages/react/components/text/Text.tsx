@@ -69,7 +69,7 @@ const Text = ({
   const classes = hashClass(
     styled,
     clsx(
-      !link ? "text" : "link is-inline",
+      !link ? "text" : "link",
       level && levelText(),
       inverted && is("inverted"),
       typo,
