@@ -52,12 +52,12 @@ const ProgressRadial = ({
     label: {
       textAlign: "center",
       fontSize: 20,
-      fontWeight: "500",
+      fontWeight: "600",
+      paddingTop: 8,
     },
     description: {
-      alignItems: "center",
-      textAlign: "center",
-      fontWeight: "400",
+      alignSelf: "center",
+      fontWeight: "500",
     },
     disk: {
       width: progressRadialWidth,
