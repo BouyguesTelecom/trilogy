@@ -23,6 +23,11 @@
       padding-top: 0 !important;
     }
 
+    &:focus-visible {
+      outline: 2px solid getColor('main');
+      outline-offset: 2px;
+    }
+
     &.is-active > .accordion-header:first-child, [data-accordion-toggle]:checked ~ .accordion-header {
       font-weight: bold;
 

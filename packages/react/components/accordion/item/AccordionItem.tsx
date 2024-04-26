@@ -83,6 +83,7 @@ const AccordionItem = ({
 
   return (
     <article
+      tabIndex={0}
       aria-disabled={disabled}
       data-testid={id}
       className={classes}
