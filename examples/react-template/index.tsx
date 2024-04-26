@@ -5,7 +5,7 @@ import { TrilogyProviderStyled } from "@trilogy-ds/react/context/providerStyled"
 import { Router } from "./router";
 
 const rootElement = document.getElementById("root");
-const root = ReactDOM.createRoot(rootElement); // Créez une racine
+const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
