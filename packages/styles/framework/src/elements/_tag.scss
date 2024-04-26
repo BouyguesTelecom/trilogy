@@ -95,7 +95,7 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getBGColor('font');
+  background-color: getBGColor('neutral-dark');
   border-radius: $tag-radius;
   color: getColor('font');
   display: inline-flex;

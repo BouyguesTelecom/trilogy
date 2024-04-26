@@ -18,7 +18,7 @@ $progressbar-small: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
 
-  background-color: getBGColor('font');
+  background-color: getBGColor('hovered');
 
   &::-webkit-progress-bar {
     background-color: getBGColor('font');
