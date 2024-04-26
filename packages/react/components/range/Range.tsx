@@ -55,11 +55,11 @@ const Range = ({
       track.style.background = `linear-gradient(to right, ${getColorStyle(
         TrilogyColor.NEUTRAL_DARK,
         1
-      )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN)} ${
+      )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN, 1)} ${
         (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN)} ${
+      }% , ${getColorStyle(TrilogyColor.MAIN, 1)} ${
         (cursorMax / max) * 100
-      }%, ${getColorStyle(TrilogyColor.NEUTRAL_DARK, 1)} ${
+      }%, ${getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 1)} ${
         (cursorMax / max) * 100
       }%) `
     }
