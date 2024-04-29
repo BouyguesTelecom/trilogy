@@ -6,6 +6,8 @@ export const defaultTheme: ITrilogyTheme = {
   colors: {},
 }
 
+export const TrilogyThemeContext = React.createContext<ITrilogyTheme>(defaultTheme)
+
 export const TrilogyThemeProvider = () => {
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>
