@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactNode, SetStateAction } from "react"
 import { ITrilogyTheme } from "./interfaces"
-import { colors } from "../objects/facets/Color"
+import { nativeColors } from "../objects/facets/Color"
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode;
@@ -14,7 +14,7 @@ export interface ITrilogyThemeContext {
 
 export const defaultIcons = {}
 
-export const defaultColors = colors || {}
+export const defaultColors = nativeColors
 
 export const defaultTheme: ITrilogyTheme = {
   icons: defaultIcons,
