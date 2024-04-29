@@ -13,8 +13,9 @@ import { ComponentName } from '../enumsComponentsName'
  * @param activeIndex {number} default active tab index
  * @param disabled {boolean} Disabled tabs
  * @param inverted {boolean} dark mode
+ * @param centered {boolean} Is centered
  */
-const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }: TabsProps): JSX.Element => {
+const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 
@@ -41,13 +42,13 @@ const Tabs = ({ children, onClick, activeIndex, disabled, inverted, ...others }:
     tabs: {
       height: isIcons ? 64 : 48,
       flexDirection: 'row',
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
-      overflow: 'visible',
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE)
     },
   })
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabs} {...others}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabs} {...others}
+    contentContainerStyle={centered && { justifyContent: "center", flexGrow: 1 }}>
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

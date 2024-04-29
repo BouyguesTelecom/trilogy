@@ -15,7 +15,6 @@ export * from "./CountDown";
 export * from "./Divider";
 export * from "./Dropdown";
 export * from "./Fab";
-export * from "./Form";
 export * from "./Hero";
 export * from "./Image";
 export * from "./Icon";

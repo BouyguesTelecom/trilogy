@@ -42,9 +42,34 @@ export const TabScreen = (): JSX.Element => {
         </TabsItem>
       </Tabs>
 
-      <Tabs activeIndex={activeIndexEventTab} inverted>
+      <Tabs activeIndex={activeIndexEventTab} centered>
         <TabsItem
           disabled
+          iconName={IconName.BELL}
+          active={activeIndexEventTab === 0}
+          onClick={() => setActivateIndexEventTab(0)}
+        >
+          Centered
+        </TabsItem>
+        <TabsItem
+          iconName={IconName.BELL}
+          active={activeIndexEventTab === 1}
+          onClick={() => setActivateIndexEventTab(1)}
+        >
+          Two
+        </TabsItem>
+        <TabsItem
+          iconName={IconName.BELL}
+          active={activeIndexEventTab === 2}
+          onClick={() => setActivateIndexEventTab(2)}
+        >
+          Three
+        </TabsItem>
+      </Tabs>
+
+      <Tabs activeIndex={activeIndexEventTab} inverted>
+        <TabsItem
+
           iconName={IconName.BELL}
           active={activeIndexEventTab === 0}
           onClick={() => setActivateIndexEventTab(0)}
@@ -52,6 +77,7 @@ export const TabScreen = (): JSX.Element => {
           One
         </TabsItem>
         <TabsItem
+          disabled
           iconName={IconName.EYE_SLASH}
           active={activeIndexEventTab === 1}
           onClick={() => setActivateIndexEventTab(1)}
