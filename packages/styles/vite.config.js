@@ -3,7 +3,7 @@ import path from "path";
 import glob from "glob";
 import {generateIconsScss} from "./config/plugins/vite-plugin-generate-icons-scss";
 import {cssPlugin} from "./config/plugins/vite-plugin-mangler";
-import copy from "rollup-plugin-copy";
+
 export default defineConfig({
   plugins: [
     generateIconsScss({
