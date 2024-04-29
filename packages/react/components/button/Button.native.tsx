@@ -7,11 +7,10 @@ import {
 } from "react-native"
 import { View } from "../view"
 import {
-  getButtonColorStyle,
   getLoadingClassName,
   getVariantClassName,
 } from "../../objects"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, getButtonColorStyle } from "../../objects/facets/Color"
 import { ButtonProps } from "./ButtonProps"
 import { Icon, IconSize } from "../icon"
 import { ButtonVariant } from "./ButtonEnum"
@@ -74,15 +73,15 @@ const findBorderColor = ({
   return (
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED, 0)) ||
     (!disabled &&
       !!loading &&
       variant === ButtonVariant.PRIMARY &&
-      getColorStyle(TrilogyColor.DISABLED)) ||
+      getColorStyle(TrilogyColor.DISABLED, 0)) ||
     (!disabled &&
       variant === ButtonVariant.PRIMARY &&
       getColorStyle(TrilogyColor.INFO, 1)) ||
-    getColorStyle(TrilogyColor.WHITE)
+    getColorStyle(TrilogyColor.WHITE, 0)
   )
 }
 
