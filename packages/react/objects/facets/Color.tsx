@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {TrilogyThemeContext} from "../../context/providerTheme.native";
+import {TrilogyThemeContext} from "../../context/providerTheme";
 
 /**
  * Trilogy color
@@ -103,11 +103,6 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
 }
 
 export const getButtonColorStyle = (buttonVariant?: string): string => {
-  const {
-    theme: {colors},
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = useContext(TrilogyThemeContext)
-
   switch (buttonVariant) {
     case "ACCENT":
       return TrilogyColor.ACCENT
@@ -133,7 +128,7 @@ export const getColorStyle = (
   index?: number
 ): string => {
   if (navigator.userAgent === undefined) {
-    const {theme} = useContext(TrilogyThemeContext)
+    const { theme } = useContext(TrilogyThemeContext)
     const colors = theme?.colors || nativeColors
 
     const colorArray = colors[trilogyColor] || nativeColors[trilogyColor] || colors.default
