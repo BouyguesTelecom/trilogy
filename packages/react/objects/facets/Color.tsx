@@ -1,3 +1,6 @@
+import {useContext} from "react";
+import {TrilogyThemeContext} from "../../context/providerTheme.native";
+
 /**
  * Trilogy color
  */
@@ -20,10 +23,27 @@ export enum TrilogyColor {
 
 export type TrilogyColorValues = `${TrilogyColor}`;
 
+export const nativeColors: Record<TrilogyColor, string[]> = {
+  [TrilogyColor.BACKGROUND]: ["#fff", "#E9E9E9"],
+  [TrilogyColor.MAIN]: ["#3d5d7e", "#eff2f8"],
+  [TrilogyColor.ACCENT]: ["#da641b", "#bb5118"],
+  [TrilogyColor.FONT]: ["#3d5d7e", "#BBC6CD"],
+  [TrilogyColor.SUCCESS]: ["#007B52", "#cae8ca"],
+  [TrilogyColor.INFO]: ["#1A688A", "#c8dbec"],
+  [TrilogyColor.WARNING]: ["#FFBB33", "#ecdbc6"],
+  [TrilogyColor.ERROR]: ["#D42D02", "#eecccc"],
+  [TrilogyColor.DISABLED]: ["#646464", "#D1D1D1"],
+  [TrilogyColor.HOVERED]: ["#F4F4F4", "#F4F4F4"],
+  [TrilogyColor.NEUTRAL]: ["#707070", "#F4F4F4"],
+  [TrilogyColor.NEUTRAL_DARK]: ["#646464", "#E9E9E9"],
+  [TrilogyColor.NEUTRAL_LIGHT]: ["#E9E9E9", "#E9E9E9"],
+  [TrilogyColor.WHITE]: ["#fff", "#E9E9E9"],
+}
+
+
 /**
  * Trilogy color values
  */
-
 export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]: ["white", "#fff", "main", "#E9E9E9"],
   [TrilogyColor.WHITE]: ["white", "#fff", "main", "#E9E9E9"],
@@ -84,6 +104,11 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
 }
 
 export const getButtonColorStyle = (buttonVariant?: string): string => {
+  const {
+    theme: {colors},
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useContext(TrilogyThemeContext)
+
   switch (buttonVariant) {
     case "ACCENT":
       return TrilogyColor.ACCENT
@@ -109,11 +134,24 @@ export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
-  const color = colors[trilogyColor]
+  if (navigator.userAgent === undefined) {
+    const {theme} = useContext(TrilogyThemeContext)
+    const colors = theme?.colors || nativeColors
 
-  const colorArray = colors[trilogyColor]
-  const colorIndex =
-    index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+    const colorArray =
+      colors[trilogyColor] || nativeColors[trilogyColor] || colors.default
+    const colorIndex =
+      index !== undefined && index >= 0 && index < colorArray.length ? index : 0
 
-  return colorArray[colorIndex]
+    if (!trilogyColor || !colors[trilogyColor]) {
+      return colors.default
+    }
+    return colorArray[colorIndex]
+  } else {
+    const colorArray = colors[trilogyColor]
+    const colorIndex =
+      index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+
+    return colorArray[colorIndex]
+  }
 }
