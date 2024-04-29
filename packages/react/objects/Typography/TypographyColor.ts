@@ -31,42 +31,42 @@ export const setTypographyColor = (
 ): string => {
   return (
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_ACCENT)
-      ? getColorStyle(TrilogyColor.ACCENT)
+      ? getColorStyle(TrilogyColor.ACCENT, 0)
       : typo === TypographyColor.TEXT_ACCENT &&
-        getColorStyle(TrilogyColor.ACCENT)) ||
+        getColorStyle(TrilogyColor.ACCENT, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN)
-      ? getColorStyle(TrilogyColor.MAIN)
+      ? getColorStyle(TrilogyColor.MAIN, 0)
       : typo === TypographyColor.TEXT_MAIN &&
-        getColorStyle(TrilogyColor.MAIN)) ||
+        getColorStyle(TrilogyColor.MAIN, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_INFO)
-      ? getColorStyle(TrilogyColor.INFO)
+      ? getColorStyle(TrilogyColor.INFO, 0)
       : typo === TypographyColor.TEXT_INFO &&
-        getColorStyle(TrilogyColor.INFO)) ||
+        getColorStyle(TrilogyColor.INFO, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_SUCCESS)
-      ? getColorStyle(TrilogyColor.SUCCESS)
+      ? getColorStyle(TrilogyColor.SUCCESS, 0)
       : typo === TypographyColor.TEXT_SUCCESS &&
-        getColorStyle(TrilogyColor.SUCCESS)) ||
+        getColorStyle(TrilogyColor.SUCCESS, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_WARNING)
-      ? getColorStyle(TrilogyColor.WARNING)
+      ? getColorStyle(TrilogyColor.WARNING, 0)
       : typo === TypographyColor.TEXT_WARNING &&
-        getColorStyle(TrilogyColor.WARNING)) ||
+        getColorStyle(TrilogyColor.WARNING, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_ERROR)
-      ? getColorStyle(TrilogyColor.ERROR)
+      ? getColorStyle(TrilogyColor.ERROR, 0)
       : typo === TypographyColor.TEXT_ERROR &&
-        getColorStyle(TrilogyColor.ERROR)) ||
+        getColorStyle(TrilogyColor.ERROR, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_NEUTRAL_DARK)
-      ? getColorStyle(TrilogyColor.NEUTRAL_DARK)
+      ? getColorStyle(TrilogyColor.NEUTRAL_DARK, 0)
       : typo === TypographyColor.TEXT_NEUTRAL_DARK &&
-        getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
+        getColorStyle(TrilogyColor.NEUTRAL_DARK, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_NEUTRAL)
-      ? getColorStyle(TrilogyColor.NEUTRAL)
+      ? getColorStyle(TrilogyColor.NEUTRAL, 0)
       : typo === TypographyColor.TEXT_NEUTRAL &&
-        getColorStyle(TrilogyColor.NEUTRAL)) ||
+        getColorStyle(TrilogyColor.NEUTRAL, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_WHITE)
-      ? getColorStyle(TrilogyColor.WHITE)
+      ? getColorStyle(TrilogyColor.WHITE, 0)
       : typo === TypographyColor.TEXT_WHITE &&
-        getColorStyle(TrilogyColor.WHITE)) ||
-    (inverted && !typo && getColorStyle(TrilogyColor.WHITE)) ||
-    getColorStyle(TrilogyColor.MAIN)
+        getColorStyle(TrilogyColor.WHITE, 0)) ||
+    (inverted && !typo && getColorStyle(TrilogyColor.WHITE, 0)) ||
+    getColorStyle(TrilogyColor.MAIN, 0)
   )
 }

@@ -134,6 +134,7 @@ export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
+  console.log('navigator.userAgent : ', navigator.userAgent)
   if (navigator.userAgent === undefined) {
     const {theme} = useContext(TrilogyThemeContext)
     const colors = theme?.colors || nativeColors
