@@ -53,7 +53,7 @@ const Range = ({
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
       track.style.background = `linear-gradient(to right, ${getColorStyle(
-        TrilogyColor.NEUTRAL_DARK,
+        TrilogyColor.NEUTRAL_LIGHT,
         1
       )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN, 1)} ${
         (cursorMin / max) * 100

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native"
 import { TabsItemProps } from "./TabsItemProps"
 import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
 import { TypographyBold } from "../../../objects"
@@ -28,41 +28,42 @@ const TabsItem = ({
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const [isPressIn, setInPressIn] = useState<boolean>(false)
 
+
   const getIconColor = React.useMemo(() => {
     if (inverted) {
-      if (disabled) return TrilogyColor.DISABLED
+      if (disabled) return TrilogyColor.NEUTRAL_LIGHT
       return TrilogyColor.WHITE
     }
     if (disabled) return TrilogyColor.DISABLED
     if (active) return TrilogyColor.MAIN
-    return TrilogyColor.MAIN
+  return TrilogyColor.MAIN
+}, [inverted, disabled, active])
+
+  const getBorderColor = React.useMemo(() => {
+    if (disabled)
+      return 'transparent'
+    if (inverted) {
+      if (active) return getColorStyle(TrilogyColor.WHITE)
+      return getColorStyle(TrilogyColor.FONT, 1)
+    }
+    if (active) return getColorStyle(TrilogyColor.MAIN)
+    return getColorStyle(TrilogyColor.FONT, 1)
   }, [inverted, disabled, active])
 
   const styles = StyleSheet.create({
     tabsItem: {
-      marginRight: 8,
       alignItems: "center",
       justifyContent: "center",
-      ...(tabIndex === 0 && { marginLeft: 24 }),
-      padding: 8,
+      paddingVertical: 6,
+      paddingHorizontal: 14,
       position: "relative",
+      borderBottomWidth: 2,
+      height: iconName ? 60 : 44,
+      borderBottomColor: getBorderColor,
     },
     text: {
-      color:
-        isPressIn && !inverted && !disabled
-          ? getColorStyle(TrilogyColor.MAIN)
-          : getColorStyle(getIconColor),
+      color: getColorStyle(getIconColor),
       textAlign: "center",
-    },
-    activeBar: {
-      height: 2,
-      backgroundColor: inverted
-        ? getColorStyle(TrilogyColor.WHITE)
-        : getColorStyle(TrilogyColor.MAIN),
-      width: "100%",
-      position: "absolute",
-      bottom: 4,
-      borderRadius: 2,
     },
   })
 
@@ -87,7 +88,7 @@ const TabsItem = ({
       {...others}
     >
       {iconName && (
-        <View>
+        <View >
           <Icon color={getIconColor} size='small' name={iconName} />
         </View>
       )}
@@ -108,7 +109,6 @@ const TabsItem = ({
         ) : (
           children
         ))}
-      {active && !disabled && <View style={styles.activeBar}></View>}
     </TouchableOpacity>
   )
 }
