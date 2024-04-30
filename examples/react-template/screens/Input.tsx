@@ -33,7 +33,7 @@ export const InputScreen = (): JSX.Element => {
   }
 
   return (
-    <Section background={TrilogyColor.WHITE}>
+    <Section background={TrilogyColor.BACKGROUND}>
       <Input
         disabled
         hovered
