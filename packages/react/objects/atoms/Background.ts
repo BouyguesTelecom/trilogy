@@ -30,7 +30,9 @@ export const getBackgroundClassName = (
  * @returns {string} - Background Color value
  */
 export const getBackgroundStyle = (
-  backgroundType: TrilogyColor | TrilogyColorValues
+  backgroundType: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
 ): string => {
-  return getColorStyle(backgroundType)
+  const color = (backgroundType && typeof backgroundType === 'object')? backgroundType.color : backgroundType
+  const fade= (backgroundType && typeof backgroundType === 'object')? backgroundType.fade : false
+  return getColorStyle(color, fade?1:0)
 }

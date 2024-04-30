@@ -88,16 +88,14 @@ export const BoxScreen = (): JSX.Element => {
           </ColumnsItem>
         </Columns>
         <Divider />
-        <Columns multiline>
-          <ColumnsItem size={6}>
+
             <Box onClick={() => setActive(!active)} active={active} background={TrilogyColor.MAIN} inverted>
               <BoxHeader>Box active</BoxHeader>
               <BoxContent>
                 <Text >Background : Main Color.</Text>
               </BoxContent>
             </Box>
-          </ColumnsItem>
-          <ColumnsItem size={10}>
+
             <Box background={{color:TrilogyColor.MAIN, fade:true}}>
               <BoxHeader>Box with Header and Content</BoxHeader>
               <BoxContent>
@@ -109,8 +107,7 @@ export const BoxScreen = (): JSX.Element => {
                 <Button variant={ButtonVariant.PRIMARY}>Check out</Button>
               </BoxFooter>
             </Box>
-          </ColumnsItem>
-          <ColumnsItem size={10}>
+
             <Box background={{color:TrilogyColor.SUCCESS, fade:true}}>
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Simple box</Title>
@@ -127,8 +124,7 @@ export const BoxScreen = (): JSX.Element => {
                 </Text>
               </BoxContent>
             </Box>
-          </ColumnsItem>
-          <ColumnsItem size={10}>
+
             <Box background={{color:TrilogyColor.INFO, fade:false}} flat inverted>
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Simple box</Title>
@@ -137,8 +133,7 @@ export const BoxScreen = (): JSX.Element => {
                 </Text>
               </BoxContent>
             </Box>
-          </ColumnsItem>
-          <ColumnsItem size={10}>
+
             <Box background={{color:TrilogyColor.INFO, fade:false}} flat inverted>
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Flat box</Title>
@@ -184,8 +179,6 @@ export const BoxScreen = (): JSX.Element => {
                 </Box>
               </BoxContent>
             </Box>
-          </ColumnsItem>
-        </Columns>
         <Divider />
         <Columns>
           <ColumnsItem size={10}>
