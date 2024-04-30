@@ -38,19 +38,11 @@ a.box {
 
   &.has-background {
     background-repeat: no-repeat;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
 
     &.is-inverted {
-      .box-content {
         color: getColor('background');
-      }
-
-      .title,
-      .subtitle,
-      .text,
-      .paragraph,
-      p {
-        color: getColor('background');
-      }
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .box-content {
@@ -199,7 +191,6 @@ a.box {
   }
 
   .box-content {
-    background-color: getColor('background');
     color: getColor('font');
     margin: -$padding-box;
     padding: $padding-box;

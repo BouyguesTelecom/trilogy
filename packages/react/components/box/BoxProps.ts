@@ -13,6 +13,7 @@ export type BoxMarkupValues = keyof typeof BoxMarkup
  * Box Interface
  */
 export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Accessibility {
+  inverted?: boolean
   children?: React.ReactNode
   skeleton?: boolean
   className?: string
