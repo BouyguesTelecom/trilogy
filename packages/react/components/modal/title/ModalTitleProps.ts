@@ -1,4 +1,4 @@
-import { IconColor, IconColorValues, IconName, IconNameValues } from '../icon'
+import { IconColor, IconColorValues, IconName, IconNameValues } from '../../icon'
 
 /**
  * Modal Title Interface
