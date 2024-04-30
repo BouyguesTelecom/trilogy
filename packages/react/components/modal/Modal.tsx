@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react"
-import { is } from "../../services"
-import { CloseButtonProps, ModalContentButtonProps, ModalProps, } from "./ModalProps"
-import { Button, ButtonList, ButtonType } from "../button"
-import { Text } from "../text"
-import { ModalMarkup, ModalMarkupValues } from "./ModalEnum"
-import ModalTitle from "./ModalTitle"
-import ModalFooter from "./ModalFooter"
-import { ClickEvent, OnClickEvent } from "../../events/OnClickEvent"
-import { hashClass } from "../../helpers"
+import React, {useEffect, useRef, useState} from "react"
+import {is} from "../../services"
+import {CloseButtonProps, ModalContentButtonProps, ModalProps,} from "./ModalProps"
+import {Button, ButtonList, ButtonType, ButtonVariant} from "../button"
+import {Text} from "../text"
+import {ModalMarkup, ModalMarkupValues} from "./ModalEnum"
+import ModalTitle from "./title/ModalTitle"
+import ModalFooter from "./footer/ModalFooter"
+import {ClickEvent, OnClickEvent} from "../../events/OnClickEvent"
+import {hashClass} from "../../helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import {useTrilogyContext} from "../../context"
 
 /**
  * Modal Component
@@ -158,7 +158,7 @@ const Modal = ({
     onCloseFunc,
   }: CloseButtonProps): JSX.Element => (
     <Button
-      variant={"SECONDARY"}
+      variant={ButtonVariant.SECONDARY}
       onClick={(e) => {
         handleClose(onCloseFunc, e)
       }}
@@ -192,7 +192,6 @@ const Modal = ({
         </TriggerTag>
       )}
       <div className={classes} {...others}>
-        <div className={hashClass(styled, clsx("modal-background"))} />
         <div ref={modal} className={contentClasses}>
           {closeIcon && <CloseButton onCloseFunc={onClose} />}
           {(title || iconName) && (
@@ -206,21 +205,20 @@ const Modal = ({
             content
           )}
           {children != null && children}
-          {(ctaOnClick != null || ctaCancelOnClick != null) && (
+          <ModalFooter className={footerClasses}>
+            {(ctaOnClick != null || ctaCancelOnClick != null) && (
             <ButtonList centered className={is("flex")}>
+              {ctaCancelOnClick && (
+                <ModalCancelButton onCloseFunc={ctaCancelOnClick} />
+              )}
               {ctaOnClick && (
                 <ModalContentButton onClick={ctaOnClick}>
                   {ctaContent}
                 </ModalContentButton>
               )}
-              {ctaCancelOnClick && (
-                <ModalCancelButton onCloseFunc={ctaCancelOnClick} />
-              )}
             </ButtonList>
-          )}
-          {footer && (
-            <ModalFooter className={footerClasses}>{footer}</ModalFooter>
-          )}
+            ) || footer }
+          </ModalFooter>
         </div>
       </div>
     </div>

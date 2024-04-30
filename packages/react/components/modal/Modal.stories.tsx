@@ -2,8 +2,8 @@ import React from "react";
 
 import { Meta, Story } from "@storybook/react";
 import Modal from "./Modal";
-import ModalFooter from "./ModalFooter";
-import ModalTitle from "./ModalTitle";
+import ModalFooter from "./footer/ModalFooter";
+import ModalTitle from "./title/ModalTitle";
 import { ModalProps } from "./ModalProps";
 import { ModalMarkup } from "./ModalEnum";
 import { IconName } from "../icon";

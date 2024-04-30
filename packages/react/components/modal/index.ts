@@ -1,6 +1,6 @@
 import Modal from './Modal'
-import ModalFooter from './ModalFooter'
-import ModalTitle from './ModalTitle'
+import ModalFooter from './footer/ModalFooter'
+import ModalTitle from './title/ModalTitle'
 
 export * from './ModalEnum'
 
