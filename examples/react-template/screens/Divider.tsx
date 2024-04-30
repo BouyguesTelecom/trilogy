@@ -19,7 +19,7 @@ export const DividerScreen = (): JSX.Element => {
         <Divider
           color={TrilogyColor.MAIN}
           backgroundColor={TrilogyColor.MAIN}
-          textColor={TrilogyColor.WHITE}
+          textColor={TrilogyColor.BACKGROUND}
           iconName={IconName.EYE_SLASH}
         />
         <Text>Lorem ipsum dolor sit amet</Text>
@@ -30,7 +30,7 @@ export const DividerScreen = (): JSX.Element => {
         <Divider
           color={TrilogyColor.MAIN}
           textColor={TrilogyColor.MAIN}
-          backgroundColor={TrilogyColor.WHITE}
+          backgroundColor={TrilogyColor.BACKGROUND}
           content={"New Message"}
         />
         <Text>Lorem ipsum dolor sit amet</Text>

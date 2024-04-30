@@ -3,19 +3,19 @@
   "data": [
     {
       "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf",
-      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      "sha1": "875cf0cecd647bcf22e79d633d868c1b1ec98dfa"
     },
     {
       "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf",
-      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      "sha1": "283f21b44efbdbf276ba802be2d949a36bbc4233"
     },
     {
       "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf",
-      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      "sha1": "fdd3002e7d814ee47c1c1b8487c72c6bbb3a2d00"
     },
     {
       "path": "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf",
-      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     }
   ]
 }

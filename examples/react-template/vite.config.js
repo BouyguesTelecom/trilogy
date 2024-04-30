@@ -33,6 +33,6 @@ export default defineConfig({
     modules: false,
   },
   build: {
-    commonjsOptions: { transformMixedEsModules: true } // Change
+    commonjsOptions: { transformMixedEsModules: true }
   }
 })

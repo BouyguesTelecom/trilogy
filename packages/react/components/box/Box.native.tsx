@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { BoxProps } from "./BoxProps"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { getBackgroundStyle } from "../../objects/atoms/Background"
 import { ComponentName } from "../enumsComponentsName"
@@ -54,7 +54,7 @@ const Box = ({
       borderStyle: flat ? "solid" : undefined,
       borderWidth: (flat && 1) || (active && 2) || 0,
       borderColor: active
-        ? getColorStyle(TrilogyColor.MAIN)
+        ? getColorStyle(TrilogyColor.MAIN, 0)
         : getColorStyle(TrilogyColor.FONT, 1),
       marginTop: hat ? 35 : 0,
       flex: fullheight ? 1 : 0,
@@ -74,7 +74,7 @@ const Box = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 0),
       overflow: "hidden",
       borderRadius: boxRadius,
     },
