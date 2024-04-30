@@ -207,6 +207,9 @@ $alignments: (
     .has-text-#{$brandName}-invert {
       color: $color-invert !important;
     }
+    .has-background-#{$brandName} {
+      background-color: getBGColor($brandName) !important;
+    }
   }
 }
 
