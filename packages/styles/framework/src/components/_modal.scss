@@ -65,11 +65,6 @@ body:has(.modal.is-active) {
     position: static;
   }
 
-  // ancien overlay : n'a plus d'utilité mais conservée pour rétrocompatibilité
-  .modal-background {
-    display: none;
-  }
-
   .modal-content {
     background-color: getColor('background');
     border-radius: $radius $radius 0 0;
@@ -85,8 +80,8 @@ body:has(.modal.is-active) {
     transition: transform ease-in-out 250ms;
     transform: translateY(100%);
 
-    &.is-fullwidth {
-      width: 100% !important;
+    &:has(.modal-footer) {
+      padding-bottom: 0;
     }
 
     @include tablet {
@@ -115,10 +110,10 @@ body:has(.modal.is-active) {
 
     .modal-footer {
       position: sticky;
+      width: 100%;
       background: getColor('background');
-      bottom: -30px;
-      margin: 30px -30px -30px;
-      padding: 20px 30px;
+      bottom: 0;
+      padding: 16px;
     }
 
     // If Close Icon Modal & Title Modal are sibling elements, override margin

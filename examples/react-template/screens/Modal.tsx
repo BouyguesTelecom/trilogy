@@ -15,6 +15,7 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
+import {Button, ButtonVariant} from "@trilogy-ds/react";
 
 export const ModalScreen = (): JSX.Element => {
   return (
@@ -24,6 +25,7 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
+          active
           panel
           triggerMarkup={ModalMarkup.A}
           title={"Modal panel Title"}
@@ -97,6 +99,7 @@ export const ModalScreen = (): JSX.Element => {
           title="title modal"
           triggerContent="Open modal"
           ctaContent="Action"
+          ctaCancelOnClick={() => alert("cancel action")}
           // eslint-disable-next-line no-alert
           ctaOnClick={() => alert("Click on cta")}
           onOpen={() => alert("open modal")}
@@ -129,7 +132,7 @@ export const ModalScreen = (): JSX.Element => {
               'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.'
             }
           />
-          <ModalFooter>Custom Footer</ModalFooter>
+          <ModalFooter><Button variant={ButtonVariant.PRIMARY} > Click Me ! </Button></ModalFooter>
         </Modal>
       </Section>
       <Section>
