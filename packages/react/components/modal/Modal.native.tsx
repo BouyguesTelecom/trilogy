@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity, } from "react-native"
+import {Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity,} from "react-native"
 import NativeModal from "react-native-modal"
 import { ModalProps } from "./ModalProps"
 import { Text } from "../text"
@@ -8,6 +8,9 @@ import { View } from "../view"
 import { Icon, IconName, IconSize } from "../icon"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
+import ModalTitle from "./title/ModalTitle";
+import ModalFooter from "./footer/ModalFooter";
+import ButtonList from "../button/list/ButtonList";
 
 /**
  * Modal Component
@@ -114,11 +117,7 @@ const Modal = ({
   const [visible, setVisible] = useState(active || false)
 
   useEffect(() => {
-    setVisible(active)
-  }, [active])
-
-  useEffect(() => {
-    if (active) {
+    if (visible) {
       Animated.timing(translateAnim, {
         toValue: 0,
         duration: 500,
@@ -128,51 +127,18 @@ const Modal = ({
       translateAnim.setValue(defaultAnimPosition)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active])
+  }, [visible])
 
   const close = (e: GestureResponderEvent) => {
     if (onClose) onClose(e)
+    setVisible(false)
   }
   const modalChildren = children ?? (
-    <View style={{ padding: fullwidth ? 0 : 17 }}>
-      <TouchableOpacity onPressIn={close}>
-        <Icon
-          style={{ flexDirection: "row", alignSelf: "flex-end" }}
-          name={IconName.TIMES}
-          size={IconSize.SMALL}
-          color={TrilogyColor.NEUTRAL}
-        />
-      </TouchableOpacity>
-      {iconName && (
-        <View style={styles.iconCenter}>
-          <Icon size={IconSize.HUGE} color={iconColor} name={iconName} />
-        </View>
-      )}
-      {title && <Text style={styles.title}>{title}</Text>}
+    <View style={{ padding: 17 }}>
       {content && typeof content === "string" ? (
         <Text style={styles.content}>{content}</Text>
       ) : (
         content
-      )}
-      {ctaContent && (
-        <View style={{ paddingTop: 15 }}>
-          <Button variant={ButtonVariant.PRIMARY} onClick={ctaOnClick}>
-            totor
-            {ctaContent}
-          </Button>
-        </View>
-      )}
-      {ctaCancelOnClick && (
-        <View style={{ paddingTop: 15 }}>
-          <Button
-            variant={ButtonVariant.PRIMARY}
-            onClick={(e) => {
-              ctaCancelOnClick(e)
-            }}
-          >
-            Annuler
-          </Button>
-        </View>
       )}
     </View>
   )
@@ -184,6 +150,7 @@ const Modal = ({
           variant={ButtonVariant.PRIMARY}
           onClick={(e) => {
             if (onOpen) onOpen(e)
+              setVisible(true)
           }}
         >
           {triggerContent}
@@ -192,7 +159,7 @@ const Modal = ({
       <NativeModal
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onSwipeComplete={(e: any) => {
-          setVisible(!visible)
+//          setVisible(!visible)
           close(e)
         }}
         onModalHide={onModalHide}
@@ -230,7 +197,7 @@ const Modal = ({
               <Animated.View
                 style={[
                   styles.childrenContainer,
-                  { transform: [{ translateY: translateAnim }] },
+                  { transform: [{ translateY: translateAnim }] }
                 ]}
               >
                 {closeIcon && (
@@ -247,7 +214,24 @@ const Modal = ({
                     </TouchableOpacity>
                   </View>
                 )}
-                {modalChildren}
+                {(title || iconName) && <ModalTitle iconName={iconName}>{title}</ModalTitle>}
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{modalChildren}</ScrollView>
+                {(ctaContent || ctaCancelOnClick) && (
+                  <ModalFooter>
+                    { (ctaContent &&
+                      <Button variant={ButtonVariant.PRIMARY} onClick={ctaOnClick}>
+                        {ctaContent}</Button>
+                      )}
+                    { (ctaCancelOnClick &&
+                      <Button
+                        variant={ButtonVariant.SECONDARY}
+                        onClick={(e) => {
+                          ctaCancelOnClick(e)
+                        }}
+                      > Annuler </Button>
+                    )}
+                  </ModalFooter>
+                )}
               </Animated.View>
             </View>
             <TouchableOpacity
