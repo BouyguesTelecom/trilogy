@@ -34,6 +34,8 @@ const Container = ({
   stickyOffSetTop,
   stickyOffSetBottom,
   background,
+  backgroundSrc,
+  inverted,
   pulledRight,
   pulledLeft,
   ...others
@@ -62,8 +64,10 @@ const Container = ({
       verticalCentered && is("vcentered"),
       pulledRight && is("pulled-right"),
       pulledLeft && is("pulled-left"),
-      sticky && background && has(getBackgroundClassName(background)),
       sticky && stickyClassName(),
+      background && has(getBackgroundClassName(background)),
+      backgroundSrc && has('background'),
+      inverted && is('inverted'),
       className
     )
   )

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { CardMarkup, CardProps } from './CardProps'
-import { is } from '../../services/classify'
-import { getAlignClassName } from '../../objects'
+import {has, is} from '../../services/classify'
+import {getAlignClassName, getBackgroundClassName} from '../../objects'
 import { hashClass } from '../../helpers'
 import { useTrilogyContext } from '../../context'
 /**
@@ -23,6 +23,9 @@ import { useTrilogyContext } from '../../context'
  */
 const Card = ({
   className,
+  background,
+  backgroundSrc,
+  inverted,
   flat,
   horizontal,
   floating,
@@ -53,7 +56,11 @@ const Card = ({
     styled,
     clsx(
       'card',
-      flat && is('flat'),
+      background && has(getBackgroundClassName(background)),
+      backgroundSrc && has('background'),
+      inverted && is('inverted') || is('base'),
+
+    flat && is('flat'),
       horizontal && [is('horizontal'), is('vcentered')],
       floating && is('floating'),
       align && is(getAlignClassName(align)),

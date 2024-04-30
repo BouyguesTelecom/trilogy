@@ -22,6 +22,7 @@ const Section = ({
   skeleton,
   background,
   backgroundSrc,
+  inverted,
   paddingless,
   verticalPaddingless,
   fullwidth,
@@ -39,12 +40,13 @@ const Section = ({
     clsx(
       'section',
       className,
+      background && has(getBackgroundClassName(background)),
+      backgroundSrc && has('background'),
+      inverted && is('inverted'),
       isLoading ? is('loading') : is('loaded'),
       fullwidth && is('fullwidth'),
       paddingless && is('paddingless'),
-      verticalPaddingless && is('vertical-paddingless'),
-      background && has(getBackgroundClassName(background)),
-      backgroundSrc && has('background'),
+      verticalPaddingless && is('vertical-paddingless')
     ),
   )
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Button,
   ButtonMarkup,
   ButtonVariant,
@@ -12,8 +13,8 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
-import { TypographyColor, VariantState } from "@trilogy-ds/react/objects";
-import { Box, TitleMarkup } from "@trilogy-ds/react";
+import {TypographyColor, VariantState} from "@trilogy-ds/react/objects";
+import {TitleMarkup, TrilogyColor} from "@trilogy-ds/react";
 
 export const HeroScreen = (): JSX.Element => {
   return (
@@ -36,13 +37,13 @@ export const HeroScreen = (): JSX.Element => {
       </Hero>
       <Section>
         <Container>
-          <Box>
+          <Box background={{color:TrilogyColor.INFO, fade: false }} inverted>
             <Title level={TitleLevels.TWO}>Hero Overlapped</Title>
           </Box>
         </Container>
       </Section>
       <Divider />
-      <Hero backgroundSrc={"https://picsum.photos/id/1/1500/600"}>
+      <Hero backgroundSrc={"https://picsum.photos/id/1/1500/600"} inverted>
         <Container>
           <Text>Welcome Message</Text>
           <Title level="ONE">Hero with image background</Title>
@@ -57,10 +58,10 @@ export const HeroScreen = (): JSX.Element => {
         </Container>
       </Hero>
       <Divider />
-      <Hero variant={VariantState.MAIN}>
+      <Hero background={TrilogyColor.MAIN} inverted>
         <Container>
-          <Text inverted>Welcome Message</Text>
-          <Title level="TWO" inverted>
+          <Text>Welcome Message</Text>
+          <Title level="TWO">
             Hero with Background Color
           </Title>
           {/* <button className='button'>Click me !</button> */}

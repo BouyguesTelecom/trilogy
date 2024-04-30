@@ -5,7 +5,7 @@ import {TrilogyThemeContext} from "../../context/providerTheme";
  * Trilogy color
  */
 export enum TrilogyColor {
-  BACKGROUND = "BACKGROUND",
+  BACKGROUND = "WHITE",
   MAIN = "MAIN",
   ACCENT = "ACCENT",
   FONT = "FONT",

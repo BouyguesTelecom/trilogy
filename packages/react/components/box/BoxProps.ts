@@ -13,7 +13,6 @@ export type BoxMarkupValues = keyof typeof BoxMarkup
  * Box Interface
  */
 export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Accessibility {
-  inverted?: boolean
   children?: React.ReactNode
   skeleton?: boolean
   className?: string
@@ -21,7 +20,6 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   to?: string
   leftBorder?: TrilogyColor | TrilogyColorValues
   shadowless?: boolean
-  background?: TrilogyColor | TrilogyColorValues
   backgroundSrc?: string
   hat?: boolean
   flat?: boolean
