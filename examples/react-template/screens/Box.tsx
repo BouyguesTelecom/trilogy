@@ -199,17 +199,40 @@ export const BoxScreen = (): JSX.Element => {
             </Box>
           </ColumnsItem>
           <ColumnsItem size={10}>
-            <Box backgroundSrc={"https://picsum.photos/id/1/1500/600"}>
+            <Box backgroundSrc={"https://picsum.photos/id/1/1500/600"} inverted>
               <Title
                 level={TitleLevels.THREE}
                 typo={[
-                  TypographyAlign.TEXT_CENTERED,
-                  TypographyColor.TEXT_WHITE,
+                  TypographyAlign.TEXT_CENTERED
                 ]}
               >
                 Box with background image
               </Title>
-              <Text typo={[TypographyColor.TEXT_WHITE]}>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+                pharetra venenatis neque, ac fringilla mauris fermentum vel.
+                Maecenas viverra, erat id condimentum ultricies, enim enim
+                lacinia sem, sed blandit nisi metus suscipit elit. Phasellus
+                magna risus, mattis sed consectetur at, rhoncus vitae quam.
+                Vivamus varius nisl a nibh finibus, non laoreet eros ornare.
+                Phasellus dignissim ullamcorper tortor ut iaculis. Fusce
+                tincidunt finibus fermentum. Praesent pulvinar sapien a turpis
+                faucibus, et semper quam scelerisque. Morbi interdum nec ipsum
+                eu facilisis.
+              </Text>
+            </Box>
+          </ColumnsItem>
+          <ColumnsItem size={10}>
+            <Box backgroundSrc={"https://picsum.photos/seed/picsum/1500/600"} >
+              <Title
+                level={TitleLevels.THREE}
+                typo={[
+                  TypographyAlign.TEXT_CENTERED
+                ]}
+              >
+                Box with background image
+              </Title>
+              <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                 pharetra venenatis neque, ac fringilla mauris fermentum vel.
                 Maecenas viverra, erat id condimentum ultricies, enim enim

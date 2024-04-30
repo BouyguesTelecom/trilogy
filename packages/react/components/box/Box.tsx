@@ -6,6 +6,7 @@ import { getColorClassName } from '../../objects'
 import clsx from 'clsx'
 import { hashClass } from '../../helpers'
 import { useTrilogyContext } from '../../context'
+import {invert} from "react-native-svg/lib/typescript/elements/Shape";
 
 /**
  * Box Component
@@ -28,6 +29,7 @@ import { useTrilogyContext } from '../../context'
  * @param others
  */
 const Box = ({
+  inverted,
   children,
   className,
   onClick,
@@ -51,6 +53,7 @@ const Box = ({
     styled,
     clsx(
       'box',
+      inverted && is('inverted'),
       shadowless && is('shadowless'),
       className,
       background && has(getBackgroundClassName(background)),

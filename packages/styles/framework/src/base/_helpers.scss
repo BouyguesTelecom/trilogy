@@ -208,6 +208,9 @@ $alignments: (
       color: $color-invert !important;
     }
     .has-background-#{$brandName} {
+      background-color: getColor($brandName) !important;
+    }
+    .has-background-fade-#{$brandName} {
       background-color: getBGColor($brandName) !important;
     }
   }
