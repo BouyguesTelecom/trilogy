@@ -53,11 +53,11 @@ $button-border-width: 2px !default;
   }
 
   #{$hoverSelector} {
-    filter: brightness(0.8)
+    filter: brightness(0.9)
   }
 
   &:active {
-    filter: brightness(0.7)
+    filter: brightness(0.8)
   }
 
   @each $name, $pair in $btn-colors {
