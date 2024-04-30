@@ -169,18 +169,4 @@ $overlap-desktop: 30px;
   &.is-centered {
     text-align: center;
   }
-
-  &.is-main {
-    color: invertColor('main');
-    background-color: getColor('main');
-  }
-
-  &.is-info {
-    background: getColor('info');
-    color: invertColor('info');
-  }
-
-  .subtitle {
-    padding-left: 0.2em;
-  }
 }
