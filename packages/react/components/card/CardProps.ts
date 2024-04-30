@@ -8,22 +8,28 @@ import { JustifiableProps } from '../../objects/facets/Justifiable'
  */
 
 export enum CardMarkup {
-  DIV = 'div',
-  A = 'a',
+  DIV = "div",
+  A = "a",
 }
 
-export type CardMarkupValues = keyof typeof CardMarkup
-export interface CardProps extends AlignableProps, Fullheight, JustifiableProps, Clickable, Accessibility {
-  children?: React.ReactNode
-  flat?: boolean
-  horizontal?: boolean
-  floating?: boolean
-  skeleton?: boolean
-  className?: string
-  onClick?: ClickEvent
-  markup?: CardMarkup | CardMarkupValues
-  backgroundColor?: TrilogyColor.WHITE | 'transparent'
-  reversed?: boolean
-  to?: string
-  active?: boolean
+export type CardMarkupValues = keyof typeof CardMarkup;
+
+export interface CardProps
+  extends AlignableProps,
+    Fullheight,
+    JustifiableProps,
+    Clickable,
+    Accessibility {
+  children?: React.ReactNode;
+  flat?: boolean;
+  horizontal?: boolean;
+  floating?: boolean;
+  skeleton?: boolean;
+  className?: string;
+  onClick?: ClickEvent;
+  markup?: CardMarkup | CardMarkupValues;
+  backgroundColor?: TrilogyColor.BACKGROUND | "transparent";
+  reversed?: boolean;
+  to?: string;
+  active?: boolean;
 }

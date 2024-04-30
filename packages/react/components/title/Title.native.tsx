@@ -76,7 +76,7 @@ const Title = ({
       color:
         ((overline || subtitle) &&
           !level &&
-          getColorStyle(TrilogyColor.MAIN)) ||
+          getColorStyle(TrilogyColor.MAIN, 0)) ||
         (!skeleton && setTypographyColor(typo, inverted)) ||
         "transparent",
       textAlign: setTypographyAlign(typo),
@@ -88,7 +88,7 @@ const Title = ({
       alignSelf: getAlignSelf(),
       borderRadius: 5,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 0),
       overflow: "hidden",
       height: titlesLevels(),
     },

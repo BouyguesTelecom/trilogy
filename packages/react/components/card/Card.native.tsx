@@ -34,7 +34,7 @@ const Card = ({
   floating,
   onClick,
   skeleton,
-  backgroundColor = TrilogyColor.WHITE,
+  backgroundColor = TrilogyColor.BACKGROUND,
   reversed,
   fullheight,
   active,

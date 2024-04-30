@@ -41,7 +41,7 @@ export const CardScreen = (): JSX.Element => {
     <Section>
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.MEDIUM} />
-      <Card active backgroundColor={TrilogyColor.WHITE}>
+      <Card active backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -61,7 +61,7 @@ export const CardScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.MEDIUM} />
-      <Card markup={CardMarkup.A} backgroundColor={TrilogyColor.WHITE}>
+      <Card markup={CardMarkup.A} backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -136,7 +136,7 @@ export const CardScreen = (): JSX.Element => {
           size={"3"}
           src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg"
         />
-        <CardContent backgroundColor={TrilogyColor.WHITE}>
+        <CardContent backgroundColor={TrilogyColor.BACKGROUND}>
           <Title overline>Desktop Card Horizontal</Title>
           <Title level={TitleLevels.ONE}>Card Title</Title>
           <Text>
