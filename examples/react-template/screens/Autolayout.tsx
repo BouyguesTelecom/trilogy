@@ -6,6 +6,7 @@ import {
   AccordionItem,
   Alert,
   AutoComplete,
+  AutoLayout,
   Box,
   BoxContent,
   BoxHeader,
@@ -15,7 +16,6 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-  AutoLayout,
 } from "@trilogy-ds/react/components";
 import { AlertState, TrilogyColor } from "@trilogy-ds/react";
 
@@ -23,44 +23,27 @@ export const AutolayoutScreen = (): JSX.Element => {
   return (
     <AutoLayout>
       <Title level={TitleLevels.TWO}>Elements : </Title>
-      <Box background={"GREY_LIGHT"}>
-        <BoxHeader variant={TrilogyColor.PRIMARY}>
-          <Text>Simple</Text>
-        </BoxHeader>
-        <BoxContent background={"GREY_LIGHT"}>
-          <Box>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              maximus tellus sed erat maximus porta. Etiam non ex in dolor
-              faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
-              urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
-              finibus dolor ex. Duis vel velit in lectus placerat aliquam nec at
-              elit. Aenean metus neque, accumsan id ipsum sodales, fermentum
-              lacinia eros. Ut gravida aliquet magna, id efficitur magna
-              ultrices a. In quis bibendum tortor. Nam quam lacus, suscipit a
-              vehicula ac, vehicula eget risus.
-            </Text>
-          </Box>
+      <Box>
+        <BoxHeader>Simple</BoxHeader>
+        <BoxContent>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            maximus tellus sed erat maximus porta. Etiam non ex in dolor
+            faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
+            urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
+            finibus dolor ex.
+          </Text>
         </BoxContent>
       </Box>
-      <Box background={"GREY_LIGHT"}>
-        <BoxHeader variant={TrilogyColor.PRIMARY}>
-          <Text>Simple</Text>
-        </BoxHeader>
-        <BoxContent background={"GREY_LIGHT"}>
-          <Box>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              maximus tellus sed erat maximus porta. Etiam non ex in dolor
-              faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
-              urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
-              finibus dolor ex. Duis vel velit in lectus placerat aliquam nec at
-              elit. Aenean metus neque, accumsan id ipsum sodales, fermentum
-              lacinia eros. Ut gravida aliquet magna, id efficitur magna
-              ultrices a. In quis bibendum tortor. Nam quam lacus, suscipit a
-              vehicula ac, vehicula eget risus.
-            </Text>
-          </Box>
+      <Box background={TrilogyColor.MAIN} inverted>
+        <BoxContent>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            maximus tellus sed erat maximus porta. Etiam non ex in dolor
+            faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
+            urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
+            finibus dolor ex.
+          </Text>
         </BoxContent>
       </Box>
       <Title level={TitleLevels.ONE}>Im a Title</Title>

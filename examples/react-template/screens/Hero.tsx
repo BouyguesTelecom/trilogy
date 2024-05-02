@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  BoxContent,
   Button,
   ButtonMarkup,
   ButtonVariant,
@@ -13,23 +14,22 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
-import {TypographyColor, VariantState} from "@trilogy-ds/react/objects";
-import {TitleMarkup, TrilogyColor} from "@trilogy-ds/react";
+import { TitleMarkup, TrilogyColor } from "@trilogy-ds/react";
 
 export const HeroScreen = (): JSX.Element => {
   return (
     <Section>
-      <Hero overlap>
+      <Hero
+        variant={TrilogyColor.MAIN}
+        overlap
+        background={TrilogyColor.MAIN}
+        inverted
+      >
         <Container>
           <Title markup={TitleMarkup.H1} level={TitleLevels.TWO}>
             Hero Overlapped
           </Title>
-          <Text
-            inverted
-            className={"is-inverted"}
-            level={TextLevels.TWO}
-            typo={TypographyColor.TEXT_GREY_DARK}
-          >
+          <Text level={TextLevels.TWO}>
             Profitez dInternet dès labonnement et même en cas de coupure grâce à
             une clé 4G dans les nouvelles offres Bbox.
           </Text>
@@ -37,8 +37,14 @@ export const HeroScreen = (): JSX.Element => {
       </Hero>
       <Section>
         <Container>
-          <Box background={{color:TrilogyColor.INFO, fade: false }} inverted>
-            <Title level={TitleLevels.TWO}>Hero Overlapped</Title>
+          <Box background={{ color: TrilogyColor.INFO, fade: false }} inverted>
+            <BoxContent>
+              <Title level={TitleLevels.TWO}>Hero Overlapped</Title>
+              <Text level={TextLevels.TWO}>
+                Profitez dInternet dès labonnement et même en cas de coupure
+                grâce à une clé 4G dans les nouvelles offres Bbox.
+              </Text>
+            </BoxContent>
           </Box>
         </Container>
       </Section>
@@ -61,13 +67,11 @@ export const HeroScreen = (): JSX.Element => {
       <Hero background={TrilogyColor.MAIN} inverted>
         <Container>
           <Text>Welcome Message</Text>
-          <Title level="TWO">
-            Hero with Background Color
-          </Title>
+          <Title level="TWO">Hero with Background Color</Title>
           {/* <button className='button'>Click me !</button> */}
           <Button
             markup={ButtonMarkup.BUTTON}
-            variant={ButtonVariant.ACCENT}
+            variant={ButtonVariant.SECONDARY}
             onClick={() => alert("Click on hero btn")}
           >
             Click me !

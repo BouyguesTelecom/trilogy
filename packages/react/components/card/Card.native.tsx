@@ -4,7 +4,7 @@ import { CardProps } from "./CardProps"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "../enumsComponentsName"
-import { getBackgroundStyle } from "../../lib/objects/atoms/Background"
+import { getBackgroundStyle } from "../../objects/atoms/Background"
 import { StatesContext } from "../../context/providerStates"
 
 export const CardContext = createContext({
@@ -46,7 +46,6 @@ const Card = ({
   const borderColor = "#ccc"
   const cardRadius = 6
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
-  console.log(background)
   const styles = StyleSheet.create({
     card: {
       width: "100%",
