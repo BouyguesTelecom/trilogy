@@ -123,8 +123,55 @@ const Box = ({
     return <BoxSkeleton />
   }
 
-  const Content = () => (
-    <>
+  if (onClick) {
+    return (
+      <TouchableOpacity
+        onPress={(e?: unknown) => onClick?.(e)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+        onLayout={(event) => {
+          const { height } = event.nativeEvent.layout
+          setBoxHeight(height)
+        }}
+        testID={boxTestId}
+      >
+        {backgroundSrc ? (
+          <ImageBackground
+            imageStyle={{ borderRadius: boxRadius }}
+            style={styles.boxImage}
+            source={
+              typeof backgroundSrc === "number"
+                ? backgroundSrc
+                : { uri: backgroundSrc }
+            }
+          >
+            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            <StatesContext.Provider value={{ inverted: !!inverted }}>
+              <View style={styles.column}>{children}</View>
+            </StatesContext.Provider>
+          </ImageBackground>
+        ) : (
+          <>
+            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            <StatesContext.Provider value={{ inverted: !!inverted }}>
+              <View style={styles.column}>{children}</View>
+            </StatesContext.Provider>
+          </>
+        )}
+      </TouchableOpacity>
+    )
+  }
+
+  return (
+    <View
+      onLayout={(event) => {
+        const { height } = event.nativeEvent.layout
+        setBoxHeight(height)
+      }}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+      testID={boxTestId}
+    >
       {backgroundSrc ? (
         <ImageBackground
           imageStyle={{ borderRadius: boxRadius }}
@@ -136,66 +183,17 @@ const Box = ({
           }
         >
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-          <View style={styles.column}>
-            <StatesContext.Provider
-              value={{
-                inverted: !!inverted,
-                disabled: false,
-                loading: false,
-                skeleton: false,
-              }}
-            >
-              {children}
-            </StatesContext.Provider>
-          </View>
+          <StatesContext.Provider value={{ inverted: !!inverted }}>
+            <View style={styles.column}>{children}</View>
+          </StatesContext.Provider>
         </ImageBackground>
       ) : (
-        <>
+        <StatesContext.Provider value={{ inverted: !!inverted }}>
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-          <View style={styles.column}>
-            <StatesContext.Provider
-              value={{
-                inverted: !!inverted,
-                disabled: false,
-                loading: false,
-                skeleton: false,
-              }}
-            >
-              {children}
-            </StatesContext.Provider>
-          </View>
-        </>
+          <View style={styles.column}>{children}</View>
+        </StatesContext.Provider>
       )}
-    </>
-  )
-
-  return (
-    (onClick && (
-      <TouchableOpacity
-        onPress={(e?: unknown) => onClick?.(e)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout
-          setBoxHeight(height)
-        }}
-        testID={boxTestId}
-      >
-        <Content />
-      </TouchableOpacity>
-    )) || (
-      <View
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout
-          setBoxHeight(height)
-        }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-        testID={boxTestId}
-      >
-        <Content />
-      </View>
-    )
+    </View>
   )
 }
 

@@ -6,20 +6,18 @@ import {
   BoxFooter,
   BoxHeader,
   BoxMarkup,
-  Divider,
-  Link,
-  Section,
-  Text,
-} from "@trilogy-ds/react/components";
-import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
-import {
   Button,
   ButtonVariant,
   Columns,
   ColumnsItem,
+  Divider,
+  Link,
+  Section,
+  Text,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react";
+} from "@trilogy-ds/react/components";
+import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false);
