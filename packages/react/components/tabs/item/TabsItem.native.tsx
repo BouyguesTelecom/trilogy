@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { TabsItemProps } from "./TabsItemProps"
 import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
 import { TypographyBold } from "../../../objects"
@@ -28,7 +28,6 @@ const TabsItem = ({
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const [isPressIn, setInPressIn] = useState<boolean>(false)
 
-
   const getIconColor = React.useMemo(() => {
     if (inverted) {
       if (disabled) return TrilogyColor.NEUTRAL_LIGHT
@@ -36,12 +35,11 @@ const TabsItem = ({
     }
     if (disabled) return TrilogyColor.DISABLED
     if (active) return TrilogyColor.MAIN
-  return TrilogyColor.MAIN
-}, [inverted, disabled, active])
+    return TrilogyColor.MAIN
+  }, [inverted, disabled, active])
 
   const getBorderColor = React.useMemo(() => {
-    if (disabled)
-      return 'transparent'
+    if (disabled) return "transparent"
     if (inverted) {
       if (active) return getColorStyle(TrilogyColor.WHITE)
       return getColorStyle(TrilogyColor.FONT, 1)
@@ -88,7 +86,7 @@ const TabsItem = ({
       {...others}
     >
       {iconName && (
-        <View >
+        <View>
           <Icon color={getIconColor} size='small' name={iconName} />
         </View>
       )}

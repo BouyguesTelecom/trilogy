@@ -1,10 +1,12 @@
 import * as React from "react"
-import { Platform, StyleSheet, Text, TouchableOpacity, View, } from "react-native"
+import { useContext } from "react"
+import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { setTypographyAlign, setTypographyColor } from "../../objects"
 import { TitleProps } from "./TitleProps"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Title Native Component
@@ -33,6 +35,7 @@ const Title = ({
   overline,
   ...others
 }: TitleProps): JSX.Element => {
+  const statesContext = useContext(StatesContext)
   const titlesLevels = () => {
     switch (level) {
       case "ONE":
@@ -77,7 +80,8 @@ const Title = ({
         ((overline || subtitle) &&
           !level &&
           getColorStyle(TrilogyColor.MAIN, 0)) ||
-        (!skeleton && setTypographyColor(typo, inverted)) ||
+        (!skeleton &&
+          setTypographyColor(typo, inverted || statesContext.inverted)) ||
         "transparent",
       textAlign: setTypographyAlign(typo),
       textTransform: overline && !level ? "uppercase" : undefined,
@@ -105,7 +109,7 @@ const Title = ({
     : undefined
 
   let titleView = (
-    <Text
+    <TextNative
       maxFontSizeMultiplier={1.3}
       accessible={!!titleAccessibilityLabel}
       accessibilityLabel={titleAccessibilityLabel}
@@ -114,7 +118,7 @@ const Title = ({
       {...others}
     >
       {children}
-    </Text>
+    </TextNative>
   )
 
   if (skeleton) {

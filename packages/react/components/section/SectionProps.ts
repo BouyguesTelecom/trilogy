@@ -21,5 +21,4 @@ export interface SectionProps
     ChildrenWithNoText {
   className?: string
   skeleton?: boolean
-  backgroundSrc?: string
 }

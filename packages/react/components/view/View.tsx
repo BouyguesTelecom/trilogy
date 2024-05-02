@@ -5,7 +5,7 @@ import { has, is } from "../../services"
 import {
   getLoadingClassName,
   getJustifyClassName,
-  getAlignClassName,
+  getAlignClassName, getBackgroundClassName,
 } from "../../objects"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
@@ -35,8 +35,9 @@ const View = ({
   className,
   loading,
   onClick,
+  background,
   backgroundSrc,
-  color,
+  inverted,
   fullwidth = true,
   markup,
   flexable,
@@ -61,8 +62,9 @@ const View = ({
     clsx(
       typeof loading === "string" && is(getLoadingClassName(loading)),
       typeof loading === "boolean" ? is("loading") : is("loaded"),
-      color && has(`background-${color}`),
-      backgroundSrc && has("background"),
+      background && has(getBackgroundClassName(background)),
+      backgroundSrc && has('background'),
+      inverted && is('inverted') || is('base'),
       fullwidth && is("fullwidth"),
       flexable && is("flex"),
       typeof justify === "string" && is(getJustifyClassName(justify)),

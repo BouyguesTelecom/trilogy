@@ -4,10 +4,12 @@ import { CardProps } from "./CardProps"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "../enumsComponentsName"
+import { getBackgroundStyle } from "../../objects/atoms/Background"
+import { StatesContext } from "../../context/providerStates"
 
 export const CardContext = createContext({
   floating: false,
-  backgroundColor: "",
+  backgroundColor: "" || {},
   horizontal: false,
   reversed: false,
   active: false,
@@ -22,6 +24,8 @@ export const CardContext = createContext({
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Loading card
  * @param reversed {boolean} Reversed card
+ * @param background {TrilogyColor} Card Background Color
+ * @param inverted {boolean} Inverted Card Color
  * @param backgroundColor
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
@@ -34,15 +38,16 @@ const Card = ({
   floating,
   onClick,
   skeleton,
-  backgroundColor = TrilogyColor.BACKGROUND,
+  background,
   reversed,
   fullheight,
   active,
+  inverted,
   ...others
 }: CardProps): JSX.Element => {
   const borderColor = "#ccc"
   const cardRadius = 6
-
+  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
   const styles = StyleSheet.create({
     card: {
       width: "100%",
@@ -53,10 +58,7 @@ const Card = ({
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         "transparent",
       borderRadius: cardRadius,
-      backgroundColor:
-        backgroundColor === "transparent"
-          ? "rgba(0, 0, 0, 0.0)"
-          : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: background ? getBackgroundStyle(background) : colorBgc,
       flex: fullheight ? 1 : 0,
     },
     horizontal: {
@@ -71,7 +73,6 @@ const Card = ({
       elevation: 5,
     },
     contentHorizontal: {
-      backgroundColor: "red",
       borderWidth: 2,
       margin: 2,
       padding: 10,
@@ -119,37 +120,45 @@ const Card = ({
   }
 
   return onClick ? (
-    <CardContext.Provider
-      value={{
-        floating: floating || false,
-        backgroundColor: backgroundColor || "white",
-        horizontal: horizontal || false,
-        reversed: reversed || false,
-        active: active || false,
-      }}
+    <StatesContext.Provider
+      value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
     >
-      <View style={{ width: "100%" }}>
-        <TouchableOpacity
-          style={{ width: "100%" }}
-          onPress={onClick}
-          activeOpacity={0.85}
-        >
-          {cardView}
-        </TouchableOpacity>
-      </View>
-    </CardContext.Provider>
+      <CardContext.Provider
+        value={{
+          floating: floating || false,
+          backgroundColor: background || "white",
+          horizontal: horizontal || false,
+          reversed: reversed || false,
+          active: active || false,
+        }}
+      >
+        <View style={{ width: "100%" }}>
+          <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={onClick}
+            activeOpacity={0.85}
+          >
+            {cardView}
+          </TouchableOpacity>
+        </View>
+      </CardContext.Provider>
+    </StatesContext.Provider>
   ) : (
-    <CardContext.Provider
-      value={{
-        floating: floating || false,
-        backgroundColor: backgroundColor || "white",
-        horizontal: horizontal || false,
-        reversed: reversed || false,
-        active: active || false,
-      }}
+    <StatesContext.Provider
+      value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
     >
-      {cardView}
-    </CardContext.Provider>
+      <CardContext.Provider
+        value={{
+          floating: floating || false,
+          backgroundColor: background || "white",
+          horizontal: horizontal || false,
+          reversed: reversed || false,
+          active: active || false,
+        }}
+      >
+        {cardView}
+      </CardContext.Provider>
+    </StatesContext.Provider>
   )
 }
 

@@ -20,7 +20,6 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   to?: string
   leftBorder?: TrilogyColor | TrilogyColorValues
   shadowless?: boolean
-  background?: TrilogyColor | TrilogyColorValues
   backgroundSrc?: string
   hat?: boolean
   flat?: boolean

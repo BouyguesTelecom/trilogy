@@ -1,8 +1,8 @@
-import React, { createContext } from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
-import { View } from '../view'
-import { ColumnsProps } from './ColumnsProps'
-import { ComponentName } from '../enumsComponentsName'
+import React, { createContext } from "react"
+import { ScrollView, StyleSheet } from "react-native"
+import { View } from "../view"
+import { ColumnsProps } from "./ColumnsProps"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Columns Native Component
@@ -27,14 +27,14 @@ const Columns = ({
 }: ColumnsProps): JSX.Element => {
   const styles = StyleSheet.create({
     columns: {
-      flexDirection: 'row',
-      minWidth: '100%',
+      flexDirection: "row",
+      minWidth: "100%",
     },
     centered: {
-      alignSelf: 'center',
+      alignSelf: "center",
     },
     verticalAlign: {
-      justifyContent: 'center',
+      justifyContent: "center",
       flex: 1,
     },
     gapless: {
@@ -48,13 +48,20 @@ const Columns = ({
 
   if (marginSize && !inlined) {
     return (
-      <View style={[styles.columns, centered, verticalCentered && styles.verticalAlign]} {...others}>
+      <View
+        style={[
+          styles.columns,
+          centered,
+          verticalCentered && styles.verticalAlign,
+        ]}
+        {...others}
+      >
         {children && marginSize
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
             React.Children.map(children, (child: any) =>
               React.cloneElement(child, {
                 style: [child.props.style, styles.variable],
-              }),
+              })
             )
           : children}
       </View>
@@ -63,13 +70,20 @@ const Columns = ({
 
   if (gapless) {
     return (
-      <View style={[styles.columns, centered, verticalCentered && styles.verticalAlign]} {...others}>
+      <View
+        style={[
+          styles.columns,
+          centered,
+          verticalCentered && styles.verticalAlign,
+        ]}
+        {...others}
+      >
         {children && gapless
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
             React.Children.map(children, (child: any) =>
               React.cloneElement(child, {
                 style: [child.props.style, styles.gapless],
-              }),
+              })
             )
           : children}
       </View>

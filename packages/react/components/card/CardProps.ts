@@ -1,5 +1,5 @@
 import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility, Clickable, Fullheight, TrilogyColor } from '../../objects'
+import {Accessibility, BackgroundProps, Clickable, Fullheight, TrilogyColor} from '../../objects'
 import { AlignableProps } from '../../objects/facets/Alignable'
 import { JustifiableProps } from '../../objects/facets/Justifiable'
 
@@ -19,7 +19,8 @@ export interface CardProps
     Fullheight,
     JustifiableProps,
     Clickable,
-    Accessibility {
+    Accessibility,
+    BackgroundProps {
   children?: React.ReactNode;
   flat?: boolean;
   horizontal?: boolean;
@@ -28,7 +29,6 @@ export interface CardProps
   className?: string;
   onClick?: ClickEvent;
   markup?: CardMarkup | CardMarkupValues;
-  backgroundColor?: TrilogyColor.BACKGROUND | "transparent";
   reversed?: boolean;
   to?: string;
   active?: boolean;

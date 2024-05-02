@@ -1,11 +1,14 @@
 import { getColorClassName, getColorStyle, TrilogyColor, TrilogyColorValues, } from "../facets/Color"
+import {Invertable} from "../facets";
 
 /**
  * Background props
  */
-export interface BackgroundProps {
-  background?: TrilogyColor | TrilogyColorValues;
+export interface BackgroundProps extends Invertable {
+  background?: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
+  backgroundSrc?: string
 }
+
 
 /**
  * Returns background's classname depending on background type
@@ -13,8 +16,11 @@ export interface BackgroundProps {
  * @returns {string} - Background Color value
  */
 export const getBackgroundClassName = (
-  backgroundType: TrilogyColor | TrilogyColorValues
+  backgroundType:  TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
 ): string => {
+  if (backgroundType && typeof backgroundType === 'object') {
+    return `background-${getColorClassName(backgroundType.color)}${backgroundType.fade ? '-fade' : ''}`
+  }
   return `background-${getColorClassName(backgroundType)}`
 }
 
@@ -24,7 +30,9 @@ export const getBackgroundClassName = (
  * @returns {string} - Background Color value
  */
 export const getBackgroundStyle = (
-  backgroundType: TrilogyColor | TrilogyColorValues
+  backgroundType: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
 ): string => {
-  return getColorStyle(backgroundType)
+  const color = (backgroundType && typeof backgroundType === 'object')? backgroundType.color : backgroundType
+  const fade= (backgroundType && typeof backgroundType === 'object')? backgroundType.fade : false
+  return getColorStyle(color, fade?1:0)
 }

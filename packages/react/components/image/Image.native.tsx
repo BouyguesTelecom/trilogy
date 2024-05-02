@@ -26,7 +26,6 @@ const Image = ({
 }: ImageProps): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
-      backgroundColor: "red",
       width: width ? width : "100%",
       height: height ? height : "100%",
       borderRadius: rounded ? 100 : 0,

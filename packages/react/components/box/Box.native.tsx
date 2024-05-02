@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { BoxProps } from "./BoxProps"
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { getBackgroundStyle } from "../../objects/atoms/Background"
 import { ComponentName } from "../enumsComponentsName"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Box Component
@@ -16,6 +17,7 @@ import { ComponentName } from "../enumsComponentsName"
  * @param testId {string} Test id
  * @param shadowless {boolean} Remove box shadow
  * @param backgroundSrc {string} Source of background Image
+ * @param inverted {boolean} Inverted Box Color
  * @param flat {boolean} Flat box remove shadow and add plain border
  * @param hat {boolean} Box with a component Sticker props:hat
  * @param flex {boolean} Flex: 1 to the box if usage of Image for Example
@@ -27,11 +29,12 @@ const Box = ({
   children,
   onClick,
   skeleton,
-  background,
   leftBorder,
   testId,
   shadowless,
+  background,
   backgroundSrc,
+  inverted,
   flat,
   hat,
   fullheight,
@@ -39,10 +42,8 @@ const Box = ({
   ...others
 }: BoxProps): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.WHITE)
-  const boxRadius = 6
-
   const [boxHeight, setBoxHeight] = useState(0)
-
+  const boxRadius = 6
   const styles = StyleSheet.create({
     box: {
       width: "100%",
@@ -145,12 +146,20 @@ const Box = ({
             }
           >
             {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-            <View style={styles.column}>{children}</View>
+            <StatesContext.Provider
+              value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+            >
+              <View style={styles.column}>{children}</View>
+            </StatesContext.Provider>
           </ImageBackground>
         ) : (
           <>
             {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-            <View style={styles.column}>{children}</View>
+            <StatesContext.Provider
+              value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+            >
+              <View style={styles.column}>{children}</View>
+            </StatesContext.Provider>
           </>
         )}
       </TouchableOpacity>
@@ -178,13 +187,19 @@ const Box = ({
           }
         >
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-          <View style={styles.column}>{children}</View>
+          <StatesContext.Provider
+            value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+          >
+            <View style={styles.column}>{children}</View>
+          </StatesContext.Provider>
         </ImageBackground>
       ) : (
-        <>
+        <StatesContext.Provider
+          value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+        >
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
           <View style={styles.column}>{children}</View>
-        </>
+        </StatesContext.Provider>
       )}
     </View>
   )

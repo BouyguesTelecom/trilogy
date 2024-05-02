@@ -1,15 +1,17 @@
 import React, { useState } from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { HeroProps } from "./HeroProps"
-import { getVariantStyle, TrilogyColor } from "../../objects"
+import { getBackgroundStyle, TrilogyColor } from "../../objects"
 import { Box } from "../box"
 import { ComponentName } from "../enumsComponentsName"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Hero Component
  * @param children {ReactNode} Hero Children
  * @param backgroundSrc {string} If source, it will display background option
- * @param variant {VariantState} Hero background color : main/accent
+ * @param background {TrilogyColor} Background Color
+ * @param inverted {Boolean} Inverted Hero
  * @param onClick {Function} onClick Event
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
@@ -18,10 +20,11 @@ import { ComponentName } from "../enumsComponentsName"
 const Hero = ({
   children,
   backgroundSrc,
-  variant,
   onClick,
   overlap,
   backgroundHeight,
+  inverted,
+  background,
   ...others
 }: HeroProps): JSX.Element => {
   const [overlapHeight, setOverlapHeight] = useState<number>(0)
@@ -44,11 +47,12 @@ const Hero = ({
       height: backgroundHeight ? backgroundHeight : "auto",
     },
     content: {
-      padding: 15,
-      marginBottom: overlap ? marginBottomOverlap : 0,
+      paddingLeft: 15,
     },
-    variant: {
-      backgroundColor: variant && getVariantStyle(variant),
+    background: {
+      backgroundColor: background
+        ? getBackgroundStyle(background)
+        : getBackgroundStyle(TrilogyColor.BACKGROUND),
     },
     overlap: {
       position: "absolute",
@@ -70,11 +74,15 @@ const Hero = ({
   })
   let heroView: JSX.Element
 
-  if (variant) {
+  if (background) {
     heroView = (
-      <View style={[styles.variant, styles.hero]}>
-        <View style={styles.content}>{children}</View>
-      </View>
+      <StatesContext.Provider
+        value={{ inverted: !!inverted, active: false, flat: false }}
+      >
+        <View style={[styles.background, styles.hero]}>
+          <View style={styles.content}>{children}</View>
+        </View>
+      </StatesContext.Provider>
     )
   } else {
     heroView = (

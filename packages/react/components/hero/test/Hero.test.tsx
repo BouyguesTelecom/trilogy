@@ -30,7 +30,7 @@ describe("Hero", () => {
 
   it("adds variant class to the root element if variant is provided", () => {
     const { container } = render(
-      <Hero variant={VariantState.MAIN}>My Hero Content</Hero>
+      <Hero background={VariantState.MAIN}>My Hero Content</Hero>
     );
     const heroElement = container.querySelector(".hero");
     expect(heroElement).toHaveClass("is-main");

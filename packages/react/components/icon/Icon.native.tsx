@@ -11,6 +11,7 @@ import { getAlignStyle } from "../../objects/facets/Alignable"
 import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
 import { TrilogyThemeContext } from "../../context/providerTheme.native"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Icon Component
@@ -55,6 +56,8 @@ const Icon = ({
     theme: { icons },
   } = useContext(TrilogyThemeContext)
 
+  const statesContext = useContext(StatesContext)
+
   const defaultSize =
     (size === IconSize.HUGE && 66) ||
     (size === IconSize.LARGE && 44) ||
@@ -66,6 +69,7 @@ const Icon = ({
   const iconColor =
     (color && getColorStyle(color as TrilogyColor | TrilogyColorValues)) ||
     (status && getColorStyle(status as TrilogyColor | TrilogyColorValues)) ||
+    (statesContext.inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
     getColorStyle(TrilogyColor.MAIN)
 
   const iconSkeletonRadius =

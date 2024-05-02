@@ -46,17 +46,19 @@ const Chips = ({
       paddingTop: 6,
       paddingBottom: 6,
       margin: 6,
-      borderColor: "#dce1e5",
+      borderColor: getColorStyle(TrilogyColor.FONT, 1),
       borderWidth: !active ? 1 : 0,
       flexDirection: "row",
     },
     text: {
-      fontWeight: active ? "bold" : "normal",
+      alignSelf: "center",
+      fontWeight: active ? "600" : "normal",
       fontSize: 16,
       color:
         (disabled && getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
         (active && getColorStyle(TrilogyColor.WHITE)) ||
         getColorStyle(TrilogyColor.MAIN),
+      paddingTop: (chipsContext.isMultiple && active && 3) || 0,
     },
     icon: {
       top: 3,

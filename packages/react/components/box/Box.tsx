@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { BoxMarkup, BoxProps } from './BoxProps'
-import { has, is } from '../../services/classify'
-import { getBackgroundClassName } from '../../objects/atoms/Background'
-import { getColorClassName } from '../../objects'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import React, { useEffect, useState } from "react"
+import { BoxMarkup, BoxProps } from "./BoxProps"
+import { has, is } from "../../services/classify"
+import { getBackgroundClassName } from "../../objects/atoms/Background"
+import { getColorClassName } from "../../objects"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Box Component
@@ -13,6 +13,7 @@ import { useTrilogyContext } from '../../context'
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param background {TrilogyColor} Box Content Background Color
+ * @param inverted {boolean} Inverted Box Color
  * @param leftBorder {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param shadowless {boolean} Remove box shadow
  * @param flat {boolean} Flat box remove shadow and add plain border
@@ -28,6 +29,7 @@ import { useTrilogyContext } from '../../context'
  * @param others
  */
 const Box = ({
+  inverted,
   children,
   className,
   onClick,
@@ -50,18 +52,19 @@ const Box = ({
   const classes = hashClass(
     styled,
     clsx(
-      'box',
-      shadowless && is('shadowless'),
+      "box",
+      shadowless && is("shadowless"),
       className,
       background && has(getBackgroundClassName(background)),
-      isLoading ? is('loading') : is('loaded'),
-      backgroundSrc && has('background'),
-      leftBorder && `${is('highlighted')} ${is(getColorClassName(leftBorder))}`,
-      flat && is('flat'),
-      hat && has('hat'),
-      fullheight && is('fullheight'),
-      active && is('active')
-    ),
+      backgroundSrc && has("background"),
+      (inverted && is("inverted")) || is("base"),
+      isLoading ? is("loading") : is("loaded"),
+      leftBorder && `${is("highlighted")} ${is(getColorClassName(leftBorder))}`,
+      flat && is("flat"),
+      hat && has("hat"),
+      fullheight && is("fullheight"),
+      active && is("active")
+    )
   )
 
   useEffect(() => {
@@ -86,7 +89,7 @@ const Box = ({
   }
 
   const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
+    cursor: "pointer",
   }
 
   return (
@@ -100,7 +103,11 @@ const Box = ({
       className={classes}
       {...others}
       {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover', backgroundPosition: '50%' },
+        style: {
+          backgroundImage: `url(${backgroundSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "50%",
+        },
       })}
     >
       {children}
