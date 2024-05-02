@@ -11,6 +11,8 @@ import {
   Columns,
   ColumnsItem,
   Divider,
+  Icon,
+  IconName,
   Link,
   Section,
   Text,
@@ -25,15 +27,14 @@ export const BoxScreen = (): JSX.Element => {
   return (
     <Section>
       <AutoLayout>
+        <Box onClick={() => setActive(!active)} active={active}>
+          <BoxHeader>Box active</BoxHeader>
+          <BoxContent>
+            <Text>Click on this box to see the active state.</Text>
+          </BoxContent>
+        </Box>
         <Columns multiline>
-          <ColumnsItem size={6}>
-            <Box onClick={() => setActive(!active)} active={active}>
-              <BoxHeader>Box active</BoxHeader>
-              <BoxContent>
-                <Text>Click on this box to see the active state.</Text>
-              </BoxContent>
-            </Box>
-          </ColumnsItem>
+          <ColumnsItem size={6}></ColumnsItem>
           <ColumnsItem size={10}>
             <Box>
               <BoxHeader>Box with Header and Content</BoxHeader>
@@ -139,6 +140,7 @@ export const BoxScreen = (): JSX.Element => {
           inverted
         >
           <BoxContent>
+            <Icon name={IconName.EYE} />
             <Text>Background color is not faded.</Text>
             <Title level={TitleLevels.FOUR}>Simple box</Title>
             <Text>Background color is not faded.</Text>

@@ -41,9 +41,8 @@ const Box = ({
   ...others
 }: BoxProps): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.WHITE)
-  const boxRadius = 6
   const [boxHeight, setBoxHeight] = useState(0)
-
+  const boxRadius = 6
   const styles = StyleSheet.create({
     box: {
       width: "100%",
@@ -146,14 +145,18 @@ const Box = ({
             }
           >
             {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-            <StatesContext.Provider value={{ inverted: !!inverted }}>
+            <StatesContext.Provider
+              value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+            >
               <View style={styles.column}>{children}</View>
             </StatesContext.Provider>
           </ImageBackground>
         ) : (
           <>
             {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-            <StatesContext.Provider value={{ inverted: !!inverted }}>
+            <StatesContext.Provider
+              value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+            >
               <View style={styles.column}>{children}</View>
             </StatesContext.Provider>
           </>
@@ -183,12 +186,16 @@ const Box = ({
           }
         >
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-          <StatesContext.Provider value={{ inverted: !!inverted }}>
+          <StatesContext.Provider
+            value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+          >
             <View style={styles.column}>{children}</View>
           </StatesContext.Provider>
         </ImageBackground>
       ) : (
-        <StatesContext.Provider value={{ inverted: !!inverted }}>
+        <StatesContext.Provider
+          value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
+        >
           {Boolean(leftBorder) && <View style={styles.leftBorder} />}
           <View style={styles.column}>{children}</View>
         </StatesContext.Provider>
