@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { CardMarkup, CardProps } from './CardProps'
-import {has, is} from '../../services/classify'
-import {getAlignClassName, getBackgroundClassName} from '../../objects'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import React, { useEffect, useState } from "react"
+import clsx from "clsx"
+import { CardMarkup, CardProps } from "./CardProps"
+import { has, is } from "../../services/classify"
+import { getAlignClassName, getBackgroundClassName } from "../../objects"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
+
 /**
  * Card Component
  * @param flat {boolean} Adding border for Card content
  * @param horizontal {boolean} Horizontal Card orientation
+ * @param background {TrilogyColor} Card Background Color
+ * @param inverted {boolean} Inverted Card Color
  * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
  * @param children {React.ReactNode}
@@ -49,28 +52,28 @@ const Card = ({
   }, [skeleton])
 
   const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
+    cursor: "pointer",
   }
 
   const classes = hashClass(
     styled,
     clsx(
-      'card',
+      "card",
       background && has(getBackgroundClassName(background)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
+      backgroundSrc && has("background"),
+      (inverted && is("inverted")) || is("base"),
 
-    flat && is('flat'),
-      horizontal && [is('horizontal'), is('vcentered')],
-      floating && is('floating'),
+      flat && is("flat"),
+      horizontal && [is("horizontal"), is("vcentered")],
+      floating && is("floating"),
       align && is(getAlignClassName(align)),
       justify && is(justify),
-      isLoading ? is('loading') : is('loaded'),
-      reversed && is('reversed'),
+      isLoading ? is("loading") : is("loaded"),
+      reversed && is("reversed"),
       className,
-      fullheight && is('fullheight'),
-      active && is('active')
-    ),
+      fullheight && is("fullheight"),
+      active && is("active")
+    )
   )
 
   if (markup === CardMarkup.A) {

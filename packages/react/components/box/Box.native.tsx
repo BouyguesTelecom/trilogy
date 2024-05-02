@@ -17,6 +17,7 @@ import { StatesContext } from "../../context/providerStates"
  * @param testId {string} Test id
  * @param shadowless {boolean} Remove box shadow
  * @param backgroundSrc {string} Source of background Image
+ * @param inverted {boolean} Inverted Box Color
  * @param flat {boolean} Flat box remove shadow and add plain border
  * @param hat {boolean} Box with a component Sticker props:hat
  * @param flex {boolean} Flex: 1 to the box if usage of Image for Example
