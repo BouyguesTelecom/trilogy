@@ -1,11 +1,11 @@
-import React, {createContext, useState} from "react"
+import React, { useState } from "react"
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { BoxProps } from "./BoxProps"
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { getBackgroundStyle } from "../../objects/atoms/Background"
 import { ComponentName } from "../enumsComponentsName"
-import {defaultStates, StatesContext, StatesContextProvider} from "../../context/providerStates"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Box Component
@@ -123,58 +123,80 @@ const Box = ({
     return <BoxSkeleton />
   }
 
-  const Content = () =>   (  <>{backgroundSrc ? (
-      <ImageBackground
-        imageStyle={{ borderRadius: boxRadius }}
-        style={styles.boxImage}
-        source={
-          typeof backgroundSrc === "number"
-            ? backgroundSrc
-            : { uri: backgroundSrc }
-        }
-      >
-        {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-        <View style={styles.column}>
-          <StatesContext.Provider value={{
-            inverted: !!inverted,
-            disabled: false,
-            loading: false,
-            skeleton: false
-          }}
-          >{children}</StatesContext.Provider></View>
-      </ImageBackground>
-    ) : (
-      <>
-        {Boolean(leftBorder) && <View style={styles.leftBorder} />}
-        <View style={styles.column}><StatesContext.Provider value={{
-          inverted: !!inverted,
-          disabled: false,
-          loading: false,
-          skeleton: false
-        }}
-        >{children}</StatesContext.Provider></View>
-      </>
-    )}</>
+  const Content = () => (
+    <>
+      {backgroundSrc ? (
+        <ImageBackground
+          imageStyle={{ borderRadius: boxRadius }}
+          style={styles.boxImage}
+          source={
+            typeof backgroundSrc === "number"
+              ? backgroundSrc
+              : { uri: backgroundSrc }
+          }
+        >
+          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          <View style={styles.column}>
+            <StatesContext.Provider
+              value={{
+                inverted: !!inverted,
+                disabled: false,
+                loading: false,
+                skeleton: false,
+              }}
+            >
+              {children}
+            </StatesContext.Provider>
+          </View>
+        </ImageBackground>
+      ) : (
+        <>
+          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          <View style={styles.column}>
+            <StatesContext.Provider
+              value={{
+                inverted: !!inverted,
+                disabled: false,
+                loading: false,
+                skeleton: false,
+              }}
+            >
+              {children}
+            </StatesContext.Provider>
+          </View>
+        </>
+      )}
+    </>
   )
 
-  return onClick && ( <TouchableOpacity
-      onPress={(e?: unknown) => onClick?.(e)}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-      onLayout={(event) => {
-        const { height } = event.nativeEvent.layout
-        setBoxHeight(height)
-      }}
-      testID={boxTestId}
-  ><Content/></TouchableOpacity>) || (<View
-      onLayout={(event) => {
-        const { height } = event.nativeEvent.layout
-        setBoxHeight(height)
-      }}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-      testID={boxTestId}
-  ><Content/></View>)
+  return (
+    (onClick && (
+      <TouchableOpacity
+        onPress={(e?: unknown) => onClick?.(e)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+        onLayout={(event) => {
+          const { height } = event.nativeEvent.layout
+          setBoxHeight(height)
+        }}
+        testID={boxTestId}
+      >
+        <Content />
+      </TouchableOpacity>
+    )) || (
+      <View
+        onLayout={(event) => {
+          const { height } = event.nativeEvent.layout
+          setBoxHeight(height)
+        }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+        testID={boxTestId}
+      >
+        <Content />
+      </View>
+    )
+  )
 }
 
 Box.displayName = ComponentName.Box

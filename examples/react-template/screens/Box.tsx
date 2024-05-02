@@ -11,8 +11,15 @@ import {
   Section,
   Text,
 } from "@trilogy-ds/react/components";
-import {TrilogyColor, TypographyAlign,} from "@trilogy-ds/react/objects";
-import {Button, ButtonVariant, Columns, ColumnsItem, Title, TitleLevels, TypographyColor,} from "@trilogy-ds/react";
+import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
+import {
+  Button,
+  ButtonVariant,
+  Columns,
+  ColumnsItem,
+  Title,
+  TitleLevels,
+} from "@trilogy-ds/react";
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false);
@@ -89,96 +96,113 @@ export const BoxScreen = (): JSX.Element => {
         </Columns>
         <Divider />
 
-            <Box onClick={() => setActive(!active)} active={active} background={TrilogyColor.MAIN} inverted>
-              <BoxHeader>Box active</BoxHeader>
-              <BoxContent>
-                <Text >Background : Main Color.</Text>
-              </BoxContent>
-            </Box>
+        <Box
+          onClick={() => setActive(!active)}
+          active={active}
+          background={TrilogyColor.MAIN}
+          inverted
+        >
+          <BoxHeader>Box active</BoxHeader>
+          <BoxContent>
+            <Text>Background : Main Color.</Text>
+          </BoxContent>
+        </Box>
 
-            <Box background={{color:TrilogyColor.MAIN, fade:true}}>
-              <BoxHeader>Box with Header and Content</BoxHeader>
-              <BoxContent>
-                <Text>
-                  Background color is faded.
-                </Text>
-              </BoxContent>
-              <BoxFooter>
-                <Button variant={ButtonVariant.PRIMARY}>Check out</Button>
-              </BoxFooter>
-            </Box>
+        <Box background={{ color: TrilogyColor.MAIN, fade: true }}>
+          <BoxHeader>Box with Header and Content</BoxHeader>
+          <BoxContent>
+            <Text>Background color is faded.</Text>
+          </BoxContent>
+          <BoxFooter>
+            <Button variant={ButtonVariant.PRIMARY}>Check out</Button>
+          </BoxFooter>
+        </Box>
 
-            <Box background={{color:TrilogyColor.SUCCESS, fade:true}}>
+        <Box background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+          <BoxContent>
+            <Title level={TitleLevels.FOUR}>Simple box</Title>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              maximus tellus sed erat maximus porta. Etiam non ex in dolor
+              faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
+              urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
+              finibus dolor ex. Duis vel velit in lectus placerat aliquam nec at
+              elit. Aenean metus neque, accumsan id ipsum sodales, fermentum
+              lacinia eros. Ut gravida aliquet magna, id efficitur magna
+              ultrices a. In quis bibendum tortor. Nam quam lacus, suscipit a
+              vehicula ac, vehicula eget risus.
+            </Text>
+          </BoxContent>
+        </Box>
+
+        <Box
+          background={{ color: TrilogyColor.INFO, fade: false }}
+          flat
+          inverted
+        >
+          <BoxContent>
+            <Text>Background color is not faded.</Text>
+            <Title level={TitleLevels.FOUR}>Simple box</Title>
+            <Text>Background color is not faded.</Text>
+          </BoxContent>
+        </Box>
+
+        <Box
+          background={{ color: TrilogyColor.INFO, fade: false }}
+          flat
+          inverted
+        >
+          <BoxContent>
+            <Title level={TitleLevels.FOUR}>Flat box</Title>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              maximus tellus sed erat maximus porta. Etiam non ex in dolor
+              faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
+              urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
+              finibus dolor ex. Duis vel velit in lectus placerat aliquam nec at
+              elit. Aenean metus neque, accumsan id ipsum sodales, fermentum
+              lacinia eros. Ut gravida aliquet magna, id efficitur magna
+              ultrices a. In quis bibendum tortor. Nam quam lacus, suscipit a
+              vehicula ac, vehicula eget risus.
+            </Text>
+            <Box
+              background={{ color: TrilogyColor.BACKGROUND, fade: false }}
+              flat
+            >
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Simple box</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  maximus tellus sed erat maximus porta. Etiam non ex in dolor
-                  faucibus tempor. Sed ullamcorper, ligula sit amet dictum
-                  posuere, urna tortor vulputate justo, ut luctus justo eros sed
-                  erat. Fusce finibus dolor ex. Duis vel velit in lectus
-                  placerat aliquam nec at elit. Aenean metus neque, accumsan id
-                  ipsum sodales, fermentum lacinia eros. Ut gravida aliquet
-                  magna, id efficitur magna ultrices a. In quis bibendum tortor.
-                  Nam quam lacus, suscipit a vehicula ac, vehicula eget risus.
-                </Text>
-              </BoxContent>
-            </Box>
-
-            <Box background={{color:TrilogyColor.INFO, fade:false}} flat inverted>
-              <BoxContent>
-                <Title level={TitleLevels.FOUR}>Simple box</Title>
-                <Text>
-                  Background color is not faded.
-                </Text>
-              </BoxContent>
-            </Box>
-
-            <Box background={{color:TrilogyColor.INFO, fade:false}} flat inverted>
-              <BoxContent>
-                <Title level={TitleLevels.FOUR}>Flat box</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  maximus tellus sed erat maximus porta. Etiam non ex in dolor
-                  faucibus tempor. Sed ullamcorper, ligula sit amet dictum
-                  posuere, urna tortor vulputate justo, ut luctus justo eros sed
-                  erat. Fusce finibus dolor ex. Duis vel velit in lectus
-                  placerat aliquam nec at elit. Aenean metus neque, accumsan id
-                  ipsum sodales, fermentum lacinia eros. Ut gravida aliquet
-                  magna, id efficitur magna ultrices a. In quis bibendum tortor.
-                  Nam quam lacus, suscipit a vehicula ac, vehicula eget risus.
-                </Text>
-                <Box background={{color:TrilogyColor.BACKGROUND, fade:false}} flat >
-                  <BoxContent>
-                    <Title level={TitleLevels.FOUR}>Simple box</Title>
-                    <Columns>
-                      <ColumnsItem size={5} >
-                        <Text>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                          maximus tellus sed erat maximus porta. Etiam non ex in dolor
-                          faucibus tempor. Sed ullamcorper, ligula sit amet dictum
-                          posuere, urna tortor vulputate justo, ut luctus justo eros sed
-                          erat. Fusce finibus dolor ex. Duis vel velit in lectus
-                          placerat aliquam nec at elit. Aenean metus neque, accumsan id
-                          ipsum sodales, fermentum lacinia eros. Ut gravida aliquet
-                          magna, id efficitur magna ultrices a. In quis bibendum tortor.
-                          Nam quam lacus, suscipit a vehicula ac, vehicula eget risus.
-                        </Text>
-                      </ColumnsItem>
-                      <ColumnsItem size={5} >
-                    <Box background={{color:TrilogyColor.MAIN, fade:false}} flat inverted>
+                <Columns>
+                  <ColumnsItem size={5}>
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nunc maximus tellus sed erat maximus porta. Etiam non ex
+                      in dolor faucibus tempor. Sed ullamcorper, ligula sit amet
+                      dictum posuere, urna tortor vulputate justo, ut luctus
+                      justo eros sed erat. Fusce finibus dolor ex. Duis vel
+                      velit in lectus placerat aliquam nec at elit. Aenean metus
+                      neque, accumsan id ipsum sodales, fermentum lacinia eros.
+                      Ut gravida aliquet magna, id efficitur magna ultrices a.
+                      In quis bibendum tortor. Nam quam lacus, suscipit a
+                      vehicula ac, vehicula eget risus.
+                    </Text>
+                  </ColumnsItem>
+                  <ColumnsItem size={5}>
+                    <Box
+                      background={{ color: TrilogyColor.MAIN, fade: false }}
+                      flat
+                      inverted
+                    >
                       <BoxContent>
                         <Title level={TitleLevels.FOUR}>Simple box</Title>
-                        <Text>
-                          Background color is not faded.
-                        </Text>
+                        <Text>Background color is not faded.</Text>
                       </BoxContent>
                     </Box>
-                    </ColumnsItem></Columns>
-                  </BoxContent>
-                </Box>
+                  </ColumnsItem>
+                </Columns>
               </BoxContent>
             </Box>
+          </BoxContent>
+        </Box>
         <Divider />
         <Columns>
           <ColumnsItem size={10}>
@@ -283,9 +307,7 @@ export const BoxScreen = (): JSX.Element => {
             <Box backgroundSrc={"https://picsum.photos/id/1/1500/600"} inverted>
               <Title
                 level={TitleLevels.THREE}
-                typo={[
-                  TypographyAlign.TEXT_CENTERED
-                ]}
+                typo={[TypographyAlign.TEXT_CENTERED]}
               >
                 Box with background image
               </Title>
@@ -304,12 +326,10 @@ export const BoxScreen = (): JSX.Element => {
             </Box>
           </ColumnsItem>
           <ColumnsItem size={10}>
-            <Box backgroundSrc={"https://picsum.photos/seed/picsum/1500/600"} >
+            <Box backgroundSrc={"https://picsum.photos/seed/picsum/1500/600"}>
               <Title
                 level={TitleLevels.THREE}
-                typo={[
-                  TypographyAlign.TEXT_CENTERED
-                ]}
+                typo={[TypographyAlign.TEXT_CENTERED]}
               >
                 Box with background image
               </Title>

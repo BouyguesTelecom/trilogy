@@ -4,10 +4,11 @@ import { CardProps } from "./CardProps"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "../enumsComponentsName"
+import { getBackgroundStyle } from "../../objects/atoms/Background"
 
 export const CardContext = createContext({
   floating: false,
-  backgroundColor: "",
+  backgroundColor: "" || {},
   horizontal: false,
   reversed: false,
   active: false,
@@ -34,7 +35,7 @@ const Card = ({
   floating,
   onClick,
   skeleton,
-  backgroundColor = TrilogyColor.BACKGROUND,
+  background = TrilogyColor.BACKGROUND,
   reversed,
   fullheight,
   active,
@@ -42,6 +43,7 @@ const Card = ({
 }: CardProps): JSX.Element => {
   const borderColor = "#ccc"
   const cardRadius = 6
+  const colorBgc = getColorStyle(TrilogyColor.WHITE)
 
   const styles = StyleSheet.create({
     card: {
@@ -53,10 +55,7 @@ const Card = ({
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         "transparent",
       borderRadius: cardRadius,
-      backgroundColor:
-        backgroundColor === "transparent"
-          ? "rgba(0, 0, 0, 0.0)"
-          : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: background ? getBackgroundStyle(background) : colorBgc,
       flex: fullheight ? 1 : 0,
     },
     horizontal: {
@@ -122,7 +121,7 @@ const Card = ({
     <CardContext.Provider
       value={{
         floating: floating || false,
-        backgroundColor: backgroundColor || "white",
+        backgroundColor: background || "white",
         horizontal: horizontal || false,
         reversed: reversed || false,
         active: active || false,
@@ -142,7 +141,7 @@ const Card = ({
     <CardContext.Provider
       value={{
         floating: floating || false,
-        backgroundColor: backgroundColor || "white",
+        backgroundColor: background || "white",
         horizontal: horizontal || false,
         reversed: reversed || false,
         active: active || false,

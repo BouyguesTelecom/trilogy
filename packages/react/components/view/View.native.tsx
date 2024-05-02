@@ -1,11 +1,6 @@
 import * as React from "react"
-import {
-  View as ViewNative,
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native"
-import { getAlignStyle, getJustifyStyle } from "../../objects"
+import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative, } from "react-native"
+import { getAlignStyle, getJustifyStyle, TrilogyColor } from "../../objects"
 import { getColorStyle } from "../../objects/facets/Color"
 import { ViewProps } from "./ViewProps"
 import { ComponentName } from "../enumsComponentsName"
@@ -32,7 +27,7 @@ const View = ({
   onClick,
   flexable,
   bottom,
-  color,
+  background,
   backgroundSrc,
   id,
   justify,
@@ -40,7 +35,8 @@ const View = ({
   align,
   ...others
 }: ViewProps): JSX.Element => {
-  const viewColor = (color && getColorStyle(color)) || "transparent"
+  const viewColor =
+    (background && getColorStyle(background as TrilogyColor)) || "transparent"
 
   const styles = StyleSheet.create({
     view: {
