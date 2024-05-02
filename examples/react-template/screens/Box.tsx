@@ -14,6 +14,7 @@ import {
   Icon,
   IconName,
   Link,
+  Price,
   Section,
   Text,
   Title,
@@ -104,6 +105,7 @@ export const BoxScreen = (): JSX.Element => {
           <BoxHeader>Box active</BoxHeader>
           <BoxContent>
             <Text>Background : Main Color.</Text>
+            <Price amount={100} />
           </BoxContent>
         </Box>
 
