@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { BoxMarkup, BoxProps } from './BoxProps'
-import { has, is } from '../../services/classify'
-import { getBackgroundClassName } from '../../objects/atoms/Background'
-import { getColorClassName } from '../../objects'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import {invert} from "react-native-svg/lib/typescript/elements/Shape";
+import React, { useEffect, useState } from "react"
+import { BoxMarkup, BoxProps } from "./BoxProps"
+import { has, is } from "../../services/classify"
+import { getBackgroundClassName } from "../../objects/atoms/Background"
+import { getColorClassName } from "../../objects"
+import clsx from "clsx"
+import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "../../context"
 
 /**
  * Box Component
@@ -52,19 +51,19 @@ const Box = ({
   const classes = hashClass(
     styled,
     clsx(
-      'box',
-      shadowless && is('shadowless'),
+      "box",
+      shadowless && is("shadowless"),
       className,
       background && has(getBackgroundClassName(background)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
-      isLoading ? is('loading') : is('loaded'),
-      leftBorder && `${is('highlighted')} ${is(getColorClassName(leftBorder))}`,
-      flat && is('flat'),
-      hat && has('hat'),
-      fullheight && is('fullheight'),
-      active && is('active')
-    ),
+      backgroundSrc && has("background"),
+      (inverted && is("inverted")) || is("base"),
+      isLoading ? is("loading") : is("loaded"),
+      leftBorder && `${is("highlighted")} ${is(getColorClassName(leftBorder))}`,
+      flat && is("flat"),
+      hat && has("hat"),
+      fullheight && is("fullheight"),
+      active && is("active")
+    )
   )
 
   useEffect(() => {
@@ -89,7 +88,7 @@ const Box = ({
   }
 
   const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
+    cursor: "pointer",
   }
 
   return (
@@ -103,7 +102,11 @@ const Box = ({
       className={classes}
       {...others}
       {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover', backgroundPosition: '50%' },
+        style: {
+          backgroundImage: `url(${backgroundSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "50%",
+        },
       })}
     >
       {children}
