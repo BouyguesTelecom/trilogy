@@ -1,8 +1,10 @@
 import * as React from "react"
+import { useContext } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { BoxHeaderProps } from "./BoxHeaderProps"
 import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
 import { ComponentName } from "../../enumsComponentsName"
+import { StatesContext } from "../../../context/providerStates"
 
 /**
  * Box Header Component
@@ -23,6 +25,8 @@ const BoxHeader = ({
   help,
   ...others
 }: BoxHeaderProps): JSX.Element => {
+  const statesContext = useContext(StatesContext)
+
   const headerBgc = variant
     ? getColorStyle(variant)
     : getColorStyle(TrilogyColor.MAIN)
@@ -36,6 +40,8 @@ const BoxHeader = ({
       paddingLeft: 16,
       borderTopLeftRadius: 6,
       borderTopRightRadius: 6,
+      marginTop:
+        (statesContext.active && -2) || (statesContext.flat && -1) || 0,
       justifyContent: "space-between",
       alignItems:
         (centered && "center") ||
