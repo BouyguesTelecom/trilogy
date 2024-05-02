@@ -13,6 +13,7 @@ import { useTrilogyContext } from "../../context"
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param background {TrilogyColor} Box Content Background Color
+ * @param inverted {boolean} Inverted Box Color
  * @param leftBorder {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param shadowless {boolean} Remove box shadow
  * @param flat {boolean} Flat box remove shadow and add plain border
