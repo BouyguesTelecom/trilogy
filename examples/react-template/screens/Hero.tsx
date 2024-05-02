@@ -19,12 +19,7 @@ import { TitleMarkup, TrilogyColor } from "@trilogy-ds/react";
 export const HeroScreen = (): JSX.Element => {
   return (
     <Section>
-      <Hero
-        variant={TrilogyColor.MAIN}
-        overlap
-        background={TrilogyColor.MAIN}
-        inverted
-      >
+      <Hero background={TrilogyColor.MAIN} overlap inverted>
         <Container>
           <Title markup={TitleMarkup.H1} level={TitleLevels.TWO}>
             Hero Overlapped
