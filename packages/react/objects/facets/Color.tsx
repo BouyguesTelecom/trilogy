@@ -76,7 +76,9 @@ export const colors: Record<TrilogyColor, string[]> = {
       ? ["grey-dark", "#646464", "white", "#E9E9E9"]
       : ["#646464", "#E9E9E9"],
   [TrilogyColor.NEUTRAL_LIGHT]:
-    navigator.userAgent !== undefined ? [] : ["#E9E9E9", "#E9E9E9"],
+    navigator.userAgent !== undefined
+      ? ["#E9E9E9", "#E9E9E9"]
+      : ["#E9E9E9", "#E9E9E9"],
   [TrilogyColor.HOVERED]:
     navigator.userAgent !== undefined
       ? ["hovered", "#F4F4F4", "white", "#F4F4F4"]
