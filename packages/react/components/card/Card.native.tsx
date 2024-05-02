@@ -4,7 +4,8 @@ import { CardProps } from "./CardProps"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "../enumsComponentsName"
-import { getBackgroundStyle } from "../../objects/atoms/Background"
+import { getBackgroundStyle } from "../../lib/objects/atoms/Background"
+import { StatesContext } from "../../context/providerStates"
 
 export const CardContext = createContext({
   floating: false,
@@ -35,16 +36,17 @@ const Card = ({
   floating,
   onClick,
   skeleton,
-  background = TrilogyColor.BACKGROUND,
+  background,
   reversed,
   fullheight,
   active,
+  inverted,
   ...others
 }: CardProps): JSX.Element => {
   const borderColor = "#ccc"
   const cardRadius = 6
-  const colorBgc = getColorStyle(TrilogyColor.WHITE)
-
+  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
+  console.log(background)
   const styles = StyleSheet.create({
     card: {
       width: "100%",
@@ -70,7 +72,6 @@ const Card = ({
       elevation: 5,
     },
     contentHorizontal: {
-      backgroundColor: "red",
       borderWidth: 2,
       margin: 2,
       padding: 10,
@@ -118,37 +119,45 @@ const Card = ({
   }
 
   return onClick ? (
-    <CardContext.Provider
-      value={{
-        floating: floating || false,
-        backgroundColor: background || "white",
-        horizontal: horizontal || false,
-        reversed: reversed || false,
-        active: active || false,
-      }}
+    <StatesContext.Provider
+      value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
     >
-      <View style={{ width: "100%" }}>
-        <TouchableOpacity
-          style={{ width: "100%" }}
-          onPress={onClick}
-          activeOpacity={0.85}
-        >
-          {cardView}
-        </TouchableOpacity>
-      </View>
-    </CardContext.Provider>
+      <CardContext.Provider
+        value={{
+          floating: floating || false,
+          backgroundColor: background || "white",
+          horizontal: horizontal || false,
+          reversed: reversed || false,
+          active: active || false,
+        }}
+      >
+        <View style={{ width: "100%" }}>
+          <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={onClick}
+            activeOpacity={0.85}
+          >
+            {cardView}
+          </TouchableOpacity>
+        </View>
+      </CardContext.Provider>
+    </StatesContext.Provider>
   ) : (
-    <CardContext.Provider
-      value={{
-        floating: floating || false,
-        backgroundColor: background || "white",
-        horizontal: horizontal || false,
-        reversed: reversed || false,
-        active: active || false,
-      }}
+    <StatesContext.Provider
+      value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
     >
-      {cardView}
-    </CardContext.Provider>
+      <CardContext.Provider
+        value={{
+          floating: floating || false,
+          backgroundColor: background || "white",
+          horizontal: horizontal || false,
+          reversed: reversed || false,
+          active: active || false,
+        }}
+      >
+        {cardView}
+      </CardContext.Provider>
+    </StatesContext.Provider>
   )
 }
 
