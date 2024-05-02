@@ -1,11 +1,11 @@
-import {useContext} from "react";
-import {TrilogyThemeContext} from "../../context/providerTheme";
+import { useContext } from "react"
+import { TrilogyThemeContext } from "../../context/providerTheme"
 
 /**
  * Trilogy color
  */
 export enum TrilogyColor {
-  BACKGROUND = "BACKGROUND",
+  BACKGROUND = "WHITE",
   MAIN = "MAIN",
   ACCENT = "ACCENT",
   FONT = "FONT",
@@ -27,21 +27,61 @@ export type TrilogyColorValues = `${TrilogyColor}`;
  * Trilogy color values
  */
 export const colors: Record<TrilogyColor, string[]> = {
-  [TrilogyColor.BACKGROUND]: navigator.userAgent !== undefined ? ["white", "#fff", "main", "#E9E9E9"] : ["#fff", "#E9E9E9"],
-  [TrilogyColor.MAIN]: navigator.userAgent !== undefined ? ["main", "#3d5d7e", "white", "#eff2f8"] : ["#3d5d7e", "#eff2f8"],
-  [TrilogyColor.WHITE]: navigator.userAgent !== undefined ? ["white", "#fff", "main", "#E9E9E9"] : ["#fff", "#E9E9E9"],
-  [TrilogyColor.ACCENT]: navigator.userAgent !== undefined ? ["accent", "#da641b", "white", "#bb5118"] : ["#da641b", "#bb5118"],
-  [TrilogyColor.FONT]: navigator.userAgent !== undefined ? ["main", "#3d5d7e", "white", "#BBC6CD"] : ["#3d5d7e", "#BBC6CD"],
-  [TrilogyColor.SUCCESS]: navigator.userAgent !== undefined ? ["success", "#007B52", "white", "#cae8ca"] : ["#007B52", "#cae8ca"],
-  [TrilogyColor.INFO]: navigator.userAgent !== undefined ? ["info", "#1A688A", "white", "#c8dbec"] : ["#1A688A", "#c8dbec"],
-  [TrilogyColor.WARNING]: navigator.userAgent !== undefined ? ["warning", "#FFBB33", "white", "#ecdbc6"] : ["#FFBB33", "#ecdbc6"],
-  [TrilogyColor.ERROR]: navigator.userAgent !== undefined ? ["error", "#D42D02", "white", "#eecccc"] : ["#D42D02", "#eecccc"],
-  [TrilogyColor.DISABLED]: navigator.userAgent !== undefined ? ["disabled", "#646464", "white", "#D1D1D1"] : ["#646464", "#D1D1D1"],
-  [TrilogyColor.NEUTRAL]: navigator.userAgent !== undefined ? ["grey", "#707070", "white", "#F4F4F4"] : ["#707070", "#F4F4F4"],
-  [TrilogyColor.NEUTRAL_DARK]: navigator.userAgent !== undefined ? ["grey-dark", "#646464", "white", "#E9E9E9"] : ["#646464", "#E9E9E9"],
-  [TrilogyColor.NEUTRAL_LIGHT]: ["grey-light", "#E9E9E9", "white", "#E9E9E9"],
-  [TrilogyColor.HOVERED]: navigator.userAgent !== undefined ? ["hovered", "#F4F4F4", "white", "#F4F4F4"] : ["#F4F4F4", "#F4F4F4"]
-};
+  [TrilogyColor.BACKGROUND]:
+    navigator.userAgent !== undefined
+      ? ["white", "#fff", "main", "#E9E9E9"]
+      : ["#fff", "#E9E9E9"],
+  [TrilogyColor.MAIN]:
+    navigator.userAgent !== undefined
+      ? ["main", "#3d5d7e", "white", "#eff2f8"]
+      : ["#3d5d7e", "#eff2f8"],
+  [TrilogyColor.WHITE]:
+    navigator.userAgent !== undefined
+      ? ["white", "#fff", "main", "#E9E9E9"]
+      : ["#fff", "#E9E9E9"],
+  [TrilogyColor.ACCENT]:
+    navigator.userAgent !== undefined
+      ? ["accent", "#da641b", "white", "#bb5118"]
+      : ["#da641b", "#bb5118"],
+  [TrilogyColor.FONT]:
+    navigator.userAgent !== undefined
+      ? ["main", "#3d5d7e", "white", "#BBC6CD"]
+      : ["#3d5d7e", "#BBC6CD"],
+  [TrilogyColor.SUCCESS]:
+    navigator.userAgent !== undefined
+      ? ["success", "#007B52", "white", "#cae8ca"]
+      : ["#007B52", "#cae8ca"],
+  [TrilogyColor.INFO]:
+    navigator.userAgent !== undefined
+      ? ["info", "#1A688A", "white", "#c8dbec"]
+      : ["#1A688A", "#c8dbec"],
+  [TrilogyColor.WARNING]:
+    navigator.userAgent !== undefined
+      ? ["warning", "#FFBB33", "white", "#ecdbc6"]
+      : ["#FFBB33", "#ecdbc6"],
+  [TrilogyColor.ERROR]:
+    navigator.userAgent !== undefined
+      ? ["error", "#D42D02", "white", "#eecccc"]
+      : ["#D42D02", "#eecccc"],
+  [TrilogyColor.DISABLED]:
+    navigator.userAgent !== undefined
+      ? ["disabled", "#646464", "white", "#D1D1D1"]
+      : ["#646464", "#D1D1D1"],
+  [TrilogyColor.NEUTRAL]:
+    navigator.userAgent !== undefined
+      ? ["grey", "#707070", "white", "#F4F4F4"]
+      : ["#707070", "#F4F4F4"],
+  [TrilogyColor.NEUTRAL_DARK]:
+    navigator.userAgent !== undefined
+      ? ["grey-dark", "#646464", "white", "#E9E9E9"]
+      : ["#646464", "#E9E9E9"],
+  [TrilogyColor.NEUTRAL_LIGHT]:
+    navigator.userAgent !== undefined ? [] : ["#E9E9E9", "#E9E9E9"],
+  [TrilogyColor.HOVERED]:
+    navigator.userAgent !== undefined
+      ? ["hovered", "#F4F4F4", "white", "#F4F4F4"]
+      : ["#F4F4F4", "#F4F4F4"],
+}
 
 /**
  * Returns color's className depending on Trilogy Color
@@ -116,7 +156,9 @@ export const getColorStyle = (
 
     const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
     const colorIndex =
-      index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+      index && index !== undefined && index >= 0 && index < colorArray.length
+        ? index
+        : 0
 
     if (!trilogyColor || !colors[trilogyColor]) {
       return colorsStyle.default
@@ -125,7 +167,9 @@ export const getColorStyle = (
   } else {
     const colorArray = colors[trilogyColor]
     const colorIndex =
-      index !== undefined && index >= 0 && index < colorArray.length ? index : 0
+      index !== undefined && index >= 0 && index < colorArray.length
+        ? index
+        : 0
 
     return colorArray[colorIndex]
   }

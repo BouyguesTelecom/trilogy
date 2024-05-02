@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useContext } from "react"
 import { Platform, StyleSheet, Text as TextNative, View } from "react-native"
 import { TextProps } from "./TextProps"
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "../../objects/Typography"
@@ -6,6 +6,7 @@ import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { TextLevels, TextLevelValues } from "./TextEnum"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "../enumsComponentsName"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Text Native Component
@@ -36,6 +37,7 @@ const Text = ({
   numberOfLines = 0,
   ...others
 }: TextProps): JSX.Element => {
+  const statesContext = useContext(StatesContext)
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
       (level && level == "ONE" && 16) ||
@@ -51,7 +53,8 @@ const Text = ({
       fontFamily: getTypographyBoldStyle(typo, level),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
-        (!skeleton && setTypographyColor(typo, inverted)) ||
+        (!skeleton &&
+          setTypographyColor(typo, inverted || statesContext.inverted)) ||
         (link && getColorStyle(TrilogyColor.FONT)) ||
         "transparent",
       textAlign: setTypographyAlign(typo),

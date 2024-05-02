@@ -1,7 +1,7 @@
 import React from "react"
 import { HeroProps } from "./HeroProps"
 import { has, is } from "../../services/classify"
-import { getAlignClassName, getVariantClassName } from "../../objects"
+import {getAlignClassName, getBackgroundClassName, getVariantClassName} from "../../objects"
 import clsx from "clsx"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
@@ -21,11 +21,12 @@ import { useTrilogyContext } from "../../context"
  */
 const Hero = ({
   children,
-  className,
+  background,
   backgroundSrc,
+  inverted,
+  className,
   align,
   justify,
-  variant,
   onClick,
   overlap,
   ...others
@@ -36,22 +37,15 @@ const Hero = ({
     styled,
     clsx(
       "hero",
-      variant && is(`${getVariantClassName(variant)}`),
-      backgroundSrc && [is("main"), has("background")],
-      align && is(getAlignClassName(align)),
+      background && has(getBackgroundClassName(background)),
+      backgroundSrc && has('background'),
+      inverted && is('inverted') || is('base'),
+    align && is(getAlignClassName(align)),
       justify && is(justify),
       overlap && is("overlapped"),
       className
     )
   )
-
-  if (variant) {
-    return (
-      <section onClick={onClick && onClick} className={classes} {...others}>
-        <div className={hashClass(styled, clsx("hero-body"))}>{children}</div>
-      </section>
-    )
-  }
 
   return (
     <section

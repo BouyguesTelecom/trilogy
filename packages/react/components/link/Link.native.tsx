@@ -112,7 +112,6 @@ const Link = ({
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       textDecorationStyle: "solid",
       textDecorationLine: "underline",
-      fontWeight: "600",
     },
     androidLink: {
       color:
@@ -159,6 +158,7 @@ const Link = ({
     >
       {children && typeof children.valueOf() === "string" ? (
         <TouchableOpacity
+          activeOpacity={0.8}
           onPress={(e) => {
             if (to) {
               Linking.openURL(to || "")
@@ -199,6 +199,7 @@ const Link = ({
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
+          activeOpacity={0.8}
           onPress={(e) => {
             if (to) {
               Linking.openURL(to || "")

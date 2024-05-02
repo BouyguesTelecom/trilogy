@@ -1,10 +1,11 @@
-import React, { useMemo } from "react"
+import React, { useContext, useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
 import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "../enumsComponentsName"
+import { StatesContext } from "../../context/providerStates"
 
 /**
  * Price Component
@@ -38,6 +39,8 @@ const Price = ({
   suptitle,
   ...others
 }: PriceProps): JSX.Element => {
+  const statesContext = useContext(StatesContext)
+
   const isNegative = amount < 0
   const absoluteAmount = Math.abs(amount)
   const absoluteWhole = Math.floor(absoluteAmount)
@@ -66,6 +69,7 @@ const Price = ({
   const color = useMemo(
     () =>
       (inverted && !striked && invertedColor) ||
+      (statesContext.inverted && invertedColor) ||
       (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
       (alert && getAlertStyle(alert)) ||
       (!striked && !inverted && primaryColor) ||

@@ -18,10 +18,9 @@ a.box {
 }
 
 .box {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: getColor('background');
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: $radius;
-  color: getColor('font');
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -35,29 +34,6 @@ a.box {
   &:not(:last-child) {
     margin-bottom: 15px;
   }
-
-  &.has-background {
-    background-repeat: no-repeat;
-
-    &.is-inverted {
-      .box-content {
-        color: getColor('background');
-      }
-
-      .title,
-      .subtitle,
-      .text,
-      .paragraph,
-      p {
-        color: getColor('background');
-      }
-    }
-
-    .box-content {
-      background-color: transparent;
-    }
-  }
-
 
   &.is-active {
     border: 2px solid getColor('main');
@@ -199,8 +175,6 @@ a.box {
   }
 
   .box-content {
-    background-color: getColor('background');
-    color: getColor('font');
     margin: -$padding-box;
     padding: $padding-box;
 
