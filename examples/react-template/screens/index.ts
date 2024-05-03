@@ -33,6 +33,7 @@ export * from "./Radio";
 export * from "./Range";
 export * from "./SegmentedControl";
 export * from "./Select";
+export * from "./Selector";
 export * from "./Stepper";
 export * from "./Sticker";
 export * from "./Switch";
