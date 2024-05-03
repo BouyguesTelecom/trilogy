@@ -10,13 +10,12 @@
   ],
   "scripts": {
     "optimise:icons": "svgo -f ./assets/icons/all -o ./lib/icons/all",
-    "build": "rimraf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/"
+    "build": "rm -rf lib && npm run optimise:icons && tsc -p . && cp -r ./assets/fonts/ ./lib/fonts/"
   },
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.26",
     "svgo": "^3.0.2",
-    "rimraf": "^5.0.5",
     "esbuild": "^0.20.1"
   }
 }
