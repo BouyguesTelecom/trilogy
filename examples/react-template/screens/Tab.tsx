@@ -19,7 +19,6 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs activeIndex={activeIndexEventTab}>
         <TabsItem
-          disabled
           iconName={IconName.BELL}
           active={activeIndexEventTab === 0}
           onClick={() => setActivateIndexEventTab(0)}
@@ -44,7 +43,6 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs activeIndex={activeIndexEventTab} centered>
         <TabsItem
-          disabled
           iconName={IconName.BELL}
           active={activeIndexEventTab === 0}
           onClick={() => setActivateIndexEventTab(0)}
@@ -69,7 +67,6 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs activeIndex={activeIndexEventTab} inverted>
         <TabsItem
-
           iconName={IconName.BELL}
           active={activeIndexEventTab === 0}
           onClick={() => setActivateIndexEventTab(0)}
@@ -77,7 +74,6 @@ export const TabScreen = (): JSX.Element => {
           One
         </TabsItem>
         <TabsItem
-          disabled
           iconName={IconName.EYE_SLASH}
           active={activeIndexEventTab === 1}
           onClick={() => setActivateIndexEventTab(1)}
@@ -95,7 +91,6 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs activeIndex={index}>
         <TabsItem
-          disabled
           iconName={IconName.BELL}
           active={index === 1}
           onClick={() => setIndex(1)}
@@ -155,7 +150,6 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs activeIndex={index} inverted>
         <TabsItem
-          disabled
           iconName={IconName.BELL}
           active={index === 1}
           onClick={() => setIndex(1)}
@@ -214,7 +208,7 @@ export const TabScreen = (): JSX.Element => {
       </Tabs>
 
       <Tabs activeIndex={index}>
-        <TabsItem disabled active={index === 1} onClick={() => setIndex(1)}>
+        <TabsItem active={index === 1} onClick={() => setIndex(1)}>
           Im the item 1
         </TabsItem>
         <TabsItem active={index === 2} onClick={() => setIndex(2)}>
@@ -235,7 +229,7 @@ export const TabScreen = (): JSX.Element => {
       </Tabs>
 
       <Tabs activeIndex={index} inverted>
-        <TabsItem disabled active={index === 1} onClick={() => setIndex(1)}>
+        <TabsItem active={index === 1} onClick={() => setIndex(1)}>
           Im the item 1
         </TabsItem>
         <TabsItem active={index === 2} onClick={() => setIndex(2)}>
