@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { View } from "../view"
+import { getLoadingClassName, getVariantClassName } from "../../objects"
 import {
-  getLoadingClassName,
-  getVariantClassName,
-} from "../../objects"
-import { getColorStyle, TrilogyColor, getButtonColorStyle } from "../../objects/facets/Color"
+  getButtonColorStyle,
+  getColorStyle,
+  TrilogyColor,
+} from "../../objects/facets/Color"
 import { ButtonProps } from "./ButtonProps"
 import { Icon, IconSize } from "../icon"
 import { ButtonVariant } from "./ButtonEnum"
@@ -30,7 +31,7 @@ const findBackgroundColor = ({
     (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
       getColorStyle(TrilogyColor.MAIN, 1)) ||
-    (variant === ButtonVariant.ACCENT &&
+    (variant === ButtonVariant.CONVERSION &&
       getColorStyle(TrilogyColor.ACCENT, 1)) ||
     (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.WHITE)) ||
     (disabled &&

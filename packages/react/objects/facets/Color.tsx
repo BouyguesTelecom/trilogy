@@ -104,8 +104,8 @@ export const getColorClassName = (
  */
 export const getButtonVariantClassName = (trilogyColor?: string): string => {
   switch (trilogyColor) {
-    case "ACCENT":
-      return "accent"
+    case "CONVERSION":
+      return "conversion"
     case "PRIMARY":
       return "primary"
     case "SECONDARY":
