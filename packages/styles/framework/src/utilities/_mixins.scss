@@ -489,6 +489,7 @@
     display: flex;
     align-items: center;
     margin: 6px 8px;
+    width: fit-content;
 
     input:disabled,
     input:disabled:checked {
