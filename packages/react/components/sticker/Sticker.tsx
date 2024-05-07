@@ -12,7 +12,6 @@ import { useTrilogyContext } from "../../context"
  * @param children {ReactNode} Sticker child
  * @param variant {AlertState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
- * @param flag {boolean} Flag sticker
  * @param hat {boolean} Hat Sticker ( for box )
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {StickerMarkup} HTML element : p|span|div
@@ -34,7 +33,6 @@ const Sticker = ({
   markup,
   /* deprecated*/
   inverted,
-  flag,
   ...others
 }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -49,7 +47,6 @@ const Sticker = ({
       small && is("small"),
       hat && is("hat"),
       inverted && is("inverted"),
-      flag && is("flag"),
       className
     )
   )
