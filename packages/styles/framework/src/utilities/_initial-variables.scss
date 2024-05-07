@@ -38,7 +38,7 @@ Colors for buttons
   @effect-active A valid css filter value or null (brightness(0.7) by default)
   */
 $btn-colors: (
-  'accent':['accent', 'alternate', 'background', null, null],
+  'accent':['conversion', 'alternate', 'background', null, null],
   'primary': ['primary', 'main', 'background', brightness(0.8), brightness(0.7)],
   'secondary': ['secondary', 'bg-main', 'main', brightness(0.8), brightness(0.7)],
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
