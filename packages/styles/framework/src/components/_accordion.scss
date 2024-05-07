@@ -4,7 +4,6 @@
   margin: $spacing-4 0;
 
   .accordion {
-    @include hover();
 
     box-sizing: border-box;
     display: flex;
@@ -21,6 +20,14 @@
       display: none;
       padding: $spacing-4;
       padding-top: 0 !important;
+    }
+
+    &:hover:not(.is-disabled) {
+      @include hoverRules();
+    }
+
+    &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {
+      border: 1px solid currentColor;
     }
 
     &:focus-visible {
