@@ -1,4 +1,5 @@
 export interface Accessibility {
-  testId?: string
-  accessibilityLabel?: string
+  testId?: string;
+  accessibilityLabel?: string;
+  accessibilityActivate?: boolean;
 }
