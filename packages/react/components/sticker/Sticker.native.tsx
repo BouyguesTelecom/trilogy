@@ -1,12 +1,7 @@
 import * as React from "react"
-import { StyleSheet, Text, Platform, View } from "react-native"
+import { Platform, StyleSheet, Text, View } from "react-native"
 import { StickerProps } from "./StickerProps"
-import {
-  getAlertStyle,
-  getColorStyle,
-  getVariantStyle,
-  TrilogyColor,
-} from "../../objects"
+import { getAlertStyle, getColorStyle, getVariantStyle, TrilogyColor, } from "../../objects"
 import { ComponentName } from "../enumsComponentsName"
 
 /**
@@ -14,7 +9,6 @@ import { ComponentName } from "../enumsComponentsName"
  * @param children {ReactNode} Sticker child
  * @param variant {AlertState} Sticker variant : only primary
  * @param small {boolean} Small Sticker
- * @param flag {boolean} Flag sticker
  * @param outlined {boolean} Outlined sticker
  * @param hat {boolean} Hat Sticker ( for box )
  * @param others
@@ -31,8 +25,8 @@ const Sticker = ({
   hat,
   /* deprecated*/
   inverted,
-  flag,
   outlined,
+  flag,
   ...others
 }: StickerProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)

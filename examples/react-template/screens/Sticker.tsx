@@ -29,14 +29,10 @@ export const StickerScreen = (): JSX.Element => {
           Sticker
         </Sticker>
         <Sticker small>Small</Sticker>
-        <Sticker flag>Sticker flag</Sticker>
-        <Sticker flag small>
-          Sticker flag
-        </Sticker>
-        <Sticker flag>Sticker flag</Sticker>
-        <Sticker flag small>
-          Sticker flag
-        </Sticker>
+        <Sticker>Sticker </Sticker>
+        <Sticker small>Sticker</Sticker>
+        <Sticker>Sticker </Sticker>
+        <Sticker small>Sticker</Sticker>
 
         <Spacer size={SpacerSize.HUGE} />
         <Box hat>
