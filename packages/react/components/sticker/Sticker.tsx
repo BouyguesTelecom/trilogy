@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { StickerProps } from "./StickerProps"
 import { is } from "../../services/classify"
 import { StickerMarkup, StickerMarkupValues } from "./StickerEnum"
-import { getAlertClassName, getVariantClassName } from "../../objects"
+import { getVariantClassName } from "../../objects"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
 
@@ -22,17 +22,10 @@ import { useTrilogyContext } from "../../context"
 const Sticker = ({
   className,
   children,
-  /* deprecated*/
-  stretched,
-  /* deprecated*/
   variant,
   small,
-  /* deprecated*/
-  alert,
   hat,
   markup,
-  /* deprecated*/
-  inverted,
   ...others
 }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -41,12 +34,9 @@ const Sticker = ({
     styled,
     clsx(
       "sticker",
-      stretched && is("stretched"),
-      variant && !alert && is(getVariantClassName(variant)),
-      alert && !variant && is(getAlertClassName(alert)),
+      variant && is(getVariantClassName(variant)),
       small && is("small"),
       hat && is("hat"),
-      inverted && is("inverted"),
       className
     )
   )

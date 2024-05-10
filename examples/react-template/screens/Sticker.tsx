@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AutoLayout,
   Box,
@@ -8,36 +7,33 @@ import {
   SpacerSize,
   Sticker,
 } from "@trilogy-ds/react/components";
-import { AlertState, VariantState } from "@trilogy-ds/react";
+import { Price, VariantState } from "@trilogy-ds/react";
 
 export const StickerScreen = (): JSX.Element => {
   return (
     <Section>
       <AutoLayout>
         <Sticker>Sticker</Sticker>
-        <Sticker alert={AlertState.INFO}>Sticker</Sticker>
-        <Sticker alert={AlertState.INFO} small>
-          Sticker
-        </Sticker>
+        <Sticker variant={"ACCENT"}>Sticker</Sticker>
+        <Sticker variant={"INFO"}>Sticker</Sticker>
+        <Spacer size={SpacerSize.HUGE} horizontal />
+
         <Sticker variant={VariantState.ACCENT} small>
           Sticker
         </Sticker>
-        <Sticker variant={VariantState.ACCENT} small>
+        <Sticker variant={VariantState.INFO} small>
           Sticker
         </Sticker>
-        <Sticker alert={AlertState.INFO} small>
+        <Sticker variant={VariantState.MAIN} small>
           Sticker
         </Sticker>
-        <Sticker small>Small</Sticker>
-        <Sticker>Sticker </Sticker>
-        <Sticker small>Sticker</Sticker>
-        <Sticker>Sticker </Sticker>
-        <Sticker small>Sticker</Sticker>
 
         <Spacer size={SpacerSize.HUGE} />
         <Box hat>
-          <Sticker hat>Labellaa</Sticker>
-          <BoxContent></BoxContent>
+          <Sticker hat>Im a sticker hat</Sticker>
+          <BoxContent>
+            <Price amount={100} />
+          </BoxContent>
         </Box>
       </AutoLayout>
     </Section>
