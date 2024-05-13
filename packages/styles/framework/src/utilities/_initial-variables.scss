@@ -44,6 +44,11 @@ $btn-colors: (
   'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
 ) !default;
 
+$link-colors: ['info', "bacground-color:red;" , 'background', null, null] !default;
+
+@mixin link-hover {
+background-color: red;
+}
 
 $hoverSelector: "&:hover:not([disabled]),&:hover:not([aria-disabled=true])";
 
