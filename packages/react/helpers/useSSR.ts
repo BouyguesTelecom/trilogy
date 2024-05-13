@@ -1,4 +1,4 @@
-interface UseSSRReturn {
+interface SSRReturn {
   isBrowser: boolean
   isServer: boolean
   isNative: boolean
@@ -26,7 +26,7 @@ const canUseNative: boolean = typeof navigator != 'undefined' && navigator.produ
 
 const device = canUseNative ? Native : canUseDOM ? Browser : Server
 
-const SSRObject = {
+const SSRObjectDefined = {
   isBrowser: device === Browser,
   isServer: device === Server,
   isNative: device === Native,
@@ -38,8 +38,8 @@ const SSRObject = {
 
 const assign = (...args: any[]) => args.reduce((acc, obj) => ({ ...acc, ...obj }), {})
 const values = (obj: any) => Object.keys(obj).map(key => obj[key])
-const toArrayObject = (): UseSSRReturn => assign((values(SSRObject), SSRObject))
+const toArrayObject = (): SSRReturn => assign((values(SSRObjectDefined), SSRObjectDefined))
 
-let useSSRObject = toArrayObject()
+const SSRObject = toArrayObject()
 
-export const useSSR = (): UseSSRReturn => useSSRObject
+export const ssrDevice = (): SSRReturn => SSRObject
