@@ -2,4 +2,6 @@
 /* Variables can be redefined*/
 
 @import 'initial-variables';
+@import '../theming/links/variables';
+@import '../theming/buttons/variables';
 @import 'derived-variables';

@@ -23,12 +23,11 @@ export const LinkScreen = (): JSX.Element => {
           <Link plain> ununderlined one.</Link>.
         </Text>
         <Title level={TitleLevels.THREE}>External links</Title>
-        <Link level={TextLevels.FOUR} href="https://google.com" blank>
+        <Link href="https://google.com" blank>
           External link
         </Link>
         <Title level={TitleLevels.THREE}>Link with icon</Title>
         <Link
-          level={TextLevels.FOUR}
           href="https://google.com"
           blank
           iconName={IconName.ARROW_RIGHT}
