@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { TrilogyThemeContext } from "../../context/providerTheme"
-import { useSSR } from "../../helpers/useSSR";
+import { ssrDevice } from "../../helpers/useSSR"
 
 /**
  * Trilogy color
@@ -29,59 +29,59 @@ export type TrilogyColorValues = `${TrilogyColor}`;
  */
 export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["white", "#fff", "main", "#E9E9E9"]
       : ["#fff", "#E9E9E9"],
   [TrilogyColor.MAIN]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["main", "#3d5d7e", "white", "#eff2f8"]
       : ["#3d5d7e", "#eff2f8"],
   [TrilogyColor.WHITE]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["white", "#fff", "main", "#E9E9E9"]
       : ["#fff", "#E9E9E9"],
   [TrilogyColor.ACCENT]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["accent", "#da641b", "white", "#bb5118"]
       : ["#da641b", "#bb5118"],
   [TrilogyColor.FONT]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["main", "#3d5d7e", "white", "#BBC6CD"]
       : ["#3d5d7e", "#BBC6CD"],
   [TrilogyColor.SUCCESS]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["success", "#007B52", "white", "#cae8ca"]
       : ["#007B52", "#cae8ca"],
   [TrilogyColor.INFO]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["info", "#1A688A", "white", "#c8dbec"]
       : ["#1A688A", "#c8dbec"],
   [TrilogyColor.WARNING]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["warning", "#FFBB33", "white", "#ecdbc6"]
       : ["#FFBB33", "#ecdbc6"],
   [TrilogyColor.ERROR]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["error", "#D42D02", "white", "#eecccc"]
       : ["#D42D02", "#eecccc"],
   [TrilogyColor.DISABLED]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["disabled", "#646464", "white", "#D1D1D1"]
       : ["#646464", "#D1D1D1"],
   [TrilogyColor.NEUTRAL]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["grey", "#707070", "white", "#F4F4F4"]
       : ["#707070", "#F4F4F4"],
   [TrilogyColor.NEUTRAL_DARK]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["grey-dark", "#646464", "white", "#E9E9E9"]
       : ["#646464", "#E9E9E9"],
   [TrilogyColor.NEUTRAL_LIGHT]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["#E9E9E9", "#E9E9E9"]
       : ["#E9E9E9", "#E9E9E9"],
   [TrilogyColor.HOVERED]:
-    useSSR().isBrowser || useSSR().isServer
+    ssrDevice().isBrowser || ssrDevice().isServer
       ? ["hovered", "#F4F4F4", "white", "#F4F4F4"]
       : ["#F4F4F4", "#F4F4F4"],
 }
