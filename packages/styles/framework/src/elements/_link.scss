@@ -1,12 +1,19 @@
+.link {
+  [disabled] {
+    @include disabledRulesWithoutBG;
+  }
+}
+
 .link:not([disabled]) {
   position: relative;
   font-weight: $weight-normal;
-  color: getColor('font');
+  color: getColor(nth($link-colors, 1));
   box-decoration-break: clone;
   text-decoration: underline;
   cursor: pointer;
 
   &:hover {
+    @include link-hover;
     font-weight: $weight-semibold;
   }
 
@@ -44,7 +51,7 @@
   }
 }
 
-.text .link {
+.text .link:not([disabled]) {
   &:hover {
     font-weight: $weight-normal;
     filter: brightness(0.8);
