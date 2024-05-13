@@ -44,5 +44,4 @@ export * from "./Textarea";
 export * from "./Timeline";
 export * from "./Title";
 export * from "./Toaster";
-export * from "./Toolbar";
 export * from "./View";

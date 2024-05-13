@@ -23,10 +23,6 @@ $sticker-radius: $radius-large;
       height: auto;
       line-height: 15px;
 
-      &.is-flag {
-        border-radius: 0 $sticker-radius 0 0;
-      }
-
     }
   }
 
@@ -38,10 +34,6 @@ $sticker-radius: $radius-large;
   &.is-info {
     background-color: getColor('info');
     color: getColor('background') !important;
-  }
-
-  &.is-flag {
-    border-radius: 0 16px 0 0;
   }
 
   &.is-inverted {
@@ -59,9 +51,6 @@ $sticker-radius: $radius-large;
     height: auto;
     line-height: 15px;
 
-    &.is-flag {
-      border-radius: 0 $sticker-radius 0 0;
-    }
   }
 
   // deprecated

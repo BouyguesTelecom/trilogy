@@ -45,7 +45,7 @@ const TabsItem = ({
       return getColorStyle(TrilogyColor.FONT, 1)
     }
     if (active) return getColorStyle(TrilogyColor.MAIN)
-    return getColorStyle(TrilogyColor.FONT, 1)
+    return "transparent"
   }, [inverted, disabled, active])
 
   const styles = StyleSheet.create({

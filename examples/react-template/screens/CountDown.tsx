@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
   Countdown,
+  CountdownFormat,
   Section,
   Spacer,
   SpacerSize,
 } from "@trilogy-ds/react/components";
-import { CountdownFormat } from "@trilogy-ds/react/components/countdown/CountdownEnum";
 
 export const CountdownScreen = (): JSX.Element => {
   return (
