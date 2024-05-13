@@ -254,6 +254,7 @@ $label-weight: $weight-bold;
       left: 0;
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
+      padding: 0 24px;
     }
 
     .textarea {
@@ -296,6 +297,7 @@ $label-weight: $weight-bold;
       right: 0;
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
+      padding: 0 24px;
     }
   }
 

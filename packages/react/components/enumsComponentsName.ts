@@ -150,7 +150,6 @@ export enum ComponentName {
   TimelineMarker = "TimelineMarker",
   Title = "Title",
   ToasterProvider = "ToasterProvider",
-  Toolbar = "Toolbar",
   ToolbarSpace = "ToolbarSpace",
   ToolbarItem = "ToolbarItem",
   ToolbarGroup = "ToolbarGroup",

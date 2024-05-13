@@ -3,8 +3,6 @@ import {
   Button,
   ButtonList,
   ButtonVariant,
-  Columns,
-  ColumnsItem,
   Divider,
   IconName,
   Spacer,
@@ -53,17 +51,15 @@ export const ButtonScreen = (): JSX.Element => {
       {/*  ======== disabled & variant ======== */}
       <Title level={TitleLevels.TWO}>disabled + variant </Title>
       <Spacer size={10} />
-      <Columns inlined>
+      <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <ColumnsItem key={index} size={4}>
-              <Button variant={color} fullwidth disabled>
-                {color}
-              </Button>
-            </ColumnsItem>
+            <Button variant={color} disabled>
+              {color}
+            </Button>
           );
         })}
-      </Columns>
+      </ButtonList>
       <Separator />
 
       {/*  ======== fullwidth ======== */}
@@ -78,8 +74,8 @@ export const ButtonScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>iconName </Title>
       <Spacer size={10} />
       <ButtonList>
-        <Button iconName={IconName.TIMES} variant={"ACCENT"}>
-          Icon Accent
+        <Button iconName={IconName.TIMES} variant={"CONVERSION"}>
+          Icon Conversion
         </Button>
         <Button iconName={IconName.ARROW_DOWN} variant={"PRIMARY"}>
           Icon Primary

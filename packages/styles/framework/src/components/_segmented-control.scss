@@ -34,7 +34,7 @@
       overflow: hidden;
     }
 
-    #{$hoverSelector} {
+    &:hover:not([disabled], [aria-disabled=true], .is-active) {
       cursor: pointer;
       @include hoverRules()
     }

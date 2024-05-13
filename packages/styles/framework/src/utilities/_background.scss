@@ -8,12 +8,7 @@
 
 .has-background {
   background-repeat: no-repeat;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-
-  &.is-inverted {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
+  
   .box-content {
     background-color: transparent;
   }
