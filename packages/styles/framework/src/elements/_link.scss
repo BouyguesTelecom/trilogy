@@ -1,21 +1,21 @@
+@import '../theming/links/variables';
+@import '../theming/links/mixins';
+
+.link {
+  [disabled] {
+    @include disabledRulesWithoutBG;
+  }
+}
+
 .link:not([disabled]) {
+  @include link-states;
+
   position: relative;
   font-weight: $weight-normal;
-  color: getColor('font');
+  color: getColor($link-colors);
   box-decoration-break: clone;
   text-decoration: underline;
   cursor: pointer;
-
-  &:hover {
-    font-weight: $weight-semibold;
-  }
-
-  &:focus-visible,
-  &:focus:focus-visible {
-    outline: 2px solid getColor('font');
-    border-radius: $radius-small;
-    padding: 4px;
-  }
 
   &.has-icon {
     display: inline-flex;
@@ -44,21 +44,9 @@
   }
 }
 
-.text .link {
+.text .link:not([disabled]) {
   &:hover {
     font-weight: $weight-normal;
     filter: brightness(0.8);
-  }
-}
-
-@keyframes sliding-link {
-  50% {
-    left: 100%;
-    right: 0;
-  }
-
-  50.01% {
-    left: 0;
-    right: 100%;
   }
 }
