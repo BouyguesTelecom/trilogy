@@ -29,24 +29,7 @@ $colors: (
   'neutral-dark':['grey-dark', #646464, 'white', #E9E9E9 ]
 ) !default;
 
-/*
-Colors for buttons
-  @string slug name used in classname (You can use your brand name)
-  @color-background The name of the color in the color map for the background
-  @color-text The name of the color in the color map for the text
-  @effect-hover A valid css filter value or null (brightness(0.8) by default)
-  @effect-active A valid css filter value or null (brightness(0.7) by default)
-  */
-$btn-colors: (
-  'accent':['conversion', 'alternate', 'background', null, null],
-  'primary': ['primary', 'main', 'background', brightness(0.8), brightness(0.7)],
-  'secondary': ['secondary', 'bg-main', 'main', brightness(0.8), brightness(0.7)],
-  'ghost': ['ghost', 'background', 'main', brightness(0.8), brightness(0.7)],
-) !default;
-
-
-$hoverSelector: "&:hover:not([disabled]),&:hover:not([aria-disabled=true])";
-
+$hoverSelector: "&:hover:not([disabled]):not([aria-disabled=true])";
 
 // Typography OS-regular
 $family-sans-serif: 'Poppins Read', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif !default;
@@ -96,7 +79,7 @@ $text-64: 64px !default;
 $text-80: 80px !default;
 
 
-$size-1: $text-32;
+$size-1: 32px;
 $size-2: $text-28;
 $size-3: $text-24;
 $size-4: $text-20;

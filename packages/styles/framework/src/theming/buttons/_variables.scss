@@ -1,0 +1,12 @@
+/*
+Colors for buttons
+  @string slug name used in classname (You can use your brand name)
+  @color-background The name of the color in the color map for the background
+  @color-text The name of the color in the color map for the text
+  */
+$button-colors: (
+  'accent':['conversion', 'alternate', 'background'],
+  'primary': ['primary', 'main', 'background'],
+  'secondary': ['secondary', 'bg-main', 'main'],
+  'ghost': ['ghost', 'background', 'main'],
+) !default;
