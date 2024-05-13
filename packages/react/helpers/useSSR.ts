@@ -16,7 +16,7 @@ export enum Device {
 
 const { Browser, Server, Native } = Device
 
-const canUseDOM: boolean = !!(
+const canUseDOM = !!(
   typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
@@ -41,10 +41,5 @@ const values = (obj: any) => Object.keys(obj).map(key => obj[key])
 const toArrayObject = (): UseSSRReturn => assign((values(SSRObject), SSRObject))
 
 let useSSRObject = toArrayObject()
-
-export const weAreServer = () => {
-  SSRObject.isServer = true
-  useSSRObject = toArrayObject()
-}
 
 export const useSSR = (): UseSSRReturn => useSSRObject
