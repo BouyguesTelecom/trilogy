@@ -41,10 +41,15 @@
         margin-bottom: 10px;
     }
 
-    a {
-        cursor: pointer;
-        text-decoration: none;
+  a {
+    color: getColor('font');
+    cursor: pointer;
+    text-decoration: none;
+
+    strong {
+      color: currentColor;
     }
+  }
 
     // List
     ul {

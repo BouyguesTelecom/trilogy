@@ -10,3 +10,21 @@ $button-colors: (
   'secondary': ['secondary', 'bg-main', 'main'],
   'ghost': ['ghost', 'background', 'main'],
 ) !default;
+
+%buttons-states {
+  #{$hoverSelector} {
+    filter: brightness(0.8);
+    &.is-primary {
+      filter: brightness(1.2);
+    }
+  }
+  &:active {
+    filter: brightness(0.7);
+  }
+
+  &:focus-visible,
+  &:focus:focus-visible {
+    outline: 2px solid getColor('main');
+    outline-offset: 2px;
+  }
+}
