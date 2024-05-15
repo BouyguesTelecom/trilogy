@@ -64,9 +64,6 @@ $body-line-height: 1.5 !default;
     overflow-x: hidden;
     overflow-y: scroll;
     min-height: 100vh;
-  a {
-    @extend .link;
-  }
 }
 
 .header {
