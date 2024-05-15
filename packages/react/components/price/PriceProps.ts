@@ -20,4 +20,5 @@ export interface PriceProps
   className?: string;
   striked?: boolean;
   suptitle?: string;
+  style?: any
 }
