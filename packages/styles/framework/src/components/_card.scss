@@ -57,13 +57,9 @@
 
   &.is-flat {
     box-shadow: none;
-
-    .card-image {
-      margin-bottom: -1px;
-    }
+    border: 1px solid getBGColor('font');
 
     .card-content {
-      border: 1px solid getBGColor('font');
       padding-left: 20px;
       padding-right: 20px;
 
