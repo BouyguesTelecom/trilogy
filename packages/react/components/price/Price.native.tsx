@@ -14,6 +14,7 @@ import { StatesContext } from "../../context/providerStates"
  * @param period {string} Period for Price (mois)
  * @param showCents {boolean} Display cents
  * @param level {PriceLevel} Price custom size
+ * @param style {Object} Additional style
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
@@ -37,6 +38,7 @@ const Price = ({
   accessibilityLabel,
   striked,
   suptitle,
+  style,
   ...others
 }: PriceProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
@@ -150,19 +152,23 @@ const Price = ({
         (level == PriceLevel.LEVEL7 && "normal") ||
         "bold",
       color: color,
+      fontFamily: "poppins-semibold"
     },
     cents: {
       fontWeight: "bold",
       color: color,
       fontSize: centsLevel,
+      fontFamily: "poppins-semibold"
     },
     period: {
       color: color,
       fontSize: centsLevel,
+      fontFamily: "poppins-semibold"
     },
     inlinePeriod: {
       color: color,
       fontSize: priceLevel,
+      fontFamily: "poppins-semibold"
     },
     striked: {
       position: "absolute",
@@ -198,9 +204,9 @@ const Price = ({
 
   return (
     <>
-      {suptitle && <Text style={styles.suptitle}>{suptitle}</Text>}
+      {suptitle && <Text style={[styles.suptitle, style.suptitle]}>{suptitle}</Text>}
       <View
-        style={styles.container}
+        style={[styles.container, style.container]}
         accessible={!!priceAccessibilityLabel}
         accessibilityLabel={priceAccessibilityLabel}
         testID={priceTestId}
@@ -208,27 +214,27 @@ const Price = ({
       >
         {inline ? (
           <View style={[styles.priceContainer, { flexDirection: "row" }]}>
-            {striked && <Text style={styles.striked}></Text>}
-            <Text style={styles.price}>
+            {striked && <Text style={[styles.striked, style.striked]}></Text>}
+            <Text style={[styles.price, style.price]}>
               {whole}€{showCents && cents}
             </Text>
-            <Text style={styles.inlinePeriod}>
+            <Text style={[styles.inlinePeriod, style.inlinePeriod]}>
               {mention}
               {period && ` / ${period}`}
             </Text>
           </View>
         ) : (
           <View style={[{ flexDirection: "row" }]}>
-            {striked && <Text style={styles.striked}></Text>}
-            <View style={styles.priceContainer}>
-              <Text style={styles.price}>{`${whole}`}</Text>
+            {striked && <Text style={[styles.striked, style.striked]}></Text>}
+            <View style={[styles.priceContainer, style.priceContainer]}>
+              <Text style={[styles.price, style.price]}>{`${whole}`}</Text>
             </View>
-            <View style={styles.priceContainer}>
-              <Text style={styles.cents}>
+            <View style={[styles.priceContainer, style.priceContainer]}>
+              <Text style={[styles.cents, style.cents]}>
                 €{showCents && (cents || "00")}
                 {mention && mention}
               </Text>
-              <Text style={styles.period}>{period && `/${period}`}</Text>
+              <Text style={[styles.period, style.period]}>{period && `/${period}`}</Text>
             </View>
           </View>
         )}
