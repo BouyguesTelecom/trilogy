@@ -204,9 +204,9 @@ const Price = ({
 
   return (
     <>
-      {suptitle && <Text style={[styles.suptitle, style.suptitle]}>{suptitle}</Text>}
+      {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
       <View
-        style={[styles.container, style.container]}
+        style={[styles.container, style?.container]}
         accessible={!!priceAccessibilityLabel}
         accessibilityLabel={priceAccessibilityLabel}
         testID={priceTestId}
@@ -214,27 +214,27 @@ const Price = ({
       >
         {inline ? (
           <View style={[styles.priceContainer, { flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style.striked]}></Text>}
-            <Text style={[styles.price, style.price]}>
+            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
+            <Text style={[styles.price, style?.price]}>
               {whole}€{showCents && cents}
             </Text>
-            <Text style={[styles.inlinePeriod, style.inlinePeriod]}>
+            <Text style={[styles.inlinePeriod, style?.inlinePeriod]}>
               {mention}
               {period && ` / ${period}`}
             </Text>
           </View>
         ) : (
           <View style={[{ flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style.striked]}></Text>}
-            <View style={[styles.priceContainer, style.priceContainer]}>
-              <Text style={[styles.price, style.price]}>{`${whole}`}</Text>
+            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
+            <View style={[styles.priceContainer, style?.priceContainer]}>
+              <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>
             </View>
-            <View style={[styles.priceContainer, style.priceContainer]}>
-              <Text style={[styles.cents, style.cents]}>
+            <View style={[styles.priceContainer, style?.priceContainer]}>
+              <Text style={[styles.cents, style?.cents]}>
                 €{showCents && (cents || "00")}
                 {mention && mention}
               </Text>
-              <Text style={[styles.period, style.period]}>{period && `/${period}`}</Text>
+              <Text style={[styles.period, style?.period]}>{period && `/${period}`}</Text>
             </View>
           </View>
         )}

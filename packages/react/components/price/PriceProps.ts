@@ -2,6 +2,9 @@ import { PriceLevel, PriceLevelValues } from "./PriceEnum"
 import { Invertable } from "../../objects/facets/Invertable"
 import { Accessibility, AlertProps, AlignableProps } from "../../objects"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Styles = { [key: string]: any }
+
 /**
  * Price Interface
  */
@@ -20,5 +23,5 @@ export interface PriceProps
   className?: string;
   striked?: boolean;
   suptitle?: string;
-  style?: any
+  style?: Styles
 }
