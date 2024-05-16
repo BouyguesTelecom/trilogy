@@ -95,11 +95,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   }, [value, defaultValue])
 
   useEffect(() => {
-    if (data?.length !== 0 && data?.length) {
-      if (matching && data) {
-        setSearch(matching(data, _inputValue))
-      }
-    }
+    setSearch(matching(data, _inputValue))
   }, [data])
 
   const onTextChanged = async (e: InputChangeEvent) => {
