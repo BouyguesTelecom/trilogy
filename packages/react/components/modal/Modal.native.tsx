@@ -64,7 +64,7 @@ const Modal = ({
     },
     modalView: {
       margin: bottom ? 0 : 20,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 6,
       padding: fullwidth ? 0 : 17,
       shadowColor: "#000",
@@ -102,7 +102,7 @@ const Modal = ({
       flexWrap: "wrap",
       paddingTop: 10,
       borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       width: "100%",
     },
     horizontalMargin: {

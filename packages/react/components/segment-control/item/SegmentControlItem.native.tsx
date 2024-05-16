@@ -31,14 +31,14 @@ const SegmentControlItem = ({
       alignItems: "center",
       backgroundColor:
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        (inverted && getColorStyle(TrilogyColor.WHITE)) ||
+        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
     },
     text: {
       paddingHorizontal: 16,
       color:
-        (activeItem && !inverted && getColorStyle(TrilogyColor.WHITE)) ||
+        (activeItem && !inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (!activeItem &&
           !inverted &&
           disabled &&

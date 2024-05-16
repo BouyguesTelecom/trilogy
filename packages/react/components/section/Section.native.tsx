@@ -24,7 +24,7 @@ const Section = ({
   verticalPaddingless,
   fullwidth,
 }: SectionProps): JSX.Element => {
-  const colorBgc = getColorStyle(TrilogyColor.WHITE)
+  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     section: {

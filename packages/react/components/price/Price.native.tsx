@@ -54,7 +54,7 @@ const Price = ({
 
   const primaryColor = getColorStyle(TrilogyColor.MAIN)
   const secondaryColor = getColorStyle(TrilogyColor.MAIN)
-  const invertedColor = getColorStyle(TrilogyColor.WHITE)
+  const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const priceLevel =
     (level == PriceLevel.LEVEL1 && 64) ||

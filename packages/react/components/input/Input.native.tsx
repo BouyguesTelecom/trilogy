@@ -378,7 +378,7 @@ const Input = ({
       alignSelf: "stretch",
       backgroundColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.WHITE),
+        : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderRadius: 3,
       borderColor:
@@ -425,7 +425,7 @@ const Input = ({
       zIndex: -1,
       position: "absolute",
       fontSize: 14,
-      color: getColorStyle(TrilogyColor.WHITE),
+      color: getColorStyle(TrilogyColor.BACKGROUND),
       bottom: Platform.OS === "ios" ? 9 : 5,
       left: customIconLeft
         ? Platform.OS === "ios"
