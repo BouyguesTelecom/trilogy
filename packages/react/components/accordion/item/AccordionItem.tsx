@@ -88,7 +88,6 @@ const AccordionItem = ({
       aria-disabled={disabled}
       data-testid={id}
       className={classes}
-      ref={ref}
       id={id}
       {...others}
       data-collapsed={collapsedHeight}
