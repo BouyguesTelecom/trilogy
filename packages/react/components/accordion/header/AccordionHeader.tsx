@@ -27,7 +27,6 @@ const AccordionHeader = ({
       aria-label='toggle'
       {...others}
       data-testid={testId}
-      htmlFor={`toggle_${dataId}`}
     >
       {children}
     </summary>
