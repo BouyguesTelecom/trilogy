@@ -27,7 +27,7 @@ const ListItem = ({
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = clsx(
-    is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.WHITE)),
+    is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)),
     className
   )
 

@@ -23,7 +23,7 @@ describe("Timeline component", () => {
 
         <TimelineItem done>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -35,7 +35,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem active>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -47,7 +47,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem undone>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -78,7 +78,7 @@ describe("Timeline component", () => {
 
         <TimelineItem done>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -90,7 +90,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem active>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -102,7 +102,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem undone>
           <TimelineMarker
-            iconColor={IconColor.WHITE}
+            iconColor={IconColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent

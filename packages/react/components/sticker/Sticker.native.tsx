@@ -47,7 +47,7 @@ const Sticker = ({
     text: {
       lineHeight: (!small && 20) || 15,
       textAlign: "center",
-      color: (outlined && defaultColor) || getColorStyle(TrilogyColor.WHITE),
+      color: (outlined && defaultColor) || getColorStyle(TrilogyColor.BACKGROUND),
       justifyContent: "center",
       alignItems: "center",
       fontWeight: "bold",

@@ -31,7 +31,7 @@ const TabsItem = ({
   const getIconColor = React.useMemo(() => {
     if (inverted) {
       if (disabled) return TrilogyColor.NEUTRAL_LIGHT
-      return TrilogyColor.WHITE
+      return TrilogyColor.BACKGROUND
     }
     if (disabled) return TrilogyColor.DISABLED
     if (active) return TrilogyColor.MAIN
@@ -41,7 +41,7 @@ const TabsItem = ({
   const getBorderColor = React.useMemo(() => {
     if (disabled) return "transparent"
     if (inverted) {
-      if (active) return getColorStyle(TrilogyColor.WHITE)
+      if (active) return getColorStyle(TrilogyColor.BACKGROUND)
       return getColorStyle(TrilogyColor.FONT, 1)
     }
     if (active) return getColorStyle(TrilogyColor.MAIN)

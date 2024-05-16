@@ -58,7 +58,7 @@ const CircleIcon = ({
     text: {
       maxWidth: circledWidth + 32,
       textAlign: "center",
-      color: color || getColorStyle(TrilogyColor.WHITE),
+      color: color || getColorStyle(TrilogyColor.BACKGROUND),
     },
     spaceTextCircledV: {
       marginTop: 3,
@@ -117,7 +117,7 @@ const CircleIcon = ({
             }
             width={size}
             height={size}
-            color={color || getColorStyle(TrilogyColor.WHITE)}
+            color={color || getColorStyle(TrilogyColor.BACKGROUND)}
           />
         )}
       </View>

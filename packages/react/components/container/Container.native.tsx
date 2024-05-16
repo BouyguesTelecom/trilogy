@@ -57,7 +57,7 @@ const Container = ({
       position: "absolute",
       backgroundColor: background
         ? getBackgroundStyle(background)
-        : getColorStyle(TrilogyColor.WHITE),
+        : getColorStyle(TrilogyColor.BACKGROUND),
       left: 0,
       right: 0,
       top: stickyOffSetTop ? stickyOffSetTop : 0,
@@ -67,7 +67,7 @@ const Container = ({
     stickyBottom: {
       backgroundColor: background
         ? getBackgroundStyle(background)
-        : getColorStyle(TrilogyColor.WHITE),
+        : getColorStyle(TrilogyColor.BACKGROUND),
       width: "100%",
       position: "absolute",
       left: 0,

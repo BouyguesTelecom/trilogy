@@ -85,7 +85,7 @@ describe("Input component", () => {
       expect(getByTestId("input-wrapper-id").props.style).toEqual({
         justifyContent: "center",
         alignSelf: "stretch",
-        backgroundColor: getColorStyle(TrilogyColor.WHITE),
+        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
         borderRadius: 3,
         borderColor:

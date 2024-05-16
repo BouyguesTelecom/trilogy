@@ -81,7 +81,7 @@ const Fab = ({
           <Icon
             style={styles.icon}
             name={iconName as IconName}
-            color={IconColor.WHITE}
+            color={IconColor.BACKGROUND}
             size={IconSize.MEDIUM}
             align={Alignable.ALIGNED_CENTER}
           />
@@ -91,7 +91,7 @@ const Fab = ({
         <Icon
           style={styles.icon}
           name={iconName as IconName}
-          color={IconColor.WHITE}
+          color={IconColor.BACKGROUND}
           size={IconSize.MEDIUM}
           align={Alignable.ALIGNED_CENTER}
         />
