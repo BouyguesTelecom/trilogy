@@ -28,7 +28,7 @@ const AccordionItem = ({
   onOpen,
   ...others
 }: AccordionItemProps): JSX.Element => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDetailsElement>(null)
   const { styled } = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
@@ -88,6 +88,7 @@ const AccordionItem = ({
       aria-disabled={disabled}
       data-testid={id}
       className={classes}
+      ref={ref}
       id={id}
       {...others}
       data-collapsed={collapsedHeight}
