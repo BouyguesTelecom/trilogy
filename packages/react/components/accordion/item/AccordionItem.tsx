@@ -82,7 +82,8 @@ const AccordionItem = ({
   }
 
   return (
-    <article
+    <details
+      open={isActive}
       tabIndex={0}
       aria-disabled={disabled}
       data-testid={id}
@@ -98,17 +99,8 @@ const AccordionItem = ({
         if (onClick) onClick(e)
       }}
     >
-      {!disabled && (
-        <input
-          type='checkbox'
-          data-accordion-toggle={true}
-          id={`toggle_header-${id}`}
-          style={{ display: "none" }}
-          defaultChecked={isActive}
-        />
-      )}
       {childrenElement}
-    </article>
+    </details>
   )
 }
 
