@@ -27,22 +27,22 @@ jobs:
         run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
 
       - name: Publish React package on NPM 📦
-        run: npm publish --workspace packages/react --new-version ${{ steps.get_version.outputs.VERSION }} --access public
+        run: npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} && npm publish --workspace packages/react --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Assets package on NPM 📦
-        run: npm publish --workspace packages/assets --new-version ${{ steps.get_version.outputs.VERSION }} --access public
+        run: npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} && npm publish --workspace packages/assets --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Styles package on NPM 📦
-        run: npm publish --workspace packages/styles --new-version ${{ steps.get_version.outputs.VERSION }} --access public
+        run: npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} && npm publish --workspace packages/styles --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Vanilla package on NPM 📦
-        run: npm publish --workspace packages/vanilla --new-version ${{ steps.get_version.outputs.VERSION }} --access public
+        run: npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} && npm publish --workspace packages/vanilla --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
