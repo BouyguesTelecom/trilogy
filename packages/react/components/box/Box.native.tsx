@@ -41,7 +41,7 @@ const Box = ({
   active,
   ...others
 }: BoxProps): JSX.Element => {
-  const colorBgc = getColorStyle(TrilogyColor.WHITE)
+  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
   const [boxHeight, setBoxHeight] = useState(0)
   const boxRadius = 6
   const styles = StyleSheet.create({

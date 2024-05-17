@@ -56,7 +56,7 @@ const AccordionItem = ({
       borderRadius: 6,
       backgroundColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.WHITE),
+        : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderColor:
         (isActive && getColorStyle(TrilogyColor.MAIN)) ||
@@ -65,7 +65,7 @@ const AccordionItem = ({
     },
     bodyBackground: {
       borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       overflow: "hidden",
     },
     titleContainer: {
@@ -78,7 +78,7 @@ const AccordionItem = ({
       paddingRight: 5,
       paddingTop: 5,
       paddingBottom: 5,
-      borderColor: getColorStyle(TrilogyColor.WHITE),
+      borderColor: getColorStyle(TrilogyColor.BACKGROUND),
     },
     bodyContainer: {
       padding: 10,

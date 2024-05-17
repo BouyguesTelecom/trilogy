@@ -202,7 +202,7 @@ const Checkbox = ({
               {_checked && (
                 <Icon
                   size={IconSize.SMALLER}
-                  color={TrilogyColor.WHITE}
+                  color={TrilogyColor.BACKGROUND}
                   name={IconName.CHECK}
                 />
               )}
@@ -229,7 +229,7 @@ const Checkbox = ({
           {_checked && (
             <Icon
               size={IconSize.SMALLER}
-              color={TrilogyColor.WHITE}
+              color={TrilogyColor.BACKGROUND}
               name={IconName.CHECK}
             />
           )}
@@ -294,7 +294,7 @@ const Checkbox = ({
         {_checked && (
           <Icon
             size={IconSize.SMALLER}
-            color={TrilogyColor.WHITE}
+            color={TrilogyColor.BACKGROUND}
             name={IconName.CHECK}
           />
         )}

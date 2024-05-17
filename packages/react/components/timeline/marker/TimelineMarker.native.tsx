@@ -50,11 +50,11 @@ const TimelineMarker = ({
           circled
           color={
             !iconColor
-              ? (active && TrilogyColor.WHITE) ||
+              ? (active && TrilogyColor.BACKGROUND) ||
                 (undone && TrilogyColor.MAIN) ||
-                (cancel && TrilogyColor.WHITE) ||
-                (done && TrilogyColor.WHITE) ||
-                TrilogyColor.WHITE
+                (cancel && TrilogyColor.BACKGROUND) ||
+                (done && TrilogyColor.BACKGROUND) ||
+                TrilogyColor.BACKGROUND
               : iconColor
           }
           backgroundColor={

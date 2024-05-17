@@ -100,7 +100,7 @@ const Pagination = ({
     },
     textCurrent: {
       fontSize: 18,
-      color: getColorStyle(TrilogyColor.WHITE),
+      color: getColorStyle(TrilogyColor.BACKGROUND),
       alignSelf: "center",
       alignItems: "center",
       justifyContent: "center",

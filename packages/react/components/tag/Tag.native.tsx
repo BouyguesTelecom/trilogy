@@ -48,7 +48,7 @@ const Tag = ({
       paddingHorizontal: 8,
       paddingVertical: 4,
       backgroundColor:
-        (inverted && getColorStyle(TrilogyColor.WHITE)) ||
+        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
         getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
     },
