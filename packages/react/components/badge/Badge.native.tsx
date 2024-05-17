@@ -26,7 +26,7 @@ const Badge = ({
   const badgeColor = color
     ? getColorStyle(color as TrilogyColor | TrilogyColorValues)
     : getColorStyle(BadgeColor.MAIN)
-  const textColor = getColorStyle(TrilogyColor.WHITE)
+  const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     container: {

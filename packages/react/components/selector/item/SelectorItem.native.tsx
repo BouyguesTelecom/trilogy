@@ -38,25 +38,25 @@ const SelectorItem = ({
       paddingRight: 16,
       paddingTop: 8,
       backgroundColor: 'transparent',
-      borderColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
+      borderColor: inverted ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN),
       borderWidth: 1,
     },
     text: {
-      color: activeItem ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
+      color: activeItem ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN),
       textAlign: 'center',
       paddingBottom: 10,
     },
     invertedText: {
-      color: activeItem ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
+      color: activeItem ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND),
       textAlign: 'center',
       paddingBottom: 10,
     },
     active: {
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.WHITE) : getColorStyle(TrilogyColor.MAIN),
-      borderColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN),
+      borderColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND),
     },
     end: {
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderColor: getColorStyle(TrilogyColor.MAIN),
     },
     endText: {

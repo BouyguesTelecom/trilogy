@@ -63,10 +63,10 @@ export const setTypographyColor = (
       : typo === TypographyColor.TEXT_NEUTRAL &&
         getColorStyle(TrilogyColor.NEUTRAL, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_WHITE)
-      ? getColorStyle(TrilogyColor.WHITE, 0)
+      ? getColorStyle(TrilogyColor.BACKGROUND, 0)
       : typo === TypographyColor.TEXT_WHITE &&
-        getColorStyle(TrilogyColor.WHITE, 0)) ||
-    (inverted && !typo && getColorStyle(TrilogyColor.WHITE, 0)) ||
+        getColorStyle(TrilogyColor.BACKGROUND, 0)) ||
+    (inverted && !typo && getColorStyle(TrilogyColor.BACKGROUND, 0)) ||
     getColorStyle(TrilogyColor.MAIN, 0)
   )
 }

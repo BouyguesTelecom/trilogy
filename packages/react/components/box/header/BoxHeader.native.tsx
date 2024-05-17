@@ -30,7 +30,7 @@ const BoxHeader = ({
   const headerBgc = variant
     ? getColorStyle(variant)
     : getColorStyle(TrilogyColor.MAIN)
-  const textColor = getColorStyle(TrilogyColor.WHITE)
+  const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     boxHeader: {

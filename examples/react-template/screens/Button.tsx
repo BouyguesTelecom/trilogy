@@ -29,7 +29,7 @@ export const ButtonScreen = (): JSX.Element => {
       <Spacer size={10} />
       <ButtonList>
         {Object.values(ButtonVariant).map((variant, index) => {
-          return <Button variant={variant}>{variant}</Button>;
+          return <Button variant={variant} key={index}>{variant}</Button>;
         })}
       </ButtonList>
       <Separator />
@@ -40,7 +40,7 @@ export const ButtonScreen = (): JSX.Element => {
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <Button variant={color} loading>
+            <Button variant={color} key={index} loading>
               {color}
             </Button>
           );
@@ -54,7 +54,7 @@ export const ButtonScreen = (): JSX.Element => {
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <Button variant={color} disabled>
+            <Button variant={color} key={index} disabled>
               {color}
             </Button>
           );

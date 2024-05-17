@@ -13,7 +13,7 @@ const AutoCompleteMenuNative = ({
     list: {
       marginTop: 6,
       marginBottom: 6,
-      backgroundColor: getColorStyle(TrilogyColor.WHITE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderRadius: 3,
       borderColor: getColorStyle(TrilogyColor.FONT, 1),

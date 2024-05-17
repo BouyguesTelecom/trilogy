@@ -38,7 +38,7 @@ const Chips = ({
       backgroundColor:
         (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        (inverted && getColorStyle(TrilogyColor.WHITE)) ||
+        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
       borderRadius: 30,
       paddingLeft: 12,
@@ -56,7 +56,7 @@ const Chips = ({
       fontSize: 16,
       color:
         (disabled && getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
-        (active && getColorStyle(TrilogyColor.WHITE)) ||
+        (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       paddingTop: (chipsContext.isMultiple && active && 3) || 0,
     },
@@ -82,7 +82,7 @@ const Chips = ({
           <Icon
             style={styles.icon}
             size={IconSize.SMALL}
-            color={IconColor.WHITE}
+            color={IconColor.BACKGROUND}
             name={IconName.CHECK}
           />
           <Spacer horizontal size={SpacerSize.SMALL} />

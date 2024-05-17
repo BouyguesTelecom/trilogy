@@ -18,8 +18,7 @@ export enum TrilogyColor {
   HOVERED = "HOVERED",
   NEUTRAL = "NEUTRAL",
   NEUTRAL_DARK = "NEUTRAL_DARK",
-  NEUTRAL_LIGHT = "NEUTRAL_LIGHT",
-  WHITE = "WHITE",
+  NEUTRAL_LIGHT = "NEUTRAL_LIGHT"
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`;
@@ -29,61 +28,31 @@ export type TrilogyColorValues = `${TrilogyColor}`;
  */
 export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["white", "#fff", "main", "#E9E9E9"]
-      : ["#fff", "#E9E9E9"],
+    ["#fff", "#E9E9E9", "white", "main"],
   [TrilogyColor.MAIN]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["main", "#3d5d7e", "white", "#eff2f8"]
-      : ["#3d5d7e", "#eff2f8"],
-  [TrilogyColor.WHITE]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["white", "#fff", "main", "#E9E9E9"]
-      : ["#fff", "#E9E9E9"],
+    ["#3d5d7e", "#eff2f8", "main", "white"],
   [TrilogyColor.ACCENT]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["accent", "#da641b", "white", "#bb5118"]
-      : ["#da641b", "#bb5118"],
+      ["#da641b", "#bb5118", "accent", "white" ],
   [TrilogyColor.FONT]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["main", "#3d5d7e", "white", "#BBC6CD"]
-      : ["#3d5d7e", "#BBC6CD"],
+      ["#3d5d7e", "#BBC6CD", "main", "white"],
   [TrilogyColor.SUCCESS]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["success", "#007B52", "white", "#cae8ca"]
-      : ["#007B52", "#cae8ca"],
+      ["#007B52", "#cae8ca", "success", "white"],
   [TrilogyColor.INFO]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["info", "#1A688A", "white", "#c8dbec"]
-      : ["#1A688A", "#c8dbec"],
+      ["#1A688A", "#c8dbec", "info", "white"],
   [TrilogyColor.WARNING]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["warning", "#FFBB33", "white", "#ecdbc6"]
-      : ["#FFBB33", "#ecdbc6"],
+    ["#FFBB33", "#ecdbc6", "warning", "white"],
   [TrilogyColor.ERROR]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["error", "#D42D02", "white", "#eecccc"]
-      : ["#D42D02", "#eecccc"],
+      ["#D42D02", "#eecccc", "error", "white"],
   [TrilogyColor.DISABLED]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["disabled", "#646464", "white", "#D1D1D1"]
-      : ["#646464", "#D1D1D1"],
+      ["#646464", "#D1D1D1", "disabled", "white"],
   [TrilogyColor.NEUTRAL]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["grey", "#707070", "white", "#F4F4F4"]
-      : ["#707070", "#F4F4F4"],
+      ["#707070", "#F4F4F4", "grey", "white"],
   [TrilogyColor.NEUTRAL_DARK]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["grey-dark", "#646464", "white", "#E9E9E9"]
-      : ["#646464", "#E9E9E9"],
+      ["#646464", "#E9E9E9", "grey-dark", "white"],
   [TrilogyColor.NEUTRAL_LIGHT]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["#E9E9E9", "#E9E9E9"]
-      : ["#E9E9E9", "#E9E9E9"],
+      ["#E9E9E9", "#E9E9E9", "grey-light", "grey"],
   [TrilogyColor.HOVERED]:
-    ssrDevice().isBrowser || ssrDevice().isServer
-      ? ["hovered", "#F4F4F4", "white", "#F4F4F4"]
-      : ["#F4F4F4", "#F4F4F4"],
+      ["#F4F4F4", "#F4F4F4", "hovered", "white"],
 }
 
 /**
@@ -95,7 +64,7 @@ export const getColorClassName = (
   trilogyColor: TrilogyColor | TrilogyColorValues
 ): string => {
   const color = colors[trilogyColor]
-  return color[0]
+  return color[2]
 }
 
 /**
@@ -137,7 +106,7 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
     case "SECONDARY":
       return TrilogyColor.HOVERED
     case "GHOST":
-      return TrilogyColor.WHITE
+      return TrilogyColor.BACKGROUND
     default:
       return TrilogyColor.MAIN
   }

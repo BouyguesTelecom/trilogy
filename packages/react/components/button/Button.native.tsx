@@ -33,14 +33,14 @@ const findBackgroundColor = ({
       getColorStyle(TrilogyColor.MAIN, 1)) ||
     (variant === ButtonVariant.CONVERSION &&
       getColorStyle(TrilogyColor.ACCENT, 1)) ||
-    (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.WHITE)) ||
+    (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
     (disabled &&
       variant === ButtonVariant.PRIMARY &&
-      getButtonColorStyle(TrilogyColor.WHITE)) ||
+      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     (typeof loading === "string" &&
       getLoadingClassName(loading) === "loading" &&
-      getButtonColorStyle(TrilogyColor.WHITE)) ||
+      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (typeof loading === "boolean" &&
       loading &&
       getColorStyle(TrilogyColor.NEUTRAL)) ||
@@ -55,14 +55,14 @@ const findTextColor = ({ variant }: ButtonProps): string => {
       getColorStyle(TrilogyColor.FONT)) ||
     (variant &&
       getVariantClassName(variant) === "accent" &&
-      getColorStyle(TrilogyColor.WHITE)) ||
+      getColorStyle(TrilogyColor.BACKGROUND)) ||
     (variant &&
       getVariantClassName(variant) === "primary" &&
-      getColorStyle(TrilogyColor.WHITE)) ||
+      getColorStyle(TrilogyColor.BACKGROUND)) ||
     (variant &&
       getVariantClassName(variant) === "ghost" &&
       getColorStyle(TrilogyColor.FONT)) ||
-    getColorStyle(TrilogyColor.WHITE)
+    getColorStyle(TrilogyColor.BACKGROUND)
   )
 }
 
@@ -82,7 +82,7 @@ const findBorderColor = ({
     (!disabled &&
       variant === ButtonVariant.PRIMARY &&
       getColorStyle(TrilogyColor.INFO, 1)) ||
-    getColorStyle(TrilogyColor.WHITE, 0)
+    getColorStyle(TrilogyColor.BACKGROUND, 0)
   )
 }
 
@@ -129,7 +129,7 @@ const Button = ({
     text: {
       fontFamily: "poppins-semibold",
       color: disabled
-        ? getColorStyle(TrilogyColor.WHITE)
+        ? getColorStyle(TrilogyColor.BACKGROUND)
         : findTextColor({ variant }),
       alignSelf: "center",
       alignItems: "center",
@@ -163,7 +163,7 @@ const Button = ({
     },
     buttonIconText: {
       color: disabled
-        ? getColorStyle(TrilogyColor.WHITE)
+        ? getColorStyle(TrilogyColor.BACKGROUND)
         : findTextColor({ variant }),
       alignSelf: "center",
       alignItems: "center",
@@ -191,10 +191,10 @@ const Button = ({
    */
   const iconColorVariant = (variantType?: string) => {
     if (variantType && ["PRIMARY", "ACCENT"].includes(variantType))
-      return TrilogyColor.WHITE
+      return TrilogyColor.BACKGROUND
     if (variantType === "SECONDARY" || variantType === "GHOST")
       return TrilogyColor.MAIN
-    return TrilogyColor.WHITE
+    return TrilogyColor.BACKGROUND
   }
 
   return (
@@ -217,7 +217,7 @@ const Button = ({
               height: 45,
             }}
           >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.WHITE)} />
+            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
           </View>
         )}
       {loading && typeof loading === "boolean" && loading === true && (
@@ -228,7 +228,7 @@ const Button = ({
             justifyContent: "center",
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.WHITE)} />
+          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
         </View>
       )}
       {loading &&

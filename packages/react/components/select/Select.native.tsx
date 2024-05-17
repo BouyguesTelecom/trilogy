@@ -44,7 +44,7 @@ const Select = ({
       width: "100%",
       backgroundColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : TrilogyColor.WHITE,
+        : TrilogyColor.BACKGROUND,
       borderColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
         : getColorStyle(TrilogyColor.FONT, 1),

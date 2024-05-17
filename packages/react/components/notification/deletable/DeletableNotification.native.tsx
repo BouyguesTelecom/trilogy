@@ -28,7 +28,7 @@ const DeletableNotification = ({
   deletable,
   read,
 }: DeletableNotificationProps): JSX.Element => {
-  const backgroundColor = getColorStyle(TrilogyColor.WHITE)
+  const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     notification: {
@@ -107,7 +107,7 @@ const DeletableNotification = ({
         <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
           <Icon
             backgroundColor={TrilogyColor.ERROR}
-            color={IconColor.WHITE}
+            color={IconColor.BACKGROUND}
             size={IconSize.SMALL}
             circled
             name={IconName.TRASH}
@@ -133,7 +133,7 @@ const DeletableNotification = ({
           <ColumnsItem verticalCenter size={2}>
             <Icon
               backgroundColor={TrilogyColor.MAIN}
-              color={IconColor.WHITE}
+              color={IconColor.BACKGROUND}
               size={IconSize.SMALL}
               circled
               name={iconName ? iconName : IconName.BELL}
