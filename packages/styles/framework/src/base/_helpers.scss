@@ -436,15 +436,11 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 // Radius
-$radius-list: (
-  'radius-small': $radius-small,
-  'radius': $radius,
-  'radius-large': $radius-large,
-);
+$radius-list: ['radius-small', 'radius'];
 
-@each $label, $radius-size in $radius-list {
+@each $label in $radius-list {
   .has-border-#{$label} {
-    border-radius: $radius-size;
+    border-radius: var(--#{$label});
   }
 }
 

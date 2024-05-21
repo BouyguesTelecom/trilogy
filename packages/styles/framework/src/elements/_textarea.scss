@@ -4,7 +4,7 @@
 
   textarea.textarea {
     padding: $spacing-4;
-    border-radius: $radius-small;
+    border-radius: var(--radius-small);
     outline: none;
 
     &::placeholder {
