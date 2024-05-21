@@ -1,7 +1,8 @@
 .card {
   max-width: 100%;
   display: flex;
-  border-radius: $radius;
+  border-radius: var(--radius);
+  overflow: hidden;
   flex-direction: column;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -16,15 +17,11 @@
     position: relative;
     flex-shrink: 0;
     overflow: hidden;
-    border-radius: $radius $radius 0px 0px;
   }
 
   .card-content {
-    border-bottom-left-radius: $radius;
-    border-bottom-right-radius: $radius;
     padding: $spacing-5;
     flex-grow: 1;
-    border-radius: $radius;
 
     @include mobile {
       padding: $spacing-4;
@@ -71,24 +68,13 @@
   }
 
   &.is-active {
-    border: 2px solid getColor('main');
-
-    .card-image {
-      border-radius: 6px 6px 0px 0px;
-    }
+    outline: 2px solid getColor('main');
 
     .card-content {
-      border-bottom-left-radius: ($radius - 2px);
-      border-bottom-right-radius: ($radius - 2px);
+
       padding: 22px;
       @include mobile {
         padding: 14px;
-      }
-    }
-
-    &.is-horizontal {
-      .card-image {
-        border-radius: ($radius - 2px) 0px 0px ($radius - 2px);
       }
     }
   }
@@ -110,7 +96,6 @@
 
     .card-image {
       max-width: 100%;
-      border-radius: $radius 0px 0px $radius;
 
       @include tablet {
         img {
@@ -176,31 +161,11 @@
             top: 50%;
             transform: translateY(-50%);
           }
-          &.is-polyfilled {
-            border-top-left-radius: $radius;
-            border-top-right-radius: 0;
-            border-bottom-left-radius: $radius;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-
-            img {
-              visibility: hidden;
-            }
-          }
         }
       }
     }
 
     .card-content {
-      border-top-right-radius: $radius;
-      border-bottom-right-radius: $radius;
-      border-bottom-left-radius: 0;
       padding-left: 20px;
       padding-right: 20px;
 
@@ -253,42 +218,11 @@
   &.is-reversed {
     .card-image {
       order: 1;
-      border-radius: 0;
-
-      .image {
-        img {
-          border-bottom-left-radius: $radius;
-          border-bottom-right-radius: $radius;
-        }
-      }
-    }
-
-    .card-content {
-      border-top-left-radius: $radius;
-      border-top-right-radius: $radius;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
     }
 
     &.is-horizontal {
       .card-image {
         order: 1;
-
-        .image {
-          img {
-            border-top-left-radius: 0;
-            border-top-right-radius: $radius;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: $radius;
-          }
-        }
-      }
-
-      .card-content {
-        border-top-left-radius: $radius;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: $radius;
-        border-bottom-right-radius: 0;
       }
     }
   }

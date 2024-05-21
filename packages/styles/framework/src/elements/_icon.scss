@@ -91,7 +91,7 @@ $size: (
 
     &.is-stretched {
         transform: skewX(-#{$icon-stretching-level});
-        border-top-right-radius: $radius-large;
+        border-top-right-radius: 9px;
         background-color: getColor('font');
 
       [class^="tri-"],
