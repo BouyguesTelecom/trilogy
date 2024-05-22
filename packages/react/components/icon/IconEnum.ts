@@ -39,7 +39,7 @@ export enum IconColor {
   INFO = "INFO",
   WARNING = "WARNING",
   MAIN = "MAIN",
-  WHITE = "WHITE",
+  BACKGROUND = "BACKGROUND",
   ACCENT = "ACCENT",
   NEUTRAL = "NEUTRAL",
 }

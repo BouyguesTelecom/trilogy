@@ -21,17 +21,15 @@ const AccordionHeader = ({
   const { styled } = useTrilogyContext()
 
   return (
-    <label
+    <summary
       data-accordion-header={true}
       className={hashClass(styled, clsx("accordion-header", className))}
       aria-label='toggle'
       {...others}
       data-testid={testId}
-      htmlFor={`toggle_${dataId}`}
     >
       {children}
-      <div className={hashClass(styled, clsx("toggle"))} />
-    </label>
+    </summary>
   )
 }
 

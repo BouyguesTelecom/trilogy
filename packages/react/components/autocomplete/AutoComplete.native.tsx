@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { Keyboard, StyleSheet, View } from "react-native"
-import Input from "../input/Input.native"
-import { AutoCompleteProps } from "./AutoCompleteProps"
-import { InputChangeEvent } from "../input/InputProps"
-import AutoCompleteMenuNative from "./menu/AutoCompleteMenu.native"
-import { defaultMatching, getLabel } from "./Autocomplete.helpers"
-import { ComponentName } from "../enumsComponentsName"
-import { debounce } from "./utils"
+import React, {useEffect, useMemo, useState} from 'react'
+import {Keyboard, StyleSheet, View} from 'react-native'
+import {ComponentName} from '../enumsComponentsName'
+import Input from '../input/Input.native'
+import {InputChangeEvent} from '../input/InputProps'
+import {AutoCompleteProps} from './AutoCompleteProps'
+import {defaultMatching, getLabel} from './Autocomplete.helpers'
+import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
+import {debounce} from './utils'
 
 const AutoComplete = ({
   value,
@@ -19,8 +19,9 @@ const AutoComplete = ({
   matching = defaultMatching,
   getSuggestions,
   debounceSuggestionsTimeout,
+  onFocus,
 }: AutoCompleteProps): JSX.Element => {
-  const [valueInput, setValueInput] = useState<string>(value ?? "")
+  const [valueInput, setValueInput] = useState<string>(value ?? '')
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
 
@@ -48,7 +49,7 @@ const AutoComplete = ({
   }, [valueInput])
 
   const onTextChanged = async (e: InputChangeEvent) => {
-    const { inputValue, inputName, inputSelectionStart } = e
+    const {inputValue, inputName, inputSelectionStart} = e
     setValueInput(inputValue)
     if (onChange) {
       onChange({
@@ -71,14 +72,19 @@ const AutoComplete = ({
     }
   }
 
+  const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+    setIsOpenMenu(true)
+    if (onFocus) onFocus(event)
+  }
+
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      () => setIsOpenMenu(true)
+      'keyboardDidShow',
+      () => setIsOpenMenu(true),
     )
     const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () => setIsOpenMenu(false)
+      'keyboardDidHide',
+      () => setIsOpenMenu(false),
     )
 
     return () => {
@@ -93,11 +99,11 @@ const AutoComplete = ({
         <Input
           placeholder={placeholder}
           type='text'
-          onFocus={() => setIsOpenMenu(true)}
           customIcon={customIcon}
           value={valueInput}
           hasIcon={Boolean(customIcon)}
           onChange={onTextChanged}
+          onFocus={handleFocus}
         />
       </View>
       {isOpenMenu && (
@@ -112,7 +118,7 @@ const AutoComplete = ({
 
 const styles = StyleSheet.create({
   autoComplete: {
-    position: "relative",
+    position: 'relative',
   },
 })
 

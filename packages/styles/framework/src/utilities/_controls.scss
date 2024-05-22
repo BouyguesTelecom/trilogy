@@ -6,7 +6,7 @@ $control-border-width: 1px !default;
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
 $control-padding-horizontal: 20px;
 
-%control {
+@mixin control {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
@@ -14,9 +14,9 @@ $control-padding-horizontal: 20px;
   border-radius: $control-radius-small;
   display: inline-flex;
   font-size: $size-normal;
-  height: 2.25em;
+  height: 46px;
   justify-content: flex-start;
-  line-height: 1.5;
+  line-height: 1.4;
   padding-bottom: $control-padding-vertical;
   padding-left: $control-padding-horizontal;
   padding-right: $control-padding-horizontal;
@@ -42,13 +42,7 @@ $control-padding-horizontal: 20px;
   &[disabled] {
     cursor: not-allowed;
   }
-}
 
-@mixin control {
-  @extend %control;
-
-  height: 46px;
-  line-height: 1.4;
 }
 
 @mixin control-small {

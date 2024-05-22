@@ -1,37 +1,23 @@
 import * as React from "react"
-import { StyleSheet, Text, Platform, View } from "react-native"
+import { Platform, StyleSheet, Text, View } from "react-native"
 import { StickerProps } from "./StickerProps"
-import {
-  getAlertStyle,
-  getColorStyle,
-  getVariantStyle,
-  TrilogyColor,
-} from "../../objects"
+import { getColorStyle, getVariantStyle, TrilogyColor } from "../../objects"
 import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Sticker Native component
  * @param children {ReactNode} Sticker child
- * @param variant {AlertState} Sticker variant : only primary
+ * @param variant {VariantState} Sticker variant : main , accent , info
  * @param small {boolean} Small Sticker
- * @param flag {boolean} Flag sticker
  * @param outlined {boolean} Outlined sticker
  * @param hat {boolean} Hat Sticker ( for box )
  * @param others
  */
 const Sticker = ({
   children,
-  /* deprecated*/
   variant,
-  /* deprecated*/
-  alert,
   small,
-  /* deprecated*/
-  stretched,
   hat,
-  /* deprecated*/
-  inverted,
-  flag,
   outlined,
   ...others
 }: StickerProps): JSX.Element => {
@@ -47,84 +33,31 @@ const Sticker = ({
       borderWidth: outlined ? 2 : 0,
       borderColor: (outlined && defaultColor) || "transparent",
       backgroundColor:
-        (inverted && "white") ||
         (outlined && "white") ||
-        (variant && !alert && getVariantStyle(variant)) ||
-        (!variant && alert && getAlertStyle(alert)) ||
+        (variant && getVariantStyle(variant)) ||
         defaultColor,
-      borderTopLeftRadius:
-        (hat && 8) || (!flag && !small && 24) || (!flag && small && 16) || 0,
+      borderTopLeftRadius: (hat && 8) || (!small && 24) || (small && 16) || 0,
       borderTopRightRadius: (small && 16) || (hat && 8) || 24,
-      borderBottomLeftRadius:
-        (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
-      borderBottomRightRadius:
-        (!flag && !small && !hat && 24) || (!flag && small && 16) || 0,
+      borderBottomLeftRadius: (!small && !hat && 24) || (small && 16) || 0,
+      borderBottomRightRadius: (!small && !hat && 24) || (small && 16) || 0,
       marginTop: hat ? -35 : 0,
       fontSize: small ? 12 : 16,
       top: hat ? 4 : 0,
     },
-    stretched: {
-      transform:
-        Platform.OS === "ios"
-          ? (stretched && [{ skewX: "-20deg" }]) || [{ skewX: "0deg" }]
-          : [],
-      justifyContent: "center",
-      alignItems: "center",
-      height: 35,
-      backgroundColor:
-        (variant && !alert && getVariantStyle(variant)) ||
-        (!variant && alert && getAlertStyle(alert)) ||
-        defaultColor,
-    },
     text: {
       lineHeight: (!small && 20) || 15,
       textAlign: "center",
-      color:
-        (outlined && defaultColor) ||
-        (inverted && defaultColor) ||
-        getColorStyle(TrilogyColor.WHITE),
+      color: (outlined && defaultColor) || getColorStyle(TrilogyColor.BACKGROUND),
       justifyContent: "center",
       alignItems: "center",
       fontWeight: "bold",
       fontSize: (!small && 16) || 12,
-      transform:
-        Platform.OS === "ios"
-          ? (stretched && [{ skewX: "20deg" }]) || [{ skewX: "0deg" }]
-          : [],
-    },
-    stretchedAndroid: {
-      justifyContent: "center",
-      alignItems: "center",
-      height: 35,
-      backgroundColor:
-        (variant && !alert && getVariantStyle(variant)) ||
-        (!variant && alert && getAlertStyle(alert)) ||
-        defaultColor,
+      transform: Platform.OS === "ios" ? [{ skewX: "0deg" }] : [],
     },
   })
 
-  if (stretched && Platform.OS === "android") {
-    return (
-      <View
-        style={
-          (!small && stretched && styles.stretchedAndroid) || styles.sticker
-        }
-        {...others}
-      >
-        {children && typeof children === "string" ? (
-          <Text style={styles.text}>{children}</Text>
-        ) : (
-          children
-        )}
-      </View>
-    )
-  }
-
   return (
-    <View
-      style={(!small && stretched && styles.stretched) || styles.sticker}
-      {...others}
-    >
+    <View style={styles.sticker} {...others}>
       {children && typeof children === "string" ? (
         <Text style={styles.text}>{children}</Text>
       ) : (

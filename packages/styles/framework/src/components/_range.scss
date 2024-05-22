@@ -1,84 +1,85 @@
 .range-container {
-    @mixin appearence {
-        appearance: none;
-        height: 5px;
+  @mixin appearence {
+    appearance: none;
+    height: 5px;
+  }
+
+  @mixin slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    pointer-events: auto;
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+  }
+
+  .range {
+    width: 100%;
+    position: relative;
+    margin-top: 18px;
+    margin-bottom: 20px;
+
+    .range-track {
+      width: 100%;
+      height: 8px;
+      border-radius: 8px;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      @include mobile {
+        height: 4px;
+        border-radius: 4px;
+      }
     }
 
-    @mixin slider-thumb {
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        background-color: white;
-        pointer-events: auto;
-        border-radius: 50%;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-        outline: none;
-        border: none;
+    .range-cursor {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 100%;
+      outline: none;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+      pointer-events: none;
+
+      &::-webkit-slider-runnable-track {
+        @include appearence;
+      }
+
+      &::-moz-range-track {
+        @include appearence;
+      }
+
+      &::-ms-track {
+        @include appearence;
+      }
+
+      &::-webkit-slider-thumb {
+        @include slider-thumb;
+        margin-top: -8px;
+      }
+
+      &::-moz-range-thumb {
+        @include slider-thumb;
+      }
+
+      &::-ms-thumb {
+        @include slider-thumb;
+      }
     }
-    .range {
-        width: 100%;
-        position: relative;
-        margin-top: 18px;
-        margin-bottom: 20px;
+  }
 
-        .range-track {
-            width: 100%;
-            height: 8px;
-            border-radius: 8px;
-            position: absolute;
-            margin: auto;
-            top: 0;
-            bottom: 0;
-            color: getColor('alternate');
-            @include mobile {
-                height: 4px;
-                border-radius: 4px;
-            }
-        }
-
-        .range-cursor {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            width: 100%;
-            outline: none;
-            position: absolute;
-            margin: auto;
-            top: 0;
-            bottom: 0;
-            background-color: transparent;
-            pointer-events: none;
-
-            &::-webkit-slider-runnable-track {
-                @include appearence;
-            }
-
-            &::-moz-range-track {
-                @include appearence;
-            }
-
-            &::-ms-track {
-                @include appearence;
-            }
-
-            &::-webkit-slider-thumb {
-                @include slider-thumb;
-                margin-top: -8px;
-            }
-
-            &::-moz-range-thumb {
-                @include slider-thumb;
-            }
-
-            &::-ms-thumb {
-                @include slider-thumb;
-            }
-        }
-    }
-    .range-values {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 14px;
-        font-weight: bold;
-    }
+  .range-values {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 14px;
+    font-weight: bold;
+  }
 }

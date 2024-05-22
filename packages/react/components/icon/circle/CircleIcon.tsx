@@ -32,7 +32,7 @@ const CircleIcon = ({
     clsx(
       "icon",
       color ? has(getTextClassName(color)) : has("text-white"),
-      color ? is(color) : is(TrilogyColor.WHITE),
+      color ? is(color) : is(TrilogyColor.BACKGROUND),
       [is(`${size}`)],
       is("circled"),
       background,

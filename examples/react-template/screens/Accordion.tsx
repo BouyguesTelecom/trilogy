@@ -18,7 +18,7 @@ export const AccordionScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>Base</Title>
       <Spacer size={10} />
       <Accordion>
-        <AccordionItem id="UN" active={true}>
+        <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
             <Text>Hello World 1</Text>
           </AccordionHeader>
@@ -26,7 +26,7 @@ export const AccordionScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id="DEUX">
+        <AccordionItem active={true} id="TWO">
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -34,7 +34,15 @@ export const AccordionScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id="TROIS">
+        <AccordionItem id="THREE">
+          <AccordionHeader>
+            <Text>Hello World 2</Text>
+          </AccordionHeader>
+          <AccordionBody>
+            <Text>Collpased by default</Text>
+          </AccordionBody>
+        </AccordionItem>
+        <AccordionItem disabled id="FOUR">
           <AccordionHeader>
             <Text>Hello World 3</Text>
           </AccordionHeader>

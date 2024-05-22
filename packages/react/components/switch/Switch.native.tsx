@@ -36,7 +36,7 @@ const Switch = ({
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const backgroundColorOff = getColorStyle(TrilogyColor.FONT, 1)
   const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED, 1)
-  const thumbColor = getColorStyle(TrilogyColor.WHITE)
+  const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     switchIos: {

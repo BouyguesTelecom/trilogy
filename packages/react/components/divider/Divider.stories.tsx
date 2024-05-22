@@ -30,6 +30,6 @@ export const AvecBackground: Story<DividerProps> = (args) => (
 );
 AvecBackground.args = {
   backgroundColor: TrilogyColor.MAIN,
-  textColor: TrilogyColor.WHITE,
+  textColor: TrilogyColor.BACKGROUND,
   iconName: IconName.EYE,
 };

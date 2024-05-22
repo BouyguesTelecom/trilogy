@@ -1,0 +1,20 @@
+$link-colors: 'info' !default;
+
+%link-over {
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+%link-states {
+  @extend %link-over;
+  &:active {
+    filter: brightness(0.9);
+  }
+  &:focus-visible,
+  &:focus:focus-visible {
+    outline: 2px solid currentColor;
+    border-radius: $radius-small;
+    padding: 0 4px;
+  }
+}

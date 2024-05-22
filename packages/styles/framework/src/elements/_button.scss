@@ -32,6 +32,7 @@ $button-border-width: 2px !default;
 .button {
   @include control;
   @include unselectable;
+  @extend %buttons-states;
 
   background-color: white;
   border-width: $button-border-width;
@@ -41,9 +42,7 @@ $button-border-width: 2px !default;
   text-align: center;
   font-family: $body-family;
   white-space: nowrap;
-  height: 44px;
   padding: 0 $spacing-4;
-  font-size: $text-15;
   text-decoration: inherit;
   font-weight: $weight-semibold;
 
@@ -52,41 +51,15 @@ $button-border-width: 2px !default;
     margin: 8px 0 !important;
   }
 
-  #{$hoverSelector} {
-    filter: brightness(0.9)
-  }
-
-  &:active {
-    filter: brightness(0.8)
-  }
-
-  @each $name, $pair in $btn-colors {
+  @each $name, $pair in $button-colors {
     $variantName: nth($pair, 1);
     $colorBG: getColor(#{nth($pair, 2)});
     $colorText: getColor(nth($pair, 3));
-    $effectHover: nth($pair, 4);
-    $effectActive: nth($pair, 5);
 
     &.is-#{$variantName} {
       background-color: $colorBG;
       color: $colorText;
-
-      @if $effectHover {
-        #{$hoverSelector} {
-          filter: $effectHover;
-        }
-      }
-      @if $effectActive {
-        &:active {
-          filter: $effectActive;
-        }
-      }
     }
-  }
-
-  &:focus-visible {
-    outline: 2px solid getColor('main');
-    outline-offset: 2px;
   }
 
 }

@@ -293,64 +293,6 @@
   }
 }
 
-@mixin hamburger($hamburger-dimensions) {
-  cursor: pointer;
-  display: block;
-  height: $hamburger-dimensions;
-  position: relative;
-  width: $hamburger-dimensions;
-
-  span {
-    background-color: currentColor;
-    display: block;
-    height: 1px;
-    left: 50%;
-    margin-left: -7px;
-    position: absolute;
-    top: 50%;
-    transition: none $speed $easing;
-    transition-property: background, left, opacity, transform;
-    width: 15px;
-
-    &:nth-child(1) {
-      margin-top: -6px;
-    }
-
-    &:nth-child(2) {
-      margin-top: -1px;
-    }
-
-    &:nth-child(3) {
-      margin-top: 4px;
-    }
-  }
-
-  &:hover {
-    background-color: rgba(black, 0.05);
-  }
-
-  // Modifers
-  &.is-active {
-    span {
-      &:nth-child(1) {
-        margin-left: -5px;
-        transform: rotate(45deg);
-        transform-origin: left top;
-      }
-
-      &:nth-child(2) {
-        opacity: 0;
-      }
-
-      &:nth-child(3) {
-        margin-left: -5px;
-        transform: rotate(-45deg);
-        transform-origin: left bottom;
-      }
-    }
-  }
-}
-
 @mixin ellipsis() {
   white-space: nowrap;
   overflow-x: hidden;
@@ -489,6 +431,7 @@
     display: flex;
     align-items: center;
     margin: 6px 8px;
+    width: fit-content;
 
     input:disabled,
     input:disabled:checked {
@@ -666,8 +609,7 @@
     @include hoverRules();
   }
   &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {
-    @include hoverRules();
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
   }
 }
 

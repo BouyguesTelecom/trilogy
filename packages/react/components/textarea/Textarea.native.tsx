@@ -98,7 +98,7 @@ const Textarea = (
       color: getColorStyle(TrilogyColor.MAIN),
       backgroundColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.WHITE),
+        : getColorStyle(TrilogyColor.BACKGROUND),
       /*  width: '',*/
     },
     help: {
