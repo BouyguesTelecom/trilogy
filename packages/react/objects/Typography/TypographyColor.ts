@@ -10,8 +10,8 @@ export enum TypographyColor {
   TEXT_SUCCESS = "has-text-success",
   TEXT_WARNING = "has-text-warning",
   TEXT_ERROR = "has-text-error",
-  TEXT_NEUTRAL = "has-text-neutral",
-  TEXT_NEUTRAL_DARK = "has-text-neutral-dark",
+  TEXT_NEUTRAL = "has-text-grey",
+  TEXT_NEUTRAL_DARK = "has-text-grey-dark",
   TEXT_WHITE = "has-text-white",
 }
 
