@@ -108,7 +108,7 @@ $progress-circle-slices: (
   --progress-circle-spacing-color: 255, 255, 255;
   --progress-circle-spacing-deg: calc(1deg * var(--progress-circle-spacing));
 
-  border-radius: 50%;
+  border-radius: 9999px;
   height: var(--progress-circle-size);
   margin: 40px;
   position: relative;
@@ -147,7 +147,7 @@ $progress-circle-slices: (
 .progress-circle-slice::before,
 .progress-circle-slice::after {
   border: var(--progress-circle-border-width) solid rgba(0, 0, 0, 0);
-  border-radius: 50%;
+  border-radius: 9999px;
   content: '';
   height: 100%;
   left: 0;

@@ -65,7 +65,7 @@ p.is-loading,
     // make the text elements like subtle animated lines
     @include text-tags {
         display: inline;
-        border-radius: 99em;
+        border-radius: 9999px;
         background: currentColor !important;
         box-decoration-break: clone;
         font-size: 70%;

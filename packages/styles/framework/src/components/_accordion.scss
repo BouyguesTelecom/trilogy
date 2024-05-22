@@ -15,7 +15,7 @@
     flex-direction: column;
     background-color: getColor('background');
     font-size: $size-normal;
-    border: 1px solid getBGColor('font');
+    border: var(--border);
     border-radius: var(--radius);
     margin: 8px 0;
     min-height: 56px;
@@ -35,7 +35,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid getColor('main');
+      outline: var(--border-active);
       outline-offset: 2px;
     }
 

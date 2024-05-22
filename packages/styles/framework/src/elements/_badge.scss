@@ -5,7 +5,7 @@
 
 @mixin badge {
   display: inline-flex;
-  border-radius: 99em;
+  border-radius: 9999px;
   color: getColor('background');
   background: getColor('main');
   font-size: $text-10;

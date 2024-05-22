@@ -1,5 +1,3 @@
-$chip-radius: 30px !default;
-
 .chips-list {
   align-items: center;
   display: inline-flex;
@@ -44,7 +42,7 @@ $chip-radius: 30px !default;
   .chips {
     align-items: center;
     background-color: white;
-    border-radius: $chip-radius;
+    border-radius: 9999px;
     color: getColor('font');
     display: inline-flex;
     font-weight: 400;
@@ -55,7 +53,7 @@ $chip-radius: 30px !default;
     padding: 6px $spacing-4;
     white-space: nowrap;
     cursor: pointer;
-    border: 1px solid getBGColor('font');
+    border: var(--border);
 
     &:not(.is-disabled) {
 
@@ -63,7 +61,7 @@ $chip-radius: 30px !default;
         background-color: getColor('main');
         color: white;
         font-weight: 600;
-        border: 2px solid getColor('main');
+        border: var(--border-active);
         padding: 5px 15px;
 
         #{$hoverSelector} {
