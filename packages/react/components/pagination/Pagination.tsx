@@ -104,7 +104,7 @@ const Pagination = ({
           <li data-testid={`${testId}_${pageNumber}`} key={pageNumber}>
             <a
               className={hashClass(styled, clsx('pagination-link'))}
-              {...(currentPage === pageNumber) ? {'aria-current':true} : {} }
+              {...(currentPage === pageNumber) ? { 'aria-current': true } : {} }
               aria-label={`Aller à la page ${pageNumber}`}
               onClick={() => {
                 setCurrentPage(pageNumber)
