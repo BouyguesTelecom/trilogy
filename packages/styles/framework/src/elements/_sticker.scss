@@ -1,7 +1,7 @@
 $sticker-height: 35px;
 
 .sticker {
-  border-radius: 24px;
+  border-radius: 9999px;
   font-size: 16px;
   flex-grow: 0;
   display: inline-flex;
@@ -16,7 +16,6 @@ $sticker-height: 35px;
     width: fit-content;
 
     @include mobile {
-      border-radius: 16px;
       font-size: 12px;
       padding: $spacing-1 $spacing-2;
       height: auto;
@@ -44,7 +43,6 @@ $sticker-height: 35px;
   }
 
   &.is-small {
-    border-radius: 16px;
     font-size: 12px;
     padding: $spacing-1 $spacing-2;
     height: auto;

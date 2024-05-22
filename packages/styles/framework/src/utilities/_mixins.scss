@@ -388,7 +388,7 @@
       }
 
       &:before {
-        border: 1px solid getBGColor('font');
+        border: var(--border);
       }
     }
 
@@ -499,7 +499,7 @@
       display: block;
       position: relative;
       padding: 40px 16px 16px;
-      border: 1px solid getBGColor('font');
+      border: var(--border);
       border-radius: var(--radius);
       box-sizing: border-box;
       background-color: getColor('background');

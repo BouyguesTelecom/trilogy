@@ -24,7 +24,7 @@ $button-colors: (
 
   &:focus-visible,
   &:focus:focus-visible {
-    outline: 2px solid getColor('main');
+    outline: var(--border-active);
     outline-offset: 2px;
   }
 }

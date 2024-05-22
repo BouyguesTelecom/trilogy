@@ -54,7 +54,7 @@
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid getBGColor('font');
+    border: var(--border);
 
     .card-content {
       padding-left: 20px;
@@ -68,7 +68,7 @@
   }
 
   &.is-active {
-    outline: 2px solid getColor('main');
+    outline: var(--border-active);
 
     .card-content {
 

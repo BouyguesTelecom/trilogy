@@ -16,7 +16,7 @@
 }
 
 .select {
-  border: 1px solid getBGColor('font');
+  border: var(--border);
   display: inline-block;
   max-width: 100%;
   position: relative;
@@ -254,7 +254,7 @@
   &.is-active {
     .autocomplete-menu {
       display: block;
-      border: 1px solid rgba(0, 38, 60, .4);
+      border: var(--border);
       border-radius: var(--radius-small);
       max-height: 220px;
       overflow-y: auto;

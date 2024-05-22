@@ -16,7 +16,7 @@ $loader-items-bottom-offset: -40px;
         display: block;
         width: $loader-item-width;
         height: $loader-item-height;
-        border-radius: 50%;
+        border-radius: 9999px;
     }
 
     .loader-body {
