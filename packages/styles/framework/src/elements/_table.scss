@@ -196,7 +196,7 @@
 
     .subtable {
         background-color: getBGColor('neutral');
-        border-radius: $radius;
+        border-radius: var(--radius);
         padding: $box-padding * 2;
 
         @include mobile() {

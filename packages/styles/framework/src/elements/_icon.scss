@@ -85,7 +85,7 @@ $size: (
     }
 
     &.is-circled {
-        border-radius: 100%;
+        border-radius: 9999px;
         text-align: center;
     }
 
@@ -240,7 +240,7 @@ $size: (
             right: 0;
             width: $icon-dimensions-default;
             height: $icon-dimensions-default;
-            border-radius: 100%;
+            border-radius: 9999px;
             background-color: getColor('main');
         }
 
