@@ -54,7 +54,7 @@ $sticker-height: 35px;
 
   // deprecated
   &.is-stretched {
-    border-radius: $radius 0;
+    border-radius: var(--radius) 0;
     padding: 0 10px;
     position: relative;
     margin-right: 10px;
@@ -74,12 +74,12 @@ $sticker-height: 35px;
     }
 
     &::before {
-      border-radius: $radius 0 0 $radius;
+      border-radius: var(--radius) 0 0 var(--radius);
       left: -6px;
     }
 
     &::after {
-      border-radius: 0 $radius $radius 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
       right: -7px;
     }
   }
@@ -98,7 +98,7 @@ $sticker-height: 35px;
 .has-hat-mobile {
   .is-hat {
     display: inline-block;
-    border-radius: $radius $radius 0 0;
+    border-radius: var(--radius) var(--radius) 0 0;
     position: absolute;
     top: -$sticker-height;
     left: 0;

@@ -36,7 +36,7 @@ $button-border-width: 2px !default;
 
   background-color: white;
   border-width: $button-border-width;
-  border-radius: $radius-small;
+  border-radius: var(--radius-small);
   cursor: pointer;
   justify-content: center;
   text-align: center;

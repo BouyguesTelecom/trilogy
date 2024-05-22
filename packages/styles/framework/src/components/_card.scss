@@ -185,10 +185,8 @@
     box-shadow: none;
     background: transparent;
 
-    &.is-inverted .card-image .image img,
-    &.is-reversed .card-image .image img,
     .card-image .image img {
-      border-radius: $radius;
+      border-radius: var(--radius);
     }
 
     .card-content {

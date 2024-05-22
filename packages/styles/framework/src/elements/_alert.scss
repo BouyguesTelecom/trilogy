@@ -12,7 +12,7 @@ a.alert {
 
 .alert {
 
-  border-radius: $radius;
+  border-radius: var(--radius);
   margin-bottom: 16px;
   position: relative;
   display: flex;

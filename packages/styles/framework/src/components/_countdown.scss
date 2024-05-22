@@ -1,6 +1,6 @@
 .countdown {
   border: 1px solid currentcolor;
-  border-radius: $radius;
+  border-radius: var(--radius);
   display: inline-flex;
   padding: $spacing-2;
   color: getColor('font');
@@ -32,7 +32,7 @@
 
   &.is-small {
     padding: $spacing-2 0;
-    border-radius: $radius-small;
+    border-radius: var(--radius-small);
 
     .count {
       font-size: $text-12;

@@ -9,7 +9,7 @@ $progressbar-small: 5px;
   @include block;
 
   border: none;
-  border-radius: $radius-rounded;
+  border-radius: 9999px;
   display: block;
   height: $progressbar-height;
   overflow: hidden;

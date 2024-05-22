@@ -8,7 +8,7 @@
   -webkit-appearance: none;
   background-color: rgba(black, 0.2);
   border: none;
-  border-radius: $radius-rounded;
+  border-radius: 9999px;
   cursor: pointer;
   display: inline-block;
   flex-grow: 0;
@@ -500,7 +500,7 @@
       position: relative;
       padding: 40px 16px 16px;
       border: 1px solid getBGColor('font');
-      border-radius: 8px;
+      border-radius: var(--radius);
       box-sizing: border-box;
       background-color: getColor('background');
 

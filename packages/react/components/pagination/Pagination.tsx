@@ -29,7 +29,7 @@ const Pagination = ({
 }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('pagination', is('rounded'), is('centered'), className))
+  const classes = hashClass(styled, clsx('pagination', is('centered'), className))
 
   const prevCurrentPage = useRef<number>(currentPage)
   const pager = React.useMemo<Pager>(() => {
@@ -84,7 +84,7 @@ const Pagination = ({
     <nav data-testid={testId} className={classes} {...others}>
       <a
         className={hashClass(styled, clsx('pagination-previous'))}
-        aria-disabled={currentPage === 1}
+        {...(currentPage === 1) ? { 'aria-disabled': true } : {} }
         onClick={() => {
           if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -103,7 +103,8 @@ const Pagination = ({
         {pager.pages.map((pageNumber) => (
           <li data-testid={`${testId}_${pageNumber}`} key={pageNumber}>
             <a
-              className={hashClass(styled, clsx('pagination-link', currentPage === pageNumber && is('current')))}
+              className={hashClass(styled, clsx('pagination-link'))}
+              {...(currentPage === pageNumber) ? {'aria-current':true} : {} }
               aria-label={`Aller à la page ${pageNumber}`}
               onClick={() => {
                 setCurrentPage(pageNumber)
@@ -122,7 +123,7 @@ const Pagination = ({
       </ul>
       <a
         className={hashClass(styled, clsx('pagination-next'))}
-        aria-disabled={currentPage === Math.max(pager.totalPages)}
+        {...(currentPage === Math.max(pager.totalPages)) ? { 'aria-disabled': true } : {} }
         onClick={() => {
           if (currentPage !== Math.max(pager.totalPages)) {
             setCurrentPage(currentPage + 1)
