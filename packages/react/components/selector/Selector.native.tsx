@@ -16,17 +16,18 @@ import { getAlignStyle } from '../../objects'
  * @param end {selectorEnd: {message: string, onClick: onClick event}} Add last SelectorItem style to SECONDAY color
  */
 const Selector = ({
-  children,
-  onClick,
-  activeIndex = 0,
-  disabled,
-  inverted,
-  align,
-  end,
-  testId,
-  accessibilityLabel,
-  ...others
-}: SelectorProps): JSX.Element => {
+                    children,
+                    onClick,
+                    activeIndex = 0,
+                    disabled,
+                    inverted,
+                    align,
+                    end,
+                    testId,
+                    accessibilityLabel,
+                    accessibilityActivate = true,
+                    ...others
+                  }: SelectorProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const Selector = ({
       style={styles.selector}
       testID={testId}
       accessibilityLabel={accessibilityLabel}
-      accessible={!!accessibilityLabel}
+      accessible={accessibilityActivate}
       {...others}
     >
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
