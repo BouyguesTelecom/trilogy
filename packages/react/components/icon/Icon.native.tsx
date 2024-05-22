@@ -159,7 +159,7 @@ const Icon = ({
             }
             width={defaultSize}
             height={defaultSize}
-            color={getColorStyle(TrilogyColor.WHITE)}
+            color={getColorStyle(TrilogyColor.BACKGROUND)}
           />
         </View>
       )

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { AutoCompleteProps, Item } from './AutoCompleteProps'
-import { Input, InputAutoCompleteType } from '../input'
-import { InputChangeEvent, InputKeyboardEvent } from '../input/InputProps'
+import clsx from 'clsx'
+import React, {useEffect, useState} from 'react'
+import {useTrilogyContext} from '../../context'
+import {hashClass} from '../../helpers'
+import {is} from '../../services'
+import {Input, InputAutoCompleteType} from '../input'
+import {InputChangeEvent, InputKeyboardEvent} from '../input/InputProps'
+import {AutoCompleteProps, Item} from './AutoCompleteProps'
+import {defaultMatching, getLabel} from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
-import { is } from '../../services'
-import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
-import { getLabel, defaultMatching } from './Autocomplete.helpers'
-import { debounce } from './utils'
+import {debounce} from './utils'
 
 /**
  * AutoComplete Component
@@ -18,6 +18,7 @@ import { debounce } from './utils'
  * @param data {string[]} Datas AutoComplete list Item
  * @param inputValue {string} Value of Input
  * @param onChange {Function} OnChange Input Event
+ * @param onFocus {Function} OnFocus Input Event
  * @param children {Function} Custom Component for dropdown list
  * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
  * @param matching {Function} matching function
@@ -56,17 +57,22 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   onIconClick,
   getSuggestions,
   debounceSuggestionsTimeout,
+  onFocus,
 }: AutoCompleteProps<T>): JSX.Element => {
-  const { styled } = useTrilogyContext()
+  const {styled} = useTrilogyContext()
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(inputValue ?? '')
   const [_value, setValue] = useState<string>(placeholder ?? defaultValue ?? '')
   const [activeItem, setActiveItem] = useState<number>(0)
-  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
+  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] =
+    useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
 
-  const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
+  const autocompleteClasses = hashClass(
+    styled,
+    clsx(is('autocomplete'), is('active')),
+  )
 
   useEffect(() => {
     setInputValue(inputValue || '')
@@ -89,18 +95,18 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   }, [value, defaultValue])
 
   useEffect(() => {
-    if (data?.length !== 0 && data?.length) {
-      if (matching && data) {
-        setSearch(matching(data, _inputValue))
-      }
-    }
+    setSearch(matching(data, _inputValue))
   }, [data])
 
   const onTextChanged = async (e: InputChangeEvent) => {
     setIsAutocompleteMenuVisible(true)
 
     if (onChange) {
-      onChange({ inputName: name || '', inputValue: e.inputValue, inputSelectionStart: null })
+      onChange({
+        inputName: name || '',
+        inputValue: e.inputValue,
+        inputSelectionStart: null,
+      })
     }
 
     // Check if the input value is a regular expression or a string
@@ -123,7 +129,9 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
       setSearch(matching(data, e.inputValue))
     }
   }
-  const onInputChange = debounceSuggestionsTimeout ? debounce(onTextChanged, debounceSuggestionsTimeout) : onTextChanged
+  const onInputChange = debounceSuggestionsTimeout
+    ? debounce(onTextChanged, debounceSuggestionsTimeout)
+    : onTextChanged
 
   const suggestionSelected = (value: T, data: T[], search: T[]) => {
     setIsAutocompleteMenuVisible(false)
@@ -158,14 +166,19 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     }
   }
 
+  const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+    setIsAutocompleteMenuVisible(true)
+    if (onFocus) onFocus(event)
+  }
+
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
         accessibilityLabel={accessibilityLabel}
-        {...(customIcon ? { customIcon: customIcon } : {})}
+        {...(customIcon ? {customIcon: customIcon} : {})}
         reference={reference}
         placeholder={_value}
-        {...(name ? { name: name } : {})}
+        {...(name ? {name: name} : {})}
         className='autocomplete-input'
         type='text'
         testId={testId}
@@ -177,7 +190,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
         }}
-        onFocus={() => setIsAutocompleteMenuVisible(true)}
+        onFocus={handleFocus}
         onKeyUp={handleKeyPress}
         value={_inputValue}
         onChange={(event) => {
@@ -193,16 +206,16 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
               testId={testId}
               absolute={absoluteMenu}
               fullwidth={fullwidthMenu}
-              className={classNameMenu}
-            >
+              className={classNameMenu}>
               {search.map((item, i) => (
                 <AutoCompleteItem<T>
                   active={activeItem === i}
                   key={i}
                   testId={testId}
                   item={item}
-                  suggestionSelected={(v: T) => suggestionSelected(v, data, search)}
-                >
+                  suggestionSelected={(v: T) =>
+                    suggestionSelected(v, data, search)
+                  }>
                   {children ? children(item) : getLabel(item)}
                 </AutoCompleteItem>
               ))}

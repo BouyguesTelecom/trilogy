@@ -47,7 +47,7 @@ const Notification = ({
   read,
   ...others
 }: NotificationProps): JSX.Element => {
-  const backgroundColor = getColorStyle(TrilogyColor.WHITE)
+  const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
   const defaultIconSize = IconSize.SMALL
   /*
   const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)

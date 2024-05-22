@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Text, TextMarkup } from "../../text/index"
 import { BreadcrumbItemPropsWeb } from "./BreadcrumbItemProps"
 import { is } from "../../../services/classify"
 import clsx from "clsx"
@@ -45,9 +44,9 @@ const BreadcrumbItem = ({
 
   return (
     <li className={classes} onClick={onClick}>
-      <Text markup={TextMarkup.A} href={href} {...others}>
+      <a href={href} {...others}>
         {children}
-      </Text>
+      </a>
     </li>
   )
 }

@@ -3,8 +3,12 @@
   padding-right: 0;
   margin: $spacing-4 0;
 
+  details.accordion ::-webkit-details-marker {
+    display: none;
+    content: "";
+  }
+
   .accordion {
-    @include hover();
 
     box-sizing: border-box;
     display: flex;
@@ -18,9 +22,16 @@
     max-height: max-content;
 
     .accordion-body {
-      display: none;
       padding: $spacing-4;
       padding-top: 0 !important;
+    }
+
+    &:hover:not(.is-disabled) {
+      @include hoverRules();
+    }
+
+    &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {
+      border: 1px solid currentColor;
     }
 
     &:focus-visible {
@@ -28,18 +39,23 @@
       outline-offset: 2px;
     }
 
-    &.is-active > .accordion-header:first-child, [data-accordion-toggle]:checked ~ .accordion-header {
-      font-weight: bold;
-
-      & .toggle {
-        &::before {
-          @include arrow('up');
-        }
-      }
+    .accordion-header:after {
+      max-width: 15px;
+      max-height: 15px;
+      position: absolute;
+      margin-top: 0;
+      right: 20px;
     }
 
-    &.is-active > .accordion-header:first-child ~ .accordion-body, [data-accordion-toggle]:checked ~ .accordion-body {
-      display: block;
+    &[open] .accordion-header:after {
+      @include arrow('up');
+    }
+    &:not([open]) .accordion-header:after{
+      @include arrow();
+    }
+
+    &[open] > .accordion-header:first-child {
+      font-weight: bold;
     }
 
     &:not(:first-child) {
@@ -87,44 +103,6 @@
 
         @include mobile() {
           flex-grow: 1;
-        }
-      }
-
-      .toggle {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        user-select: none;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        display: inline-block;
-        flex-grow: 0;
-        flex-shrink: 0;
-        height: 20px;
-        width: 20px;
-        max-height: 20px;
-        max-width: 20px;
-        min-height: 20px;
-        min-width: 20px;
-        outline-offset: 8px;
-        position: relative;
-        vertical-align: top;
-        margin-left: auto;
-        padding: 0 0 0 10px;
-
-        &::after {
-          display: none;
-        }
-
-        &::before {
-          @include arrow();
-          top: -0.25em;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 15px;
-          height: 5px;
-          margin: auto;
         }
       }
 

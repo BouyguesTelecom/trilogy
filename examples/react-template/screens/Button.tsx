@@ -3,8 +3,6 @@ import {
   Button,
   ButtonList,
   ButtonVariant,
-  Columns,
-  ColumnsItem,
   Divider,
   IconName,
   Spacer,
@@ -31,7 +29,7 @@ export const ButtonScreen = (): JSX.Element => {
       <Spacer size={10} />
       <ButtonList>
         {Object.values(ButtonVariant).map((variant, index) => {
-          return <Button variant={variant}>{variant}</Button>;
+          return <Button variant={variant} key={index}>{variant}</Button>;
         })}
       </ButtonList>
       <Separator />
@@ -42,7 +40,7 @@ export const ButtonScreen = (): JSX.Element => {
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <Button variant={color} loading>
+            <Button variant={color} key={index} loading>
               {color}
             </Button>
           );
@@ -53,17 +51,15 @@ export const ButtonScreen = (): JSX.Element => {
       {/*  ======== disabled & variant ======== */}
       <Title level={TitleLevels.TWO}>disabled + variant </Title>
       <Spacer size={10} />
-      <Columns inlined>
+      <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <ColumnsItem key={index} size={4}>
-              <Button variant={color} fullwidth disabled>
-                {color}
-              </Button>
-            </ColumnsItem>
+            <Button variant={color} key={index} disabled>
+              {color}
+            </Button>
           );
         })}
-      </Columns>
+      </ButtonList>
       <Separator />
 
       {/*  ======== fullwidth ======== */}
@@ -78,8 +74,8 @@ export const ButtonScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>iconName </Title>
       <Spacer size={10} />
       <ButtonList>
-        <Button iconName={IconName.TIMES} variant={"ACCENT"}>
-          Icon Accent
+        <Button iconName={IconName.TIMES} variant={"CONVERSION"}>
+          Icon Conversion
         </Button>
         <Button iconName={IconName.ARROW_DOWN} variant={"PRIMARY"}>
           Icon Primary

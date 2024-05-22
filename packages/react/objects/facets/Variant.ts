@@ -6,6 +6,7 @@ import { getColorStyle, TrilogyColor } from "./Color"
 export enum VariantState {
   MAIN = "MAIN",
   ACCENT = "ACCENT",
+  INFO = "INFO",
 }
 
 export type VariantStateValues = `${VariantState}`;
@@ -37,6 +38,8 @@ export const getVariantClassName = (variantType?: string): string => {
       return "tertiary"
     case "GHOST":
       return "ghost"
+    case "INFO":
+      return "info"
     default:
       return ""
   }
@@ -59,6 +62,8 @@ export const getVariantStyle = (variantType?: string): string => {
       return getColorStyle(TrilogyColor.HOVERED)
     case "TERTIARY":
       return getColorStyle(TrilogyColor.MAIN)
+    case "INFO":
+      return getColorStyle(TrilogyColor.INFO)
     default:
       return ""
   }

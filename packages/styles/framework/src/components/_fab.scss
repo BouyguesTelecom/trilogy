@@ -3,25 +3,27 @@
   border-radius: 16px;
   cursor: pointer;
   height: 56px;
-  color: white;
   padding: $spacing-4;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
   transition: 0.4s;
+  color: transparent;
+  letter-spacing: -9px;
   border: 0;
   box-shadow: 0px 3px 6px 0px #00000033;
   font-style: normal;
   font-weight: 600;
-  font-size: 0;
+  font-size: medium;
   line-height: 20px;
 
   z-index: 9;
 
   #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
     background-color: getColor('hovered');
-    transition: 0.5s;
-    font-size: initial;
+    transition-duration: 0.5s;
+    letter-spacing: initial;
+    color: white;
 
     .icon,
     .icon .is-small,
@@ -41,5 +43,4 @@
     margin-right: -6px;
     color: white;
   }
-
 }
