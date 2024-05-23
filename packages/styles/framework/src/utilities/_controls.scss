@@ -1,6 +1,3 @@
-$control-radius: $radius !default;
-$control-radius-small: $radius-small !default;
-
 $control-border-width: 1px !default;
 
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
@@ -11,7 +8,7 @@ $control-padding-horizontal: 20px;
   -webkit-appearance: none;
   align-items: center;
   border: $control-border-width solid transparent;
-  border-radius: $control-radius-small;
+  border-radius: var(--radius-small);
   display: inline-flex;
   font-size: $size-normal;
   height: 46px;
@@ -46,7 +43,7 @@ $control-padding-horizontal: 20px;
 }
 
 @mixin control-small {
-  border-radius: $control-radius-small;
+  border-radius: var(--radius-small);
   font-size: $size-small;
 }
 

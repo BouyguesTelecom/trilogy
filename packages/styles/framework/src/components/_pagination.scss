@@ -2,25 +2,24 @@
   font-size: $size-normal;
   margin: -2.5px;
 
-  &.is-rounded {
-    .pagination-previous,
-    .pagination-next {
-      padding-left: 1em;
-      padding-right: 1em;
-      height: 35px;
-      width: 35px;
-      border-radius: $radius-rounded;
-    }
-
-    .pagination-link {
-      height: 35px;
-      border-radius: $radius-rounded;
-    }
-
-    .pagination-list {
-      flex: 0 0 auto;
-    }
+  .pagination-previous,
+  .pagination-next {
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    width: 35px;
+    border-radius: 9999px;
   }
+
+  .pagination-link {
+    height: 35px;
+    border-radius: 9999px;
+  }
+
+  .pagination-list {
+    flex: 0 0 auto;
+  }
+
 }
 
 .pagination,
@@ -53,7 +52,7 @@
   min-width: 2.25em;
 
   @include hover();
-  
+
 }
 
 .pagination-previous,
@@ -64,7 +63,7 @@
 }
 
 .pagination-link {
-  &.is-current {
+  &[aria-current] {
     background-color: getColor('font');
     color: getColor('background');
 
@@ -75,7 +74,7 @@
 }
 
 .pagination-ellipsis {
-  color: getBGColor('neutral-dark');
+  color: getColor('background');
   pointer-events: none;
 }
 
@@ -150,11 +149,5 @@
         order: 3;
       }
     }
-  }
-}
-
-@include desktop {
-  .pagination {
-    justify-content: center;
   }
 }

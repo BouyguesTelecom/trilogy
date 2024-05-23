@@ -1,4 +1,3 @@
-$tag-radius: $radius-rounded !default;
 $tag-delete-margin: 1px !default;
 
 // container pour multi-tags ou tags avec actions
@@ -96,7 +95,7 @@ $tag-delete-margin: 1px !default;
 .tag {
   align-items: center;
   background-color: getBGColor('neutral-dark');
-  border-radius: $tag-radius;
+  border-radius: 9999px;
   color: getColor('font');
   display: inline-flex;
   font-size: $size-medium;

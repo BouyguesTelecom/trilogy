@@ -1,22 +1,15 @@
-$section-padding-y: $spacing-6;
-$section-padding-x: $spacing-5;
-$section-padding-desktop-y: $spacing-8;
-$section-padding-desktop-x: $spacing-5;
-$overlap-section: $spacing-4 !default;
-$overlap-section-desktop: $spacing-4 !default;
-
 .section {
-  padding: $section-padding-y $section-padding-x;
+  padding: $spacing-6 $spacing-5;
 
   @include desktop {
-    padding: $section-padding-desktop-y $section-padding-desktop-x;
+    padding: $spacing-8 $spacing-5;
   }
 
   &.has-overlap > .container {
-    margin-top: -$section-padding-y - $overlap-section;
+    margin-top: -$spacing-6 - $spacing-4;
 
     @include desktop {
-      margin-top: -$section-padding-desktop-y - $overlap-section-desktop;
+      margin-top: -$spacing-8 - $spacing-4;
     }
   }
 
