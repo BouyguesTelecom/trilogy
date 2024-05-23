@@ -50,7 +50,7 @@ export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.NEUTRAL_DARK]:
       ["#646464", "#E9E9E9", "grey-dark", "white"],
   [TrilogyColor.NEUTRAL_LIGHT]:
-      ["#E9E9E9", "#E9E9E9", "grey-light", "grey"],
+      ["#E9E9E9", "#E9E9E9", "grey-dark-fade", "grey"],
   [TrilogyColor.HOVERED]:
       ["#F4F4F4", "#F4F4F4", "hovered", "white"],
 }
