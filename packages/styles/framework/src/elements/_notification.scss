@@ -17,7 +17,7 @@
 
   padding: 2em 2em;
   background-color: getColor('background');
-  border-radius: $radius;
+  border-radius: var(--radius);
   margin-bottom: 20px;
   position: relative;
 

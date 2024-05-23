@@ -25,7 +25,7 @@
     display: block;
     height: 4px;
     background: getBGColor('font');
-    border-radius: 4px;
+    border-radius: var(--radius-small);
   }
 
   &.is-error {
@@ -147,7 +147,7 @@
 .step-bars {
   height: 4px;
   background: getColor('disabled');
-  border-radius: 4px;
+  border-radius: var(--radius-small);
   display: none;
 }
 

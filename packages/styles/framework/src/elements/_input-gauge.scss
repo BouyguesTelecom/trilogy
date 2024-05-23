@@ -5,12 +5,12 @@
   .security-gauge {
     height: 4px;
     background: getColor('disabled');
-    border-radius: $radius-small;
+    border-radius: var(--radius-small);
     margin: 8px 0;
 
     .gauge {
       height: 100%;
-      border-radius: $radius-small;
+      border-radius: var(--radius-small);
     }
   }
 
