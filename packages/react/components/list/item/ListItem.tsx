@@ -1,11 +1,11 @@
-import * as React from "react"
-import clsx from "clsx"
-import { ListItemProps } from "./ListItemProps"
-import { Icon, IconSize } from "../../icon"
-import { is } from "../../../services"
-import { getColorClassName, TrilogyColor, } from "../../../objects"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import clsx from 'clsx'
+import * as React from 'react'
+import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers'
+import { TrilogyColor, getColorClassName } from '../../../objects'
+import { has, is } from '../../../services'
+import { Icon, IconName, IconSize } from '../../icon'
+import { ListItemProps } from './ListItemProps'
 
 /**
  * ListItem Component
@@ -15,6 +15,7 @@ import { useTrilogyContext } from "../../../context"
  * @param status {ListIconStatus} Status success|error
  * @param title {string} List item title
  * @param description {string} List item description
+ * @param action {React.ReactNode}
  */
 const ListItem = ({
   className,
@@ -24,33 +25,59 @@ const ListItem = ({
   title,
   description,
   testId,
+  action,
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = clsx(
     is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)),
-    className
+    className,
   )
-
-  if (customIcon) {
-    return (
-      <li data-testid={testId} className={hashClass(styled, clsx(classes))}>
-        <Icon className={classes} name={customIcon} size={IconSize.SMALL} />
-        <span>{children}</span>
-      </li>
-    )
-  }
 
   if (title || description) {
     return (
-      <li className={hashClass(styled, clsx(classes))}>
-        <b>{title}</b>
-        <p>{children || description}</p>
-        <br />
+      <li
+        className={hashClass(styled, clsx(classes, action && has('action')))}
+        data-testid={testId}
+      >
+        <div className={hashClass(styled, clsx('list-item_content'))}>
+          {customIcon && typeof customIcon === 'string' && (
+            <div className={hashClass(styled, clsx('list-item_content_puce'))}>
+              <Icon className={classes} name={customIcon as IconName} size={IconSize.SMALL} />
+            </div>
+          )}
+
+          {customIcon && typeof customIcon !== 'string' && (
+            <div className={hashClass(styled, clsx('list-item_content_puce'))}>{customIcon}</div>
+          )}
+
+          <div>
+            <b>{title}</b>
+            <p>{children || description}</p>
+          </div>
+        </div>
+        {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
       </li>
     )
   }
 
-  return <li className={hashClass(styled, clsx(classes))}>{children}</li>
+  return (
+    <li className={hashClass(styled, clsx(classes, action && has('action')))}>
+      <div className={hashClass(styled, clsx('list-item_content'))}>
+        {customIcon && typeof customIcon === 'string' && (
+          <div className={hashClass(styled, clsx('list-item_content_puce'))}>
+            <Icon className={classes} name={customIcon as IconName} size={IconSize.SMALL} />
+          </div>
+        )}
+
+        {customIcon && typeof customIcon !== 'string' && (
+          <div className={hashClass(styled, clsx('list-item_content_puce'))}>{customIcon}</div>
+        )}
+
+        <div>{children}</div>
+      </div>
+      {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
+    </li>
+  )
 }
 
 export default ListItem
