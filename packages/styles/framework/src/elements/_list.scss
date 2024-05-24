@@ -5,6 +5,7 @@ ol.list {
 
   li {
     padding: $spacing-4 0px;
+    position: relative;
     @include hover();
 
     .list-item_content {
@@ -37,6 +38,12 @@ ol.list {
 
     div b {
       margin-bottom: $spacing-2 ;
+    }
+
+    .divider {
+      position: absolute;
+      bottom: -16px;
+      width: 100%;
     }
 
   }

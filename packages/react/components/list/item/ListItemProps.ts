@@ -20,4 +20,6 @@ export interface ListItemProps extends Accessibility {
   title?: string
   description?: string
   action?: ReactNode
+  divider?: boolean
+  inputAction?: ReactNode
 }

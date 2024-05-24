@@ -1,10 +1,14 @@
 import React, { useMemo } from 'react'
 import { View as ReactView, StyleSheet } from 'react-native'
+import { TrilogyColor, getColorStyle } from '../../../objects'
+import { Divider } from '../../divider'
 import { ComponentName } from '../../enumsComponentsName'
 import { Icon, IconColor, IconName } from '../../icon'
 import { Text, TextLevels } from '../../text'
+import { Title, TitleLevels } from '../../title'
 import { View } from '../../view'
 import { ListItemProps } from './ListItemProps'
+import SwipeableListItem from './SwipeableListItem'
 
 const ListItem = ({
   children,
@@ -12,6 +16,9 @@ const ListItem = ({
   status,
   title,
   description,
+  divider,
+  action,
+  inputAction,
 }: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
@@ -20,26 +27,34 @@ const ListItem = ({
       alignItems: 'center',
       position: 'relative',
     },
-    puce: {
-      fontWeight: 'bold',
-      position: 'absolute',
-      fontSize: 18,
-      top: -3.5,
-    },
     text: {
-      marginLeft: customIcon ? 4 : 12,
-    },
-    icon: {
-      marginLeft: -4,
+      marginLeft: customIcon ? 16 : 0,
     },
     title: {
-      marginLeft: 12,
-      fontWeight: 'bold',
+      marginLeft: customIcon ? 16 : 0,
+      marginBottom: 8,
     },
     titleContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       position: 'relative',
+      paddingVertical: 8,
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+    },
+    badge: {
+      alignSelf: 'center',
+      width: 10,
+      height: 10,
+      marginRight: 8,
+      marginLeft: 8,
+      backgroundColor: getColorStyle(TrilogyColor.ERROR),
+      borderRadius: 30,
+    },
+    swipeInfo: {
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      width: 2,
+      height: 20,
+      borderRadius: 6,
     },
   })
 
@@ -61,38 +76,55 @@ const ListItem = ({
     }
   }, [children, description])
 
-  if (customIcon) {
+  const content = useMemo(() => {
     return (
-      <View style={styles.item}>
-        <ReactView style={styles.icon}>
-          <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
+      <View style={styles.titleContainer}>
+        {customIcon && typeof customIcon === 'string' && (
+          <ReactView>
+            <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
+          </ReactView>
+        )}
+
+        {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
+
+        <ReactView>
+          {title && (
+            <Title style={styles.title} level={TitleLevels.SIX}>
+              {title}
+            </Title>
+          )}
+          {getComponent}
         </ReactView>
-        {getComponent}
+        {action && (
+          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
+            <View style={styles.badge} />
+            <View style={styles.swipeInfo} />
+          </ReactView>
+        )}
+        {inputAction && (
+          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>{inputAction}</ReactView>
+        )}
       </View>
     )
-  }
-  if (title || description) {
+  }, [customIcon, status, title, getComponent, action])
+
+  if (action) {
     return (
-      <View style={{ marginBottom: 12 }}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.puce} level={TextLevels.ONE}>
-            .
-          </Text>
-          <Text style={styles.title} level={TextLevels.ONE}>
-            {title}
-          </Text>
-        </View>
-        {getComponent}
-      </View>
+      <>
+        <SwipeableListItem actionElement={action}>{content}</SwipeableListItem>
+        {divider && <Divider />}
+      </>
     )
   }
+
   return (
-    <View style={styles.item}>
-      <Text style={styles.puce}>.</Text>
-      {getComponent}
-    </View>
+    <>
+      {content}
+      {divider && <Divider />}
+    </>
   )
 }
+
 ListItem.displayName = ComponentName.ListItem
 
 export default ListItem

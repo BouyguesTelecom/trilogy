@@ -1,108 +1,104 @@
 import {
   Checkbox,
-  Icon,
+  IconColor,
   IconName,
   Image,
   ListIconStatus,
-  ListItemDescription,
   Radio,
   Switch,
   TrilogyColor,
+  View,
   getColorStyle,
 } from '@trilogy-ds/react'
-import { Divider, List, ListItem, Section, Title, TitleLevels } from '@trilogy-ds/react/components'
+import { List, ListItem, Section, Title, TitleLevels } from '@trilogy-ds/react/components'
 import * as React from 'react'
+import { Icon } from '../../../packages/react/components'
 
 export const ListScreen = (): JSX.Element => {
   return (
     <>
       <Section>
-        <Title level={TitleLevels.THREE}>List</Title>
-        <Divider />
-
+        <Title level={TitleLevels.THREE}>List with divider</Title>
         <List>
           <ListItem
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem>
             <Title level='SIX'>Ceci est le titre</Title>
-            <ListItemDescription>
+            {/* <ListItemDescription>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
               voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription>
+            </ListItemDescription> */}
           </ListItem>
         </List>
 
         <Title level={TitleLevels.THREE}>List with action & title & description</Title>
-        <Divider />
 
         <List>
           <ListItem
-            action={<Icon name='tri-trash' size='small' />}
+            action={<Icon name='tri-trash' />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
-            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+            inputAction={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
-            action={<Radio description={'lorem kenenf ns k '} narrow marginless />}
+            inputAction={<Radio description={'lorem kenenf ns k '} narrow marginless />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
-          <ListItem action={<Checkbox />}>
+          <ListItem inputAction={<Checkbox />}>
             <Title level='SIX'>Ceci est le titre</Title>
-            <ListItemDescription>
+            {/* <ListItemDescription>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
               voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription>
+            </ListItemDescription> */}
           </ListItem>
         </List>
 
         <Title level={TitleLevels.THREE}>List with customIcon</Title>
-        <Divider />
 
         <List>
           <ListItem
             status={ListIconStatus.ERROR}
             customIcon={IconName.TIMES}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           />
           <ListItem
-            customIcon={<Icon name='tri-trash' size='small' />}
+            customIcon={<CustomIcon />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           />
           <ListItem
             customIcon={<Dot />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           />
           <ListItem customIcon={<Avatar />}>
             <Title level='SIX'>Ceci est le titre</Title>
-            <ListItemDescription>
+            {/* <ListItemDescription>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
               voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription>
+            </ListItemDescription> */}
           </ListItem>
         </List>
 
         <Title level={TitleLevels.THREE}>
           List with action & title & description && customIcon
         </Title>
-        <Divider />
 
         <List>
           <ListItem
@@ -110,17 +106,17 @@ export const ListScreen = (): JSX.Element => {
             customIcon={IconName.TIMES}
             action={<Icon name='tri-trash' size='small' />}
             title='Ceci est le titre'
-            description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos voluptatibus velit rerum id maxime quod? Qui suscipit, '
+            description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
             customIcon={<Icon name='tri-trash' size='small' />}
-            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+            inputAction={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
           >
             <Title level='SIX'>Ceci est le titre</Title>
-            <ListItemDescription>
+            {/* <ListItemDescription>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
               voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription>
+            </ListItemDescription> */}
           </ListItem>
         </List>
       </Section>
@@ -130,7 +126,7 @@ export const ListScreen = (): JSX.Element => {
 
 const Dot = () => {
   return (
-    <div
+    <View
       style={{
         width: 8,
         height: 8,
@@ -150,4 +146,8 @@ const Avatar = () => {
       rounded
     />
   )
+}
+
+const CustomIcon = () => {
+  return <Icon size='small' name='tri-alert' color={IconColor.INFO} />
 }
