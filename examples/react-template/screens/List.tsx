@@ -4,6 +4,7 @@ import {
   IconName,
   Image,
   ListIconStatus,
+  ListItemDescription,
   Radio,
   Switch,
   TrilogyColor,
@@ -21,23 +22,25 @@ export const ListScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>List with divider</Title>
         <List>
           <ListItem
+            divider
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
+            divider
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
+            divider
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
-          <ListItem>
+          <ListItem divider>
             <Title level='SIX'>Ceci est le titre</Title>
-            {/* <ListItemDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
-              voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription> */}
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
           </ListItem>
         </List>
 
@@ -61,10 +64,9 @@ export const ListScreen = (): JSX.Element => {
           ></ListItem>
           <ListItem inputAction={<Checkbox />}>
             <Title level='SIX'>Ceci est le titre</Title>
-            {/* <ListItemDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
-              voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription> */}
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
           </ListItem>
         </List>
 
@@ -89,10 +91,9 @@ export const ListScreen = (): JSX.Element => {
           />
           <ListItem customIcon={<Avatar />}>
             <Title level='SIX'>Ceci est le titre</Title>
-            {/* <ListItemDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
-              voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription> */}
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
           </ListItem>
         </List>
 
@@ -113,10 +114,9 @@ export const ListScreen = (): JSX.Element => {
             inputAction={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
           >
             <Title level='SIX'>Ceci est le titre</Title>
-            {/* <ListItemDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dignissimos
-              voluptatibus velit rerum id maxime quod? Qui suscipit,{' '}
-            </ListItemDescription> */}
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
           </ListItem>
         </List>
       </Section>
