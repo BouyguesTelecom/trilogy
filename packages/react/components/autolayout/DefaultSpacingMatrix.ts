@@ -33,8 +33,6 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Link', 'Button', LARGE],
   [INSERT_SPACE_BETWEEN, 'Link', 'Link', LARGE],
 
-  [INSERT_SPACE_BETWEEN, 'Notification', 'Notification', MEDIUM],
-
   [INSERT_SPACE_BETWEEN, 'Progress', 'Progress', SMALL],
 
   [INSERT_SPACE_BETWEEN, 'ProgressRadial', 'ProgressRadial', SMALL],
@@ -51,7 +49,6 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Title', 'Text', SMALL],
   [INSERT_SPACE_BETWEEN, 'Title', 'Card', MEDIUM],
   [INSERT_SPACE_BETWEEN, 'Title', 'Icon', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Title', 'Notification', MEDIUM],
   [INSERT_SPACE_BETWEEN, 'Title', 'Title', SMALL],
   [INSERT_SPACE_BETWEEN, 'Title', 'Tag', LARGE],
   [INSERT_SPACE_BETWEEN, 'Title', 'default', MEDIUM],
