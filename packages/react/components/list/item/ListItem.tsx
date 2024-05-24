@@ -4,6 +4,7 @@ import { useTrilogyContext } from '../../../context'
 import { hashClass } from '../../../helpers'
 import { TrilogyColor, getColorClassName } from '../../../objects'
 import { has, is } from '../../../services'
+import { Divider } from '../../divider'
 import { Icon, IconName, IconSize } from '../../icon'
 import { ListItemProps } from './ListItemProps'
 
@@ -16,6 +17,8 @@ import { ListItemProps } from './ListItemProps'
  * @param title {string} List item title
  * @param description {string} List item description
  * @param action {React.ReactNode}
+ * @param divider {boolean} to display divider
+ * @param inputAction {React.ReactNode} type Switch|Radio|Checkbox
  */
 const ListItem = ({
   className,
@@ -26,6 +29,8 @@ const ListItem = ({
   description,
   testId,
   action,
+  divider,
+  inputAction,
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = clsx(
@@ -34,7 +39,10 @@ const ListItem = ({
   )
 
   return (
-    <li className={hashClass(styled, clsx(classes, action && has('action')))} data-testid={testId}>
+    <li
+      className={hashClass(styled, clsx(classes, (action || inputAction) && has('action')))}
+      data-testid={testId}
+    >
       <div className={hashClass(styled, clsx('list-item_content'))}>
         {customIcon && typeof customIcon === 'string' && (
           <div className={hashClass(styled, clsx('list-item_content_puce'))}>
@@ -56,7 +64,10 @@ const ListItem = ({
           {!title && !description && <div>{children}</div>}
         </div>
       </div>
-      {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
+      {(action || inputAction) && (
+        <div className={hashClass(styled, clsx('list-item_action'))}>{action || inputAction}</div>
+      )}
+      {divider && <Divider />}
     </li>
   )
 }
