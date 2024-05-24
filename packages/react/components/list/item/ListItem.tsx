@@ -33,35 +33,8 @@ const ListItem = ({
     className,
   )
 
-  if (title || description) {
-    return (
-      <li
-        className={hashClass(styled, clsx(classes, action && has('action')))}
-        data-testid={testId}
-      >
-        <div className={hashClass(styled, clsx('list-item_content'))}>
-          {customIcon && typeof customIcon === 'string' && (
-            <div className={hashClass(styled, clsx('list-item_content_puce'))}>
-              <Icon className={classes} name={customIcon as IconName} size={IconSize.SMALL} />
-            </div>
-          )}
-
-          {customIcon && typeof customIcon !== 'string' && (
-            <div className={hashClass(styled, clsx('list-item_content_puce'))}>{customIcon}</div>
-          )}
-
-          <div>
-            <b>{title}</b>
-            <p>{children || description}</p>
-          </div>
-        </div>
-        {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
-      </li>
-    )
-  }
-
   return (
-    <li className={hashClass(styled, clsx(classes, action && has('action')))}>
+    <li className={hashClass(styled, clsx(classes, action && has('action')))} data-testid={testId}>
       <div className={hashClass(styled, clsx('list-item_content'))}>
         {customIcon && typeof customIcon === 'string' && (
           <div className={hashClass(styled, clsx('list-item_content_puce'))}>
@@ -73,7 +46,15 @@ const ListItem = ({
           <div className={hashClass(styled, clsx('list-item_content_puce'))}>{customIcon}</div>
         )}
 
-        <div>{children}</div>
+        <div>
+          {(title || description) && (
+            <>
+              {title && <b>{title}</b>}
+              {children || (description && <p>{children || description}</p>)}
+            </>
+          )}
+          {!title && !description && <div>{children}</div>}
+        </div>
       </div>
       {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
     </li>
