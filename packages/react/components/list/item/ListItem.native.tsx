@@ -28,25 +28,31 @@ const ListItem = ({
       position: 'relative',
     },
     text: {
-      marginLeft: customIcon ? 16 : 0,
+      paddingHorizontal: customIcon ? 16 : undefined,
     },
     title: {
-      marginLeft: customIcon ? 16 : 0,
-      marginBottom: 8,
+      paddingHorizontal: customIcon ? 16 : undefined,
+      marginBottom: children ? 8 : undefined,
     },
-    titleContainer: {
+    container: {
       flexDirection: 'row',
       alignItems: 'center',
       position: 'relative',
       paddingVertical: 8,
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
     },
+    content: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      position: 'relative',
+      paddingVertical: 8,
+      width: action || inputAction ? '85%' : undefined,
+    },
     badge: {
       alignSelf: 'center',
       width: 10,
       height: 10,
       marginRight: 8,
-      marginLeft: 8,
       backgroundColor: getColorStyle(TrilogyColor.ERROR),
       borderRadius: 30,
     },
@@ -78,23 +84,26 @@ const ListItem = ({
 
   const content = useMemo(() => {
     return (
-      <View style={styles.titleContainer}>
-        {customIcon && typeof customIcon === 'string' && (
-          <ReactView>
-            <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
-          </ReactView>
-        )}
-
-        {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
-
-        <ReactView>
-          {title && (
-            <Title style={styles.title} level={TitleLevels.SIX}>
-              {title}
-            </Title>
+      <View style={styles.container}>
+        <ReactView style={styles.content}>
+          {customIcon && typeof customIcon === 'string' && (
+            <ReactView>
+              <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
+            </ReactView>
           )}
-          {getComponent}
+
+          {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
+
+          <ReactView>
+            {title && (
+              <Title style={styles.title} level={TitleLevels.SIX}>
+                {title}
+              </Title>
+            )}
+            {getComponent}
+          </ReactView>
         </ReactView>
+
         {action && (
           <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
             <View style={styles.badge} />
@@ -102,11 +111,13 @@ const ListItem = ({
           </ReactView>
         )}
         {inputAction && (
-          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>{inputAction}</ReactView>
+          <ReactView style={{ marginLeft: 'auto' }}>
+            <View>{inputAction}</View>
+          </ReactView>
         )}
       </View>
     )
-  }, [customIcon, status, title, getComponent, action])
+  }, [customIcon, status, title, getComponent, action, inputAction])
 
   if (action) {
     return (
