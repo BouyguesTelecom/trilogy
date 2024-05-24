@@ -1,25 +1,45 @@
 // Bullet list classiques
-ul.list , ol.list{
-    margin-left: 30px;
-    li {
-        margin-bottom: 5px;
+ul.list,
+ol.list {
+  list-style-type: none;
+
+  li {
+    padding: $spacing-4 0px;
+    @include hover();
+
+    .list-item_content {
+      display: flex;
+      align-items: center;
+      &_puce {
+        margin-right: $spacing-4;
+      }
     }
-}
 
-ul.list {
-  list-style: disc;
 
-  ul.list {
-    list-style: circle;
+    &.has-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .list-item_action {
+        & >:first-child {
+          margin: 0px !important;
+        }
+
+        .radio label.radio-label:empty, 
+        .checkbox label.checkbox-label:empty {
+          padding: 4px 4px 4px 14px;
+        }
+
+      } 
+
+    }
+
+    div b {
+      margin-bottom: $spacing-2 ;
+    }
+
   }
+  
 }
 
-// Listes avec icônes
-ul.icon-list > li {
-    display: flex;
-    align-items: center;
-
-    .icon {
-        flex: none;
-    }
-}

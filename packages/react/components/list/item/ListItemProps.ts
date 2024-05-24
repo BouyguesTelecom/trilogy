@@ -2,8 +2,8 @@
  * ListItem Interface
  */
 import { ReactNode } from 'react'
-import { IconName, IconNameValues } from '../../icon'
 import { Accessibility } from '../../../objects'
+import { IconName, IconNameValues } from '../../icon'
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',
@@ -15,8 +15,9 @@ export type ListIconStatusValues = `${ListIconStatus}`
 export interface ListItemProps extends Accessibility {
   children?: ReactNode
   className?: string
-  customIcon?: IconName | IconNameValues
+  customIcon?: IconName | IconNameValues | ReactNode
   status?: ListIconStatus | ListIconStatusValues
   title?: string
   description?: string
+  action?: ReactNode
 }
