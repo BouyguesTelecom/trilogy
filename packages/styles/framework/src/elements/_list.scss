@@ -4,7 +4,7 @@ ol.list {
   list-style-type: none;
 
   li {
-    padding: $spacing-4 0px;
+    padding: $spacing-4;
     position: relative;
     @include hover();
 
