@@ -265,8 +265,8 @@ const Price = ({
         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
           <View style={styles.tagArrow} />
           <View style={styles.tag}>
-            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 18 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</TrilogyText>
-            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 18 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>{tagSecondPart}</TrilogyText>
+            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</TrilogyText>
+            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>{tagSecondPart}</TrilogyText>
           </View>
         </View>
       )}
