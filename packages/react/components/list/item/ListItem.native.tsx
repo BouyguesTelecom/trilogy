@@ -18,7 +18,7 @@ const ListItem = ({
   description,
   divider,
   action,
-  inputAction,
+  deletable,
 }: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
@@ -46,7 +46,7 @@ const ListItem = ({
       alignItems: 'center',
       position: 'relative',
       paddingVertical: 8,
-      width: action || inputAction ? '85%' : undefined,
+      width: action ? '85%' : undefined,
     },
     badge: {
       alignSelf: 'center',
@@ -104,20 +104,20 @@ const ListItem = ({
           </ReactView>
         </ReactView>
 
-        {action && (
+        {action && deletable && (
           <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
             <View style={styles.badge} />
             <View style={styles.swipeInfo} />
           </ReactView>
         )}
-        {inputAction && (
+        {action && !deletable && (
           <ReactView style={{ marginLeft: 'auto' }}>
-            <View>{inputAction}</View>
+            <View>{action}</View>
           </ReactView>
         )}
       </View>
     )
-  }, [customIcon, status, title, getComponent, action, inputAction])
+  }, [customIcon, status, title, getComponent, action, deletable])
 
   if (action) {
     return (

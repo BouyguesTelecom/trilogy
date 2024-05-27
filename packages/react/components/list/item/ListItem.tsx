@@ -12,13 +12,13 @@ import { ListItemProps } from './ListItemProps'
  * ListItem Component
  * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode}
- * @param customIcon {IconName} Icon name
+ * @param customIcon {IconName | React.ReactNode } Icon name | children
  * @param status {ListIconStatus} Status success|error
  * @param title {string} List item title
  * @param description {string} List item description
- * @param action {React.ReactNode}
- * @param divider {boolean} to display divider
- * @param inputAction {React.ReactNode} type Switch|Radio|Checkbox
+ * @param action {React.ReactNode} children
+ * @param divider {boolean} Display divider
+ * @param deletable {boolean}
  */
 const ListItem = ({
   className,
@@ -30,7 +30,7 @@ const ListItem = ({
   testId,
   action,
   divider,
-  inputAction,
+  deletable,
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = clsx(
@@ -39,14 +39,15 @@ const ListItem = ({
   )
 
   return (
-    <li
-      className={hashClass(styled, clsx(classes, (action || inputAction) && has('action')))}
-      data-testid={testId}
-    >
+    <li className={hashClass(styled, clsx(classes, action && has('action')))} data-testid={testId}>
       <div className={hashClass(styled, clsx('list-item_content'))}>
         {customIcon && typeof customIcon === 'string' && (
           <div className={hashClass(styled, clsx('list-item_content_puce'))}>
-            <Icon className={classes} name={customIcon as IconName} size={IconSize.SMALL} />
+            <Icon
+              className={classes}
+              name={deletable ? 'tri-trash' : (customIcon as IconName)}
+              size={IconSize.SMALL}
+            />
           </div>
         )}
 
@@ -64,9 +65,7 @@ const ListItem = ({
           {!title && !description && <div>{children}</div>}
         </div>
       </div>
-      {(action || inputAction) && (
-        <div className={hashClass(styled, clsx('list-item_action'))}>{action || inputAction}</div>
-      )}
+      {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
       {divider && <Divider />}
     </li>
   )
