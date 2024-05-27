@@ -22,6 +22,7 @@ import {useTrilogyContext} from "../../context"
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param suptitle {string} Price Suptitle
+ * @param tag {React.ReactNode} Tag children
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param striked {boolean} Striked Price
