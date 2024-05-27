@@ -30,6 +30,18 @@ $price-levels: (
           padding-left: 2px !important;
         }
       }
+      @if $i > 3 {
+        + .price-tag {
+          &::before {
+            border-width: 3px;
+            margin-left: -6px;
+            margin-top: 4px;
+            border-radius: 1px;
+          }
+          font-size: 10px;
+          padding: 4px !important;
+        }
+      }
     }
 
     // the details : cents + period
@@ -154,5 +166,32 @@ $price-levels: (
         top: -1.4em;
       }
     }
+  }
+}
+
+.price-tag {
+  background-color: getColor('accent');
+  margin-left: 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  color: getColor('background');
+  height: fit-content;
+  padding: 8px;
+  &::before {
+    content: '';
+    border-color: transparent;
+    border-bottom-color: getColor('accent');
+    border-left-color: getColor('accent');
+    transform: rotate(45deg);
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 2px;
+    pointer-events: none;
+    position: absolute;
+    margin-left: -12px;
+    margin-top: 6px;
+    transform-origin: center;
+    height: 0;
+    width: 0;
   }
 }
