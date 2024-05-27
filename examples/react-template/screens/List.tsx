@@ -48,21 +48,22 @@ export const ListScreen = (): JSX.Element => {
 
         <List>
           <ListItem
+            deletable
             action={<Icon name='tri-trash' />}
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
-            inputAction={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
           <ListItem
-            inputAction={<Radio description={'lorem kenenf ns k '} narrow marginless />}
+            action={<Radio description={'lorem kenenf ns k '} narrow marginless />}
             title='Ceci est le titre'
             description='Lorem ipsum dolor sit amet consectetur '
           ></ListItem>
-          <ListItem inputAction={<Checkbox />}>
+          <ListItem action={<Checkbox />}>
             <Title level='SIX'>Ceci est le titre</Title>
             <ListItemDescription>
               Lorem ipsum dolor sit amet consectetur adipisicing
@@ -103,6 +104,7 @@ export const ListScreen = (): JSX.Element => {
 
         <List>
           <ListItem
+            deletable
             status={ListIconStatus.ERROR}
             customIcon={IconName.TIMES}
             action={<Icon name='tri-trash' size='small' />}
@@ -111,7 +113,7 @@ export const ListScreen = (): JSX.Element => {
           ></ListItem>
           <ListItem
             customIcon={<Icon name='tri-trash' size='small' />}
-            inputAction={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
           >
             <Title level='SIX'>Ceci est le titre</Title>
             <ListItemDescription>
