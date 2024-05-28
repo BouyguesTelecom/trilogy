@@ -1,10 +1,13 @@
-import React, { useMemo } from "react"
-import { StyleSheet, View as ReactView } from "react-native"
-import { Icon, IconColor } from "../../icon"
-import { Text, TextLevels } from "../../text"
-import { View } from "../../view"
-import { ListItemProps } from "./ListItemProps"
-import { ComponentName } from "../../enumsComponentsName"
+import React, { useMemo } from 'react'
+import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+import { TrilogyColor, getColorStyle } from '../../../objects'
+import { Divider } from '../../divider'
+import { ComponentName } from '../../enumsComponentsName'
+import { Icon, IconColor, IconName } from '../../icon'
+import { Text, TextLevels } from '../../text'
+import { Title, TitleLevels } from '../../title'
+import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
 
 const ListItem = ({
   children,
@@ -12,48 +15,71 @@ const ListItem = ({
   status,
   title,
   description,
+  divider,
+  action,
+  deletable,
 }: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
       marginBottom: 4,
-      flexDirection: "row",
-      alignItems: "center",
-      position: "relative",
-    },
-    puce: {
-      fontWeight: "bold",
-      position: "absolute",
-      fontSize: 18,
-      top: -3.5,
+      flexDirection: 'row',
+      alignItems: 'center',
+      position: 'relative',
     },
     text: {
-      marginLeft: customIcon ? 4 : 12,
-    },
-    icon: {
-      marginLeft: -4,
+      paddingHorizontal: customIcon ? 16 : undefined,
     },
     title: {
-      marginLeft: 12,
-      fontWeight: "bold",
+      paddingHorizontal: customIcon ? 16 : undefined,
+      marginBottom: children ? 8 : undefined,
     },
-    titleContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      position: "relative",
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      position: 'relative',
+      paddingVertical: 8,
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+    },
+    content: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      position: 'relative',
+      paddingVertical: 8,
+      width: action ? '85%' : undefined,
+    },
+    badge: {
+      alignSelf: 'center',
+      width: 10,
+      height: 10,
+      marginRight: 8,
+      backgroundColor: getColorStyle(TrilogyColor.ERROR),
+      borderRadius: 30,
+    },
+    swipeInfo: {
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      width: 2,
+      height: 20,
+      borderRadius: 6,
+    },
+    rightAction: {
+      justifyContent: 'center',
+      flex: 1,
+      alignItems: 'flex-end',
+      paddingLeft: 16,
+      paddingRight: 4,
     },
   })
 
   const getComponent = useMemo(() => {
-    if (typeof children === "object")
-      return <View style={styles.text}>{children}</View>
-    if (typeof children === "undefined" && description) {
+    if (typeof children === 'object') return <View style={styles.text}>{children}</View>
+    if (typeof children === 'undefined' && description) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
           {description}
         </Text>
       )
     }
-    if (["string", "number"].includes(typeof children)) {
+    if (['string', 'number'].includes(typeof children)) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
           {children}
@@ -62,42 +88,76 @@ const ListItem = ({
     }
   }, [children, description])
 
-  if (customIcon) {
+  const content = useMemo(() => {
     return (
-      <View style={styles.item}>
-        <ReactView style={styles.icon}>
-          <Icon
-            size='small'
-            name={customIcon}
-            color={status || IconColor.MAIN}
-          />
+      <View style={styles.container}>
+        <ReactView style={styles.content}>
+          {customIcon && typeof customIcon === 'string' && (
+            <ReactView>
+              <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
+            </ReactView>
+          )}
+
+          {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
+
+          <ReactView>
+            {title && (
+              <Title style={styles.title} level={TitleLevels.SIX}>
+                {title}
+              </Title>
+            )}
+            {getComponent}
+          </ReactView>
         </ReactView>
-        {getComponent}
+
+        {action && deletable && (
+          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
+            <View style={styles.badge} />
+            <View style={styles.swipeInfo} />
+          </ReactView>
+        )}
+        {action && !deletable && (
+          <ReactView style={{ marginLeft: 'auto' }}>
+            <View>{action}</View>
+          </ReactView>
+        )}
       </View>
     )
-  }
-  if (title || description) {
-    return (
-      <View style={{ marginBottom: 12 }}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.puce} level={TextLevels.ONE}>
-            .
-          </Text>
-          <Text style={styles.title} level={TextLevels.ONE}>
-            {title}
-          </Text>
+  }, [customIcon, status, title, getComponent, action, deletable])
+
+  if (action && deletable) {
+    const RightActions = (_: AnimatedInterpolationProps, dragX: AnimatedInterpolationProps) => {
+      const scale = dragX.interpolate({
+        inputRange: [-100, 0],
+        outputRange: [1.5, 0.9],
+        extrapolate: 'clamp',
+      })
+
+      return (
+        <View>
+          <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
+            {action}
+          </Animated.View>
         </View>
-        {getComponent}
-      </View>
+      )
+    }
+
+    return (
+      <>
+        <Swipeable renderRightActions={RightActions}>{content}</Swipeable>
+        {divider && <Divider />}
+      </>
     )
   }
+
   return (
-    <View style={styles.item}>
-      <Text style={styles.puce}>.</Text>
-      {getComponent}
-    </View>
+    <>
+      {content}
+      {divider && <Divider />}
+    </>
   )
 }
+
 ListItem.displayName = ComponentName.ListItem
 
 export default ListItem

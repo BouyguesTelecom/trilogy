@@ -1,78 +1,155 @@
-import * as React from "react";
 import {
-  Divider,
+  Checkbox,
+  IconColor,
   IconName,
-  List,
+  Image,
   ListIconStatus,
-  ListItem,
   ListItemDescription,
-  Section,
-  Title,
-  TitleLevels,
-} from "@trilogy-ds/react/components";
+  Radio,
+  Switch,
+  TrilogyColor,
+  View,
+  getColorStyle,
+} from '@trilogy-ds/react'
+import { List, ListItem, Section, Title, TitleLevels } from '@trilogy-ds/react/components'
+import * as React from 'react'
+import { Icon } from '../../../packages/react/components'
 
 export const ListScreen = (): JSX.Element => {
   return (
     <>
       <Section>
-        <Title level={TitleLevels.THREE}>{`Classic list`}</Title>
-
-        <Divider />
+        <Title level={TitleLevels.THREE}>List with divider</Title>
         <List>
-          <ListItem>Item 1</ListItem>
-          <ListItem>Item 2</ListItem>
-          <ListItem>Item 3</ListItem>
-        </List>
-      </Section>
-      {/*
-       * ##############
-       * LIST ELEMENTS WITH ICONES
-       * ##############
-       */}
-      <Section>
-        <Title level={TitleLevels.THREE}>{`List with icons and status`}</Title>
-        <Divider />
-
-        <List hasIcon>
-          <ListItem status={ListIconStatus.SUCCESS} customIcon={IconName.CHECK}>
-            Item 1
-          </ListItem>
-          <ListItem status={ListIconStatus.ERROR} customIcon={IconName.TIMES}>
-            Item 2
-          </ListItem>
-          <ListItem status={ListIconStatus.ERROR} customIcon={IconName.TIMES}>
-            Item 3
-          </ListItem>
-        </List>
-      </Section>
-      {/*
-       * ##############
-       * LIST DESCRIPTIONS
-       * ##############
-       */}
-      <Section>
-        <Title level={TitleLevels.THREE}>List with descriptions</Title>
-        <Divider />
-
-        <List>
-          <ListItem title="Title">
+          <ListItem
+            divider
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem
+            divider
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem
+            divider
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem divider>
+            <Title level='SIX'>Ceci est le titre</Title>
             <ListItemDescription>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book
+              Lorem ipsum dolor sit amet consectetur adipisicing
             </ListItemDescription>
           </ListItem>
-          <ListItem title="Title">
+        </List>
+
+        <Title level={TitleLevels.THREE}>List with action & title & description</Title>
+
+        <List>
+          <ListItem
+            deletable
+            action={<Icon name='tri-trash' />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem
+            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem
+            action={<Radio description={'lorem kenenf ns k '} narrow marginless />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem action={<Checkbox />}>
+            <Title level='SIX'>Ceci est le titre</Title>
             <ListItemDescription>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
+          </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>List with customIcon</Title>
+
+        <List>
+          <ListItem
+            status={ListIconStatus.ERROR}
+            customIcon={IconName.TIMES}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          />
+          <ListItem
+            customIcon={<CustomIcon />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          />
+          <ListItem
+            customIcon={<Dot />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          />
+          <ListItem customIcon={<Avatar />}>
+            <Title level='SIX'>Ceci est le titre</Title>
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
+            </ListItemDescription>
+          </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>
+          List with action & title & description && customIcon
+        </Title>
+
+        <List>
+          <ListItem
+            deletable
+            status={ListIconStatus.ERROR}
+            customIcon={IconName.TIMES}
+            action={<Icon name='tri-trash' size='small' />}
+            title='Ceci est le titre'
+            description='Lorem ipsum dolor sit amet consectetur '
+          ></ListItem>
+          <ListItem
+            customIcon={<Icon name='tri-trash' size='small' />}
+            action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+          >
+            <Title level='SIX'>Ceci est le titre</Title>
+            <ListItemDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing
             </ListItemDescription>
           </ListItem>
         </List>
       </Section>
     </>
-  );
-};
+  )
+}
+
+const Dot = () => {
+  return (
+    <View
+      style={{
+        width: 8,
+        height: 8,
+        borderRadius: 8,
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+      }}
+    />
+  )
+}
+
+const Avatar = () => {
+  return (
+    <Image
+      src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
+      width={40}
+      height={40}
+      rounded
+    />
+  )
+}
+
+const CustomIcon = () => {
+  return <Icon size='small' name='tri-alert' color={IconColor.INFO} />
+}
