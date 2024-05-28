@@ -4,234 +4,242 @@
 * @deprecated "Use box.is-paddingless instead"
 */
 .table-container.box {
-    padding: 0;
+  padding: 0;
 }
 
 .table {
-    @include block;
+  @include block;
 
-    background-color: transparent;
-    color: getColor('neutral-dark');
+  background-color: transparent;
+  color: getColor('neutral-dark');
 
-    &:not(:last-child) {
-        margin-bottom: 30px;
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  /**
+  * @deprecated "Use multiples <tr><th> instead"
+  */
+  tbody .is-body-header {
+    background-color: getBGColor('neutral-dark');
+  }
+
+  td,
+  th {
+    border: 1px solid getBGColor('neutral-dark');
+    border-width: 0;
+    padding: 20px;
+    vertical-align: top;
+    text-align: left;
+
+    // Modifiers
+    &.is-narrow {
+      white-space: nowrap;
+      width: 1%;
     }
 
-    /**
-    * @deprecated "Use multiples <tr><th> instead"
-    */
-    tbody .is-body-header {
-        background-color: getBGColor('neutral-dark');
+    &.is-selected {
+      background-color: getColor('main');
+      color: getColor('background');
+
+      a,
+      strong {
+        color: currentColor;
+      }
+    }
+  }
+
+  th {
+    color: getColor('font');
+  }
+
+  tr {
+    @each $name in $colors-feedback {
+      &.is-#{$name} {
+        background-color: getBGColor($name);
+      }
     }
 
+    th {
+      background-color: getColor('background');
+    }
+
+    th,
+    td {
+      color: getColor('font');
+      vertical-align: middle;
+    }
+
+    td {
+      border-bottom: 1px solid getBGColor('neutral-dark');
+
+      > p {
+        margin: 0;
+      }
+    }
+
+    &.is-selected {
+      background-color: getColor('main');
+      color: getColor('background');
+
+      a,
+      strong {
+        color: currentColor;
+      }
+
+      td,
+      th {
+        border-color: currentColor;
+        color: currentColor;
+      }
+    }
+
+    &.is-expanded,
+    &.is-expandable:hover {
+      td {
+        color: getColor('alternate');
+        cursor: pointer;
+      }
+    }
+
+    &.is-expandable + .is-expansion {
+      display: none;
+    }
+
+    &.is-expanded + .is-expansion {
+      display: table-row;
+    }
+
+    &.is-expanded {
+      > td {
+        border-bottom: 0;
+      }
+
+      .toggle {
+        transform: rotate(180deg);
+        color: inherit;
+      }
+
+      + tr > td {
+        border-top: 0;
+      }
+    }
+  }
+
+  thead {
     td,
     th {
-        border: 1px solid getBGColor('neutral-dark');
-        border-width: 0;
-        padding: 20px;
-        vertical-align: top;
-        text-align: left;
+      border-width: 0 0 1px;
+      color: getColor('font');
+    }
+  }
 
-        // Modifiers
-        &.is-narrow {
-            white-space: nowrap;
-            width: 1%;
-        }
+  tfoot {
+    td,
+    th {
+      border-width: 2px 0 0;
+      color: getColor('font');
+    }
+  }
 
-        &.is-selected {
-            background-color: getColor('main');
-            color: getColor('background');
-            a,
-            strong {
-                color: currentColor;
-            }
+  tbody {
+    tr {
+      &:last-child {
+        td,
+        th {
+          border-bottom-width: 0;
         }
+      }
+    }
+  }
+
+  &:not(.is-bordered).is-comparative {
+    th {
+      border-right: 1px solid getBGColor('neutral');
     }
 
+    td {
+      &:not(:last-child) {
+        border-right: 1px solid getBGColor('neutral-dark');
+      }
+    }
+  }
+
+  &.is-compact {
+    td,
     th {
-        color: getColor('font');
+      padding: math.div(20px, 3) math.div(20px, 3);
+    }
+  }
+
+  &.is-bordered {
+    td,
+    th {
+      border-width: 1px;
     }
 
     tr {
-        @each $name in $colors-feedback {
-          &.is-#{$name} {
-                background-color:getBGColor($name);
-            }
-        }
-
-        th {
-            background-color: getColor('background');
-        }
-
-        th,
-        td {
-            color: getColor('font');
-            vertical-align: middle;
-        }
-
-        td {
-            border-bottom: 1px solid getBGColor('neutral-dark');
-
-            > p {
-                margin: 0;
-            }
-        }
-
-        &.is-selected {
-            background-color: getColor('main');
-            color: getColor('background');
-
-            a,
-            strong {
-                color: currentColor;
-            }
-
-            td,
-            th {
-                border-color: currentColor;
-                color: currentColor;
-            }
-        }
-
-        &.is-expanded,
-        &.is-expandable:hover {
-            td {
-                color: getColor('alternate');
-                cursor: pointer;
-            }
-        }
-
-        &.is-expandable + .is-expansion {
-            display: none;
-        }
-
-        &.is-expanded + .is-expansion {
-            display: table-row;
-        }
-
-        &.is-expanded {
-            > td {
-                border-bottom: 0;
-            }
-
-            .toggle {
-                transform: rotate(180deg);
-                color: inherit;
-            }
-
-            + tr > td {
-                border-top: 0;
-            }
-        }
-    }
-
-    thead {
+      &:last-child {
         td,
         th {
-            border-width: 0 0 1px;
-            color: getColor('font');
+          border-bottom-width: 1px;
         }
+      }
     }
+  }
 
-    tfoot {
-        td,
-        th {
-            border-width: 2px 0 0;
-            color: getColor('font');
-        }
-    }
+  &.is-fullwidth {
+    width: 100%;
+  }
 
+  &.is-striped {
     tbody {
-        tr {
-            &:last-child {
-                td,
-                th {
-                    border-bottom-width: 0;
-                }
-            }
+      tr:not(.is-selected) {
+        &:nth-child(even) {
+          background-color: getBGColor('neutral');
         }
+      }
+    }
+  }
+
+  .subtable {
+    background-color: getBGColor('neutral');
+    border-radius: var(--radius);
+    padding: $box-padding * 2;
+
+    @include mobile() {
+      padding: 15px;
     }
 
-    &:not(.is-bordered).is-comparative {
-        th {
-            border-right: 1px solid getBGColor('neutral');
-        }
+    .table {
+      background: transparent;
 
+      tr:not(:first-child) {
         td {
-            &:not(:last-child) {
-                border-right: 1px solid getBGColor('neutral-dark');
-            }
+          border-top: 1px solid getColor('neutral-dark');
         }
+      }
+
+      td {
+        border: 0;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
     }
-
-    &.is-bordered {
-        td,
-        th {
-            border-width: 1px;
-        }
-
-        tr {
-            &:last-child {
-                td,
-                th {
-                    border-bottom-width: 1px;
-                }
-            }
-        }
-    }
-
-    &.is-fullwidth {
-        width: 100%;
-    }
-
-    &.is-striped {
-        tbody {
-            tr:not(.is-selected) {
-                &:nth-child(even) {
-                    background-color: getBGColor('neutral');
-                }
-            }
-        }
-    }
-
-    .subtable {
-        background-color: getBGColor('neutral');
-        border-radius: var(--radius);
-        padding: $box-padding * 2;
-
-        @include mobile() {
-            padding: 15px;
-        }
-
-        .table {
-            background: transparent;
-
-            tr:not(:first-child) {
-                td {
-                    border-top: 1px solid getColor('neutral-dark');
-                }
-            }
-
-            td {
-                border: 0;
-
-                &:first-child {
-                    padding-left: 0;
-                }
-
-                &:last-child {
-                    padding-right: 0;
-                }
-            }
-        }
-    }
+  }
 }
 
 .table-container {
-    @include block;
-    @include overflow-touch;
+  @include block;
+  @include overflow-touch;
 
-    overflow: auto;
-    overflow-y: hidden;
-    max-width: 100%;
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
