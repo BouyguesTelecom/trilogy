@@ -2,6 +2,7 @@
  * ListItem Interface
  */
 import { ReactNode } from 'react'
+import { Animated } from 'react-native'
 import { Accessibility } from '../../../objects'
 import { IconName, IconNameValues } from '../../icon'
 
@@ -23,3 +24,5 @@ export interface ListItemProps extends Accessibility {
   divider?: boolean
   deletable?: ReactNode
 }
+
+export type AnimatedInterpolationProps = Animated.AnimatedInterpolation<number | string>
