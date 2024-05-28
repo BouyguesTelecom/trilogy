@@ -30,7 +30,7 @@ ol.list {
 
         .radio label.radio-label:empty, 
         .checkbox label.checkbox-label:empty {
-          padding: 4px 4px 4px 14px;
+          padding: $spacing-1 $spacing-1 $spacing-1 calc($spacing-1 + 10px);        
         }
 
       } 
@@ -43,7 +43,7 @@ ol.list {
 
     .divider {
       position: absolute;
-      bottom: -16px;
+      bottom: calc(-1 * $spacing-4);
       width: 100%;
     }
 
