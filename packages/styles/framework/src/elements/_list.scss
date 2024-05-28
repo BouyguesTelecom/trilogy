@@ -25,6 +25,7 @@ ol.list {
       .list-item_action {
         & >:first-child {
           margin: 0px !important;
+          cursor: pointer;
         }
 
         .radio label.radio-label:empty, 
