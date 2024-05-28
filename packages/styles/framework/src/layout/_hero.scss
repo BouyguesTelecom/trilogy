@@ -66,11 +66,9 @@ $overlap-desktop: 30px;
 
         .box {
           box-shadow: none;
+//@todo need confirmation
           border-radius: 24px 24px 0 0;
-
-          .box-content:only-child {
-            border-radius: 24px 24px 0 0;
-          }
+          overflow: hidden;
         }
       }
 

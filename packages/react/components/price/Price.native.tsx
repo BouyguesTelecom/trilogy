@@ -1,11 +1,12 @@
-import React, { useContext, useMemo } from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { PriceProps } from "./PriceProps"
-import { PriceLevel } from "./PriceEnum"
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, } from "../../objects"
-import { checkCents } from "./PriceHelpers"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import React, {useContext, useMemo} from "react"
+import {StyleSheet, Text, View} from "react-native"
+import { Text as TrilogyText } from '../text'
+import {PriceProps} from "./PriceProps"
+import {PriceLevel} from "./PriceEnum"
+import {Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor} from "../../objects"
+import {checkCents} from "./PriceHelpers"
+import {ComponentName} from "../enumsComponentsName"
+import {StatesContext} from "../../context/providerStates"
 
 /**
  * Price Component
@@ -25,22 +26,23 @@ import { StatesContext } from "../../context/providerStates"
  * @param suptitle {string} Price Suptitle
  */
 const Price = ({
-  amount,
-  mention,
-  period,
-  showCents,
-  level,
-  inverted,
-  align,
-  alert,
-  inline,
-  testId,
-  accessibilityLabel,
-  striked,
-  suptitle,
-  style,
-  ...others
-}: PriceProps): JSX.Element => {
+                 amount,
+                 mention,
+                 period,
+                 showCents,
+                 level,
+                 inverted,
+                 align,
+                 alert,
+                 inline,
+                 testId,
+                 accessibilityLabel,
+                 striked,
+                 suptitle,
+                 style,
+                 tag,
+                 ...others
+               }: PriceProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
 
   const isNegative = amount < 0
@@ -175,7 +177,7 @@ const Price = ({
       height: 1,
       backgroundColor: (inverted && invertedColor) || primaryColor,
       width: period ? "96%" : "100%",
-      transform: [{ rotate: inline ? "-10deg" : strikedRotateByLevel() }],
+      transform: [{rotate: inline ? "-10deg" : strikedRotateByLevel()}],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -190,6 +192,22 @@ const Price = ({
         (level == PriceLevel.LEVEL7 && "normal") ||
         "bold",
     },
+    tag: {
+      paddingTop: level && level > 3 ? 1 : 10,
+      paddingBottom: level && level > 3 ? 1 : 10,
+      padding: level && level > 3 ? 4 : 8,
+      borderRadius: 6,
+      backgroundColor: getColorStyle(TrilogyColor.ACCENT),
+      flexDirection: 'row'
+    },
+    tagArrow: {
+      width: level && level > 3 ? 8 : 10,
+      height: level && level > 3 ? 8 : 10,
+      backgroundColor: getColorStyle(TrilogyColor.ACCENT),
+      borderRadius: level && level > 3 ? 2 : 3,
+      transform: [{ rotate: '45deg'}],
+      marginRight: level && level > 3 ? -5 : -6,
+    }
   })
 
   const priceText = `${whole}€${showCents ? cents : ""}${
@@ -199,11 +217,15 @@ const Price = ({
   const priceAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : priceText
-    ? priceText
-    : "NotSpecified"
+      ? priceText
+      : "NotSpecified"
+
+  const splitTagIndex = tag?.indexOf('/')
+  const tagFirstPart = splitTagIndex && tag?.substring(0, splitTagIndex)
+  const tagSecondPart = splitTagIndex && tag?.substring(splitTagIndex)
 
   return (
-    <>
+    <View style={tag ? {flexDirection: 'row', alignItems: 'center'} : {}}>
       {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
       <View
         style={[styles.container, style?.container]}
@@ -213,7 +235,7 @@ const Price = ({
         {...others}
       >
         {inline ? (
-          <View style={[styles.priceContainer, { flexDirection: "row" }]}>
+          <View style={[styles.priceContainer, {flexDirection: "row"}]}>
             {striked && <Text style={[styles.striked, style?.striked]}></Text>}
             <Text style={[styles.price, style?.price]}>
               {whole}€{showCents && cents}
@@ -224,7 +246,7 @@ const Price = ({
             </Text>
           </View>
         ) : (
-          <View style={[{ flexDirection: "row" }]}>
+          <View style={[{flexDirection: "row"}]}>
             {striked && <Text style={[styles.striked, style?.striked]}></Text>}
             <View style={[styles.priceContainer, style?.priceContainer]}>
               <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>
@@ -239,7 +261,16 @@ const Price = ({
           </View>
         )}
       </View>
-    </>
+      {tag && (
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+          <View style={styles.tagArrow} />
+          <View style={styles.tag}>
+            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</TrilogyText>
+            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>{tagSecondPart}</TrilogyText>
+          </View>
+        </View>
+      )}
+    </View>
   )
 }
 

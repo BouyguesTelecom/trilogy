@@ -13,7 +13,7 @@
 
   .segmented-control-item {
     padding: 0 $spacing-5;
-    border-radius: $radius-small;
+    border-radius: var(--radius-small);
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
@@ -42,7 +42,6 @@
     &.is-active {
       background-color: getColor('main');
       color: invertColor('main');
-      font-weight: 600;
     }
   }
 }

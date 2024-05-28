@@ -67,7 +67,7 @@ body:has(.modal.is-active) {
 
   .modal-content {
     background-color: getColor('background');
-    border-radius: $radius $radius 0 0;
+    border-radius: var(--radius) var(--radius) 0 0;
     color: getColor('font');
     overflow: auto;
     position: relative;
