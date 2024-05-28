@@ -20,7 +20,10 @@
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
-    font-weight: bold;
+
+    .accordion-header {
+      font-weight: bold;
+    }
 
     .accordion-body {
       padding: $spacing-4;
