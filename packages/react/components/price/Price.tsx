@@ -1,12 +1,12 @@
 import * as React from "react"
 import clsx from "clsx"
-import { PriceProps } from "./PriceProps"
-import { has, is } from "../../services/classify"
-import { Text, TextMarkup } from "../text"
-import { Alignable } from "../../objects"
-import { checkCents } from "./PriceHelpers"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import {PriceProps} from "./PriceProps"
+import {has, is} from "../../services/classify"
+import {Text, TextMarkup} from "../text"
+import {Alignable, TypographyColor, TypographyBold} from "../../objects"
+import {checkCents} from "./PriceHelpers"
+import {hashClass} from "../../helpers"
+import {useTrilogyContext} from "../../context"
 
 /**
  * Price Component
@@ -22,6 +22,7 @@ import { useTrilogyContext } from "../../context"
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param suptitle {string} Price Suptitle
+ * @param tag {React.ReactNode} Tag children
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param striked {boolean} Striked Price
@@ -29,23 +30,24 @@ import { useTrilogyContext } from "../../context"
  * @param accessibilityActivate {boolean}
  */
 const Price = ({
-  className,
-  amount,
-  mention,
-  period,
-  showCents,
-  level,
-  inverted,
-  align,
-  alert,
-  inline,
-  testId,
-  accessibilityLabel,
-  striked,
-  suptitle,
-  ...others
-}: PriceProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+                 className,
+                 amount,
+                 mention,
+                 period,
+                 showCents,
+                 level,
+                 inverted,
+                 align,
+                 alert,
+                 inline,
+                 testId,
+                 accessibilityLabel,
+                 striked,
+                 suptitle,
+                 tag,
+                 ...others
+               }: PriceProps): JSX.Element => {
+  const {styled} = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -65,9 +67,9 @@ const Price = ({
     styled,
     clsx(
       (align == Alignable.ALIGNED_START && has("text-left")) ||
-        (align == Alignable.ALIGNED_CENTER && has("text-centered")) ||
-        (align == Alignable.ALIGNED_END && has("text-right")) ||
-        ""
+      (align == Alignable.ALIGNED_CENTER && has("text-centered")) ||
+      (align == Alignable.ALIGNED_END && has("text-right")) ||
+      ""
     )
   )
 
@@ -87,28 +89,40 @@ const Price = ({
     (showCents && `€${cents || "00"}`) ||
     "€"
 
+  const splitTagIndex = tag?.indexOf('/')
+  const tagFirstPart = splitTagIndex && tag?.substring(0, splitTagIndex)
+  const tagSecondPart = splitTagIndex && tag?.substring(splitTagIndex)
+
   const returnComponent = (
-    <span
-      data-testid={testId}
-      aria-label={accessibilityLabel}
-      className={classes}
-      {...others}
-    >
-      {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-      <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
-      <span className={hashClass(styled, clsx("price-details"))}>
-        <span className={hashClass(styled, clsx("cents"))}>
-          {inline && centsDisplayed === "€" ? (
-            <>&nbsp;{centsDisplayed}</>
-          ) : (
-            centsDisplayed
+    <span className={tag ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
+      <span
+        data-testid={testId}
+        aria-label={accessibilityLabel}
+        className={classes}
+        {...others}
+      >
+        {suptitle && <span className='price-suptitle'>{suptitle}</span>}
+        <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
+        <span className={hashClass(styled, clsx("price-details"))}>
+          <span className={hashClass(styled, clsx("cents"))}>
+            {inline && centsDisplayed === "€" ? (
+              <>&nbsp;{centsDisplayed}</>
+            ) : (
+              centsDisplayed
+            )}
+            {mention && <sup>{mention}</sup>}
+          </span>
+          {period && (
+            <span className={hashClass(styled, clsx("period"))}>/{period}</span>
           )}
-          {mention && <sup>{mention}</sup>}
         </span>
-        {period && (
-          <span className={hashClass(styled, clsx("period"))}>/{period}</span>
-        )}
       </span>
+      {tag && (
+        <span className={hashClass(styled, clsx(('price-tag')))}>
+          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</Text>
+          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}><>&nbsp;</>{tagSecondPart}</Text>
+        </span>
+      )}
     </span>
   )
 

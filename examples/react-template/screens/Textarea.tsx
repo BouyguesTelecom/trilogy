@@ -16,6 +16,7 @@ export const TextareaScreen = (): JSX.Element => {
         placeholder="placeholder"
         label="No Dynamic label"
         dynamicPlaceholder={false}
+        customHeight={100}
       />
       <Divider />
 

@@ -18,7 +18,7 @@
   label.checkbox-label {
     &:before,
     &:after {
-      border-radius: $radius-small;
+      border-radius: var(--radius-small);
     }
   }
 }

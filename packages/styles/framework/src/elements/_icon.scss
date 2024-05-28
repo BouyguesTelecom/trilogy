@@ -85,13 +85,13 @@ $size: (
     }
 
     &.is-circled {
-        border-radius: 100%;
+        border-radius: 9999px;
         text-align: center;
     }
 
     &.is-stretched {
         transform: skewX(-#{$icon-stretching-level});
-        border-top-right-radius: $radius-large;
+        border-top-right-radius: 9px;
         background-color: getColor('font');
 
       [class^="tri-"],
@@ -240,7 +240,7 @@ $size: (
             right: 0;
             width: $icon-dimensions-default;
             height: $icon-dimensions-default;
-            border-radius: 100%;
+            border-radius: 9999px;
             background-color: getColor('main');
         }
 

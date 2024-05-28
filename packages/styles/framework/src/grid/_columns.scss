@@ -782,13 +782,13 @@
 
     &::-webkit-scrollbar-track {
       background-color: getBGColor('font');
-      border-radius: $radius;
+      border-radius: var(--radius);
       margin: 0 8px;
     }
 
     &::-webkit-scrollbar-thumb {
       background: getColor('main');
-      border-radius: $radius;
+      border-radius: var(--radius);
     }
   }
 

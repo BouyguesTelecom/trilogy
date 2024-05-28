@@ -2,7 +2,7 @@
   "parser": "typescript",
   "singleQuote": true,
   "semi": false,
-  "printWidth": 100,
+  "printWidth": 120,
   "trailingComma": "all",
   "jsxSingleQuote": true,
   "arrowParens": "always"

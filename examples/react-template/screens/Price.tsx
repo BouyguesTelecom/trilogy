@@ -7,12 +7,86 @@ import {
   Section,
   Title,
   TitleLevels,
+  Spacer,
+  SpacerSize
 } from "@trilogy-ds/react/components";
 import { Alignable, VariantState } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
     <Section>
+      <Title level={TitleLevels.THREE}>Price tag</Title>
+
+      <Price
+        level={'1'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'2'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'3'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'4'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'5'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'6'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
+      <Price
+        level={'7'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        tag={'-10 € /mois'}
+      />
+
+      <Spacer size={SpacerSize.MEDIUM} />
+
       <Title level={TitleLevels.THREE}>Simple</Title>
 
       <Price level={"2"} amount={18.99} showCents />
