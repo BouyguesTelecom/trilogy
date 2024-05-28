@@ -11,6 +11,7 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
+import {TypographyBold} from "@trilogy-ds/react/objects";
 
 export const AccordionScreen = (): JSX.Element => {
   return (
@@ -20,7 +21,7 @@ export const AccordionScreen = (): JSX.Element => {
       <Accordion>
         <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
-            <Text>Hello World 1</Text>
+            <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>Hello World 1</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Lorem ipsum dolor sit amet</Text>
@@ -28,7 +29,7 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem active={true} id="TWO">
           <AccordionHeader>
-            <Text>Hello World 2</Text>
+            <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>Hello World 2</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Lorem ipsum dolor sit amet</Text>
@@ -36,7 +37,7 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem id="THREE">
           <AccordionHeader>
-            <Text>Hello World 2</Text>
+            <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>Hello World 2</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Collpased by default</Text>
@@ -44,7 +45,7 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem disabled id="FOUR">
           <AccordionHeader>
-            <Text>Hello World 3</Text>
+            <Text typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>Hello World 3</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Lorem ipsum dolor sit amet</Text>
