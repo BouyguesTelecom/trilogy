@@ -1,9 +1,8 @@
 import * as React from "react"
-import { StyleSheet } from "react-native"
-import { StepperStepProps } from "./StepperStepProps"
-import { View } from "../../view"
-import { getColorStyle, TrilogyColor } from "../../../objects"
-import { ComponentName } from "../../enumsComponentsName"
+import {Animated, Easing, StyleSheet} from "react-native"
+import {StepperStepProps} from "./StepperStepProps"
+import {getColorStyle, TrilogyColor} from "../../../objects"
+import {ComponentName} from "../../enumsComponentsName"
 
 /**
  * Stepper Step Component
@@ -16,12 +15,45 @@ import { ComponentName } from "../../enumsComponentsName"
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StepperStep = ({
-  active,
-  current,
-  done,
-  error,
-  ...others
-}: StepperStepProps): JSX.Element => {
+                       active,
+                       current,
+                       done,
+                       error,
+                       ...others
+                     }: StepperStepProps): JSX.Element => {
+
+  const defaultColor = getColorStyle(TrilogyColor.FONT, 1)
+  const activeColor = getColorStyle(TrilogyColor.MAIN)
+  const errorColor = getColorStyle(TrilogyColor.ERROR)
+  const backgroundColorAnim: any = React.useRef(new Animated.Value(0)).current
+
+  const backgroundColor = backgroundColorAnim.interpolate({
+    inputRange: [0, 1, 2],
+    outputRange: [
+      defaultColor,
+      activeColor,
+      errorColor,
+    ],
+  })
+
+  React.useEffect(() => {
+    let targetValue
+    if (error) {
+      targetValue = 2
+    } else if (active || current || done) {
+      targetValue = 1
+    } else {
+      targetValue = 0
+    }
+
+    Animated.timing(backgroundColorAnim, {
+      toValue: targetValue,
+      duration: 650,
+      useNativeDriver: true,
+      easing: Easing.linear,
+    }).start()
+  }, [active, current, done, error])
+
   const styles = StyleSheet.create({
     step: {
       flex: 1,
@@ -30,17 +62,12 @@ const StepperStep = ({
       height: 4,
       marginRight: 8,
       borderRadius: 4,
-      backgroundColor:
-        (error && getColorStyle(TrilogyColor.ERROR)) ||
-        (active && getColorStyle(TrilogyColor.MAIN)) ||
-        (current && getColorStyle(TrilogyColor.MAIN)) ||
-        (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+      backgroundColor: backgroundColor,
       zIndex: 1,
     },
   })
 
-  return <View style={styles.step} {...others}></View>
+  return <Animated.View style={styles.step} {...others}></Animated.View>
 }
 
 StepperStep.displayName = ComponentName.StepperStep
