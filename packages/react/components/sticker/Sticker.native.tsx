@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Platform, StyleSheet, Text, View } from "react-native"
-import { StickerProps } from "./StickerProps"
-import { getColorStyle, getVariantStyle, TrilogyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import {Platform, StyleSheet, View} from "react-native"
+import {StickerProps} from "./StickerProps"
+import {getColorStyle, getVariantStyle, TrilogyColor} from "../../objects"
+import {ComponentName} from "../enumsComponentsName"
+import {Text} from "../text"
 
 /**
  * Sticker Native component
@@ -14,13 +15,13 @@ import { ComponentName } from "../enumsComponentsName"
  * @param others
  */
 const Sticker = ({
-  children,
-  variant,
-  small,
-  hat,
-  outlined,
-  ...others
-}: StickerProps): JSX.Element => {
+                   children,
+                   variant,
+                   small,
+                   hat,
+                   outlined,
+                   ...others
+                 }: StickerProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
@@ -52,7 +53,7 @@ const Sticker = ({
       alignItems: "center",
       fontWeight: "bold",
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === "ios" ? [{ skewX: "0deg" }] : [],
+      transform: Platform.OS === "ios" ? [{skewX: "0deg"}] : [],
     },
   })
 
