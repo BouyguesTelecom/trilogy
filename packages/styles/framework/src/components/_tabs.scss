@@ -99,7 +99,7 @@
       background-color: transparent;
       border: none;
       color: getColor('font');
-      font-family: $body-family;
+      font-family: $family-sans-serif;
       text-decoration: none;
       outline: none;
       padding: 6px 14px;
@@ -121,13 +121,10 @@
         font-size: $text-14;
       }
 
-
       &.is-active {
         color: getColor('main');
-        font-weight: $weight-semibold;
         position: relative;
         border-bottom-color: getColor('main');
-
       }
 
       &:hover:not(.is-disabled) {
