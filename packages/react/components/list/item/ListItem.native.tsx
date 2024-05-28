@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react'
-import { View as ReactView, StyleSheet } from 'react-native'
+import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { TrilogyColor, getColorStyle } from '../../../objects'
 import { Divider } from '../../divider'
 import { ComponentName } from '../../enumsComponentsName'
 import { Icon, IconColor, IconName } from '../../icon'
 import { Text, TextLevels } from '../../text'
 import { Title, TitleLevels } from '../../title'
-import { View } from '../../view'
-import { ListItemProps } from './ListItemProps'
-import SwipeableListItem from './SwipeableListItem'
+import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
 
 const ListItem = ({
   children,
@@ -61,6 +60,13 @@ const ListItem = ({
       width: 2,
       height: 20,
       borderRadius: 6,
+    },
+    rightAction: {
+      justifyContent: 'center',
+      flex: 1,
+      alignItems: 'flex-end',
+      paddingLeft: 16,
+      paddingRight: 4,
     },
   })
 
@@ -119,10 +125,26 @@ const ListItem = ({
     )
   }, [customIcon, status, title, getComponent, action, deletable])
 
-  if (action) {
+  if (action && deletable) {
+    const RightActions = (_: AnimatedInterpolationProps, dragX: AnimatedInterpolationProps) => {
+      const scale = dragX.interpolate({
+        inputRange: [-100, 0],
+        outputRange: [1.5, 0.9],
+        extrapolate: 'clamp',
+      })
+
+      return (
+        <View>
+          <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
+            {action}
+          </Animated.View>
+        </View>
+      )
+    }
+
     return (
       <>
-        <SwipeableListItem actionElement={action}>{content}</SwipeableListItem>
+        <Swipeable renderRightActions={RightActions}>{content}</Swipeable>
         {divider && <Divider />}
       </>
     )
