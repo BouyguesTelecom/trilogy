@@ -1,337 +1,340 @@
 @mixin position-top {
-    top: auto;
-    bottom: 100%;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, 2.5px);
-    margin-bottom: 8px;
+  top: auto;
+  bottom: 100%;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, 2.5px);
 
-    &::before {
-        bottom: auto;
-        right: auto;
-        top: 100%;
-        left: 50%;
-        transform: rotate(-45deg);
-    }
+  &::before {
+    bottom: auto;
+    right: auto;
+    top: 100%;
+    left: 50%;
+    transform: rotate(-45deg);
+  }
 }
 
 @mixin position-right {
-    top: auto;
-    bottom: 50%;
-    left: 100%;
-    right: auto;
-    transform: translate(7px, 50%);
+  top: auto;
+  bottom: 50%;
+  left: 100%;
+  right: auto;
+  transform: translate(7px, 50%);
 
-    // flèche sur le contour de la popover
-    &::before {
-        top: 50%;
-        bottom: auto;
-        left: 0;
-        right: auto;
-        transform: rotate(45deg);
-    }
+  // flèche sur le contour de la popover
+  &::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: auto;
+    transform: rotate(45deg);
+  }
 }
 
 @mixin position-bottom {
-    top: 100%;
-    bottom: auto;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, 7px);
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, 7px);
 
-    // flèche sur le contour de la popover
-    &::before {
-        top: 0;
-        bottom: auto;
-        right: auto;
-        left: 50%;
-        transform: rotate(135deg);
-    }
+  // flèche sur le contour de la popover
+  &::before {
+    top: 0;
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    transform: rotate(135deg);
+  }
 }
 
 @mixin position-left {
-    top: auto;
-    bottom: 50%;
-    left: auto;
-    right: 100%;
-    transform: translate(-7px, 50%);
+  top: auto;
+  bottom: 50%;
+  left: auto;
+  right: 100%;
+  transform: translate(-7px, 50%);
 
-    // flèche sur le contour de la popover
-    &::before {
-        top: 50%;
-        bottom: auto;
-        left: 100%;
-        right: auto;
-        transform: rotate(-135deg);
-    }
+  // flèche sur le contour de la popover
+  &::before {
+    top: 50%;
+    bottom: auto;
+    left: 100%;
+    right: auto;
+    transform: rotate(-135deg);
+  }
 }
 
 .popover {
-    position: relative;
-    display: inline-flex;
+  position: relative;
+  display: inline-flex;
 
-    .popover-content {
-        @include position-top();
+  .popover-content {
+    @include position-top();
 
-        background-color: getColor('font');
-        border-radius: var(--radius-small);
-        box-shadow: $shadow;
-        color: getColor('background');
-        display: inline-block;
-        font-size: 12px;
-        visibility: hidden;
-        padding: $spacing-2;
-        font-weight: 500;
-        position: absolute;
-        text-align: center;
-        max-width: 210px;
-        width: max-content;
-        z-index: zindex('popover');
+    background-color: getColor('font');
+    border-radius: var(--radius-small);
+    box-shadow: $shadow;
+    color: getColor('background');
+    display: inline-block;
+    font-size: 12px;
+    visibility: hidden;
+    padding: $spacing-2;
+    font-weight: 500;
+    position: absolute;
+    text-align: center;
+    max-width: 210px;
+    width: max-content;
+    z-index: zindex('popover');
 
-        ul {
-            padding-left: 14px;
-        }
-
-        // dessine la flèche sur le contour de la popover
-        &::before {
-            content: '';
-            border-color: transparent;
-            border-bottom-color: getColor('font');
-            border-left-color: getColor('font');
-            border-style: solid;
-            border-width: 4px;
-            pointer-events: none;
-            position: absolute;
-            margin-left: -4px;
-            margin-top: -4px;
-            transform-origin: center;
-            height: 0;
-            width: 0;
-        }
-
-        .title,
-        .suptitle,
-        .paragraph,
-        .text,
-        p {
-            color: getColor('background');
-        }
+    ul {
+      padding-left: 14px;
     }
 
-    &.is-popover-right .popover-content {
-        @include position-right();
+    // dessine la flèche sur le contour de la popover
+    &::before {
+      content: '';
+      border-color: transparent;
+      border-bottom-color: getColor('font');
+      border-left-color: getColor('font');
+      border-style: solid;
+      border-width: 4px;
+      pointer-events: none;
+      position: absolute;
+      margin-left: -4px;
+      margin-top: -4px;
+      transform-origin: center;
+      height: 0;
+      width: 0;
     }
 
-    &.is-popover-bottom .popover-content {
-        @include position-bottom();
+    .title,
+    .suptitle,
+    .paragraph,
+    .text,
+    p {
+      color: getColor('background');
+    }
+  }
+
+  &:not(.is-popover-right):not(.is-popover-left):not(.is-popover-bottom) .popover-content {
+    margin-bottom: 8px;
+  }
+
+  &.is-popover-right .popover-content {
+    @include position-right();
+  }
+
+  &.is-popover-bottom .popover-content {
+    @include position-bottom();
+  }
+
+  &.is-popover-left .popover-content {
+    @include position-left();
+  }
+
+  @include mobile {
+    &.is-popover-top-mobile .popover-content {
+      @include position-top();
     }
 
-    &.is-popover-left .popover-content {
-        @include position-left();
+    &.is-popover-right-mobile .popover-content {
+      @include position-right();
     }
 
-    @include mobile {
-        &.is-popover-top-mobile .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-mobile .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-mobile .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-mobile .popover-content {
-            @include position-left();
-        }
+    &.is-popover-bottom-mobile .popover-content {
+      @include position-bottom();
     }
 
-    @include tablet {
-        &.is-popover-top-tablet .popover-content {
-            @include position-top();
-        }
+    &.is-popover-left-mobile .popover-content {
+      @include position-left();
+    }
+  }
 
-        &.is-popover-right-tablet .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-tablet .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-tablet .popover-content {
-            @include position-left();
-        }
+  @include tablet {
+    &.is-popover-top-tablet .popover-content {
+      @include position-top();
     }
 
-    @include tablet-only {
-        &.is-popover-top-tablet-only .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-tablet-only .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-tablet-only .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-tablet-only .popover-content {
-            @include position-left();
-        }
+    &.is-popover-right-tablet .popover-content {
+      @include position-right();
     }
 
-    @include touch {
-        &.is-popover-top-touch .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-touch .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-touch .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-touch .popover-content {
-            @include position-left();
-        }
+    &.is-popover-bottom-tablet .popover-content {
+      @include position-bottom();
     }
 
-    @include desktop {
-        &.is-popover-top-desktop .popover-content {
-            @include position-top();
-        }
+    &.is-popover-left-tablet .popover-content {
+      @include position-left();
+    }
+  }
 
-        &.is-popover-right-desktop .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-desktop .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-desktop .popover-content {
-            @include position-left();
-        }
+  @include tablet-only {
+    &.is-popover-top-tablet-only .popover-content {
+      @include position-top();
     }
 
-    @include desktop-only {
-        &.is-popover-top-desktop-only .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-desktop-only .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-desktop-only .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-desktop-only .popover-content {
-            @include position-left();
-        }
+    &.is-popover-right-tablet-only .popover-content {
+      @include position-right();
     }
 
-    @include widescreen {
-        &.is-popover-top-widescreen .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-widescreen .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-widescreen .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-widescreen .popover-content {
-            @include position-left();
-        }
+    &.is-popover-bottom-tablet-only .popover-content {
+      @include position-bottom();
     }
 
-    @include widescreen-only {
-        &.is-popover-top-widescreen-only .popover-content {
-            @include position-top();
-        }
+    &.is-popover-left-tablet-only .popover-content {
+      @include position-left();
+    }
+  }
 
-        &.is-popover-right-widescreen-only .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-widescreen-only .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-widescreen-only .popover-content {
-            @include position-left();
-        }
+  @include touch {
+    &.is-popover-top-touch .popover-content {
+      @include position-top();
     }
 
-    @include fullhd {
-        &.is-popover-top-fullhd .popover-content {
-            @include position-top();
-        }
-
-        &.is-popover-right-fullhd .popover-content {
-            @include position-right();
-        }
-
-        &.is-popover-bottom-fullhd .popover-content {
-            @include position-bottom();
-        }
-
-        &.is-popover-left-fullhd .popover-content {
-            @include position-left();
-        }
+    &.is-popover-right-touch .popover-content {
+      @include position-right();
     }
 
-    // ajustement des flèches en fonction de la position
-    &.is-popover-right,
-    &.is-popover-left {
-        &.is-arrow-start .popover-content::before {
-            top: 20%;
-        }
-
-        &.is-arrow-end .popover-content::before {
-            top: 80%;
-        }
+    &.is-popover-bottom-touch .popover-content {
+      @include position-bottom();
     }
 
-    &.is-popover-right {
-        &.is-arrow-start .popover-content::before,
-        &.is-arrow-end .popover-content::before {
-            left: 0;
-        }
+    &.is-popover-left-touch .popover-content {
+      @include position-left();
+    }
+  }
+
+  @include desktop {
+    &.is-popover-top-desktop .popover-content {
+      @include position-top();
     }
 
-    &.is-popover-left {
-        &.is-arrow-start .popover-content::before,
-        &.is-arrow-end .popover-content::before {
-            left: 100%;
-        }
+    &.is-popover-right-desktop .popover-content {
+      @include position-right();
     }
 
+    &.is-popover-bottom-desktop .popover-content {
+      @include position-bottom();
+    }
+
+    &.is-popover-left-desktop .popover-content {
+      @include position-left();
+    }
+  }
+
+  @include desktop-only {
+    &.is-popover-top-desktop-only .popover-content {
+      @include position-top();
+    }
+
+    &.is-popover-right-desktop-only .popover-content {
+      @include position-right();
+    }
+
+    &.is-popover-bottom-desktop-only .popover-content {
+      @include position-bottom();
+    }
+
+    &.is-popover-left-desktop-only .popover-content {
+      @include position-left();
+    }
+  }
+
+  @include widescreen {
+    &.is-popover-top-widescreen .popover-content {
+      @include position-top();
+    }
+
+    &.is-popover-right-widescreen .popover-content {
+      @include position-right();
+    }
+
+    &.is-popover-bottom-widescreen .popover-content {
+      @include position-bottom();
+    }
+
+    &.is-popover-left-widescreen .popover-content {
+      @include position-left();
+    }
+  }
+
+  @include widescreen-only {
+    &.is-popover-top-widescreen-only .popover-content {
+      @include position-top();
+    }
+
+    &.is-popover-right-widescreen-only .popover-content {
+      @include position-right();
+    }
+
+    &.is-popover-bottom-widescreen-only .popover-content {
+      @include position-bottom();
+    }
+
+    &.is-popover-left-widescreen-only .popover-content {
+      @include position-left();
+    }
+  }
+
+  @include fullhd {
+    &.is-popover-top-fullhd .popover-content {
+      @include position-top();
+    }
+
+    &.is-popover-right-fullhd .popover-content {
+      @include position-right();
+    }
+
+    &.is-popover-bottom-fullhd .popover-content {
+      @include position-bottom();
+    }
+
+    &.is-popover-left-fullhd .popover-content {
+      @include position-left();
+    }
+  }
+
+  // ajustement des flèches en fonction de la position
+  &.is-popover-right,
+  &.is-popover-left {
     &.is-arrow-start .popover-content::before {
-        left: 10%;
+      top: 20%;
     }
 
     &.is-arrow-end .popover-content::before {
-        left: 90%;
+      top: 80%;
     }
+  }
 
-    &.is-popover-active .popover-content,
-    &:hover .popover-content {
-        visibility: visible;
+  &.is-popover-right {
+    &.is-arrow-start .popover-content::before,
+    &.is-arrow-end .popover-content::before {
+      left: 0;
     }
+  }
 
-    .popover-trigger:focus ~ .popover-content {
-        visibility: visible;
+  &.is-popover-left {
+    &.is-arrow-start .popover-content::before,
+    &.is-arrow-end .popover-content::before {
+      left: 100%;
     }
+  }
+
+  &.is-arrow-start .popover-content::before {
+    left: 10%;
+  }
+
+  &.is-arrow-end .popover-content::before {
+    left: 90%;
+  }
+
+  &.is-popover-active .popover-content,
+  &:hover .popover-content {
+    visibility: visible;
+  }
+
+  .popover-trigger:focus ~ .popover-content {
+    visibility: visible;
+  }
 }
