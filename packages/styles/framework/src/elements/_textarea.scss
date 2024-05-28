@@ -7,6 +7,11 @@
     border-radius: var(--radius-small);
     outline: none;
 
+    &:focus,
+    &:focus-visible {
+      padding: 15px;
+    }
+
     &::placeholder {
       font-size: 16px;
     }
@@ -48,7 +53,6 @@
       padding-left: $spacing-9;
       padding-right: $spacing-9;
 
-      #{$hoverSelector},
       &:focus,
       &:focus-visible {
         padding-left: 55px;
