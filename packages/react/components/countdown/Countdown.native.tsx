@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
-import { getColorStyle, TrilogyColor } from '../../objects/facets/Color'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownProps } from './CountdownProps'
-import { ComponentName } from '../enumsComponentsName'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, View} from 'react-native'
+import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {CountdownFormat, CountdownUnite} from './CountdownEnum'
+import {CountdownProps} from './CountdownProps'
+import {ComponentName} from '../enumsComponentsName'
+import {Text, TextLevels} from '../text'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -11,7 +12,7 @@ const calculateTimer = (timeDifference: number) => {
   const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24)
   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
-  return { days, hours, minutes, seconds }
+  return {days, hours, minutes, seconds}
 }
 
 /**
@@ -23,7 +24,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, format, event, small, centered, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({deadline, format, event, small, centered, ...others}: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -127,15 +128,12 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
       borderRadius: small ? 4 : 8,
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: small ? 8 : 16,
+      paddingHorizontal: small ? 8 : 12,
       paddingVertical: small ? 8 : 12,
     },
     text: {
-      fontFamily: 'poppins-regular',
       color: countdownColor,
-      fontSize: small ? 16 : 24,
       fontWeight: '600',
-      marginTop: -2,
     },
     date: {
       fontSize: small ? 12 : 14,
@@ -173,7 +171,7 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
       )}
       {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator}></View>}
       {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
-        <Text style={styles.text}>
+        <Text style={styles.text} level={TextLevels.ONE}>
           {timer.seconds ? timer.seconds : 0}
           <Text style={styles.date}>s</Text>
         </Text>
