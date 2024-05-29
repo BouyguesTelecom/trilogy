@@ -162,6 +162,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
+@mixin label-states {
+  &:focus,
+  &:active,
+  &:hover {
+    @include hover();
+  }
+}
+
 @mixin overlay($offset: 0) {
   position: absolute;
   top: $offset;
@@ -452,11 +460,7 @@
       }
     }
 
-    input:checked ~ label.#{$type}-label {
-      font-weight: bold;
-    }
-
-    &:hover {
+    &:hover &:not(disabled) {
       label.#{$type}-label {
         &:before {
           @include hoverRules();
@@ -518,12 +522,13 @@
     }
 
     input {
-      &:not(:disabled) ~ label.#{$type}-label {
-        &:focus,
-        &:active,
-        &:hover {
-          @include hover();
-        }
+
+      &:not(:disabled):not(:checked) ~ label.radio-label {
+        @include label-states;
+      }
+
+      &:not(:disabled) ~ label.checkbox-label {
+        @include label-states;
       }
 
       &:checked:not(:disabled) ~ label.#{$type}-label {
