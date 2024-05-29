@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity, } from "react-native"
+import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity} from "react-native"
 import NativeModal from "react-native-modal"
 import { ModalProps } from "./ModalProps"
 import { Text } from "../text"
