@@ -9,6 +9,7 @@ $button-colors: (
   'primary': ['primary', 'main', 'background'],
   'secondary': ['secondary', 'bg-main', 'main'],
   'ghost': ['ghost', 'background', 'main'],
+  'loading':['loading','disabled','neutral']
 ) !default;
 
 %buttons-states {
