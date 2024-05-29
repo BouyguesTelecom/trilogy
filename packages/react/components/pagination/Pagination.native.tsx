@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { PaginationProps } from "./PaginationProps"
-import { Icon, IconName, IconSize } from "../icon"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
-import { Pager } from "./PaginationEnum"
+import React, {useEffect, useRef, useState} from "react"
+import {StyleSheet, TouchableOpacity, View} from "react-native"
+import {PaginationProps} from "./PaginationProps"
+import {Icon, IconName, IconSize} from "../icon"
+import {getColorStyle, TrilogyColor} from "../../objects/facets/Color"
+import {ComponentName} from "../enumsComponentsName"
+import {Pager} from "./PaginationEnum"
+import {Text} from "../text"
 
 /**
  * Pagination Component
@@ -14,12 +15,12 @@ import { Pager } from "./PaginationEnum"
  * @param onClick {Function} Return pagination object
  */
 const Pagination = ({
-  count,
-  defaultPage = 1,
-  pageSize = 10,
-  onClick,
-  ...others
-}: PaginationProps): JSX.Element => {
+                      count,
+                      defaultPage = 1,
+                      pageSize = 10,
+                      onClick,
+                      ...others
+                    }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const [arrayPage] = useState<Array<number>>(
     Array.from(Array(count + 1).keys())
@@ -85,68 +86,49 @@ const Pagination = ({
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      alignSelf: "center",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "space-around",
     },
     text: {
-      fontSize: 18,
-      color: "#333",
+      color: getColorStyle(TrilogyColor.FONT),
       alignSelf: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "400",
-      marginRight: 12,
     },
     textCurrent: {
-      fontSize: 18,
       color: getColorStyle(TrilogyColor.BACKGROUND),
       alignSelf: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "400",
-      // marginRight: 12,
     },
     rounded: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
-      width: 30,
-      height: 30,
-      borderRadius: 30,
-      alignSelf: "center",
-      alignItems: "center",
+      width: 26,
+      height: 26,
+      borderRadius: 26,
       justifyContent: "center",
-      marginRight: 12,
-      marginTop: -3,
+      paddingTop: 2,
+    },
+    textContainer: {
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+      width: 26,
+      height: 26,
+      borderRadius: 26,
+      justifyContent: "center",
+      paddingTop: 2,
     },
     currentPage: {
-      fontSize: 18,
       color: getColorStyle(TrilogyColor.MAIN),
-      fontWeight: "500",
-      alignSelf: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      marginRight: 12,
     },
     dotsLeft: {
-      color: "#D1D1D1",
+      color: getColorStyle(TrilogyColor.BACKGROUND),
       marginRight: 12,
     },
     dotsRight: {
-      color: "#D1D1D1",
+      color: getColorStyle(TrilogyColor.BACKGROUND),
       marginRight: -12,
-    },
-    arrowLeft: {
-      marginRight: 7,
-    },
-    arrowRight: {
-      marginLeft: 7,
     },
   })
 
   return (
     <View style={styles.container} {...others}>
       <TouchableOpacity
-        style={{ marginRight: 5 }}
         onPress={() => {
           if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -154,17 +136,15 @@ const Pagination = ({
           }
         }}
       >
-        {/* {fontsLoaded && ( */}
         <Icon
-          style={styles.arrowLeft}
           name={IconName.ARROW_LEFT}
           size={IconSize.SMALL}
-          color={TrilogyColor.NEUTRAL_DARK}
+          color={TrilogyColor.MAIN}
         />
-        {/* )} */}
       </TouchableOpacity>
 
-      <View style={{ flexDirection: "row", justifyContent: "center" }}>
+      <View
+        style={{flexDirection: "row", alignItems: 'center'}}>
         {!pager.pages.includes(1) && (
           <View>
             <Text style={styles.dotsLeft}>…</Text>
@@ -173,7 +153,7 @@ const Pagination = ({
         {pager.pages.map((pageNumber) => (
           <View key={pageNumber}>
             <TouchableOpacity
-              style={currentPage === pageNumber && styles.rounded}
+              style={currentPage === pageNumber ? styles.rounded : styles.textContainer}
               onPress={() => {
                 setCurrentPage(pageNumber)
                 prevCurrentPage.current = pageNumber
@@ -190,13 +170,13 @@ const Pagination = ({
           </View>
         ))}
         {!pager.pages.includes(totalCountPages) && (
-          <View style={{ marginRight: 15 }}>
+          <View style={{marginRight: 15}}>
             <Text style={styles.dotsRight}>…</Text>
           </View>
         )}
       </View>
       <TouchableOpacity
-        style={{ marginLeft: 5 }}
+
         onPress={() => {
           if (currentPage !== Math.max(pager.totalPages)) {
             setCurrentPage(currentPage + 1)
@@ -204,14 +184,11 @@ const Pagination = ({
           }
         }}
       >
-        {/* {fontsLoaded && ( */}
         <Icon
-          style={styles.arrowRight}
           name={IconName.ARROW_RIGHT}
           size={IconSize.SMALL}
-          color={TrilogyColor.NEUTRAL_DARK}
+          color={TrilogyColor.MAIN}
         />
-        {/* )} */}
       </TouchableOpacity>
     </View>
   )
