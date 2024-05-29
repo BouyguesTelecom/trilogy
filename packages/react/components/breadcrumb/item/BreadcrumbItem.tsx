@@ -4,6 +4,7 @@ import { is } from "../../../services/classify"
 import clsx from "clsx"
 import { hashClass } from "../../../helpers"
 import { useTrilogyContext } from "../../../context"
+import { Link } from '../../link'
 
 /**
  * Breadcrumb Item Component
@@ -35,7 +36,7 @@ const BreadcrumbItem = ({
     const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
       <li data-testid={testId} className={classes} onClick={onClick}>
-        <RouterLink to={to} {...others}>
+        <RouterLink className={hashClass(styled, clsx("link"))} to={to} {...others}>
           {children}
         </RouterLink>
       </li>
@@ -44,9 +45,9 @@ const BreadcrumbItem = ({
 
   return (
     <li className={classes} onClick={onClick}>
-      <a href={href} {...others}>
+      <Link href={href} {...others}>
         {children}
-      </a>
+      </Link>
     </li>
   )
 }
