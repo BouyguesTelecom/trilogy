@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import {Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity,} from "react-native"
+import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity, } from "react-native"
 import NativeModal from "react-native-modal"
 import { ModalProps } from "./ModalProps"
 import { Text } from "../text"
@@ -8,9 +8,8 @@ import { View } from "../view"
 import { Icon, IconName, IconSize } from "../icon"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
-import ModalTitle from "./title/ModalTitle";
-import ModalFooter from "./footer/ModalFooter";
-import ButtonList from "../button/list/ButtonList";
+import ModalTitle from "./title/ModalTitle"
+import ModalFooter from "./footer/ModalFooter"
 
 /**
  * Modal Component
@@ -25,7 +24,7 @@ import ButtonList from "../button/list/ButtonList";
  * @param onClose {Function} Additionnal close custom function
  * @param onOpen {Function} Additionnal open custom function
  * @param closeIcon {boolean} Display close icon for Modal
- * @param bottom {boolean} Open modal from bottom
+ * @param bottom {boolean} Default true : Open modal from bottom
  * @param ctaContent {string} Content cta
  * @param children {React.ReactNode}
  * @param fullwidth {boolean} Fullwidth Modal
@@ -33,25 +32,25 @@ import ButtonList from "../button/list/ButtonList";
  * @param swipable {boolean} Swipable Native Modal
  */
 const Modal = ({
-  children,
-  active = false,
-  title,
-  content,
-  iconName,
-  iconColor,
-  triggerContent,
-  ctaContent,
-  ctaOnClick,
-  ctaCancelOnClick,
-  onClose,
-  onOpen,
-  closeIcon,
-  bottom,
-  fullwidth,
-  onModalHide,
-  swipable = true,
-  ...others
-}: ModalProps): JSX.Element => {
+                 children,
+                 active = false,
+                 title,
+                 content,
+                 iconName,
+                 iconColor,
+                 triggerContent,
+                 ctaContent,
+                 ctaOnClick,
+                 ctaCancelOnClick,
+                 onClose,
+                 onOpen,
+                 closeIcon,
+                 bottom = true,
+                 fullwidth,
+                 onModalHide,
+                 swipable = true,
+                 ...others
+               }: ModalProps): JSX.Element => {
   const styles = StyleSheet.create({
     centeredView: {
       justifyContent: bottom ? "flex-end" : "center",
@@ -150,7 +149,7 @@ const Modal = ({
           variant={ButtonVariant.PRIMARY}
           onClick={(e) => {
             if (onOpen) onOpen(e)
-              setVisible(true)
+            setVisible(true)
           }}
         >
           {triggerContent}
@@ -218,11 +217,11 @@ const Modal = ({
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{modalChildren}</ScrollView>
                 {(ctaContent || ctaCancelOnClick) && (
                   <ModalFooter>
-                    { (ctaContent &&
+                    {(ctaContent &&
                       <Button variant={ButtonVariant.PRIMARY} onClick={ctaOnClick}>
                         {ctaContent}</Button>
-                      )}
-                    { (ctaCancelOnClick &&
+                    )}
+                    {(ctaCancelOnClick &&
                       <Button
                         variant={ButtonVariant.SECONDARY}
                         onClick={(e) => {
