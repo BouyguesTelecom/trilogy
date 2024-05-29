@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { StyleSheet, TouchableOpacity } from "react-native"
-import { RadioProps } from "./RadioProps"
+import React, {useEffect, useState} from "react"
+import {StyleSheet, TouchableOpacity} from "react-native"
+import {RadioProps} from "./RadioProps"
 import shortid from "shortid"
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, } from "../../objects"
-import { Icon, IconSize } from "../icon"
-import { Text, TextLevels } from "../text"
-import { View } from "../view"
-import { ComponentName } from "../enumsComponentsName"
+import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold,} from "../../objects"
+import {Icon, IconSize} from "../icon"
+import {Text, TextLevels} from "../text"
+import {View} from "../view"
+import {ComponentName} from "../enumsComponentsName"
 
 /**
  * Radio Native Component
@@ -25,22 +25,22 @@ import { ComponentName } from "../enumsComponentsName"
  * @param description {string | React.ReactNode} Custom children
  */
 const Radio = ({
-  id = shortid.generate(),
-  checked,
-  name,
-  onClick,
-  onChange,
-  disabled,
-  readonly,
-  label,
-  value,
-  horizontalTile,
-  tile,
-  description,
-  iconTile,
-  children,
-  narrow,
-}: RadioProps): JSX.Element => {
+                 id = shortid.generate(),
+                 checked,
+                 name,
+                 onClick,
+                 onChange,
+                 disabled,
+                 readonly,
+                 label,
+                 value,
+                 horizontalTile,
+                 tile,
+                 description,
+                 iconTile,
+                 children,
+                 narrow,
+               }: RadioProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -68,20 +68,19 @@ const Radio = ({
       position: "absolute",
       left: 2,
       borderRadius: 30,
-      width: 13,
-      height: 13,
+      width: 14,
+      height: 14,
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
     },
     label: {
-      fontWeight: "600",
       color:
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
-      padding: 4,
-      paddingBottom: 8,
+      padding: _checked ? 3 : 4,
+      paddingBottom: _checked ? 7 : 8,
       maxWidth: 140,
       width: 126,
       borderWidth: (_checked && 2) || 1,
@@ -103,7 +102,8 @@ const Radio = ({
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
-      paddingVertical: 16,
+      paddingVertical: _checked ? 15 : 16,
+      paddingHorizontal: _checked ? 5 : 6,
       width: narrow ? "auto" : "100%",
       height: "auto",
       borderWidth: (_checked && 2) || 1,
@@ -148,7 +148,7 @@ const Radio = ({
         style={styles.horizontalTile}
         onPress={() => handleClick(value || false)}
       >
-        <View style={{ flexDirection: "row" }}>
+        <View style={{flexDirection: "row"}}>
           {children ? (
             <View
               style={{
@@ -175,7 +175,7 @@ const Radio = ({
               >
                 {iconTile && (
                   <View>
-                    <Icon size={IconSize.SMALL} name={iconTile} />
+                    <Icon size={IconSize.SMALL} name={iconTile}/>
                   </View>
                 )}
               </View>
@@ -223,7 +223,7 @@ const Radio = ({
               testID={id}
               onPressIn={() => handleClick(value || false)}
             >
-              {_checked && !disabled && <View style={styles.icon} />}
+              {_checked && !disabled && <View style={styles.icon}/>}
             </TouchableOpacity>
           </View>
         </View>
@@ -239,14 +239,14 @@ const Radio = ({
         onPress={() => handleClick(value || false)}
       >
         <TouchableOpacity
-          style={[{ alignSelf: "flex-end", marginTop: 10 }, styles.radio]}
+          style={[{alignSelf: "flex-end", marginTop: 10}, styles.radio]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick(value || false)}
         >
-          {_checked && !disabled && <View style={styles.icon} />}
+          {_checked && !disabled && <View style={styles.icon}/>}
         </TouchableOpacity>
-        <View style={{ width: "70%", alignItems: "center" }}>
+        <View style={{width: "70%", alignItems: "center"}}>
           {iconTile && (
             <View
               style={{
@@ -256,7 +256,7 @@ const Radio = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.MEDIUM} name={iconTile} />
+              <Icon size={IconSize.MEDIUM} name={iconTile}/>
             </View>
           )}
           {label && typeof label.valueOf() === "string" && (
@@ -300,7 +300,7 @@ const Radio = ({
         testID={id}
         onPress={() => handleClick(value || false)}
       >
-        {_checked && <View style={styles.icon} />}
+        {_checked && <View style={styles.icon}/>}
       </TouchableOpacity>
       {label && typeof label.valueOf() === "string" ? (
         <Text style={styles.label}>{String(label)}</Text>
