@@ -28,7 +28,7 @@ const TabsItem = ({
   const [isPressIn, setInPressIn] = useState<boolean>(false)
 
   const animatedBorderStyle = {
-    borderBottomWidth: active && 2,
+    borderBottomWidth: active && 2 || 0,
   }
 
   const getIconColor = React.useMemo(() => {
