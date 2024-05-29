@@ -68,4 +68,8 @@ $button-border-width: 2px !default;
     color: #A6A8AA !important
   }
 
+  &.is-loading {
+    background-color: getColorValue('neutral');
+  }
+
 }
