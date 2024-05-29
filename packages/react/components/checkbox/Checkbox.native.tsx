@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react"
-import { StyleSheet, TouchableOpacity } from "react-native"
-import { IconName } from "../icon/IconNameEnum"
-import { CheckboxProps } from "./CheckboxProps"
+import React, {useEffect, useState} from "react"
+import {StyleSheet, TouchableOpacity} from "react-native"
+import {IconName} from "../icon/IconNameEnum"
+import {CheckboxProps} from "./CheckboxProps"
 import shortid from "shortid"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { Text, TextLevels } from "../text"
-import { View } from "../view"
-import { Icon, IconSize } from "../icon"
-import { TypographyAlign, TypographyBold } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import {getColorStyle, TrilogyColor} from "../../objects/facets/Color"
+import {Text, TextLevels} from "../text"
+import {View} from "../view"
+import {Icon, IconSize} from "../icon"
+import {TypographyAlign, TypographyBold} from "../../objects"
+import {ComponentName} from "../enumsComponentsName"
 
 /**
  * Checkbox Native Component
@@ -22,19 +22,19 @@ import { ComponentName } from "../enumsComponentsName"
  * @param name {string} Name for checkbox
  */
 const Checkbox = ({
-  id = shortid.generate(),
-  checked,
-  name,
-  onClick,
-  onChange,
-  disabled,
-  readonly,
-  label,
-  tile,
-  description,
-  iconTile,
-  horizontalTile,
-}: CheckboxProps): JSX.Element => {
+                    id = shortid.generate(),
+                    checked,
+                    name,
+                    onClick,
+                    onChange,
+                    disabled,
+                    readonly,
+                    label,
+                    tile,
+                    description,
+                    iconTile,
+                    horizontalTile,
+                  }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
   useEffect(() => {
@@ -63,15 +63,14 @@ const Checkbox = ({
         "transparent",
     },
     label: {
-      fontWeight: "600",
       color:
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
-      padding: 4,
-      paddingBottom: 8,
+      padding: _checked ? 3 : 4,
+      paddingBottom: _checked ? 7 : 8,
       maxWidth: 140,
       borderWidth: (_checked && 2) || 1,
       width: 126,
@@ -93,7 +92,8 @@ const Checkbox = ({
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
-      paddingVertical: 16,
+      paddingVertical: _checked ? 17 : 18,
+      paddingHorizontal: _checked ? 5 : 6,
       width: "100%",
       height: "auto",
       borderWidth: (_checked && 2) || 1,
@@ -137,7 +137,7 @@ const Checkbox = ({
         style={styles.horizontalTile}
         onPress={() => handleClick()}
       >
-        <View style={{ flexDirection: "row" }}>
+        <View style={{flexDirection: "row"}}>
           <View
             style={{
               width: "10%",
@@ -221,7 +221,7 @@ const Checkbox = ({
         onPress={() => handleClick()}
       >
         <TouchableOpacity
-          style={[{ alignSelf: "flex-end", marginTop: 10 }, styles.checkBox]}
+          style={[{alignSelf: "flex-end", marginTop: 10}, styles.checkBox]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick()}
@@ -234,7 +234,7 @@ const Checkbox = ({
             />
           )}
         </TouchableOpacity>
-        <View style={{ width: "70%" }}>
+        <View style={{width: "70%"}}>
           {iconTile && (
             <View
               style={{
