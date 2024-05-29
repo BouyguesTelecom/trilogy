@@ -45,7 +45,6 @@
     border-radius: 9999px;
     color: getColor('font');
     display: inline-flex;
-    font-weight: 400;
     font-size: $size-normal;
     height: 32px;
     justify-content: center;
@@ -60,7 +59,6 @@
       &.is-active {
         background-color: getColor('main');
         color: white;
-        font-weight: 600;
         border: var(--border-active);
         padding: 5px 15px;
 
