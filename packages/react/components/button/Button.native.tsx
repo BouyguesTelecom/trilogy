@@ -5,17 +5,17 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native"
-import { View } from "../view"
 import { getLoadingClassName, getVariantClassName } from "../../objects"
 import {
+  TrilogyColor,
   getButtonColorStyle,
   getColorStyle,
-  TrilogyColor,
 } from "../../objects/facets/Color"
-import { ButtonProps } from "./ButtonProps"
-import { Icon, IconSize } from "../icon"
-import { ButtonVariant } from "./ButtonEnum"
 import { ComponentName } from "../enumsComponentsName"
+import { Icon, IconSize } from "../icon"
+import { View } from "../view"
+import { ButtonVariant } from "./ButtonEnum"
+import { ButtonProps } from "./ButtonProps"
 
 /*
  * Helpers (reduce complexity of component to meet sonarqube requirements)
@@ -27,6 +27,12 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
+    (typeof loading === "string" &&
+    getLoadingClassName(loading) === "loading" &&
+    getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
+    (typeof loading === "boolean" &&
+    loading &&
+    getColorStyle(TrilogyColor.NEUTRAL)) ||
     (disabled && variant && getColorStyle(TrilogyColor.DISABLED, 1)) ||
     (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
@@ -38,12 +44,6 @@ const findBackgroundColor = ({
       variant === ButtonVariant.PRIMARY &&
       getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-    (typeof loading === "string" &&
-      getLoadingClassName(loading) === "loading" &&
-      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
-    (typeof loading === "boolean" &&
-      loading &&
-      getColorStyle(TrilogyColor.NEUTRAL)) ||
     getColorStyle(TrilogyColor.MAIN, 1)
   )
 }
@@ -202,7 +202,7 @@ const Button = ({
       accessible={!!buttonAccessibilityLabel}
       accessibilityLabel={buttonAccessibilityLabel}
       testID={buttonTestId}
-      disabled={disabled}
+      disabled={disabled || loading}
       style={[styles.button, fullwidth && styles.fullwidth]}
       onPress={(e?: unknown) => onClick?.(e)}
       {...others}
