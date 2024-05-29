@@ -1,9 +1,9 @@
 import * as React from "react"
-import { ComponentName } from "../../enumsComponentsName"
-import { BreadcrumbItemProps } from "./BreadcrumbItemProps"
-import { Text } from "../../text"
-import { Linking, StyleSheet, TouchableOpacity } from "react-native"
-import { getColorStyle, TrilogyColor } from "../../../objects"
+import {ComponentName} from "../../enumsComponentsName"
+import {BreadcrumbItemProps} from "./BreadcrumbItemProps"
+import {Text} from "../../text"
+import {Linking, StyleSheet, TouchableOpacity} from "react-native"
+import {getColorStyle, TrilogyColor, TypographyBold} from "../../../objects"
 
 /**
  * Breadcrumb Item Component
@@ -37,7 +37,7 @@ const BreadcrumbItem = ({
       }}
       {...others}
     >
-      <Text style={{ ...textStyle }}>{children}</Text>
+      <Text typo={TypographyBold.TEXT_WEIGHT_MEDIUM} style={{ ...textStyle }}>{children}</Text>
     </TouchableOpacity>
   )
 }
