@@ -64,8 +64,8 @@ $button-border-width: 2px !default;
 
   &[disabled], 
   &[aria-disabled=true] {
-    background-color: getBGColorValue('neutral') !important;
-    color: #A6A8AA !important
+    background-color: getBGColorValue('main') !important;
+    color: getBGColorValue('disabled') !important
   }
 
   &.is-loading {
