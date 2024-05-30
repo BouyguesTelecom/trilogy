@@ -1,10 +1,11 @@
-import { useTrilogyContext } from '@context'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
+
 import { hashClass } from '../../../helpers'
 import { Input } from '../../input'
 import { SelectProps } from '../SelectProps'
 import SelectOption from '../option'
+import { useTrilogyContext } from './../../../context'
 
 const SelectDynamic = ({
   onChange,
@@ -25,7 +26,7 @@ const SelectDynamic = ({
   const { styled } = useTrilogyContext()
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState(selected)
-  const [selectedName, setSelectedName] = React.useState()
+  const [selectedName, setSelectedName] = React.useState<string[]>([])
   const reactId = React.useId()
   const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
 
@@ -35,6 +36,16 @@ const SelectDynamic = ({
 
   React.useEffect(() => {
     setSelectedValues(selected)
+    const labelSelected = React.Children.map(children, (child) => {
+      if (!React.isValidElement(child)) return false
+      if (Array.isArray(selected)) {
+        if (selected.includes(child.props.value || child.props.children)) return child.props.label
+        return false
+      }
+    })?.filter((item) => item)
+
+    console.log(selected)
+    labelSelected && setSelectedName(labelSelected)
   }, [selected])
 
   const options = React.useMemo(() => {
@@ -61,6 +72,9 @@ const SelectDynamic = ({
               switch (true) {
                 case Array.isArray(prev) && nullable:
                   const newValues = [...(prev as Array<string | number>)]
+                  setSelectedName((prev) =>
+                    prev.filter((txt) => ![child.props.children, child.props.label].includes(txt)),
+                  )
                   return newValues.filter((i) => i !== child.props.value)
 
                 case Array.isArray(prev) && !nullable:
@@ -72,7 +86,7 @@ const SelectDynamic = ({
 
                 case !Array.isArray(prev) && nullable:
                   setIsFocused(false)
-                  setSelectedName(undefined)
+                  setSelectedName([])
                   return undefined
 
                 default:
@@ -80,9 +94,14 @@ const SelectDynamic = ({
               }
             })
           }
+
           if (!isChecked) {
             setSelectedValues((prev) => {
-              if (Array.isArray(prev)) return [...prev, child.props.value]
+              if (Array.isArray(prev)) {
+                setSelectedName((prev) => [...prev, child.props.children || child.props.label])
+                return [...prev, child.props.value]
+              }
+
               setIsFocused(false)
               setSelectedName(child.props.children || child.props.label)
               return child.props.value
@@ -113,7 +132,7 @@ const SelectDynamic = ({
   return (
     <div className={selectClasses}>
       <Input
-        value={selectedName}
+        value={selectedName.join(', ')}
         testId={testId}
         name={name}
         disabled={disabled}

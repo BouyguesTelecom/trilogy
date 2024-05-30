@@ -28,7 +28,26 @@ const SelectOption = ({
   ...others
 }: SelectOptionProps): JSX.Element => {
   const props = others as any
-  const { checked } = props
+  const { checked, native } = props
+
+  if (native) {
+    return (
+      <option
+        role='option'
+        id={id}
+        value={value}
+        disabled={disabled}
+        aria-label={label}
+        data-testid={testId}
+        {...others}
+        onClick={(e: React.MouseEvent<HTMLElement>) => {
+          onClick && onClick(e)
+        }}
+      >
+        {children || label}
+      </option>
+    )
+  }
 
   return (
     <Radio
