@@ -1,41 +1,41 @@
-import * as React from "react"
-import { Icon } from "../../icon"
-import { IAccessibleSelect } from "../SelectProps"
-import { hashClass } from "../../../helpers"
-import clsx from "clsx"
-import { has } from "../../../services"
+import clsx from 'clsx'
+import * as React from 'react'
+import { hashClass } from '../../../helpers'
+import { has } from '../../../services'
+import { Icon } from '../../icon'
+import { SelectProps } from '../SelectProps'
+import { useTrilogyContext } from './../../../context'
 
 const SelectNative = ({
-  selecteClasses,
   onChange,
+  nullable,
+  disabled,
   onFocus,
   onBlur,
-  id,
-  name,
-  disabled,
   children,
+  selected,
+  name,
+  id,
+  testId,
   label,
   iconName,
-  styled,
-  testId,
-  accessibilityLabel,
-  selected,
+  multiple,
+  className,
   ...others
-}: IAccessibleSelect): JSX.Element => {
-  const controlClasses = React.useMemo(
-    () => hashClass(styled, clsx("control", has("dynamic-placeholder"))),
-    [styled]
-  )
+}: SelectProps): JSX.Element => {
+  const { styled } = useTrilogyContext()
+  const controlClasses = React.useMemo(() => hashClass(styled, clsx('control', has('dynamic-placeholder'))), [styled])
+  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
 
   return (
-    <div className={hashClass(styled, clsx("field"))}>
+    <div className={hashClass(styled, clsx('field'))}>
       <div className={controlClasses}>
-        <div className={selecteClasses}>
+        <div className={className}>
           {iconName && <Icon name={iconName} size='small' />}
           <select
-            className={hashClass(styled, clsx(!label && "no-label"))}
-            value={selected}
-            aria-label={accessibilityLabel}
+            className={hashClass(styled, clsx(!label && 'no-label'))}
+            value={selected as string}
+            aria-label={selectClasses}
             data-testid={testId}
             role='listbox'
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {

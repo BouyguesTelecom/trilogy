@@ -1,15 +1,12 @@
-import { hashClass } from "../../../helpers"
-import clsx from "clsx"
-import { useUtils } from "../hooks/utils"
-import { useAccessibility } from "../hooks/accessibility"
-import React, { PropsWithChildren } from "react"
-import { Icon } from "../../icon"
-import SelectOption from "../option"
-import { ICustomSelect } from "../SelectProps"
-import { has } from "../../../services"
+import { useTrilogyContext } from '@context'
+import clsx from 'clsx'
+import React, { PropsWithChildren } from 'react'
+import { hashClass } from '../../../helpers'
+import { Input } from '../../input'
+import { SelectProps } from '../SelectProps'
+import SelectOption from '../option'
 
 const SelectDynamic = ({
-  styled,
   onChange,
   nullable,
   disabled,
@@ -20,134 +17,115 @@ const SelectDynamic = ({
   name,
   id,
   testId,
-  classNameOptions,
-  selecteClasses,
   label,
   iconName,
-  ...others
-}: PropsWithChildren<ICustomSelect>): JSX.Element => {
-  const {
-    handleChangeSelect,
-    handleFocusCurrentOption,
-    handleFocusSelect,
-    handleOpenSelect,
-    isOpenSelect,
-    setIsOpenSelect,
-    optionRefs,
-    selectRef,
-    selectedOption,
-  } = useUtils({
-    onChange,
-    nullable,
-    disabled,
-    onFocus,
-    onBlur,
-    children,
-    selected,
-    name,
-    id,
-  })
+  multiple,
+  className,
+}: PropsWithChildren<SelectProps>): JSX.Element => {
+  const { styled } = useTrilogyContext()
+  const [focused, setIsFocused] = React.useState<boolean>(false)
+  const [selectedValues, setSelectedValues] = React.useState(selected)
+  const [selectedName, setSelectedName] = React.useState()
+  const reactId = React.useId()
+  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
 
-  const { handleKeyDown } = useAccessibility(
-    isOpenSelect,
-    handleChangeSelect,
-    setIsOpenSelect,
-    optionRefs,
-    selectRef,
-    handleFocusCurrentOption
-  )
+  const onClickInput = React.useCallback(() => {
+    setIsFocused((prev) => !prev)
+  }, [])
 
-  const optionsClasses = React.useMemo(
-    () => hashClass(styled, clsx("select-options", classNameOptions)),
-    [classNameOptions, styled]
-  )
+  React.useEffect(() => {
+    setSelectedValues(selected)
+  }, [selected])
 
-  const selectedValueClasses = React.useMemo(
-    () => hashClass(styled, clsx("select-value", !label && "no-label")),
-    [styled]
-  )
+  const options = React.useMemo(() => {
+    return React.Children.map(children, (child, index) => {
+      if (React.isValidElement(child)) {
+        const clickEventValue = (v: string) => {
+          switch (true) {
+            case nullable && multiple && (selectedValues as Array<string | number>)?.includes(child.props.value):
+              return undefined
+            case nullable && !multiple && selectedValues === child.props.value:
+              return undefined
+            default:
+              return v
+          }
+        }
 
-  const controlClasses = React.useMemo(
-    () =>
-      hashClass(
-        styled,
-        clsx("control", selectedOption?.value && has("dynamic-placeholder"))
-      ),
-    [styled, selectedOption?.value]
-  )
+        const isChecked = multiple
+          ? (selectedValues as Array<string | number>)?.includes(child.props.value)
+          : selectedValues === child.props.value
+
+        const setNewSelectedValues = () => {
+          if (isChecked) {
+            setSelectedValues((prev) => {
+              switch (true) {
+                case Array.isArray(prev) && nullable:
+                  const newValues = [...(prev as Array<string | number>)]
+                  return newValues.filter((i) => i !== child.props.value)
+
+                case Array.isArray(prev) && !nullable:
+                  return prev
+
+                case !Array.isArray(prev) && !nullable:
+                  setIsFocused(false)
+                  return prev
+
+                case !Array.isArray(prev) && nullable:
+                  setIsFocused(false)
+                  setSelectedName(undefined)
+                  return undefined
+
+                default:
+                  return child.props.value
+              }
+            })
+          }
+          if (!isChecked) {
+            setSelectedValues((prev) => {
+              if (Array.isArray(prev)) return [...prev, child.props.value]
+              setIsFocused(false)
+              setSelectedName(child.props.children || child.props.label)
+              return child.props.value
+            })
+          }
+        }
+
+        const props = {
+          ...child.props,
+          checked: isChecked,
+          onClick: () => {
+            setNewSelectedValues()
+            onChange &&
+              onChange({
+                selectValue: clickEventValue(child.props.value),
+                selectName: clickEventValue(child.props.children || child.props.label),
+                selectId: clickEventValue(child.props.id),
+              })
+            if (child.props.onClick) child.props.onClick()
+          },
+        }
+        return <SelectOption {...props} key={`${reactId}_${index}`} />
+      }
+      return null
+    })
+  }, [multiple, nullable, selectedValues])
 
   return (
-    <div className={hashClass(styled, clsx("field"))}>
-      <div className={controlClasses}>
-        <div
-          {...{ disabled: disabled }}
-          ref={selectRef}
-          onKeyDown={handleKeyDown}
-          tabIndex={disabled ? -1 : 0}
-          id={id}
-          data-testid={testId}
-          data-select-name={name}
-          className={selecteClasses}
-          onClick={handleOpenSelect}
-          onFocus={handleFocusSelect}
-          aria-haspopup='listbox'
-          aria-label={label}
-          aria-disabled={disabled}
-          role='listbox'
-          {...others}
-        >
-          {iconName && <Icon name={iconName} size='small' />}
-          {label && <label>{label}</label>}
-          {selectedOption?.name && (
-            <span className={selectedValueClasses}>{selectedOption?.name}</span>
-          )}
-        </div>
-        <div
-          data-is-open-options={isOpenSelect}
-          className={optionsClasses}
-          aria-expanded={isOpenSelect}
-          aria-hidden={!isOpenSelect}
-        >
-          {React.Children.map(children, (child, index) => {
-            if (React.isValidElement(child)) {
-              const props = {
-                ...child.props,
-                selected: child.props.value === selectedOption?.value,
-                onClick: () => {
-                  handleChangeSelect({
-                    selectValue: child.props.value,
-                    selectName: child.props.children || child.props.label,
-                    selectId: child.props.id,
-                    disabled: child.props.disabled,
-                  })
-                  if (child.props.onClick) child.props.onClick()
-                },
-              }
-              return (
-                <div
-                  {...{ disabled: disabled }}
-                  data-is-disabled={child.props.disabled}
-                  className={hashClass(styled, clsx("option-container"))}
-                  data-is-active={child.props.value === selectedOption?.value}
-                  data-index={child.props.value}
-                  data-id={child.props.id}
-                  data-textcontent={child.props.children || child.props.label}
-                  onKeyDown={(e) => handleKeyDown(e, child)}
-                  ref={(element) => (optionRefs.current[index] = element)}
-                  tabIndex={
-                    child.props.value === selectedOption?.value ? 0 : -1
-                  }
-                  onMouseEnter={() => optionRefs.current[index]?.focus()}
-                  onMouseLeave={() => optionRefs.current[index]?.blur()}
-                >
-                  <SelectOption {...props} />
-                </div>
-              )
-            }
-            return null
-          })}
-        </div>
-      </div>
+    <div className={selectClasses}>
+      <Input
+        value={selectedName}
+        testId={testId}
+        name={name}
+        disabled={disabled}
+        placeholder={label}
+        onFocus={onFocus}
+        customIconLeft={iconName}
+        customIconRight={focused ? 'tri-arrow-up' : 'tri-arrow-down'}
+        onBlur={onBlur}
+        onClick={onClickInput}
+        {...{ readOnly: true, id }}
+      />
+      {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
     </div>
   )
 }
