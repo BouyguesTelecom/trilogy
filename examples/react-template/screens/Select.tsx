@@ -5,11 +5,13 @@ export const SelectView = (): JSX.Element => {
   const [selectedOption, setSelectedOption] = React.useState<string | undefined>(undefined)
   const [selectedOption2, setSelectedOption2] = React.useState<string | undefined>('opt_3')
   const [selectedOption3, setSelectedOption3] = React.useState<string | undefined>('opt_2')
-  const [options, setOptions] = React.useState<string>('')
+  const [options, setOptions] = React.useState<string[]>(['opt_one', 'opt_two'])
 
   return (
     <Section>
       <Select
+        nullable
+        multiple
         name='option'
         label='label'
         id='id'
@@ -28,11 +30,11 @@ export const SelectView = (): JSX.Element => {
         <SelectOption id='id_three' value='VEVE' label='VEVE'></SelectOption>
         <SelectOption id='id_three' value='volvo' label='volvo'></SelectOption>
       </Select>
-      {/* 
+
       <Select
         name='name'
         id='id'
-        disabled
+        native
         onFocus={(e) => console.log('OPEN', e)}
         onBlur={(e) => console.log('CLOSE', e)}
         onChange={(e) => console.log(e)}
@@ -49,7 +51,7 @@ export const SelectView = (): JSX.Element => {
         </SelectOption>
       </Select>
 
-      <Select
+      {/* <Select
         native
         onFocus={(e) => console.log('OPEN', e)}
         onBlur={(e) => console.log('CLOSE', e)}
@@ -99,9 +101,9 @@ export const SelectView = (): JSX.Element => {
       </Button>
 
       <Spacer size={100} />
-      <Spacer size={100} />
+      <Spacer size={100} /> */}
 
-      <Select
+      {/* <Select
         onFocus={(e) => {
           console.log(e)
         }}
