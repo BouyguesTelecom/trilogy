@@ -50,82 +50,80 @@ const SelectDynamic = ({
 
   const options = React.useMemo(() => {
     return React.Children.map(children, (child, index) => {
-      if (React.isValidElement(child)) {
-        const clickEventValue = (v: string) => {
-          switch (true) {
-            case nullable && multiple && (selectedValues as Array<string | number>)?.includes(child.props.value):
-              return undefined
-            case nullable && !multiple && selectedValues === child.props.value:
-              return undefined
-            default:
-              return v
-          }
+      if (!React.isValidElement(child)) return null
+
+      const clickEventValue = (v: string) => {
+        switch (true) {
+          case nullable && multiple && (selectedValues as Array<string | number>)?.includes(child.props.value):
+            return undefined
+          case nullable && !multiple && selectedValues === child.props.value:
+            return undefined
+          default:
+            return v
         }
-
-        const isChecked = multiple
-          ? (selectedValues as Array<string | number>)?.includes(child.props.value)
-          : selectedValues === child.props.value
-
-        const setNewSelectedValues = () => {
-          if (isChecked) {
-            setSelectedValues((prev) => {
-              switch (true) {
-                case Array.isArray(prev) && nullable:
-                  const newValues = [...(prev as Array<string | number>)]
-                  setSelectedName((prev) =>
-                    prev.filter((txt) => ![child.props.children, child.props.label].includes(txt)),
-                  )
-                  return newValues.filter((i) => i !== child.props.value)
-
-                case Array.isArray(prev) && !nullable:
-                  return prev
-
-                case !Array.isArray(prev) && !nullable:
-                  setIsFocused(false)
-                  return prev
-
-                case !Array.isArray(prev) && nullable:
-                  setIsFocused(false)
-                  setSelectedName([])
-                  return undefined
-
-                default:
-                  return child.props.value
-              }
-            })
-          }
-
-          if (!isChecked) {
-            setSelectedValues((prev) => {
-              if (Array.isArray(prev)) {
-                setSelectedName((prev) => [...prev, child.props.children || child.props.label])
-                return [...prev, child.props.value]
-              }
-
-              setIsFocused(false)
-              setSelectedName(child.props.children || child.props.label)
-              return child.props.value
-            })
-          }
-        }
-
-        const props = {
-          ...child.props,
-          checked: isChecked,
-          onClick: () => {
-            setNewSelectedValues()
-            onChange &&
-              onChange({
-                selectValue: clickEventValue(child.props.value),
-                selectName: clickEventValue(child.props.children || child.props.label),
-                selectId: clickEventValue(child.props.id),
-              })
-            if (child.props.onClick) child.props.onClick()
-          },
-        }
-        return <SelectOption {...props} key={`${reactId}_${index}`} />
       }
-      return null
+
+      const isChecked = multiple
+        ? (selectedValues as Array<string | number>)?.includes(child.props.value)
+        : selectedValues === child.props.value
+
+      const setNewSelectedValues = () => {
+        if (isChecked) {
+          setSelectedValues((prev) => {
+            switch (true) {
+              case Array.isArray(prev) && nullable:
+                setSelectedName((prev) =>
+                  prev.filter((txt) => ![child.props.children, child.props.label].includes(txt)),
+                )
+                return prev.filter((i) => i !== child.props.value)
+
+              case Array.isArray(prev) && !nullable:
+                return prev
+
+              case !Array.isArray(prev) && !nullable:
+                setIsFocused(false)
+                return prev
+
+              case !Array.isArray(prev) && nullable:
+                setIsFocused(false)
+                setSelectedName([])
+                return undefined
+
+              default:
+                return child.props.value
+            }
+          })
+        }
+
+        if (!isChecked) {
+          setSelectedValues((prev) => {
+            if (Array.isArray(prev)) {
+              setSelectedName((prev) => [...prev, child.props.children || child.props.label])
+              return [...prev, child.props.value]
+            }
+
+            setIsFocused(false)
+            setSelectedName(child.props.children || child.props.label)
+            return child.props.value
+          })
+        }
+      }
+
+      const props = {
+        ...child.props,
+        checked: isChecked,
+        onClick: () => {
+          setNewSelectedValues()
+          onChange &&
+            onChange({
+              selectValue: clickEventValue(child.props.value),
+              selectName: clickEventValue(child.props.children || child.props.label),
+              selectId: clickEventValue(child.props.id),
+            })
+          if (child.props.onClick) child.props.onClick()
+        },
+      }
+      return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
   }, [multiple, nullable, selectedValues])
 
