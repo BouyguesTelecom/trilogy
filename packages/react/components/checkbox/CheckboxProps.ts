@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from './../icon/IconNameEnum'
 import { Accessibility } from '../../objects'
+import { IconName, IconNameValues } from './../icon/IconNameEnum'
 
 export interface CheckboxChangeEvent {
   checkboxId: string
@@ -48,4 +48,5 @@ export interface CheckboxProps extends Accessibility {
   description?: string | React.ReactNode
   iconTile?: IconName | IconNameValues
   horizontalTile?: boolean
+  marginless?: boolean
 }

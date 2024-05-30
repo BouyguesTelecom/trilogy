@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { Platform, StyleSheet, TouchableOpacity, View } from "react-native"
-import { SelectProps } from "./SelectProps"
-import { Text, TextLevels } from "../text"
-import { Icon, IconName, IconSize } from "../icon"
-import { Picker } from "@react-native-picker/picker"
-import { getColorStyle, TrilogyColor, TypographyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
-import { Modal } from "../modal"
+import { Picker } from '@react-native-picker/picker'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TrilogyColor, TypographyColor, getColorStyle } from '../../objects'
+import { ComponentName } from '../enumsComponentsName'
+import { Icon, IconName, IconSize } from '../icon'
+import { Modal } from '../modal'
+import { Text, TextLevels } from '../text'
+import { SelectProps } from './SelectProps'
 
 /**
  * Select Component
@@ -30,30 +30,24 @@ const Select = ({
   disabled,
   ...others
 }: SelectProps): JSX.Element => {
-  const [selectedValue, setSelectedValue] = useState<string | number>(
-    selected || ""
-  )
+  const [selectedValue, setSelectedValue] = useState<string | number>(selected as string)
   const [display, setDisplay] = useState<boolean>(false)
 
   useEffect(() => {
-    setSelectedValue(selected || "")
+    setSelectedValue((selected as string) || '')
   }, [selected])
 
   const styles = StyleSheet.create({
     select: {
-      width: "100%",
-      backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : TrilogyColor.BACKGROUND,
-      borderColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.FONT, 1),
+      width: '100%',
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED, 1) : TrilogyColor.BACKGROUND,
+      borderColor: disabled ? getColorStyle(TrilogyColor.DISABLED, 1) : getColorStyle(TrilogyColor.FONT, 1),
       borderWidth: 1,
       borderRadius: 4,
       zIndex: 3, // works on ios
-      overflow: "hidden",
-      flexDirection: "row",
-      alignItems: "center",
+      overflow: 'hidden',
+      flexDirection: 'row',
+      alignItems: 'center',
       height: 50,
     },
     iconLeft: {
@@ -66,32 +60,22 @@ const Select = ({
     text: {
       fontSize: 16,
       lineHeight: 20,
-      color: getColorStyle(
-        disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN
-      ),
+      color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
     },
   })
 
   const selectedOptionName = useMemo(() => {
     const selectedChild = React.Children.toArray(children).find((child) => {
-      return (
-        React.isValidElement(child) &&
-        (child.props.value === selected || child.props.selected === true)
-      )
+      return React.isValidElement(child) && (child.props.value === selected || child.props.selected === true)
     })
-    if (React.isValidElement(selectedChild))
-      return selectedChild.props.children || selectedChild.props.label
+    if (React.isValidElement(selectedChild)) return selectedChild.props.children || selectedChild.props.label
     return undefined
   }, [selectedValue, children])
 
-  if (Platform.OS === "ios") {
+  if (Platform.OS === 'ios') {
     return (
       <>
-        <TouchableOpacity
-          disabled={disabled}
-          onPress={() => setDisplay((prev) => !prev)}
-          style={styles.select}
-        >
+        <TouchableOpacity disabled={disabled} onPress={() => setDisplay((prev) => !prev)} style={styles.select}>
           {iconName && (
             <View>
               <Icon
@@ -102,7 +86,7 @@ const Select = ({
               />
             </View>
           )}
-          <View style={{ width: "75%" }}>
+          <View style={{ width: '75%' }}>
             {label && (
               <Text
                 level={selectedOptionName && TextLevels.THREE}
@@ -124,7 +108,7 @@ const Select = ({
 
           <View
             style={{
-              marginLeft: "auto",
+              marginLeft: 'auto',
               paddingRight: 10,
             }}
           >
@@ -135,16 +119,10 @@ const Select = ({
             />
           </View>
         </TouchableOpacity>
-        <Modal
-          active={display}
-          onClose={() => setDisplay(false)}
-          bottom
-          closeIcon
-          swipable={false}
-        >
+        <Modal active={display} onClose={() => setDisplay(false)} bottom closeIcon swipable={false}>
           <Picker
             itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             nativeID={`${`${id}_${name}`}`}
             selectedValue={selectedValue}
             onValueChange={(itemValue: number | string) => {
@@ -166,7 +144,7 @@ const Select = ({
       <Picker
         placeholder={placeholder}
         selectedValue={selectedValue}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
         onValueChange={(itemValue: number | string) => {
           if (onChange) {
             onChange(itemValue)
@@ -174,7 +152,7 @@ const Select = ({
           setSelectedValue(itemValue)
           setDisplay(false)
         }}
-        mode={"dialog"}
+        mode={'dialog'}
       >
         {children}
       </Picker>

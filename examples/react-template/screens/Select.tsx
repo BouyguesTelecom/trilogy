@@ -1,11 +1,11 @@
+import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import {Button, IconName, Modal, ModalTitle, Section, Select, SelectOption, Spacer} from '@trilogy-ds/react/components'
-import { ButtonList } from '@trilogy-ds/react'
 
 export const SelectView = (): JSX.Element => {
   const [selectedOption, setSelectedOption] = React.useState<string | undefined>(undefined)
   const [selectedOption2, setSelectedOption2] = React.useState<string | undefined>('opt_3')
   const [selectedOption3, setSelectedOption3] = React.useState<string | undefined>('opt_2')
+  const [options, setOptions] = React.useState<string>('')
 
   return (
     <Section>
@@ -17,16 +17,9 @@ export const SelectView = (): JSX.Element => {
         onBlur={(e) => console.log('CLOSE', e)}
         onChange={(e) => {
           console.log(e)
-          const value: string | undefined =
-            typeof e === 'string' || typeof e === 'number'
-              ? String(e)
-              : e.selectValue
-              ? String(e.selectValue)
-              : undefined
-          setSelectedOption(value)
         }}
         iconName={IconName.ALERT}
-        selected={selectedOption}
+        selected={options}
       >
         <SelectOption id='id_one' value='opt_one' label='Virgile'></SelectOption>
         <SelectOption id='id_two' value='opt_two' label='Toto'></SelectOption>
@@ -35,7 +28,7 @@ export const SelectView = (): JSX.Element => {
         <SelectOption id='id_three' value='VEVE' label='VEVE'></SelectOption>
         <SelectOption id='id_three' value='volvo' label='volvo'></SelectOption>
       </Select>
-
+      {/* 
       <Select
         name='name'
         id='id'
@@ -205,7 +198,6 @@ export const SelectView = (): JSX.Element => {
         </Button>
       </ButtonList>
 
-
       <Spacer size={100} />
 
       <Modal triggerClassNames='button is-primary' triggerContent='Open modal' closeIcon>
@@ -222,7 +214,7 @@ export const SelectView = (): JSX.Element => {
             option 3
           </SelectOption>
         </Select>
-      </Modal>
+      </Modal> */}
     </Section>
   )
 }
