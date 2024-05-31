@@ -20,7 +20,6 @@
   display: inline-block;
   max-width: 100%;
   position: relative;
-  font-family: $body-family;
   border-radius: var(--radius-small);
   background-color: getColor('background');
   display: block;
@@ -37,7 +36,7 @@
     max-width: 100%;
     width: 100%;
     font-size: 1em;
-    font-family: $body-family;
+    font-family: $family-sans-serif;
     color: getColor('font');
     cursor: pointer;
     -webkit-appearance: none;

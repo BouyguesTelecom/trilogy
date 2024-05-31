@@ -20,7 +20,6 @@
     height: 42px;
     color: getColor('font');
     background-color: getBGColor('neutral');
-    font-family: $body-family;
 
     &:not(:last-child) {
       margin-right: 4px;

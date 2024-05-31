@@ -40,7 +40,6 @@ $button-border-width: 2px !default;
   cursor: pointer;
   justify-content: center;
   text-align: center;
-  font-family: $body-family;
   white-space: nowrap;
   padding: 0 $spacing-4;
   text-decoration: inherit;
@@ -62,7 +61,7 @@ $button-border-width: 2px !default;
     }
   }
 
-  &[disabled], 
+  &[disabled],
   &[aria-disabled=true] {
     background-color: getBGColorValue('main') !important;
     color: getBGColorValue('disabled') !important
