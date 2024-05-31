@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useMemo } from 'react'
+import ReactDOM from 'react-dom'
 
 import { hashClass } from '../../../helpers'
 import { Input } from '../../input'
@@ -36,17 +37,29 @@ const SelectDynamic = ({
 
   React.useEffect(() => {
     setSelectedValues(selected)
-    const labelSelected = React.Children.map(children, (child) => {
-      if (!React.isValidElement(child)) return false
-      if (Array.isArray(selected)) {
-        if (selected.includes(child.props.value || child.props.children)) return child.props.label
-        return false
-      }
-    })?.filter((item) => item)
 
-    console.log(selected)
-    labelSelected && setSelectedName(labelSelected)
+    const setInputValue = () => {
+      const labelSelected = React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) return false
+        const label = child.props.children || child.props.label
+
+        if (Array.isArray(selected)) {
+          if ((selected as (number | string)[]).includes(child.props.value)) return label
+        }
+        if (!Array.isArray(selected) && child.props.value === selected) {
+          return label
+        }
+
+        return false
+      })?.filter((item) => item)
+      labelSelected && setSelectedName(labelSelected)
+    }
+    setInputValue()
   }, [selected])
+
+  const modal = useMemo(() => {
+    return <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)}></div>
+  }, [])
 
   const options = React.useMemo(() => {
     return React.Children.map(children, (child, index) => {
@@ -54,7 +67,7 @@ const SelectDynamic = ({
 
       const clickEventValue = (v: string) => {
         switch (true) {
-          case nullable && multiple && (selectedValues as Array<string | number>)?.includes(child.props.value):
+          case nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value):
             return undefined
           case nullable && !multiple && selectedValues === child.props.value:
             return undefined
@@ -64,7 +77,7 @@ const SelectDynamic = ({
       }
 
       const isChecked = multiple
-        ? (selectedValues as Array<string | number>)?.includes(child.props.value)
+        ? (selectedValues as (number | string)[])?.includes(child.props.value)
         : selectedValues === child.props.value
 
       const setNewSelectedValues = () => {
@@ -75,7 +88,7 @@ const SelectDynamic = ({
                 setSelectedName((prev) =>
                   prev.filter((txt) => ![child.props.children, child.props.label].includes(txt)),
                 )
-                return prev.filter((i) => i !== child.props.value)
+                return (prev as (number | string)[]).filter((item: string | number) => item !== child.props.value)
 
               case Array.isArray(prev) && !nullable:
                 return prev
@@ -97,13 +110,13 @@ const SelectDynamic = ({
 
         if (!isChecked) {
           setSelectedValues((prev) => {
+            console.log(prev)
             if (Array.isArray(prev)) {
               setSelectedName((prev) => [...prev, child.props.children || child.props.label])
               return [...prev, child.props.value]
             }
-
             setIsFocused(false)
-            setSelectedName(child.props.children || child.props.label)
+            setSelectedName([child.props.children || child.props.label])
             return child.props.value
           })
         }
@@ -140,9 +153,11 @@ const SelectDynamic = ({
         customIconRight={focused ? 'tri-arrow-up' : 'tri-arrow-down'}
         onBlur={onBlur}
         onClick={onClickInput}
+        className={hashClass(styled, clsx(focused && 'focus'))}
         {...{ readOnly: true, id }}
       />
       {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
+      {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )
 }
