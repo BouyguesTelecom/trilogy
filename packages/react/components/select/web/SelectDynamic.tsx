@@ -43,14 +43,13 @@ const SelectDynamic = ({
         if (!React.isValidElement(child)) return false
         const label = child.props.children || child.props.label
 
-        if (Array.isArray(selected)) {
-          if ((selected as (number | string)[]).includes(child.props.value)) return label
+        switch (true) {
+          case (Array.isArray(selected) && (selected as (number | string)[]).includes(child.props.value)) ||
+            (!Array.isArray(selected) && child.props.value === selected):
+            return label
+          default:
+            return false
         }
-        if (!Array.isArray(selected) && child.props.value === selected) {
-          return label
-        }
-
-        return false
       })?.filter((item) => item)
       labelSelected && setSelectedName(labelSelected)
     }
@@ -67,9 +66,8 @@ const SelectDynamic = ({
 
       const clickEventValue = (v: string) => {
         switch (true) {
-          case nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value):
-            return undefined
-          case nullable && !multiple && selectedValues === child.props.value:
+          case (nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
+            (nullable && !multiple && selectedValues === child.props.value):
             return undefined
           default:
             return v
@@ -110,7 +108,6 @@ const SelectDynamic = ({
 
         if (!isChecked) {
           setSelectedValues((prev) => {
-            console.log(prev)
             if (Array.isArray(prev)) {
               setSelectedName((prev) => [...prev, child.props.children || child.props.label])
               return [...prev, child.props.value]
