@@ -40,7 +40,7 @@ const CardImage = ({
       className={classes}
     >
       <figure className={hashClass(styled, clsx("image"))} {...others}>
-        <img {...{ src: typeof src === "string" ? src : "", alt }} />
+        <img {...{ src: typeof src === "string" ? src : "" }} alt={alt}/>
       </figure>
     </div>
   )
