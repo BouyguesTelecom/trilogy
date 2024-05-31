@@ -1,6 +1,6 @@
 import { Accessibility, AlertProps } from '../../../objects'
 import { IconName, IconNameValues } from '../../icon'
-import { ToasterPosition } from '../ToasterProps'
+import { ToasterAlertPosition } from '../AlertProps'
 
 /**
  * @param title {string} Notification title content
@@ -21,7 +21,7 @@ export interface ToastProps extends AlertProps, Accessibility {
 }
 
 interface ToastConfig {
-  position?: ToasterPosition
+  position?: ToasterAlertPosition
   duration?: number
   offset?: number
 }
