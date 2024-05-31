@@ -5,11 +5,11 @@ import { has, is } from "../../services/classify"
 import {Icon, IconName, IconSize} from "../icon"
 import { Text } from "../text"
 import { Title, TitleLevels } from "../title"
-import {AlertProps, ToasterAlertPosition, ToasterAlertProps} from "./AlertProps"
+import { AlertProps, ToasterAlertPosition, ToasterAlertProps } from "./AlertProps"
 import { hashClass } from "../../helpers"
 import { useTrilogyContext } from "../../context"
 import ToasterContext from './context'
-import {CSSProperties, useEffect, useRef, useState} from "react"
+import { CSSProperties, useEffect, useRef, useState } from "react"
 
 /**
  * Toaster Component
@@ -158,7 +158,7 @@ const Alert = ({
 }
 
 /**
- * Toaster provider
+ * Toaster Alert Provider
  * @param children {React.ReactNode} Custom Toast Content
  * @param duration {number} Duration in MS (Default: 5000)
  * @param offset {number} Offset position margin (Default: 10 dp)
