@@ -41,10 +41,10 @@ const SelectOption = ({
         disabled={disabled}
         aria-label={label}
         data-testid={testId}
-        {...others}
         onClick={(e: React.MouseEvent<HTMLElement>) => {
           onClick && onClick(e)
         }}
+        {...others}
       >
         {children || label}
       </option>
@@ -54,7 +54,6 @@ const SelectOption = ({
   return (
     <Radio
       checked={checked}
-      testId={testId}
       tile
       horizontalTile
       marginless
