@@ -1,4 +1,4 @@
-import Alert from './Alert'
+import Alert, { ToasterAlertProvider } from './Alert'
 import ToasterContext from './context'
 
-export { Alert, ToasterContext }
+export { Alert, ToasterContext, ToasterAlertProvider }
