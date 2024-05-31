@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Radio } from 'components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
@@ -28,7 +29,8 @@ const SelectOption = ({
   ...others
 }: SelectOptionProps): JSX.Element => {
   const props = others as any
-  const { checked, native } = props
+  const { checked, native, focused } = props
+  const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
     return (
@@ -56,7 +58,7 @@ const SelectOption = ({
       tile
       horizontalTile
       marginless
-      className={className}
+      className={selectClasses}
       value={value}
       disabled={disabled}
       onClick={onClick}
