@@ -164,6 +164,7 @@ const SelectDynamic = ({
               selectValue: clickEventValue(child.props.value),
               selectName: clickEventValue(child.props.children || child.props.label),
               selectId: clickEventValue(child.props.id),
+              name: clickEventValue(child.props.children || child.props.label),
             })
           if (child.props.onClick) child.props.onClick()
         },
