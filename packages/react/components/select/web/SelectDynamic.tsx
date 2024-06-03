@@ -52,7 +52,7 @@ const SelectDynamic = ({
           switch (true) {
             case Array.isArray(prev) && nullable:
               setSelectedName((prev) => prev.filter((txt) => ![children, label].includes(txt)))
-              return prev.filter((item: string | number) => item !== value)
+              return (prev as (number | string)[]).filter((item: string | number) => item !== value)
             case Array.isArray(prev) && !nullable:
               return prev
             case !Array.isArray(prev) && !nullable:

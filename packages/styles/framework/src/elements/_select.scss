@@ -2,7 +2,8 @@
   position: relative;
   input { cursor: pointer;}
 
-  .field.focus .control input:first-child { 
+  .field.focus .control input:first-child, 
+  .field.focus .input.select-native { 
     border: 2px solid currentColor;
    }
 
@@ -49,17 +50,22 @@
   &-native {
     position: relative;
     select {
-      position: absolute;
-      top:0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      width: 100%;
       border:none;
+      height: 100%;
       background-color: transparent;
       -webkit-appearance: none;
       -moz-appearance: none;
       text-indent: 1px;
       outline: none;
+      color:  getColor('main');
+      font-size: 16px;
+    }
+
+    &.input {
+      padding: 0 0 0 45px !important;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
     }
   }
 
