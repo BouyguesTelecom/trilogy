@@ -41,7 +41,7 @@ export const AlertScreen = (): JSX.Element => {
         iconName: IconName.ALERT,
         alert: AlertState.WARNING,
         onClick: () => console.log('onClick'),
-        closable: () => console.log('closable'),
+        closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
       })
     }
