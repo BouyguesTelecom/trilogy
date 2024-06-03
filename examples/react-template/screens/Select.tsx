@@ -1,10 +1,12 @@
-import { Divider, Modal, ModalTitle, Spacer, Title, TitleLevels } from '@trilogy-ds/react'
+import { Button, Divider, Spacer, Title, TitleLevels } from '@trilogy-ds/react'
 import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const SelectView = (): JSX.Element => {
-  const [options, setOptions] = React.useState<string[]>(['opt_one'])
-  const [option, setOption] = React.useState<string>('opt_two')
+  const [options, setOptions] = React.useState<string[] | number[]>(['opt_one', 'opt_two'])
+  const [optionsNullable, setOptionsNullable] = React.useState<string[] | number[]>(['opt_one', 'opt_two'])
+  const [option, setOption] = React.useState<string>('opt_one')
+  const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
 
   return (
     <Section>
@@ -29,14 +31,33 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
+        <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
+          Set value 3
+        </Button>
         <Spacer size={20} />
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
-        <Select nullable name='option' label='label' id='id' iconName={IconName.ALERT} selected={option}>
+        <Select
+          nullable
+          name='option'
+          label='label'
+          id='id'
+          iconName={IconName.ALERT}
+          selected={optionNullable}
+          onChange={(e) => {
+            if (typeof e !== 'string' && typeof e !== 'number') setOptionNullable(e.selectValue as string)
+          }}
+        >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
+        <Button onClick={() => setOptionNullable(undefined)} variant='PRIMARY'>
+          Set Null
+        </Button>
+        <Button onClick={() => setOptionNullable('opt_one')} variant='PRIMARY'>
+          Set One
+        </Button>
         <Spacer size={20} />
 
         <Title level={TitleLevels.TWO}>Multiple options</Title>
@@ -50,30 +71,41 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={options}
           onChange={(e) => {
-            console.log(e)
+            e?.selectedOptions && setOptions(event.selectedOptions)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
+        <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant='PRIMARY'>
+          Set Venus
+        </Button>
 
         <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>nullable</Title>
-        <Select nullable multiple name='option' label='label' id='id' iconName={IconName.ALERT} selected={options}>
+        <Select
+          nullable
+          multiple
+          name='option'
+          label='label'
+          id='id'
+          iconName={IconName.ALERT}
+          selected={optionsNullable}
+          onChange={(e) => {
+            setOptionsNullable(e.selectedOptions)
+          }}
+        >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
-
-        <Modal triggerClassNames='button is-primary' triggerContent='Open modal' closeIcon>
-          <ModalTitle>Custom title</ModalTitle>
-          <Select label='Choose an option'>
-            <SelectOption id='id_one' value='opt_one' label='option 1' />
-            <SelectOption id='id_two' value='opt_two' label='option 2' />
-            <SelectOption id='id_three' value='opt_three' label='option 3' />
-          </Select>
-        </Modal>
+        <Button onClick={() => setOptionsNullable([])} variant='PRIMARY'>
+          Set Null
+        </Button>
+        <Button onClick={() => setOptionsNullable(['opt_one', 'opt_two'])} variant='PRIMARY'>
+          Set one & two
+        </Button>
       </>
 
       <>

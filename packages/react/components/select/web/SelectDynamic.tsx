@@ -47,15 +47,20 @@ const SelectDynamic = ({
 
   const setNewSelectedValues = useCallback(
     ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
+      const selectedOptions: (string | number)[] = []
       if (isChecked) {
         setSelectedValues((prev) => {
           switch (true) {
             case Array.isArray(prev) && nullable:
               setSelectedName((prev) => prev.filter((txt) => ![children, label].includes(txt)))
-              return (prev as (number | string)[]).filter((item: string | number) => item !== value)
+              const opts = (prev as (number | string)[]).filter((item: string | number) => item !== value)
+              selectedOptions.push(...opts)
+              return opts
             case Array.isArray(prev) && !nullable:
+              selectedOptions.push(...prev)
               return prev
             case !Array.isArray(prev) && !nullable:
+              selectedOptions.push(value)
               setIsFocused(false)
               return prev
             case !Array.isArray(prev) && nullable:
@@ -68,20 +73,29 @@ const SelectDynamic = ({
         })
       }
       if (!isChecked) {
-        setSelectedName((prev) => [...prev, children || label])
         setSelectedValues((prev) => {
-          if (Array.isArray(prev)) return [...prev, value]
-          setIsFocused(false)
-          setSelectedName([children || label])
+          if (Array.isArray(prev)) {
+            const opts = [...prev, value]
+            selectedOptions.push(...opts)
+            return opts
+          }
+          selectedOptions.push(value)
           return value
         })
+
+        if (multiple) setSelectedName((prev) => [...prev, children || label])
+
+        if (!multiple) {
+          setSelectedName([children || label])
+          setIsFocused(false)
+        }
       }
+      return selectedOptions
     },
-    [],
+    [multiple, nullable],
   )
 
   React.useEffect(() => {
-    setSelectedValues(selected)
     const setInputValue = () => {
       const labelSelected = React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return false
@@ -97,6 +111,7 @@ const SelectDynamic = ({
       labelSelected && setSelectedName(labelSelected)
     }
     setInputValue()
+    setSelectedValues(selected)
   }, [selected])
 
   React.useEffect(() => {
@@ -153,7 +168,7 @@ const SelectDynamic = ({
         checked: isChecked(child.props.value),
         focused: focusedIndex === index,
         onClick: () => {
-          setNewSelectedValues({
+          const opts = setNewSelectedValues({
             children: child.props.children,
             label: child.props.label,
             value: child.props.value,
@@ -165,6 +180,7 @@ const SelectDynamic = ({
               selectName: clickEventValue(child.props.children || child.props.label),
               selectId: clickEventValue(child.props.id),
               name: clickEventValue(child.props.children || child.props.label),
+              selectedOptions: opts,
             })
           if (child.props.onClick) child.props.onClick()
         },
