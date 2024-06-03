@@ -41,9 +41,7 @@ const SelectOption = ({
         disabled={disabled}
         aria-label={label}
         data-testid={testId}
-        onClick={(e: React.MouseEvent<HTMLElement>) => {
-          onClick && onClick(e)
-        }}
+        onClick={onClick}
         {...others}
       >
         {children || label}
@@ -63,6 +61,7 @@ const SelectOption = ({
       onClick={onClick}
       iconTile={iconName}
       description={label || children}
+      {...others}
     />
   )
 }

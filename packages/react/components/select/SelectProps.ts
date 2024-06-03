@@ -14,12 +14,13 @@ export interface SelectChangeEvent {
   name?: string
 }
 
-export type SelectChangeEventHandler<T = SelectChangeEvent> = (event: T) => void
+export type SelectChangeEventHandler<T = SelectChangeEvent | number | string> = (event: T) => void
 export type SelectedValue = string | number | string[] | number[] | undefined
+export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
 
-export interface SelectProps<T = SelectChangeEvent> extends Accessibility {
+export interface SelectProps<T = SelectChangeEvent | number | string> extends Accessibility {
   onChange?: SelectChangeEventHandler<T>
-  onFocus?: (event: React.FocusEvent | React.BaseSyntheticEvent) => void
+  onFocus?: (event: ParamEventSelectFocus) => void
   onBlur?: (event: unknown) => void
   label?: string
   children?: React.ReactNode
