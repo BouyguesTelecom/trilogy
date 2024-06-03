@@ -71,7 +71,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={options}
           onChange={(e) => {
-            e?.selectedOptions && setOptions(event.selectedOptions)
+            e?.selectedOptions && setOptions(e.selectedOptions)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
