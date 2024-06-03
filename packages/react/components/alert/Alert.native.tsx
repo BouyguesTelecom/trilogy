@@ -6,10 +6,42 @@ import { View } from "../view"
 import { Text, TextLevels } from "../text"
 import { getAlertIconName, getAlertStyle } from "../../objects/facets/Alert"
 import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { AlertProps } from "./AlertProps"
+import {AlertProps, ToasterAlertPosition, ToasterAlertProps} from "./AlertProps"
 import { Icon } from "../icon"
 import { TypographyBold } from "../../objects"
 import { ComponentName } from "../enumsComponentsName"
+import ToasterContext from "./context"
+import LibToast from "react-native-toast-message"
+import {ToasterShowContext} from "./context/ToasterContextProps"
+
+/**
+ * Function call by context for showing toast
+ * @param params {ToasterShowContext}
+ */
+const showToast: ToasterShowContext = (params: ToasterAlertProps) => {
+  const {
+    position,
+    duration,
+    offset,
+    title,
+    description,
+    onClick,
+    closable,
+    onHide,
+    iconName,
+    alert,
+  } = params
+
+  LibToast.show({
+    type: "tomatoToast",
+    position: position || ToasterAlertPosition.BOTTOM,
+    bottomOffset: offset || 10,
+    topOffset: offset || 10,
+    visibilityTime: duration || 5000,
+    onHide,
+    props: { title, description, closable, iconName, alert, onClick },
+  })
+}
 
 /**
  * Alert Component
@@ -20,7 +52,6 @@ import { ComponentName } from "../enumsComponentsName"
  * @param info (boolean) Small info alert use it without button and arrow
  * @param onClick {Function} onClick Event for all alert
  */
-
 const Alert = ({
   alert,
   iconName,
@@ -118,6 +149,26 @@ const Alert = ({
   if (!onClick && display) return alertView
 
   return <View />
+}
+
+/**
+ * Toaster provider
+ * @param children {React.ReactNode} Custom Toast Content
+ * @param duration {number} Duration in MS (Default: 5000)
+ * @param offset {number} Offset position margin (Default: 10 dp)
+ * @param others
+ */
+const ToasterProvider = ({ children }: ToasterAlertProps): JSX.Element => {
+  const toastConfig = {
+    tomatoToast: Toaster,
+  }
+
+  return (
+    <ToasterContext.Provider value={{ show: showToast, hide: LibToast.hide }}>
+      {children}
+      <LibToast config={toastConfig} />
+    </ToasterContext.Provider>
+  )
 }
 
 Alert.displayName = ComponentName.Alert
