@@ -12,6 +12,7 @@ export interface SelectChangeEvent {
   selectName?: string
   selectId?: string
   name?: string
+  selectedOptions?: (string | number)[]
 }
 
 export type SelectChangeEventHandler<T = SelectChangeEvent | number | string> = (event: T) => void
