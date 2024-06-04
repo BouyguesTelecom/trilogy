@@ -48,7 +48,7 @@
     }
 
     .icon.is-medium {
-      font-size: 20px !important;
+      font-size: $text-20 !important;
     }
   } 
 
@@ -64,11 +64,10 @@
       text-indent: 1px;
       outline: none;
       color:  getColor('main');
-      font-size: 16px;
+      font-size: $text-16 !important;
     }
 
     &.input {
-      padding: 0 0 0 45px !important;
       padding-top: 0px !important;
       padding-bottom: 0px !important;
     }
