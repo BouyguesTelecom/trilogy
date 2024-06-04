@@ -22,7 +22,8 @@ import {useTrilogyContext} from "../../context"
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param suptitle {string} Price Suptitle
- * @param tag {React.ReactNode} Tag children
+ * @param tagAmount {number} Tag amount
+ * @param tagSymbol {number} Tag symbol
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param striked {boolean} Striked Price
@@ -44,7 +45,8 @@ const Price = ({
                  accessibilityLabel,
                  striked,
                  suptitle,
-                 tag,
+                 tagAmount,
+                 tagSymbol,
                  ...others
                }: PriceProps): JSX.Element => {
   const {styled} = useTrilogyContext()
@@ -89,12 +91,8 @@ const Price = ({
     (showCents && `€${cents || "00"}`) ||
     "€"
 
-  const splitTagIndex = tag?.indexOf('/')
-  const tagFirstPart = splitTagIndex && tag?.substring(0, splitTagIndex)
-  const tagSecondPart = splitTagIndex && tag?.substring(splitTagIndex)
-
   const returnComponent = (
-    <span className={tag ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
+    <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
       <span
         data-testid={testId}
         aria-label={accessibilityLabel}
@@ -117,10 +115,10 @@ const Price = ({
           )}
         </span>
       </span>
-      {tag && (
+      {tagAmount && (
         <span className={hashClass(styled, clsx(('price-tag')))}>
-          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</Text>
-          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}><>&nbsp;</>{tagSecondPart}</Text>
+          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
+          {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}><>&nbsp;</>/{period}</Text>}
         </span>
       )}
     </span>
