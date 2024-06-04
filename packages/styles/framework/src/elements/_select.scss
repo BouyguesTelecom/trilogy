@@ -27,7 +27,7 @@
           mask-image: url('./assets/icons/all/check.svg') !important;
           background-color: getColor('main') !important;
           mask-size: 18px !important;
-          top: 18px !important;
+          top: 25px !important;
           right: 18px !important;
           height:18px  !important;
           width: 18px !important
@@ -38,12 +38,17 @@
     label.radio-label {
       border:none !important;
       border-radius: 0 !important;
+      height: 52px;
       &:before { display: none; }
         @include hover 
     } 
 
     &.focus label.radio-label {
       @include hoverRules();
+    }
+
+    .icon.is-medium {
+      font-size: 20px !important;
     }
   } 
 
