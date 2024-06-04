@@ -610,7 +610,7 @@
 }
 
 @mixin hover {
-  &:hover:not(.is-disabled) {
+  &:hover:not(.is-disabled):not(:focus) {
     @include hoverRules();
   }
   &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {

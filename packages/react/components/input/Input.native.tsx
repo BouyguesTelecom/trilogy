@@ -27,7 +27,8 @@ import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
 import { Alignable } from "../../objects/facets/Alignable"
 import { ComponentName } from "../enumsComponentsName"
 
-interface InputNativeProps extends InputProps, InputNativeEvents {}
+interface InputNativeProps extends InputProps, InputNativeEvents {
+}
 
 interface IStateVerify {
   isVerify: boolean;
@@ -72,42 +73,43 @@ interface IVerifies {
  * @param accessibilityActivate {boolean}
  */
 const Input = ({
-  defaultValue,
-  name,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled,
-  status,
-  help,
-  placeholder,
-  type,
-  hasIcon,
-  customIcon,
-  search,
-  reference,
-  keyboardStyle,
-  autoCapitalize,
-  autoCorrect,
-  autoCompleteType,
-  textContentType,
-  keyboardType,
-  keyType,
-  onSubmit,
-  maxLength,
-  testId,
-  accessibilityLabel,
-  customIconRight,
-  customIconLeft,
-  securityGauge,
-  validationRules,
-  onIconClick,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  required,
-  ...others
-}: InputNativeProps): JSX.Element => {
+                 defaultValue,
+                 name,
+                 onChange,
+                 onFocus,
+                 onBlur,
+                 disabled,
+                 status,
+                 help,
+                 placeholder,
+                 type,
+                 hasIcon,
+                 customIcon,
+                 search,
+                 reference,
+                 keyboardStyle,
+                 autoCapitalize,
+                 autoCorrect,
+                 autoCompleteType,
+                 textContentType,
+                 keyboardType,
+                 keyType,
+                 onSubmit,
+                 maxLength,
+                 testId,
+                 accessibilityLabel,
+                 customIconRight,
+                 customIconLeft,
+                 securityGauge,
+                 validationRules,
+                 onIconClick,
+                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                 required,
+                 ...others
+               }: InputNativeProps): JSX.Element => {
   const [value, setValue] = useState<string>(defaultValue || "")
   const [email, setEmail] = useState<string>("")
+  const [isFocused, setIsFocused] = useState(false)
   const [dynamicPlaceholder, setDynamicPlaceholder] = useState<boolean>(false)
   const animationDuration = 200
   const placeholderDefaultSize = 20
@@ -168,11 +170,11 @@ const Input = ({
     dynamicPlaceholder: boolean
   ): number => {
     if (dynamicPlaceholder && !search && os === "ios") {
-      return 10
+      return isFocused ? 9 : 10
     }
 
     if (dynamicPlaceholder && !search && os === "android") {
-      return 15
+      return isFocused ? 14 : 15
     }
 
     return 0
@@ -181,13 +183,13 @@ const Input = ({
   const inputTestId = testId
     ? testId
     : placeholder
-    ? placeholder
-    : "NotSpecified"
+      ? placeholder
+      : "NotSpecified"
   const inputAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : placeholder
-    ? placeholder
-    : "NotSpecified"
+      ? placeholder
+      : "NotSpecified"
 
   const handleChange = useCallback((text: string) => {
     setValue(text)
@@ -299,13 +301,13 @@ const Input = ({
   React.useEffect(() => {
     const data = {}
     validationRules &&
-      Object.keys(validationRules).map((key) => {
-        if (key === "number") Object.assign(data, { numberVerify })
-        if (key === "length") Object.assign(data, { lengthVerify })
-        if (key === "lowercase") Object.assign(data, { lowercaseVerify })
-        if (key === "uppercase") Object.assign(data, { uppercaseVerify })
-        if (key === "specialChars") Object.assign(data, { specialCharsverify })
-      })
+    Object.keys(validationRules).map((key) => {
+      if (key === "number") Object.assign(data, { numberVerify })
+      if (key === "length") Object.assign(data, { lengthVerify })
+      if (key === "lowercase") Object.assign(data, { lowercaseVerify })
+      if (key === "uppercase") Object.assign(data, { uppercaseVerify })
+      if (key === "specialChars") Object.assign(data, { specialCharsverify })
+    })
     setVerifies(data)
     setNbAllVerifies(Object.keys(data).length)
   }, [validationRules])
@@ -348,8 +350,12 @@ const Input = ({
 
   const styles = StyleSheet.create({
     input: {
-      paddingLeft: customIconLeft || search ? 40 : 10,
-      paddingRight: customIcon || customIconRight || search ? 32 : 0,
+      paddingLeft:
+        (customIconLeft || search) && 40
+        || (customIconLeft && isFocused
+          || search && isFocused) && 39 || !customIconLeft && !search && isFocused && 9
+        || 10,
+      paddingRight: (customIcon || customIconRight || search) && 32 || 0,
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
       width: hasIcon && (status || customIcon) ? "85%" : "95%",
       height: 46,
@@ -379,13 +385,14 @@ const Input = ({
       backgroundColor: disabled
         ? getColorStyle(TrilogyColor.DISABLED, 1)
         : getColorStyle(TrilogyColor.BACKGROUND),
-      borderWidth: 1,
+      borderWidth: isFocused ? 2 : 1,
       borderRadius: 3,
       borderColor:
         (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
         (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
         (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
         (status && status === "default" && inputColor) ||
+        (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.FONT, 1),
       height: 46,
       width: "100%",
@@ -421,7 +428,7 @@ const Input = ({
       left: 10,
       top: !value ? -33 : -38,
     },
-    textWhitte: {
+    text: {
       zIndex: -1,
       position: "absolute",
       fontSize: 14,
@@ -432,8 +439,8 @@ const Input = ({
           ? 38
           : 37.5
         : Platform.OS === "ios"
-        ? 8
-        : 7.5,
+          ? 8
+          : 7.5,
     },
     domain: {
       zIndex: 1,
@@ -525,9 +532,11 @@ const Input = ({
             }
           }}
           onFocus={(e) => {
+            setIsFocused(true)
             onFocus?.(e)
           }}
           onBlur={(e) => {
+            setIsFocused(false)
             onBlur?.(e)
           }}
           placeholder={placeholder}
@@ -540,7 +549,7 @@ const Input = ({
           {...others}
         />
         {type === "email" && (
-          <Text style={styles.textWhitte}>
+          <Text style={styles.text}>
             {value}
             <Text style={styles.domain}>{email}</Text>
           </Text>
@@ -622,7 +631,7 @@ const Input = ({
           <>
             {hasIcon && customIconLeft && (
               <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
-                <Icon name={customIconLeft} />
+                <Icon name={customIconLeft}/>
               </View>
             )}
             <TouchableOpacity
@@ -669,7 +678,7 @@ const Input = ({
                 align={Alignable.ALIGNED_CENTER}
                 name={IconName.SEARCH}
                 size={IconSize.SMALL}
-                color={getColorStyle(TrilogyColor.NEUTRAL)}
+                color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
               />
             </View>
             {value.length > 0 && (
@@ -693,7 +702,7 @@ const Input = ({
                   align={Alignable.ALIGNED_CENTER}
                   name={IconName.TIMES_CIRCLE}
                   size={IconSize.SMALL}
-                  color={getColorStyle(TrilogyColor.NEUTRAL)}
+                  color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
                 />
               </TouchableOpacity>
             )}
