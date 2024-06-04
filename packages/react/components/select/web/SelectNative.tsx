@@ -27,7 +27,7 @@ const SelectNative = ({
   ...others
 }: SelectProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className, iconName])
   const [focused, setIsFocused] = React.useState<boolean>(false)
 
   const controlClasses = React.useMemo(
@@ -36,7 +36,7 @@ const SelectNative = ({
         styled,
         clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left', iconName && 'has-icons-right'),
       ),
-    [styled],
+    [styled, iconName],
   )
   const classes = React.useMemo(
     () => hashClass(styled, clsx('input', disabled && is('disabled'), 'select-native', className)),
