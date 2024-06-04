@@ -70,6 +70,7 @@ const SelectNative = ({
                     selectName: e.target.name,
                     selectId: e.target.id,
                     name: e.target.name,
+                    selectedOptions: [e.target.value],
                   })
                 }
               }}
@@ -85,7 +86,7 @@ const SelectNative = ({
                 const props = {
                   ...child.props,
                 }
-                return <SelectOption {...props} native={true} />
+                return <SelectOption {...props} native='true' />
               })}
             </select>
           </div>

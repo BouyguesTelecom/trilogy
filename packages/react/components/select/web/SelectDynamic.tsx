@@ -41,7 +41,10 @@ const SelectDynamic = ({
   }, [])
 
   const isChecked = useCallback(
-    (value: string) => (multiple ? (selectedValues as (number | string)[])?.includes(value) : selectedValues === value),
+    (value: string) =>
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        ? selectedValues?.includes(value)
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -57,7 +60,7 @@ const SelectDynamic = ({
               selectedOptions.push(...opts)
               return opts
             case Array.isArray(prev) && !nullable:
-              selectedOptions.push(...prev)
+              selectedOptions.push(...(prev as (number | string)[]))
               return prev
             case !Array.isArray(prev) && !nullable:
               selectedOptions.push(value)
@@ -82,9 +85,7 @@ const SelectDynamic = ({
           selectedOptions.push(value)
           return value
         })
-
         if (multiple) setSelectedName((prev) => [...prev, children || label])
-
         if (!multiple) {
           setSelectedName([children || label])
           setIsFocused(false)
@@ -166,7 +167,7 @@ const SelectDynamic = ({
       const props = {
         ...child.props,
         checked: isChecked(child.props.value),
-        focused: focusedIndex === index,
+        focused: focusedIndex === index ? 'true' : undefined,
         onClick: () => {
           const opts = setNewSelectedValues({
             children: child.props.children,

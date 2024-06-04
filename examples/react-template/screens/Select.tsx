@@ -127,8 +127,9 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
+            console.log(e)
             if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
-              e?.selectedOptions && setOption(e.selectValue)
+              e?.selectValue && setOption(e.selectValue)
             }
           }}
         >

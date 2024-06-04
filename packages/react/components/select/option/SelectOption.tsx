@@ -28,7 +28,7 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const props = others as any
+  const props: any = others
   const { checked, native, focused } = props
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
