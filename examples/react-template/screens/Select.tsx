@@ -27,6 +27,7 @@ export const SelectView = (): JSX.Element => {
             if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue)
           }}
         >
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
@@ -49,6 +50,7 @@ export const SelectView = (): JSX.Element => {
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
@@ -78,6 +80,7 @@ export const SelectView = (): JSX.Element => {
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
           <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
         <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant='PRIMARY'>
@@ -103,6 +106,7 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
         </Select>
         <Button onClick={() => setOptionsNullable([])} variant='PRIMARY'>
           Set Null
@@ -136,6 +140,7 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
         </Select>
         <Spacer size={20} />
       </>
