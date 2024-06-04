@@ -130,11 +130,12 @@ const SelectDynamic = ({
           break
         case e.key === 'Enter' && focusedIndex !== -1:
           const childs = (children as React.ReactElement[])[focusedIndex]
+          const isCheckedOption = isChecked(childs.props.value)
           setNewSelectedValues({
             children: childs.props.children,
             label: childs.props.label,
             value: childs.props.value,
-            isChecked: isChecked(childs.props.value),
+            isChecked: isCheckedOption,
           })
           break
       }
@@ -144,7 +145,7 @@ const SelectDynamic = ({
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [focused, focusedIndex])
+  }, [focused, focusedIndex, children, isChecked])
 
   const modal = useMemo(() => {
     return <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)}></div>
