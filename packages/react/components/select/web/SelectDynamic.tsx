@@ -142,19 +142,17 @@ const SelectDynamic = ({
     }
     focused && document.addEventListener('keydown', onKeyDown)
     !focused && setFocusedIndex(-1)
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-    }
+    return () => document.removeEventListener('keydown', onKeyDown)
   }, [focused, focusedIndex, children, isChecked])
 
-  const modal = useMemo(() => {
-    return <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)}></div>
-  }, [])
+  const modal = useMemo(
+    () => <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)} />,
+    [],
+  )
 
   const options = React.useMemo(() => {
     return React.Children.map(children, (child, index) => {
       if (!React.isValidElement(child)) return null
-
       const clickEventValue = (v: string) => {
         switch (true) {
           case (nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
