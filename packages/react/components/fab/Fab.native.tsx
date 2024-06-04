@@ -1,9 +1,10 @@
 import * as React from "react"
-import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { FabProps } from "./FabProps"
-import { Alignable, getColorStyle, TrilogyColor } from "../../objects"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
 import { Icon, IconColor, IconName, IconSize } from "../icon"
 import { ComponentName } from "../enumsComponentsName"
+import { Text } from "../text"
 
 /**
  * Fab Native Component
@@ -19,17 +20,17 @@ import { ComponentName } from "../enumsComponentsName"
  * @param disabled {boolean} disabled button
  */
 const Fab = ({
-  children,
-  accessibilityLabel,
-  iconName,
-  extended,
-  onClick,
-  top,
-  bottom,
-  left,
-  right,
-  disabled,
-}: FabProps): JSX.Element => {
+               children,
+               accessibilityLabel,
+               iconName,
+               extended,
+               onClick,
+               top,
+               bottom,
+               left,
+               right,
+               disabled,
+             }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
@@ -53,10 +54,8 @@ const Fab = ({
       zIndex: 999,
     },
     label: {
-      color: "white",
-      fontWeight: "600",
-      fontSize: 16,
-      lineHeight: 20,
+      marginTop: "auto",
+      marginBottom: "auto",
       marginLeft: 10,
       marginRight: 16,
     },
@@ -81,17 +80,18 @@ const Fab = ({
           <Icon
             style={styles.icon}
             name={iconName as IconName}
-            color={IconColor.BACKGROUND}
+            color={IconColor.WHITE}
             size={IconSize.MEDIUM}
             align={Alignable.ALIGNED_CENTER}
           />
-          <Text style={styles.label}>{children}</Text>
+          <Text style={styles.label}
+                typo={[TypographyColor.TEXT_WHITE, TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{children}</Text>
         </>
       ) : (
         <Icon
           style={styles.icon}
           name={iconName as IconName}
-          color={IconColor.BACKGROUND}
+          color={IconColor.WHITE}
           size={IconSize.MEDIUM}
           align={Alignable.ALIGNED_CENTER}
         />
