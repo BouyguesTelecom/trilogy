@@ -19,6 +19,12 @@
     }
   }
 
+  &:active,
+  &:focus,
+  &:focus-visible:not(.icon) {
+    padding-left: 15px !important;
+  }
+
   // Sizes
   &.is-small {
     @include control-small;
