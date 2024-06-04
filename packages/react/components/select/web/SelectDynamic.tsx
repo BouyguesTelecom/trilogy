@@ -117,24 +117,42 @@ const SelectDynamic = ({
 
   React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      const childs = children as React.ReactElement[]
+      const child = childs[focusedIndex]
+
       if (['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) e.preventDefault()
       switch (true) {
         case e.key === 'ArrowDown':
-          options && setFocusedIndex((prev) => (prev + 1) % options.length)
+          options &&
+            setFocusedIndex((prev) => {
+              let nextIndex = (prev + 1) % options.length
+              if (childs[nextIndex].props.disabled) nextIndex++
+              return nextIndex % options.length
+            })
           break
         case e.key === 'ArrowUp' && focusedIndex !== -1:
-          options && setFocusedIndex((prev) => (prev - 1 + options.length) % options.length)
+          options &&
+            setFocusedIndex((prev) => {
+              let nextIndex = (prev - 1 + options.length) % options.length
+              if (childs[nextIndex].props.disabled) nextIndex--
+              if (nextIndex === -1) nextIndex = options.length - 1
+              return nextIndex % options.length
+            })
           break
         case e.key === 'ArrowUp' && focusedIndex === -1:
-          options && setFocusedIndex(() => options.length - 1)
+          options &&
+            setFocusedIndex(() => {
+              let nextIndex = options.length - 1
+              if (childs[nextIndex].props.disabled) nextIndex--
+              return nextIndex
+            })
           break
-        case e.key === 'Enter' && focusedIndex !== -1:
-          const childs = (children as React.ReactElement[])[focusedIndex]
-          const isCheckedOption = isChecked(childs.props.value)
+        case e.key === 'Enter' && focusedIndex !== -1 && !child.props.disabled:
+          const isCheckedOption = isChecked(child.props.value)
           setNewSelectedValues({
-            children: childs.props.children,
-            label: childs.props.label,
-            value: childs.props.value,
+            children: child.props.children,
+            label: child.props.label,
+            value: child.props.value,
             isChecked: isCheckedOption,
           })
           break
