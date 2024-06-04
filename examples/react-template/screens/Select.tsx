@@ -3,9 +3,9 @@ import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/compo
 import * as React from 'react'
 
 export const SelectView = (): JSX.Element => {
-  const [options, setOptions] = React.useState<string[] | number[]>(['opt_one', 'opt_two'])
-  const [optionsNullable, setOptionsNullable] = React.useState<string[] | number[]>(['opt_one', 'opt_two'])
-  const [option, setOption] = React.useState<string>('opt_one')
+  const [options, setOptions] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
+  const [optionsNullable, setOptionsNullable] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
+  const [option, setOption] = React.useState<string | undefined>('opt_one')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
 
   return (
@@ -24,7 +24,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue as string)
+            if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -45,7 +45,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={optionNullable}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number') setOptionNullable(e.selectValue as string)
+            if (typeof e !== 'string' && typeof e !== 'number') setOptionNullable(e.selectValue)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -71,7 +71,9 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={options}
           onChange={(e) => {
-            e?.selectedOptions && setOptions(e.selectedOptions)
+            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
+              e?.selectedOptions && setOptions(e.selectedOptions)
+            }
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -93,7 +95,9 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={optionsNullable}
           onChange={(e) => {
-            setOptionsNullable(e.selectedOptions)
+            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
+              e?.selectedOptions && setOptionsNullable(e.selectedOptions)
+            }
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -123,8 +127,9 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
-            console.log(e)
-            if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue as string)
+            if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
+              e?.selectedOptions && setOption(e.selectValue)
+            }
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
