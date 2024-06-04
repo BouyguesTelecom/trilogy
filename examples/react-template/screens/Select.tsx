@@ -27,10 +27,10 @@ export const SelectView = (): JSX.Element => {
             if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
+          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
+          <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
         </Select>
         <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
           Set value 3
@@ -131,7 +131,6 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
-            console.log(e)
             if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
               e?.selectValue && setOption(e.selectValue)
             }

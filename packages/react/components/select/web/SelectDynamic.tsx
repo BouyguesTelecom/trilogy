@@ -119,8 +119,7 @@ const SelectDynamic = ({
     const onKeyDown = (e: KeyboardEvent) => {
       const childs = children as React.ReactElement[]
       const child = childs[focusedIndex]
-
-      if (['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) e.preventDefault()
+      if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape'].includes(e.key)) e.preventDefault()
       switch (true) {
         case e.key === 'ArrowDown':
           options &&
@@ -155,6 +154,10 @@ const SelectDynamic = ({
             value: child.props.value,
             isChecked: isCheckedOption,
           })
+          break
+        case e.key === 'Escape':
+          setFocusedIndex(-1)
+          setIsFocused(false)
           break
       }
     }
