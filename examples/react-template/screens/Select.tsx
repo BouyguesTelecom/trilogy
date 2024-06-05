@@ -6,7 +6,7 @@ export const SelectView = (): JSX.Element => {
   const [options, setOptions] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
   const [optionsNullable, setOptionsNullable] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
   const [option, setOption] = React.useState<string | undefined>('opt_one')
-  const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
+  const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_two')
 
   return (
     <Section>
@@ -130,6 +130,27 @@ export const SelectView = (): JSX.Element => {
           id='id'
           iconName={IconName.ALERT}
           selected={option}
+          onChange={(e) => {
+            if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
+              e?.selectValue && setOption(e.selectValue)
+            }
+          }}
+        >
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+        </Select>
+        <Spacer size={20} />
+        <Title level={TitleLevels.TWO}>multiple option</Title>
+        <Spacer size={20} />
+        <Title level={TitleLevels.FOUR}>Not nullable</Title>
+        <Select
+          multiple
+          native
+          name='option'
+          label='label'
+          id='id'
           onChange={(e) => {
             if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
               e?.selectValue && setOption(e.selectValue)

@@ -29,12 +29,13 @@ const SelectOption = ({
   ...others
 }: SelectOptionProps): JSX.Element => {
   const props: any = others
-  const { checked, native, focused } = props
+  const { checked, native, focused, selected } = props
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
     return (
       <option
+        selected={selected}
         role='option'
         id={id}
         value={value}

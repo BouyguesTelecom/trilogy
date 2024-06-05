@@ -29,6 +29,11 @@ const SelectNative = ({
   const { styled } = useTrilogyContext()
   const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className, iconName])
   const [focused, setIsFocused] = React.useState<boolean>(false)
+  const [selectedValues, setSelectedValues] = React.useState(selected)
+
+  React.useEffect(() => {
+    setSelectedValues(selected)
+  }, [selected])
 
   const controlClasses = React.useMemo(
     () =>
@@ -38,8 +43,10 @@ const SelectNative = ({
       ),
     [styled, iconName],
   )
+
   const classes = React.useMemo(
-    () => hashClass(styled, clsx('input', disabled && is('disabled'), 'select-native', className)),
+    () =>
+      hashClass(styled, clsx('input', disabled && is('disabled'), 'select-native', multiple && 'multiple', className)),
     [styled, disabled, iconName, className],
   )
 
@@ -59,6 +66,7 @@ const SelectNative = ({
         <div className={controlClasses}>
           <div className={classes}>
             <select
+              multiple={multiple}
               className={hashClass(styled, clsx(!label && 'no-label'))}
               value={selected as string}
               aria-label={accessibilityLabel}
@@ -70,7 +78,6 @@ const SelectNative = ({
                     selectName: e.target.name,
                     selectId: e.target.id,
                     name: e.target.name,
-                    selectedOptions: [e.target.value],
                   })
                 }
               }}
@@ -83,8 +90,17 @@ const SelectNative = ({
             >
               {React.Children.map(children, (child) => {
                 if (!React.isValidElement(child)) return null
+                const isSelected = () => {
+                  switch (true) {
+                    case typeof selectedValues === 'number' || typeof selectedValues === 'string':
+                      return selectedValues === child.props.value
+                    default:
+                      return selectedValues?.includes(child.props.value)
+                  }
+                }
                 const props = {
                   ...child.props,
+                  selected: isSelected(),
                 }
                 return <SelectOption {...props} native='true' />
               })}
