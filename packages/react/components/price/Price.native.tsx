@@ -212,6 +212,16 @@ const Price = ({
       borderRadius: level && level > 3 ? 2 : 3,
       transform: [{ rotate: '45deg'}],
       marginRight: level && level > 3 ? -5 : -6,
+    },
+    tagTextAmount: {
+      lineHeight: 0,
+      fontSize: level && level == 1 && 24 || level && level == 2 && 18 || level && level == 3 && 16 || 11,
+      fontFamily: "poppins-semibold"
+    },
+    tagTextPeriod: {
+      alignSelf: level && level < 4 ? 'flex-end' : 'center',
+      fontSize: level && level == 1 && 13 || level && level == 2 && 10 || level && level == 3 && 8 || 11,
+      fontFamily: "poppins-semibold"
     }
   })
 
@@ -266,8 +276,8 @@ const Price = ({
         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
           <View style={styles.tagArrow} />
           <View style={styles.tag}>
-            <TrilogyText style={{ lineHeight: 0, fontSize: level && level == 1 && 24 || level && level == 2 && 18 || level && level == 3 && 16 || 11 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
-            {tagSymbol === '€' && period && <TrilogyText style={{ alignSelf: level && level < 4 ? 'flex-end' : 'center', fontSize: level && level == 1 && 13 || level && level == 2 && 10 || level && level == 3 && 8 || 11 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
+            <TrilogyText style={styles.tagTextAmount} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+            {tagSymbol === '€' && period && <TrilogyText style={styles.tagTextPeriod} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
           </View>
         </View>
       )}
