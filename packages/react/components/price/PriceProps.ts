@@ -24,5 +24,6 @@ export interface PriceProps
   striked?: boolean;
   suptitle?: string;
   style?: Styles;
-  tag?: string;
+  tagAmount?: number
+  tagSymbol?: '€' | '%' | string
 }

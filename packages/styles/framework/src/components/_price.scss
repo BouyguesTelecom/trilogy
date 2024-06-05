@@ -25,6 +25,16 @@ $price-levels: (
     &.is-level-#{$i} {
       font-size: $font-size;
 
+      @if $i < 4 {
+        + .price-tag {
+          span:nth-child(2) {
+            font-size: 10px;
+            place-self: flex-end;
+            margin-bottom: 3px;
+          }
+        }
+      }
+
       @if $i > 4 {
         .price-details {
           padding-left: 2px !important;
