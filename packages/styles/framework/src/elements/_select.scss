@@ -1,3 +1,4 @@
+
 .select {
   position: relative;
   input { cursor: pointer;}
@@ -43,9 +44,8 @@
         @include hover 
     } 
 
-    &.focus label.radio-label {
-      @include hoverRules();
-    }
+    &.focus label.radio-label { @include hoverRules(); }
+
     .icon.is-medium {
       font-size: $text-20 !important;
     }
@@ -81,7 +81,7 @@
     &.multiple.input{
       height: auto !important;
       padding-right: 0 !important;
-      select { padding-top: 28px !important; }
+      select { padding-top: 0 !important; }
     }
   }
 

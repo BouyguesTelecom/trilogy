@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import { hashClass } from '../../../helpers'
 import { has, is } from '../../../services'
-import { Icon } from '../../icon'
+import { Icon, IconSize } from '../../icon'
 import { ParamEventSelectFocus, SelectProps } from '../SelectProps'
 import SelectOption from '../option'
 import { useTrilogyContext } from './../../../context'
@@ -35,19 +35,18 @@ const SelectNative = ({
     setSelectedValues(selected)
   }, [selected])
 
-  const controlClasses = React.useMemo(
-    () =>
-      hashClass(
+  const classes = React.useMemo(
+    () => ({
+      input: hashClass(
+        styled,
+        clsx('input', disabled && is('disabled'), 'select-native', multiple && 'multiple', className),
+      ),
+      control: hashClass(
         styled,
         clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left', iconName && 'has-icons-right'),
       ),
-    [styled, iconName],
-  )
-
-  const classes = React.useMemo(
-    () =>
-      hashClass(styled, clsx('input', disabled && is('disabled'), 'select-native', multiple && 'multiple', className)),
-    [styled, disabled, iconName, className],
+    }),
+    [styled, disabled, iconName, className, multiple],
   )
 
   const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
@@ -63,21 +62,24 @@ const SelectNative = ({
   return (
     <div className={selectClasses}>
       <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
-        <div className={controlClasses}>
-          <div className={classes}>
+        <div className={classes.control}>
+          <div className={classes.input}>
             <select
               multiple={multiple}
               className={hashClass(styled, clsx(!label && 'no-label'))}
-              value={selected as string}
+              value={!multiple ? (selectedValues as string) : undefined}
               aria-label={accessibilityLabel}
               data-testid={testId}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                const selectedV = Array.from(e.target.selectedOptions).map((select) => select.value)
+                setSelectedValues(selectedV)
                 if (onChange) {
                   onChange({
                     selectValue: e.target.value,
                     selectName: e.target.name,
                     selectId: e.target.id,
                     name: e.target.name,
+                    selectedOptions: selectedV,
                   })
                 }
               }}
@@ -90,26 +92,35 @@ const SelectNative = ({
             >
               {React.Children.map(children, (child) => {
                 if (!React.isValidElement(child)) return null
+
                 const isSelected = () => {
                   switch (true) {
-                    case typeof selectedValues === 'number' || typeof selectedValues === 'string':
+                    case typeof selectedValues === 'string' || typeof selectedValues === 'number':
                       return selectedValues === child.props.value
+                    case typeof selectedValues === 'object':
+                      return (selectedValues as (number | string)[])?.includes(child.props.value)
                     default:
-                      return selectedValues?.includes(child.props.value)
+                      return false
                   }
                 }
                 const props = {
                   ...child.props,
                   selected: isSelected(),
+                  native: 'true',
                 }
-                return <SelectOption {...props} native='true' />
+                return <SelectOption {...props} />
               })}
             </select>
           </div>
-          {label && <label htmlFor={id}>{label}</label>}
+          {label && !multiple && <label htmlFor={id}>{label}</label>}
           {iconName && (
             <div>
               <Icon name={iconName} size='small' />
+            </div>
+          )}
+          {!multiple && (
+            <div>
+              <Icon className='icon-right' name={focused ? 'tri-arrow-up' : 'tri-arrow-down'} size={IconSize.SMALL} />
             </div>
           )}
         </div>

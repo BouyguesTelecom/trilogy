@@ -5,7 +5,7 @@ import * as React from 'react'
 export const SelectView = (): JSX.Element => {
   const [options, setOptions] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
   const [optionsNullable, setOptionsNullable] = React.useState<(string | number)[]>(['opt_one', 'opt_two'])
-  const [option, setOption] = React.useState<string | undefined>('opt_one')
+  const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_two')
 
   return (
@@ -149,11 +149,11 @@ export const SelectView = (): JSX.Element => {
           multiple
           native
           name='option'
-          label='label'
           id='id'
+          selected={options}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
-              e?.selectValue && setOption(e.selectValue)
+            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
+              e?.selectedOptions && setOptions(e.selectedOptions)
             }
           }}
         >
