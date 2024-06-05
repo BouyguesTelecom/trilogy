@@ -23,7 +23,7 @@ export const PriceScreen = (): JSX.Element => {
         showCents
         period={'mois'}
         tagAmount={10}
-        tagSymbol={'%'}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
