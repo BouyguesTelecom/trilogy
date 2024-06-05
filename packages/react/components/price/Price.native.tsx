@@ -203,7 +203,7 @@ const Price = ({
       padding: level && level > 3 ? 4 : 8,
       borderRadius: 6,
       backgroundColor: getColorStyle(TrilogyColor.ACCENT),
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     tagArrow: {
       width: level && level > 3 ? 8 : 10,
@@ -266,8 +266,8 @@ const Price = ({
         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
           <View style={styles.tagArrow} />
           <View style={styles.tag}>
-            <TrilogyText style={{ fontSize: level && level > 3 && 11 || level && level == 1 && 22 || level && level == 2 && 18 || level && level == 3 && 16 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
-            {tagSymbol === '€' && period && <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 13, marginTop: level && level < 4 ? 2 : 0 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
+            <TrilogyText style={{ lineHeight: 0, fontSize: level && level == 1 && 24 || level && level == 2 && 18 || level && level == 3 && 16 || 11 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+            {tagSymbol === '€' && period && <TrilogyText style={{ alignSelf: level && level < 4 ? 'flex-end' : 'center', fontSize: level && level == 1 && 13 || level && level == 2 && 10 || level && level == 3 && 8 || 11 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
           </View>
         </View>
       )}
