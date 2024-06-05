@@ -28,14 +28,13 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const props: any = others
-  const { checked, native, focused, selected } = props
+  const { checked, native, focused, selected, ...props }: any = others
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
     return (
       <option
-        selected={selected}
+        selected={selected && 'true'}
         role='option'
         id={id}
         value={value}
@@ -43,7 +42,7 @@ const SelectOption = ({
         aria-label={label}
         data-testid={testId}
         onClick={onClick}
-        {...others}
+        {...props}
       >
         {children || label}
       </option>
