@@ -50,17 +50,17 @@ const SelectDynamic = ({
 
   const setNewSelectedValues = useCallback(
     ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
-      const selectedOptions: (string | number)[] = []
+      const selectedOptions: string[] = []
       if (isChecked) {
         setSelectedValues((prev) => {
           switch (true) {
             case Array.isArray(prev) && nullable:
               setSelectedName((prev) => prev.filter((txt) => ![children, label].includes(txt)))
-              const opts = (prev as (number | string)[]).filter((item: string | number) => item !== value)
+              const opts = (prev as string[]).filter((item: string | number) => item !== value)
               selectedOptions.push(...opts)
               return opts
             case Array.isArray(prev) && !nullable:
-              selectedOptions.push(...(prev as (number | string)[]))
+              selectedOptions.push(...(prev as string[]))
               return prev
             case !Array.isArray(prev) && !nullable:
               selectedOptions.push(value)

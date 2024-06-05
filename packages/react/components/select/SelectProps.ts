@@ -12,11 +12,11 @@ export interface SelectChangeEvent {
   selectName?: string
   selectId?: string
   name?: string
-  selectedOptions?: (string | number)[]
+  selectedOptions?: string[]
 }
 
 export type SelectChangeEventHandler<T = SelectChangeEvent | number | string> = (event: T) => void
-export type SelectedValue = string | number | (string | number)[] | undefined
+export type SelectedValue = string | number | string[] | undefined
 export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
 
 export interface SelectProps<T = SelectChangeEvent | number | string> extends Accessibility {
