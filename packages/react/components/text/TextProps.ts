@@ -6,7 +6,8 @@ import { TypographyBold, TypographyBoldValues } from '../../objects/Typography/T
 import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
 import { Accessibility, Invertable } from '../../objects/facets'
 
-type Styles = { [key: string]: unknown }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Styles = { [key: string]: any }
 
 type Typo =
   | TypographyColor

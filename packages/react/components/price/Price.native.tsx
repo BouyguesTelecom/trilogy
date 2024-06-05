@@ -274,10 +274,10 @@ const Price = ({
       </View>
       {tagAmount && (
         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-          <View style={styles.tagArrow} />
-          <View style={styles.tag}>
-            <TrilogyText style={styles.tagTextAmount} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
-            {tagSymbol === '€' && period && <TrilogyText style={styles.tagTextPeriod} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
+          <View style={[styles.tagArrow, style?.tagArrow]} />
+          <View style={[styles.tag, style?.tag]}>
+            <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+            {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
           </View>
         </View>
       )}
