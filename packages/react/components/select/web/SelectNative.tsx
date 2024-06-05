@@ -67,7 +67,7 @@ const SelectNative = ({
             <select
               multiple={multiple}
               className={hashClass(styled, clsx(!label && 'no-label'))}
-              value={!multiple ? (selectedValues as string) : undefined}
+              value={selectedValues}
               aria-label={accessibilityLabel}
               data-testid={testId}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -92,20 +92,8 @@ const SelectNative = ({
             >
               {React.Children.map(children, (child) => {
                 if (!React.isValidElement(child)) return null
-
-                const isSelected = () => {
-                  switch (true) {
-                    case typeof selectedValues === 'string' || typeof selectedValues === 'number':
-                      return selectedValues === child.props.value
-                    case typeof selectedValues === 'object':
-                      return (selectedValues as (number | string)[])?.includes(child.props.value)
-                    default:
-                      return false
-                  }
-                }
                 const props = {
                   ...child.props,
-                  selected: isSelected(),
                   native: 'true',
                 }
                 return <SelectOption {...props} />
