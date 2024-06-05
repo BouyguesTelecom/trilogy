@@ -224,7 +224,10 @@ const SelectDynamic = ({
         onBlur={onBlur}
         onClick={onClickInput}
         className={hashClass(styled, clsx(focused && 'focus'))}
-        onKeyPress={(e) => onKeyPressInput(e.inputKeyCode)}
+        onKeyPress={(e) => {
+          e.preventDefault()
+          onKeyPressInput(e.inputKeyCode)
+        }}
         {...{ readOnly: true, id }}
       />
       {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
