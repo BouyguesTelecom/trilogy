@@ -46,11 +46,17 @@
     &.focus label.radio-label {
       @include hoverRules();
     }
-
     .icon.is-medium {
       font-size: $text-20 !important;
     }
   } 
+
+  .control:not(.has-icons-left.has-icons-right) {
+    .select-native.multiple.input {
+      padding-left:0 !important;
+      select option {padding-left: 16px;}
+    }
+  }
 
   &-native {
     position: relative;
@@ -70,6 +76,12 @@
     &.input {
       padding-top: 0px !important;
       padding-bottom: 0px !important;
+    }
+
+    &.multiple.input{
+      height: auto !important;
+      padding-right: 0 !important;
+      select { padding-top: 28px !important; }
     }
   }
 
