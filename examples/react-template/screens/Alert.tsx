@@ -21,7 +21,7 @@ import {ToasterAlertPosition} from "@trilogy-ds/react/lib/components/alert/Alert
 export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
     const [offset] = useState(50)
-    const [duration] = useState(10000000)
+    const [duration] = useState(1000)
     const [testId] = useState('toasterId')
     const [title] = useState('Why do we use it?')
     const [description] = useState(
