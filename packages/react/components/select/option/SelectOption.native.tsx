@@ -25,7 +25,7 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const { checked, ...props }: any = others
+  const { checked }: any = others
 
   const styles = React.useMemo(
     () =>

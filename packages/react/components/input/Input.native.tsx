@@ -358,7 +358,7 @@ const Input = ({
     dynamicPlaceholder: {
       position: "absolute",
       left: customIconLeft ? 40 : 10,
-      color: getColorStyle(TrilogyColor.MAIN),
+      color: getColorStyle(TrilogyColor.NEUTRAL),
     },
     help: {
       fontSize: 12,
