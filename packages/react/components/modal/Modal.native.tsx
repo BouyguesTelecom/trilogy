@@ -113,8 +113,11 @@ const Modal = ({
 
   const defaultAnimPosition = Dimensions.get("window").height
   const translateAnim = useRef(new Animated.Value(defaultAnimPosition)).current
-
   const [visible, setVisible] = useState(active || false)
+
+  useEffect(() => {
+    setVisible(active)
+  },[active])
 
   useEffect(() => {
     if (visible) {

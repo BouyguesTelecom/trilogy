@@ -1,11 +1,11 @@
 import { Picker } from '@react-native-picker/picker'
-import React, { useEffect, useMemo, useState } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TrilogyColor, TypographyColor, getColorStyle } from '../../objects'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Platform, StyleSheet, View } from 'react-native'
+import { TrilogyColor, getColorStyle } from '../../objects'
 import { ComponentName } from '../enumsComponentsName'
-import { Icon, IconName, IconSize } from '../icon'
+import { IconName } from '../icon'
+import { Input } from '../input'
 import { Modal } from '../modal'
-import { Text, TextLevels } from '../text'
 import { SelectProps } from './SelectProps'
 
 /**
@@ -50,90 +50,23 @@ const Select = ({
       alignItems: 'center',
       height: 50,
     },
-    iconLeft: {
-      left: 10,
-      color: getColorStyle(TrilogyColor.MAIN),
-      paddingRight: 8,
-      paddingLeft: 8,
-      marginRight: 25,
-    },
-    text: {
-      fontSize: 16,
-      lineHeight: 20,
-      color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
-    },
   })
 
-  const selectedOptionName = useMemo(() => {
-    const selectedChild = React.Children.toArray(children).find((child) => {
-      return React.isValidElement(child) && (child.props.value === selected || child.props.selected === true)
-    })
-    if (React.isValidElement(selectedChild)) return selectedChild.props.children || selectedChild.props.label
-    return undefined
-  }, [selectedValue, children])
+  const handleOpenCloseModal = useCallback(() => {
+    setDisplay((prev) => !prev)
+  }, [])
 
   if (Platform.OS === 'ios') {
     return (
       <>
-        <TouchableOpacity disabled={disabled} onPress={() => setDisplay((prev) => !prev)} style={styles.select}>
-          {iconName && (
-            <View>
-              <Icon
-                name={iconName}
-                size={IconSize.SMALL}
-                color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
-                style={styles.iconLeft}
-              />
-            </View>
-          )}
-          <View style={{ width: '75%' }}>
-            {label && (
-              <Text
-                level={selectedOptionName && TextLevels.THREE}
-                typo={[TypographyColor.TEXT_NEUTRAL_DARK]}
-                style={{
-                  fontSize: selectedOptionName ? undefined : 16,
-                  lineHeight: 20,
-                }}
-              >
-                {label}
-              </Text>
-            )}
-            {selectedOptionName && (
-              <Text style={{ ...styles.text }} numberOfLines={1}>
-                {selectedOptionName}
-              </Text>
-            )}
-          </View>
-
-          <View
-            style={{
-              marginLeft: 'auto',
-              paddingRight: 10,
-            }}
-          >
-            <Icon
-              name={IconName.ARROW_DOWN}
-              size={IconSize.SMALL}
-              color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
-            />
-          </View>
-        </TouchableOpacity>
-        <Modal active={display} onClose={() => setDisplay(false)} bottom closeIcon swipable={false}>
-          <Picker
-            itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
-            style={{ width: '100%' }}
-            nativeID={`${`${id}_${name}`}`}
-            selectedValue={selectedValue}
-            onValueChange={(itemValue: number | string) => {
-              if (onChange) onChange(itemValue)
-              setSelectedValue(itemValue)
-              setDisplay(false)
-            }}
-            {...others}
-          >
-            {children}
-          </Picker>
+        <Input
+          placeholder={label}
+          hasIcon={!!iconName}
+          customIconLeft={iconName}
+          {...{ editable: false, onPressIn: handleOpenCloseModal }}
+        />
+        <Modal active={display} onClose={handleOpenCloseModal} closeIcon swipable={false}>
+          {children}
         </Modal>
       </>
     )
