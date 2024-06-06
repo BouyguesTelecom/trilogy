@@ -80,7 +80,7 @@ const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props, ...others
     >
       {iconName && <Icon name={iconName} size={IconSize.SMALL} />}
       <div className={hashClass(styled, clsx('body'))}>
-        {title && <Title level={TitleLevels.ONE}>{title}</Title>}
+        {title && <Title level={TitleLevels.SIX}>{title}</Title>}
         {description && <Text>{description}</Text>}
       </div>
       {closable && <Icon onClick={closable} className={'toaster-close'} name={IconName.TIMES} size={IconSize.SMALL} />}
@@ -141,7 +141,7 @@ const Alert = ({
         <Icon className={iconClassname} name={iconAlert} />
         <div className={hashClass(styled, clsx("body"))}>
           {title && typeof title.valueOf() === "string" ? (
-            <Title level={TitleLevels.THREE}>{title}</Title>
+            <Title level={TitleLevels.SIX}>{title}</Title>
           ) : (
             title
           )}
