@@ -1,19 +1,19 @@
 import * as React from "react"
-import { StyleSheet, TouchableOpacity } from "react-native"
-import { Columns, ColumnsItem } from "../columns"
-import { Spacer, SpacerSize } from "../spacer"
-import { View } from "../view"
-import { Text, TextLevels } from "../text"
-import { Title } from "../title"
-import { getAlertIconName, getAlertStyle } from "../../objects/facets/Alert"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { AlertProps, ToasterAlertPosition, ToasterAlertProps } from "./AlertProps"
-import { Icon, IconName, IconSize } from "../icon"
-import { TypographyBold } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import {StyleSheet, TouchableOpacity} from "react-native"
+import {Columns, ColumnsItem} from "../columns"
+import {Spacer, SpacerSize} from "../spacer"
+import {View} from "../view"
+import {Text, TextLevels} from "../text"
+import {Title, TitleLevels} from "../title"
+import {getAlertIconName, getAlertStyle} from "../../objects/facets/Alert"
+import {getColorStyle, TrilogyColor} from "../../objects/facets/Color"
+import {AlertProps, ToasterAlertPosition, ToasterAlertProps} from "./AlertProps"
+import {Icon, IconName, IconSize} from "../icon"
+import {TypographyBold} from "../../objects"
+import {ComponentName} from "../enumsComponentsName"
 import ToasterContext from "./context"
 import LibToast from "react-native-toast-message"
-import { ToasterShowContext } from "./context/ToasterContextProps"
+import {ToasterShowContext} from "./context/ToasterContextProps"
 
 /**
  * Function call by context for showing toast
@@ -193,7 +193,7 @@ export const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props }) 
             {iconName && <Icon style={styles.icon} name={iconName} />}
           </ColumnsItem>
           <ColumnsItem>
-            {title && <Title>{title}</Title>}
+            {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (
               <>
                 <Spacer size={SpacerSize.SMALL} />
