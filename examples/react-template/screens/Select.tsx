@@ -24,7 +24,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number') setOption(e.selectValue)
+            setOption(e.selectValue)
           }}
         >
           <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
@@ -46,7 +46,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={optionNullable}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number') setOptionNullable(e.selectValue)
+            setOptionNullable(e.selectValue)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -73,9 +73,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={options}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
-              e?.selectedOptions && setOptions(e.selectedOptions)
-            }
+            e?.selectedOptions && setOptions(e.selectedOptions)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -98,9 +96,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={optionsNullable}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
-              e?.selectedOptions && setOptionsNullable(e.selectedOptions)
-            }
+            e?.selectedOptions && setOptionsNullable(e.selectedOptions)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -131,9 +127,7 @@ export const SelectView = (): JSX.Element => {
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number' && 'selectValue' in e) {
-              e?.selectValue && setOption(e.selectValue)
-            }
+            e?.selectValue && setOption(e.selectValue)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
@@ -152,9 +146,7 @@ export const SelectView = (): JSX.Element => {
           id='id'
           selected={options}
           onChange={(e) => {
-            if (typeof e !== 'string' && typeof e !== 'number' && 'selectedOptions' in e) {
-              e?.selectedOptions && setOptions(e.selectedOptions)
-            }
+            e?.selectedOptions && setOptions(e.selectedOptions)
           }}
         >
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
