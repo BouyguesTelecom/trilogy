@@ -148,7 +148,7 @@ const Select = ({
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
-  }, [multiple, nullable, selectedValues])
+  }, [multiple, nullable, selectedValues, children])
 
   return (
     <TouchableOpacity onPress={handleOpenCloseModal}>
