@@ -205,7 +205,7 @@ const SelectDynamic = ({
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
-  }, [multiple, nullable, selectedValues, focusedIndex])
+  }, [multiple, nullable, selectedValues, focusedIndex, children])
 
   return (
     <div className={selectClasses}>
