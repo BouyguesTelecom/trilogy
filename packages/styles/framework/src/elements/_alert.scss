@@ -23,7 +23,6 @@ a.alert {
   .text:first-child,
   .title:first-child {
     line-height: normal;
-    font-size: $text-16 !important;
   }
 
   .title,
@@ -80,7 +79,6 @@ a.alert {
     }
   }
 
-  .title,
   .text,
   .paragraph {
     font-size: $text-14;

@@ -24,6 +24,8 @@ import {StatesContext} from "../../context/providerStates"
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
  * @param suptitle {string} Price Suptitle
+ * @param tagAmount {number} Tag amount
+ * @param tagSymbol {number} Tag symbol
  */
 const Price = ({
                  amount,
@@ -40,7 +42,8 @@ const Price = ({
                  striked,
                  suptitle,
                  style,
-                 tag,
+                 tagAmount,
+                 tagSymbol,
                  ...others
                }: PriceProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
@@ -193,12 +196,14 @@ const Price = ({
         "bold",
     },
     tag: {
-      paddingTop: level && level > 3 ? 1 : 10,
-      paddingBottom: level && level > 3 ? 1 : 10,
+      paddingTop: level && level > 3 && 1 || level && level == 1 && 16 || level && level == 2 && 12 || level && level == 3 && 10 || 10,
+      paddingBottom: level && level > 3 && 1 || level && level == 1 && 16 || level && level == 2 && 12 || level && level == 3 && 10 || 10,
+      paddingRight: level && level < 4 ? 10 : 6,
+      paddingLeft: level && level < 4 ? 10 : 6,
       padding: level && level > 3 ? 4 : 8,
       borderRadius: 6,
       backgroundColor: getColorStyle(TrilogyColor.ACCENT),
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     tagArrow: {
       width: level && level > 3 ? 8 : 10,
@@ -207,6 +212,16 @@ const Price = ({
       borderRadius: level && level > 3 ? 2 : 3,
       transform: [{ rotate: '45deg'}],
       marginRight: level && level > 3 ? -5 : -6,
+    },
+    tagTextAmount: {
+      lineHeight: 0,
+      fontSize: level && level == 1 && 24 || level && level == 2 && 18 || level && level == 3 && 16 || 11,
+      fontFamily: "poppins-semibold"
+    },
+    tagTextPeriod: {
+      alignSelf: level && level < 4 ? 'flex-end' : 'center',
+      fontSize: level && level == 1 && 13 || level && level == 2 && 10 || level && level == 3 && 8 || 11,
+      fontFamily: "poppins-semibold"
     }
   })
 
@@ -220,12 +235,8 @@ const Price = ({
       ? priceText
       : "NotSpecified"
 
-  const splitTagIndex = tag?.indexOf('/')
-  const tagFirstPart = splitTagIndex && tag?.substring(0, splitTagIndex)
-  const tagSecondPart = splitTagIndex && tag?.substring(splitTagIndex)
-
   return (
-    <View style={tag ? {flexDirection: 'row', alignItems: 'center'} : {}}>
+    <View style={tagAmount ? {flexDirection: 'row', alignItems: 'center'} : {}}>
       {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
       <View
         style={[styles.container, style?.container]}
@@ -261,12 +272,12 @@ const Price = ({
           </View>
         )}
       </View>
-      {tag && (
+      {tagAmount && (
         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-          <View style={styles.tagArrow} />
-          <View style={styles.tag}>
-            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagFirstPart}</TrilogyText>
-            <TrilogyText style={{ fontSize: level && level > 3 ? 11 : 14 }} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>{tagSecondPart}</TrilogyText>
+          <View style={[styles.tagArrow, style?.tagArrow]} />
+          <View style={[styles.tag, style?.tag]}>
+            <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+            {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
           </View>
         </View>
       )}

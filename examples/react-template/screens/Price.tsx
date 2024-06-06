@@ -21,8 +21,8 @@ export const PriceScreen = (): JSX.Element => {
         level={'1'}
         amount={24.99}
         showCents
-        period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'%'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -32,7 +32,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -42,7 +43,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -52,7 +54,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -62,7 +65,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -72,7 +76,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.SMALL} />
@@ -82,7 +87,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
-        tag={'-10 € /mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Spacer size={SpacerSize.MEDIUM} />

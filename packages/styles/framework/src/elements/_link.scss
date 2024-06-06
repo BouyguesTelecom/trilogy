@@ -12,7 +12,7 @@
   color: getColor($link-colors);
   box-decoration-break: clone;
   text-decoration: underline 1px solid;
-  text-underline-offset: 4px;
+  text-underline-offset: 2px;
   cursor: pointer;
 
   &.has-icon {
