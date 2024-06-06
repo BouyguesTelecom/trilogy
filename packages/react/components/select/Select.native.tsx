@@ -162,7 +162,7 @@ const Select = ({
         {...{ editable: false, onPressIn: handleOpenCloseModal }}
         {...others}
       />
-      <Modal active={display} onClose={handleOpenCloseModal} swipable={false}>
+      <Modal active={display} onClose={handleOpenCloseModal} swipable={false} bottom={false}>
         {options}
       </Modal>
     </TouchableOpacity>

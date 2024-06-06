@@ -4,7 +4,6 @@
 
   padding-left: $spacing-4;
   padding-right: $spacing-4;
-  font-family: $body-family;
   font-size: $size-medium;
   max-width: 100%;
   width: 100%;
@@ -18,6 +17,12 @@
     &.is-#{$brandName} {
       border: 1px solid $color;
     }
+  }
+
+  &:active,
+  &:focus,
+  &:focus-visible:not(.icon) {
+    padding-left: 15px !important;
   }
 
   // Sizes
