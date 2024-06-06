@@ -226,7 +226,7 @@ export const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props }) 
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others
  */
-export const ToasterProvider = ({ children }: ToasterAlertProps): JSX.Element => {
+export const ToasterAlertProvider = ({ children }: ToasterAlertProps): JSX.Element => {
   const toastConfig = {
     tomatoToast: ToasterAlert,
   }
