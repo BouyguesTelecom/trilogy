@@ -200,7 +200,7 @@ const Modal = ({
               <Animated.View
                 style={[
                   styles.childrenContainer,
-                  { transform: [{ translateY: translateAnim }] }
+                  { transform: [{ translateY: translateAnim }],overflow: 'hidden'  }
                 ]}
               >
                 {closeIcon && (

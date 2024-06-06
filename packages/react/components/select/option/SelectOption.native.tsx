@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TypographyBold } from '../../../objects/Typography'
 import { TrilogyColor, getColorStyle } from '../../../objects/facets/Color'
 import { Columns, ColumnsItem } from '../../columns'
 import { ComponentName } from '../../enumsComponentsName'
@@ -13,7 +14,19 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param label {string} Label value
  * @param children {React.ReactNode}
  */
-const SelectOption = ({ value, label, children, iconName, disabled, ...others }: SelectOptionProps): JSX.Element => {
+const SelectOption = ({
+  id,
+  value,
+  disabled,
+  children,
+  onClick,
+  label,
+  iconName,
+  testId,
+  ...others
+}: SelectOptionProps): JSX.Element => {
+  const { checked, ...props }: any = others
+
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
@@ -43,7 +56,7 @@ const SelectOption = ({ value, label, children, iconName, disabled, ...others }:
   }, [disabled])
 
   return (
-    <TouchableOpacity style={[styles.container]} {...others}>
+    <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
       <Columns {...{ style: { paddingVertical: 16, paddingHorizontal: 8 } }}>
         <ColumnsItem>
           <Columns>
@@ -53,8 +66,18 @@ const SelectOption = ({ value, label, children, iconName, disabled, ...others }:
               </ColumnsItem>
             )}
             <ColumnsItem verticalCenter>
-              <Text {...{ style: { paddingLeft: 8, color: textColor } }}>{children || label}</Text>
+              <Text
+                typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
+                {...{ style: { paddingLeft: 8, color: textColor } }}
+              >
+                {children || label}
+              </Text>
             </ColumnsItem>
+            {checked && (
+              <ColumnsItem size={1} verticalCenter>
+                <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
+              </ColumnsItem>
+            )}
           </Columns>
         </ColumnsItem>
       </Columns>
