@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { Platform, StyleSheet, TouchableOpacity, View } from "react-native"
-import { SelectProps } from "./SelectProps"
-import { Text, TextLevels } from "../text"
-import { Icon, IconName, IconSize } from "../icon"
-import { Picker } from "@react-native-picker/picker"
-import { getColorStyle, TrilogyColor, TypographyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
-import { Modal } from "../modal"
+import React, { useCallback, useEffect, useState } from 'react'
+import { TouchableOpacity } from 'react-native'
+import { ComponentName } from '../enumsComponentsName'
+import { IconName } from '../icon'
+import { Input } from '../input'
+import { Modal } from '../modal'
+import { SelectProps, SelectedValue } from './SelectProps'
+import SelectOption from './option'
 
 /**
  * Select Component
@@ -28,160 +27,147 @@ const Select = ({
   onChange,
   placeholder,
   disabled,
+  multiple,
+  nullable,
   ...others
 }: SelectProps): JSX.Element => {
-  const [selectedValue, setSelectedValue] = useState<string | number>(
-    selected || ""
-  )
+  const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
+  const [selectedNames, setSelectedNames] = React.useState<string[]>([])
   const [display, setDisplay] = useState<boolean>(false)
+  const reactId = React.useId()
 
   useEffect(() => {
-    setSelectedValue(selected || "")
+    const labelSelected = React.Children.map(children, (child) => {
+      if (!React.isValidElement(child)) return false
+      const label = child.props.children || child.props.label
+      switch (true) {
+        case (Array.isArray(selected) && (selected as (number | string)[]).includes(child.props.value)) ||
+          (!Array.isArray(selected) && child.props.value === selected):
+          return label
+        default:
+          return false
+      }
+    })?.filter((item) => item)
+    labelSelected && setSelectedNames(labelSelected)
+    setSelectedValues(selected)
   }, [selected])
 
-  const styles = StyleSheet.create({
-    select: {
-      width: "100%",
-      backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : TrilogyColor.BACKGROUND,
-      borderColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.FONT, 1),
-      borderWidth: 1,
-      borderRadius: 4,
-      zIndex: 3, // works on ios
-      overflow: "hidden",
-      flexDirection: "row",
-      alignItems: "center",
-      height: 50,
-    },
-    iconLeft: {
-      left: 10,
-      color: getColorStyle(TrilogyColor.MAIN),
-      paddingRight: 8,
-      paddingLeft: 8,
-      marginRight: 25,
-    },
-    text: {
-      fontSize: 16,
-      lineHeight: 20,
-      color: getColorStyle(
-        disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN
-      ),
-    },
-  })
+  const handleOpenCloseModal = useCallback(() => {
+    setDisplay((prev) => !prev)
+  }, [])
 
-  const selectedOptionName = useMemo(() => {
-    const selectedChild = React.Children.toArray(children).find((child) => {
-      return (
-        React.isValidElement(child) &&
-        (child.props.value === selected || child.props.selected === true)
-      )
-    })
-    if (React.isValidElement(selectedChild))
-      return selectedChild.props.children || selectedChild.props.label
-    return undefined
-  }, [selectedValue, children])
+  const isChecked = useCallback(
+    (value: string) =>
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        ? selectedValues?.includes(value)
+        : selectedValues === value,
+    [multiple, selectedValues],
+  )
 
-  if (Platform.OS === "ios") {
-    return (
-      <>
-        <TouchableOpacity
-          disabled={disabled}
-          onPress={() => setDisplay((prev) => !prev)}
-          style={styles.select}
-        >
-          {iconName && (
-            <View>
-              <Icon
-                name={iconName}
-                size={IconSize.SMALL}
-                color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
-                style={styles.iconLeft}
-              />
-            </View>
-          )}
-          <View style={{ width: "75%" }}>
-            {label && (
-              <Text
-                level={selectedOptionName && TextLevels.THREE}
-                typo={[TypographyColor.TEXT_NEUTRAL_DARK]}
-                style={{
-                  fontSize: selectedOptionName ? undefined : 16,
-                  lineHeight: 20,
-                }}
-              >
-                {label}
-              </Text>
-            )}
-            {selectedOptionName && (
-              <Text style={{ ...styles.text }} numberOfLines={1}>
-                {selectedOptionName}
-              </Text>
-            )}
-          </View>
-
-          <View
-            style={{
-              marginLeft: "auto",
-              paddingRight: 10,
-            }}
-          >
-            <Icon
-              name={IconName.ARROW_DOWN}
-              size={IconSize.SMALL}
-              color={disabled ? TrilogyColor.NEUTRAL_DARK : TrilogyColor.MAIN}
-            />
-          </View>
-        </TouchableOpacity>
-        <Modal
-          active={display}
-          onClose={() => setDisplay(false)}
-          bottom
-          closeIcon
-          swipable={false}
-        >
-          <Picker
-            itemStyle={{ color: getColorStyle(TrilogyColor.MAIN) }}
-            style={{ width: "100%" }}
-            nativeID={`${`${id}_${name}`}`}
-            selectedValue={selectedValue}
-            onValueChange={(itemValue: number | string) => {
-              if (onChange) onChange(itemValue)
-              setSelectedValue(itemValue)
+  const setNewSelectedValues = useCallback(
+    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
+      const selectedOptions: string[] = []
+      if (isChecked) {
+        setSelectedValues((prev) => {
+          switch (true) {
+            case Array.isArray(prev) && nullable:
+              setSelectedNames((prev) => prev.filter((txt) => ![children, label].includes(txt)))
+              const opts = (prev as string[]).filter((item: string | number) => item !== value)
+              selectedOptions.push(...opts)
+              return opts
+            case Array.isArray(prev) && !nullable:
+              selectedOptions.push(...(prev as string[]))
+              return prev
+            case !Array.isArray(prev) && !nullable:
+              selectedOptions.push(value)
               setDisplay(false)
-            }}
-            {...others}
-          >
-            {children}
-          </Picker>
-        </Modal>
-      </>
-    )
-  }
+              return prev
+            case !Array.isArray(prev) && nullable:
+              setDisplay(false)
+              setSelectedNames([])
+              return undefined
+            default:
+              return value
+          }
+        })
+      }
+      if (!isChecked) {
+        setSelectedValues((prev) => {
+          if (Array.isArray(prev)) {
+            const opts = [...prev, value]
+            selectedOptions.push(...opts)
+            return opts
+          }
+          selectedOptions.push(value)
+          return value
+        })
+        setSelectedNames((prev) => {
+          if (multiple) return [...prev, children || label]
+          setDisplay(false)
+          return [children || label]
+        })
+      }
+      return selectedOptions
+    },
+    [multiple, nullable],
+  )
+
+  const options = React.useMemo(() => {
+    return React.Children.map(children, (child, index) => {
+      if (!React.isValidElement(child)) return null
+      const clickEventValue = (v: string) => {
+        switch (true) {
+          case (nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
+            (nullable && !multiple && selectedValues === child.props.value):
+            return undefined
+          default:
+            return v
+        }
+      }
+      const props = {
+        ...child.props,
+        checked: isChecked(child.props.value),
+        onClick: () => {
+          if (child.props.disabled) return
+          const opts = setNewSelectedValues({
+            children: child.props.children,
+            label: child.props.label,
+            value: child.props.value,
+            isChecked: isChecked(child.props.value),
+          })
+          onChange &&
+            onChange({
+              selectValue: clickEventValue(child.props.value),
+              selectName: clickEventValue(child.props.children || child.props.label),
+              selectId: clickEventValue(child.props.id),
+              name: clickEventValue(child.props.children || child.props.label),
+              selectedOptions: opts,
+            })
+          if (child.props.onClick) child.props.onClick()
+        },
+      }
+      return <SelectOption {...props} key={`${reactId}_${index}`} />
+    })
+  }, [multiple, nullable, selectedValues, children])
 
   return (
-    <View style={styles.select}>
-      <Picker
-        placeholder={placeholder}
-        selectedValue={selectedValue}
-        style={{ width: "100%", height: "100%" }}
-        onValueChange={(itemValue: number | string) => {
-          if (onChange) {
-            onChange(itemValue)
-          }
-          setSelectedValue(itemValue)
-          setDisplay(false)
-        }}
-        mode={"dialog"}
-      >
-        {children}
-      </Picker>
-    </View>
+    <TouchableOpacity onPress={handleOpenCloseModal}>
+      <Input
+        placeholder={label}
+        hasIcon={!!iconName}
+        customIconLeft={iconName}
+        value={selectedNames.join(', ')}
+        defaultValue={selectedNames.join(', ')}
+        customIconRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
+        {...{ editable: false, onPressIn: handleOpenCloseModal }}
+        {...others}
+      />
+      <Modal active={display} onClose={handleOpenCloseModal} swipable={false} bottom={false}>
+        {options}
+      </Modal>
+    </TouchableOpacity>
   )
 }
 
 Select.displayName = ComponentName.Select
-
 export default Select

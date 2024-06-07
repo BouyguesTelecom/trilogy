@@ -33,6 +33,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
+  preventDefault: () => void
 }
 
 export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
