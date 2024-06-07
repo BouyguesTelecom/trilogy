@@ -112,8 +112,11 @@ const Modal = ({
 
   const defaultAnimPosition = Dimensions.get("window").height
   const translateAnim = useRef(new Animated.Value(defaultAnimPosition)).current
-
   const [visible, setVisible] = useState(active || false)
+
+  useEffect(() => {
+    setVisible(active)
+  },[active])
 
   useEffect(() => {
     if (visible) {
@@ -196,7 +199,7 @@ const Modal = ({
               <Animated.View
                 style={[
                   styles.childrenContainer,
-                  { transform: [{ translateY: translateAnim }] }
+                  { transform: [{ translateY: translateAnim }],overflow: 'hidden'  }
                 ]}
               >
                 {closeIcon && (

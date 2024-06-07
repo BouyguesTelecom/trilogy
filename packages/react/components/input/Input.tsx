@@ -346,6 +346,7 @@ const Input = ({
                 inputName: target.name,
                 inputValue: target.value,
                 inputKeyCode: e.keyCode,
+                preventDefault: () => e.preventDefault()
               })
             }
           }}
@@ -356,6 +357,7 @@ const Input = ({
                 inputName: target.name,
                 inputValue: target.value,
                 inputKeyCode: e.keyCode,
+                preventDefault: () => e.preventDefault()
               })
             }
           }}

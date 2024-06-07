@@ -1,9 +1,7 @@
-import * as React from "react"
-import { SelectOptionProps } from "./SelectOptionProps"
-import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { Icon } from "../../icon"
+import clsx from 'clsx'
+import { Radio } from 'components/radio'
+import * as React from 'react'
+import { SelectOptionProps } from './SelectOptionProps'
 
 /**
  * Select Option Component
@@ -16,13 +14,11 @@ import { Icon } from "../../icon"
  * @param iconName {IconName | IconNameValues} icon
  * @param disabled {boolean} disable option
  * @param onClick {function} onclick function
- * @param selected {boolean} Selected option
  * @param id {string} Select option custom id
  */
 const SelectOption = ({
   id,
   className,
-  selected,
   value,
   disabled,
   children,
@@ -32,36 +28,40 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+  const { checked, native, focused, ...props }: any = others
+  const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
+
+  if (native) {
+    return (
+      <option
+        role='option'
+        id={id}
+        value={value}
+        disabled={disabled}
+        aria-label={label}
+        data-testid={testId}
+        onClick={onClick}
+        {...props}
+      >
+        {children || label}
+      </option>
+    )
+  }
 
   return (
-    <div
-      role='option'
-      tabIndex={0}
-      className={hashClass(
-        styled,
-        clsx(
-          "select-options-option",
-          selected && !disabled && "select-options-option-activated",
-          disabled && !selected && "select-options-option-disabled",
-          iconName && "has-icon",
-          className
-        )
-      )}
-      data-testid={testId}
-      id={id}
-      data-option-name={children || label}
-      data-option-value={value}
-      onMouseUp={onClick}
-      aria-disabled={disabled}
-      aria-selected={selected ? "true" : "false"}
+    <Radio
+      checked={checked}
+      tile
+      horizontalTile
+      marginless
+      className={selectClasses}
+      value={value}
+      disabled={disabled}
+      onClick={onClick}
+      iconTile={iconName}
+      description={label || children}
       {...others}
-    >
-      <div className={hashClass(styled, clsx(iconName && "has-icon"))}>
-        {iconName && <Icon name={iconName} size='small' />}
-        {children || label}
-      </div>
-    </div>
+    />
   )
 }
 

@@ -1,10 +1,7 @@
-import * as React from "react"
-import { SelectProps } from "./SelectProps"
-import clsx from "clsx"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
-import { SelectDynamic, SelectNative } from "./web"
-import SelectNativeOption from "./option/SelectNativeOption"
+import * as React from 'react'
+
+import { SelectProps } from './SelectProps'
+import { SelectDynamic, SelectNative } from './web'
 
 /**
  * Select Component
@@ -27,88 +24,9 @@ import SelectNativeOption from "./option/SelectNativeOption"
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param placeholder {string} Select Placeholder
  */
-const Select = ({
-  children,
-  className,
-  label,
-  onChange,
-  disabled,
-  onBlur,
-  onFocus,
-  id,
-  name,
-  iconName,
-  classNameOptions,
-  nullable,
-  testId,
-  selected,
-  native,
-  ...others
-}: SelectProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const selecteClasses = React.useMemo(
-    () =>
-      hashClass(
-        styled,
-        clsx(
-          "select",
-          iconName && "has-icon",
-          native && "select-native",
-          className
-        )
-      ),
-    [styled, disabled, iconName, className]
-  )
-
-  if (native) {
-    return (
-      <SelectNative
-        selecteClasses={selecteClasses}
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        id={id}
-        name={name}
-        disabled={disabled}
-        label={label}
-        iconName={iconName}
-        styled={styled}
-        testId={testId}
-        selected={selected}
-        {...others}
-      >
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) {
-            return <SelectNativeOption {...child.props} />
-          }
-          return null
-        })}
-      </SelectNative>
-    )
-  }
-
-  return (
-    <SelectDynamic
-      styled={styled}
-      onChange={onChange}
-      nullable={nullable}
-      disabled={disabled}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      selected={selected}
-      name={name}
-      id={id}
-      testId={testId}
-      classNameOptions={classNameOptions}
-      selecteClasses={selecteClasses}
-      label={label}
-      iconName={iconName}
-      {...others}
-    >
-      {children}
-    </SelectDynamic>
-  )
+const Select = ({ native, ...props }: SelectProps): JSX.Element => {
+  if (native) return <SelectNative {...props} />
+  return <SelectDynamic {...props} />
 }
 
 export default Select
