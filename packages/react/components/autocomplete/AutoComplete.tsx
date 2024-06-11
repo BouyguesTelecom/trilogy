@@ -58,6 +58,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   getSuggestions,
   debounceSuggestionsTimeout,
   onFocus,
+  loading
 }: AutoCompleteProps<T>): JSX.Element => {
   const {styled} = useTrilogyContext()
 
@@ -197,6 +198,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
           onInputChange(event)
         }}
         onIconClick={onIconClick}
+        loading={loading}
       />
 
       {isAutocompleteMenuVisible && (
