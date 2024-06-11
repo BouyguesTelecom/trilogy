@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { RefObject, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
 import { has, is } from '../../services'
@@ -10,10 +10,6 @@ import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/inputGauge'
 
 interface InputProp extends InputProps, InputWebEvents {}
-
-interface IVerifies {
-  [key: string]: { fn: (e: string) => boolean; ref: RefObject<HTMLElement> }
-}
 
 /**
  * Input Component
@@ -106,6 +102,12 @@ const Input = ({
   required,
   ...others
 }: InputProp): JSX.Element => {
+  const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
+  const inputIcon = new Map()
+  inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
+  inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
+  inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
+
   const { styled } = useTrilogyContext()
 
   const [_value, setValue] = useState<string>(defaultValue ?? '')
@@ -114,22 +116,27 @@ const Input = ({
   const [isDirty, setIsDirty] = useState<boolean>(false)
   const [isTouched, setIsTouched] = useState<boolean>(false)
   const [localStatus, setLocalStatus] = useState<InputStatus | InputStatusValues>(status || InputStatus.DEFAULT)
+  const [inputType, setInputType] = useState<InputType | InputTypeValues>(type)
+  const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
+
   const helpClasses = clsx('help', localStatus && is(localStatus))
-  const [points, setPoints] = React.useState<number>(0)
-  const [nbAllVerifies, setNbAllVerifies] = React.useState<number>(0)
-  const [verifies, setVerifies] = React.useState<IVerifies>({})
-  const refLengthVerify = React.useRef<HTMLElement>(null)
-  const refSpecialCharsVerify = React.useRef<HTMLElement>(null)
-  const refNumberVerify = React.useRef<HTMLElement>(null)
-  const refUppercaseVerify = React.useRef<HTMLElement>(null)
-  const refLowerercaseVerify = React.useRef<HTMLElement>(null)
+  const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
+  const wrapperClasses = hashClass(
+    styled,
+    clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
+  )
+  const controlClasses = hashClass(
+    styled,
+    clsx('control', hasPlaceholder && !search && has('dynamic-placeholder'), {
+      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
+      ['has-icons-left']: customIconLeft || search,
+    }),
+  )
 
   const validator =
     !customValidator && patternValidator
       ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
       : customValidator
-  const [inputType, setInputType] = useState<InputType | InputTypeValues>(type)
-  const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
   useEffect(() => {
     setValue(value ?? defaultValue ?? '')
@@ -167,98 +174,6 @@ const Input = ({
       onStatusChange(localStatus)
     }
   }, [localStatus])
-
-  const inputIcon = new Map()
-  inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
-  inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
-  inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
-
-  const wrapperClasses = hashClass(
-    styled,
-    clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
-  )
-  const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
-  const iconTimesClasse = hashClass(styled, clsx('tri-times'))
-  const iconCheckClasse = hashClass(styled, clsx('tri-check-circle'))
-  const successClasse = hashClass(styled, clsx('is-success'))
-
-  const controlClasses = hashClass(
-    styled,
-    clsx('control', hasPlaceholder && !search && has('dynamic-placeholder'), {
-      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
-      ['has-icons-left']: customIconLeft || search,
-    }),
-  )
-
-  const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
-
-  const lengthVerify = {
-    fn: (e: string) => {
-      if (validationRules?.length?.max && !validationRules.length.min) {
-        return e.length > 0 && e.length <= validationRules.length.max
-      }
-      if (validationRules?.length?.min && !validationRules?.length?.max) {
-        return e.length >= validationRules.length.min
-      }
-      if (validationRules?.length?.max && validationRules.length.min) {
-        return e.length >= validationRules.length.min && e.length <= validationRules.length.max
-      }
-      return false
-    },
-    ref: refLengthVerify,
-  }
-
-  const specialCharsverify = {
-    fn: (e: string) => /[^\w\*]/.test(e),
-    ref: refSpecialCharsVerify,
-  }
-
-  const numberVerify = {
-    fn: (e: string) => /[0-9]/.test(e),
-    ref: refNumberVerify,
-  }
-
-  const uppercaseVerify = {
-    fn: (e: string) => /[A-Z]/.test(e),
-    ref: refUppercaseVerify,
-  }
-
-  const lowercaseVerify = {
-    fn: (e: string) => /[a-z]/.test(e),
-    ref: refLowerercaseVerify,
-  }
-
-  React.useEffect(() => {
-    const data = {}
-    validationRules &&
-      Object.keys(validationRules).map((key) => {
-        if (key === 'number') Object.assign(data, { numberVerify })
-        if (key === 'length') Object.assign(data, { lengthVerify })
-        if (key === 'lowercase') Object.assign(data, { lowercaseVerify })
-        if (key === 'uppercase') Object.assign(data, { uppercaseVerify })
-        if (key === 'specialChars') Object.assign(data, { specialCharsverify })
-      })
-    setVerifies(data)
-    setNbAllVerifies(Object.keys(data).length)
-  }, [validationRules])
-
-  const handleVerifyPwd = (e: string) => {
-    const verifiesTests: boolean[] = []
-
-    Object.keys(verifies).map((key: string) => {
-      const test = verifies[key].fn(e)
-      verifiesTests.push(test)
-
-      if (test) {
-        verifies[key].ref.current?.classList.remove(iconTimesClasse)
-        verifies[key].ref.current?.classList.add(iconCheckClasse, successClasse)
-      } else {
-        verifies[key].ref.current?.classList.remove(iconCheckClasse, successClasse)
-        verifies[key].ref.current?.classList.add(iconTimesClasse)
-      }
-    })
-    setPoints(verifiesTests.filter((item) => item).length)
-  }
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
@@ -336,10 +251,6 @@ const Input = ({
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
               })
-            }
-
-            if (type === 'password' && securityGauge) {
-              handleVerifyPwd(e.target.value)
             }
           }}
           onFocus={(e) => {
