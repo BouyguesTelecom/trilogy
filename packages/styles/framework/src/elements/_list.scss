@@ -6,7 +6,6 @@ ol.list {
   li {
     padding: $spacing-4;
     position: relative;
-    @include hover();
 
     .list-item_content {
       display: flex;
@@ -21,7 +20,8 @@ ol.list {
       display: flex;
       justify-content: space-between;
       align-items: center;
-  
+      @include hover();
+
       .list-item_action {
         & >:first-child {
           margin: 0px !important;
