@@ -33,15 +33,11 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section background={TrilogyColor.BACKGROUND}>
       <Input
-        disabled
         hovered
         placeholder={'Input, search icon'}
         help='Search helper input'
         type={InputType.TEXT}
-        onIconClick={() => {
-          window.alert('close')
-        }}
-        search
+        onKeyUp={(e) => console.log(e)}
       />
 
       <Input

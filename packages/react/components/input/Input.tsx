@@ -3,13 +3,21 @@ import React, { useEffect, useState } from 'react'
 import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
 import { has, is } from '../../services'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
+import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { Text } from '../text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
 interface InputProp extends InputProps, InputWebEvents {}
+
+interface IconWrapper {
+  className?: string
+  name: IconName | IconNameValues
+  color?: IconColor
+  onPress?: () => void
+  closeIconSearch?: boolean
+}
 
 /**
  * Input Component
@@ -102,16 +110,15 @@ const Input = ({
   required,
   ...others
 }: InputProp): JSX.Element => {
+  const { styled } = useTrilogyContext()
+
   const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
   const inputIcon = new Map()
   inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const { styled } = useTrilogyContext()
-
   const [_value, setValue] = useState<string>(defaultValue ?? '')
-  const [isHovered, setIsHovered] = useState<boolean>(hovered ?? false)
   const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
   const [isDirty, setIsDirty] = useState<boolean>(false)
   const [isTouched, setIsTouched] = useState<boolean>(false)
@@ -133,6 +140,39 @@ const Input = ({
     }),
   )
 
+  const onPressKey = (e: React.KeyboardEvent) => {
+    const target = e.target as HTMLFormElement
+    return {
+      inputName: target.name,
+      inputValue: target.value,
+      inputKeyCode: e.keyCode,
+      preventDefault: () => e.preventDefault(),
+    }
+  }
+
+  const IconWrapper = ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+    return (
+      <div
+        onClick={() => {
+          onPress && onPress()
+          if (onIconClick) {
+            onIconClick({ inputName: name ?? '', inputValue: _value })
+          }
+        }}
+      >
+        <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
+        {_value && _value.length > 0 && closeIconSearch && (
+          <Icon
+            onClick={() => setValue('')}
+            className={hashClass(styled, clsx(is('justified-self')))}
+            name={IconName.TIMES_CIRCLE}
+            size={IconSize.SMALL}
+          />
+        )}
+      </div>
+    )
+  }
+
   const validator =
     !customValidator && patternValidator
       ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
@@ -143,25 +183,16 @@ const Input = ({
   }, [value, defaultValue])
 
   useEffect(() => {
-    setIsHovered(hovered ?? false)
-  }, [hovered])
-
-  useEffect(() => {
     setIsFocused(focused ?? false)
   }, [focused])
 
   useEffect(() => {
-    if (isFocused) {
-      setIsDirty(true)
-    } else if (isDirty) {
-      setIsTouched(true)
-    }
+    if (isFocused) setIsDirty(true)
+    else if (isDirty) setIsTouched(true)
   }, [isFocused, isDirty])
 
   useEffect(() => {
-    if (!validator || !isTouched) {
-      return
-    }
+    if (!validator || !isTouched) return
     setLocalStatus(validator(_value))
   }, [isFocused, isTouched])
 
@@ -170,9 +201,7 @@ const Input = ({
   }, [status])
 
   useEffect(() => {
-    if (onStatusChange) {
-      onStatusChange(localStatus)
-    }
+    if (onStatusChange) onStatusChange(localStatus)
   }, [localStatus])
 
   return (
@@ -195,34 +224,17 @@ const Input = ({
           minLength={minLength}
           maxLength={maxLength}
           autoComplete={autoCompleteType}
+          onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
+          onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
+          onMouseEnter={(e) => onMouseEnter?.(e)}
+          onMouseLeave={(e) => onMouseLeave?.(e)}
+          placeholder={placeholder}
           onClick={(e: React.MouseEvent<Element>) => {
             const target = e.target as HTMLFormElement
             if (onClick) {
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
-              })
-            }
-          }}
-          onKeyUp={(e: React.KeyboardEvent) => {
-            const target = e.target as HTMLFormElement
-            if (onKeyUp) {
-              onKeyUp({
-                inputName: target.name,
-                inputValue: target.value,
-                inputKeyCode: e.keyCode,
-                preventDefault: () => e.preventDefault(),
-              })
-            }
-          }}
-          onKeyPress={(e: React.KeyboardEvent) => {
-            const target = e.target as HTMLFormElement
-            if (onKeyPress) {
-              onKeyPress({
-                inputName: target.name,
-                inputValue: target.value,
-                inputKeyCode: e.keyCode,
-                preventDefault: () => e.preventDefault(),
               })
             }
           }}
@@ -261,73 +273,24 @@ const Input = ({
             onBlur?.(e)
             setIsFocused(false)
           }}
-          onMouseEnter={(e) => {
-            onMouseEnter?.(e)
-            setIsHovered(true)
-          }}
-          onMouseLeave={(e) => {
-            onMouseLeave?.(e)
-            setIsHovered(false)
-          }}
-          placeholder={placeholder}
         />
         {hasPlaceholder && !search && <label>{placeholder}</label>}
         {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon className={iconClassname} name={inputIcon.get(localStatus)} size={IconSize.SMALL} />
-          </div>
+          <IconWrapper className={iconClassname} name={inputIcon.get(localStatus)} />
         )}
-        {customIcon && !localStatus && !loading && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon className={iconClassname} name={customIcon} size={IconSize.SMALL} />
-          </div>
-        )}
+        {customIcon && !localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
         {customIconLeft && !loading && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon
-              className={clsx(customIconLeft && 'icon-left', iconClassname)}
-              name={customIconLeft}
-              size={IconSize.SMALL}
-            />
-          </div>
+          <IconWrapper className={clsx(customIconLeft && 'icon-left', iconClassname)} name={customIconLeft} />
         )}
         {customIconRight && !loading && type !== 'password' && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon
-              className={clsx(customIconRight && 'icon-right', iconClassname)}
-              name={customIconRight}
-              size={IconSize.SMALL}
-            />
-          </div>
+          <IconWrapper className={clsx(customIconRight && 'icon-right', iconClassname)} name={customIconRight} />
         )}
         {!loading && type === 'password' && (
-          <div
-            data-show-pwd
-            onClick={() => {
+          <IconWrapper
+            className={clsx('icon-right', iconClassname)}
+            name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
+            onPress={() => {
+              console.log('oui')
               if (inputType === 'password') {
                 setInputType('text')
                 setIsShowPwd(true)
@@ -335,50 +298,12 @@ const Input = ({
                 setInputType('password')
                 setIsShowPwd(false)
               }
-
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
             }}
-          >
-            <Icon
-              className={clsx('icon-right', iconClassname)}
-              name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
-              size={IconSize.SMALL}
-            />
-          </div>
+          />
         )}
-        {customIcon && localStatus && !loading && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon className={iconClassname} name={customIcon} size={IconSize.SMALL} />
-          </div>
-        )}
+        {customIcon && localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
         {search && !customIcon && localStatus === 'default' && !loading && (
-          <div
-            onClick={() => {
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value })
-              }
-            }}
-          >
-            <Icon color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} size={IconSize.SMALL} />
-
-            {/* Close icon search */}
-            {_value && _value.length > 0 && (
-              <Icon
-                onClick={() => setValue('')}
-                className={hashClass(styled, clsx(is('justified-self')))}
-                name={IconName.TIMES_CIRCLE}
-                size={IconSize.SMALL}
-              />
-            )}
-          </div>
+          <IconWrapper color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} closeIconSearch={true} />
         )}
         {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
       </div>
