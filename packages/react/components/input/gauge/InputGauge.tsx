@@ -1,8 +1,10 @@
 import clsx from 'clsx'
-import React, { ForwardedRef, forwardRef, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
+import { IconName } from 'lib'
 import { hashClass } from '../../../helpers'
 import { TrilogyColor, getColorStyle } from '../../../objects'
+import { Icon, IconColor, IconSize } from '../../icon'
 import { IValidationRules } from '../InputProps'
 
 interface InputGaugeProps {
@@ -13,24 +15,23 @@ interface InputGaugeProps {
 
 interface DataVerifyProps {
   dataAttribute: { [key: string]: boolean }
-  styled: boolean
   type?: string
-  display?: boolean
+  display: boolean
+  color: string
+  iconName: IconName
   classes: string
+  styled?: boolean
 }
 
 const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): JSX.Element => {
   const [points, setPoints] = React.useState<number>(0)
+  const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
 
-  const iconTimesClasse = hashClass(styled, clsx('tri-times'))
-  const iconCheckClasse = hashClass(styled, clsx('tri-check-circle'))
-  const successClasse = hashClass(styled, clsx('is-success'))
-
-  const refLengthVerify = React.useRef<HTMLElement>(null)
-  const refSpecialCharsVerify = React.useRef<HTMLElement>(null)
-  const refNumberVerify = React.useRef<HTMLElement>(null)
-  const refUppercaseVerify = React.useRef<HTMLElement>(null)
-  const refLowerercaseVerify = React.useRef<HTMLElement>(null)
+  const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
+  const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
+  const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
+  const [isUppercaseVerify, setIsUppercaseVerify] = React.useState(initStateVerifies)
+  const [isLowerercaseVerify, setisLowerercaseVerify] = React.useState(initStateVerifies)
 
   const nbAllVerifies = useMemo(
     () => (validationRules && Object.values(validationRules).filter((rule) => rule).length) || 0,
@@ -67,38 +68,23 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
   useEffect(() => {
     const min = validationRules?.length?.min || 0
     const max = validationRules?.length?.max || ''
+    const regex = new RegExp(`^.{${min},${max}}$`)
     const validations = []
 
-    validationRules?.specialChars && validations.push({ test: /[^\w\*]/.test(inputValue), ref: refSpecialCharsVerify })
-    validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), ref: refNumberVerify })
-    validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), ref: refUppercaseVerify })
-    validationRules?.lowercase && validations.push({ test: /[a-z]/.test(inputValue), ref: refLowerercaseVerify })
-    validationRules?.length &&
-      validations.push({ test: new RegExp(`^.{${min},${max}}$`).test(inputValue), ref: refLengthVerify })
+    validationRules?.specialChars &&
+      validations.push({ test: /[^\w\*]/.test(inputValue), setState: setIsSpecialCharsVerify })
+    validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), setState: setIsNumberVerify })
+    validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), setState: setIsUppercaseVerify })
+    validationRules?.lowercase && validations.push({ test: /[a-z]/.test(inputValue), setState: setisLowerercaseVerify })
+    validationRules?.length && validations.push({ test: regex.test(inputValue), setState: setIsLengthVerify })
 
-    validations.forEach(({ test, ref }) => {
-      switch (test) {
-        case true:
-          ref.current?.classList.remove(iconTimesClasse)
-          ref.current?.classList.add(iconCheckClasse, successClasse)
-          break
-        default:
-          ref.current?.classList.remove(iconCheckClasse, successClasse)
-          ref.current?.classList.add(iconTimesClasse)
-          break
-      }
+    validations.forEach(({ test, setState }) => {
+      if (test) return setState({ isVerify: true, color: IconColor.SUCCESS })
+      return setState(initStateVerifies)
     })
 
     setPoints(validations.filter((item) => item.test).length)
-  }, [
-    inputValue,
-    validationRules,
-    refLengthVerify,
-    refLowerercaseVerify,
-    refNumberVerify,
-    refSpecialCharsVerify,
-    refUppercaseVerify,
-  ])
+  }, [inputValue, validationRules])
 
   return (
     <div data-testid='security-gauge' className={hashClass(styled, clsx('security-gauge-container'))}>
@@ -114,28 +100,31 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
           <DataVerify
             display={!!validationRules?.length}
             dataAttribute={{ 'data-security-special-chars': true }}
-            ref={refLengthVerify}
-            styled={styled}
             type={LengthvalidationRulesText}
             classes='security-length'
             data-length-min={validationRules?.length?.min}
             data-length-max={validationRules?.length?.max}
+            color={isLengthVerify.color}
+            iconName={isLengthVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.specialChars}
             dataAttribute={{ 'data-security-special-chars': true }}
-            ref={refSpecialCharsVerify}
-            styled={styled}
-            type='Caractères spéciaux'
             classes='security-special-chars'
+            type='Caractères spéciaux'
+            color={isSpecialCharsVerify.color}
+            iconName={isSpecialCharsVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.number}
             dataAttribute={{ 'data-security-number': true }}
-            ref={refNumberVerify}
-            styled={styled}
-            type='Chiffre'
             classes='security-number'
+            type='Chiffre'
+            color={isNumberVerify.color}
+            iconName={isNumberVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            styled={styled}
           />
         </div>
 
@@ -143,18 +132,20 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
           <DataVerify
             display={!!validationRules?.uppercase}
             dataAttribute={{ 'data-security-uppercase': true }}
-            ref={refUppercaseVerify}
-            styled={styled}
-            type='Majuscule'
             classes='security-uppercase'
+            type='Majuscule'
+            color={isUppercaseVerify.color}
+            iconName={isUppercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.lowercase}
             dataAttribute={{ 'data-security-lowercase': true }}
-            ref={refLowerercaseVerify}
-            styled={styled}
-            type='Minuscule'
             classes='security-lowercase'
+            type='Minuscule'
+            color={isLowerercaseVerify.color}
+            iconName={isLowerercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            styled={styled}
           />
         </div>
       </div>
@@ -162,24 +153,23 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
   )
 }
 
-const DataVerify = forwardRef(
-  (
-    { dataAttribute, styled, type, display, classes, ...others }: DataVerifyProps,
-    ref: ForwardedRef<HTMLElement>,
-  ): JSX.Element | null => {
-    if (!display) return null
-    const iconClasse = hashClass(styled, clsx('icon'))
-    const iconTimesClasse = hashClass(styled, clsx('tri-times'))
+const DataVerify = ({
+  dataAttribute,
+  type,
+  display,
+  color,
+  iconName,
+  classes,
+  styled,
+}: DataVerifyProps): JSX.Element | null => {
+  if (!display) return null
 
-    return (
-      <div {...dataAttribute} className={hashClass(styled, clsx('security', classes))}>
-        <span data-icon-securities className={iconClasse}>
-          <i ref={ref} className={iconTimesClasse} {...others}></i>
-        </span>
-        <span>{type}</span>
-      </div>
-    )
-  },
-)
+  return (
+    <div {...dataAttribute} className={hashClass(styled, clsx('security', classes))}>
+      <Icon color={color} name={iconName} size={IconSize.SMALLER} />
+      <span>{type}</span>
+    </div>
+  )
+}
 
 export default InputGauge

@@ -21,6 +21,7 @@ interface DataVerifyProps {
 const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Element => {
   const [points, setPoints] = React.useState<number>(0)
   const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
+
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
   const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
   const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
@@ -62,6 +63,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
   useEffect(() => {
     const min = validationRules?.length?.min || 0
     const max = validationRules?.length?.max || ''
+    const regex = new RegExp(`^.{${min},${max}}$`)
     const validations = []
 
     validationRules?.specialChars &&
@@ -69,18 +71,11 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
     validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), setState: setIsNumberVerify })
     validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), setState: setIsUppercaseVerify })
     validationRules?.lowercase && validations.push({ test: /[a-z]/.test(inputValue), setState: setisLowerercaseVerify })
-    validationRules?.length &&
-      validations.push({ test: new RegExp(`^.{${min},${max}}$`).test(inputValue), setState: setIsLengthVerify })
+    validationRules?.length && validations.push({ test: regex.test(inputValue), setState: setIsLengthVerify })
 
     validations.forEach(({ test, setState }) => {
-      switch (test) {
-        case true:
-          setState({ isVerify: true, color: IconColor.SUCCESS })
-          break
-        default:
-          setState(initStateVerifies)
-          break
-      }
+      if (test) return setState({ isVerify: true, color: IconColor.SUCCESS })
+      return setState(initStateVerifies)
     })
 
     setPoints(validations.filter((item) => item.test).length)
@@ -89,7 +84,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
   return (
     <View>
       <View style={[styles.containerGauge, { backgroundColor: getColorStyle(TrilogyColor.FONT, 1) }]}>
-        <View style={[styles.gauge, { width: widthGauge, backgroundColor: colorGauge }]}></View>
+        <View style={[styles.gauge, { width: widthGauge, backgroundColor: colorGauge }]} />
       </View>
       <View style={styles.verifies}>
         <View>
