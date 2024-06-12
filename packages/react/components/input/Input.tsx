@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
 import { has, is } from '../../services'
@@ -140,7 +140,7 @@ const Input = ({
     }),
   )
 
-  const onPressKey = (e: React.KeyboardEvent) => {
+  const onPressKey = useCallback((e: React.KeyboardEvent) => {
     const target = e.target as HTMLFormElement
     return {
       inputName: target.name,
@@ -148,11 +148,12 @@ const Input = ({
       inputKeyCode: e.keyCode,
       preventDefault: () => e.preventDefault(),
     }
-  }
+  }, [])
 
-  const IconWrapper = ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+  const IconWrapper = useCallback(({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
     return (
       <div
+        data-show-pwd
         onClick={() => {
           onPress && onPress()
           if (onIconClick) {
@@ -171,7 +172,7 @@ const Input = ({
         )}
       </div>
     )
-  }
+  }, [])
 
   const validator =
     !customValidator && patternValidator
