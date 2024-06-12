@@ -7,7 +7,7 @@ import { Icon, IconColor, IconName, IconSize } from '../icon'
 import { Text } from '../text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
-import InputGauge from './gauge/inputGauge'
+import InputGauge from './gauge/InputGauge'
 
 interface InputProp extends InputProps, InputWebEvents {}
 

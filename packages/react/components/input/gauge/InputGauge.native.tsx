@@ -52,11 +52,11 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
   const LengthvalidationRulesText = useMemo(() => {
     switch (true) {
       case validationRules?.length?.min !== undefined && validationRules?.length?.max !== undefined:
-        return `Entre ${validationRules.length.min} et ${validationRules.length.max} caractères`
+        return `Entre ${validationRules?.length?.min} et ${validationRules?.length?.max} caractères`
       case validationRules?.length?.min && !validationRules?.length?.max:
-        return `Minimum ${validationRules.length.min} caractères`
+        return `Minimum ${validationRules?.length?.min} caractères`
       case validationRules?.length?.max && !validationRules?.length?.min:
-        return `Maximum ${validationRules?.length.max} caractères`
+        return `Maximum ${validationRules?.length?.max} caractères`
     }
   }, [validationRules?.length?.min, validationRules?.length?.max])
 

@@ -1,10 +1,9 @@
 import clsx from 'clsx'
 import React, { useEffect, useMemo } from 'react'
 
-import { IconName } from 'lib'
 import { hashClass } from '../../../helpers'
 import { TrilogyColor, getColorStyle } from '../../../objects'
-import { Icon, IconColor, IconSize } from '../../icon'
+import { Icon, IconColor, IconName, IconSize } from '../../icon'
 import { IValidationRules } from '../InputProps'
 
 interface InputGaugeProps {
@@ -57,11 +56,11 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
   const LengthvalidationRulesText = useMemo(() => {
     switch (true) {
       case validationRules?.length?.min !== undefined && validationRules?.length?.max !== undefined:
-        return `Entre ${validationRules.length.min} et ${validationRules.length.max} caractères`
+        return `Entre ${validationRules?.length?.min} et ${validationRules?.length?.max} caractères`
       case validationRules?.length?.min && !validationRules?.length?.max:
-        return `Minimum ${validationRules.length.min} caractères`
+        return `Minimum ${validationRules?.length?.min} caractères`
       case validationRules?.length?.max && !validationRules?.length?.min:
-        return `Maximum ${validationRules?.length.max} caractères`
+        return `Maximum ${validationRules?.length?.max} caractères`
     }
   }, [validationRules?.length?.min, validationRules?.length?.max])
 
@@ -163,6 +162,7 @@ const DataVerify = ({
   styled,
 }: DataVerifyProps): JSX.Element | null => {
   if (!display) return null
+  console.log(color)
 
   return (
     <div {...dataAttribute} className={hashClass(styled, clsx('security', classes))}>
