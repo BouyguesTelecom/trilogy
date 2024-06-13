@@ -1,12 +1,11 @@
-import React, {useEffect, useMemo, useState} from 'react'
-import {Keyboard, StyleSheet, View} from 'react-native'
-import {ComponentName} from '../enumsComponentsName'
-import Input from '../input/Input.native'
-import {InputChangeEvent} from '../input/InputProps'
-import {AutoCompleteProps} from './AutoCompleteProps'
-import {defaultMatching, getLabel} from './Autocomplete.helpers'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Keyboard, StyleSheet, View } from 'react-native'
+import Input from '../../input/Input.native'
+import { InputChangeEvent } from '../../input/InputProps'
+import { AutoCompleteProps } from './AutoCompleteProps'
+import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
-import {debounce} from './utils'
+import { debounce } from './utils'
 
 const AutoComplete = ({
   value,
@@ -37,9 +36,7 @@ const AutoComplete = ({
     }
   }
   const updateSuggestionsFn = useMemo(() => {
-    return debounceSuggestionsTimeout
-      ? debounce(updateSuggestions, debounceSuggestionsTimeout)
-      : updateSuggestions
+    return debounceSuggestionsTimeout ? debounce(updateSuggestions, debounceSuggestionsTimeout) : updateSuggestions
   }, [debounceSuggestionsTimeout])
 
   useEffect(() => {
@@ -49,7 +46,7 @@ const AutoComplete = ({
   }, [valueInput])
 
   const onTextChanged = async (e: InputChangeEvent) => {
-    const {inputValue, inputName, inputSelectionStart} = e
+    const { inputValue, inputName, inputSelectionStart } = e
     setValueInput(inputValue)
     if (onChange) {
       onChange({
@@ -78,14 +75,8 @@ const AutoComplete = ({
   }
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => setIsOpenMenu(true),
-    )
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => setIsOpenMenu(false),
-    )
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setIsOpenMenu(true))
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setIsOpenMenu(false))
 
     return () => {
       keyboardDidHideListener.remove()
@@ -106,12 +97,7 @@ const AutoComplete = ({
           onFocus={handleFocus}
         />
       </View>
-      {isOpenMenu && (
-        <AutoCompleteMenuNative
-          suggestions={suggestions}
-          handleSelectItem={handleSelectItem}
-        />
-      )}
+      {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}
     </View>
   )
 }
@@ -121,7 +107,5 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
 })
-
-AutoComplete.displayName = ComponentName.AutoComplete
 
 export default AutoComplete

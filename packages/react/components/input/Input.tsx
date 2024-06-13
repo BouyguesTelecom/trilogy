@@ -7,6 +7,7 @@ import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { Text } from '../text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
+import { AutoComplete } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
 
 interface InputProp extends InputProps, InputWebEvents {}
@@ -318,5 +319,5 @@ const Input = ({
     </div>
   )
 }
-
+Input.AutoComplete = AutoComplete
 export default Input

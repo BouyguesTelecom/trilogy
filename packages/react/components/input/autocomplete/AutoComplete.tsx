@@ -1,15 +1,16 @@
 import clsx from 'clsx'
-import React, {useEffect, useState} from 'react'
-import {useTrilogyContext} from '../../context'
-import {hashClass} from '../../helpers'
-import {is} from '../../services'
-import {Input, InputAutoCompleteType} from '../input'
-import {InputChangeEvent, InputKeyboardEvent} from '../input/InputProps'
-import {AutoCompleteProps, Item} from './AutoCompleteProps'
-import {defaultMatching, getLabel} from './Autocomplete.helpers'
+import React, { useEffect, useState } from 'react'
+import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers'
+import { is } from '../../../services'
+import Input from '../Input'
+import { InputAutoCompleteType } from '../InputEnum'
+import { InputChangeEvent, InputKeyboardEvent } from '../InputProps'
+import { AutoCompleteProps, Item } from './AutoCompleteProps'
+import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
-import {debounce} from './utils'
+import { debounce } from './utils'
 
 /**
  * AutoComplete Component
@@ -59,20 +60,16 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   debounceSuggestionsTimeout,
   onFocus,
 }: AutoCompleteProps<T>): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(inputValue ?? '')
   const [_value, setValue] = useState<string>(placeholder ?? defaultValue ?? '')
   const [activeItem, setActiveItem] = useState<number>(0)
-  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] =
-    useState<boolean>(displayMenu || false)
+  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
 
-  const autocompleteClasses = hashClass(
-    styled,
-    clsx(is('autocomplete'), is('active')),
-  )
+  const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
 
   useEffect(() => {
     setInputValue(inputValue || '')
@@ -129,9 +126,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
       setSearch(matching(data, e.inputValue))
     }
   }
-  const onInputChange = debounceSuggestionsTimeout
-    ? debounce(onTextChanged, debounceSuggestionsTimeout)
-    : onTextChanged
+  const onInputChange = debounceSuggestionsTimeout ? debounce(onTextChanged, debounceSuggestionsTimeout) : onTextChanged
 
   const suggestionSelected = (value: T, data: T[], search: T[]) => {
     setIsAutocompleteMenuVisible(false)
@@ -175,10 +170,10 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     <div className={hashClass(styled, clsx('control'))}>
       <Input
         accessibilityLabel={accessibilityLabel}
-        {...(customIcon ? {customIcon: customIcon} : {})}
+        {...(customIcon ? { customIcon: customIcon } : {})}
         reference={reference}
         placeholder={_value}
-        {...(name ? {name: name} : {})}
+        {...(name ? { name: name } : {})}
         className='autocomplete-input'
         type='text'
         testId={testId}
@@ -206,16 +201,16 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
               testId={testId}
               absolute={absoluteMenu}
               fullwidth={fullwidthMenu}
-              className={classNameMenu}>
+              className={classNameMenu}
+            >
               {search.map((item, i) => (
                 <AutoCompleteItem<T>
                   active={activeItem === i}
                   key={i}
                   testId={testId}
                   item={item}
-                  suggestionSelected={(v: T) =>
-                    suggestionSelected(v, data, search)
-                  }>
+                  suggestionSelected={(v: T) => suggestionSelected(v, data, search)}
+                >
                   {children ? children(item) : getLabel(item)}
                 </AutoCompleteItem>
               ))}
