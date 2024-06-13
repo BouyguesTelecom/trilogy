@@ -255,7 +255,6 @@ const Input = ({
               })
             }
             // ---------------------------------------
-
             // eslint-disable-next-line no-console
             if (!forceControl) setValue(e.target.value)
             if (onChange) {
