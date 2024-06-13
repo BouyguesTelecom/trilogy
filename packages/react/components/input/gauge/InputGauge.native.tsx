@@ -5,7 +5,7 @@ import { TrilogyColor, getColorStyle } from '../../../objects'
 import { Icon, IconName, IconSize } from '../../icon'
 import { Text } from '../../text'
 import { IValidationRules } from '../InputProps'
-import { useGauge } from '../hook/useGauge'
+import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
