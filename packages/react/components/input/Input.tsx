@@ -150,29 +150,32 @@ const Input = ({
     }
   }, [])
 
-  const IconWrapper = useCallback(({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
-    return (
-      <div
-        data-show-pwd
-        onClick={() => {
-          onPress && onPress()
-          if (onIconClick) {
-            onIconClick({ inputName: name ?? '', inputValue: _value })
-          }
-        }}
-      >
-        <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
-        {_value && _value.length > 0 && closeIconSearch && (
-          <Icon
-            onClick={() => setValue('')}
-            className={hashClass(styled, clsx(is('justified-self')))}
-            name={IconName.TIMES_CIRCLE}
-            size={IconSize.SMALL}
-          />
-        )}
-      </div>
-    )
-  }, [])
+  const IconWrapper = useCallback(
+    ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+      return (
+        <div
+          data-show-pwd
+          onClick={() => {
+            onPress && onPress()
+            if (onIconClick) {
+              onIconClick({ inputName: name ?? '', inputValue: _value })
+            }
+          }}
+        >
+          <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
+          {_value && _value.length > 0 && closeIconSearch && (
+            <Icon
+              onClick={() => setValue('')}
+              className={hashClass(styled, clsx(is('justified-self')))}
+              name={IconName.TIMES_CIRCLE}
+              size={IconSize.SMALL}
+            />
+          )}
+        </div>
+      )
+    },
+    [_value, styled],
+  )
 
   const validator =
     !customValidator && patternValidator
