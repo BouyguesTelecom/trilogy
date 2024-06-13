@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
 
 import { IValidationRules } from 'lib'
-import { TrilogyColor, getColorStyle } from '../../../objects'
-import { IconColor } from '../../icon'
+import { TrilogyColor, getColorStyle } from '../../../../objects'
+import { IconColor } from '../../../icon'
 
 interface IParams {
   validationRules?: IValidationRules
