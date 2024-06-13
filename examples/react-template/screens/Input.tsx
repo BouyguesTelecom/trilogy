@@ -14,8 +14,21 @@ import {
 import React, { useEffect } from 'react'
 
 export const InputScreen = (): JSX.Element => {
+  const [value, setValue] = React.useState<string>('')
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
+  const [autoCompleteInputValue, setAutoCompleteInputValue] = React.useState<string>('')
+  const [status, setStatus] = React.useState<boolean>(false)
+  const [data] = [['name', 'age', 'car', 'test', 'trilogy']]
+
+  const onChange = (e) => {
+    console.log('OnChange Autocomplete : ', e)
+    setValue(e.inputValue)
+  }
+
+  const onIconClick = (e) => {
+    console.log('onIconClick Autocomplete : ', e)
+  }
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -30,8 +43,59 @@ export const InputScreen = (): JSX.Element => {
     return digits.join('.')
   }
 
+  const getSuggestions = async () => {
+    return [
+      { label: 'name', data: { info: 1 } },
+      { label: 'age', data: { info: 2 } },
+      { label: 'car', data: { info: 3 } },
+      { label: 'test', data: { info: 4 } },
+      { label: 'trilogy', data: { info: 5 } },
+    ]
+  }
+
   return (
     <Section background={TrilogyColor.BACKGROUND}>
+      <Input
+        mode='autocomplete'
+        customIcon={IconName.INFOS_CIRCLE}
+        displayMenu={true}
+        value={value}
+        data={data}
+        // absoluteMenu
+        fullwidthMenu
+        disabled={status}
+        placeholder='Autocomplete'
+        onItemSelected={(e) => {
+          setValue(e.value || '')
+          console.log('onItemSelected : ', e.value)
+        }}
+        onChange={onChange}
+        onIconClick={onIconClick}
+        onFocus={(e) => console.log('FOCUS : ', e)}
+        onBlur={(e) => console.log('BLUR : ', e)}
+      />
+      <Input
+        mode='autocomplete'
+        getSuggestions={async (search) => {
+          const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)
+          const data = await res.json()
+          return data.d.map((item: any) => ({
+            label: item.l,
+            data: { description: item.s },
+          }))
+        }}
+        data={[]}
+        placeholder='Marque et modèle de votre ancien téléphone'
+        onItemSelected={({ value }) => {
+          console.log('value : ', value)
+        }}
+        value={autoCompleteInputValue}
+        onChange={({ inputValue }) => setAutoCompleteInputValue(inputValue)}
+        debounceSuggestionsTimeout={500}
+        onFocus={(e) => console.log('FOCUS : ', e)}
+        onBlur={(e) => console.log('BLUR : ', e)}
+      />
+
       <Input
         hovered
         placeholder={'Input, search icon'}

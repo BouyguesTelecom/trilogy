@@ -1,4 +1,4 @@
-import {ButtonList, ScrollView, Section} from '@trilogy-ds/react'
+import { ButtonList, ScrollView, Section } from '@trilogy-ds/react'
 import {
   AutoComplete,
   Button,
@@ -11,27 +11,23 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import {Item} from '@trilogy-ds/react/components/autocomplete/AutoCompleteProps'
-import {
-  InputChangeEvent,
-  InputClickEvent,
-} from '@trilogy-ds/react/components/input/InputProps'
-import React, {useState} from 'react'
+import { Item } from '@trilogy-ds/react/components/autocomplete/AutoCompleteProps'
+import { InputChangeEvent, InputClickEvent } from '@trilogy-ds/react/components/input/InputProps'
+import React, { useState } from 'react'
 
 const getSuggestions = async () => {
   return [
-    {label: 'name', data: {info: 1}},
-    {label: 'age', data: {info: 2}},
-    {label: 'car', data: {info: 3}},
-    {label: 'test', data: {info: 4}},
-    {label: 'trilogy', data: {info: 5}},
+    { label: 'name', data: { info: 1 } },
+    { label: 'age', data: { info: 2 } },
+    { label: 'car', data: { info: 3 } },
+    { label: 'test', data: { info: 4 } },
+    { label: 'trilogy', data: { info: 5 } },
   ]
 }
 
 export const AutoCompleteScreen = (): JSX.Element => {
   const [value, setValue] = useState<string>('')
-  const [autoCompleteInputValue, setAutoCompleteInputValue] =
-    useState<string>('')
+  const [autoCompleteInputValue, setAutoCompleteInputValue] = useState<string>('')
   const [status, setStatus] = useState<boolean>(false)
   const [data] = [['name', 'age', 'car', 'test', 'trilogy']]
 
@@ -47,28 +43,24 @@ export const AutoCompleteScreen = (): JSX.Element => {
   return (
     <ScrollView>
       <Section>
-        <Title level={TitleLevels.THREE}>
-          Autocomplete With Debounce Suggests
-        </Title>
+        <Title level={TitleLevels.THREE}>Autocomplete With Debounce Suggests</Title>
 
         <AutoComplete
           getSuggestions={async (search) => {
-            const res = await fetch(
-              `https://v3.sg.media-imdb.com/suggestion/x/${search}.json`,
-            )
+            const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)
             const data = await res.json()
             return data.d.map((item: any) => ({
               label: item.l,
-              data: {description: item.s},
+              data: { description: item.s },
             }))
           }}
           data={[]}
           placeholder='Marque et modèle de votre ancien téléphone'
-          onItemSelected={({value}) => {
+          onItemSelected={({ value }) => {
             console.log('value : ', value)
           }}
           inputValue={autoCompleteInputValue}
-          onChange={({inputValue}) => setAutoCompleteInputValue(inputValue)}
+          onChange={({ inputValue }) => setAutoCompleteInputValue(inputValue)}
           debounceSuggestionsTimeout={500}
           onFocus={(e) => console.log('FOCUS : ', e)}
           onBlur={(e) => console.log('BLUR : ', e)}
@@ -77,30 +69,29 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Divider />
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete custom data</Title>
-        <AutoComplete<Item<{info: number}>>
+        <AutoComplete<Item<{ info: number }>>
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[
-            {label: 'name', data: {info: 1}},
-            {label: 'age', data: {info: 2}},
-            {label: 'car', data: {info: 3}},
-            {label: 'test', data: {info: 4}},
-            {label: 'trilogy', data: {info: 5}},
+            { label: 'name', data: { info: 1 } },
+            { label: 'age', data: { info: 2 } },
+            { label: 'car', data: { info: 3 } },
+            { label: 'test', data: { info: 4 } },
+            { label: 'trilogy', data: { info: 5 } },
           ]}
           placeholder='Autocomplete'
           onItemSelected={(e) => console.log('itemSelected => ', e)}
           onChange={(e) => console.log('OnChange Autocomplete : ', e)}
           onFocus={(e) => console.log('FOCUS : ', e)}
-          onBlur={(e) => console.log('BLUR : ', e)}>
+          onBlur={(e) => console.log('BLUR : ', e)}
+        >
           {(item) => <Text>La super info : {item.data.info}</Text>}
         </AutoComplete>
       </Section>
       <Divider />
       <Section>
-        <Title level={TitleLevels.THREE}>
-          Autocomplete with getSuggestions function
-        </Title>
-        <AutoComplete<Item<{info: number}>>
+        <Title level={TitleLevels.THREE}>Autocomplete with getSuggestions function</Title>
+        <AutoComplete<Item<{ info: number }>>
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[]}
@@ -109,7 +100,8 @@ export const AutoCompleteScreen = (): JSX.Element => {
           onItemSelected={(e) => console.log('itemSelected => ', e)}
           onChange={(e) => console.log('OnChange Autocomplete : ', e)}
           onFocus={(e) => console.log('FOCUS : ', e)}
-          onBlur={(e) => console.log('BLUR : ', e)}>
+          onBlur={(e) => console.log('BLUR : ', e)}
+        >
           {(item) => <Text>La super info : {item.data.info}</Text>}
         </AutoComplete>
       </Section>
@@ -122,14 +114,10 @@ export const AutoCompleteScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem>
             <ButtonList>
-              <Button
-                variant={ButtonVariant.SECONDARY}
-                onClick={() => setValue('')}>
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setValue('')}>
                 reset
               </Button>
-              <Button
-                variant={ButtonVariant.PRIMARY}
-                onClick={() => setStatus(!status)}>
+              <Button variant={ButtonVariant.PRIMARY} onClick={() => setStatus(!status)}>
                 {status ? 'enable' : 'disable'}
               </Button>
             </ButtonList>
