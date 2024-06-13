@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
+import { TextInputSubmitEditingEventData, NativeSyntheticEvent } from 'react-native'
 import { Accessibility } from '../../objects/facets'
 
-import { ReactNode } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -20,6 +19,7 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
+import { ReactNode } from "react"
 
 export interface InputChangeEvent {
   inputName: string
@@ -59,21 +59,11 @@ export interface InputWebEvents {
   onClick?: InputClickEventHandler
 }
 
-export interface InputProp<T = string> extends InputProps, InputWebEvents {
-  children?: (item: T) => React.ReactNode
-  data?: T[]
-  matching?: (data: T[], value: string) => T[]
-  onChange?: (event: InputChangeEvent) => void
-  getSuggestions?: (search: string) => Promise<T[]>
-  onItemSelected?: (event: ItemSelectedEvent<T | null>) => void
-}
-
 export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'default'
 
 /**
  * Input Interface
  */
-
 export interface InputProps extends Accessibility {
   type?: InputType | InputTypeValues
   content?: string
@@ -114,17 +104,8 @@ export interface InputProps extends Accessibility {
   minLength?: number
   maxLength?: number
   securityGauge?: boolean
-  validationRules?: IValidationRules
+  validationRules?: IValidationRules,
   required?: boolean
-
-  classNameMenu?: string
-  absoluteMenu?: boolean
-  fullwidthMenu?: boolean
-  onChange?: (event: InputChangeEvent) => void
-  displayMenu?: boolean
-  onIconClick?: (event: InputClickEvent) => void
-  debounceSuggestionsTimeout?: number
-  mode?: 'autocomplete' | 'input'
 }
 
 export interface ILengthVerify {
@@ -138,14 +119,4 @@ export interface IValidationRules {
   uppercase?: boolean
   lowercase?: boolean
   specialChars?: boolean
-}
-
-export interface Item<T = string> {
-  label: string
-  data: T
-}
-
-export interface ItemSelectedEvent<T> {
-  value: T
-  index: number
 }
