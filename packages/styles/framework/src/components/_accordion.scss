@@ -47,9 +47,14 @@
       right: 20px;
     }
 
+    &[open] {
+      transition: 1s;
+    }
+
     &[open]:not([aria-disabled="true"]) .accordion-header:after {
       @include arrow('up');
     }
+
     &:not([open]) .accordion-header:after, &[aria-disabled="true"] .accordion-header:after {
       @include arrow();
     }
