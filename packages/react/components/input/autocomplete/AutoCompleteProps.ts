@@ -7,7 +7,6 @@ export interface AutoCompleteProps<T = string> extends InputProps {
   children?: (item: T) => React.ReactNode
   defaultValue?: string
   value?: string
-  inputValue?: string
   data: T[]
   classNameMenu?: string
   absoluteMenu?: boolean

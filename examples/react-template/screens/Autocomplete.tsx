@@ -1,4 +1,4 @@
-import { ButtonList, ScrollView, Section } from '@trilogy-ds/react'
+import { ButtonList, Section } from '@trilogy-ds/react'
 import {
   Button,
   ButtonVariant,
@@ -42,7 +42,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
   }
 
   return (
-    <ScrollView>
+    <>
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete With Debounce Suggests</Title>
 
@@ -60,7 +60,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           onItemSelected={({ value }) => {
             console.log('value : ', value)
           }}
-          inputValue={autoCompleteInputValue}
+          value={autoCompleteInputValue}
           onChange={({ inputValue }) => setAutoCompleteInputValue(inputValue)}
           debounceSuggestionsTimeout={500}
           onFocus={(e) => console.log('FOCUS : ', e)}
@@ -127,7 +127,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
         <Input.AutoComplete
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={true}
-          inputValue={value}
+          value={value}
           data={data}
           absoluteMenu
           fullwidthMenu
@@ -143,6 +143,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
           onBlur={(e) => console.log('BLUR : ', e)}
         />
       </Section>
-    </ScrollView>
+    </>
   )
 }

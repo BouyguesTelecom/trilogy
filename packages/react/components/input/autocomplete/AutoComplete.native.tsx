@@ -42,10 +42,12 @@ const AutoComplete = ({
   }, [debounceSuggestionsTimeout])
 
   useEffect(() => {
-    if (valueInput) {
-      updateSuggestionsFn(valueInput)
-    }
+    updateSuggestionsFn(valueInput)
   }, [valueInput])
+
+  useEffect(() => {
+    setValueInput(value || '')
+  }, [value])
 
   const onTextChanged = async (e: InputChangeEvent) => {
     const { inputValue, inputName, inputSelectionStart } = e

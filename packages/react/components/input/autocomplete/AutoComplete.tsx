@@ -17,7 +17,7 @@ import { debounce } from './utils'
  * @param placeholder {string} placeholder for input
  * @param defaultValue {string} Default Value for Input
  * @param data {string[]} Datas AutoComplete list Item
- * @param inputValue {string} Value of Input
+ * @param value {string} Value of Input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} OnFocus Input Event
  * @param children {Function} Custom Component for dropdown list
@@ -28,7 +28,6 @@ import { debounce } from './utils'
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param className {string} Additionnal CSS Classes
- * @param value {string} Value for Input
  * @param onItemSelected {Function} OnSelectedItemList event
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
@@ -51,7 +50,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   onItemSelected,
   customIcon,
   reference,
-  inputValue,
   disabled,
   children,
   accessibilityLabel,
@@ -66,8 +64,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   const { Input }: { Input: React.ComponentType<InputProp> } = others as any
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
-  const [_inputValue, setInputValue] = useState<string>(inputValue ?? '')
-  const [_value, setValue] = useState<string>(placeholder ?? defaultValue ?? '')
+  const [_inputValue, setInputValue] = useState<string>(value ?? '')
   const [activeItem, setActiveItem] = useState<number>(0)
   const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
@@ -75,8 +72,8 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
 
   useEffect(() => {
-    setInputValue(inputValue || '')
-  }, [inputValue])
+    setInputValue(value || '')
+  }, [value])
 
   useEffect(() => {
     setActiveItem(0)
@@ -89,10 +86,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
       setItemSelected(null)
     }
   }, [_inputValue])
-
-  useEffect(() => {
-    setValue(placeholder ?? value ?? defaultValue ?? '')
-  }, [value, defaultValue])
 
   useEffect(() => {
     setSearch(matching(data, _inputValue))
@@ -175,7 +168,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
         reference={reference}
-        placeholder={_value}
+        placeholder={placeholder}
         {...(name ? { name: name } : {})}
         className='autocomplete-input'
         type='text'
