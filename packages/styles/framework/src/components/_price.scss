@@ -25,10 +25,35 @@ $price-levels: (
     &.is-level-#{$i} {
       font-size: $font-size;
 
+      @if $i == 1 {
+        + .price-tag {
+          span:nth-child(2) {
+            font-size: 16px;
+          }
+        }
+      }
+
+      @if $i == 2 {
+        + .price-tag {
+          font-size: 22px;
+          span:nth-child(2) {
+            font-size: 16px;
+          }
+        }
+      }
+
+      @if $i == 3 {
+        + .price-tag {
+          font-size: 16px;
+          span:nth-child(2) {
+            font-size: 12px;
+          }
+        }
+      }
+
       @if $i < 4 {
         + .price-tag {
           span:nth-child(2) {
-            font-size: 10px;
             place-self: flex-end;
             margin-bottom: 3px;
           }
@@ -187,6 +212,10 @@ $price-levels: (
   color: getColor('background');
   height: fit-content;
   padding: 8px;
+  font-size: 28px;
+  line-height: 1em;
+  align-items: baseline;
+  position: relative;
   &::before {
     content: '';
     border-color: transparent;
@@ -199,7 +228,10 @@ $price-levels: (
     pointer-events: none;
     position: absolute;
     margin-left: -12px;
-    margin-top: 6px;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     transform-origin: center;
     height: 0;
     width: 0;
