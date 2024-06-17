@@ -11,8 +11,8 @@
   font-weight: $weight-normal;
   color: getColor($link-colors);
   box-decoration-break: clone;
-  text-decoration: underline 1px solid;
-  text-underline-offset: 2px;
+  text-decoration: underline 2px solid;
+  text-underline-offset: 4px;
   cursor: pointer;
 
   &.has-icon {
