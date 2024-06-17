@@ -7,10 +7,10 @@ import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { Text } from '../text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
-import { AutoComplete } from './autocomplete'
+import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
 
-interface InputProp extends InputProps, InputWebEvents {}
+export interface InputProp extends InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -319,5 +319,8 @@ const Input = ({
     </div>
   )
 }
-Input.AutoComplete = AutoComplete
+Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompleteProps<T>) => {
+  const newProps = { ...props, Input }
+  return <AutoComplete {...newProps} />
+}
 export default Input

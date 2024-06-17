@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useTrilogyContext } from '../../../context'
 import { hashClass } from '../../../helpers'
 import { is } from '../../../services'
-import Input from '../Input'
+import { InputProp } from '../Input'
 import { InputAutoCompleteType } from '../InputEnum'
 import { InputChangeEvent, InputKeyboardEvent } from '../InputProps'
 import { AutoCompleteProps, Item } from './AutoCompleteProps'
@@ -59,8 +59,11 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   getSuggestions,
   debounceSuggestionsTimeout,
   onFocus,
+  loading,
+  ...others
 }: AutoCompleteProps<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
+  const { Input }: { Input: React.ComponentType<InputProp> } = others as any
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(inputValue ?? '')
@@ -181,17 +184,18 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
         // Add delay for selection of suggestion
-        onBlur={(e) => {
+        onBlur={(e: unknown) => {
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
         }}
         onFocus={handleFocus}
         onKeyUp={handleKeyPress}
         value={_inputValue}
-        onChange={(event) => {
+        onChange={(event: InputChangeEvent) => {
           onInputChange(event)
         }}
         onIconClick={onIconClick}
+        loading={loading}
       />
 
       {isAutocompleteMenuVisible && (
