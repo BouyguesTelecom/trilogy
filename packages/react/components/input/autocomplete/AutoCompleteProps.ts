@@ -30,5 +30,3 @@ export interface ItemSelectedEvent<T> {
   value: T
   index: number
 }
-
-export * from './AutoCompleteProps'

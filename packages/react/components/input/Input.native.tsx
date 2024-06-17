@@ -26,9 +26,11 @@ import {
   InputType,
 } from './InputEnum'
 import { InputNativeEvents, InputProps } from './InputProps'
+import { AutoCompleteProps } from './autocomplete'
+import AutoComplete from './autocomplete/AutoComplete.native'
 import InputGauge from './gauge/InputGauge.native'
 
-interface InputNativeProps extends InputProps, InputNativeEvents {}
+export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
@@ -503,5 +505,10 @@ const Input = ({
 }
 
 Input.displayName = ComponentName.Input
+
+Input.AutoComplete = (props: AutoCompleteProps) => {
+  const newProps = { ...props, Input }
+  return <AutoComplete {...newProps} />
+}
 
 export default Input
