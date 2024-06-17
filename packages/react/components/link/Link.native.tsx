@@ -10,7 +10,6 @@ import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Link Component
- * @param plain {boolean} Link without underline
  * @param to {string} Url to open
  * @param title {string} Title attribute
  * @param typo {TypographyAlign} Typos align link
@@ -36,6 +35,8 @@ const Link = ({
   inverted,
   ...others
 }: LinkProps): JSX.Element => {
+  const [underlineWidth, setUnderlineWidth] = React.useState(0);
+
   const linkLevels = (level: TextLevels) => {
     return (
       (level && level == "ONE" && 16) ||
@@ -110,8 +111,8 @@ const Link = ({
         getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      textDecorationStyle: "solid",
-      textDecorationLine: "underline",
+      // textDecorationStyle: "solid",
+      // textDecorationLine: "underline",
     },
     androidLink: {
       color:
@@ -120,8 +121,8 @@ const Link = ({
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
       height: inline && level ? getHeightLinkAndroid(level) : "auto",
-      textDecorationStyle: "solid",
-      textDecorationLine: "underline",
+      // textDecorationStyle: "solid",
+      // textDecorationLine: "underline"
     },
     iconView: {
       flexDirection: "row",
@@ -146,72 +147,90 @@ const Link = ({
     : "NotSpecified"
 
   return (
-    <View
-      style={
-        Platform.OS === "android"
-          ? [styles.linkAlignement, styles.androidContainer]
-          : [styles.linkAlignement, styles.container]
-      }
-      accessible={!!linkAccessibilityLabel}
-      accessibilityLabel={linkAccessibilityLabel}
-      testID={linkTestId}
-    >
-      {children && typeof children.valueOf() === "string" ? (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={(e) => {
-            if (to) {
-              Linking.openURL(to || "")
-            }
-            if (onClick) {
-              onClick(e)
-            }
-          }}
-        >
-          {iconName ? (
-            <View style={styles.iconView}>
+    <View style={{ height: 21 }}>
+      <View
+        style={
+          Platform.OS === "android"
+            ? [styles.linkAlignement, styles.androidContainer]
+            : [styles.linkAlignement, styles.container]
+        }
+        accessible={!!linkAccessibilityLabel}
+        accessibilityLabel={linkAccessibilityLabel}
+        testID={linkTestId}
+      >
+        {children && typeof children.valueOf() === "string" ? (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={(e) => {
+              if (to) {
+                Linking.openURL(to || "")
+              }
+              if (onClick) {
+                onClick(e)
+              }
+            }}
+          >
+            {iconName ? (
+              <View style={styles.iconView}>
+                <Text
+                  onLayout={(event) => {
+                    const { width } = event.nativeEvent.layout;
+                    setUnderlineWidth(width);
+                  }}
+                  accessibilityLabel={title || ""}
+                  style={styles.link}
+                  {...others}
+                >
+                  {children}
+                </Text>
+                <Spacer size={SpacerSize.SMALLER} horizontal />
+                <Icon
+                  color={"TERTIARY"}
+                  name={iconName}
+                  style={styles.icon}
+                  size='small'
+                />
+              </View>
+            ) : (
               <Text
+                onLayout={(event) => {
+                  const { width } = event.nativeEvent.layout;
+                  setUnderlineWidth(width);
+                }}
                 accessibilityLabel={title || ""}
-                style={styles.link}
+                style={
+                  Platform.OS === "android" ? styles.androidLink : styles.link
+                }
                 {...others}
               >
                 {children}
               </Text>
-              <Spacer size={SpacerSize.SMALLER} horizontal />
-              <Icon
-                color={"TERTIARY"}
-                name={iconName}
-                style={styles.icon}
-                size='small'
-              />
-            </View>
-          ) : (
-            <Text
-              accessibilityLabel={title || ""}
-              style={
-                Platform.OS === "android" ? styles.androidLink : styles.link
+            )}
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={(e) => {
+              if (to) {
+                Linking.openURL(to || "")
               }
-              {...others}
-            >
-              {children}
-            </Text>
-          )}
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={(e) => {
-            if (to) {
-              Linking.openURL(to || "")
-            }
-            if (onClick) {
-              onClick(e)
-            }
-          }}
-        >
-          {children}
-        </TouchableOpacity>
-      )}
+              if (onClick) {
+                onClick(e)
+              }
+            }}
+          >
+            {children}
+          </TouchableOpacity>
+        )}
+      </View>
+      <View
+        style={{
+          height: 2,
+          backgroundColor: getColorStyle(TrilogyColor.MAIN),
+          width: underlineWidth,
+          marginTop: 2,
+        }}
+      />
     </View>
   )
 }

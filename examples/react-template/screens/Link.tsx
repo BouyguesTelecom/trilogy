@@ -15,12 +15,17 @@ export const LinkScreen = (): JSX.Element => {
     <Section>
       <AutoLayout>
         <Title level={TitleLevels.THREE}>Links inline</Title>
+        <Link
+          href="https://google.com"
+        >
+          Test link
+        </Link>
         <Text>
           I'm in a paragraph and this is a <Link>standard link</Link> while this
-          is a <Link plain> standard ununderlined link.</Link> If I want a
+          is a <Link> standard ununderlined link.</Link> If I want a
           tertiary colored link, I can also use this{" "}
           <Link>underlined link</Link>, or this{" "}
-          <Link plain> ununderlined one.</Link>.
+          <Link> underlined one.</Link>
         </Text>
         <Title level={TitleLevels.THREE}>External links</Title>
         <Link href="https://google.com" blank>
