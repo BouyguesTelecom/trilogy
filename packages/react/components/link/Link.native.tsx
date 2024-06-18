@@ -110,9 +110,7 @@ const Link = ({
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
-      lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      // textDecorationStyle: "solid",
-      // textDecorationLine: "underline",
+      lineHeight: inline && level ? linkLevels(level) * 1.5 : 14
     },
     androidLink: {
       color:
@@ -120,9 +118,7 @@ const Link = ({
         getColorStyle(TrilogyColor.MAIN),
       fontSize: inline && level ? linkLevels(level) : 14,
       lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      height: inline && level ? getHeightLinkAndroid(level) : "auto",
-      // textDecorationStyle: "solid",
-      // textDecorationLine: "underline"
+      height: inline && level ? getHeightLinkAndroid(level) : "auto"
     },
     iconView: {
       flexDirection: "row",
