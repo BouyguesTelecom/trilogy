@@ -4,7 +4,7 @@ import { ITrilogyTheme } from "./interfaces"
 export const defaultTheme: ITrilogyTheme = {
   icons: {},
   colors: {},
-  fontFamily: ''
+  fontFamily: {}
 }
 
 interface ITrilogyThemeContext {
