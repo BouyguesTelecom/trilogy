@@ -36,9 +36,18 @@ const SelectDynamic = ({
     setIsFocused((prev) => !prev)
   }, [])
 
-  const onKeyPressInput = React.useCallback((keyCode: number) => {
-    keyCode === 0 && setIsFocused((prev) => !prev)
-  }, [])
+  const onKeyPressInput = React.useCallback(
+    (keyCode: number) => {
+      if (keyCode === 13) {
+        setIsFocused((prev) => {
+          if (multiple && !prev) return true
+          if (multiple && prev) return prev
+          return !prev
+        })
+      }
+    },
+    [multiple],
+  )
 
   const isChecked = useCallback(
     (value: string) =>
@@ -64,10 +73,8 @@ const SelectDynamic = ({
               return prev
             case !Array.isArray(prev) && !nullable:
               selectedOptions.push(value)
-              setIsFocused(false)
               return prev
             case !Array.isArray(prev) && nullable:
-              setIsFocused(false)
               setSelectedName([])
               return undefined
             default:
@@ -87,7 +94,6 @@ const SelectDynamic = ({
         })
         setSelectedName((prev) => {
           if (multiple) return [...prev, children || label]
-          setIsFocused(false)
           return [children || label]
         })
       }
@@ -116,7 +122,7 @@ const SelectDynamic = ({
     const onKeyDown = (e: KeyboardEvent) => {
       const childs = children as React.ReactElement[]
       const child = childs[focusedIndex]
-      if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', ' '].includes(e.key)) e.preventDefault()
+      e.preventDefault()
       switch (true) {
         case e.key === 'ArrowDown':
           options &&
@@ -143,7 +149,7 @@ const SelectDynamic = ({
               return nextIndex
             })
           break
-        case ['Enter', ' '].includes(e.key) && focusedIndex !== -1 && !child.props.disabled:
+        case ['Enter'].includes(e.key) && focusedIndex !== -1 && !child.props.disabled:
           const isCheckedOption = isChecked(child.props.value)
           setNewSelectedValues({
             children: child.props.children,
@@ -222,6 +228,9 @@ const SelectDynamic = ({
         onClick={onClickInput}
         className={hashClass(styled, clsx(focused && 'focus'))}
         onKeyPress={(e) => {
+          e.preventDefault()
+        }}
+        onKeyUp={(e) => {
           e.preventDefault()
           onKeyPressInput(e.inputKeyCode)
         }}
