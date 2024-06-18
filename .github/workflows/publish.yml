@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps
+          npm i --legacy-peer-deps
           npm run build
 
       - name: Extract version tag
