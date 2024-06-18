@@ -46,7 +46,7 @@ const SelectDynamic = ({
         })
       }
     },
-    [multiple, focusedIndex],
+    [multiple],
   )
 
   const isChecked = useCallback(
