@@ -319,6 +319,27 @@ const Input = ({
     </div>
   )
 }
+
+/**
+ * AutoComplete Component
+ * @param placeholder {string} placeholder for input
+ * @param defaultValue {string} Default Value for Input
+ * @param data {string[]} Datas AutoComplete list Item
+ * @param value {string} Value of Input
+ * @param onChange {Function} OnChange Input Event
+ * @param onFocus {Function} OnFocus Input Event
+ * @param children {Function} Custom Component for dropdown list
+ * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
+ * @param matching {Function} matching function
+ * - ------------------ WEB PROPERTIES -----------------------
+ * @param classNameMenu {string} Additionnal CSS Classes for Menu
+ * @param absoluteMenu {boolean} Absolute position for Menu
+ * @param fullwidthMenu {boolean} Fullwidth size for Menu
+ * @param className {string} Additionnal CSS Classes
+ * @param onItemSelected {Function} OnSelectedItemList event
+ * @param customIcon {string} Additional icon classes
+ * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ */
 Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompleteProps<T>) => {
   const newProps = { ...props, Input }
   return <AutoComplete {...newProps} />
