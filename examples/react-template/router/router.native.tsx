@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
-import * as Screens from '../screens'
-import { Wrapper } from '../Wrapper'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
+import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/context/providerTheme'
+import * as React from 'react'
 import { SafeAreaView } from 'react-native'
 import { MenuScreen } from '../Menu'
-import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/context/providerTheme'
-import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
+import { Wrapper } from '../Wrapper'
+import * as Screens from '../screens'
 
 const Stack = createNativeStackNavigator()
 
@@ -32,7 +32,6 @@ export const Router: React.FC = () => {
               return (
                 <SafeAreaView>
                   <Wrapper
-                    scrollable={screen != 'AutoCompleteScreen'}
                     title={pathName}
                     goBack={() => {
                       navigation.goBack()

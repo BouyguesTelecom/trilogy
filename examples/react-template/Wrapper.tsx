@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from 'react'
-import { Icon, IconName, ScrollView, Section, Title } from '@trilogy-ds/react/components'
 import { TypographyAlign } from '@trilogy-ds/react'
+import { Icon, IconName, ScrollView, Section, Title } from '@trilogy-ds/react/components'
+import React, { PropsWithChildren } from 'react'
 
 interface IProps {
   title: string

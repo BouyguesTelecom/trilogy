@@ -26,15 +26,10 @@
 
       .icon {
         position: relative;
-        color: getColor('neutral');
         width: 16px;
         margin-right: 8px;
         font-size: 16px;
         margin-bottom: -1px;
-
-        .is-success {
-          background-color: getColor('success');
-        }
       }
     }
   }
