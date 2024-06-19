@@ -17,6 +17,7 @@ export const defaultIcons = {}
 export const defaultTheme: ITrilogyTheme = {
   icons: defaultIcons,
   colors: colors,
+  fontFamily: { 'regular': 'poppins-regular', 'medium': 'poppins-medium', 'bold': 'poppins-semibold' }
 }
 
 export const defaultContextValue = {

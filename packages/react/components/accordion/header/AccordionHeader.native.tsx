@@ -12,7 +12,7 @@ const AccordionHeader = ({ children }: AccordionHeaderProps): JSX.Element => {
     header: {
       maxWidth: "95%",
       minWidth: "95%",
-      width: "95%",
+      width: "95%"
     },
   })
 

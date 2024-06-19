@@ -59,9 +59,8 @@ const AccordionItem = ({
         : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderColor:
-        (isActive && getColorStyle(TrilogyColor.MAIN)) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.FONT, 1)
     },
     bodyBackground: {
       borderRadius: 6,
