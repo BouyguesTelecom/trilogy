@@ -15,7 +15,7 @@ $price-levels: (
   margin-bottom: 0;
 
   &:not(.is-inlined) {
-    font-size: 44px;
+    font-size: $text-44;
   }
 
   @each $price-level in $price-levels {
@@ -28,7 +28,7 @@ $price-levels: (
       @if $i == 1 {
         + .price-tag {
           span:nth-child(2) {
-            font-size: 16px;
+            font-size: $text-16;
           }
         }
       }
@@ -37,7 +37,7 @@ $price-levels: (
         + .price-tag {
           font-size: 22px;
           span:nth-child(2) {
-            font-size: 16px;
+            font-size: $text-16;
           }
         }
       }
@@ -46,7 +46,7 @@ $price-levels: (
         + .price-tag {
           font-size: 16px;
           span:nth-child(2) {
-            font-size: 12px;
+            font-size: $text-16;
           }
         }
       }
@@ -73,7 +73,7 @@ $price-levels: (
             margin-top: 4px;
             border-radius: 1px;
           }
-          font-size: 10px;
+          font-size: $text-10;
           padding: 4px !important;
         }
       }
