@@ -1,14 +1,10 @@
-import * as React from "react"
-import { FlatList, StyleSheet } from "react-native"
-import { getColorStyle, TrilogyColor } from "../../../objects"
-import AutoCompleteItemNative from "../item/AutoCompleteIem.native"
-import { AutoCompleteMenuProps } from "./AutoCompleteMenuProps"
-import { ComponentName } from "../../enumsComponentsName"
+import * as React from 'react'
+import { FlatList, StyleSheet } from 'react-native'
+import { TrilogyColor, getColorStyle } from '../../../../objects'
+import AutoCompleteItemNative from '../item/AutoCompleteIem.native'
+import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 
-const AutoCompleteMenuNative = ({
-  suggestions,
-  handleSelectItem,
-}: AutoCompleteMenuProps): JSX.Element => {
+const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
   const styles = StyleSheet.create({
     list: {
       marginTop: 6,
@@ -17,7 +13,7 @@ const AutoCompleteMenuNative = ({
       borderWidth: 1,
       borderRadius: 3,
       borderColor: getColorStyle(TrilogyColor.FONT, 1),
-      width: "100%",
+      width: '100%',
       maxHeight: 165,
       flexGrow: 1,
     },
@@ -42,7 +38,5 @@ const AutoCompleteMenuNative = ({
     />
   )
 }
-
-AutoCompleteMenuNative.displayName = ComponentName.AutoCompleteMenuNative
 
 export default AutoCompleteMenuNative

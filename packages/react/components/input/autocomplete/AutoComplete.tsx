@@ -1,22 +1,23 @@
 import clsx from 'clsx'
-import React, {useEffect, useState} from 'react'
-import {useTrilogyContext} from '../../context'
-import {hashClass} from '../../helpers'
-import {is} from '../../services'
-import {Input, InputAutoCompleteType} from '../input'
-import {InputChangeEvent, InputKeyboardEvent} from '../input/InputProps'
-import {AutoCompleteProps, Item} from './AutoCompleteProps'
-import {defaultMatching, getLabel} from './Autocomplete.helpers'
+import React, { useEffect, useState } from 'react'
+import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers'
+import { is } from '../../../services'
+import { InputProp } from '../Input'
+import { InputAutoCompleteType } from '../InputEnum'
+import { InputChangeEvent, InputKeyboardEvent } from '../InputProps'
+import { AutoCompleteProps, Item } from './AutoCompleteProps'
+import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
-import {debounce} from './utils'
+import { debounce } from './utils'
 
 /**
  * AutoComplete Component
  * @param placeholder {string} placeholder for input
  * @param defaultValue {string} Default Value for Input
  * @param data {string[]} Datas AutoComplete list Item
- * @param inputValue {string} Value of Input
+ * @param value {string} Value of Input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} OnFocus Input Event
  * @param children {Function} Custom Component for dropdown list
@@ -27,7 +28,6 @@ import {debounce} from './utils'
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param className {string} Additionnal CSS Classes
- * @param value {string} Value for Input
  * @param onItemSelected {Function} OnSelectedItemList event
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
@@ -50,7 +50,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   onItemSelected,
   customIcon,
   reference,
-  inputValue,
   disabled,
   children,
   accessibilityLabel,
@@ -58,26 +57,23 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   getSuggestions,
   debounceSuggestionsTimeout,
   onFocus,
-  loading
+  loading,
+  ...others
 }: AutoCompleteProps<T>): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
+  const { Input }: { Input: React.ComponentType<InputProp> } = others as any
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
-  const [_inputValue, setInputValue] = useState<string>(inputValue ?? '')
-  const [_value, setValue] = useState<string>(placeholder ?? defaultValue ?? '')
+  const [_inputValue, setInputValue] = useState<string>(value ?? '')
   const [activeItem, setActiveItem] = useState<number>(0)
-  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] =
-    useState<boolean>(displayMenu || false)
+  const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
 
-  const autocompleteClasses = hashClass(
-    styled,
-    clsx(is('autocomplete'), is('active')),
-  )
+  const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
 
   useEffect(() => {
-    setInputValue(inputValue || '')
-  }, [inputValue])
+    setInputValue(value || '')
+  }, [value])
 
   useEffect(() => {
     setActiveItem(0)
@@ -90,10 +86,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
       setItemSelected(null)
     }
   }, [_inputValue])
-
-  useEffect(() => {
-    setValue(placeholder ?? value ?? defaultValue ?? '')
-  }, [value, defaultValue])
 
   useEffect(() => {
     setSearch(matching(data, _inputValue))
@@ -130,9 +122,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
       setSearch(matching(data, e.inputValue))
     }
   }
-  const onInputChange = debounceSuggestionsTimeout
-    ? debounce(onTextChanged, debounceSuggestionsTimeout)
-    : onTextChanged
+  const onInputChange = debounceSuggestionsTimeout ? debounce(onTextChanged, debounceSuggestionsTimeout) : onTextChanged
 
   const suggestionSelected = (value: T, data: T[], search: T[]) => {
     setIsAutocompleteMenuVisible(false)
@@ -176,10 +166,10 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     <div className={hashClass(styled, clsx('control'))}>
       <Input
         accessibilityLabel={accessibilityLabel}
-        {...(customIcon ? {customIcon: customIcon} : {})}
+        {...(customIcon ? { customIcon: customIcon } : {})}
         reference={reference}
-        placeholder={_value}
-        {...(name ? {name: name} : {})}
+        placeholder={placeholder}
+        {...(name ? { name: name } : {})}
         className='autocomplete-input'
         type='text'
         testId={testId}
@@ -187,14 +177,14 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
         // Add delay for selection of suggestion
-        onBlur={(e) => {
+        onBlur={(e: unknown) => {
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
         }}
         onFocus={handleFocus}
         onKeyUp={handleKeyPress}
         value={_inputValue}
-        onChange={(event) => {
+        onChange={(event: InputChangeEvent) => {
           onInputChange(event)
         }}
         onIconClick={onIconClick}
@@ -208,16 +198,16 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
               testId={testId}
               absolute={absoluteMenu}
               fullwidth={fullwidthMenu}
-              className={classNameMenu}>
+              className={classNameMenu}
+            >
               {search.map((item, i) => (
                 <AutoCompleteItem<T>
                   active={activeItem === i}
                   key={i}
                   testId={testId}
                   item={item}
-                  suggestionSelected={(v: T) =>
-                    suggestionSelected(v, data, search)
-                  }>
+                  suggestionSelected={(v: T) => suggestionSelected(v, data, search)}
+                >
                   {children ? children(item) : getLabel(item)}
                 </AutoCompleteItem>
               ))}

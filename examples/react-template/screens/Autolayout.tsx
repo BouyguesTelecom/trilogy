@@ -1,23 +1,23 @@
-import * as React from "react";
+import { AlertState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
   Alert,
-  AutoComplete,
   AutoLayout,
   Box,
   BoxContent,
   BoxHeader,
   Button,
   IconName,
+  Input,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
-import { AlertState, TrilogyColor } from "@trilogy-ds/react";
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (
@@ -27,30 +27,26 @@ export const AutolayoutScreen = (): JSX.Element => {
         <BoxHeader>Simple</BoxHeader>
         <BoxContent>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            maximus tellus sed erat maximus porta. Etiam non ex in dolor
-            faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
-            urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
-            finibus dolor ex.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta. Etiam
+            non ex in dolor faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere, urna tortor vulputate
+            justo, ut luctus justo eros sed erat. Fusce finibus dolor ex.
           </Text>
         </BoxContent>
       </Box>
       <Box background={TrilogyColor.MAIN} inverted>
         <BoxContent>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            maximus tellus sed erat maximus porta. Etiam non ex in dolor
-            faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere,
-            urna tortor vulputate justo, ut luctus justo eros sed erat. Fusce
-            finibus dolor ex.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta. Etiam
+            non ex in dolor faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere, urna tortor vulputate
+            justo, ut luctus justo eros sed erat. Fusce finibus dolor ex.
           </Text>
         </BoxContent>
       </Box>
       <Title level={TitleLevels.ONE}>Im a Title</Title>
       <Text level={TextLevels.ONE}>Lorem ipsum dolor sit amet</Text>
-      <Button variant={"PRIMARY"}>Click</Button>
+      <Button variant={'PRIMARY'}>Click</Button>
       <Accordion>
-        <AccordionItem id="UN" active={true}>
+        <AccordionItem id='UN' active={true}>
           <AccordionHeader>
             <Text>Hello World 1</Text>
           </AccordionHeader>
@@ -58,7 +54,7 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id="DEUX">
+        <AccordionItem active={true} id='DEUX'>
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -66,7 +62,7 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id="TROIS">
+        <AccordionItem disabled id='TROIS'>
           <AccordionHeader>
             <Text>Hello World 3</Text>
           </AccordionHeader>
@@ -78,14 +74,10 @@ export const AutolayoutScreen = (): JSX.Element => {
       <Alert
         display
         alert={AlertState.SUCCESS}
-        title={"Test alert"}
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        title={'Test alert'}
+        description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
-      <AutoComplete
-        customIcon={IconName.ALERT}
-        displayMenu={true}
-        data={["1", "2"]}
-      />
+      <Input.AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
     </AutoLayout>
-  );
-};
+  )
+}
