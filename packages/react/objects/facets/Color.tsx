@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { TrilogyThemeContext } from "../../context/providerTheme"
-import { ssrDevice } from "../../helpers/device"
 
 /**
  * Trilogy color

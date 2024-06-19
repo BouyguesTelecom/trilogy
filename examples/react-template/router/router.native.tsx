@@ -14,6 +14,7 @@ export const Router: React.FC = () => {
   const theme = {
     ...defaultTheme,
     icons: SVGicons,
+    fontFamily: { 'regular': 'poppins-regular', 'medium': 'poppins-medium', 'bold': 'poppins-semibold' }
   }
 
   return (
