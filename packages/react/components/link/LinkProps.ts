@@ -2,6 +2,7 @@ import { Accessibility, Clickable } from '../../objects/facets'
 import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
 import { IconName, IconNameValues } from '../icon'
 import { TextLevels } from '../text'
+import { Styles } from "../../types";
 
 /**
  * Link Interface
@@ -21,4 +22,5 @@ export interface LinkProps extends Accessibility, Clickable {
   inverted?: boolean
   plain?: boolean
   blank?: boolean
+  style?: Styles
 }
