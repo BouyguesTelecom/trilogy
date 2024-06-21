@@ -29,7 +29,7 @@ const AccordionItem = ({
   ...others
 }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDetailsElement>(null)
-  const { styled } = useTrilogyContext()
+  const {styled} = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
   const [expandedHeight, setExpandedHeight] = useState<string>()
@@ -47,7 +47,7 @@ const AccordionItem = ({
     if (!e) {
       return
     }
-    const { floor, abs } = Math
+    const {floor, abs} = Math
     const firstChild = e.children[1].firstChild as HTMLElement
     const expandedInactive = floor(
       abs(e.clientHeight + firstChild?.clientHeight)
@@ -65,27 +65,33 @@ const AccordionItem = ({
 
   const classes = hashClass(
     styled,
-    clsx("accordion", className, isActive && is("active"))
+    clsx("accordion", className)
   )
 
   let childrenElement
   if (children) {
     childrenElement = Array.isArray(children)
       ? children.map((child, index: number) => {
-          return React.cloneElement(child as React.ReactElement, {
-            key: `article-${index}`,
-            dataId: index === 0 ? `header-${id}` : `body-${id}`,
-            disabled,
-          })
+        return React.cloneElement(child as React.ReactElement, {
+          key: `article-${index}`,
+          dataId: index === 0 ? `header-${id}` : `body-${id}`,
+          disabled,
         })
+      })
       : children
   }
+
+  const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
+
+  if (disabled) {
+    ariaProps["tabIndex"] = -1,
+      ariaProps["aria-disabled"] = !!disabled
+ }
 
   return (
     <details
       open={isActive}
-      tabIndex={0}
-      aria-disabled={disabled}
+      {...ariaProps}
       data-testid={id}
       className={classes}
       ref={ref}
