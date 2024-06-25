@@ -1,11 +1,11 @@
 import React, { useContext } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CardContentProps } from "./CardContentProps"
-import { Title, TitleLevels } from "../../title"
-import { Button } from "../../button"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
-import { CardContext } from "../Card.native"
-import { ComponentName } from "../../enumsComponentsName"
+import { Title, TitleLevels } from "@/components/title"
+import { Button } from "@/components/button"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { CardContext } from "@/components/card/Card.native"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Card Content Component

@@ -1,9 +1,9 @@
 import * as React from "react"
-import {ComponentName} from "../../enumsComponentsName"
+import {ComponentName} from "@/components/enumsComponentsName"
 import {BreadcrumbItemProps} from "./BreadcrumbItemProps"
-import {Text} from "../../text"
+import {Text} from "@/components/text"
 import {Linking, StyleSheet, TouchableOpacity} from "react-native"
-import {getColorStyle, TrilogyColor, TypographyBold} from "../../../objects"
+import {getColorStyle, TrilogyColor, TypographyBold} from "@/objects"
 
 /**
  * Breadcrumb Item Component

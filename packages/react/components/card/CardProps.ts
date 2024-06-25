@@ -1,7 +1,7 @@
-import { ClickEvent } from '../../events/OnClickEvent'
-import {Accessibility, BackgroundProps, Clickable, Fullheight, TrilogyColor} from '../../objects'
-import { AlignableProps } from '../../objects/facets/Alignable'
-import { JustifiableProps } from '../../objects/facets/Justifiable'
+import { ClickEvent } from '@/events/OnClickEvent'
+import {Accessibility, BackgroundProps, Clickable, Fullheight} from '@/objects'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { JustifiableProps } from '@/objects/facets/Justifiable'
 
 /**
  * Card Interface
