@@ -1,8 +1,8 @@
 import * as React from "react"
 import { AccordionProps } from "./AccordionProps"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context/index"
-import { hashClass } from "../..//helpers/hashClassesHelpers"
+import { useTrilogyContext } from "@/context/index"
+import { hashClass } from "@/helpers/hashClassesHelpers"
 
 /**
  * Accordion Component
