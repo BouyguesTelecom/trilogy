@@ -92,10 +92,12 @@ const Pagination = ({
     text: {
       color: getColorStyle(TrilogyColor.FONT),
       alignSelf: "center",
+      lineHeight: 0,
     },
     textCurrent: {
       color: getColorStyle(TrilogyColor.BACKGROUND),
       alignSelf: "center",
+      lineHeight: 0,
     },
     rounded: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
@@ -103,15 +105,14 @@ const Pagination = ({
       height: 26,
       borderRadius: 26,
       justifyContent: "center",
-      paddingTop: 2,
     },
+
     textContainer: {
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       width: 26,
       height: 26,
       borderRadius: 26,
       justifyContent: "center",
-      paddingTop: 2,
     },
     currentPage: {
       color: getColorStyle(TrilogyColor.MAIN),
