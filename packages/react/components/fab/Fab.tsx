@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 import { FabProps } from "./FabProps"
-import { hashClass } from "../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { IconName } from "../icon"
-import Icon from "../icon/Icon"
-import { is } from "../../services"
+import { IconName } from "@/components/icon"
+import Icon from "@/components/icon/Icon"
+import { is } from "@/services"
 
 /**
  * Fab Component - Floating Button Action

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { DropdownDividerWebProps } from "./DropdownDividerProps"
-import { is } from "../../../services"
+import { is } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Dropdown Divider Component
