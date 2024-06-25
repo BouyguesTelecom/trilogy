@@ -3,13 +3,17 @@
   padding-right: 0;
   margin: $spacing-4 0;
 
+  /* Chrome + Webkit */
   details.accordion ::-webkit-details-marker {
     display: none;
     content: "";
   }
 
-  .accordion {
+  details.accordion summary {
+    list-style-image: none;
+  }
 
+  .accordion {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -30,7 +34,7 @@
       padding-top: 0 !important;
     }
 
-    &:hover:not(.is-disabled) {
+    &[open]:hover {
       @include hoverRules();
     }
 
