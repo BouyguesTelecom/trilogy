@@ -136,11 +136,13 @@ const Textarea = (
       position: "absolute",
       top: 16,
       left: 16,
+      zIndex: 10
     },
     rightIcon: {
       position: "absolute",
       top: dynamicPlaceholder ? 16 : 32,
       right: 16,
+      zIndex: 10
     },
   });
 
@@ -151,7 +153,9 @@ const Textarea = (
       )}
 
       {iconName && (
-        <Icon style={styles.leftIcon} name={iconName} size="small" />
+        <Text style={styles.leftIcon}>
+          <Icon name={iconName} size="small" />
+        </Text>
       )}
 
       <TextInput
