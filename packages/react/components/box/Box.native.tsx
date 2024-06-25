@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { BoxProps } from "./BoxProps"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { getBackgroundStyle } from "../../objects/atoms/Background"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { getBackgroundStyle } from "@/objects/atoms/Background"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Box Component

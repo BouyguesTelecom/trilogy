@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { BoxContentProps } from "./BoxContentProps"
-import { getBackgroundStyle } from "../../../objects/atoms/Background"
-import { ComponentName } from "../../enumsComponentsName"
+import { getBackgroundStyle } from "@/objects/atoms/Background"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Box Content Component
