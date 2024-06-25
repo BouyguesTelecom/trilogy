@@ -7,7 +7,7 @@ import type {
   BackgroundProps,
   StickyPositionValues,
   StickyPosition,
-} from '../../objects'
+} from '@/objects'
 
 /**
  * Container Interface

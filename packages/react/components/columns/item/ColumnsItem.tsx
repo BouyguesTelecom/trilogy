@@ -1,10 +1,10 @@
 import * as React from "react"
 import clsx from "clsx"
 import { ColumnsItemProps } from "./ColumnsItemProps"
-import { has, is } from "../../../services/classify"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { getAlignClassName } from "../../../objects"
+import { has, is } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { getAlignClassName } from "@/objects"
 
 /**
  * Columns Item Component - Columns Child
