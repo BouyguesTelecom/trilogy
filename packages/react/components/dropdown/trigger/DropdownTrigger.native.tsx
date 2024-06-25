@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { ComponentName } from '../../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { DropdownTriggerProps } from './DropdownTriggerProps'
 
 const DropdownTrigger = ({ label, value, children }: DropdownTriggerProps) => {

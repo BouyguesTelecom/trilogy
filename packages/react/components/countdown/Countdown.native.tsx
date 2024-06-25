@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {getColorStyle, TrilogyColor} from '../../objects/facets/Color'
+import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
 import {CountdownFormat, CountdownUnite} from './CountdownEnum'
 import {CountdownProps} from './CountdownProps'
-import {ComponentName} from '../enumsComponentsName'
-import {Text, TextLevels} from '../text'
+import {ComponentName} from '@/components/enumsComponentsName'
+import {Text, TextLevels} from '@/components/text'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)

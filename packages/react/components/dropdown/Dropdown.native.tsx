@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, TouchableWithoutFeedback } from 'react-native'
 import { DropdownProps } from './DropdownProps'
-import { ComponentName } from '../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 const Dropdown = ({ children, active }: DropdownProps) => {
   const [displayDropdown, setDisplayDropdown] = useState(active || false)

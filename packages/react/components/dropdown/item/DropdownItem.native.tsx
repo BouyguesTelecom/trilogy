@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TouchableOpacity, Text } from "react-native"
 import { DropdownItemProps } from "./DropdownItemProps"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 const DropdownItem = ({ label }: DropdownItemProps) => {
   return (

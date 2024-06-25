@@ -1,10 +1,10 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { Icon, IconColor } from "../icon"
-import { Text } from "../text"
+import { Icon, IconColor } from "@/components/icon"
+import { Text } from "@/components/text"
 import { DividerProps } from "./DividerProps"
-import { getColorStyle, TrilogyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Divider Native Component

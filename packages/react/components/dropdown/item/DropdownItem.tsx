@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { DropdownItemWebProps } from './DropdownItemProps'
-import { Checkbox } from '../../checkbox'
+import { Checkbox } from '@/components/checkbox'
 import shortid from 'shortid'
 import clsx from 'clsx'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Dropdown Item Component - Working like radio component
