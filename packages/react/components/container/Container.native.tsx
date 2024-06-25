@@ -2,9 +2,9 @@ import * as React from "react"
 import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
 import { ContainerProps } from "./ContainerProps"
-import { getBackgroundStyle, getColorStyle, StickyPosition, TrilogyColor, } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { getBackgroundStyle, getColorStyle, StickyPosition, TrilogyColor, } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Container Native Component
