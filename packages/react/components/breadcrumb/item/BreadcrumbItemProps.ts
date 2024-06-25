@@ -1,4 +1,4 @@
-import { Accessibility, Clickable } from '../../../objects'
+import { Accessibility, Clickable } from '@/objects'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable {
   children?: string

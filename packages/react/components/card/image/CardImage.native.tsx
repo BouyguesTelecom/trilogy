@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
 import { CardImageProps } from './CardImageProps'
-import { CardContext } from '../Card.native'
-import { ComponentName } from '../../enumsComponentsName'
+import { CardContext } from '@/components/card/Card.native'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Card Image Component
