@@ -85,8 +85,7 @@
     $brandName: getColorBrandName($name);
     &.is-#{$brandName} {
       textarea.textarea {
-        // border-color: $color;
-        outline-color: $color;
+        border-color: $color;
 
         &:active,
         &:focus,
