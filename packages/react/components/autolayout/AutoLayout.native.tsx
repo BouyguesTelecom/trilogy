@@ -1,9 +1,9 @@
 import * as React from "react"
 import { DEFAULT_SPACING_MATRIX } from "./DefaultSpacingMatrix"
 import { autoLayoutChildrenHandler, parseChildren } from "./AutoLayout.helpers"
-import { Spacer, SpacerSize } from "../spacer"
+import { Spacer, SpacerSize } from "@/components/spacer"
 import { AutoLayoutProps } from "./AutoLayoutProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * AutoLayout Component

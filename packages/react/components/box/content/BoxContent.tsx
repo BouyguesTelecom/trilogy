@@ -1,10 +1,10 @@
 import * as React from "react"
 import { BoxContentProps } from "./BoxContentProps"
-import { has } from "../../../services/classify"
-import { getBackgroundClassName } from "../../../objects/atoms/Background"
+import { has } from "@/services/classify"
+import { getBackgroundClassName } from "@/objects/atoms/Background"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Box Content

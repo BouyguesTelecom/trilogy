@@ -1,4 +1,4 @@
-import { Accessibility } from '../../../objects'
+import { Accessibility } from '@/objects'
 
 /**
  * Box Table Container Interface

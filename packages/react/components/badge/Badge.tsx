@@ -1,12 +1,12 @@
 import * as React from "react"
 import { BadgeProps } from "./BadgeProps"
-import { Text, TextMarkup } from "../text"
+import { Text, TextMarkup } from "@/components/text"
 import { BadgeTextDirection } from "./BadgeEnum"
-import { has } from "../../services"
-import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "../../objects/facets"
+import { has } from "@/services"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets"
 import clsx from "clsx"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Badge Component
