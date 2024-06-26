@@ -1,10 +1,10 @@
 import * as React from "react"
 import { ScrollViewProps } from "./ScrollViewProps"
-import { useTrilogyContext } from "../../context"
-import { hashClass } from "../../helpers"
+import { useTrilogyContext } from "@/context"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { is } from "../../services"
-import { ScrollDirectionEnum } from "../../objects"
+import { is } from "@/services"
+import { ScrollDirectionEnum } from "@/objects"
 
 /**
  * Scroll View Component

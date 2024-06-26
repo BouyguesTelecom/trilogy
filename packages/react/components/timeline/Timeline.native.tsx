@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { TimelineProps } from "./TimelineProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 interface IContext {
   height: number;

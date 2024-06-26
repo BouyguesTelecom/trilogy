@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
 import {TableProps} from "./TableProps"
-import {is} from "../../services/classify"
-import {hashClass} from "../../helpers"
-import {useTrilogyContext} from "../../context"
+import {is} from "@/services/classify"
+import {hashClass} from "@/helpers"
+import {useTrilogyContext} from "@/context"
 
 /**
  * Table Component

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TrilogyThemeContext } from "../../context/providerTheme"
+import { TrilogyThemeContext } from "@/context/providerTheme"
 
 /**
  * Trilogy color

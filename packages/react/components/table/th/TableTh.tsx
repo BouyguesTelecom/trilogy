@@ -1,8 +1,8 @@
 import * as React from "react"
 import clsx from "clsx"
 import { TableThProps } from "./TableThProps"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Table TH Component

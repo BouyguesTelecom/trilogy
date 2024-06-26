@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TimelineHeightContext } from '../Timeline.native'
+import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { TimelineItemProps } from './TimelineItemProps'
-import { ComponentName } from '../../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * TimelineItem Native Component
