@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View, } from "react-native"
 import { OtpProps } from "./OtpProps"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { Icon, IconColor, IconName, IconSize } from "../icon"
-import { Title, TitleLevels } from "../title"
-import { Text, TextLevels } from "../text"
-import { TypographyAlign } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
+import { Title, TitleLevels } from "@/components/title"
+import { Text, TextLevels } from "@/components/text"
+import { TypographyAlign } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * OTP Code Component

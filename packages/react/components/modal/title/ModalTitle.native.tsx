@@ -1,9 +1,9 @@
 import * as React from "react"
 import { ModalTitleProps } from "./ModalTitleProps"
-import {ComponentName} from "../../enumsComponentsName"
-import { View } from "../../view"
-import {Icon} from "../../icon"
-import {Title, TitleLevels} from "../../title"
+import {ComponentName} from "@/components/enumsComponentsName"
+import { View } from "@/components/view"
+import {Icon} from "@/components/icon"
+import {Title, TitleLevels} from "@/components/title"
 
 const styles = {
   padding: 8,
