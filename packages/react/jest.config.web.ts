@@ -3,11 +3,7 @@ export default {
   testEnvironment: 'jsdom',
   "roots": ["<rootDir>"],
   moduleNameMapper: {
-    '@services': '<rootDir>/services',
-    '@helpers': '<rootDir>/helpers',
-    '@context': '<rootDir>/context',
-    '@objects': '<rootDir>/objects',
-    '@styles': '<rootDir>/../styles',
+    "^@/(.*)": '<rootDir>',
   },
 //  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' } ),
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
