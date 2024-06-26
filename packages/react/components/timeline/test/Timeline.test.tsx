@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import Timeline from "../Timeline";
 import TimelineItem from "../item";
 import TimelineMarker from "../marker";
-import { IconColor, IconName } from "../../icon";
+import {  IconName } from "../../icon";
 import TimelineContent from "../content";
 import { TrilogyColor } from "../../../objects";
 
