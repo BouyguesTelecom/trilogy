@@ -7,7 +7,6 @@ import { hashClass } from "@/helpers/hashClassesHelpers"
 /**
  * Accordion Component
  * @param className {string} Additionnal CSS Classes
- * @param children {ReactNode}
  */
 const Accordion = ({
   className,

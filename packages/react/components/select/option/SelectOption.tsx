@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Radio } from 'components/radio'
+import { Radio } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
 

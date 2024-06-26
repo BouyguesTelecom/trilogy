@@ -5,25 +5,25 @@ import TimelineItem from "../item";
 import TimelineMarker from "../marker";
 import { IconColor, IconName } from "../../icon";
 import TimelineContent from "../content";
+import { TrilogyColor } from "../../../objects";
 
 describe("Timeline component", () => {
   it("renders without crashing", () => {
     const { container } = render(
       <Timeline>
         <TimelineItem cancel>
-          <TimelineMarker iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} iconColor={TrilogyColor.BACKGROUND} />
           <TimelineContent
             heading="20 Septembre"
             content="Modification de votre identifiant de connexion"
             link={"https://bouyguestelecom.fr"}
             contentLink="Voir l'email"
-            onClick={(e) => console.log(e)}
           />
         </TimelineItem>
 
         <TimelineItem done>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -35,7 +35,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem active>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -47,7 +47,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem undone>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -66,19 +66,18 @@ describe("Timeline component", () => {
     const { container } = render(
       <Timeline horizontal>
         <TimelineItem cancel>
-          <TimelineMarker iconName={IconName.CHECK} />
+          <TimelineMarker iconName={IconName.CHECK} iconColor={TrilogyColor.BACKGROUND}  />
           <TimelineContent
             heading="20 Septembre"
             content="Modification de votre identifiant de connexion"
             link={"https://bouyguestelecom.fr"}
             contentLink="Voir l'email"
-            onClick={(e) => console.log(e)}
           />
         </TimelineItem>
 
         <TimelineItem done>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -90,7 +89,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem active>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
@@ -102,7 +101,7 @@ describe("Timeline component", () => {
         </TimelineItem>
         <TimelineItem undone>
           <TimelineMarker
-            iconColor={IconColor.BACKGROUND}
+            iconColor={TrilogyColor.BACKGROUND}
             iconName={IconName.CHECK}
           />
           <TimelineContent
