@@ -1,9 +1,8 @@
 import * as React from "react"
 import { ModalFooterProps } from "./ModalFooterProps"
-import {ComponentName} from "../../enumsComponentsName"
-import { View } from "../../view"
-import {Title, TitleLevels} from "../../title"
-import {StyleSheet} from "react-native";
+import {ComponentName} from "@/components/enumsComponentsName"
+import { View } from "@/components/view"
+import {Title, TitleLevels} from "@/components/title"
 
 const styles = {
   position: "sticky",

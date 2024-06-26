@@ -4,7 +4,7 @@ import {
   PopoverDirection,
   PopoverDirectionValues,
 } from './PopoverEnum'
-import { Accessibility } from '../../objects'
+import { Accessibility } from '@/objects'
 
 /**
  * Popover Interface

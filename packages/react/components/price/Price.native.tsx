@@ -1,12 +1,12 @@
 import React, {useContext, useMemo} from "react"
 import {StyleSheet, Text, View} from "react-native"
-import { Text as TrilogyText } from '../text'
+import { Text as TrilogyText } from '@/components/text'
 import {PriceProps} from "./PriceProps"
 import {PriceLevel} from "./PriceEnum"
 import {Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor} from "../../objects"
 import {checkCents} from "./PriceHelpers"
-import {ComponentName} from "../enumsComponentsName"
-import {StatesContext} from "../../context/providerStates"
+import {ComponentName} from "@/components/enumsComponentsName"
+import {StatesContext} from "@/context/providerStates"
 
 /**
  * Price Component
