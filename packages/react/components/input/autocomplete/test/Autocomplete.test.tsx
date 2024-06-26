@@ -67,7 +67,7 @@ describe("AutoComplete", () => {
 
   it("should have input value, name", () => {
     render(
-      <AutoComplete name="nameTest" data={testItems} inputValue="value test" />
+      <AutoComplete name="nameTest" data={testItems} value="value test" />
     );
     const input = screen.getByRole("textbox");
     expect(input).toHaveValue("value test");
