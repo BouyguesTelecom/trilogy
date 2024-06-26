@@ -1,9 +1,9 @@
 import * as React from "react"
-import { getColorStyle, TrilogyColor } from "../../objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { RangeProps } from "./RangeProps"
-import { hashClass } from "../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Range Component

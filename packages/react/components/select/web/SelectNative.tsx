@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { hashClass } from '../../../helpers'
-import { has, is } from '../../../services'
-import { Icon, IconSize } from '../../icon'
-import { ParamEventSelectFocus, SelectProps } from '../SelectProps'
-import SelectOption from '../option'
-import { useTrilogyContext } from './../../../context'
+import { hashClass } from '@/helpers'
+import { has, is } from '@/services'
+import { Icon, IconSize } from '@/components/icon'
+import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
+import SelectOption from '@/components/select/option'
+import { useTrilogyContext } from '@/context'
 
 const SelectNative = ({
   onChange,

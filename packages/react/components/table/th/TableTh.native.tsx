@@ -1,10 +1,10 @@
 import * as React from "react"
 import { StyleSheet } from "react-native"
 import { TableThProps } from "./TableThProps"
-import { View } from "../../view"
-import { Text } from "../../text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "../../../objects"
-import { ComponentName } from "../../enumsComponentsName"
+import { View } from "@/components/view"
+import { Text } from "@/components/text"
+import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TableTh Component

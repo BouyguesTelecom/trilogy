@@ -1,11 +1,11 @@
 import clsx from "clsx"
 import React, { useState } from "react"
-import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
-import { has, is } from "../../services/classify"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
+import { has, is } from "@/services/classify"
 import { Icon } from "../icon"
 import { TagProps } from "./TagProps"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Tag Component

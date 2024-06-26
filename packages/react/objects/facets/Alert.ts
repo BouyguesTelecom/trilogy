@@ -1,4 +1,4 @@
-import { IconName, IconNameValues } from '../../components/icon'
+import { IconName, IconNameValues } from '@/components/icon'
 import { getColorStyle } from './Color'
 
 /**

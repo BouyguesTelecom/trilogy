@@ -2,9 +2,9 @@ import * as React from "react"
 import clsx from "clsx"
 import { TextProps } from "./TextProps"
 import { TextLevels, TextMarkup, TextMarkupValues } from "./TextEnum"
-import { is } from "../../services"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { is } from "@/services"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Text component

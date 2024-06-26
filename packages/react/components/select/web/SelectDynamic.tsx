@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import React, { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 
-import { hashClass } from '../../../helpers'
-import { Input } from '../../input'
-import { SelectProps, SelectedValue } from '../SelectProps'
+import { hashClass } from '@/helpers'
+import { Input } from '@/components/input'
+import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
 import SelectOption from '../option'
-import { useTrilogyContext } from './../../../context'
+import { useTrilogyContext } from '@/context'
 
 const SelectDynamic = ({
   onChange,
