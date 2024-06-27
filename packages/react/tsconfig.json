@@ -40,6 +40,7 @@
   "exclude": [
     "./components/**/*.stories.tsx",
     "node_modules",
+    "**/test/**",
     "./jest*",
     "./snapshotResolver.ts",
     "./fileTransformer.cjs",
