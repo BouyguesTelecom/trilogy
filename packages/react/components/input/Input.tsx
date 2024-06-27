@@ -294,7 +294,6 @@ const Input = ({
             className={clsx('icon-right', iconClassname)}
             name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
             onPress={() => {
-              console.log('oui')
               if (inputType === 'password') {
                 setInputType('text')
                 setIsShowPwd(true)

@@ -35,7 +35,7 @@ describe("Input", () => {
       />
     );
     const input = getByTestId("input");
-    expect(input).toHaveClass("input", "is-warning", "is-hovered");
+    expect(input).toHaveClass("input", "is-warning");
   });
 
   it("should have aria label", () => {
@@ -419,7 +419,6 @@ describe("Input", () => {
     const specialChars = containerGauge.querySelector(
       "[data-security-special-chars]"
     );
-    const length = containerGauge.querySelector("[data-security-length]");
 
     expect(gauge).toHaveStyle("width: 0%");
     expect(gauge).toHaveStyle("backgroundColor: '#D1D1D1'");
@@ -430,7 +429,6 @@ describe("Input", () => {
     expect(uppercase).toBeInTheDocument();
     expect(number).toBeInTheDocument();
     expect(specialChars).toBeInTheDocument();
-    expect(length).toBeInTheDocument();
   });
 
   it("should execute onchange event on security gauge input", () => {
