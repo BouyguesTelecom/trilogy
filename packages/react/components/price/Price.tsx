@@ -1,12 +1,12 @@
 import * as React from "react"
 import clsx from "clsx"
 import {PriceProps} from "./PriceProps"
-import {has, is} from "../../services/classify"
+import {has, is} from "@/services/classify"
 import {Text, TextMarkup} from "../text"
-import {Alignable, TypographyColor, TypographyBold} from "../../objects"
+import {Alignable, TypographyColor, TypographyBold} from "@/objects"
 import {checkCents} from "./PriceHelpers"
-import {hashClass} from "../../helpers"
-import {useTrilogyContext} from "../../context"
+import {hashClass} from "@/helpers"
+import {useTrilogyContext} from "@/context"
 
 /**
  * Price Component

@@ -1,5 +1,5 @@
-import { AlignableProps } from '../../../objects'
-import { ColumnsSize } from '../ColumnsTypes'
+import { AlignableProps } from '@/objects'
+import { ColumnsSize } from '@/components/columns/ColumnsTypes'
 
 /**
  * Columns Item Interface

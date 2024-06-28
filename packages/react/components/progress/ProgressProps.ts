@@ -1,5 +1,5 @@
-import { AlertProps } from '../../objects/facets/Alert'
-import { Stacked } from '../../objects/facets/Stacked'
+import { AlertProps } from '@/objects/facets/Alert'
+import { Stacked } from '@/objects/facets/Stacked'
 
 /**
  * Progress Interface

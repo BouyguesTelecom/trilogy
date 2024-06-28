@@ -2,11 +2,11 @@ import React from "react"
 import clsx from "clsx"
 import { StepperStepProps } from "./StepperStepProps"
 import { StepperStepMarkup, StepperStepMarkupValues } from "./StepperStepEnum"
-import { is } from "../../../services/classify"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import Icon from "../../icon/Icon"
-import { IconSize } from "../../icon"
+import { is } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import Icon from "@/components/icon/Icon"
+import { IconSize } from "@/components/icon"
 
 /**
  * Stepper Step Component

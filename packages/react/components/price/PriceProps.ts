@@ -1,7 +1,7 @@
 import { PriceLevel, PriceLevelValues } from "./PriceEnum"
-import { Invertable } from "../../objects/facets/Invertable"
-import { Accessibility, AlertProps, AlignableProps } from "../../objects"
-import { Styles } from "../../types";
+import { Invertable } from "@/objects/facets/Invertable"
+import { Accessibility, AlertProps, AlignableProps } from "@/objects"
+import { Styles } from "@/types";
 
 /**
  * Price Interface

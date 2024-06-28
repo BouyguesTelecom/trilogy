@@ -3,8 +3,8 @@
  */
 import { ReactNode } from 'react'
 import { Animated } from 'react-native'
-import { Accessibility } from '../../../objects'
-import { IconName, IconNameValues } from '../../icon'
+import { Accessibility } from '@/objects'
+import { IconName, IconNameValues } from '@/components/icon'
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ProductTourProps } from "./ProductTourProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 import { View } from "react-native"
 
 /**

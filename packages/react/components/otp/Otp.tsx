@@ -1,11 +1,11 @@
-import { Text, TextMarkup } from "../text"
+import { Text, TextMarkup } from "@/components/text"
 import React, { useEffect, useMemo, useState } from "react"
 import { OtpProps } from "./OtpProps"
-import { TypographyColor } from "../../objects/Typography"
+import { TypographyColor } from "@/objects/Typography"
 import clsx from "clsx"
-import { hashClass } from "../../helpers/hashClassesHelpers"
-import { is } from "../../services/classify"
-import { useTrilogyContext } from "../../context/index"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { is } from "@/services/classify"
+import { useTrilogyContext } from "@/context/index"
 
 /**
  * OTP Code Component

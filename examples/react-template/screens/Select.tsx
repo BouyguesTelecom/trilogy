@@ -5,7 +5,7 @@ import * as React from 'react'
 export const SelectView = (): JSX.Element => {
   const [options, setOptions] = React.useState<string[]>(['opt_one', 'Venus'])
   const [optionsNullable, setOptionsNullable] = React.useState<string[]>(['opt_one', 'opt_two'])
-  const [option, setOption] = React.useState<string | undefined>('opt_one')
+  const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
 
   return (
@@ -123,7 +123,7 @@ export const SelectView = (): JSX.Element => {
           native
           name='option'
           label='label'
-          id='id'
+          id='select-native-id'
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {

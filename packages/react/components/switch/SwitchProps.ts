@@ -1,5 +1,5 @@
-import { AlertProps } from '../../objects/facets/Alert'
-import { Invertable } from '../../objects/facets/Invertable'
+import { AlertProps } from '@/objects/facets/Alert'
+import { Invertable } from '@/objects/facets/Invertable'
 
 export interface SwitchChangeEvent {
   switchState: boolean

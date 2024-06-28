@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { ColumnsItemProps } from './ColumnsItemProps'
-import { ColumnsContext } from '../Columns.native'
-import { getAlignStyle } from '../../../objects'
-import { ComponentName } from '../../enumsComponentsName'
+import { ColumnsContext } from '@/components/columns/Columns.native'
+import { getAlignStyle } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Columns Item Component - Columns Child

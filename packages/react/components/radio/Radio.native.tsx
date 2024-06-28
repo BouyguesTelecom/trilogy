@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react"
 import {StyleSheet, TouchableOpacity} from "react-native"
 import {RadioProps} from "./RadioProps"
 import shortid from "shortid"
-import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold,} from "../../objects"
-import {Icon, IconSize} from "../icon"
-import {Text, TextLevels} from "../text"
-import {View} from "../view"
-import {ComponentName} from "../enumsComponentsName"
+import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold,} from "@/objects"
+import {Icon, IconSize} from "@/components/icon"
+import {Text, TextLevels} from "@/components/text"
+import {View} from "@/components/view"
+import {ComponentName} from "@/components/enumsComponentsName"
 
 /**
  * Radio Native Component

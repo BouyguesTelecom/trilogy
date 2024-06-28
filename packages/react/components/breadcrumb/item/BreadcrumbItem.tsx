@@ -1,10 +1,10 @@
 import * as React from "react"
 import { BreadcrumbItemPropsWeb } from "./BreadcrumbItemProps"
-import { is } from "../../../services/classify"
+import { is } from "@/services/classify"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { Link } from '../../link'
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { Link } from '@/components/link'
 
 /**
  * Breadcrumb Item Component

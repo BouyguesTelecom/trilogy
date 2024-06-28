@@ -7,12 +7,12 @@ import {
   View,
 } from "react-native"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { hasDisplayName } from "./AccordionItem.helper"
-import { IconName } from "../../icon/IconNameEnum"
-import { Spacer, SpacerSize } from "../../spacer"
-import { Icon, IconSize } from "../../icon"
-import { ComponentName } from "../../enumsComponentsName"
+import { IconName } from "@/components/icon/IconNameEnum"
+import { Spacer, SpacerSize } from "@/components/spacer"
+import { Icon, IconSize } from "@/components/icon"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 interface AccordionChild {
   header?: React.ReactNode;

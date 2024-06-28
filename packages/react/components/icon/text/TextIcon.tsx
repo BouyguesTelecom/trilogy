@@ -1,15 +1,15 @@
 import * as React from "react"
-import Icon from "../Icon"
-import { IconProps } from "../IconProps"
+import Icon from "@/components/icon/Icon"
+import { IconProps } from "@/components/icon/IconProps"
 import {
   IconPosition,
   TextIconMarkup,
   TextIconMarkupValues,
-} from "../IconEnum"
-import { is } from "../../../services"
+} from "@/components/icon/IconEnum"
+import { is } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 const TextIcon = ({
   className,

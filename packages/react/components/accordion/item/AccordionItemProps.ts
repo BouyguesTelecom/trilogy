@@ -1,4 +1,4 @@
-import { ClickEvent } from '../../../events/OnClickEvent'
+import { ClickEvent } from '@/events/OnClickEvent'
 
 export type TargetElement = HTMLElement & {
   active?: boolean

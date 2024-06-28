@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Radio } from 'components/radio'
+import { Radio } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
 
@@ -60,6 +60,7 @@ const SelectOption = ({
       onClick={onClick}
       iconTile={iconName}
       description={label || children}
+      testId={testId}
       {...others}
     />
   )

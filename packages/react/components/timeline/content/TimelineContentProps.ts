@@ -1,7 +1,7 @@
 /**
  * Timeline Content Interface
  */
-import { Clickable } from '../../../objects'
+import { Clickable } from '@/objects'
 
 export interface TimelineContentProps extends Clickable {
   children?: React.ReactNode

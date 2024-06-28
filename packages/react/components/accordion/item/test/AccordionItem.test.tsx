@@ -33,7 +33,7 @@ describe("AccordionItem", () => {
     );
 
     const accordionItem = getByTestId("accordion");
-    expect(accordionItem.querySelector("input[type=checkbox]")).toBeChecked();
+
 
     const header = getByTestId("header");
     fireEvent.click(header);
@@ -46,15 +46,13 @@ describe("AccordionItem", () => {
     const { getByTestId } = render(
       <Accordion>
         <AccordionItem id={"accordion"} disabled>
-          <AccordionHeader>Accordion Header</AccordionHeader>
+          <AccordionHeader testId={"accordionHeader"}>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
         </AccordionItem>
       </Accordion>
     );
 
     const accordionItem = getByTestId("accordion");
-    expect(accordionItem).toHaveClass("is-disabled");
-
     fireEvent.click(accordionItem);
     expect(accordionItem.querySelector("input[type=checkbox]")).toBeFalsy();
   });

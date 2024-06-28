@@ -1,11 +1,11 @@
 import React, { createContext } from "react"
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native"
 import { CardProps } from "./CardProps"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { ComponentName } from "../enumsComponentsName"
-import { getBackgroundStyle } from "../../objects/atoms/Background"
-import { StatesContext } from "../../context/providerStates"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { getBackgroundStyle } from "@/objects/atoms/Background"
+import { StatesContext } from "@/context/providerStates"
 
 export const CardContext = createContext({
   floating: false,

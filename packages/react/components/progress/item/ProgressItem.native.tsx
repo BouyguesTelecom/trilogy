@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Animated } from 'react-native'
 import { ProgressItemProps } from './ProgressItemProps'
-import { ComponentName } from '../../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Progress Item component - Only if stacked

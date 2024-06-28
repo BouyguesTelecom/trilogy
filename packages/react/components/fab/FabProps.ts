@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from "../icon"
-import { Accessibility, Clickable, Position } from "../../objects"
+import { IconName, IconNameValues } from "@/components/icon"
+import { Accessibility, Clickable, Position } from "@/objects"
 import { DimensionValue } from "react-native"
 
 /**

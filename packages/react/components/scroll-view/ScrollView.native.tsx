@@ -6,9 +6,9 @@ import {
   View,
   RefreshControl,
 } from "react-native"
-import { getColorStyle, ScrollDirectionEnum } from "../../objects"
+import { getColorStyle, ScrollDirectionEnum } from "@/objects"
 import { ScrollViewProps } from "./ScrollViewProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Scroll View Component

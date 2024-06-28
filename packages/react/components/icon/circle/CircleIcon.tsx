@@ -1,15 +1,15 @@
 import * as React from "react"
-import { IconProps } from "../IconProps"
-import { IconStatus } from "../IconEnum"
-import { getStatusBackground, has, is } from "../../../services/index"
+import { IconProps } from "@/components/icon/IconProps"
+import { IconStatus } from "@/components/icon/IconEnum"
+import { getStatusBackground, has, is } from "@/services/index"
 import {
   getBackgroundClassName,
   getTextClassName,
   TrilogyColor,
-} from "../../../objects"
+} from "@/objects"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 const CircleIcon = ({
   className,

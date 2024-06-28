@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { is } from '../../services'
+import { is } from '@/services'
 import SegmentControlItem from './item'
 import { SegmentControlProps } from './SegmentControlProps'
-import { hashClass } from '../../helpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '@/context'
 
 /**
  * SegmentControl Component

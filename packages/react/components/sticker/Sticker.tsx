@@ -1,11 +1,11 @@
 import React from "react"
 import clsx from "clsx"
 import { StickerProps } from "./StickerProps"
-import { is } from "../../services/classify"
+import { is } from "@/services/classify"
 import { StickerMarkup, StickerMarkupValues } from "./StickerEnum"
-import { getVariantClassName } from "../../objects"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { getVariantClassName } from "@/objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Sticker component

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { ImageBackground, StyleSheet, View } from "react-native"
 import { SectionProps } from "./SectionProps"
-import { AutoLayoutWrapper } from "../autolayout"
-import { getBackgroundStyle, getColorStyle, TrilogyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { AutoLayoutWrapper } from "@/components/autolayout"
+import { getBackgroundStyle, getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

@@ -33,7 +33,7 @@ describe("Hero", () => {
       <Hero background={VariantState.MAIN}>My Hero Content</Hero>
     );
     const heroElement = container.querySelector(".hero");
-    expect(heroElement).toHaveClass("is-main");
+    expect(heroElement).toHaveClass("has-background-main");
   });
 
   it("adds alignment classes to the root element if align and justify props are provided", () => {

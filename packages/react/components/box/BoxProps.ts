@@ -1,6 +1,6 @@
-import { Accessibility, Clickable, Fullheight } from '../../objects'
-import { BackgroundProps } from '../../objects/atoms/Background'
-import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
+import { Accessibility, Clickable, Fullheight } from '@/objects'
+import { BackgroundProps } from '@/objects/atoms/Background'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 
 export enum BoxMarkup {
   DIV = 'div',

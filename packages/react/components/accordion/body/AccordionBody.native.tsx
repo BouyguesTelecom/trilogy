@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { AccordionBodyProps } from "./AccordionBodyProps"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Accordion Header

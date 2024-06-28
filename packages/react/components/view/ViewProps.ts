@@ -1,12 +1,10 @@
 import {
   Loadable,
-  TrilogyColor,
-  TrilogyColorValues,
   Clickable,
   Fullwidth,
   JustifiableProps,
   AlignableProps, BackgroundProps
-} from "../../objects"
+} from "@/objects"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }

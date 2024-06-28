@@ -1,9 +1,9 @@
 import clsx from "clsx"
 import React, { useEffect, useState } from "react"
 import { TabsItemProps } from "./TabsItemProps"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { Icon } from "../../icon"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { useTrilogyContext } from "@/context/index"
+import { Icon } from "@/components/icon"
 
 /**
  * Tabs Item Component

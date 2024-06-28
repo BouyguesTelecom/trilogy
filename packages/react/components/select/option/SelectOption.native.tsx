@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { TypographyBold } from '../../../objects/Typography'
-import { TrilogyColor, getColorStyle } from '../../../objects/facets/Color'
-import { Columns, ColumnsItem } from '../../columns'
-import { ComponentName } from '../../enumsComponentsName'
-import { Icon, IconSize } from '../../icon'
-import { Text } from '../../text'
+import { TypographyBold } from '@/objects/Typography'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import { Columns, ColumnsItem } from '@/components/columns'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { Text } from '@/components/text'
 import { SelectOptionProps } from './SelectOptionProps'
 
 /**

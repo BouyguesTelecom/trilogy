@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SpacerSize } from "../spacer"
+import { SpacerSize } from "@/components/spacer"
 import { SpacingMatrix } from "./SpacingMatrix"
 
 type EdgeType = "bottom" | "top";

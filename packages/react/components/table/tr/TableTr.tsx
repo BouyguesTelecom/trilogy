@@ -1,10 +1,10 @@
 import * as React from "react"
 import clsx from "clsx"
 import { TableTrProps } from "./TableTrProps"
-import { hashClass } from "../../..//helpers/hashClassesHelpers"
-import { is } from "../../../services/classify"
-import { useTrilogyContext } from "../../..//context/index"
-import { getColorClassName } from "../../../objects/facets/Color"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { is } from "@/services/classify"
+import { useTrilogyContext } from "@/context/index"
+import { getColorClassName } from "@/objects/facets/Color"
 
 /**
  * Table TR Component

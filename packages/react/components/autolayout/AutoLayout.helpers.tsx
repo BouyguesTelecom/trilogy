@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react"
 import { SpacingMatrix, SpacingMatrixMode } from "./SpacingMatrix"
-import { Spacer, SpacerSize } from "../spacer"
+import { Spacer, SpacerSize } from "@/components/spacer"
 import type { HandleBetweenChildren, ParseChildren } from "./AutoLayout.d"
-import type { TrilogyComponents } from "../index.d"
-import { ComponentName } from "../enumsComponentsName"
+import type { TrilogyComponents } from "@/components/index.d"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Test if an element is a React Fragment

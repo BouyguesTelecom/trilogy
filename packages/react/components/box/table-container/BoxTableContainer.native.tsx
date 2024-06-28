@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { BoxTableContainerProps } from "./BoxTableContainerProps"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Box Header Component

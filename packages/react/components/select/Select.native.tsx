@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { IconName } from '../icon'
-import { Input } from '../input'
-import { Modal } from '../modal'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Input } from '@/components/input'
+import { Modal } from '@/components/modal'
 import { SelectProps, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 

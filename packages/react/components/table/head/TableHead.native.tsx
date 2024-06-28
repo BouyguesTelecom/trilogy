@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { TableHeadProps } from "./TableHeadProps"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table Head Component

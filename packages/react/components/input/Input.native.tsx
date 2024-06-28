@@ -11,12 +11,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { AlertState, getAlertStyle } from '../../objects/facets/Alert'
-import { Alignable } from '../../objects/facets/Alignable'
-import { TrilogyColor, getColorStyle } from '../../objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon, IconName, IconSize } from '../icon'
-import { Text } from '../text'
+import { AlertState, getAlertStyle } from '@/objects/facets/Alert'
+import { Alignable } from '@/objects/facets/Alignable'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Text } from '@/components/text'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,

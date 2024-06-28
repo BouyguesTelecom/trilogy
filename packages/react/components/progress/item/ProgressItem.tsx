@@ -1,10 +1,10 @@
 import * as React from "react"
 import { ProgressItemProps } from "./ProgressItemProps"
-import { is } from "../../../services/index"
-import { getAlertClassName } from "../../../objects"
-import { hashClass } from "../../../helpers"
+import { is } from "@/services/index"
+import { getAlertClassName } from "@/objects"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Progress Item component - Only if stacked

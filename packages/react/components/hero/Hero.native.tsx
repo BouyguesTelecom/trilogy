@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { HeroProps } from "./HeroProps"
-import { getBackgroundStyle, TrilogyColor } from "../../objects"
+import { getBackgroundStyle, TrilogyColor } from "@/objects"
 import { Box } from "../box"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Hero Component

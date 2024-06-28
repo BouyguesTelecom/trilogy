@@ -1,11 +1,11 @@
 import * as React from "react"
 import clsx from "clsx"
 import { CardContentProps } from "./CardContentProps"
-import { Title, TitleLevels } from "../../title"
-import { Text } from "../../text"
-import { Button, ButtonMarkup } from "../../button"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { Title, TitleLevels } from "@/components/title"
+import { Text } from "@/components/text"
+import { Button, ButtonMarkup } from "@/components/button"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Card Content Component

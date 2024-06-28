@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { Text } from '../text'
+import { Text } from '@/components/text'
 import { TextareaProps } from './TextareaProps'
-import { has, is } from '../../services'
-import { Icon } from '../icon'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { has, is } from '@/services'
+import { Icon } from '@/components/icon'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Textarea Component

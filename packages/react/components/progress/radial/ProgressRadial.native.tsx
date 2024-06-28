@@ -2,11 +2,11 @@ import * as React from "react"
 import { Platform, StyleSheet, View } from "react-native"
 import { ProgressRadialProps } from "./ProgressRadialProps"
 import { AnimatedCircularProgress } from "./react-native-circular-progress"
-import { Text, TextLevels } from "../../text"
-import { getAlertStyle, getAlignStyle, TypographyAlign, } from "../../../objects"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import { Text, TextLevels } from "@/components/text"
+import { getAlertStyle, getAlignStyle, TypographyAlign, } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import ContentLoader, { Circle } from "react-content-loader/native"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Progress Radial component

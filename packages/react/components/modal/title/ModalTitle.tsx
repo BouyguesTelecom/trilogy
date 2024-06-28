@@ -1,9 +1,9 @@
 import * as React from "react"
-import { Icon } from "../../icon"
+import { Icon } from "@/components/icon"
 import { ModalTitleProps } from "./ModalTitleProps"
-import { hashClass } from "../../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Modal Title Component

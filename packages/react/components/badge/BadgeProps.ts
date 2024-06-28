@@ -1,6 +1,6 @@
-import { Clickable } from './../../objects/facets/Clickable'
+import { Clickable } from '@/objects/facets/Clickable'
 import { BadgeColor, BadgeColorValues, BadgeTextDirection, BadgeTextDirectionValues } from './BadgeEnum'
-import { Accessibility } from '../../objects'
+import { Accessibility } from '@/objects'
 
 /**
  * Badge Interface

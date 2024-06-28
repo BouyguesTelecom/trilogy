@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import { TabsProps } from './TabsProps'
-import { Text, TextLevels } from '../text'
+import { Text, TextLevels } from '@/components/text'
 import TabsItem from './item'
-import { getColorStyle, TrilogyColor } from '../../objects'
-import { ComponentName } from '../enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Tabs Component

@@ -1,4 +1,4 @@
-import { Accessibility, Clickable } from '../../../objects'
+import { Accessibility, Clickable } from '@/objects'
 
 /**
  * Selector Item Interface

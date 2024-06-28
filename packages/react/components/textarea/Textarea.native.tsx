@@ -6,11 +6,11 @@ import {
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
-} from "../input/InputEnum";
-import {getColorStyle, TrilogyColor} from "../../objects/facets/Color";
-import {AlertState, getAlertStyle} from "../../objects/facets/Alert";
-import {Icon, IconColor} from "../icon";
-import {ComponentName} from "../enumsComponentsName";
+} from "@/components/input/InputEnum";
+import {getColorStyle, TrilogyColor} from "@/objects/facets/Color";
+import {AlertState, getAlertStyle} from "@/objects/facets/Alert";
+import {Icon, IconColor} from "@/components/icon";
+import {ComponentName} from "@/components/enumsComponentsName";
 
 /**
  * Textarea Native Component

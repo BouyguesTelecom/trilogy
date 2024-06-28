@@ -1,8 +1,8 @@
 import React, { createContext } from "react"
 import { ScrollView, StyleSheet } from "react-native"
-import { View } from "../view"
+import { View } from "@/components/view"
 import { ColumnsProps } from "./ColumnsProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Columns Native Component

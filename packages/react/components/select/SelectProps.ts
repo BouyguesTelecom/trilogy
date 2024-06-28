@@ -1,4 +1,4 @@
-import { Accessibility } from '../../objects'
+import { Accessibility } from '@/objects'
 import { IconName, IconNameValues } from '../icon'
 
 export interface ISelectOption {

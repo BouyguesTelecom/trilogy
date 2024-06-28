@@ -1,10 +1,10 @@
 import * as React from "react"
 import { BoxFooterProps } from "./BoxFooterProps"
-import { getBackgroundClassName } from "../../../objects"
-import { has } from "../../../services/classify"
+import { getBackgroundClassName } from "@/objects"
+import { has } from "@/services/classify"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Box Footer Component

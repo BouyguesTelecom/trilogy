@@ -1,8 +1,8 @@
 import * as React from "react"
 import {Animated, Easing, StyleSheet} from "react-native"
 import {StepperStepProps} from "./StepperStepProps"
-import {getColorStyle, TrilogyColor} from "../../../objects"
-import {ComponentName} from "../../enumsComponentsName"
+import {getColorStyle, TrilogyColor} from "@/objects"
+import {ComponentName} from "@/components/enumsComponentsName"
 
 /**
  * Stepper Step Component

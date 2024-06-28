@@ -1,12 +1,12 @@
 import * as React from "react"
 import { ProgressProps } from "./ProgressProps"
-import { is, has } from "../../services/index"
+import { is, has } from "@/services/index"
 import { Text, TextLevels } from "../text"
 import { Columns, ColumnsItem } from "../columns"
-import { getAlertClassName } from "../../objects"
-import { hashClass } from "../../helpers"
+import { getAlertClassName } from "@/objects"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Progress component

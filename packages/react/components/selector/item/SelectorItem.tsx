@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { Text, TextMarkup } from '../../text'
+import { Text, TextMarkup } from '@/components/text'
 import { SelectorItemProps } from './SelectorItemProps'
 
 /**

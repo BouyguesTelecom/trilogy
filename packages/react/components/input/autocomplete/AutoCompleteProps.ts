@@ -1,4 +1,4 @@
-import { InputChangeEvent, InputClickEvent, InputProps } from '../InputProps'
+import { InputChangeEvent, InputClickEvent, InputProps } from '@/components/input/InputProps'
 
 /**
  * AutoComplete Interface

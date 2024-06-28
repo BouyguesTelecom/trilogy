@@ -1,4 +1,4 @@
-import { SpacerSize } from '../spacer'
+import { SpacerSize } from '@/components/spacer'
 import { SpacingMatrix, SpacingMatrixMode } from './SpacingMatrix'
 
 const { HUGE, LARGE, MEDIUM, SMALL, NONE } = SpacerSize

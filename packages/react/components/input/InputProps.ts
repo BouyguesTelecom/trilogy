@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TextInputSubmitEditingEventData, NativeSyntheticEvent } from 'react-native'
-import { Accessibility } from '../../objects/facets'
+import { Accessibility } from '@/objects/facets'
 
 import { IconName, IconNameValues } from '../icon'
 import {

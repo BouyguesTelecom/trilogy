@@ -2,11 +2,11 @@ import * as React from "react"
 import { useContext } from "react"
 import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { setTypographyAlign, setTypographyColor } from "../../objects"
+import { setTypographyAlign, setTypographyColor } from "@/objects"
 import { TitleProps } from "./TitleProps"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Title Native Component

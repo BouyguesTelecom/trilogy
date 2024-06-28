@@ -1,7 +1,7 @@
 /**
  * range Interface
  */
-import { Accessibility } from '../../objects'
+import { Accessibility } from '@/objects'
 
 export type InputChangeEventHandlerNative = (event: { inputValue: number[]; inputName: string }) => void
 export type InputChangeEventHandlerWeb = (event: { inputValue: number; inputName: string | undefined }) => void
