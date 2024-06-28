@@ -1,5 +1,5 @@
 import * as React from "react"
-import {Icon} from "@/components/icon"
+import Icon from "@/components/icon/Icon"
 import { IconProps } from "@/components/icon/IconProps"
 import {
   IconPosition,
