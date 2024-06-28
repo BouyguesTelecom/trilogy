@@ -1,16 +1,21 @@
 export default {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm', // or other ESM presets
   testEnvironment: 'jsdom',
   roots: ['<rootDir>'],
   moduleNameMapper: {
-    '^@/(.*)': '<rootDir>',
+    '^@/(.*)': '<rootDir>/$1',
   },
   //  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' } ),
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   snapshotResolver: '<rootDir>/snapshotResolver.ts',
   testRegex: ['/(components|context)/.*\\/test\\/(?!.*(?:native|snap)).*\\.test\\.(jsx?|tsx?)$'],
   transform: {
-    '^.+\\.[t|j]sx?$': 'ts-jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'css'],
   coveragePathIgnorePatterns: [

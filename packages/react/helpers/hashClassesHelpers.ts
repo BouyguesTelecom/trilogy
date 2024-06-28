@@ -1,4 +1,4 @@
-import hash from '@/hash.json'
+import hash from '../hash.json'
 
 /**
  * Used to hash classes if styled components
