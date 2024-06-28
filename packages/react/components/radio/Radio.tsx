@@ -43,6 +43,7 @@ const Radio = ({
   children,
   narrow,
   marginless,
+  testId,
   ...others
 }: RadioProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -71,6 +72,7 @@ const Radio = ({
       )}
     >
       <input
+        data-testid={testId}
         type='radio'
         readOnly={readonly}
         id={id}

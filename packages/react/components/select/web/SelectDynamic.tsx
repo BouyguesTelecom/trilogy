@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import React, { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 
-import { hashClass } from '@/helpers'
 import { Input } from '@/components/input'
 import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
-import {SelectOption} from '../'
 import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers'
+import { SelectOption } from '../'
 
 const SelectDynamic = ({
   onChange,
@@ -234,7 +234,7 @@ const SelectDynamic = ({
           e.preventDefault()
           onKeyPressInput(e.inputKeyCode)
         }}
-        {...{ readOnly: true, id }}
+        {...{ readOnly: true, id, role: 'listbox' }}
       />
       {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
       {focused && ReactDOM.createPortal(modal, document.body)}

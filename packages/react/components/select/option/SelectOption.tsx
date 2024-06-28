@@ -60,6 +60,7 @@ const SelectOption = ({
       onClick={onClick}
       iconTile={iconName}
       description={label || children}
+      testId={testId}
       {...others}
     />
   )
