@@ -155,7 +155,7 @@ const Input = ({
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
       return (
         <div
-          data-show-pwd
+        {...type === "password" && {"data-show-pwd":true}}
           onClick={() => {
             onPress && onPress()
             if (onIconClick) {

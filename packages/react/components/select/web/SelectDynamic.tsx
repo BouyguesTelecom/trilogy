@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom'
 import { hashClass } from '@/helpers'
 import { Input } from '@/components/input'
 import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
-import SelectOption from '../option'
-import { useTrilogyContext } from '@/context'
+import {SelectOption} from '../'
+import { useTrilogyContext } from '@/context/index'
 
 const SelectDynamic = ({
   onChange,

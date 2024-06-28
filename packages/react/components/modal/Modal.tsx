@@ -7,9 +7,9 @@ import {ModalMarkup, ModalMarkupValues} from "./ModalEnum"
 import ModalTitle from "./title/ModalTitle"
 import ModalFooter from "./footer/ModalFooter"
 import {ClickEvent, OnClickEvent} from "@/events/OnClickEvent"
-import {hashClass} from "@/helpers"
+import {hashClass} from "@/helpers/hashClassesHelpers"
 import clsx from "clsx"
-import {useTrilogyContext} from "@/context"
+import {useTrilogyContext} from "@/context/index"
 
 /**
  * Modal Component
