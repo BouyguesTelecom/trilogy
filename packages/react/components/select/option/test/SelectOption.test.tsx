@@ -13,9 +13,8 @@ describe("SELECT OPTION WEB", () => {
   };
 
   it("should be selected", () => {
-    const p = { ...props, selected: "opt_2" };
     const { getByTestId } = render(
-      <Select {...p}>
+      <>
         {[...Array(5)].map((item, i) => {
           const value = `opt_${i}`;
           return (
@@ -30,8 +29,9 @@ describe("SELECT OPTION WEB", () => {
             </SelectOption>
           );
         })}
-      </Select>
+      </>
     );
+
     const option = getByTestId(`opt_2`);
     expect(option).toHaveAttribute("aria-selected", "true");
     expect(option).toHaveAttribute("role", "option");
@@ -62,7 +62,7 @@ describe("SELECT OPTION WEB", () => {
     fireEvent.click(select);
     const option = getByTestId(`opt_2`);
     expect(option).toHaveAttribute("aria-selected", "false");
-    fireEvent.mouseUp(option);
+    fireEvent.click(option);
     expect(option).toHaveAttribute("aria-selected", "true");
   });
 
