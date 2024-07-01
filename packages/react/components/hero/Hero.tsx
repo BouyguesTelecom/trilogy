@@ -1,7 +1,7 @@
 import React from "react"
 import { HeroProps } from "./HeroProps"
 import { has, is } from "@/services/classify"
-import {getAlignClassName, getBackgroundClassName} from "@/objects"
+import { getAlignClassName, getBackgroundClassName } from "@/objects"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"

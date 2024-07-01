@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from "react"
-import {StyleSheet, TouchableOpacity, View} from "react-native"
-import {PaginationProps} from "./PaginationProps"
-import {Icon, IconName, IconSize} from "@/components/icon"
-import {getColorStyle, TrilogyColor} from "@/objects/facets/Color"
-import {ComponentName} from "@/components/enumsComponentsName"
-import {Pager} from "./PaginationEnum"
-import {Text} from "@/components/text"
+import React, { useEffect, useRef, useState } from "react"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { PaginationProps } from "./PaginationProps"
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Pager } from "./PaginationEnum"
+import { Text } from "@/components/text"
 
 /**
  * Pagination Component
@@ -144,7 +144,7 @@ const Pagination = ({
       </TouchableOpacity>
 
       <View
-        style={{flexDirection: "row", alignItems: 'center'}}>
+        style={{ flexDirection: "row", alignItems: 'center' }}>
         {!pager.pages.includes(1) && (
           <View>
             <Text style={styles.dotsLeft}>…</Text>
@@ -170,7 +170,7 @@ const Pagination = ({
           </View>
         ))}
         {!pager.pages.includes(totalCountPages) && (
-          <View style={{marginRight: 15}}>
+          <View style={{ marginRight: 15 }}>
             <Text style={styles.dotsRight}>…</Text>
           </View>
         )}

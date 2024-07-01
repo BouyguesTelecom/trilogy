@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity} from "react-native"
+import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 import NativeModal from "react-native-modal"
 import { ModalProps } from "./ModalProps"
 import { Text } from "@/components/text"
@@ -116,7 +116,7 @@ const Modal = ({
 
   useEffect(() => {
     setVisible(active)
-  },[active])
+  }, [active])
 
   useEffect(() => {
     if (visible) {
@@ -199,7 +199,7 @@ const Modal = ({
               <Animated.View
                 style={[
                   styles.childrenContainer,
-                  { transform: [{ translateY: translateAnim }],overflow: 'hidden'  }
+                  { transform: [{ translateY: translateAnim }], overflow: 'hidden'  }
                 ]}
               >
                 {closeIcon && (

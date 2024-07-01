@@ -1,3 +1,3 @@
-import ChipsList from "./ChipsList";
+import ChipsList from "./ChipsList"
 
-export default ChipsList;
+export default ChipsList

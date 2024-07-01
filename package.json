@@ -26,6 +26,7 @@
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
     "test": "npm --workspace=@trilogy-ds/react run test",
+    "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
     "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
   },
@@ -92,6 +93,7 @@
     "dotenv": "^16.4.5",
     "esbuild": "^0.19.12",
     "eslint": "^8.57.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.9.0",

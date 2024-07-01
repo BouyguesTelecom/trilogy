@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from "react"
+import React, { Dispatch, SetStateAction } from "react"
 import { ITrilogyTheme } from "./interfaces"
 
 export const defaultTheme: ITrilogyTheme = {

@@ -2,7 +2,7 @@ import { Accessibility, Clickable } from '@/objects/facets'
 import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
 import { IconName, IconNameValues } from '@/components/icon'
 import { TextLevels } from '@/components/text'
-import { Styles } from "@/types";
+import { Styles } from "@/types"
 
 /**
  * Link Interface

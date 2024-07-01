@@ -3,8 +3,7 @@ import { useTrilogyContext } from "@/context"
 import { FabProps } from "./FabProps"
 import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { IconName } from "@/components/icon"
-import {Icon} from "@/components/icon"
+import { IconName, Icon } from "@/components/icon"
 import { is } from "@/services"
 
 /**

@@ -1,5 +1,5 @@
 import { getColorClassName, getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
-import {Invertable} from "@/objects/facets";
+import { Invertable } from "@/objects/facets"
 
 /**
  * Background props
@@ -8,7 +8,6 @@ export interface BackgroundProps extends Invertable {
   background?: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
   backgroundSrc?: string
 }
-
 
 /**
  * Returns background's classname depending on background type
