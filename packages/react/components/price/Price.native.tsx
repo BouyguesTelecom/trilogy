@@ -1,12 +1,12 @@
-import React, {useContext, useMemo} from "react"
-import {StyleSheet, Text, View} from "react-native"
+import React, { useContext, useMemo } from "react"
+import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
-import {PriceProps} from "./PriceProps"
-import {PriceLevel} from "./PriceEnum"
-import {Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor} from "../../objects"
-import {checkCents} from "./PriceHelpers"
-import {ComponentName} from "@/components/enumsComponentsName"
-import {StatesContext} from "@/context/providerStates"
+import { PriceProps } from "./PriceProps"
+import { PriceLevel } from "./PriceEnum"
+import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { checkCents } from "./PriceHelpers"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Price Component
@@ -180,7 +180,7 @@ const Price = ({
       height: 1,
       backgroundColor: (inverted && invertedColor) || primaryColor,
       width: period ? "96%" : "100%",
-      transform: [{rotate: inline ? "-10deg" : strikedRotateByLevel()}],
+      transform: [{ rotate: inline ? "-10deg" : strikedRotateByLevel() }],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -210,7 +210,7 @@ const Price = ({
       height: level && level > 3 ? 8 : 10,
       backgroundColor: getColorStyle(TrilogyColor.ACCENT),
       borderRadius: level && level > 3 ? 2 : 3,
-      transform: [{ rotate: '45deg'}],
+      transform: [{ rotate: '45deg' }],
       marginRight: level && level > 3 ? -5 : -6,
     },
     tagTextAmount: {
@@ -236,7 +236,7 @@ const Price = ({
       : "NotSpecified"
 
   return (
-    <View style={tagAmount ? {flexDirection: 'row', alignItems: 'center'} : {}}>
+    <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
       {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
       <View
         style={[styles.container, style?.container]}
@@ -246,7 +246,7 @@ const Price = ({
         {...others}
       >
         {inline ? (
-          <View style={[styles.priceContainer, {flexDirection: "row"}]}>
+          <View style={[styles.priceContainer, { flexDirection: "row" }]}>
             {striked && <Text style={[styles.striked, style?.striked]}></Text>}
             <Text style={[styles.price, style?.price]}>
               {whole}€{showCents && cents}
@@ -257,7 +257,7 @@ const Price = ({
             </Text>
           </View>
         ) : (
-          <View style={[{flexDirection: "row"}]}>
+          <View style={[{ flexDirection: "row" }]}>
             {striked && <Text style={[styles.striked, style?.striked]}></Text>}
             <View style={[styles.priceContainer, style?.priceContainer]}>
               <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>

@@ -1,12 +1,12 @@
 import * as React from "react"
 import clsx from "clsx"
-import {PriceProps} from "./PriceProps"
-import {has, is} from "@/services/classify"
-import {Text, TextMarkup} from "../text"
-import {Alignable, TypographyColor, TypographyBold} from "@/objects"
-import {checkCents} from "./PriceHelpers"
-import {hashClass} from "@/helpers"
-import {useTrilogyContext} from "@/context"
+import { PriceProps } from "./PriceProps"
+import { has, is } from "@/services/classify"
+import { Text, TextMarkup } from "../text"
+import { Alignable, TypographyColor, TypographyBold } from "@/objects"
+import { checkCents } from "./PriceHelpers"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Price Component
@@ -49,7 +49,7 @@ const Price = ({
                  tagSymbol,
                  ...others
                }: PriceProps): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,

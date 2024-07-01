@@ -116,7 +116,10 @@ module.exports = {
       version: 'detect',
     },
     'import/resolver': {
-      typescript: {},
+      alias: {
+        map: [['@', './packages/react']],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
     },
     'import/ignore': ['react-native'],
   },

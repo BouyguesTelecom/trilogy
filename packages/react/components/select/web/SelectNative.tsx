@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
 import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
-import {SelectOption} from '@/components/select'
+import { SelectOption } from '@/components/select'
 import { useTrilogyContext } from '@/context/index'
 
 const SelectNative = ({

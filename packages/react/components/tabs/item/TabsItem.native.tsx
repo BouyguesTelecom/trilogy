@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react"
-import {Animated, StyleSheet, TouchableOpacity, View} from "react-native"
-import {TabsItemProps} from "./TabsItemProps"
-import {getColorStyle, TrilogyColor} from "@/objects/facets/Color"
-import {ComponentName} from "@/components/enumsComponentsName"
-import {Icon} from "@/components/icon"
-import {Text, TextLevels} from "@/components/text"
+import React, { useEffect, useState } from "react"
+import { Animated, StyleSheet, TouchableOpacity, View } from "react-native"
+import { TabsItemProps } from "./TabsItemProps"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Icon } from "@/components/icon"
+import { Text, TextLevels } from "@/components/text"
 
 /**
  * Tabs Item Component

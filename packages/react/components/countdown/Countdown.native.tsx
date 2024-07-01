@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, View} from 'react-native'
-import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
-import {CountdownFormat, CountdownUnite} from './CountdownEnum'
-import {CountdownProps} from './CountdownProps'
-import {ComponentName} from '@/components/enumsComponentsName'
-import {Text, TextLevels} from '@/components/text'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, View } from 'react-native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { CountdownFormat, CountdownUnite } from './CountdownEnum'
+import { CountdownProps } from './CountdownProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text, TextLevels } from '@/components/text'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -12,7 +12,7 @@ const calculateTimer = (timeDifference: number) => {
   const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24)
   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
-  return {days, hours, minutes, seconds}
+  return { days, hours, minutes, seconds }
 }
 
 /**
@@ -24,7 +24,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  * @param others
  */
-const Countdown = ({deadline, format, event, small, centered, ...others}: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, format, event, small, centered, ...others }: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()

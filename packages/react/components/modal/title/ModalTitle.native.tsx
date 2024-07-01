@@ -1,15 +1,15 @@
 import * as React from "react"
 import { ModalTitleProps } from "./ModalTitleProps"
-import {ComponentName} from "@/components/enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 import { View } from "@/components/view"
-import {Icon} from "@/components/icon"
-import {Title, TitleLevels} from "@/components/title"
+import { Icon } from "@/components/icon"
+import { Title, TitleLevels } from "@/components/title"
 
 const styles = {
   padding: 8,
   position: "sticky",
   top: "0px",
-  width:"100%",
+  width: "100%",
 
 }
 

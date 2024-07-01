@@ -9,7 +9,7 @@ import {
   TrilogyColor,
   getButtonColorStyle,
   getColorStyle,
-  getLoadingClassName, 
+  getLoadingClassName,
   getVariantClassName
 } from "@/objects/facets"
 import { ComponentName } from "@/components/enumsComponentsName"

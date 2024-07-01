@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useState} from "react"
-import {GestureResponderEvent, StyleSheet, TouchableOpacity,} from "react-native"
-import {ChipsProps} from "./ChipsProps"
-import {Text, TextLevels} from "@/components/text"
-import {getColorStyle, TrilogyColor} from "@/objects/facets/Color"
-import {Icon, IconColor, IconName, IconSize} from "../icon"
-import {ChipsContext} from "./list/ChipsList.native"
-import {Spacer, SpacerSize} from "@/components/spacer"
-import {ComponentName} from "@/components/enumsComponentsName"
+import React, { useContext, useEffect, useState } from "react"
+import { GestureResponderEvent, StyleSheet, TouchableOpacity, } from "react-native"
+import { ChipsProps } from "./ChipsProps"
+import { Text, TextLevels } from "@/components/text"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { Icon, IconColor, IconName, IconSize } from "../icon"
+import { ChipsContext } from "./list/ChipsList.native"
+import { Spacer, SpacerSize } from "@/components/spacer"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Chips Component - has to be in a ChipsList component

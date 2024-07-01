@@ -55,5 +55,5 @@ export const getTypographyBoldStyle = (typo?: string | Array<string>, level?: Te
     (level && level == 'TWO' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)||
     (level && level == 'THREE' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular) ||
     (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular
-  );
+  )
 }
