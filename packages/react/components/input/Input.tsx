@@ -37,7 +37,6 @@ interface IconWrapper {
  * @param customValidator {Function} custom function validator
  * @param onStatusChange {Function} status change event
  * @param help {string} Help for input
- * @param search {boolean} define if input is a search type
  * @param ref Pass a ref for input
  * @param onSubmit {Function} onSubmit Event
  * @param maxLength {number} Textarea max length
@@ -94,7 +93,6 @@ const Input = ({
   status,
   help,
   iconClassname,
-  search = false,
   reference,
   onStatusChange,
   customValidator,
@@ -135,9 +133,9 @@ const Input = ({
   )
   const controlClasses = hashClass(
     styled,
-    clsx('control', hasPlaceholder && !search && has('dynamic-placeholder'), {
+    clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
       [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
-      ['has-icons-left']: customIconLeft || search,
+      ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
     }),
   )
 
@@ -278,7 +276,7 @@ const Input = ({
             setIsFocused(false)
           }}
         />
-        {hasPlaceholder && !search && <label>{placeholder}</label>}
+        {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
         {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
           <IconWrapper className={iconClassname} name={inputIcon.get(localStatus)} />
         )}
@@ -306,7 +304,7 @@ const Input = ({
           />
         )}
         {customIcon && localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
-        {search && !customIcon && localStatus === 'default' && !loading && (
+        {type === InputType.SEARCH && !customIcon && localStatus === 'default' && !loading && (
           <IconWrapper color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} closeIconSearch={true} />
         )}
         {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
