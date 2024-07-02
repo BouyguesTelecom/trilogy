@@ -44,7 +44,8 @@
     "./snapshotResolver.ts",
     "./fileTransformer.cjs",
     "./package.json",
-    "./coverage"
+    "./coverage",
+    "**/test/**",
   ],
   "ts-node": {
     "compilerOptions": {

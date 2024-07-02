@@ -18,11 +18,7 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'css'],
-  coveragePathIgnorePatterns: [
-    '<rootDir>/objects/Typography',
-    '<rootDir>/objects/atoms',
-    '<rootDir>/objects/facets',
-    '<rootDir>/services',
-    '<rootDir>/components/select',
+  testPathIgnorePatterns: [
+    '<rootDir>/lib',
   ],
 }
