@@ -21,6 +21,9 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm run lint
+          npm run test
+          npm run check-types
 
       - name: Extract version tag
         id: get_version
