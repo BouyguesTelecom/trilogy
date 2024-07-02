@@ -55,7 +55,7 @@
 
       &:focus,
       &:focus-visible {
-        padding-left: 55px;
+        padding-left: 55px !important;
         padding-right: 55px;
       }
     }
