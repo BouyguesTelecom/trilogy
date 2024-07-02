@@ -14,7 +14,7 @@ import {
   TypographyBold,
   TypographyColor,
   TypographyTransform,
-} from "../../..";
+} from "../../../objects";
 
 import {TitleMarkup } from "../TitleEnum";
 

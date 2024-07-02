@@ -8,8 +8,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Text, TextLevels, TextMarkup } from '../'
-import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../..'
+import { Text, TextLevels, TextMarkup } from '..'
+import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../../objects'
 
 describe('Text component', () => {
   test('should have "text" className', () => {

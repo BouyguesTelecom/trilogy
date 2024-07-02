@@ -3,7 +3,7 @@ import * as React from 'react'
 
 // Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
-import { getColorClassName } from '../../..'
+import { getColorClassName } from '../../../objects'
 import { getEnumNames } from '../../../helpers'
 import { has, is } from '../../../services'
 
