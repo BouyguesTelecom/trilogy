@@ -141,7 +141,7 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabledIcon: {
-      color: getColorStyle(TrilogyColor.DISABLED),
+      color: getColorStyle(TrilogyColor.DISABLED,1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
