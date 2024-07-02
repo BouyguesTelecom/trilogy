@@ -110,7 +110,6 @@ const Alert = ({
   onClick,
   display,
   testId,
-  toaster,
   ...others
 }: AlertProps): JSX.Element => {
   const { styled } = useTrilogyContext()

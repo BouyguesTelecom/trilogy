@@ -15,7 +15,6 @@ const AccordionHeader = ({
   children,
   className,
   testId,
-  dataId,
   ...others
 }: AccordionHeaderProps): React.JSX.Element => {
   const { styled } = useTrilogyContext()

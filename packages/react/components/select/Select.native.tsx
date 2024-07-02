@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { TouchableOpacity } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { Modal } from '@/components/modal'
@@ -18,13 +17,11 @@ import SelectOption from './option'
  */
 const Select = ({
   children,
-  name,
   id,
   selected,
   label,
   iconName,
   onChange,
-  placeholder,
   disabled,
   multiple,
   nullable,
@@ -52,8 +49,8 @@ const Select = ({
   }, [selected])
 
   const handleOpenCloseModal = useCallback(() => {
-    setDisplay((prev) => !prev)
-  }, [])
+    !disabled && setDisplay((prev) => !prev)
+  }, [disabled])
 
   const isChecked = useCallback(
     (value: string) =>
@@ -64,7 +61,7 @@ const Select = ({
   )
 
   const setNewSelectedValues = useCallback(
-    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
+    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: string }) => {
       const selectedOptions: string[] = []
       if (isChecked) {
         setSelectedValues((prev) => {
@@ -150,21 +147,24 @@ const Select = ({
   }, [multiple, nullable, selectedValues, children])
 
   return (
-    <TouchableOpacity onPress={handleOpenCloseModal}>
+    <>
       <Input
+        onIconClick={handleOpenCloseModal}
+        onClick={handleOpenCloseModal}
+        disabled={disabled}
         placeholder={label}
         hasIcon={!!iconName}
         customIconLeft={iconName}
         value={selectedNames.join(', ')}
         defaultValue={selectedNames.join(', ')}
         customIconRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
-        {...{ editable: false, onPressIn: handleOpenCloseModal }}
+        {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
         {...others}
       />
       <Modal active={display} onClose={handleOpenCloseModal} swipable={false} bottom={false}>
         {options}
       </Modal>
-    </TouchableOpacity>
+    </>
   )
 }
 

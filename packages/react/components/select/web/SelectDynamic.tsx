@@ -58,7 +58,7 @@ const SelectDynamic = ({
   )
 
   const setNewSelectedValues = useCallback(
-    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
+    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: string }) => {
       const selectedOptions: string[] = []
       if (isChecked) {
         setSelectedValues((prev) => {
@@ -162,6 +162,8 @@ const SelectDynamic = ({
           setFocusedIndex(-1)
           setIsFocused(false)
           break
+          default:
+            return
       }
     }
     focused && document.addEventListener('keydown', onKeyDown)

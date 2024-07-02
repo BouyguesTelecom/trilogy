@@ -2,6 +2,6 @@ import type { ImageSourcePropType } from "react-native"
 
 export interface ITrilogyTheme {
   icons?: { [key: string]: ImageSourcePropType };
-  colors: any;
-  fontFamily?: any;
+  colors: { [key: string]: string[] };
+  fontFamily?: { [key: string]: string };
 }

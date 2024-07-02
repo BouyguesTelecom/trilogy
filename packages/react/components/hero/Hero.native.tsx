@@ -37,7 +37,6 @@ const Hero = ({
   const overlapMargin = backgroundHeight
     ? overlapHeight - backgroundHeight / 2
     : overlapHeight - 60
-  const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60
 
   const styles = StyleSheet.create({
     hero: {

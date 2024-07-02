@@ -61,7 +61,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   ...others
 }: AutoCompleteProps<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { Input }: { Input: React.ComponentType<InputProp> } = others as any
+  const { Input } = others as { Input: React.ComponentType<InputProp> }
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(value ?? '')
@@ -165,6 +165,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
+        defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
         reference={reference}

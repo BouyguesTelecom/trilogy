@@ -15,17 +15,14 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param children {React.ReactNode}
  */
 const SelectOption = ({
-  id,
-  value,
   disabled,
   children,
   onClick,
   label,
   iconName,
-  testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const { checked }: any = others
+  const { checked } = others as {checked:string}
 
   const styles = React.useMemo(
     () =>

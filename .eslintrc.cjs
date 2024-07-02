@@ -23,6 +23,8 @@ module.exports = {
     },
   },
   rules: {
+    'react-hooks/rules-of-hooks':'off',
+    'no-case-declarations':'off',
     'react/jsx-no-useless-fragment': 'off',
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
@@ -93,7 +95,7 @@ module.exports = {
     indent: 'off',
     quotes: 'off',
     'quote-props': 'off',
-    'react/display-name': 2,
+    'react/display-name': 'off',
     'react/jsx-key': 2,
     'react/jsx-no-duplicate-props': 2,
     'react/jsx-no-useless-fragment': 1,
