@@ -18,6 +18,7 @@ export const SelectView = (): JSX.Element => {
         <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
+          disabled
           name='option'
           label='label'
           id='id'

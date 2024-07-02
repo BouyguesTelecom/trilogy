@@ -87,7 +87,6 @@ const Input = ({
   defaultValue,
   value,
   loading,
-  hovered,
   focused,
   hasIcon,
   customIcon,

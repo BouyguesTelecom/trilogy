@@ -28,7 +28,7 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const { checked, native, focused, ...props }: any = others
+  const { checked, native, focused, ...props } = others as {checked:boolean, native:boolean, focused:boolean}
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {

@@ -37,7 +37,6 @@ const Modal = ({
                  title,
                  content,
                  iconName,
-                 iconColor,
                  triggerContent,
                  ctaContent,
                  ctaOnClick,

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Animated, Easing, StyleSheet } from "react-native"
+import { Animated, ColorValue, Easing, StyleSheet } from "react-native"
 import { StepperStepProps } from "./StepperStepProps"
 import { getColorStyle, TrilogyColor } from "@/objects"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -25,7 +25,7 @@ const StepperStep = ({
   const defaultColor = getColorStyle(TrilogyColor.FONT, 1)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
   const errorColor = getColorStyle(TrilogyColor.ERROR)
-  const backgroundColorAnim: any = React.useRef(new Animated.Value(0)).current
+  const backgroundColorAnim = React.useRef(new Animated.Value(0)).current
 
   const backgroundColor = backgroundColorAnim.interpolate({
     inputRange: [0, 1, 2],
@@ -62,7 +62,7 @@ const StepperStep = ({
       height: 4,
       marginRight: 8,
       borderRadius: 4,
-      backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor as unknown as ColorValue,
       zIndex: 1,
     },
   })

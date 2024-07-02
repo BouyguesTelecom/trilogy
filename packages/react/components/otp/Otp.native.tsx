@@ -33,9 +33,8 @@ const Otp = ({
 }: OtpProps): JSX.Element => {
   const [codeInput, setCodeInput] = useState<string>(code || "")
   // eslint-disable-next-line prefer-spread
-  const [codeDigitsArray] = useState(
-    Array.apply(null, Array(codeSize)).map((_val, idx) => idx)
-  )
+  const [codeDigitsArray] = useState([...Array(codeSize).keys()])
+
   const [focused, setFocused] = useState(false)
   const color =
     (disabled && getColorStyle(TrilogyColor.DISABLED)) ||

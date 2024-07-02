@@ -10,7 +10,6 @@ import { useTrilogyContext } from '@/context/index'
 
 const SelectNative = ({
   onChange,
-  nullable,
   disabled,
   onFocus,
   onBlur,

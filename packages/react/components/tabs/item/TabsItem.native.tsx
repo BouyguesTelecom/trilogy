@@ -17,15 +17,14 @@ const TabsItem = ({
                     active,
                     children,
                     onClick,
-                    tabIndex,
                     iconName,
                     inverted,
                     disabled,
                     ...others
                   }: TabsItemProps): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const [isPressIn, setInPressIn] = useState<boolean>(false)
+  const [, setActiveItem] = useState<boolean>(active || false)
+  const [, setInPressIn] = useState<boolean>(false)
 
   const animatedBorderStyle = {
     borderBottomWidth: active && 2 || 0,
