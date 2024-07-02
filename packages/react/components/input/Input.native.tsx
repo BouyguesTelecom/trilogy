@@ -44,7 +44,6 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param defaultValue {string} Default Value for Input
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param help {string} Help for input
- * @param search {boolean} define if input is a search type
  * @param hasIcon {boolean} Input Has Icon, Precise IconName with customIcon
  * @param ref Pass a ref for input
  * @param customIcon {IconName} Adding if you want custom icon
@@ -75,7 +74,6 @@ const Input = ({
   type,
   hasIcon,
   customIcon,
-  search,
   reference,
   keyboardStyle,
   autoCapitalize,
@@ -118,11 +116,11 @@ const Input = ({
   const sizeAnimation = useRef(new Animated.Value(placeholderDefaultSize)).current
 
   const paddingTopByPlatform = (os: PlatformOSType, dynamicPlaceholder: boolean): number => {
-    if (dynamicPlaceholder && !search && os === 'ios') {
+    if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'ios') {
       return isFocused ? 9 : 10
     }
 
-    if (dynamicPlaceholder && !search && os === 'android') {
+    if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'android') {
       return isFocused ? 14 : 15
     }
 
@@ -166,7 +164,7 @@ const Input = ({
   }, [placeholder, value])
 
   useEffect(() => {
-    if (dynamicPlaceholder && !search) {
+    if (dynamicPlaceholder && type !== InputType.SEARCH) {
       Animated.timing(animation, {
         toValue: 3,
         duration: animationDuration,
@@ -208,11 +206,11 @@ const Input = ({
   const styles = StyleSheet.create({
     input: {
       paddingLeft:
-        ((customIconLeft || search) && 40) ||
-        (((customIconLeft && isFocused) || (search && isFocused)) && 39) ||
-        (!customIconLeft && !search && isFocused && 9) ||
+        ((customIconLeft || type === InputType.SEARCH) && 40) ||
+        (((customIconLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||
+        (!customIconLeft && type !== InputType.SEARCH && isFocused && 9) ||
         10,
-      paddingRight: ((customIcon || customIconRight || search) && 32) || 0,
+      paddingRight: ((customIcon || customIconRight || type === InputType.SEARCH) && 32) || 0,
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
       width: hasIcon && (status || customIcon) ? '85%' : '95%',
       height: 46,
@@ -309,7 +307,7 @@ const Input = ({
       testID={inputTestId}
     >
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
-        {dynamicPlaceholder && !search && (
+        {dynamicPlaceholder && type !== InputType.SEARCH && (
           <Animated.Text style={[styles.dynamicPlaceholder, { top: animation, fontSize: sizeAnimation }]}>
             {placeholder}
           </Animated.Text>
@@ -383,7 +381,7 @@ const Input = ({
             />
           )}
         {hasIcon &&
-          !search &&
+          type !== InputType.SEARCH &&
           ((status && status !== InputStatus.DEFAULT) || customIcon || customIconRight) &&
           type !== InputType.PASSWORD && (
             <TouchableOpacity
@@ -454,7 +452,7 @@ const Input = ({
             </TouchableOpacity>
           </>
         )}
-        {search && !status && (
+        {type === InputType.SEARCH && !status && (
           <>
             <View style={styles.inputContainerLeft}>
               <Icon
