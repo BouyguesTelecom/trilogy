@@ -21,7 +21,7 @@ jobs:
         id: get_version
         run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
 
-      - name: Publish React package on NPM 📦
+      - name: Change version for React package :pushpin:
         run: |
           npm version --workspace packages/react --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}
 
