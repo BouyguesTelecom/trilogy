@@ -27,22 +27,19 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
+    (disabled && getColorStyle(TrilogyColor.NEUTRAL, 1)) ||
     (typeof loading === "string" &&
     getLoadingClassName(loading) === "loading" &&
     getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (typeof loading === "boolean" &&
     loading &&
     getColorStyle(TrilogyColor.NEUTRAL)) ||
-    (disabled && variant && getColorStyle(TrilogyColor.DISABLED, 1)) ||
     (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
       getColorStyle(TrilogyColor.MAIN, 1)) ||
     (variant === ButtonVariant.CONVERSION &&
       getColorStyle(TrilogyColor.ACCENT, 1)) ||
     (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-    (disabled &&
-      variant === ButtonVariant.PRIMARY &&
-      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     getColorStyle(TrilogyColor.MAIN, 1)
   )
@@ -137,7 +134,7 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabled: {
-      color: getColorStyle(TrilogyColor.DISABLED),
+      color: getColorStyle(TrilogyColor.DISABLED,1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
