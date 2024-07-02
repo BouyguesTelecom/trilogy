@@ -103,6 +103,9 @@
       outline: none;
       padding: 6px 14px;
       font-size: $text-14;
+      @include desktop {
+        font-size: $text-16;
+      }
       border: 0px solid transparent;
       border-bottom: 2px solid transparent;
 

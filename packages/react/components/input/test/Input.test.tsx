@@ -359,7 +359,7 @@ describe("Input", () => {
   it("should have icon search right with click event", () => {
     const mockCallBack = jest.fn();
     const { getByTestId } = render(
-      <Input onIconClick={mockCallBack} search testId="input" />
+      <Input onIconClick={mockCallBack} type={InputType.SEARCH} testId="input" />
     );
     const input = getByTestId("input");
     expect(input.nextElementSibling?.firstChild).toHaveClass("icon");
