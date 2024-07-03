@@ -1,8 +1,8 @@
-import { Clickable } from "../../objects/facets"
-import { AlignableProps } from "../../objects/facets/Alignable"
-import { JustifiableProps } from "../../objects/facets/Justifiable"
+import { Clickable } from "@/objects/facets"
+import { AlignableProps } from "@/objects/facets/Alignable"
+import { JustifiableProps } from "@/objects/facets/Justifiable"
 import { BackgroundHeight } from "./heroEnum"
-import { BackgroundProps } from "../../objects/atoms/Background"
+import { BackgroundProps } from "@/objects/atoms/Background"
 
 /**
  * Hero Interface

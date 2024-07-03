@@ -1,6 +1,6 @@
-import { Accessibility, AlertProps } from '../../../objects'
-import { IconName, IconNameValues } from '../../icon'
-import { ToasterAlertPosition } from '../AlertProps'
+import { Accessibility, AlertProps } from '@/objects'
+import { IconName, IconNameValues } from '@/components/icon'
+import { ToasterAlertPosition } from '@/components/alert/AlertProps'
 
 /**
  * @param title {string} Notification title content

@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import * as React from 'react'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
-import { TrilogyColor, getColorClassName } from '../../../objects'
-import { has, is } from '../../../services'
-import { Divider } from '../../divider'
-import { Icon, IconName, IconSize } from '../../icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { TrilogyColor, getColorClassName } from '@/objects'
+import { has, is } from '@/services'
+import { Divider } from '@/components/divider'
+import { Icon, IconName, IconSize } from '@/components/icon'
 import { ListItemProps } from './ListItemProps'
 
 /**

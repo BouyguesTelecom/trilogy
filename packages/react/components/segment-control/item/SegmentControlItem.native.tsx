@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
 import { SegmentControlItemProps } from "./SegmentControlItemProps"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
-import { ComponentName } from "../../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * SegmentControlItem Item Component

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet, Platform } from 'react-native'
-import { Text, TextLevels } from '../../text'
-import { IconPosition } from '../IconEnum'
+import { Text, TextLevels } from '@/components/text'
+import { IconPosition } from '@/components/icon/IconEnum'
 import { TextIconProps } from './TextIconProps'
-import { Alignable, getAlignStyle } from '../../../objects/facets/Alignable'
+import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../../enumsComponentsName'
-import { TrilogyThemeContext } from "../../../context/providerTheme.native"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TrilogyThemeContext } from "@/context/providerTheme.native"
 
 const TextIcon = ({
   name,

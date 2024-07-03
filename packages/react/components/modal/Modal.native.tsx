@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity} from "react-native"
+import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 import NativeModal from "react-native-modal"
 import { ModalProps } from "./ModalProps"
-import { Text } from "../text"
-import { Button, ButtonVariant } from "../button"
-import { View } from "../view"
-import { Icon, IconName, IconSize } from "../icon"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
+import { Text } from "@/components/text"
+import { Button, ButtonVariant } from "@/components/button"
+import { View } from "@/components/view"
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 import ModalTitle from "./title/ModalTitle"
 import ModalFooter from "./footer/ModalFooter"
 
@@ -37,7 +37,6 @@ const Modal = ({
                  title,
                  content,
                  iconName,
-                 iconColor,
                  triggerContent,
                  ctaContent,
                  ctaOnClick,
@@ -116,7 +115,7 @@ const Modal = ({
 
   useEffect(() => {
     setVisible(active)
-  },[active])
+  }, [active])
 
   useEffect(() => {
     if (visible) {
@@ -199,7 +198,7 @@ const Modal = ({
               <Animated.View
                 style={[
                   styles.childrenContainer,
-                  { transform: [{ translateY: translateAnim }],overflow: 'hidden'  }
+                  { transform: [{ translateY: translateAnim }], overflow: 'hidden'  }
                 ]}
               >
                 {closeIcon && (

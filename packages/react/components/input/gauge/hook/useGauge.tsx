@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
 
-import { IValidationRules } from 'components/input/InputProps'
-import { TrilogyColor, getColorStyle } from '../../../../objects'
-import { IconColor } from '../../../icon'
+import { IValidationRules } from '@/components/input/InputProps'
+import { TrilogyColor, getColorStyle } from '@/objects'
+import { IconColor } from '@/components/icon'
 
 interface IParams {
   validationRules?: IValidationRules
@@ -47,6 +47,8 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
         return `Minimum ${validationRules?.length?.min} caractères`
       case validationRules?.length?.max && !validationRules?.length?.min:
         return `Maximum ${validationRules?.length?.max} caractères`
+        default:
+          return ''
     }
   }, [validationRules?.length?.min, validationRules?.length?.max])
 
@@ -57,7 +59,7 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
     const validations = []
 
     validationRules?.specialChars &&
-      validations.push({ test: /[^\w\*]/.test(inputValue), setState: setIsSpecialCharsVerify })
+      validations.push({ test: /[^\w]/.test(inputValue), setState: setIsSpecialCharsVerify })
     validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), setState: setIsNumberVerify })
     validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), setState: setIsUppercaseVerify })
     validationRules?.lowercase && validations.push({ test: /[a-z]/.test(inputValue), setState: setisLowerercaseVerify })

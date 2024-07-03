@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Text } from "../../../text"
-import { View } from "../../../view"
+import { Text } from "@/components/text"
+import { View } from "@/components/view"
 import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
-import { ComponentName } from "../../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 const ListItemDescription = ({
   children,

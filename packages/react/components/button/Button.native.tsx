@@ -5,15 +5,16 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native"
-import { getLoadingClassName, getVariantClassName } from "../../objects"
 import {
   TrilogyColor,
   getButtonColorStyle,
   getColorStyle,
-} from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
-import { Icon, IconSize } from "../icon"
-import { View } from "../view"
+  getLoadingClassName,
+  getVariantClassName
+} from "@/objects/facets"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Icon, IconSize } from "@/components/icon"
+import { View } from "@/components/view"
 import { ButtonVariant } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
 

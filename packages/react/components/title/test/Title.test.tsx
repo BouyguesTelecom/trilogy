@@ -8,13 +8,16 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 
 // Component to test
-import { Title, TitleLevels, TitleMarkup } from "../";
+import { Title, TitleLevels } from "../";
 import {
   TypographyAlign,
   TypographyBold,
   TypographyColor,
   TypographyTransform,
-} from "../../..";
+} from "../../../objects";
+
+import {TitleMarkup } from "../TitleEnum";
+
 
 describe("Title component", () => {
   test("should have a correct html tag", () => {

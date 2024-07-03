@@ -1,13 +1,13 @@
 import React from "react"
 import clsx from "clsx"
-import { is } from "../../services/index"
-import { Loading, LoadingValues } from "../../objects/facets/Loadable"
-import { getButtonVariantClassName } from "../../objects/facets/Color"
+import { is } from "@/services/index"
+import { Loading, LoadingValues } from "@/objects/facets/Loadable"
+import { getButtonVariantClassName } from "@/objects/facets/Color"
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
-import { Icon } from "../icon"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { Icon } from "@/components/icon"
 
 /**
  * Button component

@@ -3,8 +3,8 @@ import { StyleSheet, View } from "react-native"
 import { RangeProps } from "./RangeProps"
 import MultiSlider from "@ptomasroos/react-native-multi-slider"
 import { Text, TextLevels } from "../text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Range Component

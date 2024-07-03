@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Platform, StyleSheet, Switch as SwitchNative } from "react-native"
 import { SwitchProps } from "./SwitchProps"
 import shortid from "shortid"
-import { getAlertStyle } from "../../objects"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
+import { getAlertStyle } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Switch Native Component

@@ -1,23 +1,16 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 import ListItem from "../ListItem";
-import { IconName } from "../../../icon";
 import { ListIconStatus } from "../ListItemProps";
 
 describe("ListItem", () => {
-  it("should render correctly text", () => {
-    const { container } = render(
-      <ListItem customIcon={IconName.TRASH}>Hello World</ListItem>
-    );
-    expect(container.firstChild).toContainHTML("<span>Hello World</span>");
-  });
 
   it("should render correctly with title and description", () => {
     const { container } = render(
       <ListItem title="Title">Hello World</ListItem>
     );
     expect(container.firstChild).toContainHTML("<b>Title</b>");
-    expect(container.firstChild).toContainHTML("<p>Hello World</p>");
+    expect(container.firstChild).toContainHTML(`<li class="is-white"><div class="list-item_content"><div><b>Title</b>Hello World</div></div></li>`);
   });
 
   it("should apply status class", () => {

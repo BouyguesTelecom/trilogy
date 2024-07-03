@@ -1,10 +1,10 @@
-import { Clickable } from './../../objects/facets/Clickable'
+import { Clickable } from '@/objects/facets/Clickable'
 import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
-import { TypographyColor, TypographyColorValues } from '../../objects/Typography/TypographyColor'
-import { TypographyTransform, TypographyTransformValues } from '../../objects/Typography/TypographyTransform'
-import { TypographyBold, TypographyBoldValues } from '../../objects/Typography/TypographyBold'
-import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
-import { Accessibility, Invertable } from '../../objects/facets'
+import { TypographyColor, TypographyColorValues } from '@/objects/Typography/TypographyColor'
+import { TypographyTransform, TypographyTransformValues } from '@/objects/Typography/TypographyTransform'
+import { TypographyBold, TypographyBoldValues } from '@/objects/Typography/TypographyBold'
+import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
+import { Accessibility, Invertable } from '@/objects/facets'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import shortid from "shortid"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { is } from "../../../services"
+import { is } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Accordion Item Component

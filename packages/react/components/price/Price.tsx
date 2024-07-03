@@ -1,12 +1,12 @@
 import * as React from "react"
 import clsx from "clsx"
-import {PriceProps} from "./PriceProps"
-import {has, is} from "../../services/classify"
-import {Text, TextMarkup} from "../text"
-import {Alignable, TypographyColor, TypographyBold} from "../../objects"
-import {checkCents} from "./PriceHelpers"
-import {hashClass} from "../../helpers"
-import {useTrilogyContext} from "../../context"
+import { PriceProps } from "./PriceProps"
+import { has, is } from "@/services/classify"
+import { Text, TextMarkup } from "../text"
+import { Alignable, TypographyColor, TypographyBold } from "@/objects"
+import { checkCents } from "./PriceHelpers"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Price Component
@@ -49,7 +49,7 @@ const Price = ({
                  tagSymbol,
                  ...others
                }: PriceProps): JSX.Element => {
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -118,7 +118,7 @@ const Price = ({
       {tagAmount && (
         <span className={hashClass(styled, clsx(('price-tag')))}>
           <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
-          {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}><>&nbsp;</>/{period}</Text>}
+          {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
         </span>
       )}
     </span>
