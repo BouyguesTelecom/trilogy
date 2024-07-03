@@ -63,6 +63,12 @@
 
     .accordion-header {
         border-radius: var(--radius);
+      transition: margin 300ms ease-out;
+
+    }
+
+    &[open] .accordion-header {
+      margin-bottom: 4px;
     }
 
     &:first-child {
