@@ -20,6 +20,7 @@
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
+    transition: 0.3s;
 
     .accordion-header {
       font-weight: bold;
@@ -30,7 +31,7 @@
       padding-top: 0 !important;
     }
 
-    &:hover:not(.is-disabled) {
+    &:has(summary:hover):not(.is-disabled) {
       @include hoverRules();
     }
 
@@ -47,16 +48,13 @@
       right: 20px;
     }
 
-    &[open] {
-      transition: 1s;
-    }
-
     &[open]:not([aria-disabled="true"]) .accordion-header:after {
-      @include arrow('up');
+      transform: rotate(180deg);
     }
 
-    &:not([open]) .accordion-header:after, &[aria-disabled="true"] .accordion-header:after {
+    .accordion-header:after, &[aria-disabled="true"] .accordion-header:after {
       @include arrow();
+      transition: transform 0.3s;
     }
 
     &[aria-disabled="true"] .accordion-body {
@@ -65,6 +63,12 @@
 
     .accordion-header {
         border-radius: var(--radius);
+      transition: margin 300ms ease-out;
+
+    }
+
+    &[open] .accordion-header {
+      margin-bottom: 4px;
     }
 
     &:first-child {

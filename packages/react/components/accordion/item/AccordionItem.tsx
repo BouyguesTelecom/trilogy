@@ -65,7 +65,7 @@ const AccordionItem = ({
 
   const classes = hashClass(
     styled,
-    clsx("accordion", className, isActive && is("active"))
+    clsx("accordion", className)
   )
 
   let childrenElement
@@ -81,11 +81,17 @@ const AccordionItem = ({
       : children
   }
 
+  const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
+
+  if (disabled) {
+    ariaProps["tabIndex"] = -1
+    ariaProps["aria-disabled"] = true
+  }
+
   return (
     <details
       open={isActive}
-      tabIndex={0}
-      aria-disabled={disabled}
+      {...ariaProps}
       data-testid={id}
       className={classes}
       ref={ref}
