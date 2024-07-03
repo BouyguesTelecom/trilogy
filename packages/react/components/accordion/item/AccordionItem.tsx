@@ -65,7 +65,7 @@ const AccordionItem = ({
 
   const classes = hashClass(
     styled,
-    clsx("accordion", className, isActive && is("active"))
+    clsx("accordion", className)
   )
 
   let childrenElement

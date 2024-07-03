@@ -30,7 +30,7 @@
       padding-top: 0 !important;
     }
 
-    &:hover:not(.is-disabled) {
+    &:has(summary:hover):not(.is-disabled) {
       @include hoverRules();
     }
 
@@ -48,15 +48,16 @@
     }
 
     &[open] {
-      transition: 1s;
+      transition: 0.3s;
     }
 
     &[open]:not([aria-disabled="true"]) .accordion-header:after {
-      @include arrow('up');
+      transform: rotate(180deg);
     }
 
-    &:not([open]) .accordion-header:after, &[aria-disabled="true"] .accordion-header:after {
+    .accordion-header:after, &[aria-disabled="true"] .accordion-header:after {
       @include arrow();
+      transition: transform 0.3s;
     }
 
     &[aria-disabled="true"] .accordion-body {
