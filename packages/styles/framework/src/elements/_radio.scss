@@ -47,6 +47,13 @@
             left: 3px;
         }
     }
+
+    input:not(:disabled):not(:checked) ~ label.radio-label:hover {
+        &:before {
+        @include hoverRules()
+        }
+    }
+      
 }
 
 .radio-tile {
