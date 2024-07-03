@@ -85,7 +85,7 @@ const AccordionItem = ({
 
   if (disabled) {
     ariaProps["tabIndex"] = -1,
-      ariaProps["aria-disabled"] = !!disabled
+      ariaProps["aria-disabled"] = true
   }
 
   return (
