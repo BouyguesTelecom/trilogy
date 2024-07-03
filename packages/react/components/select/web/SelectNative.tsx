@@ -1,16 +1,15 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { hashClass } from '../../../helpers'
-import { has, is } from '../../../services'
-import { Icon, IconSize } from '../../icon'
-import { ParamEventSelectFocus, SelectProps } from '../SelectProps'
-import SelectOption from '../option'
-import { useTrilogyContext } from './../../../context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
+import { Icon, IconSize } from '@/components/icon'
+import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
+import { SelectOption } from '@/components/select'
+import { useTrilogyContext } from '@/context/index'
 
 const SelectNative = ({
   onChange,
-  nullable,
   disabled,
   onFocus,
   onBlur,
@@ -89,6 +88,7 @@ const SelectNative = ({
               name={name}
               disabled={disabled}
               {...others}
+              role='listbox'
             >
               {React.Children.map(children, (child) => {
                 if (!React.isValidElement(child)) return null

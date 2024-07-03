@@ -15,7 +15,7 @@
     "build:framework": "npm run optimise:svg && npm run build:hash && npm run build:css",
     "build:hash": "node scripts/hash.cjs",
     "create:autolayout": "npm --workspace=@trilogy-ds/styles run build:autolayout && npm run create:autolayout",
-    "lint": "eslint packages/react --ext .ts,.tsx --fix && tsc --noemit",
+    "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/styles run optimise:svg",
     "start": "npm --workspace=@trilogy-ds/react-template run start",
     "setup:native": "cd examples/mobile && npm i && npm run setup:native",
@@ -26,19 +26,20 @@
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
     "test": "npm --workspace=@trilogy-ds/react run test",
+    "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
     "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
+    "@trilogy-ds/assets": "*",
     "clsx": "^2.1.0",
     "color": "^4.2.3",
     "react-content-loader": "^6.2.1",
     "react-native-modal": "^13.0.1",
     "react-native-toast-message": "^2.2.0",
     "rollup-plugin-copy": "^3.5.0",
-    "shortid": "^2.2.16",
-    "@trilogy-ds/assets": "*"
+    "shortid": "^2.2.16"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
@@ -69,6 +70,7 @@
     "@storybook/theming": "^6.5.16",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.2.1",
+    "@testing-library/react-native": "^12.5.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/color": "^3.0.6",
     "@types/jest": "^29.5.12",
@@ -91,6 +93,7 @@
     "dotenv": "^16.4.5",
     "esbuild": "^0.19.12",
     "eslint": "^8.57.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.9.0",

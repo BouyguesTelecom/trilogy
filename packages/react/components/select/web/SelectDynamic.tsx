@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import React, { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 
-import { hashClass } from '../../../helpers'
-import { Input } from '../../input'
-import { SelectProps, SelectedValue } from '../SelectProps'
-import SelectOption from '../option'
-import { useTrilogyContext } from './../../../context'
+import { Input } from '@/components/input'
+import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers'
+import { SelectOption } from '../'
 
 const SelectDynamic = ({
   onChange,
@@ -51,14 +51,14 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value,
+        : selectedValues === value),
     [multiple, selectedValues],
   )
 
   const setNewSelectedValues = useCallback(
-    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: any }) => {
+    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: string }) => {
       const selectedOptions: string[] = []
       if (isChecked) {
         setSelectedValues((prev) => {
@@ -162,6 +162,8 @@ const SelectDynamic = ({
           setFocusedIndex(-1)
           setIsFocused(false)
           break
+          default:
+            return
       }
     }
     focused && document.addEventListener('keydown', onKeyDown)
@@ -234,7 +236,7 @@ const SelectDynamic = ({
           e.preventDefault()
           onKeyPressInput(e.inputKeyCode)
         }}
-        {...{ readOnly: true, id }}
+        {...{ readOnly: true, id, role: 'listbox' }}
       />
       {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
       {focused && ReactDOM.createPortal(modal, document.body)}

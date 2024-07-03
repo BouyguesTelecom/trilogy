@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
-import {TableProps} from "./TableProps"
-import {is} from "../../services/classify"
-import {hashClass} from "../../helpers"
-import {useTrilogyContext} from "../../context"
+import { TableProps } from "./TableProps"
+import { is } from "@/services/classify"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { useTrilogyContext } from "@/context/index"
 
 /**
  * Table Component
@@ -25,7 +25,7 @@ const Table = ({
   compact,
   ...others
 }: TableProps): JSX.Element => {
-  const {styled} = useTrilogyContext();
+  const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
@@ -38,9 +38,9 @@ const Table = ({
       compact && is('compact'),
       className,
     ),
-  );
+  )
 
-  return <table className={classes} {...others} />;
-};
+  return <table className={classes} {...others} />
+}
 
-export default Table;
+export default Table

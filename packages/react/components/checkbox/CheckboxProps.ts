@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from './../icon/IconNameEnum'
-import { Accessibility } from '../../objects'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility } from '@/objects'
 
 export interface CheckboxChangeEvent {
   checkboxId: string

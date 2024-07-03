@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import * as React from 'react'
-import { useTrilogyContext } from '../../../../context'
-import { hashClass } from '../../../../helpers'
-import { is } from '../../../../services'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 
 /**

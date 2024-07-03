@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { HeroProps } from "./HeroProps"
-import { getBackgroundStyle, TrilogyColor } from "../../objects"
+import { getBackgroundStyle, TrilogyColor } from "@/objects"
 import { Box } from "../box"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Hero Component
@@ -37,7 +37,6 @@ const Hero = ({
   const overlapMargin = backgroundHeight
     ? overlapHeight - backgroundHeight / 2
     : overlapHeight - 60
-  const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60
 
   const styles = StyleSheet.create({
     hero: {

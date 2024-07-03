@@ -7,11 +7,11 @@ import { IconSize } from "./IconEnum"
 import CircleIcon from "./circle/CircleIcon.native"
 import StatusIcon from "./status/StatusIcon.native"
 import TextIcon from "./text/TextIcon.native"
-import { getAlignStyle } from "../../objects/facets/Alignable"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { getAlignStyle } from "@/objects/facets/Alignable"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
-import { TrilogyThemeContext } from "../../context/providerTheme.native"
-import { StatesContext } from "../../context/providerStates"
+import { TrilogyThemeContext } from "@/context/providerTheme.native"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Icon Component

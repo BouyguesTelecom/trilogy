@@ -1,9 +1,9 @@
 import * as React from "react"
 import { ButtonListWebProps } from "./ButtonListProps"
-import { has } from "../../../services"
+import { has } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Button List Component

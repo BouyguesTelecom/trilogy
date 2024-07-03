@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { is, has } from '../../services'
+import { is, has } from '@/services'
 import { ProductTourWebProps } from './ProductTourProps'
 import { Icon, IconName, IconSize } from '../icon'
-import { hashClass } from '../../helpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../context'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Product Tour Component

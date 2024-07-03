@@ -1,5 +1,5 @@
-import { IconStatus, IconStatusPosition, IconStatusPositionValues, IconStatusValues } from '../IconEnum'
-import { IconName, IconNameValues } from '../IconNameEnum'
+import { IconStatus, IconStatusPosition, IconStatusPositionValues, IconStatusValues } from '@/components/icon/IconEnum'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 
 export interface StatusIconProps {
   color?: string

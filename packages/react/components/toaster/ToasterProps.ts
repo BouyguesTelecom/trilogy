@@ -1,6 +1,6 @@
-import { Clickable, AlertProps, Accessibility } from '../../objects'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { IconName, IconNameValues } from '../icon'
+import { Clickable, AlertProps, Accessibility } from '@/objects'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { IconName, IconNameValues } from '@/components/icon'
 
 export enum ToasterPosition {
   TOP = 'top',

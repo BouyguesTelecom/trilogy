@@ -6,7 +6,7 @@ import type {
   Position,
   VerticalPaddingless,
   ChildrenWithNoText,
-} from '../../objects'
+} from '@/objects'
 
 /**
  * Section Interface

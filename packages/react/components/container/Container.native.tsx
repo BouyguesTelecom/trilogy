@@ -1,10 +1,8 @@
 import * as React from "react"
-import { useContext } from "react"
 import { StyleSheet, View } from "react-native"
 import { ContainerProps } from "./ContainerProps"
-import { getBackgroundStyle, getColorStyle, StickyPosition, TrilogyColor, } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { getBackgroundStyle, getColorStyle, StickyPosition, TrilogyColor, } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Container Native Component
@@ -34,7 +32,6 @@ const Container = ({
   stickyOffSetBottom,
   ...others
 }: ContainerProps): JSX.Element => {
-  const statesContext = useContext(StatesContext)
 
   const styles = StyleSheet.create({
     container: {

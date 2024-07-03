@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
-import { InputNativeProps } from '../../input/Input.native'
-import { InputChangeEvent } from '../../input/InputProps'
+import { InputNativeProps } from '@/components/input/Input.native'
+import { InputChangeEvent } from '@/components/input/InputProps'
 import { AutoCompleteProps } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
@@ -24,7 +24,7 @@ const AutoComplete = ({
   const [valueInput, setValueInput] = useState<string>(value ?? '')
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
-  const { Input }: { Input: React.ComponentType<InputNativeProps> } = others as any
+  const { Input }= others as { Input: React.ComponentType<InputNativeProps> }
 
   const updateSuggestions = async (valueInput: string) => {
     if (getSuggestions) {

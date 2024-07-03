@@ -5,7 +5,11 @@
     "module": "commonjs",
     "jsx": "react-native",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../../packages/react/*"]
+    }
   },
   "include": [
     "../react/**/*.ts",

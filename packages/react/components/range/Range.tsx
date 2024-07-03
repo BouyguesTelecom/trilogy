@@ -1,9 +1,9 @@
 import * as React from "react"
-import { getColorStyle, TrilogyColor } from "../../objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { RangeProps } from "./RangeProps"
-import { hashClass } from "../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Range Component
@@ -66,12 +66,12 @@ const Range = ({
   }, [cursorMin, cursorMax])
 
   React.useEffect(() => {
-    setCursorMin(valueCursorMin || 0);
-  }, [valueCursorMin]);
+    setCursorMin(valueCursorMin || 0)
+  }, [valueCursorMin])
 
   React.useEffect(() => {
-    setCursorMax(valueCursorMax || max);
-  }, [valueCursorMax]);
+    setCursorMax(valueCursorMax || max)
+  }, [valueCursorMax])
 
   const handleChangeCursorMin = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
+          
 
       - name: Extract version tag
         id: get_version
@@ -29,6 +30,16 @@ jobs:
         run: |
           npm ci
           npm run build
+
+      - name: Tests
+        run: |
+          npm run lint
+          npm run test
+          npm run check-types
+
+      - name: Extract version tag
+        id: get_version
+        run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
 
       - name: Publish React package on NPM 📦
         run:  npm publish --workspace packages/react --access public
