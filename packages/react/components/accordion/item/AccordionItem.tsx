@@ -81,10 +81,17 @@ const AccordionItem = ({
       : children
   }
 
+  const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
+
+  if (disabled) {
+    ariaProps["tabIndex"] = -1,
+      ariaProps["aria-disabled"] = !!disabled
+  }
+
   return (
     <details
       open={isActive}
-      aria-disabled={disabled}
+      {...ariaProps}
       data-testid={id}
       className={classes}
       ref={ref}
