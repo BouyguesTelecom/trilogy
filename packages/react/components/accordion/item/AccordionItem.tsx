@@ -84,7 +84,6 @@ const AccordionItem = ({
   return (
     <details
       open={isActive}
-      tabIndex={0}
       aria-disabled={disabled}
       data-testid={id}
       className={classes}
