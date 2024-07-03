@@ -44,16 +44,17 @@ export const getTypographyBoldClassName = (
  */
 export const getTypographyBoldStyle = (typo?: string | Array<string>, level?: TextLevels | TextLevelValues): string => {
   const { theme } = useContext(TrilogyThemeContext)
+
   return (
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_NORMAL && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_NORMAL) && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular) ||
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_MEDIUM && (theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme.fontFamily.medium) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_MEDIUM) && (theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme.fontFamily.medium) ||
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_SEMIBOLD && (theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme.fontFamily.bold) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_SEMIBOLD) && (theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme.fontFamily.bold) ||
-    (level && level == 'ONE' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular) ||
-    (level && level == 'TWO' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)||
-    (level && level == 'THREE' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular) ||
+    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_NORMAL && ((theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)) ||
+    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_NORMAL) && ((theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)) ||
+    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_MEDIUM && ((theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme.fontFamily.medium)) ||
+    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_MEDIUM) && ((theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme.fontFamily.medium)) ||
+    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_SEMIBOLD && ((theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme.fontFamily.bold)) ||
+    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_SEMIBOLD) && ((theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme.fontFamily.bold)) ||
+    (level && level == 'ONE' && ((theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)) ||
+    (level && level == 'TWO' && ((theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular))||
+    (level && level == 'THREE' && ((theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular)) ||
     (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme.fontFamily.regular
   );
 }
