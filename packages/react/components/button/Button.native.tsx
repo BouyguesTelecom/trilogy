@@ -40,7 +40,6 @@ const findBackgroundColor = ({
     (variant === ButtonVariant.CONVERSION &&
       getColorStyle(TrilogyColor.ACCENT, 1)) ||
     (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-    (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     getColorStyle(TrilogyColor.MAIN, 1)
   )
 }
