@@ -1,8 +1,10 @@
 export default {
+  moduleNameMapper: {
+    '^@/(.*)': '<rootDir>/$1',
+  },
   testEnvironment: 'node',
   transform: {
-    '\\.svg$': '<rootDir>/fileTransformer.cjs',
-    '\\.(tsx|ts)$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
   testRegex: ['/components/.*/test/.*native'],
   preset: 'react-native',
