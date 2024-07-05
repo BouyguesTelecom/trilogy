@@ -109,20 +109,20 @@ describe("Input component", () => {
     expect(getByTestId("input-id").props.value).toEqual("value");
   });
 
-  // test("Should have password icon", () => {
-  //   const { getByTestId } = render(
-  //     <Input placeholder="Test" hasIcon type={InputType.PASSWORD} />
-  //   );
-  //   expect(getByTestId("password-id")).toBeTruthy();
-  // });
+  test("Should have password icon", () => {
+    const { getByTestId } = render(
+      <Input placeholder="Test" hasIcon type={InputType.PASSWORD} />
+    );
+    expect(getByTestId("password-id")).toBeTruthy();
+  });
 
-  // test("Should have search icon", () => {
-  //   const { getByTestId } = render(
-  //     <Input placeholder="Test" type={InputType.SEARCH} value="bonjour" />
-  //   );
-  //   fireEvent.press(getByTestId("search-id"));
-  //   expect(getByTestId("search-id")).toBeTruthy();
-  // });
+  test("Should have search icon", () => {
+    const { getByTestId } = render(
+      <Input placeholder="Test" type={InputType.SEARCH} value="bonjour" />
+    );
+    fireEvent.press(getByTestId("search-id"));
+    expect(getByTestId("search-id")).toBeTruthy();
+  });
 
   test("Should have help text", () => {
     const { getByTestId } = render(<Input placeholder="Test" help="Help" />);
