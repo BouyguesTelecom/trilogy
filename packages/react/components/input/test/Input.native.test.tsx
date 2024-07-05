@@ -118,7 +118,7 @@ describe("Input component", () => {
 
   test("Should have search icon", () => {
     const { getByTestId } = render(
-      <Input placeholder="Test" type={InputType.SEARCH} value="bonjour" />
+      <Input placeholder="Test" type={InputType.SEARCH} defaultValue="bonjour" />
     );
     fireEvent.press(getByTestId("search-id"));
     expect(getByTestId("search-id")).toBeTruthy();
