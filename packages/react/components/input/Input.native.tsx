@@ -404,11 +404,11 @@ const Input = ({
                 }
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+                  (status && status === 'success' && (AlertState.SUCCESS)) ||
+                  (status && status === 'warning' && (AlertState.WARNING)) ||
+                  (status && status === 'error' && (AlertState.ERROR)) ||
                   (status && status === 'default' && inputColor) ||
-                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+                  (disabled && (TrilogyColor.DISABLED)) ||
                   inputColor
                 }
               />
