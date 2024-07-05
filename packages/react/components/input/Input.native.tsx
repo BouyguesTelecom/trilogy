@@ -371,12 +371,12 @@ const Input = ({
               }
               size={IconSize.SMALL}
               color={
-                (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                (status && status === 'default' && inputColor) ||
-                (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-                inputColor
+                (status && status === 'success' && (AlertState.SUCCESS)) ||
+                (status && status === 'warning' && (AlertState.WARNING)) ||
+                (status && status === 'error' && (AlertState.ERROR)) ||
+                (status && status === 'default' && TrilogyColor.MAIN) ||
+                (disabled && (TrilogyColor.DISABLED)) ||
+                TrilogyColor.MAIN
               }
             />
           )}
@@ -407,9 +407,9 @@ const Input = ({
                   (status && status === 'success' && (AlertState.SUCCESS)) ||
                   (status && status === 'warning' && (AlertState.WARNING)) ||
                   (status && status === 'error' && (AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
+                  (status && status === 'default' && TrilogyColor.MAIN) ||
                   (disabled && (TrilogyColor.DISABLED)) ||
-                  inputColor
+                  TrilogyColor.MAIN
                 }
               />
             </TouchableOpacity>
@@ -441,12 +441,12 @@ const Input = ({
                 name={iconPassword}
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
-                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-                  inputColor
+                  (status && status === 'success' && (AlertState.SUCCESS)) ||
+                  (status && status === 'warning' && (AlertState.WARNING)) ||
+                  (status && status === 'error' && (AlertState.ERROR)) ||
+                  (status && status === 'default' && TrilogyColor.MAIN) ||
+                  (disabled && (TrilogyColor.DISABLED)) ||
+                  TrilogyColor.MAIN
                 }
               />
             </TouchableOpacity>
@@ -459,7 +459,7 @@ const Input = ({
                 align={Alignable.ALIGNED_CENTER}
                 name={IconName.SEARCH}
                 size={IconSize.SMALL}
-                color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
+                color={disabled ? (TrilogyColor.DISABLED) : (TrilogyColor.NEUTRAL)}
               />
             </View>
             {value.length > 0 && (
@@ -483,7 +483,7 @@ const Input = ({
                   align={Alignable.ALIGNED_CENTER}
                   name={IconName.TIMES_CIRCLE}
                   size={IconSize.SMALL}
-                  color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
+                  color={disabled ? (TrilogyColor.DISABLED) : (TrilogyColor.NEUTRAL)}
                 />
               </TouchableOpacity>
             )}
