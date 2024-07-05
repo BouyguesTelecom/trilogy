@@ -35,9 +35,12 @@
       @include hoverRules();
     }
 
-    &:focus-visible {
+    &:has(summary:focus-visible) {
       outline: var(--border-active);
-      outline-offset: 2px;
+    }
+
+    .accordion-header:focus-visible {
+      outline: none;
     }
 
     .accordion-header:after {
