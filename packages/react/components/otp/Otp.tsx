@@ -1,5 +1,5 @@
 import { Text, TextMarkup } from "@/components/text"
-import React, { useEffect, useMemo, useState } from "react"
+import React, {useEffect, useMemo, useRef, useState} from "react"
 import { OtpProps } from "./OtpProps"
 import { TypographyColor } from "@/objects/Typography"
 import clsx from "clsx"
@@ -19,6 +19,76 @@ import { useTrilogyContext } from "@/context/index"
  * @param onFocus {Function} onFocus return if focused opt
  * @param autoFocus {boolean} Should auto focus otp
  */
+
+type NumberOrNull = number | null;
+
+const stringToCode = (str: string|undefined, codeSize: number): Array<NumberOrNull> => {
+  if (!str) return new Array(codeSize).fill(null)
+  return str.split("").map((char) => (char === "" ? null : Number(char)))
+}
+
+const codeToString = (code: NumberOrNull[]): string => {
+  return code.map((char) => (char === null ? '_' : char)).join("")
+}
+
+const isCompleted = (myCode:NumberOrNull[]) => {
+  return myCode.every((code) => code !== null)
+}
+
+const focusToNextInput = (target: HTMLInputElement, value?: string) => {
+  const nextElementSibling =
+    target.nextElementSibling as HTMLInputElement | null
+
+  if (nextElementSibling) {
+    if (value)
+      nextElementSibling.value = value
+
+    if(target.value.length)
+      nextElementSibling.focus()
+
+  } else {
+    target.focus()
+  }
+}
+const focusToPrevInput = (target: HTMLElement) => {
+  const previousElementSibling =
+    target.previousElementSibling as HTMLInputElement | null
+  if (previousElementSibling) {
+    previousElementSibling.focus()
+  } else {
+    target.focus()
+  }
+}
+
+const updateCodeInput = (value: string, index: number, code: NumberOrNull[]) :NumberOrNull[] => {
+  const numberValue = Number(value)
+  if( isNaN(numberValue) || value.length < 1 ) {
+    return code
+  }
+  const newCodeInput = code.map((code, idx) => {
+    return idx === index ? Number(value.slice(0,1)) : code
+  })
+  return updateCodeInput(value.slice(1), index + 1, newCodeInput)
+}
+
+const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const { key } = e
+  const target = e.target as HTMLInputElement
+
+  if (key === "ArrowRight" || key === "ArrowDown") {
+    return focusToNextInput(target)
+  }
+  if (key === "ArrowLeft" || key === "ArrowUp") {
+    return focusToPrevInput(target)
+  }
+  if (key === "Backspace") {
+    return (target.value === "") && focusToPrevInput(target)
+  }
+  if (key >= '0' && key <= '9') {
+    focusToNextInput(target)
+  }
+}
+
 const Otp = ({
   className,
   code,
@@ -33,132 +103,47 @@ const Otp = ({
   autoFocus,
   ...others
 }: OtpProps): JSX.Element => {
-  const [codeInput, setCodeInput] = useState<string>(code || "")
-  const [, setFocused] = useState(false)
+
+  const [codeInput, setCodeInput] = useState<NumberOrNull[]>(stringToCode(code, codeSize) || new Array(codeSize).fill(null))
+  const hasChanged = useRef(false)
   const { styled } = useTrilogyContext()
 
-  const testDigit = /^-?\d*\.?\d*$/
   const classes = hashClass(
     styled,
     clsx("otp-list", error && is("error"), className)
   )
 
   useEffect(() => {
-    if (!disabled && codeInput.length >= codeSize) {
-      onCompleted?.(codeInput)
+    if (!disabled ) {
+      isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
     }
-  }, [codeSize, codeInput])
+  }, [codeSize, codeInput, onCompleted, disabled])
 
-  const valueItems = useMemo(() => {
-    const valueArray = codeInput.split("")
-    const items: Array<string> = []
-
-    for (let i = 0; i < codeSize; i++) {
-      const char = valueArray[i]
-
-      if (testDigit.test(char)) {
-        items.push(char)
-      } else {
-        items.push("")
-      }
+  useEffect(() => {
+    hasChanged.current = codeInput.find((code) => code !== null) !== undefined
+    if( hasChanged.current ) {
+      onChange?.(codeToString(codeInput))
     }
+  }, [codeInput])
 
-    return items
-  }, [codeInput, codeSize])
-
-  const focusToNextInput = (target: HTMLElement) => {
-    const nextElementSibling =
-      target.nextElementSibling as HTMLInputElement | null
-
-    if (nextElementSibling) {
-      nextElementSibling.focus()
-    }
-  }
-  const focusToPrevInput = (target: HTMLElement) => {
-    const previousElementSibling =
-      target.previousElementSibling as HTMLInputElement | null
-
-    if (previousElementSibling) {
-      previousElementSibling.focus()
-    }
-  }
   const inputOnChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     idx: number
   ) => {
     const { target } = e
-    let targetValue = target.value.trim()
-    const isTargetValueDigit = testDigit.test(targetValue)
+    const targetValue = target.value.trim()
 
-    if (!isTargetValueDigit && targetValue !== "") {
-      return
-    }
-
-    const nextInputEl = target.nextElementSibling as HTMLInputElement | null
-
-    if (!isTargetValueDigit && nextInputEl && nextInputEl.value !== "") {
-      return
-    }
-
-    targetValue = isTargetValueDigit ? targetValue : ""
-
-    const targetValueLength = targetValue.length
-
-    if (targetValueLength === 1) {
-      const newValue =
-        codeInput.substring(0, idx) +
-        targetValue +
-        codeInput.substring(idx + 1)
-
-      if (onChange) {
-        onChange(newValue)
-      }
-      setCodeInput(newValue)
-      if (!isTargetValueDigit) {
-        return
-      }
-
-      focusToNextInput(target)
-    } else if (targetValueLength === codeSize) {
-      if (onChange) {
-        onChange(codeInput)
-      }
-      setCodeInput(targetValue)
-      target.blur()
+    if (targetValue.length > 0) {
+      setCodeInput(updateCodeInput(targetValue, idx, codeInput))
+    } else {
+      setCodeInput(codeInput.map((code, index) => {
+        return index === idx ? null : code
+      }))
     }
   }
-  const inputOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key } = e
-    const target = e.target as HTMLInputElement
 
-    if (key === "ArrowRight" || key === "ArrowDown") {
-      e.preventDefault()
-      return focusToNextInput(target)
-    }
-
-    if (key === "ArrowLeft" || key === "ArrowUp") {
-      e.preventDefault()
-      return focusToPrevInput(target)
-    }
-
-    const targetValue = target.value
-    target.setSelectionRange(0, targetValue.length)
-    if (e.key !== "Backspace" || targetValue !== "") {
-      target.value = ""
-      return
-    }
-
-    focusToPrevInput(target)
-  }
   const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { target } = e
-    const prevInputEl =
-      target.previousElementSibling as HTMLInputElement | null
-
-    if (prevInputEl && prevInputEl.value === "") {
-      return prevInputEl.focus()
-    }
-
     target.setSelectionRange(0, target.value.length)
   }
 
@@ -181,12 +166,11 @@ const Otp = ({
         className={classes}
         onClick={() => {
           if (!disabled) {
-            setFocused(true)
             onFocus?.(true)
           }
         }}
       >
-        {valueItems.map((digit, idx) => (
+        {codeInput.map((digit, idx) => (
           <input
             aria-disabled={disabled}
             tabIndex={0}
@@ -198,8 +182,8 @@ const Otp = ({
             pattern='\d{1}'
             maxLength={codeSize}
             className='otp'
-            value={digit}
-            onKeyDown={inputOnKeyDown}
+            value={digit === null ?  "" : digit.toString()}
+            onKeyUp={inputOnKeyUp}
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
             disabled={disabled}

@@ -26,4 +26,13 @@ describe("Otp", () => {
     fireEvent.click(container);
     expect(defaultProps.onFocus).toHaveBeenCalledWith(true);
   });
+
+  it("calls onChange when we paste value", () => {
+    const { getByTestId } = render(<Otp {...defaultProps} />);
+    const container = getByTestId("otp-input");
+    fireEvent.click(container);
+    fireEvent.paste(container, { clipboardData: { getData: () => "123456" } });
+    expect(defaultProps.onChange).toHaveBeenCalledWith("123456");
+  });
+
 });
