@@ -21,6 +21,7 @@ const Badge = ({
   direction,
   color,
   onClick,
+  testId,
   ...others
 }: BadgeProps): JSX.Element => {
   const badgeColor = color
@@ -60,7 +61,7 @@ const Badge = ({
       <View style={styles.container}>
         {!direction && <Text style={styles.textContent}>{textContent}</Text>}
         {direction && direction === BadgeTextDirection.LEFT && (
-          <Text style={styles.textContent}>{textContent}</Text>
+          <Text testID="" style={styles.textContent}>{textContent}</Text>
         )}
         <View style={styles.badge}>
           <Text style={styles.text}>{content}</Text>
@@ -88,7 +89,7 @@ const Badge = ({
 
   return onClick ? (
     <View>
-      <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+      <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
         {badgeView}
       </TouchableOpacity>
     </View>
