@@ -182,7 +182,7 @@ const Otp = ({
             pattern='\d{1}'
             maxLength={codeSize}
             className='otp'
-            value={digit === null ?  "" : digit.toString()}
+            value={`${digit ?? ""}`}
             onKeyUp={inputOnKeyUp}
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
