@@ -78,7 +78,7 @@ const Hero = ({
       <StatesContext.Provider
         value={{ inverted: !!inverted, active: false, flat: false }}
       >
-        <View style={[styles.background, styles.hero]}>
+        <View style={[styles.background, styles.hero]} testID="background-id">
           <View style={styles.content}>{children}</View>
         </View>
       </StatesContext.Provider>
@@ -94,7 +94,7 @@ const Hero = ({
         style={styles.hero}
         {...others}
       >
-        <View style={styles.content}>{children}</View>
+        <View style={styles.content} testID="no-background-id">{children}</View>
       </ImageBackground>
     )
   }
