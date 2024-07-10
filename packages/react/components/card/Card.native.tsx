@@ -91,7 +91,7 @@ const Card = ({
   })
 
   const CardSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others}>
+    <ContentLoader style={styles.skeleton} {...others} testID="skeleton-id">
       <View style={{ opacity: 0 }}>{children}</View>
       {Platform.OS === "android" && (
         <View>
@@ -108,9 +108,9 @@ const Card = ({
   }
 
   if (horizontal) {
-    cardView = <View style={[styles.horizontal, styles.card]}>{children}</View>
+    cardView = <View style={[styles.horizontal, styles.card]} testID="card-horizontal">{children}</View>
   } else if (reversed) {
-    cardView = <View style={[styles.reversed, styles.card]}>{children}</View>
+    cardView = <View style={[styles.reversed, styles.card]} testID="card-reversed">{children}</View>
   } else {
     cardView = (
       <View style={[styles.card]} {...others}>
@@ -134,6 +134,7 @@ const Card = ({
       >
         <View style={{ width: "100%" }}>
           <TouchableOpacity
+            testID="card-click-test"
             style={{ width: "100%" }}
             onPress={onClick}
             activeOpacity={0.85}
