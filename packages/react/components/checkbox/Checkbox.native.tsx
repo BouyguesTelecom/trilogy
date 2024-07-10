@@ -34,6 +34,7 @@ const Checkbox = ({
                     description,
                     iconTile,
                     horizontalTile,
+                    testId
                   }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
@@ -133,6 +134,7 @@ const Checkbox = ({
   if (horizontalTile) {
     return (
       <TouchableOpacity
+        testID={testId}
         disabled={disabled}
         style={styles.horizontalTile}
         onPress={() => handleClick()}
@@ -216,6 +218,7 @@ const Checkbox = ({
   if (tile) {
     return (
       <TouchableOpacity
+        testID={testId}
         disabled={disabled}
         style={horizontalTile ? styles.horizontalTile : styles.tile}
         onPress={() => handleClick()}
@@ -281,6 +284,7 @@ const Checkbox = ({
 
   return (
     <TouchableOpacity
+      testID={testId}
       disabled={disabled}
       style={styles.container}
       onPress={() => handleClick()}
