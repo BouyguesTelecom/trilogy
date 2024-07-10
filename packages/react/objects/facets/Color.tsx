@@ -136,6 +136,7 @@ export const getColorStyle = (
     }
     return colorArray[colorIndex]
   } else {
+    console.log(trilogyColor)
     const colorArray = colors[trilogyColor]
     const colorIndex =
       index !== undefined && index >= 0 && index < colorArray.length
