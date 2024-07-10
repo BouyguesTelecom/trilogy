@@ -31,7 +31,7 @@ const StatusIcon = ({
     styled,
     clsx(
       "icon is-circled is-descendant",
-      status && is(`${status}`),
+      status && is(`${status.toLowerCase()}`),
       statusPosition && is(`${statusPosition}`)
     )
   )
