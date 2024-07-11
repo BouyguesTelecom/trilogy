@@ -19,6 +19,7 @@ const AutoComplete = ({
   getSuggestions,
   debounceSuggestionsTimeout,
   onFocus,
+  testId,
   ...others
 }: AutoCompleteProps): JSX.Element => {
   const [valueInput, setValueInput] = useState<string>(value ?? '')
@@ -92,6 +93,7 @@ const AutoComplete = ({
     <View style={styles.autoComplete}>
       <View>
         <Input
+          testId={testId}
           placeholder={placeholder}
           type='text'
           customIcon={customIcon}
