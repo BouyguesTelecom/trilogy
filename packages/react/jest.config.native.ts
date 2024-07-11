@@ -11,4 +11,5 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transformIgnorePatterns: ['node_modules/(?!(@react-native|react-native|react-native-toast-message)/)'],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.native.ts'],
+  setupFiles: ['<rootDir>/../../node_modules/react-native-gesture-handler/jestSetup.js'],
 }
