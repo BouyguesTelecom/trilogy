@@ -10,7 +10,7 @@ export enum SpacerSize {
   SIX = 24,
   SEVEN = 32,
   EIGHT = 40,
-  NINE = 48
+  NINE = 48,
 }
 
 export type SpacerSizeValues = `${SpacerSize}`

@@ -16,7 +16,7 @@
     "create:autolayout": "node scripts/dist/autolayout.cjs",
     "create:spacing": "node scripts/dist/spacing.cjs",
     "prebuild": "npm run copy:icons",
-    "build": "npm run build:autolayout && create:autolayout && vite --config vite.config.js build",
+    "build": "npm run build:autolayout && npm run create:autolayout && vite --config vite.config.js build",
     "watch:css": "vite --config vite.config.js watch",
     "copy:icons": "mkdir -p ./dist/default/assets/icons && cp -R ../assets/lib/icons/all ./dist/default/assets/icons/."
   }
