@@ -1,38 +1,41 @@
 body:not(.is-tight) {
   .box {
-    margin-top: 12px;
+    margin-top: 16px;
   }
-  .box:not(:first-child) + * {
-    margin-top: 12px;
+  .box + * {
+    margin-top: 16px;
   }
   * + .box {
+    margin-top: 8px;
+  }
+  .title + .button {
     margin-top: 8px;
   }
   .text {
     margin-top: 8px;
   }
   .card {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .button {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .accordions {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .alert {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .field {
     margin-top: 8px;
   }
   .chips-list {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .tags {
-    margin-top: 12px;
+    margin-top: 16px;
   }
   .chips-list {
-    margin-top: 12px;
+    margin-top: 16px;
   }
 }
