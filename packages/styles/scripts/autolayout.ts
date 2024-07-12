@@ -1,26 +1,26 @@
 import fs from 'fs';
 import { INSERT_SPACE_BETWEEN } from "@trilogy-ds/react/components/autolayout/DefaultSpacingMatrix";
-import { SpacerSize } from "@trilogy-ds/react/lib/components/spacer";
+import { SpacerSize } from "@trilogy-ds/react/components/spacer";
 import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/SpacingMatrix";
 
 // @ts-ignore
-type DefaultSpacingMatrix = ((SpacingMatrixMode | string | SpacerSize.MEDIUM)[] | (SpacingMatrixMode | string | SpacerSize.SMALL)[])[]
+type DefaultSpacingMatrix = ((SpacingMatrixMode | string | SpacerSize.FOUR)[] | (SpacingMatrixMode | string | SpacerSize.THREE)[])[]
 
-const { HUGE, LARGE, MEDIUM, SMALL } = SpacerSize
+const { NINE, EIGHT, SEVEN, SIX, FIVE, FOUR, THREE, TWO, ONE } = SpacerSize
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'Box', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Box', 'default', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'default', 'Box', SMALL],
-  [INSERT_SPACE_BETWEEN, 'Text', SMALL],
-  [INSERT_SPACE_BETWEEN, 'Card', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Button', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Accordions', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Alert', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Field', SMALL],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Tags', MEDIUM],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', MEDIUM],
+  [INSERT_SPACE_BETWEEN, 'Box', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Box', 'default', FOUR],
+  [INSERT_SPACE_BETWEEN, 'default', 'Box', THREE],
+  [INSERT_SPACE_BETWEEN, 'Text', THREE],
+  [INSERT_SPACE_BETWEEN, 'Card', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Button', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Accordions', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Alert', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Field', THREE],
+  [INSERT_SPACE_BETWEEN, 'Chips-list', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Tags', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Chips-list', FOUR],
 ]
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
@@ -60,18 +60,18 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
   return scssContent;
 }
 
-const getSpacingValue = (spacingValue:any): number => {
+const getSpacingValue = (spacingValue: any): number => {
   switch (spacingValue) {
-    case SMALL:
-      return SMALL.valueOf();
-    case MEDIUM:
-      return MEDIUM.valueOf();
-    case LARGE:
-      return LARGE.valueOf();
-    case HUGE:
-      return HUGE.valueOf();
+    case THREE:
+      return THREE.valueOf();
+    case FOUR:
+      return FOUR.valueOf();
+    case FIVE:
+      return FIVE.valueOf();
+    case EIGHT:
+      return EIGHT.valueOf();
     default:
-      return SMALL.valueOf();
+      return THREE.valueOf();
   }
 }
 
