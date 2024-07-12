@@ -77,7 +77,7 @@ const getSpacingValue = (spacingValue:any): number => {
 
 const scssContent = createBodyAutolayoutSCSS(DEFAULT_SPACING_MATRIX);
 
-const scssFilePath = './framework/src/components/_autolayout2.scss';
+const scssFilePath = './framework/src/components/_autolayout.scss';
 
 fs.writeFile(scssFilePath, scssContent, (err) => {
   if (err) {
