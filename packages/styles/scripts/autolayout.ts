@@ -3,54 +3,56 @@ import { INSERT_SPACE_BETWEEN } from "@trilogy-ds/react/components/autolayout/De
 import { SpacerSize } from "@trilogy-ds/react/components/spacer";
 import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/SpacingMatrix";
 
-// @ts-ignore
-type DefaultSpacingMatrix = ((SpacingMatrixMode | string | SpacerSize.FOUR)[] | (SpacingMatrixMode | string | SpacerSize.THREE)[])[]
+type DefaultSpacingMatrix = Array<Array<SpacingMatrixMode | string | SpacerSize>>;
 
-const { NINE, EIGHT, SEVEN, SIX, FIVE, FOUR, THREE, TWO, ONE } = SpacerSize
+const { NINE, EIGHT, SEVEN, SIX, FIVE, FOUR, THREE, TWO, ONE } = SpacerSize;
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'Box', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Box', 'default', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Box', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Box', 'default', FIVE],
   [INSERT_SPACE_BETWEEN, 'default', 'Box', THREE],
+  [INSERT_SPACE_BETWEEN, 'Title', 'Button', THREE],
   [INSERT_SPACE_BETWEEN, 'Text', THREE],
-  [INSERT_SPACE_BETWEEN, 'Card', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Button', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Accordions', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Alert', FOUR],
+  [INSERT_SPACE_BETWEEN, 'Card', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Button', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Accordions', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Alert', FIVE],
   [INSERT_SPACE_BETWEEN, 'Field', THREE],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Tags', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', FOUR],
-]
+  [INSERT_SPACE_BETWEEN, 'Chips-list', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Tags', FIVE],
+  [INSERT_SPACE_BETWEEN, 'Chips-list', FIVE],
+];
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
   let scssContent = 'body:not(.is-tight) {\n';
 
   for (const entry of spacingMatrix) {
     const [insertType, component, component2, spacingValue] = entry;
-    let selector = ''
+    let selector = '';
+    const spacingVal = spacingValue as SpacerSize || component2 as SpacerSize;
 
     if (insertType === INSERT_SPACE_BETWEEN) {
-      if (typeof component === 'string' && typeof component2 === 'number') {
-        selector = '.' + component.toLowerCase();
-      }
-
-      if ((typeof component && typeof component2) === 'string' && component === 'default') {
-        selector = `* + ${typeof component2 === 'string' ? '.' + component2.toLowerCase() : ''}`;
-      }
-
-      if ((typeof component && typeof component2) === 'string' && component2 === 'default') {
-        // @ts-ignore
-        selector = `.${component.toLowerCase() + ':not(:first-child)'} + *`;
+      if (!component2) {
+        // Si une seule composante est donnée, générer une règle simple
+        selector = `.${component.toLowerCase()}`;
+      } else {
+        if (typeof component === 'string' && component2 === 'default') {
+          selector = `.${component.toLowerCase()} + *`;
+        } else if (component === 'default' && typeof component2 === 'string') {
+          selector = `* + .${component2.toLowerCase()}`;
+        } else if (typeof component === 'string' && typeof component2 === 'string') {
+          selector = `.${component.toLowerCase()} + .${component2.toLowerCase()}`;
+        } else if (typeof component === 'string' && typeof component2 === 'number') {
+          selector = `.${component.toLowerCase()}`;
+        }
       }
 
       const marginProperty = `margin-top`;
 
-      console.log(`Processing: ${selector}, ${marginProperty}, ${getSpacingValue(spacingValue)}px`);
+      console.log(`Processing: ${selector}, ${marginProperty}, ${getSpacingValue(spacingVal)}px`);
 
-      scssContent += ``;
       scssContent += `  ${selector} {\n`;
-      scssContent += `    ${marginProperty}: ${getSpacingValue(spacingValue || component2)}px;\n`;
+      scssContent += `    ${marginProperty}: ${getSpacingValue(spacingVal)}px;\n`;
       scssContent += '  }\n';
     }
   }
@@ -63,15 +65,15 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
 const getSpacingValue = (spacingValue: any): number => {
   switch (spacingValue) {
     case THREE:
-      return THREE.valueOf();
+      return 8;
     case FOUR:
-      return FOUR.valueOf();
+      return 16;
     case FIVE:
-      return FIVE.valueOf();
+      return 16;
     case EIGHT:
-      return EIGHT.valueOf();
+      return 32;
     default:
-      return THREE.valueOf();
+      return 8;
   }
 }
 
