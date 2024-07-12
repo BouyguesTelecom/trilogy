@@ -42,12 +42,12 @@ const Chips = ({
   )
 
   return (
-    <div
+    <button
       {...{ disabled: disabled }}
       aria-disabled={disabled}
-      tabIndex={0}
       data-testid={testId}
       id={id}
+      aria-checked={!!active}
       className={classes}
       onClick={(e) => {
         onClick?.(e)
@@ -55,7 +55,7 @@ const Chips = ({
       {...others}
     >
       {children}
-    </div>
+    </button>
   )
 }
 
