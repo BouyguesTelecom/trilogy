@@ -1,26 +1,6 @@
-import * as React from "react";
-import {
-  AutoLayout,
-  Box,
-  BoxContent,
-  BoxFooter,
-  BoxHeader,
-  BoxMarkup,
-  Button,
-  ButtonVariant,
-  Columns,
-  ColumnsItem,
-  Divider,
-  Icon,
-  IconName,
-  Link,
-  Price,
-  Section,
-  Text,
-  Title,
-  TitleLevels,
-} from "@trilogy-ds/react/components";
-import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
+import * as React from 'react'
+import { AutoLayout, Box, BoxContent, BoxFooter, BoxHeader, BoxMarkup, Button, ButtonVariant, Columns, ColumnsItem, Divider, Icon, IconName, Link, Price, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
+import { TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false);
@@ -37,7 +17,7 @@ export const BoxScreen = (): JSX.Element => {
         <Columns multiline>
           <ColumnsItem size={6}></ColumnsItem>
           <ColumnsItem size={10}>
-            <Box>
+            <Box flat>
               <BoxHeader>Box with Header and Content</BoxHeader>
               <BoxContent>
                 <Text>
@@ -207,8 +187,11 @@ export const BoxScreen = (): JSX.Element => {
         </Box>
         <Divider />
         <Columns>
-          <ColumnsItem size={10}>
-            <Box leftBorder={TrilogyColor.ERROR}>
+          <ColumnsItem size={6}>
+            <Box leftBorder={TrilogyColor.ERROR} className='is-fullheight'>
+              <BoxHeader>
+                Test
+              </BoxHeader>
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Highlited box</Title>
                 <Text>
@@ -216,12 +199,20 @@ export const BoxScreen = (): JSX.Element => {
                   dolor neque nunc. Eget suscipit enim velit ultricies justo
                   ultrices sed leo cras.
                 </Text>
+                <Text>
+                  Eget tincidunt tincidunt id massa sollicitudin. Egestas felis
+                  dolor neque nunc. Eget suscipit enim velit ultricies justo
+                  ultrices sed leo cras.
+                </Text>
               </BoxContent>
+              <BoxFooter>
+                <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+              </BoxFooter>
             </Box>
           </ColumnsItem>
-          <ColumnsItem size={10}>
-            <Box leftBorder={TrilogyColor.WARNING}>
-              <BoxContent>
+          <ColumnsItem size={6}>
+            <Box leftBorder={TrilogyColor.WARNING} className='is-fullheight'>
+              <BoxContent background={"NEUTRAL_LIGHT"}>
                 <Title level={TitleLevels.FOUR}>Highlited box</Title>
                 <Text>
                   Eget tincidunt tincidunt id massa sollicitudin. Egestas felis
@@ -229,6 +220,12 @@ export const BoxScreen = (): JSX.Element => {
                   ultrices sed leo cras.
                 </Text>
               </BoxContent>
+              <BoxContent>
+                <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              </BoxContent>
+              <BoxFooter background={"SUCCESS"}>
+                <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+              </BoxFooter>
             </Box>
           </ColumnsItem>
         </Columns>
