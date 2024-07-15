@@ -50,12 +50,10 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       scssContent += `    margin-top: ${getSpacingValue(spacingVal)}px;\n`;
       scssContent += '  }\n';
 
-      console.log('mobileSpacingVal', mobileSpacingVal)
-
       if (mobileSpacingVal !== undefined) {
         mobileContent += `  ${selector} {\n`;
-        mobileContent += `    margin-top: ${getSpacingValue(mobileSpacingVal)}px;\n`;
-        mobileContent += '  }\n';
+        mobileContent += `      margin-top: ${getSpacingValue(mobileSpacingVal)}px;\n`;
+        mobileContent += '    }\n';
       }
     }
   }
@@ -64,9 +62,9 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
 
   if (mobileContent) {
     scssContent += `
-  @media (max-width: 768px) {
-    body:not(.is-tight) {
-    ${mobileContent}
+@include mobile() {
+  body:not(.is-tight) {
+  ${mobileContent}
   }
 }
 `;

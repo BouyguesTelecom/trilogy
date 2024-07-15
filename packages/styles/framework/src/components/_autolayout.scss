@@ -37,20 +37,20 @@ body:not(.is-tight) {
   }
 }
 
-  @media (max-width: 768px) {
-    body:not(.is-tight) {
-      .box {
-    margin-top: 16px;
-  }
+@include mobile() {
+  body:not(.is-tight) {
+    .box {
+      margin-top: 16px;
+    }
   .text {
-    margin-top: 16px;
-  }
+      margin-top: 16px;
+    }
   .card {
-    margin-top: 16px;
-  }
+      margin-top: 16px;
+    }
   .chips-list {
-    margin-top: 16px;
-  }
+      margin-top: 16px;
+    }
 
   }
 }
