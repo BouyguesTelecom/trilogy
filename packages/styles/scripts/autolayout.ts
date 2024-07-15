@@ -39,7 +39,19 @@ const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'link', 'link', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'switch', 'text', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'radio', 'radio', FOUR, TWO],
-  [INSERT_SPACE_BETWEEN, 'bow', 'title', SIX, FIVE],
+  [INSERT_SPACE_BETWEEN, 'box', 'title', SIX, FIVE],
+  [INSERT_SPACE_BETWEEN, 'accordions', 'accordions', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'accordions', 'link', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'box', 'box', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'box', 'link', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'box', 'button', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'text', 'box', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'text', 'default', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'text .is-level-1 .has-text-semibold', 'text', FOUR, FOUR],
+  [INSERT_SPACE_BETWEEN, 'text .is-level-2 .has-text-semibold', 'text', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'text .is-level-3 .has-text-semibold', 'text', ONE, ONE],
+  [INSERT_SPACE_BETWEEN, 'text .is-level-1', 'section', EIGHT, SIX],
+  [INSERT_SPACE_BETWEEN, 'text .is-level-1', 'button', FIVE, FIVE],
 
 ];
 
