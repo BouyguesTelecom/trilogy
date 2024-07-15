@@ -10,7 +10,7 @@ const { THREE, FOUR, FIVE, EIGHT } = SpacerSize;
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Box', '', THREE, FIVE],
   [INSERT_SPACE_BETWEEN, 'Box', 'default', FIVE],
-  [INSERT_SPACE_BETWEEN, 'default', 'Box', THREE],
+  [INSERT_SPACE_BETWEEN, 'default', 'Box', FOUR],
   [INSERT_SPACE_BETWEEN, 'Title', 'Button', THREE],
   [INSERT_SPACE_BETWEEN, 'Text', '', THREE, FOUR],
   [INSERT_SPACE_BETWEEN, 'Card', '', THREE, FIVE],
@@ -47,12 +47,12 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       const mobileSpacingVal = mobileSpacingValue as SpacerSize | undefined;
 
       scssContent += `  ${selector} {\n`;
-      scssContent += `    margin-top: ${getSpacingValue(spacingVal)}px;\n`;
+      scssContent += `    margin-top: ${spacingVal}px;\n`;
       scssContent += '  }\n';
 
       if (mobileSpacingVal !== undefined) {
         mobileContent += `  ${selector} {\n`;
-        mobileContent += `      margin-top: ${getSpacingValue(mobileSpacingVal)}px;\n`;
+        mobileContent += `      margin-top: ${mobileSpacingVal}px;\n`;
         mobileContent += '    }\n';
       }
     }
@@ -71,21 +71,6 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
   }
 
   return scssContent;
-};
-
-const getSpacingValue = (spacingValue: SpacerSize): number => {
-  switch (spacingValue) {
-    case THREE:
-      return 8;
-    case FOUR:
-      return 16;
-    case FIVE:
-      return 16;
-    case EIGHT:
-      return 32;
-    default:
-      return 8;
-  }
 };
 
 const scssContent = createBodyAutolayoutSCSS(DEFAULT_SPACING_MATRIX);
