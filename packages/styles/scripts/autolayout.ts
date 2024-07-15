@@ -5,7 +5,7 @@ import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/Spaci
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
 
-const { THREE, FOUR, FIVE, EIGHT, TWO } = SpacerSize;
+const { THREE, FOUR, FIVE, TWO, ONE } = SpacerSize;
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'title', 'icon', FOUR, TWO],
@@ -13,7 +13,12 @@ const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'title', 'card', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'title', 'subtitle', THREE, THREE],
   [INSERT_SPACE_BETWEEN, 'title', 'text .is-level-1', FOUR, FOUR],
-
+  [INSERT_SPACE_BETWEEN, 'title', 'text .is-level-2', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'title', 'text .is-level-3', ONE, ONE],
+  [INSERT_SPACE_BETWEEN, 'title', 'rows', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'title', 'button', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'title', 'input', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'title', 'default', FIVE, FIVE],
 
 ];
 
