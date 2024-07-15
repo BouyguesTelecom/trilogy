@@ -8,9 +8,11 @@ type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSi
 const { THREE, FOUR, FIVE, EIGHT, TWO } = SpacerSize;
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'Title', 'Icon', FOUR, TWO],
-  [INSERT_SPACE_BETWEEN, 'Title', 'Box', FIVE, FOUR],
-  [INSERT_SPACE_BETWEEN, 'Title', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'title', 'icon', FOUR, TWO],
+  [INSERT_SPACE_BETWEEN, 'title', 'box', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'title', 'card', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'title', 'subtitle', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'title', 'text .is-level-1', FOUR, FOUR],
 
 
 ];
