@@ -8,6 +8,69 @@ body:not(.is-tight) {
   .title + .card {
     margin-top: 24px;
   }
+  .title + .subtitle {
+    margin-top: 12px;
+  }
+  .title + .text .is-level-1 {
+    margin-top: 16px;
+  }
+  .title + .text .is-level-2 {
+    margin-top: 8px;
+  }
+  .title + .text .is-level-3 {
+    margin-top: 4px;
+  }
+  .title + .rows {
+    margin-top: 24px;
+  }
+  .title + .button {
+    margin-top: 24px;
+  }
+  .title + .input {
+    margin-top: 24px;
+  }
+  .title + * {
+    margin-top: 24px;
+  }
+  .title .is-level-1 + .section {
+    margin-top: 40px;
+  }
+  .title .is-level-1 + .subtitle {
+    margin-top: 12px;
+  }
+  .title .is-level-1 + .text {
+    margin-top: 16px;
+  }
+  .title .is-level-1 + .title {
+    margin-top: 0px;
+  }
+  .title .is-level-1 + .slider {
+    margin-top: 40px;
+  }
+  .title .is-level-1 + .slider {
+    margin-top: 40px;
+  }
+  .title .is-level-2 + .subtitle {
+    margin-top: 12px;
+  }
+  .title .is-level-2 + .section {
+    margin-top: 40px;
+  }
+  .title .is-level-2 + .text {
+    margin-top: 40px;
+  }
+  .list + .list {
+    margin-top: 24px;
+  }
+  .card + .card {
+    margin-top: 24px;
+  }
+  .section + .section {
+    margin-top: 48px;
+  }
+  .input + .input {
+    margin-top: 24px;
+  }
 }
 
 @include mobile() {
@@ -20,6 +83,69 @@ body:not(.is-tight) {
     }
   .title + .card {
       margin-top: 16px;
+    }
+  .title + .subtitle {
+      margin-top: 12px;
+    }
+  .title + .text .is-level-1 {
+      margin-top: 16px;
+    }
+  .title + .text .is-level-2 {
+      margin-top: 8px;
+    }
+  .title + .text .is-level-3 {
+      margin-top: 4px;
+    }
+  .title + .rows {
+      margin-top: 24px;
+    }
+  .title + .button {
+      margin-top: 24px;
+    }
+  .title + .input {
+      margin-top: 24px;
+    }
+  .title + * {
+      margin-top: 24px;
+    }
+  .title .is-level-1 + .section {
+      margin-top: 40px;
+    }
+  .title .is-level-1 + .subtitle {
+      margin-top: 12px;
+    }
+  .title .is-level-1 + .text {
+      margin-top: 12px;
+    }
+  .title .is-level-1 + .title {
+      margin-top: 0px;
+    }
+  .title .is-level-1 + .slider {
+      margin-top: 32px;
+    }
+  .title .is-level-1 + .slider {
+      margin-top: 32px;
+    }
+  .title .is-level-2 + .subtitle {
+      margin-top: 12px;
+    }
+  .title .is-level-2 + .section {
+      margin-top: 32px;
+    }
+  .title .is-level-2 + .text {
+      margin-top: 32px;
+    }
+  .list + .list {
+      margin-top: 16px;
+    }
+  .card + .card {
+      margin-top: 16px;
+    }
+  .section + .section {
+      margin-top: 32px;
+    }
+  .input + .input {
+      margin-top: 24px;
     }
 
   }

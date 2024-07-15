@@ -5,7 +5,7 @@ import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/Spaci
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
 
-const { THREE, FOUR, FIVE, TWO, ONE, SEVEN } = SpacerSize;
+const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX, EIGHT } = SpacerSize;
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'title', 'icon', FOUR, TWO],
@@ -22,6 +22,16 @@ const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'section', SEVEN, SEVEN],
   [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'subtitle', THREE, THREE],
   [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'text', FOUR, THREE],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'title', ZERO, ZERO],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'slider', SEVEN, SIX],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-1', 'slider', SEVEN, SIX],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-2', 'subtitle', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-2', 'section', SEVEN, SIX],
+  [INSERT_SPACE_BETWEEN, 'title .is-level-2', 'text', SEVEN, SIX],
+  [INSERT_SPACE_BETWEEN, 'list', 'list', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'card', 'card', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'section', 'section', EIGHT, SIX],
+  [INSERT_SPACE_BETWEEN, 'input', 'input', FIVE, FIVE],
 
 ];
 

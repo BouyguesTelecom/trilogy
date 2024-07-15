@@ -2,6 +2,7 @@
  * Spacer Size
  */
 export enum SpacerSize {
+  ZERO = 0,
   ONE = 4,
   TWO = 8,
   THREE = 12,
