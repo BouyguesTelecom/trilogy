@@ -32,6 +32,14 @@ const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'card', 'card', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'section', 'section', EIGHT, SIX],
   [INSERT_SPACE_BETWEEN, 'input', 'input', FIVE, FIVE],
+  [INSERT_SPACE_BETWEEN, 'rows', 'rows', SIX, FIVE],
+  [INSERT_SPACE_BETWEEN, 'button', 'button', FOUR, THREE],
+  [INSERT_SPACE_BETWEEN, 'checkbox', 'checkbox', FOUR, TWO],
+  [INSERT_SPACE_BETWEEN, 'tiles', 'tiles', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'link', 'link', FOUR, FOUR],
+  [INSERT_SPACE_BETWEEN, 'switch', 'text', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'radio', 'radio', FOUR, TWO],
+  [INSERT_SPACE_BETWEEN, 'bow', 'title', SIX, FIVE],
 
 ];
 
