@@ -5,7 +5,7 @@ body:not(.is-tight) {
   .title + .box {
     margin-top: 24px;
   }
-  .title + * {
+  .title + .card {
     margin-top: 24px;
   }
 }
@@ -18,7 +18,7 @@ body:not(.is-tight) {
   .title + .box {
       margin-top: 16px;
     }
-  .title + * {
+  .title + .card {
       margin-top: 16px;
     }
 
