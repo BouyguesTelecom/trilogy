@@ -53,7 +53,6 @@ export const ChipsScreen = (): JSX.Element => {
         </ChipsList>
 
         <Title level={TitleLevels.TWO}>Chips selection unique </Title>
-
         <ChipsList>
           <Chips
             onClick={() => {

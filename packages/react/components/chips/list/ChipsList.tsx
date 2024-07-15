@@ -23,7 +23,7 @@ const ChipsList = ({
   )
 
   return (
-    <div className={classes} {...others}>
+    <div role={multiple ? "group" : "radiogroup"} className={classes} {...others}>
       {children}
     </div>
   )
