@@ -2,15 +2,16 @@
  * Spacer Size
  */
 export enum SpacerSize {
-  ONE = 0,
-  TWO = 4,
-  THREE = 8,
-  FOUR = 12,
-  FIVE = 16,
-  SIX = 24,
-  SEVEN = 32,
-  EIGHT = 40,
-  NINE = 48,
+  ONE = 4,
+  TWO = 8,
+  THREE = 12,
+  FOUR = 16,
+  FIVE = 24,
+  SIX = 32,
+  SEVEN = 40,
+  EIGHT = 48,
+  NINE = 56,
+  TEN = 64
 }
 
 export type SpacerSizeValues = `${SpacerSize}`

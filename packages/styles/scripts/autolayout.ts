@@ -5,21 +5,14 @@ import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/Spaci
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
 
-const { THREE, FOUR, FIVE, EIGHT } = SpacerSize;
+const { THREE, FOUR, FIVE, EIGHT, TWO } = SpacerSize;
 
 const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'Box', '', THREE, FIVE],
-  [INSERT_SPACE_BETWEEN, 'Box', 'default', FIVE],
-  [INSERT_SPACE_BETWEEN, 'default', 'Box', FOUR],
-  [INSERT_SPACE_BETWEEN, 'Title', 'Button', THREE],
-  [INSERT_SPACE_BETWEEN, 'Text', '', THREE, FOUR],
-  [INSERT_SPACE_BETWEEN, 'Card', '', THREE, FIVE],
-  [INSERT_SPACE_BETWEEN, 'Button', '', THREE],
-  [INSERT_SPACE_BETWEEN, 'Accordions', '', THREE],
-  [INSERT_SPACE_BETWEEN, 'Alert', '', THREE],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', '', THREE, FIVE],
-  [INSERT_SPACE_BETWEEN, 'Tags', '', THREE],
-  [INSERT_SPACE_BETWEEN, 'Chips-list', '', THREE],
+  [INSERT_SPACE_BETWEEN, 'Title', 'Icon', FOUR, TWO],
+  [INSERT_SPACE_BETWEEN, 'Title', 'Box', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Title', 'default', FIVE, FOUR],
+
+
 ];
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
@@ -37,7 +30,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
         if (component === 'default' && typeof component2 === 'string') {
           selector = `* + .${component2.toLowerCase()}`;
         } else if (typeof component === 'string' && component2 === 'default') {
-          selector = `.${component.toLowerCase()}:not(:first-child) + *`;
+          selector = `.${component.toLowerCase()} + *`;
         } else if (typeof component === 'string' && typeof component2 === 'string') {
           selector = `.${component.toLowerCase()} + .${component2.toLowerCase()}`;
         }

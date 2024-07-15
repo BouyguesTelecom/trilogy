@@ -1,54 +1,24 @@
 body:not(.is-tight) {
-  .box {
-    margin-top: 8px;
-  }
-  .box:not(:first-child) + * {
+  .title + .icon {
     margin-top: 16px;
   }
-  * + .box {
-    margin-top: 12px;
+  .title + .box {
+    margin-top: 24px;
   }
-  .title + .button {
-    margin-top: 8px;
-  }
-  .text {
-    margin-top: 8px;
-  }
-  .card {
-    margin-top: 8px;
-  }
-  .button {
-    margin-top: 8px;
-  }
-  .accordions {
-    margin-top: 8px;
-  }
-  .alert {
-    margin-top: 8px;
-  }
-  .chips-list {
-    margin-top: 8px;
-  }
-  .tags {
-    margin-top: 8px;
-  }
-  .chips-list {
-    margin-top: 8px;
+  .title + * {
+    margin-top: 24px;
   }
 }
 
 @include mobile() {
   body:not(.is-tight) {
-    .box {
+    .title + .icon {
+      margin-top: 8px;
+    }
+  .title + .box {
       margin-top: 16px;
     }
-  .text {
-      margin-top: 12px;
-    }
-  .card {
-      margin-top: 16px;
-    }
-  .chips-list {
+  .title + * {
       margin-top: 16px;
     }
 
