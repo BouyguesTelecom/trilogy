@@ -7,7 +7,7 @@ type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSi
 
 const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX, EIGHT } = SpacerSize;
 
-const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
+export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'title', 'icon', FOUR, TWO],
   [INSERT_SPACE_BETWEEN, 'title', 'box', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'title', 'card', FIVE, FOUR],
@@ -52,7 +52,6 @@ const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'text .is-level-3 .has-text-semibold', 'text', ONE, ONE],
   [INSERT_SPACE_BETWEEN, 'text .is-level-1', 'section', EIGHT, SIX],
   [INSERT_SPACE_BETWEEN, 'text .is-level-1', 'button', FIVE, FIVE],
-
 ];
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
