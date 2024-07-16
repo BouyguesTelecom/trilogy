@@ -117,7 +117,7 @@ const Alert = ({
           >
             {title}
           </Text>
-          <Spacer size={SpacerSize.SMALLER} />
+          <Spacer size={SpacerSize.ONE} />
         </ColumnsItem>
       </Columns>
 
@@ -196,7 +196,7 @@ export const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props }) 
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (
               <>
-                <Spacer size={SpacerSize.SMALL} />
+                <Spacer size={SpacerSize.TWO} />
                 <Text level={TextLevels.THREE}>{description}</Text>
               </>
             )}
