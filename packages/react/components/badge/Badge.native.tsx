@@ -61,7 +61,7 @@ const Badge = ({
       <View style={styles.container}>
         {!direction && <Text style={styles.textContent}>{textContent}</Text>}
         {direction && direction === BadgeTextDirection.LEFT && (
-          <Text testID="" style={styles.textContent}>{textContent}</Text>
+          <Text style={styles.textContent}>{textContent}</Text>
         )}
         <View style={styles.badge}>
           <Text style={styles.text}>{content}</Text>
