@@ -24,6 +24,7 @@ const Tag = ({
   inverted,
   iconName,
   small,
+  testId,
   ...others
 }: TagProps): JSX.Element => {
   const [display, setDisplay] = useState<boolean>(deletable || false)
@@ -121,6 +122,7 @@ const Tag = ({
             size={small ? IconSize.SMALLER : IconSize.SMALL}
             style={styles.iconLeft}
             name={iconName}
+            testId={`${testId}-icon`}
           />
         )}
         <Text style={styles.text}>{children}</Text>

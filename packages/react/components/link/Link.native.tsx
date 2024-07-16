@@ -180,7 +180,7 @@ const Link = ({
               </Text>
               <Spacer size={SpacerSize.SMALLER} horizontal />
               <Icon
-                color={"TERTIARY"}
+                color={TrilogyColor.MAIN}
                 name={iconName}
                 style={styles.icon}
                 size='small'

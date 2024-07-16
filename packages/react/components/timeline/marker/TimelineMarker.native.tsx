@@ -14,6 +14,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const TimelineMarker = ({
   iconName,
   iconColor,
+  testId
 }: TimelineMarkerProps): JSX.Element => {
   const { active, undone, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
@@ -43,7 +44,7 @@ const TimelineMarker = ({
   })
 
   return (
-    <View style={styles.marker}>
+    <View style={styles.marker} testID={testId}>
       <View style={styles.icon}>
         <Icon
           name={iconName}

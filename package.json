@@ -26,6 +26,7 @@
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
     "test": "npm --workspace=@trilogy-ds/react run test",
+    "test:native": "npm --workspace=@trilogy-ds/react run test:native",
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
     "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
@@ -145,7 +146,8 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
-    "webpack-iconfont-plugin-nodejs": "^1.0.33"
+    "webpack-iconfont-plugin-nodejs": "^1.0.33",
+    "metro-react-native-babel-preset": "^0.77.0"
   },
   "workspaces": [
     "packages/react",

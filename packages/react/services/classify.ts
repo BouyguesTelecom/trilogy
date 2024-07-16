@@ -7,7 +7,7 @@ export function getStatusBackground(status: string, defaultBg: string): string {
     return has(`bg-${defaultBg}`)
   }
 
-  return has(`bg-${status}`)
+  return has(`bg-${status.toLowerCase()}`)
 }
 
 export function classify(prefix: Lowercase<string>): (classname: string) => string {

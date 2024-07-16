@@ -85,9 +85,8 @@ const Box = ({
       borderTopStartRadius: boxRadius,
       borderBottomStartRadius: boxRadius,
       height: boxHeight,
-      backgroundColor:
-        getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) ||
-        "transparent",
+      backgroundColor: leftBorder ? getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) : 'transparent',
+
     },
     column: {
       flexDirection: "column",
@@ -108,7 +107,7 @@ const Box = ({
   const boxTestId = testId || "NotSpecified"
 
   const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others}>
+    <ContentLoader style={styles.skeleton} {...others} testID="skeleton">
       <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === "android" && (
