@@ -11,13 +11,13 @@ body:not(.is-tight) {
   .title + .subtitle {
     margin-top: 12px;
   }
-  .title + .text .is-level-1 {
+  .title + .text.is-level-1 {
     margin-top: 16px;
   }
-  .title + .text .is-level-2 {
+  .title + .text.is-level-2 {
     margin-top: 8px;
   }
-  .title + .text .is-level-3 {
+  .title + .text.is-level-3 {
     margin-top: 4px;
   }
   .title + .rows {
@@ -32,31 +32,31 @@ body:not(.is-tight) {
   .title + * {
     margin-top: 24px;
   }
-  .title .is-level-1 + .section {
+  .title.is-level-1 + .section {
     margin-top: 40px;
   }
-  .title .is-level-1 + .subtitle {
+  .title.is-level-1 + .subtitle {
     margin-top: 12px;
   }
-  .title .is-level-1 + .text {
+  .title.is-level-1 + .text {
     margin-top: 16px;
   }
-  .title .is-level-1 + .title {
+  .title.is-level-1 + .title {
     margin-top: 0px;
   }
-  .title .is-level-1 + .slider {
+  .title.is-level-1 + .slider {
     margin-top: 40px;
   }
-  .title .is-level-1 + .slider {
+  .title.is-level-1 + .slider {
     margin-top: 40px;
   }
-  .title .is-level-2 + .subtitle {
+  .title.is-level-2 + .subtitle {
     margin-top: 12px;
   }
-  .title .is-level-2 + .section {
+  .title.is-level-2 + .section {
     margin-top: 40px;
   }
-  .title .is-level-2 + .text {
+  .title.is-level-2 + .text {
     margin-top: 40px;
   }
   .list + .list {
@@ -116,19 +116,19 @@ body:not(.is-tight) {
   .text + * {
     margin-top: 24px;
   }
-  .text .is-level-1 .has-text-semibold + .text {
+  .text.is-level-1.has-text-semibold + .text {
     margin-top: 16px;
   }
-  .text .is-level-2 .has-text-semibold + .text {
+  .text.is-level-2.has-text-semibold + .text {
     margin-top: 8px;
   }
-  .text .is-level-3 .has-text-semibold + .text {
+  .text.is-level-3.has-text-semibold + .text {
     margin-top: 4px;
   }
-  .text .is-level-1 + .section {
+  .text.is-level-1 + .section {
     margin-top: 48px;
   }
-  .text .is-level-1 + .button {
+  .text.is-level-1 + .button {
     margin-top: 24px;
   }
 }
@@ -147,13 +147,13 @@ body:not(.is-tight) {
   .title + .subtitle {
       margin-top: 12px;
     }
-  .title + .text .is-level-1 {
+  .title + .text.is-level-1 {
       margin-top: 16px;
     }
-  .title + .text .is-level-2 {
+  .title + .text.is-level-2 {
       margin-top: 8px;
     }
-  .title + .text .is-level-3 {
+  .title + .text.is-level-3 {
       margin-top: 4px;
     }
   .title + .rows {
@@ -168,31 +168,31 @@ body:not(.is-tight) {
   .title + * {
       margin-top: 24px;
     }
-  .title .is-level-1 + .section {
+  .title.is-level-1 + .section {
       margin-top: 40px;
     }
-  .title .is-level-1 + .subtitle {
+  .title.is-level-1 + .subtitle {
       margin-top: 12px;
     }
-  .title .is-level-1 + .text {
+  .title.is-level-1 + .text {
       margin-top: 12px;
     }
-  .title .is-level-1 + .title {
+  .title.is-level-1 + .title {
       margin-top: 0px;
     }
-  .title .is-level-1 + .slider {
+  .title.is-level-1 + .slider {
       margin-top: 32px;
     }
-  .title .is-level-1 + .slider {
+  .title.is-level-1 + .slider {
       margin-top: 32px;
     }
-  .title .is-level-2 + .subtitle {
+  .title.is-level-2 + .subtitle {
       margin-top: 12px;
     }
-  .title .is-level-2 + .section {
+  .title.is-level-2 + .section {
       margin-top: 32px;
     }
-  .title .is-level-2 + .text {
+  .title.is-level-2 + .text {
       margin-top: 32px;
     }
   .list + .list {
@@ -252,19 +252,19 @@ body:not(.is-tight) {
   .text + * {
       margin-top: 24px;
     }
-  .text .is-level-1 .has-text-semibold + .text {
+  .text.is-level-1.has-text-semibold + .text {
       margin-top: 16px;
     }
-  .text .is-level-2 .has-text-semibold + .text {
+  .text.is-level-2.has-text-semibold + .text {
       margin-top: 8px;
     }
-  .text .is-level-3 .has-text-semibold + .text {
+  .text.is-level-3.has-text-semibold + .text {
       margin-top: 4px;
     }
-  .text .is-level-1 + .section {
+  .text.is-level-1 + .section {
       margin-top: 32px;
     }
-  .text .is-level-1 + .button {
+  .text.is-level-1 + .button {
       margin-top: 24px;
     }
 
