@@ -8,13 +8,13 @@ import type { SpacingMatrix } from "@/components/autolayout/SpacingMatrix"
 import type { RadioListProps } from "./RadioListProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
-const { MEDIUM, SMALL } = SpacerSize
+const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
 const SPACING_MATRIX: SpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, "Radio", "Divider", SMALL],
-  [INSERT_SPACE_BETWEEN, "Divider", "Radio", SMALL],
-  [INSERT_SPACE_BETWEEN, "Radio", "Radio", MEDIUM],
+  [INSERT_SPACE_BETWEEN, "Radio", "Divider", TWO],
+  [INSERT_SPACE_BETWEEN, "Divider", "Radio", TWO],
+  [INSERT_SPACE_BETWEEN, "Radio", "Radio", THREE],
 ]
 
 /**

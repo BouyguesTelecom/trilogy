@@ -193,7 +193,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
     </>
   )
 }
