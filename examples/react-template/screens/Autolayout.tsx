@@ -1,11 +1,12 @@
-import { AlertState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
   Alert,
+  AlertState,
   AutoLayout,
+  TrilogyColor,
   Box,
   BoxContent,
   BoxHeader,
@@ -16,13 +17,19 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+  Icon,
+  IconSize,
+  Card,
+  CardContent,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (
     <AutoLayout>
-      <Title level={TitleLevels.TWO}>Elements : </Title>
+      <Title level={TitleLevels.TWO}>Title followed by Icon</Title>
+      <Icon size={IconSize.LARGE} name={IconName.ALERT} />
+      <Title level={TitleLevels.TWO}>Title followed by Box</Title>
       <Box>
         <BoxHeader>Simple</BoxHeader>
         <BoxContent>
@@ -33,6 +40,7 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
+
       <Box background={TrilogyColor.MAIN} inverted>
         <BoxContent>
           <Text>
@@ -42,9 +50,21 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
+
+      <Title level={TitleLevels.TWO}>Title followed by Card</Title>
+
+      <Card>
+        <CardContent>
+          <Text>Card content</Text>
+        </CardContent>
+      </Card>
+
       <Title level={TitleLevels.ONE}>Im a Title</Title>
+
       <Text level={TextLevels.ONE}>Lorem ipsum dolor sit amet</Text>
+
       <Button variant={'PRIMARY'}>Click</Button>
+
       <Accordion>
         <AccordionItem id='UN' active={true}>
           <AccordionHeader>
@@ -62,21 +82,34 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id='TROIS'>
+      </Accordion>
+
+      <Accordion>
+        <AccordionItem id='UN' active={true}>
           <AccordionHeader>
-            <Text>Hello World 3</Text>
+            <Text>Hello World 1</Text>
+          </AccordionHeader>
+          <AccordionBody>
+            <Text>Lorem ipsum dolor sit amet</Text>
+          </AccordionBody>
+        </AccordionItem>
+        <AccordionItem active={true} id='DEUX'>
+          <AccordionHeader>
+            <Text>Hello World 2</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
       </Accordion>
+
       <Alert
         display
         alert={AlertState.SUCCESS}
         title={'Test alert'}
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
+
       <Input.AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
     </AutoLayout>
   )

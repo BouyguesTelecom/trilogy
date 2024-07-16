@@ -32,7 +32,6 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Switch', 'Text', FOUR],
   [INSERT_SPACE_BETWEEN, 'Radio', 'Radio', TWO],
   [INSERT_SPACE_BETWEEN, 'Box', 'Title', FIVE],
-  [INSERT_SPACE_BETWEEN, 'Accordion', 'Accordion', TWO],
   [INSERT_SPACE_BETWEEN, 'Accordion', 'Link', FIVE],
   [INSERT_SPACE_BETWEEN, 'Box', 'Box', FOUR],
   [INSERT_SPACE_BETWEEN, 'Box', 'Link', FIVE],
