@@ -10,6 +10,7 @@ import { ClickEvent, OnClickEvent } from "@/events/OnClickEvent"
 import { hashClass } from "@/helpers/hashClassesHelpers"
 import clsx from "clsx"
 import { useTrilogyContext } from "@/context/index"
+import shortid from "shortid"
 
 /**
  * Modal Component
@@ -67,6 +68,11 @@ const Modal = ({
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
+  const idDescription = shortid.generate()
+  const idTitle = shortid.generate()
+  const idModal = shortid.generate()
+  const ariaControls = `${idModal}-modal`
+  const refIconCloseModal = useRef<HTMLButtonElement>(null)
 
   const handleClickOutside = (e: Event) => {
     if (modal?.current?.contains(e.target as Node)) {
@@ -79,6 +85,10 @@ const Modal = ({
   useEffect(() => {
     setDisplay(active || false)
   }, [active])
+
+  useEffect(() => {
+    display && refIconCloseModal?.current && refIconCloseModal.current.focus()
+  }, [display,refIconCloseModal])
 
   useEffect(() => {
     if (display && !disableHandlingClickOutside) {
@@ -163,6 +173,7 @@ const Modal = ({
         handleClose(onCloseFunc, e)
       }}
       type={ButtonType.BUTTON}
+      {...{ title: 'Fermer la modal', ariaControls }}
     >
       Annuler
     </Button>
@@ -174,8 +185,11 @@ const Modal = ({
         handleClose(onCloseFunc, e)
       }}
       className={hashClass(styled, clsx("modal-close", is("large")))}
-      aria-label='close'
+      aria-label='Fermer la modal'
       type={ButtonType.BUTTON}
+      title="Fermer la modal"
+      aria-controls={ariaControls}
+      ref={refIconCloseModal}
     />
   )
 
@@ -183,6 +197,7 @@ const Modal = ({
     <div data-testid={testId}>
       {triggerContent && (
         <TriggerTag
+        aria-controls={ariaControls}
           onClick={(e: React.MouseEvent) => {
             handleOpen(onOpen, e)
           }}
@@ -191,16 +206,23 @@ const Modal = ({
           {triggerContent}
         </TriggerTag>
       )}
-      <div className={classes} {...others}>
+      <div 
+        className={classes} 
+        role="dialog" 
+        aria-modal="true" 
+        aria-labelledby={title ? idTitle : undefined} 
+        aria-describedby={content ? idDescription : undefined}
+        {...others} 
+      >
         <div ref={modal} className={contentClasses}>
           {closeIcon && <CloseButton onCloseFunc={onClose} />}
           {(title || iconName) && (
-            <ModalTitle iconColor={iconColor} iconName={iconName}>
+            <ModalTitle iconColor={iconColor} iconName={iconName} {...{textId:idTitle}}>
               {title}
             </ModalTitle>
           )}
           {content && typeof content === "string" ? (
-            <Text>{content}</Text>
+            <Text {...{id: idDescription}}>{content}</Text>
           ) : (
             content
           )}
