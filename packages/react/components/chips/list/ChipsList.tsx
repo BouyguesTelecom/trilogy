@@ -1,9 +1,9 @@
 import * as React from "react"
-import { is } from "../../../services"
+import { is } from "@/services"
 import { ChipsListProps } from "./ChipsListProps"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * ChipsList Component - Container for Chips
@@ -23,7 +23,7 @@ const ChipsList = ({
   )
 
   return (
-    <div className={classes} {...others}>
+    <div role={multiple ? "group" : "radiogroup"} className={classes} {...others}>
       {children}
     </div>
   )

@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { BoxProps } from "./BoxProps"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { getBackgroundStyle } from "../../objects/atoms/Background"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { getBackgroundStyle } from "@/objects/atoms/Background"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Box Component
@@ -85,9 +85,8 @@ const Box = ({
       borderTopStartRadius: boxRadius,
       borderBottomStartRadius: boxRadius,
       height: boxHeight,
-      backgroundColor:
-        getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) ||
-        "transparent",
+      backgroundColor: leftBorder ? getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) : 'transparent',
+
     },
     column: {
       flexDirection: "column",
@@ -108,7 +107,7 @@ const Box = ({
   const boxTestId = testId || "NotSpecified"
 
   const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others}>
+    <ContentLoader style={styles.skeleton} {...others} testID="skeleton">
       <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === "android" && (

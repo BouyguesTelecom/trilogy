@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { getColorStyle, TrilogyColor } from "../../objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { TableProps } from "./TableProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table Component

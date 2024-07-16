@@ -1,10 +1,10 @@
-import { IconColor, IconColorValues, IconName, IconNameValues } from '../../icon'
-import { Accessibility } from '../../../objects'
+import { IconColor, IconColorValues, IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects'
 
 /**
  * Timeline Marker Interface
  */
-export interface TimelineMarkerProps {
+export interface TimelineMarkerProps extends Accessibility {
   children?: React.ReactNode
   iconName: IconName | IconNameValues
   iconColor?: IconColor | IconColorValues

@@ -1,16 +1,16 @@
-import React, {forwardRef, useEffect, useRef, useState} from "react";
-import {Animated, StyleSheet, Text, TextInput, View} from "react-native";
-import {TextareaNativeProps} from "./TextareaProps";
+import React, { forwardRef, useEffect, useRef, useState } from "react"
+import { Animated, StyleSheet, Text, TextInput, View } from "react-native"
+import { TextareaNativeProps } from "./TextareaProps"
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
-} from "../input/InputEnum";
-import {getColorStyle, TrilogyColor} from "../../objects/facets/Color";
-import {AlertState, getAlertStyle} from "../../objects/facets/Alert";
-import {Icon, IconColor} from "../icon";
-import {ComponentName} from "../enumsComponentsName";
+} from "@/components/input/InputEnum"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { AlertState, getAlertStyle } from "@/objects/facets/Alert"
+import { Icon, IconColor } from "@/components/icon"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Textarea Native Component
@@ -51,22 +51,23 @@ const Textarea = (
     statusIconName,
     customHeight = 120,
     value,
+    testId,
     ...others
   }: TextareaNativeProps,
   // eslint-disable-next-line
   ref: any
 ): JSX.Element => {
-  const [_value, setValue] = useState<string>(value || "");
+  const [_value, setValue] = useState<string>(value || "")
 
-  const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isFocus, setIsFocus] = useState<boolean>(false)
 
   const [displayDynamicLabel, setDisplayDynamicLabel] =
-    useState<boolean>(false);
+    useState<boolean>(false)
   const textareaColor = isFocus
     ? getColorStyle(TrilogyColor.MAIN)
-    : getColorStyle(TrilogyColor.FONT, 1);
+    : getColorStyle(TrilogyColor.FONT, 1)
 
-  const animation = useRef(new Animated.Value(0)).current;
+  const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     if (displayDynamicLabel) {
@@ -74,9 +75,9 @@ const Textarea = (
         toValue: 1,
         duration: 5000,
         useNativeDriver: false,
-      }).start();
+      }).start()
     }
-  }, [displayDynamicLabel, animation]);
+  }, [displayDynamicLabel, animation])
 
   const styles = StyleSheet.create({
     textarea: {
@@ -144,7 +145,7 @@ const Textarea = (
       right: 16,
       zIndex: 10
     },
-  });
+  })
 
   return (
     <View>
@@ -154,7 +155,7 @@ const Textarea = (
 
       {iconName && (
         <Text style={styles.leftIcon}>
-          <Icon name={iconName} size="small" />
+          <Icon name={iconName} size='small' testId={`${testId}-icon`} />
         </Text>
       )}
 
@@ -170,13 +171,13 @@ const Textarea = (
         textContentType={textContentType || InputTextContentType.NONE}
         keyboardType={keyboardType || InputKeyboardType.DEFAULT}
         onChangeText={(text) => {
-          setDisplayDynamicLabel(text.length > 0);
-          setValue(text);
+          setDisplayDynamicLabel(text.length > 0)
+          setValue(text)
           if (onChange) {
             onChange({
               textareaName: (name && name) || "",
               textareaValue: text,
-            });
+            })
           }
         }}
         placeholder={placeholder}
@@ -191,8 +192,9 @@ const Textarea = (
         <Text style={styles.rightIcon}>
           <Icon
             name={statusIconName}
-            size="small"
+            size='small'
             color={status && (status.toUpperCase() as IconColor)}
+            testId={`${testId}-statusIcon`}
           />
         </Text>
       )}
@@ -201,15 +203,15 @@ const Textarea = (
         <Text style={styles.dynamicLabel}>{label}</Text>
       )}
       {maxLength && (
-        <Text style={styles.counter}>
+        <Text style={styles.counter} testID={`${testId}-maxLength`}>
           {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
         </Text>
       )}
-      {help && <Text style={styles.help}>{help}</Text>}
+      {help && <Text style={styles.help} testID={`${testId}-help`}>{help}</Text>}
     </View>
-  );
-};
+  )
+}
 
-Textarea.displayName = ComponentName.Textarea;
+Textarea.displayName = ComponentName.Textarea
 
-export default forwardRef(Textarea);
+export default forwardRef(Textarea)

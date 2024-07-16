@@ -1,16 +1,16 @@
-import React, { useContext } from "react"
-import { CircleIconProps } from "./CircleIconProps"
-import { StyleSheet, View } from "react-native"
-import { IconPosition } from "../IconEnum"
-import { Text, TextLevels } from "../../text"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { IconPosition } from "@/components/icon/IconEnum"
+import { Text, TextLevels } from "@/components/text"
+import { TrilogyThemeContext } from "@/context/providerTheme.native"
 import {
-  getColorStyle,
   TrilogyColor,
   TrilogyColorValues,
-} from "../../../objects/facets/Color"
+  getColorStyle,
+} from "@/objects/facets/Color"
+import React, { useContext } from "react"
+import { StyleSheet, View } from "react-native"
 import { WithLocalSvg } from "react-native-svg/css"
-import { ComponentName } from "../../enumsComponentsName"
-import { TrilogyThemeContext } from "../../../context/providerTheme.native"
+import { CircleIconProps } from "./CircleIconProps"
 
 const CircleIcon = ({
   name,
@@ -21,6 +21,7 @@ const CircleIcon = ({
   circledWidth,
   position,
   stacked,
+  testId
 }: CircleIconProps): JSX.Element => {
   const {
     theme: { icons },
@@ -69,7 +70,7 @@ const CircleIcon = ({
   })
 
   return (
-    <View style={styles.contentContainer}>
+    <View style={styles.contentContainer} testID={testId}>
       {!position && content && (
         <View>
           <Text style={styles.text} level={TextLevels.TWO}>

@@ -1,4 +1,4 @@
-import { ClickEvent } from '../../events/OnClickEvent'
+import { ClickEvent } from '@/events/OnClickEvent'
 import { CountdownFormat } from './CountdownEnum'
 
 /**

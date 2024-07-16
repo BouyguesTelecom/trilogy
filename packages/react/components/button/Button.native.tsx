@@ -5,15 +5,16 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native"
-import { getLoadingClassName, getVariantClassName } from "../../objects"
 import {
   TrilogyColor,
   getButtonColorStyle,
   getColorStyle,
-} from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
-import { Icon, IconSize } from "../icon"
-import { View } from "../view"
+  getLoadingClassName,
+  getVariantClassName
+} from "@/objects/facets"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Icon, IconSize } from "@/components/icon"
+import { View } from "@/components/view"
 import { ButtonVariant } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
 
@@ -27,23 +28,19 @@ const findBackgroundColor = ({
   variant,
 }: ButtonProps): string => {
   return (
+    (disabled && getColorStyle(TrilogyColor.NEUTRAL, 1)) ||
     (typeof loading === "string" &&
     getLoadingClassName(loading) === "loading" &&
     getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
     (typeof loading === "boolean" &&
     loading &&
     getColorStyle(TrilogyColor.NEUTRAL)) ||
-    (disabled && variant && getColorStyle(TrilogyColor.DISABLED, 1)) ||
     (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
     (variant === ButtonVariant.SECONDARY &&
       getColorStyle(TrilogyColor.MAIN, 1)) ||
     (variant === ButtonVariant.CONVERSION &&
       getColorStyle(TrilogyColor.ACCENT, 1)) ||
     (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-    (disabled &&
-      variant === ButtonVariant.PRIMARY &&
-      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
-    (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
     getColorStyle(TrilogyColor.MAIN, 1)
   )
 }
@@ -137,14 +134,14 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabled: {
-      color: getColorStyle(TrilogyColor.DISABLED),
+      color: getColorStyle(TrilogyColor.DISABLED,1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
       justifyContent: "center",
     },
     textDisabledIcon: {
-      color: getColorStyle(TrilogyColor.DISABLED),
+      color: getColorStyle(TrilogyColor.DISABLED,1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
@@ -217,7 +214,7 @@ const Button = ({
               height: 45,
             }}
           >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
+            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
           </View>
         )}
       {loading && typeof loading === "boolean" && loading === true && (
@@ -228,7 +225,7 @@ const Button = ({
             justifyContent: "center",
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
+          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
         </View>
       )}
       {loading &&
@@ -258,9 +255,11 @@ const Button = ({
               name={iconName}
               size={IconSize.SMALL}
               color={iconColorVariant(variant)}
+              testId="button-icon"
             />
           ) : (
             <Icon
+              testId="button-icon"
               name={iconName}
               size={IconSize.SMALL}
               color={getColorStyle(TrilogyColor.DISABLED)}

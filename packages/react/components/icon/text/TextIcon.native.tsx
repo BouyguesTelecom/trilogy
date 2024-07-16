@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet, Platform } from 'react-native'
-import { Text, TextLevels } from '../../text'
-import { IconPosition } from '../IconEnum'
+import { Text, TextLevels } from '@/components/text'
+import { IconPosition } from '@/components/icon/IconEnum'
 import { TextIconProps } from './TextIconProps'
-import { Alignable, getAlignStyle } from '../../../objects/facets/Alignable'
+import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../../enumsComponentsName'
-import { TrilogyThemeContext } from "../../../context/providerTheme.native"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TrilogyThemeContext } from "@/context/providerTheme.native"
 
 const TextIcon = ({
   name,
@@ -17,6 +17,7 @@ const TextIcon = ({
   color,
   stacked,
   verticalAlign = Alignable.ALIGNED_CENTER,
+  testId
 }: TextIconProps): JSX.Element => {
   const {
     theme: { icons },
@@ -44,7 +45,7 @@ const TextIcon = ({
   })
 
   return (
-    <View style={[{ width: '100%' }, styles.contentContainer]}>
+    <View style={[{ width: '100%' }, styles.contentContainer]} testID={testId}>
       {!position && <Text style={styles.text}>{content}</Text>}
 
       {(position === IconPosition.RIGHT || position === IconPosition.DOWN) && content && (

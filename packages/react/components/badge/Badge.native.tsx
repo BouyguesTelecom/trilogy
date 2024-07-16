@@ -2,8 +2,8 @@ import * as React from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { BadgeProps } from "./BadgeProps"
 import { BadgeColor, BadgeTextDirection } from "./BadgeEnum"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Badge Native Component
@@ -21,6 +21,7 @@ const Badge = ({
   direction,
   color,
   onClick,
+  testId,
   ...others
 }: BadgeProps): JSX.Element => {
   const badgeColor = color
@@ -88,7 +89,7 @@ const Badge = ({
 
   return onClick ? (
     <View>
-      <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+      <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
         {badgeView}
       </TouchableOpacity>
     </View>

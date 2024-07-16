@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { SectionProps } from './SectionProps'
-import { has, is } from '../../services'
-import { getBackgroundClassName } from '../../objects'
+import { has, is } from '@/services'
+import { getBackgroundClassName } from '@/objects'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

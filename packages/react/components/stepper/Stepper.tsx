@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
 import { StepperProps } from "./StepperProps"
-import { has } from "../../services/classify"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { has } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Stepper Component

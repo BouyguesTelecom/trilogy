@@ -1,7 +1,7 @@
 import * as React from "react"
-import { View } from "../view"
+import { View } from "@/components/view"
 import { ListProps } from "./ListProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 const List = ({ children, ...others }: ListProps): JSX.Element => {
   return <View {...others}>{children}</View>

@@ -1,10 +1,10 @@
 import * as React from "react"
 import clsx from "clsx"
 import { TimelineMarkerWebProps } from "./TimelineMarkerProps"
-import { is } from "../../../services/classify"
-import { Icon, IconSize } from "../../icon"
-import { useTrilogyContext } from "../../../context"
-import { hashClass } from "../../../helpers"
+import { is } from "@/services/classify"
+import { Icon, IconSize } from "@/components/icon"
+import { useTrilogyContext } from "@/context"
+import { hashClass } from "@/helpers"
 
 /**
  * Timeline Marker Component

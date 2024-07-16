@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useTrilogyContext } from '../../context'
-import { hashClass } from '../../helpers'
-import { has, is } from '../../services'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { has, is } from '@/services'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { Text } from '../text'
+import { Text } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
@@ -86,7 +86,6 @@ const Input = ({
   defaultValue,
   value,
   loading,
-  hovered,
   focused,
   hasIcon,
   customIcon,
@@ -153,7 +152,7 @@ const Input = ({
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
       return (
         <div
-          data-show-pwd
+        {...type === "password" && { "data-show-pwd": true }}
           onClick={() => {
             onPress && onPress()
             if (onIconClick) {
@@ -292,7 +291,6 @@ const Input = ({
             className={clsx('icon-right', iconClassname)}
             name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
             onPress={() => {
-              console.log('oui')
               if (inputType === 'password') {
                 setInputType('text')
                 setIsShowPwd(true)

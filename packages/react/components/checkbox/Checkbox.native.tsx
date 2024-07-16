@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react"
-import {StyleSheet, TouchableOpacity} from "react-native"
-import {IconName} from "../icon/IconNameEnum"
-import {CheckboxProps} from "./CheckboxProps"
+import React, { useEffect, useState } from "react"
+import { StyleSheet, TouchableOpacity } from "react-native"
+import { IconName } from "@/components/icon/IconNameEnum"
+import { CheckboxProps } from "./CheckboxProps"
 import shortid from "shortid"
-import {getColorStyle, TrilogyColor} from "../../objects/facets/Color"
-import {Text, TextLevels} from "../text"
-import {View} from "../view"
-import {Icon, IconSize} from "../icon"
-import {TypographyAlign, TypographyBold} from "../../objects"
-import {ComponentName} from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { Text, TextLevels } from "@/components/text"
+import { View } from "@/components/view"
+import { Icon, IconSize } from "@/components/icon"
+import { TypographyAlign, TypographyBold } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Checkbox Native Component
@@ -34,6 +34,7 @@ const Checkbox = ({
                     description,
                     iconTile,
                     horizontalTile,
+                    testId
                   }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
@@ -133,11 +134,12 @@ const Checkbox = ({
   if (horizontalTile) {
     return (
       <TouchableOpacity
+        testID={testId}
         disabled={disabled}
         style={styles.horizontalTile}
         onPress={() => handleClick()}
       >
-        <View style={{flexDirection: "row"}}>
+        <View style={{ flexDirection: "row" }}>
           <View
             style={{
               width: "10%",
@@ -216,12 +218,13 @@ const Checkbox = ({
   if (tile) {
     return (
       <TouchableOpacity
+        testID={testId}
         disabled={disabled}
         style={horizontalTile ? styles.horizontalTile : styles.tile}
         onPress={() => handleClick()}
       >
         <TouchableOpacity
-          style={[{alignSelf: "flex-end", marginTop: 10}, styles.checkBox]}
+          style={[{ alignSelf: "flex-end", marginTop: 10 }, styles.checkBox]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick()}
@@ -234,7 +237,7 @@ const Checkbox = ({
             />
           )}
         </TouchableOpacity>
-        <View style={{width: "70%"}}>
+        <View style={{ width: "70%" }}>
           {iconTile && (
             <View
               style={{
@@ -281,6 +284,7 @@ const Checkbox = ({
 
   return (
     <TouchableOpacity
+      testID={testId}
       disabled={disabled}
       style={styles.container}
       onPress={() => handleClick()}

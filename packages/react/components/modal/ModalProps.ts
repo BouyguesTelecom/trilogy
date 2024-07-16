@@ -1,7 +1,7 @@
-import { Accessibility, Clickable, Clipped, Fullwidth } from '../../objects'
+import { Accessibility, Clickable, Clipped, Fullwidth } from '@/objects'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { IconColor, IconColorValues, IconName, IconNameValues } from '../icon'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { IconColor, IconColorValues, IconName, IconNameValues } from '@/components/icon'
 
 export interface ModalContentButtonProps extends Clickable {
   children?: string

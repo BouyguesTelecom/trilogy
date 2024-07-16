@@ -1,6 +1,6 @@
-import type { Centerable, Layout } from '../../../objects'
-import type { DividerProps } from '../../divider/DividerProps'
-import type { ButtonProps } from '../ButtonProps'
+import type { Centerable, Layout } from '@/objects'
+import type { DividerProps } from '@/components/divider/DividerProps'
+import type { ButtonProps } from '@/components/button/ButtonProps'
 
 type ButtonListChildrenTypes = React.ReactElement<ButtonProps | DividerProps> | undefined
 

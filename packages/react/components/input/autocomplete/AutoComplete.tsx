@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
-import { is } from '../../../services'
-import { InputProp } from '../Input'
-import { InputAutoCompleteType } from '../InputEnum'
-import { InputChangeEvent, InputKeyboardEvent } from '../InputProps'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import { InputProp } from '@/components/input/Input'
+import { InputAutoCompleteType } from '@/components/input/InputEnum'
+import { InputChangeEvent, InputKeyboardEvent } from '@/components/input/InputProps'
 import { AutoCompleteProps, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
@@ -61,7 +61,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   ...others
 }: AutoCompleteProps<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { Input }: { Input: React.ComponentType<InputProp> } = others as any
+  const { Input } = others as { Input: React.ComponentType<InputProp> }
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(value ?? '')
@@ -165,6 +165,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
+        defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
         reference={reference}

@@ -1,4 +1,4 @@
-import { ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '../../objects'
+import { ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
 
 /**
  * ScroView Interface

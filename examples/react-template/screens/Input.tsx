@@ -36,7 +36,6 @@ export const InputScreen = (): JSX.Element => {
         hovered
         placeholder={'Input, search icon'}
         help='Search helper input'
-        type={InputType.TEXT}
         onKeyUp={(e) => console.log(e)}
       />
 

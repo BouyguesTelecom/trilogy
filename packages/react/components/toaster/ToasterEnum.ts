@@ -1,4 +1,4 @@
-import { getColorStyle } from "../../objects/facets"
+import { getColorStyle } from "@/objects/facets"
 
 export const getInfoColorStyle = (InfoColor?: string): string => {
   switch (InfoColor) {

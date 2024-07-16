@@ -1,4 +1,4 @@
-import { TrilogyColorValues, TrilogyColor, Accessibility } from '../../../objects'
+import { TrilogyColorValues, TrilogyColor, Accessibility } from '@/objects'
 
 /**
  * Box Footer Interface

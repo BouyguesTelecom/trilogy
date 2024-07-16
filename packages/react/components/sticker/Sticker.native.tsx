@@ -1,9 +1,9 @@
 import * as React from "react"
-import {Platform, StyleSheet, View} from "react-native"
-import {StickerProps} from "./StickerProps"
-import {getColorStyle, getVariantStyle, TrilogyColor} from "../../objects"
-import {ComponentName} from "../enumsComponentsName"
-import {Text} from "../text"
+import { Platform, StyleSheet, View } from "react-native"
+import { StickerProps } from "./StickerProps"
+import { getColorStyle, getVariantStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Text } from "@/components/text"
 
 /**
  * Sticker Native component
@@ -53,7 +53,7 @@ const Sticker = ({
       alignItems: "center",
       fontWeight: "bold",
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === "ios" ? [{skewX: "0deg"}] : [],
+      transform: Platform.OS === "ios" ? [{ skewX: "0deg" }] : [],
     },
   })
 

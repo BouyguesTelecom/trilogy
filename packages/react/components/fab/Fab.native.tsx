@@ -1,10 +1,10 @@
 import * as React from "react"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { FabProps } from "./FabProps"
-import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
-import { Icon, IconColor, IconName, IconSize } from "../icon"
-import { ComponentName } from "../enumsComponentsName"
-import { Text } from "../text"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "@/objects"
+import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Text } from "@/components/text"
 
 /**
  * Fab Native Component
@@ -30,6 +30,7 @@ const Fab = ({
                left,
                right,
                disabled,
+               testId
              }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
@@ -74,6 +75,7 @@ const Fab = ({
       accessibilityLabel={accessibilityLabel}
       onPress={(e?: unknown) => onClick?.(e)}
       disabled={disabled}
+      testID={testId}
     >
       {extended ? (
         <>
