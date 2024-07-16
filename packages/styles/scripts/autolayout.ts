@@ -40,7 +40,6 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'switch', 'text', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'radio', 'radio', FOUR, TWO],
   [INSERT_SPACE_BETWEEN, 'box', 'title', SIX, FIVE],
-  [INSERT_SPACE_BETWEEN, 'accordions', 'accordions', TWO, TWO],
   [INSERT_SPACE_BETWEEN, 'accordions', 'link', FIVE, FIVE],
   [INSERT_SPACE_BETWEEN, 'box', 'box', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'box', 'link', FIVE, FIVE],
