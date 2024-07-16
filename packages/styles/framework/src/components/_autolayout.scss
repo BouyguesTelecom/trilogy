@@ -95,9 +95,6 @@ body:not(.is-tight) {
   .box + .title {
     margin-top: 32px;
   }
-  .accordions + .accordions {
-    margin-top: 8px;
-  }
   .accordions + .link {
     margin-top: 24px;
   }
@@ -230,9 +227,6 @@ body:not(.is-tight) {
     }
   .box + .title {
       margin-top: 24px;
-    }
-  .accordions + .accordions {
-      margin-top: 8px;
     }
   .accordions + .link {
       margin-top: 24px;
