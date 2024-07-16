@@ -16,7 +16,7 @@ import {
   InputStatus,
   InputType,
 } from "../InputEnum";
-import { IconName } from "../../icon/";
+import { IconName } from "../../icon";
 
 describe("Input component", () => {
   const types = [
