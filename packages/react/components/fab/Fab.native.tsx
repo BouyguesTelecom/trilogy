@@ -30,6 +30,7 @@ const Fab = ({
                left,
                right,
                disabled,
+               testId
              }: FabProps): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
@@ -74,6 +75,7 @@ const Fab = ({
       accessibilityLabel={accessibilityLabel}
       onPress={(e?: unknown) => onClick?.(e)}
       disabled={disabled}
+      testID={testId}
     >
       {extended ? (
         <>

@@ -1,3 +1,5 @@
+jest.useFakeTimers();
+
 import { fireEvent, render } from "@testing-library/react-native";
 import * as React from "react";
 import { Platform, PlatformOSType } from "react-native";
@@ -116,7 +118,7 @@ describe("Input component", () => {
 
   test("Should have search icon", () => {
     const { getByTestId } = render(
-      <Input placeholder="Test" type={InputType.SEARCH} value="bonjour" />
+      <Input placeholder="Test" type={InputType.SEARCH} defaultValue="bonjour" />
     );
     fireEvent.press(getByTestId("search-id"));
     expect(getByTestId("search-id")).toBeTruthy();
@@ -131,7 +133,7 @@ describe("Input component", () => {
     const { getByTestId } = render(
       <Input
         hasIcon
-        status={InputStatus.DEFAULT}
+        status={InputStatus.SUCCESS}
         customIcon={IconName.INFOS_CIRCLE}
       />
     );

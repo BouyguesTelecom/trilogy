@@ -218,7 +218,7 @@ const Button = ({
               height: 45,
             }}
           >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
+            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
           </View>
         )}
       {loading && typeof loading === "boolean" && loading === true && (
@@ -229,7 +229,7 @@ const Button = ({
             justifyContent: "center",
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} />
+          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
         </View>
       )}
       {loading &&
@@ -259,9 +259,11 @@ const Button = ({
               name={iconName}
               size={IconSize.SMALL}
               color={iconColorVariant(variant)}
+              testId="button-icon"
             />
           ) : (
             <Icon
+              testId="button-icon"
               name={iconName}
               size={IconSize.SMALL}
               color={getColorStyle(TrilogyColor.DISABLED)}

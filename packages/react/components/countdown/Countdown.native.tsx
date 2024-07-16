@@ -150,26 +150,26 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
   return (
     <View style={styles.countdown} {...others}>
       {(show[CountdownUnite.DAY] || timer.days != 0) && (
-        <Text style={styles.text}>
+        <Text style={styles.text} testId='day-id'>
           {timer.days ? timer.days : 0}
           <Text style={styles.date}>j</Text>
         </Text>
       )}
-      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && <View style={styles.separator} testID='hour-day-id'></View>}
       {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
         <Text style={styles.text}>
           {timer.hours ? timer.hours : 0}
           <Text style={styles.date}>h</Text>
         </Text>
       )}
-      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='hour-min-id'></View>}
       {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
         <Text style={styles.text}>
           {timer.minutes ? timer.minutes : 0}
           <Text style={styles.date}>m</Text>
         </Text>
       )}
-      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='sec-min-id'></View>}
       {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
         <Text style={styles.text} level={TextLevels.ONE}>
           {timer.seconds ? timer.seconds : 0}

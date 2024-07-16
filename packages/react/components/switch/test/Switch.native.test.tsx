@@ -36,7 +36,7 @@ describe("Switch component", () => {
 
   test("trackColor", async () => {
     const { getByTestId } = render(<Switch />);
-    expect(getByTestId("switch-id").props.tintColor).toBe("#646464");
+    expect(getByTestId("switch-id").props.tintColor).toBe(getColorStyle(TrilogyColor.FONT, 1));
     expect(getByTestId("switch-id").props.onTintColor).toBe(
       getColorStyle(TrilogyColor.MAIN)
     );

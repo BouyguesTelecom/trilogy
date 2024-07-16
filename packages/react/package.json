@@ -15,7 +15,7 @@
   "scripts": {
     "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",
     "check-types": "tsc --noemit",
-    "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent",
+    "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
     "build": "rimraf lib && npm run prebuild && tsc -p . && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib/"
   },

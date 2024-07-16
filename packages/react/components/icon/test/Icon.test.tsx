@@ -9,7 +9,7 @@ import { Alignable, TrilogyColor } from "../../../objects";
 const defaultProps: IconProps = {
   size: "medium",
   name: IconName.TIMES,
-  status: "success",
+  status: "SUCCESS",
   circled: false,
   content: "",
   position: IconPosition.LEFT,

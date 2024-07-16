@@ -175,7 +175,7 @@ const Radio = ({
               >
                 {iconTile && (
                   <View>
-                    <Icon size={IconSize.SMALL} name={iconTile}/>
+                    <Icon size={IconSize.SMALL} name={iconTile} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}/>
                   </View>
                 )}
               </View>
@@ -256,7 +256,7 @@ const Radio = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.MEDIUM} name={iconTile}/>
+              <Icon size={IconSize.MEDIUM} name={iconTile} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}/>
             </View>
           )}
           {label && typeof label.valueOf() === "string" && (
@@ -291,6 +291,7 @@ const Radio = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={styles.container}
       onPress={() => handleClick(value || false)}
     >
