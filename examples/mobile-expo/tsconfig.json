@@ -8,12 +8,9 @@
     "forceConsistentCasingInFileNames": false,
     "esModuleInterop": true,
     "preserveSymlinks": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "*": [
-        "*",
-        "src/*"
-      ]
+      "@/*": ["../../packages/react/*"]
     }
   },
   "include": [

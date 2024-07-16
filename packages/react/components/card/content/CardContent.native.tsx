@@ -1,11 +1,11 @@
 import React, { useContext } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CardContentProps } from "./CardContentProps"
-import { Title, TitleLevels } from "../../title"
-import { Button } from "../../button"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
-import { CardContext } from "../Card.native"
-import { ComponentName } from "../../enumsComponentsName"
+import { Title, TitleLevels } from "@/components/title"
+import { Button } from "@/components/button"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { CardContext } from "@/components/card/Card.native"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Card Content Component
@@ -76,8 +76,8 @@ const CardContent = ({
 
   const cardContent = (
     <View style={styles.card} {...others}>
-      {titleSup && <Title overline>{titleSup}</Title>}
-      {title && <Title level={TitleLevels.ONE}>{title}</Title>}
+      {titleSup && <Title overline testId="titleSup-id">{titleSup}</Title>}
+      {title && <Title level={TitleLevels.ONE} testId="title-id">{title}</Title>}
       {text && (
         <>
           <View style={{ marginBottom: 16 }} />
@@ -87,7 +87,7 @@ const CardContent = ({
       {buttonText && (
         <>
           <View style={{ marginBottom: 16 }} />
-          <Button variant={buttonVariant} onClick={buttonClick}>
+          <Button variant={buttonVariant} onClick={buttonClick} testId="button-id">
             {buttonText}
           </Button>
         </>

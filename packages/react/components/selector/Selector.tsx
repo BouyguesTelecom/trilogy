@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import SelectorItem from './item'
-import { Text } from '../text'
+import { Text } from '@/components/text'
 import { SelectorProps } from './SelectorProps'
-import { is } from '../../services/classify'
-import { getAlignClassName } from '../../objects'
+import { is } from '@/services/classify'
+import { getAlignClassName } from '@/objects'
 
 /**
  * Selector Component

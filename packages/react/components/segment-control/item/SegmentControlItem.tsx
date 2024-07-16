@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { SegmentControlItemProps } from './SegmentControlItemProps'
-import { hashClass } from '../../../helpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '../../../context'
+import { useTrilogyContext } from '@/context'
 
 /**
  * SegmentControl Item Component

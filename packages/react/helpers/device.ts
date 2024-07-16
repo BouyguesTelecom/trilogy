@@ -36,8 +36,8 @@ const SSRObjectDefined = {
   canUseViewport: device === Browser && !!window.screen,
 }
 
-const assign = (...args: any[]) => args.reduce((acc, obj) => ({ ...acc, ...obj }), {})
-const values = (obj: any) => Object.keys(obj).map(key => obj[key])
+const assign = <T extends object>(...args: T[]): T => Object.assign({}, ...args)
+const values = <T extends object, K extends keyof T>(obj: T): T[K][] => Object.values(obj)
 const toArrayObject = (): SSRReturn => assign((values(SSRObjectDefined), SSRObjectDefined))
 
 const SSRObject = toArrayObject()

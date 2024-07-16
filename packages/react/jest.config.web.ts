@@ -1,31 +1,21 @@
 export default {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'jsdom',
-  "roots": ["<rootDir>"],
+  roots: ['<rootDir>'],
   moduleNameMapper: {
-    '@services': '<rootDir>/services',
-    '@helpers': '<rootDir>/helpers',
-    '@context': '<rootDir>/context',
-    '@objects': '<rootDir>/objects',
-    '@styles': '<rootDir>/../styles',
+    '^@/(.*)': '<rootDir>/$1',
   },
-//  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' } ),
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
-  snapshotResolver: './snapshotResolver.ts',
+  snapshotResolver: '<rootDir>/snapshotResolver.ts',
   testRegex: ['/(components|context)/.*\\/test\\/(?!.*(?:native|snap)).*\\.test\\.(jsx?|tsx?)$'],
   transform: {
-    '^.+\\.[t|j]sx?$': 'ts-jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'css'],
-  modulePathIgnorePatterns: [
-    "components/hooks"
-  ],
-  coveragePathIgnorePatterns: [
-    "<rootDir>/hooks",
-    "<rootDir>/objects/Typography",
-    "<rootDir>/objects/atoms",
-    "<rootDir>/objects/facets",
-    "<rootDir>/services",
-    "<rootDir>/components/select",
-  ],
+  testPathIgnorePatterns: ['<rootDir>/lib'],
 }

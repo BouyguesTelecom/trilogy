@@ -1,4 +1,4 @@
-import { Fullwidth } from "../../objects/facets/Fullwidth";
+import { Fullwidth } from "@/objects/facets/Fullwidth"
 
 export interface TableProps extends Fullwidth {
   children: React.ReactNode;

@@ -29,13 +29,7 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@components": ["components"],
-      "@config": ["config"],
-      "@context": ["context"],
-      "@events": ["events"],
-      "@helpers": ["helpers"],
-      "@objects": ["objects"],
-      "@services": ["services"],
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -46,12 +40,12 @@
   "exclude": [
     "./components/**/*.stories.tsx",
     "node_modules",
-    "**/test/**",
     "./jest*",
     "./snapshotResolver.ts",
     "./fileTransformer.cjs",
     "./package.json",
-    "./coverage"
+    "./coverage",
+    "**/test/**",
   ],
   "ts-node": {
     "compilerOptions": {

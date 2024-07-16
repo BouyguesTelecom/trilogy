@@ -3,7 +3,7 @@ import {
   AlertState,
   AlertStateValues,
   AlignableProps,
-} from "../../../objects"
+} from "@/objects"
 import * as React from "react"
 import { ProgressRadialItemProps } from "./item/ProgressRadialItemProps"
 

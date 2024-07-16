@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { TableTdProps } from "./TableTdProps"
-import { getColorStyle, TrilogyColor } from "../../../objects"
-import { ComponentName } from "../../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table TD Component

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react"
 import shortid from "shortid"
 import clsx from "clsx"
 import { SwitchProps } from "./SwitchProps"
-import { is } from "../../services/classify"
-import { getAlertClassName } from "../../objects"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { is } from "@/services/classify"
+import { getAlertClassName } from "@/objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Switch Component

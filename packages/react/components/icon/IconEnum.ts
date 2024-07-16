@@ -18,11 +18,11 @@ export type IconSizeValues = `${IconSize}`;
  * Icon Status
  */
 export enum IconStatus {
-  SUCCESS = "success",
-  ERROR = "error",
-  WARNING = "warning",
-  INFO = "info",
-  WHITE = "white",
+  SUCCESS = "SUCCESS",
+  ERROR = "ERROR",
+  WARNING = "WARNING",
+  INFO = "INFO",
+  WHITE = "WHITE",
 }
 
 /**

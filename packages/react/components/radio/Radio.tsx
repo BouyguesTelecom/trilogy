@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import shortid from "shortid"
 import { RadioProps } from "./RadioProps"
-import { is } from "../../services/classify"
-import { Icon, IconSize } from "../icon"
-import { hashClass } from "../../helpers"
+import { is } from "@/services/classify"
+import { Icon, IconSize } from "@/components/icon"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Radio Component
@@ -43,6 +43,7 @@ const Radio = ({
   children,
   narrow,
   marginless,
+  testId,
   ...others
 }: RadioProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -71,6 +72,7 @@ const Radio = ({
       )}
     >
       <input
+        data-testid={testId}
         type='radio'
         readOnly={readonly}
         id={id}

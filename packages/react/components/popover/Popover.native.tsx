@@ -1,14 +1,14 @@
 import * as React from "react"
 import { PopoverProps } from "./PopoverProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 import { StyleSheet, View } from "react-native"
 import {
   getColorStyle,
   TrilogyColor,
   TypographyAlign,
   TypographyColor,
-} from "../../objects"
-import { Text, TextLevels } from "../text"
+} from "@/objects"
+import { Text, TextLevels } from "@/components/text"
 import { PopoverDirection } from "./PopoverEnum"
 
 /**

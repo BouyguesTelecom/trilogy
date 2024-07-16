@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { TagClickEvent, TagProps } from "./TagProps"
-import { Icon, IconName, IconSize } from "../icon"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Tag Component
@@ -24,6 +24,7 @@ const Tag = ({
   inverted,
   iconName,
   small,
+  testId,
   ...others
 }: TagProps): JSX.Element => {
   const [display, setDisplay] = useState<boolean>(deletable || false)
@@ -121,6 +122,7 @@ const Tag = ({
             size={small ? IconSize.SMALLER : IconSize.SMALL}
             style={styles.iconLeft}
             name={iconName}
+            testId={`${testId}-icon`}
           />
         )}
         <Text style={styles.text}>{children}</Text>

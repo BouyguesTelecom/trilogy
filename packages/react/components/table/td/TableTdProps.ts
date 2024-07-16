@@ -1,4 +1,4 @@
-import { Clickable } from '../../../objects'
+import { Clickable } from '@/objects'
 
 export interface TableTdProps extends Clickable {
   children: React.ReactNode

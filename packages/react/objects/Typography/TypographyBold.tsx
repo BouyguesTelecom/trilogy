@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { TextLevels, TextLevelValues } from '../../components/text'
-import { TrilogyThemeContext } from "../../context/providerTheme"
+import { TextLevels, TextLevelValues } from '@/components/text'
+import { TrilogyThemeContext } from "@/context/providerTheme"
 
 /**
  * Typo bold
@@ -42,7 +42,7 @@ export const getTypographyBoldClassName = (
  * @param level {}
  * @returns {string} - Bold type
  */
-export const getTypographyBoldStyle = (typo?: string | Array<string>, level?: TextLevels | TextLevelValues): string => {
+export const getTypographyBoldStyle = (typo?: string | Array<string>, level?: TextLevels | TextLevelValues) => {
   const { theme } = useContext(TrilogyThemeContext)
 
   return (

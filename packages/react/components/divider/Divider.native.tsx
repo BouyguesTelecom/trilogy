@@ -1,10 +1,10 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { Icon, IconColor } from "../icon"
-import { Text } from "../text"
+import { Icon, IconColor } from "@/components/icon"
+import { Text } from "@/components/text"
 import { DividerProps } from "./DividerProps"
-import { getColorStyle, TrilogyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Divider Native Component
@@ -73,7 +73,7 @@ const Divider = ({
     if (content) return <Text style={styles.textContent}>{content}</Text>
     if (iconName && !content)
       return (
-        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} />
+        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId="icon-id" />
       )
   }, [content, iconName])
 

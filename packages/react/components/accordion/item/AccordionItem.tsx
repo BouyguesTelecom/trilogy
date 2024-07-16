@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import shortid from "shortid"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { is } from "../../../services"
+import { is } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Accordion Item Component
@@ -65,7 +65,7 @@ const AccordionItem = ({
 
   const classes = hashClass(
     styled,
-    clsx("accordion", className, isActive && is("active"))
+    clsx("accordion", className)
   )
 
   let childrenElement
@@ -81,11 +81,17 @@ const AccordionItem = ({
       : children
   }
 
+  const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
+
+  if (disabled) {
+    ariaProps["tabIndex"] = -1
+    ariaProps["aria-disabled"] = true
+  }
+
   return (
     <details
       open={isActive}
-      tabIndex={0}
-      aria-disabled={disabled}
+      {...ariaProps}
       data-testid={id}
       className={classes}
       ref={ref}

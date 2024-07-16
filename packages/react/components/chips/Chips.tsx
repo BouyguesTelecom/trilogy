@@ -1,10 +1,10 @@
 import React from "react"
-import {has, is} from "../../services"
-import {ChipsProps} from "./ChipsProps"
+import { has, is } from "@/services"
+import { ChipsProps } from "./ChipsProps"
 import clsx from "clsx"
-import {hashClass} from "../../helpers"
-import {useTrilogyContext} from "../../context"
-import {getColorClassName, TrilogyColor} from "../../objects/facets/Color"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { getColorClassName, TrilogyColor } from "@/objects/facets/Color"
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -42,12 +42,12 @@ const Chips = ({
   )
 
   return (
-    <div
+    <button
       {...{ disabled: disabled }}
       aria-disabled={disabled}
-      tabIndex={0}
       data-testid={testId}
       id={id}
+      aria-checked={!!active}
       className={classes}
       onClick={(e) => {
         onClick?.(e)
@@ -55,7 +55,7 @@ const Chips = ({
       {...others}
     >
       {children}
-    </div>
+    </button>
   )
 }
 

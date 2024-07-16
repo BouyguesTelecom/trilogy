@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { BoxMarkup, BoxProps } from "./BoxProps"
-import { has, is } from "../../services/classify"
-import { getBackgroundClassName } from "../../objects/atoms/Background"
-import { getColorClassName } from "../../objects"
+import { has, is } from "@/services/classify"
+import { getBackgroundClassName } from "@/objects/atoms/Background"
+import { getColorClassName } from "@/objects"
 import clsx from "clsx"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Box Component

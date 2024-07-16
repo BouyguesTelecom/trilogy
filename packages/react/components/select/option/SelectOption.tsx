@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Radio } from 'components/radio'
+import { Radio } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
 
@@ -28,7 +28,7 @@ const SelectOption = ({
   testId,
   ...others
 }: SelectOptionProps): JSX.Element => {
-  const { checked, native, focused, ...props }: any = others
+  const { checked, native, focused, ...props } = others as {checked:boolean, native:boolean, focused:boolean}
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
@@ -60,6 +60,7 @@ const SelectOption = ({
       onClick={onClick}
       iconTile={iconName}
       description={label || children}
+      testId={testId}
       {...others}
     />
   )

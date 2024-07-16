@@ -7,11 +7,11 @@ import { IconSize } from "./IconEnum"
 import CircleIcon from "./circle/CircleIcon.native"
 import StatusIcon from "./status/StatusIcon.native"
 import TextIcon from "./text/TextIcon.native"
-import { getAlignStyle } from "../../objects/facets/Alignable"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "../../objects/facets/Color"
+import { getAlignStyle } from "@/objects/facets/Alignable"
+import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import { ComponentName } from "../enumsComponentsName"
-import { TrilogyThemeContext } from "../../context/providerTheme.native"
-import { StatesContext } from "../../context/providerStates"
+import { TrilogyThemeContext } from "@/context/providerTheme.native"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Icon Component
@@ -149,7 +149,7 @@ const Icon = ({
   if (name && icons) {
     if (stretched && !circled) {
       iconView = (
-        <View style={styles.stretched}>
+        <View style={styles.stretched} testID={`${testId}-stretched`}>
           <WithLocalSvg
             style={[styles.iconCircled, styles.icon]}
             asset={
@@ -173,6 +173,7 @@ const Icon = ({
           size={defaultSize}
           stretched={stretched}
           color={iconColor}
+          testId={`${testId}-status`}
         />
       )
     } else if (circled) {
@@ -186,6 +187,7 @@ const Icon = ({
           position={position}
           stacked={stacked}
           backgroundColor={backgroundColor}
+          testId={`${testId}-circled`}
         />
       )
     } /* Text icon */ else if (content && !badgeContent) {
@@ -198,6 +200,7 @@ const Icon = ({
           stretched={stretched}
           color={iconColor}
           stacked={stacked}
+          testId={`${testId}-content`}
         />
       )
     } else {
@@ -225,6 +228,7 @@ const Icon = ({
         style={{ width: "100%" }}
         onPress={onClick}
         activeOpacity={0.85}
+        testID={`${testId}-pressable`}
       >
         {iconView}
       </TouchableOpacity>

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TrilogyThemeContext } from "../../context/providerTheme"
+import { TrilogyThemeContext } from "@/context/providerTheme"
 
 /**
  * Trilogy color
@@ -121,7 +121,7 @@ export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
-  if (navigator.userAgent === undefined) {
+  if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
     const colorsStyle = theme?.colors || colors
 
