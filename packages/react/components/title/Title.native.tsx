@@ -2,7 +2,7 @@ import * as React from "react"
 import { useContext } from "react"
 import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { setTypographyAlign, setTypographyColor } from "@/objects"
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from "@/objects"
 import { TitleProps } from "./TitleProps"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -68,8 +68,8 @@ const Title = ({
     }
   }
   const getFontFamily = () => {
-    if (level && ["ONE", "TWO"].includes(level)) return "poppins-bold"
-    return "poppins-semibold"
+    if (level && ["ONE", "TWO"].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
+      return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
   }
 
   const styles = StyleSheet.create({
