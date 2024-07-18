@@ -7,6 +7,7 @@ import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, 
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
+import { getTypographyBoldStyle } from "@/lib"
 
 /**
  * Price Component
@@ -157,23 +158,23 @@ const Price = ({
         (level == PriceLevel.LEVEL7 && "normal") ||
         "bold",
       color: color,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     cents: {
       fontWeight: "bold",
       color: color,
       fontSize: centsLevel,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     period: {
       color: color,
       fontSize: centsLevel,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     inlinePeriod: {
       color: color,
       fontSize: priceLevel,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     striked: {
       position: "absolute",
@@ -216,12 +217,12 @@ const Price = ({
     tagTextAmount: {
       lineHeight: 0,
       fontSize: level && level == 1 && 24 || level && level == 2 && 18 || level && level == 3 && 16 || 11,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     tagTextPeriod: {
       alignSelf: level && level < 4 ? 'flex-end' : 'center',
       fontSize: level && level == 1 && 13 || level && level == 2 && 10 || level && level == 3 && 8 || 11,
-      fontFamily: "poppins-semibold"
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     }
   })
 
