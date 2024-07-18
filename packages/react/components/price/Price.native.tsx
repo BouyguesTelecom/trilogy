@@ -7,7 +7,7 @@ import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, 
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
-import { getTypographyBoldStyle } from "@/lib"
+import { getTypographyBoldStyle } from "@/objects"
 
 /**
  * Price Component
