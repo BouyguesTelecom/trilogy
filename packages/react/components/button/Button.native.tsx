@@ -17,6 +17,7 @@ import { Icon, IconSize } from "@/components/icon"
 import { View } from "@/components/view"
 import { ButtonVariant } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
+import { getTypographyBoldStyle, TypographyBold } from "@/objects"
 
 
 
@@ -124,7 +125,7 @@ const Button = ({
       borderColor: findBorderColor({ disabled, variant, loading }),
     },
     text: {
-      fontFamily: "poppins-semibold",
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
       color: disabled
         ? getColorStyle(TrilogyColor.BACKGROUND)
         : findTextColor({ variant }),
