@@ -149,12 +149,13 @@ const Modal = ({
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (display && refsActions.current) {
+        const refs = refsActions.current.filter((ref) => ref)
         const { key } = event
         if (key === 'Tab') {
           event.preventDefault()
           setIndexFocusable((prev) => {
-            const nextIndex = (prev + 1) % refsActions.current.length
-            refsActions?.current[nextIndex] && refsActions?.current[nextIndex]?.focus()
+            const nextIndex = (prev + 1) % refs.length
+            refs[nextIndex] && refs[nextIndex]?.focus()
             return nextIndex
           })
         }
@@ -196,7 +197,7 @@ const Modal = ({
               type={ButtonType.BUTTON}
               title='Fermer la modal'
               aria-controls={ariaControls}
-              ref={(el) => (refsActions.current[0] = el)}
+              ref={(el) => el && (refsActions.current[0] = el)}
             />
           )}
           {(title || iconName) && (
