@@ -39,6 +39,9 @@ const idModal = shortid.generate()
  * @param triggerMarkup {ModalMarkup} h1|h2|h3|h4|h5|h6|p|span|div|button|a
  * @param triggerClassNames {string} Additionnal CSS Classes for trigger element
  * @param panel {boolean} Panel Side Modal
+ * @param ariaLabelButtonClose {string} aria-label of button close
+ * @param ariaLabelCta {string} aria-label of button action
+ * @param titleButtonClose {string} title of button close
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} If bottom
  * @param swipable {boolean} Swipable Native Modal
@@ -67,6 +70,9 @@ const Modal = ({
   fullwidth,
   disableHandlingClickOutside = false,
   testId,
+  ariaLabelButtonClose,
+  ariaLabelCta,
+  titleButtonClose,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -193,9 +199,9 @@ const Modal = ({
                 handleClose(onClose, e)
               }}
               className={hashClass(styled, clsx('modal-close', is('large')))}
-              aria-label='Fermer la modal'
+              aria-label={ariaLabelButtonClose}
               type={ButtonType.BUTTON}
-              title='Fermer la modal'
+              title={titleButtonClose}
               aria-controls={ariaControls}
               ref={(el) => el && (refsActions.current[0] = el)}
             />
@@ -216,8 +222,8 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-label='Fermer la modal'
-                    title='Fermer la modal'
+                    aria-label={ariaLabelButtonClose}
+                    title={titleButtonClose}
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
@@ -227,7 +233,7 @@ const Modal = ({
                 {ctaOnClick && (
                   <button
                     className={hashClass(styled, clsx('button', is('primary')))}
-                    aria-label={ctaContent}
+                    aria-label={ariaLabelCta}
                     title={ctaContent}
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[2] = el)}
