@@ -21,9 +21,10 @@ const Breadcrumb = ({
 
   return (
     <nav
+      role='navigation'
       data-testid={testId}
       className={hashClass(styled, clsx("breadcrumb", className))}
-      aria-label='breadcrumbs'
+      aria-label="fil d'ariane"
       {...others}
     >
       <ul>{children}</ul>
