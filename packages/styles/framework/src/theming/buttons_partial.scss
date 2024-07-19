@@ -1,3 +1,5 @@
+$noDisabled: ":not(:disabled):not([aria-disabled=true]):not(.is-loading)";
+
 /*
 Colors for buttons
   @string slug name used in classname (You can use your brand name)
@@ -22,9 +24,9 @@ $button-colors: (
     filter: brightness(0.7);
   }
 
-  &:focus-visible,
-  &:focus:focus-visible {
-    outline: var(--border-active);
+  &:focus-visible#{$noDisabled},
+  &:focus:focus-visible#{$noDisabled} {
+    outline: 2px solid getColor('font') !important;
     outline-offset: 2px;
   }
 }
