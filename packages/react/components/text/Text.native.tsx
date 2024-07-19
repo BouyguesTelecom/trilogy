@@ -50,7 +50,7 @@ const Text = ({
 
   const styles = StyleSheet.create({
     text: {
-      fontFamily: getTypographyBoldStyle(typo, level),
+      fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
         (!skeleton &&
