@@ -42,4 +42,6 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   ariaLabelButtonClose?: string
   ariaLabelCta?: string
   titleButtonClose?: string
+  ariaLabelButtonOpen?: string
+  titleButtonOpen?: string
 }

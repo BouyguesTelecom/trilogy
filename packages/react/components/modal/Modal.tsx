@@ -73,6 +73,8 @@ const Modal = ({
   ariaLabelButtonClose,
   ariaLabelCta,
   titleButtonClose,
+  ariaLabelButtonOpen,
+  titleButtonOpen,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -174,6 +176,8 @@ const Modal = ({
     <div data-testid={testId} onKeyDown={onKeyDown}>
       {triggerContent && (
         <TriggerTag
+          aria-label={ariaLabelButtonOpen}
+          title={titleButtonOpen}
           ref={refBtnModal}
           aria-controls={ariaControls}
           onClick={(e: React.MouseEvent) => {
