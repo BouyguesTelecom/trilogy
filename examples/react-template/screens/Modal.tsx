@@ -85,6 +85,8 @@ export const ModalScreen = (): JSX.Element => {
           titleButtonClose='Fermer'
           ariaLabelButtonClose='Fermer'
           ariaLabelCta='action'
+          ariaLabelButtonOpen='Ouvrir'
+          titleButtonOpen='Ouvrir'
         />
       </Section>
       <Section>
