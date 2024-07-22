@@ -6,7 +6,7 @@
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla",
+    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npm run pages",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
@@ -29,7 +29,8 @@
     "test:native": "npm --workspace=@trilogy-ds/react run test:native",
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
-    "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
+    "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled",
+    "pages": "cd examples/react-template && npm run build && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
