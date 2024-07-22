@@ -30,7 +30,7 @@
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
     "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled",
-    "pages": "cd examples/react-template && npm run build && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates"
+    "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
