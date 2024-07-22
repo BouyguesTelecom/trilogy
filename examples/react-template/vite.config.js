@@ -17,7 +17,6 @@ const aliases = [
 ]
 
 export default defineConfig({
-  base: '/templates/',
   resolve: {
     extensions: ['.web.tsx', '.tsx', '.ts', '.js', '.jsx', '.d.ts', '.ttf', '.css'],
     alias: aliases.map((alias) => ({
@@ -37,9 +36,8 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
     rollupOptions: {
       output: {
-        assetFileNames: '[name].[ext]',
-        chunkFileNames: '[name].js',
-        entryFileNames: '[name].js',
+        assetFileNames: 'templates/[name].[ext]',
+        chunkFileNames: 'templates/[name].js'
       },
     }
   }
