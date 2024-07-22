@@ -33,6 +33,13 @@ export default defineConfig({
     modules: false,
   },
   build: {
-    commonjsOptions: { transformMixedEsModules: true }
+    commonjsOptions: { transformMixedEsModules: true },
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[ext]', // adapte l'emplacement des assets
+        chunkFileNames: 'assets/[name].js',
+        entryFileNames: 'assets/[name].js',
+      },
+    }
   }
 })
