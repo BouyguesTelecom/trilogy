@@ -8,13 +8,13 @@ import type { SpacingMatrix } from "@/components/autolayout/SpacingMatrix"
 import type { ButtonListProps } from "./ButtonListProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
-const { MEDIUM, SMALL } = SpacerSize
+const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
 const SPACING_MATRIX: SpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, "Button", "Divider", SMALL],
-  [INSERT_SPACE_BETWEEN, "Divider", "Button", SMALL],
-  [INSERT_SPACE_BETWEEN, "Button", "Button", MEDIUM],
+  [INSERT_SPACE_BETWEEN, "Button", "Divider", TWO],
+  [INSERT_SPACE_BETWEEN, "Divider", "Button", TWO],
+  [INSERT_SPACE_BETWEEN, "Button", "Button", THREE],
 ]
 
 /**

@@ -86,7 +86,7 @@ const Toaster: React.FC<{ props: ToasterProps }> = ({ props }) => {
             {title && <Title>{title}</Title>}
             {description && (
               <>
-                <Spacer size={SpacerSize.SMALL} />
+                <Spacer size={SpacerSize.TWO} />
                 <Text level={TextLevels.THREE}>{description}</Text>
               </>
             )}

@@ -17,7 +17,7 @@ const AutoLayout: React.FC<AutoLayoutProps> = ({
   children,
   matrix = DEFAULT_SPACING_MATRIX,
   edges,
-  edgeSize = SpacerSize.SMALL,
+  edgeSize = SpacerSize.TWO,
   noSpace,
 }): JSX.Element => {
   const hasBottomEdge = edges?.includes("bottom")

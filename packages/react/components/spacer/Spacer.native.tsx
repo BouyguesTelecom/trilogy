@@ -5,7 +5,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Spacer Component
- * @deprecated
  * @param size {SpacerSize} SMALL | MEDIUM | LARGE | HUGE
  * @param horizontal {Boolean} If horizontal margin
  */

@@ -117,7 +117,7 @@ const SelectorItem = ({
           </Text>
         )}
       </TouchableOpacity>
-      <Spacer horizontal size={SpacerSize.SMALL} />
+      <Spacer horizontal size={SpacerSize.TWO} />
     </>
   )
 }
