@@ -42,6 +42,8 @@ const idModal = shortid.generate()
  * @param ariaLabelButtonClose {string} aria-label of button close
  * @param ariaLabelCta {string} aria-label of button action
  * @param titleButtonClose {string} title of button close
+ * @param ariaLabelButtonOpen {string} aria-label of open button modal
+ * @param titleButtonOpen {string} title of open button modal
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} If bottom
  * @param swipable {boolean} Swipable Native Modal
