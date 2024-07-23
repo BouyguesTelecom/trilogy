@@ -15,15 +15,17 @@ const Breadcrumb = ({
   children,
   className,
   testId,
+  accessibilityLabel,
   ...others
 }: BreadcrumbWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
     <nav
+      role='navigation'
       data-testid={testId}
       className={hashClass(styled, clsx("breadcrumb", className))}
-      aria-label='breadcrumbs'
+      aria-label={accessibilityLabel}
       {...others}
     >
       <ul>{children}</ul>

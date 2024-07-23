@@ -35,7 +35,7 @@ const BreadcrumbItem = ({
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
-      <li data-testid={testId} className={classes} onClick={onClick}>
+      <li data-testid={testId} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
         <RouterLink className={hashClass(styled, clsx("link"))} to={to} {...others}>
           {children}
         </RouterLink>
@@ -44,8 +44,8 @@ const BreadcrumbItem = ({
   }
 
   return (
-    <li className={classes} onClick={onClick}>
-      <Link href={href} {...others}>
+    <li className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      <Link href={active ? undefined : href} {...others}>
         {children}
       </Link>
     </li>
