@@ -3,7 +3,7 @@ import { Box, BoxContent } from './index'
 import { Title } from '@/components/title'
 import { Text } from '@/components/text'
 
-const BoxExample: React.ReactNode = <Box onClick={function noRefCheck(){}}>
+const BoxExample: React.ReactNode = <Box>
   <BoxContent>
     <Title level="ONE">
       Box Title

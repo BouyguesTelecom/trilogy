@@ -4,7 +4,7 @@ import { Title } from '@/components/title'
 import { Text } from '@/components/text'
 import { Button } from '@/components/button'
 
-const CardExample: React.ReactNode = <Card onClick={function noRefCheck(){}}>
+const CardExample: React.ReactNode = <Card>
   <CardImage src="https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png" />
   <CardContent>
     <Title>
@@ -17,7 +17,6 @@ const CardExample: React.ReactNode = <Card onClick={function noRefCheck(){}}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, neque eu, vulputate vera.
     </Text>
     <Button
-      onClick={function noRefCheck(){}}
       variant="SECONDARY"
     >
       Voir plus...
