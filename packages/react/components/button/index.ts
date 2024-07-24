@@ -1,6 +1,7 @@
 import Button from './Button'
 import { ButtonList } from './list'
+import ButtonExample from './Button.example'
 
 export * from './ButtonEnum'
 
-export { Button, ButtonList }
+export { Button, ButtonList, ButtonExample }
