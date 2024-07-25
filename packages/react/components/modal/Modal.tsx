@@ -178,6 +178,7 @@ const Modal = ({
     <div data-testid={testId} onKeyDown={onKeyDown}>
       {triggerContent && (
         <TriggerTag
+          aria-haspopup='dialog'
           aria-label={ariaLabelButtonOpen}
           title={titleButtonOpen}
           ref={refBtnModal}
@@ -245,7 +246,7 @@ const Modal = ({
                     ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
                   >
-                    {ctaContent}
+                    <span className='sr-only'> {ctaContent}</span>
                   </button>
                 )}
               </ButtonList>
