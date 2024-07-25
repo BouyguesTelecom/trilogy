@@ -15,7 +15,6 @@ import { ModalTitleProps } from './ModalTitleProps'
 const ModalTitle = ({ children, className, iconColor, iconName, ...others }: ModalTitleProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const { textId } = others as any
-  console.log(textId)
 
   return (
     <div className={hashClass(styled, clsx('modal-title', className))}>

@@ -39,9 +39,6 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   onModalHide?: () => void
   disableHandlingClickOutside?: boolean
   swipable?: boolean
-  ariaLabelButtonClose?: string
   ariaLabelCta?: string
   titleButtonClose?: string
-  ariaLabelButtonOpen?: string
-  titleButtonOpen?: string
 }

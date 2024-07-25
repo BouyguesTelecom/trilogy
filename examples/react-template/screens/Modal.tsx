@@ -76,17 +76,12 @@ export const ModalScreen = (): JSX.Element => {
           triggerContent='Open accessible modal'
           ctaContent='Action'
           // eslint-disable-next-line no-alert
-          ctaOnClick={() => alert('Click on cta')}
           onOpen={() => alert('open modal')}
           onClose={() => alert('close modal')}
           iconName={IconName.BELL}
           closeIcon
           ctaCancelOnClick={() => alert('toto')}
           titleButtonClose='Fermer'
-          ariaLabelButtonClose='Fermer'
-          ariaLabelCta='action'
-          ariaLabelButtonOpen='Ouvrir'
-          titleButtonOpen='Ouvrir'
         />
       </Section>
       <Section>

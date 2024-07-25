@@ -72,11 +72,8 @@ const Modal = ({
   fullwidth,
   disableHandlingClickOutside = false,
   testId,
-  ariaLabelButtonClose,
-  ariaLabelCta,
   titleButtonClose,
-  ariaLabelButtonOpen,
-  titleButtonOpen,
+  ariaLabelCta,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -179,8 +176,6 @@ const Modal = ({
       {triggerContent && (
         <TriggerTag
           aria-haspopup='dialog'
-          aria-label={ariaLabelButtonOpen}
-          title={titleButtonOpen}
           ref={refBtnModal}
           aria-controls={ariaControls}
           onClick={(e: React.MouseEvent) => {
@@ -206,7 +201,7 @@ const Modal = ({
                 handleClose(onClose, e)
               }}
               className={hashClass(styled, clsx('modal-close', is('large')))}
-              aria-label={ariaLabelButtonClose}
+              aria-label='close'
               type={ButtonType.BUTTON}
               title={titleButtonClose}
               aria-controls={ariaControls}
@@ -229,8 +224,7 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-label={ariaLabelButtonClose}
-                    title={titleButtonClose}
+                    aria-label='close'
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
@@ -239,8 +233,8 @@ const Modal = ({
                 )}
                 {ctaOnClick && (
                   <button
-                    className={hashClass(styled, clsx('button', is('primary')))}
                     aria-label={ariaLabelCta}
+                    className={hashClass(styled, clsx('button', is('primary')))}
                     title={ctaContent}
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[2] = el)}
