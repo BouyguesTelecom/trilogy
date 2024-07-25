@@ -73,7 +73,6 @@ const Modal = ({
   disableHandlingClickOutside = false,
   testId,
   titleButtonClose,
-  ariaLabelCta,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -224,7 +223,6 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-label='close'
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
@@ -233,7 +231,6 @@ const Modal = ({
                 )}
                 {ctaOnClick && (
                   <button
-                    aria-label={ariaLabelCta}
                     className={hashClass(styled, clsx('button', is('primary')))}
                     title={ctaContent}
                     aria-controls={ariaControls}
