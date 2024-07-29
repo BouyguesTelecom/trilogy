@@ -9,28 +9,24 @@ const ChipsExample: React.ReactNode = <>
   <ChipsList>
     <Chips
       active
-      onClick={function noRefCheck(){}}
     >
       Chips du panel de controls
     </Chips>
     <Chips
-      onClick={function noRefCheck(){}}
     >
       Chips 2
     </Chips>
     <Chips
       active
-      onClick={function noRefCheck(){}}
     >
       Chips 3
     </Chips>
-    <Chips onClick={function noRefCheck(){}}>
+    <Chips >
       Chips 4
     </Chips>
     <Chips
       active
       disabled
-      onClick={function noRefCheck(){}}
     >
       Chips disabled
     </Chips>

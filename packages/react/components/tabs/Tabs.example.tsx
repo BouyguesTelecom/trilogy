@@ -5,8 +5,6 @@ const TabsExample: React.ReactNode =
 
   <Tabs
     activeIndex={2}
-    onClick={function noRefCheck() {
-    }}
   >
     <TabsItem
       disabled

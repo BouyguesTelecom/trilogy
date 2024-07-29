@@ -6,8 +6,7 @@ import { Button } from '@/components/button'
 
 const HeroExample: React.ReactNode = <Hero
   backgroundSrc="https://picsum.photos/id/1/1500/600"
-  onClick={function noRefCheck() {
-  }}
+
 >
   <Container>
     <Title
