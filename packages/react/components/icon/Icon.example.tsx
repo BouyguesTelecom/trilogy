@@ -7,20 +7,17 @@ const IconExample: React.ReactNode =
   <>
     <Icon
       name='tri-search'
-      onClick={function noRefCheck(){}}
       size="small"
       status='SUCCESS'
     />
     <Icon
       name='tri-search'
-      onClick={function noRefCheck(){}}
       size="small"
       status='SUCCESS'
       statusPosition="top"
     />
     <Icon
       name='tri-search'
-      onClick={function noRefCheck(){}}
       size="small"
       status='SUCCESS'
       statusPosition="bottom"
