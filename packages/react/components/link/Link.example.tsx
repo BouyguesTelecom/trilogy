@@ -5,7 +5,7 @@ import { Text } from '@/components/text'
 
 const LinkExample: React.ReactNode =
   <>
-    <Link onClick={function noRefCheck(){}}>
+    <Link>
       {' '}Mot de passe oublié ?
     </Link>
     <Divider />
