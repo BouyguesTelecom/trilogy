@@ -17,15 +17,18 @@ const ModalTitle = ({ children, className, iconColor, iconName, ...others }: Mod
   const { textId } = others as any
 
   return (
-    <div className={hashClass(styled, clsx('modal-title', className))} id={textId}>
+    <div className={hashClass(styled, clsx('modal-title', className))}>
       {iconName ? (
         <TextIcon
+          markup='p'
           color={iconColor}
           size={'large'}
           name={iconName}
           content={children}
           position='up'
-          // textId={textId}
+          textId={textId}
+          textAriaLevel={1}
+          textRole='heading'
         />
       ) : (
         children

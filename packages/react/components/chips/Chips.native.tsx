@@ -44,7 +44,7 @@ const Chips = ({
       paddingLeft: 12,
       paddingRight: 12,
       paddingTop: 6,
-      paddingBottom: 6,
+      paddingBottom: 5,
       margin: 6,
       borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.FONT, 1),
       borderWidth: 1,
