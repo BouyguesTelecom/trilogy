@@ -72,11 +72,7 @@ const Modal = ({
   fullwidth,
   disableHandlingClickOutside = false,
   testId,
-  ariaLabelButtonClose,
-  ariaLabelCta,
   titleButtonClose,
-  ariaLabelButtonOpen,
-  titleButtonOpen,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -178,8 +174,7 @@ const Modal = ({
     <div data-testid={testId} onKeyDown={onKeyDown}>
       {triggerContent && (
         <TriggerTag
-          aria-label={ariaLabelButtonOpen}
-          title={titleButtonOpen}
+          aria-haspopup='dialog'
           ref={refBtnModal}
           aria-controls={ariaControls}
           onClick={(e: React.MouseEvent) => {
@@ -205,7 +200,7 @@ const Modal = ({
                 handleClose(onClose, e)
               }}
               className={hashClass(styled, clsx('modal-close', is('large')))}
-              aria-label={ariaLabelButtonClose}
+              aria-label='close'
               type={ButtonType.BUTTON}
               title={titleButtonClose}
               aria-controls={ariaControls}
@@ -228,8 +223,6 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-label={ariaLabelButtonClose}
-                    title={titleButtonClose}
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
@@ -239,13 +232,12 @@ const Modal = ({
                 {ctaOnClick && (
                   <button
                     className={hashClass(styled, clsx('button', is('primary')))}
-                    aria-label={ariaLabelCta}
                     title={ctaContent}
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
                   >
-                    {ctaContent}
+                    <span className='sr-only'> {ctaContent}</span>
                   </button>
                 )}
               </ButtonList>
