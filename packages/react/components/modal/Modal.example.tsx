@@ -13,4 +13,4 @@ const ModalExample: React.ReactNode =
   triggerMarkup="a"
 />
 
-export default ModalExample;
+export default ModalExample

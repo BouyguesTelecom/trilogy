@@ -4,7 +4,7 @@ import { Divider } from '@/components/divider'
 import { Text } from '@/components/text'
 
 const LinkExample: React.ReactNode =
-  <>
+  <div>
     <Link>
       {' '}Mot de passe oublié ?
     </Link>
@@ -15,6 +15,6 @@ const LinkExample: React.ReactNode =
         lien standard
       </Link>
     </Text>
-  </>
+  </div>
 
-export default LinkExample;
+export default LinkExample
