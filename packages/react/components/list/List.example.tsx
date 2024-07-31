@@ -23,4 +23,4 @@ const ListExample: React.ReactNode =
     </ListItem>
   </List>
 
-export default ListExample;
+export default ListExample

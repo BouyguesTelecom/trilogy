@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text } from '@/components/text'
-import {Chips, ChipsList} from './index'
+import { Chips, ChipsList } from './index'
 
-const ChipsExample: React.ReactNode = <>
+const ChipsExample: React.ReactNode = <div>
   <Text>
     Exemple de selection unique :
   </Text>
@@ -21,7 +21,7 @@ const ChipsExample: React.ReactNode = <>
     >
       Chips 3
     </Chips>
-    <Chips >
+    <Chips>
       Chips 4
     </Chips>
     <Chips
@@ -31,6 +31,6 @@ const ChipsExample: React.ReactNode = <>
       Chips disabled
     </Chips>
   </ChipsList>
-</>
+</div>
 
-export default ChipsExample;
+export default ChipsExample
