@@ -4,7 +4,7 @@ import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from './inde
 const AccordionExample: React.ReactNode = <Accordion>
   <AccordionItem
     active
-    id="UN"
+    id="1"
   >
     <AccordionHeader>
       Hello World

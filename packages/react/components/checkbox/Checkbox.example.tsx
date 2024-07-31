@@ -1,7 +1,7 @@
 import React from 'react'
 import Checkbox from '@/components/checkbox/Checkbox'
 
-const CheckboxExample: React.ReactNode = <>
+const CheckboxExample: React.ReactNode = <div>
   <Checkbox
     label="On peut me cocher grâce au controls ↓ "
     name="checkbox1"
@@ -19,6 +19,6 @@ const CheckboxExample: React.ReactNode = <>
     name="checkbox3"
     value="default value 3"
   />
-</>
+</div>
 
-export default CheckboxExample;
+export default CheckboxExample
