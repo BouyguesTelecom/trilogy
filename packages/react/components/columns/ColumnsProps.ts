@@ -1,10 +1,9 @@
 import { ColumnsSize } from './ColumnsTypes'
-import { Marginless } from "@/objects"
 
 /**
  * Columns Interface
  */
-export interface ColumnsProps extends Marginless{
+export interface ColumnsProps {
   children?: React.ReactNode
   multiline?: boolean
   inlined?: boolean
