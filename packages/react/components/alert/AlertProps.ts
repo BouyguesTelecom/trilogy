@@ -33,7 +33,6 @@ export interface AlertProps extends StatusProps, Clickable, Accessibility {
   title?: string | React.ReactNode
   description?: string | React.ReactNode
   className?: string
-  iconClassname?: string
   display?: boolean
   toaster?: boolean
 }

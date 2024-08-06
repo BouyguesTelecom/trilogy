@@ -96,14 +96,12 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
  * @param alert {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all alert
  * @param className {string} Additionnal CSS Classes
- * @param iconClassname {string} Additionnal Icon CSS
  * @param display
  * @param others
  */
 const Alert = ({
   status,
   className,
-  iconClassname,
   iconName,
   title,
   description,
@@ -137,7 +135,7 @@ const Alert = ({
         className={classes}
         {...others}
       >
-        <Icon className={iconClassname} name={iconAlert} />
+        <Icon name={iconAlert} />
         <div className={hashClass(styled, clsx("body"))}>
           {title && typeof title.valueOf() === "string" ? (
             <Title level={TitleLevels.SIX}>{title}</Title>
