@@ -26,6 +26,7 @@ const Sticker = ({
   small,
   hat,
   markup,
+  outlined,
   ...others
 }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -37,7 +38,8 @@ const Sticker = ({
       variant && is(getVariantClassName(variant)),
       small && is("small"),
       hat && is("hat"),
-      className
+      className,
+      outlined && is('outlined'),
     )
   )
 
