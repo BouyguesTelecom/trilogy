@@ -20,7 +20,6 @@ import { getTypographyBoldStyle } from "@/objects"
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
- * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
@@ -36,7 +35,6 @@ const Price = ({
                  level,
                  inverted,
                  align,
-                 status,
                  inline,
                  testId,
                  accessibilityLabel,
@@ -79,12 +77,11 @@ const Price = ({
       (inverted && !striked && invertedColor) ||
       (statesContext.inverted && invertedColor) ||
       (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
-      (status && getStatusStyle(status)) ||
       (!striked && !inverted && primaryColor) ||
       (!striked && !inverted && secondaryColor) ||
       (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
       primaryColor,
-    [inverted, striked, status]
+    [inverted, striked]
   )
 
   const strikedRotateByLevel = () => {
