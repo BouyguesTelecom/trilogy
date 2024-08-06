@@ -21,7 +21,5 @@ export interface CardContentProps extends Clickable, Accessibility {
   className?: string;
   buttonMarkup?: ButtonMarkup | ButtonMarkupValues;
   onClick?: ClickEvent;
-
-  floating?: boolean;
   backgroundColor?: TrilogyColor.BACKGROUND | "transparent";
 }

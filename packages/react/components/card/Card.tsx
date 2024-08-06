@@ -63,9 +63,9 @@ const Card = ({
       backgroundSrc && has("background"),
       (inverted && is("inverted")) || is("base"),
 
-      flat && is("flat"),
+      flat && !floating && is("flat"),
       horizontal && [is("horizontal"), is("vcentered")],
-      floating && is("floating"),
+      floating && !flat && is("floating"),
       align && is(getAlignClassName(align)),
       justify && is(justify),
       isLoading ? is("loading") : is("loaded"),
