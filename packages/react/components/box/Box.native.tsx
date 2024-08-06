@@ -13,7 +13,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param background {TrilogyColor} Box Content Background Color
- * @param leftBorder {TrilogyColor} Add Left Highlight Border With Semantic Color
+ * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param testId {string} Test id
  * @param shadowless {boolean} Remove box shadow
  * @param backgroundSrc {string} Source of background Image
@@ -29,7 +29,7 @@ const Box = ({
   children,
   onClick,
   skeleton,
-  leftBorder,
+  highlighted,
   testId,
   shadowless,
   background,
@@ -79,13 +79,13 @@ const Box = ({
       overflow: "hidden",
       borderRadius: boxRadius,
     },
-    leftBorder: {
+    highlighted: {
       position: "absolute",
       width: 8,
       borderTopStartRadius: boxRadius,
       borderBottomStartRadius: boxRadius,
       height: boxHeight,
-      backgroundColor: leftBorder ? getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) : 'transparent',
+      backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
 
     },
     column: {
@@ -144,7 +144,7 @@ const Box = ({
                 : { uri: backgroundSrc }
             }
           >
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider
               value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
             >
@@ -153,7 +153,7 @@ const Box = ({
           </ImageBackground>
         ) : (
           <>
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider
               value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
             >
@@ -185,7 +185,7 @@ const Box = ({
               : { uri: backgroundSrc }
           }
         >
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(highlighted) && <View style={styles.highlighted} />}
           <StatesContext.Provider
             value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
           >
@@ -196,7 +196,7 @@ const Box = ({
         <StatesContext.Provider
           value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
         >
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(highlighted) && <View style={styles.highlighted} />}
           <View style={styles.column}>{children}</View>
         </StatesContext.Provider>
       )}
