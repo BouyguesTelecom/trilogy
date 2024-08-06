@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, createContext } from "react"
 import clsx from "clsx"
 import { CardMarkup, CardProps } from "./CardProps"
 import { has, is } from "@/services/classify"
 import { getAlignClassName, getBackgroundClassName } from "@/objects"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+
+export const CardContext = createContext({ horizontal: false })
 
 /**
  * Card Component
