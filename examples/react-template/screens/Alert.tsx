@@ -39,7 +39,7 @@ export const AlertScreen = (): JSX.Element => {
         title,
         description,
         iconName: IconName.ALERT,
-        alert: StatusState.WARNING,
+        status: StatusState.WARNING,
         onClick: () => console.log('onClick'),
         closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
@@ -62,15 +62,15 @@ export const AlertScreen = (): JSX.Element => {
       <ToasterAlertView />
       <Container>
         <View>
-          {Object.values(StatusState).map((alert, index) => {
+          {Object.values(StatusState).map((status, index) => {
             return (
               <AutoLayout key={index}>
-                <Title level={TitleLevels.TWO}>StatusState : {alert}</Title>
+                <Title level={TitleLevels.TWO}>StatusState : {status}</Title>
                 <Spacer size={10}/>
                 <Alert
                   display
-                  alert={alert}
-                  title={alert}
+                  status={status}
+                  title={status}
                   description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
                 />
                 <Divider/>
