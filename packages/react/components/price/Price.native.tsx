@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getStatusStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
@@ -20,7 +20,7 @@ import { getTypographyBoldStyle } from "@/objects"
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
@@ -36,7 +36,7 @@ const Price = ({
                  level,
                  inverted,
                  align,
-                 alert,
+                 status,
                  inline,
                  testId,
                  accessibilityLabel,
@@ -79,12 +79,12 @@ const Price = ({
       (inverted && !striked && invertedColor) ||
       (statesContext.inverted && invertedColor) ||
       (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
-      (alert && getAlertStyle(alert)) ||
+      (status && getStatusStyle(status)) ||
       (!striked && !inverted && primaryColor) ||
       (!striked && !inverted && secondaryColor) ||
       (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
       primaryColor,
-    [inverted, striked, alert]
+    [inverted, striked, status]
   )
 
   const strikedRotateByLevel = () => {

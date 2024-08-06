@@ -39,7 +39,7 @@ const Price = ({
                  level,
                  inverted,
                  align,
-                 alert,
+                 status,
                  inline,
                  testId,
                  accessibilityLabel,
@@ -55,7 +55,7 @@ const Price = ({
     styled,
     clsx(
       "price",
-      alert && is(`${alert}`),
+      status && is(`${status}`),
       level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),

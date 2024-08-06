@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Button, Container, IconName, Section, ToasterContext, ToasterProvider } from '@trilogy-ds/react/components'
 import { ToasterPosition } from '@trilogy-ds/react/components/toaster/ToasterProps'
-import { AlertState } from '@trilogy-ds/react/objects'
+import { StatusState } from '@trilogy-ds/react/objects'
 
 export const ToasterScreen = (): JSX.Element => {
   const ToasterViewComp: React.FC = () => {
@@ -24,7 +24,7 @@ export const ToasterScreen = (): JSX.Element => {
         title,
         description,
         iconName: IconName.INFOS_CIRCLE,
-        alert: AlertState.WARNING,
+        alert: StatusState.WARNING,
         onClick: () => console.log('onClick'),
         closable: () => console.log('closable'),
         onHide: () => console.log('onHide'),

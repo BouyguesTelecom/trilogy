@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { AlertState, getAlertStyle } from '@/objects/facets/Alert'
+import { StatusState, getStatusStyle } from '@/objects/facets/Status'
 import { Alignable } from '@/objects/facets/Alignable'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -224,9 +224,9 @@ const Input = ({
     help: {
       fontSize: 12,
       color:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         inputColor,
@@ -241,9 +241,9 @@ const Input = ({
       borderWidth: isFocused ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.FONT, 1),
@@ -371,9 +371,9 @@ const Input = ({
               }
               size={IconSize.SMALL}
               color={
-                (status && status === 'success' && (AlertState.SUCCESS)) ||
-                (status && status === 'warning' && (AlertState.WARNING)) ||
-                (status && status === 'error' && (AlertState.ERROR)) ||
+                (status && status === 'success' && (StatusState.SUCCESS)) ||
+                (status && status === 'warning' && (StatusState.WARNING)) ||
+                (status && status === 'error' && (StatusState.ERROR)) ||
                 (status && status === 'default' && TrilogyColor.MAIN) ||
                 (disabled && (TrilogyColor.DISABLED)) ||
                 TrilogyColor.MAIN
@@ -404,9 +404,9 @@ const Input = ({
                 }
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && (AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && (AlertState.WARNING)) ||
-                  (status && status === 'error' && (AlertState.ERROR)) ||
+                  (status && status === 'success' && (StatusState.SUCCESS)) ||
+                  (status && status === 'warning' && (StatusState.WARNING)) ||
+                  (status && status === 'error' && (StatusState.ERROR)) ||
                   (status && status === 'default' && TrilogyColor.MAIN) ||
                   (disabled && (TrilogyColor.DISABLED)) ||
                   TrilogyColor.MAIN
@@ -441,9 +441,9 @@ const Input = ({
                 name={iconPassword}
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && (AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && (AlertState.WARNING)) ||
-                  (status && status === 'error' && (AlertState.ERROR)) ||
+                  (status && status === 'success' && (StatusState.SUCCESS)) ||
+                  (status && status === 'warning' && (StatusState.WARNING)) ||
+                  (status && status === 'error' && (StatusState.ERROR)) ||
                   (status && status === 'default' && TrilogyColor.MAIN) ||
                   (disabled && (TrilogyColor.DISABLED)) ||
                   TrilogyColor.MAIN

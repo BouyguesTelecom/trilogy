@@ -1,5 +1,5 @@
 import React from 'react'
-import { AlertState, TypographyBold, Section, Title, TitleLevels, Divider, Progress, ProgressItem, ProgressRadial, Text, TextLevels  } from '@trilogy-ds/react'
+import { StatusState, TypographyBold, Section, Title, TitleLevels, Divider, Progress, ProgressItem, ProgressRadial, Text, TextLevels  } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
 
@@ -25,23 +25,23 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <Progress stacked>
-          <ProgressItem percent={15} alert={AlertState.SUCCESS} />
-          <ProgressItem percent={15} alert={AlertState.INFO} />
-          <ProgressItem percent={15} alert={AlertState.WARNING} />
-          <ProgressItem percent={15} alert={AlertState.ERROR} />
+          <ProgressItem percent={15} alert={StatusState.SUCCESS} />
+          <ProgressItem percent={15} alert={StatusState.INFO} />
+          <ProgressItem percent={15} alert={StatusState.WARNING} />
+          <ProgressItem percent={15} alert={StatusState.ERROR} />
         </Progress>
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
-        <Progress percent={30} alert={AlertState.INFO} uniqueLegend='My unique legend' />
+        <Progress percent={30} alert={StatusState.INFO} uniqueLegend='My unique legend' />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress percent={15} alert={AlertState.INFO} firstExtremLegend='0 Go' secondExtremLegend='5 Go' />
+        <Progress percent={15} alert={StatusState.INFO} firstExtremLegend='0 Go' secondExtremLegend='5 Go' />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>

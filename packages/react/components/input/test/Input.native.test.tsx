@@ -4,7 +4,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 import * as React from "react";
 import { Platform, PlatformOSType } from "react-native";
 import {
-  AlertState,
+  StatusState,
   getAlertStyle,
   getColorStyle,
   TrilogyColor,
@@ -91,9 +91,9 @@ describe("Input component", () => {
         borderWidth: 1,
         borderRadius: 3,
         borderColor:
-          (state === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-          (state === "warning" && getAlertStyle(AlertState.WARNING)) ||
-          (state === "error" && getAlertStyle(AlertState.ERROR)) ||
+          (state === "success" && getAlertStyle(StatusState.SUCCESS)) ||
+          (state === "warning" && getAlertStyle(StatusState.WARNING)) ||
+          (state === "error" && getAlertStyle(StatusState.ERROR)) ||
           (state === "default" && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.MAIN),
         height: 46,
