@@ -14,5 +14,4 @@ export interface ColumnsProps extends Marginless{
   verticalCentered?: boolean
   className?: string
   mobile?: boolean
-  flex?: boolean | number // voir android
 }
