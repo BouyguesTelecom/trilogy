@@ -6,6 +6,5 @@ import { Accessibility } from "../../../objects"
 export interface AccordionBodyProps extends Accessibility{
   children?: React.ReactNode
   className?: string
-  contentClassName?: string
   dataId?: string
 }
