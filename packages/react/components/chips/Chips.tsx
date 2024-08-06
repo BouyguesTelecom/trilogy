@@ -13,7 +13,6 @@ import { getColorClassName, TrilogyColor } from "@/objects/facets/Color"
  * @param onClick {Function} onClick Event for all Chips
  * @param active {boolean} active Render Chips Active
  * @param disabled {boolean} Disabled chips
- * @param inverted {boolean} inverted chips - white
  *  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param others
@@ -25,7 +24,6 @@ const Chips = ({
   active,
   disabled,
   id,
-  inverted,
   testId,
   ...others
 }: ChipsProps): JSX.Element => {
@@ -36,7 +34,6 @@ const Chips = ({
     clsx(
       "chips",
       active && is("active"),
-      inverted && has(`background-${getColorClassName(TrilogyColor.BACKGROUND)}`),
       className
     )
   )
