@@ -1,6 +1,6 @@
 import { PriceLevel, PriceLevelValues } from "./PriceEnum"
 import { Invertable } from "@/objects/facets/Invertable"
-import { Accessibility, AlertProps, AlignableProps } from "@/objects"
+import { Accessibility, StatusProps, AlignableProps } from "@/objects"
 import { Styles } from "@/types"
 
 /**
@@ -10,7 +10,7 @@ export interface PriceProps
   extends Invertable,
     Accessibility,
     AlignableProps,
-    AlertProps {
+    StatusProps {
   children?: React.ReactNode;
   amount: number;
   mention?: string;

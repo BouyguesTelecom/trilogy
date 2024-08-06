@@ -12,7 +12,7 @@ import {
   Button,
   Section
 } from "@trilogy-ds/react/components";
-import {AlertState} from "@trilogy-ds/react/objects";
+import {StatusState} from "@trilogy-ds/react/objects";
 import {useContext, useState} from "react";
 import ToasterContext from "@trilogy-ds/react/lib/components/alert/context/ToasterContext";
 import {ToasterAlertProvider} from "@trilogy-ds/react/lib/components/alert";
@@ -39,7 +39,7 @@ export const AlertScreen = (): JSX.Element => {
         title,
         description,
         iconName: IconName.ALERT,
-        alert: AlertState.WARNING,
+        alert: StatusState.WARNING,
         onClick: () => console.log('onClick'),
         closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
@@ -62,10 +62,10 @@ export const AlertScreen = (): JSX.Element => {
       <ToasterAlertView />
       <Container>
         <View>
-          {Object.values(AlertState).map((alert, index) => {
+          {Object.values(StatusState).map((alert, index) => {
             return (
               <AutoLayout key={index}>
-                <Title level={TitleLevels.TWO}>AlertState : {alert}</Title>
+                <Title level={TitleLevels.TWO}>StatusState : {alert}</Title>
                 <Spacer size={10}/>
                 <Alert
                   display

@@ -8,7 +8,7 @@ import {
   InputTextContentType,
 } from "@/components/input/InputEnum"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { AlertState, getAlertStyle } from "@/objects/facets/Alert"
+import { StatusState, getStatusStyle } from "@/objects/facets/Status"
 import { Icon, IconColor } from "@/components/icon"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -84,9 +84,9 @@ const Textarea = (
       borderWidth: isFocus ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "success" && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getStatusStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       height: customHeight,
@@ -104,9 +104,9 @@ const Textarea = (
     help: {
       fontSize: 12,
       color:
-        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "success" && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getStatusStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       paddingLeft: 4,
