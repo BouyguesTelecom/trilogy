@@ -28,7 +28,6 @@ const Columns = ({
   verticalCentered,
   gapless,
   marginSize,
-  marginless,
   ...others
 }: ColumnsProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -44,7 +43,6 @@ const Columns = ({
       verticalCentered && is("vcentered"),
       !marginSize && gapless && is("gapless"),
       !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
-      marginless && is("marginless"),
       className
     )
   )
