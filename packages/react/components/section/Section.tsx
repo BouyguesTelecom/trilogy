@@ -53,7 +53,7 @@ const Section = ({
   return (
     <section
       {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover', backgroundPosition: '50%' },
+        style: { backgroundImage: `url(${backgroundSrc})`},
       })}
       className={_className}
       {...others}
