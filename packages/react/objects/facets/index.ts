@@ -1,5 +1,5 @@
 export * from './Accessibility'
-export * from './Alert'
+export * from './Status'
 export * from './Alignable'
 export * from './Alternate'
 export * from './Centerable'

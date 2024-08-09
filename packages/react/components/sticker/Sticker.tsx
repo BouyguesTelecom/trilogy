@@ -10,7 +10,7 @@ import { useTrilogyContext } from "@/context"
 /**
  * Sticker component
  * @param children {ReactNode} Sticker child
- * @param variant {AlertState} Sticker variant : primary only
+ * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
  * @param hat {boolean} Hat Sticker ( for box )
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -26,6 +26,7 @@ const Sticker = ({
   small,
   hat,
   markup,
+  outlined,
   ...others
 }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -37,7 +38,8 @@ const Sticker = ({
       variant && is(getVariantClassName(variant)),
       small && is("small"),
       hat && is("hat"),
-      className
+      className,
+      outlined && is('outlined'),
     )
   )
 

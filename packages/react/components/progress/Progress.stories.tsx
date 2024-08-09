@@ -3,7 +3,7 @@ import * as React from "react";
 import { Meta, Story } from "@storybook/react";
 import { Progress, ProgressItem } from "./index";
 import { ProgressProps } from "./ProgressProps";
-import { AlertState } from "../../objects";
+import { StatusState } from "../../objects";
 
 export default {
   title: "Components/ProgressBar",
@@ -30,22 +30,22 @@ export const Empilé: Story<ProgressProps> = (args) => (
   <Progress {...args}>
     <ProgressItem
       percent={10}
-      alert={AlertState.SUCCESS}
+      alert={StatusState.SUCCESS}
       accessibilityLabel={"progress-sucess"}
     />
     <ProgressItem
       percent={15}
-      alert={AlertState.INFO}
+      alert={StatusState.INFO}
       accessibilityLabel={"progress-info"}
     />
     <ProgressItem
       percent={35}
-      alert={AlertState.WARNING}
+      alert={StatusState.WARNING}
       accessibilityLabel={"progress-warning"}
     />
     <ProgressItem
       percent={25}
-      alert={AlertState.ERROR}
+      alert={StatusState.ERROR}
       accessibilityLabel={"progress-error"}
     />
   </Progress>
@@ -59,7 +59,7 @@ export const AvecLégende: Story<ProgressProps> = (args) => (
     <Progress {...args} />
     <Progress
       percent={15}
-      alert={AlertState.INFO}
+      alert={StatusState.INFO}
       firstExtremLegend="0 Go"
       secondExtremLegend="5 Go"
     />
@@ -67,13 +67,13 @@ export const AvecLégende: Story<ProgressProps> = (args) => (
 );
 AvecLégende.args = {
   percent: 30,
-  alert: AlertState.INFO,
+  alert: StatusState.INFO,
   uniqueLegend: "My unique legend",
 };
 
 export const Petite: Story<ProgressProps> = (args) => <Progress {...args} />;
 Petite.args = {
   percent: 30,
-  alert: AlertState.INFO,
+  alert: StatusState.INFO,
   small: true,
 };

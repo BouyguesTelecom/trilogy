@@ -66,7 +66,6 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
  */
 export interface InputProps extends Accessibility {
   type?: InputType | InputTypeValues
-  content?: string
   placeholder?: string
   defaultValue?: string
   value?: string

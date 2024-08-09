@@ -50,7 +50,6 @@ const Link = ({
   const { styled } = useTrilogyContext()
 
   const classes = clsx(
-    !removeLinkClass && "link",
     iconName && has("icon"),
     typo,
     inverted && is("inverted"),
@@ -92,6 +91,7 @@ const Link = ({
   const LinkTrilogy = (): JSX.Element => {
     return (
       <Text
+        link
         data-testid={testId}
         aria-label={accessibilityLabel}
         onClick={onClick && onClick}

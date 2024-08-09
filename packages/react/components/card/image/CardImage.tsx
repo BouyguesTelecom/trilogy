@@ -13,7 +13,6 @@ import { useTrilogyContext } from "@/context"
  * @param size Image Card size on horizontal align
  * @param onClick {Function} onClick Event
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param horizontal {boolean} Horizontal Card orientation
  * @param contain {boolean} Resize mode contain
  */
 const CardImage = ({

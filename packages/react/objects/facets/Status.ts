@@ -4,30 +4,30 @@ import { getColorStyle } from './Color'
 /**
  * Alert State
  */
-export enum AlertState {
+export enum StatusState {
   SUCCESS = 'SUCCESS',
   INFO = 'INFO',
   WARNING = 'WARNING',
   ERROR = 'ERROR',
 }
 
-export type AlertStateValues = `${AlertState}`
+export type StatusStateValues = `${StatusState}`
 
 /**
  * Alert props
  */
-export interface AlertProps {
-  alert?: AlertState | AlertStateValues
+export interface StatusProps {
+  status?: StatusState | StatusStateValues
   id?: string
 }
 
 /**
  * Returns alert's classname depending on alert type
- * @param alertType {string} - Alert type
+ * @param statusType {string} - Alert type
  * @returns {string} - Alert value
  */
-export const getAlertClassName = (alertType?: string): string => {
-  switch (alertType) {
+export const getStatusClassName = (statusType?: string): string => {
+  switch (statusType) {
     case 'SUCCESS':
       return 'success'
     case 'INFO':
@@ -42,12 +42,12 @@ export const getAlertClassName = (alertType?: string): string => {
 }
 
 /**
- * Returns alert's style depending on alert type
- * @param alertType {string} - Alert type
+ * Returns status style depending on alert type
+ * @param statusType {string} - Alert type
  * @returns {string} - Alert value
  */
-export const getAlertStyle = (alertType?: string): string => {
-  switch (alertType) {
+export const getStatusStyle = (statusType?: string): string => {
+  switch (statusType) {
     case 'SUCCESS':
       return getColorStyle('SUCCESS')
     case 'INFO':
@@ -62,12 +62,12 @@ export const getAlertStyle = (alertType?: string): string => {
 }
 
 /**
- * Returns alert's icon name depending on alert type
- * @param alertType {string} - Alert type
+ * Returns status icon name depending on alert type
+ * @param statusType {string} - Alert type
  * @returns {string} - Alert value
  */
-export const getAlertIconName = (alertType?: string): IconName | IconNameValues => {
-  switch (alertType) {
+export const getStatusIconName = (statusType?: string): IconName | IconNameValues => {
+  switch (statusType) {
     case 'SUCCESS':
       return IconName.CHECK_CIRCLE
     case 'INFO':

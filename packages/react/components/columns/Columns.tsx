@@ -18,7 +18,6 @@ import { useTrilogyContext } from "@/context"
  * @param multiline {boolean} Multiline Columns
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
- * @param flex {boolean} Flex direction
  */
 const Columns = ({
   className,
@@ -29,8 +28,6 @@ const Columns = ({
   verticalCentered,
   gapless,
   marginSize,
-  flex,
-  marginless,
   ...others
 }: ColumnsProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -46,8 +43,6 @@ const Columns = ({
       verticalCentered && is("vcentered"),
       !marginSize && gapless && is("gapless"),
       !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
-      flex && is("flex"),
-      marginless && is("marginless"),
       className
     )
   )

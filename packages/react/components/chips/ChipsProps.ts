@@ -11,6 +11,4 @@ export interface ChipsProps extends Clickable, Accessibility {
   active?: boolean
   disabled?: boolean
   id?: string
-
-  inverted?: boolean
 }

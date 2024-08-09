@@ -1,48 +1,48 @@
 import * as React from "react";
 import { Meta, Story } from "@storybook/react";
 import Alert from "./Alert";
-import { AlertProps } from "./AlertProps";
-import { AlertState } from "../../objects";
+import { StatusProps } from "./StatusProps";
+import { StatusState } from "../../objects";
 
 export default {
   title: "Components/Alert",
   component: Alert,
 } as Meta;
 
-export const Base: Story<AlertProps> = (args) => <Alert {...args} />;
+export const Base: Story<StatusProps> = (args) => <Alert {...args} />;
 
 Base.args = {
   display: true,
-  alert: AlertState.INFO,
+  alert: StatusState.INFO,
   title: "Alert information",
   description:
     "Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..",
 };
 
-export const Variant: Story<AlertProps> = () => (
+export const Variant: Story<StatusProps> = () => (
   <>
     {" "}
     <Alert
       display
-      alert={AlertState.INFO}
+      alert={StatusState.INFO}
       title="Alert information"
       description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
     />{" "}
     <Alert
       display
-      alert={AlertState.WARNING}
+      alert={StatusState.WARNING}
       title="Alert information"
       description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
     />
     <Alert
       display
-      alert={AlertState.SUCCESS}
+      alert={StatusState.SUCCESS}
       title="Alert information"
       description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
     />
     <Alert
       display
-      alert={AlertState.ERROR}
+      alert={StatusState.ERROR}
       title="Alert information"
       description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
     />{" "}

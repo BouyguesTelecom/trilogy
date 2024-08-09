@@ -5,7 +5,7 @@ export enum ComponentName {
   AccordionBody = 'AccordionBody',
   AutoLayout = 'AutoLayout',
   AutoLayoutWrapper = 'AutoLayoutWrapper',
-  AlertState = 'AlertState',
+  StatusState = 'StatusState',
   Badge = 'Badge',
   BadgeTextDirection = 'BadgeTextDirection',
   BadgeColor = 'BadgeColor',

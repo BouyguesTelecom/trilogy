@@ -2,7 +2,7 @@ import * as React from "react";
 import { render } from "@testing-library/react";
 import Progress from "../Progress";
 import ProgressItem from "../item";
-import { AlertState } from "../../../objects";
+import { StatusState } from "../../../objects";
 import ProgressRadial from "../radial";
 
 describe("Progress", () => {
@@ -46,7 +46,7 @@ describe("ProgressItem", () => {
         percent={50}
         minPercent={0}
         maxPercent={200}
-        alert={AlertState.SUCCESS}
+        alert={StatusState.SUCCESS}
         accessibilityLabel="Loading progress"
       />
     );

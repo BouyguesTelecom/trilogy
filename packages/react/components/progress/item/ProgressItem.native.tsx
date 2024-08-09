@@ -7,11 +7,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Progress Item component - Only if stacked
  * @param percent {number} Progress percent
  * @param minPercent {number} Default min percent is 100
- * @param alert {AlertState} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
+ * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param children {React.ReactNode}
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProgressItem = ({ children, percent, alert, ...others }: ProgressItemProps): JSX.Element => {
+const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProps): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const givenProps = others as any
   const givenstyle = givenProps.style

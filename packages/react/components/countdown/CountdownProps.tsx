@@ -11,4 +11,5 @@ export interface CountdownProps {
   event?: ClickEvent
   small?: boolean
   centered?: boolean
+  inverted?: boolean
 }

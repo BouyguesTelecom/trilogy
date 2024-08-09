@@ -1,4 +1,4 @@
-import { AlertProps } from '@/objects/facets/Alert'
+import { StatusProps } from '@/objects/facets/Status'
 import { Invertable } from '@/objects/facets/Invertable'
 
 export interface SwitchChangeEvent {
@@ -8,7 +8,7 @@ export interface SwitchChangeEvent {
 
 type SwitchEventHandler = (event: SwitchChangeEvent) => void
 
-export interface SwitchProps extends AlertProps, Invertable {
+export interface SwitchProps extends StatusProps, Invertable {
   checked?: boolean
   onChange?: SwitchEventHandler
   onClick?: SwitchEventHandler

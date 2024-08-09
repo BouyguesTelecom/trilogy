@@ -21,10 +21,22 @@ export const RadioScreen = (): JSX.Element => {
   return (
     <AutoLayout>
       <Container>
-        <Text typo={TypographyAlign.TEXT_CENTERED}>
+        <Rows>
+          <RowItem>
+          <Text typo={TypographyAlign.TEXT_CENTERED}>
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
           consectetur, adipisci velit...
         </Text>
+          </RowItem>
+          <RowItem>
+          <Text typo={TypographyAlign.TEXT_CENTERED}>
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+          consectetur, adipisci velit...
+        </Text>
+          </RowItem>
+
+        </Rows>
+       
         <Columns>
           <ColumnsItem centered>
             <Radio

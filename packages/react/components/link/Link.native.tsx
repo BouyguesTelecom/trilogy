@@ -10,7 +10,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Link Component
- * @param plain {boolean} Link without underline
  * @param to {string} Url to open
  * @param title {string} Title attribute
  * @param typo {TypographyAlign} Typos align link

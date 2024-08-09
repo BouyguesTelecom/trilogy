@@ -11,6 +11,4 @@ export interface BadgeProps extends Clickable, Accessibility {
   textContent?: string
   direction?: BadgeTextDirection | BadgeTextDirectionValues
   className?: string
-
-  color?: BadgeColor | BadgeColorValues
 }

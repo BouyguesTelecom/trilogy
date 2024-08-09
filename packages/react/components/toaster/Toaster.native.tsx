@@ -7,7 +7,7 @@ import { Title } from "@/components/title"
 import { Text, TextLevels } from "@/components/text"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { Columns, ColumnsItem } from "@/components/columns"
-import { getAlertStyle, getColorStyle, TrilogyColor, } from "@/objects"
+import { getStatusStyle, getColorStyle, TrilogyColor, } from "@/objects"
 import { Spacer, SpacerSize } from "@/components/spacer"
 import ToasterContext from "./context"
 import { ToasterShowContext } from "./context/ToasterContextProps"
@@ -28,7 +28,7 @@ const showToast: ToasterShowContext = (params: ToasterProps) => {
     closable,
     onHide,
     iconName,
-    alert,
+    status,
   } = params
 
   LibToast.show({
@@ -38,7 +38,7 @@ const showToast: ToasterShowContext = (params: ToasterProps) => {
     topOffset: offset || 10,
     visibilityTime: duration || 5000,
     onHide,
-    props: { title, description, closable, iconName, alert, onClick },
+    props: { title, description, closable, iconName, status, onClick },
   })
 }
 
@@ -47,15 +47,15 @@ const showToast: ToasterShowContext = (params: ToasterProps) => {
  * @param title {string} Notification title content
  * @param description {string|ReactNode} Notification description content
  * @param iconName {IconName} Custom icon
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all notification
  * @param closable {Function} onClick Event on cross icon
  */
 const Toaster: React.FC<{ props: ToasterProps }> = ({ props }) => {
-  const { title, description, iconName, alert, closable, onClick } = props
+  const { title, description, iconName, status, closable, onClick } = props
 
-  const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor = getColorStyle(alert as TrilogyColor, 1)
+  const color = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
+  const backgroundColor = getColorStyle(status as TrilogyColor, 1)
 
   const styles = StyleSheet.create({
     toaster: {

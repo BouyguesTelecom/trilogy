@@ -1,9 +1,9 @@
-import { Accessibility, AlertProps } from '@/objects/facets'
+import { Accessibility, StatusProps } from '@/objects/facets'
 
 /**
  * Progress Item Interface
  */
-export interface ProgressItemProps extends AlertProps, Accessibility {
+export interface ProgressItemProps extends StatusProps, Accessibility {
   children?: React.ReactNode
   percent: number
   minPercent?: number

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { Alert } from "../index";
-import { AlertProps } from "../AlertProps";
-import { AlertState } from "../../../objects";
+import { StatusProps } from "../StatusProps";
+import { StatusState } from "../../../objects";
 import { IconName } from "../../icon";
 import renderer from "react-test-renderer";
 
@@ -12,7 +12,7 @@ describe("Alert", () => {
       <Alert
         testId={"alert"}
         display
-        alert={AlertState.INFO}
+        alert={StatusState.INFO}
         title="Alert information"
         description="Lorem Ipsum is simply dummy text of the printing and type.."
       />
@@ -26,7 +26,7 @@ describe("Alert", () => {
       <Alert
         testId={"alert"}
         display
-        alert={AlertState.INFO}
+        alert={StatusState.INFO}
         title="Alert information"
         description="Lorem Ipsum is simply dummy text of the printing and type.."
       />
@@ -36,11 +36,11 @@ describe("Alert", () => {
     expect(alert).toHaveClass("alert");
   });
 
-  test("should render with correct props and className based on AlertState", () => {
-    const props: AlertProps = {
+  test("should render with correct props and className based on StatusState", () => {
+    const props: StatusProps = {
       testId: "alert",
       display: true,
-      alert: AlertState.INFO,
+      alert: StatusState.INFO,
       title: "Alert information",
       description:
         "Lorem Ipsum is simply dummy text of the printing and type..",
@@ -57,7 +57,7 @@ describe("Alert", () => {
         <Alert
           testId={"alert"}
           display={true}
-          alert={AlertState.INFO}
+          alert={StatusState.INFO}
           title="Alert information"
           description="Lorem Ipsum is simply dummy text of the printing and type.."
           iconName={IconName.TIMES}
@@ -73,7 +73,7 @@ describe("Alert", () => {
       <Alert
         testId={"alert"}
         display
-        alert={AlertState.INFO}
+        alert={StatusState.INFO}
         iconClassname="testIconClassName"
         iconName={IconName.BELL}
       />
@@ -85,7 +85,7 @@ describe("Alert", () => {
 
   it("should have icon SUCCESS icon", () => {
     const { getByTestId } = render(
-      <Alert testId={"alert"} display alert={AlertState.SUCCESS} />
+      <Alert testId={"alert"} display alert={StatusState.SUCCESS} />
     );
     const alert = getByTestId("alert");
     expect(alert.firstChild?.firstChild).toHaveClass(IconName.CHECK_CIRCLE);
@@ -93,7 +93,7 @@ describe("Alert", () => {
 
   it("should have icon WARNING icon", () => {
     const { getByTestId } = render(
-      <Alert testId={"alert"} display alert={AlertState.WARNING} />
+      <Alert testId={"alert"} display alert={StatusState.WARNING} />
     );
     const alert = getByTestId("alert");
     expect(alert.firstChild?.firstChild).toHaveClass(IconName.ALERT);
@@ -101,7 +101,7 @@ describe("Alert", () => {
 
   it("should have icon INFO icon", () => {
     const { getByTestId } = render(
-      <Alert testId={"alert"} display alert={AlertState.INFO} />
+      <Alert testId={"alert"} display alert={StatusState.INFO} />
     );
     const alert = getByTestId("alert");
     expect(alert.firstChild?.firstChild).toHaveClass(IconName.INFOS_CIRCLE);
@@ -109,7 +109,7 @@ describe("Alert", () => {
 
   it("should have icon ERROR icon", () => {
     const { getByTestId } = render(
-      <Alert testId={"alert"} display alert={AlertState.ERROR} />
+      <Alert testId={"alert"} display alert={StatusState.ERROR} />
     );
     const alert = getByTestId("alert");
     expect(alert.firstChild?.firstChild).toHaveClass(

@@ -3,7 +3,6 @@ import type {
   Fullwidth,
   Layout,
   Paddingless,
-  Position,
   VerticalPaddingless,
   ChildrenWithNoText,
 } from '@/objects'
@@ -15,7 +14,6 @@ export interface SectionProps
   extends Layout,
     Fullwidth,
     BackgroundProps,
-    Position,
     Paddingless,
     VerticalPaddingless,
     ChildrenWithNoText {

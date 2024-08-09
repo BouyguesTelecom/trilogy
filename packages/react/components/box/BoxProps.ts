@@ -18,7 +18,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   className?: string
   markup?: BoxMarkup | BoxMarkupValues
   to?: string
-  leftBorder?: TrilogyColor | TrilogyColorValues
+  highlighted?: TrilogyColor | TrilogyColorValues
   shadowless?: boolean
   backgroundSrc?: string
   hat?: boolean

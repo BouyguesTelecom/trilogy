@@ -20,7 +20,6 @@ export interface LinkProps extends Accessibility, Clickable {
   inline?: boolean
   level?: TextLevels
   inverted?: boolean
-  plain?: boolean
   blank?: boolean
   style?: Styles
 }

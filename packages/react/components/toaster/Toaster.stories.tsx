@@ -97,7 +97,7 @@ export const Base: Story<ToasterProps> = () => (
               title,
               description,
               iconName: IconName.INFOS_CIRCLE,
-              alert: AlertState.WARNING,
+              alert: StatusState.WARNING,
               onClick: () => console.log('onClick'),
               closable: () => console.log('closable'),
               onHide: () => console.log('onHide'),
@@ -112,7 +112,7 @@ export const Base: Story<ToasterProps> = () => (
             </div>
           )
         }
-       <ToasterProvider iconName={IconName.TIMES} alert={AlertState.ERROR}>
+       <ToasterProvider iconName={IconName.TIMES} alert={StatusState.ERROR}>
           <ToasterView />
         </ToasterProvider>
   */
