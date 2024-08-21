@@ -37,7 +37,7 @@ const Stepper = ({
       if (Array.isArray(children)) {
         let haveCurrentStep = false
         children.map((child) => {
-          if (child.props.current) {
+          if (child?.props?.current) {
             haveCurrentStep = true
             setCurrentStep(child.props.step)
           }

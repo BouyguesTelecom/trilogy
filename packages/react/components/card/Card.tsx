@@ -97,8 +97,8 @@ const Card = ({
       data-testid={testId}
       onClick={onClick && onClick}
       className={classes}
-      {...others}
       style={onClick && { ...hoverStyle }}
+      {...others}
     />
   )
 }
