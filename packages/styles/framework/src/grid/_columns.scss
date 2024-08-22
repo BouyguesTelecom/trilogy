@@ -263,7 +263,7 @@ $gap :
         --ColumnFraction: #{$value};
       }
 
-      > &.is-offset-#{$key}-widescreen {
+      > .is-offset-#{$key}-widescreen {
         --offset: #{$value};
         margin-left: $offsetWidth;
       }
