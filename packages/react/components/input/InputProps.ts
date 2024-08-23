@@ -82,7 +82,6 @@ export interface InputProps extends Accessibility {
   patternValidator?: RegExp
   help?: string | ReactNode
   name?: string
-  search?: boolean
   className?: string
   hovered?: boolean
   focused?: boolean
