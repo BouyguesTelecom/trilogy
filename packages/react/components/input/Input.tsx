@@ -48,7 +48,6 @@ interface IconWrapper {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
- * @param hovered {boolean} Hover mode
  * @param focused {boolean} Fucus mode
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
