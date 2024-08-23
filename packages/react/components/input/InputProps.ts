@@ -83,7 +83,6 @@ export interface InputProps extends Accessibility {
   help?: string | ReactNode
   name?: string
   className?: string
-  hovered?: boolean
   focused?: boolean
   reference?: any | null
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
