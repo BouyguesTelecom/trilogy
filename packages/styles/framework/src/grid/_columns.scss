@@ -18,15 +18,7 @@ $columnSize : (
   "11"    : math.div(12, 11),
   "12"    : math.div(12, 12),
   "full"  : math.div(12, 12),
-  "half"  : math.div(12, 6),
-  "one-third "  : math.div(3, 1),
-  "two-thirds"  : math.div(3, 2),
-  "one-quarter"  : math.div(4, 1),
-  "three-quarters"  : math.div(3, 4),
-  "one-fifth"  : math.div(5, 1),
-  "two-fifths"  : math.div(5, 2),
-  "three-fifths"  : math.div(5, 3),
-  "four-fifths"  : math.div(5, 4)
+  "half"  : math.div(12, 6)
 );
 
 $columnNumber : 12;
@@ -375,7 +367,6 @@ $gap :
 
   &.is-inlined {
     position: relative;
-    width: 100%;
     padding-bottom: 8px;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -384,6 +375,7 @@ $gap :
     scroll-snap-type: x mandatory;
     margin: -8px;
     padding: 8px;
+    scroll-padding: 8px;
 
     >.column {
       scroll-snap-align: start;
@@ -488,76 +480,6 @@ $gap :
     }
   }
 }
-
-@if $variable-columns {
-  .columns.is-variable {
-    gap: var(--ColumnGap);
-    @for $i from 0 through 12 {
-      &.is-#{$i} {
-        --ColumnGap: #{$i * 5px};
-        .column{
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-      @include mobile {
-        &.is-#{$i}-mobile {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include tablet {
-        &.is-#{$i}-tablet {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include tablet-only {
-        &.is-#{$i}-tablet-only {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include touch {
-        &.is-#{$i}-touch {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include desktop {
-        &.is-#{$i}-desktop {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include desktop-only {
-        &.is-#{$i}-desktop-only {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include widescreen {
-        &.is-#{$i}-widescreen {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include widescreen-only {
-        &.is-#{$i}-widescreen-only {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-
-      @include fullhd {
-        &.is-#{$i}-fullhd {
-          --ColumnGap: #{$i * 5px};
-        }
-      }
-    }
-
-  }
-
-}
-
 :root{
   --slider-size:min(100%, 1348px);
 }

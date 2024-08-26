@@ -4,9 +4,15 @@ import { Box, BoxContent, Button, ButtonList, ButtonVariant, Card, CardContent, 
 export const ColumnScreen = (): JSX.Element => {
   return (
     <>
-      <Container fluid className='has-background-success'>
+      <Container fluid className='has-background-'>
 
-
+        <Box>
+          <Columns>
+            <ColumnsItem>Test</ColumnsItem>
+            <ColumnsItem>Test</ColumnsItem>
+            <ColumnsItem>Test</ColumnsItem>
+          </Columns>
+        </Box>
         <Columns multiline >
           <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
             <Box>
@@ -124,7 +130,7 @@ export const ColumnScreen = (): JSX.Element => {
 
         <Columns className='has-1-cols column-peek is-mobile is-inlined full-bleed'>
           <ColumnsItem>
-            <Box shadowless>
+            <Box>
               <BoxContent>
                 <Text level="TWO" className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -139,7 +145,7 @@ export const ColumnScreen = (): JSX.Element => {
             </Box>
           </ColumnsItem>
           <ColumnsItem>
-            <Box shadowless>
+            <Box>
               <BoxContent>
                 <Text level="TWO" className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -154,7 +160,7 @@ export const ColumnScreen = (): JSX.Element => {
             </Box>
           </ColumnsItem>
           <ColumnsItem>
-            <Box shadowless>
+            <Box>
               <BoxContent>
                 <Text level="TWO" className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -235,7 +241,7 @@ export const ColumnScreen = (): JSX.Element => {
           </ColumnsItem>
         </Columns>
 
-        <Columns mobile>
+        <Columns mobile multiline>
           <ColumnsItem>
             <Text level='ONE' className='has-background-warning'>Colonne 1</Text>
           </ColumnsItem>
