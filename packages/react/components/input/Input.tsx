@@ -23,6 +23,7 @@ interface IconWrapper {
 /**
  * Input Component
  * @param name {string} Input name
+ * @param label {string} Label for input
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} onFocus Input Event
@@ -67,6 +68,7 @@ interface IconWrapper {
  */
 const Input = ({
   forceControl,
+  label,
   className,
   disabled,
   onChange,
@@ -208,6 +210,7 @@ const Input = ({
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       <div className={controlClasses}>
+        {!hasPlaceholder && <label>{label}</label>}
         <input
           required={required}
           role={'textbox'}
