@@ -22,19 +22,21 @@ import { useTrilogyContext } from "@/context"
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const Progress = ({
-  children,
-  className,
-  percent,
-  maxPercent = 100,
-  alert,
-  small,
-  stacked,
-  uniqueLegend,
-  firstExtremLegend,
-  secondExtremLegend,
-  ...others
-}: ProgressProps): JSX.Element => {
+const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    children,
+    className,
+    percent,
+    maxPercent = 100,
+    alert,
+    small,
+    stacked,
+    uniqueLegend,
+    firstExtremLegend,
+    secondExtremLegend,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -55,7 +57,7 @@ const Progress = ({
 
   if (children && stacked) {
     return (
-      <div className={stackedClasses} {...others}>
+      <div ref={ref} className={stackedClasses} {...others}>
         {children}
       </div>
     )
@@ -88,6 +90,7 @@ const Progress = ({
       )}
     </>
   )
-}
+
+})
 
 export default Progress
