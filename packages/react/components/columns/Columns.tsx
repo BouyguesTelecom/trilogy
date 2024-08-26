@@ -20,19 +20,21 @@ import { useTrilogyContext } from "@/context"
  * @param mobile {boolean} Responsive mode
  * @param flex {boolean} Flex direction
  */
-const Columns = ({
-  className,
-  multiline,
-  inlined,
-  mobile,
-  centered,
-  verticalCentered,
-  gapless,
-  marginSize,
-  flex,
-  marginless,
-  ...others
-}: ColumnsProps): JSX.Element => {
+const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    multiline,
+    inlined,
+    mobile,
+    centered,
+    verticalCentered,
+    gapless,
+    marginSize,
+    flex,
+    marginless,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -52,7 +54,7 @@ const Columns = ({
     )
   )
 
-  return <div className={classes} {...others} />
-}
+  return <div ref={ref} className={classes} {...others} />
+})
 
 export default Columns
