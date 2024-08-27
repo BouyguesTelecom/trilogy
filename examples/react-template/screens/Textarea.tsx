@@ -10,7 +10,7 @@ export const TextareaScreen = (): JSX.Element => {
   return (
     <Section>
       <Textarea
-        label='Textarea label not dynamic'
+        label='Textarea label not dynamic with sample'
         sample='Textarea sample'
         help='Search helper textarea'
         onKeyUp={(e) => console.log(e)}
@@ -22,7 +22,7 @@ export const TextareaScreen = (): JSX.Element => {
       <Divider />
 
       <Textarea
-        label='Textarea label not dynamic'
+        label='Textarea label not dynamic without sample'
         help='Search helper textarea'
         onKeyUp={(e) => console.log(e)}
         required
