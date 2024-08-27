@@ -4,11 +4,12 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { Text } from '@/components/text'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
+import { TypographyColor } from '@/objects'
 
 export interface InputProp extends InputProps, InputWebEvents {}
 
@@ -24,6 +25,7 @@ interface IconWrapper {
  * Input Component
  * @param name {string} Input name
  * @param label {string} Label for input
+ * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} onFocus Input Event
@@ -69,6 +71,7 @@ interface IconWrapper {
 const Input = ({
   forceControl,
   label,
+  sample,
   className,
   disabled,
   onChange,
@@ -210,7 +213,8 @@ const Input = ({
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       <div className={controlClasses}>
-        {!hasPlaceholder && <label>{label}</label>}
+        {!hasPlaceholder && <label>{label} {required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
+        {!hasPlaceholder && label && sample && <Text marginless level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
         <input
           required={required}
           role={'textbox'}
