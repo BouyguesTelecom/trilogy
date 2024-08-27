@@ -38,6 +38,7 @@ export const InputScreen = (): JSX.Element => {
         help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
+        customIconLeft='tri-search'
       />
 
       <Input
