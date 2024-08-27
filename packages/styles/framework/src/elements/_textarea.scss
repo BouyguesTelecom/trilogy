@@ -65,6 +65,14 @@
     font-size: 16px;
   }
 
+   .textarea-label + .textarea-sample ~ span.icon {
+    top: 72px !important;
+  }
+
+  .textarea-label ~ span.icon {
+    top: 37px !important;
+  }
+
   span.icon {
     position: absolute;
     top: $spacing-4;

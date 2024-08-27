@@ -9,7 +9,31 @@ import {
 export const TextareaScreen = (): JSX.Element => {
   return (
     <Section>
+      <Textarea
+        label='Textarea label not dynamic'
+        sample='Textarea sample'
+        help='Search helper textarea'
+        onKeyUp={(e) => console.log(e)}
+        required
+        iconName={IconName.CHECK}
+        dynamicPlaceholder={false}
+      />
+
+      <Divider />
+
+      <Textarea
+        label='Textarea label not dynamic'
+        help='Search helper textarea'
+        onKeyUp={(e) => console.log(e)}
+        required
+        iconName={IconName.CHECK}
+        dynamicPlaceholder={false}
+      />
+
+      <Divider />
+
       <Textarea disabled placeholder="placeholder" label="Dynamic label" />
+
       <Divider />
 
       <Textarea
@@ -18,6 +42,7 @@ export const TextareaScreen = (): JSX.Element => {
         dynamicPlaceholder={false}
         customHeight={100}
       />
+
       <Divider />
 
       <Textarea
