@@ -33,8 +33,16 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section background={TrilogyColor.BACKGROUND}>
       <Input
-        label='Input label'
+        label='Input label not dynamic'
         sample='Input sample'
+        help='Search helper input'
+        onKeyUp={(e) => console.log(e)}
+        required
+        customIconLeft='tri-search'
+      />
+
+      <Input
+        label='Input label not dynamic'
         help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
