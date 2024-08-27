@@ -30,6 +30,7 @@ import { AutoCompleteProps } from './autocomplete'
 import AutoComplete from './autocomplete/AutoComplete.native'
 import InputGauge from './gauge/InputGauge.native'
 import { TypographyColor } from '@/objects'
+import { Spacer, SpacerSize } from '../spacer'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -96,7 +97,6 @@ const Input = ({
   securityGauge,
   validationRules,
   onIconClick,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   required,
   ...others
 }: InputNativeProps): JSX.Element => {
@@ -284,7 +284,7 @@ const Input = ({
     inputIconLeft: {
       position: 'absolute',
       left: 10,
-      top: !value ? -33 : -38,
+      top: !dynamicPlaceholder && !value ? -33 : -38,
     },
     text: {
       zIndex: -1,
@@ -311,8 +311,19 @@ const Input = ({
       accessibilityLabel={inputAccessibilityLabel}
       testID={inputTestId}
     >
-      {!dynamicPlaceholder && <Text>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>}
-      {!dynamicPlaceholder && label && sample && <Text level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
+      {!dynamicPlaceholder && label && (
+        <>
+          <Text typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
+      )}
+
+      {!dynamicPlaceholder && label && sample && (
+        <>
+          <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
+      )}
 
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
         {dynamicPlaceholder && type !== InputType.SEARCH && (
