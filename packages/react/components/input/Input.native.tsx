@@ -279,12 +279,12 @@ const Input = ({
     inputIcon: {
       position: 'absolute',
       right: 10,
-      top: !value ? -33 : -38,
+      top: dynamicPlaceholder && !label && value ? -38 : -33,
     },
     inputIconLeft: {
       position: 'absolute',
       left: 10,
-      top: !dynamicPlaceholder && !value ? -33 : -38,
+      top: dynamicPlaceholder && !label && value ? -38 : -33,
     },
     text: {
       zIndex: -1,
