@@ -212,7 +212,7 @@ const Input = ({
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
-      {!hasPlaceholder && <label className='input-label'>{label} {required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
+      {!hasPlaceholder && <label className='input-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
       {!hasPlaceholder && label && sample && <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
       <div className={controlClasses}>
         <input
