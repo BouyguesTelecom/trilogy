@@ -25,7 +25,6 @@ describe("Input", () => {
   it("should have correctly classes", () => {
     const { getByTestId } = render(
       <Input
-        hovered
         status="warning"
         testId="input"
         hasIcon
@@ -377,7 +376,6 @@ describe("Input", () => {
         securityGauge
         testId="input"
         onChange={mockCallBack}
-        hovered
         hasIcon
         defaultValue="Input, sans placeholder (et sans padding en haut)"
         help="N'affiche pas de padding supérieur quand il n'y a pas de placeholder"
