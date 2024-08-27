@@ -16,6 +16,7 @@ export const TextareaScreen = (): JSX.Element => {
         onKeyUp={(e) => console.log(e)}
         required
         iconName={IconName.CHECK}
+        statusIconName="tri-exclamation-circle"
         dynamicPlaceholder={false}
       />
 
