@@ -16,7 +16,7 @@ import { Alignable } from '@/objects/facets/Alignable'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text } from '@/components/text'
+import { Text, TextLevels } from '@/components/text'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -29,12 +29,15 @@ import { InputNativeEvents, InputProps } from './InputProps'
 import { AutoCompleteProps } from './autocomplete'
 import AutoComplete from './autocomplete/AutoComplete.native'
 import InputGauge from './gauge/InputGauge.native'
+import { TypographyColor } from '@/objects'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
  * @param name {string} Input name
+ * @param label {string} Label for input
+ * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} OnFocus Input Event
@@ -64,6 +67,8 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
 const Input = ({
   defaultValue,
   name,
+  label,
+  sample,
   onChange,
   onFocus,
   onBlur,
@@ -306,6 +311,9 @@ const Input = ({
       accessibilityLabel={inputAccessibilityLabel}
       testID={inputTestId}
     >
+      {!dynamicPlaceholder && <Text>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>}
+      {!dynamicPlaceholder && label && sample && <Text level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
+
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
         {dynamicPlaceholder && type !== InputType.SEARCH && (
           <Animated.Text style={[styles.dynamicPlaceholder, { top: animation, fontSize: sizeAnimation }]}>
