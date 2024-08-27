@@ -2,6 +2,15 @@
   position: relative;
   margin: 16px 0;
 
+  .textarea-label {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .textarea-sample {
+    margin-bottom: 10px !important;
+  }
+
   textarea.textarea {
     padding: $spacing-4;
     border-radius: var(--radius-small);
@@ -70,7 +79,7 @@
   }
 
   .textarea-label ~ span.icon {
-    top: 37px !important;
+    top: 45px !important;
   }
 
   span.icon {
