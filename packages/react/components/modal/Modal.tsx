@@ -226,7 +226,7 @@ const Modal = ({
                     aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
-                    Anuuler
+                    Annuler
                   </button>
                 )}
                 {ctaOnClick && (

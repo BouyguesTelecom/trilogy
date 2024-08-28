@@ -17,15 +17,17 @@ import { useTrilogyContext } from "@/context"
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const ProgressItem = ({
-  className,
-  percent,
-  maxPercent = 100,
-  minPercent = 0,
-  alert,
-  accessibilityLabel,
-  ...others
-}: ProgressItemProps): JSX.Element => {
+const ProgressItem = React.forwardRef((props: ProgressItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    percent,
+    maxPercent = 100,
+    minPercent = 0,
+    alert,
+    accessibilityLabel,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -40,6 +42,7 @@ const ProgressItem = ({
 
   return (
     <div
+      ref={ref}
       {...(percent && { style: { width: `${percent}%` } })}
       className={classes}
       role='progressbar'
@@ -50,6 +53,6 @@ const ProgressItem = ({
       {...others}
     />
   )
-}
+})
 
 export default ProgressItem

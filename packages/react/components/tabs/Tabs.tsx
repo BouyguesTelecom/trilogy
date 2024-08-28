@@ -21,23 +21,25 @@ import { TabsProps } from './TabsProps'
  * @param fullwidth {boolean} Fullwidth tabs
  * @param leftAlign {boolean} Tabs left align
  */
-const Tabs = ({
-  children,
-  className,
-  onClick,
-  activeIndex,
-  disabled,
-  rightAlign,
-  fullwidth,
-  align,
-  centered,
-  marginless,
-  inverted,
-  shadowless,
-  textAlign,
-  testId,
-  ...others
-}: TabsProps): JSX.Element => {
+const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    children,
+    className,
+    onClick,
+    activeIndex,
+    disabled,
+    rightAlign,
+    fullwidth,
+    align,
+    centered,
+    marginless,
+    inverted,
+    shadowless,
+    textAlign,
+    testId,
+    ...others
+  } = props 
+
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
   const { styled } = useTrilogyContext()
   const [isIcons, setIsIcons] = React.useState(false)
@@ -86,6 +88,7 @@ const Tabs = ({
 
   return (
     <div
+      ref={ref}
       className={hashClass(
         styled,
         clsx(
@@ -123,6 +126,6 @@ const Tabs = ({
       </div>
     </div>
   )
-}
+})
 
 export default Tabs

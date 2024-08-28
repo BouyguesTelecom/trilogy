@@ -24,26 +24,28 @@ import { useTrilogyContext } from "@/context"
  * @param fullheight
  * @param markup {BoxMarkup} Clickable Card => CardMarkup.A Not clickable box => CardMarkup.DIV || null
  */
-const Card = ({
-  className,
-  background,
-  backgroundSrc,
-  inverted,
-  flat,
-  horizontal,
-  floating,
-  align,
-  justify,
-  skeleton,
-  onClick,
-  reversed,
-  testId,
-  markup,
-  to,
-  fullheight,
-  active,
-  ...others
-}: CardProps): JSX.Element => {
+const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
+  const {
+    className,
+    background,
+    backgroundSrc,
+    inverted,
+    flat,
+    horizontal,
+    floating,
+    align,
+    justify,
+    skeleton,
+    onClick,
+    reversed,
+    testId,
+    markup,
+    to,
+    fullheight,
+    active,
+    ...others
+  } = props
+
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
 
@@ -88,6 +90,7 @@ const Card = ({
         }}
         {...others}
         className={classes}
+        ref={ref as React.LegacyRef<HTMLAnchorElement>}
       />
     )
   }
@@ -97,10 +100,10 @@ const Card = ({
       data-testid={testId}
       onClick={onClick && onClick}
       className={classes}
-      {...others}
       style={onClick && { ...hoverStyle }}
+      {...others}
+      ref={ref as React.LegacyRef<HTMLDivElement>}
     />
   )
-}
-
+})
 export default Card
