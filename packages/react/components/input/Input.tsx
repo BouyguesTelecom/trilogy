@@ -148,7 +148,7 @@ const Input = ({
       inputName: target.name,
       inputValue: target.value,
       inputKeyCode: e.keyCode,
-      inputEvent: target,
+      inputTarget: target,
       preventDefault: () => e.preventDefault(),
     }
   }, [])
@@ -161,7 +161,7 @@ const Input = ({
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value, inputEvent: e.target })
+              onIconClick({ inputName: name ?? '', inputValue: _value, inputTarget: e.target })
             }
           }}
         >
@@ -244,7 +244,7 @@ const Input = ({
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
-                inputEvent: target
+                inputTarget: target
               })
             }
           }}
@@ -271,7 +271,7 @@ const Input = ({
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
-                inputEvent: e.target
+                inputTarget: e.target
               })
             }
           }}
