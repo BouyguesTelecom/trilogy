@@ -25,7 +25,7 @@ export interface InputChangeEvent {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
-  inputEvent: any
+  inputEvent?: any
 }
 
 export type InputChangeEventHandler = (event: InputChangeEvent) => void
@@ -34,7 +34,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
-  inputEvent: any
+  inputEvent?: any
   preventDefault: () => void
 }
 
@@ -43,7 +43,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
-  inputEvent: any
+  inputEvent?: any
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
