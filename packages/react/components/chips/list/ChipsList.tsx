@@ -10,11 +10,13 @@ import { useTrilogyContext } from "@/context"
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  */
-const ChipsList = ({
-  children,
-  multiple,
-  ...others
-}: ChipsListProps): JSX.Element => {
+const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    children,
+    multiple,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -23,10 +25,10 @@ const ChipsList = ({
   )
 
   return (
-    <div role='group' className={classes} {...others}>
+    <div ref={ref} role='group' className={classes} {...others}>
       {children}
     </div>
   )
-}
+})
 
 export default ChipsList
