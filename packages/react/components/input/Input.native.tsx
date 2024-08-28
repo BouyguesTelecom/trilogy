@@ -406,10 +406,11 @@ const Input = ({
             <TouchableOpacity
               style={styles.inputContainer}
               activeOpacity={onIconClick ? 0.2 : 1}
-              onPress={() => {
+              onPress={(e) => {
                 onIconClick?.({
                   inputName: (name && name) || '',
                   inputValue: value,
+                  inputTarget: e
                 })
               }}
             >
