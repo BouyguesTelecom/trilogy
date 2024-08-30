@@ -11,10 +11,16 @@ import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { StatusState, getStatusStyle } from "@/objects/facets/Status"
 import { Icon, IconColor } from "@/components/icon"
 import { ComponentName } from "@/components/enumsComponentsName"
+import { TypographyColor } from "@/objects"
+import { Spacer, SpacerSize } from "../spacer"
+import { TextLevels } from "../text/TextEnum"
+import { Text as TrilogyText } from "../text"
 
 /**
  * Textarea Native Component
  * @param name {string} Textarea name
+ * @param label {string} Textarea label
+ * @param sample {string} Textarea sample
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param placeholder {string} Placeholder Input
@@ -34,6 +40,7 @@ const Textarea = (
   {
     defaultValue,
     name,
+    sample,
     onChange,
     disabled,
     help,
@@ -52,6 +59,7 @@ const Textarea = (
     customHeight = 120,
     value,
     testId,
+    required,
     ...others
   }: TextareaNativeProps,
   // eslint-disable-next-line
@@ -135,13 +143,13 @@ const Textarea = (
     },
     leftIcon: {
       position: "absolute",
-      top: 16,
+      top: dynamicPlaceholder && 16 || !dynamicPlaceholder && label && sample && 60 || 55,
       left: 16,
       zIndex: 10
     },
     rightIcon: {
       position: "absolute",
-      top: dynamicPlaceholder ? 16 : 32,
+      top: dynamicPlaceholder && 16 || !dynamicPlaceholder && label && sample && 60 || 55,
       right: 16,
       zIndex: 10
     },
@@ -149,8 +157,18 @@ const Textarea = (
 
   return (
     <View>
-      {!dynamicPlaceholder && (
-        <Text style={{ color: getColorStyle(TrilogyColor.MAIN) }}>{label}</Text>
+      {!dynamicPlaceholder && label && (
+        <>
+          <TrilogyText typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <TrilogyText typo={TypographyColor.TEXT_ERROR}>*</TrilogyText>}</TrilogyText>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
+      )}
+
+      {!dynamicPlaceholder && label && sample && (
+        <>
+          <TrilogyText level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</TrilogyText>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
       )}
 
       {iconName && (

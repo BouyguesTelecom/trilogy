@@ -14,17 +14,20 @@ import { is } from "@/services"
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = ({
-  className,
-  gapless,
-  centered,
-  marginless,
-  ...others
-}: TagListProps): JSX.Element => {
+const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTMLElement>) => {
+  const {
+    className,
+    gapless,
+    centered,
+    marginless,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
 
   return (
     <span
+      ref={ref}
       className={hashClass(
         styled,
         clsx(
@@ -38,5 +41,6 @@ const TagList = ({
       {...others}
     />
   )
-}
+
+})
 export default TagList

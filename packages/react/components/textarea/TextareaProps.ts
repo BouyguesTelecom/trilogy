@@ -56,6 +56,8 @@ type TextareaPropsWeb = Accessibility & {
   statusIconName?: IconName | IconNameValues
   typo?: TypographyColor | TypographyColorValues
   customHeight?: number
+  required?: boolean
+  sample?: string
 }
 
 export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>

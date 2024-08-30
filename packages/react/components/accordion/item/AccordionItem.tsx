@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import shortid from "shortid"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { is } from "@/services"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
@@ -48,7 +47,7 @@ const AccordionItem = ({
       return
     }
     const { floor, abs } = Math
-    const firstChild = e.children[1].firstChild as HTMLElement
+    const firstChild = e?.children[1]?.firstChild as HTMLElement
     const expandedInactive = floor(
       abs(e.clientHeight + firstChild?.clientHeight)
     ).toString()
