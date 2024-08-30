@@ -66,6 +66,8 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
  */
 export interface InputProps extends Accessibility {
   type?: InputType | InputTypeValues
+  label?: string
+  sample?: string
   placeholder?: string
   defaultValue?: string
   value?: string
@@ -82,9 +84,7 @@ export interface InputProps extends Accessibility {
   patternValidator?: RegExp
   help?: string | ReactNode
   name?: string
-  search?: boolean
   className?: string
-  hovered?: boolean
   focused?: boolean
   reference?: any | null
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues

@@ -17,17 +17,19 @@ import { useTrilogyContext } from '@/context'
  * @param verticalPaddingless {boolean} remove vertical padding
  **/
 
-const Section = ({
-  className,
-  skeleton,
-  background,
-  backgroundSrc,
-  inverted,
-  paddingless,
-  verticalPaddingless,
-  fullwidth,
-  ...others
-}: SectionProps): JSX.Element => {
+const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    skeleton,
+    background,
+    backgroundSrc,
+    inverted,
+    paddingless,
+    verticalPaddingless,
+    fullwidth,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
 
@@ -52,6 +54,7 @@ const Section = ({
 
   return (
     <section
+      ref={ref}
       {...(backgroundSrc && {
         style: { backgroundImage: `url(${backgroundSrc})`},
       })}
@@ -59,6 +62,6 @@ const Section = ({
       {...others}
     />
   )
-}
+})
 
 export default Section

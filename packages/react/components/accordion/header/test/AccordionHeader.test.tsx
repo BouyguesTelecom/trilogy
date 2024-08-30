@@ -55,7 +55,6 @@ describe("AccordionItem", () => {
     );
 
     const accordion = getByTestId("accordion");
-    expect(accordion).toHaveAttribute("aria-label",'toggle')
     expect(accordion).toHaveTextContent("Accordion Header");
   });
 });

@@ -16,24 +16,27 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param onClick {function} onclick function
  * @param id {string} Select option custom id
  */
-const SelectOption = ({
-  id,
-  className,
-  value,
-  disabled,
-  children,
-  onClick,
-  label,
-  iconName,
-  testId,
-  ...others
-}: SelectOptionProps): JSX.Element => {
+const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.LegacyRef<HTMLOptionElement>) => {
+  const {
+    id,
+    className,
+    value,
+    disabled,
+    children,
+    onClick,
+    label,
+    iconName,
+    testId,
+    ...others
+  } = allProps 
+
   const { checked, native, focused, ...props } = others as {checked:boolean, native:boolean, focused:boolean}
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
     return (
       <option
+        ref={ref}
         role='option'
         id={id}
         value={value}
@@ -64,6 +67,6 @@ const SelectOption = ({
       {...others}
     />
   )
-}
+})
 
 export default SelectOption
