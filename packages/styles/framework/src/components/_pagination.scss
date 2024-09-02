@@ -66,9 +66,12 @@
   &[aria-current] {
     background-color: getColor('font');
     color: getColor('background');
-
     #{$hoverSelector}, &:focus, &:focus-within {
-      background-color: getColorMainHovered();
+      background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.25),
+          rgba(0, 0, 0, 0.25)
+      ) getColor('font') !important;
     }
   }
 }
