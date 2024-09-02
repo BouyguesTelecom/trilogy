@@ -11,7 +11,7 @@
   @include block;
 
   background-color: transparent;
-  color: getColor('neutral-dark');
+  color: getColor('neutral');
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -21,12 +21,12 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getBGColor('neutral-dark');
+    background-color: getBGColor('neutral');
   }
 
   td,
   th {
-    border: 1px solid getBGColor('neutral-dark');
+    border: 1px solid getBGColor('neutral');
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid getBGColor('neutral-dark');
+      border-bottom: 1px solid getBGColor('neutral');
 
       > p {
         margin: 0;
@@ -160,7 +160,7 @@
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getBGColor('neutral-dark');
+        border-right: 1px solid getBGColor('neutral');
       }
     }
   }
@@ -216,7 +216,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: 1px solid getColor('neutral-dark');
+          border-top: 1px solid getColor('neutral');
         }
       }
 

@@ -116,13 +116,13 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     &.cancel {
       .timeline-marker.is-icon {
-        background-color: getColor('neutral-dark');
+        background-color: getColor('neutral');
         color: getBGColor('neutral');
       }
 
       &::before {
         content: '';
-        background-color: getBGColor('neutral-dark');
+        background-color: getBGColor('neutral');
         display: block;
         width: $timeline-line-width;
         position: absolute;
@@ -338,11 +338,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           background-color: getColor('main');
         }
 
-        &.undone {
-
-          &::before {
-            background-color: getBGColor('neutral');
-          }
+        &.undone::before {
+          background-color: getBGColor('neutral');
         }
 
         &.done::before {
@@ -350,7 +347,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &.cancel::before {
-          background-color: getBGColor('neutral-dark');
+          background-color: getBGColor('neutral');
         }
 
         .timeline-marker {

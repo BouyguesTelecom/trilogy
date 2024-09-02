@@ -396,7 +396,7 @@ $label-weight: $weight-bold;
 
         &:hover,
         &:focus {
-          color: getColor('neutral-dark');
+          color: getColor('neutral');
         }
       }
     }
@@ -560,7 +560,7 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('neutral-dark');
+  color: getColor('neutral');
   display: block;
   font-size: $size-normal;
   font-weight: $label-weight;

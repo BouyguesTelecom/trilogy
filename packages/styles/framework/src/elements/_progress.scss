@@ -98,7 +98,7 @@ $progress-circle-slices: (
   secondary: getColor('info'),
   tertiary: getColor('font'),
   warning: getColor('warning'),
-  empty: getBGColor('neutral-dark')
+  empty: getBGColor('neutral')
 );
 
 .progress-circle {
