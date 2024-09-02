@@ -606,7 +606,7 @@
 }
 
 @mixin hoverRules {
-  background-color: var(--color-bg-hovered);
+  background-color: getBGColor('neutral');
 }
 
 @mixin hover {
