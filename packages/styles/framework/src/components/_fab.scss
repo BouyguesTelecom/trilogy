@@ -20,12 +20,12 @@
   white-space: nowrap;
 
   #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
-    background-color: getColor('hovered');
+    background-color: var(--color-main-hovered);
     max-width: 300px;
   }
 
   &:active {
-    background-color: getColor('hovered');
+    background-color: var(--color-main-hovered);
   }
 
   .icon {
