@@ -68,7 +68,7 @@
     color: getColor('background');
 
     #{$hoverSelector}, &:focus, &:focus-within {
-      background-color: getColor('hovered');
+      background-color: getColorMainHovered();
     }
   }
 }
