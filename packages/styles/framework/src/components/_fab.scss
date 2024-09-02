@@ -20,12 +20,20 @@
   white-space: nowrap;
 
   #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
-    background-color: getColorMainHovered();
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+    ) getColor('font');
     max-width: 300px;
   }
 
   &:active {
-    background-color: getColorMainHovered();
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+    ) getColor('font');
   }
 
   .icon {

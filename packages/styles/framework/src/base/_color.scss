@@ -1,9 +1,5 @@
 @use "sass:map";
 
-@function getColorMainHovered() {
-  @return var(--color-main-hovered)
-}
-
 @function getColor( $name ) {
   @if str-slice($name, 0, 3) == 'bg-' {
     $submane: str-slice($name, 4);
