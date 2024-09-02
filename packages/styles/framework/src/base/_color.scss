@@ -29,7 +29,6 @@
     --color-#{nth($color,1)}: #{nth($color,2)};
     --color-bg-#{nth($color,1)}: #{nth($color,4)};
   }
-  --color-main-hovered: #{darken(nth(map-get($colors,'main'),2), 10%)};
 }
 
 @function invertColor ($colorName) {
