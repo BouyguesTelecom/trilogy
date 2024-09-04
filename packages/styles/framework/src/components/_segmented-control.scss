@@ -1,7 +1,7 @@
 .segmented-control {
   border-radius: 6px;
   padding: $spacing-1;
-  background-color: getBGColor('neutral');
+  background-color: getFadeColor('neutral');
   display: inline-block;
   margin: 16px 0;
 
@@ -19,7 +19,7 @@
     border: 2px solid transparent;
     height: 42px;
     color: getColor('font');
-    background-color: getBGColor('neutral');
+    background-color: getFadeColor('neutral');
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -43,12 +43,4 @@
       color: invertColor('main');
     }
   }
-}
-
-.section:nth-child(2n) .segmented-control {
-  background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.25)
-  ) getBGColor('neutral');
 }
