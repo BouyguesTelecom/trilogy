@@ -10,16 +10,14 @@ $suffix: '';
  @background A valid css color value (a variant color for background) -- optional
  */
 $colors: (
-  'background': ['white', #fff, 'main', #E9E9E9],
-  'main':['main', #3d5d7e, 'white', #eff2f8],
-  'alternate':['accent', #da641b, 'white',  #bb5118],
-  'font':['main', #3d5d7e, 'white', #BBC6CD],
-  'success':['success', #007B52, 'white', #cae8ca],
-  'info':['info', #1A688A, 'white', #c8dbec],
-  'warning':['warning', #FFBB33, 'white', #ecdbc6],
-  'error':['error', #D42D02, 'white',#eecccc],
-  /* Grey disabled // BG : bg-disabled */
-  'disabled':['disabled', #646464, 'white', #D1D1D1],
-  /* grey , BG : grey-lighter */
-  'neutral':['grey', #707070, 'white', #F4F4F4 ],
+  'background': [#fff, #E9E9E9, 'white', 'main'],
+  'main':[ #3d5d7e, #eff2f8, 'main', 'white'],
+  'alternate':[ #da641b, #bb5118,'accent', 'white'],
+  'font':[ #3d5d7e, #BBC6CD, 'main', 'white'],
+  'success':[ #007B52, #cae8ca,'success', 'white'],
+  'info':[ #1A688A, #c8dbec, 'info','white'],
+  'warning':[ #FFBB33, #ecdbc6,'warning', 'white'],
+  'error':[ #D42D02,#eecccc,'error', 'white'],
+  'disabled':[ #646464, #D1D1D1,'disabled', 'white'],
+  'neutral':[ #707070, #F4F4F4,'grey', 'white' ],
 ) !default;
