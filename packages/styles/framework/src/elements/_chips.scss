@@ -55,7 +55,7 @@
         }
       }
       #{$hoverSelector} {
-        background-color: var(--color-bg-neutral);
+        background-color: getFadeColor('neutral');
       }
     }
 

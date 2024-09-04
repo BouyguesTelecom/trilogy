@@ -21,12 +21,12 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getBGColor('neutral');
+    background-color: getFadeColor('neutral');
   }
 
   td,
   th {
-    border: 1px solid getBGColor('neutral');
+    border: 1px solid getFadeColor('neutral');
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -56,7 +56,7 @@
   tr {
     @each $name in $colors-feedback {
       &.is-#{$name} {
-        background-color: getBGColor($name);
+        background-color: getFadeColor($name);
       }
     }
 
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid getBGColor('neutral');
+      border-bottom: 1px solid getFadeColor('neutral');
 
       > p {
         margin: 0;
@@ -155,12 +155,12 @@
 
   &:not(.is-bordered).is-comparative {
     th {
-      border-right: 1px solid getBGColor('neutral');
+      border-right: 1px solid getFadeColor('neutral');
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getBGColor('neutral');
+        border-right: 1px solid getFadeColor('neutral');
       }
     }
   }
@@ -196,14 +196,14 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getBGColor('neutral');
+          background-color: getFadeColor('neutral');
         }
       }
     }
   }
 
   .subtable {
-    background-color: getBGColor('neutral');
+    background-color: getFadeColor('neutral');
     border-radius: var(--radius);
     padding: $box-padding * 2;
 

@@ -49,7 +49,7 @@ a.alert {
 
   @each $name in $colors-feedback {
     &.is-#{$name} {
-      background-color: getBGColor($name);
+      background-color: getFadeColor($name);
       border: 1px solid getColor($name);
 
       .icon {

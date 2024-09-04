@@ -211,7 +211,7 @@ $alignments: (
       background-color: getColor($name) !important;
     }
     .has-background-#{$brandName}-fade {
-      background-color: getBGColor($name) !important;
+      background-color: getFadeColor($name) !important;
     }
   }
 }

@@ -219,7 +219,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getBGColor($name);
+            color: getFadeColor($name);
           }
         }
       }
@@ -233,7 +233,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getBGColor($name)
+            color: getFadeColor($name)
           }
         }
       }

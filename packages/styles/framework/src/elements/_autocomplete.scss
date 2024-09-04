@@ -23,8 +23,8 @@
                 @include hoverRules();
                 margin-left: calc(2px - $spacing-3 );
                 margin-right: calc(2px - $spacing-3 );
-                border-top: 1px solid getColor('bg-neutral');
-                border-bottom: 1px solid getColor('bg-neutral');
+                border-top: 1px solid getColor('fade-neutral');
+                border-bottom: 1px solid getColor('fade-neutral');
                 padding: calc($spacing-1 - 1.25px) calc($spacing-4 - 1px);
             }
         }
