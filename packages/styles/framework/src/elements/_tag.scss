@@ -85,7 +85,7 @@ $tag-delete-margin: 1px !default;
 
     &.is-inverted {
       .tag {
-        background-color: getColor(getColor('background'));
+        background-color: getColor('bg-background');
       }
     }
 
