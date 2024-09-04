@@ -15,14 +15,14 @@
 
   &:nth-child(even) {
     background-color: getBGColor('neutral');
-    .is-inverted {
+    &.is-inverted {
       background-color: getColor('background');
     }
   }
 
   &:nth-child(odd) {
     background-color: getColor('background');
-    .is-inverted {
+    &.is-inverted {
       background-color: getBGColor('neutral');
     }
   }
