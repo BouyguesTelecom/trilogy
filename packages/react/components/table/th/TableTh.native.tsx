@@ -15,9 +15,9 @@ const TableTh = ({ children, ...others }: TableThProps): JSX.Element => {
     tableTh: {
       flexDirection: "column",
       flex: 1,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL, 1),
       padding: 10,
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL, 1),
       borderRightWidth: 0.2,
     },
     title: {
