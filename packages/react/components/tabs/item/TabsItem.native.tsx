@@ -32,7 +32,7 @@ const TabsItem = ({
 
   const getIconColor = React.useMemo(() => {
     if (inverted) {
-      if (disabled) return TrilogyColor.NEUTRAL_LIGHT
+      if (disabled) return TrilogyColor.FADE_NEUTRAL
       return TrilogyColor.BACKGROUND
     }
     if (disabled) return TrilogyColor.DISABLED

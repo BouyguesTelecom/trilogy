@@ -63,7 +63,7 @@ const TimelineMarker = ({
             (undone && TrilogyColor.FADE_NEUTRAL) ||
             (cancel && TrilogyColor.NEUTRAL) ||
             (done && TrilogyColor.MAIN) ||
-            TrilogyColor.NEUTRAL_LIGHT
+            TrilogyColor.FADE_NEUTRAL
           }
           size={IconSize.SMALL}
         />
