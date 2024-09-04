@@ -25,8 +25,6 @@ export enum TrilogyColor {
   FADE_DISABLED = "FADE_DISABLED",
   NEUTRAL = "NEUTRAL",
   FADE_NEUTRAL = "FADE_NEUTRAL",
-
-  HOVERED = "HOVERED",
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`;
@@ -55,8 +53,7 @@ export const colors: Record<TrilogyColor, string[]> = {
       ["#646464", "#D1D1D1", "disabled", "white"],
   [TrilogyColor.NEUTRAL]:
       ["#707070", "#F4F4F4", "grey", "white"],
-  [TrilogyColor.HOVERED]:
-      ["#F4F4F4", "#F4F4F4", "hovered", "white"],
+
 }
 
 /**
@@ -108,7 +105,7 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
     case "PRIMARY":
       return TrilogyColor.MAIN
     case "SECONDARY":
-      return TrilogyColor.HOVERED
+      return TrilogyColor.FADE_MAIN
     case "GHOST":
       return TrilogyColor.BACKGROUND
     default:
