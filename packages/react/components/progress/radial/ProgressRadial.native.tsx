@@ -38,10 +38,8 @@ const ProgressRadial = ({
   const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.FONT, 1)
   const percentWidth = percent || 0
-  const secondFill = secondPercent ? { secondFill: secondPercent } : null
-  const secondFillColor = secondAlert
-    ? { secondFillTintColor: getAlertStyle(secondAlert) }
-    : null
+  const secondFill = { secondFill: secondPercent || 0 }
+  const secondFillColor = { secondFillTintColor: getAlertStyle(secondAlert || TrilogyColor.INFO) }
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
 
@@ -66,13 +64,13 @@ const ProgressRadial = ({
       backgroundColor: color,
     },
     labelDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontSize: 20,
       fontWeight: "500",
     },
     descriptionDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontWeight: "400",
     },

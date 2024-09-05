@@ -4,7 +4,7 @@ import { AlertState, TypographyBold, Section, Title, TitleLevels, Divider, Progr
 export const ProgressScreen = (): JSX.Element => {
 
   return (
-    <Section backgroundSrc={'https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png'}>
+    <Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
@@ -57,7 +57,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Divider />
 
-        <ProgressRadial percent={30} secondPercent={30}>
+        <ProgressRadial percent={30} secondPercent={30} alert={AlertState.INFO} secondAlert={AlertState.WARNING}>
           <Title level={TitleLevels.THREE} marginless>60</Title>
           <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
         </ProgressRadial>
