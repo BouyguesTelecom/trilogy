@@ -1,21 +1,19 @@
-import { ButtonList, ButtonType } from '@/components/button'
+import { ButtonList } from '@/components/button'
 import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import shortid from 'shortid'
 import ModalContext from './context'
 import { ModalProvider } from './context/ModalProvider'
 import ModalFooter from './footer/ModalFooter'
+import ModalHeader from './header/ModalHeader'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
 import { ModalProps } from './ModalProps'
-import ModalTitle from './title/ModalTitle'
 
-const idDescription = shortid.generate()
-const idTitle = shortid.generate()
 const idModal = shortid.generate()
 
 /**
@@ -76,10 +74,19 @@ const ModalComponent = ({
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
-  const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
 
-  const { pushActionRefs, setTriggerModalRef, tabNavigate, focusTriggerModal, focusFirstCta } = useContext(ModalContext)
+  const {
+    pushActionRefs,
+    setTriggerModalRef,
+    focusTriggerModal,
+    visible,
+    setVisible,
+    idDescription,
+    idTitle,
+    onKeyDown,
+    haveTitle,
+  } = useContext(ModalContext)
 
   const handleClickOutside = (e: Event) => {
     if (modal?.current?.contains(e.target as Node)) {
@@ -90,15 +97,11 @@ const ModalComponent = ({
   }
 
   useEffect(() => {
-    display && focusFirstCta()
-  }, [display])
-
-  useEffect(() => {
-    setDisplay(active || false)
+    setVisible(active || false)
   }, [active])
 
   useEffect(() => {
-    if (display && !disableHandlingClickOutside) {
+    if (visible && !disableHandlingClickOutside) {
       document.addEventListener('mousedown', handleClickOutside)
     } else {
       document.removeEventListener('mousedown', handleClickOutside)
@@ -106,15 +109,15 @@ const ModalComponent = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [display, disableHandlingClickOutside])
+  }, [visible, disableHandlingClickOutside])
 
   const classes = React.useMemo(
     () =>
       hashClass(
         styled,
-        clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
+        clsx('modal', visible && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
       ),
-    [active, display, panel, className, styled],
+    [active, visible, panel, className, styled],
   )
   const contentClasses = React.useMemo(
     () => hashClass(styled, clsx('modal-content', contentClassNames)),
@@ -123,18 +126,14 @@ const ModalComponent = ({
   const footerClasses = React.useMemo(() => clsx('modal-footer', footerClassNames), [footerClassNames, styled])
 
   function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(false)
+    setVisible(false)
     focusTriggerModal()
-    if (onCloseFunc) {
-      onCloseFunc(e)
-    }
+    if (onCloseFunc) onCloseFunc(e)
   }
 
   function handleOpen(onOpenFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(true)
-    if (onOpenFunc) {
-      onOpenFunc(e)
-    }
+    setVisible(true)
+    if (onOpenFunc) onOpenFunc(e)
   }
 
   /**
@@ -145,18 +144,10 @@ const ModalComponent = ({
   const isCorrectMarkup = (stringMarkup: ModalMarkup | ModalMarkupValues) => {
     if (stringMarkup in ModalMarkup || Object.values(ModalMarkup).includes(stringMarkup as ModalMarkup)) return true
   }
+
   const TriggerTag = React.useMemo(
     () => (triggerMarkup && isCorrectMarkup(triggerMarkup) ? triggerMarkup : 'button'),
     [triggerMarkup],
-  )
-
-  const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (display) {
-        tabNavigate(event)
-      }
-    },
-    [display],
   )
 
   return (
@@ -165,9 +156,7 @@ const ModalComponent = ({
         <TriggerTag
           aria-haspopup='dialog'
           ref={(el: any) => el && setTriggerModalRef(el)}
-          onClick={(e: React.MouseEvent) => {
-            handleOpen(onOpen, e)
-          }}
+          onClick={(e: React.MouseEvent) => handleOpen(onOpen, e)}
           className={hashClass(styled, clsx(triggerClassNames))}
         >
           {triggerContent}
@@ -176,29 +165,13 @@ const ModalComponent = ({
       <div
         className={classes}
         role='dialog'
-        aria-modal={display ? 'true' : undefined}
-        aria-labelledby={title ? idTitle : undefined}
+        aria-modal={visible ? 'true' : undefined}
+        aria-labelledby={haveTitle ? idTitle : undefined}
         {...others}
       >
         <div ref={modal} className={contentClasses}>
-          {closeIcon && (
-            <button
-              onClick={(e: React.MouseEvent) => {
-                handleClose(onClose, e)
-              }}
-              className={hashClass(styled, clsx('modal-close', is('large')))}
-              type={ButtonType.BUTTON}
-              // ref={(el) => el && (refsActions.current[0] = el)}
-              ref={(el) => el && pushActionRefs(0, el)}
-            >
-              <span className='sr-only'>Fermer</span>
-            </button>
-          )}
-          {(title || iconName) && (
-            <ModalTitle iconColor={iconColor} iconName={iconName} {...{ textId: idTitle }}>
-              {title}
-            </ModalTitle>
-          )}
+          <ModalHeader title={title} iconName={iconName} iconColor={iconColor} />
+
           {content && typeof content === 'string' ? <Text {...{ id: idDescription }}>{content}</Text> : content}
           {children != null && children}
           <ModalFooter className={footerClasses}>
@@ -206,11 +179,8 @@ const ModalComponent = ({
               <ButtonList centered className={is('flex')}>
                 {ctaCancelOnClick && (
                   <button
-                    onClick={(e) => {
-                      handleClose(ctaCancelOnClick, e)
-                    }}
+                    onClick={(e) => handleClose(ctaCancelOnClick, e)}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    // ref={(el) => (refsActions.current[1] = el)}
                     ref={(el) => el && pushActionRefs(1, el)}
                   >
                     Annuler
@@ -220,7 +190,6 @@ const ModalComponent = ({
                   <button
                     className={hashClass(styled, clsx('button', is('primary')))}
                     title={ctaContent}
-                    // ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
                     ref={(el) => el && pushActionRefs(2, el)}
                   >
@@ -239,7 +208,7 @@ const ModalComponent = ({
 
 const Modal = (props: ModalProps) => {
   return (
-    <ModalProvider>
+    <ModalProvider handleCloseModal={props.onClose}>
       <ModalComponent {...props} />
     </ModalProvider>
   )

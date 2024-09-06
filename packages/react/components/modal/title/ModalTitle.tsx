@@ -3,6 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
+import ModalContext from '../context'
 import { ModalTitleProps } from './ModalTitleProps'
 
 /**
@@ -14,7 +15,11 @@ import { ModalTitleProps } from './ModalTitleProps'
  */
 const ModalTitle = ({ children, className, iconColor, iconName, ...others }: ModalTitleProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { textId } = others as any
+  const { idTitle, setHaveTitle } = React.useContext(ModalContext)
+
+  React.useEffect(() => {
+    setHaveTitle(true)
+  }, [])
 
   return (
     <div className={hashClass(styled, clsx('modal-title', className))}>
@@ -26,7 +31,7 @@ const ModalTitle = ({ children, className, iconColor, iconName, ...others }: Mod
           name={iconName}
           content={children}
           position='up'
-          textId={textId}
+          textId={idTitle}
           textAriaLevel={1}
           textRole='heading'
         />

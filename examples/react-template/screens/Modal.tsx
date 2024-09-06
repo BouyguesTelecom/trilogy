@@ -3,6 +3,7 @@ import {
   IconName,
   Modal,
   ModalFooter,
+  ModalHeader,
   ModalTitle,
   Section,
   Text,
@@ -84,11 +85,23 @@ export const ModalScreen = (): JSX.Element => {
         />
       </Section>
       <Section>
+        <Modal
+          triggerContent='Open accessible custom modal'
+          ctaContent='Action'
+          // eslint-disable-next-line no-alert
+          onOpen={() => alert('open modal')}
+          onClose={() => alert('close modal')}
+          ctaCancelOnClick={() => alert('toto')}
+        >
+          <ModalHeader title='Titre de la modal' iconName="tri-alert"  />
+        </Modal>
+      </Section>
+      <Section>
         <Title level={TitleLevels.THREE}>Modal custom </Title>
         <Divider />
 
         <Modal
-          triggerContent='Open modal'
+          triggerContent='Open modal with footer'
           onOpen={() => alert('open modal')}
           onClose={() => alert('close modal')}
           closeIcon

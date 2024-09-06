@@ -1,15 +1,19 @@
-import React, { ReactNode, useCallback, useRef, useState } from 'react'
+import { ClickEvent } from '@/events/OnClickEvent'
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import shortid from 'shortid'
 import ModalContext from './ModalContext'
 
 interface IProps {
   children: ReactNode
+  handleCloseModal?: ClickEvent
 }
 
-export const ModalProvider = ({ children }: IProps) => {
-  const [idDescription, setIdDescription] = useState(shortid.generate())
-  const [idTitle, setIdTitle] = useState(shortid.generate())
+export const ModalProvider = ({ children, handleCloseModal }: IProps) => {
+  const idDescription = useMemo(() => shortid.generate(), [])
+  const idTitle = useMemo(() => shortid.generate(), [])
   const [, setIndexFocusable] = useState(0)
+  const [visible, setVisible] = useState<boolean>(false)
+  const [haveTitle, setHaveTitle] = useState<boolean>(false)
 
   const refsActions = useRef<Array<HTMLButtonElement | null>>([])
   const refBtnModal = useRef<any>(null)
@@ -46,6 +50,17 @@ export const ModalProvider = ({ children }: IProps) => {
     refBtnModal.current = el
   }
 
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (visible) tabNavigate(event)
+    },
+    [visible],
+  )
+
+  useEffect(() => {
+    visible && focusFirstCta()
+  }, [visible])
+
   return (
     <ModalContext.Provider
       value={{
@@ -56,6 +71,12 @@ export const ModalProvider = ({ children }: IProps) => {
         focusFirstCta,
         focusTriggerModal,
         setTriggerModalRef,
+        visible,
+        setVisible,
+        handleCloseModal,
+        onKeyDown,
+        haveTitle,
+        setHaveTitle,
       }}
     >
       {children}

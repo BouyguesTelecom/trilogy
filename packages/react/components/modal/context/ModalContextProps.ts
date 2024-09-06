@@ -1,4 +1,5 @@
-import { KeyboardEvent } from 'react'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { Dispatch, KeyboardEvent, SetStateAction } from 'react'
 
 export interface ModalContextProps {
   idDescription: string
@@ -8,4 +9,10 @@ export interface ModalContextProps {
   tabNavigate: (e: KeyboardEvent<HTMLDivElement>) => void
   focusFirstCta: () => void
   focusTriggerModal: () => void
+  visible: boolean
+  setVisible: Dispatch<SetStateAction<boolean>>
+  handleCloseModal?: ClickEvent
+  onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void
+  haveTitle: boolean
+  setHaveTitle: Dispatch<SetStateAction<boolean>>
 }

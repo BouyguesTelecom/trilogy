@@ -1,5 +1,6 @@
 import { ButtonType } from '@/components/button/ButtonEnum'
 import { useTrilogyContext } from '@/context'
+import { OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
@@ -13,28 +14,37 @@ import { ModalHeaderProps } from './ModalHeaderProps'
  * @param children {React.ReactNode}
  * @param className {string}
  */
-const ModalHeader = ({ closeIcon, title, iconName, handleClose, iconColor }: ModalHeaderProps): JSX.Element => {
+const ModalHeader = ({ title, iconName, iconColor }: ModalHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { idTitle } = React.useContext(ModalContext)
+  const { pushActionRefs, handleCloseModal, setVisible, focusTriggerModal } = React.useContext(ModalContext)
+
+  if (!title && !iconName) return <></>
+
+  function handleClose(e: OnClickEvent) {
+    setVisible(false)
+    focusTriggerModal()
+    if (handleCloseModal) handleCloseModal(e)
+  }
 
   return (
-    <>
-      {closeIcon && (
-        <button
-          onClick={handleClose}
-          className={hashClass(styled, clsx('modal-close', is('large')))}
-          type={ButtonType.BUTTON}
-          ref={(el) => console.log(el)}
-        >
-          <span className='sr-only'>Fermer</span>
-        </button>
-      )}
+    <div className={hashClass(styled, clsx('modal-header'))}>
+      <button
+        onClick={(e: React.MouseEvent) => {
+          handleClose(e)
+        }}
+        className={hashClass(styled, clsx('modal-close', is('large')))}
+        type={ButtonType.BUTTON}
+        ref={(el) => el && pushActionRefs(0, el)}
+      >
+        <span className='sr-only'>Fermer</span>
+      </button>
+
       {(title || iconName) && (
-        <ModalTitle iconColor={iconColor} iconName={iconName} {...{ textId: idTitle }}>
+        <ModalTitle iconColor={iconColor} iconName={iconName}>
           {title}
         </ModalTitle>
       )}
-    </>
+    </div>
   )
 }
 
