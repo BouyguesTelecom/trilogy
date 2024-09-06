@@ -81,7 +81,6 @@ export const ModalScreen = (): JSX.Element => {
           iconName={IconName.BELL}
           closeIcon
           ctaCancelOnClick={() => alert('toto')}
-          titleButtonClose='Fermer'
         />
       </Section>
       <Section>

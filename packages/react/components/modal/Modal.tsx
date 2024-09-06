@@ -5,8 +5,10 @@ import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import shortid from 'shortid'
+import ModalContext from './context'
+import { ModalProvider } from './context/ModalProvider'
 import ModalFooter from './footer/ModalFooter'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
 import { ModalProps } from './ModalProps'
@@ -41,14 +43,13 @@ const idModal = shortid.generate()
  * @param panel {boolean} Panel Side Modal
  * @param ariaLabelButtonClose {string} aria-label of button close
  * @param ariaLabelCta {string} aria-label of button action
- * @param titleButtonClose {string} title of button close
  * @param ariaLabelButtonOpen {string} aria-label of open button modal
  * @param titleButtonOpen {string} title of open button modal
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} If bottom
  * @param swipable {boolean} Swipable Native Modal
  */
-const Modal = ({
+const ModalComponent = ({
   children,
   className,
   contentClassNames,
@@ -72,16 +73,13 @@ const Modal = ({
   fullwidth,
   disableHandlingClickOutside = false,
   testId,
-  titleButtonClose,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
-  const ariaControls = `${idModal}-modal`
-  const refsActions = useRef<Array<HTMLButtonElement | null>>([])
-  const refBtnModal = useRef<any>(null)
-  const [, setIndexFocusable] = useState(0)
+
+  const { pushActionRefs, setTriggerModalRef, tabNavigate, focusTriggerModal, focusFirstCta } = useContext(ModalContext)
 
   const handleClickOutside = (e: Event) => {
     if (modal?.current?.contains(e.target as Node)) {
@@ -92,12 +90,12 @@ const Modal = ({
   }
 
   useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
+    display && focusFirstCta()
+  }, [display])
 
   useEffect(() => {
-    display && refsActions.current[0] && refsActions.current[0].focus()
-  }, [display, refsActions?.current.length])
+    setDisplay(active || false)
+  }, [active])
 
   useEffect(() => {
     if (display && !disableHandlingClickOutside) {
@@ -126,7 +124,7 @@ const Modal = ({
 
   function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
     setDisplay(false)
-    refBtnModal.current && refBtnModal.current.focus()
+    focusTriggerModal()
     if (onCloseFunc) {
       onCloseFunc(e)
     }
@@ -154,20 +152,11 @@ const Modal = ({
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (display && refsActions.current) {
-        const refs = refsActions.current.filter((ref) => ref)
-        const { key } = event
-        if (key === 'Tab') {
-          event.preventDefault()
-          setIndexFocusable((prev) => {
-            const nextIndex = (prev + 1) % refs.length
-            refs[nextIndex] && refs[nextIndex]?.focus()
-            return nextIndex
-          })
-        }
+      if (display) {
+        tabNavigate(event)
       }
     },
-    [refsActions.current.length, display],
+    [display],
   )
 
   return (
@@ -175,8 +164,7 @@ const Modal = ({
       {triggerContent && (
         <TriggerTag
           aria-haspopup='dialog'
-          ref={refBtnModal}
-          aria-controls={ariaControls}
+          ref={(el: any) => el && setTriggerModalRef(el)}
           onClick={(e: React.MouseEvent) => {
             handleOpen(onOpen, e)
           }}
@@ -190,7 +178,6 @@ const Modal = ({
         role='dialog'
         aria-modal={display ? 'true' : undefined}
         aria-labelledby={title ? idTitle : undefined}
-        aria-describedby={content ? idDescription : undefined}
         {...others}
       >
         <div ref={modal} className={contentClasses}>
@@ -200,12 +187,12 @@ const Modal = ({
                 handleClose(onClose, e)
               }}
               className={hashClass(styled, clsx('modal-close', is('large')))}
-              aria-label='close'
               type={ButtonType.BUTTON}
-              title={titleButtonClose}
-              aria-controls={ariaControls}
-              ref={(el) => el && (refsActions.current[0] = el)}
-            />
+              // ref={(el) => el && (refsActions.current[0] = el)}
+              ref={(el) => el && pushActionRefs(0, el)}
+            >
+              <span className='sr-only'>Fermer</span>
+            </button>
           )}
           {(title || iconName) && (
             <ModalTitle iconColor={iconColor} iconName={iconName} {...{ textId: idTitle }}>
@@ -223,8 +210,8 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-controls={ariaControls}
-                    ref={(el) => (refsActions.current[1] = el)}
+                    // ref={(el) => (refsActions.current[1] = el)}
+                    ref={(el) => el && pushActionRefs(1, el)}
                   >
                     Annuler
                   </button>
@@ -233,9 +220,9 @@ const Modal = ({
                   <button
                     className={hashClass(styled, clsx('button', is('primary')))}
                     title={ctaContent}
-                    aria-controls={ariaControls}
-                    ref={(el) => (refsActions.current[2] = el)}
+                    // ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
+                    ref={(el) => el && pushActionRefs(2, el)}
                   >
                     <span className='sr-only'> {ctaContent}</span>
                   </button>
@@ -247,6 +234,14 @@ const Modal = ({
         </div>
       </div>
     </div>
+  )
+}
+
+const Modal = (props: ModalProps) => {
+  return (
+    <ModalProvider>
+      <ModalComponent {...props} />
+    </ModalProvider>
   )
 }
 
