@@ -47,7 +47,7 @@ const Chips = ({
       aria-disabled={disabled}
       data-testid={testId}
       id={id}
-      aria-checked={!!active}
+      aria-pressed={!!active}
       className={classes}
       onClick={(e) => {
         onClick?.(e)
