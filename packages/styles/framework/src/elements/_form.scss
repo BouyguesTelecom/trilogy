@@ -19,6 +19,15 @@ $label-weight: $weight-bold;
     }
   }
 
+  .input-label {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .input-sample {
+    margin-bottom: 10px !important;
+  }
+
   @include mobile {
     &.is-very-short,
     &.is-short {
