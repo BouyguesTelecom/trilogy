@@ -123,7 +123,7 @@ const ModalComponent = ({
     () => hashClass(styled, clsx('modal-content', contentClassNames)),
     [contentClassNames, styled],
   )
-  const footerClasses = React.useMemo(() => clsx('modal-footer', footerClassNames), [footerClassNames, styled])
+  const footerClasses = React.useMemo(() => clsx(footerClassNames), [footerClassNames, styled])
 
   function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
     setVisible(false)
@@ -174,8 +174,9 @@ const ModalComponent = ({
 
           {content && typeof content === 'string' ? <Text {...{ id: idDescription }}>{content}</Text> : content}
           {children != null && children}
-          <ModalFooter className={footerClasses}>
-            {((ctaOnClick != null || ctaCancelOnClick != null) && (
+
+          {ctaOnClick != null || ctaCancelOnClick != null ? (
+            <ModalFooter className={footerClasses}>
               <ButtonList centered className={is('flex')}>
                 {ctaCancelOnClick && (
                   <button
@@ -197,9 +198,10 @@ const ModalComponent = ({
                   </button>
                 )}
               </ButtonList>
-            )) ||
-              footer}
-          </ModalFooter>
+            </ModalFooter>
+          ) : (
+            footer
+          )}
         </div>
       </div>
     </div>
