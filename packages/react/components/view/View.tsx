@@ -16,7 +16,6 @@ import { useTrilogyContext } from "@/context"
  * @param flexable {boolean} Flexable view
  * @param style {CSSProperties} View custom style
  * @param onClick {Function} Click Event
- * @param color {TrilogyColor} View backgroud color
  * @param backgroundSrc {string} View backgroud image source
  * @param id {string} Id for Web / TestID for Native
  * @param fullwidth {boolean} true by default

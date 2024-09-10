@@ -62,7 +62,7 @@ const Alert = ({
   display,
   ...others
 }: AlertProps): JSX.Element => {
-  const backgroundColor = getColorStyle(alert as TrilogyColor, 1)
+  const backgroundColor = getColorStyle(alert || TrilogyColor.INFO, 1)
   const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
   let alertView: JSX.Element
 
