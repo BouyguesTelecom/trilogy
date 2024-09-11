@@ -18,7 +18,6 @@ import { useTrilogyContext } from "@/context"
  * @param multiline {boolean} Multiline Columns
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
- * @param flex {boolean} Flex direction
  */
 const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
@@ -30,8 +29,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     verticalCentered,
     gapless,
     marginSize,
-    flex,
-    marginless,
     ...others
   } = props
 
@@ -48,8 +45,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
       verticalCentered && is("vcentered"),
       !marginSize && gapless && is("gapless"),
       !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
-      flex && is("flex"),
-      marginless && is("marginless"),
       className
     )
   )

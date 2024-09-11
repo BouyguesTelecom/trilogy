@@ -1,4 +1,4 @@
-import { Accessibility, AlertProps } from '@/objects'
+import { Accessibility, StatusProps } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
 import { ToasterAlertPosition } from '@/components/alert/AlertProps'
 
@@ -6,12 +6,12 @@ import { ToasterAlertPosition } from '@/components/alert/AlertProps'
  * @param title {string} Notification title content
  * @param description {string|ReactNode} Notification description content
  * @param iconName {IconName} Custom icon
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param alert {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all notification
  * @param closable {Function} onClick Event on cross icon
  * @param onHide {Function} onClick Event on hide
  */
-export interface ToastProps extends AlertProps, Accessibility {
+export interface ToastProps extends StatusProps, Accessibility {
   title: string
   description?: string
   iconName?: IconName | IconNameValues

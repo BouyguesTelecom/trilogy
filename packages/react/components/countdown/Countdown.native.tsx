@@ -20,12 +20,13 @@ const calculateTimer = (timeDifference: number) => {
  * Countdown Component
  * @param deadline {Date} Date to reach before the end of the countdown
  * @param format {CountdownFormat} Format of countdown
+ * @param inverted {Boolean} White countdown on darked background
  * @param event
  * @param small
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, format, event, small, centered, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, format, event, small, centered, inverted, ...others }: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -119,7 +120,7 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     }
   }, [timer, event, init])
 
-  const countdownColor = getColorStyle(TrilogyColor.MAIN)
+  const countdownColor = inverted ? getColorStyle('WHITE') : getColorStyle(TrilogyColor.MAIN)
 
   const styles = StyleSheet.create({
     countdown: {
