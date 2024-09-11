@@ -46,7 +46,7 @@ describe("ProgressItem", () => {
         percent={50}
         minPercent={0}
         maxPercent={200}
-        alert={StatusState.SUCCESS}
+        status={StatusState.SUCCESS}
         accessibilityLabel="Loading progress"
       />
     );
