@@ -29,7 +29,7 @@ const ToasterViewComp: React.FC = () => {
       title,
       description,
       iconName: IconName.INFOS_CIRCLE,
-      alert: StatusState.WARNING,
+      status: StatusState.WARNING,
       onClick: () => setBtnName("click toast"),
       closable: () => setTitle("close toast"),
       onHide: () => console.log("onHide"),
