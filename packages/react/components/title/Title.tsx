@@ -88,8 +88,8 @@ const Title = ({
     ),
   )
 
-  const subtitleClasses = hashClass(styled, clsx('subtitle', className))
-  const overlineClasses = hashClass(styled, clsx('overline', className))
+  const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
+  const overlineClasses = hashClass(styled, clsx('overline', typo, className))
 
   useEffect(() => {
     setIsLoading(skeleton || false)
