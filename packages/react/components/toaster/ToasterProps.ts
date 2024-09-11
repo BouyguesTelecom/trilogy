@@ -1,4 +1,4 @@
-import { Clickable, AlertProps, Accessibility } from '@/objects'
+import { Clickable, StatusProps, Accessibility } from '@/objects'
 import { ClickEvent } from '@/events/OnClickEvent'
 import { IconName, IconNameValues } from '@/components/icon'
 
@@ -10,7 +10,7 @@ export enum ToasterPosition {
 /**
  * Notification Interface
  */
-export interface ToasterProps extends AlertProps, Clickable, Accessibility {
+export interface ToasterProps extends StatusProps, Clickable, Accessibility {
   children?: React.ReactNode
   className?: string
   toasterChildren?: React.ReactNode

@@ -1,4 +1,4 @@
-import { AlertState, TrilogyColor } from '@trilogy-ds/react'
+import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -73,7 +73,7 @@ export const AutolayoutScreen = (): JSX.Element => {
       </Accordion>
       <Alert
         display
-        alert={AlertState.SUCCESS}
+        status={StatusState.SUCCESS}
         title={'Test alert'}
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />

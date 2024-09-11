@@ -1,10 +1,10 @@
-import { AlertProps } from '@/objects/facets/Alert'
+import { StatusProps } from '@/objects/facets/Status'
 import { Stacked } from '@/objects/facets/Stacked'
 
 /**
  * Progress Interface
  */
-export interface ProgressProps extends AlertProps, Stacked {
+export interface ProgressProps extends StatusProps, Stacked {
   children?: React.ReactNode
   percent?: number
   maxPercent?: number

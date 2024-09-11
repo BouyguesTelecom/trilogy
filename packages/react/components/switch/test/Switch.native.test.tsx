@@ -2,7 +2,7 @@ import { render } from "@testing-library/react-native";
 
 import * as React from "react";
 import {
-  AlertState,
+  StatusState,
   getAlertStyle,
   getColorStyle,
   TrilogyColor,
@@ -11,10 +11,10 @@ import Switch from "../Switch.native";
 
 describe("Switch component", () => {
   const colors = [
-    AlertState.ERROR,
-    AlertState.INFO,
-    AlertState.SUCCESS,
-    AlertState.WARNING,
+    StatusState.ERROR,
+    StatusState.INFO,
+    StatusState.SUCCESS,
+    StatusState.WARNING,
   ];
 
   test("Should return component", async () => {
