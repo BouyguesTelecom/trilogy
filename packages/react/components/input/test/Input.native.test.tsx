@@ -5,9 +5,9 @@ import * as React from "react";
 import { Platform, PlatformOSType } from "react-native";
 import {
   StatusState,
-  getAlertStyle,
   getColorStyle,
   TrilogyColor,
+  getStatusStyle,
 } from "../../../objects";
 import Input from "../Input.native";
 import {
@@ -91,9 +91,9 @@ describe("Input component", () => {
         borderWidth: 1,
         borderRadius: 3,
         borderColor:
-          (state === "success" && getAlertStyle(StatusState.SUCCESS)) ||
-          (state === "warning" && getAlertStyle(StatusState.WARNING)) ||
-          (state === "error" && getAlertStyle(StatusState.ERROR)) ||
+          (state === "success" && getStatusStyle(StatusState.SUCCESS)) ||
+          (state === "warning" && getStatusStyle(StatusState.WARNING)) ||
+          (state === "error" && getStatusStyle(StatusState.ERROR)) ||
           (state === "default" && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.MAIN),
         height: 46,
