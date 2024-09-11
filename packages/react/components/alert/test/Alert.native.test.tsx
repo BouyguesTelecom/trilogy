@@ -9,7 +9,7 @@ describe('Alert', () => {
       <Alert
         testId={'alert'}
         display
-        alert={StatusState.INFO}
+        status={StatusState.INFO}
         title='Alert information'
         description='Lorem Ipsum is simply dummy text of the printing and type..'
       />,
