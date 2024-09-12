@@ -51,6 +51,12 @@ export const colors: Record<any, string[]> = {
  * @returns {string} - Color className value
  */
 export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
+
+  if (trilogyColor.startsWith('FADE_')) {
+    trilogyColor = trilogyColor.replace('FADE_', '') as TrilogyColor
+    return `fade-${colors[trilogyColor][2]}`
+  }
+
   const color = colors[trilogyColor]
   return color[2]
 }
