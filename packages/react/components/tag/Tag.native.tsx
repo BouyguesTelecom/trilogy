@@ -51,7 +51,7 @@ const Tag = ({
       backgroundColor:
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+        getColorStyle(TrilogyColor.NEUTRAL, 1),
     },
     text: {
       alignSelf: "center",

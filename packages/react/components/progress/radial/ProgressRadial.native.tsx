@@ -66,13 +66,13 @@ const ProgressRadial = ({
       backgroundColor: color,
     },
     labelDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontSize: 20,
       fontWeight: "500",
     },
     descriptionDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontWeight: "400",
     },

@@ -6,18 +6,25 @@ import { TrilogyThemeContext } from "@/context/providerTheme"
  */
 export enum TrilogyColor {
   BACKGROUND = "WHITE",
+  FADE_BACKGROUND = "FADE_WHITE",
   MAIN = "MAIN",
+  FADE_MAIN = "FADE_MAIN",
   ACCENT = "ACCENT",
+  FADE_ACCENT = "FADE_ACCENT",
   FONT = "FONT",
+  FADE_FONT = "FADE_FONT",
   SUCCESS = "SUCCESS",
+  FADE_SUCCESS = "FADE_SUCCESS",
   INFO = "INFO",
+  FADE_INFO = "FADE_INFO",
   WARNING = "WARNING",
+  FADE_WARNING = "FADE_WARNING",
   ERROR = "ERROR",
+  FADE_ERROR = "FADE_ERROR",
   DISABLED = "DISABLED",
-  HOVERED = "HOVERED",
+  FADE_DISABLED = "FADE_DISABLED",
   NEUTRAL = "NEUTRAL",
-  NEUTRAL_DARK = "NEUTRAL_DARK",
-  NEUTRAL_LIGHT = "NEUTRAL_LIGHT"
+  FADE_NEUTRAL = "FADE_NEUTRAL",
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`;
@@ -46,12 +53,7 @@ export const colors: Record<TrilogyColor, string[]> = {
       ["#646464", "#D1D1D1", "disabled", "white"],
   [TrilogyColor.NEUTRAL]:
       ["#707070", "#F4F4F4", "grey", "white"],
-  [TrilogyColor.NEUTRAL_DARK]:
-      ["#646464", "#E9E9E9", "grey-dark", "white"],
-  [TrilogyColor.NEUTRAL_LIGHT]:
-      ["#E9E9E9", "#E9E9E9", "grey-light", "grey"],
-  [TrilogyColor.HOVERED]:
-      ["#F4F4F4", "#F4F4F4", "hovered", "white"],
+
 }
 
 /**
@@ -103,7 +105,7 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
     case "PRIMARY":
       return TrilogyColor.MAIN
     case "SECONDARY":
-      return TrilogyColor.HOVERED
+      return TrilogyColor.FADE_MAIN
     case "GHOST":
       return TrilogyColor.BACKGROUND
     default:
@@ -121,6 +123,12 @@ export const getColorStyle = (
   trilogyColor: TrilogyColor | TrilogyColorValues,
   index?: number
 ): string => {
+
+  if (trilogyColor.startsWith("FADE_")){
+    index=1
+    trilogyColor = trilogyColor.replace("FADE_", "") as TrilogyColor
+  }
+
   if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
     const colorsStyle = theme?.colors || colors
