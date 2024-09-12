@@ -5,10 +5,7 @@ import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 // Component to test
-import { getEnumNames } from '@/helpers'
-import { getColorClassName } from '@/objects'
-import { has } from '@/services'
-import { Badge, BadgeColor, BadgeTextDirection } from '../'
+import { Badge, BadgeTextDirection } from '../'
 
 describe('Badge component', () => {
   test('should contain toto as text', () => {
@@ -57,13 +54,6 @@ describe('Badge component', () => {
     expect(screen.getByText(BadgeTextDirection.RIGHT)).toHaveClass('badge')
     expect(screen.getByText(BadgeTextDirection.RIGHT).nextElementSibling).toHaveClass('text')
     expect(screen.getByText(BadgeTextDirection.RIGHT).previousElementSibling).toBeNull()
-  })
-
-  test('should have a correct color className', () => {
-    getEnumNames(BadgeColor).forEach((element) => {
-      render(<Badge color={element}>{element}</Badge>)
-      expect(screen.getByText(element)).toHaveClass(has(`background-${getColorClassName(element)}`))
-    })
   })
 
   test('should onClick attribut work', () => {

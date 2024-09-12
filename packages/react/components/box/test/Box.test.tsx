@@ -103,14 +103,13 @@ describe("Box component", () => {
         shadowless
         background="SUCCESS"
         backgroundSrc="test"
-        leftBorder="SUCCESS"
         flat
         hat
       />
     );
     const box = getByTestId("box");
     expect(box).toHaveClass(
-      "box is-shadowless has-background-success is-loaded has-background is-highlighted is-success is-flat has-hat"
+      "box is-shadowless has-background-success has-background is-base is-loaded is-flat has-hat"
     );
   });
   test("Should have skeleton", () => {

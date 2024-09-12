@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Platform, StyleSheet, Switch as SwitchNative } from "react-native"
 import { SwitchProps } from "./SwitchProps"
 import shortid from "shortid"
-import { getAlertStyle } from "@/objects"
+import { getStatusStyle } from "@/objects"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -11,7 +11,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param id {string} Is auto generate by default
  * @param checked {boolean} Checked switch
  * @param onChange {Function} onChange event
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param disabled {boolean} Switch disabled
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
@@ -20,7 +20,7 @@ const Switch = ({
   id = shortid.generate(),
   checked,
   onChange,
-  alert,
+  status,
   disabled,
   readonly,
   name,
@@ -52,7 +52,7 @@ const Switch = ({
         false: disabled ? backgroundColorDisabled : backgroundColorOff,
         true: disabled
           ? backgroundColorDisabled
-          : (alert && getAlertStyle(alert)) || defaultColor,
+          : (status && getStatusStyle(status)) || defaultColor,
       }}
       thumbColor={thumbColor}
       ios_backgroundColor={
