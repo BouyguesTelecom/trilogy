@@ -1,10 +1,12 @@
 import * as React from "react";
 import { Section, Switch } from "@trilogy-ds/react/components";
+import { StatusState } from "@trilogy-ds/react/objects";
 
 export const SwitchScreen = (): JSX.Element => {
   return (
     <Section>
       <Switch
+        status={StatusState.ERROR}
         label="Switch one"
         name="switch one"
         // eslint-disable-next-line no-console

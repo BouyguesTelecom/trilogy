@@ -9,7 +9,5 @@ export interface CardImageProps extends Clickable {
   size?: CardImageSize | CardImageSizeValues
   className?: string
   alt?: string
-  /** @deprecated use Card "horizontal" props instead */
-  horizontal?: boolean
   contain?: boolean
 }

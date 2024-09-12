@@ -10,7 +10,7 @@ import {
 export const CountdownScreen = (): JSX.Element => {
   return (
     <Section>
-      <Countdown deadline={new Date("2023-12-24 18:00:00")}></Countdown>
+      <Countdown inverted deadline={new Date("2023-12-24 18:00:00")}></Countdown>
       <Spacer size={SpacerSize.MEDIUM} />
       <Countdown
         small
