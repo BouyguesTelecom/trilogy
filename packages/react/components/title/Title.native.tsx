@@ -92,7 +92,7 @@ const Title = ({
       alignSelf: getAlignSelf(),
       borderRadius: 5,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 0),
+      borderColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
       overflow: "hidden",
       height: titlesLevels(),
     },

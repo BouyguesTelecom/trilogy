@@ -81,7 +81,7 @@ const Card = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      backgroundColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
       overflow: "hidden",
       borderRadius: cardRadius,
     },

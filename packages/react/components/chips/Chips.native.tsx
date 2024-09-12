@@ -34,7 +34,7 @@ const Chips = ({
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.NEUTRAL_LIGHT)) ||
+        (disabled && getColorStyle(TrilogyColor.FADE_NEUTRAL)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,

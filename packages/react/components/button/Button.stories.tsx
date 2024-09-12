@@ -16,7 +16,7 @@ const TemplateMultiple: ComponentStory<typeof Button> = (args) => (
   <ButtonList>
     <Button variant={ButtonVariant.PRIMARY} {...args} />
     <Button variant={ButtonVariant.SECONDARY} {...args} />
-    <Button variant={ButtonVariant.ACCENT} disabled {...args} />
+    <Button variant={ButtonVariant.CONVERSION} disabled {...args} />
     <Button variant={ButtonVariant.GHOST} loading {...args} />
   </ButtonList>
 );
@@ -41,7 +41,7 @@ Secondary.args = {
 export const Accent = Template.bind({});
 Accent.args = {
   children: "Button accent",
-  variant: ButtonVariant.ACCENT,
+  variant: ButtonVariant.CONVERSION,
 };
 
 export const Ghost = Template.bind({});

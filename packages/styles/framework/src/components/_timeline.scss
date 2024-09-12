@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$timeline-marker-color: getBGColor('neutral') !default;
+$timeline-marker-color: getFadeColor('neutral') !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getBGColor('neutral') !default;
+$timeline-line-color: getFadeColor('neutral') !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -53,7 +53,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     padding-bottom: $spacing-2;
 
     &::before {
-      background-color: getBGColor('neutral');
+      background-color: getFadeColor('neutral');
     }
 
     .timeline-marker.is-icon {
@@ -116,13 +116,13 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     &.cancel {
       .timeline-marker.is-icon {
-        background-color: getColor('neutral-dark');
-        color: getBGColor('neutral');
+        background-color: getColor('neutral');
+        color: getFadeColor('neutral');
       }
 
       &::before {
         content: '';
-        background-color: getBGColor('neutral-dark');
+        background-color: getFadeColor('neutral');
         display: block;
         width: $timeline-line-width;
         position: absolute;
@@ -338,11 +338,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           background-color: getColor('main');
         }
 
-        &.undone {
-
-          &::before {
-            background-color: getBGColor('neutral');
-          }
+        &.undone::before {
+          background-color: getFadeColor('neutral');
         }
 
         &.done::before {
@@ -350,7 +347,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &.cancel::before {
-          background-color: getBGColor('neutral-dark');
+          background-color: getFadeColor('neutral');
         }
 
         .timeline-marker {

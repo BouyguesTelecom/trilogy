@@ -80,7 +80,7 @@ const Text = ({
         (level && level == "THREE" && 5) ||
         3,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      borderColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
       overflow: "hidden",
       height: textLevels(level as TextLevels | TextLevelValues),
     },
