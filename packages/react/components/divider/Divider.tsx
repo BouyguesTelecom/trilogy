@@ -2,7 +2,7 @@ import * as React from "react"
 import { DividerProps } from "./DividerProps"
 import { has, is } from "@/services/classify"
 import { Icon, IconSize } from "../icon"
-import { getColorClassName } from "@/objects"
+import {getBackgroundClassName, getColorClassName} from "@/objects"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
@@ -40,7 +40,7 @@ const Divider = ({
       unboxed && is("unboxed"),
       marginless && is("marginless"),
       className,
-      color && has(`background-${getColorClassName(color)}`),
+      color && has(getBackgroundClassName(color)),
       iconName && "has-icon"
     )
   )
@@ -49,7 +49,7 @@ const Divider = ({
     clsx(
       "divider-content",
       textColor && has(`text-${getColorClassName(textColor)}`),
-      backgroundColor && has(`background-${getColorClassName(backgroundColor)}`)
+      backgroundColor && has(getBackgroundClassName(backgroundColor))
     )
   )
 

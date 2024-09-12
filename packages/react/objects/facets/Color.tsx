@@ -54,7 +54,7 @@ export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValue
 
   if (trilogyColor.startsWith('FADE_')) {
     trilogyColor = trilogyColor.replace('FADE_', '') as TrilogyColor
-    return `fade-${colors[trilogyColor][2]}`
+    return `${colors[trilogyColor][2]}-fade`
   }
 
   const color = colors[trilogyColor]
