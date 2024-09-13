@@ -197,8 +197,8 @@ $alignments: (
 
 @mixin typography-colors() {
   @each $name, $color in $colors {
-    $brandName: nth($color, 1);
-    $color: nth($color, 2);
+    $brandName: nth($color, 3);
+    $color: nth($color, 1);
     $color-invert: invertColor($name);
 
     .has-text-#{$brandName} {
@@ -211,7 +211,7 @@ $alignments: (
       background-color: getColor($name) !important;
     }
     .has-background-#{$brandName}-fade {
-      background-color: getBGColor($name) !important;
+      background-color: getFadeColor($name) !important;
     }
   }
 }

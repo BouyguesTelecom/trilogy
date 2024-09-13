@@ -11,7 +11,6 @@ export enum TypographyColor {
   TEXT_WARNING = "has-text-warning",
   TEXT_ERROR = "has-text-error",
   TEXT_NEUTRAL = "has-text-grey",
-  TEXT_NEUTRAL_DARK = "has-text-grey-dark",
   TEXT_WHITE = "has-text-white",
   TEXT_DISABLED = "has-text-disabled",
 }
@@ -55,10 +54,6 @@ export const setTypographyColor = (
       ? getColorStyle(TrilogyColor.ERROR, 0)
       : typo === TypographyColor.TEXT_ERROR &&
         getColorStyle(TrilogyColor.ERROR, 0)) ||
-    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_NEUTRAL_DARK)
-      ? getColorStyle(TrilogyColor.NEUTRAL_DARK, 0)
-      : typo === TypographyColor.TEXT_NEUTRAL_DARK &&
-        getColorStyle(TrilogyColor.NEUTRAL_DARK, 0)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_NEUTRAL)
       ? getColorStyle(TrilogyColor.NEUTRAL, 0)
       : typo === TypographyColor.TEXT_NEUTRAL &&

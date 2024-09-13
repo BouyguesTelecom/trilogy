@@ -1,36 +1,36 @@
 @use "sass:map";
 
 @function getColor( $name ) {
-  @if str-slice($name, 0, 3) == 'bg-' {
-    $submane: str-slice($name, 4);
-  @return getBGColor( $submane );
+  @if str-slice($name, 0, 5) == 'fade-' {
+    $submane: str-slice($name, 6);
+  @return getFadeColor( $submane );
   }
-  @return var(--color-#{nth(map-get($colors,$name),1)})
+  @return var(--color-#{nth(map-get($colors,$name),3)});
 }
 
 @function getColorValue( $name ) {
-  @return #{nth(map-get($colors,$name),2)}
-}
-
-@function getBGColorValue( $name ) {
-  @return #{nth(map-get($colors,$name),4)}
-}
-
-@function getColorBrandName( $name ) {
   @return #{nth(map-get($colors,$name),1)}
 }
 
-@function getBGColor( $name ) {
-  @return var(--color-bg-#{nth(map-get($colors,$name),1)})
+@function getFadeColorValue( $name ) {
+  @return #{nth(map-get($colors,$name),2)}
+}
+
+@function getColorBrandName( $name ) {
+  @return #{nth(map-get($colors,$name),3)}
+}
+
+@function getFadeColor( $name ) {
+  @return var(--color-fade-#{nth(map-get($colors,$name),3)})
 }
 
 :root {
   @each $name, $color in $colors {
-    --color-#{nth($color,1)}: #{nth($color,2)};
-    --color-bg-#{nth($color,1)}: #{nth($color,4)};
+    --color-#{nth($color,3)}: #{nth($color,1)};
+    --color-fade-#{nth($color,3)}: #{nth($color,2)};
   }
 }
 
 @function invertColor ($colorName) {
-  @return var(--color-#{nth(map-get($colors,$colorName),3)})
+  @return var(--color-#{nth(map-get($colors,$colorName),4)})
 }

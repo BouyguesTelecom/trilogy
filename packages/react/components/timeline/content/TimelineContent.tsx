@@ -47,7 +47,7 @@ const TimelineContent = ({
       }}
     >
       {heading && (
-        <Text className='heading' markup={TextMarkup.P}>
+        <Text markup={TextMarkup.P}>
           {heading}
         </Text>
       )}
