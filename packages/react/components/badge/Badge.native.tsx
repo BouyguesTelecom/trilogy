@@ -12,21 +12,17 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param content content {string|number} Badge content text
  * @param direction {BadgeTextDirection} Text direction for Badge (LEFT|RIGHT)
  * @param onClick {Function} onClick Event for Badge
- * @param color {BadgeColor} Change color for Badge
  */
 const Badge = ({
   children,
   textContent,
   content,
   direction,
-  color,
   onClick,
   testId,
   ...others
 }: BadgeProps): JSX.Element => {
-  const badgeColor = color
-    ? getColorStyle(color as TrilogyColor | TrilogyColorValues)
-    : getColorStyle(BadgeColor.MAIN)
+  const badgeColor = getColorStyle(BadgeColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({

@@ -4,6 +4,6 @@
   --radius: 8px;
   --radius-small: 4px;
   --radius-large: 16px;
-  --border: 1px solid #{getBGColor('font')};
+  --border: 1px solid #{getFadeColor('font')};
   --border-active: 2px solid #{getColor('main')};
 }

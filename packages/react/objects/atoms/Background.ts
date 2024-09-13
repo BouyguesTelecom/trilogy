@@ -20,6 +20,10 @@ export const getBackgroundClassName = (
   if (backgroundType && typeof backgroundType === 'object') {
     return `background-${getColorClassName(backgroundType.color)}${backgroundType.fade ? '-fade' : ''}`
   }
+  if( backgroundType.startsWith('FADE-') ) {
+    return `background-${getColorClassName( (backgroundType.replace('FADE-', '') as TrilogyColor))}-fade`
+  }
+
   return `background-${getColorClassName(backgroundType)}`
 }
 

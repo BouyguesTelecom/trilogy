@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React, { CSSProperties, useEffect, useRef, useState } from 'react'
-import { getAlertClassName } from '@/objects/facets/Alert'
+import { getStatusClassName } from '@/objects/facets/Status'
 import { Icon } from '@/components/icon'
 import { Text } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
@@ -19,7 +19,7 @@ import { IconName } from '@/components/icon/IconNameEnum'
 const Toaster: React.FC<{ props: ToasterProps }> = ({ props, ...others }) => {
   const { styled } = useTrilogyContext()
 
-  const { title, position, description, iconName, alert, closable, onClick, className, offset, children } = props
+  const { title, position, description, iconName, status, closable, onClick, className, offset, children } = props
   const displayed = Boolean(title)
 
   const positionTop: CSSProperties = {
@@ -34,7 +34,7 @@ const Toaster: React.FC<{ props: ToasterProps }> = ({ props, ...others }) => {
 
   const classes = hashClass(
     styled,
-    clsx('toaster', alert && is(getAlertClassName(alert)), !alert && is('info'), className),
+    clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className),
   )
 
   if (!displayed) {
@@ -122,7 +122,7 @@ const ToasterProvider = ({ children }: ToasterProps): JSX.Element => {
           description: toasterState?.description,
           position: toasterState?.position,
           iconName: toasterState?.iconName,
-          alert: toasterState?.alert,
+          status: toasterState?.status,
           onClick: toasterState?.onClick,
           onHide: toasterState?.onHide,
           closable: toasterState?.closable,

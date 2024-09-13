@@ -13,6 +13,11 @@ export const PaginationScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Pagination</Title>
         <Divider />
+        <Pagination
+          onClick={(e) => console.log("event", e)}
+          count={50}
+          href={(page) => `?page=${page}`}
+        />
       </Section>
       <Section>
         <Pagination

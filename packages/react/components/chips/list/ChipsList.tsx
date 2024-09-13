@@ -25,7 +25,7 @@ const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<
   )
 
   return (
-    <div ref={ref} role={multiple ? "group" : "radiogroup"} className={classes} {...others}>
+    <div ref={ref} role='group' className={classes} {...others}>
       {children}
     </div>
   )

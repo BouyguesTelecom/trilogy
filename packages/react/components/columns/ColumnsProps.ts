@@ -1,10 +1,9 @@
 import { ColumnsSize } from './ColumnsTypes'
-import { Marginless } from "@/objects"
 
 /**
  * Columns Interface
  */
-export interface ColumnsProps extends Marginless{
+export interface ColumnsProps {
   children?: React.ReactNode
   multiline?: boolean
   inlined?: boolean
@@ -14,5 +13,4 @@ export interface ColumnsProps extends Marginless{
   verticalCentered?: boolean
   className?: string
   mobile?: boolean
-  flex?: boolean | number // voir android
 }

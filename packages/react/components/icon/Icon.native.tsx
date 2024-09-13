@@ -119,7 +119,7 @@ const Icon = ({
       width: circledWidth,
       height: circledWidth,
       borderRadius: iconSkeletonRadius,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      backgroundColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
       overflow: "hidden",
     },
   })

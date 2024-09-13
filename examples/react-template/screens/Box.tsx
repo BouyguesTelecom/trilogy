@@ -212,7 +212,7 @@ export const BoxScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem size={6}>
             <Box leftBorder={TrilogyColor.WARNING} className='is-fullheight'>
-              <BoxContent background={"NEUTRAL_LIGHT"}>
+              <BoxContent background={"FADE_NEUTRAL"}>
                 <Title level={TitleLevels.FOUR}>Highlited box</Title>
                 <Text>
                   Eget tincidunt tincidunt id massa sollicitudin. Egestas felis

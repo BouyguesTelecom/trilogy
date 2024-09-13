@@ -2,19 +2,19 @@ import { render } from "@testing-library/react-native";
 
 import * as React from "react";
 import {
-  AlertState,
-  getAlertStyle,
+  StatusState,
   getColorStyle,
   TrilogyColor,
+  getStatusStyle,
 } from "../../../objects";
 import Switch from "../Switch.native";
 
 describe("Switch component", () => {
   const colors = [
-    AlertState.ERROR,
-    AlertState.INFO,
-    AlertState.SUCCESS,
-    AlertState.WARNING,
+    StatusState.ERROR,
+    StatusState.INFO,
+    StatusState.SUCCESS,
+    StatusState.WARNING,
   ];
 
   test("Should return component", async () => {
@@ -43,12 +43,12 @@ describe("Switch component", () => {
   });
 
   colors.forEach((color) => {
-    test(`true trackColor should have ${getAlertStyle(
+    test(`true trackColor should have ${getStatusStyle(
       color
     )} color`, async () => {
-      const { getByTestId } = render(<Switch alert={color} />);
+      const { getByTestId } = render(<Switch status={color} />);
       expect(getByTestId("switch-id").props.onTintColor).toBe(
-        getAlertStyle(color)
+        getStatusStyle(color)
       );
     });
   });
