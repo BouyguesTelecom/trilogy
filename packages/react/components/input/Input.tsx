@@ -148,6 +148,7 @@ const Input = ({
       inputName: target.name,
       inputValue: target.value,
       inputKeyCode: e.keyCode,
+      inputTarget: target,
       preventDefault: () => e.preventDefault(),
     }
   }, [])
@@ -157,10 +158,10 @@ const Input = ({
       return (
         <div
         {...type === "password" && { "data-show-pwd": true }}
-          onClick={() => {
+          onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value })
+              onIconClick({ inputName: name ?? '', inputValue: _value, inputTarget: e.target })
             }
           }}
         >
@@ -243,6 +244,7 @@ const Input = ({
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
+                inputTarget: target
               })
             }
           }}
@@ -269,6 +271,7 @@ const Input = ({
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
+                inputTarget: e.target
               })
             }
           }}

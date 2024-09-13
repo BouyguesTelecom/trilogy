@@ -25,6 +25,7 @@ export interface InputChangeEvent {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputChangeEventHandler = (event: InputChangeEvent) => void
@@ -33,6 +34,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
   preventDefault: () => void
 }
 
@@ -41,6 +43,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
