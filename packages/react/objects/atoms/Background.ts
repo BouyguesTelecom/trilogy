@@ -5,7 +5,7 @@ import { Invertable } from "@/objects/facets"
  * Background props
  */
 export interface BackgroundProps extends Invertable {
-  background?: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
+  backgroundColor?: TrilogyColor | TrilogyColorValues | {color:TrilogyColor, fade:boolean}
   backgroundSrc?: string
 }
 
