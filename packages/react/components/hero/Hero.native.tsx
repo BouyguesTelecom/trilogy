@@ -10,7 +10,7 @@ import { StatesContext } from "@/context/providerStates"
  * Hero Component
  * @param children {ReactNode} Hero Children
  * @param backgroundSrc {string} If source, it will display background option
- * @param background {TrilogyColor} Background Color
+ * @param backgroundColor {TrilogyColor} Background Color
  * @param inverted {Boolean} Inverted Hero
  * @param onClick {Function} onClick Event
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
@@ -24,7 +24,7 @@ const Hero = ({
   overlap,
   backgroundHeight,
   inverted,
-  background,
+  backgroundColor,
   ...others
 }: HeroProps): JSX.Element => {
   const [overlapHeight, setOverlapHeight] = useState<number>(0)
@@ -49,8 +49,8 @@ const Hero = ({
       paddingLeft: 15,
     },
     background: {
-      backgroundColor: background
-        ? getBackgroundStyle(background)
+      backgroundColor: backgroundColor
+        ? getBackgroundStyle(backgroundColor)
         : getBackgroundStyle(TrilogyColor.BACKGROUND),
     },
     overlap: {
@@ -73,7 +73,7 @@ const Hero = ({
   })
   let heroView: JSX.Element
 
-  if (background) {
+  if (backgroundColor) {
     heroView = (
       <StatesContext.Provider
         value={{ inverted: !!inverted, active: false, flat: false }}
@@ -111,7 +111,7 @@ const Hero = ({
             setOverlapHeight(height)
           }}
         >
-          <Box background={TrilogyColor.FADE_NEUTRAL}>
+          <Box backgroundColor={TrilogyColor.FADE_NEUTRAL}>
             <View style={{ marginBottom: secondOverlapHeight / 2 }} />
             {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
           </Box>
