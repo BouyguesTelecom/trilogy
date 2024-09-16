@@ -12,7 +12,7 @@ export const CardContext = createContext({ horizontal: false })
  * Card Component
  * @param flat {boolean} Adding border for Card content
  * @param horizontal {boolean} Horizontal Card orientation
- * @param background {TrilogyColor} Card Background Color
+ * @param backgroundColor {TrilogyColor} Card Background Color
  * @param inverted {boolean} Inverted Card Color
  * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
@@ -29,7 +29,7 @@ export const CardContext = createContext({ horizontal: false })
 const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
   const {
     className,
-    background,
+    backgroundColor,
     backgroundSrc,
     inverted,
     flat,
@@ -63,7 +63,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
     styled,
     clsx(
       "card",
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has("background"),
       (inverted && is("inverted")) || is("base"),
 

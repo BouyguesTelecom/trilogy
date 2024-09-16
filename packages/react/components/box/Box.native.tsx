@@ -12,7 +12,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param children {React.ReactNode} Childrens
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
- * @param background {TrilogyColor} Box Content Background Color
+ * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param testId {string} Test id
  * @param shadowless {boolean} Remove box shadow
@@ -32,7 +32,7 @@ const Box = ({
   highlighted,
   testId,
   shadowless,
-  background,
+  backgroundColor,
   backgroundSrc,
   inverted,
   flat,
@@ -47,7 +47,7 @@ const Box = ({
   const styles = StyleSheet.create({
     box: {
       width: "100%",
-      backgroundColor: background ? getBackgroundStyle(background) : colorBgc,
+      backgroundColor: backgroundColor ? getBackgroundStyle(backgroundColor) : colorBgc,
       borderRadius: boxRadius,
       flexDirection: "row",
       justifyContent: "flex-start",
