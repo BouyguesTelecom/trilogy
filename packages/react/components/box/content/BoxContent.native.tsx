@@ -7,19 +7,19 @@ import { ComponentName } from "@/components/enumsComponentsName"
 /**
  * Box Content Component
  * @param children {React.ReactNode} Childrens
- * @param background {TrilogyColor} Box Content Background Color
+ * @param backgroundColor {TrilogyColor} Box Content Background Color
  */
 const BoxContent = ({
   children,
-  background,
+  backgroundColor,
   ...others
 }: BoxContentProps): JSX.Element => {
   const styles = StyleSheet.create({
     boxContent: {
       padding: 16,
       justifyContent: "center",
-      backgroundColor: background
-        ? getBackgroundStyle(background)
+      backgroundColor: backgroundColor
+        ? getBackgroundStyle(backgroundColor)
         : "transparent",
       borderRadius: 6,
     },
