@@ -16,7 +16,7 @@ import { useTrilogyContext } from "@/context"
  * @param flexable {boolean} Flexable view
  * @param style {CSSProperties} View custom style
  * @param onClick {Function} Click Event
- * @param color {TrilogyColor} View backgroud color
+ * @param backgroundColor {TrilogyColor} View backgroud color
  * @param backgroundSrc {string} View backgroud image source
  * @param id {string} Id for Web / TestID for Native
  * @param fullwidth {boolean} true by default
@@ -35,7 +35,7 @@ const View = ({
   className,
   loading,
   onClick,
-  background,
+  backgroundColor,
   backgroundSrc,
   inverted,
   fullwidth = true,
@@ -62,7 +62,7 @@ const View = ({
     clsx(
       typeof loading === "string" && is(getLoadingClassName(loading)),
       typeof loading === "boolean" ? is("loading") : is("loaded"),
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted') || is('base'),
       fullwidth && is("fullwidth"),
