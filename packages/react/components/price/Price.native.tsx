@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getStatusStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
@@ -23,7 +23,7 @@ import { getTypographyBoldStyle } from "@/objects"
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param suptitle {string} Price Suptitle
+ * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
  */
@@ -39,7 +39,7 @@ const Price = ({
                  testId,
                  accessibilityLabel,
                  striked,
-                 suptitle,
+                 overline,
                  style,
                  tagAmount,
                  tagSymbol,
@@ -235,7 +235,7 @@ const Price = ({
 
   return (
     <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
-      {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
+      {overline && <Text style={[styles.suptitle, style?.suptitle]}>{overline}</Text>}
       <View
         style={[styles.container, style?.container]}
         accessible={!!priceAccessibilityLabel}
