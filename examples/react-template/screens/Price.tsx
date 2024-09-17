@@ -18,6 +18,7 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
       <Price
+        overline="A partir de"
         level={'1'}
         amount={24.99}
         showCents
