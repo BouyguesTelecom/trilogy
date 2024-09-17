@@ -35,7 +35,7 @@ const Price = ({
                  amount,
                  mention,
                  period,
-                 showCents,
+                 showCents = true,
                  level,
                  inverted,
                  align,
