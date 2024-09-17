@@ -21,7 +21,7 @@ import { useTrilogyContext } from "@/context"
  * @param inline {boolean} Inline display Price
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
- * @param suptitle {string} Price Suptitle
+ * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -43,7 +43,7 @@ const Price = ({
                  testId,
                  accessibilityLabel,
                  striked,
-                 suptitle,
+                 overline,
                  tagAmount,
                  tagSymbol,
                  ...others
@@ -58,7 +58,7 @@ const Price = ({
       inverted && is("inverted"),
       inline && is("inlined"),
       striked && is("striked"),
-      suptitle && has("suptitle"),
+      overline && has("suptitle"),
       className
     )
   )
@@ -97,7 +97,7 @@ const Price = ({
         className={classes}
         {...others}
       >
-        {suptitle && <span className='price-suptitle'>{suptitle}</span>}
+        {overline && <span className='price-suptitle'>{overline}</span>}
         <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
         <span className={hashClass(styled, clsx("price-details"))}>
           <span className={hashClass(styled, clsx("cents"))}>
