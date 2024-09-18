@@ -26,7 +26,7 @@ import { useTrilogyContext } from "@/context"
  * @param tagSymbol {number} Tag symbol
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param striked {boolean} Striked Price
+ * @param strikedAmount {boolean} Striked Amount Price
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param accessibilityActivate {boolean}
  */
@@ -42,7 +42,7 @@ const Price = ({
                  inline,
                  testId,
                  accessibilityLabel,
-                 striked,
+                 strikedAmount,
                  overline,
                  tagAmount,
                  tagSymbol,
@@ -57,7 +57,19 @@ const Price = ({
       level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),
-      striked && is("striked"),
+      overline && has("suptitle"),
+      className
+    )
+  )
+
+  const classesStriked = hashClass(
+    styled,
+    clsx(
+      "price",
+      level && is(`level-${level}`),
+      inverted && is("inverted"),
+      inline && is("inlined"),
+      strikedAmount && is("striked"),
       overline && has("suptitle"),
       className
     )
@@ -78,6 +90,11 @@ const Price = ({
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
 
+  const isNegativeStriked = strikedAmount && strikedAmount < 0
+  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
+  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
+  const wholeStriked = isNegativeStriked && absoluteWholeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+
   let cents = checkCents(
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
   )
@@ -91,6 +108,39 @@ const Price = ({
 
   const returnComponent = (
     <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
+      {/* StrikedAmount Price */}
+
+      {strikedAmount && (
+        <>
+          <span
+          data-testid={testId}
+          aria-label={accessibilityLabel}
+          className={classesStriked}
+          {...others}
+        >
+          <Text markup={TextMarkup.SPAN}>{`${wholeStriked}`}</Text>
+          <span className={hashClass(styled, clsx("price-details"))}>
+            <span className={hashClass(styled, clsx("cents"))}>
+              {inline && centsDisplayed === "€" ? (
+                <>&nbsp;{centsDisplayed}</>
+              ) : (
+                centsDisplayed
+              )}
+              {mention && <sup>{mention}</sup>}
+            </span>
+            {period && (
+              <span className={hashClass(styled, clsx("period"))}>/{period}</span>
+            )}
+          </span>
+        </span>
+        {tagAmount && (
+          <span className={hashClass(styled, clsx(('price-tag')))}>
+            <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
+            {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
+          </span>
+        )}
+        </>
+      )}
       <span
         data-testid={testId}
         aria-label={accessibilityLabel}

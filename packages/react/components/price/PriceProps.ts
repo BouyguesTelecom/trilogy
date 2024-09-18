@@ -15,7 +15,7 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps {
   inline?: boolean
   level?: PriceLevel | PriceLevelValues
   className?: string
-  striked?: boolean
+  strikedAmount?: number
   overline?: string
   style?: Styles
   tagAmount?: number
