@@ -49,7 +49,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
  * @param description {string|ReactNode} Aleert description content
- * @param alert {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param info (boolean) Small info alert use it without button and arrow
  * @param onClick {Function} onClick Event for all alert
  */
