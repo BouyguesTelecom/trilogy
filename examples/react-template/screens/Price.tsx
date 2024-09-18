@@ -15,10 +15,22 @@ import { Alignable, VariantState } from "@trilogy-ds/react/objects";
 export const PriceScreen = (): JSX.Element => {
   return (
     <Section>
+      <Price
+        // overline="A partir de"
+        strikedAmount={10.99}
+        level={'1'}
+        amount={24.99}
+        showCents
+        period={'mois'}
+        // tagAmount={10}
+        // tagSymbol={'€'}
+      />
+
+      <Spacer size={SpacerSize.SMALL} />
+
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
       <Price
-        overline="A partir de"
         level={'1'}
         amount={24.99}
         showCents
