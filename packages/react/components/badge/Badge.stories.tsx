@@ -20,5 +20,5 @@ export const WithContent: Story<BadgeProps> = (args) => <Badge {...args} />;
 WithContent.args = {
   content: 2,
   textContent: "Actions à réaliser",
-  direction: "right",
+  reversed: "right",
 };
