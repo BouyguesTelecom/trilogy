@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { BadgeProps } from "./BadgeProps"
-import { BadgeColor, BadgeTextDirection } from "./BadgeEnum"
+import { BadgeColor } from "./BadgeEnum"
 import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -10,14 +10,14 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {React.ReactNode} If no content add children (Icon for example)
  * @param textContent {string} Content text for badge with text, if textContent props, it will display badge with text
  * @param content content {string|number} Badge content text
- * @param direction {BadgeTextDirection} Text direction for Badge (LEFT|RIGHT)
+ * @param direction {boolean} Text direction for Badge (LEFT|RIGHT)
  * @param onClick {Function} onClick Event for Badge
  */
 const Badge = ({
   children,
   textContent,
   content,
-  direction,
+  reversed,
   onClick,
   testId,
   ...others
@@ -55,14 +55,11 @@ const Badge = ({
   if (textContent) {
     badgeView = (
       <View style={styles.container}>
-        {!direction && <Text style={styles.textContent}>{textContent}</Text>}
-        {direction && direction === BadgeTextDirection.LEFT && (
-          <Text style={styles.textContent}>{textContent}</Text>
-        )}
+        {!reversed && <Text style={styles.textContent}>{textContent}</Text>}
         <View style={styles.badge}>
           <Text style={styles.text}>{content}</Text>
         </View>
-        {direction && direction === BadgeTextDirection.RIGHT && (
+        {reversed && (
           <Text style={styles.textContent}>{textContent}</Text>
         )}
       </View>
