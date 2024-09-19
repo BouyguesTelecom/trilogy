@@ -51,7 +51,7 @@ const Badge = ({
         <span
           className={hashClass(
             styled,
-            clsx("badge is-level")
+            clsx("badge")
           )}
         >
           {content || children}
