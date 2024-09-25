@@ -10,7 +10,7 @@ import {
   Spacer,
   SpacerSize
 } from "@trilogy-ds/react/components";
-import { Alignable, VariantState } from "@trilogy-ds/react/objects";
+import { Alignable, TrilogyColor, VariantState } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -268,7 +268,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Hero background={VariantState.MAIN}>
+      <div className="has-background-main">
         <Price
           inverted
           level={PriceLevel.ONE}
@@ -287,7 +287,7 @@ export const PriceScreen = (): JSX.Element => {
           period="months"
           showCents
         />
-      </Hero>
+      </div>
 
       <Divider />
 
