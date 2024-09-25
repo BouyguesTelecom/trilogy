@@ -67,7 +67,7 @@ const Price = ({
     styled,
     clsx(
       "price",
-      level && level == PriceLevel.ONE && is(`level-3`) || level == PriceLevel.TWO && is(`level-4`) || level == PriceLevel.THREE && is(`level-5`) || is(`level-6`),
+      level && level == PriceLevel.ONE && is(`level-3`) || level == PriceLevel.TWO && is(`level-4`) || level == PriceLevel.THREE && is(`level-5`) || level == PriceLevel.FOUR && is(`level-6`) || is(`level-7`),
       inverted && is("inverted"),
       inline && is("inlined"),
       strikedAmount && is("striked"),
