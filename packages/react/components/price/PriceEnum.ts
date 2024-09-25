@@ -1,11 +1,11 @@
 export enum PriceLevel {
-  LEVEL1 = 1,
-  LEVEL2 = 2,
-  LEVEL3 = 3,
-  LEVEL4 = 4,
-  LEVEL5 = 5,
-  LEVEL6 = 6,
-  LEVEL7 = 7,
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
+  FIVE = 5,
+  SIX = 6,
+  SEVEN = 7,
 }
 
-export type PriceLevelValues = `${PriceLevel}`;
+export type PriceLevelValues = PriceLevel;
