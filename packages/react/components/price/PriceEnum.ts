@@ -8,4 +8,4 @@ export enum PriceLevel {
   SEVEN = 7,
 }
 
-export type PriceLevelValues = `${PriceLevel}`;
+export type PriceLevelValues = PriceLevel;
