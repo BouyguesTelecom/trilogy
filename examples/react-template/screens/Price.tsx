@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   Divider,
-  Hero,
   Price,
   PriceLevel,
   Section,
@@ -10,7 +9,7 @@ import {
   Spacer,
   SpacerSize
 } from "@trilogy-ds/react/components";
-import { Alignable, TrilogyColor, VariantState } from "@trilogy-ds/react/objects";
+import { Alignable } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -25,6 +24,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Price
