@@ -38,7 +38,7 @@ const Price = ({
                  inline,
                  testId,
                  accessibilityLabel,
-                 striked,
+                 strikedAmount,
                  overline,
                  style,
                  tagAmount,
@@ -74,14 +74,14 @@ const Price = ({
 
   const color = useMemo(
     () =>
-      (inverted && !striked && invertedColor) ||
+      (inverted && !strikedAmount && invertedColor) ||
       (statesContext.inverted && invertedColor) ||
-      (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
-      (!striked && !inverted && primaryColor) ||
-      (!striked && !inverted && secondaryColor) ||
-      (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
+      (inverted && strikedAmount && getColorStyle(TrilogyColor.FONT, 1)) ||
+      (!strikedAmount && !inverted && primaryColor) ||
+      (!strikedAmount && !inverted && secondaryColor) ||
+      (strikedAmount && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
       primaryColor,
-    [inverted, striked]
+    [inverted, strikedAmount]
   )
 
   const strikedRotateByLevel = () => {
@@ -245,7 +245,7 @@ const Price = ({
       >
         {inline ? (
           <View style={[styles.priceContainer, { flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
+            {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
             <Text style={[styles.price, style?.price]}>
               {whole}€{showCents && cents}
             </Text>
@@ -256,7 +256,7 @@ const Price = ({
           </View>
         ) : (
           <View style={[{ flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
+            {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
             <View style={[styles.priceContainer, style?.priceContainer]}>
               <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>
             </View>
