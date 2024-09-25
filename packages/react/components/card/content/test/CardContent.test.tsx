@@ -32,7 +32,7 @@ describe('CardContent component', () => {
   })
 
   it('should have title', () => {
-    const { getByTestId } = render(<CardContent testId='cardContent' title='title' titleLevel='ONE' />)
+    const { getByTestId } = render(<CardContent testId='cardContent' title='title' titleLevel={1} />)
     const title = getByTestId('cardContent-title')
     expect(title).toBeInTheDocument()
   })
