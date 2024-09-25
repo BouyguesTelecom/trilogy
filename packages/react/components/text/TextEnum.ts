@@ -2,10 +2,10 @@
  * New Text Levels
  */
 export enum TextLevels {
-  ONE = 'ONE',
-  TWO = 'TWO',
-  THREE = 'THREE',
-  FOUR = 'FOUR',
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
 }
 
 /**

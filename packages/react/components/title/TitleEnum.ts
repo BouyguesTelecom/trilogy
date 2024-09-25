@@ -2,12 +2,12 @@
  * New Title Levels
  */
 export enum TitleLevels {
-  ONE = 'ONE',
-  TWO = 'TWO',
-  THREE = 'THREE',
-  FOUR = 'FOUR',
-  FIVE = 'FIVE',
-  SIX = 'SIX',
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
+  FIVE = 5,
+  SIX = 6,
 }
 
 /**
