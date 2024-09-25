@@ -61,13 +61,13 @@ const Price = ({
   const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const priceLevel =
-    (level == PriceLevel.LEVEL1 && 64) ||
-    (level == PriceLevel.LEVEL2 && 56) ||
-    (level == PriceLevel.LEVEL3 && 44) ||
-    (level == PriceLevel.LEVEL4 && 32) ||
-    (level == PriceLevel.LEVEL5 && 28) ||
-    (level == PriceLevel.LEVEL6 && 24) ||
-    (level == PriceLevel.LEVEL7 && 20) ||
+    (level == PriceLevel.ONE && 64) ||
+    (level == PriceLevel.TWO && 56) ||
+    (level == PriceLevel.THREE && 44) ||
+    (level == PriceLevel.FOUR && 32) ||
+    (level == PriceLevel.FIVE && 28) ||
+    (level == PriceLevel.SIX && 24) ||
+    (level == PriceLevel.SEVEN && 20) ||
     44
   const centsLevel = priceLevel * 0.4
   const suptitleLevel = priceLevel * 0.2
@@ -86,20 +86,20 @@ const Price = ({
 
   const strikedRotateByLevel = () => {
     return (
-      (level == PriceLevel.LEVEL7 && (showCents || period) && "-18deg") ||
-      (level == PriceLevel.LEVEL6 && (showCents || period) && "-19deg") ||
-      (level == PriceLevel.LEVEL5 && (showCents || period) && "-18deg") ||
-      (level == PriceLevel.LEVEL4 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL3 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL2 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL1 && (showCents || period) && "-15deg") ||
-      (level == PriceLevel.LEVEL1 && "-17deg") ||
-      (level == PriceLevel.LEVEL2 && "-18deg") ||
-      (level == PriceLevel.LEVEL3 && "-20deg") ||
-      (level == PriceLevel.LEVEL4 && "-18deg") ||
-      (level == PriceLevel.LEVEL5 && "-18deg") ||
-      (level == PriceLevel.LEVEL6 && "-22deg") ||
-      (level == PriceLevel.LEVEL7 && "-22deg") ||
+      (level == PriceLevel.SEVEN && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.SIX && (showCents || period) && "-19deg") ||
+      (level == PriceLevel.FIVE && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.FOUR && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.THREE && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.TWO && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.ONE && (showCents || period) && "-15deg") ||
+      (level == PriceLevel.ONE && "-17deg") ||
+      (level == PriceLevel.TWO && "-18deg") ||
+      (level == PriceLevel.THREE && "-20deg") ||
+      (level == PriceLevel.FOUR && "-18deg") ||
+      (level == PriceLevel.FIVE && "-18deg") ||
+      (level == PriceLevel.SIX && "-22deg") ||
+      (level == PriceLevel.SEVEN && "-22deg") ||
       (!level && (showCents || period) && "-15deg") ||
       "-20deg"
     )
@@ -107,20 +107,20 @@ const Price = ({
 
   const strikedBottomByLevel = () => {
     return (
-      (level == PriceLevel.LEVEL7 && (showCents || period) && 12) ||
-      (level == PriceLevel.LEVEL6 && (showCents || period) && 15) ||
-      (level == PriceLevel.LEVEL5 && (showCents || period) && 18) ||
-      (level == PriceLevel.LEVEL4 && (showCents || period) && 19) ||
-      (level == PriceLevel.LEVEL3 && (showCents || period) && 26) ||
-      (level == PriceLevel.LEVEL2 && (showCents || period) && 33) ||
-      (level == PriceLevel.LEVEL1 && (showCents || period) && 37) ||
-      (level == PriceLevel.LEVEL1 && 34) ||
-      (level == PriceLevel.LEVEL2 && 30) ||
-      (level == PriceLevel.LEVEL3 && 24) ||
-      (level == PriceLevel.LEVEL4 && 18) ||
-      (level == PriceLevel.LEVEL5 && 16) ||
-      (level == PriceLevel.LEVEL6 && 14) ||
-      (level == PriceLevel.LEVEL7 && 12) ||
+      (level == PriceLevel.SEVEN && (showCents || period) && 12) ||
+      (level == PriceLevel.SIX && (showCents || period) && 15) ||
+      (level == PriceLevel.FIVE && (showCents || period) && 18) ||
+      (level == PriceLevel.FOUR && (showCents || period) && 19) ||
+      (level == PriceLevel.THREE && (showCents || period) && 26) ||
+      (level == PriceLevel.TWO && (showCents || period) && 33) ||
+      (level == PriceLevel.ONE && (showCents || period) && 37) ||
+      (level == PriceLevel.ONE && 34) ||
+      (level == PriceLevel.TWO && 30) ||
+      (level == PriceLevel.THREE && 24) ||
+      (level == PriceLevel.FOUR && 18) ||
+      (level == PriceLevel.FIVE && 16) ||
+      (level == PriceLevel.SIX && 14) ||
+      (level == PriceLevel.SEVEN && 12) ||
       (!level && (showCents || period) && 25) ||
       25
     )
@@ -139,9 +139,9 @@ const Price = ({
       padding: 0,
       paddingLeft:
         (inline && 0) ||
-        (level == PriceLevel.LEVEL5 && 2) ||
-        (level == PriceLevel.LEVEL6 && 2) ||
-        (level == PriceLevel.LEVEL7 && 2) ||
+        (level == PriceLevel.FIVE && 2) ||
+        (level == PriceLevel.SIX && 2) ||
+        (level == PriceLevel.SEVEN && 2) ||
         4,
       flexDirection: "column",
       justifyContent: "center",
@@ -151,8 +151,8 @@ const Price = ({
     price: {
       fontSize: priceLevel,
       fontWeight:
-        (level == PriceLevel.LEVEL6 && "normal") ||
-        (level == PriceLevel.LEVEL7 && "normal") ||
+        (level == PriceLevel.SIX && "normal") ||
+        (level == PriceLevel.SEVEN && "normal") ||
         "bold",
       color: color,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
@@ -189,8 +189,8 @@ const Price = ({
       marginBottom: -3,
       color: color,
       fontWeight:
-        (level == PriceLevel.LEVEL6 && "normal") ||
-        (level == PriceLevel.LEVEL7 && "normal") ||
+        (level == PriceLevel.SIX && "normal") ||
+        (level == PriceLevel.SEVEN && "normal") ||
         "bold",
     },
     tag: {
