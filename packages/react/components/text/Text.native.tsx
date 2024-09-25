@@ -40,10 +40,10 @@ const Text = ({
   const statesContext = useContext(StatesContext)
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
-      (level && level == "ONE" && 16) ||
-      (level && level == "TWO" && 14) ||
-      (level && level == "THREE" && 12) ||
-      (level && level == "FOUR" && 10) ||
+      (level && level == TextLevels.ONE && 16) ||
+      (level && level == TextLevels.TWO && 14) ||
+      (level && level == TextLevels.THREE && 12) ||
+      (level && level == TextLevels.FOUR && 10) ||
       14
     )
   }
@@ -75,9 +75,9 @@ const Text = ({
         "flex-start",
 
       borderRadius:
-        (level && level == "ONE" && 7) ||
-        (level && level == "TWO" && 7) ||
-        (level && level == "THREE" && 5) ||
+        (level && level == TextLevels.ONE && 7) ||
+        (level && level == TextLevels.TWO && 7) ||
+        (level && level == TextLevels.THREE && 5) ||
         3,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
