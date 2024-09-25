@@ -11,7 +11,7 @@ export enum TextLevels {
 /**
  * Text size values
  */
-export type TextLevelValues = `${TextLevels}`
+export type TextLevelValues = TextLevels
 
 /**
  * List of available Markup for Text
