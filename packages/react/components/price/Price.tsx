@@ -108,7 +108,7 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
+    <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : 'price-container'}>
       {/* StrikedAmount Price */}
 
       {strikedAmount && (
