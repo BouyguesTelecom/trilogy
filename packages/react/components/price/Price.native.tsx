@@ -61,13 +61,13 @@ const Price = ({
   const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const priceLevel =
-    (level == PriceLevel.LEVEL1 && 64) ||
-    (level == PriceLevel.LEVEL2 && 56) ||
-    (level == PriceLevel.LEVEL3 && 44) ||
-    (level == PriceLevel.LEVEL4 && 32) ||
-    (level == PriceLevel.LEVEL5 && 28) ||
-    (level == PriceLevel.LEVEL6 && 24) ||
-    (level == PriceLevel.LEVEL7 && 20) ||
+    (level == PriceLevel.ONE && 64) ||
+    (level == PriceLevel.TWO && 56) ||
+    (level == PriceLevel.THREE && 44) ||
+    (level == PriceLevel.FOUR && 32) ||
+    (level == PriceLevel.FIVE && 28) ||
+    (level == PriceLevel.SIX && 24) ||
+    (level == PriceLevel.SEVEN && 20) ||
     44
   const centsLevel = priceLevel * 0.4
   const suptitleLevel = priceLevel * 0.2
