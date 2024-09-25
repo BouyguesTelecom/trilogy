@@ -18,7 +18,7 @@ export const PriceScreen = (): JSX.Element => {
       <Price
         // overline="A partir de"
         strikedAmount={10.99}
-        level={'1'}
+        level={1}
         amount={24.99}
         showCents
         period={'mois'}
@@ -31,7 +31,7 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
       <Price
-        level={'1'}
+        level={1}
         amount={24.99}
         showCents
         period={'mois'}
@@ -42,7 +42,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'2'}
+        level={2}
         amount={24.99}
         showCents
         period={'mois'}
@@ -53,7 +53,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'3'}
+        level={3}
         amount={24.99}
         showCents
         period={'mois'}
@@ -64,7 +64,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'4'}
+        level={4}
         amount={24.99}
         showCents
         period={'mois'}
@@ -75,7 +75,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'5'}
+        level={5}
         amount={24.99}
         showCents
         period={'mois'}
@@ -86,7 +86,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'6'}
+        level={6}
         amount={24.99}
         showCents
         period={'mois'}
@@ -97,7 +97,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        level={'7'}
+        level={7}
         amount={24.99}
         showCents
         period={'mois'}
@@ -109,15 +109,15 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Simple</Title>
 
-      <Price level={"2"} amount={18.99} showCents />
+      <Price level={2} amount={18.99} showCents />
 
-      <Price level={"2"} amount={18.99} showCents striked={true} />
+      <Price level={2} amount={18.99} showCents striked={true} />
 
       <Divider />
       <Title level={TitleLevels.THREE}>Inlined</Title>
 
       <Price
-        level={"7"}
+        level={7}
         amount={1000}
         mention="(1)"
         period="months"
@@ -130,7 +130,7 @@ export const PriceScreen = (): JSX.Element => {
       <Divider />
       <Title level={TitleLevels.THREE}>Alignement</Title>
       <Price
-        level={"1"}
+        level={1}
         amount={1000}
         mention="(1)"
         period="months"
@@ -139,7 +139,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={"1"}
+        level={1}
         amount={1000}
         mention="(1)"
         period="months"
@@ -148,7 +148,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={"1"}
+        level={1}
         amount={1000}
         mention="(1)"
         period="months"
@@ -161,7 +161,7 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Size</Title>
 
       <Price
-        level={PriceLevel.LEVEL1}
+        level={PriceLevel.ONE}
         amount={100}
         mention="(1)"
         period="months"
@@ -169,7 +169,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL2}
+        level={PriceLevel.TWO}
         amount={24.99}
         mention="(1)"
         period="months"
@@ -177,7 +177,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL3}
+        level={PriceLevel.THREE}
         amount={24.99}
         mention="(1)"
         period="months"
@@ -185,7 +185,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL4}
+        level={PriceLevel.FOUR}
         amount={18.99}
         mention="(1)"
         period="months"
@@ -193,7 +193,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL5}
+        level={PriceLevel.FIVE}
         amount={18.99}
         mention="(1)"
         period="months"
@@ -201,7 +201,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL6}
+        level={PriceLevel.SIX}
         amount={18.1}
         mention="(1)"
         period="months"
@@ -209,7 +209,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
-        level={PriceLevel.LEVEL7}
+        level={PriceLevel.SEVEN}
         amount={18.1}
         mention="(1)"
         period="months"
@@ -222,7 +222,7 @@ export const PriceScreen = (): JSX.Element => {
       <Hero background={VariantState.MAIN}>
         <Price
           inverted
-          level={PriceLevel.LEVEL1}
+          level={PriceLevel.ONE}
           amount={18.99}
           mention="(1)"
           period="months"
@@ -232,7 +232,7 @@ export const PriceScreen = (): JSX.Element => {
         <Price
           striked
           inverted
-          level={PriceLevel.LEVEL1}
+          level={PriceLevel.ONE}
           amount={18.99}
           mention="(1)"
           period="months"
@@ -244,9 +244,9 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>With or Without cents</Title>
 
-      <Price level={PriceLevel.LEVEL4} amount={18} period="months" />
+      <Price level={PriceLevel.FOUR} amount={18} period="months" />
 
-      <Price level={PriceLevel.LEVEL4} amount={18} period="months" showCents />
+      <Price level={PriceLevel.FOUR} amount={18} period="months" showCents />
     </Section>
   );
 };
