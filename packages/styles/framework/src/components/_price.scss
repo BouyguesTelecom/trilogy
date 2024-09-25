@@ -8,6 +8,12 @@ $price-levels: (
     ($text-20),
 );
 
+.price-container {
+  > .price:first-child {
+    margin-right: 10px;
+  }
+}
+
 .price {
   display: inline-flex;
   font-weight: $weight-semibold;
