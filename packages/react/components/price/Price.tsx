@@ -108,9 +108,8 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <div className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : 'price-container'}>
+    <div className={'price-container'}>
       {/* StrikedAmount Price */}
-
       {strikedAmount && (
         <>
           <span
@@ -136,34 +135,36 @@ const Price = ({
           </span>
         </>
       )}
-      <span
-        data-testid={testId}
-        aria-label={accessibilityLabel}
-        className={classes}
-        {...others}
-      >
-        {overline && <span className='price-suptitle'>{overline}</span>}
-        <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
-        <span className={hashClass(styled, clsx("price-details"))}>
-          <span className={hashClass(styled, clsx("cents"))}>
-            {inline && centsDisplayed === "€" ? (
-              <>&nbsp;{centsDisplayed}</>
-            ) : (
-              centsDisplayed
+      <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
+        <span
+          data-testid={testId}
+          aria-label={accessibilityLabel}
+          className={classes}
+          {...others}
+        >
+          {overline && <span className='price-suptitle'>{overline}</span>}
+          <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
+          <span className={hashClass(styled, clsx("price-details"))}>
+            <span className={hashClass(styled, clsx("cents"))}>
+              {inline && centsDisplayed === "€" ? (
+                <>&nbsp;{centsDisplayed}</>
+              ) : (
+                centsDisplayed
+              )}
+              {mention && <sup>{mention}</sup>}
+            </span>
+            {period && (
+              <span className={hashClass(styled, clsx("period"))}>/{period}</span>
             )}
-            {mention && <sup>{mention}</sup>}
           </span>
-          {period && (
-            <span className={hashClass(styled, clsx("period"))}>/{period}</span>
-          )}
         </span>
+        {tagAmount && (
+          <span className={hashClass(styled, clsx(('price-tag')))}>
+            <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
+            {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
+          </span>
+        )}
       </span>
-      {tagAmount && (
-        <span className={hashClass(styled, clsx(('price-tag')))}>
-          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
-          {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
-        </span>
-      )}
     </div>
   )
 

@@ -19,6 +19,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        // overline="From"
         strikedAmount={10.99}
         level={1}
         amount={24.99}

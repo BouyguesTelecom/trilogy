@@ -10,6 +10,7 @@ $price-levels: (
 
 .price-container {
   > .price:first-child {
+    align-items: baseline;
     margin-right: 10px;
   }
 }
