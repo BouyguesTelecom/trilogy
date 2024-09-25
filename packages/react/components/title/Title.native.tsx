@@ -7,6 +7,7 @@ import { TitleProps } from "./TitleProps"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
+import { TitleLevels } from "./TitleEnum"
 
 /**
  * Title Native Component
@@ -38,17 +39,17 @@ const Title = ({
   const statesContext = useContext(StatesContext)
   const titlesLevels = () => {
     switch (level) {
-      case "ONE":
+      case TitleLevels.ONE:
         return 32
-      case "TWO":
+      case TitleLevels.TWO:
         return 28
-      case "THREE":
+      case TitleLevels.THREE:
         return 22
-      case "FOUR":
+      case TitleLevels.FOUR:
         return 20
-      case "FIVE":
+      case TitleLevels.FIVE:
         return 18
-      case "SIX":
+      case TitleLevels.SIX:
         return 16
       default:
         return 16
@@ -68,7 +69,7 @@ const Title = ({
     }
   }
   const getFontFamily = () => {
-    if (level && ["ONE", "TWO"].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
+    if (level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
       return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
   }
 

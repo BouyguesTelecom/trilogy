@@ -13,7 +13,7 @@ export enum TitleLevels {
 /**
  * Titles size values
  */
-export type TitleLevelValues = `${TitleLevels}`
+export type TitleLevelValues = TitleLevels
 
 export enum TitleMarkup {
   H1 = 'h1',
