@@ -7,6 +7,7 @@ import { Alignable, TypographyColor, TypographyBold } from "@/objects"
 import { checkCents } from "./PriceHelpers"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+import { PriceLevel } from "./PriceEnum"
 
 /**
  * Price Component
@@ -66,7 +67,7 @@ const Price = ({
     styled,
     clsx(
       "price",
-      level && is(`level-${level}`),
+      level && level == PriceLevel.ONE && is(`level-3`) || level == PriceLevel.TWO && is(`level-4`) || level == PriceLevel.THREE && is(`level-5`) || is(`level-6`),
       inverted && is("inverted"),
       inline && is("inlined"),
       strikedAmount && is("striked"),
