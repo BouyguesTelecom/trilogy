@@ -21,7 +21,7 @@ const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.L
     undone,
     cancel,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
   const classes = hashClass(
@@ -36,6 +36,6 @@ const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.L
     )
   )
   return <div ref={ref} className={classes} {...others} />
-}) 
+})
 
 export default TimelineItem

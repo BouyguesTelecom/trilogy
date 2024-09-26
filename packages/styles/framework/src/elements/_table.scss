@@ -21,12 +21,12 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getFadeColor('neutral');
+    background-color: getColor('neutral-fade');
   }
 
   td,
   th {
-    border: 1px solid getFadeColor('neutral');
+    border: 1px solid getColor('neutral-fade');
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid getFadeColor('neutral');
+      border-bottom: 1px solid getColor('neutral-fade');
 
       > p {
         margin: 0;
@@ -97,7 +97,7 @@
     &.is-expanded,
     &.is-expandable:hover {
       td {
-        color: getColor('alternate');
+        color: getColor('accent');
         cursor: pointer;
       }
     }
@@ -155,12 +155,12 @@
 
   &:not(.is-bordered).is-comparative {
     th {
-      border-right: 1px solid getFadeColor('neutral');
+      border-right: 1px solid getColor('neutral-fade');
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getFadeColor('neutral');
+        border-right: 1px solid getColor('neutral-fade');
       }
     }
   }
@@ -196,14 +196,14 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getFadeColor('neutral');
+          background-color: getColor('neutral-fade');
         }
       }
     }
   }
 
   .subtable {
-    background-color: getFadeColor('neutral');
+    background-color: getColor('neutral-fade');
     border-radius: var(--radius);
     padding: $box-padding * 2;
 

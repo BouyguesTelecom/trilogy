@@ -56,7 +56,7 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
     <section
       ref={ref}
       {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})`},
+        style: { backgroundImage: `url(${backgroundSrc})` },
       })}
       className={_className}
       {...others}

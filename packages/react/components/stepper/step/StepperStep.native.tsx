@@ -22,7 +22,7 @@ const StepperStep = ({
                        ...others
                      }: StepperStepProps): JSX.Element => {
 
-  const defaultColor = getColorStyle(TrilogyColor.FONT, 1)
+  const defaultColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
   const errorColor = getColorStyle(TrilogyColor.ERROR)
   const backgroundColorAnim = React.useRef(new Animated.Value(0)).current

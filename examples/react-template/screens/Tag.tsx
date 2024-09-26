@@ -95,6 +95,10 @@ export const TagScreen = (): JSX.Element => {
           Tag info
         </Tag>
       </Section>
+
+      <Section>
+        <Tag deletable >Tag Deletable</Tag>
+      </Section>
     </>
   );
 };

@@ -23,7 +23,7 @@
     height: 4px;
     border-radius: var(--radius-small);
     background-size: 200% !important;
-    background-color: getFadeColor('neutral');
+    background-color: getColor('neutral-fade');
   }
 
   &.is-error {

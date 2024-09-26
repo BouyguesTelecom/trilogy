@@ -12,7 +12,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderRadius: 3,
-      borderColor: getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: getColorStyle(TrilogyColor.MAIN_FADE),
       width: '100%',
       maxHeight: 165,
       flexGrow: 1,

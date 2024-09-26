@@ -89,7 +89,7 @@ export const BoxScreen = (): JSX.Element => {
           </BoxContent>
         </Box>
 
-        <Box background={{ color: TrilogyColor.MAIN, fade: true }}>
+        <Box backgroundColor={TrilogyColor.MAIN_FADE}>
           <BoxHeader>Box with Header and Content</BoxHeader>
           <BoxContent>
             <Text>Background color is faded.</Text>
@@ -99,7 +99,7 @@ export const BoxScreen = (): JSX.Element => {
           </BoxFooter>
         </Box>
 
-        <Box background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+        <Box backgroundColor={{ color: TrilogyColor.SUCCESS, fade: true }}>
           <BoxContent>
             <Title level={TitleLevels.FOUR}>Simple box</Title>
             <Text>
