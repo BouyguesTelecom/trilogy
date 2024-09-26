@@ -7,9 +7,10 @@ import {
   Title,
   TitleLevels,
   Spacer,
-  SpacerSize
+  SpacerSize,
+  View
 } from "@trilogy-ds/react/components";
-import { Alignable } from "@trilogy-ds/react/objects";
+import { Alignable, TrilogyColor, colors } from "@trilogy-ds/react/objects";
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -283,7 +284,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <div className="has-background-main">
+      <Section backgroundColor={{color: TrilogyColor.NEUTRAL, fade: true}}>
         <Price
           inverted
           level={PriceLevel.ONE}
@@ -302,7 +303,7 @@ export const PriceScreen = (): JSX.Element => {
           period="months"
           showCents
         />
-      </div>
+      </Section>
 
       <Divider />
 
