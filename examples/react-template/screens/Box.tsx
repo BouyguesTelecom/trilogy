@@ -137,7 +137,7 @@ export const BoxScreen = (): JSX.Element => {
         </Box>
 
         <Box
-          backgroundColor={TrilogyColor.INFO_FADE}
+          backgroundColor={TrilogyColor.INFO}
           flat
           inverted
         >
