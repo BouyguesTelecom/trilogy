@@ -34,8 +34,8 @@ const Switch = ({
   }, [checked, readonly])
 
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
-  const backgroundColorOff = getColorStyle(TrilogyColor.FONT, 1)
-  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED, 1)
+  const backgroundColorOff = getColorStyle(TrilogyColor.MAIN_FADE)
+  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED_FADE)
   const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
@@ -52,7 +52,7 @@ const Switch = ({
         false: disabled ? backgroundColorDisabled : backgroundColorOff,
         true: disabled
           ? backgroundColorDisabled
-          : (status && getStatusStyle(status)) || defaultColor,
+          : getStatusStyle(status).color,
       }}
       thumbColor={thumbColor}
       ios_backgroundColor={

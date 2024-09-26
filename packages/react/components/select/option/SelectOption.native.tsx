@@ -28,7 +28,7 @@ const SelectOption = ({
     () =>
       StyleSheet.create({
         container: {
-          backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) || undefined,
+          backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || undefined,
         },
       }),
     [disabled],

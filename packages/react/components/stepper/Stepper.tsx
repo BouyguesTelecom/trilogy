@@ -17,7 +17,7 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
     centered,
     children,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 
@@ -73,5 +73,5 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
     </div>
   )
 
-}) 
+})
 export default Stepper

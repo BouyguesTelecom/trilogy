@@ -85,19 +85,19 @@ const Radio = ({
       width: 126,
       borderWidth: (_checked && 2) || 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
     tileDescription: {
       color: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : getColorStyle(TrilogyColor.MAIN),
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
@@ -108,12 +108,12 @@ const Radio = ({
       height: "auto",
       borderWidth: (_checked && 2) || 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
   })

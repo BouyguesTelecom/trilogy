@@ -35,12 +35,12 @@ const ProgressRadial = ({
   skeleton,
   ...others
 }: ProgressRadialProps): JSX.Element => {
-  const color = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor = getColorStyle(TrilogyColor.FONT, 1)
+  const color = getColorStyle(status || TrilogyColor.MAIN)
+  const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = percent || 0
   const secondFill = secondPercent ? { secondFill: secondPercent } : null
   const secondFillColor = secondStatus
-    ? { secondFillTintColor: getStatusStyle(secondStatus) }
+    ? { secondFillTintColor: getColorStyle(secondStatus) }
     : null
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
@@ -84,7 +84,7 @@ const ProgressRadial = ({
       width: progressRadialWidth,
       height: progressRadialWidth,
       borderRadius: progressRadialSkeletonRadius,
-      backgroundColor: getColorStyle(TrilogyColor.DISABLED, 1),
+      backgroundColor: getColorStyle(TrilogyColor.DISABLED_FADE),
       overflow: "hidden",
     },
   })

@@ -21,7 +21,7 @@ const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTML
     centered,
     marginless,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

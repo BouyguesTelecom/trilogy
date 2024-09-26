@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { ContainerProps } from "./ContainerProps"
-import { getBackgroundStyle, getColorStyle, StickyPosition, TrilogyColor, } from "@/objects"
+import { getColorStyle, StickyPosition, TrilogyColor, } from "@/objects"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
@@ -47,13 +47,13 @@ const Container = ({
         "stretch",
       justifyContent: verticalCentered ? "center" : "flex-start",
       flex: verticalCentered ? 1 : 0,
-      backgroundColor: backgroundColor && getBackgroundStyle(backgroundColor),
+      backgroundColor: backgroundColor && getColorStyle(backgroundColor),
     },
 
     stickyTop: {
       position: "absolute",
       backgroundColor: backgroundColor
-        ? getBackgroundStyle(backgroundColor)
+        ? getColorStyle(backgroundColor)
         : getColorStyle(TrilogyColor.BACKGROUND),
       left: 0,
       right: 0,
@@ -63,7 +63,7 @@ const Container = ({
     },
     stickyBottom: {
       backgroundColor: backgroundColor
-        ? getBackgroundStyle(backgroundColor)
+        ? getColorStyle(backgroundColor)
         : getColorStyle(TrilogyColor.BACKGROUND),
       width: "100%",
       position: "absolute",

@@ -3,11 +3,10 @@ import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getStatusStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getStatusStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
-import { getTypographyBoldStyle } from "@/objects"
 
 /**
  * Price Component
@@ -76,10 +75,10 @@ const Price = ({
     () =>
       (inverted && !striked && invertedColor) ||
       (statesContext.inverted && invertedColor) ||
-      (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
+      (inverted && striked && getColorStyle(TrilogyColor.MAIN_FADE)) ||
       (!striked && !inverted && primaryColor) ||
       (!striked && !inverted && secondaryColor) ||
-      (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
+      (striked && !inverted && getColorStyle(TrilogyColor.MAIN_FADE)) ||
       primaryColor,
     [inverted, striked]
   )

@@ -61,7 +61,7 @@ export const CardScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
         <ColumnsItem>
-          <Card background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+          <Card background={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -269,7 +269,7 @@ export const CardScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
         <ColumnsItem>
-          <Card background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+          <Card background={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
