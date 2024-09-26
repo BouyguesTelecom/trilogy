@@ -108,7 +108,6 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <>
     <div className={'price-container'}>
       {overline && <p className="overline">{overline}</p>}
       {/* StrikedAmount Price */}
@@ -143,7 +142,6 @@ const Price = ({
           className={classes}
           {...others}
         >
-          {/* {overline && <span className='price-suptitle'>{overline}</span>} */}
           <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
           <span className={hashClass(styled, clsx("price-details"))}>
             <span className={hashClass(styled, clsx("cents"))}>
@@ -166,7 +164,6 @@ const Price = ({
           </span>
         )}
     </div>
-    </>
   )
 
   if (align) {
