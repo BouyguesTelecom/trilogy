@@ -18,13 +18,15 @@ $price-levels: (
     width: 100%;
     flex: none;
     margin: 0;
+    --font-size: #{$text-64};
+    font-size: calc(var(--font-size) * 0.4);
 
     @each $price-level in $price-levels {
       $i: index($price-levels, $price-level);
       $font-size: nth($price-level, 1);
 
-      &:has(~ .price.is-level-#{$i}) {
-        font-size: calc($font-size * 0.5);
+      &:has(~ .price.is-level-#{$i}:not(.is-striked)) {
+        --font-size: #{$font-size};
       }
     }
   }

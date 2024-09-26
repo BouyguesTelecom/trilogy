@@ -19,7 +19,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        overline="From"
+        overline="A partir de"
         strikedAmount={10.99}
         level={1}
         amount={24.99}
@@ -30,6 +30,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={2}
         amount={24.99}
@@ -38,6 +39,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={3}
         amount={24.99}
@@ -46,6 +48,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={4}
         amount={24.99}
@@ -54,6 +57,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={5}
         amount={24.99}
@@ -62,6 +66,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={6}
         amount={24.99}
@@ -70,6 +75,7 @@ export const PriceScreen = (): JSX.Element => {
       />
 
       <Price
+        overline="A partir de"
         strikedAmount={10.99}
         level={7}
         amount={24.99}
@@ -82,6 +88,7 @@ export const PriceScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
       <Price
+        overline="A partir de"
         level={1}
         amount={24.99}
         showCents
@@ -93,6 +100,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={2}
         amount={24.99}
         showCents
@@ -104,6 +112,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={3}
         amount={24.99}
         showCents
@@ -115,6 +124,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={4}
         amount={24.99}
         showCents
@@ -126,6 +136,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={5}
         amount={24.99}
         showCents
@@ -137,6 +148,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={6}
         amount={24.99}
         showCents
@@ -148,13 +160,13 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
+        overline="A partir de"
         level={7}
         amount={24.99}
         showCents
         period={'mois'}
         tagAmount={10}
         tagSymbol={'€'}
-        overline="A partir de"
       />
 
       <Spacer size={SpacerSize.MEDIUM} />
