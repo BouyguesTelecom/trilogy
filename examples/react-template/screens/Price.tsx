@@ -19,7 +19,7 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.SMALL} />
 
       <Price
-        // overline="From"
+        overline="From"
         strikedAmount={10.99}
         level={1}
         amount={24.99}
@@ -154,6 +154,7 @@ export const PriceScreen = (): JSX.Element => {
         period={'mois'}
         tagAmount={10}
         tagSymbol={'€'}
+        overline="A partir de"
       />
 
       <Spacer size={SpacerSize.MEDIUM} />

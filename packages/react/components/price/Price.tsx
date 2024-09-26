@@ -108,7 +108,9 @@ const Price = ({
     "€"
 
   const returnComponent = (
+    <>
     <div className={'price-container'}>
+      {overline && <p className="overline">{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
         <>
@@ -135,14 +137,13 @@ const Price = ({
           </span>
         </>
       )}
-      <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
         <span
           data-testid={testId}
           aria-label={accessibilityLabel}
           className={classes}
           {...others}
         >
-          {overline && <span className='price-suptitle'>{overline}</span>}
+          {/* {overline && <span className='price-suptitle'>{overline}</span>} */}
           <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
           <span className={hashClass(styled, clsx("price-details"))}>
             <span className={hashClass(styled, clsx("cents"))}>
@@ -164,8 +165,8 @@ const Price = ({
             {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
           </span>
         )}
-      </span>
     </div>
+    </>
   )
 
   if (align) {
