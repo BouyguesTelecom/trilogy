@@ -1,4 +1,4 @@
-import { getColorClassName, getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
+import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import { Invertable } from "@/objects/facets"
 
 /**

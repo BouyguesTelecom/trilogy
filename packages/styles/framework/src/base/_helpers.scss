@@ -197,7 +197,7 @@ $alignments: (
 
 @mixin typography-colors() {
   @each $name, $color in $colors {
-    $brandName: nth($color, 3);
+    $brandName: nth($color, 2);
     $color: nth($color, 1);
     $color-invert: invertColor($name);
 

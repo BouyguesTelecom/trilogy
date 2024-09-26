@@ -1,5 +1,5 @@
 .is-inverted {
-  color: #{getColor('background')};
+  color: getColor('background');
 }
 
 .is-inverted .is-base {
