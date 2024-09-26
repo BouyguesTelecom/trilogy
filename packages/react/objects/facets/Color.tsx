@@ -63,7 +63,7 @@ export const colors: Record<any, string[]> = {
  */
 export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
   const color = colors[trilogyColor]
-  return color[2]
+  return color[1]
 }
 
 /**
