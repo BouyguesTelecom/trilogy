@@ -9,10 +9,9 @@ $price-levels: (
 );
 
 .price-container {
-  > .price:first-child {
-    align-items: baseline;
-    margin-right: 10px;
-  }
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .price {
