@@ -11,7 +11,23 @@ $price-levels: (
 .price-container {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  column-gap: 12px;
+  flex-wrap: wrap;
+
+  .overline {
+    width: 100%;
+    flex: none;
+    margin: 0;
+
+    @each $price-level in $price-levels {
+      $i: index($price-levels, $price-level);
+      $font-size: nth($price-level, 1);
+
+      &:has(~ .price.is-level-#{$i}) {
+        font-size: calc($font-size * 0.5);
+      }
+    }
+  }
 }
 
 .price {
@@ -128,17 +144,6 @@ $price-levels: (
     color: getColor('background');
   }
 
-  &.has-suptitle {
-    display: flex;
-    flex-wrap: wrap;
-
-    .price-suptitle {
-      margin-bottom: 4px;
-      flex-basis: 100%;
-      font-size: 0.375em;
-    }
-  }
-
   &.has-description {
     .cents,
     .centimes {
@@ -198,20 +203,11 @@ $price-levels: (
         border-color: getColor('background');
       }
     }
-
-    &.has-suptitle {
-      display: inline-flex;
-      margin-top: 0.55em;
-
-      .price-suptitle {
-        position: absolute;
-        top: -1.4em;
-      }
-    }
   }
 }
 
 .price-tag {
+  align-self: center;
   background-color: getColor('alternate');
   margin-left: 10px;
   border-radius: 6px;
@@ -223,6 +219,7 @@ $price-levels: (
   line-height: 1em;
   align-items: baseline;
   position: relative;
+  margin-left: -4px;
   &::before {
     content: '';
     border-color: transparent;
