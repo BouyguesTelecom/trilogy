@@ -54,8 +54,8 @@ const STATUS_COLORS = {
   DEFAULT: { color: TrilogyColor.MAIN, backgroundColor: TrilogyColor.MAIN_FADE },
 }
 
-export const getStatusStyle = (statusType?: string): { color: string, backgroundColor: string} => {
-  const colors = STATUS_COLORS[statusType as keyof typeof STATUS_COLORS] || STATUS_COLORS.DEFAULT
+export const getStatusStyle = (statusType?: keyof typeof STATUS_COLORS): { color: string, backgroundColor: string} => {
+  const colors = STATUS_COLORS[statusType || 'DEFAULT']
   return {
     color: getColorStyle(colors.color),
     backgroundColor: getColorStyle(colors.backgroundColor),
