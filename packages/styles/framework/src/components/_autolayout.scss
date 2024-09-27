@@ -1,265 +1,49 @@
 body:not(.is-tight) {
-  .title + .icon {
-    margin-top: 16px;
+  .accordion + * {
+    margin-bottom: 24px;
   }
-  .title + .box {
-    margin-top: 24px;
+  .card + * {
+    margin-bottom: 24px;
   }
-  .title + .card {
-    margin-top: 24px;
+  .box + * {
+    margin-bottom: 24px;
   }
-  .title + .subtitle {
-    margin-top: 12px;
+  .table + * {
+    margin-bottom: 24px;
   }
-  .title + .text.is-level-1 {
-    margin-top: 16px;
+  .list + * {
+    margin-bottom: 24px;
   }
-  .title + .text.is-level-2 {
-    margin-top: 8px;
+  .timeline + * {
+    margin-bottom: 24px;
   }
-  .title + .text.is-level-3 {
-    margin-top: 4px;
-  }
-  .title + .rows {
-    margin-top: 24px;
-  }
-  .title + .button {
-    margin-top: 24px;
-  }
-  .title + .input {
-    margin-top: 24px;
-  }
-  .title + * {
-    margin-top: 24px;
-  }
-  .title.is-level-1 + .section {
-    margin-top: 40px;
-  }
-  .title.is-level-1 + .subtitle {
-    margin-top: 12px;
-  }
-  .title.is-level-1 + .text {
-    margin-top: 16px;
-  }
-  .title.is-level-1 + .title {
-    margin-top: 0px;
-  }
-  .title.is-level-1 + .slider {
-    margin-top: 40px;
-  }
-  .title.is-level-1 + .slider {
-    margin-top: 40px;
-  }
-  .title.is-level-2 + .subtitle {
-    margin-top: 12px;
-  }
-  .title.is-level-2 + .section {
-    margin-top: 40px;
-  }
-  .title.is-level-2 + .text {
-    margin-top: 40px;
-  }
-  .list + .list {
-    margin-top: 24px;
-  }
-  .card + .card {
-    margin-top: 24px;
-  }
-  .section + .section {
-    margin-top: 48px;
-  }
-  .input + .input {
-    margin-top: 24px;
-  }
-  .rows + .rows {
-    margin-top: 32px;
-  }
-  .button + .button {
-    margin-top: 16px;
-  }
-  .checkbox + .checkbox {
-    margin-top: 16px;
-  }
-  .tiles + .tiles {
-    margin-top: 8px;
-  }
-  .link + .link {
-    margin-top: 16px;
-  }
-  .switch + .text {
-    margin-top: 24px;
-  }
-  .radio + .radio {
-    margin-top: 16px;
-  }
-  .box + .title {
-    margin-top: 32px;
-  }
-  .accordions + .link {
-    margin-top: 24px;
-  }
-  .box + .box {
-    margin-top: 24px;
-  }
-  .box + .link {
-    margin-top: 24px;
-  }
-  .box + .button {
-    margin-top: 24px;
-  }
-  .text + .box {
-    margin-top: 24px;
-  }
-  .text + * {
-    margin-top: 24px;
-  }
-  .text.is-level-1.has-text-semibold + .text {
-    margin-top: 16px;
-  }
-  .text.is-level-2.has-text-semibold + .text {
-    margin-top: 8px;
-  }
-  .text.is-level-3.has-text-semibold + .text {
-    margin-top: 4px;
-  }
-  .text.is-level-1 + .section {
-    margin-top: 48px;
-  }
-  .text.is-level-1 + .button {
-    margin-top: 24px;
+  .stepper + * {
+    margin-bottom: 24px;
   }
 }
 
 @include mobile() {
   body:not(.is-tight) {
-    .title + .icon {
-      margin-top: 8px;
+    .accordion + * {
+      margin-bottom: 16px;
     }
-  .title + .box {
-      margin-top: 16px;
+  .card + * {
+      margin-bottom: 16px;
     }
-  .title + .card {
-      margin-top: 16px;
+  .box + * {
+      margin-bottom: 16px;
     }
-  .title + .subtitle {
-      margin-top: 12px;
+  .table + * {
+      margin-bottom: 16px;
     }
-  .title + .text.is-level-1 {
-      margin-top: 16px;
+  .list + * {
+      margin-bottom: 16px;
     }
-  .title + .text.is-level-2 {
-      margin-top: 8px;
+  .timeline + * {
+      margin-bottom: 16px;
     }
-  .title + .text.is-level-3 {
-      margin-top: 4px;
-    }
-  .title + .rows {
-      margin-top: 24px;
-    }
-  .title + .button {
-      margin-top: 24px;
-    }
-  .title + .input {
-      margin-top: 24px;
-    }
-  .title + * {
-      margin-top: 24px;
-    }
-  .title.is-level-1 + .section {
-      margin-top: 40px;
-    }
-  .title.is-level-1 + .subtitle {
-      margin-top: 12px;
-    }
-  .title.is-level-1 + .text {
-      margin-top: 12px;
-    }
-  .title.is-level-1 + .title {
-      margin-top: 0px;
-    }
-  .title.is-level-1 + .slider {
-      margin-top: 32px;
-    }
-  .title.is-level-1 + .slider {
-      margin-top: 32px;
-    }
-  .title.is-level-2 + .subtitle {
-      margin-top: 12px;
-    }
-  .title.is-level-2 + .section {
-      margin-top: 32px;
-    }
-  .title.is-level-2 + .text {
-      margin-top: 32px;
-    }
-  .list + .list {
-      margin-top: 16px;
-    }
-  .card + .card {
-      margin-top: 16px;
-    }
-  .section + .section {
-      margin-top: 32px;
-    }
-  .input + .input {
-      margin-top: 24px;
-    }
-  .rows + .rows {
-      margin-top: 24px;
-    }
-  .button + .button {
-      margin-top: 12px;
-    }
-  .checkbox + .checkbox {
-      margin-top: 8px;
-    }
-  .tiles + .tiles {
-      margin-top: 8px;
-    }
-  .link + .link {
-      margin-top: 16px;
-    }
-  .switch + .text {
-      margin-top: 16px;
-    }
-  .radio + .radio {
-      margin-top: 8px;
-    }
-  .box + .title {
-      margin-top: 24px;
-    }
-  .accordions + .link {
-      margin-top: 24px;
-    }
-  .box + .box {
-      margin-top: 16px;
-    }
-  .box + .link {
-      margin-top: 24px;
-    }
-  .box + .button {
-      margin-top: 24px;
-    }
-  .text + .box {
-      margin-top: 24px;
-    }
-  .text + * {
-      margin-top: 24px;
-    }
-  .text.is-level-1.has-text-semibold + .text {
-      margin-top: 16px;
-    }
-  .text.is-level-2.has-text-semibold + .text {
-      margin-top: 8px;
-    }
-  .text.is-level-3.has-text-semibold + .text {
-      margin-top: 4px;
-    }
-  .text.is-level-1 + .section {
-      margin-top: 32px;
-    }
-  .text.is-level-1 + .button {
-      margin-top: 24px;
+  .stepper + * {
+      margin-bottom: 16px;
     }
 
   }

@@ -314,14 +314,14 @@ const Input = ({
       {!dynamicPlaceholder && label && (
         <>
           <Text typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 
       {!dynamicPlaceholder && label && sample && (
         <>
           <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 
