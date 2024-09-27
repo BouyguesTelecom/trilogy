@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
+import { Spacer, SpacerSize } from "@/components/spacer"
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
 import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
@@ -90,7 +91,6 @@ const Price = ({
     20
 
   const centsLevelStriked = priceLevelStriked * 0.4
-  const suptitleLevelStriked = priceLevelStriked * 0.2
 
   const color = useMemo(
     () =>
@@ -311,6 +311,7 @@ const Price = ({
                   </View>
                 </View>
               )}
+              {amount && strikedAmount && <Spacer horizontal size={SpacerSize.SMALLER} />}
               {amount && (
                 <View style={[{ flexDirection: "row" }]}>
                   <View style={[styles.priceContainer, style?.priceContainer]}>
