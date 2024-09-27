@@ -120,7 +120,7 @@ $tag-delete-margin: 1px !default;
 
   @each $name in $colors-feedback {
     &.is-#{$name}:not(.is-inverted) {
-      background-color: getFadeColor($name);
+      background-color: fadeColor($name);
     }
     &.is-inverted.is-#{$name} {
       color: getColor($name);

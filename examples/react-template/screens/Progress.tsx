@@ -77,7 +77,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <ProgressRadial percent={30} secondPercent={30} secondStatus={TrilogyColor.SUCCESS}  small>
           <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>60</Text>
-          <Text  level={TextLevels.FOUR} marginless>/ 100 Go</Text>
+          <Text level={TextLevels.FOUR} marginless>/ 100 Go</Text>
         </ProgressRadial>
 
         <Title level={TitleLevels.THREE}>Vide : </Title>

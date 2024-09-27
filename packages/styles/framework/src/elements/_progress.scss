@@ -40,7 +40,7 @@ $progressbar-small: 5px;
   }
 
   // Colors
-  @each $name in $colors-brand-funcionnal {
+  @each $name in $colors-brand-functionnal {
     $brandName: getColorBrandName($name);
     $color: getColor($name);
 
@@ -81,7 +81,7 @@ $progressbar-small: 5px;
       border-radius: 0 $progressbar-height $progressbar-height 0;
     }
 
-    @each $name in $colors-brand-funcionnal {
+    @each $name in $colors-brand-functionnal {
       $color: getColor($name);
       $color-invert: invertColor($name);
       $brandName: getColorBrandName($name);

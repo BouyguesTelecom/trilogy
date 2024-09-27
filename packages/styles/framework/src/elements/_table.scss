@@ -56,7 +56,7 @@
   tr {
     @each $name in $colors-feedback {
       &.is-#{$name} {
-        background-color: getFadeColor($name);
+        background-color: fadeColor($name);
       }
     }
 

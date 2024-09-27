@@ -14,10 +14,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param contain {boolean} Resize mode contain
  */
 const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImageProps): JSX.Element => {
-  const { horizontal } = useContext(CardContext)
+  const { horizontal, reversed, active } = useContext(CardContext)
   const maxSize = horizontal ? '50%' : '100%'
   const [ratio, setRatio] = useState(1)
-  const cardContextValues = useContext(CardContext)
+
+
+  const getBorderRadius = (isHorizontal: boolean, isReversed: boolean, isActive: boolean) => ({
+    borderBottomRightRadius: (isHorizontal && 1) || (isReversed && 8) || 0,
+    borderBottomLeftRadius: (isHorizontal && 8) || (isReversed && 8) || 0,
+    borderTopRightRadius: (isHorizontal && 1) || (isReversed && 1) || (isActive && 5) || 8,
+    borderTopLeftRadius: (isHorizontal && 1) || (isReversed && 1) || (isActive && 5) || 8,
+  })
 
   const styles = StyleSheet.create({
     cardImage: {
@@ -26,15 +33,12 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
       resizeMode: contain ? 'contain' : 'cover',
       alignSelf: contain ? 'flex-end' : 'auto',
       marginBottom: 0,
-      borderBottomRightRadius: (cardContextValues.horizontal && 1) || (cardContextValues.reversed && 8) || 0,
-      borderBottomLeftRadius: (cardContextValues.horizontal && 8) || (cardContextValues.reversed && 8) || 0,
-      borderTopRightRadius: (cardContextValues.horizontal && 1) || (cardContextValues.reversed && 1) || (cardContextValues.active && 5) || 8,
-      borderTopLeftRadius: (cardContextValues.horizontal && 1) || (cardContextValues.reversed && 1) || (cardContextValues.active && 5) || 8,
+      ...getBorderRadius(horizontal, reversed, active),
     },
   })
 
   useEffect(() => {
-    if (!cardContextValues.horizontal) {
+    if (!horizontal) {
       typeof src === 'string'
         ? Image.getSize(
             src,

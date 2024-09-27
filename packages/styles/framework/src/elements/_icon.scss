@@ -71,7 +71,7 @@ $size: (
         max-width: 100%;
     }
 
-    @each $name, $pair in $colors-brand-funcionnal {
+    @each $name, $pair in $colors-brand-functionnal {
       $color: getColor($name);
       $brandName: getColorBrandName($name);
 

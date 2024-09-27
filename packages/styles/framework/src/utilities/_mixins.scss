@@ -340,7 +340,7 @@
 }
 
 @mixin apply-colors($property: 'color') {
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $brandName: getColorBrandName($name);
     &.is-#{$brandName} {
@@ -419,7 +419,7 @@
       &:disabled:checked {
         & ~ label.#{$type}-label {
           &:after {
-            background-color: getFadeColor('disabled');
+            background-color: getColor('disabled-fade');
           }
         }
       }

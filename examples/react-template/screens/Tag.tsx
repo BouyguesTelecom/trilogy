@@ -32,7 +32,7 @@ export const TagScreen = (): JSX.Element => {
 
       <Container>
         <Title level={TitleLevels.THREE}>Tag default</Title>
-        <Divider />
+        <Divider/>
         <Text>In list</Text>
         <TagList>
           <Tag variant={TagVariant.ERROR}>Tag error</Tag>
@@ -44,7 +44,7 @@ export const TagScreen = (): JSX.Element => {
 
       <Container>
         <Title level={TitleLevels.THREE}>Tag avec icone</Title>
-        <Divider />
+        <Divider/>
         <TagList>
           <Tag
             iconName={IconName.EXCLAMATION_CIRCLE}
@@ -67,7 +67,7 @@ export const TagScreen = (): JSX.Element => {
 
       <Container>
         <Title level={TitleLevels.THREE}>Small tag</Title>
-        <Divider />
+        <Divider/>
         <Tag small variant={TagVariant.ERROR}>
           Tag error
         </Tag>
@@ -81,7 +81,7 @@ export const TagScreen = (): JSX.Element => {
 
       <Section>
         <Title level={TitleLevels.THREE}>Inverted tag</Title>
-        <Divider />
+        <Divider/>
         <Tag inverted variant={TagVariant.ERROR}>
           Tag error
         </Tag>
@@ -97,7 +97,15 @@ export const TagScreen = (): JSX.Element => {
       </Section>
 
       <Section>
-        <Tag deletable >Tag Deletable</Tag>
+        <Title level={TitleLevels.THREE}>Deletable Tags</Title>
+        <Divider/>
+        <TagList>
+          <Tag deletable>Tag Deletable</Tag>
+          <Tag deletable variant={TagVariant.ERROR}>Deletable Error</Tag>
+          <Tag deletable variant={TagVariant.SUCCESS}>Deletable Success</Tag>
+          <Tag deletable variant={TagVariant.WARNING}>Deletable Warning</Tag>
+          <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
+        </TagList>
       </Section>
     </>
   );
