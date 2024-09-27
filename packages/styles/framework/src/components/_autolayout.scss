@@ -20,6 +20,18 @@ body:not(.is-tight) {
   .stepper + * {
     margin-bottom: 24px;
   }
+  .pagination + * {
+    margin-bottom: 24px;
+  }
+  .segmented-control + * {
+    margin-bottom: 24px;
+  }
+  .tabs + * {
+    margin-bottom: 24px;
+  }
+  .range + * {
+    margin-bottom: 24px;
+  }
 }
 
 @include mobile() {
@@ -43,6 +55,18 @@ body:not(.is-tight) {
       margin-bottom: 16px;
     }
   .stepper + * {
+      margin-bottom: 16px;
+    }
+  .pagination + * {
+      margin-bottom: 16px;
+    }
+  .segmented-control + * {
+      margin-bottom: 16px;
+    }
+  .tabs + * {
+      margin-bottom: 16px;
+    }
+  .range + * {
       margin-bottom: 16px;
     }
 

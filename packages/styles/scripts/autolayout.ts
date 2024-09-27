@@ -15,7 +15,11 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'List', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'Timeline', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'Stepper', 'default', FIVE, FOUR],
-
+  [INSERT_SPACE_BETWEEN, 'Pagination', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Segmented-Control', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Tabs', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Range', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Stepper', 'default', FIVE, FOUR],
 
   // [INSERT_SPACE_BETWEEN, 'title', 'box', FIVE, FOUR],
   // [INSERT_SPACE_BETWEEN, 'title', 'card', FIVE, FOUR],
