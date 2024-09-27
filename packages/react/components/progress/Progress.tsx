@@ -3,7 +3,7 @@ import { ProgressProps } from "./ProgressProps"
 import { is, has } from "@/services/index"
 import { Text, TextLevels } from "../text"
 import { Columns, ColumnsItem } from "../columns"
-import { getAlertClassName } from "@/objects"
+import { getStatusClassName } from "@/objects"
 import { hashClass } from "@/helpers"
 import clsx from "clsx"
 import { useTrilogyContext } from "@/context"
@@ -13,7 +13,7 @@ import { useTrilogyContext } from "@/context"
  * @param children {ReactNode} Use Children it only if stacked progress
  * @param percent {number} Progress percent
  * @param maxPercent {number} Default max percent is 100
- * @param alert {AlertState} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
+ * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param small {boolean} Small progress
  * @param stacked {boolean} Stacked progress
  * @param uniqueLegend {string} Unique legend
@@ -22,27 +22,29 @@ import { useTrilogyContext } from "@/context"
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const Progress = ({
-  children,
-  className,
-  percent,
-  maxPercent = 100,
-  alert,
-  small,
-  stacked,
-  uniqueLegend,
-  firstExtremLegend,
-  secondExtremLegend,
-  ...others
-}: ProgressProps): JSX.Element => {
+const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    children,
+    className,
+    percent,
+    maxPercent = 100,
+    status,
+    small,
+    stacked,
+    uniqueLegend,
+    firstExtremLegend,
+    secondExtremLegend,
+    ...others
+  } = props 
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
     clsx(
       "progress",
-      alert && is(getAlertClassName(alert)),
-      !alert && is("primary"),
+      status && is(getStatusClassName(status)),
+      !status && is("primary"),
       small && is("small"),
       className
     )
@@ -55,7 +57,7 @@ const Progress = ({
 
   if (children && stacked) {
     return (
-      <div className={stackedClasses} {...others}>
+      <div ref={ref} className={stackedClasses} {...others}>
         {children}
       </div>
     )
@@ -88,6 +90,7 @@ const Progress = ({
       )}
     </>
   )
-}
+
+})
 
 export default Progress

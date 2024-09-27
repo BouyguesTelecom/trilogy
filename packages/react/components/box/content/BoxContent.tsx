@@ -9,7 +9,7 @@ import { useTrilogyContext } from "@/context"
 /**
  * Box Content
  * @param children {React.ReactNode} Box Content Children
- * @param background {TrilogyColor} Box Content Background Color
+ * @param backgroundColor {TrilogyColor} Box Content Background Color
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param testId test id
@@ -17,7 +17,7 @@ import { useTrilogyContext } from "@/context"
 const BoxContent = ({
   children,
   className,
-  background,
+  backgroundColor,
   testId,
   ...others
 }: BoxContentProps): JSX.Element => {
@@ -27,7 +27,7 @@ const BoxContent = ({
     styled,
     clsx(
       "box-content",
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       className
     )
   )

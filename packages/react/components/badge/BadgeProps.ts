@@ -1,5 +1,5 @@
 import { Clickable } from '@/objects/facets/Clickable'
-import { BadgeColor, BadgeColorValues, BadgeTextDirection, BadgeTextDirectionValues } from './BadgeEnum'
+import { BadgeColor, BadgeColorValues } from './BadgeEnum'
 import { Accessibility } from '@/objects'
 
 /**
@@ -9,8 +9,6 @@ export interface BadgeProps extends Clickable, Accessibility {
   children?: React.ReactNode
   content?: string | number
   textContent?: string
-  direction?: BadgeTextDirection | BadgeTextDirectionValues
+  reversed?:boolean
   className?: string
-
-  color?: BadgeColor | BadgeColorValues
 }

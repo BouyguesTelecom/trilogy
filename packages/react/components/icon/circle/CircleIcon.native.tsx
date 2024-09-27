@@ -21,6 +21,7 @@ const CircleIcon = ({
   circledWidth,
   position,
   stacked,
+  testId
 }: CircleIconProps): JSX.Element => {
   const {
     theme: { icons },
@@ -69,7 +70,7 @@ const CircleIcon = ({
   })
 
   return (
-    <View style={styles.contentContainer}>
+    <View style={styles.contentContainer} testID={testId}>
       {!position && content && (
         <View>
           <Text style={styles.text} level={TextLevels.TWO}>

@@ -13,7 +13,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param horizontal {boolean} Horizontal Card orientation
  * @param contain {boolean} Resize mode contain
  */
-const CardImage = ({ src, size, alt, onClick, horizontal, contain, ...others }: CardImageProps): JSX.Element => {
+const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImageProps): JSX.Element => {
+  const horizontal = useContext(CardContext).horizontal
   const maxSize = horizontal ? '50%' : '100%'
   const [ratio, setRatio] = useState(1)
   const cardContextValues = useContext(CardContext)

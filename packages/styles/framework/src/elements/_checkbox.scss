@@ -31,3 +31,12 @@
     }
   }
 }
+
+.checkbox {
+  input:not(:disabled):not(:checked) ~ label.checkbox-label:hover {
+    &:before {
+      @include hoverRules()
+    }
+  }
+}
+

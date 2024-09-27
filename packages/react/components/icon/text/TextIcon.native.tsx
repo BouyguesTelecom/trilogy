@@ -17,6 +17,7 @@ const TextIcon = ({
   color,
   stacked,
   verticalAlign = Alignable.ALIGNED_CENTER,
+  testId
 }: TextIconProps): JSX.Element => {
   const {
     theme: { icons },
@@ -44,7 +45,7 @@ const TextIcon = ({
   })
 
   return (
-    <View style={[{ width: '100%' }, styles.contentContainer]}>
+    <View style={[{ width: '100%' }, styles.contentContainer]} testID={testId}>
       {!position && <Text style={styles.text}>{content}</Text>}
 
       {(position === IconPosition.RIGHT || position === IconPosition.DOWN) && content && (

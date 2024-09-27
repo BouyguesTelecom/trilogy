@@ -2,11 +2,12 @@ import * as React from "react"
 import { useContext } from "react"
 import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { setTypographyAlign, setTypographyColor } from "@/objects"
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from "@/objects"
 import { TitleProps } from "./TitleProps"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
+import { TitleLevels } from "./TitleEnum"
 
 /**
  * Title Native Component
@@ -38,17 +39,17 @@ const Title = ({
   const statesContext = useContext(StatesContext)
   const titlesLevels = () => {
     switch (level) {
-      case "ONE":
+      case TitleLevels.ONE:
         return 32
-      case "TWO":
+      case TitleLevels.TWO:
         return 28
-      case "THREE":
+      case TitleLevels.THREE:
         return 22
-      case "FOUR":
+      case TitleLevels.FOUR:
         return 20
-      case "FIVE":
+      case TitleLevels.FIVE:
         return 18
-      case "SIX":
+      case TitleLevels.SIX:
         return 16
       default:
         return 16
@@ -68,8 +69,8 @@ const Title = ({
     }
   }
   const getFontFamily = () => {
-    if (level && ["ONE", "TWO"].includes(level)) return "poppins-bold"
-    return "poppins-semibold"
+    if (level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
+      return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
   }
 
   const styles = StyleSheet.create({
@@ -92,7 +93,7 @@ const Title = ({
       alignSelf: getAlignSelf(),
       borderRadius: 5,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 0),
+      borderColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
       overflow: "hidden",
       height: titlesLevels(),
     },

@@ -30,9 +30,7 @@ export const getTextClassName = (textType?: string): string => {
     case "WHITE":
       return "text-white"
     case "NEUTRAL":
-      return "text-neutral-light"
-    case "NEUTRAL_DARK":
-      return "text-neutral-dark"
+      return "text-neutral"
     case "SUCCESS":
       return "text-success"
     case "WARNING":

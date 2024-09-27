@@ -24,6 +24,7 @@ const Tag = ({
   inverted,
   iconName,
   small,
+  testId,
   ...others
 }: TagProps): JSX.Element => {
   const [display, setDisplay] = useState<boolean>(deletable || false)
@@ -50,7 +51,7 @@ const Tag = ({
       backgroundColor:
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+        getColorStyle(TrilogyColor.NEUTRAL, 1),
     },
     text: {
       alignSelf: "center",
@@ -121,6 +122,7 @@ const Tag = ({
             size={small ? IconSize.SMALLER : IconSize.SMALL}
             style={styles.iconLeft}
             name={iconName}
+            testId={`${testId}-icon`}
           />
         )}
         <Text style={styles.text}>{children}</Text>

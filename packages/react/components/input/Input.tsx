@@ -4,11 +4,12 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { Text } from '@/components/text'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
+import { TypographyColor } from '@/objects'
 
 export interface InputProp extends InputProps, InputWebEvents {}
 
@@ -23,6 +24,8 @@ interface IconWrapper {
 /**
  * Input Component
  * @param name {string} Input name
+ * @param label {string} Label for input
+ * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} onFocus Input Event
@@ -48,7 +51,6 @@ interface IconWrapper {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
- * @param hovered {boolean} Hover mode
  * @param focused {boolean} Fucus mode
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
@@ -68,6 +70,8 @@ interface IconWrapper {
  */
 const Input = ({
   forceControl,
+  label,
+  sample,
   className,
   disabled,
   onChange,
@@ -144,6 +148,7 @@ const Input = ({
       inputName: target.name,
       inputValue: target.value,
       inputKeyCode: e.keyCode,
+      inputTarget: target,
       preventDefault: () => e.preventDefault(),
     }
   }, [])
@@ -153,10 +158,10 @@ const Input = ({
       return (
         <div
         {...type === "password" && { "data-show-pwd": true }}
-          onClick={() => {
+          onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value })
+              onIconClick({ inputName: name ?? '', inputValue: _value, inputTarget: e.target })
             }
           }}
         >
@@ -208,6 +213,8 @@ const Input = ({
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
+      {!hasPlaceholder && <label className='input-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
+      {!hasPlaceholder && label && sample && <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
       <div className={controlClasses}>
         <input
           required={required}
@@ -237,6 +244,7 @@ const Input = ({
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
+                inputTarget: target
               })
             }
           }}
@@ -263,6 +271,7 @@ const Input = ({
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
+                inputTarget: e.target
               })
             }
           }}

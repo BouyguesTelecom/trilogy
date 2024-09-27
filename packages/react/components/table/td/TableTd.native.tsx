@@ -16,8 +16,8 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
       padding: 10,
       borderBottomWidth: 0.2,
       borderRightWidth: 0.2,
-      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL, 1),
+      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL, 1),
     },
     text: {
       color: getColorStyle(TrilogyColor.MAIN),

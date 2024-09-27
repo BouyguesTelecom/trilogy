@@ -75,7 +75,7 @@ describe('Modal component', () => {
   })
 
   test('should a click on ctaCancel Modal call close modal', () => {
-    render(<Modal active ctaCancelOnClick={jest.fn()} content={'DEFAULT'} />)
+    render(<Modal active ctaCancelOnClick={jest.fn()} ctaContent='Annuler' content={'DEFAULT'} />)
 
     const modal = screen.getByText('DEFAULT').parentElement?.parentElement
     expect(modal).toHaveClass(is('active'))
@@ -85,7 +85,7 @@ describe('Modal component', () => {
 
   test('should a click on ctaCancel Modal call ctaCancelOnClick function', () => {
     const ctaCancelOnClick = jest.fn()
-    render(<Modal active ctaCancelOnClick={ctaCancelOnClick} content={'DEFAULT'} />)
+    render(<Modal active ctaCancelOnClick={ctaCancelOnClick} ctaContent='Annuler' content={'DEFAULT'} />)
 
     fireEvent.click(screen.getByText('Annuler'))
     expect(ctaCancelOnClick).toHaveBeenCalled()

@@ -1,11 +1,14 @@
 @use 'sass:math';
 @import "../utilities/spacing";
+:root{
+  --padding-box : #{$spacing-5};
+  @include mobile {
+    --padding-box : #{$spacing-4};
+  }
+}
+$highlighted-border-width: 4px;
 
-$space-between-tiles: 5px;
-$padding-box: $spacing-5;
-$padding-box-mobile: $spacing-4;
 
-/* @toto : add to figma */
 a.box {
   cursor: pointer;
   transition: box-shadow $animation-duration;
@@ -21,16 +24,13 @@ a.box {
   background-color: getColor('background');
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: var(--radius);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  padding: 24px;
+  padding: var(--padding-box);
 
-  @include mobile {
-    padding: 16px;
-  }
+
 
   &:not(:last-child) {
     margin-bottom: 15px;
@@ -46,22 +46,7 @@ a.box {
     }
   }
 
-  &.is-highlighted {
-    .box-content {
-      padding-left: 23px;
-      border-left: 8px solid transparent;
-    }
 
-    @each $name, $pair in $colors-brand-funcionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
-
-      &.is-#{$brandName} .box-content {
-        border-left-color: $color;
-        border-left-width: 4px;
-      }
-    }
-  }
 
   &.is-flat {
     box-shadow: none;
@@ -73,21 +58,43 @@ a.box {
     }
 
     .box-header {
-      margin-top: calc(-#{$padding-box} - 1px);
-      margin-left: calc(-#{$padding-box} - 1px);
-      margin-right: calc(-#{$padding-box} - 1px);
+      margin-top: calc(var(--padding-box)*-1 - 1px);
+      margin-left: calc(var(--padding-box)*-1 - 1px);
+      margin-right: calc(var(--padding-box)*-1 - 1px);
     }
   }
+
+
+  &.is-highlighted {
+    border-left: $highlighted-border-width solid transparent;
+    border-top-left-radius: calc(var(--radius) + $highlighted-border-width);
+    border-bottom-left-radius: calc(var(--radius) + $highlighted-border-width);
+    @each $name, $pair in $colors-brand-funcionnal {
+      $color: getColor($name);
+      $brandName: getColorBrandName($name);
+
+      &.is-#{$brandName}{
+        border-left-color: $color;
+        border-left-width: $highlighted-border-width;
+      }
+    }
+
+    .box-header{
+      margin-left: calc(var(--padding-box)*-1 - $highlighted-border-width);
+    }
+  }
+
 
   .box-header {
     z-index: inherit;
     background-color: getColor('font');
     color: getColor('background');
-    margin-top: -$padding-box;
-    margin-left: -$padding-box;
-    margin-right: -$padding-box;
+    margin-top: calc(var(--padding-box)*-1);
+    margin-left: calc(var(--padding-box)*-1);
+    margin-right: calc(var(--padding-box)*-1);
     padding: 8px;
-    padding-left: 24px;
+    padding-left: var(--padding-box);
+    padding-right: var(--padding-box);
     box-shadow: none;
     font-size: 15px;
     display: flex;
@@ -95,13 +102,7 @@ a.box {
     flex-direction: column;
     align-items: center;
     font-weight: $weight-semibold;
-
-    @include mobile {
-      margin-top: -16px;
-      margin-left: -16px;
-      margin-right: -16px;
-    }
-
+    border-radius: var(--radius) var(--radius) 0 0;
     @include tablet {
       flex-direction: row;
       align-items: center;
@@ -124,12 +125,18 @@ a.box {
   }
 
   .box-content {
-    margin: -$padding-box;
-    padding: $padding-box;
-
-    @include mobile {
-      margin: -$padding-box-mobile;
-      padding: $padding-box-mobile;
+    margin-left: calc(var(--padding-box)*-1);
+    margin-right: calc(var(--padding-box)*-1);
+    padding: var(--padding-box);
+    &:first-child{
+      margin-top: calc(var(--padding-box)*-1);
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+    &:last-child{
+      margin-bottom: calc(var(--padding-box)*-1);
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
     }
 
     @include mobile {
@@ -137,14 +144,8 @@ a.box {
     }
 
     > .is-unboxed {
-      margin-left: -$padding-box;
-      margin-right: -$padding-box;
-      width: auto;
-
-      @include desktop {
-        margin-left: -$padding-box;
-        margin-right: -$padding-box;
-      }
+      margin-left: calc(var(--padding-box)*-1);
+      margin-right: calc(var(--padding-box)*-1);
     }
 
     &.is-transparent {
@@ -153,8 +154,12 @@ a.box {
   }
 
   .box-footer {
-    padding-top: $padding-box;
-    border-top: var(--border);
-    margin: 12.5px 7.5px 7.5px;
+    margin-left: calc(var(--padding-box)*-1);
+    margin-right: calc(var(--padding-box)*-1);
+    margin-bottom: calc(var(--padding-box)*-1);
+    padding: var(--padding-box);
+    border-top: 1px solid getFadeColor('neutral');
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
   }
 }

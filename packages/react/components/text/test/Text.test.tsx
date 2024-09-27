@@ -30,12 +30,10 @@ describe('Text component', () => {
 
   test('should have a correct level className', () => {
     render(<Text>DEFAULT</Text>)
-    let level = 1
     getEnumNames(TextLevels).forEach((element) => {
       render(<Text level={element}>{element}</Text>)
       expect(screen.getByText('DEFAULT')).not.toHaveClass(is(`${element}"`))
-      expect(screen.getByText(element)).toHaveClass(is(`level-${level}`))
-      level++
+      expect(screen.getByText(element)).toHaveClass(is(`level-${element}`))
     })
   })
 

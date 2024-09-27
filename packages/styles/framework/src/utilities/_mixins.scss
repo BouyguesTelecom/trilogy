@@ -147,7 +147,7 @@
 
 @mixin spinner {
   animation: spinAround 500ms infinite linear;
-  border: 2px solid getBGColor('neutral-dark');
+  border: 2px solid getFadeColor('neutral');
   border-radius: 290486px;
   border-right-color: transparent;
   border-top-color: transparent;
@@ -365,7 +365,7 @@
   @include control;
   height: 56px;
   background-color: getColor('background');
-  border-color: getBGColor('font');
+  border-color: getFadeColor('font');
   color: getColor('font');
 
   @include placeholder {
@@ -419,7 +419,7 @@
       &:disabled:checked {
         & ~ label.#{$type}-label {
           &:after {
-            background-color: getBGColor('disabled');
+            background-color: getFadeColor('disabled');
           }
         }
       }
@@ -606,7 +606,15 @@
 }
 
 @mixin hoverRules {
-  background-color: var(--color-bg-hovered);
+  background-color: getFadeColor('neutral');
+}
+
+@mixin hoverRulesOnOdd {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.25)
+  ) getFadeColor('neutral');
 }
 
 @mixin hover {
@@ -618,7 +626,6 @@
   }
 }
 
-
 @mixin disabledRulesWithoutBG {
   border-color: transparent !important;
   box-shadow: none !important;
@@ -628,6 +635,6 @@
 }
 
 @mixin disabledRules {
-  background-color: getBGColor('disabled') !important;
+  background-color: getFadeColor('disabled') !important;
   @include disabledRulesWithoutBG;
 }

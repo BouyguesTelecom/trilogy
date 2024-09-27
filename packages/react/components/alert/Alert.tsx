@@ -1,11 +1,11 @@
 import clsx from "clsx"
 import * as React from "react"
-import { getAlertClassName, getAlertIconName } from "@/objects"
+import { getStatusClassName, getStatusIconName } from "@/objects"
 import { has, is } from "@/services/classify"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { Text } from "@/components/text"
 import { Title, TitleLevels } from "@/components/title"
-import { AlertProps, ToasterAlertPosition, ToasterAlertProps } from "./AlertProps"
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from "./AlertProps"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
 import ToasterContext from './context'
@@ -15,10 +15,10 @@ import { CSSProperties, useEffect, useRef, useState } from "react"
  * Toaster Component
  * @param children {React.ReactNode} Custom Toast Content
  */
-const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props, ...others }) => {
+const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...others }) => {
   const { styled } = useTrilogyContext()
 
-  const { title, position, description, iconName, alert, closable, onClick, className, offset, children } = props
+  const { title, position, description, iconName, status, closable, onClick, className, offset, children } = props
   const displayed = Boolean(title)
 
   const positionTop: CSSProperties = {
@@ -33,7 +33,7 @@ const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props, ...others
 
   const classes = hashClass(
     styled,
-    clsx('toaster', alert && is(getAlertClassName(alert)), !alert && is('info'), className),
+    clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className),
   )
 
   if (!displayed) {
@@ -93,17 +93,15 @@ const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props, ...others
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
  * @param description {string|ReactNode} Alertt description content
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all alert
  * @param className {string} Additionnal CSS Classes
- * @param iconClassname {string} Additionnal Icon CSS
  * @param display
  * @param others
  */
 const Alert = ({
-  alert,
+  status,
   className,
-  iconClassname,
   iconName,
   title,
   description,
@@ -116,14 +114,14 @@ const Alert = ({
 
   const classes = hashClass(
     styled,
-    clsx("alert", has("body"), alert && is(getAlertClassName(alert)), className)
+    clsx("alert", has("body"), status && is(getStatusClassName(status)), className)
   )
 
   const iconAlert = React.useMemo(() => {
     if (iconName != null) return iconName
-    else if (alert) return getAlertIconName(alert) ?? IconName.INFOS_CIRCLE
+    else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
     else return IconName.INFOS_CIRCLE
-  }, [iconName, alert])
+  }, [iconName, status])
 
   if (display) {
     return (
@@ -137,7 +135,7 @@ const Alert = ({
         className={classes}
         {...others}
       >
-        <Icon className={iconClassname} name={iconAlert} />
+        <Icon name={iconAlert} />
         <div className={hashClass(styled, clsx("body"))}>
           {title && typeof title.valueOf() === "string" ? (
             <Title level={TitleLevels.SIX}>{title}</Title>
@@ -163,12 +161,12 @@ const Alert = ({
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others
  */
-export const ToasterAlertProvider = ({ children }: ToasterAlertProps): JSX.Element => {
-  const [toasterState, setToasterState] = useState<ToasterAlertProps | null>(null)
+export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
+  const [toasterState, setToasterState] = useState<ToasterStatusProps | null>(null)
   const [duration, setDuration] = useState(5000)
   const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const showToast = (params: ToasterAlertProps) => {
+  const showToast = (params: ToasterStatusProps) => {
     setToasterState(params)
     params.duration && params.duration > 0 && setDuration(params.duration)
     timeRef.current && clearTimeout(timeRef.current)
@@ -189,7 +187,7 @@ export const ToasterAlertProvider = ({ children }: ToasterAlertProps): JSX.Eleme
           description: toasterState?.description,
           position: toasterState?.position,
           iconName: toasterState?.iconName,
-          alert: toasterState?.alert,
+          status: toasterState?.status,
           onClick: toasterState?.onClick,
           onHide: toasterState?.onHide,
           closable: toasterState?.closable,
