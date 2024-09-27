@@ -3,7 +3,7 @@
 }
 
 .is-inverted {
-  .box, .section, .container, .view, .text, .title {
+  .box, .section, .container, .view {
     &:not(.is-inverted) {
       color: getColor('font');
     }
