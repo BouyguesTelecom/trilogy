@@ -15,7 +15,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onClick {Function} onClick Event for all Chips
  * @param active {boolean} active Render Chips Active
  * @param disabled {boolean} Disabled chips
- * @param inverted {boolean} Background color
  */
 
 const Chips = ({
@@ -23,7 +22,6 @@ const Chips = ({
                  onClick,
                  disabled,
                  active,
-                 inverted,
                  ...others
                }: ChipsProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
@@ -36,15 +34,14 @@ const Chips = ({
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.NEUTRAL_LIGHT)) ||
+        (disabled && getColorStyle(TrilogyColor.FADE_NEUTRAL)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
       paddingLeft: 12,
       paddingRight: 12,
       paddingTop: 6,
-      paddingBottom: 6,
+      paddingBottom: 5,
       margin: 6,
       borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.FONT, 1),
       borderWidth: 1,

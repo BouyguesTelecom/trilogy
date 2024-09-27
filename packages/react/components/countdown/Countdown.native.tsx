@@ -5,6 +5,7 @@ import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownProps } from './CountdownProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
+import { TypographyBold, getTypographyBoldStyle } from '../../objects/Typography'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -19,12 +20,13 @@ const calculateTimer = (timeDifference: number) => {
  * Countdown Component
  * @param deadline {Date} Date to reach before the end of the countdown
  * @param format {CountdownFormat} Format of countdown
+ * @param inverted {Boolean} White countdown on darked background
  * @param event
  * @param small
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, format, event, small, centered, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, format, event, small, centered, inverted, ...others }: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -118,7 +120,7 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     }
   }, [timer, event, init])
 
-  const countdownColor = getColorStyle(TrilogyColor.MAIN)
+  const countdownColor = inverted ? getColorStyle('WHITE') : getColorStyle(TrilogyColor.MAIN)
 
   const styles = StyleSheet.create({
     countdown: {
@@ -134,10 +136,12 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     text: {
       color: countdownColor,
       fontWeight: '600',
+      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     date: {
       fontSize: small ? 12 : 14,
       fontWeight: small ? '500' : '400',
+      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     separator: {
       width: 1,
@@ -150,26 +154,26 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
   return (
     <View style={styles.countdown} {...others}>
       {(show[CountdownUnite.DAY] || timer.days != 0) && (
-        <Text style={styles.text}>
+        <Text style={styles.text} testId='day-id'>
           {timer.days ? timer.days : 0}
           <Text style={styles.date}>j</Text>
         </Text>
       )}
-      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && <View style={styles.separator} testID='hour-day-id'></View>}
       {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
         <Text style={styles.text}>
           {timer.hours ? timer.hours : 0}
           <Text style={styles.date}>h</Text>
         </Text>
       )}
-      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='hour-min-id'></View>}
       {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
         <Text style={styles.text}>
           {timer.minutes ? timer.minutes : 0}
           <Text style={styles.date}>m</Text>
         </Text>
       )}
-      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator}></View>}
+      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='sec-min-id'></View>}
       {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
         <Text style={styles.text} level={TextLevels.ONE}>
           {timer.seconds ? timer.seconds : 0}

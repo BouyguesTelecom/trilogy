@@ -42,18 +42,22 @@ export const getTypographyBoldClassName = (
  * @param level {}
  * @returns {string} - Bold type
  */
-export const getTypographyBoldStyle = (typo?: string | Array<string>, level?: TextLevels | TextLevelValues) => {
+export const getTypographyBoldStyle = (typo?: string | Array<string>) => {
   const { theme } = useContext(TrilogyThemeContext)
-  return (
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_NORMAL && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_NORMAL) && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular) ||
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_MEDIUM && (theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme?.fontFamily?.medium) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_MEDIUM) && (theme === null || theme === void 0 ? void 0 : 'poppins-medium') || theme?.fontFamily?.medium) ||
-    (typo && !Array.isArray(typo) && typo === TypographyBold.TEXT_WEIGHT_SEMIBOLD && (theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme?.fontFamily?.bold) ||
-    (typo && Array.isArray(typo) && typo.includes(TypographyBold.TEXT_WEIGHT_SEMIBOLD) && (theme === null || theme === void 0 ? void 0 : 'poppins-semibold') || theme?.fontFamily?.bold) ||
-    (level && level == 'ONE' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular) ||
-    (level && level == 'TWO' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular)||
-    (level && level == 'THREE' && (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular) ||
-    (theme === null || theme === void 0 ? void 0 : 'poppins-regular') || theme?.fontFamily?.regular
-  )
+  const currentTypo = Array.isArray(typo) ? typo : [typo]
+
+  switch (true) {
+    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_MEDIUM):
+      return theme?.fontFamily?.medium || 'poppins-medium'
+
+    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_SEMIBOLD):
+      return theme?.fontFamily?.bold || 'poppins-semibold'
+
+    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_BOLD):
+      return theme?.fontFamily?.bold || 'poppins-semibold'
+
+    default:
+      return theme?.fontFamily?.regular || 'poppins-regular'
+  }
 }
+

@@ -5,12 +5,10 @@
   position: relative;
   justify-content: space-between;
   min-height: 44px;
-  margin-left: -8px;
-  margin-right: -8px;
+  gap: $spacing-4;
 
   @include touch {
-    margin-left: -4px !important;
-    margin-right: -4px !important;
+    gap : $spacing-2;
   }
 }
 
@@ -18,20 +16,27 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: $spacing-2;
 
   &:before {
     content: "";
     display: block;
     height: 4px;
-    background: getBGColor('font');
     border-radius: var(--radius-small);
+    background-size: 200% !important;
+    background-color: getFadeColor('neutral');
   }
 
   &.is-error {
 
     &:before {
-      background: getColor('error') !important;
+      background-color: getColor('error') !important;
+
+    }
+    &.is-current{
+      &:before{
+        animation: progress 1s;
+      }
+
     }
 
     .step-bars {
@@ -42,12 +47,6 @@
 
     .step-label {
 
-      padding-left: $spacing-2;
-
-      @include touch {
-        padding-left: $spacing-1;
-      }
-
       &::before {
         content: "";
         mask-image: url('./assets/icons/all/times.svg') !important;
@@ -56,8 +55,8 @@
         mask-size: 20px;
         width: 20px;
         height: 20px;
-        margin: 2px 8px 0 -8px;
         align-self: baseline;
+        margin-top: 2px;
       }
 
       .icon {
@@ -69,18 +68,15 @@
   &.is-done {
 
     &:before {
-      background: getColor('font');
-      transition: background-color 2s ease-in-out;
+      background-color: getColor('font');
     }
 
     .step-bars {
       background: getColor('font');
-      transition: background-color 2s ease-in-out;
+      transition: background-color 1s ease-in-out;
     }
 
     .step-label {
-      padding-left: $spacing-2;
-
       &::before {
         content: "";
         mask-image: url('./assets/icons/all/check-circle.svg');
@@ -89,8 +85,8 @@
         min-width: 20px;
         mask-size: 20px;
         height: 20px;
-        margin: 2px 8px 0 -8px;
         align-self: baseline;
+        margin-top: 2px;
       }
     }
   }
@@ -99,27 +95,19 @@
   &.is-active {
 
     &:before {
-      background: getColor('main');
-      animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -moz-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
+      background-color: getColor('main');
+      animation: progress 1s;
     }
 
     .step-bars {
       background: getColor('main');
-      animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -o-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -webkit-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
-      -moz-animation: cssload-width 2s cubic-bezier(0.45, 0, 1, 1);
     }
 
     .step-label {
       font-style: normal;
       font-weight: 600;
-      font-size: 22px;
-      line-height: 24px;
-      transition: color 1.45s ease;
+      font-size: 20px;
+      line-height: 22px;
       width: max-content;
 
       .icon [class^=tri-], .icon [class*=" tri-"] {
@@ -137,10 +125,6 @@
         width: 90%;
       }
     }
-  }
-
-  @include touch {
-    padding: $spacing-1 !important;
   }
 }
 
@@ -160,22 +144,16 @@
   font-size: 16px;
   line-height: 24px;
   padding-top: $spacing-2;
-
+  gap: $spacing-1;
   .icon {
     font-size: 20px;
-    margin-left: 8px;
     height: auto;
   }
-
-  .icon [class^=tri-], .icon [class*=" tri-"] {
-    margin: 0 4px 0 -4px;
-  }
-
 
   @include touch {
     position: absolute;
     top: 10px;
-    left: 4px;
+    left: 0;
   }
 }
 
@@ -223,51 +201,17 @@
   }
 }
 
-@keyframes cssload-width {
+
+@keyframes progress {
   0%, 100% {
-    transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, getFadeColor('neutral') 50%, getFadeColor('neutral') 100%);
   }
   0% {
-    width: 0;
+    background-position: 100% 0;
   }
   100% {
-    width: 100%;
+    background-position: 0 0;
   }
 }
 
-@-o-keyframes cssload-width {
-  0%, 100% {
-    -o-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
-  }
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@-webkit-keyframes cssload-width {
-  0%, 100% {
-    -webkit-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
-  }
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@-moz-keyframes cssload-width {
-  0%, 100% {
-    -moz-transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
-  }
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
 

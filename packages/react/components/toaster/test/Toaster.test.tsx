@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import ToasterContext from "../context";
 import { ToasterPosition } from "../ToasterProps";
 import { IconName } from "../../icon";
-import { AlertState } from "../../../objects";
+import { StatusState } from "../../../objects";
 import { Section } from "../../section";
 import { Container } from "../../container";
 import { Button } from "../../button";
@@ -29,7 +29,7 @@ const ToasterViewComp: React.FC = () => {
       title,
       description,
       iconName: IconName.INFOS_CIRCLE,
-      alert: AlertState.WARNING,
+      status: StatusState.WARNING,
       onClick: () => setBtnName("click toast"),
       closable: () => setTitle("close toast"),
       onHide: () => console.log("onHide"),

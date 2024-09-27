@@ -3,7 +3,8 @@ import {
   Clickable,
   Fullwidth,
   JustifiableProps,
-  AlignableProps, BackgroundProps
+  AlignableProps, BackgroundProps,
+  Accessibility
 } from "@/objects"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,7 +27,7 @@ export type ViewMarkupValues = `${ViewMarkup}`
 /**
  * View Interface
  */
-export interface ViewProps extends Loadable, Clickable, JustifiableProps, Fullwidth, AlignableProps, BackgroundProps {
+export interface ViewProps extends Loadable, Clickable, JustifiableProps, Fullwidth, AlignableProps, BackgroundProps, Accessibility {
   children?: React.ReactNode
   className?: string
   style?: Styles

@@ -1,15 +1,17 @@
-import * as React from "react"
-import Icon from "@/components/icon/Icon"
-import { IconProps } from "@/components/icon/IconProps"
-import {
-  IconPosition,
-  TextIconMarkup,
-  TextIconMarkupValues,
-} from "@/components/icon/IconEnum"
-import { is } from "@/services"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import Icon from '@/components/icon/Icon'
+import { IconPosition, TextIconMarkup, TextIconMarkupValues } from '@/components/icon/IconEnum'
+import { IconProps } from '@/components/icon/IconProps'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+
+interface Props extends IconProps {
+  textId?: string
+  textAriaLevel?: number
+  textRole?: string
+}
 
 const TextIcon = ({
   className,
@@ -18,20 +20,18 @@ const TextIcon = ({
   content,
   position,
   markup,
+  textId,
+  textAriaLevel,
+  textRole,
   ...others
-}: IconProps): JSX.Element => {
+}: Props): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const isCorrectMarkup = (
-    stringMarkup: TextIconMarkup | TextIconMarkupValues
-  ) => {
-    if (
-      stringMarkup in TextIconMarkup ||
-      Object.values(TextIconMarkup).includes(stringMarkup as TextIconMarkup)
-    )
+  const isCorrectMarkup = (stringMarkup: TextIconMarkup | TextIconMarkupValues) => {
+    if (stringMarkup in TextIconMarkup || Object.values(TextIconMarkup).includes(stringMarkup as TextIconMarkup))
       return true
   }
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "span"
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'span'
 
   if (position) {
     return (
@@ -39,18 +39,22 @@ const TextIcon = ({
         className={hashClass(
           styled,
           clsx(
-            "icon-and-text",
-            (position === IconPosition.UP || position === IconPosition.DOWN) &&
-              is("stacked"),
-            className
-          )
+            'icon-and-text',
+            (position === IconPosition.UP || position === IconPosition.DOWN) && is('stacked'),
+            className,
+          ),
         )}
       >
         {
           (position === IconPosition.RIGHT || position === IconPosition.DOWN) &&
             content &&
-            (content && typeof content.valueOf() === "string" ? (
-              <Tag className={hashClass(styled, clsx(textClassName))}>
+            (content && typeof content.valueOf() === 'string' ? (
+              <Tag
+                className={hashClass(styled, clsx(textClassName))}
+                id={textId}
+                aria-level={textAriaLevel}
+                role={textRole}
+              >
                 {String(content)}
               </Tag>
             ) : (
@@ -62,8 +66,13 @@ const TextIcon = ({
         {
           (position === IconPosition.UP || position === IconPosition.LEFT) &&
             content &&
-            (content && typeof content.valueOf() === "string" ? (
-              <Tag className={hashClass(styled, clsx(textClassName))}>
+            (content && typeof content.valueOf() === 'string' ? (
+              <Tag
+                className={hashClass(styled, clsx(textClassName))}
+                id={textId}
+                aria-level={textAriaLevel}
+                role={textRole}
+              >
                 {String(content)}
               </Tag>
             ) : (
@@ -76,10 +85,10 @@ const TextIcon = ({
   }
 
   return (
-    <span className={hashClass(styled, clsx("icon-and-text", className))}>
+    <span className={hashClass(styled, clsx('icon-and-text', className))}>
       <Icon name={name} {...others} />
-      {content && typeof content.valueOf() === "string" ? (
-        <Tag className={hashClass(styled, clsx(textClassName))}>
+      {content && typeof content.valueOf() === 'string' ? (
+        <Tag className={hashClass(styled, clsx(textClassName))} id={textId} aria-level={textAriaLevel} role={textRole}>
           {String(content)}
         </Tag>
       ) : (

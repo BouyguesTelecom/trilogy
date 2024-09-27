@@ -14,6 +14,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const TimelineMarker = ({
   iconName,
   iconColor,
+  testId
 }: TimelineMarkerProps): JSX.Element => {
   const { active, undone, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
@@ -32,10 +33,10 @@ const TimelineMarker = ({
       marginRight: "auto",
       borderColor:
         (active && getColorStyle(TrilogyColor.MAIN)) ||
-        (undone && getColorStyle(TrilogyColor.NEUTRAL_LIGHT)) ||
-        (cancel && getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
+        (undone && getColorStyle(TrilogyColor.NEUTRAL, 1)) ||
+        (cancel && getColorStyle(TrilogyColor.NEUTRAL)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+        getColorStyle(TrilogyColor.NEUTRAL, 1),
     },
     icon: {
       alignSelf: "center",
@@ -43,7 +44,7 @@ const TimelineMarker = ({
   })
 
   return (
-    <View style={styles.marker}>
+    <View style={styles.marker} testID={testId}>
       <View style={styles.icon}>
         <Icon
           name={iconName}
@@ -52,17 +53,17 @@ const TimelineMarker = ({
             !iconColor
               ? (active && TrilogyColor.BACKGROUND) ||
                 (undone && TrilogyColor.MAIN) ||
-                (cancel && TrilogyColor.BACKGROUND) ||
+                (cancel && TrilogyColor.FADE_NEUTRAL) ||
                 (done && TrilogyColor.BACKGROUND) ||
                 TrilogyColor.BACKGROUND
               : iconColor
           }
           backgroundColor={
             (active && TrilogyColor.MAIN) ||
-            (undone && TrilogyColor.NEUTRAL_LIGHT) ||
-            (cancel && TrilogyColor.NEUTRAL_DARK) ||
+            (undone && TrilogyColor.FADE_NEUTRAL) ||
+            (cancel && TrilogyColor.NEUTRAL) ||
             (done && TrilogyColor.MAIN) ||
-            TrilogyColor.NEUTRAL_LIGHT
+            TrilogyColor.FADE_NEUTRAL
           }
           size={IconSize.SMALL}
         />

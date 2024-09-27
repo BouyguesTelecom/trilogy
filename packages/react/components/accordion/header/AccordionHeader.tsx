@@ -23,7 +23,7 @@ const AccordionHeader = ({
     <summary
       data-accordion-header={true}
       className={hashClass(styled, clsx("accordion-header", className))}
-      aria-label='toggle'
+      role='button'
       {...others}
       data-testid={testId}
     >

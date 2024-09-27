@@ -1,12 +1,12 @@
 {
   "name": "trilogy-ds",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.78",
   "private": true,
   "license": "UNLICENSED",
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla",
+    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npm run pages && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
@@ -26,9 +26,11 @@
     "storybook": "cd docs/storybook && start-storybook -p 6006",
     "style:size-limit": "cd config && size-limit",
     "test": "npm --workspace=@trilogy-ds/react run test",
+    "test:native": "npm --workspace=@trilogy-ds/react run test:native",
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=trilogy-ds run watch:css",
-    "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled"
+    "watch:cssMangled": "npm --workspace=trilogy-ds run watch:cssMangled",
+    "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
@@ -134,6 +136,7 @@
     "string-replace-loader": "^3.1.0",
     "style-loader": "^3.3.4",
     "svgo": "^3.2.0",
+    "ts-morph": "^23.0.0",
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
@@ -145,7 +148,8 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
-    "webpack-iconfont-plugin-nodejs": "^1.0.33"
+    "webpack-iconfont-plugin-nodejs": "^1.0.33",
+    "metro-react-native-babel-preset": "^0.77.0"
   },
   "workspaces": [
     "packages/react",

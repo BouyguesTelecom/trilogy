@@ -5,9 +5,9 @@ import { Spacer, SpacerSize } from "@/components/spacer"
 import { View } from "@/components/view"
 import { Text, TextLevels } from "@/components/text"
 import { Title, TitleLevels } from "@/components/title"
-import { getAlertIconName, getAlertStyle } from "@/objects/facets/Alert"
+import { getStatusIconName, getStatusStyle } from "@/objects/facets/Status"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { AlertProps, ToasterAlertPosition, ToasterAlertProps } from "./AlertProps"
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from "./AlertProps"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { TypographyBold } from "@/objects"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -19,7 +19,7 @@ import { ToasterShowContext } from "./context/ToasterContextProps"
  * Function call by context for showing toast
  * @param params {ToasterShowContext}
  */
-const showToast: ToasterShowContext = (params: ToasterAlertProps) => {
+const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
   const {
     position,
     duration,
@@ -30,7 +30,7 @@ const showToast: ToasterShowContext = (params: ToasterAlertProps) => {
     closable,
     onHide,
     iconName,
-    alert,
+    status,
   } = params
 
   LibToast.show({
@@ -49,12 +49,12 @@ const showToast: ToasterShowContext = (params: ToasterAlertProps) => {
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
  * @param description {string|ReactNode} Aleert description content
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param info (boolean) Small info alert use it without button and arrow
  * @param onClick {Function} onClick Event for all alert
  */
 const Alert = ({
-  alert,
+  status,
   iconName,
   title,
   description,
@@ -62,15 +62,15 @@ const Alert = ({
   display,
   ...others
 }: AlertProps): JSX.Element => {
-  const backgroundColor = getColorStyle(alert as TrilogyColor, 1)
-  const fontColor = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
+  const backgroundColor = getColorStyle(status as TrilogyColor, 1)
+  const fontColor = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
   let alertView: JSX.Element
 
   const styles = StyleSheet.create({
     container: {
       width: "100%",
       paddingTop: 10,
-      borderColor: alert !== undefined ? fontColor : backgroundColor,
+      borderColor: status !== undefined ? fontColor : backgroundColor,
       paddingBottom: 10,
       borderWidth: 1,
       backgroundColor: backgroundColor,
@@ -82,7 +82,7 @@ const Alert = ({
     icon: {
       justifyContent: "center",
       alignItems: "center",
-      color: alert !== undefined ? fontColor : getColorStyle(TrilogyColor.MAIN),
+      color: status !== undefined ? fontColor : getColorStyle(TrilogyColor.MAIN),
     },
     description: {
       justifyContent: "center",
@@ -105,7 +105,7 @@ const Alert = ({
         <ColumnsItem size={1}>
           <Icon
             style={styles.icon}
-            name={iconName ? iconName : getAlertIconName(alert)}
+            name={iconName ? iconName : getStatusIconName(status)}
           />
         </ColumnsItem>
 
@@ -157,15 +157,15 @@ const Alert = ({
  * @param title {string} Notification title content
  * @param description {string|ReactNode} Notification description content
  * @param iconName {IconName} Custom icon
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all notification
  * @param closable {Function} onClick Event on cross icon
  */
-export const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props }) => {
-  const { title, description, iconName, alert, closable, onClick } = props
+export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
+  const { title, description, iconName, status, closable, onClick } = props
 
-  const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor = getColorStyle(alert as TrilogyColor, 1)
+  const color = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
+  const backgroundColor = getColorStyle(status as TrilogyColor, 1)
 
   const styles = StyleSheet.create({
     toaster: {
@@ -226,7 +226,7 @@ export const ToasterAlert: React.FC<{ props: ToasterAlertProps }> = ({ props }) 
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others
  */
-export const ToasterAlertProvider = ({ children }: ToasterAlertProps): JSX.Element => {
+export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
   const toastConfig = {
     tomatoToast: ToasterAlert,
   }

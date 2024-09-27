@@ -19,7 +19,7 @@
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
-    transition: 0.3s;
+    transition: margin 0.3s;
 
     .accordion-header {
       font-weight: bold;
@@ -34,9 +34,9 @@
       @include hoverRules();
     }
 
-    &:focus-visible {
+    &:has(summary:focus-visible) {
       outline: var(--border-active);
-      outline-offset: 2px;
+      outline-offset: -2px;
     }
 
     .accordion-header:after {
@@ -63,6 +63,10 @@
     .accordion-header {
         border-radius: var(--radius);
       transition: margin 300ms ease-out;
+
+      &:focus-visible{
+        outline: none;
+      }
 
     }
 

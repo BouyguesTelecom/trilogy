@@ -40,18 +40,21 @@
   display: flex;
   align-items: center;
 
+  .badge {
+    position: relative;
+    margin-right: 60px;
+  }
+
   p {
     margin-bottom: 0 !important;
 
-    + .badge {
-      @include badge;
-
-      &.is-level {
-        position: relative;
-        margin-left: 60px;
-      }
+    & + .badge {
+      margin-left: 60px;
+      margin-right: 0;
     }
+
   }
+
 }
 
 [data-badge-number] {

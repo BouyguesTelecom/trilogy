@@ -25,6 +25,7 @@ export interface InputChangeEvent {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputChangeEventHandler = (event: InputChangeEvent) => void
@@ -33,6 +34,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
   preventDefault: () => void
 }
 
@@ -41,6 +43,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
+  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
@@ -66,7 +69,8 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
  */
 export interface InputProps extends Accessibility {
   type?: InputType | InputTypeValues
-  content?: string
+  label?: string
+  sample?: string
   placeholder?: string
   defaultValue?: string
   value?: string
@@ -83,9 +87,7 @@ export interface InputProps extends Accessibility {
   patternValidator?: RegExp
   help?: string | ReactNode
   name?: string
-  search?: boolean
   className?: string
-  hovered?: boolean
   focused?: boolean
   reference?: any | null
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues

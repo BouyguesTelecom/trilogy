@@ -12,9 +12,9 @@ import { useTrilogyContext } from "@/context"
  * @param children {React.ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
- * @param background {TrilogyColor} Box Content Background Color
+ * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param inverted {boolean} Inverted Box Color
- * @param leftBorder {TrilogyColor} Add Left Highlight Border With Semantic Color
+ * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param shadowless {boolean} Remove box shadow
  * @param flat {boolean} Flat box remove shadow and add plain border
  * @param backgroundSrc {string} Source of background Image
@@ -36,8 +36,8 @@ const Box = ({
   markup,
   skeleton,
   to,
-  background,
-  leftBorder,
+  backgroundColor,
+  highlighted,
   shadowless,
   backgroundSrc,
   testId,
@@ -55,11 +55,11 @@ const Box = ({
       "box",
       shadowless && is("shadowless"),
       className,
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has("background"),
       (inverted && is("inverted")) || is("base"),
       isLoading ? is("loading") : is("loaded"),
-      leftBorder && `${is("highlighted")} ${is(getColorClassName(leftBorder))}`,
+      highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
       flat && is("flat"),
       hat && has("hat"),
       fullheight && is("fullheight"),

@@ -4,8 +4,8 @@ import {
   AccordionHeader,
   AccordionItem,
   Alert,
-  AlertState,
   AutoLayout,
+  StatusState,
   TrilogyColor,
   Box,
   BoxContent,
@@ -105,7 +105,7 @@ export const AutolayoutScreen = (): JSX.Element => {
 
       <Alert
         display
-        alert={AlertState.SUCCESS}
+        status={StatusState.SUCCESS}
         title={'Test alert'}
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />

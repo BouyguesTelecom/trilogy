@@ -26,6 +26,7 @@
 .radio,
 .radio-tile {
     input:checked ~ label.radio-label {
+        cursor: default;
         &:after {
             content: '';
             width: 12px;
@@ -47,6 +48,13 @@
             left: 3px;
         }
     }
+
+    input:not(:disabled):not(:checked) ~ label.radio-label:hover {
+        &:before {
+            @include hoverRules()
+        }
+    }
+      
 }
 
 .radio-tile {

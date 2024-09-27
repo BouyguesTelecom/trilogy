@@ -6,8 +6,8 @@ import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 
 // Component to test
-import { Tag, TagList } from "..";
-import { is } from "../../../services";
+import { Tag, TagList } from "../..";
+import { is } from "../../../../services";
 
 describe("TagList component", () => {
   test('should have "tags" className', () => {

@@ -11,12 +11,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { AlertState, getAlertStyle } from '@/objects/facets/Alert'
+import { StatusState, getStatusStyle } from '@/objects/facets/Status'
 import { Alignable } from '@/objects/facets/Alignable'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text } from '@/components/text'
+import { Text, TextLevels } from '@/components/text'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -29,12 +29,16 @@ import { InputNativeEvents, InputProps } from './InputProps'
 import { AutoCompleteProps } from './autocomplete'
 import AutoComplete from './autocomplete/AutoComplete.native'
 import InputGauge from './gauge/InputGauge.native'
+import { TypographyColor } from '@/objects'
+import { Spacer, SpacerSize } from '../spacer'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
  * @param name {string} Input name
+ * @param label {string} Label for input
+ * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} OnFocus Input Event
@@ -64,6 +68,8 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
 const Input = ({
   defaultValue,
   name,
+  label,
+  sample,
   onChange,
   onFocus,
   onBlur,
@@ -91,7 +97,6 @@ const Input = ({
   securityGauge,
   validationRules,
   onIconClick,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   required,
   ...others
 }: InputNativeProps): JSX.Element => {
@@ -224,9 +229,9 @@ const Input = ({
     help: {
       fontSize: 12,
       color:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         inputColor,
@@ -241,9 +246,9 @@ const Input = ({
       borderWidth: isFocused ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.FONT, 1),
@@ -274,12 +279,12 @@ const Input = ({
     inputIcon: {
       position: 'absolute',
       right: 10,
-      top: !value ? -33 : -38,
+      top: dynamicPlaceholder && !label && value ? -38 : -33,
     },
     inputIconLeft: {
       position: 'absolute',
       left: 10,
-      top: !value ? -33 : -38,
+      top: dynamicPlaceholder && !label && value ? -38 : -33,
     },
     text: {
       zIndex: -1,
@@ -306,6 +311,20 @@ const Input = ({
       accessibilityLabel={inputAccessibilityLabel}
       testID={inputTestId}
     >
+      {!dynamicPlaceholder && label && (
+        <>
+          <Text typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
+      )}
+
+      {!dynamicPlaceholder && label && sample && (
+        <>
+          <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>
+          <Spacer size={SpacerSize.SMALL} />
+        </>
+      )}
+
       <View testID='input-wrapper-id' style={styles.inputWrapper}>
         {dynamicPlaceholder && type !== InputType.SEARCH && (
           <Animated.Text style={[styles.dynamicPlaceholder, { top: animation, fontSize: sizeAnimation }]}>
@@ -371,12 +390,12 @@ const Input = ({
               }
               size={IconSize.SMALL}
               color={
-                (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                (status && status === 'default' && inputColor) ||
-                (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-                inputColor
+                (status && status === 'success' && (StatusState.SUCCESS)) ||
+                (status && status === 'warning' && (StatusState.WARNING)) ||
+                (status && status === 'error' && (StatusState.ERROR)) ||
+                (status && status === 'default' && TrilogyColor.MAIN) ||
+                (disabled && (TrilogyColor.DISABLED)) ||
+                TrilogyColor.MAIN
               }
             />
           )}
@@ -387,10 +406,11 @@ const Input = ({
             <TouchableOpacity
               style={styles.inputContainer}
               activeOpacity={onIconClick ? 0.2 : 1}
-              onPress={() => {
+              onPress={(e) => {
                 onIconClick?.({
                   inputName: (name && name) || '',
                   inputValue: value,
+                  inputTarget: e
                 })
               }}
             >
@@ -404,12 +424,12 @@ const Input = ({
                 }
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
-                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-                  inputColor
+                  (status && status === 'success' && (StatusState.SUCCESS)) ||
+                  (status && status === 'warning' && (StatusState.WARNING)) ||
+                  (status && status === 'error' && (StatusState.ERROR)) ||
+                  (status && status === 'default' && TrilogyColor.MAIN) ||
+                  (disabled && (TrilogyColor.DISABLED)) ||
+                  TrilogyColor.MAIN
                 }
               />
             </TouchableOpacity>
@@ -441,12 +461,12 @@ const Input = ({
                 name={iconPassword}
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && getAlertStyle(AlertState.SUCCESS)) ||
-                  (status && status === 'warning' && getAlertStyle(AlertState.WARNING)) ||
-                  (status && status === 'error' && getAlertStyle(AlertState.ERROR)) ||
-                  (status && status === 'default' && inputColor) ||
-                  (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-                  inputColor
+                  (status && status === 'success' && (StatusState.SUCCESS)) ||
+                  (status && status === 'warning' && (StatusState.WARNING)) ||
+                  (status && status === 'error' && (StatusState.ERROR)) ||
+                  (status && status === 'default' && TrilogyColor.MAIN) ||
+                  (disabled && (TrilogyColor.DISABLED)) ||
+                  TrilogyColor.MAIN
                 }
               />
             </TouchableOpacity>
@@ -459,7 +479,7 @@ const Input = ({
                 align={Alignable.ALIGNED_CENTER}
                 name={IconName.SEARCH}
                 size={IconSize.SMALL}
-                color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
+                color={disabled ? (TrilogyColor.DISABLED) : (TrilogyColor.NEUTRAL)}
               />
             </View>
             {value.length > 0 && (
@@ -483,7 +503,7 @@ const Input = ({
                   align={Alignable.ALIGNED_CENTER}
                   name={IconName.TIMES_CIRCLE}
                   size={IconSize.SMALL}
-                  color={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.NEUTRAL)}
+                  color={disabled ? (TrilogyColor.DISABLED) : (TrilogyColor.NEUTRAL)}
                 />
               </TouchableOpacity>
             )}

@@ -4,7 +4,7 @@ import { Accessibility } from '@/objects'
 /**
  * Timeline Marker Interface
  */
-export interface TimelineMarkerProps {
+export interface TimelineMarkerProps extends Accessibility {
   children?: React.ReactNode
   iconName: IconName | IconNameValues
   iconColor?: IconColor | IconColorValues

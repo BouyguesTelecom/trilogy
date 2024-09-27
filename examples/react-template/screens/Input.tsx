@@ -33,11 +33,22 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section background={TrilogyColor.BACKGROUND}>
       <Input
-        hovered
-        placeholder={'Input, search icon'}
+        label='Input label not dynamic with sample'
+        sample='Input sample'
         help='Search helper input'
-        type={InputType.TEXT}
         onKeyUp={(e) => console.log(e)}
+        required
+        hasIcon
+        customIconLeft='tri-search'
+      />
+
+      <Input
+        label='Input label not dynamic without sample'
+        help='Search helper input'
+        onKeyUp={(e) => console.log(e)}
+        required
+        hasIcon
+        customIconLeft='tri-search'
       />
 
       <Input
@@ -54,7 +65,6 @@ export const InputScreen = (): JSX.Element => {
         minLength={10}
         maxLength={12}
         onKeyPress={() => console.log('key')}
-        hovered
         hasIcon
         defaultValue='Input, with placeholder (without padding top)'
         help='Do not display upper padding when there is no placeholder'
@@ -65,7 +75,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='Input, without placeholder, without search'
         help='Do not display upper padding when there is no placeholder'
@@ -76,7 +85,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='Input, with placeholder, with search'
         help='this is my help message'
@@ -84,13 +92,11 @@ export const InputScreen = (): JSX.Element => {
         onIconClick={() => {
           window.alert('lol')
         }}
-        search
         customIcon={IconName.ALERT}
         placeholder='Placeholder with activated search'
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='Input, with search & customIcon'
         help='CustomIcon takes precedence over the display of the search to avoid displaying 2 icons, one above the other.'
@@ -98,13 +104,11 @@ export const InputScreen = (): JSX.Element => {
         onIconClick={() => {
           window.alert('test')
         }}
-        search
         customIcon={IconName.ALERT}
         placeholder='Placeholder with activated search'
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='My default input value'
         help='this is my help message'
@@ -118,7 +122,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='My default input value'
         help='this is my help message'
@@ -132,7 +135,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hovered
         hasIcon
         defaultValue='My default input value'
         help='this is my help message'
@@ -146,7 +148,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hovered
         hasIcon
         forceControl
         defaultValue='12'
@@ -167,7 +168,6 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         <Input
-          hovered
           hasIcon
           forceControl
           defaultValue='Input Success'

@@ -1,11 +1,13 @@
+jest.useFakeTimers();
+
 import { fireEvent, render } from "@testing-library/react-native";
 import * as React from "react";
 import { Platform, PlatformOSType } from "react-native";
 import {
-  AlertState,
-  getAlertStyle,
+  StatusState,
   getColorStyle,
   TrilogyColor,
+  getStatusStyle,
 } from "../../../objects";
 import Input from "../Input.native";
 import {
@@ -89,9 +91,9 @@ describe("Input component", () => {
         borderWidth: 1,
         borderRadius: 3,
         borderColor:
-          (state === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-          (state === "warning" && getAlertStyle(AlertState.WARNING)) ||
-          (state === "error" && getAlertStyle(AlertState.ERROR)) ||
+          (state === "success" && getStatusStyle(StatusState.SUCCESS)) ||
+          (state === "warning" && getStatusStyle(StatusState.WARNING)) ||
+          (state === "error" && getStatusStyle(StatusState.ERROR)) ||
           (state === "default" && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.MAIN),
         height: 46,
@@ -116,7 +118,7 @@ describe("Input component", () => {
 
   test("Should have search icon", () => {
     const { getByTestId } = render(
-      <Input placeholder="Test" type={InputType.SEARCH} value="bonjour" />
+      <Input placeholder="Test" type={InputType.SEARCH} defaultValue="bonjour" />
     );
     fireEvent.press(getByTestId("search-id"));
     expect(getByTestId("search-id")).toBeTruthy();
@@ -131,7 +133,7 @@ describe("Input component", () => {
     const { getByTestId } = render(
       <Input
         hasIcon
-        status={InputStatus.DEFAULT}
+        status={InputStatus.SUCCESS}
         customIcon={IconName.INFOS_CIRCLE}
       />
     );

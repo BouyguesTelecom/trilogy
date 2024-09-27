@@ -13,14 +13,6 @@
     }
   }
 
-  &:nth-child(even) {
-    background-color: getBGColor('neutral');
-  }
-
-  &:nth-child(odd) {
-    background-color: getColor('background');
-  }
-
   &.is-info {
     background-color: getColor('info');
     color: getColor('background');
@@ -46,13 +38,4 @@
   &.has-pattern-dark {
     @include pattern-dark(120%, 260px, -30%);
   }
-
-}
-
-.section:nth-child(2n).is-inverted {
-  background-color: getColor('background');
-}
-
-.section:nth-child(2n-1).is-inverted {
-  background-color: getBGColor('neutral');
 }

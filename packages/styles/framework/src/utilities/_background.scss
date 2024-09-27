@@ -1,5 +1,5 @@
 .is-inverted {
-  color: getColor('background');
+  color: #{getColor('background')};
 }
 
 .is-inverted .is-base {
@@ -8,7 +8,7 @@
 
 .has-background {
   background-repeat: no-repeat;
-  
+
   .box-content {
     background-color: transparent;
   }
