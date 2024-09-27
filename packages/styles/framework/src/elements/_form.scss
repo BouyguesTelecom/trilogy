@@ -242,7 +242,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name)
+            color: fadeColor($name);
           }
         }
       }
