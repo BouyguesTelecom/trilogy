@@ -32,6 +32,24 @@ body:not(.is-tight) {
   .range + * {
     margin-bottom: 24px;
   }
+  .stepper + * {
+    margin-bottom: 24px;
+  }
+  .price + * {
+    margin-bottom: 12px;
+  }
+  .button + * {
+    margin-bottom: 24px;
+  }
+  .countdown + * {
+    margin-bottom: 16px;
+  }
+  .countdown.is-small + * {
+    margin-bottom: 12px;
+  }
+  .chips + * {
+    margin-bottom: 12px;
+  }
 }
 
 @include mobile() {
@@ -68,6 +86,18 @@ body:not(.is-tight) {
     }
   .range + * {
       margin-bottom: 16px;
+    }
+  .stepper + * {
+      margin-bottom: 16px;
+    }
+  .price + * {
+      margin-bottom: 8px;
+    }
+  .button + * {
+      margin-bottom: 16px;
+    }
+  .countdown + * {
+      margin-bottom: 12px;
     }
 
   }
