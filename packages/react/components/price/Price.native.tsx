@@ -78,8 +78,19 @@ const Price = ({
     (level == PriceLevel.SIX && 24) ||
     (level == PriceLevel.SEVEN && 20) ||
     44
+
   const centsLevel = priceLevel * 0.4
   const suptitleLevel = priceLevel * 0.2
+
+  const priceLevelStriked =
+    (level == PriceLevel.ONE && 44) ||
+    (level == PriceLevel.TWO && 32) ||
+    (level == PriceLevel.THREE && 28) ||
+    (level == PriceLevel.FOUR && 24) ||
+    20
+
+  const centsLevelStriked = priceLevelStriked * 0.4
+  const suptitleLevelStriked = priceLevelStriked * 0.2
 
   const color = useMemo(
     () =>
@@ -156,12 +167,17 @@ const Price = ({
       position: "relative",
     },
     price: {
-      fontSize: priceLevel,
       fontWeight:
         (level == PriceLevel.SIX && "normal") ||
         (level == PriceLevel.SEVEN && "normal") ||
         "bold",
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    priceFontSize: {
+      fontSize: priceLevel,
+    },
+    priceFontSizeStriked: {
+      fontSize: priceLevelStriked,
     },
     priceColor: {
       color: color
@@ -172,13 +188,23 @@ const Price = ({
     cents: {
       fontWeight: "bold",
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    centsFontSize: {
+      fontSize: centsLevel,
+    },
+    centsFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     period: {
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    periodFontSize: {
+      fontSize: centsLevel,
+    },
+    periodFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     inlinePeriod: {
       color: color,
@@ -260,7 +286,7 @@ const Price = ({
           {inline ? (
             <View style={[styles.priceContainer, { flexDirection: "row" }]}>
               {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
-              <Text style={[styles.price, styles.priceColor, style?.price]}>
+              <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>
                 {whole}€{showCents && cents}
               </Text>
               <Text style={[styles.inlinePeriod, styles.priceColor, style?.inlinePeriod]}>
@@ -274,28 +300,28 @@ const Price = ({
                 <View style={[{ flexDirection: "row" }]}>
                   {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
                   <View style={[styles.priceContainer, style?.priceContainer]}>
-                    <Text style={[styles.price, styles.priceStrikedColor, style?.price]}>{`${wholeStriked}`}</Text>
+                    <Text style={[styles.price, styles.priceFontSizeStriked, styles.priceStrikedColor, style?.price]}>{`${wholeStriked}`}</Text>
                   </View>
                   <View style={[styles.priceContainer, style?.priceContainer]}>
-                    <Text style={[styles.cents, styles.priceStrikedColor, style?.cents]}>
+                    <Text style={[styles.cents, styles.centsFontSizeStriked, styles.priceStrikedColor, style?.cents]}>
                       €{showCents && (centsStriked || "00")}
                       {mention && mention}
                     </Text>
-                    <Text style={[styles.period, styles.priceStrikedColor, style?.period]}>{period && `/${period}`}</Text>
+                    <Text style={[styles.period, styles.periodFontSizeStriked, styles.priceStrikedColor, style?.period]}>{period && `/${period}`}</Text>
                   </View>
                 </View>
               )}
               {amount && (
                 <View style={[{ flexDirection: "row" }]}>
                   <View style={[styles.priceContainer, style?.priceContainer]}>
-                    <Text style={[styles.price, styles.priceColor, style?.price]}>{`${whole}`}</Text>
+                    <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>{`${whole}`}</Text>
                   </View>
                   <View style={[styles.priceContainer, style?.priceContainer]}>
-                    <Text style={[styles.cents, styles.priceColor, style?.cents]}>
+                    <Text style={[styles.cents, styles.centsFontSize, styles.priceColor, style?.cents]}>
                       €{showCents && (cents || "00")}
                       {mention && mention}
                     </Text>
-                    <Text style={[styles.period, styles.priceColor, style?.period]}>{period && `/${period}`}</Text>
+                    <Text style={[styles.period, styles.periodFontSize, styles.priceColor, style?.period]}>{period && `/${period}`}</Text>
                   </View>
                 </View>
               )}
