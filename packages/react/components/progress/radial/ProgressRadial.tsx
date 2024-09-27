@@ -58,17 +58,25 @@ const ProgressRadial = ({
     updateBackgroundStyle(percent, secondPercent) // if percent or secondPercent are 0, update immediately
 
     const frame = () => {
+      let shouldContinue = false
       setFirstProgressCurrentValue((value) => {
-        return value < percent ? value + 1 : value
+        if ( value < percent ) {
+          shouldContinue = true
+          return value + 1
+        }
+        return value
       })
       setSecondProgressCurrentValue((value) => {
-        return value < secondPercent ? value + 1 : value
+        if ( value < secondPercent ) {
+          shouldContinue = true
+          return value + 1
+        }
+        return value
       })
-      animationFrameId = requestAnimationFrame(frame)
+      if (shouldContinue) {
+        animationFrameId = requestAnimationFrame(frame)
+      }
     }
-
-    animationFrameId = requestAnimationFrame(frame)
-
     // Cleanup
     return () => cancelAnimationFrame(animationFrameId)
   }, [percent, secondPercent])
