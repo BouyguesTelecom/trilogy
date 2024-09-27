@@ -37,6 +37,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Price
@@ -46,6 +48,8 @@ export const PriceScreen = (): JSX.Element => {
         amount={24.99}
         showCents
         period={'mois'}
+        tagAmount={10}
+        tagSymbol={'€'}
       />
 
       <Price
