@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$timeline-marker-color: getFadeColor('neutral') !default;
+$timeline-marker-color: getColor('neutral-fade') !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getFadeColor('neutral') !default;
+$timeline-line-color: getColor('neutral-fade') !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -215,7 +215,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       }
     }
 
-    @each $name in $colors-brand-funcionnal {
+    @each $name in $colors-brand-functionnal {
       $color: getColor($name);
       $brandName: getColorBrandName($name);
 
@@ -295,7 +295,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
       }
 
-      @each $name, $pair in $colors-brand-funcionnal {
+      @each $name, $pair in $colors-brand-functionnal {
         $color: getColor($name);
         $brandName: getColorBrandName($name);
 

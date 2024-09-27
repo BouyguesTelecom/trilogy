@@ -33,7 +33,6 @@ const Switch = ({
     }
   }, [checked, readonly])
 
-  const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const backgroundColorOff = getColorStyle(TrilogyColor.MAIN_FADE)
   const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED_FADE)
   const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)

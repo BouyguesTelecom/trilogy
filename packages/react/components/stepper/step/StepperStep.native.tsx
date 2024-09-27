@@ -30,9 +30,9 @@ const StepperStep = ({
   const backgroundColor = backgroundColorAnim.interpolate({
     inputRange: [0, 1, 2],
     outputRange: [
-      defaultColor,
-      activeColor,
-      errorColor,
+      defaultColor as string,
+      activeColor as string,
+      errorColor as string,
     ],
   })
 

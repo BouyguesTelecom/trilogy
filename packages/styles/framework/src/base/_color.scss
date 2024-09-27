@@ -21,3 +21,8 @@
 @function invertColor ($colorName) {
   @return var(--color-#{nth(map-get($colors,$colorName),3)})
 }
+
+@function fadeColor ($colorName) {
+  $name: map-get($fade-colors,$colorName);
+  @return getColor($name);
+}

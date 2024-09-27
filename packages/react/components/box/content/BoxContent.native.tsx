@@ -18,9 +18,7 @@ const BoxContent = ({
     boxContent: {
       padding: 16,
       justifyContent: "center",
-      backgroundColor: backgroundColor
-        ? getColorStyle(backgroundColor)
-        : "transparent",
+      backgroundColor: backgroundColor && getColorStyle(backgroundColor) || "transparent",
       borderRadius: 6,
     },
   })

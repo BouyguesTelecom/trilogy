@@ -46,18 +46,19 @@ export const getStatusClassName = (statusType?: string): string => {
  * @param statusType {string} - Alert type
  * @returns { color: string, backgroundColor: string} - color and background color value
  */
+const STATUS_COLORS = {
+  SUCCESS: { color: TrilogyColor.SUCCESS, backgroundColor: TrilogyColor.SUCCESS_FADE },
+  INFO: { color: TrilogyColor.INFO, backgroundColor: TrilogyColor.INFO_FADE },
+  WARNING: { color: TrilogyColor.WARNING, backgroundColor: TrilogyColor.WARNING_FADE },
+  ERROR: { color: TrilogyColor.ERROR, backgroundColor: TrilogyColor.ERROR_FADE },
+  DEFAULT: { color: TrilogyColor.MAIN, backgroundColor: TrilogyColor.MAIN_FADE },
+}
+
 export const getStatusStyle = (statusType?: string): { color: string, backgroundColor: string} => {
-  switch (statusType) {
-    case 'SUCCESS':
-      return { color: getColorStyle(TrilogyColor.SUCCESS), backgroundColor: getColorStyle(TrilogyColor.SUCCESS_FADE) }
-    case 'INFO':
-      return { color: getColorStyle(TrilogyColor.INFO), backgroundColor: getColorStyle(TrilogyColor.INFO_FADE) }
-    case 'WARNING':
-      return { color: getColorStyle(TrilogyColor.WARNING), backgroundColor: getColorStyle(TrilogyColor.WARNING_FADE) }
-    case 'ERROR':
-      return { color: getColorStyle(TrilogyColor.ERROR), backgroundColor: getColorStyle(TrilogyColor.ERROR_FADE) }
-    default: // MAIN
-      return { color: getColorStyle(TrilogyColor.MAIN), backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE) }
+  const colors = STATUS_COLORS[statusType as keyof typeof STATUS_COLORS] || STATUS_COLORS.DEFAULT
+  return {
+    color: getColorStyle(colors.color),
+    backgroundColor: getColorStyle(colors.backgroundColor),
   }
 }
 

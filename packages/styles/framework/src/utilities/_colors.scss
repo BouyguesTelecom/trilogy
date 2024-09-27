@@ -28,3 +28,13 @@ $colors: (
   'neutral':[ #707070, 'grey', 'white' ],
   'neutral-fade':[#F4F4F4, 'grey-fade', 'white' ],
 ) !default;
+
+$fade-colors: (
+  'main': 'main-fade',
+  'success': 'success-fade',
+  'info':'info-fade',
+  'warning':'warning-fade',
+  'error':'error-fade',
+  'disabled': 'disabled-fade',
+  'neutral': 'neutral-fade',
+) !default;

@@ -69,7 +69,7 @@ a.box {
     border-left: $highlighted-border-width solid transparent;
     border-top-left-radius: calc(var(--radius) + $highlighted-border-width);
     border-bottom-left-radius: calc(var(--radius) + $highlighted-border-width);
-    @each $name, $pair in $colors-brand-funcionnal {
+    @each $name, $pair in $colors-brand-functionnal {
       $color: getColor($name);
       $brandName: getColorBrandName($name);
 

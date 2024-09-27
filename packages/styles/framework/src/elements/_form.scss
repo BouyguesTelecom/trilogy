@@ -228,7 +228,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getFadeColor($name);
+            color: fadeColor($name);
           }
         }
       }
@@ -242,7 +242,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getFadeColor($name)
+            color: fadeColor($name)
           }
         }
       }
@@ -593,7 +593,7 @@ $label-weight: $weight-bold;
   font-size: $help-size;
   margin-top: 2.5px;
 
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $brandName: getColorBrandName($name);
 

@@ -2,11 +2,12 @@
   color: getColor('background');
 }
 
-.is-inverted .box:not(.is-inverted),
-.is-inverted .section:not(.is-inverted),
-.is-inverted .container:not(.is-inverted),
-.is-inverted .view:not(.is-inverted), {
-  color: getColor('font');
+.is-inverted {
+  .box, .section, .container, .view, .text, .title {
+    &:not(.is-inverted) {
+      color: getColor('font');
+    }
+  }
 }
 
 .has-background {
