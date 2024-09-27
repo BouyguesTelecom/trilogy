@@ -39,9 +39,7 @@ const ProgressRadial = ({
   const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = percent || 0
   const secondFill = secondPercent ? { secondFill: secondPercent } : null
-  const secondFillColor = secondStatus
-    ? { secondFillTintColor: getColorStyle(secondStatus) }
-    : null
+  const secondFillColor = { secondFillTintColor: getColorStyle(secondStatus || TrilogyColor.INFO) }
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
 
