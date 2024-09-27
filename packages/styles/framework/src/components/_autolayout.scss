@@ -68,6 +68,12 @@ body:not(.is-tight) {
   .switch + * {
     margin-bottom: 12px;
   }
+  .radio-tile + * {
+    margin-bottom: 24px;
+  }
+  .checkbox-tile + * {
+    margin-bottom: 24px;
+  }
 }
 
 @include mobile() {
@@ -140,6 +146,12 @@ body:not(.is-tight) {
     }
   .switch + * {
       margin-bottom: 12px;
+    }
+  .radio-tile + * {
+      margin-bottom: 16px;
+    }
+  .checkbox-tile + * {
+      margin-bottom: 16px;
     }
 
   }

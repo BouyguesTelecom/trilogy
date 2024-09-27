@@ -31,6 +31,11 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Radio', 'default', THREE, THREE],
   [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', THREE, THREE],
   [INSERT_SPACE_BETWEEN, 'Switch', 'default', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'radio-tile', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'checkbox-tile', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Input', 'default', FOUR, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Textarea', 'default', FOUR, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Select', 'default', FOUR, FOUR],
 
 
 
