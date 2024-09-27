@@ -50,6 +50,24 @@ body:not(.is-tight) {
   .chips + * {
     margin-bottom: 12px;
   }
+  .text + * {
+    margin-bottom: 12px;
+  }
+  .progress + * {
+    margin-bottom: 8px;
+  }
+  .progress-radial + * {
+    margin-bottom: 8px;
+  }
+  .radio + * {
+    margin-bottom: 12px;
+  }
+  .checkbox + * {
+    margin-bottom: 12px;
+  }
+  .switch + * {
+    margin-bottom: 12px;
+  }
 }
 
 @include mobile() {
@@ -97,6 +115,30 @@ body:not(.is-tight) {
       margin-bottom: 16px;
     }
   .countdown + * {
+      margin-bottom: 12px;
+    }
+  .countdown.is-small + * {
+      margin-bottom: 12px;
+    }
+  .chips + * {
+      margin-bottom: 12px;
+    }
+  .text + * {
+      margin-bottom: 8px;
+    }
+  .progress + * {
+      margin-bottom: 8px;
+    }
+  .progress-radial + * {
+      margin-bottom: 8px;
+    }
+  .radio + * {
+      margin-bottom: 12px;
+    }
+  .checkbox + * {
+      margin-bottom: 12px;
+    }
+  .switch + * {
       margin-bottom: 12px;
     }
 
