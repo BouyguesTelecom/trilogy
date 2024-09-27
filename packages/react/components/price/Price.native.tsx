@@ -56,6 +56,15 @@ const Price = ({
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
   )
 
+  const isNegativeStriked = strikedAmount && strikedAmount < 0
+  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
+  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
+  const wholeStriked = absoluteWholeStriked && isNegativeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+
+  const centsStriked = absoluteAmountStriked && checkCents(
+    absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
+  )
+
   const primaryColor = getColorStyle(TrilogyColor.MAIN)
   const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
@@ -265,11 +274,11 @@ const Price = ({
                 <View style={[{ flexDirection: "row" }]}>
                   {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
                   <View style={[styles.priceContainer, style?.priceContainer]}>
-                    <Text style={[styles.price, styles.priceStrikedColor, style?.price]}>{`${whole}`}</Text>
+                    <Text style={[styles.price, styles.priceStrikedColor, style?.price]}>{`${wholeStriked}`}</Text>
                   </View>
                   <View style={[styles.priceContainer, style?.priceContainer]}>
                     <Text style={[styles.cents, styles.priceStrikedColor, style?.cents]}>
-                      €{showCents && (cents || "00")}
+                      €{showCents && (centsStriked || "00")}
                       {mention && mention}
                     </Text>
                     <Text style={[styles.period, styles.priceStrikedColor, style?.period]}>{period && `/${period}`}</Text>
