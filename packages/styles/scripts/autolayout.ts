@@ -23,8 +23,15 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Price', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, 'Button', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'Countdown', 'default', FOUR, THREE],
-  [INSERT_SPACE_BETWEEN, 'countdown.is-small', 'default', THREE],
-  [INSERT_SPACE_BETWEEN, 'Chips', 'default', THREE],
+  [INSERT_SPACE_BETWEEN, 'countdown.is-small', 'default', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'Chips', 'default', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'Text', 'default', THREE, TWO],
+  [INSERT_SPACE_BETWEEN, 'Progress', 'default', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'progress-radial', 'default', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'Radio', 'default', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', THREE, THREE],
+  [INSERT_SPACE_BETWEEN, 'Switch', 'default', THREE, THREE],
+
 
 
   // [INSERT_SPACE_BETWEEN, 'title', 'box', FIVE, FOUR],
