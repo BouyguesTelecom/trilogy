@@ -5,9 +5,7 @@
 .is-inverted .box:not(.is-inverted),
 .is-inverted .section:not(.is-inverted),
 .is-inverted .container:not(.is-inverted),
-.is-inverted .view:not(.is-inverted),
-.is-inverted .text:not(.is-inverted),
-.is-inverted .title:not(.is-inverted) {
+.is-inverted .view:not(.is-inverted), {
   color: getColor('font');
 }
 
