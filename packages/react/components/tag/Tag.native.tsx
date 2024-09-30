@@ -38,7 +38,7 @@ const Tag = ({
     ? getColorStyle(variant as TrilogyColor)
     : getColorStyle(TrilogyColor.MAIN)
 
-  const backgroundColor = variant && getStatusStyle(variant as TrilogyColor).backgroundColor
+  const backgroundColor = variant && getStatusStyle(variant).backgroundColor
 
   const styles = StyleSheet.create({
     tag: {

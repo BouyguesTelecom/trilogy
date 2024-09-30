@@ -31,7 +31,7 @@ export const InputScreen = (): JSX.Element => {
   }
 
   return (
-    <Section background={TrilogyColor.BACKGROUND}>
+    <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Input
         label='Input label not dynamic with sample'
         sample='Input sample'

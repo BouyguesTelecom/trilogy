@@ -206,7 +206,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Hero background={VariantState.MAIN}>
+      <Hero backgroundColor={VariantState.MAIN} inverted>
         <Price
           inverted
           level={PriceLevel.LEVEL1}

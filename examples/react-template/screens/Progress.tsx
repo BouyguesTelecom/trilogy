@@ -21,6 +21,11 @@ export const ProgressScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
+        <ProgressRadial percent={30} secondPercent={30} >
+          <Title level={TitleLevels.THREE} marginless>60</Title>
+          <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
+        </ProgressRadial>
+
         <Divider />
 
         <Progress percent={30} />
@@ -75,7 +80,7 @@ export const ProgressScreen = (): JSX.Element => {
           <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
         </ProgressRadial>
 
-        <ProgressRadial percent={30} secondPercent={30} secondStatus={TrilogyColor.SUCCESS}  small>
+        <ProgressRadial percent={30} secondPercent={30} small>
           <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>60</Text>
           <Text level={TextLevels.FOUR} marginless>/ 100 Go</Text>
         </ProgressRadial>
