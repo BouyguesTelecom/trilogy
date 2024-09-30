@@ -37,6 +37,14 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Textarea', 'default', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'Select', 'default', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'Link', 'default', THREE, TWO],
+  [INSERT_SPACE_BETWEEN, 'Sticker', 'default', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'Tag', 'default', TWO, TWO],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-1', 'default', SEVEN, SIX],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-2', 'default', SIX, FIVE],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-3', 'default', FOUR, THREE],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-4', 'default', THREE, TWO],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-5', 'default', THREE, TWO],
+  [INSERT_SPACE_BETWEEN, 'title.is-level-6', 'default', THREE, TWO],
 
 
 
