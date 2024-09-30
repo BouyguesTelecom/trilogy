@@ -8,7 +8,7 @@ type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSi
 const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX, EIGHT } = SpacerSize;
 
 export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'default', 'Accordion', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'default', 'Accordions', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Card', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Box', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Table', FIVE, FOUR],
