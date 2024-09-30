@@ -5,11 +5,12 @@ import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/Spaci
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
 
-const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX, EIGHT } = SpacerSize;
+const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX } = SpacerSize;
 
 export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'default', 'Accordions', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Card', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'default', 'Alert', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Box', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Table', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'List', FIVE, FOUR],
