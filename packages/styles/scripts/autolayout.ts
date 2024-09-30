@@ -36,6 +36,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Input', 'default', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'Textarea', 'default', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'Select', 'default', FOUR, FOUR],
+  [INSERT_SPACE_BETWEEN, 'Link', 'default', THREE, TWO],
 
 
 
