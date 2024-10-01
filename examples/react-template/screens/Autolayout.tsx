@@ -21,6 +21,7 @@ import {
   IconSize,
   Card,
   CardContent,
+  Divider,
 } from '@trilogy-ds/react'
 import * as React from 'react'
 
@@ -40,6 +41,8 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
+
+      <Divider />
 
       <Box background={TrilogyColor.MAIN} inverted>
         <BoxContent>

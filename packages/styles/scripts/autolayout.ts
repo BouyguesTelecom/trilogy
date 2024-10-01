@@ -20,6 +20,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'default', 'Segmented-Control', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Tabs', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Range', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, 'default', 'Divider', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Stepper', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, 'default', 'Price', THREE, TWO],
   [INSERT_SPACE_BETWEEN, 'default', 'Button', FIVE, FOUR],
