@@ -114,8 +114,8 @@ const Price = ({
       {strikedAmount && (
         <>
           <span
+            aria-hidden="true"
             data-testid={testId}
-            aria-label={accessibilityLabel}
             className={classesStriked}
             {...others}
           >
@@ -137,6 +137,7 @@ const Price = ({
         </>
       )}
         <span
+          aria-hidden="true"
           data-testid={testId}
           aria-label={accessibilityLabel}
           className={classes}
@@ -157,8 +158,9 @@ const Price = ({
             )}
           </span>
         </span>
+        {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
         {tagAmount && (
-          <span className={hashClass(styled, clsx(('price-tag')))}>
+          <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx(('price-tag')))}>
             <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
             {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
           </span>
