@@ -5,7 +5,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Spacer Component
- * @param size {SpacerSize} SMALL | MEDIUM | LARGE | HUGE
+ * @param size {SpacerSize} Size of the spacer
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = ({ size, horizontal }: SpacerProps): JSX.Element => {
