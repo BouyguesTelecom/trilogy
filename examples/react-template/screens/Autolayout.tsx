@@ -55,7 +55,7 @@ export const AutolayoutScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.TWO}>Title followed by Card</Title>
 
-      <Card>
+      <Card active>
         <CardContent>
           <Text>Card content</Text>
         </CardContent>
