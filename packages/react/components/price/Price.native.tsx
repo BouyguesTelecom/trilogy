@@ -99,7 +99,7 @@ const Price = ({
       primaryColor ||
       !inverted && secondaryColor ||
       primaryColor,
-    [inverted, strikedAmount]
+    [inverted, invertedColor, statesContext.inverted, primaryColor, secondaryColor]
   )
 
   const strikedRotateByLevel = () => {
