@@ -5,7 +5,7 @@ import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownProps } from './CountdownProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
-import { TypographyBold, getTypographyBoldStyle } from '../../objects/Typography'
+import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -120,7 +120,7 @@ const Countdown = ({ deadline, format, event, small, centered, inverted, ...othe
     }
   }, [timer, event, init])
 
-  const countdownColor = inverted ? getColorStyle('WHITE') : getColorStyle(TrilogyColor.MAIN)
+  const countdownColor = inverted ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN)
 
   const styles = StyleSheet.create({
     countdown: {
@@ -136,12 +136,12 @@ const Countdown = ({ deadline, format, event, small, centered, inverted, ...othe
     text: {
       color: countdownColor,
       fontWeight: '600',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     date: {
       fontSize: small ? 12 : 14,
       fontWeight: small ? '500' : '400',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     separator: {
       width: 1,

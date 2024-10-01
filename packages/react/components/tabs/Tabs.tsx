@@ -38,7 +38,7 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     textAlign,
     testId,
     ...others
-  } = props 
+  } = props
 
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
   const { styled } = useTrilogyContext()

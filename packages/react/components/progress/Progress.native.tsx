@@ -50,13 +50,13 @@ const Progress = ({
       flexDirection: "row",
       width: "100%",
       height: height,
-      backgroundColor: getColorStyle(TrilogyColor.FONT, 1),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 15,
     },
     percent: {
       alignSelf: "flex-start",
       height: height,
-      backgroundColor: getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN),
+      backgroundColor: getStatusStyle(status).color,
       borderRadius: 15,
     },
     progressItemFirst: {
@@ -101,7 +101,7 @@ const Progress = ({
                     index === 0 && styles.progressItemFirst,
                     index === children.length - 1 && styles.progressItemSecond,
                     {
-                      backgroundColor: getStatusStyle(child.props.status),
+                      backgroundColor: getColorStyle(child.props.status),
                       height: height,
                     },
                   ],

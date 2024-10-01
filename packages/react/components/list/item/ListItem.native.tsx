@@ -56,7 +56,7 @@ const ListItem = ({
       borderRadius: 30,
     },
     swipeInfo: {
-      backgroundColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       width: 2,
       height: 20,
       borderRadius: 6,

@@ -36,7 +36,7 @@ describe("Switch component", () => {
 
   test("trackColor", async () => {
     const { getByTestId } = render(<Switch />);
-    expect(getByTestId("switch-id").props.tintColor).toBe(getColorStyle(TrilogyColor.FONT, 1));
+    expect(getByTestId("switch-id").props.tintColor).toBe(getColorStyle(TrilogyColor.MAIN_FADE));
     expect(getByTestId("switch-id").props.onTintColor).toBe(
       getColorStyle(TrilogyColor.MAIN)
     );
@@ -45,10 +45,10 @@ describe("Switch component", () => {
   colors.forEach((color) => {
     test(`true trackColor should have ${getStatusStyle(
       color
-    )} color`, async () => {
+    ).color} color`, async () => {
       const { getByTestId } = render(<Switch status={color} />);
       expect(getByTestId("switch-id").props.onTintColor).toBe(
-        getStatusStyle(color)
+        getStatusStyle(color).color
       );
     });
   });

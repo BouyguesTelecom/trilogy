@@ -85,7 +85,7 @@ $tag-delete-margin: 1px !default;
 
     &.is-inverted {
       .tag {
-        background-color: getColor('fade-background');
+        background-color: getColor('background');
       }
     }
 
@@ -94,7 +94,7 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getFadeColor('neutral');
+  background-color: getColor('neutral-fade');
   border-radius: 9999px;
   color: getColor('font');
   display: inline-flex;
@@ -120,7 +120,7 @@ $tag-delete-margin: 1px !default;
 
   @each $name in $colors-feedback {
     &.is-#{$name}:not(.is-inverted) {
-      background-color: getFadeColor($name);
+      background-color: fadeColor($name);
     }
     &.is-inverted.is-#{$name} {
       color: getColor($name);

@@ -6,25 +6,22 @@ import { useContext } from 'react'
  */
 export enum TrilogyColor {
   BACKGROUND = 'WHITE',
-  FADE_BACKGROUND = 'FADE_WHITE',
   MAIN = 'MAIN',
-  FADE_MAIN = 'FADE_MAIN',
+  MAIN_FADE = 'MAIN_FADE',
   ACCENT = 'ACCENT',
-  FADE_ACCENT = 'FADE_ACCENT',
   FONT = 'FONT',
-  FADE_FONT = 'FADE_FONT',
   SUCCESS = 'SUCCESS',
-  FADE_SUCCESS = 'FADE_SUCCESS',
+  SUCCESS_FADE = 'SUCCESS_FADE',
   INFO = 'INFO',
-  FADE_INFO = 'FADE_INFO',
+  INFO_FADE = 'INFO_FADE',
   WARNING = 'WARNING',
-  FADE_WARNING = 'FADE_WARNING',
+  WARNING_FADE = 'WARNING_FADE',
   ERROR = 'ERROR',
-  FADE_ERROR = 'FADE_ERROR',
+  ERROR_FADE = 'ERROR_FADE',
   DISABLED = 'DISABLED',
-  FADE_DISABLED = 'FADE_DISABLED',
+  DISABLED_FADE = 'DISABLED_FADE',
   NEUTRAL = 'NEUTRAL',
-  FADE_NEUTRAL = 'FADE_NEUTRAL',
+  NEUTRAL_FADE = 'NEUTRAL_FADE',
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`
@@ -33,16 +30,30 @@ export type TrilogyColorValues = `${TrilogyColor}`
  * Trilogy color values
  */
 export const colors: Record<any, string[]> = {
-  [TrilogyColor.BACKGROUND]: ['#fff', '#E9E9E9', 'white', 'main'],
-  [TrilogyColor.MAIN]: ['#3d5d7e', '#eff2f8', 'main', 'white'],
-  [TrilogyColor.ACCENT]: ['#da641b', '#bb5118', 'accent', 'white'],
-  [TrilogyColor.FONT]: ['#3d5d7e', '#BBC6CD', 'main', 'white'],
-  [TrilogyColor.SUCCESS]: ['#007B52', '#cae8ca', 'success', 'white'],
-  [TrilogyColor.INFO]: ['#1A688A', '#c8dbec', 'info', 'white'],
-  [TrilogyColor.WARNING]: ['#FFBB33', '#ecdbc6', 'warning', 'white'],
-  [TrilogyColor.ERROR]: ['#D42D02', '#eecccc', 'error', 'white'],
-  [TrilogyColor.DISABLED]: ['#646464', '#D1D1D1', 'disabled', 'white'],
-  [TrilogyColor.NEUTRAL]: ['#707070', '#F4F4F4', 'grey', 'white'],
+  [TrilogyColor.BACKGROUND]: ['#fff', 'white', 'main'],
+  [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
+  [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main', 'white'],
+  [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
+  [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
+
+  [TrilogyColor.SUCCESS]: ['#007B52', 'success', 'white'],
+  [TrilogyColor.SUCCESS_FADE]: [ '#cae8ca', 'success-fade', 'white'],
+
+  [TrilogyColor.INFO]: ['#1A688A', 'info', 'white'],
+  [TrilogyColor.INFO_FADE]: ['#c8dbec', 'info-fade', 'white'],
+
+  [TrilogyColor.WARNING]: ['#FFBB33', 'warning', 'white'],
+  [TrilogyColor.WARNING_FADE]: ['#ecdbc6', 'warning-fade', 'white'],
+
+  [TrilogyColor.ERROR]: ['#D42D02', 'error', 'white'],
+  [TrilogyColor.ERROR_FADE]: ['#eecccc', 'error-fade', 'white'],
+
+  [TrilogyColor.DISABLED]: ['#646464', 'disabled', 'white'],
+  [TrilogyColor.DISABLED_FADE]: [ '#D1D1D1', 'disabled-fade', 'white'],
+
+  [TrilogyColor.NEUTRAL]: ['#707070', 'grey', 'white'],
+  [TrilogyColor.NEUTRAL_FADE]: [ '#F4F4F4', 'grey-fade', 'white'],
+
 }
 
 /**
@@ -52,7 +63,7 @@ export const colors: Record<any, string[]> = {
  */
 export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
   const color = colors[trilogyColor]
-  return color[2]
+  return color[1]
 }
 
 /**
@@ -92,7 +103,7 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
     case 'PRIMARY':
       return TrilogyColor.MAIN
     case 'SECONDARY':
-      return TrilogyColor.FADE_MAIN
+      return TrilogyColor.MAIN_FADE
     case 'GHOST':
       return TrilogyColor.BACKGROUND
     default:
@@ -106,27 +117,18 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @param index {number} - Index of color ( 1 for BG )
  * @returns {string} - Color style value
  */
-export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues, index?: number): string => {
-  if (trilogyColor.startsWith('FADE_')) {
-    index = 1
-    trilogyColor = trilogyColor.replace('FADE_', '') as TrilogyColor
-  }
+export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
 
   if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
     const colorsStyle = theme?.colors || colors
 
     const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
-    const colorIndex = index && index !== undefined && index >= 0 && index < colorArray.length ? index : 0
-
     if (!trilogyColor || !colors[trilogyColor]) {
       return colorsStyle.default
     }
-    return colorArray[colorIndex]
+    return colorArray[0]
   } else {
-    const colorArray = colors[trilogyColor]
-    const colorIndex = index !== undefined && index >= 0 && index < colorArray.length ? index : 0
-
-    return colorArray[colorIndex]
+    return colors[trilogyColor][0] || colors['main'][0]
   }
 }

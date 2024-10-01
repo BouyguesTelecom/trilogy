@@ -2,7 +2,7 @@ import * as React from "react"
 import { ImageBackground, StyleSheet, View } from "react-native"
 import { SectionProps } from "./SectionProps"
 import { AutoLayoutWrapper } from "@/components/autolayout"
-import { getBackgroundStyle, getColorStyle, TrilogyColor } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
@@ -28,7 +28,7 @@ const Section = ({
 
   const styles = StyleSheet.create({
     section: {
-      backgroundColor: backgroundColor ? getBackgroundStyle(backgroundColor) : colorBgc,
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       paddingTop: paddingless || verticalPaddingless ? 0 : 32,
       paddingBottom: paddingless || verticalPaddingless ? 0 : 32,
       paddingRight: paddingless ? 0 : 24,
