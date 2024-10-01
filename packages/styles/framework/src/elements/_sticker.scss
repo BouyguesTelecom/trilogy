@@ -25,7 +25,7 @@ $sticker-height: 35px;
   }
 
   &.is-accent {
-    background-color: getColor('alternate');
+    background-color: getColor('accent');
     color: getColor('background') !important;
   }
 

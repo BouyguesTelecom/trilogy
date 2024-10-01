@@ -19,8 +19,7 @@ import { TitleMarkup, TrilogyColor } from "@trilogy-ds/react";
 export const HeroScreen = (): JSX.Element => {
   return (
     <Section>
-      <Hero background={TrilogyColor.MAIN} overlap inverted>
-        <Container>
+      <Hero backgroundColor={TrilogyColor.MAIN} overlap inverted>
           <Title markup={TitleMarkup.H1} level={TitleLevels.TWO}>
             Hero Overlapped
           </Title>
@@ -28,11 +27,10 @@ export const HeroScreen = (): JSX.Element => {
             Profitez dInternet dès labonnement et même en cas de coupure grâce à
             une clé 4G dans les nouvelles offres Bbox.
           </Text>
-        </Container>
       </Hero>
       <Section>
         <Container>
-          <Box background={{ color: TrilogyColor.INFO, fade: false }} inverted>
+          <Box backgroundColor={TrilogyColor.INFO_FADE} >
             <BoxContent>
               <Title level={TitleLevels.TWO}>Hero Overlapped</Title>
               <Text level={TextLevels.TWO}>
@@ -45,7 +43,7 @@ export const HeroScreen = (): JSX.Element => {
       </Section>
       <Divider />
       <Hero backgroundSrc={"https://picsum.photos/id/1/1500/600"} inverted>
-        <Container>
+        <Container inverted>
           <Text>Welcome Message</Text>
           <Title level="ONE">Hero with image background</Title>
           {/* <button className='button'>Click me !</button> */}
@@ -59,8 +57,8 @@ export const HeroScreen = (): JSX.Element => {
         </Container>
       </Hero>
       <Divider />
-      <Hero background={TrilogyColor.MAIN} inverted>
-        <Container>
+      <Hero backgroundColor={TrilogyColor.MAIN} inverted>
+        <Container inverted>
           <Text>Welcome Message</Text>
           <Title level="TWO">Hero with Background Color</Title>
           {/* <button className='button'>Click me !</button> */}

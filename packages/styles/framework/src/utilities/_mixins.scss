@@ -147,7 +147,7 @@
 
 @mixin spinner {
   animation: spinAround 500ms infinite linear;
-  border: 2px solid getFadeColor('neutral');
+  border: 2px solid getColor('neutral-fade');
   border-radius: 290486px;
   border-right-color: transparent;
   border-top-color: transparent;
@@ -340,7 +340,7 @@
 }
 
 @mixin apply-colors($property: 'color') {
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $brandName: getColorBrandName($name);
     &.is-#{$brandName} {
@@ -355,7 +355,7 @@
 }
 
 @mixin pattern-dark($size, $x-pos: top, $y-pos: center) {
-  background: linear-gradient(#1b3650, getColor('alternate'));
+  background: linear-gradient(#1b3650, getColor('accent'));
   background-size: auto, $size, auto;
   background-position: top left, $x-pos $y-pos, top left;
 }
@@ -365,7 +365,7 @@
   @include control;
   height: 56px;
   background-color: getColor('background');
-  border-color: getFadeColor('font');
+  border-color: getColor('main-fade');
   color: getColor('font');
 
   @include placeholder {
@@ -419,7 +419,7 @@
       &:disabled:checked {
         & ~ label.#{$type}-label {
           &:after {
-            background-color: getFadeColor('disabled');
+            background-color: getColor('disabled-fade');
           }
         }
       }
@@ -606,15 +606,7 @@
 }
 
 @mixin hoverRules {
-  background-color: getFadeColor('neutral');
-}
-
-@mixin hoverRulesOnOdd {
-  background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.25)
-  ) getFadeColor('neutral');
+  background-color: getColor('main-fade');
 }
 
 @mixin hover {
@@ -635,6 +627,6 @@
 }
 
 @mixin disabledRules {
-  background-color: getFadeColor('disabled') !important;
+  background-color: getColor('disabled-fade') !important;
   @include disabledRulesWithoutBG;
 }

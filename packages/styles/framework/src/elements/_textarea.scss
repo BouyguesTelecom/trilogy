@@ -96,7 +96,7 @@
   }
 
   // Colors
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $color-invert: invertColor($name);
     $brandName: getColorBrandName($name);

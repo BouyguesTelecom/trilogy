@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import * as React from "react"
-import { getStatusClassName, getStatusIconName } from "@/objects"
+import { getStatusClassName, getStatusIconName } from "@/objects/facets/Status"
 import { has, is } from "@/services/classify"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { Text } from "@/components/text"

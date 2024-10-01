@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { BoxContentProps } from "./BoxContentProps"
-import { getBackgroundStyle } from "@/objects/atoms/Background"
 import { ComponentName } from "@/components/enumsComponentsName"
+import { getColorStyle } from "@/objects"
 
 /**
  * Box Content Component
@@ -18,9 +18,7 @@ const BoxContent = ({
     boxContent: {
       padding: 16,
       justifyContent: "center",
-      backgroundColor: backgroundColor
-        ? getBackgroundStyle(backgroundColor)
-        : "transparent",
+      backgroundColor: backgroundColor && getColorStyle(backgroundColor) || "transparent",
       borderRadius: 6,
     },
   })

@@ -13,9 +13,9 @@ import { is } from "@/services"
  * @param className {string} additionnal CSS Classes
  */
 const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, gapless, ...others } = props 
+  const { className, gapless, ...others } = props
   const { styled } = useTrilogyContext()
-  
+
   return (
     <div ref={ref} className={hashClass(styled, clsx("rows", gapless && is("gapless"), className))} {...others} />
   )

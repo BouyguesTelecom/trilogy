@@ -19,9 +19,6 @@ import { ButtonVariant } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
 import { getTypographyBoldStyle, TypographyBold } from "@/objects"
 
-
-
-
 /**
  * Button Native Component
  * @param loading {boolean} Loading button
@@ -53,7 +50,7 @@ const Button = ({
     variant,
   }: ButtonProps): string => {
     return (
-      (disabled && getColorStyle(TrilogyColor.NEUTRAL, 1)) ||
+      (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
       (typeof loading === "string" &&
       getLoadingClassName(loading) === "loading" &&
       getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
@@ -62,14 +59,14 @@ const Button = ({
       getColorStyle(TrilogyColor.NEUTRAL)) ||
       (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
       (variant === ButtonVariant.SECONDARY &&
-        getColorStyle(TrilogyColor.MAIN, 1)) ||
+        getColorStyle(TrilogyColor.MAIN_FADE)) ||
       (variant === ButtonVariant.CONVERSION &&
-        getColorStyle(TrilogyColor.ACCENT, 1)) ||
+        getColorStyle(TrilogyColor.ACCENT)) ||
       (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      getColorStyle(TrilogyColor.MAIN, 1)
+      getColorStyle(TrilogyColor.MAIN_FADE)
     )
   }
-  
+
   const findTextColor = ({ variant }: ButtonProps): string => {
     return (
       (variant &&
@@ -87,7 +84,7 @@ const Button = ({
       getColorStyle(TrilogyColor.BACKGROUND)
     )
   }
-  
+
   const findBorderColor = ({
     disabled,
     variant,
@@ -96,18 +93,18 @@ const Button = ({
     return (
       (disabled &&
         variant === ButtonVariant.PRIMARY &&
-        getColorStyle(TrilogyColor.DISABLED, 0)) ||
+        getColorStyle(TrilogyColor.DISABLED)) ||
       (!disabled &&
         !!loading &&
         variant === ButtonVariant.PRIMARY &&
-        getColorStyle(TrilogyColor.DISABLED, 0)) ||
+        getColorStyle(TrilogyColor.DISABLED)) ||
       (!disabled &&
         variant === ButtonVariant.PRIMARY &&
-        getColorStyle(TrilogyColor.INFO, 1)) ||
-      getColorStyle(TrilogyColor.BACKGROUND, 0)
+        getColorStyle(TrilogyColor.INFO_FADE)) ||
+      getColorStyle(TrilogyColor.BACKGROUND)
     )
   }
-  
+
   const styles = StyleSheet.create({
     button: {
       maxWidth: "100%",
@@ -135,14 +132,14 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabled: {
-      color: getColorStyle(TrilogyColor.DISABLED,1),
+      color: getColorStyle(TrilogyColor.DISABLED_FADE),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
       justifyContent: "center",
     },
     textDisabledIcon: {
-      color: getColorStyle(TrilogyColor.DISABLED,1),
+      color: getColorStyle(TrilogyColor.DISABLED_FADE),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
@@ -215,7 +212,7 @@ const Button = ({
               height: 45,
             }}
           >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
+            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
           </View>
         )}
       {loading && typeof loading === "boolean" && loading === true && (
@@ -226,7 +223,7 @@ const Button = ({
             justifyContent: "center",
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
+          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
         </View>
       )}
       {loading &&
@@ -256,11 +253,11 @@ const Button = ({
               name={iconName}
               size={IconSize.SMALL}
               color={iconColorVariant(variant)}
-              testId="button-icon"
+              testId='button-icon'
             />
           ) : (
             <Icon
-              testId="button-icon"
+              testId='button-icon'
               name={iconName}
               size={IconSize.SMALL}
               color={getColorStyle(TrilogyColor.DISABLED)}
