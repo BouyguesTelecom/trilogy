@@ -5,8 +5,6 @@ import {
   AccordionItem,
   Alert,
   AutoLayout,
-  StatusState,
-  TrilogyColor,
   Box,
   BoxContent,
   BoxHeader,
@@ -22,7 +20,8 @@ import {
   Card,
   CardContent,
   Divider,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
@@ -44,7 +43,7 @@ export const AutolayoutScreen = (): JSX.Element => {
 
       <Divider />
 
-      <Box background={TrilogyColor.MAIN} inverted>
+      <Box background={TrilogyColor.MAIN}>
         <BoxContent>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta. Etiam
@@ -69,15 +68,15 @@ export const AutolayoutScreen = (): JSX.Element => {
       <Button variant={'PRIMARY'}>Click</Button>
 
       <Accordion>
-        <AccordionItem id='UN' active={true}>
+        <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
-            <Text>Hello World 1</Text>
+            <Text >Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody>
-            <Text>Lorem ipsum dolor sit amet</Text>
+          <AccordionBody dataId="totooooo-test-id" testId="totooooo">
+            <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id='DEUX'>
+        <AccordionItem active={true} id="TWO">
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -85,20 +84,17 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-      </Accordion>
-
-      <Accordion>
-        <AccordionItem id='UN' active={true}>
-          <AccordionHeader>
-            <Text>Hello World 1</Text>
-          </AccordionHeader>
-          <AccordionBody>
-            <Text>Lorem ipsum dolor sit amet</Text>
-          </AccordionBody>
-        </AccordionItem>
-        <AccordionItem active={true} id='DEUX'>
+        <AccordionItem id="THREE">
           <AccordionHeader>
             <Text>Hello World 2</Text>
+          </AccordionHeader>
+          <AccordionBody>
+            <Text>Collpased by default</Text>
+          </AccordionBody>
+        </AccordionItem>
+        <AccordionItem disabled id="FOUR">
+          <AccordionHeader>
+            <Text>Hello World 3</Text>
           </AccordionHeader>
           <AccordionBody>
             <Text>Lorem ipsum dolor sit amet</Text>

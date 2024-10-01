@@ -11,13 +11,11 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
-import {TypographyBold} from "@trilogy-ds/react/objects";
 
 export const AccordionScreen = (): JSX.Element => {
   return (
     <Section>
       <Title level={TitleLevels.TWO}>Base</Title>
-      <Spacer size={10} />
       <Accordion>
         <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
