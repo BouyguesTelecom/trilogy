@@ -49,7 +49,7 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
           )
         : setRatio(1)
     }
-  }, [src])
+  }, [src, horizontal])
 
   const image = (
     <Image

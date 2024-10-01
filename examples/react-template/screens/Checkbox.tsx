@@ -21,7 +21,7 @@ export const CheckboxScreen = (): JSX.Element => {
           consectetur, adipisci velit...
         </Text>
         <Columns>
-          <ColumnsItem centered>
+          <ColumnsItem size={6} centered>
             <Checkbox
               tile
               iconTile={IconName.CHECK_CIRCLE}
@@ -33,7 +33,7 @@ export const CheckboxScreen = (): JSX.Element => {
               checked
             />
           </ColumnsItem>
-          <ColumnsItem>
+          <ColumnsItem size={6}>
             <Checkbox
               iconTile={IconName.CHECK_CIRCLE}
               tile
@@ -47,7 +47,7 @@ export const CheckboxScreen = (): JSX.Element => {
         </Columns>
         <Spacer size={SpacerSize.MEDIUM} />
         <Columns>
-          <ColumnsItem centered>
+          <ColumnsItem size={6} centered>
             <Checkbox
               tile
               iconTile={IconName.CHECK_CIRCLE}
@@ -58,7 +58,7 @@ export const CheckboxScreen = (): JSX.Element => {
               onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
             />
           </ColumnsItem>
-          <ColumnsItem>
+          <ColumnsItem size={6}>
             <Checkbox
               disabled
               iconTile={IconName.CHECK_CIRCLE}
