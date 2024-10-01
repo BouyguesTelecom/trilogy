@@ -4,7 +4,6 @@ import { CardProps } from "./CardProps"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { ComponentName } from "@/components/enumsComponentsName"
-import { getBackgroundStyle } from "@/objects/atoms/Background"
 import { StatesContext } from "@/context/providerStates"
 
 export const CardContext = createContext({
@@ -58,7 +57,7 @@ const Card = ({
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         "transparent",
       borderRadius: cardRadius,
-      backgroundColor: backgroundColor ? getBackgroundStyle(backgroundColor) : colorBgc,
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       flex: fullheight ? 1 : 0,
     },
     horizontal: {
@@ -81,7 +80,7 @@ const Card = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       overflow: "hidden",
       borderRadius: cardRadius,
     },
@@ -91,7 +90,7 @@ const Card = ({
   })
 
   const CardSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others} testID="skeleton-id">
+    <ContentLoader style={styles.skeleton} {...others} testID='skeleton-id'>
       <View style={{ opacity: 0 }}>{children}</View>
       {Platform.OS === "android" && (
         <View>
@@ -108,9 +107,9 @@ const Card = ({
   }
 
   if (horizontal) {
-    cardView = <View style={[styles.horizontal, styles.card]} testID="card-horizontal">{children}</View>
+    cardView = <View style={[styles.horizontal, styles.card]} testID='card-horizontal'>{children}</View>
   } else if (reversed) {
-    cardView = <View style={[styles.reversed, styles.card]} testID="card-reversed">{children}</View>
+    cardView = <View style={[styles.reversed, styles.card]} testID='card-reversed'>{children}</View>
   } else {
     cardView = (
       <View style={[styles.card]} {...others}>
@@ -134,7 +133,7 @@ const Card = ({
       >
         <View style={{ width: "100%" }}>
           <TouchableOpacity
-            testID="card-click-test"
+            testID='card-click-test'
             style={{ width: "100%" }}
             onPress={onClick}
             activeOpacity={0.85}

@@ -18,7 +18,7 @@ const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListE
     children,
     testId,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

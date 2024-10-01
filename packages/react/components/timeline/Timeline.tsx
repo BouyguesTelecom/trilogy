@@ -19,7 +19,7 @@ const Timeline = React.forwardRef((props: TimelineProps, ref: React.LegacyRef<HT
     notifications,
     horizontal,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
   const classes = hashClass(

@@ -23,7 +23,7 @@
     height: 4px;
     border-radius: var(--radius-small);
     background-size: 200% !important;
-    background-color: getFadeColor('neutral');
+    background-color: getColor('neutral-fade');
   }
 
   &.is-error {
@@ -204,7 +204,7 @@
 
 @keyframes progress {
   0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, getFadeColor('neutral') 50%, getFadeColor('neutral') 100%);
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral-fade') 50%, getColor('neutral-fade') 100%);
   }
   0% {
     background-position: 100% 0;

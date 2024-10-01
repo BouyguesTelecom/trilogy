@@ -4,11 +4,10 @@ import { Text as TrilogyText } from '@/components/text'
 import { Spacer, SpacerSize } from "@/components/spacer"
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
-import { getTypographyBoldStyle } from "@/objects"
 
 /**
  * Price Component
@@ -183,7 +182,7 @@ const Price = ({
       color: color
     },
     priceStrikedColor: {
-      color: getColorStyle(TrilogyColor.FONT, 1)
+      color: getColorStyle(TrilogyColor.MAIN_FADE)
     },
     cents: {
       fontWeight: "bold",

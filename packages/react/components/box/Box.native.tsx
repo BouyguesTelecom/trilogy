@@ -3,7 +3,6 @@ import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "
 import { BoxProps } from "./BoxProps"
 import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { getBackgroundStyle } from "@/objects/atoms/Background"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
 
@@ -47,7 +46,7 @@ const Box = ({
   const styles = StyleSheet.create({
     box: {
       width: "100%",
-      backgroundColor: backgroundColor ? getBackgroundStyle(backgroundColor) : colorBgc,
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       borderRadius: boxRadius,
       flexDirection: "row",
       justifyContent: "flex-start",
@@ -55,8 +54,8 @@ const Box = ({
       borderStyle: flat ? "solid" : undefined,
       borderWidth: (flat && 1) || (active && 2) || 0,
       borderColor: active
-        ? getColorStyle(TrilogyColor.MAIN, 0)
-        : getColorStyle(TrilogyColor.FONT, 1),
+        ? getColorStyle(TrilogyColor.MAIN)
+        : getColorStyle(TrilogyColor.MAIN_FADE),
       marginTop: hat ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
@@ -75,7 +74,7 @@ const Box = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.FADE_NEUTRAL),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       overflow: "hidden",
       borderRadius: boxRadius,
     },
@@ -107,7 +106,7 @@ const Box = ({
   const boxTestId = testId || "NotSpecified"
 
   const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others} testID="skeleton">
+    <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
       <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === "android" && (

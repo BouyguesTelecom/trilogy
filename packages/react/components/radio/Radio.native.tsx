@@ -43,6 +43,12 @@ const Radio = ({
                }: RadioProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
+  const getRadioInsideColor = (isDisabled: boolean, isMain: boolean) => {
+    if (isDisabled) return getColorStyle(TrilogyColor.DISABLED_FADE)
+    if (isMain) return getColorStyle(TrilogyColor.MAIN)
+    return getColorStyle(TrilogyColor.MAIN_FADE)
+  }
+
   useEffect(() => {
     setChecked(checked || false)
   }, [checked])
@@ -84,21 +90,16 @@ const Radio = ({
       maxWidth: 140,
       width: 126,
       borderWidth: (_checked && 2) || 1,
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: getRadioInsideColor(!!disabled, _checked),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
     tileDescription: {
-      color: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.MAIN),
+      color: getRadioInsideColor(!!disabled, true),
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
@@ -107,13 +108,10 @@ const Radio = ({
       width: narrow ? "auto" : "100%",
       height: "auto",
       borderWidth: (_checked && 2) || 1,
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: getRadioInsideColor(!!disabled, _checked),
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
   })

@@ -21,7 +21,7 @@ $loader-items-bottom-offset: -40px;
 
     .loader-body {
         visibility: hidden;
-        background-color: getColor('alternate');
+        background-color: getColor('accent');
         animation: 2.5s linear 0s forwards infinite top_item;
     }
 
