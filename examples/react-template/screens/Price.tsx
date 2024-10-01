@@ -288,7 +288,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Section backgroundColor={{color: TrilogyColor.NEUTRAL, fade: true}}>
+      <Section>
         <Price
           inverted
           level={PriceLevel.ONE}

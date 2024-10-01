@@ -781,7 +781,7 @@
     }
 
     &::-webkit-scrollbar-track {
-      background-color: getFadeColor('font');
+      background-color: getColor('main-fade');
       border-radius: var(--radius);
       margin: 0 8px;
     }

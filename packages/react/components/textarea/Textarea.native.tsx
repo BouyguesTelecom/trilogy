@@ -73,7 +73,7 @@ const Textarea = (
     useState<boolean>(false)
   const textareaColor = isFocus
     ? getColorStyle(TrilogyColor.MAIN)
-    : getColorStyle(TrilogyColor.FONT, 1)
+    : getColorStyle(TrilogyColor.MAIN_FADE)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -92,9 +92,9 @@ const Textarea = (
       borderWidth: isFocus ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === "success" && getStatusStyle(StatusState.SUCCESS)) ||
-        (status && status === "warning" && getStatusStyle(StatusState.WARNING)) ||
-        (status && status === "error" && getStatusStyle(StatusState.ERROR)) ||
+        (status && status === "success" && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getColorStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getColorStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       height: customHeight,
@@ -105,16 +105,16 @@ const Textarea = (
       textAlignVertical: "top",
       color: getColorStyle(TrilogyColor.MAIN),
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : getColorStyle(TrilogyColor.BACKGROUND),
       /*  width: '',*/
     },
     help: {
       fontSize: 12,
       color:
-        (status && status === "success" && getStatusStyle(StatusState.SUCCESS)) ||
-        (status && status === "warning" && getStatusStyle(StatusState.WARNING)) ||
-        (status && status === "error" && getStatusStyle(StatusState.ERROR)) ||
+        (status && status === "success" && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getColorStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getColorStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       paddingLeft: 4,

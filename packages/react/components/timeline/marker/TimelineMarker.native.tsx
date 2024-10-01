@@ -33,10 +33,10 @@ const TimelineMarker = ({
       marginRight: "auto",
       borderColor:
         (active && getColorStyle(TrilogyColor.MAIN)) ||
-        (undone && getColorStyle(TrilogyColor.NEUTRAL, 1)) ||
+        (undone && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
         (cancel && getColorStyle(TrilogyColor.NEUTRAL)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL, 1),
+        getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     icon: {
       alignSelf: "center",
@@ -53,17 +53,17 @@ const TimelineMarker = ({
             !iconColor
               ? (active && TrilogyColor.BACKGROUND) ||
                 (undone && TrilogyColor.MAIN) ||
-                (cancel && TrilogyColor.FADE_NEUTRAL) ||
+                (cancel && TrilogyColor.NEUTRAL_FADE) ||
                 (done && TrilogyColor.BACKGROUND) ||
                 TrilogyColor.BACKGROUND
               : iconColor
           }
           backgroundColor={
             (active && TrilogyColor.MAIN) ||
-            (undone && TrilogyColor.FADE_NEUTRAL) ||
+            (undone && TrilogyColor.NEUTRAL_FADE) ||
             (cancel && TrilogyColor.NEUTRAL) ||
             (done && TrilogyColor.MAIN) ||
-            TrilogyColor.FADE_NEUTRAL
+            TrilogyColor.NEUTRAL_FADE
           }
           size={IconSize.SMALL}
         />

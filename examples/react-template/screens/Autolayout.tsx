@@ -33,7 +33,7 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
-      <Box background={TrilogyColor.MAIN} inverted>
+      <Box backgroundColor={TrilogyColor.MAIN} inverted>
         <BoxContent>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta. Etiam

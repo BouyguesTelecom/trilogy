@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { HeroProps } from "./HeroProps"
-import { getBackgroundStyle, TrilogyColor } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { Box } from "../box"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
@@ -50,8 +50,8 @@ const Hero = ({
     },
     background: {
       backgroundColor: backgroundColor
-        ? getBackgroundStyle(backgroundColor)
-        : getBackgroundStyle(TrilogyColor.BACKGROUND),
+        ? getColorStyle(backgroundColor)
+        : getColorStyle(TrilogyColor.BACKGROUND),
     },
     overlap: {
       position: "absolute",
@@ -78,7 +78,7 @@ const Hero = ({
       <StatesContext.Provider
         value={{ inverted: !!inverted, active: false, flat: false }}
       >
-        <View style={[styles.background, styles.hero]} testID="background-id">
+        <View style={[styles.background, styles.hero]} testID='background-id'>
           <View style={styles.content}>{children}</View>
         </View>
       </StatesContext.Provider>
@@ -94,7 +94,7 @@ const Hero = ({
         style={styles.hero}
         {...others}
       >
-        <View style={styles.content} testID="no-background-id">{children}</View>
+        <View style={styles.content} testID='no-background-id'>{children}</View>
       </ImageBackground>
     )
   }
@@ -111,7 +111,7 @@ const Hero = ({
             setOverlapHeight(height)
           }}
         >
-          <Box backgroundColor={TrilogyColor.FADE_NEUTRAL}>
+          <Box backgroundColor={TrilogyColor.NEUTRAL_FADE}>
             <View style={{ marginBottom: secondOverlapHeight / 2 }} />
             {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
           </Box>

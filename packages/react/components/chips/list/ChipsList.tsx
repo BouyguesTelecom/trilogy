@@ -15,7 +15,7 @@ const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<
     children,
     multiple,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

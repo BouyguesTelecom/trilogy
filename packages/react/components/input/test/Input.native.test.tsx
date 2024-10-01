@@ -91,9 +91,9 @@ describe("Input component", () => {
         borderWidth: 1,
         borderRadius: 3,
         borderColor:
-          (state === "success" && getStatusStyle(StatusState.SUCCESS)) ||
-          (state === "warning" && getStatusStyle(StatusState.WARNING)) ||
-          (state === "error" && getStatusStyle(StatusState.ERROR)) ||
+          (state === "success" && getColorStyle(StatusState.SUCCESS)) ||
+          (state === "warning" && getColorStyle(StatusState.WARNING)) ||
+          (state === "error" && getColorStyle(StatusState.ERROR)) ||
           (state === "default" && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.MAIN),
         height: 46,

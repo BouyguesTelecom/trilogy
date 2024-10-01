@@ -1,5 +1,18 @@
 import React from 'react'
-import { StatusState, TypographyBold, Section, Title, TitleLevels, Divider, Progress, ProgressItem, ProgressRadial, Text, TextLevels  } from '@trilogy-ds/react'
+import {
+  StatusState,
+  TypographyBold,
+  Section,
+  Title,
+  TitleLevels,
+  Divider,
+  Progress,
+  ProgressItem,
+  ProgressRadial,
+  Text,
+  TextLevels,
+  TrilogyColor
+} from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
 
@@ -7,6 +20,11 @@ export const ProgressScreen = (): JSX.Element => {
     <Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
+
+        <ProgressRadial percent={30} secondPercent={30} >
+          <Title level={TitleLevels.THREE} marginless>60</Title>
+          <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
+        </ProgressRadial>
 
         <Divider />
 
@@ -57,17 +75,17 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Divider />
 
-        <ProgressRadial percent={30} secondPercent={30} alert={AlertState.INFO} secondAlert={AlertState.WARNING}>
+        <ProgressRadial percent={30} secondPercent={30} >
           <Title level={TitleLevels.THREE} marginless>60</Title>
           <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
         </ProgressRadial>
 
         <ProgressRadial percent={30} secondPercent={30} small>
-          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} level={TitleLevels.ONE} marginless>60</Text>
-          <Text  level={TextLevels.FOUR} marginless>/ 100 Go</Text>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>60</Text>
+          <Text level={TextLevels.FOUR} marginless>/ 100 Go</Text>
         </ProgressRadial>
 
-        <Title level='THREE'>Vide : </Title>
+        <Title level={TitleLevels.THREE}>Vide : </Title>
 
         <ProgressRadial percent={0} secondPercent={0} description='--' />
         <ProgressRadial percent={0} secondPercent={0} description='--' small />

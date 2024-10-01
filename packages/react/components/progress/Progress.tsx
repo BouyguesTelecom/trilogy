@@ -35,7 +35,7 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
     firstExtremLegend,
     secondExtremLegend,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

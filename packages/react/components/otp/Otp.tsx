@@ -1,5 +1,5 @@
 import { Text, TextMarkup } from "@/components/text"
-import React, {useEffect, useMemo, useRef, useState} from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import { OtpProps } from "./OtpProps"
 import { TypographyColor } from "@/objects/Typography"
 import clsx from "clsx"
@@ -43,7 +43,7 @@ const focusToNextInput = (target: HTMLInputElement, value?: string) => {
     if (value)
       nextElementSibling.value = value
 
-    if(target.value.length)
+    if (target.value.length)
       nextElementSibling.focus()
 
   } else {
@@ -62,11 +62,11 @@ const focusToPrevInput = (target: HTMLElement) => {
 
 const updateCodeInput = (value: string, index: number, code: NumberOrNull[]) :NumberOrNull[] => {
   const numberValue = Number(value)
-  if( isNaN(numberValue) || value.length < 1 ) {
+  if ( isNaN(numberValue) || value.length < 1 ) {
     return code
   }
   const newCodeInput = code.map((code, idx) => {
-    return idx === index ? Number(value.slice(0,1)) : code
+    return idx === index ? Number(value.slice(0, 1)) : code
   })
   return updateCodeInput(value.slice(1), index + 1, newCodeInput)
 }
@@ -121,7 +121,7 @@ const Otp = ({
 
   useEffect(() => {
     hasChanged.current = codeInput.find((code) => code !== null) !== undefined
-    if( hasChanged.current ) {
+    if ( hasChanged.current ) {
       onChange?.(codeToString(codeInput))
     }
   }, [codeInput])

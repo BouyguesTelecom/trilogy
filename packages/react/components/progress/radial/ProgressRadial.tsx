@@ -43,7 +43,7 @@ const ProgressRadial = ({
 
     let styleBackground;
     styleBackground = `radial-gradient(circle at center, white 58%, transparent 58.1%),`;
-    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, #${getColorStyle('MAIN')} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${secondProgressStartDegree + secondProgressDegree}deg 360deg)`;
+    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, ${getColorStyle('MAIN')} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${secondProgressStartDegree + secondProgressDegree}deg 360deg)`;
     progressRadial.style.background = styleBackground;
   };
 
