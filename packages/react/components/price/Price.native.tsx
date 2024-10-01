@@ -1,9 +1,10 @@
 import React, { useContext, useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
+import { Spacer, SpacerSize } from "@/components/spacer"
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getStatusStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
@@ -22,7 +23,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param suptitle {string} Price Suptitle
+ * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
  */
@@ -30,15 +31,15 @@ const Price = ({
                  amount,
                  mention,
                  period,
-                 showCents,
+                 showCents = true,
                  level,
                  inverted,
                  align,
                  inline,
                  testId,
                  accessibilityLabel,
-                 striked,
-                 suptitle,
+                 strikedAmount,
+                 overline,
                  style,
                  tagAmount,
                  tagSymbol,
@@ -55,6 +56,15 @@ const Price = ({
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
   )
 
+  const isNegativeStriked = strikedAmount && strikedAmount < 0
+  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
+  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
+  const wholeStriked = absoluteWholeStriked && isNegativeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+
+  const centsStriked = absoluteAmountStriked && checkCents(
+    absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
+  )
+
   const primaryColor = getColorStyle(TrilogyColor.MAIN)
   const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
@@ -68,19 +78,27 @@ const Price = ({
     (level == PriceLevel.SIX && 24) ||
     (level == PriceLevel.SEVEN && 20) ||
     44
+
   const centsLevel = priceLevel * 0.4
   const suptitleLevel = priceLevel * 0.2
 
+  const priceLevelStriked =
+    (level == PriceLevel.ONE && 44) ||
+    (level == PriceLevel.TWO && 32) ||
+    (level == PriceLevel.THREE && 28) ||
+    (level == PriceLevel.FOUR && 24) ||
+    20
+
+  const centsLevelStriked = priceLevelStriked * 0.4
+
   const color = useMemo(
     () =>
-      (inverted && !striked && invertedColor) ||
-      (statesContext.inverted && invertedColor) ||
-      (inverted && striked && getColorStyle(TrilogyColor.MAIN_FADE)) ||
-      (!striked && !inverted && primaryColor) ||
-      (!striked && !inverted && secondaryColor) ||
-      (striked && !inverted && getColorStyle(TrilogyColor.MAIN_FADE)) ||
+      (inverted && invertedColor) ||
+      statesContext.inverted && invertedColor ||
+      primaryColor ||
+      !inverted && secondaryColor ||
       primaryColor,
-    [inverted, striked]
+    [inverted, invertedColor, statesContext.inverted, primaryColor, secondaryColor]
   )
 
   const strikedRotateByLevel = () => {
@@ -148,24 +166,44 @@ const Price = ({
       position: "relative",
     },
     price: {
-      fontSize: priceLevel,
       fontWeight:
         (level == PriceLevel.SIX && "normal") ||
         (level == PriceLevel.SEVEN && "normal") ||
         "bold",
-      color: color,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    priceFontSize: {
+      fontSize: priceLevel,
+    },
+    priceFontSizeStriked: {
+      fontSize: priceLevelStriked,
+    },
+    priceColor: {
+      color: color
+    },
+    priceStrikedColor: {
+      color: getColorStyle(TrilogyColor.MAIN_FADE)
     },
     cents: {
       fontWeight: "bold",
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    centsFontSize: {
+      fontSize: centsLevel,
+    },
+    centsFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     period: {
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    periodFontSize: {
+      fontSize: centsLevel,
+    },
+    periodFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     inlinePeriod: {
       color: color,
@@ -233,51 +271,73 @@ const Price = ({
       : "NotSpecified"
 
   return (
-    <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
-      {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
-      <View
-        style={[styles.container, style?.container]}
-        accessible={!!priceAccessibilityLabel}
-        accessibilityLabel={priceAccessibilityLabel}
-        testID={priceTestId}
-        {...others}
-      >
-        {inline ? (
-          <View style={[styles.priceContainer, { flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
-            <Text style={[styles.price, style?.price]}>
-              {whole}€{showCents && cents}
-            </Text>
-            <Text style={[styles.inlinePeriod, style?.inlinePeriod]}>
-              {mention}
-              {period && ` / ${period}`}
-            </Text>
-          </View>
-        ) : (
-          <View style={[{ flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
-            <View style={[styles.priceContainer, style?.priceContainer]}>
-              <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>
-            </View>
-            <View style={[styles.priceContainer, style?.priceContainer]}>
-              <Text style={[styles.cents, style?.cents]}>
-                €{showCents && (cents || "00")}
-                {mention && mention}
+    <View>
+      {overline && <Text style={[styles.suptitle, style?.suptitle]}>{overline}</Text>}
+
+      <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
+        <View
+          style={[styles.container, style?.container]}
+          accessible={!!priceAccessibilityLabel}
+          accessibilityLabel={priceAccessibilityLabel}
+          testID={priceTestId}
+          {...others}
+        >
+          {inline ? (
+            <View style={[styles.priceContainer, { flexDirection: "row" }]}>
+              {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
+              <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>
+                {whole}€{showCents && cents}
               </Text>
-              <Text style={[styles.period, style?.period]}>{period && `/${period}`}</Text>
+              <Text style={[styles.inlinePeriod, styles.priceColor, style?.inlinePeriod]}>
+                {mention}
+                {period && ` / ${period}`}
+              </Text>
+            </View>
+          ) : (
+            <>
+              {strikedAmount && (
+                <View style={[{ flexDirection: "row" }]}>
+                  {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.price, styles.priceFontSizeStriked, styles.priceStrikedColor, style?.price]}>{`${wholeStriked}`}</Text>
+                  </View>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.cents, styles.centsFontSizeStriked, styles.priceStrikedColor, style?.cents]}>
+                      €{showCents && (centsStriked || "00")}
+                      {mention && mention}
+                    </Text>
+                    <Text style={[styles.period, styles.periodFontSizeStriked, styles.priceStrikedColor, style?.period]}>{period && `/${period}`}</Text>
+                  </View>
+                </View>
+              )}
+              {amount && strikedAmount && <Spacer horizontal size={SpacerSize.SMALLER} />}
+              {amount && (
+                <View style={[{ flexDirection: "row" }]}>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>{`${whole}`}</Text>
+                  </View>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.cents, styles.centsFontSize, styles.priceColor, style?.cents]}>
+                      €{showCents && (cents || "00")}
+                      {mention && mention}
+                    </Text>
+                    <Text style={[styles.period, styles.periodFontSize, styles.priceColor, style?.period]}>{period && `/${period}`}</Text>
+                  </View>
+                </View>
+              )}
+            </>
+          )}
+        </View>
+        {tagAmount && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+            <View style={[styles.tagArrow, style?.tagArrow]} />
+            <View style={[styles.tag, style?.tag]}>
+              <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+              {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
             </View>
           </View>
         )}
       </View>
-      {tagAmount && (
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-          <View style={[styles.tagArrow, style?.tagArrow]} />
-          <View style={[styles.tag, style?.tag]}>
-            <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
-            {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
-          </View>
-        </View>
-      )}
     </View>
   )
 }

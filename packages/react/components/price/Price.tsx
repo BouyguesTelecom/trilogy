@@ -7,6 +7,7 @@ import { Alignable, TypographyColor, TypographyBold } from "@/objects"
 import { checkCents } from "./PriceHelpers"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+import { PriceLevel } from "./PriceEnum"
 
 /**
  * Price Component
@@ -21,12 +22,12 @@ import { useTrilogyContext } from "@/context"
  * @param inline {boolean} Inline display Price
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
- * @param suptitle {string} Price Suptitle
+ * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param striked {boolean} Striked Price
+ * @param strikedAmount {boolean} Striked Amount Price
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param accessibilityActivate {boolean}
  */
@@ -35,15 +36,15 @@ const Price = ({
                  amount,
                  mention,
                  period,
-                 showCents,
+                 showCents = true,
                  level,
                  inverted,
                  align,
                  inline,
                  testId,
                  accessibilityLabel,
-                 striked,
-                 suptitle,
+                 strikedAmount,
+                 overline,
                  tagAmount,
                  tagSymbol,
                  ...others
@@ -57,8 +58,20 @@ const Price = ({
       level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),
-      striked && is("striked"),
-      suptitle && has("suptitle"),
+      overline && has("suptitle"),
+      className
+    )
+  )
+
+  const classesStriked = hashClass(
+    styled,
+    clsx(
+      "price",
+      level && level == PriceLevel.ONE && is(`level-3`) || level == PriceLevel.TWO && is(`level-4`) || level == PriceLevel.THREE && is(`level-5`) || level == PriceLevel.FOUR && is(`level-6`) || is(`level-7`),
+      inverted && is("inverted"),
+      inline && is("inlined"),
+      strikedAmount && is("striked"),
+      overline && has("suptitle"),
       className
     )
   )
@@ -78,6 +91,11 @@ const Price = ({
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
 
+  const isNegativeStriked = strikedAmount && strikedAmount < 0
+  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
+  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
+  const wholeStriked = isNegativeStriked && absoluteWholeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+
   let cents = checkCents(
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
   )
@@ -90,36 +108,64 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <span className={tagAmount ? hashClass(styled, clsx(is('aligned-center'), is('flex'))) : ''}>
-      <span
-        data-testid={testId}
-        aria-label={accessibilityLabel}
-        className={classes}
-        {...others}
-      >
-        {suptitle && <span className='price-suptitle'>{suptitle}</span>}
-        <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
-        <span className={hashClass(styled, clsx("price-details"))}>
-          <span className={hashClass(styled, clsx("cents"))}>
-            {inline && centsDisplayed === "€" ? (
-              <>&nbsp;{centsDisplayed}</>
-            ) : (
-              centsDisplayed
-            )}
-            {mention && <sup>{mention}</sup>}
+    <div className={'price-container'}>
+      {overline && <p className="overline">{overline}</p>}
+      {/* StrikedAmount Price */}
+      {strikedAmount && (
+        <>
+          <span
+            aria-hidden="true"
+            data-testid={testId}
+            className={classesStriked}
+            {...others}
+          >
+            <Text markup={TextMarkup.SPAN}>{`${wholeStriked}`}</Text>
+            <span className={hashClass(styled, clsx("price-details"))}>
+              <span className={hashClass(styled, clsx("cents"))}>
+                {inline && centsDisplayed === "€" ? (
+                  <>&nbsp;{centsDisplayed}</>
+                ) : (
+                  centsDisplayed
+                )}
+                {mention && <sup>{mention}</sup>}
+              </span>
+              {period && (
+                <span className={hashClass(styled, clsx("period"))}>/{period}</span>
+              )}
+            </span>
           </span>
-          {period && (
-            <span className={hashClass(styled, clsx("period"))}>/{period}</span>
-          )}
-        </span>
-      </span>
-      {tagAmount && (
-        <span className={hashClass(styled, clsx(('price-tag')))}>
-          <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
-          {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
-        </span>
+        </>
       )}
-    </span>
+        <span
+          aria-hidden="true"
+          data-testid={testId}
+          aria-label={accessibilityLabel}
+          className={classes}
+          {...others}
+        >
+          <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
+          <span className={hashClass(styled, clsx("price-details"))}>
+            <span className={hashClass(styled, clsx("cents"))}>
+              {inline && centsDisplayed === "€" ? (
+                <>&nbsp;{centsDisplayed}</>
+              ) : (
+                centsDisplayed
+              )}
+              {mention && <sup>{mention}</sup>}
+            </span>
+            {period && (
+              <span className={hashClass(styled, clsx("period"))}>/{period}</span>
+            )}
+          </span>
+        </span>
+        {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
+        {tagAmount && (
+          <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx(('price-tag')))}>
+            <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
+            {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
+          </span>
+        )}
+    </div>
   )
 
   if (align) {
