@@ -160,14 +160,14 @@ const Textarea = (
       {!dynamicPlaceholder && label && (
         <>
           <TrilogyText typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <TrilogyText typo={TypographyColor.TEXT_ERROR}>*</TrilogyText>}</TrilogyText>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 
       {!dynamicPlaceholder && label && sample && (
         <>
           <TrilogyText level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</TrilogyText>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 

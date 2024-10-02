@@ -11,7 +11,6 @@ import {
   Card,
   CardContent,
   CardImage,
-  Divider,
   Section,
   Spacer,
   SpacerSize,
@@ -23,16 +22,6 @@ import * as React from "react";
 import { CardMarkup } from "@trilogy-ds/react/components/card/CardProps";
 import { TrilogyColor } from "@trilogy-ds/react/objects";
 import { Columns, ColumnsItem } from "@trilogy-ds/react";
-
-const Separator = () => {
-  return (
-    <>
-      <Spacer size={10} />
-      <Divider />
-      <Spacer size={50} />
-    </>
-  );
-};
 
 export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false);
@@ -122,7 +111,7 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>Reversed </Title>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.THREE} />
       <Card reversed>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
@@ -147,7 +136,7 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>Flat </Title>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.THREE} />
       <Card flat>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
@@ -171,8 +160,8 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>Horizontal </Title>
-      <Spacer size={SpacerSize.MEDIUM} />
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.THREE} />
+      <Spacer size={SpacerSize.THREE} />
       <Card horizontal>
         <CardImage
           size={"3"}
@@ -200,7 +189,7 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>Floating (inside component)</Title>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.THREE} />
       <Box>
         <BoxHeader>Floating (inside component)</BoxHeader>
         <BoxContent>

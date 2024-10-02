@@ -16,7 +16,7 @@ export const PriceScreen = (): JSX.Element => {
     <Section>
       <Title level={TitleLevels.THREE}>Price with stricked amount</Title>
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price
         overline='A partir de'
@@ -59,37 +59,37 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price overline='A partir de' strikedAmount={10.99} level={7} amount={24.99} showCents period={'mois'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
       <Price overline='A partir de' level={1} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={2} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={3} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={4} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={5} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={6} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
 
       <Price overline='A partir de' level={7} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.THREE} />
 
       <Title level={TitleLevels.THREE}>Simple</Title>
 
