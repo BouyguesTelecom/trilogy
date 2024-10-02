@@ -76,7 +76,7 @@ const Chips = ({
             color={IconColor.WHITE}
             name={IconName.CHECK}
           />
-          <Spacer horizontal size={SpacerSize.SMALLER}/>
+          <Spacer horizontal size={SpacerSize.ONE}/>
         </>
       )}
       <Text level={TextLevels.TWO} style={styles.text}>

@@ -310,7 +310,7 @@ const Price = ({
                   </View>
                 </View>
               )}
-              {amount && strikedAmount && <Spacer horizontal size={SpacerSize.SMALLER} />}
+              {amount && strikedAmount && <Spacer horizontal size={SpacerSize.ONE} />}
               {amount && (
                 <View style={[{ flexDirection: "row" }]}>
                   <View style={[styles.priceContainer, style?.priceContainer]}>

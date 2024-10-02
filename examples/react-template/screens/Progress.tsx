@@ -40,6 +40,7 @@ export const ProgressScreen = (): JSX.Element => {
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression empilée</Title>
+
         <Divider />
 
         <Progress stacked>

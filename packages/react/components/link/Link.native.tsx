@@ -177,7 +177,7 @@ const Link = ({
               >
                 {children}
               </Text>
-              <Spacer size={SpacerSize.SMALLER} horizontal />
+              <Spacer size={SpacerSize.ONE} horizontal />
               <Icon
                 color={TrilogyColor.MAIN}
                 name={iconName}
