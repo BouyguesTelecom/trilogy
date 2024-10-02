@@ -52,7 +52,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     centered,
     align,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

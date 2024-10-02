@@ -75,8 +75,8 @@ const CardContent = ({
 
   const cardContent = (
     <View style={styles.card} {...others}>
-      {titleSup && <Title overline testId="titleSup-id">{titleSup}</Title>}
-      {title && <Title level={TitleLevels.ONE} testId="title-id">{title}</Title>}
+      {titleSup && <Title overline testId='titleSup-id'>{titleSup}</Title>}
+      {title && <Title level={TitleLevels.ONE} testId='title-id'>{title}</Title>}
       {text && (
         <>
           <View style={{ marginBottom: 16 }} />
@@ -86,7 +86,7 @@ const CardContent = ({
       {buttonText && (
         <>
           <View style={{ marginBottom: 16 }} />
-          <Button variant={buttonVariant} onClick={buttonClick} testId="button-id">
+          <Button variant={buttonVariant} onClick={buttonClick} testId='button-id'>
             {buttonText}
           </Button>
         </>

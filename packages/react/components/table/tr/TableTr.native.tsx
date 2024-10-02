@@ -27,7 +27,7 @@ const TableTr = ({
     },
     expendable: {
       width: "100%",
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
     },
   })

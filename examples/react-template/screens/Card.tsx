@@ -11,7 +11,6 @@ import {
   Card,
   CardContent,
   CardImage,
-  Divider,
   Section,
   Spacer,
   SpacerSize,
@@ -31,7 +30,7 @@ export const CardScreen = (): JSX.Element => {
     <Section>
       <Columns>
         <ColumnsItem>
-          <Card inverted background={TrilogyColor.SUCCESS}>
+          <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -51,7 +50,7 @@ export const CardScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
         <ColumnsItem>
-          <Card background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+          <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -72,8 +71,8 @@ export const CardScreen = (): JSX.Element => {
         </ColumnsItem>
       </Columns>
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
-      <Spacer size={SpacerSize.THREE} />
-      <Card active background={TrilogyColor.BACKGROUND}>
+      <Spacer size={SpacerSize.MEDIUM} />
+      <Card active backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -92,8 +91,8 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
-      <Spacer size={SpacerSize.THREE} />
-      <Card markup={CardMarkup.A} background={TrilogyColor.BACKGROUND}>
+      <Spacer size={SpacerSize.MEDIUM} />
+      <Card markup={CardMarkup.A} backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -239,7 +238,7 @@ export const CardScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
         <ColumnsItem>
-          <Card inverted background={TrilogyColor.SUCCESS}>
+          <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -259,7 +258,7 @@ export const CardScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
         <ColumnsItem>
-          <Card background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+          <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
