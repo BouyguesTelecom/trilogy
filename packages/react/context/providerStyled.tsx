@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { TrilogyContext } from "./index"
+import * as React from 'react'
+import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
-  children: React.ReactNode;
-  theme?: string;
+  children: React.ReactNode
+  theme?: 'default' | 'mangled'
 }
 
 /**
@@ -13,32 +13,24 @@ interface TrilogyProviderStyledProps {
  * @param children App
  * @param theme (optionnal) Url of stylesheet customisation
  */
-const TrilogyProviderStyled = ({
-  children,
-  theme,
-}: TrilogyProviderStyledProps): JSX.Element => {
+const TrilogyProviderStyled = ({ children, theme = 'default' }: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
 
-  React.useEffect(() => {
-    if (theme) {
-      const link = document.createElement("link")
-      link.href = theme
-      link.rel = "stylesheet"
-      link.type = "text/css"
-
-      document.head.appendChild(link)
-
-      return () => {
-        document.head.removeChild(link)
-      }
-    } else if (!theme) {
-      import("@trilogy-ds/styles/dist/default/trilogy.css")
+  const StyleComponent = React.useMemo(() => {
+    switch (true) {
+      case theme === 'mangled':
+        setStyled(true)
+        return React.lazy(() => import('./styleComponent/styleComponentMangled'))
+      default:
+        return React.lazy(() => import('./styleComponent/styleComponent'))
     }
   }, [theme])
 
   return (
     <TrilogyContext.Provider value={{ styled, setStyled }}>
-      {children}
+      <React.Suspense fallback={null}>
+        <StyleComponent>{children}</StyleComponent>
+      </React.Suspense>
     </TrilogyContext.Provider>
   )
 }
