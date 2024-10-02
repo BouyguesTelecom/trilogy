@@ -14,7 +14,7 @@ const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX } = SpacerSize;
 * @mobile spacing: SpacerSize
 * */
 export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, '.Accordion', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, '.Accordions', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Card', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Box', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Table', 'default', FIVE, FOUR],
