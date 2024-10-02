@@ -1,5 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { getColorStyle } from './Color'
+import { getColorStyle, TrilogyColor } from './Color'
 
 /**
  * Alert State
@@ -44,20 +44,21 @@ export const getStatusClassName = (statusType?: string): string => {
 /**
  * Returns status style depending on alert type
  * @param statusType {string} - Alert type
- * @returns {string} - Alert value
+ * @returns { color: string, backgroundColor: string} - color and background color value
  */
-export const getStatusStyle = (statusType?: string): string => {
-  switch (statusType) {
-    case 'SUCCESS':
-      return getColorStyle('SUCCESS')
-    case 'INFO':
-      return getColorStyle('INFO')
-    case 'WARNING':
-      return getColorStyle('WARNING')
-    case 'ERROR':
-      return getColorStyle('ERROR')
-    default:
-      return ''
+const STATUS_COLORS = {
+  SUCCESS: { color: TrilogyColor.SUCCESS, backgroundColor: TrilogyColor.SUCCESS_FADE },
+  INFO: { color: TrilogyColor.INFO, backgroundColor: TrilogyColor.INFO_FADE },
+  WARNING: { color: TrilogyColor.WARNING, backgroundColor: TrilogyColor.WARNING_FADE },
+  ERROR: { color: TrilogyColor.ERROR, backgroundColor: TrilogyColor.ERROR_FADE },
+  DEFAULT: { color: TrilogyColor.MAIN, backgroundColor: TrilogyColor.MAIN_FADE },
+}
+
+export const getStatusStyle = (statusType?: keyof typeof STATUS_COLORS): { color: string, backgroundColor: string} => {
+  const colors = STATUS_COLORS[statusType || 'DEFAULT']
+  return {
+    color: getColorStyle(colors.color),
+    backgroundColor: getColorStyle(colors.backgroundColor),
   }
 }
 

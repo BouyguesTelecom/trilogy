@@ -26,7 +26,7 @@ const ProgressItem = React.forwardRef((props: ProgressItemProps, ref: React.Lega
     status,
     accessibilityLabel,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 

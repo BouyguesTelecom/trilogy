@@ -31,7 +31,7 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
     iconName,
     error,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
   const classesStepLabel = hashClass(styled, clsx('step-label'))

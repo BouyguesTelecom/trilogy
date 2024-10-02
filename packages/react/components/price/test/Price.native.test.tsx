@@ -16,7 +16,7 @@ describe('Price', () => {
   })
 
   it('renders correctly with suptitle', () => {
-    render(<Price amount={20} suptitle='Starting at' />)
+    render(<Price amount={20} overline='Starting at' showCents={false} />)
     expect(screen.getByText('Starting at')).toBeOnTheScreen()
     expect(screen.getByText('20')).toBeOnTheScreen()
     expect(screen.getByText('€')).toBeOnTheScreen()

@@ -17,7 +17,7 @@ const RowItem = React.forwardRef((props: RowsItemProps, ref: React.LegacyRef<HTM
     className,
     narrow,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
   const classes = hashClass(

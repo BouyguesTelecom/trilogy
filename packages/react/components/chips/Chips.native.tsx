@@ -34,7 +34,7 @@ const Chips = ({
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.FADE_NEUTRAL)) ||
+        (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
@@ -43,14 +43,14 @@ const Chips = ({
       paddingTop: 6,
       paddingBottom: 5,
       margin: 6,
-      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.MAIN_FADE),
       borderWidth: 1,
       flexDirection: "row",
     },
     text: {
       alignSelf: "center",
       color:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       paddingTop: 1,

@@ -33,7 +33,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
 
   return (
     <View>
-      <View style={[styles.containerGauge, { backgroundColor: getColorStyle(TrilogyColor.FONT, 1) }]}>
+      <View style={[styles.containerGauge, { backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE) }]}>
         <View style={[styles.gauge, { width: widthGauge as DimensionValue, backgroundColor: colorGauge }]} />
       </View>
       <View style={styles.verifies}>
