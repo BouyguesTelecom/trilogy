@@ -13,7 +13,7 @@ const Accordion = React.forwardRef((props: AccordionProps, ref: React.LegacyRef<
     className,
     testId,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx("accordions", className))

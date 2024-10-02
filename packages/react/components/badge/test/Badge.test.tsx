@@ -5,7 +5,7 @@ import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 // Component to test
-import { Badge, BadgeTextDirection } from '../'
+import { Badge } from '../'
 
 describe('Badge component', () => {
   test('should contain toto as text', () => {
@@ -37,23 +37,23 @@ describe('Badge component', () => {
 
   test('should have correct Text direction for Badge', () => {
     render(
-      <Badge textContent={'TEXT'} direction={BadgeTextDirection.LEFT}>
-        {BadgeTextDirection.LEFT}
+      <Badge textContent={'TEXT'} reversed={false}>
+        not reversed
       </Badge>,
     )
     render(
-      <Badge textContent={'TEXT'} direction={BadgeTextDirection.RIGHT}>
-        {BadgeTextDirection.RIGHT}
+      <Badge textContent={'TEXT'} reversed={true}>
+        reversed
       </Badge>,
     )
 
-    expect(screen.getByText(BadgeTextDirection.LEFT)).toHaveClass('badge')
-    expect(screen.getByText(BadgeTextDirection.LEFT).nextElementSibling).toBeNull()
-    expect(screen.getByText(BadgeTextDirection.LEFT).previousElementSibling).toHaveClass('text')
+    expect(screen.getByText('not reversed')).toHaveClass('badge')
+    expect(screen.getByText('not reversed').nextElementSibling).toBeNull()
+    expect(screen.getByText('not reversed').previousElementSibling).toHaveClass('text')
 
-    expect(screen.getByText(BadgeTextDirection.RIGHT)).toHaveClass('badge')
-    expect(screen.getByText(BadgeTextDirection.RIGHT).nextElementSibling).toHaveClass('text')
-    expect(screen.getByText(BadgeTextDirection.RIGHT).previousElementSibling).toBeNull()
+    expect(screen.getByText('reversed')).toHaveClass('badge')
+    expect(screen.getByText('reversed').nextElementSibling).toHaveClass('text')
+    expect(screen.getByText('reversed').previousElementSibling).toBeNull()
   })
 
   test('should onClick attribut work', () => {

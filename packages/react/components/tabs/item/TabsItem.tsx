@@ -31,7 +31,7 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
     disabled,
     testId,
     ...others
-  } = props 
+  } = props
 
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()

@@ -1,0 +1,272 @@
+body:not(.is-tight) {
+  * + .accordions {
+    margin-bottom: 24px;
+  }
+  * + .card {
+    margin-bottom: 24px;
+  }
+  * + .alert {
+    margin-bottom: 24px;
+  }
+  * + .box {
+    margin-bottom: 24px;
+  }
+  * + .table {
+    margin-bottom: 24px;
+  }
+  * + .list {
+    margin-bottom: 24px;
+  }
+  * + .timeline {
+    margin-bottom: 24px;
+  }
+  * + .stepper {
+    margin-bottom: 24px;
+  }
+  * + .pagination {
+    margin-bottom: 24px;
+  }
+  * + .segmented-control {
+    margin-bottom: 24px;
+  }
+  * + .tabs {
+    margin-bottom: 24px;
+  }
+  * + .range {
+    margin-bottom: 24px;
+  }
+  * + .divider {
+    margin-bottom: 16px;
+  }
+  * + .stepper {
+    margin-bottom: 24px;
+  }
+  * + .price {
+    margin-bottom: 12px;
+  }
+  * + .button {
+    margin-bottom: 24px;
+  }
+  * + .countdown {
+    margin-bottom: 16px;
+  }
+  * + .countdown.is-small {
+    margin-bottom: 12px;
+  }
+  * + .chips {
+    margin-bottom: 12px;
+  }
+  * + .text {
+    margin-bottom: 12px;
+  }
+  * + .progress {
+    margin-bottom: 8px;
+  }
+  * + .progress-radial {
+    margin-bottom: 8px;
+  }
+  * + .radio {
+    margin-bottom: 12px;
+  }
+  * + .checkbox {
+    margin-bottom: 12px;
+  }
+  * + .switch {
+    margin-bottom: 12px;
+  }
+  * + .radio-tile {
+    margin-bottom: 24px;
+  }
+  * + .checkbox-tile {
+    margin-bottom: 24px;
+  }
+  * + .input {
+    margin-bottom: 16px;
+  }
+  * + .textarea {
+    margin-bottom: 16px;
+  }
+  * + .select {
+    margin-bottom: 16px;
+  }
+  * + .link {
+    margin-bottom: 12px;
+  }
+  * + .sticker {
+    margin-bottom: 8px;
+  }
+  * + .tag {
+    margin-bottom: 8px;
+  }
+  * + .title.is-level-1 {
+    margin-bottom: 40px;
+  }
+  * + .title.is-level-2 {
+    margin-bottom: 32px;
+  }
+  * + .title.is-level-3 {
+    margin-bottom: 16px;
+  }
+  * + .title.is-level-4 {
+    margin-bottom: 12px;
+  }
+  * + .title.is-level-5 {
+    margin-bottom: 12px;
+  }
+  * + .title.is-level-6 {
+    margin-bottom: 12px;
+  }
+  * + .overline {
+    margin-bottom: 0px;
+  }
+  .subtitle + .title.is-level-1 {
+    margin-bottom: 8px;
+  }
+  .subtitle + .title.is-level-2 {
+    margin-bottom: 8px;
+  }
+  .title.is-level-1 + .subtitle {
+    margin-bottom: 32px;
+  }
+  .title.is-level-2 + .subtitle {
+    margin-bottom: 24px;
+  }
+}
+
+@include mobile() {
+  body:not(.is-tight) {
+    * + .accordions {
+      margin-bottom: 16px;
+    }
+  * + .card {
+      margin-bottom: 16px;
+    }
+  * + .alert {
+      margin-bottom: 16px;
+    }
+  * + .box {
+      margin-bottom: 16px;
+    }
+  * + .table {
+      margin-bottom: 16px;
+    }
+  * + .list {
+      margin-bottom: 16px;
+    }
+  * + .timeline {
+      margin-bottom: 16px;
+    }
+  * + .stepper {
+      margin-bottom: 16px;
+    }
+  * + .pagination {
+      margin-bottom: 16px;
+    }
+  * + .segmented-control {
+      margin-bottom: 16px;
+    }
+  * + .tabs {
+      margin-bottom: 16px;
+    }
+  * + .range {
+      margin-bottom: 16px;
+    }
+  * + .divider {
+      margin-bottom: 16px;
+    }
+  * + .stepper {
+      margin-bottom: 16px;
+    }
+  * + .price {
+      margin-bottom: 8px;
+    }
+  * + .button {
+      margin-bottom: 16px;
+    }
+  * + .countdown {
+      margin-bottom: 12px;
+    }
+  * + .countdown.is-small {
+      margin-bottom: 12px;
+    }
+  * + .chips {
+      margin-bottom: 12px;
+    }
+  * + .text {
+      margin-bottom: 8px;
+    }
+  * + .progress {
+      margin-bottom: 8px;
+    }
+  * + .progress-radial {
+      margin-bottom: 8px;
+    }
+  * + .radio {
+      margin-bottom: 12px;
+    }
+  * + .checkbox {
+      margin-bottom: 12px;
+    }
+  * + .switch {
+      margin-bottom: 12px;
+    }
+  * + .radio-tile {
+      margin-bottom: 16px;
+    }
+  * + .checkbox-tile {
+      margin-bottom: 16px;
+    }
+  * + .input {
+      margin-bottom: 16px;
+    }
+  * + .textarea {
+      margin-bottom: 16px;
+    }
+  * + .select {
+      margin-bottom: 16px;
+    }
+  * + .link {
+      margin-bottom: 8px;
+    }
+  * + .sticker {
+      margin-bottom: 8px;
+    }
+  * + .tag {
+      margin-bottom: 8px;
+    }
+  * + .title.is-level-1 {
+      margin-bottom: 32px;
+    }
+  * + .title.is-level-2 {
+      margin-bottom: 24px;
+    }
+  * + .title.is-level-3 {
+      margin-bottom: 12px;
+    }
+  * + .title.is-level-4 {
+      margin-bottom: 8px;
+    }
+  * + .title.is-level-5 {
+      margin-bottom: 8px;
+    }
+  * + .title.is-level-6 {
+      margin-bottom: 8px;
+    }
+  * + .overline {
+      margin-bottom: 0px;
+    }
+  .subtitle + .title.is-level-1 {
+      margin-bottom: 8px;
+    }
+  .subtitle + .title.is-level-2 {
+      margin-bottom: 8px;
+    }
+  .title.is-level-1 + .subtitle {
+      margin-bottom: 40px;
+    }
+  .title.is-level-2 + .subtitle {
+      margin-bottom: 32px;
+    }
+
+  }
+}

@@ -49,7 +49,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
  * @param description {string|ReactNode} Aleert description content
- * @param alert {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param info (boolean) Small info alert use it without button and arrow
  * @param onClick {Function} onClick Event for all alert
  */
@@ -62,15 +62,14 @@ const Alert = ({
   display,
   ...others
 }: AlertProps): JSX.Element => {
-  const backgroundColor = getColorStyle(status as TrilogyColor, 1)
-  const fontColor = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
+  const { color, backgroundColor } = getStatusStyle(status)
   let alertView: JSX.Element
 
   const styles = StyleSheet.create({
     container: {
       width: "100%",
       paddingTop: 10,
-      borderColor: status !== undefined ? fontColor : backgroundColor,
+      borderColor: status !== undefined ? color : backgroundColor,
       paddingBottom: 10,
       borderWidth: 1,
       backgroundColor: backgroundColor,
@@ -82,7 +81,7 @@ const Alert = ({
     icon: {
       justifyContent: "center",
       alignItems: "center",
-      color: status !== undefined ? fontColor : getColorStyle(TrilogyColor.MAIN),
+      color: status !== undefined ? color : getColorStyle(TrilogyColor.MAIN),
     },
     description: {
       justifyContent: "center",
@@ -117,7 +116,7 @@ const Alert = ({
           >
             {title}
           </Text>
-          <Spacer size={SpacerSize.SMALLER} />
+          <Spacer size={SpacerSize.ONE} />
         </ColumnsItem>
       </Columns>
 
@@ -163,9 +162,7 @@ const Alert = ({
  */
 export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
-
-  const color = getStatusStyle(status) || getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor = getColorStyle(status as TrilogyColor, 1)
+  const { color, backgroundColor } = getStatusStyle(status)
 
   const styles = StyleSheet.create({
     toaster: {
@@ -196,7 +193,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (
               <>
-                <Spacer size={SpacerSize.SMALL} />
+                <Spacer size={SpacerSize.TWO} />
                 <Text level={TextLevels.THREE}>{description}</Text>
               </>
             )}

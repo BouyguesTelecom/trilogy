@@ -1,4 +1,3 @@
-import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -16,13 +15,21 @@ import {
   TextLevels,
   Title,
   TitleLevels,
+  Icon,
+  IconSize,
+  Card,
+  CardContent,
+  Divider,
 } from '@trilogy-ds/react/components'
+import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (
     <AutoLayout>
-      <Title level={TitleLevels.TWO}>Elements : </Title>
+      <Title level={TitleLevels.TWO}>Title followed by Icon</Title>
+      <Icon size={IconSize.LARGE} name={IconName.ALERT} />
+      <Title level={TitleLevels.TWO}>Title followed by Box</Title>
       <Box>
         <BoxHeader>Simple</BoxHeader>
         <BoxContent>
@@ -33,7 +40,7 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
-      <Box background={TrilogyColor.MAIN} inverted>
+      <Box backgroundColor={TrilogyColor.MAIN} inverted>
         <BoxContent>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta. Etiam
@@ -42,19 +49,31 @@ export const AutolayoutScreen = (): JSX.Element => {
           </Text>
         </BoxContent>
       </Box>
+
+      <Title level={TitleLevels.TWO}>Title followed by Card</Title>
+
+      <Card active>
+        <CardContent>
+          <Text>Card content</Text>
+        </CardContent>
+      </Card>
+
       <Title level={TitleLevels.ONE}>Im a Title</Title>
+
       <Text level={TextLevels.ONE}>Lorem ipsum dolor sit amet</Text>
+
       <Button variant={'PRIMARY'}>Click</Button>
+
       <Accordion>
-        <AccordionItem id='UN' active={true}>
+        <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
-            <Text>Hello World 1</Text>
+            <Text >Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody>
-            <Text>Lorem ipsum dolor sit amet</Text>
+          <AccordionBody dataId="totooooo-test-id" testId="totooooo">
+            <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id='DEUX'>
+        <AccordionItem active={true} id="TWO">
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -62,7 +81,15 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id='TROIS'>
+        <AccordionItem id="THREE">
+          <AccordionHeader>
+            <Text>Hello World 2</Text>
+          </AccordionHeader>
+          <AccordionBody>
+            <Text>Collpased by default</Text>
+          </AccordionBody>
+        </AccordionItem>
+        <AccordionItem disabled id="FOUR">
           <AccordionHeader>
             <Text>Hello World 3</Text>
           </AccordionHeader>
@@ -71,12 +98,14 @@ export const AutolayoutScreen = (): JSX.Element => {
           </AccordionBody>
         </AccordionItem>
       </Accordion>
+
       <Alert
         display
         status={StatusState.SUCCESS}
         title={'Test alert'}
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
+
       <Input.AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
     </AutoLayout>
   )
