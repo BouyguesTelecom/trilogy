@@ -26,7 +26,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.Tabs', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Range', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Stepper', 'default', FIVE, FOUR],
-  [INSERT_SPACE_BETWEEN, '.Price', 'default', THREE, TWO],
+  [INSERT_SPACE_BETWEEN, '.Price-container', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.Buttons', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.Countdown', 'default', FOUR, THREE],
   [INSERT_SPACE_BETWEEN, '.countdown.is-small', 'default', THREE, THREE],
