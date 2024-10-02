@@ -108,8 +108,8 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <div className={'price-container'}>
-      {overline && <p className="overline">{overline}</p>}
+    <div className={hashClass(styled,clsx("price-container"))}>
+      {overline && <p className={hashClass(styled,clsx("overline"))}>{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
         <>
