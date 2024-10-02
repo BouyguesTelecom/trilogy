@@ -35,7 +35,7 @@ body:not(.is-tight) {
   .stepper {
     margin-bottom: 24px;
   }
-  .price {
+  .price-container {
     margin-bottom: 12px;
   }
   .buttons {
@@ -50,7 +50,7 @@ body:not(.is-tight) {
   .chips-list {
     margin-bottom: 12px;
   }
-  * + p.text {
+  p.text {
     margin-bottom: 12px;
   }
   .progress {
@@ -165,7 +165,7 @@ body:not(.is-tight) {
   .stepper {
       margin-bottom: 16px;
     }
-  .price {
+  .price-container {
       margin-bottom: 8px;
     }
   .buttons {
@@ -180,7 +180,7 @@ body:not(.is-tight) {
   .chips-list {
       margin-bottom: 12px;
     }
-  * + p.text {
+  p.text {
       margin-bottom: 8px;
     }
   .progress {
