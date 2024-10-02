@@ -45,12 +45,12 @@
       border-radius: 9999px;
       width: 44px;
       height: 22px;
-      background-color: getFadeColor('font');
+      background-color: getColor('main-fade');
       margin-left: 16px;
     }
 
     &:after {
-      $colorSvg: encodecolor(getFadeColorValue('font'));
+      $colorSvg: encodecolor(getColorValue('main-fade'));
       content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
       position: absolute;
       top: 50%;

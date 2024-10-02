@@ -29,7 +29,7 @@ const Divider = ({
 }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
-  const dividerColor = getColorStyle(TrilogyColor.FONT, 1)
+  const dividerColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
     divider: {
@@ -65,7 +65,7 @@ const Divider = ({
       textAlign: "center",
       color: textColor
         ? getColorStyle(textColor)
-        : getColorStyle(TrilogyColor.FONT, 1),
+        : getColorStyle(TrilogyColor.MAIN_FADE),
     },
   })
 
@@ -73,7 +73,7 @@ const Divider = ({
     if (content) return <Text style={styles.textContent}>{content}</Text>
     if (iconName && !content)
       return (
-        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId="icon-id" />
+        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId='icon-id' />
       )
   }, [content, iconName])
 

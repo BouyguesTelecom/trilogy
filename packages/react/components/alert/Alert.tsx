@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import * as React from "react"
-import { getStatusClassName, getStatusIconName } from "@/objects"
+import { getStatusClassName, getStatusIconName } from "@/objects/facets/Status"
 import { has, is } from "@/services/classify"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { Text } from "@/components/text"
@@ -93,7 +93,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
  * @param description {string|ReactNode} Alertt description content
- * @param alert {StatusState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all alert
  * @param className {string} Additionnal CSS Classes
  * @param display
@@ -121,7 +121,7 @@ const Alert = ({
     if (iconName != null) return iconName
     else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
     else return IconName.INFOS_CIRCLE
-  }, [iconName, alert])
+  }, [iconName, status])
 
   if (display) {
     return (

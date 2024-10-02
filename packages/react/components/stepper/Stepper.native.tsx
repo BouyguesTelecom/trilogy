@@ -106,7 +106,7 @@ const Stepper = ({
             </Text>
           )}
           <Text
-            level={TitleLevels.ONE}
+            level={TextLevels.ONE}
             typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
           >
             {currentStep.name}

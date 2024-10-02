@@ -78,7 +78,7 @@ const Otp = ({
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (activated && getColorStyle(TrilogyColor.MAIN)) ||
         (error && getColorStyle(TrilogyColor.ERROR)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.MAIN_FADE),
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,
@@ -194,7 +194,7 @@ const Otp = ({
         }}
         editable={!disabled}
         style={style.hiddenCodeInput}
-        testID="input-id"
+        testID='input-id'
       />
     </SafeAreaView>
   )

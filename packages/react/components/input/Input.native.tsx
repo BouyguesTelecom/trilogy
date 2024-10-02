@@ -229,9 +229,9 @@ const Input = ({
     help: {
       fontSize: 12,
       color:
-        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
-        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
-        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
+        (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         inputColor,
@@ -242,16 +242,16 @@ const Input = ({
       position: 'relative',
       justifyContent: 'center',
       alignSelf: 'stretch',
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED, 1) : getColorStyle(TrilogyColor.BACKGROUND),
+      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: isFocused ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === 'success' && getStatusStyle(StatusState.SUCCESS)) ||
-        (status && status === 'warning' && getStatusStyle(StatusState.WARNING)) ||
-        (status && status === 'error' && getStatusStyle(StatusState.ERROR)) ||
+        (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
+        (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.MAIN_FADE),
       height: 46,
       width: '100%',
     },
@@ -314,14 +314,14 @@ const Input = ({
       {!dynamicPlaceholder && label && (
         <>
           <Text typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 
       {!dynamicPlaceholder && label && sample && (
         <>
           <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>
-          <Spacer size={SpacerSize.SMALL} />
+          <Spacer size={SpacerSize.THREE} />
         </>
       )}
 

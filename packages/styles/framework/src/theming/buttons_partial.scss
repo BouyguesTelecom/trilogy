@@ -7,9 +7,9 @@ Colors for buttons
   @color-text The name of the color in the color map for the text
   */
 $button-colors: (
-  'accent':['conversion', 'alternate', 'background'],
+  'accent':['conversion', 'accent', 'background'],
   'primary': ['primary', 'main', 'background'],
-  'secondary': ['secondary', 'fade-main', 'main'],
+  'secondary': ['secondary', 'main-fade', 'main'],
   'ghost': ['ghost', 'background', 'main'],
 ) !default;
 

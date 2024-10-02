@@ -55,12 +55,12 @@ const AccordionItem = ({
       padding: 5,
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        getColorStyle(TrilogyColor.FONT, 1)
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
+        getColorStyle(TrilogyColor.MAIN_FADE)
     },
     bodyBackground: {
       borderRadius: 6,
@@ -193,7 +193,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
     </>
   )
 }

@@ -18,7 +18,7 @@ const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.Legac
     testId,
     accessibilityLabel,
     ...others
-  } = props 
+  } = props
 
   const { styled } = useTrilogyContext()
 
