@@ -110,7 +110,7 @@ const Modal = ({
         styled,
         clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
       ),
-    [active, display, panel, className, styled],
+    [display, panel, className, styled],
   )
   const contentClasses = React.useMemo(
     () => hashClass(styled, clsx('modal-content', contentClassNames)),
