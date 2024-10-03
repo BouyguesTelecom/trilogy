@@ -46,6 +46,7 @@ const Modal = ({
   children,
   className,
   contentClassNames,
+  accessibilityLabel,
   active,
   title,
   content,
@@ -53,6 +54,7 @@ const Modal = ({
   triggerContent,
   triggerClassNames = 'button is-primary',
   ctaContent,
+  ctaCancelContent,
   ctaOnClick,
   onClose,
   onOpen,
@@ -195,7 +197,7 @@ const Modal = ({
                   type={ButtonType.BUTTON}
                   ref={(el) => el && (refsActions.current[0] = el)}
                 >
-                  <span className='sr-only'> Fermer</span>
+                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
                 </button>
               )}
               {(title || iconName) && (
@@ -222,7 +224,7 @@ const Modal = ({
                     className={hashClass(styled, clsx('button', is('secondary')))}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
-                    Annuler
+                    {ctaCancelContent}
                   </button>
                 )}
                 {ctaOnClick && (
