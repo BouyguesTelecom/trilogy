@@ -29,6 +29,7 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   triggerClassNames?: string
   triggerMarkup?: ModalMarkup | ModalMarkupValues
   ctaContent?: string
+  ctaCancelContent?: string
   closeIcon?: boolean
   ctaOnClick?: ClickEvent
   ctaCancelOnClick?: ClickEvent
