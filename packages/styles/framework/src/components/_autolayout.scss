@@ -1,5 +1,5 @@
 body:not(.is-tight) {
-  .accordion {
+  .accordions {
     margin-bottom: 24px;
   }
   .card {
@@ -129,7 +129,7 @@ body:not(.is-tight) {
 
 @include mobile() {
   body:not(.is-tight) {
-    .accordion {
+    .accordions {
       margin-bottom: 16px;
     }
   .card {
