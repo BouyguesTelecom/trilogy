@@ -1,4 +1,4 @@
-import hash from '../hash.json'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Used to hash classes if styled components
@@ -6,11 +6,13 @@ import hash from '../hash.json'
  * @param classes String classes
  */
 export const hashClass = (styled = false, classes: string): string => {
+  const { hash } = useTrilogyContext()
+
   if (classes.trim().length < 1) return ''
   if (styled) {
     return classes
       .split(' ')
-      .map((classe: string) => (classe = `${classe}__${hash.HASH}`))
+      .map((classe: string) => (classe = `${classe}__${hash}`))
       .join(' ')
   }
   return classes

@@ -1,44 +1,56 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { TrilogyContext } from "./index"
+import * as React from 'react'
+import hashJSON from '../hash.json'
+import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
-  children: React.ReactNode;
-  theme?: string;
+  children: React.ReactNode
+  theme?: 'default' | 'mangled' | 'none'
+  hash?: string
 }
 
 /**
  * Trilogy Provider With Style
  * @param children App
- * @param theme (optionnal) Url of stylesheet customisation
+ * @param theme (optionnal) 'default'| 'mangled' |'none' style
+ * @param hash (optionnal) hash for html class
  */
 const TrilogyProviderStyled = ({
   children,
-  theme,
+  theme = 'default',
+  hash: HASH = hashJSON.HASH,
 }: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
+  const [hash, setHash] = React.useState<string>(HASH)
 
-  React.useEffect(() => {
-    if (theme) {
-      const link = document.createElement("link")
-      link.href = theme
-      link.rel = "stylesheet"
-      link.type = "text/css"
+  const StyleComponent = React.useMemo(() => {
+    switch (true) {
+      case theme === 'mangled' && hash === hashJSON.HASH:
+        setStyled(true)
+        return React.lazy(() => import('@/components/styleComponent/mangled/styleComponentMangled'))
 
-      document.head.appendChild(link)
+      case theme === 'mangled' && hash !== hashJSON.HASH:
+        setStyled(true)
+        return undefined
 
-      return () => {
-        document.head.removeChild(link)
-      }
-    } else if (!theme) {
-      import("@trilogy-ds/styles/dist/default/trilogy.css")
+      case theme === 'default':
+        return React.lazy(() => import('@/components/styleComponent/default/styleComponent'))
+
+      default:
+        return undefined
     }
-  }, [theme])
+  }, [theme, hash])
 
   return (
-    <TrilogyContext.Provider value={{ styled, setStyled }}>
-      {children}
+    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
+      {StyleComponent ? (
+        <React.Suspense fallback={null}>
+          <StyleComponent>{children}</StyleComponent>
+        </React.Suspense>
+      ) : (
+        children
+      )}
     </TrilogyContext.Provider>
   )
 }
