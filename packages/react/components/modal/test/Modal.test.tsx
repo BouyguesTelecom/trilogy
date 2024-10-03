@@ -35,12 +35,12 @@ describe('Modal component', () => {
 
   test('should Modal have correct className', () => {
     const { getByText } = render(<Modal className={'className'} content={'CLASSNAME'} />)
-    expect(getByText('CLASSNAME').parentElement?.parentElement).toHaveClass('className')
+    expect(getByText('CLASSNAME').parentElement?.parentElement?.parentElement).toHaveClass('className')
   })
 
   test('should Modal have correct contentClassNames', () => {
     const { getByText } = render(<Modal contentClassNames={'contentClassNames'} content={'CLASSNAME'} />)
-    expect(getByText('CLASSNAME').parentElement).toHaveClass('contentClassNames')
+    expect(getByText('CLASSNAME').parentElement?.parentElement).toHaveClass('contentClassNames')
   })
 
   test('should Modal have correct triggerClassNames', () => {
@@ -75,9 +75,9 @@ describe('Modal component', () => {
   })
 
   test('should a click on ctaCancel Modal call close modal', () => {
-    render(<Modal active ctaCancelOnClick={jest.fn()} ctaContent='Annuler' content={'DEFAULT'} />)
+    render(<Modal active ctaCancelOnClick={jest.fn()} ctaCancelContent='Annuler' content={'DEFAULT'} />)
 
-    const modal = screen.getByText('DEFAULT').parentElement?.parentElement
+    const modal = screen.getByText('DEFAULT').parentElement?.parentElement?.parentElement
     expect(modal).toHaveClass(is('active'))
     fireEvent.click(screen.getByText('Annuler'))
     expect(modal).not.toHaveClass(is('active'))
@@ -85,7 +85,7 @@ describe('Modal component', () => {
 
   test('should a click on ctaCancel Modal call ctaCancelOnClick function', () => {
     const ctaCancelOnClick = jest.fn()
-    render(<Modal active ctaCancelOnClick={ctaCancelOnClick} ctaContent='Annuler' content={'DEFAULT'} />)
+    render(<Modal active ctaCancelOnClick={ctaCancelOnClick} ctaCancelContent='Annuler' content={'DEFAULT'} />)
 
     fireEvent.click(screen.getByText('Annuler'))
     expect(ctaCancelOnClick).toHaveBeenCalled()
@@ -109,7 +109,7 @@ describe('Modal component', () => {
   test('should Modal is active', () => {
     render(<Modal active={true} content={'ACTIVE'} />)
 
-    expect(screen.getByText('ACTIVE').parentElement?.parentElement).toHaveClass(is('active'))
+    expect(screen.getByText('ACTIVE').parentElement?.parentElement?.parentElement).toHaveClass(is('active'))
   })
 
   test('should Modal is not active', () => {
@@ -123,7 +123,7 @@ describe('Modal component', () => {
   test('should click on trigger Modal open it', () => {
     render(<Modal triggerContent={'TRIGGER'} content={'DEFAULT'} />)
 
-    const modal = screen.getByText('DEFAULT').parentElement?.parentElement
+    const modal = screen.getByText('DEFAULT').parentElement?.parentElement?.parentElement
     expect(modal).not.toHaveClass(is('active'))
     fireEvent.click(screen.getByText('TRIGGER'))
     expect(modal).toHaveClass(is('active'))
@@ -132,13 +132,13 @@ describe('Modal component', () => {
   test('should Modal is panel', () => {
     render(<Modal panel={true} content={'PANNEL'} />)
 
-    expect(screen.getByText('PANNEL').parentElement?.parentElement).toHaveClass(is('panel'))
+    expect(screen.getByText('PANNEL').parentElement?.parentElement?.parentElement).toHaveClass(is('panel'))
   })
 
   test('should Modal is full width', () => {
     render(<Modal fullwidth={true} content={'PANNEL'} />)
 
-    expect(screen.getByText('PANNEL').parentElement?.parentElement).toHaveClass(is('fullwidth'))
+    expect(screen.getByText('PANNEL').parentElement?.parentElement?.parentElement).toHaveClass(is('fullwidth'))
   })
 
   test('should Modal is not panel', () => {
@@ -150,10 +150,10 @@ describe('Modal component', () => {
   })
 
   test('should Modal have a closeIcon', () => {
-    render(<Modal closeIcon={true} content={'CLOSEICON'} />)
+    render(<Modal closeIcon={true} content={'CLOSEICON'} accessibilityLabel='close' />)
 
-    expect(screen.getByLabelText('close')).toBeInTheDocument()
-    expect(screen.getByLabelText('close')).toHaveClass('modal-close')
+    expect(screen.getByText('close')).toBeInTheDocument()
+    expect(screen.getByText('close').parentElement).toHaveClass('modal-close')
   })
 
   test('should Modal not have a closeIcon', () => {
@@ -164,26 +164,26 @@ describe('Modal component', () => {
   })
 
   test('should a click on closeIcon Modal close it', () => {
-    render(<Modal active closeIcon content={'DEFAULT'} />)
+    render(<Modal active closeIcon content={'DEFAULT'} accessibilityLabel='Fermer' />)
 
-    const modal = screen.getByText('DEFAULT').parentElement?.parentElement
+    const modal = screen.getByText('DEFAULT').parentElement?.parentElement?.parentElement
     expect(modal).toHaveClass(is('active'))
-    fireEvent.click(screen.getByLabelText('close'))
+    fireEvent.click(screen.getByText('Fermer'))
     expect(modal).not.toHaveClass(is('active'))
   })
 
   test('should a click on closeIcon Modal call onClose function', () => {
     const closeCallBack = jest.fn()
-    render(<Modal active closeIcon onClose={closeCallBack} content={'DEFAULT'} />)
+    render(<Modal active closeIcon onClose={closeCallBack} content={'DEFAULT'} accessibilityLabel='close' />)
 
-    fireEvent.click(screen.getByLabelText('close'))
+    fireEvent.click(screen.getByText('close'))
     expect(closeCallBack).toHaveBeenCalled()
   })
 
   test('should a click inside the modal not close it', () => {
     render(<Modal active content={'DEFAULT'} />)
 
-    const modal = screen.getByText('DEFAULT').parentElement?.parentElement
+    const modal = screen.getByText('DEFAULT').parentElement?.parentElement?.parentElement
     expect(modal).toHaveClass(is('active'))
     fireEvent.mouseDown(screen.getByText('DEFAULT'))
     expect(modal).toHaveClass(is('active'))
@@ -192,7 +192,7 @@ describe('Modal component', () => {
   test('should a click outside the modal close it', () => {
     render(<Modal active content={'DEFAULT'} />)
 
-    const modal = screen.getByText('DEFAULT').parentElement?.parentElement
+    const modal = screen.getByText('DEFAULT').parentElement?.parentElement?.parentElement
     expect(modal).toHaveClass(is('active'))
     fireEvent.mouseDown(document)
     expect(modal).not.toHaveClass(is('active'))
