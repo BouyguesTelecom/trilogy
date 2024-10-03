@@ -1,33 +1,43 @@
 'use client'
 
 import * as React from 'react'
+import hashJSON from '../hash.json'
 import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
   children: React.ReactNode
   theme?: 'default' | 'mangled'
+  hash?: string
 }
 
 /**
  * Trilogy Provider With Style
  * @param children App
- * @param theme (optionnal) Url of stylesheet customisation
+ * @param theme (optionnal) 'default'| 'mangled' style
+ * @param hash (optionnal) hash for html class
  */
-const TrilogyProviderStyled = ({ children, theme = 'default' }: TrilogyProviderStyledProps): JSX.Element => {
+const TrilogyProviderStyled = ({
+  children,
+  theme = 'default',
+  hash: HASH = hashJSON.HASH,
+}: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
+  const [hash, setHash] = React.useState<string>(HASH)
 
   const StyleComponent = React.useMemo(() => {
     switch (true) {
-      case theme === 'mangled':
+      case theme === 'mangled' || (HASH && HASH !== hashJSON.HASH):
         setStyled(true)
-        return React.lazy(() => import('./styleComponent/styleComponentMangled'))
+        return React.lazy(() => import('@/components/styleComponent/mangled/styleComponentMangled'))
+      case theme === 'default':
+        return React.lazy(() => import('@/components/styleComponent/default/styleComponent'))
       default:
-        return React.lazy(() => import('./styleComponent/styleComponent'))
+        return React.lazy(() => import('@/components/styleComponent/empty/styleComponentEmpty'))
     }
   }, [theme])
 
   return (
-    <TrilogyContext.Provider value={{ styled, setStyled }}>
+    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
       <React.Suspense fallback={null}>
         <StyleComponent>{children}</StyleComponent>
       </React.Suspense>
