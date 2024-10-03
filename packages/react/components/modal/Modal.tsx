@@ -54,7 +54,7 @@ const Modal = ({
   triggerContent,
   triggerClassNames = 'button is-primary',
   ctaContent,
-  ctaCancelContent,
+  ctaCancelContent = 'Close',
   ctaOnClick,
   onClose,
   onOpen,
