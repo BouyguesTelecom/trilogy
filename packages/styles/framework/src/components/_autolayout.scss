@@ -1,270 +1,258 @@
 body:not(.is-tight) {
-  * + .accordions {
+  .accordions {
     margin-bottom: 24px;
   }
-  * + .card {
+  .card {
     margin-bottom: 24px;
   }
-  * + .alert {
+  .box {
     margin-bottom: 24px;
   }
-  * + .box {
+  .table {
     margin-bottom: 24px;
   }
-  * + .table {
+  .list {
     margin-bottom: 24px;
   }
-  * + .list {
+  .timeline {
     margin-bottom: 24px;
   }
-  * + .timeline {
+  .stepper {
     margin-bottom: 24px;
   }
-  * + .stepper {
+  .pagination {
     margin-bottom: 24px;
   }
-  * + .pagination {
+  .segmented-control {
     margin-bottom: 24px;
   }
-  * + .segmented-control {
+  .tabs {
     margin-bottom: 24px;
   }
-  * + .tabs {
+  .range {
     margin-bottom: 24px;
   }
-  * + .range {
+  .stepper {
     margin-bottom: 24px;
   }
-  * + .divider {
+  .price-container {
+    margin-bottom: 12px;
+  }
+  .buttons {
+    margin-bottom: 24px;
+  }
+  .countdown {
     margin-bottom: 16px;
   }
-  * + .stepper {
-    margin-bottom: 24px;
-  }
-  * + .price {
+  .countdown.is-small {
     margin-bottom: 12px;
   }
-  * + .button {
-    margin-bottom: 24px;
-  }
-  * + .countdown {
-    margin-bottom: 16px;
-  }
-  * + .countdown.is-small {
+  .chips-list {
     margin-bottom: 12px;
   }
-  * + .chips {
+  p.text {
     margin-bottom: 12px;
   }
-  * + .text {
-    margin-bottom: 12px;
-  }
-  * + .progress {
+  .progress {
     margin-bottom: 8px;
   }
-  * + .progress-radial {
+  .progress-radial {
     margin-bottom: 8px;
   }
-  * + .radio {
+  .radio {
     margin-bottom: 12px;
   }
-  * + .checkbox {
+  .checkbox {
     margin-bottom: 12px;
   }
-  * + .switch {
+  .switch {
     margin-bottom: 12px;
   }
-  * + .radio-tile {
+  .radio-tile {
     margin-bottom: 24px;
   }
-  * + .checkbox-tile {
+  .checkbox-tile {
     margin-bottom: 24px;
   }
-  * + .input {
+  .input {
     margin-bottom: 16px;
   }
-  * + .textarea {
+  .textarea {
     margin-bottom: 16px;
   }
-  * + .select {
+  .select {
     margin-bottom: 16px;
   }
-  * + .link {
+  .link {
     margin-bottom: 12px;
   }
-  * + .sticker {
+  .sticker {
     margin-bottom: 8px;
   }
-  * + .tag {
+  .tag {
     margin-bottom: 8px;
   }
-  * + .title.is-level-1 {
+  .title.is-level-1 {
     margin-bottom: 40px;
   }
-  * + .title.is-level-2 {
+  .title.is-level-2 {
     margin-bottom: 32px;
   }
-  * + .title.is-level-3 {
+  .title.is-level-3 {
     margin-bottom: 16px;
   }
-  * + .title.is-level-4 {
+  .title.is-level-4 {
     margin-bottom: 12px;
   }
-  * + .title.is-level-5 {
+  .title.is-level-5 {
     margin-bottom: 12px;
   }
-  * + .title.is-level-6 {
+  .title.is-level-6 {
     margin-bottom: 12px;
   }
-  * + .overline {
+  .overline {
     margin-bottom: 0px;
   }
-  .subtitle + .title.is-level-1 {
-    margin-bottom: 8px;
-  }
-  .subtitle + .title.is-level-2 {
-    margin-bottom: 8px;
-  }
   .title.is-level-1 + .subtitle {
-    margin-bottom: 32px;
+    margin-bottom: 8px;
   }
   .title.is-level-2 + .subtitle {
+    margin-bottom: 8px;
+  }
+  .subtitle + .title.is-level-1 {
+    margin-bottom: 32px;
+  }
+  .subtitle + .title.is-level-2 {
     margin-bottom: 24px;
   }
 }
 
 @include mobile() {
   body:not(.is-tight) {
-    * + .accordions {
+    .accordions {
       margin-bottom: 16px;
     }
-  * + .card {
+  .card {
       margin-bottom: 16px;
     }
-  * + .alert {
+  .box {
       margin-bottom: 16px;
     }
-  * + .box {
+  .table {
       margin-bottom: 16px;
     }
-  * + .table {
+  .list {
       margin-bottom: 16px;
     }
-  * + .list {
+  .timeline {
       margin-bottom: 16px;
     }
-  * + .timeline {
+  .stepper {
       margin-bottom: 16px;
     }
-  * + .stepper {
+  .pagination {
       margin-bottom: 16px;
     }
-  * + .pagination {
+  .segmented-control {
       margin-bottom: 16px;
     }
-  * + .segmented-control {
+  .tabs {
       margin-bottom: 16px;
     }
-  * + .tabs {
+  .range {
       margin-bottom: 16px;
     }
-  * + .range {
+  .stepper {
       margin-bottom: 16px;
     }
-  * + .divider {
-      margin-bottom: 16px;
-    }
-  * + .stepper {
-      margin-bottom: 16px;
-    }
-  * + .price {
+  .price-container {
       margin-bottom: 8px;
     }
-  * + .button {
+  .buttons {
       margin-bottom: 16px;
     }
-  * + .countdown {
+  .countdown {
       margin-bottom: 12px;
     }
-  * + .countdown.is-small {
+  .countdown.is-small {
       margin-bottom: 12px;
     }
-  * + .chips {
+  .chips-list {
       margin-bottom: 12px;
     }
-  * + .text {
+  p.text {
       margin-bottom: 8px;
     }
-  * + .progress {
+  .progress {
       margin-bottom: 8px;
     }
-  * + .progress-radial {
+  .progress-radial {
       margin-bottom: 8px;
     }
-  * + .radio {
+  .radio {
       margin-bottom: 12px;
     }
-  * + .checkbox {
+  .checkbox {
       margin-bottom: 12px;
     }
-  * + .switch {
+  .switch {
       margin-bottom: 12px;
     }
-  * + .radio-tile {
+  .radio-tile {
       margin-bottom: 16px;
     }
-  * + .checkbox-tile {
+  .checkbox-tile {
       margin-bottom: 16px;
     }
-  * + .input {
+  .input {
       margin-bottom: 16px;
     }
-  * + .textarea {
+  .textarea {
       margin-bottom: 16px;
     }
-  * + .select {
+  .select {
       margin-bottom: 16px;
     }
-  * + .link {
+  .link {
       margin-bottom: 8px;
     }
-  * + .sticker {
+  .sticker {
       margin-bottom: 8px;
     }
-  * + .tag {
+  .tag {
       margin-bottom: 8px;
     }
-  * + .title.is-level-1 {
+  .title.is-level-1 {
       margin-bottom: 32px;
     }
-  * + .title.is-level-2 {
+  .title.is-level-2 {
       margin-bottom: 24px;
     }
-  * + .title.is-level-3 {
+  .title.is-level-3 {
       margin-bottom: 12px;
     }
-  * + .title.is-level-4 {
+  .title.is-level-4 {
       margin-bottom: 8px;
     }
-  * + .title.is-level-5 {
+  .title.is-level-5 {
       margin-bottom: 8px;
     }
-  * + .title.is-level-6 {
+  .title.is-level-6 {
       margin-bottom: 8px;
     }
-  * + .overline {
+  .overline {
       margin-bottom: 0px;
     }
-  .subtitle + .title.is-level-1 {
-      margin-bottom: 8px;
-    }
-  .subtitle + .title.is-level-2 {
-      margin-bottom: 8px;
-    }
   .title.is-level-1 + .subtitle {
-      margin-bottom: 40px;
+      margin-bottom: 8px;
     }
   .title.is-level-2 + .subtitle {
+      margin-bottom: 8px;
+    }
+  .subtitle + .title.is-level-1 {
+      margin-bottom: 40px;
+    }
+  .subtitle + .title.is-level-2 {
       margin-bottom: 32px;
     }
 
