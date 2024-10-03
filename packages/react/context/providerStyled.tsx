@@ -26,15 +26,21 @@ const TrilogyProviderStyled = ({
 
   const StyleComponent = React.useMemo(() => {
     switch (true) {
-      case theme === 'mangled' || (HASH && HASH !== hashJSON.HASH):
+      case theme === 'mangled' && hash === hashJSON.HASH:
         setStyled(true)
         return React.lazy(() => import('@/components/styleComponent/mangled/styleComponentMangled'))
+
+      case theme === 'mangled' && hash !== hashJSON.HASH:
+        setStyled(true)
+        return undefined
+
       case theme === 'default':
         return React.lazy(() => import('@/components/styleComponent/default/styleComponent'))
+
       default:
         return undefined
     }
-  }, [theme, HASH])
+  }, [theme, hash])
 
   return (
     <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
