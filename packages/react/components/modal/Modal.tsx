@@ -46,7 +46,7 @@ const Modal = ({
   children,
   className,
   contentClassNames,
-  accessibilityLabel,
+  accessibilityLabel = 'Close',
   active,
   title,
   content,
