@@ -6,14 +6,14 @@ import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
   children: React.ReactNode
-  theme?: 'default' | 'mangled'
+  theme?: 'default' | 'mangled' | 'none'
   hash?: string
 }
 
 /**
  * Trilogy Provider With Style
  * @param children App
- * @param theme (optionnal) 'default'| 'mangled' style
+ * @param theme (optionnal) 'default'| 'mangled' |'none style
  * @param hash (optionnal) hash for html class
  */
 const TrilogyProviderStyled = ({
@@ -32,15 +32,19 @@ const TrilogyProviderStyled = ({
       case theme === 'default':
         return React.lazy(() => import('@/components/styleComponent/default/styleComponent'))
       default:
-        return React.lazy(() => import('@/components/styleComponent/empty/styleComponentEmpty'))
+        return undefined
     }
-  }, [theme])
+  }, [theme, HASH])
 
   return (
     <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
-      <React.Suspense fallback={null}>
-        <StyleComponent>{children}</StyleComponent>
-      </React.Suspense>
+      {StyleComponent ? (
+        <React.Suspense fallback={null}>
+          <StyleComponent>{children}</StyleComponent>
+        </React.Suspense>
+      ) : (
+        children
+      )}
     </TrilogyContext.Provider>
   )
 }

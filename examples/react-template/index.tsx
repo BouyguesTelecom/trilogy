@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-    <TrilogyProviderStyled>
+    <TrilogyProviderStyled theme='none'>
       <HashRouter>
         <Router />
       </HashRouter>
