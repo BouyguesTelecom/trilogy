@@ -20,6 +20,5 @@ const defaultContextValue = {
 export const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>(defaultContextValue)
 
 export const TrilogyThemeProvider = ({ children }: { children: ReactNode }) => {
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return children
 }
