@@ -13,7 +13,7 @@ interface TrilogyProviderStyledProps {
 /**
  * Trilogy Provider With Style
  * @param children App
- * @param theme (optionnal) 'default'| 'mangled' |'none style
+ * @param theme (optionnal) 'default'| 'mangled' |'none' style
  * @param hash (optionnal) hash for html class
  */
 const TrilogyProviderStyled = ({
