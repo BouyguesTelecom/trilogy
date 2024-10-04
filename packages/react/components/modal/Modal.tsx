@@ -234,7 +234,7 @@ const Modal = ({
                     ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
                   >
-                    <span className='sr-only'> {ctaContent}</span>
+                    {ctaContent}
                   </button>
                 )}
               </ButtonList>
