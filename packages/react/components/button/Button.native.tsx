@@ -63,7 +63,7 @@ const Button = ({
       (variant === ButtonVariant.CONVERSION &&
         getColorStyle(TrilogyColor.ACCENT)) ||
       (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      getColorStyle(TrilogyColor.MAIN_FADE)
+      getColorStyle(TrilogyColor.MAIN)
     )
   }
 
