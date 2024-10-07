@@ -5,7 +5,7 @@ import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/Spaci
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
 
-const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX } = SpacerSize;
+const { THREE, FOUR, FIVE, TWO, SEVEN, ZERO, SIX } = SpacerSize;
 
 /*
 * @first component: string (can not be default)
