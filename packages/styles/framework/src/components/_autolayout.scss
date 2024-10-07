@@ -50,7 +50,7 @@ body:not(.is-tight) {
   .chips-list {
     margin-bottom: 12px;
   }
-  p.text {
+  p.text:not(:last-child) {
     margin-bottom: 12px;
   }
   .progress {
@@ -92,22 +92,22 @@ body:not(.is-tight) {
   .tag {
     margin-bottom: 8px;
   }
-  .title.is-level-1 {
+  .title.is-level-1:not(:last-child) {
     margin-bottom: 40px;
   }
-  .title.is-level-2 {
+  .title.is-level-2:not(:last-child) {
     margin-bottom: 32px;
   }
-  .title.is-level-3 {
+  .title.is-level-3:not(:last-child) {
     margin-bottom: 16px;
   }
-  .title.is-level-4 {
+  .title.is-level-4:not(:last-child) {
     margin-bottom: 12px;
   }
-  .title.is-level-5 {
+  .title.is-level-5:not(:last-child) {
     margin-bottom: 12px;
   }
-  .title.is-level-6 {
+  .title.is-level-6:not(:last-child) {
     margin-bottom: 12px;
   }
   .overline {
@@ -180,7 +180,7 @@ body:not(.is-tight) {
   .chips-list {
       margin-bottom: 12px;
     }
-  p.text {
+  p.text:not(:last-child) {
       margin-bottom: 8px;
     }
   .progress {
@@ -222,22 +222,22 @@ body:not(.is-tight) {
   .tag {
       margin-bottom: 8px;
     }
-  .title.is-level-1 {
+  .title.is-level-1:not(:last-child) {
       margin-bottom: 32px;
     }
-  .title.is-level-2 {
+  .title.is-level-2:not(:last-child) {
       margin-bottom: 24px;
     }
-  .title.is-level-3 {
+  .title.is-level-3:not(:last-child) {
       margin-bottom: 12px;
     }
-  .title.is-level-4 {
+  .title.is-level-4:not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-5 {
+  .title.is-level-5:not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-6 {
+  .title.is-level-6:not(:last-child) {
       margin-bottom: 8px;
     }
   .overline {
