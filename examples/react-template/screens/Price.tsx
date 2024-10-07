@@ -1,3 +1,4 @@
+import { TrilogyColor } from '@trilogy-ds/react'
 import {
   Divider,
   Price,
@@ -141,7 +142,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Section>
+      <Section backgroundColor={TrilogyColor.MAIN}>
         <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' showCents />
 
         <Price striked inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' showCents />
