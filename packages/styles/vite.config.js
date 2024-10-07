@@ -4,6 +4,8 @@ import glob from "glob";
 import {generateIconsScss} from "./config/plugins/vite-plugin-generate-icons-scss";
 import {cssPlugin} from "./config/plugins/vite-plugin-mangler";
 
+const isWatchMode = process.argv.includes('--watch');
+
 export default defineConfig({
   plugins: [
     generateIconsScss({
@@ -28,6 +30,7 @@ export default defineConfig({
     },
   },
   build: {
+    watch: isWatchMode ? {} : null,
     emptyOutDir: false,
     rollupOptions: {
       input: glob.sync(path.resolve(__dirname, "./themes/*", "*.scss")),
