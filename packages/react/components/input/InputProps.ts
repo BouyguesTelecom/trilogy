@@ -19,7 +19,7 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 
 export interface InputChangeEvent {
   inputName: string
@@ -51,7 +51,7 @@ export type InputClickEventHandler = (event: InputClickEvent) => void
 export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
-  onChange?: InputChangeEventHandler
+  onChange?: InputChangeEventHandler | React.ChangeEvent
 }
 
 export interface InputWebEvents {

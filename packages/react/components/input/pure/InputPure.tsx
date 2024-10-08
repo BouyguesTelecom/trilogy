@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { DetailedHTMLProps, InputHTMLAttributes, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
@@ -7,23 +7,8 @@ import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
-import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
-import { InputPure } from './pure'
 import InputGauge from './gauge/InputGauge'
 import { TypographyColor } from '@/objects'
-
-export interface InputProp extends InputProps, InputWebEvents {
-  props?: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-}
-
-
-interface IconWrapper {
-  className?: string
-  name: IconName | IconNameValues
-  color?: IconColor
-  onPress?: () => void
-  closeIconSearch?: boolean
-}
 
 /**
  * Input Component
@@ -72,7 +57,7 @@ interface IconWrapper {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = ({
+const InputPure = ({
   forceControl,
   label,
   sample,
@@ -116,7 +101,7 @@ const Input = ({
   required,
   props,
   ...others
-}: InputProp): JSX.Element => {
+}: any): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
@@ -222,72 +207,8 @@ const Input = ({
       {!hasPlaceholder && label && sample && <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
       <div className={controlClasses}>
         <input
-          required={required}
-          role={'textbox'}
+          {...props}
           {...others}
-          data-testid={testId}
-          aria-label={accessibilityLabel}
-          type={inputType}
-          className={classes}
-          value={_value}
-          defaultValue={defaultValue}
-          name={name}
-          onSubmit={onSubmit}
-          ref={reference}
-          disabled={disabled}
-          minLength={minLength}
-          maxLength={maxLength}
-          autoComplete={autoCompleteType}
-          onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
-          onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
-          onMouseEnter={(e) => onMouseEnter?.(e)}
-          onMouseLeave={(e) => onMouseLeave?.(e)}
-          placeholder={placeholder}
-          onClick={(e: React.MouseEvent<Element>) => {
-            const target = e.target as HTMLFormElement
-            if (onClick) {
-              onClick({
-                inputName: target.name,
-                inputValue: target.value,
-                inputTarget: target
-              })
-            }
-          }}
-          onChange={(e) => {
-            // --- solution to prevent cursor jump ---
-            if (
-              inputType !== InputType.DATE &&
-              inputType !== InputType.DATETIME_LOCAL &&
-              inputType !== InputType.NUMBER &&
-              inputType !== InputType.EMAIL
-            ) {
-              const caret = e.target.selectionStart
-              const element = e.target
-              window.requestAnimationFrame(() => {
-                element.selectionStart = caret
-                element.selectionEnd = caret
-              })
-            }
-            // ---------------------------------------
-            // eslint-disable-next-line no-console
-            if (!forceControl) setValue(e.target.value)
-            if (onChange) {
-              onChange({
-                inputName: e.target.name,
-                inputValue: e.target.value,
-                inputSelectionStart: e.target.selectionStart,
-                inputTarget: e.target
-              })
-            }
-          }}
-          onFocus={(e) => {
-            onFocus?.(e)
-            setIsFocused(true)
-          }}
-          onBlur={(e) => {
-            onBlur?.(e)
-            setIsFocused(false)
-          }}
         />
         {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
         {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
@@ -330,33 +251,4 @@ const Input = ({
   )
 }
 
-/**
- * AutoComplete Component
- * @param placeholder {string} placeholder for input
- * @param defaultValue {string} Default Value for Input
- * @param data {string[]} Datas AutoComplete list Item
- * @param value {string} Value of Input
- * @param onChange {Function} OnChange Input Event
- * @param onFocus {Function} OnFocus Input Event
- * @param children {Function} Custom Component for dropdown list
- * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
- * @param matching {Function} matching function
- * - ------------------ WEB PROPERTIES -----------------------
- * @param classNameMenu {string} Additionnal CSS Classes for Menu
- * @param absoluteMenu {boolean} Absolute position for Menu
- * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additionnal CSS Classes
- * @param onItemSelected {Function} OnSelectedItemList event
- * @param customIcon {string} Additional icon classes
- * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
- */
-Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompleteProps<T>) => {
-  const newProps = { ...props, Input }
-  return <AutoComplete {...newProps} />
-}
-
-Input.Pure =(props: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
-  const newProps = { ...props, Input }
-  return <InputPure {...newProps} />
-}
-export default Input
+export default InputPure
