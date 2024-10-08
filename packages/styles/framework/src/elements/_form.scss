@@ -5,14 +5,6 @@ $help-size: $size-small;
 $label-weight: $weight-bold;
 
 .field {
-  &:not(:first-child) {
-    margin-top: $field-margin;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 7.5px;
-  }
-
   &.is-fullwidth {
     div.control {
       flex: 1;
@@ -412,7 +404,6 @@ $label-weight: $weight-bold;
   }
 
   + .help {
-    margin: 4px 0;
     font-size: $text-12;
     font-weight: $weight-medium;
   }
