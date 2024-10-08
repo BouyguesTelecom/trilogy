@@ -55,10 +55,10 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.title.is-level-5', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.title.is-level-6', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.overline', 'default', ZERO, ZERO],
-  [INSERT_SPACE_BETWEEN, '.title.is-level-1', '.subtitle', TWO, TWO],
-  [INSERT_SPACE_BETWEEN, '.title.is-level-2', '.subtitle', TWO, TWO],
-  [INSERT_SPACE_BETWEEN, '.subtitle', '.title.is-level-1', SIX, SEVEN],
-  [INSERT_SPACE_BETWEEN, '.subtitle', '.title.is-level-2', FIVE, SIX]
+  [INSERT_SPACE_BETWEEN, '.title:has(+.subtitle)', 0, TWO, TWO],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-1 + .subtitle', 0, SIX, SEVEN],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-2 + .subtitle', 0, FIVE, SIX],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-3 + .subtitle', 0, FIVE, SIX],
 ];
 
 
@@ -72,7 +72,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
 
     if (insertType === INSERT_SPACE_BETWEEN) {
       if (!component2 || typeof component2 === 'number') {
-        selector = `.${component.toLowerCase()}`;
+        selector = `${component.toLowerCase()}`;
       } else {
         if (typeof component === 'string' && component2 === 'default') {
           selector = `${component.toLowerCase()}`;
