@@ -17,7 +17,7 @@ export interface InputProp extends InputProps, InputWebEvents {
 }
 
 
-interface IconWrapper {
+export interface IconWrapper {
   className?: string
   name: IconName | IconNameValues
   color?: IconColor

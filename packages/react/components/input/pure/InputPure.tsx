@@ -3,12 +3,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
-import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
+import { Icon, IconColor, IconName, IconSize } from '../../icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
-import { InputProps, InputWebEvents } from './InputProps'
-import InputGauge from './gauge/InputGauge'
+import { InputStatus, InputStatusValues, InputType, InputTypeValues } from '../InputEnum'
+import InputGauge from '../gauge/InputGauge'
 import { TypographyColor } from '@/objects'
+import { IconWrapper } from '../Input'
 
 /**
  * Input Component
@@ -131,17 +131,6 @@ const InputPure = ({
       ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
     }),
   )
-
-  const onPressKey = useCallback((e: React.KeyboardEvent) => {
-    const target = e.target as HTMLFormElement
-    return {
-      inputName: target.name,
-      inputValue: target.value,
-      inputKeyCode: e.keyCode,
-      inputTarget: target,
-      preventDefault: () => e.preventDefault(),
-    }
-  }, [])
 
   const IconWrapper = useCallback(
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
