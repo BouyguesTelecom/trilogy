@@ -3,7 +3,7 @@ import { INSERT_SPACE_BETWEEN } from "@trilogy-ds/react/components/autolayout/De
 import { SpacerSize } from "@trilogy-ds/react/components/spacer";
 import { SpacingMatrixMode } from "@trilogy-ds/react/components/autolayout/SpacingMatrix";
 
-type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize)?, SpacerSize?, SpacerSize?]>;
+type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize | null)?, SpacerSize?, SpacerSize?]>;
 
 const { THREE, FOUR, FIVE, TWO, ONE, SEVEN, ZERO, SIX } = SpacerSize;
 
@@ -55,10 +55,10 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.title.is-level-5', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.title.is-level-6', 'default', THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.overline', 'default', ZERO, ZERO],
-  [INSERT_SPACE_BETWEEN, '.title:has(+.subtitle)', 0, TWO, TWO],
-  [INSERT_SPACE_BETWEEN, '.title.is-level-1 + .subtitle', 0, SIX, SEVEN],
-  [INSERT_SPACE_BETWEEN, '.title.is-level-2 + .subtitle', 0, FIVE, SIX],
-  [INSERT_SPACE_BETWEEN, '.title.is-level-3 + .subtitle', 0, FIVE, SIX],
+  [INSERT_SPACE_BETWEEN, '.title:has(+.subtitle)', null, TWO, TWO],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-1 + .subtitle', null, SIX, SEVEN],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-2 + .subtitle', null, FIVE, SIX],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-3 + .subtitle', null, FIVE, SIX],
 ];
 
 
@@ -71,7 +71,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
     let selector = '';
 
     if (insertType === INSERT_SPACE_BETWEEN) {
-      if (!component2 || typeof component2 === 'number') {
+      if (!component2 || typeof component2 === null) {
         selector = `${component.toLowerCase()}`;
       } else {
         if (typeof component === 'string' && component2 === 'default') {
