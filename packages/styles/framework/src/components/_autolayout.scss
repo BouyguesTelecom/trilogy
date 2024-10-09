@@ -131,6 +131,15 @@ body:not(.is-tight) {
   .title.is-level-3 + .subtitle:not(:last-child) {
     margin-bottom: 24px;
   }
+  .title.is-level-4 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-5 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-6 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
+  }
 }
 
 @include mobile() {
@@ -266,6 +275,15 @@ body:not(.is-tight) {
     }
   .title.is-level-3 + .subtitle:not(:last-child) {
       margin-bottom: 32px;
+    }
+  .title.is-level-4 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-5 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-6 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
     }
 
   }
