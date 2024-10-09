@@ -1,15 +1,15 @@
-import clsx from 'clsx'
-import React, { useCallback, useEffect, useState } from 'react'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
+import clsx from 'clsx'
+import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
-import { TypographyColor } from '@/objects'
 
 export interface InputProp extends InputProps, InputWebEvents {}
 
@@ -68,50 +68,52 @@ interface IconWrapper {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = ({
-  forceControl,
-  label,
-  sample,
-  className,
-  disabled,
-  onChange,
-  onKeyPress,
-  onKeyUp,
-  onIconClick,
-  onClick,
-  onFocus,
-  onBlur,
-  patternValidator,
-  onMouseEnter,
-  onMouseLeave,
-  name,
-  placeholder,
-  type = 'text',
-  defaultValue,
-  value,
-  loading,
-  focused,
-  hasIcon,
-  customIcon,
-  status,
-  help,
-  iconClassname,
-  reference,
-  onStatusChange,
-  customValidator,
-  onSubmit,
-  minLength,
-  maxLength,
-  testId,
-  accessibilityLabel,
-  autoCompleteType,
-  customIconLeft,
-  customIconRight,
-  securityGauge,
-  validationRules,
-  required,
-  ...others
-}: InputProp): JSX.Element => {
+const Input = (
+  {
+    forceControl,
+    label,
+    sample,
+    className,
+    disabled,
+    onChange,
+    onKeyPress,
+    onKeyUp,
+    onIconClick,
+    onClick,
+    onFocus,
+    onBlur,
+    patternValidator,
+    onMouseEnter,
+    onMouseLeave,
+    name,
+    placeholder,
+    type = 'text',
+    defaultValue,
+    value,
+    loading,
+    focused,
+    hasIcon,
+    customIcon,
+    status,
+    help,
+    iconClassname,
+    onStatusChange,
+    customValidator,
+    onSubmit,
+    minLength,
+    maxLength,
+    testId,
+    accessibilityLabel,
+    autoCompleteType,
+    customIconLeft,
+    customIconRight,
+    securityGauge,
+    validationRules,
+    required,
+    ...others
+  }: InputProp,
+  ref: LegacyRef<HTMLInputElement>,
+): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
@@ -157,7 +159,7 @@ const Input = ({
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
       return (
         <div
-        {...type === "password" && { "data-show-pwd": true }}
+          {...(type === 'password' && { 'data-show-pwd': true })}
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
@@ -213,8 +215,21 @@ const Input = ({
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
-      {!hasPlaceholder && <label className='input-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
-      {!hasPlaceholder && label && sample && <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
+      {!hasPlaceholder && (
+        <label className='input-label'>
+          {label}{' '}
+          {label && required && (
+            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+              *
+            </Text>
+          )}
+        </label>
+      )}
+      {!hasPlaceholder && label && sample && (
+        <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+          {sample}
+        </Text>
+      )}
       <div className={controlClasses}>
         <input
           required={required}
@@ -228,7 +243,7 @@ const Input = ({
           defaultValue={defaultValue}
           name={name}
           onSubmit={onSubmit}
-          ref={reference}
+          ref={ref}
           disabled={disabled}
           minLength={minLength}
           maxLength={maxLength}
@@ -244,7 +259,7 @@ const Input = ({
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
-                inputTarget: target
+                inputTarget: target,
               })
             }
           }}
@@ -271,7 +286,7 @@ const Input = ({
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
-                inputTarget: e.target
+                inputTarget: e.target,
               })
             }
           }}
@@ -349,4 +364,4 @@ Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoComp
   const newProps = { ...props, Input }
   return <AutoComplete {...newProps} />
 }
-export default Input
+export default forwardRef(Input)

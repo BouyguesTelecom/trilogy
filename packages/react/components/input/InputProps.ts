@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TextInputSubmitEditingEventData, NativeSyntheticEvent } from 'react-native'
 import { Accessibility } from '@/objects/facets'
+import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
 
+import { ReactNode } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -19,7 +20,6 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
-import { ReactNode } from "react"
 
 export interface InputChangeEvent {
   inputName: string
@@ -89,7 +89,6 @@ export interface InputProps extends Accessibility {
   name?: string
   className?: string
   focused?: boolean
-  reference?: any | null
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
   autoCorrect?: any
@@ -106,7 +105,7 @@ export interface InputProps extends Accessibility {
   minLength?: number
   maxLength?: number
   securityGauge?: boolean
-  validationRules?: IValidationRules,
+  validationRules?: IValidationRules
   required?: boolean
 }
 
