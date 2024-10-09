@@ -49,7 +49,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   displayMenu = true,
   onItemSelected,
   customIcon,
-  reference,
   disabled,
   children,
   accessibilityLabel,
@@ -168,7 +167,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
-        reference={reference}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
         className='autocomplete-input'
