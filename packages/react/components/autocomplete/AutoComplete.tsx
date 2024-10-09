@@ -1,11 +1,11 @@
-import { InputProp } from '@/components/input/Input'
+import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { FocusEvent, useEffect, useState } from 'react'
+import React, { FocusEvent, forwardRef, LegacyRef, useEffect, useState } from 'react'
 import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
@@ -32,35 +32,37 @@ import { debounce } from './utils'
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  */
-const AutoComplete = <T extends string | Item<unknown> = string>({
-  defaultValue,
-  value,
-  classNameMenu,
-  absoluteMenu,
-  fullwidthMenu,
-  placeholder,
-  data,
-  status,
-  onBlur,
-  testId,
-  onChange,
-  name,
-  matching = defaultMatching,
-  displayMenu = true,
-  onItemSelected,
-  customIcon,
-  disabled,
-  children,
-  accessibilityLabel,
-  onIconClick,
-  getSuggestions,
-  debounceSuggestionsTimeout,
-  onFocus,
-  loading,
-  ...others
-}: AutoCompletePropsWeb<T>): JSX.Element => {
+const AutoComplete = <T extends string | Item<unknown> = string>(
+  {
+    defaultValue,
+    value,
+    classNameMenu,
+    absoluteMenu,
+    fullwidthMenu,
+    placeholder,
+    data,
+    status,
+    onBlur,
+    testId,
+    onChange,
+    name,
+    matching = defaultMatching,
+    displayMenu = true,
+    onItemSelected,
+    customIcon,
+    disabled,
+    children,
+    accessibilityLabel,
+    onIconClick,
+    getSuggestions,
+    debounceSuggestionsTimeout,
+    onFocus,
+    loading,
+    ...others
+  }: AutoCompletePropsWeb<T>,
+  ref: LegacyRef<HTMLInputElement>,
+): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { Input } = others as { Input: React.ComponentType<InputProp> }
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(value ?? '')
@@ -165,6 +167,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
+        ref={ref}
         defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
@@ -220,4 +223,4 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   )
 }
 
-export default AutoComplete
+export default forwardRef(AutoComplete)

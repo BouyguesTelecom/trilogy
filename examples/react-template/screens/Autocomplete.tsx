@@ -6,14 +6,13 @@ import {
   ColumnsItem,
   Divider,
   IconName,
-  Input,
   Text,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
 // import {Item} from '@trilogy-ds/react/components/autocomplete/AutoCompleteProps'
-import { Item } from '@trilogy-ds/react/components/input/autocomplete'
-import { InputChangeEvent, InputClickEvent } from '@trilogy-ds/react/components/input/InputProps'
+import { AutoComplete, Item } from '@trilogy-ds/react/components/autocomplete'
+import { InputClickEvent } from '@trilogy-ds/react/components/input/InputProps'
 import React, { useState } from 'react'
 
 const getSuggestions = async () => {
@@ -32,7 +31,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
   const [status, setStatus] = useState<boolean>(false)
   const [data] = [['name', 'age', 'car', 'test', 'trilogy']]
 
-  const onChange = (e: InputChangeEvent) => {
+  const onChange = (e) => {
     console.log('OnChange Autocomplete : ', e)
     setValue(e.inputValue)
   }
@@ -46,7 +45,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete With Debounce Suggests</Title>
 
-        <Input.AutoComplete
+        <AutoComplete
           getSuggestions={async (search) => {
             const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)
             const data = await res.json()
@@ -70,7 +69,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Divider />
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete custom data</Title>
-        <Input.AutoComplete<Item<{ info: number }>>
+        <AutoComplete<Item<{ info: number }>>
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[
@@ -87,12 +86,12 @@ export const AutoCompleteScreen = (): JSX.Element => {
           onBlur={(e) => console.log('BLUR : ', e)}
         >
           {(item) => <Text>La super info : {item.data.info}</Text>}
-        </Input.AutoComplete>
+        </AutoComplete>
       </Section>
       <Divider />
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete with getSuggestions function</Title>
-        <Input.AutoComplete<Item<{ info: number }>>
+        <AutoComplete<Item<{ info: number }>>
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[]}
@@ -104,7 +103,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           onBlur={(e) => console.log('BLUR : ', e)}
         >
           {(item) => <Text>La super info : {item.data.info}</Text>}
-        </Input.AutoComplete>
+        </AutoComplete>
       </Section>
       <Divider />
       <Section>
@@ -124,7 +123,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
             </ButtonList>
           </ColumnsItem>
         </Columns>
-        <Input.AutoComplete
+        <AutoComplete
           customIcon={IconName.INFOS_CIRCLE}
           displayMenu={true}
           value={value}

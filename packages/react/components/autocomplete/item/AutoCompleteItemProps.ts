@@ -1,4 +1,4 @@
-import { Item } from "@/components/input/autocomplete/AutoCompleteProps"
+import { Item } from "@/components/autocomplete/AutoCompleteProps"
 
 export interface AutoCompleteItemProps<T extends string | Item<unknown> = string> {
   children?: string | React.ReactNode
