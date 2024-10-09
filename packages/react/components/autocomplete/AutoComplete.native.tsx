@@ -1,4 +1,4 @@
-import { InputNativeProps } from '@/components/input/Input.native'
+import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
@@ -25,7 +25,6 @@ const AutoComplete = ({
   const [valueInput, setValueInput] = useState<string>(value ?? '')
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
-  const { Input } = others as { Input: React.ComponentType<InputNativeProps> }
 
   const updateSuggestions = async (valueInput: string) => {
     if (getSuggestions) {

@@ -1,18 +1,17 @@
 import { fireEvent, render, screen, userEvent } from '@testing-library/react-native'
 import * as React from 'react'
-import Input from '../../Input.native'
-
+import AutoComplete from '../AutoComplete.native'
 jest.useFakeTimers()
 const testItems = ['Apple', 'Banana', 'Cherry', 'Grape']
 
 describe('Autocomplete component', () => {
   it('renders the component', () => {
-    render(<Input.AutoComplete data={testItems} testId={'Autocomplete'} />)
+    render(<AutoComplete data={testItems} testId={'Autocomplete'} />)
     expect(screen.getByTestId('Autocomplete')).toBeOnTheScreen()
   })
 
   it('displays the menu when typing in the input', async () => {
-    render(<Input.AutoComplete data={testItems} />)
+    render(<AutoComplete data={testItems} />)
     const input = screen.getByTestId('input-id')
     const appleBefore = screen.queryByText('Apple')
     const bananaBefore = screen.queryByText('Banana')
@@ -42,7 +41,7 @@ describe('Autocomplete component', () => {
   })
 
   it('have default value', async () => {
-    render(<Input.AutoComplete placeholder="placeholder" value='toto' data={testItems} />)
+    render(<AutoComplete placeholder="placeholder" value='toto' data={testItems} />)
     expect(screen.getByPlaceholderText('placeholder')).toBeOnTheScreen()
 
   })
