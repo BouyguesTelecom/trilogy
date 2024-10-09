@@ -27,6 +27,18 @@ import * as React from 'react'
 export const AutolayoutScreen = (): JSX.Element => {
   return (
     <AutoLayout>
+      <Title level={TitleLevels.ONE}>Title followed by subtitle</Title>
+      <Title subtitle>subtitle</Title>
+
+      <Title level={TitleLevels.TWO}>Title followed by subtitle</Title>
+      <Title subtitle>subtitle</Title>
+
+      <Title level={TitleLevels.THREE}>Title followed by subtitle</Title>
+      <Title subtitle>subtitle</Title>
+
+      <Title level={TitleLevels.ONE}>Title followed by subtitle</Title>
+      <Title subtitle>subtitle</Title>
+
       <Title level={TitleLevels.TWO}>Title followed by Icon</Title>
       <Icon size={IconSize.LARGE} name={IconName.ALERT} />
       <Title level={TitleLevels.TWO}>Title followed by Box</Title>

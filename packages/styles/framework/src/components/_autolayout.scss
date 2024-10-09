@@ -1,95 +1,101 @@
 body:not(.is-tight) {
-  .accordions {
+  .accordions:not(:last-child) {
     margin-bottom: 24px;
   }
-  .card {
+  .card:not(:last-child) {
     margin-bottom: 24px;
   }
-  .box {
+  .box:not(:last-child) {
     margin-bottom: 24px;
   }
-  .table {
+  .table:not(:last-child) {
     margin-bottom: 24px;
   }
-  .list {
+  .list:not(:last-child) {
     margin-bottom: 24px;
   }
-  .timeline {
+  .timeline:not(:last-child) {
     margin-bottom: 24px;
   }
-  .stepper {
+  .stepper:not(:last-child) {
     margin-bottom: 24px;
   }
-  .pagination {
+  .pagination:not(:last-child) {
     margin-bottom: 24px;
   }
-  .segmented-control {
+  .segmented-control:not(:last-child) {
     margin-bottom: 24px;
   }
-  .tabs {
+  .tabs:not(:last-child) {
     margin-bottom: 24px;
   }
-  .range {
+  .range:not(:last-child) {
     margin-bottom: 24px;
   }
-  .stepper {
+  .stepper:not(:last-child) {
     margin-bottom: 24px;
   }
-  .price-container {
+  .price-container:not(:last-child) {
     margin-bottom: 12px;
   }
-  .buttons {
+  .buttons:not(:last-child) {
     margin-bottom: 24px;
   }
-  .countdown {
+  .countdown:not(:last-child) {
     margin-bottom: 16px;
   }
-  .countdown.is-small {
+  .countdown.is-small:not(:last-child) {
     margin-bottom: 12px;
   }
-  .chips-list {
+  .chips-list:not(:last-child) {
     margin-bottom: 12px;
   }
   p.text:not(:last-child) {
     margin-bottom: 12px;
   }
-  .progress {
+  .progress:not(:last-child) {
     margin-bottom: 8px;
   }
-  .progress-radial {
+  .progress-radial:not(:last-child) {
     margin-bottom: 8px;
   }
-  .radio {
+  .radio:not(:last-child) {
     margin-bottom: 12px;
   }
-  .checkbox {
+  .checkbox:not(:last-child) {
     margin-bottom: 12px;
   }
-  .switch {
+  .switch:not(:last-child) {
     margin-bottom: 12px;
   }
-  .radio-tile {
+  .radio-tile:not(:last-child) {
     margin-bottom: 24px;
   }
-  .checkbox-tile {
+  .checkbox-tile:not(:last-child) {
     margin-bottom: 24px;
   }
-  .input {
+  .field:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .control:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .help:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .textarea:not(:last-child) {
     margin-bottom: 16px;
   }
-  .textarea {
+  .select:not(:last-child) {
     margin-bottom: 16px;
   }
-  .select {
-    margin-bottom: 16px;
-  }
-  .link {
+  .link:not(:last-child) {
     margin-bottom: 12px;
   }
-  .sticker {
+  .sticker:not(:last-child) {
     margin-bottom: 8px;
   }
-  .tag {
+  .tag:not(:last-child) {
     margin-bottom: 8px;
   }
   .title.is-level-1:not(:last-child) {
@@ -110,116 +116,131 @@ body:not(.is-tight) {
   .title.is-level-6:not(:last-child) {
     margin-bottom: 12px;
   }
-  .overline {
+  .overline:not(:last-child) {
     margin-bottom: 0px;
   }
-  .title.is-level-1 + .subtitle {
+  .title:has(+.subtitle):not(:last-child) {
     margin-bottom: 8px;
   }
-  .title.is-level-2 + .subtitle {
-    margin-bottom: 8px;
-  }
-  .subtitle + .title.is-level-1 {
+  .title.is-level-1 + .subtitle:not(:last-child) {
     margin-bottom: 32px;
   }
-  .subtitle + .title.is-level-2 {
+  .title.is-level-2 + .subtitle:not(:last-child) {
     margin-bottom: 24px;
+  }
+  .title.is-level-3 + .subtitle:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .title.is-level-4 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-5 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-6 + .subtitle:not(:last-child) {
+    margin-bottom: 12px;
   }
 }
 
 @include mobile() {
   body:not(.is-tight) {
-    .accordions {
+    .accordions:not(:last-child) {
       margin-bottom: 16px;
     }
-  .card {
+  .card:not(:last-child) {
       margin-bottom: 16px;
     }
-  .box {
+  .box:not(:last-child) {
       margin-bottom: 16px;
     }
-  .table {
+  .table:not(:last-child) {
       margin-bottom: 16px;
     }
-  .list {
+  .list:not(:last-child) {
       margin-bottom: 16px;
     }
-  .timeline {
+  .timeline:not(:last-child) {
       margin-bottom: 16px;
     }
-  .stepper {
+  .stepper:not(:last-child) {
       margin-bottom: 16px;
     }
-  .pagination {
+  .pagination:not(:last-child) {
       margin-bottom: 16px;
     }
-  .segmented-control {
+  .segmented-control:not(:last-child) {
       margin-bottom: 16px;
     }
-  .tabs {
+  .tabs:not(:last-child) {
       margin-bottom: 16px;
     }
-  .range {
+  .range:not(:last-child) {
       margin-bottom: 16px;
     }
-  .stepper {
+  .stepper:not(:last-child) {
       margin-bottom: 16px;
     }
-  .price-container {
+  .price-container:not(:last-child) {
       margin-bottom: 8px;
     }
-  .buttons {
+  .buttons:not(:last-child) {
       margin-bottom: 16px;
     }
-  .countdown {
+  .countdown:not(:last-child) {
       margin-bottom: 12px;
     }
-  .countdown.is-small {
+  .countdown.is-small:not(:last-child) {
       margin-bottom: 12px;
     }
-  .chips-list {
+  .chips-list:not(:last-child) {
       margin-bottom: 12px;
     }
   p.text:not(:last-child) {
       margin-bottom: 8px;
     }
-  .progress {
+  .progress:not(:last-child) {
       margin-bottom: 8px;
     }
-  .progress-radial {
+  .progress-radial:not(:last-child) {
       margin-bottom: 8px;
     }
-  .radio {
+  .radio:not(:last-child) {
       margin-bottom: 12px;
     }
-  .checkbox {
+  .checkbox:not(:last-child) {
       margin-bottom: 12px;
     }
-  .switch {
+  .switch:not(:last-child) {
       margin-bottom: 12px;
     }
-  .radio-tile {
+  .radio-tile:not(:last-child) {
       margin-bottom: 16px;
     }
-  .checkbox-tile {
+  .checkbox-tile:not(:last-child) {
       margin-bottom: 16px;
     }
-  .input {
+  .field:not(:last-child) {
       margin-bottom: 16px;
     }
-  .textarea {
+  .control:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  .help:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  .textarea:not(:last-child) {
       margin-bottom: 16px;
     }
-  .select {
+  .select:not(:last-child) {
       margin-bottom: 16px;
     }
-  .link {
+  .link:not(:last-child) {
       margin-bottom: 8px;
     }
-  .sticker {
+  .sticker:not(:last-child) {
       margin-bottom: 8px;
     }
-  .tag {
+  .tag:not(:last-child) {
       margin-bottom: 8px;
     }
   .title.is-level-1:not(:last-child) {
@@ -240,20 +261,29 @@ body:not(.is-tight) {
   .title.is-level-6:not(:last-child) {
       margin-bottom: 8px;
     }
-  .overline {
+  .overline:not(:last-child) {
       margin-bottom: 0px;
     }
-  .title.is-level-1 + .subtitle {
+  .title:has(+.subtitle):not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-2 + .subtitle {
-      margin-bottom: 8px;
-    }
-  .subtitle + .title.is-level-1 {
+  .title.is-level-1 + .subtitle:not(:last-child) {
       margin-bottom: 40px;
     }
-  .subtitle + .title.is-level-2 {
+  .title.is-level-2 + .subtitle:not(:last-child) {
       margin-bottom: 32px;
+    }
+  .title.is-level-3 + .subtitle:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  .title.is-level-4 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-5 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-6 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
     }
 
   }
