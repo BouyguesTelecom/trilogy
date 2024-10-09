@@ -128,7 +128,7 @@ export const ColumnScreen = (): JSX.Element => {
 
 
 
-        <Columns className='has-1-cols column-peek is-mobile is-inlined full-bleed'>
+        <Columns  className='has-1-cols column-peek is-mobile is-inlined full-bleed'>
           <ColumnsItem>
             <Box>
               <BoxContent>
