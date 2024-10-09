@@ -2,7 +2,7 @@
 import { Accessibility } from '@/objects/facets'
 import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
 
-import { ReactNode } from 'react'
+import { FocusEventHandler, ReactNode } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -21,20 +21,27 @@ import {
   InputTypeValues,
 } from './InputEnum'
 
-export interface InputChangeEvent {
+export interface InputChangeEventWeb {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
-  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target:  EventTarget;
 }
 
-export type InputChangeEventHandler = (event: InputChangeEvent) => void
+export interface InputChangeEventNative {
+  inputName: string
+  inputValue: string
+  inputSelectionStart: number | null
+}
+
+export type InputChangeEventHandlerWeb = (event: InputChangeEventWeb) => void
+export type InputChangeEventHandlerNative = (event: InputChangeEventNative) => void
 
 export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
-  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
   preventDefault: () => void
 }
 
@@ -43,7 +50,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
-  inputTarget?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
@@ -51,15 +58,19 @@ export type InputClickEventHandler = (event: InputClickEvent) => void
 export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
-  onChange?: InputChangeEventHandler
+  onChange?: InputChangeEventHandlerNative
+  onFocus?: (event:  React.BaseSyntheticEvent) => void
+  onBlur?: (event: unknown) => void
 }
 
 export interface InputWebEvents {
-  onChange?: InputChangeEventHandler
+  onChange?: InputChangeEventHandlerWeb
   onKeyUp?: InputKeyboardEventHandler
   onKeyPress?: InputKeyboardEventHandler
   onIconClick?: InputClickEventHandler
   onClick?: InputClickEventHandler
+  onFocus?:FocusEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement>
 }
 
 export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'default'
@@ -96,8 +107,6 @@ export interface InputProps extends Accessibility {
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
   forceControl?: boolean
-  onFocus?: (event: React.FocusEvent | React.BaseSyntheticEvent) => void
-  onBlur?: (event: unknown) => void
   onMouseEnter?: (event: React.MouseEvent) => void
   onMouseLeave?: (event: React.MouseEvent) => void
   keyType?: KeyType

@@ -1,12 +1,12 @@
-import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { InputProp } from '@/components/input/Input'
+import { InputAutoCompleteType } from '@/components/input/InputEnum'
+import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import { InputProp } from '@/components/input/Input'
-import { InputAutoCompleteType } from '@/components/input/InputEnum'
-import { InputChangeEvent, InputKeyboardEvent } from '@/components/input/InputProps'
-import { AutoCompleteProps, Item } from './AutoCompleteProps'
+import clsx from 'clsx'
+import React, { FocusEvent, useEffect, useState } from 'react'
+import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
@@ -58,7 +58,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   onFocus,
   loading,
   ...others
-}: AutoCompleteProps<T>): JSX.Element => {
+}: AutoCompletePropsWeb<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
   const { Input } = others as { Input: React.ComponentType<InputProp> }
 
@@ -90,7 +90,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     setSearch(matching(data, _inputValue))
   }, [data])
 
-  const onTextChanged = async (e: InputChangeEvent) => {
+  const onTextChanged = async (e: InputChangeEventWeb) => {
     setIsAutocompleteMenuVisible(true)
 
     if (onChange) {
@@ -98,6 +98,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         inputName: name || '',
         inputValue: e.inputValue,
         inputSelectionStart: null,
+        target: e.target,
       })
     }
 
@@ -156,7 +157,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     }
   }
 
-  const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+  const handleFocus = (event: FocusEvent<HTMLInputElement, Element>) => {
     setIsAutocompleteMenuVisible(true)
     if (onFocus) onFocus(event)
   }
@@ -176,14 +177,14 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
         // Add delay for selection of suggestion
-        onBlur={(e: unknown) => {
+        onBlur={(e: FocusEvent<HTMLInputElement, Element>) => {
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
         }}
         onFocus={handleFocus}
         onKeyUp={handleKeyPress}
         value={_inputValue}
-        onChange={(event: InputChangeEvent) => {
+        onChange={(event: InputChangeEventWeb) => {
           onInputChange(event)
         }}
         onIconClick={onIconClick}
