@@ -39,7 +39,6 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.switch', 'default', THREE, THREE],
   [INSERT_SPACE_BETWEEN, '.radio-tile', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.checkbox-tile', 'default', FIVE, FOUR],
-  [INSERT_SPACE_BETWEEN, '.input', 'default', FOUR, FOUR],
   [INSERT_SPACE_BETWEEN, '.field', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.control', 'default', ONE, ONE],
   [INSERT_SPACE_BETWEEN, '.help', 'default', ONE, ONE],
