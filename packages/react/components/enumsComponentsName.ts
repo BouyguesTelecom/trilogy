@@ -3,6 +3,7 @@ export enum ComponentName {
   AccordionItem = 'AccordionItem',
   AccordionHeader = 'AccordionHeader',
   AccordionBody = 'AccordionBody',
+  AutoComplete = 'AutoComplete',
   AutoLayout = 'AutoLayout',
   AutoLayoutWrapper = 'AutoLayoutWrapper',
   StatusState = 'StatusState',
