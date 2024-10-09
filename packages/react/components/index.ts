@@ -1,6 +1,7 @@
 // Components exports
 export * from './accordion'
 export * from './alert'
+export * from './autocomplete'
 export * from './autolayout'
 export * from './badge'
 export * from './box'
