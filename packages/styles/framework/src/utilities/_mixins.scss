@@ -365,7 +365,7 @@
   @include control;
   height: 56px;
   background-color: getColor('background');
-  border-color: getColor('main-fade');
+  border-color: getColor('neutral');
   color: getColor('font');
 
   @include placeholder {
