@@ -58,6 +58,9 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.title.is-level-1 + .subtitle', null, SIX, SEVEN],
   [INSERT_SPACE_BETWEEN, '.title.is-level-2 + .subtitle', null, FIVE, SIX],
   [INSERT_SPACE_BETWEEN, '.title.is-level-3 + .subtitle', null, FIVE, SIX],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-4 + .subtitle', null, THREE, TWO],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-5 + .subtitle', null, THREE, TWO],
+  [INSERT_SPACE_BETWEEN, '.title.is-level-6 + .subtitle', null, THREE, TWO],
 ];
 
 
