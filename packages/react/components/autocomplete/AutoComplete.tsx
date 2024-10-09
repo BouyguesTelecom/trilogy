@@ -1,12 +1,12 @@
-import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { Input } from '@/components/input'
+import { InputAutoCompleteType } from '@/components/input/InputEnum'
+import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import { InputProp } from '@/components/input/Input'
-import { InputAutoCompleteType } from '@/components/input/InputEnum'
-import { InputChangeEvent, InputKeyboardEvent } from '@/components/input/InputProps'
-import { AutoCompleteProps, Item } from './AutoCompleteProps'
+import clsx from 'clsx'
+import React, { FocusEvent, forwardRef, LegacyRef, useEffect, useState } from 'react'
+import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
@@ -32,36 +32,37 @@ import { debounce } from './utils'
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  */
-const AutoComplete = <T extends string | Item<unknown> = string>({
-  defaultValue,
-  value,
-  classNameMenu,
-  absoluteMenu,
-  fullwidthMenu,
-  placeholder,
-  data,
-  status,
-  onBlur,
-  testId,
-  onChange,
-  name,
-  matching = defaultMatching,
-  displayMenu = true,
-  onItemSelected,
-  customIcon,
-  reference,
-  disabled,
-  children,
-  accessibilityLabel,
-  onIconClick,
-  getSuggestions,
-  debounceSuggestionsTimeout,
-  onFocus,
-  loading,
-  ...others
-}: AutoCompleteProps<T>): JSX.Element => {
+const AutoComplete = <T extends string | Item<unknown> = string>(
+  {
+    defaultValue,
+    value,
+    classNameMenu,
+    absoluteMenu,
+    fullwidthMenu,
+    placeholder,
+    data,
+    status,
+    onBlur,
+    testId,
+    onChange,
+    name,
+    matching = defaultMatching,
+    displayMenu = true,
+    onItemSelected,
+    customIcon,
+    disabled,
+    children,
+    accessibilityLabel,
+    onIconClick,
+    getSuggestions,
+    debounceSuggestionsTimeout,
+    onFocus,
+    loading,
+    ...others
+  }: AutoCompletePropsWeb<T>,
+  ref: LegacyRef<HTMLInputElement>,
+): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const { Input } = others as { Input: React.ComponentType<InputProp> }
 
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(value ?? '')
@@ -91,7 +92,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     setSearch(matching(data, _inputValue))
   }, [data])
 
-  const onTextChanged = async (e: InputChangeEvent) => {
+  const onTextChanged = async (e: InputChangeEventWeb) => {
     setIsAutocompleteMenuVisible(true)
 
     if (onChange) {
@@ -99,6 +100,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         inputName: name || '',
         inputValue: e.inputValue,
         inputSelectionStart: null,
+        target: e.target,
       })
     }
 
@@ -157,7 +159,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
     }
   }
 
-  const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+  const handleFocus = (event: FocusEvent<HTMLInputElement, Element>) => {
     setIsAutocompleteMenuVisible(true)
     if (onFocus) onFocus(event)
   }
@@ -165,10 +167,10 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
+        ref={ref}
         defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
         {...(customIcon ? { customIcon: customIcon } : {})}
-        reference={reference}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
         className='autocomplete-input'
@@ -178,14 +180,14 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
         // Add delay for selection of suggestion
-        onBlur={(e: unknown) => {
+        onBlur={(e: FocusEvent<HTMLInputElement, Element>) => {
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
         }}
         onFocus={handleFocus}
         onKeyUp={handleKeyPress}
         value={_inputValue}
-        onChange={(event: InputChangeEvent) => {
+        onChange={(event: InputChangeEventWeb) => {
           onInputChange(event)
         }}
         onIconClick={onIconClick}
@@ -221,4 +223,4 @@ const AutoComplete = <T extends string | Item<unknown> = string>({
   )
 }
 
-export default AutoComplete
+export default forwardRef(AutoComplete)

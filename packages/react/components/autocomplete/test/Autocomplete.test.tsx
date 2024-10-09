@@ -1,18 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import * as React from 'react'
-import Input from '../../Input'
+import AutoComplete from '../AutoComplete'
 
 const testItems = ['Apple', 'Banana', 'Cherry', 'Grape']
 
 describe('AutoComplete', () => {
   it('renders the component', () => {
-    render(<Input.AutoComplete data={testItems} />)
+    render(<AutoComplete data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toBeInTheDocument()
   })
 
   it('displays the menu when typing in the input', () => {
-    render(<Input.AutoComplete data={testItems} />)
+    render(<AutoComplete data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.change(input, { target: { value: 'a' } })
@@ -21,7 +21,7 @@ describe('AutoComplete', () => {
   })
 
   it('filters the items based on input value', () => {
-    render(<Input.AutoComplete data={testItems} />)
+    render(<AutoComplete data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.change(input, { target: { value: 'a' } })
@@ -34,7 +34,7 @@ describe('AutoComplete', () => {
     let defaultV
     const handleItemSelected = jest.fn()
     render(
-      <Input.AutoComplete
+      <AutoComplete
         data={testItems}
         onItemSelected={handleItemSelected}
         onChange={(e) => (defaultV = { label: e.inputValue })}
@@ -54,74 +54,74 @@ describe('AutoComplete', () => {
   })
 
   it('should have placeholder', () => {
-    render(<Input.AutoComplete data={testItems} placeholder='placeholder test' />)
+    render(<AutoComplete data={testItems} placeholder='placeholder test' />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveAttribute('placeholder', 'placeholder test')
   })
 
   it('should have placeholder with default value', () => {
-    render(<Input.AutoComplete data={testItems} placeholder='placeholder test' />)
+    render(<AutoComplete data={testItems} placeholder='placeholder test' />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveAttribute('placeholder', 'placeholder test')
   })
 
   it('should have input value, name', () => {
-    render(<Input.AutoComplete name='nameTest' data={testItems} value='value test' />)
+    render(<AutoComplete name='nameTest' data={testItems} value='value test' />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveValue('value test')
     expect(input).toHaveAttribute('name', 'nameTest')
   })
 
   it('should be disabled', () => {
-    render(<Input.AutoComplete disabled data={testItems} />)
+    render(<AutoComplete disabled data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toBeDisabled()
   })
 
   it('should have accessibility label', () => {
-    render(<Input.AutoComplete accessibilityLabel='input' data={testItems} />)
+    render(<AutoComplete accessibilityLabel='input' data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveAttribute('aria-label', 'input')
   })
 
   it('input should  have classname autocomplete', () => {
-    render(<Input.AutoComplete data={testItems} />)
+    render(<AutoComplete data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input.parentNode?.parentNode).toHaveClass('autocomplete-input')
   })
 
   it('input should  default status class', () => {
-    render(<Input.AutoComplete status='default' data={testItems} />)
+    render(<AutoComplete status='default' data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveClass('is-default')
   })
 
   it('input should  default error class', () => {
-    render(<Input.AutoComplete status='error' data={testItems} />)
+    render(<AutoComplete status='error' data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveClass('is-error')
   })
 
   it('input should  default success class', () => {
-    render(<Input.AutoComplete status='success' data={testItems} />)
+    render(<AutoComplete status='success' data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveClass('is-success')
   })
 
   it('input should  default warning class', () => {
-    render(<Input.AutoComplete status='warning' data={testItems} />)
+    render(<AutoComplete status='warning' data={testItems} />)
     const input = screen.getByRole('textbox')
     expect(input).toHaveClass('is-warning')
   })
 
   it('should have menu displayed', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const items = screen.getAllByRole('listitem')
     expect(items.length).toBe(4)
   })
 
   it('should execute keypress up event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.keyUp(input, { key: 'arrow up', code: 'arrow up', keyCode: 38 })
@@ -130,7 +130,7 @@ describe('AutoComplete', () => {
   })
 
   it('should execute keypress down event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.keyUp(input, {
@@ -143,7 +143,7 @@ describe('AutoComplete', () => {
   })
 
   it('should execute keypress down up event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.keyUp(input, {
@@ -157,7 +157,7 @@ describe('AutoComplete', () => {
   })
 
   it('should execute keypress enter event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.keyUp(input, {
@@ -175,7 +175,7 @@ describe('AutoComplete', () => {
   })
 
   it('should execute keypress max down event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.keyUp(input, {
@@ -203,7 +203,7 @@ describe('AutoComplete', () => {
   })
 
   it('should execute blur event', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const input = screen.getByRole('textbox')
     fireEvent.focus(input)
     fireEvent.blur(input)
@@ -211,20 +211,20 @@ describe('AutoComplete', () => {
   })
 
   it('should dont have autocomplete item', () => {
-    render(<Input.AutoComplete displayMenu data={[]} />)
+    render(<AutoComplete displayMenu data={[]} />)
     const list = screen.queryAllByRole('list')
     expect(list.length).toBe(0)
   })
 
   it('should autocomplete items be active on hover', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const items = screen.getAllByRole('listitem')
     fireEvent.mouseOver(items[1])
     expect(items[1]).toHaveClass('is-active')
   })
 
   it('should items be not active on blur autocompleteIem', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const items = screen.getAllByRole('listitem')
     fireEvent.mouseOver(items[1])
     fireEvent.mouseOut(items[1])
@@ -232,7 +232,7 @@ describe('AutoComplete', () => {
   })
 
   it('should add value input onclick autocompleteItem', () => {
-    render(<Input.AutoComplete displayMenu data={testItems} />)
+    render(<AutoComplete displayMenu data={testItems} />)
     const items = screen.getAllByRole('listitem')
     const input = screen.getByRole('textbox')
     fireEvent.click(items[1])
