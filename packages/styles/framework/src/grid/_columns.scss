@@ -58,18 +58,18 @@ $gap :
 
 
 
-  &.has-1-cols > .column,
-  &.has-2-cols > .column,
-  &.has-3-cols > .column,
-  &.has-4-cols > .column,
-  &.has-5-cols > .column,
-  &.has-6-cols > .column,
-  &.has-7-cols > .column,
-  &.has-8-cols > .column,
-  &.has-9-cols > .column,
-  &.has-10-cols > .column,
-  &.has-11-cols > .column,
-  &.has-12-cols > .column
+  &.has-1-cols > .column:not(.is-narrow),
+  &.has-2-cols > .column:not(.is-narrow),
+  &.has-3-cols > .column:not(.is-narrow),
+  &.has-4-cols > .column:not(.is-narrow),
+  &.has-5-cols > .column:not(.is-narrow),
+  &.has-6-cols > .column:not(.is-narrow),
+  &.has-7-cols > .column:not(.is-narrow),
+  &.has-8-cols > .column:not(.is-narrow),
+  &.has-9-cols > .column:not(.is-narrow),
+  &.has-10-cols > .column:not(.is-narrow),
+  &.has-11-cols > .column:not(.is-narrow),
+  &.has-12-cols > .column:not(.is-narrow)
   {
     width:  #{$columnWidth};
   }
