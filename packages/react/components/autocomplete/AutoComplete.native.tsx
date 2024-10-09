@@ -1,8 +1,8 @@
+import Input from '@/components/input/Input.native'
+import { InputChangeEventNative } from '@/components/input/InputProps'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
-import { InputNativeProps } from '@/components/input/Input.native'
-import { InputChangeEvent } from '@/components/input/InputProps'
-import { AutoCompleteProps } from './AutoCompleteProps'
+import { AutoCompletePropsNative } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
 import { debounce } from './utils'
@@ -21,11 +21,10 @@ const AutoComplete = ({
   onFocus,
   testId,
   ...others
-}: AutoCompleteProps): JSX.Element => {
+}: AutoCompletePropsNative): JSX.Element => {
   const [valueInput, setValueInput] = useState<string>(value ?? '')
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
-  const { Input }= others as { Input: React.ComponentType<InputNativeProps> }
 
   const updateSuggestions = async (valueInput: string) => {
     if (getSuggestions) {
@@ -50,7 +49,7 @@ const AutoComplete = ({
     setValueInput(value || '')
   }, [value])
 
-  const onTextChanged = async (e: InputChangeEvent) => {
+  const onTextChanged = async (e: InputChangeEventNative) => {
     const { inputValue, inputName, inputSelectionStart } = e
     setValueInput(inputValue)
     if (onChange) {
