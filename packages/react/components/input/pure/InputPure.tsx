@@ -9,6 +9,7 @@ import { InputStatus, InputStatusValues, InputType, InputTypeValues } from '../I
 import InputGauge from '../gauge/InputGauge'
 import { TypographyColor } from '@/objects'
 import { IconWrapper } from '../Input'
+import { InputPureProps } from './InputPureProps'
 
 /**
  * Input Component
@@ -63,11 +64,6 @@ const InputPure = ({
   sample,
   className,
   disabled,
-  onChange,
-  onKeyPress,
-  onKeyUp,
-  onIconClick,
-  onClick,
   onFocus,
   onBlur,
   patternValidator,
@@ -101,7 +97,7 @@ const InputPure = ({
   required,
   props,
   ...others
-}: any): JSX.Element => {
+}: InputPureProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
@@ -196,6 +192,7 @@ const InputPure = ({
       {!hasPlaceholder && label && sample && <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
       <div className={controlClasses}>
         <input
+          className={classes}
           {...props}
           {...others}
         />

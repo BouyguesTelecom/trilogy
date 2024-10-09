@@ -16,7 +16,6 @@ export interface InputProp extends InputProps, InputWebEvents {
   props?: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 }
 
-
 export interface IconWrapper {
   className?: string
   name: IconName | IconNameValues
@@ -359,4 +358,5 @@ Input.Pure =(props: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTM
   const newProps = { ...props, Input }
   return <InputPure {...newProps} />
 }
+
 export default Input
