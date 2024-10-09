@@ -28,7 +28,7 @@ import {
   InputType,
 } from './InputEnum'
 import { InputNativeEvents, InputProps } from './InputProps'
-import { AutoCompleteProps } from './autocomplete'
+import { AutoCompletePropsNative } from './autocomplete'
 import AutoComplete from './autocomplete/AutoComplete.native'
 import InputGauge from './gauge/InputGauge.native'
 
@@ -412,7 +412,7 @@ const Input = ({
                 onIconClick?.({
                   inputName: (name && name) || '',
                   inputValue: value,
-                  inputTarget: e,
+                  target: e,
                 })
               }}
             >
@@ -526,7 +526,7 @@ const Input = ({
 
 Input.displayName = ComponentName.Input
 
-Input.AutoComplete = (props: AutoCompleteProps) => {
+Input.AutoComplete = (props: AutoCompletePropsNative) => {
   const newProps = { ...props, Input }
   return <AutoComplete {...newProps} />
 }

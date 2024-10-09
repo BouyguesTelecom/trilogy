@@ -8,7 +8,7 @@ import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from '
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
-import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
+import { AutoComplete, AutoCompletePropsWeb, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
 
 export interface InputProp extends InputProps, InputWebEvents {}
@@ -150,7 +150,7 @@ const Input = (
       inputName: target.name,
       inputValue: target.value,
       inputKeyCode: e.keyCode,
-      inputTarget: target,
+      target,
       preventDefault: () => e.preventDefault(),
     }
   }, [])
@@ -163,7 +163,7 @@ const Input = (
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value, inputTarget: e.target })
+              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
             }
           }}
         >
@@ -259,7 +259,7 @@ const Input = (
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
-                inputTarget: target,
+                target: target,
               })
             }
           }}
@@ -286,7 +286,7 @@ const Input = (
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
-                inputTarget: e.target,
+                target: e.target,
               })
             }
           }}
@@ -360,7 +360,7 @@ const Input = (
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  */
-Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompleteProps<T>) => {
+Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompletePropsWeb<T>) => {
   const newProps = { ...props, Input }
   return <AutoComplete {...newProps} />
 }
