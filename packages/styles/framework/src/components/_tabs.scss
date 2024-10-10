@@ -1,188 +1,246 @@
-.tab-context {
-  @include overflow-touch;
-  @include unselectable;
-
-  align-items: stretch;
-  justify-content: space-between;
-  font-weight: $weight-normal;
-  background: white;
-  width: 100%;
-  text-align: center;
-  overflow: scroll;
-  overflow: -moz-scrollbars-none !important;
-  -ms-overflow-style: none !important;
-  scrollbar-width: none;
-
-  @include mobile {
-    text-align: left;
-  }
-
-  &::-webkit-scrollbar {
-    width: 0 !important;
-    height: 0 !important;
-  }
-
-  &.is-inverted {
-    background-color: getColor('font');
-
-    .tabs > .tab {
-      color: getColor('background') !important;
-
-      &.is-active {
-        border-bottom-color: currentColor;
-      }
-
-      #{$hoverSelector} {
-        color: getColor('background') !important;
-        cursor: pointer;
-      }
-
-      &:focus-visible {
-        border-color: getColor('background');
-      }
-
-    }
-  }
-
-  &.has-text-left {
-    .tabs > .tab:first-child {
-      margin-left: 24px;
-    }
-  }
-
-  .tabs {
-    background-color: transparent;
-    height: 48px;
-    overflow-x: auto;
-    white-space: nowrap;
-    display: inline-flex;
-
-    &.is-centered {
-      justify-content: center;
-    }
-
-    &.is-right {
-      justify-content: flex-end;
-    }
-
-    &.is-left {
-      justify-content: flex-start;
-    }
-
-
-    &.is-fullwidth {
-      @include desktop {
-        > * {
-          flex-grow: 1;
-          flex-shrink: 0;
-        }
-      }
-    }
-
-    &.is-clipped {
-      box-shadow: none;
-    }
-
-    &.is-icons {
-      height: 64px;
-    }
-
-    @include mobile {
-      justify-content: flex-start;
-      > .tab:first-child {
-        margin-left: 24px;
-      }
-    }
-
-    > .tab {
-      height: calc(100% - 4px);
-      background-color: transparent;
-      border: none;
-      color: getColor('font');
-      text-decoration: none;
-      outline: none;
-      padding: 6px 14px;
-      font-size: $text-14;
-      @include desktop {
-        font-size: $text-16;
-      }
-      border: 0px solid transparent;
-      border-bottom: 2px solid transparent;
-
-      .tab-icon {
-        margin-top: 2px;
-      }
-
-      &:not(button) {
-        .tab-icon {
-          margin-top: 4px;
-        }
-      }
-
-      @include mobile {
-        font-size: $text-14;
-      }
-
-      &.is-active {
-        color: getColor('main');
-        position: relative;
-        border-bottom-color: getColor('main');
-      }
-
-      &:hover:not(.is-disabled) {
-        color: getColor('main');
-        cursor: pointer;
-
-        .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
-          font-size: 22px !important;
-          background-color: currentColor;
-        }
-      }
-
-      &:focus-visible {
-        border-color: currentColor;
-        color: getColor('main');
-      }
-
-      .icon {
-        height: 0;
-      }
-
-      .icon.is-small, .icon.is-small {
-        font-size: 22px;
-      }
-
-      &[disabled], &[aria-disabled=true] {
-        background-color: transparent !important;
-      }
-
-    }
-  }
-
-  .tab-panels {
-    padding-top: $spacing-3;
-    padding-bottom: $spacing-3;
-
-    .tab-panel {
-      transition: opacity 2s ease-in-out;
-      transition-delay: 1s;
-
-      &:not(.is-active) {
-        display: none;
-      }
-
-      &.is-active {
-        animation: fade-in 250ms;
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    }
-  }
+.tabs {
+  position: relative;
+  min-height: 200px; /* This part sucks */
+  clear: both;
+  margin: 25px 0;
 }
+.tab {
+  float: left;
+}
+.tab label {
+  background: #eee;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-left: -1px;
+  position: relative;
+  left: 1px;
+}
+.tab [type="radio"] {
+  opacity: 0;
+}
+.content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+.content > * {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.6s ease;
+}
+[type="radio"]:focus ~ label {
+  ouline: 2px solid blue;
+}
+[type="radio"]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type="radio"]:checked ~ label ~ .content {
+  z-index: 1;
+}
+[type="radio"]:checked ~ label ~ .content > * {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+
+
+
+
+// .tab-context {
+//   @include overflow-touch;
+//   @include unselectable;
+
+//   align-items: stretch;
+//   justify-content: space-between;
+//   font-weight: $weight-normal;
+//   background: white;
+//   width: 100%;
+//   text-align: center;
+//   overflow: scroll;
+//   overflow: -moz-scrollbars-none !important;
+//   -ms-overflow-style: none !important;
+//   scrollbar-width: none;
+
+//   @include mobile {
+//     text-align: left;
+//   }
+
+//   &::-webkit-scrollbar {
+//     width: 0 !important;
+//     height: 0 !important;
+//   }
+
+//   &.is-inverted {
+//     background-color: getColor('font');
+
+//     .tabs > .tab {
+//       color: getColor('background') !important;
+
+//       &.is-active {
+//         border-bottom-color: currentColor;
+//       }
+
+//       #{$hoverSelector} {
+//         color: getColor('background') !important;
+//         cursor: pointer;
+//       }
+
+//       &:focus-visible {
+//         border-color: getColor('background');
+//       }
+
+//     }
+//   }
+
+//   &.has-text-left {
+//     .tabs > .tab:first-child {
+//       margin-left: 24px;
+//     }
+//   }
+
+//   .tabs {
+//     background-color: transparent;
+//     height: 48px;
+//     overflow-x: auto;
+//     white-space: nowrap;
+//     display: inline-flex;
+
+//     &.is-centered {
+//       justify-content: center;
+//     }
+
+//     &.is-right {
+//       justify-content: flex-end;
+//     }
+
+//     &.is-left {
+//       justify-content: flex-start;
+//     }
+
+
+//     &.is-fullwidth {
+//       @include desktop {
+//         > * {
+//           flex-grow: 1;
+//           flex-shrink: 0;
+//         }
+//       }
+//     }
+
+//     &.is-clipped {
+//       box-shadow: none;
+//     }
+
+//     &.is-icons {
+//       height: 64px;
+//     }
+
+//     @include mobile {
+//       justify-content: flex-start;
+//       > .tab:first-child {
+//         margin-left: 24px;
+//       }
+//     }
+
+//     > .tab {
+//       height: calc(100% - 4px);
+//       background-color: transparent;
+//       border: none;
+//       color: getColor('font');
+//       text-decoration: none;
+//       outline: none;
+//       padding: 6px 14px;
+//       font-size: $text-14;
+//       @include desktop {
+//         font-size: $text-16;
+//       }
+//       border: 0px solid transparent;
+//       border-bottom: 2px solid transparent;
+
+//       .tab-icon {
+//         margin-top: 2px;
+//       }
+
+//       &:not(button) {
+//         .tab-icon {
+//           margin-top: 4px;
+//         }
+//       }
+
+//       @include mobile {
+//         font-size: $text-14;
+//       }
+
+//       &.is-active {
+//         color: getColor('main');
+//         position: relative;
+//         border-bottom-color: getColor('main');
+//       }
+
+//       &:hover:not(.is-disabled) {
+//         color: getColor('main');
+//         cursor: pointer;
+
+//         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
+//           font-size: 22px !important;
+//           background-color: currentColor;
+//         }
+//       }
+
+//       &:focus-visible {
+//         border-color: currentColor;
+//         color: getColor('main');
+//       }
+
+//       .icon {
+//         height: 0;
+//       }
+
+//       .icon.is-small, .icon.is-small {
+//         font-size: 22px;
+//       }
+
+//       &[disabled], &[aria-disabled=true] {
+//         background-color: transparent !important;
+//       }
+
+//     }
+//   }
+
+//   .tab-panels {
+//     padding-top: $spacing-3;
+//     padding-bottom: $spacing-3;
+
+//     .tab-panel {
+//       transition: opacity 2s ease-in-out;
+//       transition-delay: 1s;
+
+//       &:not(.is-active) {
+//         display: none;
+//       }
+
+//       &.is-active {
+//         animation: fade-in 250ms;
+//       }
+
+//       @keyframes fade-in {
+//         from {
+//           opacity: 0;
+//         }
+//         to {
+//           opacity: 1;
+//         }
+//       }
+//     }
+//   }
+// }
