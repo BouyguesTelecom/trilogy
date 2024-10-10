@@ -9,13 +9,26 @@ import {
 } from "@trilogy-ds/react/components";
 
 export const TabScreen = (): JSX.Element => {
-  const [activeIndexEventTab, setActivateIndexEventTab] =
-    React.useState<number>(1);
-  const [index, setIndex] = React.useState<number>(2);
+  // const [activeIndexEventTab, setActivateIndexEventTab] =
+  //   React.useState<number>(1);
+  // const [index, setIndex] = React.useState<number>(2);
 
   return (
     <Section>
-      <Title level={TitleLevels.THREE}>Event</Title>
+      <Tabs>
+        <TabsItem id="tab-1" label="Onglet 1" defaultChecked>
+          <p>Contenu pour Onglet 1</p>
+        </TabsItem>
+        <TabsItem id="tab-2" label="Onglet 2">
+          <p>Contenu pour Onglet 2</p>
+          <img src="//placekitten.com/200/100" alt="Kitten"/>
+        </TabsItem>
+        <TabsItem id="tab-3" label="Onglet 3">
+          <p>Contenu pour Onglet 3</p>
+          <img src="//placekitten.com/200/100" alt="Kitten"/>
+        </TabsItem>
+      </Tabs>
+      {/* <Title level={TitleLevels.THREE}>Event</Title>
 
       <Tabs activeIndex={activeIndexEventTab}>
         <TabsItem
@@ -247,7 +260,7 @@ export const TabScreen = (): JSX.Element => {
         <TabsItem active={index === 5} onClick={() => setIndex(5)}>
           Im the item 5
         </TabsItem>
-      </Tabs>
+      </Tabs> */}
     </Section>
   );
 };
