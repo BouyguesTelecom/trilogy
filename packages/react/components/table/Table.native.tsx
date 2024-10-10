@@ -10,7 +10,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param bordered {boolean} bordered table
  */
 const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
-  const borderColor = getColorStyle(TrilogyColor.FONT, 1)
+  const borderColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
     table: {

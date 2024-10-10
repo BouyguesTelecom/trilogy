@@ -54,7 +54,7 @@ const SegmentControl = ({
     segmentedControl: {
       flexDirection: "row",
       width: "100%",
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       borderRadius: 4,
       padding: 4,
       paddingRight: -4,

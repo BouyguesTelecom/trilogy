@@ -18,19 +18,21 @@ import { Icon } from "@/components/icon"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TabsItem = ({
-  active,
-  children,
-  className,
-  onClick,
-  to,
-  href,
-  routerLink,
-  iconName,
-  disabled,
-  testId,
-  ...others
-}: TabsItemProps): JSX.Element => {
+const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<any>) => {
+  const {
+    active,
+    children,
+    className,
+    onClick,
+    to,
+    href,
+    routerLink,
+    iconName,
+    disabled,
+    testId,
+    ...others
+  } = props
+
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
 
@@ -55,6 +57,7 @@ const TabsItem = ({
     const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
       <RouterLink
+        ref={ref}
         data-testid={testId}
         tabIndex={0}
         {...a11y.a}
@@ -85,6 +88,7 @@ const TabsItem = ({
 
   return (
     <button
+      ref={ref}
       aria-disabled={disabled}
       disabled={disabled}
       className={classes}
@@ -111,6 +115,7 @@ const TabsItem = ({
       {children}
     </button>
   )
-}
+
+})
 
 export default TabsItem

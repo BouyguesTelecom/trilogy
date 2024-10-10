@@ -18,10 +18,10 @@ $progressbar-small: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
 
-  background-color: getBGColor('hovered');
+  background-color: getColor('neutral-fade');
 
   &::-webkit-progress-bar {
-    background-color: getBGColor('font');
+    background-color: getColor('main-fade');
     border-radius: $progressbar-height;
   }
 
@@ -40,7 +40,7 @@ $progressbar-small: 5px;
   }
 
   // Colors
-  @each $name in $colors-brand-funcionnal {
+  @each $name in $colors-brand-functionnal {
     $brandName: getColorBrandName($name);
     $color: getColor($name);
 
@@ -81,7 +81,7 @@ $progressbar-small: 5px;
       border-radius: 0 $progressbar-height $progressbar-height 0;
     }
 
-    @each $name in $colors-brand-funcionnal {
+    @each $name in $colors-brand-functionnal {
       $color: getColor($name);
       $color-invert: invertColor($name);
       $brandName: getColorBrandName($name);
@@ -98,7 +98,7 @@ $progress-circle-slices: (
   secondary: getColor('info'),
   tertiary: getColor('font'),
   warning: getColor('warning'),
-  empty: getBGColor('neutral-dark')
+  empty: getColor('neutral-fade')
 );
 
 .progress-circle {

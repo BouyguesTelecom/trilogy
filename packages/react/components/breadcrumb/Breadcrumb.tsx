@@ -11,17 +11,20 @@ import { useTrilogyContext } from "@/context"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const Breadcrumb = ({
-  children,
-  className,
-  testId,
-  accessibilityLabel,
-  ...others
-}: BreadcrumbWebProps): JSX.Element => {
+const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
+  const {
+    children,
+    className,
+    testId,
+    accessibilityLabel,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   return (
     <nav
+      ref={ref}
       role='navigation'
       data-testid={testId}
       className={hashClass(styled, clsx("breadcrumb", className))}
@@ -31,6 +34,6 @@ const Breadcrumb = ({
       <ul>{children}</ul>
     </nav>
   )
-}
+})
 
 export default Breadcrumb

@@ -3,7 +3,7 @@ import { SpacerProps } from "./SpacerProps"
 
 /**
  * Spacer Component
- * @param size {SpacerSize} SMALL | MEDIUM | LARGE | HUGE
+ * @param size {SpacerSize} ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = ({ size, horizontal }: SpacerProps): JSX.Element => {

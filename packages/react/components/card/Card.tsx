@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, createContext } from "react"
 import clsx from "clsx"
 import { CardMarkup, CardProps } from "./CardProps"
 import { has, is } from "@/services/classify"
@@ -6,11 +6,13 @@ import { getAlignClassName, getBackgroundClassName } from "@/objects"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
 
+export const CardContext = createContext({ horizontal: false })
+
 /**
  * Card Component
  * @param flat {boolean} Adding border for Card content
  * @param horizontal {boolean} Horizontal Card orientation
- * @param background {TrilogyColor} Card Background Color
+ * @param backgroundColor {TrilogyColor} Card Background Color
  * @param inverted {boolean} Inverted Card Color
  * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
@@ -24,26 +26,28 @@ import { useTrilogyContext } from "@/context"
  * @param fullheight
  * @param markup {BoxMarkup} Clickable Card => CardMarkup.A Not clickable box => CardMarkup.DIV || null
  */
-const Card = ({
-  className,
-  background,
-  backgroundSrc,
-  inverted,
-  flat,
-  horizontal,
-  floating,
-  align,
-  justify,
-  skeleton,
-  onClick,
-  reversed,
-  testId,
-  markup,
-  to,
-  fullheight,
-  active,
-  ...others
-}: CardProps): JSX.Element => {
+const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
+  const {
+    className,
+    backgroundColor,
+    backgroundSrc,
+    inverted,
+    flat,
+    horizontal,
+    floating,
+    align,
+    justify,
+    skeleton,
+    onClick,
+    reversed,
+    testId,
+    markup,
+    to,
+    fullheight,
+    active,
+    ...others
+  } = props
+
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
 
@@ -59,13 +63,13 @@ const Card = ({
     styled,
     clsx(
       "card",
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has("background"),
       (inverted && is("inverted")) || is("base"),
 
-      flat && is("flat"),
+      flat && !floating && is("flat"),
       horizontal && [is("horizontal"), is("vcentered")],
-      floating && is("floating"),
+      floating && !flat && is("floating"),
       align && is(getAlignClassName(align)),
       justify && is(justify),
       isLoading ? is("loading") : is("loaded"),
@@ -88,6 +92,7 @@ const Card = ({
         }}
         {...others}
         className={classes}
+        ref={ref as React.LegacyRef<HTMLAnchorElement>}
       />
     )
   }
@@ -99,8 +104,8 @@ const Card = ({
       className={classes}
       style={onClick && { ...hoverStyle }}
       {...others}
+      ref={ref as React.LegacyRef<HTMLDivElement>}
     />
   )
-}
-
+})
 export default Card

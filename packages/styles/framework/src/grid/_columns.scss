@@ -394,14 +394,14 @@ $gap :
       }
 
       &::-webkit-scrollbar-track {
-        background-color: #D1D1D1;
+        background-color: getColor('neutral');
         border-radius: 8px;
         margin: 0 8px;
       }
 
       &::-webkit-scrollbar-thumb {
-        background: blue;
-        border-radius: 8px;
+        background-color: getColor('main-fade');
+        border-radius: var(--radius);
       }
     }
   }

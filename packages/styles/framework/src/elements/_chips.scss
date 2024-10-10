@@ -55,20 +55,20 @@
         }
       }
       #{$hoverSelector} {
-        background-color: var(--color-bg-hovered);
+        background-color: getColor('neutral-fade');
       }
     }
 
     &.is-inverted {
       background-color: white;
-      color: getColor('alternate');
+      color: getColor('accent');
 
       &:active,
       &:hover,
       &:focus,
       &:focus-visible,
       &.is-active {
-        background-color: getColor('alternate') !important;
+        background-color: getColor('accent') !important;
         color: getColor('background') !important;
       }
     }

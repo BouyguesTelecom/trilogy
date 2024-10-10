@@ -1,7 +1,6 @@
 .accordions#{$suffix} {
   padding-left: 0;
   padding-right: 0;
-  margin: $spacing-4 0;
 
   details.accordion ::-webkit-details-marker {
     display: none;

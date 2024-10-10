@@ -8,13 +8,19 @@ import {
   InputTextContentType,
 } from "@/components/input/InputEnum"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { AlertState, getAlertStyle } from "@/objects/facets/Alert"
+import { StatusState, getStatusStyle } from "@/objects/facets/Status"
 import { Icon, IconColor } from "@/components/icon"
 import { ComponentName } from "@/components/enumsComponentsName"
+import { TypographyColor } from "@/objects"
+import { Spacer, SpacerSize } from "../spacer"
+import { TextLevels } from "../text/TextEnum"
+import { Text as TrilogyText } from "../text"
 
 /**
  * Textarea Native Component
  * @param name {string} Textarea name
+ * @param label {string} Textarea label
+ * @param sample {string} Textarea sample
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param placeholder {string} Placeholder Input
@@ -34,6 +40,7 @@ const Textarea = (
   {
     defaultValue,
     name,
+    sample,
     onChange,
     disabled,
     help,
@@ -52,6 +59,7 @@ const Textarea = (
     customHeight = 120,
     value,
     testId,
+    required,
     ...others
   }: TextareaNativeProps,
   // eslint-disable-next-line
@@ -65,7 +73,7 @@ const Textarea = (
     useState<boolean>(false)
   const textareaColor = isFocus
     ? getColorStyle(TrilogyColor.MAIN)
-    : getColorStyle(TrilogyColor.FONT, 1)
+    : getColorStyle(TrilogyColor.MAIN_FADE)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -84,9 +92,9 @@ const Textarea = (
       borderWidth: isFocus ? 2 : 1,
       borderRadius: 3,
       borderColor:
-        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "success" && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getColorStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getColorStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       height: customHeight,
@@ -97,16 +105,16 @@ const Textarea = (
       textAlignVertical: "top",
       color: getColorStyle(TrilogyColor.MAIN),
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : getColorStyle(TrilogyColor.BACKGROUND),
       /*  width: '',*/
     },
     help: {
       fontSize: 12,
       color:
-        (status && status === "success" && getAlertStyle(AlertState.SUCCESS)) ||
-        (status && status === "warning" && getAlertStyle(AlertState.WARNING)) ||
-        (status && status === "error" && getAlertStyle(AlertState.ERROR)) ||
+        (status && status === "success" && getColorStyle(StatusState.SUCCESS)) ||
+        (status && status === "warning" && getColorStyle(StatusState.WARNING)) ||
+        (status && status === "error" && getColorStyle(StatusState.ERROR)) ||
         (status && status === "default" && textareaColor) ||
         textareaColor,
       paddingLeft: 4,
@@ -128,20 +136,20 @@ const Textarea = (
       top: 2,
       left: iconName ? 40 : 8,
       fontSize: 12,
-      color: getColorStyle(TrilogyColor.NEUTRAL_DARK),
+      color: getColorStyle(TrilogyColor.NEUTRAL),
       backgroundColor: "transparent",
       padding: 8,
       paddingBottom: 4,
     },
     leftIcon: {
       position: "absolute",
-      top: 16,
+      top: dynamicPlaceholder && 16 || !dynamicPlaceholder && label && sample && 60 || 55,
       left: 16,
       zIndex: 10
     },
     rightIcon: {
       position: "absolute",
-      top: dynamicPlaceholder ? 16 : 32,
+      top: dynamicPlaceholder && 16 || !dynamicPlaceholder && label && sample && 60 || 55,
       right: 16,
       zIndex: 10
     },
@@ -149,8 +157,18 @@ const Textarea = (
 
   return (
     <View>
-      {!dynamicPlaceholder && (
-        <Text style={{ color: getColorStyle(TrilogyColor.MAIN) }}>{label}</Text>
+      {!dynamicPlaceholder && label && (
+        <>
+          <TrilogyText typo={TypographyColor.TEXT_DISABLED}>{label} {label && required && <TrilogyText typo={TypographyColor.TEXT_ERROR}>*</TrilogyText>}</TrilogyText>
+          <Spacer size={SpacerSize.THREE} />
+        </>
+      )}
+
+      {!dynamicPlaceholder && label && sample && (
+        <>
+          <TrilogyText level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>{sample}</TrilogyText>
+          <Spacer size={SpacerSize.THREE} />
+        </>
       )}
 
       {iconName && (

@@ -9,7 +9,7 @@
   width: 100%;
 
   // Colors
-  @each $name in $colors-brand-funcionnal {
+  @each $name in $colors-brand-functionnal {
     $color: getColor($name);
     $color-invert: invertColor($name);
     $brandName: getColorBrandName($name);

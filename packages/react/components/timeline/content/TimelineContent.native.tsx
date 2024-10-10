@@ -67,7 +67,7 @@ const TimelineContent = ({
         </Text>
       )}
       {(link || onClick) && (
-        <TouchableOpacity onPress={(e?) => onClick?.(e)} testID="click-id">
+        <TouchableOpacity onPress={(e?) => onClick?.(e)} testID='click-id'>
           <View style={styles.link}>
             <Link to={link}>{contentLink || link}</Link>
           </View>

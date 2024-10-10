@@ -59,7 +59,7 @@ export const getVariantStyle = (variantType?: string): string => {
     case "MAIN":
       return getColorStyle(TrilogyColor.MAIN)
     case "SECONDARY":
-      return getColorStyle(TrilogyColor.HOVERED)
+      return getColorStyle(TrilogyColor.MAIN_FADE)
     case "TERTIARY":
       return getColorStyle(TrilogyColor.MAIN)
     case "INFO":

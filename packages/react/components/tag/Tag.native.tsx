@@ -4,6 +4,7 @@ import { TagClickEvent, TagProps } from "./TagProps"
 import { Icon, IconName, IconSize } from "@/components/icon"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
+import { getStatusStyle } from "@/objects/facets/Status"
 
 /**
  * Tag Component
@@ -37,7 +38,7 @@ const Tag = ({
     ? getColorStyle(variant as TrilogyColor)
     : getColorStyle(TrilogyColor.MAIN)
 
-  const backgroundColor = variant && getColorStyle(variant as TrilogyColor, 1)
+  const backgroundColor = variant && getStatusStyle(variant).backgroundColor
 
   const styles = StyleSheet.create({
     tag: {
@@ -51,7 +52,7 @@ const Tag = ({
       backgroundColor:
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+        getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     text: {
       alignSelf: "center",

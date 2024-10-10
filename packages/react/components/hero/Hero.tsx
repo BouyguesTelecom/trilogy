@@ -9,6 +9,7 @@ import { useTrilogyContext } from "@/context"
 /**
  * Hero Component
  * @param children {React.ReactNode} Hero Children
+ * @param backgroundColor {TrilogyColor} Hero background color
  * @param backgroundSrc {string} If source, it will display background option
  * @param variant {VariantState} Hero background color : main/accent
  * @param onClick {Function} onClick Event
@@ -21,7 +22,7 @@ import { useTrilogyContext } from "@/context"
  */
 const Hero = ({
   children,
-  background,
+  backgroundColor,
   backgroundSrc,
   inverted,
   className,
@@ -37,7 +38,7 @@ const Hero = ({
     styled,
     clsx(
       "hero",
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted') || is('base'),
     align && is(getAlignClassName(align)),

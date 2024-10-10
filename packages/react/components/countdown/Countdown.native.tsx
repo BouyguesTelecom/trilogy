@@ -5,7 +5,7 @@ import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownProps } from './CountdownProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
-import { TypographyBold, getTypographyBoldStyle } from '../../objects/Typography'
+import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -20,12 +20,13 @@ const calculateTimer = (timeDifference: number) => {
  * Countdown Component
  * @param deadline {Date} Date to reach before the end of the countdown
  * @param format {CountdownFormat} Format of countdown
+ * @param inverted {Boolean} White countdown on darked background
  * @param event
  * @param small
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, format, event, small, centered, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, format, event, small, centered, inverted, ...others }: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -119,7 +120,7 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     }
   }, [timer, event, init])
 
-  const countdownColor = getColorStyle(TrilogyColor.MAIN)
+  const countdownColor = inverted ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN)
 
   const styles = StyleSheet.create({
     countdown: {
@@ -135,12 +136,12 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     text: {
       color: countdownColor,
       fontWeight: '600',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     date: {
       fontSize: small ? 12 : 14,
       fontWeight: small ? '500' : '400',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     separator: {
       width: 1,

@@ -9,7 +9,7 @@ jest.useFakeTimers()
 describe('Hero component', () => {
   it('renders the children correctly', () => {
     render(
-      <Hero background={TrilogyColor.MAIN}>
+      <Hero backgroundColor={TrilogyColor.MAIN}>
         <Container></Container>
       </Hero>,
     )
@@ -29,7 +29,7 @@ describe('Hero component', () => {
     const onClick = jest.fn()
 
     render(
-      <Hero background={TrilogyColor.MAIN} onClick={onClick}>
+      <Hero backgroundColor={TrilogyColor.MAIN} onClick={onClick}>
         <Container></Container>
       </Hero>,
     )

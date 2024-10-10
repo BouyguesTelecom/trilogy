@@ -14,7 +14,6 @@ import ModalTitle from './title/ModalTitle'
 
 const idDescription = shortid.generate()
 const idTitle = shortid.generate()
-const idModal = shortid.generate()
 
 /**
  * Modal Component
@@ -39,11 +38,6 @@ const idModal = shortid.generate()
  * @param triggerMarkup {ModalMarkup} h1|h2|h3|h4|h5|h6|p|span|div|button|a
  * @param triggerClassNames {string} Additionnal CSS Classes for trigger element
  * @param panel {boolean} Panel Side Modal
- * @param ariaLabelButtonClose {string} aria-label of button close
- * @param ariaLabelCta {string} aria-label of button action
- * @param titleButtonClose {string} title of button close
- * @param ariaLabelButtonOpen {string} aria-label of open button modal
- * @param titleButtonOpen {string} title of open button modal
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} If bottom
  * @param swipable {boolean} Swipable Native Modal
@@ -52,6 +46,7 @@ const Modal = ({
   children,
   className,
   contentClassNames,
+  accessibilityLabel = 'Close',
   active,
   title,
   content,
@@ -59,6 +54,7 @@ const Modal = ({
   triggerContent,
   triggerClassNames = 'button is-primary',
   ctaContent,
+  ctaCancelContent = 'Close',
   ctaOnClick,
   onClose,
   onOpen,
@@ -72,13 +68,11 @@ const Modal = ({
   fullwidth,
   disableHandlingClickOutside = false,
   testId,
-  titleButtonClose,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
-  const ariaControls = `${idModal}-modal`
   const refsActions = useRef<Array<HTMLButtonElement | null>>([])
   const refBtnModal = useRef<any>(null)
   const [, setIndexFocusable] = useState(0)
@@ -116,7 +110,7 @@ const Modal = ({
         styled,
         clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
       ),
-    [active, display, panel, className, styled],
+    [display, panel, className, styled],
   )
   const contentClasses = React.useMemo(
     () => hashClass(styled, clsx('modal-content', contentClassNames)),
@@ -176,7 +170,6 @@ const Modal = ({
         <TriggerTag
           aria-haspopup='dialog'
           ref={refBtnModal}
-          aria-controls={ariaControls}
           onClick={(e: React.MouseEvent) => {
             handleOpen(onOpen, e)
           }}
@@ -190,30 +183,36 @@ const Modal = ({
         role='dialog'
         aria-modal={display ? 'true' : undefined}
         aria-labelledby={title ? idTitle : undefined}
-        aria-describedby={content ? idDescription : undefined}
         {...others}
       >
         <div ref={modal} className={contentClasses}>
-          {closeIcon && (
-            <button
-              onClick={(e: React.MouseEvent) => {
-                handleClose(onClose, e)
-              }}
-              className={hashClass(styled, clsx('modal-close', is('large')))}
-              aria-label='close'
-              type={ButtonType.BUTTON}
-              title={titleButtonClose}
-              aria-controls={ariaControls}
-              ref={(el) => el && (refsActions.current[0] = el)}
-            />
+          {(closeIcon || title || iconName) && (
+            <div className={hashClass(styled, clsx('modal-header'))}>
+              {closeIcon && (
+                <button
+                  onClick={(e: React.MouseEvent) => {
+                    handleClose(onClose, e)
+                  }}
+                  className={hashClass(styled, clsx('modal-close', is('large')))}
+                  type={ButtonType.BUTTON}
+                  ref={(el) => el && (refsActions.current[0] = el)}
+                >
+                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
+                </button>
+              )}
+              {(title || iconName) && (
+                <ModalTitle iconColor={iconColor} iconName={iconName} {...{ textId: idTitle }}>
+                  {title}
+                </ModalTitle>
+              )}
+            </div>
           )}
-          {(title || iconName) && (
-            <ModalTitle iconColor={iconColor} iconName={iconName} {...{ textId: idTitle }}>
-              {title}
-            </ModalTitle>
+          {(content || (children != null && children)) && (
+            <div className={hashClass(styled, clsx('modal-body'))}>
+              {content && typeof content === 'string' ? <Text {...{ id: idDescription }}>{content}</Text> : content}
+              {children != null && children}
+            </div>
           )}
-          {content && typeof content === 'string' ? <Text {...{ id: idDescription }}>{content}</Text> : content}
-          {children != null && children}
           <ModalFooter className={footerClasses}>
             {((ctaOnClick != null || ctaCancelOnClick != null) && (
               <ButtonList centered className={is('flex')}>
@@ -223,21 +222,19 @@ const Modal = ({
                       handleClose(ctaCancelOnClick, e)
                     }}
                     className={hashClass(styled, clsx('button', is('secondary')))}
-                    aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
-                    Annuler
+                    {ctaCancelContent}
                   </button>
                 )}
                 {ctaOnClick && (
                   <button
                     className={hashClass(styled, clsx('button', is('primary')))}
                     title={ctaContent}
-                    aria-controls={ariaControls}
                     ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}
                   >
-                    <span className='sr-only'> {ctaContent}</span>
+                    {ctaContent}
                   </button>
                 )}
               </ButtonList>

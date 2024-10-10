@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Badge,
   BadgeColor,
-  BadgeTextDirection,
   Columns,
   ColumnsItem,
   Divider,
@@ -44,15 +43,14 @@ export const BadgeScreen = (): JSX.Element => {
       </Columns>
       <Divider />
 
-      <Title level={TitleLevels.THREE}>Direction props </Title>
+      <Title level={TitleLevels.THREE}>Reversed props </Title>
       <Columns inlined>
-        {Object.values(BadgeTextDirection).map((direction, index) => {
-          return (
-            <ColumnsItem size={6} key={index}>
-              <Badge direction={direction} content={2} textContent="Text" />
-            </ColumnsItem>
-          );
-        })}
+        <ColumnsItem size={6} key={1}>
+          <Badge reversed={false} content={2} textContent="Text" />
+        </ColumnsItem>
+        <ColumnsItem size={6} key={2}>
+          <Badge reversed={true} content={2} textContent="Text" />
+        </ColumnsItem>
       </Columns>
     </Section>
   );
