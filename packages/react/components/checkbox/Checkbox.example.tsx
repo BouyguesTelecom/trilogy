@@ -65,7 +65,7 @@ const CheckboxExample: React.ReactNode = <div>
                         description="Je suis la description de la checkbox"
                         disabled
                         horizontalTile
-                        iconTile="tri-watch"
+                        iconTile="tri-alert"
                         label="Checkbox tile horizontal disabled"
                         name="checkbox"
                         onClick={function noRefCheck() { }}
