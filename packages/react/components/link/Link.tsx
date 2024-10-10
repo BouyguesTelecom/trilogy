@@ -1,11 +1,11 @@
 import * as React from "react"
 import clsx from "clsx"
-import { Text, TextMarkup } from "../text"
+import { Text, TextMarkup } from "@/components/text"
 import { LinkProps } from "./LinkProps"
-import { has, is } from "../../services/classify"
-import { Icon, IconSize } from "../icon"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { has, is } from "@/services/classify"
+import { Icon, IconSize } from "@/components/icon"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Link Component
@@ -50,7 +50,6 @@ const Link = ({
   const { styled } = useTrilogyContext()
 
   const classes = clsx(
-    !removeLinkClass && "link",
     iconName && has("icon"),
     typo,
     inverted && is("inverted"),
@@ -92,6 +91,7 @@ const Link = ({
   const LinkTrilogy = (): JSX.Element => {
     return (
       <Text
+        link
         data-testid={testId}
         aria-label={accessibilityLabel}
         onClick={onClick && onClick}

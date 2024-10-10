@@ -1,20 +1,22 @@
 import * as React from "react"
-import { is } from "../../../services"
+import { is } from "@/services"
 import { ChipsListProps } from "./ChipsListProps"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * ChipsList Component - Container for Chips
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  */
-const ChipsList = ({
-  children,
-  multiple,
-  ...others
-}: ChipsListProps): JSX.Element => {
+const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    children,
+    multiple,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -23,10 +25,10 @@ const ChipsList = ({
   )
 
   return (
-    <div className={classes} {...others}>
+    <div ref={ref} role='group' className={classes} {...others}>
       {children}
     </div>
   )
-}
+})
 
 export default ChipsList

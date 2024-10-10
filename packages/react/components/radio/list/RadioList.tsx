@@ -1,9 +1,9 @@
 import * as React from "react"
 import { RadioListWebProps } from "./RadioListProps"
-import { has, is } from "../../../services"
+import { has, is } from "@/services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Radio List Component

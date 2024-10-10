@@ -1,12 +1,9 @@
-import { Clickable } from './../../objects/facets/Clickable'
-import { Centerable } from '../../objects/facets/Centerable'
-import { AlignableProps } from '../../objects/facets/Alignable'
-import { JustifiableProps } from '../../objects/facets/Justifiable'
+import { Clickable } from '@/objects/facets/Clickable'
 
 /**
  * SegmentedControl Interface
  */
-export interface SegmentControlProps extends Centerable, AlignableProps, JustifiableProps, Clickable {
+export interface SegmentControlProps extends Clickable {
   children: React.ReactNode
   disabled?: boolean
   activeIndex?: number

@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import shortid from "shortid"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { is } from "../../../services"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Accordion Item Component
@@ -47,8 +46,8 @@ const AccordionItem = ({
     if (!e) {
       return
     }
-    const {floor, abs} = Math
-    const firstChild = e.children[1].firstChild as HTMLElement
+    const { floor, abs } = Math
+    const firstChild = e?.children[1]?.firstChild as HTMLElement
     const expandedInactive = floor(
       abs(e.clientHeight + firstChild?.clientHeight)
     ).toString()
@@ -84,9 +83,9 @@ const AccordionItem = ({
   const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
 
   if (disabled) {
-    ariaProps["tabIndex"] = -1,
-      ariaProps["aria-disabled"] = !!disabled
- }
+    ariaProps["tabIndex"] = -1
+    ariaProps["aria-disabled"] = true
+  }
 
   return (
     <details

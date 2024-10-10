@@ -1,5 +1,5 @@
 .section {
-  padding: $spacing-6 $spacing-5;
+  padding: $spacing-6 $spacing-4;
 
   @include desktop {
     padding: $spacing-8 $spacing-5;
@@ -11,14 +11,6 @@
     @include desktop {
       margin-top: -$spacing-8 - $spacing-4;
     }
-  }
-
-  &:nth-child(even) {
-    background-color: getBGColor('neutral');
-  }
-
-  &:nth-child(odd) {
-    background-color: getColor('background');
   }
 
   &.is-info {
@@ -46,13 +38,4 @@
   &.has-pattern-dark {
     @include pattern-dark(120%, 260px, -30%);
   }
-
-}
-
-.section:nth-child(2n).is-inverted {
-  background-color: getColor('background');
-}
-
-.section:nth-child(2n-1).is-inverted {
-  background-color: getBGColor('neutral');
 }

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react"
 import shortid from "shortid"
 import clsx from "clsx"
 import { SwitchProps } from "./SwitchProps"
-import { is } from "../../services/classify"
-import { getAlertClassName } from "../../objects"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { is } from "@/services/classify"
+import { getStatusClassName } from "@/objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Switch Component
@@ -14,7 +14,7 @@ import { useTrilogyContext } from "../../context"
  * @param value {string} Switch value
  * @param checked {boolean} Checked switch
  * @param onChange {Function} onChange event
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param disabled {boolean} Switch disabled
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
@@ -32,7 +32,7 @@ const Switch = ({
   checked,
   onChange,
   onClick,
-  alert,
+  status,
   disabled,
   readonly,
   name,
@@ -92,7 +92,7 @@ const Switch = ({
         disabled={disabled}
         className={hashClass(
           styled,
-          clsx(alert && is(getAlertClassName(alert)))
+          clsx(status && is(getStatusClassName(status)))
         )}
         {...others}
       />

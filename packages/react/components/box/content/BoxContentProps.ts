@@ -1,5 +1,5 @@
-import { Accessibility } from '../../../objects'
-import { BackgroundProps } from '../../../objects/atoms/Background'
+import { Accessibility } from '@/objects'
+import { BackgroundProps } from '@/objects/atoms/Background'
 
 /**
  * Box Content Interface

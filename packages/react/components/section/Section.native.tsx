@@ -1,23 +1,23 @@
 import * as React from "react"
 import { ImageBackground, StyleSheet, View } from "react-native"
 import { SectionProps } from "./SectionProps"
-import { AutoLayoutWrapper } from "../autolayout"
-import { getBackgroundStyle, getColorStyle, TrilogyColor } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { AutoLayoutWrapper } from "@/components/autolayout"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
  * @param children {ReactNode} Section children
  * @param autolayout {boolean} Apply auto-layout rules
  * @param className {string} Additionnal CSS Classes
- * @param background {TrilogyColor} Section Background Color
+ * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  * @param verticalPaddingless {boolean} remove vertical padding
  */
 const Section = ({
   autolayout = true,
-  background,
+  backgroundColor,
   backgroundSrc,
   children,
   paddingless,
@@ -28,7 +28,7 @@ const Section = ({
 
   const styles = StyleSheet.create({
     section: {
-      backgroundColor: background ? getBackgroundStyle(background) : colorBgc,
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       paddingTop: paddingless || verticalPaddingless ? 0 : 32,
       paddingBottom: paddingless || verticalPaddingless ? 0 : 32,
       paddingRight: paddingless ? 0 : 24,

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react"
-import {Animated, StyleSheet, TouchableOpacity, View} from "react-native"
-import {TabsItemProps} from "./TabsItemProps"
-import {getColorStyle, TrilogyColor} from "../../../objects/facets/Color"
-import {ComponentName} from "../../enumsComponentsName"
-import {Icon} from "../../icon"
-import {Text, TextLevels} from "../../text"
+import React, { useEffect, useState } from "react"
+import { Animated, StyleSheet, TouchableOpacity, View } from "react-native"
+import { TabsItemProps } from "./TabsItemProps"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { Icon } from "@/components/icon"
+import { Text, TextLevels } from "@/components/text"
 
 /**
  * Tabs Item Component
@@ -17,15 +17,14 @@ const TabsItem = ({
                     active,
                     children,
                     onClick,
-                    tabIndex,
                     iconName,
                     inverted,
                     disabled,
                     ...others
                   }: TabsItemProps): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const [isPressIn, setInPressIn] = useState<boolean>(false)
+  const [, setActiveItem] = useState<boolean>(active || false)
+  const [, setInPressIn] = useState<boolean>(false)
 
   const animatedBorderStyle = {
     borderBottomWidth: active && 2 || 0,
@@ -33,7 +32,7 @@ const TabsItem = ({
 
   const getIconColor = React.useMemo(() => {
     if (inverted) {
-      if (disabled) return TrilogyColor.NEUTRAL_LIGHT
+      if (disabled) return TrilogyColor.NEUTRAL_FADE
       return TrilogyColor.BACKGROUND
     }
     if (disabled) return TrilogyColor.DISABLED

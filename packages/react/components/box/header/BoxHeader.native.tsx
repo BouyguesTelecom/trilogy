@@ -2,9 +2,9 @@ import * as React from "react"
 import { useContext } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { BoxHeaderProps } from "./BoxHeaderProps"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
-import { ComponentName } from "../../enumsComponentsName"
-import { StatesContext } from "../../../context/providerStates"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Box Header Component

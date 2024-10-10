@@ -12,7 +12,7 @@ import {
   Invertable,
   Marginless,
   Clickable,
-} from '../../objects'
+} from '@/objects'
 
 type Styles = { [key: string]: unknown }
 

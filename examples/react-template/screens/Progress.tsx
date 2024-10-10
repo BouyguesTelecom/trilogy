@@ -1,92 +1,96 @@
-import * as React from "react";
+import React from 'react'
 import {
+  StatusState,
+  TypographyBold,
+  Section,
+  Title,
+  TitleLevels,
   Divider,
   Progress,
   ProgressItem,
   ProgressRadial,
-  Section,
-  Title,
-  TitleLevels,
-} from "@trilogy-ds/react/components";
-import { AlertState } from "@trilogy-ds/react/objects";
+  Text,
+  TextLevels,
+  TrilogyColor
+} from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
+
   return (
-    <Section
-      backgroundSrc={
-        "https://images.pexels.com/photos/18254878/pexels-photo-18254878/free-photo-of-eau-desert-rochers-source-chaude.jpeg"
-      }
-    >
+    <Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
+
+        <ProgressRadial percent={30} secondPercent={30} >
+          <Title level={TitleLevels.THREE} marginless>60</Title>
+          <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
+        </ProgressRadial>
+
         <Divider />
 
         <Progress percent={30} />
 
-        <Progress percent={30} alert="INFO" />
+        <Progress percent={30} status='INFO' />
 
-        <Progress percent={30} alert="WARNING" />
+        <Progress percent={30} status='WARNING' />
 
-        <Progress percent={30} alert="ERROR" />
+        <Progress percent={30} status='ERROR' />
 
-        <Progress percent={30} alert="SUCCESS" />
+        <Progress percent={30} status='SUCCESS' />
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>Stacked progress bar</Title>
+        <Title level={TitleLevels.THREE}>Barre de progression empilée</Title>
+
         <Divider />
 
         <Progress stacked>
-          <ProgressItem percent={15} alert={AlertState.SUCCESS} />
-          <ProgressItem percent={15} alert={AlertState.INFO} />
-          <ProgressItem percent={15} alert={AlertState.WARNING} />
-          <ProgressItem percent={15} alert={AlertState.ERROR} />
+          <ProgressItem percent={15} status={StatusState.SUCCESS} />
+          <ProgressItem percent={15} status={StatusState.INFO} />
+          <ProgressItem percent={15} status={StatusState.WARNING} />
+          <ProgressItem percent={15} status={StatusState.ERROR} />
         </Progress>
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>Progress with single legend</Title>
+        <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
-        <Progress percent={30} uniqueLegend="My unique legend" />
+        <Progress percent={30} status={StatusState.INFO} uniqueLegend='My unique legend' />
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>
-          Progression with legends at the ends
-        </Title>
+        <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress
-          percent={15}
-          alert={AlertState.INFO}
-          firstExtremLegend="0 Go"
-          secondExtremLegend="5 Go"
-        />
+        <Progress percent={15} status={StatusState.INFO} firstExtremLegend='0 Go' secondExtremLegend='5 Go' />
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>Circular progress bar</Title>
+        <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>
+
         <Divider />
 
-        <ProgressRadial percent={0.5} />
+        <ProgressRadial percent={30} secondPercent={30}>
+          <Title level={TitleLevels.THREE} marginless>60</Title>
+          <Text level={TextLevels.ONE} marginless>/ 300 Go</Text>
+        </ProgressRadial>
 
-        <Title level={TitleLevels.THREE}>
-          Circular progress bar with label & description
-        </Title>
+        <Title level={TitleLevels.THREE}>Barre de progression circulaire avec label et description</Title>
+
         <Divider />
 
-        <ProgressRadial
-          alert={AlertState.WARNING}
-          secondAlert={AlertState.SUCCESS}
-          secondPercent={10}
-          percent={25}
-          label="02:00"
-          description="/desc"
-        />
-        <ProgressRadial
-          alert={AlertState.ERROR}
-          percent={90}
-          label="02:00"
-          description="desc"
-        />
+        <ProgressRadial percent={30} secondPercent={30} >
+          <Title level={TitleLevels.THREE} marginless>60</Title>
+          <Text level={TextLevels.ONE} marginless>/ 100 Go</Text>
+        </ProgressRadial>
+
+        <ProgressRadial percent={30} secondPercent={30} small>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>60</Text>
+          <Text level={TextLevels.FOUR} marginless>/ 100 Go</Text>
+        </ProgressRadial>
+
+        <Title level={TitleLevels.THREE}>Vide : </Title>
+
+        <ProgressRadial percent={0} secondPercent={0} description='--' />
+        <ProgressRadial percent={0} secondPercent={0} description='--' small />
       </Section>
     </Section>
-  );
-};
+  )
+}

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { TimelineProps } from "./TimelineProps"
-import { hashClass } from "../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
-import { is } from "../../services"
+import { useTrilogyContext } from "@/context"
+import { is } from "@/services"
 
 /**
  * Timeline Component
@@ -13,14 +13,15 @@ import { is } from "../../services"
  * @param horizontal {boolean} timeline horizontal
  * @param className {string} Additionnal CSS Classes
  */
-const Timeline = ({
-  className,
-  notifications,
-  horizontal,
-  ...others
-}: TimelineProps): JSX.Element => {
+const Timeline = React.forwardRef((props: TimelineProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    notifications,
+    horizontal,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
-  const timelineRef = React.useRef<HTMLDivElement>(null)
   const classes = hashClass(
     styled,
     clsx(
@@ -31,7 +32,7 @@ const Timeline = ({
     )
   )
 
-  return <div ref={timelineRef} className={classes} {...others} />
-}
+  return <div ref={ref} className={classes} {...others} />
+})
 
 export default Timeline

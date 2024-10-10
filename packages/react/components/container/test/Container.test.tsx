@@ -1,13 +1,13 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import Container from "../Container";
-import { StickyPosition } from "../../../objects";
+import { render } from '@testing-library/react'
+import * as React from 'react'
+import { StickyPosition } from '../../../objects'
+import Container from '../Container'
 
-describe("Container", () => {
-  it("should render with correct classes and props", () => {
+describe('Container', () => {
+  it('should render with correct classes and props', () => {
     const { getByTestId } = render(
       <Container
-        data-testid="container"
+        data-testid='container'
         fluid
         centered
         verticalCentered
@@ -17,27 +17,27 @@ describe("Container", () => {
         stickyOffSetTop={20}
         pulledRight
         pulledLeft
-        background="WHITE"
+        backgroundColor='WHITE'
       >
-        <div data-testid="test-child">Test Child</div>
-      </Container>
-    );
+        <div data-testid='test-child'>Test Child</div>
+      </Container>,
+    )
 
-    const container = getByTestId("container");
-    expect(container).toHaveClass("container");
-    expect(container).toHaveClass("is-fluid");
-    expect(container).toHaveClass("is-centered");
-    expect(container).toHaveClass("is-vcentered");
-    expect(container).toHaveClass("is-medium");
-    expect(container).toHaveClass("is-fullwidth");
-    expect(container).toHaveClass("is-sticky-top");
-    expect(container).toHaveClass("is-pulled-right");
-    expect(container).toHaveClass("is-pulled-left");
-    expect(container).toHaveClass("has-background-white");
-    expect(container).toHaveStyle("top: 20px");
+    const container = getByTestId('container')
+    expect(container).toHaveClass('container')
+    expect(container).toHaveClass('is-fluid')
+    expect(container).toHaveClass('is-centered')
+    expect(container).toHaveClass('is-vcentered')
+    expect(container).toHaveClass('is-medium')
+    expect(container).toHaveClass('is-fullwidth')
+    expect(container).toHaveClass('is-sticky-top')
+    expect(container).toHaveClass('is-pulled-right')
+    expect(container).toHaveClass('is-pulled-left')
+    expect(container).toHaveClass('has-background-white')
+    expect(container).toHaveStyle('top: 20px')
 
-    const child = getByTestId("test-child");
-    expect(child).toBeInTheDocument();
-    expect(child).toHaveTextContent("Test Child");
-  });
-});
+    const child = getByTestId('test-child')
+    expect(child).toBeInTheDocument()
+    expect(child).toHaveTextContent('Test Child')
+  })
+})

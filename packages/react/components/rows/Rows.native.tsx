@@ -1,13 +1,15 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { RowsProps } from "./RowsProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
+
+export const RowsContext = React.createContext({ gapless: false })
 
 /**
  * Rows Component
  * @param children {React.ReactNode} Rows children
  */
-const Rows = ({ children, ...others }: RowsProps): JSX.Element => {
+const Rows = ({ children, gapless, ...others }: RowsProps): JSX.Element => {
   const styles = StyleSheet.create({
     rows: {
       display: "flex",
@@ -17,9 +19,12 @@ const Rows = ({ children, ...others }: RowsProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.rows} {...others}>
-      {children}
-    </View>
+    <RowsContext.Provider value={{ gapless: gapless || false }}>
+      <View style={styles.rows} {...others}>
+        {children}
+      </View>
+    </RowsContext.Provider>
+
   )
 }
 

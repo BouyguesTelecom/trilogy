@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from '../icon'
-import { Accessibility } from '../../objects'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects'
 
 type RadioChangeEventHandler = (event: {
   radioChecked: boolean

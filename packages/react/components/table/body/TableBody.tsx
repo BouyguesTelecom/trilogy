@@ -1,11 +1,11 @@
 import * as React from "react"
 import clsx from "clsx"
 import { TableBodyProps } from "./TableBodyProps"
-import { hashClass } from "../../..//helpers/hashClassesHelpers"
-import { is, has } from "../../..//services/classify"
-import { useTrilogyContext } from "../../../context/index"
-import { getBackgroundClassName } from "../../../objects/atoms/Background"
-import { getColorClassName } from "../../../objects/facets/Color"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { is, has } from "@/services/classify"
+import { useTrilogyContext } from "@/context/index"
+import { getBackgroundClassName } from "@/objects/atoms/Background"
+import { getColorClassName } from "@/objects/facets/Color"
 
 /**
  * Table Body Component

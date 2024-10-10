@@ -17,7 +17,7 @@ describe("Breadcrumb component", () => {
   });
 
   test("should have a aria-label", () => {
-    render(<Breadcrumb />);
+    render(<Breadcrumb accessibilityLabel={'breadcrumbs'} />);
 
     expect(screen.getByRole("navigation").getAttribute("aria-label")).toBe(
       "breadcrumbs"

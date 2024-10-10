@@ -18,10 +18,6 @@ describe("Chips", () => {
     expect(getByText("Hello, world!")).toHaveAttribute("disabled");
   });
 
-  it("applies the inverted class if the inverted prop is true", () => {
-    const { getByText } = render(<Chips inverted>Hello, world!</Chips>);
-    expect(getByText("Hello, world!")).toHaveClass("has-background-white");
-  });
 
   it("calls the onClick handler when clicked", () => {
     const handleClick = jest.fn();

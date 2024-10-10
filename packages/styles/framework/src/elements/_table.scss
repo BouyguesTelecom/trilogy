@@ -11,7 +11,7 @@
   @include block;
 
   background-color: transparent;
-  color: getColor('neutral-dark');
+  color: getColor('neutral');
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -21,12 +21,12 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getBGColor('neutral-dark');
+    background-color: getColor('neutral-fade');
   }
 
   td,
   th {
-    border: 1px solid getBGColor('neutral-dark');
+    border: 1px solid getColor('neutral-fade');
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -56,7 +56,7 @@
   tr {
     @each $name in $colors-feedback {
       &.is-#{$name} {
-        background-color: getBGColor($name);
+        background-color: fadeColor($name);
       }
     }
 
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid getBGColor('neutral-dark');
+      border-bottom: 1px solid getColor('neutral-fade');
 
       > p {
         margin: 0;
@@ -97,7 +97,7 @@
     &.is-expanded,
     &.is-expandable:hover {
       td {
-        color: getColor('alternate');
+        color: getColor('accent');
         cursor: pointer;
       }
     }
@@ -155,12 +155,12 @@
 
   &:not(.is-bordered).is-comparative {
     th {
-      border-right: 1px solid getBGColor('neutral');
+      border-right: 1px solid getColor('neutral-fade');
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getBGColor('neutral-dark');
+        border-right: 1px solid getColor('neutral-fade');
       }
     }
   }
@@ -196,14 +196,14 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getBGColor('neutral');
+          background-color: getColor('neutral-fade');
         }
       }
     }
   }
 
   .subtable {
-    background-color: getBGColor('neutral');
+    background-color: getColor('neutral-fade');
     border-radius: var(--radius);
     padding: $box-padding * 2;
 
@@ -216,7 +216,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: 1px solid getColor('neutral-dark');
+          border-top: 1px solid getColor('neutral');
         }
       }
 

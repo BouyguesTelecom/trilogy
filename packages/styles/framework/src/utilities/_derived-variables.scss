@@ -14,12 +14,12 @@ $size-large: $text-24 !default;
 
 // Brand Color
 $colors-brand: (
-  'background', 'main', 'alternate'
+  'background', 'main', 'accent'
 );
 
 // Brand Color Functionnal
-$colors-brand-funcionnal: (
-  'background', 'main', 'alternate', 'info', 'success', 'error', 'warning', 'neutral'
+$colors-brand-functionnal: (
+  'background', 'main', 'accent', 'info', 'success', 'error', 'warning', 'neutral'
 );
 
 $colors-feedback: (

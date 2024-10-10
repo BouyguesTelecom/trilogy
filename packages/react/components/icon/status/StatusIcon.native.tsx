@@ -1,18 +1,18 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet, Platform } from 'react-native'
-import { getColorStyle, TrilogyColor } from '../../../objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { IconStatus, IconStatusPosition } from '../IconEnum'
 import { StatusIconProps } from './StatusIconProps'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../../enumsComponentsName'
-import { TrilogyThemeContext } from '../../../context/providerTheme.native'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TrilogyThemeContext } from '@/context/providerTheme.native'
 
-const StatusIcon = ({ name, status, statusPosition, size, stretched, color }: StatusIconProps): JSX.Element => {
+const StatusIcon = ({ name, status, statusPosition, size, stretched, color, testId }: StatusIconProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
 
-  const statusIcon = status === 'success' ? 'tri-check-circle' : 'tri-times'
+  const statusIcon = status === "SUCCESS" ? 'tri-check-circle' : 'tri-times'
 
   const styles = StyleSheet.create({
     icon: {
@@ -50,7 +50,7 @@ const StatusIcon = ({ name, status, statusPosition, size, stretched, color }: St
   })
 
   return (
-    <View>
+    <View testID={testId}>
       {icons && (
         <View>
           <WithLocalSvg

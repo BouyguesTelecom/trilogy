@@ -1,3 +1,5 @@
+$noDisabled: ":not(:disabled):not([aria-disabled=true]):not(.is-loading)";
+
 /*
 Colors for buttons
   @string slug name used in classname (You can use your brand name)
@@ -5,9 +7,9 @@ Colors for buttons
   @color-text The name of the color in the color map for the text
   */
 $button-colors: (
-  'accent':['conversion', 'alternate', 'background'],
+  'accent':['conversion', 'accent', 'background'],
   'primary': ['primary', 'main', 'background'],
-  'secondary': ['secondary', 'bg-main', 'main'],
+  'secondary': ['secondary', 'main-fade', 'main'],
   'ghost': ['ghost', 'background', 'main'],
 ) !default;
 
@@ -24,7 +26,7 @@ $button-colors: (
 
   &:focus-visible,
   &:focus:focus-visible {
-    outline: var(--border-active);
+    outline: 2px solid getColor('font') !important;
     outline-offset: 2px;
   }
 }

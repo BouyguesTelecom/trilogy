@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View, } from "react-native"
 import { OtpProps } from "./OtpProps"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { Icon, IconColor, IconName, IconSize } from "../icon"
-import { Title, TitleLevels } from "../title"
-import { Text, TextLevels } from "../text"
-import { TypographyAlign } from "../../objects"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
+import { Title, TitleLevels } from "@/components/title"
+import { Text, TextLevels } from "@/components/text"
+import { TypographyAlign } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * OTP Code Component
@@ -33,9 +33,8 @@ const Otp = ({
 }: OtpProps): JSX.Element => {
   const [codeInput, setCodeInput] = useState<string>(code || "")
   // eslint-disable-next-line prefer-spread
-  const [codeDigitsArray] = useState(
-    Array.apply(null, Array(codeSize)).map((_val, idx) => idx)
-  )
+  const [codeDigitsArray] = useState([...Array(codeSize).keys()])
+
   const [focused, setFocused] = useState(false)
   const color =
     (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
@@ -79,7 +78,7 @@ const Otp = ({
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (activated && getColorStyle(TrilogyColor.MAIN)) ||
         (error && getColorStyle(TrilogyColor.ERROR)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+        getColorStyle(TrilogyColor.MAIN_FADE),
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,
@@ -195,6 +194,7 @@ const Otp = ({
         }}
         editable={!disabled}
         style={style.hiddenCodeInput}
+        testID='input-id'
       />
     </SafeAreaView>
   )

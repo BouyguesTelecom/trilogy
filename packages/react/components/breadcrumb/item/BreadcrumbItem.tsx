@@ -1,10 +1,10 @@
 import * as React from "react"
 import { BreadcrumbItemPropsWeb } from "./BreadcrumbItemProps"
-import { is } from "../../../services/classify"
+import { is } from "@/services/classify"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { Link } from '../../link'
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { Link } from '@/components/link'
 
 /**
  * Breadcrumb Item Component
@@ -35,7 +35,7 @@ const BreadcrumbItem = ({
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
     return (
-      <li data-testid={testId} className={classes} onClick={onClick}>
+      <li data-testid={testId} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
         <RouterLink className={hashClass(styled, clsx("link"))} to={to} {...others}>
           {children}
         </RouterLink>
@@ -44,8 +44,8 @@ const BreadcrumbItem = ({
   }
 
   return (
-    <li className={classes} onClick={onClick}>
-      <Link href={href} {...others}>
+    <li className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      <Link href={active ? undefined : href} {...others}>
         {children}
       </Link>
     </li>

@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { Text } from '../text'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { TextareaProps } from './TextareaProps'
-import { has, is } from '../../services'
-import { Icon } from '../icon'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { has, is } from '@/services'
+import { Icon } from '@/components/icon'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { TypographyColor } from '@/objects'
 
 /**
  * Textarea Component
  * @param disabled {boolean} Disabled textarea
+ * @param label {string} Label for textarea
+ * @param sample {string} Sample for textarea (below label)
  * @param name {string} Textarea name
  * @param onChange {Function} OnChange textarea Event
  * @param placeholder {string} Placeholder textarea
@@ -21,8 +24,6 @@ import { useTrilogyContext } from '../../context'
  * @param rows {number} Textarea rows
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param hovered {boolean} Hover mode
- * @param focused {boolean} Fucus mode
  * @param minLength {number} Textarea min length
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * - -------------------------- NATIVE PROPERTIES -------------------------------
@@ -35,12 +36,12 @@ import { useTrilogyContext } from '../../context'
  */
 const Textarea = ({
   className,
+  sample,
+  required,
   disabled,
   onChange,
-  focused = true,
   placeholder,
   defaultValue,
-  hovered = true,
   help,
   status,
   statusIconName,
@@ -73,7 +74,8 @@ const Textarea = ({
 
   return (
     <div className={wrapperClasses}>
-      {!dynamicPlaceholder && <label>{label}</label>}
+      {!dynamicPlaceholder && <label className='textarea-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
+      {!dynamicPlaceholder && label && sample && <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
 
       <textarea
         data-testid={testId}
@@ -95,6 +97,7 @@ const Textarea = ({
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
+        required={required}
       />
       {dynamicPlaceholder && <label>{label}</label>}
       {iconName && <Icon name={iconName} size='small' />}

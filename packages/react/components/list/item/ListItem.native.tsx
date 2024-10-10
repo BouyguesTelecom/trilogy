@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { TrilogyColor, getColorStyle } from '../../../objects'
-import { Divider } from '../../divider'
-import { ComponentName } from '../../enumsComponentsName'
-import { Icon, IconColor, IconName } from '../../icon'
-import { Text, TextLevels } from '../../text'
-import { Title, TitleLevels } from '../../title'
+import { TrilogyColor, getColorStyle } from '@/objects'
+import { Divider } from '@/components/divider'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName } from '@/components/icon'
+import { Text, TextLevels } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
 import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
 
 const ListItem = ({
@@ -56,7 +56,7 @@ const ListItem = ({
       borderRadius: 30,
     },
     swipeInfo: {
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       width: 2,
       height: 20,
       borderRadius: 6,

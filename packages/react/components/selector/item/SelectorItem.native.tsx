@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { SelectorItemProps } from "./SelectorItemProps"
-import { Text, TextLevels } from "../../text"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
-import { Spacer, SpacerSize } from "../../spacer"
+import { Text, TextLevels } from "@/components/text"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { Spacer, SpacerSize } from "@/components/spacer"
 
 /**
  * Selector Item Component
@@ -117,7 +117,7 @@ const SelectorItem = ({
           </Text>
         )}
       </TouchableOpacity>
-      <Spacer horizontal size={SpacerSize.SMALL} />
+      <Spacer horizontal size={SpacerSize.TWO} />
     </>
   )
 }

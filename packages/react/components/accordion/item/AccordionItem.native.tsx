@@ -7,12 +7,12 @@ import {
   View,
 } from "react-native"
 import { AccordionItemProps } from "./AccordionItemProps"
-import { getColorStyle, TrilogyColor } from "../../../objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { hasDisplayName } from "./AccordionItem.helper"
-import { IconName } from "../../icon/IconNameEnum"
-import { Spacer, SpacerSize } from "../../spacer"
-import { Icon, IconSize } from "../../icon"
-import { ComponentName } from "../../enumsComponentsName"
+import { IconName } from "@/components/icon/IconNameEnum"
+import { Spacer, SpacerSize } from "@/components/spacer"
+import { Icon, IconSize } from "@/components/icon"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 interface AccordionChild {
   header?: React.ReactNode;
@@ -55,12 +55,12 @@ const AccordionItem = ({
       padding: 5,
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        getColorStyle(TrilogyColor.FONT, 1)
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
+        getColorStyle(TrilogyColor.MAIN_FADE)
     },
     bodyBackground: {
       borderRadius: 6,
@@ -193,7 +193,7 @@ const AccordionItem = ({
           </View>
         </Animated.View>
       </View>
-      <Spacer size={SpacerSize.SMALL} />
+      <Spacer size={SpacerSize.TWO} />
     </>
   )
 }

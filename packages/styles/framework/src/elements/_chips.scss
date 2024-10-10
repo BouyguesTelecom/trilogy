@@ -1,25 +1,11 @@
+@import "../utilities/spacing";
+
 .chips-list {
   align-items: center;
   display: inline-flex;
   justify-content: flex-start;
-  margin-bottom: 16px;
   flex-wrap: wrap;
-
-  // multi-chips : ajout d'une marge bottom, supprimable par facette
-  &:not(.is-gapless) {
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-
-    .chips {
-      margin-bottom: 10px;
-    }
-  }
-
-  // multi-chips : ajout d'une marge à droite de chaque chip
-  .chips:not(:last-child) {
-    margin-right: 8px;
-  }
+  gap: $spacing-2;
 
   // centrage des chips
   &.is-centered {
@@ -27,15 +13,19 @@
   }
 
   &.is-multiple {
-    .chips.is-active:before {
+    .chips:before {
       content: "";
       mask-image: url('./assets/icons/all/check.svg');
       background-color: currentColor;
       margin-right: 4px;
       margin-left: -8px;
-      width: 20px;
+      width: 0;
       height: 20px;
       mask-size: 20px;
+      transition: width 250ms;
+    }
+    .chips.is-active:before{
+      width: 20px;
     }
   }
 
@@ -53,37 +43,32 @@
     white-space: nowrap;
     cursor: pointer;
     border: var(--border);
-
     &:not(.is-disabled) {
-
       &.is-active {
         background-color: getColor('main');
         color: white;
         border: var(--border-active);
-        padding: 5px 15px;
-
+        padding: 5px ($spacing-4 - 1px);
         #{$hoverSelector} {
           background-color: getColor('main');
           color: white;
         }
       }
-
       #{$hoverSelector} {
-        background-color: var(--color-bg-hovered);
-
+        background-color: getColor('neutral-fade');
       }
     }
 
     &.is-inverted {
       background-color: white;
-      color: getColor('alternate');
+      color: getColor('accent');
 
       &:active,
       &:hover,
       &:focus,
       &:focus-visible,
       &.is-active {
-        background-color: getColor('alternate') !important;
+        background-color: getColor('accent') !important;
         color: getColor('background') !important;
       }
     }

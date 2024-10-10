@@ -8,6 +8,30 @@ $price-levels: (
     ($text-20),
 );
 
+.price-container {
+  display: flex;
+  align-items: baseline;
+  column-gap: 12px;
+  flex-wrap: wrap;
+
+  .overline {
+    width: 100%;
+    flex: none;
+    margin: 0;
+    --font-size: #{$text-64};
+    font-size: calc(var(--font-size) * 0.4);
+
+    @each $price-level in $price-levels {
+      $i: index($price-levels, $price-level);
+      $font-size: nth($price-level, 1);
+
+      &:has(~ .price.is-level-#{$i}:not(.is-striked)) {
+        --font-size: #{$font-size};
+      }
+    }
+  }
+}
+
 .price {
   display: inline-flex;
   font-weight: $weight-semibold;
@@ -70,7 +94,6 @@ $price-levels: (
           &::before {
             border-width: 3px;
             margin-left: -6px;
-            margin-top: 4px;
             border-radius: 1px;
           }
           font-size: $text-10;
@@ -122,16 +145,6 @@ $price-levels: (
     color: getColor('background');
   }
 
-  &.has-suptitle {
-    display: flex;
-    flex-wrap: wrap;
-
-    .price-suptitle {
-      flex-basis: 100%;
-      font-size: 0.375em;
-    }
-  }
-
   &.has-description {
     .cents,
     .centimes {
@@ -170,7 +183,7 @@ $price-levels: (
 
   &.is-striked {
     position: relative;
-    color: getBGColor('font');
+    color: getColor('main-fade');
 
     &::before {
       position: absolute;
@@ -185,27 +198,18 @@ $price-levels: (
     }
 
     &.is-inverted {
-      color: getBGColor('font');
+      color: getColor('main-fade');
 
       &::before {
         border-color: getColor('background');
-      }
-    }
-
-    &.has-suptitle {
-      display: inline-flex;
-      margin-top: 0.55em;
-
-      .price-suptitle {
-        position: absolute;
-        top: -1.4em;
       }
     }
   }
 }
 
 .price-tag {
-  background-color: getColor('alternate');
+  align-self: center;
+  background-color: getColor('accent');
   margin-left: 10px;
   border-radius: 6px;
   display: inline-flex;
@@ -216,11 +220,12 @@ $price-levels: (
   line-height: 1em;
   align-items: baseline;
   position: relative;
+  margin-left: -4px;
   &::before {
     content: '';
     border-color: transparent;
-    border-bottom-color: getColor('alternate');
-    border-left-color: getColor('alternate');
+    border-bottom-color: getColor('accent');
+    border-left-color: getColor('accent');
     transform: rotate(45deg);
     border-style: solid;
     border-width: 5px;

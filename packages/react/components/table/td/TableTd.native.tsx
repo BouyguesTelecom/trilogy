@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { TableTdProps } from "./TableTdProps"
-import { getColorStyle, TrilogyColor } from "../../../objects"
-import { ComponentName } from "../../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table TD Component
@@ -16,8 +16,8 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
       padding: 10,
       borderBottomWidth: 0.2,
       borderRightWidth: 0.2,
-      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     text: {
       color: getColorStyle(TrilogyColor.MAIN),

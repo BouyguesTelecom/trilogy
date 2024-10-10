@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { SelectorProps } from './SelectorProps'
-import { Text, TextLevels } from '../text'
+import { Text, TextLevels } from '@/components/text'
 import SelectorItem from './item'
-import { getAlignStyle } from '../../objects'
+import { getAlignStyle } from '@/objects'
 
 /**
  * Selector Component

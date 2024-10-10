@@ -135,7 +135,7 @@ body:has(.modal.is-active) {
     z-index: zindex('medium');
 
     #{$hoverSelector} {
-      background-color: getBGColor('neutral');
+      background-color: getColor('neutral-fade');
     }
 
     &::after,
@@ -145,6 +145,11 @@ body:has(.modal.is-active) {
   }
 
   .modal-title {
+    padding: 20px 0;
+  }
+
+  .modal-title, 
+  .modal-header {
     color: getColor('font');
     font-family: $family-sans-serif;
     font-size: $size-3;
@@ -154,7 +159,6 @@ body:has(.modal.is-active) {
     z-index: zindex('small');
     position: sticky;
     top: 0;
-    padding: 20px 0;
     width: 100%;
     word-wrap: break-word;
 

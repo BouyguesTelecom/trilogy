@@ -1,118 +1,114 @@
-import * as React from "react";
-import { fireEvent, render } from "@testing-library/react";
-import Select from "../../Select";
-import SelectOption from "../SelectOption";
-import { IconName } from "../../../icon";
+import { fireEvent, render } from '@testing-library/react'
+import * as React from 'react'
+import Select from '../../Select'
+import SelectOption from '../SelectOption'
 
-describe("SELECT OPTION WEB", () => {
+describe('SELECT OPTION WEB', () => {
   const props = {
-    name: "Option",
-    label: "Label",
-    id: "id",
-    testId: "testId",
-  };
+    name: 'Option',
+    label: 'Label',
+    id: 'id',
+    testId: 'testId',
+    selected: 'opt_2',
+  }
 
-  it("should be selected", () => {
-    const p = { ...props, selected: "opt_2" };
+  it('should be selected', () => {
+    const { getByTestId } = render(
+      <Select {...props}>
+        {[...Array(5)].map((item, i) => {
+          const value = `opt_${i}`
+          return (
+            <SelectOption key={i} id={value} value={value} label={value} testId={value}>
+              {`option ${i}`}
+            </SelectOption>
+          )
+        })}
+      </Select>,
+    )
+    const select = getByTestId('testId')
+    fireEvent.click(select)
+    const option = getByTestId(`opt_2`)
+    expect(option).toBeChecked()
+  })
+
+  it('should be not nullable', () => {
+    const { getByTestId } = render(
+      <Select {...props}>
+        {[...Array(5)].map((item, i) => {
+          const value = `opt_${i}`
+          return (
+            <SelectOption key={i} id={value} value={value} label={value} testId={value}>
+              {`option ${i}`}
+            </SelectOption>
+          )
+        })}
+      </Select>,
+    )
+    const select = getByTestId('testId')
+    fireEvent.click(select)
+    const option = getByTestId(`opt_2`)
+    expect(option).toBeChecked()
+    fireEvent.click(option)
+    expect(option).toBeChecked()
+  })
+
+  it('should be nullable', () => {
+    const p = { ...props, nullable: true }
     const { getByTestId } = render(
       <Select {...p}>
         {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`;
+          const value = `opt_${i}`
           return (
-            <SelectOption
-              key={i}
-              id={value}
-              value={value}
-              label={value}
-              testId={value}
-            >
+            <SelectOption key={i} id={value} value={value} label={value} testId={value}>
               {`option ${i}`}
             </SelectOption>
-          );
+          )
         })}
-      </Select>
-    );
-    const option = getByTestId(`opt_2`);
-    expect(option).toHaveAttribute("aria-selected", "true");
-    expect(option).toHaveAttribute("role", "option");
-    expect(option).toHaveAttribute("data-option-name", "option 2");
-    expect(option).toHaveAttribute("data-option-value", "opt_2");
-  });
+      </Select>,
+    )
+    const select = getByTestId('testId')
+    fireEvent.click(select)
+    const option = getByTestId(`opt_2`)
+    expect(option).toBeChecked()
+    fireEvent.click(option)
+    expect(option).not.toBeChecked()
+  })
 
-  it("should change selected option", () => {
+  it('should be disabled', () => {
     const { getByTestId } = render(
       <Select {...props}>
         {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`;
+          const value = `opt_${i}`
           return (
-            <SelectOption
-              key={i}
-              id={value}
-              value={value}
-              label={value}
-              testId={value}
-            >
+            <SelectOption key={i} id={value} value={value} label={value} testId={value} disabled={value === 'opt_2'}>
               {`option ${i}`}
             </SelectOption>
-          );
+          )
         })}
-      </Select>
-    );
-    const select = getByTestId("testId");
-    fireEvent.click(select);
-    const option = getByTestId(`opt_2`);
-    expect(option).toHaveAttribute("aria-selected", "false");
-    fireEvent.mouseUp(option);
-    expect(option).toHaveAttribute("aria-selected", "true");
-  });
+      </Select>,
+    )
+    const select = getByTestId('testId')
+    fireEvent.click(select)
+    const option = getByTestId(`opt_2`)
+    expect(option).toBeDisabled()
+  })
 
-  it("should be disabled", () => {
+  it('should have icon', () => {
     const { getByTestId } = render(
       <Select {...props}>
         {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`;
+          const value = `opt_${i}`
           return (
-            <SelectOption
-              key={i}
-              id={value}
-              value={value}
-              label={value}
-              testId={value}
-              disabled={value === "opt_2"}
-            >
+            <SelectOption key={i} id={value} value={value} label={value} testId={value} iconName='tri-alert'>
               {`option ${i}`}
             </SelectOption>
-          );
+          )
         })}
-      </Select>
-    );
-    const option = getByTestId(`opt_2`);
-    expect(option).toHaveAttribute("aria-disabled", "true");
-  });
-
-  it("should have icon", () => {
-    const { getByTestId } = render(
-      <Select {...props}>
-        {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`;
-          return (
-            <SelectOption
-              key={i}
-              id={value}
-              value={value}
-              label={value}
-              testId={value}
-              iconName={IconName.INFOS_CIRCLE}
-            >
-              {`option ${i}`}
-            </SelectOption>
-          );
-        })}
-      </Select>
-    );
-    const option = getByTestId(`opt_2`);
-    expect(option.firstElementChild?.firstChild?.firstChild).toHaveClass(
-      IconName.INFOS_CIRCLE
-    );
-  });
-});
+      </Select>,
+    )
+    const select = getByTestId('testId')
+    fireEvent.click(select)
+    const option = getByTestId(`opt_2`)
+    expect(option.nextSibling?.firstChild?.firstChild).toHaveClass('tri-alert')
+  })
+})

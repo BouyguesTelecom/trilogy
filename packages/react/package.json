@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/react",
-  "version": "0.0.1-beta.23",
+  "version": "0.0.1-beta.78",
   "type": "module",
   "author": "Bouygues Telecom",
   "files": [
@@ -14,7 +14,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",
-    "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent",
+    "check-types": "tsc --noemit",
+    "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
     "build": "rimraf lib && npm run prebuild && tsc -p . && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib/"
   },

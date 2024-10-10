@@ -1,12 +1,11 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
 import { SpacerProps } from "./SpacerProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Spacer Component
- * @deprecated
- * @param size {SpacerSize} SMALL | MEDIUM | LARGE | HUGE
+ * @param size {SpacerSize} Size of the spacer
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = ({ size, horizontal }: SpacerProps): JSX.Element => {

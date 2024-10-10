@@ -1,6 +1,6 @@
-import { Accessibility, Clickable, Fullheight } from '../../objects'
-import { BackgroundProps } from '../../objects/atoms/Background'
-import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
+import { Accessibility, Clickable, Fullheight } from '@/objects'
+import { BackgroundProps } from '@/objects/atoms/Background'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 
 export enum BoxMarkup {
   DIV = 'div',
@@ -18,7 +18,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   className?: string
   markup?: BoxMarkup | BoxMarkupValues
   to?: string
-  leftBorder?: TrilogyColor | TrilogyColorValues
+  highlighted?: TrilogyColor | TrilogyColorValues
   shadowless?: boolean
   backgroundSrc?: string
   hat?: boolean

@@ -87,7 +87,9 @@ yarn.lock
 
 styles/components/css
 mangled
+!packages/react/components/styleComponent/mangled
 
 #generated files
 packages/react/components/icon/iconsPath.ts
 packages/styles/assets/icons/*.scss
+docs/templates

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react"
-import {StyleSheet, TouchableOpacity} from "react-native"
-import {RadioProps} from "./RadioProps"
+import React, { useEffect, useState } from "react"
+import { StyleSheet, TouchableOpacity } from "react-native"
+import { RadioProps } from "./RadioProps"
 import shortid from "shortid"
-import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold,} from "../../objects"
-import {Icon, IconSize} from "../icon"
-import {Text, TextLevels} from "../text"
-import {View} from "../view"
-import {ComponentName} from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, } from "@/objects"
+import { Icon, IconSize } from "@/components/icon"
+import { Text, TextLevels } from "@/components/text"
+import { View } from "@/components/view"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Radio Native Component
@@ -42,6 +42,12 @@ const Radio = ({
                  narrow,
                }: RadioProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
+
+  const getRadioInsideColor = (isDisabled: boolean, isMain: boolean) => {
+    if (isDisabled) return getColorStyle(TrilogyColor.DISABLED_FADE)
+    if (isMain) return getColorStyle(TrilogyColor.MAIN)
+    return getColorStyle(TrilogyColor.MAIN_FADE)
+  }
 
   useEffect(() => {
     setChecked(checked || false)
@@ -84,21 +90,16 @@ const Radio = ({
       maxWidth: 140,
       width: 126,
       borderWidth: (_checked && 2) || 1,
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: getRadioInsideColor(!!disabled, _checked),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
     tileDescription: {
-      color: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
-        : getColorStyle(TrilogyColor.MAIN),
+      color: getRadioInsideColor(!!disabled, true),
       alignSelf: horizontalTile ? "flex-start" : "center",
     },
     horizontalTile: {
@@ -107,13 +108,10 @@ const Radio = ({
       width: narrow ? "auto" : "100%",
       height: "auto",
       borderWidth: (_checked && 2) || 1,
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: getRadioInsideColor(!!disabled, _checked),
       borderRadius: 6,
       backgroundColor: disabled
-        ? getColorStyle(TrilogyColor.DISABLED, 1)
+        ? getColorStyle(TrilogyColor.DISABLED_FADE)
         : "transparent",
     },
   })
@@ -148,7 +146,7 @@ const Radio = ({
         style={styles.horizontalTile}
         onPress={() => handleClick(value || false)}
       >
-        <View style={{flexDirection: "row"}}>
+        <View style={{ flexDirection: "row" }}>
           {children ? (
             <View
               style={{
@@ -175,7 +173,7 @@ const Radio = ({
               >
                 {iconTile && (
                   <View>
-                    <Icon size={IconSize.SMALL} name={iconTile}/>
+                    <Icon size={IconSize.SMALL} name={iconTile} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}/>
                   </View>
                 )}
               </View>
@@ -239,14 +237,14 @@ const Radio = ({
         onPress={() => handleClick(value || false)}
       >
         <TouchableOpacity
-          style={[{alignSelf: "flex-end", marginTop: 10}, styles.radio]}
+          style={[{ alignSelf: "flex-end", marginTop: 10 }, styles.radio]}
           disabled={disabled}
           testID={id}
           onPressIn={() => handleClick(value || false)}
         >
           {_checked && !disabled && <View style={styles.icon}/>}
         </TouchableOpacity>
-        <View style={{width: "70%", alignItems: "center"}}>
+        <View style={{ width: "70%", alignItems: "center" }}>
           {iconTile && (
             <View
               style={{
@@ -256,7 +254,7 @@ const Radio = ({
                 marginBottom: 5,
               }}
             >
-              <Icon size={IconSize.MEDIUM} name={iconTile}/>
+              <Icon size={IconSize.MEDIUM} name={iconTile} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}/>
             </View>
           )}
           {label && typeof label.valueOf() === "string" && (
@@ -291,6 +289,7 @@ const Radio = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={styles.container}
       onPress={() => handleClick(value || false)}
     >

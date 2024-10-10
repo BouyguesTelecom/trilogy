@@ -1,11 +1,11 @@
 import * as React from "react"
-import { IconProps } from "../IconProps"
-import { IconName } from "../IconNameEnum"
-import { IconStatus } from "../IconEnum"
-import { has, is } from "../../../services/index"
+import { IconProps } from "@/components/icon/IconProps"
+import { IconName } from "@/components/icon/IconNameEnum"
+import { IconStatus } from "@/components/icon/IconEnum"
+import { has, is } from "@/services/index"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 const StatusIcon = ({
   className,
@@ -31,7 +31,7 @@ const StatusIcon = ({
     styled,
     clsx(
       "icon is-circled is-descendant",
-      status && is(`${status}`),
+      status && is(`${status.toLowerCase()}`),
       statusPosition && is(`${statusPosition}`)
     )
   )

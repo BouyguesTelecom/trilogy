@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { ColumnsItemProps } from './ColumnsItemProps'
-import { ColumnsContext } from '../Columns.native'
-import { getAlignStyle } from '../../../objects'
-import { ComponentName } from '../../enumsComponentsName'
+import { ColumnsContext } from '@/components/columns/Columns.native'
+import { getAlignStyle } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Columns Item Component - Columns Child
@@ -26,6 +26,9 @@ const ColumnsItem = ({ children, size, verticalCenter, centered, align, ...other
       flex: columnsContextValues.inlined ? undefined : !size ? 12 : size,
       justifyContent: verticalCenter ? 'center' : 'flex-start',
       alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
+      flexBasis: `${(size ? size : 1) / 12 * 100}%`,
+      flexGrow: 0,
+      maxWidth: `${(size ? size : 1) / 12 * 100}%`
     },
   })
 
