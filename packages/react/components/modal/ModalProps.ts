@@ -29,6 +29,7 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   triggerClassNames?: string
   triggerMarkup?: ModalMarkup | ModalMarkupValues
   ctaContent?: string
+  ctaCancelContent?: string
   closeIcon?: boolean
   ctaOnClick?: ClickEvent
   ctaCancelOnClick?: ClickEvent
@@ -39,5 +40,4 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   onModalHide?: () => void
   disableHandlingClickOutside?: boolean
   swipable?: boolean
-  titleButtonClose?: string
 }

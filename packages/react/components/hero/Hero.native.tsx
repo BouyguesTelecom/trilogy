@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { HeroProps } from "./HeroProps"
-import { getBackgroundStyle, TrilogyColor } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { Box } from "../box"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
@@ -10,7 +10,7 @@ import { StatesContext } from "@/context/providerStates"
  * Hero Component
  * @param children {ReactNode} Hero Children
  * @param backgroundSrc {string} If source, it will display background option
- * @param background {TrilogyColor} Background Color
+ * @param backgroundColor {TrilogyColor} Background Color
  * @param inverted {Boolean} Inverted Hero
  * @param onClick {Function} onClick Event
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
@@ -24,7 +24,7 @@ const Hero = ({
   overlap,
   backgroundHeight,
   inverted,
-  background,
+  backgroundColor,
   ...others
 }: HeroProps): JSX.Element => {
   const [overlapHeight, setOverlapHeight] = useState<number>(0)
@@ -49,9 +49,9 @@ const Hero = ({
       paddingLeft: 15,
     },
     background: {
-      backgroundColor: background
-        ? getBackgroundStyle(background)
-        : getBackgroundStyle(TrilogyColor.BACKGROUND),
+      backgroundColor: backgroundColor
+        ? getColorStyle(backgroundColor)
+        : getColorStyle(TrilogyColor.BACKGROUND),
     },
     overlap: {
       position: "absolute",
@@ -73,12 +73,12 @@ const Hero = ({
   })
   let heroView: JSX.Element
 
-  if (background) {
+  if (backgroundColor) {
     heroView = (
       <StatesContext.Provider
         value={{ inverted: !!inverted, active: false, flat: false }}
       >
-        <View style={[styles.background, styles.hero]} testID="background-id">
+        <View style={[styles.background, styles.hero]} testID='background-id'>
           <View style={styles.content}>{children}</View>
         </View>
       </StatesContext.Provider>
@@ -94,7 +94,7 @@ const Hero = ({
         style={styles.hero}
         {...others}
       >
-        <View style={styles.content} testID="no-background-id">{children}</View>
+        <View style={styles.content} testID='no-background-id'>{children}</View>
       </ImageBackground>
     )
   }
@@ -111,7 +111,7 @@ const Hero = ({
             setOverlapHeight(height)
           }}
         >
-          <Box background={TrilogyColor.NEUTRAL_LIGHT}>
+          <Box backgroundColor={TrilogyColor.NEUTRAL_FADE}>
             <View style={{ marginBottom: secondOverlapHeight / 2 }} />
             {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
           </Box>

@@ -15,7 +15,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onClick {Function} onClick Event for all Chips
  * @param active {boolean} active Render Chips Active
  * @param disabled {boolean} Disabled chips
- * @param inverted {boolean} Background color
  */
 
 const Chips = ({
@@ -23,7 +22,6 @@ const Chips = ({
                  onClick,
                  disabled,
                  active,
-                 inverted,
                  ...others
                }: ChipsProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
@@ -36,9 +34,8 @@ const Chips = ({
   const styles = StyleSheet.create({
     chips: {
       backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.NEUTRAL_LIGHT)) ||
+        (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
       paddingLeft: 12,
@@ -46,14 +43,14 @@ const Chips = ({
       paddingTop: 6,
       paddingBottom: 5,
       margin: 6,
-      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.FONT, 1),
+      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.MAIN_FADE),
       borderWidth: 1,
       flexDirection: "row",
     },
     text: {
       alignSelf: "center",
       color:
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       paddingTop: 1,
@@ -79,7 +76,7 @@ const Chips = ({
             color={IconColor.WHITE}
             name={IconName.CHECK}
           />
-          <Spacer horizontal size={SpacerSize.SMALLER}/>
+          <Spacer horizontal size={SpacerSize.ONE}/>
         </>
       )}
       <Text level={TextLevels.TWO} style={styles.text}>

@@ -1,13 +1,13 @@
-import clsx from 'clsx'
-import React, { useCallback, useEffect, useState } from 'react'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
+import clsx from 'clsx'
+import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { Text } from '@/components/text'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
-import { AutoComplete, AutoCompleteProps, Item } from './autocomplete'
 import InputGauge from './gauge/InputGauge'
 
 export interface InputProp extends InputProps, InputWebEvents {}
@@ -23,6 +23,8 @@ interface IconWrapper {
 /**
  * Input Component
  * @param name {string} Input name
+ * @param label {string} Label for input
+ * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} onFocus Input Event
@@ -48,7 +50,6 @@ interface IconWrapper {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
- * @param hovered {boolean} Hover mode
  * @param focused {boolean} Fucus mode
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
@@ -66,48 +67,52 @@ interface IconWrapper {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = ({
-  forceControl,
-  className,
-  disabled,
-  onChange,
-  onKeyPress,
-  onKeyUp,
-  onIconClick,
-  onClick,
-  onFocus,
-  onBlur,
-  patternValidator,
-  onMouseEnter,
-  onMouseLeave,
-  name,
-  placeholder,
-  type = 'text',
-  defaultValue,
-  value,
-  loading,
-  focused,
-  hasIcon,
-  customIcon,
-  status,
-  help,
-  iconClassname,
-  reference,
-  onStatusChange,
-  customValidator,
-  onSubmit,
-  minLength,
-  maxLength,
-  testId,
-  accessibilityLabel,
-  autoCompleteType,
-  customIconLeft,
-  customIconRight,
-  securityGauge,
-  validationRules,
-  required,
-  ...others
-}: InputProp): JSX.Element => {
+const Input = (
+  {
+    forceControl,
+    label,
+    sample,
+    className,
+    disabled,
+    onChange,
+    onKeyPress,
+    onKeyUp,
+    onIconClick,
+    onClick,
+    onFocus,
+    onBlur,
+    patternValidator,
+    onMouseEnter,
+    onMouseLeave,
+    name,
+    placeholder,
+    type = 'text',
+    defaultValue,
+    value,
+    loading,
+    focused,
+    hasIcon,
+    customIcon,
+    status,
+    help,
+    iconClassname,
+    onStatusChange,
+    customValidator,
+    onSubmit,
+    minLength,
+    maxLength,
+    testId,
+    accessibilityLabel,
+    autoCompleteType,
+    customIconLeft,
+    customIconRight,
+    securityGauge,
+    validationRules,
+    required,
+    ...others
+  }: InputProp,
+  ref: LegacyRef<HTMLInputElement>,
+): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
@@ -144,6 +149,7 @@ const Input = ({
       inputName: target.name,
       inputValue: target.value,
       inputKeyCode: e.keyCode,
+      target,
       preventDefault: () => e.preventDefault(),
     }
   }, [])
@@ -152,11 +158,11 @@ const Input = ({
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
       return (
         <div
-        {...type === "password" && { "data-show-pwd": true }}
-          onClick={() => {
+          {...(type === 'password' && { 'data-show-pwd': true })}
+          onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value })
+              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
             }
           }}
         >
@@ -208,6 +214,21 @@ const Input = ({
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
+      {!hasPlaceholder && (
+        <label className='input-label'>
+          {label}{' '}
+          {label && required && (
+            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+              *
+            </Text>
+          )}
+        </label>
+      )}
+      {!hasPlaceholder && label && sample && (
+        <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+          {sample}
+        </Text>
+      )}
       <div className={controlClasses}>
         <input
           required={required}
@@ -221,7 +242,7 @@ const Input = ({
           defaultValue={defaultValue}
           name={name}
           onSubmit={onSubmit}
-          ref={reference}
+          ref={ref}
           disabled={disabled}
           minLength={minLength}
           maxLength={maxLength}
@@ -237,6 +258,7 @@ const Input = ({
               onClick({
                 inputName: target.name,
                 inputValue: target.value,
+                target: target,
               })
             }
           }}
@@ -263,6 +285,7 @@ const Input = ({
                 inputName: e.target.name,
                 inputValue: e.target.value,
                 inputSelectionStart: e.target.selectionStart,
+                target: e.target,
               })
             }
           }}
@@ -316,28 +339,4 @@ const Input = ({
   )
 }
 
-/**
- * AutoComplete Component
- * @param placeholder {string} placeholder for input
- * @param defaultValue {string} Default Value for Input
- * @param data {string[]} Datas AutoComplete list Item
- * @param value {string} Value of Input
- * @param onChange {Function} OnChange Input Event
- * @param onFocus {Function} OnFocus Input Event
- * @param children {Function} Custom Component for dropdown list
- * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
- * @param matching {Function} matching function
- * - ------------------ WEB PROPERTIES -----------------------
- * @param classNameMenu {string} Additionnal CSS Classes for Menu
- * @param absoluteMenu {boolean} Absolute position for Menu
- * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additionnal CSS Classes
- * @param onItemSelected {Function} OnSelectedItemList event
- * @param customIcon {string} Additional icon classes
- * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
- */
-Input.AutoComplete = <T extends string | Item<unknown> = string>(props: AutoCompleteProps<T>) => {
-  const newProps = { ...props, Input }
-  return <AutoComplete {...newProps} />
-}
-export default Input
+export default forwardRef(Input)

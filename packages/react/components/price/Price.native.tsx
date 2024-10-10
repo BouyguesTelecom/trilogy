@@ -1,13 +1,13 @@
 import React, { useContext, useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
+import { Spacer, SpacerSize } from "@/components/spacer"
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
-import { getTypographyBoldStyle } from "@/objects"
 
 /**
  * Price Component
@@ -20,11 +20,10 @@ import { getTypographyBoldStyle } from "@/objects"
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
- * @param alert {AlertState} Alert Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param suptitle {string} Price Suptitle
+ * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
  */
@@ -32,16 +31,15 @@ const Price = ({
                  amount,
                  mention,
                  period,
-                 showCents,
+                 showCents = true,
                  level,
                  inverted,
                  align,
-                 alert,
                  inline,
                  testId,
                  accessibilityLabel,
-                 striked,
-                 suptitle,
+                 strikedAmount,
+                 overline,
                  style,
                  tagAmount,
                  tagSymbol,
@@ -58,51 +56,67 @@ const Price = ({
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
   )
 
+  const isNegativeStriked = strikedAmount && strikedAmount < 0
+  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
+  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
+  const wholeStriked = absoluteWholeStriked && isNegativeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+
+  const centsStriked = absoluteAmountStriked && checkCents(
+    absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
+  )
+
   const primaryColor = getColorStyle(TrilogyColor.MAIN)
   const secondaryColor = getColorStyle(TrilogyColor.MAIN)
   const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const priceLevel =
-    (level == PriceLevel.LEVEL1 && 64) ||
-    (level == PriceLevel.LEVEL2 && 56) ||
-    (level == PriceLevel.LEVEL3 && 44) ||
-    (level == PriceLevel.LEVEL4 && 32) ||
-    (level == PriceLevel.LEVEL5 && 28) ||
-    (level == PriceLevel.LEVEL6 && 24) ||
-    (level == PriceLevel.LEVEL7 && 20) ||
+    (level == PriceLevel.ONE && 64) ||
+    (level == PriceLevel.TWO && 56) ||
+    (level == PriceLevel.THREE && 44) ||
+    (level == PriceLevel.FOUR && 32) ||
+    (level == PriceLevel.FIVE && 28) ||
+    (level == PriceLevel.SIX && 24) ||
+    (level == PriceLevel.SEVEN && 20) ||
     44
+
   const centsLevel = priceLevel * 0.4
   const suptitleLevel = priceLevel * 0.2
 
+  const priceLevelStriked =
+    (level == PriceLevel.ONE && 44) ||
+    (level == PriceLevel.TWO && 32) ||
+    (level == PriceLevel.THREE && 28) ||
+    (level == PriceLevel.FOUR && 24) ||
+    20
+
+  const centsLevelStriked = priceLevelStriked * 0.4
+
   const color = useMemo(
     () =>
-      (inverted && !striked && invertedColor) ||
-      (statesContext.inverted && invertedColor) ||
-      (inverted && striked && getColorStyle(TrilogyColor.FONT, 1)) ||
-      (alert && getAlertStyle(alert)) ||
-      (!striked && !inverted && primaryColor) ||
-      (!striked && !inverted && secondaryColor) ||
-      (striked && !inverted && getColorStyle(TrilogyColor.FONT, 1)) ||
+      (inverted && invertedColor) ||
+      statesContext.inverted && invertedColor ||
+      primaryColor ||
+      !inverted && secondaryColor ||
       primaryColor,
-    [inverted, striked, alert]
+    [inverted, invertedColor, statesContext.inverted, primaryColor, secondaryColor]
   )
 
   const strikedRotateByLevel = () => {
     return (
-      (level == PriceLevel.LEVEL7 && (showCents || period) && "-18deg") ||
-      (level == PriceLevel.LEVEL6 && (showCents || period) && "-19deg") ||
-      (level == PriceLevel.LEVEL5 && (showCents || period) && "-18deg") ||
-      (level == PriceLevel.LEVEL4 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL3 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL2 && (showCents || period) && "-16deg") ||
-      (level == PriceLevel.LEVEL1 && (showCents || period) && "-15deg") ||
-      (level == PriceLevel.LEVEL1 && "-17deg") ||
-      (level == PriceLevel.LEVEL2 && "-18deg") ||
-      (level == PriceLevel.LEVEL3 && "-20deg") ||
-      (level == PriceLevel.LEVEL4 && "-18deg") ||
-      (level == PriceLevel.LEVEL5 && "-18deg") ||
-      (level == PriceLevel.LEVEL6 && "-22deg") ||
-      (level == PriceLevel.LEVEL7 && "-22deg") ||
+      (level == PriceLevel.SEVEN && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.SIX && (showCents || period) && "-19deg") ||
+      (level == PriceLevel.FIVE && (showCents || period) && "-18deg") ||
+      (level == PriceLevel.FOUR && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.THREE && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.TWO && (showCents || period) && "-16deg") ||
+      (level == PriceLevel.ONE && (showCents || period) && "-15deg") ||
+      (level == PriceLevel.ONE && "-17deg") ||
+      (level == PriceLevel.TWO && "-18deg") ||
+      (level == PriceLevel.THREE && "-20deg") ||
+      (level == PriceLevel.FOUR && "-18deg") ||
+      (level == PriceLevel.FIVE && "-18deg") ||
+      (level == PriceLevel.SIX && "-22deg") ||
+      (level == PriceLevel.SEVEN && "-22deg") ||
       (!level && (showCents || period) && "-15deg") ||
       "-20deg"
     )
@@ -110,20 +124,20 @@ const Price = ({
 
   const strikedBottomByLevel = () => {
     return (
-      (level == PriceLevel.LEVEL7 && (showCents || period) && 12) ||
-      (level == PriceLevel.LEVEL6 && (showCents || period) && 15) ||
-      (level == PriceLevel.LEVEL5 && (showCents || period) && 18) ||
-      (level == PriceLevel.LEVEL4 && (showCents || period) && 19) ||
-      (level == PriceLevel.LEVEL3 && (showCents || period) && 26) ||
-      (level == PriceLevel.LEVEL2 && (showCents || period) && 33) ||
-      (level == PriceLevel.LEVEL1 && (showCents || period) && 37) ||
-      (level == PriceLevel.LEVEL1 && 34) ||
-      (level == PriceLevel.LEVEL2 && 30) ||
-      (level == PriceLevel.LEVEL3 && 24) ||
-      (level == PriceLevel.LEVEL4 && 18) ||
-      (level == PriceLevel.LEVEL5 && 16) ||
-      (level == PriceLevel.LEVEL6 && 14) ||
-      (level == PriceLevel.LEVEL7 && 12) ||
+      (level == PriceLevel.SEVEN && (showCents || period) && 12) ||
+      (level == PriceLevel.SIX && (showCents || period) && 15) ||
+      (level == PriceLevel.FIVE && (showCents || period) && 18) ||
+      (level == PriceLevel.FOUR && (showCents || period) && 19) ||
+      (level == PriceLevel.THREE && (showCents || period) && 26) ||
+      (level == PriceLevel.TWO && (showCents || period) && 33) ||
+      (level == PriceLevel.ONE && (showCents || period) && 37) ||
+      (level == PriceLevel.ONE && 34) ||
+      (level == PriceLevel.TWO && 30) ||
+      (level == PriceLevel.THREE && 24) ||
+      (level == PriceLevel.FOUR && 18) ||
+      (level == PriceLevel.FIVE && 16) ||
+      (level == PriceLevel.SIX && 14) ||
+      (level == PriceLevel.SEVEN && 12) ||
       (!level && (showCents || period) && 25) ||
       25
     )
@@ -142,9 +156,9 @@ const Price = ({
       padding: 0,
       paddingLeft:
         (inline && 0) ||
-        (level == PriceLevel.LEVEL5 && 2) ||
-        (level == PriceLevel.LEVEL6 && 2) ||
-        (level == PriceLevel.LEVEL7 && 2) ||
+        (level == PriceLevel.FIVE && 2) ||
+        (level == PriceLevel.SIX && 2) ||
+        (level == PriceLevel.SEVEN && 2) ||
         4,
       flexDirection: "column",
       justifyContent: "center",
@@ -152,24 +166,44 @@ const Price = ({
       position: "relative",
     },
     price: {
-      fontSize: priceLevel,
       fontWeight:
-        (level == PriceLevel.LEVEL6 && "normal") ||
-        (level == PriceLevel.LEVEL7 && "normal") ||
+        (level == PriceLevel.SIX && "normal") ||
+        (level == PriceLevel.SEVEN && "normal") ||
         "bold",
-      color: color,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    priceFontSize: {
+      fontSize: priceLevel,
+    },
+    priceFontSizeStriked: {
+      fontSize: priceLevelStriked,
+    },
+    priceColor: {
+      color: color
+    },
+    priceStrikedColor: {
+      color: getColorStyle(TrilogyColor.MAIN_FADE)
     },
     cents: {
       fontWeight: "bold",
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    centsFontSize: {
+      fontSize: centsLevel,
+    },
+    centsFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     period: {
       color: color,
-      fontSize: centsLevel,
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    },
+    periodFontSize: {
+      fontSize: centsLevel,
+    },
+    periodFontSizeStriked: {
+      fontSize: centsLevelStriked,
     },
     inlinePeriod: {
       color: color,
@@ -192,8 +226,8 @@ const Price = ({
       marginBottom: -3,
       color: color,
       fontWeight:
-        (level == PriceLevel.LEVEL6 && "normal") ||
-        (level == PriceLevel.LEVEL7 && "normal") ||
+        (level == PriceLevel.SIX && "normal") ||
+        (level == PriceLevel.SEVEN && "normal") ||
         "bold",
     },
     tag: {
@@ -237,51 +271,73 @@ const Price = ({
       : "NotSpecified"
 
   return (
-    <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
-      {suptitle && <Text style={[styles.suptitle, style?.suptitle]}>{suptitle}</Text>}
-      <View
-        style={[styles.container, style?.container]}
-        accessible={!!priceAccessibilityLabel}
-        accessibilityLabel={priceAccessibilityLabel}
-        testID={priceTestId}
-        {...others}
-      >
-        {inline ? (
-          <View style={[styles.priceContainer, { flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
-            <Text style={[styles.price, style?.price]}>
-              {whole}€{showCents && cents}
-            </Text>
-            <Text style={[styles.inlinePeriod, style?.inlinePeriod]}>
-              {mention}
-              {period && ` / ${period}`}
-            </Text>
-          </View>
-        ) : (
-          <View style={[{ flexDirection: "row" }]}>
-            {striked && <Text style={[styles.striked, style?.striked]}></Text>}
-            <View style={[styles.priceContainer, style?.priceContainer]}>
-              <Text style={[styles.price, style?.price]}>{`${whole}`}</Text>
-            </View>
-            <View style={[styles.priceContainer, style?.priceContainer]}>
-              <Text style={[styles.cents, style?.cents]}>
-                €{showCents && (cents || "00")}
-                {mention && mention}
+    <View>
+      {overline && <Text style={[styles.suptitle, style?.suptitle]}>{overline}</Text>}
+
+      <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
+        <View
+          style={[styles.container, style?.container]}
+          accessible={!!priceAccessibilityLabel}
+          accessibilityLabel={priceAccessibilityLabel}
+          testID={priceTestId}
+          {...others}
+        >
+          {inline ? (
+            <View style={[styles.priceContainer, { flexDirection: "row" }]}>
+              {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
+              <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>
+                {whole}€{showCents && cents}
               </Text>
-              <Text style={[styles.period, style?.period]}>{period && `/${period}`}</Text>
+              <Text style={[styles.inlinePeriod, styles.priceColor, style?.inlinePeriod]}>
+                {mention}
+                {period && ` / ${period}`}
+              </Text>
+            </View>
+          ) : (
+            <>
+              {strikedAmount && (
+                <View style={[{ flexDirection: "row" }]}>
+                  {strikedAmount && <Text style={[styles.striked, style?.striked]}></Text>}
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.price, styles.priceFontSizeStriked, styles.priceStrikedColor, style?.price]}>{`${wholeStriked}`}</Text>
+                  </View>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.cents, styles.centsFontSizeStriked, styles.priceStrikedColor, style?.cents]}>
+                      €{showCents && (centsStriked || "00")}
+                      {mention && mention}
+                    </Text>
+                    <Text style={[styles.period, styles.periodFontSizeStriked, styles.priceStrikedColor, style?.period]}>{period && `/${period}`}</Text>
+                  </View>
+                </View>
+              )}
+              {amount && strikedAmount && <Spacer horizontal size={SpacerSize.ONE} />}
+              {amount && (
+                <View style={[{ flexDirection: "row" }]}>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.price, styles.priceFontSize, styles.priceColor, style?.price]}>{`${whole}`}</Text>
+                  </View>
+                  <View style={[styles.priceContainer, style?.priceContainer]}>
+                    <Text style={[styles.cents, styles.centsFontSize, styles.priceColor, style?.cents]}>
+                      €{showCents && (cents || "00")}
+                      {mention && mention}
+                    </Text>
+                    <Text style={[styles.period, styles.periodFontSize, styles.priceColor, style?.period]}>{period && `/${period}`}</Text>
+                  </View>
+                </View>
+              )}
+            </>
+          )}
+        </View>
+        {tagAmount && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+            <View style={[styles.tagArrow, style?.tagArrow]} />
+            <View style={[styles.tag, style?.tag]}>
+              <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
+              {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
             </View>
           </View>
         )}
       </View>
-      {tagAmount && (
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-          <View style={[styles.tagArrow, style?.tagArrow]} />
-          <View style={[styles.tag, style?.tag]}>
-            <TrilogyText style={[styles.tagTextAmount, style?.tagTextAmount]} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</TrilogyText>
-            {tagSymbol === '€' && period && <TrilogyText style={[styles.tagTextPeriod, style?.tagTextPeriod]} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}> /{period}</TrilogyText>}
-          </View>
-        </View>
-      )}
     </View>
   )
 }

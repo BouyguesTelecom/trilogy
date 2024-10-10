@@ -2,6 +2,15 @@
   position: relative;
   margin: 16px 0;
 
+  .textarea-label {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .textarea-sample {
+    margin-bottom: 10px !important;
+  }
+
   textarea.textarea {
     padding: $spacing-4;
     border-radius: var(--radius-small);
@@ -65,6 +74,14 @@
     font-size: 16px;
   }
 
+   .textarea-label + .textarea-sample ~ span.icon {
+    top: 72px !important;
+  }
+
+  .textarea-label ~ span.icon {
+    top: 45px !important;
+  }
+
   span.icon {
     position: absolute;
     top: $spacing-4;
@@ -79,7 +96,7 @@
   }
 
   // Colors
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $color-invert: invertColor($name);
     $brandName: getColorBrandName($name);

@@ -3,14 +3,14 @@ import { Animated, StyleSheet } from "react-native"
 import { ProgressProps } from "./ProgressProps"
 import { View } from "@/components/view"
 import { Text, TextLevels } from "@/components/text"
-import { getAlertStyle, getColorStyle, TrilogyColor } from "@/objects"
+import { getStatusStyle, getColorStyle, TrilogyColor } from "@/objects"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Progress component
  * @param children {ReactNode} Use Children it only if stacked progress
  * @param percent {number} Progress percent
- * @param alert {AlertState} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
+ * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param stacked {boolean} Stacked progress
  * @param uniqueLegend {stringabsolute} Unique legend
  * @param firstExtremLegend {string} First extremity legend, only with secondExtremLegend property
@@ -19,7 +19,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const Progress = ({
   children,
   percent,
-  alert,
+  status,
   stacked,
   uniqueLegend,
   firstExtremLegend,
@@ -50,13 +50,13 @@ const Progress = ({
       flexDirection: "row",
       width: "100%",
       height: height,
-      backgroundColor: getColorStyle(TrilogyColor.FONT, 1),
+      backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 15,
     },
     percent: {
       alignSelf: "flex-start",
       height: height,
-      backgroundColor: getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN),
+      backgroundColor: getStatusStyle(status).color,
       borderRadius: 15,
     },
     progressItemFirst: {
@@ -101,7 +101,7 @@ const Progress = ({
                     index === 0 && styles.progressItemFirst,
                     index === children.length - 1 && styles.progressItemSecond,
                     {
-                      backgroundColor: getAlertStyle(child.props.alert),
+                      backgroundColor: getColorStyle(child.props.status),
                       height: height,
                     },
                   ],

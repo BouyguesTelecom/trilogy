@@ -13,14 +13,16 @@ import { hashClass } from "@/helpers"
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = ({
-  className,
-  done,
-  active,
-  undone,
-  cancel,
-  ...others
-}: TimelineItemWebProps): JSX.Element => {
+const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    done,
+    active,
+    undone,
+    cancel,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
@@ -33,7 +35,7 @@ const TimelineItem = ({
       className
     )
   )
-  return <div className={classes} {...others} />
-}
+  return <div ref={ref} className={classes} {...others} />
+})
 
 export default TimelineItem

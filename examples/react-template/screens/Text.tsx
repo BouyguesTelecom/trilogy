@@ -45,7 +45,7 @@ export const TextScreen = (): JSX.Element => {
         quia reiciendis, sint.
       </Text>
       <Columns>
-        <ColumnsItem centered>
+        <ColumnsItem size={12} centered>
           <Text>Mon texte</Text>
           <ButtonList>
             <Button variant={ButtonVariant.PRIMARY}>Centered button</Button>

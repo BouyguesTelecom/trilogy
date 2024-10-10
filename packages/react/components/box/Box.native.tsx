@@ -3,7 +3,6 @@ import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View, } from "
 import { BoxProps } from "./BoxProps"
 import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { getBackgroundStyle } from "@/objects/atoms/Background"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
 
@@ -12,8 +11,8 @@ import { StatesContext } from "@/context/providerStates"
  * @param children {React.ReactNode} Childrens
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
- * @param background {TrilogyColor} Box Content Background Color
- * @param leftBorder {TrilogyColor} Add Left Highlight Border With Semantic Color
+ * @param backgroundColor {TrilogyColor} Box Content Background Color
+ * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param testId {string} Test id
  * @param shadowless {boolean} Remove box shadow
  * @param backgroundSrc {string} Source of background Image
@@ -29,10 +28,10 @@ const Box = ({
   children,
   onClick,
   skeleton,
-  leftBorder,
+  highlighted,
   testId,
   shadowless,
-  background,
+  backgroundColor,
   backgroundSrc,
   inverted,
   flat,
@@ -47,7 +46,7 @@ const Box = ({
   const styles = StyleSheet.create({
     box: {
       width: "100%",
-      backgroundColor: background ? getBackgroundStyle(background) : colorBgc,
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       borderRadius: boxRadius,
       flexDirection: "row",
       justifyContent: "flex-start",
@@ -55,8 +54,8 @@ const Box = ({
       borderStyle: flat ? "solid" : undefined,
       borderWidth: (flat && 1) || (active && 2) || 0,
       borderColor: active
-        ? getColorStyle(TrilogyColor.MAIN, 0)
-        : getColorStyle(TrilogyColor.FONT, 1),
+        ? getColorStyle(TrilogyColor.MAIN)
+        : getColorStyle(TrilogyColor.MAIN_FADE),
       marginTop: hat ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
@@ -75,17 +74,17 @@ const Box = ({
     skeleton: {
       width: "100%",
       minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 0),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       overflow: "hidden",
       borderRadius: boxRadius,
     },
-    leftBorder: {
+    highlighted: {
       position: "absolute",
       width: 8,
       borderTopStartRadius: boxRadius,
       borderBottomStartRadius: boxRadius,
       height: boxHeight,
-      backgroundColor: leftBorder ? getColorStyle(leftBorder as TrilogyColor | TrilogyColorValues) : 'transparent',
+      backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
 
     },
     column: {
@@ -107,7 +106,7 @@ const Box = ({
   const boxTestId = testId || "NotSpecified"
 
   const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others} testID="skeleton">
+    <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
       <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === "android" && (
@@ -144,7 +143,7 @@ const Box = ({
                 : { uri: backgroundSrc }
             }
           >
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider
               value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
             >
@@ -153,7 +152,7 @@ const Box = ({
           </ImageBackground>
         ) : (
           <>
-            {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider
               value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
             >
@@ -185,7 +184,7 @@ const Box = ({
               : { uri: backgroundSrc }
           }
         >
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(highlighted) && <View style={styles.highlighted} />}
           <StatesContext.Provider
             value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
           >
@@ -196,7 +195,7 @@ const Box = ({
         <StatesContext.Provider
           value={{ inverted: !!inverted, active: !!active, flat: !!flat }}
         >
-          {Boolean(leftBorder) && <View style={styles.leftBorder} />}
+          {Boolean(highlighted) && <View style={styles.highlighted} />}
           <View style={styles.column}>{children}</View>
         </StatesContext.Provider>
       )}

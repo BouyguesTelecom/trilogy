@@ -13,7 +13,7 @@ a.toaster {
     @include apply-shadow-box();
 
 
-  background-color: getColor('bg-info');
+  background-color: getColor('info-fade');
   border-radius: var(--radius);
   margin-bottom: 16px;
   position: relative;
@@ -64,7 +64,7 @@ a.toaster {
 
   @each $name in $colors-feedback {
     &.is-#{$name} {
-      background-color: getBGColor($name);
+      background-color: fadeColor($name);
       border: 2px solid getColor($name);
 
       .icon {

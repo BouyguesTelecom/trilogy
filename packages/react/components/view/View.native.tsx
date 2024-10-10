@@ -12,7 +12,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onClick {Function} Click Event
  * @param flexable {boolean} Flexable view
  * @param bottom {boolean} Bottom position
- * @param color {TrilogyColor} View backgroud color
+ * @param backgroundColor {TrilogyColor} View backgroud color
  * @param backgroundSrc {string} Source of background Image
  * @param id {string} Id for Web / TestID for Native
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
@@ -27,7 +27,7 @@ const View = ({
   onClick,
   flexable,
   bottom,
-  background,
+  backgroundColor,
   backgroundSrc,
   id,
   justify,
@@ -36,7 +36,7 @@ const View = ({
   ...others
 }: ViewProps): JSX.Element => {
   const viewColor =
-    (background && getColorStyle(background as TrilogyColor)) || "transparent"
+    (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || "transparent"
 
   const styles = StyleSheet.create({
     view: {

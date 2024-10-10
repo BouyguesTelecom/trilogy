@@ -3,7 +3,7 @@ import { Platform, StyleSheet, View } from "react-native"
 import { ProgressRadialProps } from "./ProgressRadialProps"
 import { AnimatedCircularProgress } from "./react-native-circular-progress"
 import { Text, TextLevels } from "@/components/text"
-import { getAlertStyle, getAlignStyle, TypographyAlign, } from "@/objects"
+import { getStatusStyle, getAlignStyle, TypographyAlign, } from "@/objects"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import ContentLoader, { Circle } from "react-content-loader/native"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -13,11 +13,11 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param percent {number} Progress percent
  * @param label {string} Custom label
  * @param description {string} Custom description
- * @param alert {AlertState} Progress alert variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
+ * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
  * @param full {boolean} Full progressRadial
  * @param disk {boolean} Disk ProgressRadial
  * @param children {React.ReactNode}
- * @param secondAlert {AlertState} Second Progress alert variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
+ * @param secondStatus {StatusState} Second Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
  * @param secondPercent {number} Second progress percent
  * @param align {Alignable} Progress Radial Alignement
  * @param skeleton {boolean} Skeleton Progress Radial
@@ -26,22 +26,20 @@ const ProgressRadial = ({
   percent,
   label,
   description,
-  alert,
+  status,
   full,
   disk,
   secondPercent,
-  secondAlert,
+  secondStatus,
   align,
   skeleton,
   ...others
 }: ProgressRadialProps): JSX.Element => {
-  const color = getAlertStyle(alert) || getColorStyle(TrilogyColor.MAIN)
-  const backgroundColor = getColorStyle(TrilogyColor.FONT, 1)
+  const color = getColorStyle(status || TrilogyColor.INFO)
+  const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = percent || 0
   const secondFill = secondPercent ? { secondFill: secondPercent } : null
-  const secondFillColor = secondAlert
-    ? { secondFillTintColor: getAlertStyle(secondAlert) }
-    : null
+  const secondFillColor = { secondFillTintColor: getColorStyle(secondStatus || TrilogyColor.MAIN) }
   const progressRadialWidth = 100
   const progressRadialSkeletonRadius = 50
 
@@ -66,13 +64,13 @@ const ProgressRadial = ({
       backgroundColor: color,
     },
     labelDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontSize: 20,
       fontWeight: "500",
     },
     descriptionDisk: {
-      color: getColorStyle(TrilogyColor.BACKGROUND),
+      color: getColorStyle(TrilogyColor.FONT),
       textAlign: "center",
       fontWeight: "400",
     },
@@ -84,7 +82,7 @@ const ProgressRadial = ({
       width: progressRadialWidth,
       height: progressRadialWidth,
       borderRadius: progressRadialSkeletonRadius,
-      backgroundColor: getColorStyle(TrilogyColor.DISABLED, 1),
+      backgroundColor: getColorStyle(TrilogyColor.DISABLED_FADE),
       overflow: "hidden",
     },
   })

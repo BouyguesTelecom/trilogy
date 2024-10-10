@@ -10,7 +10,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Link Component
- * @param plain {boolean} Link without underline
  * @param to {string} Url to open
  * @param title {string} Title attribute
  * @param typo {TypographyAlign} Typos align link
@@ -39,20 +38,20 @@ const Link = ({
 }: LinkProps): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
     return (
-      (level && level == "ONE" && 16) ||
-      (level && level == "TWO" && 14) ||
-      (level && level == "THREE" && 12) ||
-      (level && level == "FOUR" && 10) ||
+      (level && level == TextLevels.ONE && 16) ||
+      (level && level == TextLevels.TWO && 14) ||
+      (level && level == TextLevels.THREE && 12) ||
+      (level && level == TextLevels.FOUR && 10) ||
       10
     )
   }
 
   const getHeightLinkAndroid = (level: TextLevels) => {
     return (
-      (level && level == "ONE" && 20) ||
-      (level && level == "TWO" && 18) ||
-      (level && level == "THREE" && 15) ||
-      (level && level == "FOUR" && 13) ||
+      (level && level == TextLevels.ONE && 20) ||
+      (level && level == TextLevels.TWO && 18) ||
+      (level && level == TextLevels.THREE && 15) ||
+      (level && level == TextLevels.FOUR && 13) ||
       14
     )
   }
@@ -178,7 +177,7 @@ const Link = ({
               >
                 {children}
               </Text>
-              <Spacer size={SpacerSize.SMALLER} horizontal />
+              <Spacer size={SpacerSize.ONE} horizontal />
               <Icon
                 color={TrilogyColor.MAIN}
                 name={iconName}

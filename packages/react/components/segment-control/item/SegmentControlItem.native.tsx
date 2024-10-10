@@ -32,8 +32,8 @@ const SegmentControlItem = ({
       backgroundColor:
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
-        (disabled && getColorStyle(TrilogyColor.DISABLED, 1)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
+        getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     text: {
       paddingHorizontal: 16,

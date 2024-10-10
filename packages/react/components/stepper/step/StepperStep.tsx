@@ -19,18 +19,20 @@ import { IconSize } from "@/components/icon"
  * @param label {string} Step label
  * @param step {number|string} Step text circle
  */
-const StepperStep = ({
-  children,
-  className,
-  active,
-  markup,
-  current,
-  done,
-  label,
-  iconName,
-  error,
-  ...others
-}: StepperStepProps): JSX.Element => {
+const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.LegacyRef<any>) => {
+  const {
+    children,
+    className,
+    active,
+    markup,
+    current,
+    done,
+    label,
+    iconName,
+    error,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
   const classesStepLabel = hashClass(styled, clsx('step-label'))
 
@@ -54,7 +56,7 @@ const StepperStep = ({
   const Tag = markup && isCorrectMarkup(markup) ? markup : StepperStepMarkup.DIV
 
   return (
-    <Tag className={classes} data-label={label} {...others}>
+    <Tag ref={ref} className={classes} data-label={label} {...others}>
       <div className={classesStepLabel}>
         {label || children}
         {
@@ -63,6 +65,7 @@ const StepperStep = ({
       </div>
     </Tag>
   )
-}
+
+})
 
 export default StepperStep
