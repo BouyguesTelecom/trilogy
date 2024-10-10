@@ -28,7 +28,7 @@ const AccordionItem = ({
   ...others
 }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDetailsElement>(null)
-  const { styled } = useTrilogyContext()
+  const {styled} = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
   const [expandedHeight, setExpandedHeight] = useState<string>()
@@ -71,12 +71,12 @@ const AccordionItem = ({
   if (children) {
     childrenElement = Array.isArray(children)
       ? children.map((child, index: number) => {
-          return React.cloneElement(child as React.ReactElement, {
-            key: `article-${index}`,
-            dataId: index === 0 ? `header-${id}` : `body-${id}`,
-            disabled,
-          })
+        return React.cloneElement(child as React.ReactElement, {
+          key: `article-${index}`,
+          dataId: index === 0 ? `header-${id}` : `body-${id}`,
+          disabled,
         })
+      })
       : children
   }
 
