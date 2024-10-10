@@ -9,8 +9,6 @@ const CheckboxExample: React.ReactNode = <div>
                         <Checkbox
                             label="On peut me cocher grâce au controls ↓ "
                             name="checkbox1"
-                            onChange={function noRefCheck() { }}
-                            onClick={function noRefCheck() { }}
                             value="default value 1"
                         />
                     </ColumnsItem>
@@ -20,7 +18,6 @@ const CheckboxExample: React.ReactNode = <div>
                             checked
                             label="Je suis cochée"
                             name="checkbox2"
-                            onClick={function noRefCheck() { }}
                             value="default value 2"
                         />
                     </ColumnsItem>
@@ -30,7 +27,6 @@ const CheckboxExample: React.ReactNode = <div>
                             disabled
                             label="Je suis disabled"
                             name="checkbox3"
-                            onClick={function noRefCheck() { }}
                             value="default value 3"
                         />
                     </ColumnsItem>
@@ -41,8 +37,6 @@ const CheckboxExample: React.ReactNode = <div>
                         iconTile="tri-check-circle"
                         label="Checkbox tile horizontal"
                         name="checkbox"
-                        onChange={function noRefCheck() { }}
-                        onClick={function noRefCheck() { }}
                         tile
                         value="default value 1"
                     />
@@ -55,7 +49,6 @@ const CheckboxExample: React.ReactNode = <div>
                         iconTile="tri-infos-circle"
                         label="Checkbox tile avec Icône"
                         name="checkbox"
-                        onClick={function noRefCheck() { }}
                         tile
                         value="default value 1"
                     />
@@ -68,7 +61,6 @@ const CheckboxExample: React.ReactNode = <div>
                         iconTile="tri-alert"
                         label="Checkbox tile horizontal disabled"
                         name="checkbox"
-                        onClick={function noRefCheck() { }}
                         tile
                         value="default value 1"
                     />
