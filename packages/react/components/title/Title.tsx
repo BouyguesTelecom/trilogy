@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { TitleProps } from './TitleProps'
-import { is } from '../../services'
+import { is } from '@/services'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { hashClass } from '../../helpers'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { useTrilogyContext } from '@/context/index'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {
@@ -88,8 +88,8 @@ const Title = ({
     ),
   )
 
-  const subtitleClasses = hashClass(styled, clsx('subtitle', className))
-  const overlineClasses = hashClass(styled, clsx('overline', className))
+  const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
+  const overlineClasses = hashClass(styled, clsx('overline', typo, className))
 
   useEffect(() => {
     setIsLoading(skeleton || false)

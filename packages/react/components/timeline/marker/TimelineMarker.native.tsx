@@ -1,11 +1,11 @@
 import React, { useContext } from "react"
 import { StyleSheet, View } from "react-native"
 import { TimelineMarkerProps } from "./TimelineMarkerProps"
-import { Icon, IconSize } from "../../icon"
+import { Icon, IconSize } from "@/components/icon"
 import { TimelineItemContext } from "../item/TimelineItem.native"
-import { getColorStyle, TrilogyColor } from "../../../objects"
-import { TimelineHeightContext } from "../Timeline.native"
-import { ComponentName } from "../../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects"
+import { TimelineHeightContext } from "@/components/timeline/Timeline.native"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TimelineMarker Native Component
@@ -14,6 +14,7 @@ import { ComponentName } from "../../enumsComponentsName"
 const TimelineMarker = ({
   iconName,
   iconColor,
+  testId
 }: TimelineMarkerProps): JSX.Element => {
   const { active, undone, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
@@ -32,10 +33,10 @@ const TimelineMarker = ({
       marginRight: "auto",
       borderColor:
         (active && getColorStyle(TrilogyColor.MAIN)) ||
-        (undone && getColorStyle(TrilogyColor.NEUTRAL_LIGHT)) ||
-        (cancel && getColorStyle(TrilogyColor.NEUTRAL_DARK)) ||
+        (undone && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
+        (cancel && getColorStyle(TrilogyColor.NEUTRAL)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+        getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     icon: {
       alignSelf: "center",
@@ -43,7 +44,7 @@ const TimelineMarker = ({
   })
 
   return (
-    <View style={styles.marker}>
+    <View style={styles.marker} testID={testId}>
       <View style={styles.icon}>
         <Icon
           name={iconName}
@@ -52,17 +53,17 @@ const TimelineMarker = ({
             !iconColor
               ? (active && TrilogyColor.BACKGROUND) ||
                 (undone && TrilogyColor.MAIN) ||
-                (cancel && TrilogyColor.BACKGROUND) ||
+                (cancel && TrilogyColor.NEUTRAL_FADE) ||
                 (done && TrilogyColor.BACKGROUND) ||
                 TrilogyColor.BACKGROUND
               : iconColor
           }
           backgroundColor={
             (active && TrilogyColor.MAIN) ||
-            (undone && TrilogyColor.NEUTRAL_LIGHT) ||
-            (cancel && TrilogyColor.NEUTRAL_DARK) ||
+            (undone && TrilogyColor.NEUTRAL_FADE) ||
+            (cancel && TrilogyColor.NEUTRAL) ||
             (done && TrilogyColor.MAIN) ||
-            TrilogyColor.NEUTRAL_LIGHT
+            TrilogyColor.NEUTRAL_FADE
           }
           size={IconSize.SMALL}
         />

@@ -1,4 +1,4 @@
-import { ClickEvent } from '../../events/OnClickEvent'
+import { ClickEvent } from '@/events/OnClickEvent'
 import { CountdownFormat } from './CountdownEnum'
 
 /**
@@ -11,4 +11,5 @@ export interface CountdownProps {
   event?: ClickEvent
   small?: boolean
   centered?: boolean
+  inverted?: boolean
 }

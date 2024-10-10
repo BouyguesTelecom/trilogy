@@ -1,12 +1,12 @@
 import React, { useContext } from "react"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { TimelineContentProps } from "./TimelineContentProps"
-import { Text, TextLevels } from "../../text"
-import { Link } from "../../link"
-import { TypographyColor } from "../../../objects"
-import { TimelineItemContext } from "../item/TimelineItem.native"
-import { AutoLayout } from "../../autolayout"
-import { ComponentName } from "../../enumsComponentsName"
+import { Text, TextLevels } from "@/components/text"
+import { Link } from "@/components/link"
+import { TypographyColor } from "@/objects"
+import { TimelineItemContext } from "@/components/timeline/item/TimelineItem.native"
+import { AutoLayout } from "@/components/autolayout"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TimelineContent Native Component
@@ -67,7 +67,7 @@ const TimelineContent = ({
         </Text>
       )}
       {(link || onClick) && (
-        <TouchableOpacity onPress={(e?) => onClick?.(e)}>
+        <TouchableOpacity onPress={(e?) => onClick?.(e)} testID='click-id'>
           <View style={styles.link}>
             <Link to={link}>{contentLink || link}</Link>
           </View>

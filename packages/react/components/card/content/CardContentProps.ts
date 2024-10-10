@@ -1,8 +1,8 @@
-import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "../../button/ButtonEnum"
-import { TitleLevels, TitleLevelValues } from "../../title/TitleEnum"
-import { TextLevelValues } from "../../text/TextEnum"
-import { ClickEvent } from "../../../events/OnClickEvent"
-import { Accessibility, Clickable, TrilogyColor } from "../../../objects"
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "@/components/button/ButtonEnum"
+import { TitleLevels, TitleLevelValues } from "@/components/title/TitleEnum"
+import { TextLevelValues } from "@/components/text/TextEnum"
+import { ClickEvent } from "@/events/OnClickEvent"
+import { Accessibility, Clickable, TrilogyColor } from "@/objects"
 
 /**
  * Card Content Interface
@@ -21,7 +21,5 @@ export interface CardContentProps extends Clickable, Accessibility {
   className?: string;
   buttonMarkup?: ButtonMarkup | ButtonMarkupValues;
   onClick?: ClickEvent;
-
-  floating?: boolean;
   backgroundColor?: TrilogyColor.BACKGROUND | "transparent";
 }

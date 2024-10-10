@@ -1,12 +1,12 @@
 import React, { useContext } from "react"
 import { Platform, StyleSheet, Text as TextNative, View } from "react-native"
 import { TextProps } from "./TextProps"
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "../../objects/Typography"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "@/objects/Typography"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { TextLevels, TextLevelValues } from "./TextEnum"
 import ContentLoader, { Rect } from "react-content-loader/native"
-import { ComponentName } from "../enumsComponentsName"
-import { StatesContext } from "../../context/providerStates"
+import { ComponentName } from "@/components/enumsComponentsName"
+import { StatesContext } from "@/context/providerStates"
 
 /**
  * Text Native Component
@@ -40,17 +40,17 @@ const Text = ({
   const statesContext = useContext(StatesContext)
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
-      (level && level == "ONE" && 16) ||
-      (level && level == "TWO" && 14) ||
-      (level && level == "THREE" && 12) ||
-      (level && level == "FOUR" && 10) ||
+      (level && level == TextLevels.ONE && 16) ||
+      (level && level == TextLevels.TWO && 14) ||
+      (level && level == TextLevels.THREE && 12) ||
+      (level && level == TextLevels.FOUR && 10) ||
       14
     )
   }
 
   const styles = StyleSheet.create({
     text: {
-      fontFamily: getTypographyBoldStyle(typo, level),
+      fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
         (!skeleton &&
@@ -75,12 +75,12 @@ const Text = ({
         "flex-start",
 
       borderRadius:
-        (level && level == "ONE" && 7) ||
-        (level && level == "TWO" && 7) ||
-        (level && level == "THREE" && 5) ||
+        (level && level == TextLevels.ONE && 7) ||
+        (level && level == TextLevels.TWO && 7) ||
+        (level && level == TextLevels.THREE && 5) ||
         3,
       borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_LIGHT),
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       overflow: "hidden",
       height: textLevels(level as TextLevels | TextLevelValues),
     },

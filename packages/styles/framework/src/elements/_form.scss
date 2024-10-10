@@ -5,18 +5,19 @@ $help-size: $size-small;
 $label-weight: $weight-bold;
 
 .field {
-  &:not(:first-child) {
-    margin-top: $field-margin;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 7.5px;
-  }
-
   &.is-fullwidth {
     div.control {
       flex: 1;
     }
+  }
+
+  .input-label {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .input-sample {
+    margin-bottom: 10px !important;
   }
 
   @include mobile {
@@ -219,7 +220,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getBGColor($name);
+            color: fadeColor($name);
           }
         }
       }
@@ -233,7 +234,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: getBGColor($name)
+            color: fadeColor($name);
           }
         }
       }
@@ -396,14 +397,13 @@ $label-weight: $weight-bold;
 
         &:hover,
         &:focus {
-          color: getColor('neutral-dark');
+          color: getColor('neutral');
         }
       }
     }
   }
 
   + .help {
-    margin: 4px 0;
     font-size: $text-12;
     font-weight: $weight-medium;
   }
@@ -560,7 +560,7 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('neutral-dark');
+  color: getColor('neutral');
   display: block;
   font-size: $size-normal;
   font-weight: $label-weight;
@@ -584,7 +584,7 @@ $label-weight: $weight-bold;
   font-size: $help-size;
   margin-top: 2.5px;
 
-  @each $name, $pair in $colors-brand-funcionnal {
+  @each $name, $pair in $colors-brand-functionnal {
     $color: getColor($name);
     $brandName: getColorBrandName($name);
 

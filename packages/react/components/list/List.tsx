@@ -1,8 +1,8 @@
 import * as React from "react"
 import clsx from "clsx"
 import { ListProps } from "./ListProps"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * ListItem Component
@@ -11,13 +11,15 @@ import { useTrilogyContext } from "../../context"
  * @param hasIcon {boolean} If Have icon
  */
 
-const List = ({
-  className,
-  hasIcon,
-  children,
-  testId,
-  ...others
-}: ListProps): JSX.Element => {
+const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
+  const {
+    className,
+    hasIcon,
+    children,
+    testId,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -25,10 +27,10 @@ const List = ({
     clsx(hasIcon ? "icon-list" : "list", className)
   )
   return (
-    <ul data-testid={testId} className={classes} {...others}>
+    <ul ref={ref} data-testid={testId} className={classes} {...others}>
       {children}
     </ul>
   )
-}
+})
 
 export default List

@@ -1,7 +1,7 @@
-import { Accessibility, Clickable, Clipped, Fullwidth } from '../../objects'
+import { IconColor, IconColorValues, IconName, IconNameValues } from '@/components/icon'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { Accessibility, Clickable, Clipped, Fullwidth } from '@/objects'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { IconColor, IconColorValues, IconName, IconNameValues } from '../icon'
 
 export interface ModalContentButtonProps extends Clickable {
   children?: string
@@ -29,6 +29,7 @@ export interface ModalProps extends Clipped, Fullwidth, Accessibility {
   triggerClassNames?: string
   triggerMarkup?: ModalMarkup | ModalMarkupValues
   ctaContent?: string
+  ctaCancelContent?: string
   closeIcon?: boolean
   ctaOnClick?: ClickEvent
   ctaCancelOnClick?: ClickEvent

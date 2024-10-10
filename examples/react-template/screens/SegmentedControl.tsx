@@ -8,7 +8,7 @@ import { TrilogyColor } from "@trilogy-ds/react";
 
 export const SegmentedControlScreen = (): JSX.Element => {
   return (
-    <Section background={TrilogyColor.BACKGROUND}>
+    <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <SegmentControl>
         <SegmentControlItem active onClick={() => alert("Appels")}>
           Item 1

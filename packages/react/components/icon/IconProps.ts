@@ -13,9 +13,7 @@ import {
   TextIconMarkupValues,
 } from './IconEnum'
 import { IconName, IconNameValues } from './IconNameEnum'
-import { Stacked } from '../../objects/facets/Stacked'
-import { AlignableProps } from '../../objects/facets/Alignable'
-import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues } from '../../objects'
+import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues, Stacked, AlignableProps } from '@/objects'
 
 type Styles = { [key: string]: unknown }
 

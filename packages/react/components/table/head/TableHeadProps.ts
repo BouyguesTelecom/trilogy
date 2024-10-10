@@ -1,4 +1,4 @@
-import { TrilogyColor, TrilogyColorValues } from '../../../objects'
+import { TrilogyColor, TrilogyColorValues } from '@/objects'
 
 export interface TableHeadProps {
   children: React.ReactNode

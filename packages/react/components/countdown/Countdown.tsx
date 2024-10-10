@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { CountdownProps } from './CountdownProps'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import clsx from 'clsx'
-import { hashClass } from '../../helpers'
-import { is } from '../../services'
-import { useTrilogyContext } from '../../context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import { useTrilogyContext } from '@/context'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -19,6 +19,7 @@ const calculateTimer = (timeDifference: number) => {
  * Countdown Component
  * @param deadline {Date} Date to reach before the end of the countdown
  * @param format {CountdownFormat} Format of countdown
+ * @param inverted {Boolean} White countdown on darked background
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param event
@@ -26,7 +27,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, className, format, event, small, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, className, format, event, small, inverted, ...others }: CountdownProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const [timeLeft] = useState(deadline)
@@ -42,7 +43,7 @@ const Countdown = ({ deadline, className, format, event, small, ...others }: Cou
   const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
   const parsedFormat = format?.split('-')
 
-  const classes = hashClass(styled, clsx('countdown', small && is('small'), className))
+  const classes = hashClass(styled, clsx('countdown', inverted && is('inverted'), small && is('small'), className))
 
   if (parsedFormat) {
     parsedFormat.forEach((item) => {

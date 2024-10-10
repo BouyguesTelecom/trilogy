@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View, } from "react-native"
 import { ImageProps } from "./ImageProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Image Component

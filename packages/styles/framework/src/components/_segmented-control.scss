@@ -1,7 +1,7 @@
 .segmented-control {
   border-radius: 6px;
   padding: $spacing-1;
-  background-color: getBGColor('neutral');
+  background-color: getColor('neutral-fade');
   display: inline-block;
   margin: 16px 0;
 
@@ -19,7 +19,7 @@
     border: 2px solid transparent;
     height: 42px;
     color: getColor('font');
-    background-color: getBGColor('neutral');
+    background-color: getColor('neutral-fade');
 
     &:not(:last-child) {
       margin-right: 4px;

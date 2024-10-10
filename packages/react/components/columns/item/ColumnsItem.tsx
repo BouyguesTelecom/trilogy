@@ -1,10 +1,10 @@
 import * as React from "react"
 import clsx from "clsx"
 import { ColumnsItemProps } from "./ColumnsItemProps"
-import { has, is } from "../../../services/classify"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { getAlignClassName } from "../../../objects"
+import { has, is } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { getAlignClassName } from "@/objects"
 
 /**
  * Columns Item Component - Columns Child
@@ -30,28 +30,30 @@ import { getAlignClassName } from "../../../objects"
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = ({
-  className,
-  size,
-  mobileSize,
-  tabletSize,
-  touchSize,
-  desktopSize,
-  widescreenSize,
-  fullhdSize,
-  offset,
-  mobileOffset,
-  tabletOffset,
-  touchOffset,
-  desktopOffset,
-  widescreenOffset,
-  fullhdOffset,
-  narrow,
-  verticalCenter,
-  centered,
-  align,
-  ...others
-}: ColumnsItemProps): JSX.Element => {
+const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    size,
+    mobileSize,
+    tabletSize,
+    touchSize,
+    desktopSize,
+    widescreenSize,
+    fullhdSize,
+    offset,
+    mobileOffset,
+    tabletOffset,
+    touchOffset,
+    desktopOffset,
+    widescreenOffset,
+    fullhdOffset,
+    narrow,
+    verticalCenter,
+    centered,
+    align,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -80,6 +82,7 @@ const ColumnsItem = ({
     )
   )
 
-  return <div className={classes} {...others} />
-}
+  return <div ref={ref} className={classes} {...others} />
+})
+
 export default ColumnsItem

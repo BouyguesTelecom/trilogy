@@ -1,8 +1,8 @@
 import * as React from "react"
 import { AccordionHeaderProps } from "./AccordionHeaderProps"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Accordion Header
@@ -15,7 +15,6 @@ const AccordionHeader = ({
   children,
   className,
   testId,
-  dataId,
   ...others
 }: AccordionHeaderProps): React.JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -24,7 +23,7 @@ const AccordionHeader = ({
     <summary
       data-accordion-header={true}
       className={hashClass(styled, clsx("accordion-header", className))}
-      aria-label='toggle'
+      role='button'
       {...others}
       data-testid={testId}
     >

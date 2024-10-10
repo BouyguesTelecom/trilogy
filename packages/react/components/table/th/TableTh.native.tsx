@@ -1,10 +1,10 @@
 import * as React from "react"
 import { StyleSheet } from "react-native"
 import { TableThProps } from "./TableThProps"
-import { View } from "../../view"
-import { Text } from "../../text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "../../../objects"
-import { ComponentName } from "../../enumsComponentsName"
+import { View } from "@/components/view"
+import { Text } from "@/components/text"
+import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TableTh Component
@@ -15,9 +15,9 @@ const TableTh = ({ children, ...others }: TableThProps): JSX.Element => {
     tableTh: {
       flexDirection: "column",
       flex: 1,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       borderRightWidth: 0.2,
     },
     title: {

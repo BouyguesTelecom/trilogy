@@ -1,9 +1,9 @@
 import * as React from "react"
-import { getColorStyle, TrilogyColor } from "../../objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { RangeProps } from "./RangeProps"
-import { hashClass } from "../../helpers"
+import { hashClass } from "@/helpers"
 import clsx from "clsx"
-import { useTrilogyContext } from "../../context"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Range Component
@@ -53,25 +53,24 @@ const Range = ({
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
       track.style.background = `linear-gradient(to right, ${getColorStyle(
-        TrilogyColor.NEUTRAL_LIGHT,
-        1
-      )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN, 1)} ${
+        TrilogyColor.NEUTRAL_FADE
+      )} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
         (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN, 1)} ${
+      }% , ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
         (cursorMax / max) * 100
-      }%, ${getColorStyle(TrilogyColor.NEUTRAL_LIGHT, 1)} ${
+      }%, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${
         (cursorMax / max) * 100
       }%) `
     }
   }, [cursorMin, cursorMax])
 
   React.useEffect(() => {
-    setCursorMin(valueCursorMin || 0);
-  }, [valueCursorMin]);
+    setCursorMin(valueCursorMin || 0)
+  }, [valueCursorMin])
 
   React.useEffect(() => {
-    setCursorMax(valueCursorMax || max);
-  }, [valueCursorMax]);
+    setCursorMax(valueCursorMax || max)
+  }, [valueCursorMax])
 
   const handleChangeCursorMin = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

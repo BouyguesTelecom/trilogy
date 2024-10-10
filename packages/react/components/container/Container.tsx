@@ -1,10 +1,10 @@
 import * as React from "react"
 import { ContainerProps } from "./ContainerProps"
-import { has, is } from "../../services/classify"
+import { has, is } from "@/services/classify"
 import clsx from "clsx"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
-import { getBackgroundClassName, StickyPosition } from "../../objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { getBackgroundClassName, StickyPosition } from "@/objects"
 
 /**
  * Container Component
@@ -14,7 +14,7 @@ import { getBackgroundClassName, StickyPosition } from "../../objects"
  * @param sticky {StickyPosition} Container sticky top / bottom
  * @param stickyOffSetTop {Number} Set top of sticky container (transformed in px)
  * @param stickyOffSetBottom {Number} Set bottom of sticky container (transformed in px)
- * @param background {TrilogyColor} Container STICKY Background Color
+ * @param backgroundColor {TrilogyColor} Container STICKY Background Color
  * @param pulledRight {Boolean} Container pulled to right
  * @param pulledLeft {Boolean} Container pulled to left
  * @param fluid {boolean} Make the container usable across the width of your section
@@ -33,7 +33,7 @@ const Container = ({
   sticky,
   stickyOffSetTop,
   stickyOffSetBottom,
-  background,
+  backgroundColor,
   backgroundSrc,
   inverted,
   pulledRight,
@@ -65,7 +65,7 @@ const Container = ({
       pulledRight && is("pulled-right"),
       pulledLeft && is("pulled-left"),
       sticky && stickyClassName(),
-      background && has(getBackgroundClassName(background)),
+      backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
       className

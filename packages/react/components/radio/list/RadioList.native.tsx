@@ -1,20 +1,20 @@
 import * as React from "react"
-import { AutoLayoutWrapper } from "../../autolayout"
-import { SpacerSize } from "../../spacer"
-import { SpacingMatrixMode } from "../../autolayout/SpacingMatrix"
+import { AutoLayoutWrapper } from "@/components/autolayout"
+import { SpacerSize } from "@/components/spacer"
+import { SpacingMatrixMode } from "@/components/autolayout/SpacingMatrix"
 
 // eslint-disable-next-line no-duplicate-imports
-import type { SpacingMatrix } from "../../autolayout/SpacingMatrix"
+import type { SpacingMatrix } from "@/components/autolayout/SpacingMatrix"
 import type { RadioListProps } from "./RadioListProps"
-import { ComponentName } from "../../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
-const { MEDIUM, SMALL } = SpacerSize
+const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
 const SPACING_MATRIX: SpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, "Radio", "Divider", SMALL],
-  [INSERT_SPACE_BETWEEN, "Divider", "Radio", SMALL],
-  [INSERT_SPACE_BETWEEN, "Radio", "Radio", MEDIUM],
+  [INSERT_SPACE_BETWEEN, "Radio", "Divider", TWO],
+  [INSERT_SPACE_BETWEEN, "Divider", "Radio", TWO],
+  [INSERT_SPACE_BETWEEN, "Radio", "Radio", THREE],
 ]
 
 /**

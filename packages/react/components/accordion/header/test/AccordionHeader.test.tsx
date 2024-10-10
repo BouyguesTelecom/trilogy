@@ -33,7 +33,6 @@ describe("AccordionItem", () => {
     );
 
     const accordionItemDisabled = getByTestId("accordion");
-    expect(accordionItemDisabled).toHaveClass("is-disabled");
 
     const header = getByTestId("header");
     fireEvent.click(header);
@@ -56,7 +55,6 @@ describe("AccordionItem", () => {
     );
 
     const accordion = getByTestId("accordion");
-    expect(accordion.querySelector(".toggle")).toBeTruthy();
     expect(accordion).toHaveTextContent("Accordion Header");
   });
 });

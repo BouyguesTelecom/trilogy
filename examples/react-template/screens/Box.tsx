@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   AutoLayout,
   Box,
@@ -18,9 +18,9 @@ import {
   Section,
   Text,
   Title,
-  TitleLevels,
-} from "@trilogy-ds/react/components";
-import { TrilogyColor, TypographyAlign } from "@trilogy-ds/react/objects";
+  TitleLevels
+} from '@trilogy-ds/react/components'
+import {TrilogyColor, TypographyAlign} from '@trilogy-ds/react/objects'
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false);
@@ -37,7 +37,7 @@ export const BoxScreen = (): JSX.Element => {
         <Columns multiline>
           <ColumnsItem size={6}></ColumnsItem>
           <ColumnsItem size={10}>
-            <Box>
+            <Box flat>
               <BoxHeader>Box with Header and Content</BoxHeader>
               <BoxContent>
                 <Text>
@@ -99,7 +99,7 @@ export const BoxScreen = (): JSX.Element => {
         <Box
           onClick={() => setActive(!active)}
           active={active}
-          background={TrilogyColor.MAIN}
+          backgroundColor={TrilogyColor.MAIN}
           inverted
         >
           <BoxHeader>Box active</BoxHeader>
@@ -109,7 +109,7 @@ export const BoxScreen = (): JSX.Element => {
           </BoxContent>
         </Box>
 
-        <Box background={{ color: TrilogyColor.MAIN, fade: true }}>
+        <Box backgroundColor={TrilogyColor.MAIN_FADE}>
           <BoxHeader>Box with Header and Content</BoxHeader>
           <BoxContent>
             <Text>Background color is faded.</Text>
@@ -119,7 +119,7 @@ export const BoxScreen = (): JSX.Element => {
           </BoxFooter>
         </Box>
 
-        <Box background={{ color: TrilogyColor.SUCCESS, fade: true }}>
+        <Box backgroundColor={TrilogyColor.SUCCESS_FADE}>
           <BoxContent>
             <Title level={TitleLevels.FOUR}>Simple box</Title>
             <Text>
@@ -137,7 +137,7 @@ export const BoxScreen = (): JSX.Element => {
         </Box>
 
         <Box
-          background={{ color: TrilogyColor.INFO, fade: false }}
+          backgroundColor={TrilogyColor.INFO}
           flat
           inverted
         >
@@ -150,7 +150,7 @@ export const BoxScreen = (): JSX.Element => {
         </Box>
 
         <Box
-          background={{ color: TrilogyColor.INFO, fade: false }}
+          backgroundColor={TrilogyColor.INFO}
           flat
           inverted
         >
@@ -168,7 +168,7 @@ export const BoxScreen = (): JSX.Element => {
               vehicula ac, vehicula eget risus.
             </Text>
             <Box
-              background={{ color: TrilogyColor.BACKGROUND, fade: false }}
+              backgroundColor={TrilogyColor.BACKGROUND}
               flat
             >
               <BoxContent>
@@ -190,7 +190,7 @@ export const BoxScreen = (): JSX.Element => {
                   </ColumnsItem>
                   <ColumnsItem size={5}>
                     <Box
-                      background={{ color: TrilogyColor.MAIN, fade: false }}
+                      backgroundColor={TrilogyColor.MAIN}
                       flat
                       inverted
                     >
@@ -207,8 +207,11 @@ export const BoxScreen = (): JSX.Element => {
         </Box>
         <Divider />
         <Columns>
-          <ColumnsItem size={10}>
-            <Box leftBorder={TrilogyColor.ERROR}>
+          <ColumnsItem size={6}>
+            <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
+              <BoxHeader>
+                Test
+              </BoxHeader>
               <BoxContent>
                 <Title level={TitleLevels.FOUR}>Highlited box</Title>
                 <Text>
@@ -216,12 +219,20 @@ export const BoxScreen = (): JSX.Element => {
                   dolor neque nunc. Eget suscipit enim velit ultricies justo
                   ultrices sed leo cras.
                 </Text>
+                <Text>
+                  Eget tincidunt tincidunt id massa sollicitudin. Egestas felis
+                  dolor neque nunc. Eget suscipit enim velit ultricies justo
+                  ultrices sed leo cras.
+                </Text>
               </BoxContent>
+              <BoxFooter>
+                <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+              </BoxFooter>
             </Box>
           </ColumnsItem>
-          <ColumnsItem size={10}>
-            <Box leftBorder={TrilogyColor.WARNING}>
-              <BoxContent>
+          <ColumnsItem size={6}>
+            <Box highlighted={TrilogyColor.WARNING} className='is-fullheight'>
+              <BoxContent backgroundColor={TrilogyColor.NEUTRAL_FADE}>
                 <Title level={TitleLevels.FOUR}>Highlited box</Title>
                 <Text>
                   Eget tincidunt tincidunt id massa sollicitudin. Egestas felis
@@ -229,6 +240,12 @@ export const BoxScreen = (): JSX.Element => {
                   ultrices sed leo cras.
                 </Text>
               </BoxContent>
+              <BoxContent>
+                <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              </BoxContent>
+              <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+                <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+              </BoxFooter>
             </Box>
           </ColumnsItem>
         </Columns>

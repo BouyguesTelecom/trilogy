@@ -21,12 +21,24 @@ export const RadioScreen = (): JSX.Element => {
   return (
     <AutoLayout>
       <Container>
-        <Text typo={TypographyAlign.TEXT_CENTERED}>
+        <Rows>
+          <RowItem>
+          <Text typo={TypographyAlign.TEXT_CENTERED}>
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
           consectetur, adipisci velit...
         </Text>
+          </RowItem>
+          <RowItem>
+          <Text typo={TypographyAlign.TEXT_CENTERED}>
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+          consectetur, adipisci velit...
+        </Text>
+          </RowItem>
+
+        </Rows>
+
         <Columns>
-          <ColumnsItem centered>
+          <ColumnsItem size={6} centered>
             <Radio
               tile
               iconTile={IconName.CHECK_CIRCLE}
@@ -38,7 +50,7 @@ export const RadioScreen = (): JSX.Element => {
               checked
             />
           </ColumnsItem>
-          <ColumnsItem>
+          <ColumnsItem size={6}>
             <Radio
               iconTile={IconName.CHECK_CIRCLE}
               tile
@@ -52,7 +64,7 @@ export const RadioScreen = (): JSX.Element => {
         </Columns>
         <Spacer size={SpacerSize.MEDIUM} />
         <Columns>
-          <ColumnsItem centered>
+          <ColumnsItem size={6} centered>
             <Radio
               tile
               iconTile={IconName.CHECK_CIRCLE}
@@ -63,7 +75,7 @@ export const RadioScreen = (): JSX.Element => {
               onChange={(e) => console.log(e.radioValue, e.radioChecked)}
             />
           </ColumnsItem>
-          <ColumnsItem>
+          <ColumnsItem size={6}>
             <Radio
               disabled
               iconTile={IconName.CHECK_CIRCLE}

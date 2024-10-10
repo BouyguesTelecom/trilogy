@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from './../icon/IconNameEnum'
-import { Referenceable, ReferenceableNative } from './../../objects/facets/Referenceable'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   InputAutoCapitalize,
@@ -14,10 +14,10 @@ import {
   InputStatusValues,
   InputTextContentType,
   InputTextContentTypeValues,
-} from '../input/InputEnum'
+} from '@/components/input/InputEnum'
 import { TextInput } from 'react-native'
-import { IconStatus } from '../icon'
-import { Accessibility, TypographyColor, TypographyColorValues } from '../../objects'
+import { IconStatus } from '@/components/icon'
+import { Accessibility, TypographyColor, TypographyColorValues } from '@/objects'
 
 export interface TextareaChangeEvent {
   textareaName: string
@@ -56,6 +56,8 @@ type TextareaPropsWeb = Accessibility & {
   statusIconName?: IconName | IconNameValues
   typo?: TypographyColor | TypographyColorValues
   customHeight?: number
+  required?: boolean
+  sample?: string
 }
 
 export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>

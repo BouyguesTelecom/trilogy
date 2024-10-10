@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { StyleSheet } from "react-native"
 import { SegmentControlProps } from "./SegmentControlProps"
-import { View } from "../view"
-import { Text, TextLevels } from "../text"
+import { View } from "@/components/view"
+import { Text, TextLevels } from "@/components/text"
 import SegmentedControlItem from "./item"
-import { getColorStyle, TrilogyColor } from "../../objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * SegmentControl Component
@@ -54,7 +54,7 @@ const SegmentControl = ({
     segmentedControl: {
       flexDirection: "row",
       width: "100%",
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       borderRadius: 4,
       padding: 4,
       paddingRight: -4,

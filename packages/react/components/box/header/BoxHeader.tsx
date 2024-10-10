@@ -1,11 +1,11 @@
 import * as React from "react"
-import { Text } from "../../text"
+import { Text } from "@/components/text"
 import { BoxHeaderProps } from "./BoxHeaderProps"
 import clsx from "clsx"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
-import { has } from "../../../services"
-import { getBackgroundClassName } from "../../../objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
+import { has } from "@/services"
+import { getBackgroundClassName } from "@/objects"
 
 /**
  * Box Header Component

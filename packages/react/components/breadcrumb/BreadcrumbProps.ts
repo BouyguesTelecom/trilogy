@@ -1,4 +1,4 @@
-import { Accessibility } from '../../objects'
+import { Accessibility } from '@/objects'
 
 /**
  * Breadcrumb Interface
@@ -10,6 +10,6 @@ export interface BreadcrumbProps extends Accessibility {
 /**
  * Breadcrumb Web Interface
  */
-export interface BreadcrumbWebProps extends BreadcrumbProps {
+export interface BreadcrumbWebProps extends BreadcrumbProps, Accessibility {
   className?: string
 }

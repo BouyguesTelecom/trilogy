@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { TableTrPropsNative } from './TableTrProps'
-import { View } from '../../view'
-import { Text, TextLevels } from '../../text'
-import { ComponentName } from '../../enumsComponentsName'
-import { getColorStyle, TrilogyColor } from '../../../objects'
+import { View } from '@/components/view'
+import { Text, TextLevels } from '@/components/text'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/components/../objects'
 
 /**
  * TableTr Component
@@ -27,7 +27,7 @@ const TableTr = ({
     },
     expendable: {
       width: "100%",
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_DARK, 1),
+      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
     },
   })

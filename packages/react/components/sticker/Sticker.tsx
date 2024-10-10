@@ -1,16 +1,16 @@
 import React from "react"
 import clsx from "clsx"
 import { StickerProps } from "./StickerProps"
-import { is } from "../../services/classify"
+import { is } from "@/services/classify"
 import { StickerMarkup, StickerMarkupValues } from "./StickerEnum"
-import { getVariantClassName } from "../../objects"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { getVariantClassName } from "@/objects"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Sticker component
  * @param children {ReactNode} Sticker child
- * @param variant {AlertState} Sticker variant : primary only
+ * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
  * @param hat {boolean} Hat Sticker ( for box )
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -26,6 +26,7 @@ const Sticker = ({
   small,
   hat,
   markup,
+  outlined,
   ...others
 }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -37,7 +38,8 @@ const Sticker = ({
       variant && is(getVariantClassName(variant)),
       small && is("small"),
       hat && is("hat"),
-      className
+      className,
+      outlined && is('outlined'),
     )
   )
 

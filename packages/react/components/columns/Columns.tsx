@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
 import { ColumnsProps } from "./ColumnsProps"
-import { is } from "../../services/classify"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { is } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Columns Component
@@ -18,21 +18,20 @@ import { useTrilogyContext } from "../../context"
  * @param multiline {boolean} Multiline Columns
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
- * @param flex {boolean} Flex direction
  */
-const Columns = ({
-  className,
-  multiline,
-  inlined,
-  mobile,
-  centered,
-  verticalCentered,
-  gapless,
-  marginSize,
-  flex,
-  marginless,
-  ...others
-}: ColumnsProps): JSX.Element => {
+const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    multiline,
+    inlined,
+    mobile,
+    centered,
+    verticalCentered,
+    gapless,
+    marginSize,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -46,13 +45,11 @@ const Columns = ({
       verticalCentered && is("vcentered"),
       !marginSize && gapless && is("gapless"),
       !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
-      flex && is("flex"),
-      marginless && is("marginless"),
       className
     )
   )
 
-  return <div className={classes} {...others} />
-}
+  return <div ref={ref} className={classes} {...others} />
+})
 
 export default Columns

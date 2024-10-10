@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
 import { StepperProps } from "./StepperProps"
-import { has } from "../../services/classify"
-import { hashClass } from "../../helpers"
-import { useTrilogyContext } from "../../context"
+import { has } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Stepper Component
@@ -11,12 +11,14 @@ import { useTrilogyContext } from "../../context"
  * @param centered Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({
-  className,
-  centered,
-  children,
-  ...others
-}: StepperProps): JSX.Element => {
+const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const {
+    className,
+    centered,
+    children,
+    ...others
+  } = props
+
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx("stepper-wrapper", className))
@@ -37,7 +39,7 @@ const Stepper = ({
       if (Array.isArray(children)) {
         let haveCurrentStep = false
         children.map((child) => {
-          if (child.props.current) {
+          if (child?.props?.current) {
             haveCurrentStep = true
             setCurrentStep(child.props.step)
           }
@@ -51,7 +53,7 @@ const Stepper = ({
 
   if (centered) {
     return (
-      <section className={centerClasses}>
+      <section ref={ref} className={centerClasses}>
         <div className={classes} {...others}>
           {children}
           <div className='step-count'>
@@ -63,13 +65,13 @@ const Stepper = ({
   }
 
   return (
-    <div className={classes} {...others}>
+    <div ref={ref} className={classes} {...others}>
       {children}
       <div className='step-count'>
         {currentStep}/{nbChild}
       </div>
     </div>
   )
-}
 
+})
 export default Stepper

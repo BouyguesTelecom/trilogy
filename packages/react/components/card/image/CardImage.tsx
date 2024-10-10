@@ -1,9 +1,9 @@
 import * as React from "react"
 import clsx from "clsx"
 import { CardImageProps } from "./CardImageProps"
-import { is } from "../../../services/classify"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { is } from "@/services/classify"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Card Image Component
@@ -13,7 +13,6 @@ import { useTrilogyContext } from "../../../context"
  * @param size Image Card size on horizontal align
  * @param onClick {Function} onClick Event
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param horizontal {boolean} Horizontal Card orientation
  * @param contain {boolean} Resize mode contain
  */
 const CardImage = ({

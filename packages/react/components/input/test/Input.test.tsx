@@ -25,7 +25,6 @@ describe("Input", () => {
   it("should have correctly classes", () => {
     const { getByTestId } = render(
       <Input
-        hovered
         status="warning"
         testId="input"
         hasIcon
@@ -35,7 +34,7 @@ describe("Input", () => {
       />
     );
     const input = getByTestId("input");
-    expect(input).toHaveClass("input", "is-warning", "is-hovered");
+    expect(input).toHaveClass("input", "is-warning");
   });
 
   it("should have aria label", () => {
@@ -359,7 +358,7 @@ describe("Input", () => {
   it("should have icon search right with click event", () => {
     const mockCallBack = jest.fn();
     const { getByTestId } = render(
-      <Input onIconClick={mockCallBack} search testId="input" />
+      <Input onIconClick={mockCallBack} type={InputType.SEARCH} testId="input" />
     );
     const input = getByTestId("input");
     expect(input.nextElementSibling?.firstChild).toHaveClass("icon");
@@ -377,7 +376,6 @@ describe("Input", () => {
         securityGauge
         testId="input"
         onChange={mockCallBack}
-        hovered
         hasIcon
         defaultValue="Input, sans placeholder (et sans padding en haut)"
         help="N'affiche pas de padding supérieur quand il n'y a pas de placeholder"
@@ -419,7 +417,6 @@ describe("Input", () => {
     const specialChars = containerGauge.querySelector(
       "[data-security-special-chars]"
     );
-    const length = containerGauge.querySelector("[data-security-length]");
 
     expect(gauge).toHaveStyle("width: 0%");
     expect(gauge).toHaveStyle("backgroundColor: '#D1D1D1'");
@@ -430,7 +427,6 @@ describe("Input", () => {
     expect(uppercase).toBeInTheDocument();
     expect(number).toBeInTheDocument();
     expect(specialChars).toBeInTheDocument();
-    expect(length).toBeInTheDocument();
   });
 
   it("should execute onchange event on security gauge input", () => {

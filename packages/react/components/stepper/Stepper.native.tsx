@@ -1,11 +1,11 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { TypographyBold, TypographyColor } from "../../objects"
-import { Text, TextLevels } from "../text"
-import { TitleLevels } from "../title"
+import { TypographyBold, TypographyColor } from "@/objects"
+import { Text, TextLevels } from "@/components/text"
+import { TitleLevels } from "@/components/title"
 import { StepperProps } from "./StepperProps"
-import { Icon, IconName, IconSize } from "../icon"
-import { ComponentName } from "../enumsComponentsName"
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 interface ICurrentStep {
   step: number;
@@ -106,7 +106,7 @@ const Stepper = ({
             </Text>
           )}
           <Text
-            level={TitleLevels.ONE}
+            level={TextLevels.ONE}
             typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
           >
             {currentStep.name}

@@ -1,10 +1,10 @@
 import * as React from "react"
 import clsx from "clsx"
 import { TimelineContentWebProps } from "./TimelineContentProps"
-import { Text, TextMarkup } from "../../text"
-import { Link } from "../../link"
-import { hashClass } from "../../../helpers"
-import { useTrilogyContext } from "../../../context"
+import { Text, TextMarkup } from "@/components/text"
+import { Link } from "@/components/link"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 
 /**
  * Timeline Content Component
@@ -47,7 +47,7 @@ const TimelineContent = ({
       }}
     >
       {heading && (
-        <Text className='heading' markup={TextMarkup.P}>
+        <Text markup={TextMarkup.P}>
           {heading}
         </Text>
       )}

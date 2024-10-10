@@ -1,5 +1,5 @@
-import React, {Dispatch, ReactNode, SetStateAction} from "react"
-import {ITrilogyTheme} from "./interfaces"
+import React, { Dispatch, ReactNode, SetStateAction } from "react"
+import { ITrilogyTheme } from "./interfaces"
 import { colors } from "../objects/facets/Color"
 
 export interface ITrilogyThemeProvider {

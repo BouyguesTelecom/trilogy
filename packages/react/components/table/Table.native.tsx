@@ -1,8 +1,8 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { getColorStyle, TrilogyColor } from "../../objects"
+import { getColorStyle, TrilogyColor } from "@/objects"
 import { TableProps } from "./TableProps"
-import { ComponentName } from "../enumsComponentsName"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table Component
@@ -10,7 +10,7 @@ import { ComponentName } from "../enumsComponentsName"
  * @param bordered {boolean} bordered table
  */
 const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
-  const borderColor = getColorStyle(TrilogyColor.FONT, 1)
+  const borderColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
     table: {
