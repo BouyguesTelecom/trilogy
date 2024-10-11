@@ -17,15 +17,16 @@ export const TabScreen = (): JSX.Element => {
     <Section>
       <Tabs>
         <TabsItem id="tab-1" label="Onglet 1" defaultChecked>
-          <p>Contenu pour Onglet 1</p>
+          <p>Tab content 1</p>
         </TabsItem>
         <TabsItem id="tab-2" label="Onglet 2">
-          <p>Contenu pour Onglet 2</p>
-          <img src="//placekitten.com/200/100" alt="Kitten"/>
+          <p>Tab content 2</p>
         </TabsItem>
         <TabsItem id="tab-3" label="Onglet 3">
-          <p>Contenu pour Onglet 3</p>
-          <img src="//placekitten.com/200/100" alt="Kitten"/>
+          <p>Tab content 3</p>
+        </TabsItem>
+        <TabsItem id="tab-4" label="Onglet 4">
+          <p>Tab content 4</p>
         </TabsItem>
       </Tabs>
       {/* <Title level={TitleLevels.THREE}>Event</Title>

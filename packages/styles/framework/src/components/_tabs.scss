@@ -3,22 +3,38 @@
   min-height: 200px; /* This part sucks */
   clear: both;
   margin: 25px 0;
+  background-color: transparent;
+  height: 48px;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: inline-flex;
+
+  &.is-centered {
+    justify-content: center;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+  }
+
+  &.is-left {
+    justify-content: flex-start;
+  }
 }
 .tab {
   float: left;
 }
 .tab label {
-  background: #eee;
   padding: 10px;
-  border: 1px solid #ccc;
   margin-left: -1px;
   position: relative;
   left: 1px;
+  color: getColor('font')
 }
 .tab [type="radio"] {
   opacity: 0;
 }
-.content {
+.tab-content {
   position: absolute;
   top: 28px;
   left: 0;
@@ -26,33 +42,28 @@
   right: 0;
   bottom: 0;
   padding: 20px;
-  border: 1px solid #ccc;
   overflow: hidden;
 }
-.content > * {
+.tab-content > * {
   opacity: 0;
   transform: translateX(-100%);
   transition: all 0.6s ease;
 }
 [type="radio"]:focus ~ label {
-  ouline: 2px solid blue;
+  border-bottom: 1px solid getColor('main');
 }
 [type="radio"]:checked ~ label {
   background: white;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid getColor('main');
   z-index: 2;
 }
-[type="radio"]:checked ~ label ~ .content {
+[type="radio"]:checked ~ label ~ .tab-content {
   z-index: 1;
 }
-[type="radio"]:checked ~ label ~ .content > * {
+[type="radio"]:checked ~ label ~ .tab-content > * {
   opacity: 1;
   transform: translateX(0);
 }
-
-
-
-
 
 
 

@@ -3,18 +3,18 @@ import React from 'react';
 const TabsItem = ({ id, label, children, defaultChecked }: any) => {
   return (
     <div className="tab">
-    <input
-      type="radio"
-      id={id}
-      name="tab-group"
-      defaultChecked={defaultChecked}
-      className="tab-input"
-    />
-    <label htmlFor={id}>{label}</label>
-    <div className="content">
-      {children}
+      <input
+        type="radio"
+        id={id}
+        name="tab-group"
+        defaultChecked={defaultChecked}
+        className="tab-input"
+      />
+      <label htmlFor={id}>{label}</label>
+      <div className="tab-content">
+        {children}
+      </div>
     </div>
-  </div>
   )
 };
 

@@ -2,6 +2,13 @@ import { Centerable } from '@/objects/facets/Centerable'
 import { JustifiableProps } from '@/objects/facets/Justifiable'
 import { Accessibility, Clickable, TypographyAlign, TypographyAlignValues } from '@/objects'
 
+export enum TabsMarkup {
+  DIV = 'div',
+  MENU = 'menu',
+}
+
+export type TabsMarkupValues = `${TabsMarkup}`
+
 /**
  * Tabs Interface
  */
@@ -9,10 +16,6 @@ export interface TabsProps extends Centerable, JustifiableProps, Clickable, Acce
   children: React.ReactNode | string
   disabled?: boolean
   activeIndex?: number
-  /** @deprecated */
-  rightAlign?: boolean
-  /** @deprecated */
-  clipped?: boolean
   fullwidth?: boolean
   className?: string
   marginless?: boolean
@@ -20,4 +23,5 @@ export interface TabsProps extends Centerable, JustifiableProps, Clickable, Acce
   align?: 'left' | 'right' | 'center'
   shadowless?: boolean
   textAlign?: TypographyAlign | TypographyAlignValues
+  markup?: TabsMarkup | TabsMarkupValues
 }
