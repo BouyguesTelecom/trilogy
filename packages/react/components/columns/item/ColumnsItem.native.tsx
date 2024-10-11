@@ -17,18 +17,18 @@ const ColumnsItem = ({ children, size, verticalCenter, centered, align, ...other
 
   const styles = StyleSheet.create({
     columnsItem: {
-      width: columnsContextValues.inlined
-        ? (Dimensions.get('window').width - 80) / (12 / (size ? size : 1))
+      width: columnsContextValues.scrollable
+        ? (Dimensions.get('window').width - 80) / (12 / (size ? size : 12))
         : undefined,
-      marginRight: columnsContextValues.inlined ? 16 : 0,
-      height: columnsContextValues.inlined ? '100%' : undefined,
+      marginRight: columnsContextValues.scrollable ? 16 : 0,
+      height: columnsContextValues.scrollable ? '100%' : undefined,
       flexDirection: 'column',
-      flex: columnsContextValues.inlined ? undefined : !size ? 12 : size,
+      flex: columnsContextValues.scrollable ? undefined : !size ? 1 : size,
       justifyContent: verticalCenter ? 'center' : 'flex-start',
       alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
-      flexBasis: `${(size ? size : 1) / 12 * 100}%`,
+      flexBasis: `${(size ? size : 4)  * 100}%`,
       flexGrow: 0,
-      maxWidth: `${(size ? size : 1) / 12 * 100}%`
+      maxWidth: `${(size ? size : 12) / 12 * 100}%`
     },
   })
 

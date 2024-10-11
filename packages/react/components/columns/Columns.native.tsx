@@ -14,7 +14,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param scrollable {boolean} Make colomns scrollable to vertical. Don't work with props 'marginSize'
  */
 
-export const ColumnsContext = createContext({ inlined: false })
+export const ColumnsContext = createContext({ scrollable: false })
 
 const Columns = ({
   children,
@@ -93,7 +93,7 @@ const Columns = ({
   return scrollable ? (
     <ColumnsContext.Provider
       value={{
-        inlined: scrollable,
+        scrollable,
       }}
     >
       <ScrollView
