@@ -1,30 +1,18 @@
 import React from 'react'
 import { Fab } from './index'
-import { Columns, ColumnsItem } from '../columns';
+import { Columns, ColumnsItem } from '../columns'
 
-
-const FabExample: React.ReactNode = 
-
-<>
-<Columns>
-<ColumnsItem>
-    <Fab
-        iconName="tri-check"
-        onClick={function noRefCheck() { }}
-    >
-        Ecrire
-    </Fab>
+const FabExample: React.ReactNode = (
+  <Columns>
+    <ColumnsItem>
+      <Fab iconName='tri-check'>Ecrire</Fab>
     </ColumnsItem>
     <ColumnsItem>
-    <Fab
-        extended
-        iconName="tri-bell"
-        onClick={function noRefCheck() { }}
-    >
+      <Fab extended iconName='tri-bell'>
         Extended fab
-    </Fab>
+      </Fab>
     </ColumnsItem>
-    </Columns>
-</>
+  </Columns>
+)
 
-export default FabExample;
+export default FabExample
