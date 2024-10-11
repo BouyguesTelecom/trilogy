@@ -11,7 +11,7 @@ import { useTrilogyContext } from "@/context"
  * @param verticalCentered {boolean} Vertical centered columns
  * @param gapless {boolean} Delete margins between columns
  * @param marginSize {ColumnsSize} Delete margins between columns with Size (apply is-variable)
- * @param inlined {boolean} Make colomns scrollable to vertical
+ * @param scrollable {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
  * @param marginless {boolean}
  * - -------------------------- WEB PROPERTIES -------------------------------
