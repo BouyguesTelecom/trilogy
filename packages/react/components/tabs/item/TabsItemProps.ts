@@ -5,7 +5,8 @@ import { IconName, IconNameValues } from '@/components/icon'
  * Tabs Item Interface
  */
 export interface TabsItemProps extends Clickable, Accessibility {
-  children: React.ReactChild
+  children: React.ReactNode | string
+  label: string
   active?: boolean
   className?: string
   id?: string

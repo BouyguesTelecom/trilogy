@@ -38,7 +38,6 @@
   position: absolute;
   top: 28px;
   left: 0;
-  background: white;
   right: 0;
   bottom: 0;
   padding: 20px;
@@ -50,11 +49,10 @@
   transition: all 0.6s ease;
 }
 [type="radio"]:focus ~ label {
-  border-bottom: 1px solid getColor('main');
+  border-bottom: 2px solid getColor('main');
 }
 [type="radio"]:checked ~ label {
-  background: white;
-  border-bottom: 1px solid getColor('main');
+  border-bottom: 2px solid getColor('main');
   z-index: 2;
 }
 [type="radio"]:checked ~ label ~ .tab-content {

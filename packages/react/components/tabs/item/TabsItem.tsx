@@ -1,13 +1,14 @@
 import React from 'react';
+import { TabsItemProps } from './TabsItemProps';
 
-const TabsItem = ({ id, label, children, defaultChecked }: any) => {
+const TabsItem = ({ id, label, children, active }: TabsItemProps) => {
   return (
     <div className="tab">
       <input
         type="radio"
         id={id}
         name="tab-group"
-        defaultChecked={defaultChecked}
+        defaultChecked={active}
         className="tab-input"
       />
       <label htmlFor={id}>{label}</label>
