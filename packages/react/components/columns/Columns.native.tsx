@@ -22,7 +22,7 @@ const Columns = ({
   gapless,
   marginSize,
   verticalCentered,
-  inlined,
+  scrollable,
   ...others
 }: ColumnsProps): JSX.Element => {
   const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ const Columns = ({
     },
   })
 
-  if (marginSize && !inlined) {
+  if (marginSize && !scrollable) {
     return (
       <View
         style={[
@@ -90,10 +90,10 @@ const Columns = ({
     )
   }
 
-  return inlined ? (
+  return scrollable ? (
     <ColumnsContext.Provider
       value={{
-        inlined: inlined,
+        inlined: scrollable,
       }}
     >
       <ScrollView

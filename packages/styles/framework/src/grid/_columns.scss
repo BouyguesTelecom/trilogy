@@ -98,7 +98,7 @@ $gap :
 
   @for $i from 1 through length($gap) {
     $item: nth($gap, $i);
-    &.is-mobile.gap-#{$i} {
+    &.is-mobile.has-gap-#{$i} {
       gap: $item;
       .column {
         --ColumnGap: #{$item};
@@ -106,7 +106,7 @@ $gap :
     }
 
     @include tablet{
-      &.gap-#{$i}:not(.is-desktop) {
+      &.has-gap-#{$i}:not(.is-desktop) {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -115,8 +115,8 @@ $gap :
     }
 
     @include desktop{
-      &.gap-#{$i},
-      &.gap-#{$i}-desktop {
+      &.has-gap-#{$i},
+      &.has-gap-#{$i}-desktop {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -125,7 +125,7 @@ $gap :
     }
 
     @include widescreen{
-      &.gap-#{$i}-widescreen {
+      &.has-gap-#{$i}-widescreen {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -134,7 +134,7 @@ $gap :
     }
 
     @include fullhd{
-      &.gap-#{$i}-fullhd {
+      &.has-gap-#{$i}-fullhd {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -147,7 +147,7 @@ $gap :
 
 
   @include mobile{
-    &.column-peek{
+    &.is-peek{
       padding-right: 15%;
     }
     @for $i from 0 through 12 {
@@ -365,7 +365,7 @@ $gap :
 .columns {
   gap : 24px;
 
-  &.is-inlined {
+  &.is-scrollable {
     position: relative;
     padding-bottom: 8px;
     flex-wrap: nowrap;
@@ -462,16 +462,16 @@ $gap :
     }
   }
   @include mobile{
-    &.full-bleed {
+    &.is-fullbleed {
       width: 100vw !important;
       margin-left: 50%;
       transform: translateX(-50%);
       padding: 24px;
     }
-    &.full-bleed{
+    &.is-fullbleed {
       scroll-padding: 24px;
     }
-    &.full-bleed.is-inlined .column{
+    &.is-fullbleed.is-scrollable .column{
       scroll-snap-align: start;
       scroll-padding: 24px;
     }

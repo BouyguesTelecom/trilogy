@@ -1,7 +1,7 @@
 import * as React from "react"
 import clsx from "clsx"
 import { ColumnsProps } from "./ColumnsProps"
-import { is } from "@/services/classify"
+import { is, has } from "@/services/classify"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
 
@@ -23,11 +23,14 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
   const {
     className,
     multiline,
-    inlined,
+    scrollable,
+    nbCols,
     mobile,
     centered,
     verticalCentered,
     gapless,
+    gap,
+    fullBleed,
     marginSize,
     ...others
   } = props
@@ -39,7 +42,10 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     clsx(
       "columns",
       multiline && is("multiline"),
-      inlined && is("inlined"),
+      nbCols && has(`${nbCols}-cols`),
+      fullBleed && is("fullbleed"),
+      scrollable && is("scrollable"),
+      gap && has(`gap-${gap}`),
       mobile && is("mobile"),
       centered && is("centered"),
       verticalCentered && is("vcentered"),
