@@ -1,18 +1,18 @@
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import {
+  Accessibility,
+  Clickable,
+  Invertable,
+  Marginless,
+  TypographyAlign,
+  TypographyAlignValues,
+  TypographyBold,
+  TypographyBoldValues,
   TypographyColor,
   TypographyColorValues,
   TypographyTransform,
   TypographyTransformValues,
-  TypographyBold,
-  TypographyBoldValues,
-  TypographyAlign,
-  TypographyAlignValues,
-  Accessibility,
-  Invertable,
-  Marginless,
-  Clickable,
 } from '@/objects'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 
 type Styles = { [key: string]: unknown }
 
@@ -42,4 +42,5 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
   htmlContent?: string
   subtitle?: boolean
   overline?: boolean
+  styled?: boolean
 }
