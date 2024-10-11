@@ -11,7 +11,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param verticalCentered {boolean} Vertical centered columns
  * @param gapless {boolean} Delete margins between columns
  * @param marginSize {ColumnsSize} Delete margins between columns with Size (apply is-variable)
- * @param inlined {boolean} Make colomns scrollable to vertical. Don't work with props 'marginSize'
+ * @param scrollable {boolean} Make colomns scrollable to vertical. Don't work with props 'marginSize'
  */
 
 export const ColumnsContext = createContext({ inlined: false })

@@ -26,17 +26,17 @@ export const ColumnScreen = (): JSX.Element => {
       <Container fluid>
         <Box>
           <Columns>
-            <ColumnsItem>Test</ColumnsItem>
-            <ColumnsItem>Test</ColumnsItem>
-            <ColumnsItem>Test</ColumnsItem>
+            <ColumnsItem><Text>Test</Text></ColumnsItem>
+            <ColumnsItem><Text>Test</Text></ColumnsItem>
+            <ColumnsItem><Text>Test</Text></ColumnsItem>
           </Columns>
         </Box>
 
-        <Divider />
+        <Divider/>
         <Title level={TitleLevels.THREE}>Multiline</Title>
 
-        <Columns multiline >
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+        <Columns multiline>
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
@@ -51,7 +51,7 @@ export const ColumnScreen = (): JSX.Element => {
               </BoxContent>
             </Box>
           </ColumnsItem>
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
@@ -66,7 +66,7 @@ export const ColumnScreen = (): JSX.Element => {
               </BoxContent>
             </Box>
           </ColumnsItem>
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={TextLevels.TWO} className='has-text-weight-bold'>Overline</Text>
@@ -82,7 +82,7 @@ export const ColumnScreen = (): JSX.Element => {
               </BoxContent>
             </Box>
           </ColumnsItem>
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
@@ -98,7 +98,7 @@ export const ColumnScreen = (): JSX.Element => {
               </BoxContent>
             </Box>
           </ColumnsItem>
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
@@ -114,7 +114,7 @@ export const ColumnScreen = (): JSX.Element => {
               </BoxContent>
             </Box>
           </ColumnsItem>
-          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} >
+          <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
             <Box>
               <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
@@ -150,7 +150,7 @@ export const ColumnScreen = (): JSX.Element => {
 
 
         <Title level={TitleLevels.THREE}>Columns : nb-cols-1 peek and full-bleed</Title>
-        <Columns nbCols={1} scrollable mobile fullBleed >
+        <Columns nbCols={1} scrollable mobile fullBleed>
           <ColumnsItem>
             <Box>
               <BoxContent>
@@ -214,23 +214,7 @@ export const ColumnScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem>
             <Box shadowless>
-              <BoxContent >
-                <Text level={2} className='has-text-weight-bold'>Overline</Text>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
-                  vera.
-                </Text>
-                <Price amount={22.99}></Price>
-                <ButtonList>
-                  <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
-                </ButtonList>
-              </BoxContent>
-            </Box>
-          </ColumnsItem>
-          <ColumnsItem>
-            <Box shadowless >
-              <BoxContent >
+              <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
                 <Text>
@@ -246,7 +230,7 @@ export const ColumnScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem>
             <Box shadowless>
-              <BoxContent >
+              <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
                 <Text>
@@ -262,7 +246,23 @@ export const ColumnScreen = (): JSX.Element => {
           </ColumnsItem>
           <ColumnsItem>
             <Box shadowless>
-              <BoxContent >
+              <BoxContent>
+                <Text level={2} className='has-text-weight-bold'>Overline</Text>
+                <Title level={TitleLevels.ONE}>Card Title</Title>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                  vera.
+                </Text>
+                <Price amount={22.99}></Price>
+                <ButtonList>
+                  <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+                </ButtonList>
+              </BoxContent>
+            </Box>
+          </ColumnsItem>
+          <ColumnsItem>
+            <Box shadowless>
+              <BoxContent>
                 <Text level={2} className='has-text-weight-bold'>Overline</Text>
                 <Title level={TitleLevels.ONE}>Card Title</Title>
                 <Text>
@@ -295,8 +295,6 @@ export const ColumnScreen = (): JSX.Element => {
             <Text level={1} className='has-background-warning'>Colonne 1</Text>
           </ColumnsItem>
         </Columns>
-
-
         <Columns mobile>
           <ColumnsItem>
             <Box>
@@ -323,24 +321,22 @@ export const ColumnScreen = (): JSX.Element => {
             </Box>
           </ColumnsItem>
         </Columns>
-
-      </Container>
-
-      <Section>
+        <Section>
         <Container>
 
           <Title level={TitleLevels.THREE}>Scollable</Title>
-          <Divider />
+          <Divider/>
 
           <Columns scrollable marginSize={3}>
             <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
               <Card>
-                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
                 <CardContent>
                   <Title overline>Desktop Card Vertical</Title>
                   <Title level={TitleLevels.ONE}>Card Title</Title>
                   <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                    vulputate
                     vera.
                   </Text>
                   <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
@@ -349,12 +345,13 @@ export const ColumnScreen = (): JSX.Element => {
             </ColumnsItem>
             <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
               <Card>
-                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
                 <CardContent>
                   <Title overline>Desktop Card Vertical</Title>
                   <Title level={TitleLevels.ONE}>Card Title</Title>
                   <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                    vulputate
                     vera.
                   </Text>
                   <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
@@ -363,12 +360,13 @@ export const ColumnScreen = (): JSX.Element => {
             </ColumnsItem>
             <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
               <Card>
-                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
                 <CardContent>
                   <Title overline>Desktop Card Vertical</Title>
                   <Title level={TitleLevels.ONE}>Card Title</Title>
                   <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                    vulputate
                     vera.
                   </Text>
                   <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
@@ -377,12 +375,13 @@ export const ColumnScreen = (): JSX.Element => {
             </ColumnsItem>
             <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
               <Card>
-                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+                <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
                 <CardContent>
                   <Title overline>Desktop Card Vertical</Title>
                   <Title level={TitleLevels.ONE}>Card Title</Title>
                   <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                    vulputate
                     vera.
                   </Text>
                   <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
@@ -392,8 +391,7 @@ export const ColumnScreen = (): JSX.Element => {
           </Columns>
         </Container>
       </Section>
-
-
+      </Container>
     </>
   );
 };
