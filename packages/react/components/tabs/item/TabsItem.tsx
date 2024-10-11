@@ -1,7 +1,8 @@
 import React from 'react';
 import { TabsItemProps } from './TabsItemProps';
+import { Icon, IconSize } from '@/components/icon';
 
-const TabsItem = ({ id, label, children, active }: TabsItemProps) => {
+const TabsItem = ({ id, label, children, active, iconName }: TabsItemProps) => {
   return (
     <div className="tab">
       <input
@@ -11,7 +12,10 @@ const TabsItem = ({ id, label, children, active }: TabsItemProps) => {
         defaultChecked={active}
         className="tab-input"
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>
+        {iconName && <Icon size={IconSize.SMALL} name={iconName} />}
+        <span>{label}</span>
+      </label>
       <div className="tab-content">
         {children}
       </div>

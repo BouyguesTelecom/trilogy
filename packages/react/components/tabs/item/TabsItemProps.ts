@@ -1,12 +1,12 @@
-import { Accessibility, Clickable } from '@/objects'
+import { Accessibility } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
 
 /**
  * Tabs Item Interface
  */
-export interface TabsItemProps extends Clickable, Accessibility {
+export interface TabsItemProps extends Accessibility {
   children: React.ReactNode | string
-  label: string
+  label?: string
   active?: boolean
   className?: string
   id?: string
@@ -17,4 +17,5 @@ export interface TabsItemProps extends Clickable, Accessibility {
   iconName?: IconNameValues | IconName
   disabled?: boolean
   inverted?: boolean
+  onClick?: any
 }

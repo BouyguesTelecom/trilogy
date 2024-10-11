@@ -1,11 +1,9 @@
 .tabs {
   position: relative;
-  min-height: 200px; /* This part sucks */
+  min-height: 200px;
   clear: both;
-  margin: 25px 0;
   background-color: transparent;
   height: 48px;
-  overflow-x: auto;
   white-space: nowrap;
   display: inline-flex;
 
@@ -21,47 +19,66 @@
     justify-content: flex-start;
   }
 }
+
 .tab {
   float: left;
+
+  label {
+    padding: 10px;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    color: getColor('font');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; // ou space-between si vous voulez l'icône en haut
+
+    .icon {
+      margin-bottom: 5px; // espace entre l'icône et le texte du label
+      font-size: 20px; // ajustez la taille de l'icône comme nécessaire
+    }
+  }
+
+  [type="radio"] {
+    opacity: 0;
+  }
+
+  .tab-content {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    overflow: hidden;
+
+    > * {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 0.6s ease;
+    }
+  }
+
+  [type="radio"]:focus ~ label {
+    border-bottom: 2px solid getColor('main');
+  }
+
+  [type="radio"]:checked ~ label {
+    border-bottom: 2px solid getColor('main');
+    z-index: 2;
+  }
+
+  [type="radio"]:checked ~ label ~ .tab-content {
+    z-index: 1;
+
+    > * {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 }
-.tab label {
-  padding: 10px;
-  margin-left: -1px;
-  position: relative;
-  left: 1px;
-  color: getColor('font')
-}
-.tab [type="radio"] {
-  opacity: 0;
-}
-.tab-content {
-  position: absolute;
-  top: 28px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  overflow: hidden;
-}
-.tab-content > * {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: all 0.6s ease;
-}
-[type="radio"]:focus ~ label {
-  border-bottom: 2px solid getColor('main');
-}
-[type="radio"]:checked ~ label {
-  border-bottom: 2px solid getColor('main');
-  z-index: 2;
-}
-[type="radio"]:checked ~ label ~ .tab-content {
-  z-index: 1;
-}
-[type="radio"]:checked ~ label ~ .tab-content > * {
-  opacity: 1;
-  transform: translateX(0);
-}
+
 
 
 

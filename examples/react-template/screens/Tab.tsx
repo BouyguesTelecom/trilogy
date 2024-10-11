@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  Icon,
   IconName,
   Section,
   Tabs,
@@ -16,16 +17,16 @@ export const TabScreen = (): JSX.Element => {
   return (
     <Section>
       <Tabs>
-        <TabsItem id="tab-1" label="Onglet 1" defaultChecked>
+        <TabsItem id="tab-1" label="Onglet 1" active iconName={IconName.ALERT}>
           <p>Tab content 1</p>
         </TabsItem>
-        <TabsItem id="tab-2" label="Onglet 2">
+        <TabsItem id="tab-2" label="Onglet 2" iconName={IconName.BELL}>
           <p>Tab content 2</p>
         </TabsItem>
-        <TabsItem id="tab-3" label="Onglet 3">
+        <TabsItem id="tab-3" label="Onglet 3" iconName={IconName.BELL}>
           <p>Tab content 3</p>
         </TabsItem>
-        <TabsItem id="tab-4" label="Onglet 4">
+        <TabsItem id="tab-4" label="Onglet 4 avec glace" iconName={IconName.BELL}>
           <p>Tab content 4</p>
         </TabsItem>
       </Tabs>

@@ -9,7 +9,7 @@ const isCorrectMarkup = (stringMarkup: TabsMarkup | TabsMarkupValues) => {
   return stringMarkup in TabsMarkup || Object.values(TabsMarkup).includes(stringMarkup as TabsMarkup)
 }
 
-const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, marginless, inverted, align, shadowless, textAlign,  }: TabsProps ) => {
+const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, marginless, inverted, align, shadowless, textAlign }: TabsProps ) => {
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
