@@ -9,33 +9,31 @@ import { is } from '@/services';
 const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, className, onClick, ...others }: TabsItemProps) => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'tab',
-      inverted && is('inverted'),
-      className,
-    ),
-  )
+  // const classes = hashClass(
+  //   styled,
+  //   clsx(
+  //     'tab',
+  //     inverted && is('inverted'),
+  //     className,
+  //   ),
+  // )
 
   return (
     <>
-      <div className={classes}>
-        <input
-          role='tab'
-          type="radio"
-          id={id}
-          name={groupName}
-          defaultChecked={active}
-          className={hashClass(styled, clsx('tab-input'))}
-          onClick={(e) => onClick && onClick(e)}
-          {...others}
-        />
-        <label className={hashClass(styled, inverted ? is('inverted') : '')} htmlFor={id}>
-          {iconName && <Icon color={inverted ? IconColor.WHITE : IconColor.MAIN} size={IconSize.SMALL} name={iconName} />}
-          <span className={hashClass(styled, inverted ? is('inverted') : '')}>{label}</span>
-        </label>
-      </div>
+      <input
+        role='tab'
+        type="radio"
+        id={id}
+        name={groupName}
+        defaultChecked={active}
+        className={hashClass(styled, clsx('tab-input'))}
+        onClick={(e) => onClick && onClick(e)}
+        {...others}
+      />
+      <label className={hashClass(styled, inverted ? is('inverted') : '')} htmlFor={id}>
+        {iconName && <Icon color={inverted ? IconColor.WHITE : IconColor.MAIN} size={IconSize.SMALL} name={iconName} />}
+        <span className={hashClass(styled, inverted ? is('inverted') : '')}>{label}</span>
+      </label>
       <div className={hashClass(styled, clsx('tab-panels'))}>
         {children}
       </div>

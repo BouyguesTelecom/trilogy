@@ -14,15 +14,14 @@
 }
 
 .tabs label {
-  background: var(--primary-bg-color);
-  color: var(--secondary-text-color);
+  &.is-inverted {
+    color: getColor('background') !important;
+  }
+  color: getColor('font');
   cursor: pointer;
   display: block;
-  font-weight: 600;
   margin-right: 0.3rem;
   order: initial;
-  padding: 1rem 2rem;
-  transition: background ease 0.3s;
   width: 100%;
 }
 
@@ -39,8 +38,7 @@
 }
 
 .tabs input[type="radio"]:checked + label {
-  background: var(--secondary-bg-color);
-  color: var(--primary-text-color);
+  border-bottom: 2px solid getColor('main');
 }
 
 .tabs input[type="radio"]:checked + label + .tab-panels {

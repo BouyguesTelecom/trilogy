@@ -18,52 +18,66 @@ import { TrilogyColor } from "@trilogy-ds/react/objects";
 export const TabScreen = (): JSX.Element => {
   return (
     <Section>
+      <Tabs>
+        <TabsItem groupName="group-one" id="tab-1" label="Tab 1" active iconName={IconName.BELL}>
+          <p>Tab content 1</p>
+        </TabsItem>
+        <TabsItem groupName="group-one" id="tab-2" label="Tab 2" iconName={IconName.BELL}>
+          <p>Tab content 2</p>
+        </TabsItem>
+        <TabsItem groupName="group-one" id="tab-3" label="Tab 3" iconName={IconName.BELL}>
+          <p>Tab content 3</p>
+        </TabsItem>
+        <TabsItem groupName="group-one" id="tab-4" label="Tab 4" iconName={IconName.BELL}>
+          <p>Tab content 4</p>
+        </TabsItem>
+      </Tabs>
 
-<div className="tabs">
-  <input type="radio" name="tabs-group1" id="tab1" defaultChecked={true} />
-  <label htmlFor="tab1">Tab 1</label>
-  <div className="tab-panels">
-    <h2>Tab 1 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-  </div>
+      <div className="tabs">
+        <input type="radio" name="tabs-group1" id="tab1" defaultChecked={true} />
+        <label htmlFor="tab1">Tab 1</label>
+        <div className="tab-panels">
+          <h2>Tab 1 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
 
-  <input type="radio" name="tabs-group1" id="tab2" />
-  <label htmlFor="tab2">Tab 2</label>
-  <div className="tab-panels">
-    <h2>Tab 2 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-  </div>
+        <input type="radio" name="tabs-group1" id="tab2" />
+        <label htmlFor="tab2">Tab 2</label>
+        <div className="tab-panels">
+          <h2>Tab 2 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
 
-  <input type="radio" name="tabs-group1" id="tab3" />
-  <label htmlFor="tab3">Tab 3</label>
-  <div className="tab-panels">
-    <h2>Tab 3 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-  </div>
-</div>
+        <input type="radio" name="tabs-group1" id="tab3" />
+        <label htmlFor="tab3">Tab 3</label>
+        <div className="tab-panels">
+          <h2>Tab 3 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
 
-<div className="tabs">
-  <input type="radio" name="tabs-group2" id="tab4" defaultChecked={true} />
-  <label htmlFor="tab4">Tab 4</label>
-  <div className="tab-panels">
-    <h2>Tab 4 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-  </div>
+      <div className="tabs">
+        <input type="radio" name="tabs-group2" id="tab4" defaultChecked={true} />
+        <label htmlFor="tab4">Tab 4</label>
+        <div className="tab-panels">
+          <h2>Tab 4 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
 
-  <input type="radio" name="tabs-group2" id="tab5" />
-  <label htmlFor="tab5">Tab 5</label>
-  <div className="tab-panels">
-    <h2>Tab 5 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-  </div>
+        <input type="radio" name="tabs-group2" id="tab5" />
+        <label htmlFor="tab5">Tab 5</label>
+        <div className="tab-panels">
+          <h2>Tab 5 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
 
-  <input type="radio" name="tabs-group2" id="tab6" />
-  <label htmlFor="tab6">Tab 6</label>
-  <div className="tab-panels">
-    <h2>Tab 6 Content</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-  </div>
-</div>
+        <input type="radio" name="tabs-group2" id="tab6" />
+        <label htmlFor="tab6">Tab 6</label>
+        <div className="tab-panels">
+          <h2>Tab 6 Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
 
 
 
