@@ -73,7 +73,7 @@ const Divider = ({
     if (content) return <Text style={styles.textContent}>{content}</Text>
     if (iconName && !content)
       return (
-        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId="icon-id" />
+        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId='icon-id' />
       )
   }, [content, iconName])
 

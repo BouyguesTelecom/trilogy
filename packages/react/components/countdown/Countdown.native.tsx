@@ -135,12 +135,12 @@ const Countdown = ({ deadline, format, event, small, centered, ...others }: Coun
     text: {
       color: countdownColor,
       fontWeight: '600',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     date: {
       fontSize: small ? 12 : 14,
       fontWeight: small ? '500' : '400',
-      fontFamily:getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     },
     separator: {
       width: 1,

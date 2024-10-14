@@ -5,7 +5,7 @@ const TitleExample: React.ReactNode =
 
   <>
     <Title
-      level="ONE"
+      level='ONE'
     >
       Ceci titre
     </Title>
@@ -17,5 +17,4 @@ const TitleExample: React.ReactNode =
     </Title>
   </>
 
-
-export default TitleExample;
+export default TitleExample

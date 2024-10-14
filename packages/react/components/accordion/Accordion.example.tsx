@@ -4,7 +4,7 @@ import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from './inde
 const AccordionExample: React.ReactNode = <Accordion>
   <AccordionItem
     active
-    id="1"
+    id='1'
   >
     <AccordionHeader>
       Hello World
@@ -13,7 +13,7 @@ const AccordionExample: React.ReactNode = <Accordion>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem., consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
     </AccordionBody>
   </AccordionItem>
-  <AccordionItem id="DEUX">
+  <AccordionItem id='DEUX'>
     <AccordionHeader>
       Hello World{' '}
     </AccordionHeader>
@@ -21,7 +21,7 @@ const AccordionExample: React.ReactNode = <Accordion>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
     </AccordionBody>
   </AccordionItem>
-  <AccordionItem id="TROIS">
+  <AccordionItem id='TROIS'>
     <AccordionHeader>
       Hello World
     </AccordionHeader>
@@ -31,7 +31,7 @@ const AccordionExample: React.ReactNode = <Accordion>
   </AccordionItem>
   <AccordionItem
     disabled
-    id="QUATRE"
+    id='QUATRE'
   >
     <AccordionHeader>
       Item disabled

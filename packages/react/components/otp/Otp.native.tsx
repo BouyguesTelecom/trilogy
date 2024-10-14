@@ -194,7 +194,7 @@ const Otp = ({
         }}
         editable={!disabled}
         style={style.hiddenCodeInput}
-        testID="input-id"
+        testID='input-id'
       />
     </SafeAreaView>
   )

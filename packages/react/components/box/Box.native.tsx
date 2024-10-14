@@ -107,7 +107,7 @@ const Box = ({
   const boxTestId = testId || "NotSpecified"
 
   const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others} testID="skeleton">
+    <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
       <View style={{ opacity: 0 }}>{children}</View>
 
       {Platform.OS === "android" && (

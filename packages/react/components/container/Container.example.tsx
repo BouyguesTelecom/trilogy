@@ -4,7 +4,7 @@ import { Box } from '@/components/box'
 import { Text } from '@/components/text'
 import { Container } from './index'
 
-const ContainerExample: React.ReactNode = 
+const ContainerExample: React.ReactNode =
 <Container>
   <Box>
     <Text>
@@ -13,4 +13,4 @@ const ContainerExample: React.ReactNode =
   </Box>
 </Container>
 
-export default ContainerExample;
+export default ContainerExample

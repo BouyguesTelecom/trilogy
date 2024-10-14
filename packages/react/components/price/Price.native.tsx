@@ -3,11 +3,10 @@ import { StyleSheet, Text, View } from "react-native"
 import { Text as TrilogyText } from '@/components/text'
 import { PriceProps } from "./PriceProps"
 import { PriceLevel } from "./PriceEnum"
-import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "../../objects"
+import { Alignable, getAlertStyle, getColorStyle, TrilogyColor, TypographyBold, TypographyColor, getTypographyBoldStyle } from "../../objects"
 import { checkCents } from "./PriceHelpers"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { StatesContext } from "@/context/providerStates"
-import { getTypographyBoldStyle } from "@/objects"
 
 /**
  * Price Component

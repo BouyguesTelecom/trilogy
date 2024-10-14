@@ -19,9 +19,6 @@ import { ButtonVariant } from "./ButtonEnum"
 import { ButtonProps } from "./ButtonProps"
 import { getTypographyBoldStyle, TypographyBold } from "@/objects"
 
-
-
-
 /**
  * Button Native Component
  * @param loading {boolean} Loading button
@@ -69,7 +66,7 @@ const Button = ({
       getColorStyle(TrilogyColor.MAIN, 1)
     )
   }
-  
+
   const findTextColor = ({ variant }: ButtonProps): string => {
     return (
       (variant &&
@@ -87,7 +84,7 @@ const Button = ({
       getColorStyle(TrilogyColor.BACKGROUND)
     )
   }
-  
+
   const findBorderColor = ({
     disabled,
     variant,
@@ -107,7 +104,7 @@ const Button = ({
       getColorStyle(TrilogyColor.BACKGROUND, 0)
     )
   }
-  
+
   const styles = StyleSheet.create({
     button: {
       maxWidth: "100%",
@@ -135,14 +132,14 @@ const Button = ({
       justifyContent: "center",
     },
     textDisabled: {
-      color: getColorStyle(TrilogyColor.DISABLED,1),
+      color: getColorStyle(TrilogyColor.DISABLED, 1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
       justifyContent: "center",
     },
     textDisabledIcon: {
-      color: getColorStyle(TrilogyColor.DISABLED,1),
+      color: getColorStyle(TrilogyColor.DISABLED, 1),
       alignSelf: "center",
       alignItems: "center",
       fontWeight: "bold",
@@ -215,7 +212,7 @@ const Button = ({
               height: 45,
             }}
           >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
+            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
           </View>
         )}
       {loading && typeof loading === "boolean" && loading === true && (
@@ -226,7 +223,7 @@ const Button = ({
             justifyContent: "center",
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID="activity-indicator" />
+          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
         </View>
       )}
       {loading &&
@@ -256,11 +253,11 @@ const Button = ({
               name={iconName}
               size={IconSize.SMALL}
               color={iconColorVariant(variant)}
-              testId="button-icon"
+              testId='button-icon'
             />
           ) : (
             <Icon
-              testId="button-icon"
+              testId='button-icon'
               name={iconName}
               size={IconSize.SMALL}
               color={getColorStyle(TrilogyColor.DISABLED)}
