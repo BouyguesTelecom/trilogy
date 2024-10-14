@@ -1,36 +1,32 @@
 /* NEW */
-
-:root {
-  --primary-text-color: #222;
-  --secondary-text-color: #fff;
-  --primary-bg-color: #222;
-  --secondary-bg-color: #fff;
-  --tertiary-bg-color: #ddd;
-}
-
 .tabs {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tabs label {
   &.is-inverted {
     color: getColor('background') !important;
   }
+  padding: 10px;
   color: getColor('font');
   cursor: pointer;
-  display: block;
+  display: inline-grid;
   margin-right: 0.3rem;
   order: initial;
   width: 100%;
+  .icon {
+    justify-self: center;
+  }
 }
 
 .tabs .tab-panels {
-  background: var(--secondary-bg-color);
   display: none;
   flex-grow: 1;
   padding: 1rem;
   width: 100%;
+  text-align: -webkit-center;
 }
 
 .tabs input[type="radio"] {
