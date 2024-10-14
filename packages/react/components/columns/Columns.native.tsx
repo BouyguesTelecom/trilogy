@@ -1,6 +1,7 @@
 import React, { createContext } from "react"
-import { ScrollView, StyleSheet } from "react-native"
+import {Dimensions, StyleSheet} from "react-native"
 import { View } from "@/components/view"
+import { ScrollView } from "@/components/scroll-view"
 import { ColumnsProps } from "./ColumnsProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -22,8 +23,10 @@ const Columns = ({
   gapless,
   marginSize,
   verticalCentered,
+  fullBleed,
   scrollable,
-  ...others
+   multiline,
+...others
 }: ColumnsProps): JSX.Element => {
   const styles = StyleSheet.create({
     columns: {
@@ -44,6 +47,15 @@ const Columns = ({
     variable: {
       padding: marginSize || 0,
     },
+    fullbleed: {
+      width: Dimensions.get('window').width,
+      marginLeft: "50%",
+      transform: [{ translateX: Dimensions.get('window').width / 2 }],
+      padding: 0
+    },
+    multiline: {
+      flexWrap: "wrap",
+    }
   })
 
   if (marginSize && !scrollable) {
@@ -52,6 +64,8 @@ const Columns = ({
         style={[
           styles.columns,
           centered,
+          fullBleed && styles.fullbleed,
+          multiline && styles.multiline,
           verticalCentered && styles.verticalAlign,
         ]}
         {...others}
@@ -75,6 +89,8 @@ const Columns = ({
           styles.columns,
           centered,
           verticalCentered && styles.verticalAlign,
+          multiline && styles.multiline,
+          fullBleed && styles.fullbleed
         ]}
         {...others}
       >
@@ -96,16 +112,14 @@ const Columns = ({
         scrollable,
       }}
     >
+      <View style={{ width: Dimensions.get("window").width, resizeMode: "cover" }}>
       <ScrollView
-        style={{ marginLeft: 16 }}
         showsHorizontalScrollIndicator={false}
         horizontal
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
       >
         {children}
       </ScrollView>
+      </View>
     </ColumnsContext.Provider>
   ) : (
     <View
@@ -114,6 +128,7 @@ const Columns = ({
         centered && styles.centered,
         gapless && styles.gapless,
         verticalCentered && styles.verticalAlign,
+        fullBleed && styles.fullbleed
       ]}
       {...others}
     >
