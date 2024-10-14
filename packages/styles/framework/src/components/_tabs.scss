@@ -3,7 +3,6 @@
   min-height: 200px;
   clear: both;
   background-color: transparent;
-  height: 48px;
   white-space: nowrap;
   display: inline-flex;
   display: flex;
@@ -55,7 +54,6 @@
     right: 0;
     bottom: 0;
     padding: 20px;
-    overflow: hidden;
     text-align: center;
 
     > * {

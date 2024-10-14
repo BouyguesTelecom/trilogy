@@ -6,7 +6,7 @@ import { hashClass } from '@/helpers';
 import clsx from 'clsx';
 import { is } from '@/services';
 
-const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, className }: TabsItemProps) => {
+const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, className, onClick, ...others }: TabsItemProps) => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -21,11 +21,14 @@ const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, 
   return (
     <div className={classes}>
       <input
+        role='tab'
         type="radio"
         id={id}
         name={groupName}
         defaultChecked={active}
         className={hashClass(styled, clsx('tab-input'))}
+        onClick={(e) => onClick && onClick(e)}
+        {...others}
       />
       <label className={hashClass(styled, inverted ? is('inverted') : '')} htmlFor={id}>
         {iconName && <Icon color={inverted ? IconColor.WHITE : IconColor.MAIN} size={IconSize.SMALL} name={iconName} />}

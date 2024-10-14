@@ -5,15 +5,16 @@ import {
   TabsItem,
   Title,
   TitleLevels,
-  Section
+  Section,
+  Box,
+  BoxHeader,
+  BoxContent,
+  Text,
+  Button
 } from "@trilogy-ds/react/components";
 import { TrilogyColor } from "@trilogy-ds/react/objects";
 
 export const TabScreen = (): JSX.Element => {
-  // const [activeIndexEventTab, setActivateIndexEventTab] =
-  //   React.useState<number>(1);
-  // const [index, setIndex] = React.useState<number>(2);
-
   return (
     <Section>
       <Title level={TitleLevels.THREE}>Tabs with icons</Title>
@@ -67,6 +68,29 @@ export const TabScreen = (): JSX.Element => {
           </TabsItem>
         </Tabs>
       </Section>
+
+      <Title level={TitleLevels.THREE}>Tabs with node children</Title>
+
+      <Tabs>
+        <TabsItem groupName="group-four" id="tab-13" label="Tab 13" active iconName={IconName.BELL}>
+          <Box>
+            <BoxHeader>Box active</BoxHeader>
+            <BoxContent>
+              <Text>Box content</Text>
+            </BoxContent>
+          </Box>
+        </TabsItem>
+        <TabsItem groupName="group-four" id="tab-14" label="Tab 14" iconName={IconName.BELL}>
+          <Text>Button with text</Text>
+          <Button variant="PRIMARY">Button</Button>
+        </TabsItem>
+        <TabsItem groupName="group-four" id="tab-15" label="Tab 15" iconName={IconName.BELL}>
+          <p>Tab content 3</p>
+        </TabsItem>
+        <TabsItem groupName="group-four" id="tab-16" label="Tab 16" iconName={IconName.BELL}>
+          <p>Tab content 4</p>
+        </TabsItem>
+      </Tabs>
       {/* <Title level={TitleLevels.THREE}>Event</Title>
 
       <Tabs activeIndex={activeIndexEventTab}>
