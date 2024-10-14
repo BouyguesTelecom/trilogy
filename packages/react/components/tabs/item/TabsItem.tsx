@@ -1,22 +1,37 @@
 import React from 'react';
 import { TabsItemProps } from './TabsItemProps';
-import { Icon, IconSize } from '@/components/icon';
+import { Icon, IconColor, IconSize } from '@/components/icon';
+import { useTrilogyContext } from '@/context';
+import { hashClass } from '@/helpers';
+import clsx from 'clsx';
+import { is } from '@/services';
 
-const TabsItem = ({ id, label, children, active, iconName, groupName }: TabsItemProps) => {
+const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, className }: TabsItemProps) => {
+  const { styled } = useTrilogyContext()
+
+  const classes = hashClass(
+    styled,
+    clsx(
+      'tab',
+      inverted && is('inverted'),
+      className,
+    ),
+  )
+
   return (
-    <div className="tab">
+    <div className={classes}>
       <input
         type="radio"
         id={id}
         name={groupName}
         defaultChecked={active}
-        className="tab-input"
+        className={hashClass(styled, clsx('tab-input'))}
       />
-      <label htmlFor={id}>
-        {iconName && <Icon size={IconSize.SMALL} name={iconName} />}
-        <span>{label}</span>
+      <label className={hashClass(styled, inverted ? is('inverted') : '')} htmlFor={id}>
+        {iconName && <Icon color={inverted ? IconColor.WHITE : IconColor.MAIN} size={IconSize.SMALL} name={iconName} />}
+        <span className={hashClass(styled, inverted ? is('inverted') : '')}>{label}</span>
       </label>
-      <div className="tab-content">
+      <div className={hashClass(styled, clsx('tab-content'))}>
         {children}
       </div>
     </div>

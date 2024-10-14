@@ -1,13 +1,13 @@
 import * as React from "react";
 import {
-  Icon,
   IconName,
-  Section,
   Tabs,
   TabsItem,
   Title,
   TitleLevels,
+  Section
 } from "@trilogy-ds/react/components";
+import { TrilogyColor } from "@trilogy-ds/react/objects";
 
 export const TabScreen = (): JSX.Element => {
   // const [activeIndexEventTab, setActivateIndexEventTab] =
@@ -48,6 +48,25 @@ export const TabScreen = (): JSX.Element => {
           <p>Tab content 8</p>
         </TabsItem>
       </Tabs>
+
+      <Title level={TitleLevels.THREE}>Tabs inverted</Title>
+
+      <Section backgroundColor={TrilogyColor.MAIN}>
+        <Tabs>
+          <TabsItem inverted groupName="group-three" id="tab-9" label="Tab 9" active>
+            <p>Tab content 9</p>
+          </TabsItem>
+          <TabsItem inverted groupName="group-three" id="tab-10" label="Tab 10">
+            <p>Tab content 10</p>
+          </TabsItem>
+          <TabsItem inverted groupName="group-three" id="tab-11" label="Tab 11">
+            <p>Tab content 11</p>
+          </TabsItem>
+          <TabsItem inverted groupName="group-three" id="tab-12" label="Tab 12">
+            <p>Tab content 12</p>
+          </TabsItem>
+        </Tabs>
+      </Section>
       {/* <Title level={TitleLevels.THREE}>Event</Title>
 
       <Tabs activeIndex={activeIndexEventTab}>

@@ -12,10 +12,7 @@ const isCorrectMarkup = (stringMarkup: TabsMarkup | TabsMarkupValues) => {
 const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, marginless, inverted, align, shadowless, textAlign }: TabsProps ) => {
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
-
-  const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
   const { styled } = useTrilogyContext()
-  const [isIcons, setIsIcons] = React.useState(false)
 
   const classes = hashClass(
     styled,
@@ -23,7 +20,6 @@ const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, m
       'tabs',
       fullwidth && is('fullwidth'),
       marginless && is('marginless'),
-      isIcons && is('icons'),
       className,
     ),
   )

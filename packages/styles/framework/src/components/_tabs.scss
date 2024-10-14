@@ -24,6 +24,9 @@
   float: left;
 
   label {
+    &.is-inverted {
+      color: getColor('background') !important;
+    }
     padding: 10px;
     margin-left: -1px;
     position: relative;
@@ -32,11 +35,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; // ou space-between si vous voulez l'icône en haut
+    justify-content: center;
 
     .icon {
-      margin-bottom: 5px; // espace entre l'icône et le texte du label
-      font-size: 20px; // ajustez la taille de l'icône comme nécessaire
+      margin-bottom: 5px;
+      font-size: 20px;
     }
   }
 
@@ -61,10 +64,16 @@
   }
 
   [type="radio"]:focus ~ label {
+    &.is-inverted {
+      border-bottom: 2px solid getColor('background') !important;
+    }
     border-bottom: 2px solid getColor('main');
   }
 
   [type="radio"]:checked ~ label {
+    &.is-inverted {
+      border-bottom: 2px solid getColor('background') !important;
+    }
     border-bottom: 2px solid getColor('main');
     z-index: 2;
   }
