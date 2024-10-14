@@ -9,20 +9,20 @@ const CardExample: React.ReactNode =
   <Rows>
     <RowItem>
       <Card>
-        <CardImage src="https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png" />
+        <CardImage src='https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png' />
         <CardContent>
           <Title>
             Présentation
           </Title>
-          <Title level="ONE">
+          <Title level='ONE'>
             Title lorem
           </Title>
-          <Text level="ONE">
+          <Text level='ONE'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, neque eu,
             vulputate vera.
           </Text>
           <Button
-            variant="SECONDARY"
+            variant='SECONDARY'
           >
             Voir plus...
           </Button>
@@ -31,20 +31,20 @@ const CardExample: React.ReactNode =
     </RowItem>
     <RowItem>
       <Card horizontal>
-        <CardImage src="https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png" />
+        <CardImage src='https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png' />
         <CardContent>
           <Title>
             Présentation
           </Title>
-          <Title level="ONE">
+          <Title level='ONE'>
             Title lorem
           </Title>
-          <Text level="ONE">
+          <Text level='ONE'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, neque eu,
             vulputate vera.
           </Text>
           <Button
-            variant="SECONDARY"
+            variant='SECONDARY'
           >
             Voir plus...
           </Button>

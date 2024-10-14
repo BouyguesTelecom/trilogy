@@ -1,16 +1,13 @@
 import React from 'react'
 import { Fab } from './index'
-import { Columns, ColumnsItem } from '../columns';
+import { Columns, ColumnsItem } from '../columns'
 
+const FabExample: React.ReactNode =
 
-const FabExample: React.ReactNode = 
-
-<>
 <Columns>
 <ColumnsItem>
     <Fab
-        iconName="tri-check"
-        onClick={function noRefCheck() { }}
+        iconName='tri-check'
     >
         Ecrire
     </Fab>
@@ -18,13 +15,11 @@ const FabExample: React.ReactNode =
     <ColumnsItem>
     <Fab
         extended
-        iconName="tri-bell"
-        onClick={function noRefCheck() { }}
+        iconName='tri-bell'
     >
         Extended fab
     </Fab>
     </ColumnsItem>
     </Columns>
-</>
 
-export default FabExample;
+export default FabExample
