@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TabsMarkup, TabsMarkupValues, TabsProps } from './TabsProps';
 import { useTrilogyContext } from '@/context';
 import { hashClass } from '@/helpers';
@@ -9,7 +9,7 @@ const isCorrectMarkup = (stringMarkup: TabsMarkup | TabsMarkupValues) => {
   return stringMarkup in TabsMarkup || Object.values(TabsMarkup).includes(stringMarkup as TabsMarkup)
 }
 
-const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, marginless, inverted, align, shadowless, textAlign }: TabsProps ) => {
+const Tabs = ({ children, markup, disabled, fullwidth, className, marginless, align, textAlign }: TabsProps) => {
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
   const { styled } = useTrilogyContext()
@@ -20,6 +20,7 @@ const Tabs = ({ children, markup, disabled, activeIndex, fullwidth, className, m
       'tabs',
       fullwidth && is('fullwidth'),
       marginless && is('marginless'),
+      textAlign && textAlign,
       className,
     ),
   )

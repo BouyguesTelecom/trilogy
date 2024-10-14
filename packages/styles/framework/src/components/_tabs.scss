@@ -6,6 +6,8 @@
   height: 48px;
   white-space: nowrap;
   display: inline-flex;
+  display: flex;
+  justify-content: center;
 
   &.is-centered {
     justify-content: center;
@@ -21,12 +23,11 @@
 }
 
 .tab {
-  float: left;
-
   label {
     &.is-inverted {
       color: getColor('background') !important;
     }
+    cursor: pointer;
     padding: 10px;
     margin-left: -1px;
     position: relative;
@@ -55,6 +56,7 @@
     bottom: 0;
     padding: 20px;
     overflow: hidden;
+    text-align: center;
 
     > * {
       opacity: 0;

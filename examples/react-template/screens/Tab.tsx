@@ -53,16 +53,16 @@ export const TabScreen = (): JSX.Element => {
 
       <Section backgroundColor={TrilogyColor.MAIN}>
         <Tabs>
-          <TabsItem inverted groupName="group-three" id="tab-9" label="Tab 9" active>
+          <TabsItem iconName={IconName.BELL} inverted groupName="group-three" id="tab-9" label="Tab 9" active>
             <p>Tab content 9</p>
           </TabsItem>
-          <TabsItem inverted groupName="group-three" id="tab-10" label="Tab 10">
+          <TabsItem iconName={IconName.BELL} inverted groupName="group-three" id="tab-10" label="Tab 10">
             <p>Tab content 10</p>
           </TabsItem>
-          <TabsItem inverted groupName="group-three" id="tab-11" label="Tab 11">
+          <TabsItem iconName={IconName.BELL} inverted groupName="group-three" id="tab-11" label="Tab 11">
             <p>Tab content 11</p>
           </TabsItem>
-          <TabsItem inverted groupName="group-three" id="tab-12" label="Tab 12">
+          <TabsItem iconName={IconName.BELL} inverted groupName="group-three" id="tab-12" label="Tab 12">
             <p>Tab content 12</p>
           </TabsItem>
         </Tabs>
