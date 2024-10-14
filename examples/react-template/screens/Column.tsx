@@ -22,7 +22,7 @@ import {
 
 export const ColumnScreen = (): JSX.Element => {
   return (
-    <Container fluid>
+    <Container>
       <Box>
         <Columns>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
@@ -295,25 +295,21 @@ export const ColumnScreen = (): JSX.Element => {
         </ColumnsItem>
       </Columns>
       <Columns mobile>
-        <ColumnsItem>
+        <ColumnsItem size={6}>
           <Box>
-            <Columns>
-              <ColumnsItem size={6}>
-                <Box>
-                  <Title level={1}>Test</Title>
-                  <Text level={1}>Tehdghgfbnf bnvf</Text>
-                </Box>
-              </ColumnsItem>
-              <ColumnsItem>
-                <Box>
-                  <Title level={1}>Test</Title>
-                  <Text level={1}>Tehdghgfbnf bnvf</Text>
-                </Box>
-              </ColumnsItem>
-            </Columns>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Tehdghgfbnf bnvf</Text>
           </Box>
         </ColumnsItem>
-        <ColumnsItem>
+        <ColumnsItem narrow>
+          <Box>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Tehdghgfbnf bnvf</Text>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+      <Columns>
+        <ColumnsItem size={4}>
           <Box>
             <Title level={1}>Test</Title>
             <Text level={1}>Tehdghgfbnf bnvf</Text>

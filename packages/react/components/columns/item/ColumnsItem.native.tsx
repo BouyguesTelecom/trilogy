@@ -26,7 +26,7 @@ const ColumnsItem = ({ children, size, verticalCenter, centered, align, ...other
       flex: columnsContextValues.scrollable ? undefined : !size ? 1 : size,
       justifyContent: verticalCenter ? 'center' : 'flex-start',
       alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
-      flexBasis: `${(size ? size : 4)  * 100}%`,
+      flexBasis: `${(size ? size / 12 : 12)  * 100}%`,
       flexGrow: 0,
       maxWidth: `${(size ? size : 12) / 12 * 100}%`
     },
