@@ -10,14 +10,65 @@ import {
   BoxHeader,
   BoxContent,
   Text,
-  Button
+  Button,
+  View
 } from "@trilogy-ds/react/components";
 import { TrilogyColor } from "@trilogy-ds/react/objects";
 
 export const TabScreen = (): JSX.Element => {
   return (
     <Section>
-      <Title level={TitleLevels.THREE}>Tabs with icons</Title>
+
+<div className="tabs">
+  <input type="radio" name="tabs-group1" id="tab1" defaultChecked={true} />
+  <label htmlFor="tab1">Tab 1</label>
+  <div className="tab-panels">
+    <h2>Tab 1 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </div>
+
+  <input type="radio" name="tabs-group1" id="tab2" />
+  <label htmlFor="tab2">Tab 2</label>
+  <div className="tab-panels">
+    <h2>Tab 2 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </div>
+
+  <input type="radio" name="tabs-group1" id="tab3" />
+  <label htmlFor="tab3">Tab 3</label>
+  <div className="tab-panels">
+    <h2>Tab 3 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  </div>
+</div>
+
+<div className="tabs">
+  <input type="radio" name="tabs-group2" id="tab4" defaultChecked={true} />
+  <label htmlFor="tab4">Tab 4</label>
+  <div className="tab-panels">
+    <h2>Tab 4 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </div>
+
+  <input type="radio" name="tabs-group2" id="tab5" />
+  <label htmlFor="tab5">Tab 5</label>
+  <div className="tab-panels">
+    <h2>Tab 5 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </div>
+
+  <input type="radio" name="tabs-group2" id="tab6" />
+  <label htmlFor="tab6">Tab 6</label>
+  <div className="tab-panels">
+    <h2>Tab 6 Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  </div>
+</div>
+
+
+
+
+      {/* <Title level={TitleLevels.THREE}>Tabs with icons</Title>
       <Tabs>
         <TabsItem groupName="group-one" id="tab-1" label="Tab 1" active iconName={IconName.BELL}>
           <p>Tab content 1</p>
@@ -81,8 +132,10 @@ export const TabScreen = (): JSX.Element => {
           </Box>
         </TabsItem>
         <TabsItem groupName="group-four" id="tab-14" label="Tab 14" iconName={IconName.BELL}>
-          <Text>Button with text</Text>
-          <Button variant="PRIMARY">Button</Button>
+          <View>
+            <Text>Button with text</Text>
+            <Button variant="PRIMARY">Button</Button>
+          </View>
         </TabsItem>
         <TabsItem groupName="group-four" id="tab-15" label="Tab 15" iconName={IconName.BELL}>
           <p>Tab content 3</p>
@@ -90,7 +143,7 @@ export const TabScreen = (): JSX.Element => {
         <TabsItem groupName="group-four" id="tab-16" label="Tab 16" iconName={IconName.BELL}>
           <p>Tab content 4</p>
         </TabsItem>
-      </Tabs>
+      </Tabs> */}
       {/* <Title level={TitleLevels.THREE}>Event</Title>
 
       <Tabs activeIndex={activeIndexEventTab}>

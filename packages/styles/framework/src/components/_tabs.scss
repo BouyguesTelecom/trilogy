@@ -1,92 +1,158 @@
+/* NEW */
+
+:root {
+  --primary-text-color: #222;
+  --secondary-text-color: #fff;
+  --primary-bg-color: #222;
+  --secondary-bg-color: #fff;
+  --tertiary-bg-color: #ddd;
+}
+
 .tabs {
-  position: relative;
-  min-height: 200px;
-  clear: both;
-  background-color: transparent;
-  white-space: nowrap;
-  display: inline-flex;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+}
 
-  &.is-centered {
-    justify-content: center;
+.tabs label {
+  background: var(--primary-bg-color);
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  margin-right: 0.3rem;
+  order: initial;
+  padding: 1rem 2rem;
+  transition: background ease 0.3s;
+  width: 100%;
+}
+
+.tabs .tab-panels {
+  background: var(--secondary-bg-color);
+  display: none;
+  flex-grow: 1;
+  padding: 1rem;
+  width: 100%;
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs input[type="radio"]:checked + label {
+  background: var(--secondary-bg-color);
+  color: var(--primary-text-color);
+}
+
+.tabs input[type="radio"]:checked + label + .tab-panels {
+  display: block;
+}
+
+@media (min-width: 10em) {
+  .tabs .tab-panels {
+    order: 99;
   }
 
-  &.is-right {
-    justify-content: flex-end;
+  .tabs label {
+    order: 1;
   }
 
-  &.is-left {
-    justify-content: flex-start;
+  .tabs label {
+    margin-right: 0.3rem;
+    margin-top: 0;
+    width: auto;
   }
 }
 
-.tab {
-  label {
-    &.is-inverted {
-      color: getColor('background') !important;
-    }
-    cursor: pointer;
-    padding: 10px;
-    margin-left: -1px;
-    position: relative;
-    left: 1px;
-    color: getColor('font');
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* OLD NEW */
+// .tabs {
+//   position: relative;
+//   min-height: 200px;
+//   clear: both;
+//   background-color: transparent;
+//   white-space: nowrap;
+//   display: inline-flex;
+//   display: flex;
+//   justify-content: center;
 
-    .icon {
-      margin-bottom: 5px;
-      font-size: 20px;
-    }
-  }
+//   &.is-centered {
+//     justify-content: center;
+//   }
 
-  [type="radio"] {
-    opacity: 0;
-  }
+//   &.is-right {
+//     justify-content: flex-end;
+//   }
 
-  .tab-content {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-    text-align: center;
+//   &.is-left {
+//     justify-content: flex-start;
+//   }
+// }
 
-    > * {
-      opacity: 0;
-      transform: translateX(-100%);
-      transition: all 0.6s ease;
-    }
-  }
+// .tab {
+//   label {
+//     &.is-inverted {
+//       color: getColor('background') !important;
+//     }
+//     cursor: pointer;
+//     padding: 10px;
+//     margin-left: -1px;
+//     position: relative;
+//     left: 1px;
+//     color: getColor('font');
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
 
-  [type="radio"]:focus ~ label {
-    &.is-inverted {
-      border-bottom: 2px solid getColor('background') !important;
-    }
-    border-bottom: 2px solid getColor('main');
-  }
+//     .icon {
+//       margin-bottom: 5px;
+//       font-size: 20px;
+//     }
+//   }
 
-  [type="radio"]:checked ~ label {
-    &.is-inverted {
-      border-bottom: 2px solid getColor('background') !important;
-    }
-    border-bottom: 2px solid getColor('main');
-    z-index: 2;
-  }
+//   [type="radio"] {
+//     opacity: 0;
+//   }
 
-  [type="radio"]:checked ~ label ~ .tab-content {
-    z-index: 1;
+//   .tab-panels {
+//     position: absolute;
+//     top: 120px;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     padding: 20px;
+//     text-align: -webkit-center;
 
-    > * {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-}
+//     > * {
+//       opacity: 0;
+//       transform: translateX(-100%);
+//       transition: 0.5s;
+//     }
+//   }
+
+//   [type="radio"]:focus ~ label {
+//     &.is-inverted {
+//       border-bottom: 2px solid getColor('background') !important;
+//     }
+//     border-bottom: 2px solid getColor('main');
+//   }
+
+//   [type="radio"]:checked ~ label {
+//     &.is-inverted {
+//       border-bottom: 2px solid getColor('background') !important;
+//     }
+//     border-bottom: 2px solid getColor('main');
+//     z-index: 2;
+//   }
+
+//   [type="radio"]:checked ~ label ~ .tab-panels {
+//     z-index: 1;
+
+//     > * {
+//       opacity: 1;
+//       transform: translateX(0);
+//     }
+//   }
+// }
 
 
 
