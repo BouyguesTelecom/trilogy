@@ -3,10 +3,10 @@ import { Breadcrumb, BreadcrumbItem } from './index'
 
 const BreadcrumbExample: React.ReactNode =
   <Breadcrumb>
-    <BreadcrumbItem href="https://google.fr">
+    <BreadcrumbItem href='https://google.fr'>
       Google
     </BreadcrumbItem>
-    <BreadcrumbItem to="#anchor">
+    <BreadcrumbItem to='#anchor'>
       Parent avec ancre
     </BreadcrumbItem>
     <BreadcrumbItem>
@@ -17,4 +17,4 @@ const BreadcrumbExample: React.ReactNode =
     </BreadcrumbItem>
   </Breadcrumb>
 
-export default BreadcrumbExample;
+export default BreadcrumbExample

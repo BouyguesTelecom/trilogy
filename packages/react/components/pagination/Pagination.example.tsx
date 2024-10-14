@@ -8,4 +8,4 @@ const PaginationExample: React.ReactNode =
     defaultPage={2}
   />
 
-export default PaginationExample;
+export default PaginationExample

@@ -5,20 +5,20 @@ import { Title } from '@/components/title'
 import { Button } from '@/components/button'
 
 const HeroExample: React.ReactNode = <Hero
-  backgroundSrc="https://picsum.photos/id/1/1500/600"
+  backgroundSrc='https://picsum.photos/id/1/1500/600'
 
 >
   <Container>
     <Title
       inverted
-      level="TWO"
-      markup="h1"
+      level='TWO'
+      markup='h1'
     >
       Bonjour Michel
     </Title>
     <Title
       inverted
-      markup="span"
+      markup='span'
       subtitle
     >
       Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.

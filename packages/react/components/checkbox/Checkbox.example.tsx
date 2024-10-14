@@ -2,72 +2,86 @@ import React from 'react'
 import Checkbox from '@/components/checkbox/Checkbox'
 import { Columns, ColumnsItem } from '../columns'
 
-const CheckboxExample: React.ReactNode = <div>
-            <>
-                <Columns multiline>
-                    <ColumnsItem size={4}>
-                        <Checkbox
-                            label="On peut me cocher grâce au controls ↓ "
-                            name="checkbox1"
-                            value="default value 1"
-                        />
-                    </ColumnsItem>
+const CheckboxExample: React.ReactNode =
 
-                    <ColumnsItem size={4}>
-                        <Checkbox
-                            checked
-                            label="Je suis cochée"
-                            name="checkbox2"
-                            value="default value 2"
-                        />
-                    </ColumnsItem>
-
-                    <ColumnsItem size={4}>
-                        <Checkbox
-                            disabled
-                            label="Je suis disabled"
-                            name="checkbox3"
-                            value="default value 3"
-                        />
-                    </ColumnsItem>
-                    <ColumnsItem size={4}>
-                    <Checkbox
-                        description="On peut me cocher et ajouter une icône grâce au controls ↓ "
-                        horizontalTile
-                        iconTile="tri-check-circle"
-                        label="Checkbox tile horizontal"
-                        name="checkbox"
-                        tile
-                        value="default value 1"
-                    />
-                    </ColumnsItem>
-                    <ColumnsItem size={4}>
-                    <Checkbox
-                        checked
-                        description="Je suis la description de la checkbox"
-                        horizontalTile
-                        iconTile="tri-infos-circle"
-                        label="Checkbox tile avec Icône"
-                        name="checkbox"
-                        tile
-                        value="default value 1"
-                    />
-                    </ColumnsItem>
-                    <ColumnsItem size={4}>
-                    <Checkbox
-                        description="Je suis la description de la checkbox"
-                        disabled
-                        horizontalTile
-                        iconTile="tri-alert"
-                        label="Checkbox tile horizontal disabled"
-                        name="checkbox"
-                        tile
-                        value="default value 1"
-                    />
-                    </ColumnsItem>
-                </Columns>
-
-            </>
-</div>
+<Columns multiline>
+    <ColumnsItem size={6}>
+        <Checkbox
+            description='On peut me cocher et ajouter une icône grâce au controls ↓ '
+            horizontalTile
+            iconTile='tri-check-circle'
+            label='Radio tile horizontal'
+            name='checkbox-horizontal'
+            tile
+            value='default value 1'
+        />
+        <Checkbox
+            checked
+            description='Je suis la description de la checkbox'
+            horizontalTile
+            iconTile='tri-infos-circle'
+            label='Radio tile avec Icône'
+            name='checkbox-horizontal'
+            tile
+            value='default value 1'
+        />
+        <Checkbox
+            description='Je suis la description de la checkbox'
+            disabled
+            horizontalTile
+            iconTile='tri-alert'
+            label='Radio tile horizontal disabled'
+            name='checkbox-horizontal'
+            tile
+            value='default value 1'
+        />
+    </ColumnsItem>
+    <ColumnsItem size={6}>
+        <Checkbox
+            description='On peut me cocher et ajouter une icône grâce au controls ↓ '
+            label='Radio Tile'
+            name='checkbox-tile'
+            tile
+            value='default value 1'
+        />
+        <Checkbox
+            checked
+            description='Je suis la description de la checkbox'
+            iconTile='tri-infos-circle'
+            label='Radio tile avec Icône'
+            name='checkbox-tile'
+            tile
+            value='default value 1'
+        />
+        <Checkbox
+            description='Je suis la description de la checkbox'
+            disabled
+            iconTile='tri-check'
+            label='Radio tile disabled'
+            name='checkbox-tile'
+            tile
+            value='default value 1'
+        />
+    </ColumnsItem>
+    <ColumnsItem>
+        <Checkbox
+            label='On peut me cocher grâce au controls ↓ '
+            name='checkbox-classic'
+            value='default value 1'
+        />
+        <Checkbox
+            checked
+            label='Je suis cochée'
+            name='checkbox-classic'
+            value='default value 2'
+        />
+        <Checkbox
+            disabled
+            label='Je suis disabled'
+            name='checkbox-classic'
+            value='default value 3'
+        />
+    </ColumnsItem>
+</Columns>
 
 export default CheckboxExample
