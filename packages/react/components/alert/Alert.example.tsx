@@ -3,8 +3,7 @@ import { Alert } from './index'
 import { Columns, ColumnsItem } from '../columns'
 
 const AlertExample: React.ReactNode =
-<>
-        <Columns multiline>
+<Columns multiline>
             <ColumnsItem size={6}>
             <Alert
               alert='INFO'
@@ -38,7 +37,5 @@ const AlertExample: React.ReactNode =
             />
             </ColumnsItem>
         </Columns>
-          </>
-
 
 export default AlertExample

@@ -4,35 +4,33 @@ import { ButtonList, Button } from './index'
 const ButtonExample: React.ReactNode =
   <ButtonList>
     <Button
-      variant="CONVERSION"
+      variant='CONVERSION'
     >
       Button
     </Button>
     <Button
-      variant="PRIMARY"
+      variant='PRIMARY'
     >
       Button
     </Button>
     <Button
-      variant="SECONDARY"
+      variant='SECONDARY'
     >
       Button
     </Button>
     <Button
       disabled
-      variant="PRIMARY"
+      variant='PRIMARY'
     >
       Button
     </Button>
     <Button
       loading
-      variant="PRIMARY"
+      variant='PRIMARY'
     >
       Button
     </Button>
   </ButtonList>
 
 export default ButtonExample
-
-
 

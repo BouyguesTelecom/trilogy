@@ -1,27 +1,25 @@
 import React from 'react'
 import { Icon } from './index'
 
-
-
 const IconExample: React.ReactNode =
   <>
     <Icon
       name='tri-search'
-      size="small"
+      size='small'
       status='SUCCESS'
     />
     <Icon
       name='tri-search'
-      size="small"
+      size='small'
       status='SUCCESS'
-      statusPosition="top"
+      statusPosition='top'
     />
     <Icon
       name='tri-search'
-      size="small"
+      size='small'
       status='SUCCESS'
-      statusPosition="bottom"
+      statusPosition='bottom'
     />
   </>
 
-export default IconExample;
+export default IconExample

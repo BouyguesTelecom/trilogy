@@ -5,14 +5,12 @@ import { Text } from '@/components/text'
 import { Columns, ColumnsItem } from '../columns'
 import { Link } from '../link'
 
-
 const BoxExample: React.ReactNode =
-  <>
-    <Columns multiline>
+  <Columns multiline>
       <ColumnsItem size={4}>
         <Box>
           <BoxContent>
-            <Title level="ONE">
+            <Title level='ONE'>
               Box Title
             </Title>
             <Text>
@@ -24,7 +22,7 @@ const BoxExample: React.ReactNode =
       <ColumnsItem size={4}>
         <Box flat>
           <BoxContent>
-            <Title level="ONE">
+            <Title level='ONE'>
               Box Title
             </Title>
             <Text>
@@ -35,10 +33,10 @@ const BoxExample: React.ReactNode =
       </ColumnsItem>
       <ColumnsItem size={4}>
         <Box
-          leftBorder="WARNING"
+          leftBorder='WARNING'
         >
           <BoxContent>
-            <Title level="ONE">
+            <Title level='ONE'>
               Box Title
             </Title>
             <Text>
@@ -50,7 +48,7 @@ const BoxExample: React.ReactNode =
       <ColumnsItem size={12}>
         <Box>
           <BoxContent>
-            <Title level="ONE">
+            <Title level='ONE'>
               Box Title
             </Title>
             <Text>
@@ -65,6 +63,5 @@ const BoxExample: React.ReactNode =
         </Box>
       </ColumnsItem>
     </Columns>
-  </>
 
 export default BoxExample

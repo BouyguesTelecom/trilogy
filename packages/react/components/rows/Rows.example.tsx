@@ -31,4 +31,4 @@ const RowsExample: React.ReactNode =
       </Rows>
     </ColumnsItem>
   </Columns>
-export default RowsExample;
+export default RowsExample

@@ -5,26 +5,26 @@ const StepperExample: React.ReactNode =
   <Stepper>
     <StepperStep
       done
-      label="Récapitulatif"
+      label='Récapitulatif'
       step={1}
     />
     <StepperStep
       done
-      label="Compléments"
+      label='Compléments'
       step={2}
     />
     <StepperStep
       done
-      label="Coordonnées"
+      label='Coordonnées'
       step={3}
     />
     <StepperStep
       current
-      label="Livraison"
+      label='Livraison'
       step={4}
     />
     <StepperStep
-      label="Confirmation"
+      label='Confirmation'
       step={5}
     />
   </Stepper>

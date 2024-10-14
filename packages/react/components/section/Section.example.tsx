@@ -2,23 +2,23 @@ import React from 'react'
 import { Section } from './index'
 import { Title } from '@/components/title'
 
-const RowsExample: React.ReactNode =
+const SectionExample: React.ReactNode =
   <>
     <Section>
-      <Title level="ONE">
-        Premiére section
+      <Title level='ONE'>
+        Première section
       </Title>
     </Section>
     <Section>
-      <Title level="ONE">
-        Deuxiéme section
+      <Title level='ONE'>
+        Deuxième section
       </Title>
     </Section>
     <Section>
-      <Title level="ONE">
-        Troisiéme section
+      <Title level='ONE'>
+        Troisième section
       </Title>
     </Section>
   </>
 
-export default RowsExample;
+export default SectionExample

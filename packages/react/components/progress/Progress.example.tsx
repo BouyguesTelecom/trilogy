@@ -5,16 +5,16 @@ const ProgressExample: React.ReactNode =
 
   <>
     <Progress
-      alert="INFO"
+      alert='INFO'
       percent={30}
-      uniqueLegend="My unique legend"
+      uniqueLegend='My unique legend'
     />
     <Progress
-      alert="INFO"
-      firstExtremLegend="0 Go"
+      alert='INFO'
+      firstExtremLegend='0 Go'
       percent={15}
-      secondExtremLegend="5 Go"
+      secondExtremLegend='5 Go'
     />
   </>
 
-export default ProgressExample;
+export default ProgressExample

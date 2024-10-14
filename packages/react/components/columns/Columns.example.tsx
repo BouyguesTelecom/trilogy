@@ -6,25 +6,25 @@ import { Box } from '@/components/box'
 const ColumnsExample: React.ReactNode = <Columns>
   <ColumnsItem>
     <Box flat>
-      <Title level="TWO">
+      <Title level='TWO'>
         Column
       </Title>
     </Box>
   </ColumnsItem>
   <ColumnsItem>
     <Box flat>
-      <Title level="TWO">
+      <Title level='TWO'>
         Column
       </Title>
     </Box>
   </ColumnsItem>
   <ColumnsItem>
     <Box flat>
-      <Title level="TWO">
+      <Title level='TWO'>
         Column
       </Title>
     </Box>
   </ColumnsItem>
 </Columns>
 
-export default ColumnsExample;
+export default ColumnsExample
