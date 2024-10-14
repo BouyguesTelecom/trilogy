@@ -8,6 +8,7 @@ export interface TabsItemProps extends Accessibility {
   children: React.ReactNode | string
   label?: string
   active?: boolean
+  groupName?: string
   className?: string
   id?: string
   tabIndex?: number

@@ -2,13 +2,13 @@ import React from 'react';
 import { TabsItemProps } from './TabsItemProps';
 import { Icon, IconSize } from '@/components/icon';
 
-const TabsItem = ({ id, label, children, active, iconName }: TabsItemProps) => {
+const TabsItem = ({ id, label, children, active, iconName, groupName }: TabsItemProps) => {
   return (
     <div className="tab">
       <input
         type="radio"
         id={id}
-        name="tab-group"
+        name={groupName}
         defaultChecked={active}
         className="tab-input"
       />

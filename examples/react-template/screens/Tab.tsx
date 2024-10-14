@@ -16,18 +16,36 @@ export const TabScreen = (): JSX.Element => {
 
   return (
     <Section>
+      <Title level={TitleLevels.THREE}>Tabs with icons</Title>
       <Tabs>
-        <TabsItem id="tab-1" label="Onglet 1" active iconName={IconName.ALERT}>
+        <TabsItem groupName="group-one" id="tab-1" label="Tab 1" active iconName={IconName.BELL}>
           <p>Tab content 1</p>
         </TabsItem>
-        <TabsItem id="tab-2" label="Onglet 2" iconName={IconName.BELL}>
+        <TabsItem groupName="group-one" id="tab-2" label="Tab 2" iconName={IconName.BELL}>
           <p>Tab content 2</p>
         </TabsItem>
-        <TabsItem id="tab-3" label="Onglet 3" iconName={IconName.BELL}>
+        <TabsItem groupName="group-one" id="tab-3" label="Tab 3" iconName={IconName.BELL}>
           <p>Tab content 3</p>
         </TabsItem>
-        <TabsItem id="tab-4" label="Onglet 4 avec glace" iconName={IconName.BELL}>
+        <TabsItem groupName="group-one" id="tab-4" label="Tab 4" iconName={IconName.BELL}>
           <p>Tab content 4</p>
+        </TabsItem>
+      </Tabs>
+
+      <Title level={TitleLevels.THREE}>Tabs without icon</Title>
+
+      <Tabs>
+        <TabsItem groupName="group-two" id="tab-5" label="Tab 5" active>
+          <p>Tab content 5</p>
+        </TabsItem>
+        <TabsItem groupName="group-two" id="tab-6" label="Tab 6">
+          <p>Tab content 6</p>
+        </TabsItem>
+        <TabsItem groupName="group-two" id="tab-7" label="Tab 7">
+          <p>Tab content 7</p>
+        </TabsItem>
+        <TabsItem groupName="group-two" id="tab-8" label="Tab 8">
+          <p>Tab content 8</p>
         </TabsItem>
       </Tabs>
       {/* <Title level={TitleLevels.THREE}>Event</Title>
