@@ -10,8 +10,9 @@ const Title = forwardRef(({ useClient, ...others }: IProps, ref: LegacyRef<any>)
   switch (true) {
     case useClient !== undefined:
       const Title = React.lazy(() => import('./web/TitleClient'))
+
       return (
-        <React.Suspense fallback={false}>
+        <React.Suspense fallback={<TitleBase {...others} />}>
           <Title {...others} ref={ref as any} />
         </React.Suspense>
       )
