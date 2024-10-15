@@ -248,7 +248,7 @@ const Input = ({
         (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
         (status && status === 'default' && inputColor) ||
         (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.MAIN_FADE),
+        getColorStyle(TrilogyColor.NEUTRAL),
       height: 46,
       width: '100%',
     },
@@ -367,7 +367,7 @@ const Input = ({
             onBlur?.(e)
           }}
           placeholder={placeholder}
-          placeholderTextColor={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.MAIN)}
+          placeholderTextColor={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)}
           style={styles.input}
           {...others}
         />
