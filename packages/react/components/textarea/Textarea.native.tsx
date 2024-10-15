@@ -73,7 +73,7 @@ const Textarea = (
     useState<boolean>(false)
   const textareaColor = isFocus
     ? getColorStyle(TrilogyColor.MAIN)
-    : getColorStyle(TrilogyColor.MAIN_FADE)
+    : getColorStyle(TrilogyColor.NEUTRAL)
 
   const animation = useRef(new Animated.Value(0)).current
 
@@ -204,6 +204,7 @@ const Textarea = (
         onBlur={() => setIsFocus(false)}
         {...others}
         ref={ref}
+        placeholderTextColor={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)}
       />
 
       {statusIconName && (
