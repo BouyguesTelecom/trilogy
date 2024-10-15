@@ -13,10 +13,6 @@ $tag-delete-margin: 1px !default;
     &:not(:last-child) {
       margin-right: 8px;
     }
-
-    .tag {
-      margin-bottom: 10px;
-    }
   }
 
   // multi-tags : ajout d'une marge à droite de chaque tag
