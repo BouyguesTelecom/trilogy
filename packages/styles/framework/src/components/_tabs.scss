@@ -7,10 +7,8 @@
     cursor: pointer;
     display: inline-grid;
     color: getColor('font');
-    padding: 10px;
-    margin-right: 0.3rem;
+    padding: $spacing-3;
     order: 1;
-    width: auto;
 
     &.is-inverted {
       color: getColor('background') !important;
@@ -24,7 +22,7 @@
   .tab-panels {
     display: none;
     flex-grow: 1;
-    padding: 1rem;
+    padding: $spacing-4;
     width: 100%;
     text-align: -webkit-center;
 
