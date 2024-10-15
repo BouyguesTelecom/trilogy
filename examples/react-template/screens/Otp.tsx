@@ -18,7 +18,7 @@ export const OtpScreen = (): JSX.Element => {
         label="Set your OTP"
         autoFocus
       />
-      <Spacer size={SpacerSize.HUGE} />
+      <Spacer size={SpacerSize.SIX} />
 
       <Otp
         disabled
@@ -26,7 +26,7 @@ export const OtpScreen = (): JSX.Element => {
         onCompleted={(code) => console.log("onCompleted", code)}
         label="OTP Disabled"
       />
-      <Spacer size={SpacerSize.HUGE} />
+      <Spacer size={SpacerSize.SIX} />
       <Otp
         error
         errorMessage={"This is an error message"}
@@ -34,7 +34,7 @@ export const OtpScreen = (): JSX.Element => {
         onCompleted={(code) => console.log("onCompleted", code)}
         label="OTP Error"
       />
-      <Spacer size={SpacerSize.HUGE} />
+      <Spacer size={SpacerSize.SIX} />
 
       <Otp
         errorMessage={"This is a message"}
