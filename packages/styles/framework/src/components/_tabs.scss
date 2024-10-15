@@ -33,8 +33,12 @@
     }
   }
 
+  input[type=radio]:checked:focus-visible+label {
+    outline: 2px solid getColor('main');
+  }
+
   input[type="radio"] {
-    display: none;
+    appearance: none;
 
     &:checked + label {
       border-bottom: 2px solid getColor('main');
