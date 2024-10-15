@@ -1,7 +1,6 @@
 import { IconName } from '@/components/icon'
 import { TagVariant, TagVariantValues } from './TagEnum'
 import { Accessibility } from '@/objects'
-import { IconNameValues } from '@/lib'
 
 type TagClickEventHandler = React.MouseEvent<Element> | unknown
 
@@ -21,6 +20,6 @@ export interface TagProps extends Accessibility {
   onClick?: TagClickEvent
   inverted?: boolean
   className?: string
-  iconName?: IconNameValues | IconName
+  iconName?: IconName
   small?: boolean
 }
