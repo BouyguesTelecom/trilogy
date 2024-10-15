@@ -22,6 +22,9 @@
 }
 
 .tabs .tab-panels {
+  &.is-inverted {
+    color: getColor('background') !important;
+  }
   display: none;
   flex-grow: 1;
   padding: 1rem;
@@ -34,6 +37,9 @@
 }
 
 .tabs input[type="radio"]:checked + label {
+  &.is-inverted {
+    border-bottom: 2px solid getColor('background') !important;
+  }
   border-bottom: 2px solid getColor('main');
 }
 

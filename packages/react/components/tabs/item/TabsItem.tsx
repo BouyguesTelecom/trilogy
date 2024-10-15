@@ -34,7 +34,7 @@ const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, 
         {iconName && <Icon color={inverted ? IconColor.WHITE : IconColor.MAIN} size={IconSize.SMALL} name={iconName} />}
         <span className={hashClass(styled, inverted ? is('inverted') : '')}>{label}</span>
       </label>
-      <div className={hashClass(styled, clsx('tab-panels'))}>
+      <div className={hashClass(styled, clsx('tab-panels', inverted && is('inverted')))}>
         {children}
       </div>
     </>
