@@ -71,7 +71,7 @@ export const CardScreen = (): JSX.Element => {
         </ColumnsItem>
       </Columns>
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.FOUR} />
       <Card active backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>
@@ -91,7 +91,7 @@ export const CardScreen = (): JSX.Element => {
       </Card>
 
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.FOUR} />
       <Card markup={CardMarkup.A} backgroundColor={TrilogyColor.BACKGROUND}>
         <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
         <CardContent>

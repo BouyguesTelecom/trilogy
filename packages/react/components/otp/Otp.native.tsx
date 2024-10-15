@@ -78,7 +78,7 @@ const Otp = ({
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (activated && getColorStyle(TrilogyColor.MAIN)) ||
         (error && getColorStyle(TrilogyColor.ERROR)) ||
-        getColorStyle(TrilogyColor.MAIN_FADE),
+        getColorStyle(TrilogyColor.NEUTRAL),
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,

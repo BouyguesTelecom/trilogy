@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { TypographyBold } from '@/objects/Typography'
-import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { Columns, ColumnsItem } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
+import { TypographyBold } from '@/objects/Typography'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import * as React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { SelectOptionProps } from './SelectOptionProps'
 
 /**
@@ -14,15 +14,8 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param label {string} Label value
  * @param children {React.ReactNode}
  */
-const SelectOption = ({
-  disabled,
-  children,
-  onClick,
-  label,
-  iconName,
-  ...others
-}: SelectOptionProps): JSX.Element => {
-  const { checked } = others as {checked:string}
+const SelectOption = ({ disabled, children, onClick, label, iconName, ...others }: SelectOptionProps): JSX.Element => {
+  const { checked } = others as { checked: string }
 
   const styles = React.useMemo(
     () =>
@@ -52,17 +45,28 @@ const SelectOption = ({
     }
   }, [disabled])
 
+  const columnLabelSize = React.useMemo(() => {
+    switch (true) {
+      case iconName !== undefined && checked !== undefined:
+        return 10
+      case iconName === undefined && checked !== undefined:
+        return 11
+      case iconName !== undefined && checked === undefined:
+        return 11
+    }
+  }, [iconName, checked])
+
   return (
     <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
       <Columns {...{ style: { paddingVertical: 16, paddingHorizontal: 8 } }}>
-        <ColumnsItem>
+        <ColumnsItem size={12}>
           <Columns>
             {iconName && (
               <ColumnsItem size={1} verticalCenter>
                 <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
               </ColumnsItem>
             )}
-            <ColumnsItem verticalCenter>
+            <ColumnsItem verticalCenter size={columnLabelSize}>
               <Text
                 typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
                 {...{ style: { paddingLeft: 8, color: textColor } }}
