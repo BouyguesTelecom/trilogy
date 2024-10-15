@@ -9,6 +9,16 @@ const isCorrectMarkup = (stringMarkup: TabsMarkup | TabsMarkupValues) => {
   return stringMarkup in TabsMarkup || Object.values(TabsMarkup).includes(stringMarkup as TabsMarkup)
 }
 
+/**
+ * Tabs Component
+ * @param children {ReactChild} React Child Element
+ * @param markup {TabsMarkup | TabsMarkupValues} markup of the tabs
+ * @param fullwidth {boolean} fullwidth tabs
+ * @param className {string} Additionnal CSS Classes
+ * @param marginless {boolean} marginless tabs
+ * @param justify {string} justify tabs
+ * @param textAlign {string} text align tabs
+ */
 const Tabs = ({ children, markup, fullwidth, className, marginless, justify, textAlign }: TabsProps) => {
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
