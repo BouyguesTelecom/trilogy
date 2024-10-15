@@ -13,7 +13,7 @@ import {
   Button,
   View
 } from "@trilogy-ds/react/components";
-import { TrilogyColor } from "@trilogy-ds/react/objects";
+import { Justifiable, TrilogyColor } from "@trilogy-ds/react/objects";
 
 export const TabScreen = (): JSX.Element => {
   return (

@@ -9,15 +9,6 @@ import { is } from '@/services';
 const TabsItem = ({ id, label, children, active, iconName, groupName, inverted, className, onClick, ...others }: TabsItemProps) => {
   const { styled } = useTrilogyContext()
 
-  // const classes = hashClass(
-  //   styled,
-  //   clsx(
-  //     'tab',
-  //     inverted && is('inverted'),
-  //     className,
-  //   ),
-  // )
-
   return (
     <>
       <input

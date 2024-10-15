@@ -14,7 +14,6 @@ export type TabsMarkupValues = `${TabsMarkup}`
  */
 export interface TabsProps extends Centerable, JustifiableProps, Clickable, Accessibility {
   children: React.ReactNode | string
-  disabled?: boolean
   activeIndex?: number
   fullwidth?: boolean
   className?: string

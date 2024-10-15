@@ -11,11 +11,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {ReactNode} Children for tabs
  * @param onClick onClick event
  * @param activeIndex {number} default active tab index
- * @param disabled {boolean} Disabled tabs
  * @param inverted {boolean} dark mode
  * @param centered {boolean} Is centered
  */
-const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps): JSX.Element => {
+const Tabs = ({ children, onClick, activeIndex, centered, inverted, ...others }: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 
@@ -29,9 +28,6 @@ const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ..
   }
 
   const toggleActive = (e: React.MouseEvent, index: number) => {
-    if (disabled) {
-      return false
-    }
     setActivateIndex(index)
     if (onClick) {
       onClick(e)

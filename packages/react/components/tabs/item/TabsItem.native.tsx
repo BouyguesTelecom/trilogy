@@ -19,7 +19,6 @@ const TabsItem = ({
                     onClick,
                     iconName,
                     inverted,
-                    disabled,
                     ...others
                   }: TabsItemProps): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,22 +31,19 @@ const TabsItem = ({
 
   const getIconColor = React.useMemo(() => {
     if (inverted) {
-      if (disabled) return TrilogyColor.NEUTRAL_FADE
       return TrilogyColor.BACKGROUND
     }
-    if (disabled) return TrilogyColor.DISABLED
     if (active) return TrilogyColor.MAIN
     return TrilogyColor.MAIN
-  }, [inverted, disabled, active])
+  }, [inverted, active])
 
   const getBorderColor = React.useMemo(() => {
-    if (disabled) return "transparent"
     if (inverted) {
       if (active) return getColorStyle(TrilogyColor.BACKGROUND)
     }
     if (active) return getColorStyle(TrilogyColor.MAIN)
     return "transparent"
-  }, [inverted, disabled, active])
+  }, [inverted, active])
 
   const styles = StyleSheet.create({
     tabsItem: {
@@ -82,11 +78,9 @@ const TabsItem = ({
       onPressOut={() => setInPressIn(false)}
       style={[styles.tabsItem]}
       onPress={(e?: unknown) => {
-        if (!disabled) {
-          setActiveItem(active || false)
-          if (onClick) {
-            onClick(e)
-          }
+        setActiveItem(active || false)
+        if (onClick) {
+          onClick(e)
         }
       }}
       {...others}
