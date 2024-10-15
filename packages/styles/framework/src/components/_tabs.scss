@@ -33,24 +33,28 @@
     }
   }
 
-  input[type=radio]:checked:focus-visible+label {
-    outline: 2px solid getColor('main');
-  }
-
   input[type="radio"] {
     appearance: none;
 
-    &:checked + label {
-      border-bottom: 2px solid getColor('main');
+    &:checked {
+      + label {
+        border-bottom: 2px solid getColor('main');
 
-      &.is-inverted {
-        border-bottom: 2px solid getColor('background') !important;
+        &.is-inverted {
+          border-bottom: 2px solid getColor('background') !important;
+        }
+      }
+
+      + label + .tab-panels {
+        display: block;
+        order: 99;
       }
     }
 
-    &:checked + label + .tab-panels {
-      display: block;
-      order: 99;
+    &:checked:focus-visible {
+      + label {
+        outline: 2px solid getColor('main');
+      }
     }
   }
 }
