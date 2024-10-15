@@ -10,7 +10,6 @@ import {
   CardImage,
   Columns,
   ColumnsItem,
-  Container,
   Divider,
   Price,
   Section,
@@ -22,7 +21,7 @@ import {
 
 export const ColumnScreen = (): JSX.Element => {
   return (
-    <Container>
+    <Section>
       <Box>
         <Columns>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
@@ -316,10 +315,8 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </ColumnsItem>
       </Columns>
-
       <Divider/>
       <Title level={TitleLevels.THREE}>Scrollable</Title>
-
       <Columns scrollable marginSize={3}>
         <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
           <Card>
@@ -382,7 +379,6 @@ export const ColumnScreen = (): JSX.Element => {
           </Card>
         </ColumnsItem>
       </Columns>
-    </Container>
-
+    </Section>
   );
 };
