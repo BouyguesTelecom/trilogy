@@ -55,6 +55,7 @@ const Card = ({
       borderColor:
         (flat && borderColor) ||
         (active && getColorStyle(TrilogyColor.MAIN)) ||
+        (active === false && getColorStyle(TrilogyColor.NEUTRAL)) ||
         "transparent",
       borderRadius: cardRadius,
       backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
