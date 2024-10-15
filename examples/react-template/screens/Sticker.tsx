@@ -16,7 +16,7 @@ export const StickerScreen = (): JSX.Element => {
         <Sticker>Sticker</Sticker>
         <Sticker variant={"ACCENT"}>Sticker</Sticker>
         <Sticker variant={"INFO"}>Sticker</Sticker>
-        <Spacer size={SpacerSize.HUGE} horizontal />
+        <Spacer size={SpacerSize.SIX} horizontal />
 
         <Sticker variant={VariantState.ACCENT} small>
           Sticker
@@ -28,7 +28,7 @@ export const StickerScreen = (): JSX.Element => {
           Sticker
         </Sticker>
 
-        <Spacer size={SpacerSize.HUGE} />
+        <Spacer size={SpacerSize.SIX} />
         <Box hat>
           <Sticker hat>Im a sticker hat</Sticker>
           <BoxContent>

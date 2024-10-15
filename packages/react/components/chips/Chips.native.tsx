@@ -43,7 +43,7 @@ const Chips = ({
       paddingTop: 6,
       paddingBottom: 5,
       margin: 6,
-      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.MAIN_FADE),
+      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
       borderWidth: 1,
       flexDirection: "row",
     },

@@ -78,7 +78,7 @@ const Checkbox = ({
       borderColor:
         (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.MAIN_FADE),
+        getColorStyle(TrilogyColor.NEUTRAL),
       borderRadius: 6,
       textAlign: "center",
       alignItems: "center",
