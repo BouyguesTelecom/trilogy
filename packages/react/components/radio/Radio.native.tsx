@@ -46,7 +46,7 @@ const Radio = ({
   const getRadioInsideColor = (isDisabled: boolean, isMain: boolean) => {
     if (isDisabled) return getColorStyle(TrilogyColor.DISABLED_FADE)
     if (isMain) return getColorStyle(TrilogyColor.MAIN)
-    return getColorStyle(TrilogyColor.MAIN_FADE)
+    return getColorStyle(TrilogyColor.NEUTRAL)
   }
 
   useEffect(() => {
