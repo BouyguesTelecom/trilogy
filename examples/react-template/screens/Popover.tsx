@@ -17,7 +17,7 @@ import {
 
 export const PopoverScreen = (): JSX.Element => {
   return (
-    <Section>
+    <>
       <Section>
         <Title level={TitleLevels.THREE}>Popover</Title>
         <Columns>
@@ -75,6 +75,6 @@ export const PopoverScreen = (): JSX.Element => {
           </ColumnsItem>
         </Columns>
       </Section>
-    </Section>
+    </>
   );
 };

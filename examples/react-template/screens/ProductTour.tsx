@@ -12,7 +12,7 @@ import {
 
 export const ProductTourScreen = (): JSX.Element => {
   return (
-    <Section>
+    <>
       <Section>
         <Title level={TitleLevels.THREE}>Product tour</Title>
         <Divider />
@@ -28,6 +28,6 @@ export const ProductTourScreen = (): JSX.Element => {
           <Text>Product tour text content</Text>
         </ProductTour>
       </Section>
-    </Section>
+    </>
   );
 };

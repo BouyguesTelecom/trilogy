@@ -8,8 +8,6 @@ import {
   Card,
   CardContent,
   Container,
-  Divider,
-  IconName,
   RowItem,
   Rows,
   Section,

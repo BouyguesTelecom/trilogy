@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
-  AutoLayout,
   Checkbox,
   Columns,
   ColumnsItem,
   Container,
   IconName,
+  Section,
   Spacer,
   SpacerSize,
   Text,
@@ -14,7 +14,7 @@ import { TypographyAlign } from "@trilogy-ds/react/objects";
 
 export const CheckboxScreen = (): JSX.Element => {
   return (
-    <AutoLayout>
+    <Section>
       <Container>
         <Text typo={TypographyAlign.TEXT_CENTERED}>
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
@@ -92,6 +92,6 @@ export const CheckboxScreen = (): JSX.Element => {
         <Checkbox disabled label="Checkbox Disabled" />
         <Checkbox description={"lorem kenenf"} label="Checkbox simple" />
       </Container>
-    </AutoLayout>
+    </Section>
   );
 };

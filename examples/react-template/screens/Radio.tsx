@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  AutoLayout,
   Columns,
   ColumnsItem,
   Container,
@@ -10,6 +9,7 @@ import {
   Radio,
   RowItem,
   Rows,
+  Section,
   Text,
   Title,
   TitleLevels,
@@ -19,7 +19,7 @@ import { Spacer, SpacerSize, TypographyAlign } from "@trilogy-ds/react";
 
 export const RadioScreen = (): JSX.Element => {
   return (
-    <AutoLayout>
+    <Section>
       <Container>
         <Rows>
           <RowItem>
@@ -176,6 +176,6 @@ export const RadioScreen = (): JSX.Element => {
           />
         </RadioList>
       </Container>
-    </AutoLayout>
+    </Section>
   );
 };

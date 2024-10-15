@@ -32,6 +32,7 @@ const Columns = ({
     columns: {
       flexDirection: "row",
       minWidth: "100%",
+      display: "flex",
     },
     centered: {
       alignSelf: "center",
@@ -112,7 +113,7 @@ const Columns = ({
         scrollable,
       }}
     >
-      <View style={{ width: Dimensions.get("window").width, resizeMode: "cover" }}>
+      <View style={{ width: Dimensions.get("window").width, resizeMode: "cover", flexDirection: 'column', justifyContent: 'space-between'}}>
       <ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal
