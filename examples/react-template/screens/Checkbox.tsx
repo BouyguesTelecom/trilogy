@@ -71,7 +71,7 @@ export const CheckboxScreen = (): JSX.Element => {
             />
           </ColumnsItem>
         </Columns>
-        <Spacer size={20} />
+        <Spacer size={8} />
 
         <Checkbox
           checked

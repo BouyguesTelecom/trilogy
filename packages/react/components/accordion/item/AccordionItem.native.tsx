@@ -60,7 +60,7 @@ const AccordionItem = ({
       borderWidth: 1,
       borderColor:
         (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
-        getColorStyle(TrilogyColor.MAIN_FADE)
+        getColorStyle(TrilogyColor.NEUTRAL)
     },
     bodyBackground: {
       borderRadius: 6,
