@@ -10,6 +10,7 @@ export enum TrilogyColor {
   MAIN_FADE = 'MAIN_FADE',
   ACCENT = 'ACCENT',
   FONT = 'FONT',
+  FONT_PLACEHOLDER = 'FONT_PLACEHOLDER',
   SUCCESS = 'SUCCESS',
   SUCCESS_FADE = 'SUCCESS_FADE',
   INFO = 'INFO',
@@ -34,10 +35,12 @@ export const colors: Record<any, string[]> = {
   [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
   [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main', 'white'],
   [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
+
   [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
+  [TrilogyColor.FONT_PLACEHOLDER]: ['#818283', 'font-placeholder', 'white'],
 
   [TrilogyColor.SUCCESS]: ['#007B52', 'success', 'white'],
-  [TrilogyColor.SUCCESS_FADE]: [ '#cae8ca', 'success-fade', 'white'],
+  [TrilogyColor.SUCCESS_FADE]: ['#cae8ca', 'success-fade', 'white'],
 
   [TrilogyColor.INFO]: ['#1A688A', 'info', 'white'],
   [TrilogyColor.INFO_FADE]: ['#c8dbec', 'info-fade', 'white'],
@@ -49,11 +52,10 @@ export const colors: Record<any, string[]> = {
   [TrilogyColor.ERROR_FADE]: ['#eecccc', 'error-fade', 'white'],
 
   [TrilogyColor.DISABLED]: ['#646464', 'disabled', 'white'],
-  [TrilogyColor.DISABLED_FADE]: [ '#D1D1D1', 'disabled-fade', 'white'],
+  [TrilogyColor.DISABLED_FADE]: ['#D1D1D1', 'disabled-fade', 'white'],
 
   [TrilogyColor.NEUTRAL]: ['#707070', 'grey', 'white'],
-  [TrilogyColor.NEUTRAL_FADE]: [ '#F4F4F4', 'grey-fade', 'white'],
-
+  [TrilogyColor.NEUTRAL_FADE]: ['#F4F4F4', 'grey-fade', 'white'],
 }
 
 /**
@@ -118,7 +120,6 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @returns {string} - Color style value
  */
 export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
-
   if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
     const colorsStyle = theme?.colors || colors
