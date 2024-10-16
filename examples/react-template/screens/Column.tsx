@@ -164,8 +164,6 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </ColumnsItem>
       </Columns>
-
-
       <Title level={TitleLevels.THREE}>Columns : nb-cols-1 peek and full-bleed</Title>
       <Columns nbCols={1} scrollable mobile fullBleed>
         <ColumnsItem>
@@ -186,15 +184,8 @@ export const ColumnScreen = (): JSX.Element => {
         <ColumnsItem size={4}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>Overline</Text>
-              <Title level={TitleLevels.ONE}>size : 4</Title>
-              <Text>
-                Lorem ipsum dolor sit amet.
-              </Text>
+              <Title level={TitleLevels.THREE}>size : 4</Title>
               <Price amount={22.99}></Price>
-              <ButtonList>
-                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
-              </ButtonList>
             </BoxContent>
           </Box>
         </ColumnsItem>
@@ -312,8 +303,7 @@ export const ColumnScreen = (): JSX.Element => {
         </ColumnsItem>
       </Columns>
 
-
-      <Columns mobile>
+      <Columns mobile >
         <ColumnsItem size={6}>
           <Box>
             <Title level={1}>Test</Title>
