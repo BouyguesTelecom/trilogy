@@ -4,13 +4,13 @@ import { ColumnsProps } from "./ColumnsProps"
 import { is, has } from "@/services/classify"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+import {ColumnsGap} from "@/components/columns/ColumnsTypes";
 
 /**
  * Columns Component
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param gapless {boolean} Delete margins between columns
- * @param marginSize {ColumnsSize} Delete margins between columns with Size (apply is-variable)
+ * @param marginSize {ColumnsSize} Delete margins between columns with Size
  * @param scrollable {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
  * @param marginless {boolean}
@@ -28,7 +28,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     mobile,
     centered,
     verticalCentered,
-    gapless,
     gap,
     fullBleed,
     marginSize,
@@ -49,8 +48,7 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
       mobile && is("mobile"),
       centered && is("centered"),
       verticalCentered && is("vcentered"),
-      !marginSize && gapless && is("gapless"),
-      !gapless && marginSize && [is("variable"), is(`${marginSize}`)],
+      marginSize &&  is(`${marginSize}`),
       className
     )
   )

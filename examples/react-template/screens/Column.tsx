@@ -23,12 +23,31 @@ export const ColumnScreen = (): JSX.Element => {
   return (
     <Section>
       <Box>
-        <Columns>
+        <Columns scrollable fullBleed>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
         </Columns>
       </Box>
+
+      <Box>
+        <Columns nbCols={3} >
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+        </Columns>
+      </Box>
+      <Box>
+        <Columns nbCols={3} multiline >
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+        </Columns>
+      </Box>
+
 
       <Divider/>
       <Title level={TitleLevels.THREE}>Multiline</Title>
@@ -275,24 +294,25 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </ColumnsItem>
       </Columns>
-
       <Columns mobile multiline>
         <ColumnsItem>
-          <Text level={1} className='has-background-warning'>Colonne 1</Text>
+          <Text level={1} className='has-background-warning'>Column 1</Text>
         </ColumnsItem>
         <ColumnsItem>
-          <Text level={1} className='has-background-warning'>Colonne 1</Text>
+          <Text level={1} className='has-background-warning'>Column 2</Text>
         </ColumnsItem>
         <ColumnsItem>
-          <Text level={1} className='has-background-warning'>Colonne 1</Text>
+          <Text level={1} className='has-background-warning'>Column 3</Text>
         </ColumnsItem>
         <ColumnsItem>
-          <Text level={1} className='has-background-warning'>Colonne 1</Text>
+          <Text level={1} className='has-background-warning'>Column 4</Text>
         </ColumnsItem>
         <ColumnsItem>
-          <Text level={1} className='has-background-warning'>Colonne 1</Text>
+          <Text level={1} className='has-background-warning'>Column 5</Text>
         </ColumnsItem>
       </Columns>
+
+
       <Columns mobile>
         <ColumnsItem size={6}>
           <Box>
