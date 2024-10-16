@@ -53,6 +53,8 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
         return 11
       case iconName !== undefined && checked === undefined:
         return 11
+      default:
+        return 11
     }
   }, [iconName, checked])
 
