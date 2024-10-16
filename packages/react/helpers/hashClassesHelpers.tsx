@@ -1,4 +1,4 @@
-import { useTrilogyContext } from '@/context'
+import hash from '@/hash.json'
 
 /**
  * Used to hash classes if styled components
@@ -6,8 +6,6 @@ import { useTrilogyContext } from '@/context'
  * @param classes String classes
  */
 export const hashClass = (styled = false, classes: string): string => {
-  const { hash } = useTrilogyContext()
-
   if (classes.trim().length < 1) return ''
   if (styled) {
     return classes
