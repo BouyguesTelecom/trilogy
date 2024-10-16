@@ -221,7 +221,7 @@ const Input = ({
     dynamicPlaceholder: {
       position: 'absolute',
       left: customIconLeft ? 40 : 10,
-      color: getColorStyle(TrilogyColor.NEUTRAL),
+      color: getColorStyle(TrilogyColor.FONT_PLACEHOLDER),
     },
     help: {
       fontSize: 12,
@@ -367,7 +367,9 @@ const Input = ({
             onBlur?.(e)
           }}
           placeholder={placeholder}
-          placeholderTextColor={disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)}
+          placeholderTextColor={
+            disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+          }
           style={styles.input}
           {...others}
         />
