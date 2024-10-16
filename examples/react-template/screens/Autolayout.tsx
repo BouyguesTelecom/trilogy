@@ -4,6 +4,7 @@ import {
   AccordionHeader,
   AccordionItem,
   Alert,
+  AutoLayout,
   Box,
   BoxContent,
   BoxHeader,
@@ -18,14 +19,14 @@ import {
   IconSize,
   Card,
   CardContent,
-  Section,
+  Divider,
 } from '@trilogy-ds/react/components'
 import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (
-    <Section>
+    <AutoLayout>
       <Title level={TitleLevels.ONE}>Title followed by subtitle</Title>
       <Title subtitle>subtitle</Title>
 
@@ -118,6 +119,6 @@ export const AutolayoutScreen = (): JSX.Element => {
       />
 
       <Input.AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
-    </Section>
+    </AutoLayout>
   )
 }

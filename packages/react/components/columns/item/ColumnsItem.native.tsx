@@ -8,22 +8,23 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
+ * @param mobileSize {ColumnsSize} if size is missing.
  * @param children {React.ReactNode}
  * @param verticalCenter {boolean} Vertical center Column item
  * @param centered {boolean} center Column item
+ * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = ({ children, size, verticalCenter, centered, align, ...others }: ColumnsItemProps): JSX.Element => {
+const ColumnsItem = ({ children, size, mobileSize, verticalCenter, centered, align, ...others }: ColumnsItemProps): JSX.Element => {
   const columnsContextValues = useContext(ColumnsContext)
+
+  if(mobileSize) {
+    size = mobileSize
+  }
 
   const styles = StyleSheet.create({
     columnsItem: {
-      width: columnsContextValues.scrollable
-        ? (Dimensions.get('window').width - 80) / (12 / (size ? size : 12))
-        : undefined,
-      marginRight: columnsContextValues.scrollable ? 16 : 0,
       height: columnsContextValues.scrollable ? '100%' : undefined,
-      flexDirection: 'column',
-      flex: columnsContextValues.scrollable ? undefined : !size ? 1 : size,
+      flex: !size ? 1 : size,
       justifyContent: verticalCenter ? 'center' : 'flex-start',
       alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
       flexBasis: `${(size ? size / 12 : 12)  * 100}%`,

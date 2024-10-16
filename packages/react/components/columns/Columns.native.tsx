@@ -1,36 +1,37 @@
-import React, { createContext } from "react"
+import React, {createContext, ReactNode} from "react"
 import {Dimensions, StyleSheet} from "react-native"
-import { View } from "@/components/view"
-import { ScrollView } from "@/components/scroll-view"
-import { ColumnsProps } from "./ColumnsProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import {View} from "@/components/view"
+import {ColumnsProps} from "./ColumnsProps"
+import {ComponentName} from "@/components/enumsComponentsName"
+import {ScrollView} from 'react-native'
 
 /**
  * Columns Native Component
  * @param children {React.ReactNode}
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param gapless {boolean} Delete margins between columns
- * @param marginSize {ColumnsSize} Delete margins between columns with Size (apply is-variable)
+ * @param marginSize {ColumnsSize} Delete margins between columns with Size
  * @param scrollable {boolean} Make colomns scrollable to vertical. Don't work with props 'marginSize'
  */
 
-export const ColumnsContext = createContext({ scrollable: false })
+export const ColumnsContext = createContext({scrollable: false})
 
 const Columns = ({
-  children,
-  centered,
-  gapless,
-  marginSize,
-  verticalCentered,
-  fullBleed,
-  scrollable,
-   multiline,
-...others
-}: ColumnsProps): JSX.Element => {
+                   children,
+                   centered,
+                   gap,
+                   nbCols,
+                   marginSize,
+                   verticalCentered,
+                   fullBleed,
+                   scrollable,
+                   multiline,
+                   ...others
+                 }: ColumnsProps): JSX.Element => {
   const styles = StyleSheet.create({
     columns: {
       flexDirection: "row",
+      gap: gap || 16,
       minWidth: "100%",
       display: "flex",
     },
@@ -41,101 +42,57 @@ const Columns = ({
       justifyContent: "center",
       flex: 1,
     },
-    gapless: {
-      margin: 0,
-      padding: 0,
-    },
-    variable: {
+    marginSize: {
       padding: marginSize || 0,
     },
-    fullbleed: {
-      width: Dimensions.get('window').width,
-      marginLeft: "50%",
-      transform: [{ translateX: Dimensions.get('window').width / 2 }],
-      padding: 0
-    },
     multiline: {
+      flexDirection: "row",
       flexWrap: "wrap",
+      marginRight: 24,
     }
   })
 
-  if (marginSize && !scrollable) {
+  if (!scrollable) {
     return (
       <View
         style={[
-          styles.columns,
+          multiline && styles.multiline || styles.columns,
           centered,
-          fullBleed && styles.fullbleed,
-          multiline && styles.multiline,
           verticalCentered && styles.verticalAlign,
         ]}
         {...others}
       >
-        {children && marginSize
-          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(children, (child: any) =>
-              React.cloneElement(child, {
-                style: [child.props.style, styles.variable],
-              })
-            )
-          : children}
+        {// eslint-disable-next-line @typescript-eslint/no-explicit-any
+          React.Children.map(children, (child: any) =>
+            React.cloneElement(child, {
+              style: [child.props.style, styles.marginSize],
+              width: `${100/(nbCols||1) }%`,
+            })
+          )}
       </View>
     )
   }
 
-  if (gapless) {
-    return (
-      <View
-        style={[
-          styles.columns,
-          centered,
-          verticalCentered && styles.verticalAlign,
-          multiline && styles.multiline,
-          fullBleed && styles.fullbleed
-        ]}
-        {...others}
-      >
-        {children && gapless
-          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(children, (child: any) =>
-              React.cloneElement(child, {
-                style: [child.props.style, styles.gapless],
-              })
-            )
-          : children}
-      </View>
-    )
-  }
-
-  return scrollable ? (
-    <ColumnsContext.Provider
-      value={{
-        scrollable,
-      }}
-    >
-      <View style={{ width: Dimensions.get("window").width, resizeMode: "cover", flexDirection: 'column', justifyContent: 'space-between'}}>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        horizontal
-      >
-        {children}
+  if (scrollable) {
+    return <View style={{width: Dimensions.get('screen').width, marginHorizontal: fullBleed ? -24 : 0}}>
+      <ScrollView horizontal contentContainerStyle={{
+        width: 'auto',
+        paddingHorizontal: 24,
+        justifyContent: 'space-evenly',
+        gap: 8
+      }}>
+        {
+          React.Children.map(children, (child: any) =>
+            React.cloneElement(child, {
+              style: [child.props.style, {
+                width: Dimensions.get('screen').width / (12 / (child.props.size || child.props.mobileSize || 12))-48,
+                flexGrow: 0,
+              }],
+            })
+          )}
       </ScrollView>
-      </View>
-    </ColumnsContext.Provider>
-  ) : (
-    <View
-      style={[
-        styles.columns,
-        centered && styles.centered,
-        gapless && styles.gapless,
-        verticalCentered && styles.verticalAlign,
-        fullBleed && styles.fullbleed
-      ]}
-      {...others}
-    >
-      {children}
     </View>
-  )
+  }
 }
 
 Columns.displayName = ComponentName.Columns

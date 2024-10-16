@@ -62,7 +62,7 @@ export const RadioScreen = (): JSX.Element => {
             />
           </ColumnsItem>
         </Columns>
-        <Spacer size={SpacerSize.MEDIUM} />
+        <Spacer size={SpacerSize.FOUR} />
         <Columns>
           <ColumnsItem size={6} centered>
             <Radio
