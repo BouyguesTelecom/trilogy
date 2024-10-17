@@ -137,12 +137,6 @@ export const RadioScreen = (): JSX.Element => {
           <Radio description={'lorem kenenf ns k '} label='abc narrow' narrow marginless />
         </RadioList>
       </Container>
-<<<<<<< HEAD
     </Section>
-  );
-};
-=======
-    </AutoLayout>
   )
 }
->>>>>>> origin/master
