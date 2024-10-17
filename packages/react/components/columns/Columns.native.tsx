@@ -1,8 +1,7 @@
 import React, {createContext, useState} from "react"
-import {Dimensions, LayoutChangeEvent, StyleSheet} from "react-native"
-import {View} from "@/components/view"
+import { LayoutChangeEvent, StyleSheet} from "react-native"
+import { View } from "@/components/view"
 
-import {Title} from "@/components/title"
 
 
 import {ColumnsProps} from "./ColumnsProps"

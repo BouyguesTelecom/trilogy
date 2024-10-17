@@ -1,5 +1,4 @@
 import {
-  AutoLayout,
   Box,
   BoxContent,
   Section,
