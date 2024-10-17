@@ -36,9 +36,10 @@ const Columns = ({
   const styles = StyleSheet.create({
     columns: {
       flexDirection: "row",
-      gap: ColumnsGapValue[(gap as ColumnsGap)]|| 16,
+      gap: ColumnsGapValue[(gap as ColumnsGap)] || 16,
       minWidth: "100%",
       display: "flex",
+      justifyContent: 'space-evenly',
     },
     centered: {
       alignSelf: "center",
@@ -51,6 +52,8 @@ const Columns = ({
       flexWrap: "wrap",
     }
   })
+
+  const realGap =  ColumnsGapValue[(gap as ColumnsGap)] || 16
 
   if (!scrollable) {
     return (
@@ -81,7 +84,7 @@ const Columns = ({
         width: 'auto',
         paddingHorizontal: 24,
         justifyContent: 'space-evenly',
-        gap: ColumnsGapValue[(gap as ColumnsGap)]|| 16,
+        gap: realGap,
       }}>
         {// eslint-disable-next-line @typescript-eslint/no-explicit-any
           React.Children.map(children, (child: any) =>
