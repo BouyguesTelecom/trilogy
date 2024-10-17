@@ -8,7 +8,6 @@ import {
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
-import {AutoLayout} from "@trilogy-ds/react";
 
 export const LinkScreen = (): JSX.Element => {
   return (
