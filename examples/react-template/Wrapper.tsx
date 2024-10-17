@@ -1,5 +1,5 @@
-import { TypographyAlign } from '@trilogy-ds/react'
-import { Icon, IconName, ScrollView, Section, Title } from '@trilogy-ds/react/components'
+import {AutoLayout, TypographyAlign} from '@trilogy-ds/react'
+import { Icon, IconName, ScrollView, Section, Title, View } from '@trilogy-ds/react/components'
 import React, { PropsWithChildren } from 'react'
 
 interface IProps {
@@ -10,21 +10,27 @@ interface IProps {
 
 export const Wrapper = ({ title, children, goBack, scrollable = true }: PropsWithChildren<IProps>): JSX.Element => {
   return (
-    <Section>
+    <View markup="main" className="main-content">
+      <AutoLayout>
       {scrollable && (
         <ScrollView>
-          {goBack && <Icon name={IconName.ARROW_LEFT} onClick={goBack} />}
-          <Title typo={[TypographyAlign.TEXT_CENTERED]}>{title}</Title>
+          <Section>
+            {goBack && <Icon name={IconName.ARROW_LEFT} onClick={goBack}/>}
+            <Title typo={[TypographyAlign.TEXT_CENTERED]}>{title}</Title>
+          </Section>
           {children}
         </ScrollView>
       )}
       {!scrollable && (
         <>
-          {goBack && <Icon name={IconName.ARROW_LEFT} onClick={goBack} />}
-          <Title typo={[TypographyAlign.TEXT_CENTERED]}>{title}</Title>
+          <Section>
+            {goBack && <Icon name={IconName.ARROW_LEFT} onClick={goBack}/>}
+            <Title typo={[TypographyAlign.TEXT_CENTERED]}>{title}</Title>
+          </Section>
           {children}
         </>
       )}
-    </Section>
+      </AutoLayout>
+    </View>
   )
 }

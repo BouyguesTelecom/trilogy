@@ -17,7 +17,7 @@ import {
 export const ProgressScreen = (): JSX.Element => {
 
   return (
-    <Section>
+    <>
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
@@ -91,6 +91,6 @@ export const ProgressScreen = (): JSX.Element => {
         <ProgressRadial percent={0} secondPercent={0} description='--' />
         <ProgressRadial percent={0} secondPercent={0} description='--' small />
       </Section>
-    </Section>
+    </>
   )
 }

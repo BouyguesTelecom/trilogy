@@ -58,6 +58,7 @@ export const AlertScreen = (): JSX.Element => {
   }
 
   return (
+    <Section>
     <ToasterAlertProvider>
       <ToasterAlertView />
       <Container>
@@ -80,5 +81,6 @@ export const AlertScreen = (): JSX.Element => {
         </View>
       </Container>
     </ToasterAlertProvider>
+    </Section>
   );
 };

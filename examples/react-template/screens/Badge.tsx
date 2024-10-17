@@ -32,7 +32,7 @@ export const BadgeScreen = (): JSX.Element => {
       <Divider />
 
       <Title level={TitleLevels.THREE}>Color + TextContent props </Title>
-      <Columns inlined>
+      <Columns scrollable>
         {Object.values(BadgeColor).map((color, index) => {
           return (
             <ColumnsItem size={6} key={index}>
@@ -44,7 +44,7 @@ export const BadgeScreen = (): JSX.Element => {
       <Divider />
 
       <Title level={TitleLevels.THREE}>Reversed props </Title>
-      <Columns inlined>
+      <Columns scrollable>
         <ColumnsItem size={6} key={1}>
           <Badge reversed={false} content={2} textContent="Text" />
         </ColumnsItem>

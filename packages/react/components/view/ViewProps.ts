@@ -20,6 +20,7 @@ export enum ViewMarkup {
   UL = 'ul',
   LI = 'li',
   LABEL = 'label',
+  MAIN = 'main'
 }
 
 export type ViewMarkupValues = `${ViewMarkup}`
