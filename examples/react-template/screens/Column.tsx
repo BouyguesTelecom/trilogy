@@ -31,12 +31,21 @@ export const ColumnScreen = (): JSX.Element => {
       </Box>
 
       <Box>
+        <Columns>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+        </Columns>
+      </Box>
+
+      <Box>
         <Columns nbCols={3} >
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
         </Columns>
       </Box>
+
       <Box>
         <Columns nbCols={3} multiline >
           <ColumnsItem><Text>Test</Text></ColumnsItem>

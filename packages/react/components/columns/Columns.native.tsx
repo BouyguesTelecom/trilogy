@@ -1,10 +1,13 @@
-import React, {createContext, ReactNode} from "react"
-import {Dimensions, StyleSheet} from "react-native"
+import React, {createContext, useState} from "react"
+import {Dimensions, LayoutChangeEvent, StyleSheet} from "react-native"
 import {View} from "@/components/view"
+
+import {Title} from "@/components/title"
+
+
 import {ColumnsProps} from "./ColumnsProps"
 import {ComponentName} from "@/components/enumsComponentsName"
 import {ScrollView} from 'react-native'
-import {SpacerSize, SpacerSizeValues} from "@/components/spacer"
 import {ColumnsGap, ColumnsGapValue} from "@/components/columns/ColumnsTypes"
 
 /**
@@ -19,9 +22,6 @@ import {ColumnsGap, ColumnsGapValue} from "@/components/columns/ColumnsTypes"
 
 export const ColumnsContext = createContext({scrollable: false})
 
-
-//React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLDivElement>)
-
 const Columns = ({
                    children,
                    centered,
@@ -33,11 +33,19 @@ const Columns = ({
                    multiline,
                    ...others
                  }: ColumnsProps): JSX.Element => {
+
+  const [width, setWidth] = useState(0)
+
+  const onLayoutHandler = (event: LayoutChangeEvent) => {
+    const { width } = event.nativeEvent.layout
+    setWidth(width)
+  }
+
   const styles = StyleSheet.create({
     columns: {
       flexDirection: "row",
       gap: ColumnsGapValue[(gap as ColumnsGap)] || 16,
-      minWidth: "100%",
+//      minWidth: "100%",
       display: "flex",
       justifyContent: 'space-evenly',
     },
@@ -57,40 +65,43 @@ const Columns = ({
 
   if (!scrollable) {
     return (
-      <View
-        style={[
-          styles.columns,
+      <>
+        {/* eslint-disable-next-line react/jsx-no-undef */}
+    <View style={[
+      styles.columns,
           multiline && styles.multiline,
           centered,
           verticalCentered && styles.verticalAlign,
         ]}
         {...others}
+        {...{ onLayout: onLayoutHandler }}
       >
         {// eslint-disable-next-line @typescript-eslint/no-explicit-any
           React.Children.map(children, (child: any) =>
             React.cloneElement(child, {
               style: [child.props.style,
-                { width: nbCols && `${100/nbCols}%` || child.props.size && `${100/12*child.props.size}%` || 'auto' },
+                { width: nbCols && (width/nbCols) - realGap || child.props.size && (width*child.props.size/12) - realGap || 'auto' },
                 child.props.narrow && { flex: 'none' }
               ]
             })
           )}
       </View>
+      </>
     )
   }
 
-    return <View style={{width: Dimensions.get('screen').width, marginHorizontal: fullBleed ? -24 : 0}}>
+    return <View style={{width: width, marginHorizontal: fullBleed ? -24 : 0}} {...{ onLayout: onLayoutHandler }}>
       <ScrollView horizontal contentContainerStyle={{
         width: 'auto',
         paddingHorizontal: 24,
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         gap: realGap,
       }}>
         {// eslint-disable-next-line @typescript-eslint/no-explicit-any
           React.Children.map(children, (child: any) =>
             React.cloneElement(child, {
               style: [child.props.style, {
-                width: Dimensions.get('screen').width / (12 / (child.props.size || child.props.mobileSize || 12))-48,
+                width: width / (12 / (child.props.size || child.props.mobileSize || 12))-48,
                 flexGrow: 0,
               }],
             })
