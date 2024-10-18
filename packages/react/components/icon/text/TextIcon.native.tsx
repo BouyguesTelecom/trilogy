@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
-import { Text, TextLevels } from '@/components/text'
-import { IconPosition } from '@/components/icon/IconEnum'
-import { TextIconProps } from './TextIconProps'
-import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
-import { WithLocalSvg } from 'react-native-svg/css'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { TrilogyThemeContext } from "@/context/providerTheme.native"
+import { IconPosition } from '@/components/icon/IconEnum'
+import { Text, TextLevels } from '@/components/text'
+import { TrilogyThemeContext } from '@/context/themeProvider/providerTheme.native'
+import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
+import React, { useContext } from 'react'
+import { Platform, StyleSheet, View } from 'react-native'
+import { WithLocalSvg } from 'react-native-svg/css'
+import { TextIconProps } from './TextIconProps'
 
 const TextIcon = ({
   name,
@@ -17,7 +17,7 @@ const TextIcon = ({
   color,
   stacked,
   verticalAlign = Alignable.ALIGNED_CENTER,
-  testId
+  testId,
 }: TextIconProps): JSX.Element => {
   const {
     theme: { icons },
