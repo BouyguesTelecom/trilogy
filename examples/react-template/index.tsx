@@ -1,4 +1,4 @@
-import { TrilogyProviderStyled } from '@trilogy-ds/react/context/providerStyled'
+import { TrilogyProviderStyled } from '@trilogy-ds/react/context/styledProvider/providerStyled'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'

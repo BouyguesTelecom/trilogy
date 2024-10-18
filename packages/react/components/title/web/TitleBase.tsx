@@ -37,62 +37,64 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
   return stringMarkup in TitleMarkup || Object.values(TitleMarkup).includes(stringMarkup as TitleMarkup)
 }
 
-const TitleBase = (
-  {
-    level = TitleLevels.ONE,
-    markup,
-    children,
-    className,
-    typo,
-    skeleton,
-    inverted,
-    onClick,
-    testId,
-    accessibilityLabel,
-    subtitle,
-    overline,
-    marginless,
-    htmlContent,
-    styled,
-    ...others
-  }: TitleProps,
-  ref?: LegacyRef<any>,
-): JSX.Element => {
-  const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
-  const overlineClasses = hashClass(styled, clsx('overline', typo, className))
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      'title',
-      level && getTitleLevel(level),
-      typo,
-      inverted && is('inverted'),
-      marginless && is('marginless'),
+const TitleBase = forwardRef(
+  (
+    {
+      level = TitleLevels.ONE,
+      markup,
+      children,
       className,
-    ),
-  )
+      typo,
+      skeleton,
+      inverted,
+      onClick,
+      testId,
+      accessibilityLabel,
+      subtitle,
+      overline,
+      marginless,
+      htmlContent,
+      styled,
+      ...others
+    }: TitleProps,
+    ref?: LegacyRef<any>,
+  ): JSX.Element => {
+    const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
+    const overlineClasses = hashClass(styled, clsx('overline', typo, className))
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
-  const getClassname = () => {
-    if (subtitle) return subtitleClasses
-    if (overline) return overlineClasses
-    return classes
-  }
+    const classes = hashClass(
+      styled,
+      clsx(
+        'title',
+        level && getTitleLevel(level),
+        typo,
+        inverted && is('inverted'),
+        marginless && is('marginless'),
+        className,
+      ),
+    )
 
-  return (
-    <Tag
-      ref={ref}
-      data-testid={testId}
-      aria-label={accessibilityLabel}
-      onClick={onClick}
-      className={getClassname()}
-      {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
-      {...others}
-    >
-      {children}
-    </Tag>
-  )
-}
+    const getClassname = () => {
+      if (subtitle) return subtitleClasses
+      if (overline) return overlineClasses
+      return classes
+    }
 
-export default forwardRef(TitleBase)
+    return (
+      <Tag
+        {...others}
+        ref={ref}
+        data-testid={testId}
+        aria-label={accessibilityLabel}
+        onClick={onClick}
+        className={getClassname()}
+        {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
+      >
+        {children}
+      </Tag>
+    )
+  },
+)
+
+export default TitleBase

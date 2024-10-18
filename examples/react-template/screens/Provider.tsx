@@ -1,7 +1,6 @@
 import { Box, Button, ButtonVariant, Section, Text, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import { ViewMarkup } from '@trilogy-ds/react/components/view/ViewProps'
-import { TrilogyProvider } from '@trilogy-ds/react/context/provider'
-import { TrilogyProviderStyled } from '@trilogy-ds/react/context/providerStyled'
+import { TrilogyProviderStyled } from '@trilogy-ds/react/context/styledProvider/providerStyled'
 import { Alignable, Justifiable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 

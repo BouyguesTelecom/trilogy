@@ -29,11 +29,11 @@ const Title = forwardRef(({ useClient, ...others }: IProps, ref: LegacyRef<any>)
   const directive = getDirective()
   switch (true) {
     case directive === 'client':
-      const Title = React.lazy(() => import('./web/TitleClient'))
+      const TitleClient = React.lazy(() => import('./web/TitleClient'))
 
       return (
         <React.Suspense fallback={<TitleBase />}>
-          <Title {...others} ref={ref as any} />
+          <TitleClient {...others} ref={ref as any} />
         </React.Suspense>
       )
 
