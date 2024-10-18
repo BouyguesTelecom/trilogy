@@ -9,7 +9,7 @@ import {
 
 export const PaginationScreen = (): JSX.Element => {
   return (
-    <Section>
+    <>
       <Section>
         <Title level={TitleLevels.THREE}>Pagination</Title>
         <Divider />
@@ -32,6 +32,6 @@ export const PaginationScreen = (): JSX.Element => {
           defaultPage={2}
         />
       </Section>
-    </Section>
+    </>
   );
 };

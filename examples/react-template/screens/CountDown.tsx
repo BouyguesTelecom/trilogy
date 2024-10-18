@@ -11,7 +11,7 @@ export const CountdownScreen = (): JSX.Element => {
   return (
     <Section>
       <Countdown inverted deadline={new Date("2023-12-24 18:00:00")}></Countdown>
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.FOUR} />
       <Countdown
         small
         deadline={new Date("2024-09-28 18:00:00")}

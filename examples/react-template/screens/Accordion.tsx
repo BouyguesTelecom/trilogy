@@ -7,6 +7,7 @@ import {
   Divider,
   Section,
   Spacer,
+  SpacerSize,
   Text,
   Title,
   TitleLevels,
@@ -15,7 +16,9 @@ import {
 export const AccordionScreen = (): JSX.Element => {
   return (
     <Section>
+      <Spacer size={3} />
       <Title level={TitleLevels.TWO}>Base</Title>
+      <Spacer size={SpacerSize.THREE} />
       <Accordion>
         <AccordionItem id="ONE" active={true}>
           <AccordionHeader>

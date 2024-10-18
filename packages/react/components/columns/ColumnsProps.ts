@@ -1,4 +1,4 @@
-import { ColumnsSize } from './ColumnsTypes'
+import { ColumnsSize, ColumnsGap } from './ColumnsTypes'
 
 /**
  * Columns Interface
@@ -6,9 +6,11 @@ import { ColumnsSize } from './ColumnsTypes'
 export interface ColumnsProps {
   children?: React.ReactNode
   multiline?: boolean
-  inlined?: boolean
+  scrollable?: boolean
   centered?: boolean
-  gapless?: boolean
+  gap?: ColumnsGap
+  nbCols?: ColumnsSize
+  fullBleed?: boolean
   marginSize?: ColumnsSize
   verticalCentered?: boolean
   className?: string

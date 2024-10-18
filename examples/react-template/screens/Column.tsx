@@ -1,6 +1,9 @@
-import * as React from "react";
+import * as React from 'react'
 import {
+  Box,
+  BoxContent,
   Button,
+  ButtonList,
   ButtonVariant,
   Card,
   CardContent,
@@ -8,170 +11,393 @@ import {
   Columns,
   ColumnsItem,
   Divider,
+  Price,
   Section,
   Text,
+  TextLevels,
   Title,
-  TitleLevels,
-  View,
-} from "@trilogy-ds/react/components";
+  TitleLevels
+} from '@trilogy-ds/react/components'
 
 export const ColumnScreen = (): JSX.Element => {
   return (
-    <>
-      <Section>
-        <Columns marginSize={3}>
-          <ColumnsItem size={1}>
-            <Text {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              Column #1
-            </Text>
-          </ColumnsItem>
-          <ColumnsItem size={4}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #2</Text>
-            </View>
-          </ColumnsItem>
-          <ColumnsItem size={4}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #3</Text>
-            </View>
-          </ColumnsItem>
+    <Section>
+      <Box>
+        <Columns scrollable fullBleed>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
         </Columns>
-        <Columns marginSize={3}>
-          <ColumnsItem size={4}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #4</Text>
-            </View>
-          </ColumnsItem>
-          <ColumnsItem size={4}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #5</Text>
-            </View>
-          </ColumnsItem>
-          <ColumnsItem size={4}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #6</Text>
-            </View>
-          </ColumnsItem>
+      </Box>
+
+      <Box>
+        <Columns fullBleed>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
+          <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
         </Columns>
-        <Title level={TitleLevels.THREE}>Column responsive</Title>
-        <Divider />
-        <Columns mobile>
-          <ColumnsItem desktopSize={2} tabletSize={2} mobileSize={6}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #1</Text>
-            </View>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={10} tabletSize={10} mobileSize={6}>
-            <View {...{ style: { borderWidth: 1, borderColor: "red" } }}>
-              <Text>Column #2</Text>
-            </View>
-          </ColumnsItem>
+      </Box>
+
+      <Box>
+        <Columns nbCols={3} >
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
         </Columns>
-      </Section>
-      <Section>
-        <Title level={TitleLevels.THREE}>Column Inlined</Title>
-        <Divider />
-        <Columns inlined marginSize={3}>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
-          <ColumnsItem desktopSize={3} mobileSize={12} tabletSize={6} size={12}>
-            <Card>
-              <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
-              <CardContent>
-                <Title overline>Desktop Card Vertical</Title>
-                <Title level={TitleLevels.ONE}>Card Title</Title>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  ligula ex, aliquam at neque eu, vulputate vera.
-                </Text>
-                <Button variant={ButtonVariant.PRIMARY}>Skeleton toggle</Button>
-              </CardContent>
-            </Card>
-          </ColumnsItem>
+      </Box>
+
+      <Box>
+        <Columns nbCols={3} multiline >
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
         </Columns>
-      </Section>
-    </>
+      </Box>
+
+
+      <Divider/>
+      <Title level={TitleLevels.THREE}>Multiline</Title>
+
+      <Columns multiline>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={TextLevels.TWO} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+      <Title level={TitleLevels.THREE}>Columns : nb-cols-1 peek and full-bleed</Title>
+      <Columns nbCols={1} scrollable mobile fullBleed>
+        <ColumnsItem>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem size={4}>
+          <Box>
+            <BoxContent>
+              <Title level={TitleLevels.THREE}>size : 4</Title>
+              <Price amount={22.99}></Price>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem size={8}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>size=8</Title>
+              <Text>
+                4 + 8 = 12
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box shadowless>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box shadowless>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box shadowless>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Box shadowless>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+      <Columns mobile multiline>
+        <ColumnsItem>
+          <Text level={1} className='has-background-warning'>Column 1</Text>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Text level={1} className='has-background-warning'>Column 2</Text>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Text level={1} className='has-background-warning'>Column 3</Text>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Text level={1} className='has-background-warning'>Column 4</Text>
+        </ColumnsItem>
+        <ColumnsItem>
+          <Text level={1} className='has-background-warning'>Column 5</Text>
+        </ColumnsItem>
+      </Columns>
+
+      <Columns mobile >
+        <ColumnsItem size={8}>
+          <Box>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Column size 8</Text>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Box>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Column narrow</Text>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+      <Columns>
+        <ColumnsItem size={3}>
+          <Box>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Colmumns size 3</Text>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+      <Divider/>
+      <Title level={TitleLevels.THREE}>Scrollable</Title>
+      <Columns scrollable marginSize={3}>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
+      </Columns>
+    </Section>
   );
 };

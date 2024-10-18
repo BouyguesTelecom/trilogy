@@ -14,7 +14,7 @@ import {
 
 export const TagScreen = (): JSX.Element => {
   return (
-    <>
+    <Section>
       <Container>
         <TagList>
           <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
@@ -107,6 +107,6 @@ export const TagScreen = (): JSX.Element => {
           <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
         </TagList>
       </Section>
-    </>
+    </Section>
   );
 };
