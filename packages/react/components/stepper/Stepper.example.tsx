@@ -2,7 +2,7 @@ import React from 'react'
 import { Stepper, StepperStep } from './index'
 
 const StepperExample: React.ReactNode =
-  <Stepper>
+  <Stepper centered>
     <StepperStep
       done
       label='Récapitulatif'
@@ -27,6 +27,7 @@ const StepperExample: React.ReactNode =
       label='Confirmation'
       step={5}
     />
+    Stepp
   </Stepper>
 
 export default StepperExample

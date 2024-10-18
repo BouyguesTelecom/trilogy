@@ -3,6 +3,7 @@ import { Section } from './index'
 import { Title } from '@/components/title'
 
 const SectionExample: React.ReactNode =
+
   <>
     <Section>
       <Title level='ONE'>
