@@ -5,18 +5,18 @@ const IconExample: React.ReactNode =
   <>
     <Icon
       name='tri-search'
-      size='small'
+      size='medium'
       status='SUCCESS'
     />
     <Icon
-      name='tri-search'
-      size='small'
+      name='tri-check'
+      size='medium'
       status='SUCCESS'
       statusPosition='top'
     />
     <Icon
-      name='tri-search'
-      size='small'
+      name='tri-bell'
+      size='medium'
       status='SUCCESS'
       statusPosition='bottom'
     />
