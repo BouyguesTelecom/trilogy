@@ -1,11 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import hashJSON from '../hash.json'
-import { TrilogyContext } from './index'
+import hashJSON from '../../hash.json'
+import { TrilogyContext } from '../index'
 
 interface TrilogyProviderStyledProps {
-  children: React.ReactNode
   theme?: 'default' | 'mangled' | 'none'
   hash?: string
 }
@@ -20,7 +19,7 @@ const TrilogyProviderStyled = ({
   children,
   theme = 'default',
   hash: HASH = hashJSON.HASH,
-}: TrilogyProviderStyledProps): JSX.Element => {
+}: React.PropsWithChildren<TrilogyProviderStyledProps>): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
   const [hash, setHash] = React.useState<string>(HASH)
 

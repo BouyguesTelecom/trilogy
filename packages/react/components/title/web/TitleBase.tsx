@@ -37,24 +37,6 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
   return stringMarkup in TitleMarkup || Object.values(TitleMarkup).includes(stringMarkup as TitleMarkup)
 }
 
-/**
- * Title component
- * @param children {ReactNode} Title child
- * @param level {TitleLevels | TitleLevel | number} Title size : 1-3
- * @param inverted {Boolean} Title white color
- * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
- * @param onClick {Function} onClick Event
- * @param skeleton {Boolean} Title Skeleton
- * @param accessibilityLabel {string} Accessibility label
- * @param testId {string} Test Id for Test Integration
- * - --------------- WEB PROPERTIES ----------------------------------
- * @param markup {string} h1 | h2 | h3 | h4 | h5 | h6 | p | span | div
- * @param className {string} Additionnal css classes
- * @param subtitle {boolean} Subtitle below title
- * @param overline {boolean} Overline above title
- * - --------------- NATIVE PROPERTIES ----------------------------------
- * @param style {object} Additional styles
- */
 const TitleBase = (
   {
     level = TitleLevels.ONE,

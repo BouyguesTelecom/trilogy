@@ -1,5 +1,5 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react'
-import { ITrilogyTheme } from './interfaces'
+import React, { Dispatch, PropsWithChildren, SetStateAction } from 'react'
+import { ITrilogyTheme } from '../interfaces'
 
 export const defaultTheme: ITrilogyTheme = {
   icons: {},
@@ -19,6 +19,6 @@ const defaultContextValue = {
 
 export const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>(defaultContextValue)
 
-export const TrilogyThemeProvider = ({ children }: { children: ReactNode }) => {
+export const TrilogyThemeProvider = ({ children }: PropsWithChildren) => {
   return children
 }
