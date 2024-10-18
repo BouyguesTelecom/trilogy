@@ -31,7 +31,7 @@ export const ColumnScreen = (): JSX.Element => {
       </Box>
 
       <Box>
-        <Columns>
+        <Columns fullBleed>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
@@ -313,24 +313,24 @@ export const ColumnScreen = (): JSX.Element => {
       </Columns>
 
       <Columns mobile >
-        <ColumnsItem size={6}>
+        <ColumnsItem size={8}>
           <Box>
             <Title level={1}>Test</Title>
-            <Text level={1}>Tehdghgfbnf bnvf</Text>
+            <Text level={1}>Column size 8</Text>
           </Box>
         </ColumnsItem>
         <ColumnsItem narrow>
           <Box>
             <Title level={1}>Test</Title>
-            <Text level={1}>Tehdghgfbnf bnvf</Text>
+            <Text level={1}>Column narrow</Text>
           </Box>
         </ColumnsItem>
       </Columns>
       <Columns>
-        <ColumnsItem size={4}>
+        <ColumnsItem size={3}>
           <Box>
             <Title level={1}>Test</Title>
-            <Text level={1}>Tehdghgfbnf bnvf</Text>
+            <Text level={1}>Colmumns size 3</Text>
           </Box>
         </ColumnsItem>
       </Columns>
