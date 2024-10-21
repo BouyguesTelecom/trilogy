@@ -28,9 +28,10 @@ import { debounce } from './utils'
  * @param testId {string} data attribute
  * @param disabled {boolean} Disabled input
  * @param onIconClick {Function} onIconClick Input Event
- * @param onItemSelected {Function} OnSelectedItemList event
+ * @param onItemSelected {Function} onSelectedItemList event
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param getSuggestions {Function} getSuggestions event
  * - ------------------ WEB PROPERTIES -----------------------
  * @param name {string} Input name
  * @param classNameMenu {string} Additionnal CSS Classes for Menu

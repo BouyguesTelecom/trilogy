@@ -27,6 +27,7 @@ import { debounce } from './utils'
  * @param onItemSelected {Function} OnSelectedItemList event
  * @param customIcon {string} Additional icon classes
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param getSuggestions {Function} getSuggestions event
  */
 const AutoComplete = ({
   value,

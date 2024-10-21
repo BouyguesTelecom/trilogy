@@ -25,7 +25,6 @@ export const CardContext = createContext({
  * @param reversed {boolean} Reversed card
  * @param backgroundColor {TrilogyColor} Card Background Color
  * @param inverted {boolean} Inverted Card Color
- * @param backgroundColor
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
  * @param others

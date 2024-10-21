@@ -12,6 +12,7 @@ import { Link } from '@/components/link'
  * @param active {boolean} Active link
  * @param to {string} Url. Use React Router Link instead of a native-old <a> tag.
  * @param onClick {Function} Click Event
+ * @param testId {string} data attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param routerLink Custom Router Link as props
  * @param href {string} Url. Use native-old <a> tag (only when the `to` property is not filled)
