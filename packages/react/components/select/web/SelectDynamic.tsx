@@ -51,9 +51,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -89,6 +89,7 @@ const SelectDynamic = ({
             selectedOptions.push(...opts)
             return opts
           }
+          setIsFocused(false)
           selectedOptions.push(value)
           return value
         })
@@ -162,8 +163,8 @@ const SelectDynamic = ({
           setFocusedIndex(-1)
           setIsFocused(false)
           break
-          default:
-            return
+        default:
+          return
       }
     }
     focused && document.addEventListener('keydown', onKeyDown)
