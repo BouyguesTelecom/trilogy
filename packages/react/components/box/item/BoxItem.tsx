@@ -6,9 +6,10 @@ import { useTrilogyContext } from "@/context"
 
 /**
  * Box Item Component
- * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  */
 const BoxItem = ({
   className,

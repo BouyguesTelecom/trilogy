@@ -23,6 +23,7 @@ import { useTrilogyContext } from "@/context"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param buttonMarkup {ButtonMarkup} if Button, can change the button tag
+ * @param testId {string} Test Id for Test Integration
  */
 const CardContent = ({
   children,
