@@ -9,6 +9,8 @@ import { useTrilogyContext } from "@/context"
  * @param children {React.ReactNode} Children for Accordion body
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additionnal CSS Classes
+ * @param dataId {string} data attribute
+ * @param testId {string} data attribute
  */
 const AccordionBody = ({
   children,
