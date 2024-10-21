@@ -18,6 +18,7 @@ import { useTrilogyContext } from "@/context"
  * @param accessibilityLabel {string} Accessibility label
  * @param iconName {IconName} Adding Icon Link
  * @param testId {string} Test Id for Test Integration
+ * @param inverted {boolean} Inverted link
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
@@ -28,6 +29,7 @@ import { useTrilogyContext } from "@/context"
  * -------------------------- NATIVE PROPERTIES -------------------------------
  * @param inline {boolean} If link is inside paragraphe
  * @param level {TextLevels} if inline, size to match with Text
+ * @param style {Object} Additional styles
  */
 
 const Link = ({
