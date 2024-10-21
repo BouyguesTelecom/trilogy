@@ -4,7 +4,7 @@ import { BoxItemProps } from "./BoxItemProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Box Content Component
+ * Box item Component
  * @param children {React.ReactNode} BoxItem Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
  */

@@ -1,5 +1,5 @@
 import { Text, TextMarkup } from "@/components/text"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { OtpProps } from "./OtpProps"
 import { TypographyColor } from "@/objects/Typography"
 import clsx from "clsx"
