@@ -20,6 +20,7 @@ import { is } from "@/services"
  * @param bottom {number} position bottom
  * @param right {number} position right
  * @param disabled {boolean} disabled button
+ * @param testId {string} data attribute
  **/
 
 const Fab = ({
