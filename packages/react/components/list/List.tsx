@@ -5,12 +5,13 @@ import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
 
 /**
- * ListItem Component
- * @param className {string} Additionnal CSS Classes
+ * List Component
  * @param children {React.ReactNode}
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  * @param hasIcon {boolean} If Have icon
+ * @param testId {string} Test Id for Test Integration
  */
-
 const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
   const {
     className,
