@@ -11,13 +11,15 @@ import { ScrollDirectionEnum } from "@/objects"
  * @param children {React.ReactNode} ScrollView child
  * @param id {string} Id for Web / TestID for Native
  * @param scrollDirection {Direction} Scroll vertically or horizontally
- * - -------------- WEB PROPERTIES ---------------
+ * - -------------- WEB PROPERTIES -----------------
  * @param className {string} Additionnal css classes
  * - -------------- NATIVE PROPERTIES ---------------
  * @param footer {React.ReactNode} ScrollView footer
  * @param bounce {boolean} Bounce effect on scroll
  * @param centerContent {boolean} center content in scrollView
  * @param refresh {boolean} Is Refreshable ScrollView
+ * @param refreshControlColor {TrilogyColor} Color Of Refresh Control
+ * @param scrollDirection {Direction} Scroll vertically in default
  * @param onRefresh {void} On Refreshing ScrollView
  */
 const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(

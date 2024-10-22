@@ -11,6 +11,8 @@ import { useTrilogyContext } from '@/context'
  * @param onClick onClick Event
  * @param disabled {boolean} disable onClick on item
  * @param inverted {boolean} invert color of active item
+ * - -------------- WEB PROPERTIES ---------------
+ * @param className {string} Additionnal CSS Classes
  */
 const SegmentControlItem = ({
   active,
