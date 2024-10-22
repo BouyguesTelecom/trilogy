@@ -10,7 +10,7 @@ import { is } from "@/services"
  * @param children {ReactNode} Children Tag List
  * @param centered {boolean} Center tags
  * @param gapless {boolean} Delete margins between tags
- * @param marginless {boolean}
+ * @param marginless {boolean} delete margin
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
