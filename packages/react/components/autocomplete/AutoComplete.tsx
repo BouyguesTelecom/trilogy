@@ -25,7 +25,7 @@ import { debounce } from './utils'
  * @param matching {Function} matching function
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param onBlur {Function} onBlur Input Event
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  * @param disabled {boolean} Disabled input
  * @param onIconClick {Function} onIconClick Input Event
  * @param onItemSelected {Function} onSelectedItemList event

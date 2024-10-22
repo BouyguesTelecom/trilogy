@@ -20,7 +20,7 @@ import { getAlignClassName } from '@/objects'
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param inverted {boolean} Inverted Selector Color
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  * @param accessibilityActivate {boolean}
  * @param end {SelectorEnd} set selector item at last position

@@ -21,7 +21,7 @@ import { TabsProps } from './TabsProps'
  * @param align { Alignable | AlignableValues} align content
  * @param marginless {boolean} delete margin
  * @param textAlign {TypographyAlign | TypographyAlignValues}
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
