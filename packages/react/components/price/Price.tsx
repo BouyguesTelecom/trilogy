@@ -25,11 +25,11 @@ import { PriceLevel } from "./PriceEnum"
  * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
+ * @param strikedAmount {boolean} Striked Amount Price
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param strikedAmount {boolean} Striked Amount Price
  * - --------------- NATIVE PROPERTIES ----------------------------------
- * @param accessibilityActivate {boolean}
+ * @param style {Object} Additional style
  */
 const Price = ({
                  className,

@@ -9,13 +9,13 @@ import { useTrilogyContext } from "@/context"
 /**
  * Progress Item component - Only if stacked
  * @param percent {number} Progress percent
- * @param minPercent {number} Default min percent is 100
- * @param maxPercent {number} Default max percent is 100
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param children {React.ReactNode}
- * @param accessibilityLabel {string} Accessibility label
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
+ * @param accessibilityLabel {string} Accessibility label
+ * @param minPercent {number} Default min percent is 100
+ * @param maxPercent {number} Default max percent is 100
  */
 const ProgressItem = React.forwardRef((props: ProgressItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
