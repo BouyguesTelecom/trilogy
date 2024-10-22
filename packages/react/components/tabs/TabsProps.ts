@@ -9,10 +9,6 @@ export interface TabsProps extends Centerable, JustifiableProps, Clickable, Acce
   children: React.ReactNode | string
   disabled?: boolean
   activeIndex?: number
-  /** @deprecated */
-  rightAlign?: boolean
-  /** @deprecated */
-  clipped?: boolean
   fullwidth?: boolean
   className?: string
   marginless?: boolean

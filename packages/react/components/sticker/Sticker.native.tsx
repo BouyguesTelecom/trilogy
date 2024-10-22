@@ -6,12 +6,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
 import { Text } from "@/components/text"
 
 /**
- * Sticker Native component
+ * Sticker component
  * @param children {ReactNode} Sticker child
- * @param variant {VariantState} Sticker variant : main , accent , info
+ * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
- * @param outlined {boolean} Outlined sticker
  * @param hat {boolean} Hat Sticker ( for box )
+ * @param outlined {boolean} Outlined sticker
  * @param others
  */
 const Sticker = ({

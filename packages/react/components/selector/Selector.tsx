@@ -17,6 +17,13 @@ import { getAlignClassName } from '@/objects'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth Selector
+ * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param inverted {boolean} Inverted Selector Color
+ * @param testId {string} data attribute
+ * @param accessibilityLabel {string} Accessibility label
+ * @param accessibilityActivate {boolean}
+ * @param end {SelectorEnd} set selector item at last position
  */
 const Selector = ({
   children,

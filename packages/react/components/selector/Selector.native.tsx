@@ -9,11 +9,15 @@ import { getAlignStyle } from '@/objects'
  * Selector Component
  * @param children {ReactNode} Children for Selector
  * @param onClick onClick event
- * @param activeIndex {number} default active selector index (0 by default)
+ * @param activeIndex {number} default active tab index
  * @param disabled {boolean} Disabled Selector
- * @param inverted {boolean} change selector style to inverted
+ * @param clipped {boolean} Remove the separator bar
  * @param align {Alignable} Horizontal Align
- * @param end {selectorEnd: {message: string, onClick: onClick event}} Add last SelectorItem style to SECONDAY color
+ * @param inverted {boolean} Inverted Selector Color
+ * @param testId {string} data attribute
+ * @param accessibilityLabel {string} Accessibility label
+ * @param accessibilityActivate {boolean}
+ * @param end {SelectorEnd} set selector item at last position
  */
 const Selector = ({
                     children,

@@ -12,6 +12,10 @@ import { Spacer, SpacerSize } from "@/components/spacer"
  * @param onClick onClick Event
  * @param inverted {boolean} change style to inverted item
  * @param end {boolean} Change last SelectorItem style to SECONDAY color
+ * @param accessibilityLabel {string} Accessibility label
+ * @param accessibilityActivate {boolean}
+ * @param testId {string} data attribute
+ * @param selectorIndex {number} index of selector item
  */
 const SelectorItem = ({
                         active,
