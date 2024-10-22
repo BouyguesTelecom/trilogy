@@ -14,7 +14,7 @@ import { getAlignStyle } from '@/objects'
  * @param clipped {boolean} Remove the separator bar
  * @param align {Alignable} Horizontal Align
  * @param inverted {boolean} Inverted Selector Color
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  * @param accessibilityActivate {boolean}
  * @param end {SelectorEnd} set selector item at last position

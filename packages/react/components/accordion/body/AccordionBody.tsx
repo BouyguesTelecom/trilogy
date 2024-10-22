@@ -10,7 +10,7 @@ import { useTrilogyContext } from "@/context"
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additionnal CSS Classes
  * @param dataId {string} data attribute
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const AccordionBody = ({
   children,

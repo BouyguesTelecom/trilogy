@@ -12,7 +12,7 @@ import { useTrilogyContext } from "@/context"
  * @param content {string|number} Badge content text
  * @param reversed {boolean} Text reversed for Badge
  * @param onClick {Function} onClick Event for Badge
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */

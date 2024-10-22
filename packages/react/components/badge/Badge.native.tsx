@@ -13,7 +13,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param direction {boolean} Text direction for Badge (LEFT|RIGHT)
  * @param onClick {Function} onClick Event for Badge
  * @param reversed {boolean} Text reversed for Badge
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const Badge = ({
   children,

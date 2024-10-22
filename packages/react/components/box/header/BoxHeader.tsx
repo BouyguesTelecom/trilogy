@@ -18,7 +18,7 @@ import { getBackgroundClassName } from "@/objects"
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  */
 
 const BoxHeader = ({

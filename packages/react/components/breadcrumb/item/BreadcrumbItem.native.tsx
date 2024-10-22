@@ -11,7 +11,7 @@ import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
  * @param active {boolean} Active link
  * @param to {string} Url. Use  Router Link
  * @param onClick {Function} Click Event
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const BreadcrumbItem = ({
   children,

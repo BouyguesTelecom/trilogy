@@ -14,7 +14,7 @@ import { Icon } from "@/components/icon"
  * @param disabled {boolean} disable tab item
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param testId {string} data attribute
+ * @param testId {string} Test Id for Test Integration
  * @param to {string} Link
  * @param href {string} <a />
  * @param routerLink Custom Router Link as props
