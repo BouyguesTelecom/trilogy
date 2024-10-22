@@ -15,7 +15,7 @@ export const ContainerScreen = (): JSX.Element => {
     <>
       <Section verticalPaddingless>
         <Container>
-          <Box backgroundSrc="toto">
+          <Box>
             <BoxContent>
               <Text>Container</Text>
               <Title level={TitleLevels.THREE}>Conteneur simple</Title>
