@@ -7,18 +7,7 @@ import { hashClass } from "@/helpers/hashClassesHelpers"
 import { is } from "@/services/classify"
 import { useTrilogyContext } from "@/context/index"
 
-/**
- * OTP Code Component
- * @param className {string} Additionnal css classes
- * @param code {string} Code Text Input
- * @param codeSize {number} Code Size Number
- * @param disabled {boolean} Disabled OTP Code Input
- * @param error {boolean} OTP Code Input has error | Display error icon
- * @param onCompleted {Function} Return code input string
- * @param onChange {Function} onChange Input return current code
- * @param onFocus {Function} onFocus return if focused opt
- * @param autoFocus {boolean} Should auto focus otp
- */
+
 
 type NumberOrNull = number | null;
 
@@ -89,6 +78,21 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
   }
 }
 
+/**
+ * OTP Code Component
+ * @param code {string} Code Text Input
+ * @param codeSize {number} Code Size Number
+ * @param disabled {boolean} Disabled OTP Code Input
+ * @param error {boolean} OTP Code Input has error | Display error icon
+ * @param onCompleted {Function} Return code input string
+ * @param onChange {Function} onChange Input return current code
+ * @param onFocus {Function} onFocus return if focused opt
+ * @param autoFocus {boolean} Should auto focus otp
+ * @param label {string} Label for OTP
+ * @param errorMessage {string} error message to display
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal css classes
+ */
 const Otp = ({
   className,
   code,

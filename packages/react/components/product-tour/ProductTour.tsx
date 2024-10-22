@@ -9,14 +9,14 @@ import { useTrilogyContext } from '@/context'
 /**
  * Product Tour Component
  * @param children {React.ReactNode} Title child
- * @param className {string} Additionnal css classes
  * @param active {boolean} Display component
  * @param arrowDirection {ArrowDirection} UP|BOTTOM||LEFT|RIGHT - Display arrow
- * @param arrowAlign {ArrowAlign} ONE_FIFTH|ONE_QUARTER|ONE_THRID|TWO_FIFTHS|THREE_FIFTHS|
- * TWO_THIRDS|THREE_QUARTERS|FOUR_FIFTHS
+ * @param arrowAlign {ArrowAlign} ONE_FIFTH|ONE_QUARTER|ONE_THRID|TWO_FIFTHS|THREE_FIFTHS|TWO_THIRDS|THREE_QUARTERS|FOUR_FIFTHS
  * @param closeable {boolean} Display close icon
  * @param avatarSrc {string} Display avatar if source
  * @param avatarDirection {AvatarDirection} LEFT|RIGHT
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal css classes
  */
 const ProductTour = ({
   children,

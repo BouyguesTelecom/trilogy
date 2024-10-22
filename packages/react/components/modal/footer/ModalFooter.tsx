@@ -5,9 +5,10 @@ import clsx from "clsx"
 import { useTrilogyContext } from "@/context"
 
 /**
- * Modal Title Component
+ * Modal Footer Component
  * @param children {React.ReactNode}
- * @param className {string}
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal css classes
  */
 const ModalFooter = ({
   children,

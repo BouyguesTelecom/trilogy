@@ -38,6 +38,11 @@ const idTitle = shortid.generate()
  * @param triggerMarkup {ModalMarkup} h1|h2|h3|h4|h5|h6|p|span|div|button|a
  * @param triggerClassNames {string} Additionnal CSS Classes for trigger element
  * @param panel {boolean} Panel Side Modal
+ * @param accessibilityLabel {string} Accessibility label
+ * @param testId {string} Test id
+ * @param ctaCancelContent {string} content of button close 
+ * @param footer {React.ReactNode}
+ * @param footerClassNames {string} Additionnal CSS Classes for footer
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} If bottom
  * @param swipable {boolean} Swipable Native Modal
