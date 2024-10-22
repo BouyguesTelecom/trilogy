@@ -18,13 +18,13 @@ export const TagScreen = (): JSX.Element => {
       <Container>
         <TagList>
           <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.ERROR}>
+          <Tag variant={TagVariant.ERROR}>
             Tag error
           </Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.SUCCESS}>
+          <Tag variant={TagVariant.SUCCESS}>
             Tag success
           </Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.WARNING}>
+          <Tag variant={TagVariant.WARNING}>
             Tag warning
           </Tag>
         </TagList>
@@ -94,18 +94,6 @@ export const TagScreen = (): JSX.Element => {
         <Tag inverted iconName={IconName.ALERT} variant={TagVariant.INFO}>
           Tag info
         </Tag>
-      </Section>
-
-      <Section>
-        <Title level={TitleLevels.THREE}>Deletable Tags</Title>
-        <Divider/>
-        <TagList>
-          <Tag deletable>Tag Deletable</Tag>
-          <Tag deletable variant={TagVariant.ERROR}>Deletable Error</Tag>
-          <Tag deletable variant={TagVariant.SUCCESS}>Deletable Success</Tag>
-          <Tag deletable variant={TagVariant.WARNING}>Deletable Warning</Tag>
-          <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
-        </TagList>
       </Section>
     </>
   );

@@ -10,13 +10,14 @@ import { Icon } from "@/components/icon"
  * @param active {boolean} active tab item
  * @param children {ReactChild} React Child Element
  * @param onClick onClick Event
- * @param to {string} Link
- * @param href {string} <a />
- * @param routerLink Custom Router Link as props
  * @param iconName {IconNameValues | IconName} add icon name
  * @param disabled {boolean} disable tab item
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param testId {string} data attribute
+ * @param to {string} Link
+ * @param href {string} <a />
+ * @param routerLink Custom Router Link as props
  */
 const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<any>) => {
   const {

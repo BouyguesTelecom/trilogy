@@ -11,15 +11,17 @@ import { TabsProps } from './TabsProps'
  * @param onClick onClick event
  * @param activeIndex {number} default active tab index
  * @param disabled {boolean} Disabled tabs
- * @param clipped {boolean} Remove the separator bar
  * @param inverted {boolean} dark mode
  * @param shadowless {boolean} No shadow
- * - -------------------------- WEB PROPERTIES -------------------------------
  * @param centered {boolean} Centered tabs
- * @param rightAlign {boolean} Tabs right align
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs
  * @param leftAlign {boolean} Tabs left align
+ * @param align { Alignable | AlignableValues} align content
+ * @param marginless {boolean} delete margin
+ * @param textAlign {TypographyAlign | TypographyAlignValues}
+ * @param testId {string} data attribute
  */
 const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
@@ -28,7 +30,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     onClick,
     activeIndex,
     disabled,
-    rightAlign,
     fullwidth,
     align,
     centered,
@@ -48,7 +49,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     styled,
     clsx(
       'tabs',
-      rightAlign && is('right'),
       fullwidth && is('fullwidth'),
       centered && is('centered'),
       marginless && is('marginless'),

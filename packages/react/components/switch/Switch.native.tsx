@@ -7,7 +7,7 @@ import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Switch Native Component
+ * Switch Component
  * @param id {string} Is auto generate by default
  * @param checked {boolean} Checked switch
  * @param onChange {Function} onChange event
@@ -16,6 +16,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
  */
+
 const Switch = ({
   id = shortid.generate(),
   checked,
