@@ -7,14 +7,14 @@ import { useTrilogyContext } from "@/context"
 
 /**
  * Range Component
+ * - -------------------------- MOBILE PROPERTIES -------------------------------
  * @param min {number} min length
  * @param max {number} max length
  * @param label {string} label of range
  * @param labelValueCursorMin {string} label to display next to value display
  * @param labelValueCursorMax {string} label to display next to value display
- * @param onChangeMin
- * @param onChangeMax
- * @param onChange {function} (Native)
+ * @param onChange {function}
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param nameMin {string} name input min
  * @param idMin {string} id input min
  * @param nameMax{string} name input max
@@ -22,8 +22,10 @@ import { useTrilogyContext } from "@/context"
  * @param gap {number} space max between min and max cursor
  * @param valueCursorMin {number} number of input min
  * @param valueCursorMax {number} number of input max
+ * @param onChangeMin {function} on change min cursor
+ * @param onChangeMax {function} on change max cursor
+ * @param testId {string} Test Id for Test Integration 
  */
-
 const Range = ({
   min,
   max,

@@ -14,7 +14,6 @@ import { useTrilogyContext } from "@/context"
  * @param vertical {boolean} Verical radios
  * @param isMobile {boolean} espect mobile screen
  */
-
 const RadioList = ({
   className,
   centered,
