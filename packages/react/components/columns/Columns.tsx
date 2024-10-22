@@ -13,7 +13,7 @@ import { useTrilogyContext } from "@/context"
  * @param marginSize {ColumnsSize} Delete margins between columns with Size (apply is-variable)
  * @param inlined {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
- * @param marginless {boolean}
+ * @param marginless {boolean} delete margin
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param multiline {boolean} Multiline Columns
  * @param className {string} Additionnal CSS Classes

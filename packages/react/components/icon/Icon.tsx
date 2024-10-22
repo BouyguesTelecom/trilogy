@@ -27,7 +27,7 @@ import { IconName } from "./IconNameEnum"
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
- * @param marginless {boolean}
+ * @param marginless {boolean} delete margin
  * @param align { Alignable | AlignableValues} align content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param textClassName {string} Text's className
