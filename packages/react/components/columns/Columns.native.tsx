@@ -1,10 +1,10 @@
-import React, { createContext, useState } from "react"
+import React, {createContext, useState} from "react"
 import {Dimensions, LayoutChangeEvent, StyleSheet} from "react-native"
-import { View } from "@/components/view"
-import { ColumnsProps } from "./ColumnsProps"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { ScrollView } from 'react-native'
-import { ColumnsGap, ColumnsGapValue } from "@/components/columns/ColumnsTypes"
+import {View} from "@/components/view"
+import {ColumnsProps} from "./ColumnsProps"
+import {ComponentName} from "@/components/enumsComponentsName"
+import {ScrollView} from 'react-native'
+import {ColumnsGap, ColumnsGapValue} from "@/components/columns/ColumnsTypes"
 import {Text} from "@/components/text";
 
 /**
@@ -36,22 +36,22 @@ const Columns = ({
 
   const onLayoutHandler = (event: LayoutChangeEvent) => {
     if (!width) {
-      const { width } = event.nativeEvent.layout
-      if(fullBleed) {
-        setEnlarge((Dimensions.get('screen').width - width)/2)
+      const {width} = event.nativeEvent.layout
+      if (fullBleed) {
+        setEnlarge((Dimensions.get('screen').width - width) / 2)
       }
       setWidth(width)
     }
   }
-  const realGap = ColumnsGapValue[(gap as ColumnsGap)] || 16
+  const realGap =  typeof gap === 'undefined' &&  16 || ColumnsGapValue[(gap as ColumnsGap)]
 
   const styles = StyleSheet.create({
     columns: {
-      width: width ? width+ (enlarge*2) : '100%',
+      width: width ? width + (enlarge * 2) : '100%',
       marginHorizontal: -(enlarge),
       paddingHorizontal: enlarge,
       flexDirection: "row",
-      gap: ColumnsGapValue[(gap as ColumnsGap)] || 16,
+      gap: realGap,
       display: "flex",
       justifyContent: 'space-evenly',
     },
@@ -70,6 +70,9 @@ const Columns = ({
       paddingHorizontal: enlarge,
       justifyContent: 'space-around',
       gap: realGap,
+    },
+    mobile: {
+      flexDirection: "column"
     }
   })
 
@@ -88,12 +91,13 @@ const Columns = ({
         >
           {// eslint-disable-next-line @typescript-eslint/no-explicit-any
             React.Children.map(children, (child: any) =>
-              React.cloneElement(child, {
-                style: [child.props.style,
-                  {width: nbCols && (width / nbCols) - realGap || child.props.size && (width * child.props.size / 12) - realGap || 'auto'},
-                  child.props.narrow && {flex: 'none', flexShrink: 1},
-                ]
-              })
+
+                child && React.cloneElement(child, {
+                  style: [child.props.style,
+                    {width: nbCols && (width / nbCols) - realGap || child.props.size && (width * child.props.size / 12) - realGap || 'auto'},
+                    child.props.narrow && {flex: 'none', flexShrink: 1},
+                  ]
+                })
             )}
         </View>
       </>
@@ -101,7 +105,7 @@ const Columns = ({
   }
 
   return <View style={{
-    width: `100% + ${enlarge*2}px`,
+    width: `100% + ${enlarge * 2}px`,
     marginHorizontal: -(enlarge)
   }} {...{onLayout: onLayoutHandler}}>
     <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
@@ -109,7 +113,7 @@ const Columns = ({
         React.Children.map(children, (child: any) =>
           React.cloneElement(child, {
             style: [child.props.style, {
-              width: width / (12 / (child.props.size || child.props.mobileSize || 12)) - 2*realGap,
+              width: width / (12 / (child.props.size || child.props.mobileSize || 12)) - 2 * realGap,
               flexGrow: 0,
             }, child.props.narrow && {flex: 'none', flexShrink: 1}],
           })
