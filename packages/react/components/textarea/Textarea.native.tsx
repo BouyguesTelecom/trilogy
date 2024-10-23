@@ -17,24 +17,32 @@ import { TextLevels } from '../text/TextEnum'
 import { TextareaNativeProps } from './TextareaProps'
 
 /**
- * Textarea Native Component
+ * Textarea Component
+ * @param disabled {boolean} Disabled textarea
+ * @param label {string} Label for textarea
+ * @param sample {string} Sample for textarea (below label)
  * @param name {string} Textarea name
- * @param label {string} Textarea label
- * @param sample {string} Textarea sample
- * @param disabled {boolean} Disabled input
- * @param onChange {Function} OnChange Input Event
- * @param placeholder {string} Placeholder Input
- * @param defaultValue {string} Default Value for Input
- * @param help {string} Help for input
+ * @param onChange {Function} OnChange textarea Event
+ * @param placeholder {string} Placeholder textarea
+ * @param defaultValue {string} Default Value for textarea
+ * @param help {string} Help for textarea
  * @param ref Pass a ref for textarea
+ * @param maxLength {number} Textarea max length
+ * @param rows {number} Textarea rows
+ * @param iconName {IconName | IconNameValues} display Icon
+ * @param statusIconName {IconName | IconNameValues} display status Icon
+ * @param testId {string} Test Id for Test Integration
+ * @param dynamicPlaceholder {boolean} 
+ * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
- * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param autoCorrect {boolean} Auto correct sentence
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  * @param textContentType {InputTextContentType} Give the keyboard and the system information
  * @param keyboardType {InputKeyboardType} Keybaord type
- * @param maxLength {number} Textarea max length
+ * @param value {string} Value for textarea
+ * @param customHeight {number} custom textarea height
+ * @param required {boolean} Required
  */
 const Textarea = (
   {

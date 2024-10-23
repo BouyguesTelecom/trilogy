@@ -24,8 +24,9 @@ const calculateTimer = (timeDifference: number) => {
  * @param className {string} Additionnal CSS Classes
  * @param event
  * @param small
- * @param centered
  * @param others
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param centered
  */
 const Countdown = ({ deadline, className, format, event, small, inverted, ...others }: CountdownProps): JSX.Element => {
   const { styled } = useTrilogyContext()

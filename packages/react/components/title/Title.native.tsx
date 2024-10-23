@@ -10,18 +10,19 @@ import { StatesContext } from "@/context/providerStates"
 import { TitleLevels } from "./TitleEnum"
 
 /**
- * Title Native Component
- * @param children {ReactNode} Text child
- * @param level {TextLevels|number} Title size : 1-4
+ * Title component
+ * @param children {ReactNode} Title child
+ * @param level {TitleLevels | TitleLevel | number} Title size : 1-3
  * @param inverted {Boolean} Title white color
  * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
  * @param onClick {Function} onClick Event
- * @param style {Object} Additional styles
  * @param skeleton {Boolean} Title Skeleton
- * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
+ * @param testId {string} Test Id for Test Integration
+ * @param style {object} Additional styles
+ * @param subtitle {boolean} Subtitle below title
+ * @param overline {boolean} Overline above title
  */
-
 const Title = ({
   children,
   level,

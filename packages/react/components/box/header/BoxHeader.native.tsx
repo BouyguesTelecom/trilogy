@@ -9,11 +9,11 @@ import { StatesContext } from "@/context/providerStates"
 /**
  * Box Header Component
  * @param children {React.ReactNode} Childrens
- * @param color {TrilogyColor} Box header Color
  * @param centered {boolean} Center content box header
  * @param pulledLeft {boolean} Pulled-left content box header
  * @param pulledRight {boolean} Pulled-right content box header
  * @param help {string} Box Header Help Sticker
+ * @param variant {TrilogyColor} Box Header backgroundColor
  * @param others
  */
 const BoxHeader = ({

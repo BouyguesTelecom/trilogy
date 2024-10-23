@@ -13,7 +13,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param activeIndex {number} default active tab index
  * @param disabled {boolean} Disabled tabs
  * @param inverted {boolean} dark mode
- * @param centered {boolean} Is centered
+ * @param shadowless {boolean} No shadow
+ * @param centered {boolean} Centered tabs
  */
 const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)

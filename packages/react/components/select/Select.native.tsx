@@ -13,7 +13,10 @@ import SelectOption from './option'
  * @param children {React.ReactNode} Children for Select
  * @param label {string} label for select
  * @param iconName {IconName} icon for left of selector
- * @param placeholder {string} Select Placeholder
+ * @param onChange {Function} onChange Event
+ * @param disabled {boolean} disable Select
+ * @param multiple {boolean} select multiple options
+ * @param nullable {boolean} Unselect Select Option Item
  */
 const Select = ({
   children,

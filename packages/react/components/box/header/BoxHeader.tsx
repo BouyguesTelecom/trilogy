@@ -9,7 +9,6 @@ import { getBackgroundClassName } from "@/objects"
 
 /**
  * Box Header Component
- * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode} Children
  * @param help {string} Box Header Help Sticker
  * @param centered {boolean} Center content box header
@@ -17,6 +16,9 @@ import { getBackgroundClassName } from "@/objects"
  * @param pulledRight {boolean} Pulled-right content box header
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param others
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param testId {string} Test Id for Test Integration
  */
 
 const BoxHeader = ({

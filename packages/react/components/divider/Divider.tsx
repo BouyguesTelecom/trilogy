@@ -11,7 +11,7 @@ import { useTrilogyContext } from "@/context"
  * Divider Component
  * @param content {string} Add text content for Divider
  * @param unboxed {boolean} Full-width separator in another component
- * @param marginless {boolean} Marginless divider
+ * @param marginless {boolean} delete margin
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  * @param iconName {IconName} Custom icon for Divider

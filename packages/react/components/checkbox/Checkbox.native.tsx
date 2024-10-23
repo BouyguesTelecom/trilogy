@@ -20,6 +20,11 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onClick {ClickEvent}
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
+ * @param tile {boolean} Checbox Tile
+ * @param description {string} Description for Checkbox tile
+ * @param iconTile {IconName} Name of icon for checkbox tile
+ * @param testId {string} Test Id for Test Integration
+ * @param horizontalTile {boolean} display horizontal Checkbox tile
  */
 const Checkbox = ({
                     id = shortid.generate(),

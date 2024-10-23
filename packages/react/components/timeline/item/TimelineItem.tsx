@@ -7,11 +7,12 @@ import { hashClass } from "@/helpers"
 /**
  * Timeline Item Component
  * @param children {ReactNode}
- * @param className {string} Additionnal CSS Classes
  * @param done {boolean} Done Timeline Item
  * @param active {boolean} Active Timeline Item
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  */
 const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {

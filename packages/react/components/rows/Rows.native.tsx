@@ -8,6 +8,7 @@ export const RowsContext = React.createContext({ gapless: false })
 /**
  * Rows Component
  * @param children {React.ReactNode} Rows children
+ * @param gapless {boolean} Delete margins between row
  */
 const Rows = ({ children, gapless, ...others }: RowsProps): JSX.Element => {
   const styles = StyleSheet.create({

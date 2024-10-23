@@ -20,6 +20,8 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param inline {boolean} If link is inside paragraphe
  * @param level {TextLevels} if inline, size to match with Text
  * @param iconName {IconName} Adding Icon Link
+ * @param inverted {boolean} Inverted link
+ * @param style {Object} Additional styles
  */
 const Link = ({
   children,

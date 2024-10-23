@@ -13,10 +13,13 @@ import { useTrilogyContext } from "@/context"
  * @param backgroundSrc {string} If source, it will display background option
  * @param variant {VariantState} Hero background color : main/accent
  * @param onClick {Function} onClick Event
+ * @param inverted {boolean} Inverted
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param align { Alignable | AlignableValues} align content
+ * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param backgroundHeight {BackgroundHeight} Background heigth
  */

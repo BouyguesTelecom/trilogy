@@ -16,6 +16,7 @@ import { Pager } from './PaginationEnum'
  * * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param href {Function} Function that generates a link for seo bots
+ * @param testId {string} Test Id for Test Integration
  */
 const Pagination = ({
   className,
