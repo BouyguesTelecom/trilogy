@@ -23,6 +23,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
+ * @param strikedAmount {boolean} Striked Amount Price
  * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol

@@ -12,11 +12,11 @@ import { SelectDynamic, SelectNative } from './web'
  * @param onChange {Function} onChange Event
  * @param selected {string|number} Selected OptionItem for Native
  * @param iconName {IconName} icon for left of selector
+ * @param disabled {boolean} disable Select
+ * @param multiple {boolean} select multiple options
+ * @param nullable {boolean} Unselect Select Option Item
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param classNameOptions {string} Additionnal CSS Classes for wrapper option
- * @param nullable {boolean} Unselect Select Option Item
- * @param disabled {boolean} disable Select
  * @param onBlur {Function} onBlur Event
  * @param onFocus {Function} onFocus Event
  * @param testId {string} id for testing

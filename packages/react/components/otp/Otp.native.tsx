@@ -18,6 +18,8 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onFocus {Function} onFocus return if focused opt
  * @param activated {boolean} Activated OTP
  * @param onChange {Function} onChange Input return current code
+ * @param label {string} Label for OTP
+ * @param errorMessage {string} error message to display
  */
 const Otp = ({
   code,

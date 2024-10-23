@@ -8,19 +8,17 @@ import { ComponentName } from "@/components/enumsComponentsName"
 /**
  * View Component (DIV EQUIVALENT)
  * @param children {ReactNode} View child
- * @param style {object} View custom style
- * @param onClick {Function} Click Event
  * @param flexable {boolean} Flexable view
- * @param bottom {boolean} Bottom position
+ * @param style {CSSProperties} View custom style
+ * @param onClick {Function} Click Event
  * @param backgroundColor {TrilogyColor} View backgroud color
- * @param backgroundSrc {string} Source of background Image
+ * @param backgroundSrc {string} View backgroud image source
  * @param id {string} Id for Web / TestID for Native
+ * @param fullwidth {boolean} true by default
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
- * @param fullwidth {boolean} true by default
- * @param others
+ * @param bottom {boolean} Bottom position
  */
-
 const View = ({
   children,
   style,

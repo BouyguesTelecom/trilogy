@@ -9,11 +9,12 @@ import { useTrilogyContext } from "@/context"
  * Card Image Component
  * @param src Image source
  * @param alt Alt attribute
- * @param className Additionnal CSS Classes
  * @param size Image Card size on horizontal align
  * @param onClick {Function} onClick Event
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param contain {boolean} Resize mode contain
+ * - -------------------------- WEB PROPERTIES ----------------------------------
+ * @param className Additionnal CSS Classes
  */
 const CardImage = ({
   src,

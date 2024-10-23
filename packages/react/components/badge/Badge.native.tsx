@@ -2,7 +2,7 @@ import * as React from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { BadgeProps } from "./BadgeProps"
 import { BadgeColor } from "./BadgeEnum"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
@@ -12,6 +12,8 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param content content {string|number} Badge content text
  * @param direction {boolean} Text direction for Badge (LEFT|RIGHT)
  * @param onClick {Function} onClick Event for Badge
+ * @param reversed {boolean} Text reversed for Badge
+ * @param testId {string} Test Id for Test Integration
  */
 const Badge = ({
   children,

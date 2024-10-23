@@ -7,6 +7,28 @@ import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
 import { debounce } from './utils'
 
+
+/**
+ * AutoComplete Component
+ * @param placeholder {string} placeholder for input
+ * @param defaultValue {string} Default Value for Input
+ * @param data {string[]} Datas AutoComplete list Item
+ * @param value {string} Value of Input
+ * @param onChange {Function} OnChange Input Event
+ * @param onFocus {Function} OnFocus Input Event
+ * @param children {Function} Custom Component for dropdown list
+ * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
+ * @param matching {Function} matching function
+ * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param onBlur {Function} onBlur Input Event
+ * @param testId {string} Test Id for Test Integration
+ * @param disabled {boolean} Disabled input
+ * @param onIconClick {Function} onIconClick Input Event
+ * @param onItemSelected {Function} OnSelectedItemList event
+ * @param customIcon {string} Additional icon classes
+ * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param getSuggestions {Function} getSuggestions event
+ */
 const AutoComplete = ({
   value,
   data,
@@ -20,6 +42,10 @@ const AutoComplete = ({
   debounceSuggestionsTimeout,
   onFocus,
   testId,
+  status,
+  onBlur,
+  disabled,
+  onIconClick,
   ...others
 }: AutoCompletePropsNative): JSX.Element => {
   const [valueInput, setValueInput] = useState<string>(value ?? '')
@@ -92,6 +118,7 @@ const AutoComplete = ({
     <View style={styles.autoComplete}>
       <View>
         <Input
+          status={status}
           testId={testId}
           placeholder={placeholder}
           type='text'
@@ -100,6 +127,9 @@ const AutoComplete = ({
           hasIcon={Boolean(customIcon)}
           onChange={onTextChanged}
           onFocus={handleFocus}
+          onBlur={onBlur}
+          disabled={disabled}
+          onClick={onIconClick}
         />
       </View>
       {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}

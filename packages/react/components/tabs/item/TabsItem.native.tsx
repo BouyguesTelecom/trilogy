@@ -12,6 +12,7 @@ import { Text, TextLevels } from "@/components/text"
  * @param children {ReactChild} React Child Element
  * @param onClick onClick Event
  * @param iconName {IconNameValues | IconName} add icon name
+ * @param disabled {boolean} disable tab item
  */
 const TabsItem = ({
                     active,

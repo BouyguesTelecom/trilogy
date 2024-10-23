@@ -9,10 +9,10 @@ import { AutoLayout } from "@/components/autolayout"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * TimelineContent Native Component
- * @param children {ReactNode} Text child
+ * Timeline Content Component
+ * @param children {ReactNode} Use it if you want custom children for content
  * @param content {string} Text content
- * @param contentLink {string} Text for link
+ * @param contentLink {string} Text for content link
  * @param heading {string} Text heading
  * @param link {string} Url link
  * @param Onclick {string} Provide event onCLick

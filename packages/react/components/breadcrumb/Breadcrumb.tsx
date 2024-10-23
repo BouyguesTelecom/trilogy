@@ -10,6 +10,7 @@ import { useTrilogyContext } from "@/context"
  * @param testId {string} Test id
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
   const {

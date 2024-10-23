@@ -8,9 +8,10 @@ import { useTrilogyContext } from "@/context"
 
 /**
  * Box Footer Component
- * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  */
 const BoxFooter = ({
   className,

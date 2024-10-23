@@ -14,10 +14,6 @@ export interface TagClickEvent {
 export interface TagProps extends Accessibility {
   children?: React.ReactNode
   variant?: TagVariant | TagVariantValues
-  /** @deprecated */
-  deletable?: boolean
-  /** @deprecated */
-  onClick?: TagClickEvent
   inverted?: boolean
   className?: string
   iconName?: IconName

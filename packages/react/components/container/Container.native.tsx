@@ -16,6 +16,8 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param backgroundColor {TrilogyColor} Container sticky Background Color
  * @param pulledRight {Boolean} Container pulled to right
  * @param pulledLeft {Boolean} Container pulled to left
+ * @param paddingless {boolean} remove padding
+ * @param verticalPaddingless {boolean} remove vertical padding
  */
 
 const Container = ({

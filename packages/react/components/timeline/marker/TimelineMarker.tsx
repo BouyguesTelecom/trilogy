@@ -8,11 +8,12 @@ import { hashClass } from "@/helpers"
 
 /**
  * Timeline Marker Component
- * @param className {string} Additionnal CSS Classes
- * @param iconClassname {string} Additionnal CSS Classes for icon
  * @param iconName {IconName} Icon Name - sample : IconName.CHECK
  * @param iconColor {IconColor} Icon Color
- * @param children {ReactNode}
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param iconClassname {string} Additionnal CSS Classes for icon
  */
 const TimelineMarker = ({
   className,

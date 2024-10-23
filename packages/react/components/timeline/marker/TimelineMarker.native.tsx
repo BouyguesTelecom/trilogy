@@ -9,7 +9,9 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TimelineMarker Native Component
- * @param children {ReactNode} Text child
+ * @param iconName {IconName} Icon Name - sample : IconName.CHECK
+ * @param iconColor {IconColor} Icon Color
+ * @param testId {string} Test Id for Test Integration
  */
 const TimelineMarker = ({
   iconName,

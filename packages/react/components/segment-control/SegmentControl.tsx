@@ -12,8 +12,11 @@ import { useTrilogyContext } from '@/context'
  * @param onClick onClick event
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
- * @param inverted {boolean} invert color SegmentControl
  * @param marginless {boolean} delete margin
+ * - -------------- WEB PROPERTIES ---------------
+ * @param className {string} Additionnal CSS Classes
+ * - -------------- NATIVE PROPERTIES ---------------
+ * @param inverted {boolean} invert color SegmentControl
  */
 const SegmentControl = ({
   className,

@@ -4,6 +4,10 @@ import { View } from "@/components/view"
 import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
+/**
+ * ListItemDescription Component
+ * @param children {React.ReactNode}
+ */
 const ListItemDescription = ({
   children,
 }: ListItemDescriptionProps): JSX.Element => {

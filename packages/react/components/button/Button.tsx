@@ -29,7 +29,7 @@ import { Icon } from "@/components/icon"
  * @param name {string} Button name attribute
  * @param routerLink Custom Router Link as props
  * @param styled {boolean} Component Wearing Styles - Hashed Trilogy Css
- * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param type {ButtonType} button type (button|reset|submit)
  */
 
 const Button = ({

@@ -9,6 +9,17 @@ import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
 
+/**
+ * ListItem Component
+ * @param children {React.ReactNode}
+ * @param customIcon {IconName | React.ReactNode } Icon name | children
+ * @param status {ListIconStatus} Status success|error
+ * @param title {string} List item title
+ * @param description {string} List item description
+ * @param action {React.ReactNode} children
+ * @param divider {boolean} Display divider
+ * @param deletable {boolean}
+ */
 const ListItem = ({
   children,
   customIcon,

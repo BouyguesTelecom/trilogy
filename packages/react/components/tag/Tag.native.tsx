@@ -1,51 +1,31 @@
-import React, { useEffect, useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { TagClickEvent, TagProps } from "./TagProps"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { getStatusStyle } from "@/objects/facets/Status"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getStatusStyle } from '@/objects/facets/Status'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { TagProps } from './TagProps'
 
 /**
  * Tag Component
  * @param children {ReactNode} Add childrens for tag
  * @param variant {TagVariant} Available tag variants
- * @param deletable {boolean} Adding delete icon
- * @param onClick {Function} OnClick Event
- * @param inverted
- * @param iconName
- * @param small
- * @param others
- */
-const Tag = ({
-  children,
-  variant,
-  deletable,
-  onClick,
-  inverted,
-  iconName,
-  small,
-  testId,
-  ...others
-}: TagProps): JSX.Element => {
-  const [display, setDisplay] = useState<boolean>(deletable || false)
-
-  useEffect(() => {
-    setDisplay(deletable || false)
-  }, [deletable])
-
-  const textColor = inverted
-    ? getColorStyle(variant as TrilogyColor)
-    : getColorStyle(TrilogyColor.MAIN)
+ * @param inverted {boolean} Inverted tag
+ * @param small {boolean} display small tag
+ * @param iconName {IconName} display icon
+ * @param testId {string} Test Id for Test Integration
+ **/
+const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }: TagProps): JSX.Element => {
+  const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
 
   const backgroundColor = variant && getStatusStyle(variant).backgroundColor
 
   const styles = StyleSheet.create({
     tag: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      alignSelf: "baseline",
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'baseline',
       borderRadius: 15,
       paddingHorizontal: 8,
       paddingVertical: 4,
@@ -55,10 +35,10 @@ const Tag = ({
         getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     text: {
-      alignSelf: "center",
-      alignItems: "center",
-      fontWeight: "500",
-      justifyContent: "center",
+      alignSelf: 'center',
+      alignItems: 'center',
+      fontWeight: '500',
+      justifyContent: 'center',
       color: textColor,
       fontSize: small ? 12 : 16,
     },
@@ -71,67 +51,23 @@ const Tag = ({
     },
 
     button: {
-      flexDirection: "row",
+      flexDirection: 'row',
     },
   })
 
-  const onClickHandle = (e: TagClickEvent) => {
-    setDisplay(!display)
-    if (onClick) {
-      onClick(e)
-    }
-  }
-
-  // Deletable tag
-  if (deletable && display) {
-    return (
-      <View style={styles.tag} {...others}>
-        <Text style={styles.text}>{children}</Text>
+  return (
+    <View style={styles.tag} {...others}>
+      {iconName && (
         <Icon
-          style={styles.icon}
-          size={IconSize.SMALL}
-          color={textColor}
-          name={IconName.TIMES}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onClick={(e: any) => onClickHandle(e)}
+          size={small ? IconSize.SMALLER : IconSize.SMALL}
+          style={styles.iconLeft}
+          name={iconName}
+          testId={`${testId}-icon`}
         />
-      </View>
-    )
-  }
-
-  if (!deletable && !display) {
-    if (onClick) {
-      return (
-        <View style={styles.tag} {...others}>
-          <TouchableOpacity style={styles.button} onPress={(e) => onClick(e)}>
-            {iconName && (
-              <Icon
-                size={small ? IconSize.SMALLER : IconSize.SMALL}
-                style={styles.iconLeft}
-                name={iconName}
-              />
-            )}
-            <Text style={styles.text}>{children}</Text>
-          </TouchableOpacity>
-        </View>
-      )
-    }
-    return (
-      <View style={styles.tag} {...others}>
-        {iconName && (
-          <Icon
-            size={small ? IconSize.SMALLER : IconSize.SMALL}
-            style={styles.iconLeft}
-            name={iconName}
-            testId={`${testId}-icon`}
-          />
-        )}
-        <Text style={styles.text}>{children}</Text>
-      </View>
-    )
-  }
-
-  return <View />
+      )}
+      <Text style={styles.text}>{children}</Text>
+    </View>
+  )
 }
 
 Tag.displayName = ComponentName.Tag
