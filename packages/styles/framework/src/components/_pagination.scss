@@ -1,118 +1,56 @@
 .pagination {
   font-size: $size-normal;
   margin: -2.5px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 
   .pagination-previous,
-  .pagination-next {
-    padding-left: 1em;
-    padding-right: 1em;
+  .pagination-next,
+  .pagination-link,
+  .pagination-ellipsis {
+    @include control;
+    @include unselectable;
+    font-size: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    justify-content: center;
+    margin: 2.5px;
+    text-align: center;
+  }
+
+  .pagination-previous,
+  .pagination-next,
+  .pagination-link,
+  .pagination-ellipsis {
+    @include hover();
+    color: getColor('font');
+    min-width: 2.25em;
     height: 35px;
     width: 35px;
     border-radius: 9999px;
-  }
-
-  .pagination-link {
-    height: 35px;
-    border-radius: 9999px;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    white-space: nowrap;
   }
 
   .pagination-list {
     flex: 0 0 auto;
-  }
-
-}
-
-.pagination,
-.pagination-list {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.pagination-previous,
-.pagination-next,
-.pagination-link,
-.pagination-ellipsis {
-  @include control;
-  @include unselectable;
-
-  font-size: 1em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  justify-content: center;
-  margin: 2.5px;
-  text-align: center;
-}
-
-.pagination-previous,
-.pagination-next,
-.pagination-link {
-  color: getColor('neutral');
-  min-width: 2.25em;
-
-  @include hover();
-
-}
-
-.pagination-previous,
-.pagination-next {
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-  white-space: nowrap;
-}
-
-.pagination-link {
-  &[aria-current] {
-    background-color: getColor('font');
-    color: getColor('background');
-    #{$hoverSelector}, &:focus, &:focus-within {
-      background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.25),
-          rgba(0, 0, 0, 0.25)
-      ) getColor('font') !important;
-    }
-  }
-}
-
-.pagination-ellipsis {
-  color: getColor('background');
-  pointer-events: none;
-}
-
-.pagination-list {
-  flex-wrap: wrap;
-}
-
-@include mobile {
-  .pagination {
     flex-wrap: wrap;
-  }
-
-  .pagination-previous,
-  .pagination-next {
     flex-grow: 1;
     flex-shrink: 1;
-  }
-
-  .pagination-list {
-    li {
-      flex-grow: 1;
-      flex-shrink: 1;
-    }
-  }
-}
-
-@include tablet {
-  .pagination-list {
-    flex-grow: 1;
-    flex-shrink: 1;
-    justify-content: flex-start;
-    order: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 
   .pagination-previous {
+    order: 1;
+  }
+
+  .pagination-list {
     order: 2;
   }
 
@@ -120,37 +58,24 @@
     order: 3;
   }
 
-  .pagination {
-    justify-content: space-between;
-
-    &.is-centered {
-      .pagination-previous {
-        order: 1;
-      }
-
-      .pagination-list {
-        justify-content: center;
-        order: 2;
-      }
-
-      .pagination-next {
-        order: 3;
-      }
-    }
-
-    &.is-right {
-      .pagination-previous {
-        order: 1;
-      }
-
-      .pagination-next {
-        order: 2;
-      }
-
-      .pagination-list {
-        justify-content: flex-end;
-        order: 3;
+  .pagination-link {
+    &[aria-current] {
+      background-color: getColor('font');
+      color: getColor('background');
+      #{$hoverSelector}, &:focus, &:focus-within {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.25)
+        ) getColor('font') !important;
       }
     }
   }
+
+  .pagination-ellipsis {
+    pointer-events: none;
+  }
+
 }
+
+

@@ -30,7 +30,7 @@ const Pagination = ({
 }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('pagination', is('centered'), className))
+  const classes = hashClass(styled, clsx('pagination', className))
 
   const prevCurrentPage = useRef<number>(currentPage)
   const pager = React.useMemo<Pager>(() => {
