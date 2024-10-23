@@ -13,6 +13,12 @@ const styles = {
 
 }
 
+/**
+ * Modal Title Component
+ * @param children {string}
+ * @param iconName {IconName} IconName for icon title
+ * @param iconColor {IconColor} IconColor for icon title
+ */
 const ModalTitle = ({ children, iconName, iconColor, ...others }: ModalTitleProps): JSX.Element => {
   return <View style={styles} {...others}>
     { typeof children === "string" && (

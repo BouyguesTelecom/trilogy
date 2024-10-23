@@ -95,9 +95,10 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
  * @param description {string|ReactNode} Alertt description content
  * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param onClick {Function} onClick Event for all alert
+ * @param display {Boolean} Display Alert component
+ * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additionnal CSS Classes
- * @param display
- * @param others
+ * @param testId {string} Test Id for Test Integration
  */
 const Alert = ({
   status,

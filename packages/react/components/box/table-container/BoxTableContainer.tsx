@@ -6,8 +6,10 @@ import { useTrilogyContext } from "@/context"
 
 /**
  * Box Table Component
- * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode} Children
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param testId {string} Test Id for Test Integration
  */
 const BoxTableContainer = ({
   className,

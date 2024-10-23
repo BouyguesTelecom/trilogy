@@ -29,7 +29,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param stretched {boolean} Stretched icon
  * @param style {Object} Additional styles
  * @param onClick {Function} onClick Event Icon
- * @param align {Alignable} Progress Radial Alignement
+ * @param align { Alignable | AlignableValues} align content
  * @param skeleton {boolean} Icon Skeleton
  */
 const Icon = ({

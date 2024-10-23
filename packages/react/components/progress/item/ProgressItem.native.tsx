@@ -6,7 +6,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Progress Item component - Only if stacked
  * @param percent {number} Progress percent
- * @param minPercent {number} Default min percent is 100
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param children {React.ReactNode}
  */

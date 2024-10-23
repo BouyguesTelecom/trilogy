@@ -23,6 +23,9 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param gap {number} space max between min and max cursor
  * @param valueCursorMin {number} number of input min
  * @param valueCursorMax {number} number of input max
+ * @param onChangeMin {function} on change min cursor
+ * @param onChangeMax {function} on change max cursor
+ * @param testId {string} Test Id for Test Integration 
  */
 const Range = ({
   min,

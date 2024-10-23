@@ -4,13 +4,17 @@ import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { TimelineItemProps } from './TimelineItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
-/**
- * TimelineItem Native Component
- * @param children {ReactNode} Text child
- */
 
 export const TimelineItemContext = createContext({ done: false, active: false, undone: false, cancel: false })
 
+/**
+ * Timeline Item Component
+ * @param children {ReactNode}
+ * @param done {boolean} Done Timeline Item
+ * @param active {boolean} Active Timeline Item
+ * @param undone {boolean} Undone Timeline Item
+ * @param cancel {boolean} Cancel Timeline Item
+ */
 const TimelineItem = ({ children, done, active, undone, cancel }: TimelineItemProps): JSX.Element => {
   const { height, setHeight } = useContext(TimelineHeightContext)
 

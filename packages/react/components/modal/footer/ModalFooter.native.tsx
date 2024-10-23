@@ -12,6 +12,10 @@ const styles = {
   padding: 16,
 }
 
+/**
+ * Modal Footer Component
+ * @param children {React.ReactNode}
+ */
 const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => {
   return <View {...others} style={styles}>
     { typeof children === "string" && (

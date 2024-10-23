@@ -1,8 +1,6 @@
 import * as React from "react"
 import { BadgeProps } from "./BadgeProps"
 import { Text, TextMarkup } from "@/components/text"
-import { has } from "@/services"
-import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
@@ -14,6 +12,7 @@ import { useTrilogyContext } from "@/context"
  * @param content {string|number} Badge content text
  * @param reversed {boolean} Text reversed for Badge
  * @param onClick {Function} onClick Event for Badge
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */

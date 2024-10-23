@@ -5,7 +5,7 @@ import { BoxFooterProps } from "./BoxFooterProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Box Content Component
+ * Box Footer Component
  * @param children {React.ReactNode} Childrens
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  */

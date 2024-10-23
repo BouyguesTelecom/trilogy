@@ -25,6 +25,10 @@ export const CardContext = createContext({ horizontal: false })
  * @param to {string} Card link
  * @param fullheight
  * @param markup {BoxMarkup} Clickable Card => CardMarkup.A Not clickable box => CardMarkup.DIV || null
+ * @param backgroundSrc {string} Source of background Image
+ * @param align { Alignable | AlignableValues} align content
+ * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
+ * @param testId {string} Test Id for Test Integration
  */
 const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
   const {

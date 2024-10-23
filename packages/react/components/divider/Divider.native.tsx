@@ -10,7 +10,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * Divider Native Component
  * @param content {string} Add text content for Divider
  * @param unboxed {boolean} Full-width separator in another component
- * @param marginless {boolean} Marginless divider
+ * @param marginless {boolean} delete margin
  * @param iconName {IconName} Custom icon for Divider
  * @param color {TrilogyColor} Border color of Divider
  * @param backgroundColor {TrilogyColor} Background color of Divider

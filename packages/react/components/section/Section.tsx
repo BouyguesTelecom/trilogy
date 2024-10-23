@@ -8,15 +8,19 @@ import { useTrilogyContext } from '@/context'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
- * @param className {string} Additionnal CSS Classes
- * @param skeleton {boolean} Skeleton before loaded
  * @param children {React.ReactNode}
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  * @param verticalPaddingless {boolean} remove vertical padding
+ * @param fullwidth {boolean} Fullwidth section
+ * - -------------- WEB PROPERTIES ---------------
+ * @param className {string} Additionnal CSS Classes
+ * @param inverted {boolean} Inverted Section Color
+ * @param skeleton {boolean} Skeleton before loaded
+ * - -------------- NATIVE PROPERTIES ---------------
+ * @param autolayout {boolean} Apply auto-layout rules
  **/
-
 const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
     className,

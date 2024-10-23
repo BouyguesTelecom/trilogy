@@ -23,14 +23,23 @@ import { debounce } from './utils'
  * @param children {Function} Custom Component for dropdown list
  * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
  * @param matching {Function} matching function
+ * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param onBlur {Function} onBlur Input Event
+ * @param testId {string} Test Id for Test Integration
+ * @param disabled {boolean} Disabled input
+ * @param onIconClick {Function} onIconClick Input Event
+ * @param onItemSelected {Function} onSelectedItemList event
+ * @param customIcon {string} Additional icon classes
+ * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param getSuggestions {Function} getSuggestions event
  * - ------------------ WEB PROPERTIES -----------------------
+ * @param name {string} Input name
  * @param classNameMenu {string} Additionnal CSS Classes for Menu
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param className {string} Additionnal CSS Classes
- * @param onItemSelected {Function} OnSelectedItemList event
- * @param customIcon {string} Additional icon classes
- * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param accessibilityLabel {string} Accessibility label
+ * @param loading {boolean} Loading input
  */
 const AutoComplete = <T extends string | Item<unknown> = string>(
   {

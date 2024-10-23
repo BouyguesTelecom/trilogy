@@ -10,18 +10,18 @@ import { useTrilogyContext } from "@/context"
 /**
  * Switch Component
  * @param id {string} Is auto generate by default
- * @param label {string} Switch label
- * @param value {string} Switch value
  * @param checked {boolean} Checked switch
  * @param onChange {Function} onChange event
  * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param disabled {boolean} Switch disabled
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
- * @param reversed {boolean} change switch position
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param onClick {Function} onClick event
+ * @param label {string} Switch label
+ * @param value {string} Switch value
+ * @param reversed {boolean} change switch position
  */
 
 const Switch = ({
