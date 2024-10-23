@@ -4,7 +4,7 @@ import { BoxTableContainerProps } from "./BoxTableContainerProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Box Header Component
+ * Box Table Component
  * @param children {React.ReactNode} Childrens
  */
 const boxTableContainer = ({

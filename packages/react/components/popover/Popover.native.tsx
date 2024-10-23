@@ -14,11 +14,9 @@ import { PopoverDirection } from "./PopoverEnum"
 /**
  * Popover Component
  * @param children {ReactNode} Popover children
- * @param className {string} Additionnal CSS Classes
  * @param direction {PopoverDirection} Popover direction (DOWN|LEFT|RIGHT)
  * @param content {ReactNode} Content of the popover (hidden popover if null|undefined)
  * @param active {boolean} Is the popover active
- * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
  */
 const Popover = ({
   children,

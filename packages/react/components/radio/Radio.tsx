@@ -10,7 +10,6 @@ import { useTrilogyContext } from "@/context"
 /**
  * Radio Component
  * @param checked {boolean} Checked Radio
- * @param className {string} Additionnal CSS Classes
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly Radio
  * @param id {string} Id for button, by default id is generate
@@ -21,10 +20,15 @@ import { useTrilogyContext } from "@/context"
  * @param value {string} Value for radio
  * @param iconTile {IconName} Icon for Radio
  * @param narrow {boolean} Apply narrow
- * @param marginless {boolean} delete margin
  * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
+ * @param tile {boolean} Radio Tile
+ * @param description {string} Description for Radio tile
+ * @param horizontalTile {boolean} display horizontal Radio tile
+ * -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param testId {string} Test Id for Test Integration
+ * @param marginless {boolean} delete margin
  */
-
 const Radio = ({
   checked,
   className,

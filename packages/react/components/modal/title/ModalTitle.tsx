@@ -8,9 +8,10 @@ import { ModalTitleProps } from './ModalTitleProps'
 /**
  * Modal Title Component
  * @param children {string}
- * @param className {string} clsx
  * @param iconName {IconName} IconName for icon title
  * @param iconColor {IconColor} IconColor for icon title
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal css classes
  */
 const ModalTitle = ({ children, className, iconColor, iconName, ...others }: ModalTitleProps): JSX.Element => {
   const { styled } = useTrilogyContext()

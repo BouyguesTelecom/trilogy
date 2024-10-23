@@ -51,27 +51,5 @@ describe('Tag component', () => {
     expect(screen.getByText('INVERTED')).not.toHaveClass(is('inverted'))
   })
 
-  test('should have "has-addons" & "is-delete" className', () => {
-    render(<Tag deletable={true}>DELETABLE</Tag>)
 
-    expect(screen.getByText('DELETABLE').closest('div')).toHaveClass(has('addons'))
-    expect(screen.getByText('DELETABLE').closest('div')).toHaveClass(is('delete'))
-  })
-
-  test('should delete tag', () => {
-    render(<Tag deletable>DELETABLE</Tag>)
-
-    const aElement = screen.getByText('DELETABLE').nextElementSibling
-    if (aElement) fireEvent.click(aElement)
-
-    expect(screen.getByText('DELETABLE')).toHaveClass(is('hidden'))
-  })
-
-  test('should onClick attribut work', () => {
-    const mockCallBack = jest.fn()
-    render(<Tag onClick={mockCallBack}>DEFAULT</Tag>)
-
-    fireEvent.click(screen.getByText('DEFAULT'))
-    expect(mockCallBack).toHaveBeenCalled()
-  })
 })

@@ -9,12 +9,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * SegmentControl Component
- * @param children {ReactNode} Children for SegmentedControl
+ * @param children {ReactNode} Children for SegmentControl
  * @param onClick onClick event
- * @param activeIndex {number} default active SegmentedControl index
- * @param disabled {boolean} disabled SegmentedControl
- * @param inverted {boolean} invert color SegmentedControl
+ * @param activeIndex {number} default active SegmentControl index
+ * @param disabled {boolean} disabled SegmentControl
  * @param marginless {boolean} delete margin
+ * @param inverted {boolean} invert color SegmentControl
  */
 const SegmentControl = ({
   children,

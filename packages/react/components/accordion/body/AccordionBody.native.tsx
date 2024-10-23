@@ -4,7 +4,7 @@ import { AccordionBodyProps } from "./AccordionBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Accordion Header
+ * Accordion Body Component
  * @param children {React.ReactNode} Children for Accordion body
  */
 const AccordionBody = ({

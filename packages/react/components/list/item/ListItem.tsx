@@ -10,7 +10,6 @@ import { ListItemProps } from './ListItemProps'
 
 /**
  * ListItem Component
- * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode}
  * @param customIcon {IconName | React.ReactNode } Icon name | children
  * @param status {ListIconStatus} Status success|error
@@ -19,6 +18,9 @@ import { ListItemProps } from './ListItemProps'
  * @param action {React.ReactNode} children
  * @param divider {boolean} Display divider
  * @param deletable {boolean}
+* - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param testId {string} Test Id for Test Integration
  */
 const ListItem = ({
   className,

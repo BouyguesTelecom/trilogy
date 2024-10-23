@@ -26,6 +26,7 @@ import { useTrilogyContext } from "@/context"
  * @param className {string} Additionnal css classes
  * @param loading {Loading} Loading View
  * @param markup {ViewMarkup} Markup for View
+ * @param inverted {boolean} Inverted View Color
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
  */

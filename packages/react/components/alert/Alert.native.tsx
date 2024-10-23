@@ -52,6 +52,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
  * @param info (boolean) Small info alert use it without button and arrow
  * @param onClick {Function} onClick Event for all alert
+ * @param display {Boolean} Display Alert component
  */
 const Alert = ({
   status,
