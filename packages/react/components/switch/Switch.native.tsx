@@ -34,8 +34,8 @@ const Switch = ({
     }
   }, [checked, readonly])
 
-  const backgroundColorOff = getColorStyle(TrilogyColor.MAIN_FADE)
-  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED_FADE)
+  const backgroundColorOff = getColorStyle(TrilogyColor.NEUTRAL)
+  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
   const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
