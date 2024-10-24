@@ -5,7 +5,7 @@ import { Alignable } from '@trilogy-ds/react/objects'
 export const SelectorView = (): JSX.Element => {
   return (
     <Section>
-      <AutoLayout edgeSize={SpacerSize.MEDIUM} edges={['top', 'bottom']}>
+      <AutoLayout edgeSize={SpacerSize.FOUR} edges={['top', 'bottom']}>
         <Selector
           activeIndex={1}
           align={Alignable.ALIGNED_CENTER}
