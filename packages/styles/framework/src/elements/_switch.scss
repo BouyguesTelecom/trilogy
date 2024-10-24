@@ -15,14 +15,14 @@
 
     &:disabled ~ label {
       &:after {
-        $colorSvg: encodecolor(getColorValue('neutral'));
+        $colorSvg: encodecolor(getColorValue('disabled'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
       }
     }
 
     &:disabled:checked ~ label {
       &:after {
-        $colorSvg: encodecolor(getColorValue('neutral'));
+        $colorSvg: encodecolor(getColorValue('disabled'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
       }
     }
@@ -45,12 +45,12 @@
       border-radius: 9999px;
       width: 44px;
       height: 22px;
-      background-color: getColor('main-fade');
+      background-color: getColor('neutral');
       margin-left: 16px;
     }
 
     &:after {
-      $colorSvg: encodecolor(getColorValue('main-fade'));
+      $colorSvg: encodecolor(getColorValue('neutral'));
       content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
       position: absolute;
       top: 50%;
