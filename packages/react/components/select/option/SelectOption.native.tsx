@@ -5,7 +5,7 @@ import { Text } from '@/components/text'
 import { TypographyBold } from '@/objects/Typography'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native'
+import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 import { SelectOptionProps } from './SelectOptionProps'
 
 /**
