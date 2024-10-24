@@ -12,8 +12,8 @@ import {Text} from "@/components/text";
  * @param children {React.ReactNode}
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param marginSize {ColumnsSize} Delete margins between columns with Size
- * @param scrollable {boolean} Make colomns scrollable to vertical. Don't work with props 'marginSize'
+ * @param marginSize {ColumnsSize} Removes margins between columns of the specified size
+ * @param scrollable {boolean} Makes columns vertically scrollable. Note: Incompatible with 'marginSize' prop
  * @param gap {ColumnsGap} Gap between columns
  */
 
