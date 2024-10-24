@@ -74,7 +74,7 @@ $gap :
     width:  #{$columnWidth};
   }
 
-  @for $i from 0 through 12 {
+  @for $i from 1 through 12 {
     &.has-#{$i}-cols > .column{
       --ColumnFraction: #{$i};
       flex: none;
