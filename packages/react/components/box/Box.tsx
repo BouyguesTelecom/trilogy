@@ -57,7 +57,7 @@ const Box = ({
       className,
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has("background"),
-      (inverted && is("inverted")) || is("base"),
+      (inverted && is("inverted")),
       isLoading ? is("loading") : is("loaded"),
       highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
       flat && is("flat"),
