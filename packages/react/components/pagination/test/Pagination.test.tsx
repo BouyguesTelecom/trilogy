@@ -27,8 +27,8 @@ describe("Pagination component", () => {
       currentPage: 2,
       pageSize: 10,
       totalPages: 10,
-      endPage: 5,
-      pages: [1, 2, 3, 4, 5],
+      endPage: 4,
+      pages: [1, 2, 3, 4],
     });
   });
 

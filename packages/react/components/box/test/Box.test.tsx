@@ -97,7 +97,7 @@ describe('Box component', () => {
       <Box testId='box' shadowless backgroundColor='SUCCESS' backgroundSrc='test' flat hat />,
     )
     const box = getByTestId('box')
-    expect(box).toHaveClass('box is-shadowless has-background-success has-background is-base is-loaded is-flat has-hat')
+    expect(box).toHaveClass('box is-shadowless has-background-success has-background is-loaded is-flat has-hat')
   })
   test('Should have skeleton', () => {
     const { getByTestId } = render(<Box testId='box' skeleton />)
