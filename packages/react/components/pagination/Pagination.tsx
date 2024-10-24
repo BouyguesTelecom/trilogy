@@ -30,7 +30,7 @@ const Pagination = ({
 }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('pagination', is('centered'), className))
+  const classes = hashClass(styled, clsx('pagination', className))
 
   const prevCurrentPage = useRef<number>(currentPage)
   const pager = React.useMemo<Pager>(() => {
@@ -48,13 +48,13 @@ const Pagination = ({
       // more than 3 total pages so calculate start and end pages
       if (currentPage <= 3) {
         startPage = 1
-        endPage = 5
+        endPage = 4
       } else if (currentPage + 3 >= totalPages) {
-        startPage = totalPages - 4
+        startPage = totalPages - 3
         endPage = totalPages
       } else {
-        startPage = currentPage - 2
-        endPage = currentPage + 2
+        startPage = currentPage - 1
+        endPage = currentPage + 1
       }
     }
 

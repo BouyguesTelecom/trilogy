@@ -31,20 +31,9 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     margin-left: 0;
   }
 
-  &::before {
-    content: '';
-    display: block;
-    width: $timeline-line-width;
-    position: absolute;
-    top: 49.80px;
-    left: 3rem;
-    bottom: 8px;
-    height: auto;
-    border-radius: 2px;
-  }
-
-  .timeline-item,
-  .undone {
+  .timeline-item {
+    --font-color: #{getColor('neutral')};
+    --bg-color: #{getColor('background')};
     display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -53,85 +42,39 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     padding-bottom: $spacing-2;
 
     &::before {
-      background-color: getColor('neutral-fade');
+      content: '';
+      display: block;
+      width: $timeline-line-width;
+      background-color: var(--font-color);
+      position: absolute;
+      top: 49.80px;
+      left: 3rem;
+      bottom: 8px;
+      height: auto;
+      border-radius: 2px;
     }
 
     .timeline-marker.is-icon {
-      background-color: getColor('main');
-      color: getColor('font');
+      background-color: var(--font-color);
+      color: var(--bg-color);
+    }
+
+    &.active, &.done {
+      --font-color: #{getColor('main')};
+      --bg-color: #{getColor('background')};
     }
 
     &.active {
-      .timeline-marker.is-icon {
-        background-color: getColor('main');
-
-        .icon {
-          color: getColor('background');
-        }
-      }
-
       .timeline-content {
         p.main-content {
           font-weight: 800;
         }
       }
-
-      &::before {
-        content: '';
-        background-color: getColor('main');
-        display: block;
-        width: $timeline-line-width;
-        position: absolute;
-        top: 49.80px;
-        left: 3rem;
-        bottom: 8px;
-        height: auto;
-        border-radius: 2px;
-      }
-
-    }
-
-    &.done {
-      .timeline-marker.is-icon {
-        background-color: getColor('font');
-
-        .icon {
-          color: getColor('background')
-        }
-      }
-
-      &::before {
-        content: '';
-        background-color: getColor('font');
-        display: block;
-        width: $timeline-line-width;
-        position: absolute;
-        top: 49.80px;
-        left: 3rem;
-        bottom: 8px;
-        height: auto;
-        border-radius: 2px;
-      }
     }
 
     &.cancel {
-      .timeline-marker.is-icon {
-        background-color: getColor('neutral');
-        color: getColor('neutral-fade');
-      }
-
-      &::before {
-        content: '';
-        background-color: getColor('neutral-fade');
-        display: block;
-        width: $timeline-line-width;
-        position: absolute;
-        top: 49.80px;
-        left: 3rem;
-        bottom: 8px;
-        height: auto;
-        border-radius: 2px;
-      }
+      --font-color: #{getColor('neutral')};
+      --bg-color: #{getColor('neutral-fade')};
     }
 
     .timeline-marker {
@@ -172,13 +115,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
                             $timeline-marker-border-size * 0.5);
         line-height: size(0.75rem);
         padding: math.div($timeline-icon-size, 3);
-        background: $timeline-marker-color;
         border-radius: 9999px;
-
-        > i {
-          color: getColor('background');
-          font-size: $timeline-icon-size !important;
-        }
       }
 
       &.is-outlined {
@@ -322,32 +259,10 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &::before {
-          content: '';
-          background-color: $timeline-line-color;
-          display: block;
           width: calc(100% - 58px);
-          position: absolute;
           top: 22.89px;
           left: 59px;
-          bottom: 8px;
           height: 2px;
-          border-radius: 2px;
-        }
-
-        &.active::before {
-          background-color: getColor('main');
-        }
-
-        &.undone::before {
-          background-color: getColor('neutral-fade');
-        }
-
-        &.done::before {
-          background-color: getColor('font');
-        }
-
-        &.cancel::before {
-          background-color: getColor('neutral-fade');
         }
 
         .timeline-marker {
@@ -359,10 +274,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           margin-left: 0;
           padding: 0;
           margin-top: 8px;
-
-          .main-content {
-            margin-left: 0;
-          }
 
         }
       }

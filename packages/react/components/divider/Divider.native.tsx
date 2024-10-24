@@ -29,7 +29,7 @@ const Divider = ({
 }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
-  const dividerColor = getColorStyle(TrilogyColor.MAIN_FADE)
+  const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
 
   const styles = StyleSheet.create({
     divider: {
