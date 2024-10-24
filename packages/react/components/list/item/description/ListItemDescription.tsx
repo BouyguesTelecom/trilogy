@@ -5,11 +5,11 @@ import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
 
 /**
- * ListItem Component
- * @param className {string} Additionnal CSS Classes
+ * ListItemDescription Component
  * @param children {React.ReactNode}
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  */
-
 const ListItemDescription = ({
   children,
   className,

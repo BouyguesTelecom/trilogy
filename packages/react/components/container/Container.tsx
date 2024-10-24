@@ -21,6 +21,11 @@ import { getBackgroundClassName, StickyPosition } from "@/objects"
  * @param medium {boolean} Set medium container
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param backgroundSrc {string}
+ * @param inverted {boolean} Inverted
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param paddingless {boolean} remove padding
+ * @param verticalPaddingless {boolean} remove vertical padding
  */
 
 const Container = ({

@@ -16,7 +16,7 @@ import { Divider, TrilogyColor } from "@trilogy-ds/react";
 
 export const TimelineScreen = (): JSX.Element => {
   return (
-    <>
+    <Section>
       {/* TIMELINE WITH 4 ITEMSS */}
       <Timeline horizontal>
         <TimelineItem cancel>
@@ -64,48 +64,41 @@ export const TimelineScreen = (): JSX.Element => {
       <Timeline>
         <TimelineItem cancel>
           <TimelineMarker iconName={IconName.CHECK} />
-          <TimelineContent>
-            <Title level={TitleLevels.THREE}>20 septembre</Title>
-            <Text level={TextLevels.FOUR}>
-              Modification de votre identifiant de connexion
-            </Text>
-            <Link>Voir lemail</Link>
-          </TimelineContent>
+          <TimelineContent
+            heading="20 September"
+            content="Modification de votre identifiant de connexion"
+            link="link"
+            contentLink="Check the email"
+          />
         </TimelineItem>
         <TimelineItem done>
           <TimelineMarker iconName={IconName.CHECK} />
-          <TimelineContent>
-            <Title level={TitleLevels.THREE}>20 septembre</Title>
-            <Text level={TextLevels.FOUR}>
-              Modification de votre identifiant de connexion
-            </Text>
-            <Link>Voir lemail</Link>
-          </TimelineContent>
+          <TimelineContent
+            heading="20 September"
+            content="Modification de votre identifiant de connexion"
+            link="link"
+            contentLink="Check the email"
+          />
         </TimelineItem>
         <TimelineItem active>
           <TimelineMarker iconName={IconName.CHECK} />
-          <TimelineContent>
-            <Title level={TitleLevels.THREE}>20 septembre</Title>
-            <Text level={TextLevels.FOUR}>
-              Modification de votre identifiant de connexion
-            </Text>
-            <Link>Voir lemail</Link>
-          </TimelineContent>
+          <TimelineContent
+            heading="20 September"
+            content="Modification de votre identifiant de connexion"
+            link="link"
+            contentLink="Check the email"
+          />
         </TimelineItem>
         <TimelineItem undone>
           <TimelineMarker iconName={IconName.CHECK} />
-          <TimelineContent>
-            <Title level={TitleLevels.THREE}>20 septembre</Title>
-            <Text level={TextLevels.FOUR}>
-              Modification de votre identifiant de connexion
-            </Text>
-            <Text level={TextLevels.FOUR}>
-              Modification de votre identifiant de connexion
-            </Text>
-            <Link>Voir lemail</Link>
-          </TimelineContent>
+          <TimelineContent
+            heading="20 September"
+            content="Modification de votre identifiant de connexion"
+            link="link"
+            contentLink="Check the email"
+          />
         </TimelineItem>
       </Timeline>
-    </>
+    </Section>
   );
 };

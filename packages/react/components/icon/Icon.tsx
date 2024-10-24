@@ -27,12 +27,14 @@ import { IconName } from "./IconNameEnum"
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
- * @param marginless {boolean}
+ * @param marginless {boolean} delete margin
+ * @param align { Alignable | AlignableValues} align content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param textClassName {string} Text's className
  * @param className Additionnal css classes
  * @param markup {TextIconMarkup} Available markup for Icon DIV|P|SPAN|A
- * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param verticalAlign {Alignable | AlignableValues} align vertical content
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param style {object} Additional styles
  */
 

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {
-  AutoLayout,
   Chips,
   ChipsList,
-  Container,
+  Section,
   Title,
   TitleLevels,
 } from "@trilogy-ds/react/components";
@@ -19,75 +18,73 @@ export const ChipsScreen = (): JSX.Element => {
   const [active4Bis, setActive4Bis] = React.useState(false);
 
   return (
-    <Container>
-      <AutoLayout>
-        <Title level={TitleLevels.TWO}>Chips selection multiple </Title>
+    <Section>
+      <Title level={TitleLevels.TWO}>Chips selection multiple </Title>
 
-        <ChipsList multiple>
-          <Chips
-            id="1"
-            onClick={() => {
-              setActive(!active);
-            }}
-            active={active}
-          >
-            Chips 1
-          </Chips>
-          <Chips
-            onClick={() => {
-              setActive2(!active2);
-            }}
-            active={active2}
-          >
-            Chips 2
-          </Chips>
-          <Chips
-            onClick={() => {
-              setActive3(!active3);
-            }}
-            active={active3}
-          >
-            Chips 3
-          </Chips>
-          <Chips disabled>Chips 4</Chips>
-        </ChipsList>
+      <ChipsList multiple>
+        <Chips
+          id="1"
+          onClick={() => {
+            setActive(!active);
+          }}
+          active={active}
+        >
+          Chips 1
+        </Chips>
+        <Chips
+          onClick={() => {
+            setActive2(!active2);
+          }}
+          active={active2}
+        >
+          Chips 2
+        </Chips>
+        <Chips
+          onClick={() => {
+            setActive3(!active3);
+          }}
+          active={active3}
+        >
+          Chips 3
+        </Chips>
+        <Chips disabled>Chips 4</Chips>
+      </ChipsList>
 
-        <Title level={TitleLevels.TWO}>Chips selection unique </Title>
-        <ChipsList>
-          <Chips
-            onClick={() => {
-              setActiveBis(!activeBis);
-            }}
-            active={activeBis}
-          >
-            Chips 1
-          </Chips>
-          <Chips
-            onClick={() => {
-              setActive2Bis(!active2Bis);
-            }}
-            active={active2Bis}
-          >
-            Chips 2
-          </Chips>
-          <Chips
-            onClick={() => {
-              setActive3Bis(!active3Bis);
-            }}
-            active={active3Bis}
-          >
-            Chips 3
-          </Chips>
-          <Chips
-            onClick={() => {
-              setActive4Bis(!active4Bis);
-            }}
-            active={active4Bis}
-          >
-            Chips 4
-          </Chips>
-        </ChipsList>
-      </AutoLayout>
-    </Container>
+      <Title level={TitleLevels.TWO}>Chips selection unique </Title>
+      <ChipsList>
+        <Chips
+          onClick={() => {
+            setActiveBis(!activeBis);
+          }}
+          active={activeBis}
+        >
+          Chips 1
+        </Chips>
+        <Chips
+          onClick={() => {
+            setActive2Bis(!active2Bis);
+          }}
+          active={active2Bis}
+        >
+          Chips 2
+        </Chips>
+        <Chips
+          onClick={() => {
+            setActive3Bis(!active3Bis);
+          }}
+          active={active3Bis}
+        >
+          Chips 3
+        </Chips>
+        <Chips
+          onClick={() => {
+            setActive4Bis(!active4Bis);
+          }}
+          active={active4Bis}
+        >
+          Chips 4
+        </Chips>
+      </ChipsList>
+    </Section>
   );
 };

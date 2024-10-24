@@ -15,4 +15,4 @@ export enum SpacerSize {
   TEN = 64
 }
 
-export type SpacerSizeValues = `${SpacerSize}`
+export const SpacerSizeValues = `${SpacerSize}`

@@ -369,7 +369,7 @@
   color: getColor('font');
 
   @include placeholder {
-    color: getColor('neutral') !important;
+    color: getColor('font-placeholder') !important;
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
@@ -619,7 +619,7 @@
 }
 
 @mixin disabledRulesWithoutBG {
-  border-color: transparent !important;
+  border-color: getColor('disabled') !important;
   box-shadow: none !important;
   color: getColor('disabled') !important;
   cursor: not-allowed !important;

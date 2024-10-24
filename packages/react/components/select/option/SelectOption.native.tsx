@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { TypographyBold } from '@/objects/Typography'
-import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { Columns, ColumnsItem } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
+import { TypographyBold } from '@/objects/Typography'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import * as React from 'react'
+import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 import { SelectOptionProps } from './SelectOptionProps'
 
 /**
@@ -14,21 +14,17 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param label {string} Label value
  * @param children {React.ReactNode}
  */
-const SelectOption = ({
-  disabled,
-  children,
-  onClick,
-  label,
-  iconName,
-  ...others
-}: SelectOptionProps): JSX.Element => {
-  const { checked } = others as {checked:string}
+const SelectOption = ({ disabled, children, onClick, label, iconName, ...others }: SelectOptionProps): JSX.Element => {
+  const { checked } = others as { checked: string }
 
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
         container: {
           backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || undefined,
+          width: Dimensions.get('screen').width-40,
+          paddingHorizontal: 16,
+          paddingVertical: 8
         },
       }),
     [disabled],
@@ -52,32 +48,33 @@ const SelectOption = ({
     }
   }, [disabled])
 
+  const columnLabelSize = React.useMemo(() => {
+   return iconName ? checked && 10 || 11 :  checked && 11 || 12
+  }, [iconName, checked])
+
   return (
     <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
-      <Columns {...{ style: { paddingVertical: 16, paddingHorizontal: 8 } }}>
-        <ColumnsItem>
-          <Columns>
+          <Columns gap={0} verticalCentered>
             {iconName && (
-              <ColumnsItem size={1} verticalCenter>
+              <ColumnsItem size={1} verticalCentered >
                 <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
               </ColumnsItem>
             )}
-            <ColumnsItem verticalCenter>
+            <ColumnsItem size={columnLabelSize} verticalCentered >
               <Text
                 typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
-                {...{ style: { paddingLeft: 8, color: textColor } }}
+                {...{ style: { paddingLeft: 8, color: textColor, } }}
               >
                 {children || label}
               </Text>
             </ColumnsItem>
             {checked && (
-              <ColumnsItem size={1} verticalCenter>
+              <ColumnsItem size={1} verticalCentered >
                 <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
               </ColumnsItem>
             )}
           </Columns>
-        </ColumnsItem>
-      </Columns>
+
     </TouchableOpacity>
   )
 }

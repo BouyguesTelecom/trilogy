@@ -37,10 +37,6 @@ type TextareaPropsWeb = Accessibility & {
   /** @deprecated */
   name?: string
   className?: string
-  /** @deprecated */
-  hovered?: boolean
-  /** @deprecated */
-  focused?: boolean
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
   autoCorrect?: any

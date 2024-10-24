@@ -7,14 +7,14 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
- * @param children {ReactNode} Section children
- * @param autolayout {boolean} Apply auto-layout rules
- * @param className {string} Additionnal CSS Classes
+ * @param children {React.ReactNode}
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  * @param verticalPaddingless {boolean} remove vertical padding
- */
+ * @param fullwidth {boolean} Fullwidth section
+ * @param autolayout {boolean} Apply auto-layout rules
+ **/
 const Section = ({
   autolayout = true,
   backgroundColor,

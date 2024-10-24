@@ -9,20 +9,22 @@ import { View } from "@/components/view"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
- * Radio Native Component
- * @param checked {boolean} Checked Checkbox
+ * Radio Component
+ * @param checked {boolean} Checked Radio
  * @param disabled {boolean} Disabled
- * @param readOnly {boolean} readonly Checkbox
+ * @param readOnly {boolean} readonly Radio
  * @param id {string} Id for button, by default id is generate
- * @param label {string} Label for Checkbox
+ * @param label {string|ReactNode} Label for Radio
  * @param onClick {ClickEvent}
  * @param onChange {ChangeEvent}
- * @param name {string} Name for checkbox
- * @param value {string} Value for checkbox
+ * @param name {string} Name for radio
+ * @param value {string} Value for radio
  * @param iconTile {IconName} Icon for Radio
  * @param narrow {boolean} Apply narrow
  * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
- * @param description {string | React.ReactNode} Custom children
+ * @param tile {boolean} Radio Tile
+ * @param description {string} Description for Radio tile
+ * @param horizontalTile {boolean} display horizontal Radio tile
  */
 const Radio = ({
                  id = shortid.generate(),
@@ -46,7 +48,7 @@ const Radio = ({
   const getRadioInsideColor = (isDisabled: boolean, isMain: boolean) => {
     if (isDisabled) return getColorStyle(TrilogyColor.DISABLED_FADE)
     if (isMain) return getColorStyle(TrilogyColor.MAIN)
-    return getColorStyle(TrilogyColor.MAIN_FADE)
+    return getColorStyle(TrilogyColor.NEUTRAL)
   }
 
   useEffect(() => {

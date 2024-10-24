@@ -14,17 +14,17 @@ import {
 
 export const TagScreen = (): JSX.Element => {
   return (
-    <>
+    <Section>
       <Container>
         <TagList>
           <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.ERROR}>
+          <Tag variant={TagVariant.ERROR}>
             Tag error
           </Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.SUCCESS}>
+          <Tag variant={TagVariant.SUCCESS}>
             Tag success
           </Tag>
-          <Tag onClick={() => alert("test")} variant={TagVariant.WARNING}>
+          <Tag variant={TagVariant.WARNING}>
             Tag warning
           </Tag>
         </TagList>
@@ -95,7 +95,6 @@ export const TagScreen = (): JSX.Element => {
           Tag info
         </Tag>
       </Section>
-
       <Section>
         <Title level={TitleLevels.THREE}>Deletable Tags</Title>
         <Divider/>
@@ -107,6 +106,6 @@ export const TagScreen = (): JSX.Element => {
           <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
         </TagList>
       </Section>
-    </>
+    </Section>
   );
 };

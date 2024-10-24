@@ -10,12 +10,15 @@ import { IconSize } from "@/components/icon"
 
 /**
  * Stepper Step Component
- * @param children {ReactNode} Stepper Step Children
- * @param className {string} Additionnal CSS Classes
  * @param active {boolean} Active step
- * @param markup {StepperStepMarkup} Markup for Step - P|SPAN|DIV|A
  * @param current {boolean} Current step
  * @param done {boolean} Step done
+ * @param error {boolean} display error step
+ * @param children {ReactNode} Stepper Step Children
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
+ * @param iconName {IconName | IconNameValues} display icon
+ * @param markup {StepperStepMarkup} Markup for Step - P|SPAN|DIV|A
  * @param label {string} Step label
  * @param step {number|string} Step text circle
  */

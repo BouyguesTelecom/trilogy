@@ -1,6 +1,6 @@
-import { SpacerSize, SpacerSizeValues } from './SpacerEnum'
+import type { SpacerSize, SpacerSizeValues } from './SpacerEnum'
 
 export interface SpacerProps {
-  size: SpacerSize | SpacerSizeValues
+  size: SpacerSize | typeof SpacerSizeValues
   horizontal?: boolean
 }

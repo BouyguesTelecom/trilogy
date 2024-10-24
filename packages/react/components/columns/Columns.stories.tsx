@@ -124,5 +124,5 @@ export const InlinedScrollVertical: Story<ColumnsProps> = (args) => (
   </Columns>
 )
 InlinedScrollVertical.args = {
-  inlined: true,
+  scrollable: true,
 }

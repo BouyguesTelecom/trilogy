@@ -8,8 +8,6 @@ import {
   Card,
   CardContent,
   Container,
-  Divider,
-  IconName,
   RowItem,
   Rows,
   Section,
@@ -29,7 +27,7 @@ export const BreadcrumScreen = (): JSX.Element => {
         Next to BreadcrumbItem
       </Button>
 
-      <Spacer size={SpacerSize.MEDIUM} />
+      <Spacer size={SpacerSize.FOUR} />
 
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>Simple Breadcrumb</Text>
       <Breadcrumb>

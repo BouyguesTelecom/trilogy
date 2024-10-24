@@ -13,12 +13,12 @@ import { useTrilogyContext } from "@/context"
  * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
  * @param hat {boolean} Hat Sticker ( for box )
+ * @param outlined {boolean} Outlined sticker
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {StickerMarkup} HTML element : p|span|div
  * @param className {string} Additionnal css classes
  * @param others
  */
-
 const Sticker = ({
   className,
   children,

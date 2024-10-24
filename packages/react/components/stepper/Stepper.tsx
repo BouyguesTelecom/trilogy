@@ -7,9 +7,10 @@ import { useTrilogyContext } from "@/context"
 
 /**
  * Stepper Component
- * @param className Additionnal CSS Classes
  * @param centered Center the stepper
  * @param children {ReactNode}
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className Additionnal CSS Classes
  */
 const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {

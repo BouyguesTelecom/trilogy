@@ -6,12 +6,11 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Stepper Step Component
- * @param children {ReactNode} Stepper Step Children
  * @param active {boolean} Active step
  * @param current {boolean} Current step
  * @param done {boolean} Step done
- * @param label {string} Step label
- * @param step {number|string} Step text circle
+ * @param error {boolean} display error step
+ * @param children {ReactNode} Stepper Step Children
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StepperStep = ({
@@ -22,7 +21,7 @@ const StepperStep = ({
                        ...others
                      }: StepperStepProps): JSX.Element => {
 
-  const defaultColor = getColorStyle(TrilogyColor.MAIN_FADE)
+  const defaultColor = getColorStyle(TrilogyColor.NEUTRAL)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
   const errorColor = getColorStyle(TrilogyColor.ERROR)
   const backgroundColorAnim = React.useRef(new Animated.Value(0)).current

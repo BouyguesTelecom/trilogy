@@ -9,12 +9,13 @@ import { useTrilogyContext } from "@/context"
 /**
  * Timeline Content Component
  * @param children {ReactNode} Use it if you want custom children for content
- * @param className {string} Additionnal CSS Classes
  * @param content {string} Text content
  * @param contentLink {string} Text for content link
  * @param heading {string} Text heading
  * @param link {string} Url link
  * @param Onclick {string} Provide event onCLick
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes
  */
 const TimelineContent = ({
   children,

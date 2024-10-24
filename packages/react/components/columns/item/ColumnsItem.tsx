@@ -9,7 +9,7 @@ import { getAlignClassName } from "@/objects"
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
- * @param verticalCenter {boolean} Vertical center Column item
+ * @param verticalCentered {boolean} Vertical center Column item
  * @param centered {boolean} center Column item
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -48,7 +48,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     widescreenOffset,
     fullhdOffset,
     narrow,
-    verticalCenter,
+    verticalCentered,
     centered,
     align,
     ...others
@@ -75,7 +75,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
       widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
       narrow && is("narrow"),
-      verticalCenter && is("vcentered"),
+      verticalCentered && is("vcentered"),
       centered && has("text-centered"),
       align && is(getAlignClassName(align)),
       className
