@@ -183,7 +183,7 @@ $price-levels: (
 
   &.is-striked {
     position: relative;
-    color: getColor('main-fade');
+    color: getColor('neutral');
 
     &::before {
       position: absolute;
@@ -192,13 +192,13 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('font');
+      border-color: getColor('neutral');
       border-radius: 5px;
       transform: rotate(-20deg);
     }
 
     &.is-inverted {
-      color: getColor('main-fade');
+      color: getColor('background');
 
       &::before {
         border-color: getColor('background');
