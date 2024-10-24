@@ -41,7 +41,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     margin-left: 0;
     padding-bottom: $spacing-2;
 
-
     &::before {
       content: '';
       display: block;
@@ -260,16 +259,10 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         &::before {
-          content: '';
-          background-color: var(--font-color);
-          display: block;
           width: calc(100% - 58px);
-          position: absolute;
           top: 22.89px;
           left: 59px;
-          bottom: 8px;
           height: 2px;
-          border-radius: 2px;
         }
 
         .timeline-marker {
@@ -281,10 +274,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           margin-left: 0;
           padding: 0;
           margin-top: 8px;
-
-          .main-content {
-            margin-left: 0;
-          }
 
         }
       }
