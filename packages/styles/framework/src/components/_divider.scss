@@ -1,17 +1,16 @@
 .divider {
-    position: relative;
-    text-align: center;
-    background-color: getColor('neutral-fade');
-    height: 1px;
-    width: 100%;
+  position: relative;
+  text-align: center;
+  background-color: getColor('neutral');
+  height: 1px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    p.divider-content {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        white-space: nowrap;
-        padding: 0 $spacing-4;
-        background-color: invertColor('neutral');
-    }
+  p.divider-content {
+    white-space: nowrap;
+    padding: 0 $spacing-4;
+    background-color: invertColor('neutral');
+  }
 }
