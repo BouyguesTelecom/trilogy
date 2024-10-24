@@ -16,7 +16,7 @@ import { Divider, TrilogyColor } from "@trilogy-ds/react";
 
 export const TimelineScreen = (): JSX.Element => {
   return (
-    <>
+    <Section>
       {/* TIMELINE WITH 4 ITEMSS */}
       <Timeline horizontal>
         <TimelineItem cancel>
@@ -99,6 +99,6 @@ export const TimelineScreen = (): JSX.Element => {
           />
         </TimelineItem>
       </Timeline>
-    </>
+    </Section>
   );
 };

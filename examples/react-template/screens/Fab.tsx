@@ -10,8 +10,9 @@ import {
 export const FabScreen = (): JSX.Element => {
   const [active, setActive] = React.useState<boolean>(false);
   return (
-    <View style={{ height: "80rem" }}>
-      <Section>
+    <Section>
+      <View style={{height: "80rem"}}>
+
         <Title level={"TWO"}>FAB button</Title>
         <Fab
           extended={active}
@@ -22,7 +23,7 @@ export const FabScreen = (): JSX.Element => {
         >
           New Conversation
         </Fab>
-      </Section>
-    </View>
+      </View>
+    </Section>
   );
 };

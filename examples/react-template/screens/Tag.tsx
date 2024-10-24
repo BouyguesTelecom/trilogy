@@ -14,7 +14,7 @@ import {
 
 export const TagScreen = (): JSX.Element => {
   return (
-    <>
+    <Section>
       <Container>
         <TagList>
           <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
@@ -95,6 +95,17 @@ export const TagScreen = (): JSX.Element => {
           Tag info
         </Tag>
       </Section>
-    </>
+      <Section>
+        <Title level={TitleLevels.THREE}>Deletable Tags</Title>
+        <Divider/>
+        <TagList>
+          <Tag deletable>Tag Deletable</Tag>
+          <Tag deletable variant={TagVariant.ERROR}>Deletable Error</Tag>
+          <Tag deletable variant={TagVariant.SUCCESS}>Deletable Success</Tag>
+          <Tag deletable variant={TagVariant.WARNING}>Deletable Warning</Tag>
+          <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
+        </TagList>
+      </Section>
+    </Section>
   );
 };

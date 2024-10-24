@@ -8,27 +8,26 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
+ * @param mobileSize {ColumnsSize} if size is missing.
  * @param children {React.ReactNode}
- * @param verticalCenter {boolean} Vertical center Column item
+ * @param verticalCentered {boolean} Vertical center Column item
  * @param centered {boolean} center Column item
+ * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = ({ children, size, verticalCenter, centered, align, ...others }: ColumnsItemProps): JSX.Element => {
+const ColumnsItem = ({ children, size, mobileSize, verticalCentered, centered, align, ...others }: ColumnsItemProps): JSX.Element => {
   const columnsContextValues = useContext(ColumnsContext)
+
+  const realSize = size || mobileSize
 
   const styles = StyleSheet.create({
     columnsItem: {
-      width: columnsContextValues.inlined
-        ? (Dimensions.get('window').width - 80) / (12 / (size ? size : 1))
-        : undefined,
-      marginRight: columnsContextValues.inlined ? 16 : 0,
-      height: columnsContextValues.inlined ? '100%' : undefined,
-      flexDirection: 'column',
-      flex: columnsContextValues.inlined ? undefined : !size ? 12 : size,
-      justifyContent: verticalCenter ? 'center' : 'flex-start',
+      height: columnsContextValues.scrollable ? '100%' : undefined,
+      flex: !realSize ? 1 : realSize,
+      justifyContent: verticalCentered ? 'center' : 'flex-start',
       alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
-      flexBasis: `${(size ? size : 1) / 12 * 100}%`,
+      flexBasis: `${(realSize ? realSize / 12 : 12)  * 100}%`,
       flexGrow: 0,
-      maxWidth: `${(size ? size : 1) / 12 * 100}%`
+      maxWidth: `${(realSize ? realSize : 12) / 12 * 100}%`
     },
   })
 
