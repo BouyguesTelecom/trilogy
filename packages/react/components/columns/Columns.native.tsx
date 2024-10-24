@@ -59,8 +59,7 @@ const Columns = ({
       alignSelf: "center",
     },
     verticalAlign: {
-      justifyContent: "center",
-      flex: 1,
+      alignItems: "center"
     },
     multiline: {
       flexWrap: "wrap",
