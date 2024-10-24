@@ -50,7 +50,7 @@ const Chips = ({
     text: {
       alignSelf: "center",
       color:
-        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
+        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       paddingTop: 1,
