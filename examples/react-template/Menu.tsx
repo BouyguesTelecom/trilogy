@@ -10,10 +10,12 @@ import {
   IconName,
   Input,
   ScrollView,
+  Section,
   Text,
   TextLevels,
   Title,
   TitleLevels,
+  View
 } from "@trilogy-ds/react/components";
 import * as React from "react";
 import * as Screens from "./screens";
@@ -34,9 +36,10 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
   }, []);
 
   return (
-    <ScrollView>
-      <Container>
-        <AutoLayout>
+    <View markup="main" className="main-content">
+      <AutoLayout>
+      <ScrollView>
+      <Section>
           <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
             You need to test components in other screens
           </Title>
@@ -67,11 +70,11 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                 }}
               >
                 <BoxContent>
-                  <Columns>
-                    <ColumnsItem size={11}>
+                  <Columns verticalCentered >
+                    <ColumnsItem size={11} >
                       <Title level={TitleLevels.THREE}>{pathName}</Title>
                     </ColumnsItem>
-                    <ColumnsItem verticalCenter size={1}>
+                    <ColumnsItem size={1} >
                       <Icon name={IconName.ARROW_RIGHT} />
                     </ColumnsItem>
                   </Columns>
@@ -79,8 +82,10 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
               </Box>
             );
           })}
-        </AutoLayout>
-      </Container>
+      </Section>
     </ScrollView>
+      </AutoLayout>
+
+    </View>
   );
 };
