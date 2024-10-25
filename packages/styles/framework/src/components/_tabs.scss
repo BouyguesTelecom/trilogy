@@ -5,7 +5,6 @@
   align-items: stretch;
   justify-content: space-between;
   font-weight: $weight-normal;
-  background: white;
   width: 100%;
   text-align: center;
   overflow: scroll;
@@ -127,10 +126,12 @@
         color: getColor('main');
         position: relative;
         border-bottom-color: getColor('main');
+        font-weight: $weight-medium;
       }
 
       &:hover:not(.is-disabled) {
         color: getColor('main');
+        border-bottom-color: currentColor;
         cursor: pointer;
 
         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
