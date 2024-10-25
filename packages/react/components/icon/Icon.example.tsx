@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from './index'
-import { Columns, ColumnsItem } from '@/lib'
+import { Columns, ColumnsItem } from '@/components/columns'
 
 const IconExample: React.ReactNode = (
   <Columns>
