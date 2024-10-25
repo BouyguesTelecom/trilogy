@@ -1,7 +1,7 @@
 import React from 'react'
 import { Section } from './index'
 import { Title } from '@/components/title'
-import { Columns, ColumnsItem } from '@/lib'
+import { Columns, ColumnsItem } from '@/components/columns'
 
 const SectionExample: React.ReactNode = (
   <Columns>
