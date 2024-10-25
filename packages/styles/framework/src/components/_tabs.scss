@@ -126,6 +126,7 @@
         color: getColor('main');
         position: relative;
         border-bottom-color: getColor('main');
+        font-weight: $weight-medium;
       }
 
       &:hover:not(.is-disabled) {
