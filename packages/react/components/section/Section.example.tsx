@@ -23,3 +23,4 @@ const SectionExample: React.ReactNode = (
   </Columns>
 )
 export default SectionExample
+
