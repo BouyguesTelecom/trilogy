@@ -4,7 +4,7 @@ import * as React from 'react'
 
 export const TitleScreen = (): JSX.Element => {
   const reff = React.useRef(null)
-  console.log(reff)
+  console.log('oui')
   return (
     <Section>
       <Title level={TitleLevels.ONE} ref={reff}>

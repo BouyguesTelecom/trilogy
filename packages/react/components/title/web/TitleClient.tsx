@@ -1,6 +1,6 @@
 'use client'
 import clsx from 'clsx'
-import React, { forwardRef, LegacyRef, memo, useEffect, useState } from 'react'
+import React, { forwardRef, LegacyRef, useEffect, useState } from 'react'
 
 import { TitleProps } from '@/components/title/TitleProps'
 import TitleBase from '@/components/title/web/TitleBase'
@@ -24,4 +24,4 @@ const TitleClient = ({ skeleton, ...others }: TitleProps, ref?: LegacyRef<any>):
   return <TitleBase {...others} styled={styled} className={classes} ref={ref} onClick={onClick} />
 }
 
-export default memo(forwardRef(TitleClient))
+export default forwardRef(TitleClient)

@@ -1,11 +1,6 @@
-import { getDirective } from '@/context/directiveProvider/providerDirective'
 import React, { forwardRef, LegacyRef } from 'react'
 import { TitleProps } from './TitleProps'
 import TitleBase from './web/TitleBase'
-
-interface IProps extends TitleProps {
-  useClient?: boolean
-}
 
 /**
  * Title component
@@ -27,21 +22,15 @@ interface IProps extends TitleProps {
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = forwardRef(({ useClient, ...others }: IProps, ref: LegacyRef<any>) => {
-  const directive = getDirective()
-  switch (true) {
-    case directive === 'client':
-      const TitleClient = React.lazy(() => import('./web/TitleClient'))
 
+const TitleClient = React.lazy(() => import('./web/TitleClient'))
+
+export default typeof process !== 'undefined' && process?.env.REACT_APP_SERVER_COMPONENT === 'true'
+  ? TitleBase
+  : forwardRef((props: TitleProps, ref: LegacyRef<any>) => {
       return (
         <React.Suspense fallback={<TitleBase />}>
-          <TitleClient {...others} ref={ref as any} />
+          <TitleClient {...props} ref={ref as any} />
         </React.Suspense>
       )
-
-    default:
-      return <TitleBase {...others} />
-  }
-})
-
-export default Title
+    })
