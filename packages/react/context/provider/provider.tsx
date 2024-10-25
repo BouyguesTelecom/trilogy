@@ -4,7 +4,7 @@ import * as React from 'react'
 import hashJSON from '../../hash.json'
 import { TrilogyContext } from '../index'
 
-interface TrilogyProviderStyledProps {
+interface TrilogyProviderProps {
   theme?: 'default' | 'mangled' | 'none'
   hash?: string
 }
@@ -15,11 +15,11 @@ interface TrilogyProviderStyledProps {
  * @param theme (optionnal) 'default'| 'mangled' |'none' style
  * @param hash (optionnal) hash for html class
  */
-const TrilogyProviderStyled = ({
+const TrilogyProvider = ({
   children,
   theme = 'default',
   hash: HASH = hashJSON.HASH,
-}: React.PropsWithChildren<TrilogyProviderStyledProps>): JSX.Element => {
+}: React.PropsWithChildren<TrilogyProviderProps>): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
   const [hash, setHash] = React.useState<string>(HASH)
 
@@ -54,4 +54,4 @@ const TrilogyProviderStyled = ({
   )
 }
 
-export { TrilogyProviderStyled }
+export { TrilogyProvider }

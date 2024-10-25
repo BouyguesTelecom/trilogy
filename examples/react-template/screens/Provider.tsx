@@ -1,13 +1,13 @@
 import { Box, Button, ButtonVariant, Section, Text, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import { ViewMarkup } from '@trilogy-ds/react/components/view/ViewProps'
-import { TrilogyProviderStyled } from '@trilogy-ds/react/context/styledProvider/providerStyled'
+import { TrilogyProvider } from '@trilogy-ds/react/context/provider/provider'
 import { Alignable, Justifiable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const ProviderScreen = (): JSX.Element => {
   return (
     <Section>
-      <TrilogyProviderStyled>
+      <TrilogyProvider>
         <Box>
           <View markup={ViewMarkup.LABEL}>
             <Text>TrilogyProviderStyledMangled.</Text>
@@ -21,9 +21,9 @@ export const ProviderScreen = (): JSX.Element => {
             </Title>
           </View>
         </Box>
-      </TrilogyProviderStyled>
+      </TrilogyProvider>
 
-      <TrilogyProvider mangled>
+      <TrilogyProvider>
         <Box>
           <View markup={ViewMarkup.LABEL}>
             <Text>TrilogyProvider. Mangled</Text>

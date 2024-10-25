@@ -1,4 +1,4 @@
-import { TrilogyProviderStyled } from '@trilogy-ds/react/context/styledProvider/providerStyled'
+import { TrilogyProvider } from '@trilogy-ds/react/context/provider/provider'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
@@ -9,10 +9,10 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-    <TrilogyProviderStyled>
+    <TrilogyProvider>
       <HashRouter>
         <Router />
       </HashRouter>
-    </TrilogyProviderStyled>
+    </TrilogyProvider>
   </React.StrictMode>,
 )

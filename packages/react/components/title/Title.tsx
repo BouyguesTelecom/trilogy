@@ -25,7 +25,7 @@ import TitleBase from './web/TitleBase'
 
 const TitleClient = React.lazy(() => import('./web/TitleClient'))
 
-export default typeof process !== 'undefined' && process?.env.REACT_APP_SERVER_COMPONENT === 'true'
+export default typeof process !== 'undefined' && process?.env.TRILOGY_SERVER_COMPONENTS === 'true'
   ? TitleBase
   : forwardRef((props: TitleProps, ref: LegacyRef<any>) => {
       return (
