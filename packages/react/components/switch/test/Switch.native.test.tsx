@@ -36,7 +36,7 @@ describe("Switch component", () => {
 
   test("trackColor", async () => {
     const { getByTestId } = render(<Switch />);
-    expect(getByTestId("switch-id").props.tintColor).toBe(getColorStyle(TrilogyColor.MAIN_FADE));
+    expect(getByTestId("switch-id").props.tintColor).toBe(getColorStyle(TrilogyColor.NEUTRAL));
     expect(getByTestId("switch-id").props.onTintColor).toBe(
       getColorStyle(TrilogyColor.MAIN)
     );
