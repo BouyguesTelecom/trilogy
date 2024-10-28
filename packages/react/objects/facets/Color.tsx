@@ -10,7 +10,6 @@ export enum TrilogyColor {
   MAIN_FADE = 'MAIN_FADE',
   ACCENT = 'ACCENT',
   FONT = 'FONT',
-  FONT_PLACEHOLDER = 'FONT_PLACEHOLDER',
   SUCCESS = 'SUCCESS',
   SUCCESS_FADE = 'SUCCESS_FADE',
   INFO = 'INFO',
@@ -37,7 +36,6 @@ export const colors: Record<any, string[]> = {
   [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
 
   [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
-  [TrilogyColor.FONT_PLACEHOLDER]: ['#818283', 'font-placeholder', 'white'],
 
   [TrilogyColor.SUCCESS]: ['#007B52', 'success', 'white'],
   [TrilogyColor.SUCCESS_FADE]: ['#cae8ca', 'success-fade', 'white'],
@@ -132,4 +130,38 @@ export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): 
   } else {
     return colors[trilogyColor][0] || colors['main'][0]
   }
+}
+
+function hexToRgb(hex: string): { r: number, g: number, b: number } {
+    if (hex.charAt(0) === '#') {
+        hex = hex.slice(1)
+    }
+
+    if (hex.length !== 6) {
+        throw new Error('Wrong format (hexadecimal)')
+    }
+    // Conversion
+    const r = parseInt(hex.substring(0, 2), 16)
+    const g = parseInt(hex.substring(2, 4), 16)
+    const b = parseInt(hex.substring(4, 6), 16)
+
+    return { r, g, b }
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+    const toHex = (n: number) => {
+        const hex = n.toString(16)
+        return hex.length === 1 ? `0${hex}` : hex
+    }
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+}
+
+export function grayscale(hex: string): string {
+    const { r, g, b } = hexToRgb(hex);
+
+    // Formule de luminosité relative
+    const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+
+    // Retourner la couleur en niveaux de gris
+    return rgbToHex(gray, gray, gray);
 }
