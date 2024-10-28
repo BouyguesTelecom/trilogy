@@ -1,4 +1,4 @@
-import { InputChangeEventWeb,InputChangeEventNative, InputClickEvent, InputProps } from '@/components/input/InputProps'
+import { InputChangeEventWeb, InputChangeEventNative, InputClickEvent, InputProps } from '@/components/input/InputProps'
 import { FocusEventHandler } from 'react'
 
 /**

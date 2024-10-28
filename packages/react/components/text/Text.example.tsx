@@ -1,10 +1,10 @@
 import React from 'react'
-import { Text } from './index'
+import { Text, TextLevels } from './index'
 
 const TextExample: React.ReactNode =
   <Text
     accessibilityLabel='ceci est un paragraphe'
-    level='ONE'
+    level={TextLevels.ONE}
     markup='p'
     typo='has-text-weight-semibold'
   >

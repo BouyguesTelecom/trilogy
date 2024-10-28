@@ -6,7 +6,7 @@ const AlertExample: React.ReactNode =
 <Columns multiline>
             <ColumnsItem size={6}>
             <Alert
-              alert='INFO'
+              status='INFO'
               description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
               display
               title='Alert information'
@@ -14,7 +14,7 @@ const AlertExample: React.ReactNode =
             </ColumnsItem>
             <ColumnsItem size={6}>
             <Alert
-              alert='ERROR'
+              status='ERROR'
               description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
               display
               title='Alert information'
@@ -22,7 +22,7 @@ const AlertExample: React.ReactNode =
             </ColumnsItem>
             <ColumnsItem size={6}>
             <Alert
-              alert='SUCCESS'
+              status='SUCCESS'
               description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
               display
               title='Alert information'
@@ -30,7 +30,7 @@ const AlertExample: React.ReactNode =
             </ColumnsItem>
             <ColumnsItem size={6}>
             <Alert
-              alert='WARNING'
+              status='WARNING'
               description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
               display
               title='Alert information'

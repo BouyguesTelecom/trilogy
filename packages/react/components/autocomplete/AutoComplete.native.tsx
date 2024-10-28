@@ -7,7 +7,6 @@ import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
 import { debounce } from './utils'
 
-
 /**
  * AutoComplete Component
  * @param placeholder {string} placeholder for input

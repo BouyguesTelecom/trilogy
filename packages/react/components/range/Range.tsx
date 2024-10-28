@@ -24,7 +24,7 @@ import { useTrilogyContext } from "@/context"
  * @param valueCursorMax {number} number of input max
  * @param onChangeMin {function} on change min cursor
  * @param onChangeMax {function} on change max cursor
- * @param testId {string} Test Id for Test Integration 
+ * @param testId {string} Test Id for Test Integration
  */
 const Range = ({
   min,

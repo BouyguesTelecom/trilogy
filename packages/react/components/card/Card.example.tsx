@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardImage, CardContent } from './index'
-import { Title } from '@/components/title'
-import { Text } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
+import { Text, TextLevels } from '@/components/text'
 import { Button } from '@/components/button'
 import { Rows, RowItem } from '@/components/rows'
 
@@ -14,10 +14,10 @@ const CardExample: React.ReactNode =
           <Title>
             Présentation
           </Title>
-          <Title level='ONE'>
+          <Title level={TitleLevels.ONE}>
             Title lorem
           </Title>
-          <Text level='ONE'>
+          <Text level={TextLevels.ONE}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, neque eu,
             vulputate vera.
           </Text>
@@ -36,10 +36,10 @@ const CardExample: React.ReactNode =
           <Title>
             Présentation
           </Title>
-          <Title level='ONE'>
+          <Title level={TitleLevels.ONE}>
             Title lorem
           </Title>
-          <Text level='ONE'>
+          <Text level={TextLevels.ONE}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, neque eu,
             vulputate vera.
           </Text>

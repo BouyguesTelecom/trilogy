@@ -4,7 +4,7 @@ import { Text, TextMarkup } from "@/components/text"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
-import {is} from "@/services";
+import { is } from "@/services"
 
 /**
  * Badge Component
