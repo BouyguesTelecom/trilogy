@@ -40,7 +40,8 @@
         padding-top: $spacing-2;
         width: calc(100% - 28px - 2px);
         font-size: 12px;
-        color: getColor('neutral');
+        color: getColor('font');
+        filter: grayscale(100%);
         transition: top 0.2s ease-out;
       }
 

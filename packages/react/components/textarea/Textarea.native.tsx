@@ -6,7 +6,7 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import { TypographyColor } from '@/objects'
+import {grayscale, TypographyColor} from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
@@ -32,7 +32,7 @@ import { TextareaNativeProps } from './TextareaProps'
  * @param iconName {IconName | IconNameValues} display Icon
  * @param statusIconName {IconName | IconNameValues} display status Icon
  * @param testId {string} Test Id for Test Integration
- * @param dynamicPlaceholder {boolean} 
+ * @param dynamicPlaceholder {boolean}
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
@@ -137,7 +137,7 @@ const Textarea = (
       top: 2,
       left: iconName ? 40 : 8,
       fontSize: 12,
-      color: getColorStyle(TrilogyColor.FONT_PLACEHOLDER),
+      color: grayscale(getColorStyle(TrilogyColor.FONT)),
       backgroundColor: 'transparent',
       padding: 8,
       paddingBottom: 4,
@@ -210,7 +210,7 @@ const Textarea = (
         {...others}
         ref={ref}
         placeholderTextColor={
-          disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+          disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
         }
       />
 
