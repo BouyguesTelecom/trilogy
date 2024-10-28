@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
-import { TypographyColor } from '@/objects'
+import {grayscale, TypographyColor} from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
@@ -221,7 +221,7 @@ const Input = ({
     dynamicPlaceholder: {
       position: 'absolute',
       left: customIconLeft ? 40 : 10,
-      color: getColorStyle(TrilogyColor.FONT_PLACEHOLDER),
+      color: grayscale(getColorStyle(TrilogyColor.FONT)),
     },
     help: {
       fontSize: 12,
@@ -368,7 +368,7 @@ const Input = ({
           }}
           placeholder={placeholder}
           placeholderTextColor={
-            disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+            disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
           }
           style={styles.input}
           {...others}

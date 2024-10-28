@@ -369,7 +369,8 @@
   color: getColor('font');
 
   @include placeholder {
-    color: getColor('font-placeholder') !important;
+    color: getColor('font') !important;
+    filter: grayscale(100%);
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
