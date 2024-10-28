@@ -25,7 +25,7 @@ import { TypographyColor } from '@/objects'
  * @param iconName {IconName | IconNameValues} display Icon
  * @param statusIconName {IconName | IconNameValues} display status Icon
  * @param testId {string} Test Id for Test Integration
- * @param dynamicPlaceholder {boolean} 
+ * @param dynamicPlaceholder {boolean}
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
  * - -------------------------- WEB PROPERTIES -------------------------------

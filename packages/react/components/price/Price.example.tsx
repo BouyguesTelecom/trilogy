@@ -19,7 +19,7 @@ const PriceExample: React.ReactNode =
             mention='(1)'
             period='mois'
             showCents
-            striked
+            strikedAmount={29.99}
         />
     </ColumnsItem>
     <ColumnsItem>

@@ -4,7 +4,7 @@ import { ColumnsProps } from "./ColumnsProps"
 import { is, has } from "@/services/classify"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
-import {ColumnsGap} from "@/components/columns/ColumnsTypes";
+import { ColumnsGap } from "@/components/columns/ColumnsTypes"
 
 /**
  * Columns Component

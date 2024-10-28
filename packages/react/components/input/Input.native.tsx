@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
-import {grayscale, TypographyColor} from '@/objects'
+import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'

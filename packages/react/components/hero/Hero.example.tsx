@@ -1,7 +1,7 @@
 import React from 'react'
 import { Hero } from './index'
 import { Container } from '@/components/container'
-import { Title } from '@/components/title'
+import { Title, TitleLevels } from '@/components/title'
 import { Columns, ColumnsItem } from '@/components/columns'
 import { Section } from '@/components/section'
 import { Box, BoxContent } from '@/components/box'
@@ -12,7 +12,7 @@ const HeroExample: React.ReactNode = (
     <ColumnsItem>
       <Hero overlap className='has-pattern-dark'>
         <Container>
-          <Title inverted level='TWO' markup='h1'>
+          <Title inverted level={TitleLevels.TWO} markup='h1'>
             Internet garanti
           </Title>
           <Text className='is-inverted has-text-weight-bold' inverted>
@@ -25,7 +25,7 @@ const HeroExample: React.ReactNode = (
         <Container>
           <Box>
             <BoxContent>
-              <Title level='TWO'>Internet garanti</Title>
+              <Title level={TitleLevels.TWO}>Internet garanti</Title>
             </BoxContent>
           </Box>
         </Container>
