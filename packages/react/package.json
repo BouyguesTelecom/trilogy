@@ -4,7 +4,8 @@
   "type": "module",
   "author": "Bouygues Telecom",
   "files": [
-    "lib"
+    "lib",
+    "lib/**/*.js.map"
   ],
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
