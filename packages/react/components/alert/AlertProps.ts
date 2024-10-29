@@ -35,4 +35,5 @@ export interface AlertProps extends StatusProps, Clickable, Accessibility {
   className?: string
   display?: boolean
   toaster?: boolean
+  banner?: boolean
 }

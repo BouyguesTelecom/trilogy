@@ -101,13 +101,14 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
  * @param testId {string} Test Id for Test Integration
  */
 const Alert = ({
+  banner,
   status,
   className,
   iconName,
   title,
   description,
   onClick,
-  display,
+  display = true,
   testId,
   ...others
 }: AlertProps): JSX.Element => {
@@ -115,7 +116,7 @@ const Alert = ({
 
   const classes = hashClass(
     styled,
-    clsx("alert", has("body"), status && is(getStatusClassName(status)), className)
+    clsx("alert", has("body"), status && is(getStatusClassName(status)), banner && is('banner'), className)
   )
 
   const iconAlert = React.useMemo(() => {
