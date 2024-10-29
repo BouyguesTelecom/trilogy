@@ -8,7 +8,6 @@ describe('Container', () => {
     const { getByTestId } = render(
       <Container
         data-testid='container'
-        fluid
         centered
         verticalCentered
         medium
@@ -23,7 +22,6 @@ describe('Container', () => {
 
     const container = getByTestId('container')
     expect(container).toHaveClass('container')
-    expect(container).toHaveClass('is-fluid')
     expect(container).toHaveClass('is-centered')
     expect(container).toHaveClass('is-vcentered')
     expect(container).toHaveClass('is-medium')
