@@ -15,8 +15,6 @@ import { getBackgroundClassName, StickyPosition } from "@/objects"
  * @param stickyOffSetTop {Number} Set top of sticky container (transformed in px)
  * @param stickyOffSetBottom {Number} Set bottom of sticky container (transformed in px)
  * @param backgroundColor {TrilogyColor} Container STICKY Background Color
- * @param pulledRight {Boolean} Container pulled to right
- * @param pulledLeft {Boolean} Container pulled to left
  * @param medium {boolean} Set medium container
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
@@ -39,8 +37,6 @@ const Container = ({
   backgroundColor,
   backgroundSrc,
   inverted,
-  pulledRight,
-  pulledLeft,
   ...others
 }: ContainerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -64,8 +60,6 @@ const Container = ({
       centered && is("centered"),
       fullwidth && is("fullwidth"),
       verticalCentered && is("vcentered"),
-      pulledRight && is("pulled-right"),
-      pulledLeft && is("pulled-left"),
       sticky && stickyClassName(),
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),

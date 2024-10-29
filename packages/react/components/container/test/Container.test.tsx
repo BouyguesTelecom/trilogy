@@ -15,8 +15,6 @@ describe('Container', () => {
         fullwidth
         sticky={StickyPosition.TOP}
         stickyOffSetTop={20}
-        pulledRight
-        pulledLeft
         backgroundColor='WHITE'
       >
         <div data-testid='test-child'>Test Child</div>
@@ -31,8 +29,6 @@ describe('Container', () => {
     expect(container).toHaveClass('is-medium')
     expect(container).toHaveClass('is-fullwidth')
     expect(container).toHaveClass('is-sticky-top')
-    expect(container).toHaveClass('is-pulled-right')
-    expect(container).toHaveClass('is-pulled-left')
     expect(container).toHaveClass('has-background-white')
     expect(container).toHaveStyle('top: 20px')
 
