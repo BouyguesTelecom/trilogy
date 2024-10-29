@@ -94,8 +94,7 @@ $gap :
 
   @for $i from 1 through length($gap) {
     $item: nth($gap, $i);
-    $level: $i - 1;
-    &.is-mobile.has-gap-#{$level} {
+    &.is-mobile.has-gap-#{$i} {
       gap: $item;
       .column {
         --ColumnGap: #{$item};
@@ -103,7 +102,7 @@ $gap :
     }
 
     @include tablet{
-      &.has-gap-#{$level}:not(.is-desktop) {
+      &.has-gap-#{$i}:not(.is-desktop) {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -112,8 +111,8 @@ $gap :
     }
 
     @include desktop{
-      &.has-gap-#{$level},
-      &.has-gap-#{$level}-desktop {
+      &.has-gap-#{$i},
+      &.has-gap-#{$i}-desktop {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -122,7 +121,7 @@ $gap :
     }
 
     @include widescreen{
-      &.has-gap-#{$level}-widescreen {
+      &.has-gap-#{$i}-widescreen {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -131,7 +130,7 @@ $gap :
     }
 
     @include fullhd{
-      &.has-gap-#{$level}-fullhd {
+      &.has-gap-#{$i}-fullhd {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
