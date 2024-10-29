@@ -107,7 +107,7 @@ const Alert = ({
   title,
   description,
   onClick,
-  display,
+  display = true,
   testId,
   ...others
 }: AlertProps): JSX.Element => {

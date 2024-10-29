@@ -60,7 +60,7 @@ const Alert = ({
   title,
   description,
   onClick,
-  display,
+  display = true,
   ...others
 }: AlertProps): JSX.Element => {
   const { color, backgroundColor } = getStatusStyle(status)
