@@ -1,4 +1,5 @@
 import Select from './Select'
 import SelectOption from './option'
+import SelectExample from './Select.example'
 
-export { Select, SelectOption }
+export { Select, SelectOption, SelectExample }

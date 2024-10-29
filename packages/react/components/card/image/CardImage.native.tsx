@@ -18,7 +18,6 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
   const maxSize = horizontal ? '50%' : '100%'
   const [ratio, setRatio] = useState(1)
 
-
   const getBorderRadius = (isHorizontal: boolean, isReversed: boolean, isActive: boolean) => ({
     borderBottomRightRadius: (isHorizontal && 1) || (isReversed && 8) || 0,
     borderBottomLeftRadius: (isHorizontal && 8) || (isReversed && 8) || 0,

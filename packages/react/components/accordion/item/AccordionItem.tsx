@@ -28,7 +28,7 @@ const AccordionItem = ({
   ...others
 }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDetailsElement>(null)
-  const {styled} = useTrilogyContext()
+  const { styled } = useTrilogyContext()
 
   const [isActive, setIsActive] = useState<boolean>(active || false)
   const [expandedHeight, setExpandedHeight] = useState<string>()

@@ -6,7 +6,7 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import {grayscale, TypographyColor} from '@/objects'
+import { grayscale, TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
