@@ -39,4 +39,4 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Link', 'default', TWO],
   [INSERT_SPACE_BETWEEN, 'Sticker', 'default', TWO],
   [INSERT_SPACE_BETWEEN, 'Tag', 'default', TWO],
-];
+]

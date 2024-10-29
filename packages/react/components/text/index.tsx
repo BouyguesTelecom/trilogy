@@ -1,5 +1,6 @@
 import Text from './Text'
+import TextExample from './Text.example'
 
 export * from './TextEnum'
 
-export { Text }
+export { Text, TextExample }

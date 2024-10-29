@@ -40,7 +40,7 @@ const idTitle = shortid.generate()
  * @param panel {boolean} Panel Side Modal
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test id
- * @param ctaCancelContent {string} content of button close 
+ * @param ctaCancelContent {string} content of button close
  * @param footer {React.ReactNode}
  * @param footerClassNames {string} Additionnal CSS Classes for footer
  * - -------------------------- NATIVE PROPERTIES -------------------------------
