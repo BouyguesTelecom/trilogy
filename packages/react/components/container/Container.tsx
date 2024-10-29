@@ -17,7 +17,6 @@ import { getBackgroundClassName, StickyPosition } from "@/objects"
  * @param backgroundColor {TrilogyColor} Container STICKY Background Color
  * @param pulledRight {Boolean} Container pulled to right
  * @param pulledLeft {Boolean} Container pulled to left
- * @param fluid {boolean} Make the container usable across the width of your section
  * @param medium {boolean} Set medium container
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
@@ -30,7 +29,6 @@ import { getBackgroundClassName, StickyPosition } from "@/objects"
 
 const Container = ({
   className,
-  fluid,
   centered,
   verticalCentered,
   medium,
@@ -62,7 +60,6 @@ const Container = ({
     styled,
     clsx(
       "container",
-      fluid && is("fluid"),
       medium && is("medium"),
       centered && is("centered"),
       fullwidth && is("fullwidth"),
