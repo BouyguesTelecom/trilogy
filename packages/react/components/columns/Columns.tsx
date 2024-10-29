@@ -4,7 +4,6 @@ import { ColumnsProps } from "./ColumnsProps"
 import { is, has } from "@/services/classify"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
-import {ColumnsGap} from "@/components/columns/ColumnsTypes";
 
 /**
  * Columns Component
@@ -45,6 +44,7 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
       fullBleed && is("fullbleed"),
       scrollable && is("scrollable"),
       gap && has(`gap-${gap}`),
+      typeof gap !== 'undefined' && gap === 0 && is("gapless"),
       mobile && is("mobile"),
       centered && is("centered"),
       verticalCentered && is("vcentered"),
