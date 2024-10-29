@@ -13,7 +13,9 @@ $text-levels-mobile: (
 
 
 .text {
-        @each $text-level in $text-levels {
+  line-height: $text-20;
+
+  @each $text-level in $text-levels {
             $i: index($text-levels, $text-level);
             $font-size: nth($text-level, 1);
             $line-height: nth($text-level, 2);
