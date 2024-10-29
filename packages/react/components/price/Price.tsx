@@ -55,7 +55,6 @@ const Price = ({
     styled,
     clsx(
       "price",
-      level && is(`level-${level}`),
       inverted && is("inverted"),
       inline && is("inlined"),
       overline && has("suptitle"),
@@ -67,7 +66,6 @@ const Price = ({
     styled,
     clsx(
       "price",
-      level && level == PriceLevel.ONE && is(`level-3`) || level == PriceLevel.TWO && is(`level-4`) || level == PriceLevel.THREE && is(`level-5`) || level == PriceLevel.FOUR && is(`level-6`) || is(`level-7`),
       inverted && is("inverted"),
       inline && is("inlined"),
       strikedAmount && is("striked"),
@@ -108,7 +106,7 @@ const Price = ({
     "€"
 
   const returnComponent = (
-    <div className={hashClass(styled,clsx("price-container"))}>
+    <div className={hashClass(styled, clsx("price-container", is(`level-${level || '1'}`)) )}>
       {overline && <p className={hashClass(styled,clsx("overline"))}>{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
@@ -160,8 +158,8 @@ const Price = ({
         </span>
         {tagAmount && (
           <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx(('price-tag')))}>
-            <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
-            {tagSymbol === '€' && period && <Text markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
+            <Text className={clsx('tag-amount')} markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}>{tagAmount} {tagSymbol ? tagSymbol : '€'}</Text>
+            {tagSymbol === '€' && period && <Text className={clsx('tag-period')} markup={TextMarkup.SPAN} typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}>&nbsp;/{period}</Text>}
           </span>
         )}
         {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
