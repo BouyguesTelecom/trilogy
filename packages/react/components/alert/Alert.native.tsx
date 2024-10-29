@@ -55,12 +55,13 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param display {Boolean} Display Alert component
  */
 const Alert = ({
+  banner,
   status,
   iconName,
   title,
   description,
   onClick,
-  display,
+  display = true,
   ...others
 }: AlertProps): JSX.Element => {
   const { color, backgroundColor } = getStatusStyle(status)
@@ -72,10 +73,11 @@ const Alert = ({
       paddingTop: 10,
       borderColor: status !== undefined ? color : backgroundColor,
       paddingBottom: 10,
-      borderWidth: 1,
+      borderWidth: banner? 0 : 1,
       backgroundColor: backgroundColor,
-      borderRadius: 6,
+      borderRadius: banner? 0 : 6,
       alignItems: "baseline",
+      textAlign: banner? 'center' : 'left',
       paddingLeft: 12,
       paddingRight: 12,
     },

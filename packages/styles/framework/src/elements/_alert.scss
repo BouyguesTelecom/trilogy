@@ -18,6 +18,14 @@ a.alert {
   box-shadow: none;
   padding: $spacing-4;
 
+  &.is-banner {
+
+    text-align: center;
+    border-radius: 0;
+    border: none !important;
+
+  }
+
   .text:first-child,
   .title:first-child {
     line-height: normal;
