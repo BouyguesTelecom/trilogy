@@ -4,7 +4,7 @@ $columnWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction))
 $offsetWidth: calc((100% / (var(--offset))) - ((((var(--offset)) - 1) / (var(--offset))) * var(--ColumnGap)) + var(--ColumnGap));
 
 $columnSize : (
-  "gapless"     : 0,
+  "0"     : 0,
   "1"     : math.div(12, 1),
   "2"     : math.div(12, 2),
   "3"     : math.div(12, 3),
@@ -93,12 +93,10 @@ $gap :
     }
   }
 
-
-
-
   @for $i from 1 through length($gap) {
     $item: nth($gap, $i);
-    &.is-mobile.has-gap-#{$i} {
+    $level: $i - 1;
+    &.is-mobile.has-gap-#{$level} {
       gap: $item;
       .column {
         --ColumnGap: #{$item};
@@ -106,7 +104,7 @@ $gap :
     }
 
     @include tablet{
-      &.has-gap-#{$i}:not(.is-desktop) {
+      &.has-gap-#{$level}:not(.is-desktop) {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -115,8 +113,8 @@ $gap :
     }
 
     @include desktop{
-      &.has-gap-#{$i},
-      &.has-gap-#{$i}-desktop {
+      &.has-gap-#{$level},
+      &.has-gap-#{$level}-desktop {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -125,7 +123,7 @@ $gap :
     }
 
     @include widescreen{
-      &.has-gap-#{$i}-widescreen {
+      &.has-gap-#{$level}-widescreen {
         gap: $item;
         .column {
           --ColumnGap: #{$item};
@@ -134,7 +132,7 @@ $gap :
     }
 
     @include fullhd{
-      &.has-gap-#{$i}-fullhd {
+      &.has-gap-#{$level}-fullhd {
         gap: $item;
         .column {
           --ColumnGap: #{$item};

@@ -4,8 +4,7 @@ import {View} from "@/components/view"
 import {ColumnsProps} from "./ColumnsProps"
 import {ComponentName} from "@/components/enumsComponentsName"
 import {ScrollView} from 'react-native'
-import {ColumnsGap, ColumnsGapValue} from "@/components/columns/ColumnsTypes"
-import {Text} from "@/components/text";
+import {ColumnsGapValue, GapSize} from "@/components/columns/ColumnsTypes"
 
 /**
  * Columns Native Component
@@ -14,7 +13,7 @@ import {Text} from "@/components/text";
  * @param verticalCentered {boolean} Vertical centered columns
  * @param marginSize {ColumnsSize} Removes margins between columns of the specified size
  * @param scrollable {boolean} Makes columns vertically scrollable. Note: Incompatible with 'marginSize' prop
- * @param gap {ColumnsGap} Gap between columns
+ * @param gap {GapSize} Gap between columns
  */
 
 export const ColumnsContext = createContext({scrollable: false})
@@ -43,7 +42,7 @@ const Columns = ({
       setWidth(width)
     }
   }
-  const realGap =  typeof gap === 'undefined' &&  16 || ColumnsGapValue[(gap as ColumnsGap)]
+  const realGap =  typeof gap === 'undefined' &&  16 || ColumnsGapValue[(gap as GapSize)]
 
   const styles = StyleSheet.create({
     columns: {
