@@ -15,7 +15,6 @@ import type {
 
 export interface ContainerProps extends Layout, Fullwidth, Paddingless, VerticalPaddingless, Position, BackgroundProps {
   children?: React.ReactNode
-  fluid?: boolean
   className?: string
   centered?: boolean
   verticalCentered?: boolean

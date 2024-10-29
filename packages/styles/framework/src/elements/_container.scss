@@ -21,14 +21,10 @@
 
   @include desktop {
     max-width: $desktop - 2 * $gap;
-    width: $desktop - 2 * $gap;
-
-    &.is-fluid {
-      margin-left: $gap;
-      margin-right: $gap;
-      max-width: none;
-      width: auto;
-    }
+    margin-left: $gap;
+    margin-right: $gap;
+    max-width: none;
+    width: auto;
   }
 
   @include until-widescreen {
@@ -51,32 +47,9 @@
   }
 
   @include fullhd {
+    margin: 0 auto;
     max-width: $fullhd - 2 * $gap;
     width: $fullhd - 2 * $gap;
-  }
-
-  &:not(.is-fluid) {
-    @include desktop {
-      width: 904px;
-      max-width: 904px;
-    }
-
-    @include widescreen {
-      width: 1160px;
-      max-width: 1160px;
-    }
-
-    @include fullhd {
-      width: 1308px;
-      max-width: 1308px;
-    }
-  }
-
-  &.is-fluid {
-    @include fullhd {
-      margin: 0 auto;
-      max-width: $fullhd - 2 * $gap;
-    }
   }
 
   &.is-medium {
@@ -95,14 +68,12 @@ header .navbar,
 header,
 footer {
   > .container {
-    &.is-fluid {
-      @include desktop {
-        margin: 0 auto;
-      }
+    @include desktop {
+      margin: 0 auto;
+    }
 
-      @include fullhd {
-        max-width: 100%;
-      }
+    @include fullhd {
+      max-width: 100%;
     }
   }
 }
