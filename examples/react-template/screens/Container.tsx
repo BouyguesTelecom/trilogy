@@ -25,9 +25,9 @@ export const ContainerScreen = (): JSX.Element => {
         <Divider />
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>Conteneur fluid</Title>
+        <Title level={TitleLevels.THREE}>Conteneur</Title>
         <Divider />
-        <Container fluid>
+        <Container>
           <Box>
             <BoxContent>
               <Text>Container content</Text>
@@ -58,9 +58,9 @@ export const ContainerScreen = (): JSX.Element => {
         </Container>
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>fluide centré</Title>
+        <Title level={TitleLevels.THREE}>centré</Title>
         <Divider />
-        <Container fluid centered>
+        <Container centered>
           <Box>
             <BoxContent>
               <Text>content centered</Text>
@@ -71,7 +71,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>pulled-right</Title>
         <Divider />
-        <Container fluid pulledRight>
+        <Container pulledRight>
           <Box>
             <BoxContent>
               <Text>pulledRight</Text>
@@ -100,7 +100,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>pulled-left</Title>
         <Divider />
-        <Container fluid pulledLeft>
+        <Container pulledLeft>
           <Box>
             <BoxContent>
               <Text>pulledLeft</Text>
