@@ -6,7 +6,7 @@ import { Columns, ColumnsItem } from '../columns'
 import { Link } from '../link'
 import { TrilogyColor } from '@/objects'
 
-const BoxExample: React.ReactNode = (
+const BoxExample = () => (
   <Columns multiline>
     <ColumnsItem size={4}>
       <Box>
