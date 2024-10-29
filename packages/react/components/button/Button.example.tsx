@@ -1,36 +1,18 @@
 import React from 'react'
-import { ButtonList, Button } from './index'
+import { Button, ButtonList } from './index'
 
-const ButtonExample: React.ReactNode =
+const ButtonExample = (): React.ReactNode => (
   <ButtonList>
-    <Button
-      variant='CONVERSION'
-    >
+    <Button variant='CONVERSION'>Button</Button>
+    <Button variant='PRIMARY'>Button</Button>
+    <Button variant='SECONDARY'>Button</Button>
+    <Button disabled variant='PRIMARY'>
       Button
     </Button>
-    <Button
-      variant='PRIMARY'
-    >
-      Button
-    </Button>
-    <Button
-      variant='SECONDARY'
-    >
-      Button
-    </Button>
-    <Button
-      disabled
-      variant='PRIMARY'
-    >
-      Button
-    </Button>
-    <Button
-      loading
-      variant='PRIMARY'
-    >
+    <Button loading variant='PRIMARY'>
       Button
     </Button>
   </ButtonList>
+)
 
 export default ButtonExample
-
