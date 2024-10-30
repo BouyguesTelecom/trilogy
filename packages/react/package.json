@@ -4,12 +4,11 @@
   "type": "module",
   "author": "Bouygues Telecom",
   "files": [
-    "lib",
-    "lib/**/*.js.map"
+    "lib"
   ],
+  "main": "lib/index.js",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "main": "lib/index.js",
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
