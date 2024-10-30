@@ -2,7 +2,7 @@
 
 .chips-list {
   align-items: center;
-  display: inline-flex;
+  display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: $spacing-2;
@@ -10,6 +10,14 @@
   // centrage des chips
   &.is-centered {
     justify-content: center;
+  }
+
+  &.is-scrollable {
+    flex-wrap: nowrap;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &.is-multiple {
