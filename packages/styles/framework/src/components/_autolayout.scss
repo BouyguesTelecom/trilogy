@@ -8,7 +8,7 @@ body:not(.is-tight) {
   .box:not(:last-child) {
     margin-bottom: 24px;
   }
-  * + .divider:not(:last-child) {
+  *:has(+.divider):not(:last-child) {
     margin-bottom: 24px;
   }
   .divider:not(:last-child) {
@@ -159,7 +159,7 @@ body:not(.is-tight) {
   .box:not(:last-child) {
       margin-bottom: 16px;
     }
-  * + .divider:not(:last-child) {
+  *:has(+.divider):not(:last-child) {
       margin-bottom: 16px;
     }
   .divider:not(:last-child) {
