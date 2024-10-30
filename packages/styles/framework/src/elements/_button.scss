@@ -19,14 +19,6 @@ $button-border-width: 2px !default;
   .has-text-centered & {
     justify-content: center;
   }
-
-  &.is-mobile {
-    flex-wrap: wrap;
-
-    .button {
-      margin-bottom: 16px;
-    }
-  }
 }
 
 .button {
