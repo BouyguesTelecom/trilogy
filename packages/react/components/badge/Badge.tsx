@@ -78,6 +78,7 @@ const Badge = ({
       <Text
         className={clsx(
           textContent ? "badge-and-text" : "badge",
+          inverted && is('inverted'),
           className
         )}
         markup={TextMarkup.SPAN}
