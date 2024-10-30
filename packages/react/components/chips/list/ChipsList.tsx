@@ -9,11 +9,13 @@ import { useTrilogyContext } from "@/context"
  * ChipsList Component - Container for Chips
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
+ * @param scrollable {boolean} If multiple Chips make scrollable List
  */
 const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
     children,
     multiple,
+    scrollable,
     ...others
   } = props
 
@@ -21,7 +23,11 @@ const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<
 
   const classes = hashClass(
     styled,
-    clsx("chips-list", multiple && is("multiple"))
+    clsx(
+      "chips-list",
+      multiple && is("multiple"),
+      scrollable && is("scrollable")
+    )
   )
 
   return (

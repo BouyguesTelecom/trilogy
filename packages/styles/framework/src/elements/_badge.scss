@@ -3,7 +3,7 @@
   margin-right: 0.6em;
 }
 
-@mixin badge {
+.badge {
   display: inline-flex;
   border-radius: 9999px;
   color: getColor('background');
@@ -27,32 +27,18 @@
   }
 
   &.is-inverted {
-    color: getColor('main');
+    color: getColor('main') !important;
     background: getColor('background');
   }
-}
-
-.badge {
-  @include badge;
 }
 
 .badge-and-text {
   display: flex;
   align-items: center;
-
-  .badge {
-    position: relative;
-    margin-right: 60px;
-  }
+  gap: $text-40;
 
   p {
     margin-bottom: 0 !important;
-
-    & + .badge {
-      margin-left: 60px;
-      margin-right: 0;
-    }
-
   }
 
 }

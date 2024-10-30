@@ -1,5 +1,5 @@
 import React, { createContext } from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { ChipsListProps } from './ChipsListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
@@ -9,8 +9,9 @@ export const ChipsContext = createContext({ isMultiple: false })
  * ChipsList Component - Container for Chips
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
+ * @param scrollable {boolean} If multiple Chips make scrollable List
  */
-const ChipsList = ({ children, multiple, ...others }: ChipsListProps): JSX.Element => {
+const ChipsList = ({ children, multiple, scrollable = true, ...others }: ChipsListProps): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       flexWrap: 'wrap',
@@ -20,9 +21,15 @@ const ChipsList = ({ children, multiple, ...others }: ChipsListProps): JSX.Eleme
 
   return (
     <ChipsContext.Provider value={{ isMultiple: multiple || false }}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.container} {...others}>
-        {children}
-      </ScrollView>
+      {scrollable ? (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.container} {...others}>
+          {children}
+        </ScrollView>
+      ) : (
+        <View style={styles.container} {...others}>
+          {children}
+        </View>
+      )}
     </ChipsContext.Provider>
   )
 }

@@ -4,7 +4,6 @@ import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { TimelineItemProps } from './TimelineItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
-
 export const TimelineItemContext = createContext({ done: false, active: false, undone: false, cancel: false })
 
 /**

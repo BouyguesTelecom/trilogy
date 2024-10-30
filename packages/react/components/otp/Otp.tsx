@@ -7,8 +7,6 @@ import { hashClass } from "@/helpers/hashClassesHelpers"
 import { is } from "@/services/classify"
 import { useTrilogyContext } from "@/context/index"
 
-
-
 type NumberOrNull = number | null;
 
 const stringToCode = (str: string|undefined, codeSize: number): Array<NumberOrNull> => {

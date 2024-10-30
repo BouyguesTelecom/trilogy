@@ -18,7 +18,6 @@ import { useTrilogyContext } from "@/context"
 const ButtonList = ({
   className,
   centered,
-  isMobile,
   vertical,
   ...others
 }: ButtonListWebProps): JSX.Element => {
@@ -32,7 +31,6 @@ const ButtonList = ({
           "buttons",
           className,
           centered && has("text-centered"),
-          isMobile && "is-mobile",
           vertical && "is-vertical"
         )
       )}
