@@ -17,6 +17,8 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.accordions', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.card', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.box', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, '*:has(+.divider)', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, '.divider', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.table', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.list', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.timeline', 'default', FIVE, FOUR],
