@@ -33,6 +33,8 @@ const Divider = ({
 
   const styles = StyleSheet.create({
     divider: {
+      marginBottom: 16,
+      marginTop: 16,
       borderBottomColor: dividerColor,
       borderBottomWidth: 1,
       width: "100%",
