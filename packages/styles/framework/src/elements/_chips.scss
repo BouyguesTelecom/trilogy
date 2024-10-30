@@ -15,6 +15,9 @@
   &.is-scrollable {
     flex-wrap: nowrap;
     overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &.is-multiple {
