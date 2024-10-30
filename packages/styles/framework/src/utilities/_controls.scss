@@ -1,7 +1,7 @@
 $control-border-width: 1px !default;
 
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
-$control-padding-horizontal: 20px;
+$control-padding-horizontal: 16px;
 
 @mixin control {
   -moz-appearance: none;
