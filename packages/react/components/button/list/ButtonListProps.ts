@@ -16,6 +16,5 @@ export interface ButtonListProps extends Layout {
  */
 export interface ButtonListWebProps extends ButtonListProps, Centerable {
   className?: string
-  isMobile?: boolean
   vertical?: boolean
 }
