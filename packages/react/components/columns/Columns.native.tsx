@@ -10,8 +10,7 @@ import { ColumnsGapValue, GapSize } from "@/components/columns/ColumnsTypes"
  * @param children {React.ReactNode}
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param marginSize {ColumnsSize} Removes margins between columns of the specified size
- * @param scrollable {boolean} Makes columns vertically scrollable. Note: Incompatible with 'marginSize' prop
+ * @param scrollable {boolean} Makes columns vertically scrollable.
  * @param gap {GapSize} Gap between columns
  */
 
