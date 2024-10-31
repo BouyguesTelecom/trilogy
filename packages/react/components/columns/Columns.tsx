@@ -22,7 +22,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     className,
     multiline,
     scrollable,
-    nbCols,
     mobile,
     centered,
     verticalCentered,
@@ -38,7 +37,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     clsx(
       "columns",
       multiline && is("multiline"),
-      nbCols && has(`${nbCols}-cols`),
       fullBleed && is("fullbleed"),
       scrollable && is("scrollable"),
       gap && has(`gap-${gap}`),
