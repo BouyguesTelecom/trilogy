@@ -1,4 +1,4 @@
-import type { Centerable, Layout } from '@/objects'
+import type { Centerable } from '@/objects'
 import type { DividerProps } from '@/components/divider/DividerProps'
 import type { ButtonProps } from '@/components/button/ButtonProps'
 
@@ -7,7 +7,7 @@ type ButtonListChildrenTypes = React.ReactElement<ButtonProps | DividerProps> | 
 /**
  * Button List Interface
  */
-export interface ButtonListProps extends Layout {
+export interface ButtonListProps {
   children?: ButtonListChildrenTypes | ButtonListChildrenTypes[]
 }
 
