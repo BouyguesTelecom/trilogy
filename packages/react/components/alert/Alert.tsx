@@ -1,15 +1,15 @@
 import clsx from "clsx"
 import * as React from "react"
-import { getStatusClassName, getStatusIconName } from "@/objects/facets/Status"
-import { has, is } from "@/services/classify"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { Text } from "@/components/text"
-import { Title, TitleLevels } from "@/components/title"
-import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from "./AlertProps"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import {CSSProperties, useEffect, useRef, useState} from "react"
+import {getStatusClassName, getStatusIconName} from "@/objects/facets/Status"
+import {has, is} from "@/services/classify"
+import {Icon, IconName, IconSize} from "@/components/icon"
+import {Text, TextLevels} from "@/components/text"
+import {Title, TitleLevels} from "@/components/title"
+import {AlertProps, ToasterAlertPosition, ToasterStatusProps} from "./AlertProps"
+import {hashClass} from "@/helpers"
+import {useTrilogyContext} from "@/context"
 import ToasterContext from './context'
-import { CSSProperties, useEffect, useRef, useState } from "react"
 
 /**
  * Toaster Component
@@ -145,7 +145,7 @@ const Alert = ({
             title
           )}
           {description && typeof description.valueOf() === "string" ? (
-            <Text>{description}</Text>
+            <Text level={TextLevels.ONE}>{description}</Text>
           ) : (
             description
           )}
