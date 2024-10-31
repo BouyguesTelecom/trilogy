@@ -43,17 +43,14 @@ const BoxHeader = ({
       marginTop:
         (statesContext.active && -2) || (statesContext.flat && -1) || 0,
       justifyContent: "space-between",
-      alignItems:
-        (centered && "center") ||
-        (pulledRight && "flex-end") ||
-        (pulledLeft && "flex-start") ||
-        "flex-start",
+      alignItems: "center",
       flexDirection: "row",
     },
     text: {
       color: textColor,
       fontSize: 15,
       fontWeight: "600",
+      textAlign: "center"
     },
     helpContainer: {
       alignSelf: "center",

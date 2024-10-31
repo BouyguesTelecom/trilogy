@@ -1,9 +1,9 @@
 /**
  * Box Header Interface
  */
-import { Accessibility, Centerable, Position, TrilogyColor, TrilogyColorValues } from '@/objects'
+import { Accessibility, Position, TrilogyColor, TrilogyColorValues } from '@/objects'
 
-export interface BoxHeaderProps extends Position, Centerable, Accessibility {
+export interface BoxHeaderProps extends Position, Accessibility {
   children?: React.ReactNode
   help?: string
   className?: string

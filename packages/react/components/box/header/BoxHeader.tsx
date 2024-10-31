@@ -25,9 +25,6 @@ const BoxHeader = ({
   children,
   className,
   help,
-  centered,
-  pulledLeft,
-  pulledRight,
   variant,
   testId,
   ...others
@@ -39,9 +36,6 @@ const BoxHeader = ({
     clsx(
       "box-header",
       className,
-      centered && "has-text-centered",
-      pulledRight && "has-text-right",
-      pulledLeft && "has-text-left",
       variant && has(getBackgroundClassName(variant))
     )
   )
