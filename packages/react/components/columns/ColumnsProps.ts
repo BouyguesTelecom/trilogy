@@ -11,7 +11,6 @@ export interface ColumnsProps {
   gap?: GapSize
   nbCols?: ColumnsSize
   fullBleed?: boolean
-  marginSize?: ColumnsSize
   verticalCentered?: boolean
   className?: string
   mobile?: boolean

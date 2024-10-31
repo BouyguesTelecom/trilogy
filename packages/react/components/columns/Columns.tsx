@@ -9,7 +9,6 @@ import { useTrilogyContext } from "@/context"
  * Columns Component
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param marginSize {ColumnsSize} Delete margins between columns with Size
  * @param scrollable {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
  * @param marginless {boolean} delete margin
@@ -29,7 +28,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     verticalCentered,
     gap,
     fullBleed,
-    marginSize,
     ...others
   } = props
 
@@ -48,7 +46,6 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
       mobile && is("mobile"),
       centered && is("centered"),
       verticalCentered && is("vcentered"),
-      marginSize &&  is(`${marginSize}`),
       className
     )
   )
