@@ -13,14 +13,8 @@ import type {
  * Container Interface
  */
 
-export interface ContainerProps extends Layout, Fullwidth, Paddingless, VerticalPaddingless, Position, BackgroundProps {
+export interface ContainerProps {
   children?: React.ReactNode
   className?: string
-  centered?: boolean
-  verticalCentered?: boolean
   medium?: boolean
-  fullwidth?: boolean
-  sticky?: StickyPosition | StickyPositionValues
-  stickyOffSetTop?: number
-  stickyOffSetBottom?: number
 }

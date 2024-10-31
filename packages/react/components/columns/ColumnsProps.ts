@@ -1,4 +1,5 @@
-import {ColumnsSize, GapSize} from './ColumnsTypes'
+import { GapSize } from './ColumnsTypes'
+import {Alignable, AlignableValues} from "@/objects"
 
 /**
  * Columns Interface
@@ -10,7 +11,7 @@ export interface ColumnsProps {
   centered?: boolean
   gap?: GapSize
   fullBleed?: boolean
-  verticalCentered?: boolean
   className?: string
   mobile?: boolean
+  verticalAlign?: Alignable | AlignableValues
 }

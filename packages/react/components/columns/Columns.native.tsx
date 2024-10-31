@@ -4,6 +4,7 @@ import { View } from "@/components/view"
 import { ColumnsProps } from "./ColumnsProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { ColumnsGapValue, GapSize } from "@/components/columns/ColumnsTypes"
+import { getAlignStyle } from "@/objects"
 
 /**
  * Columns Native Component
@@ -20,7 +21,7 @@ const Columns = ({
                    children,
                    centered,
                    gap,
-                   verticalCentered,
+                   verticalAlign,
                    fullBleed,
                    scrollable,
                    multiline,
@@ -55,7 +56,7 @@ const Columns = ({
       alignSelf: "center",
     },
     verticalAlign: {
-      alignItems: "center"
+      alignItems: getAlignStyle(verticalAlign)
     },
     multiline: {
       flexWrap: "wrap",
@@ -79,7 +80,7 @@ const Columns = ({
           styles.columns,
           multiline && styles.multiline,
           centered && styles.centered,
-          verticalCentered && styles.verticalAlign,
+          verticalAlign && styles.verticalAlign,
         ]}
               {...others}
               {...{ onLayout: onLayoutHandler }}

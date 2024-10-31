@@ -18,8 +18,8 @@ import {
   Title,
   TitleLevels
 } from '@trilogy-ds/react/components'
-import {ColumnsSize, GapSize} from "@trilogy-ds/react/lib/components/columns/ColumnsTypes";
-import {TrilogyColor} from "@trilogy-ds/react";
+import {GapSize} from "@trilogy-ds/react/lib/components/columns/ColumnsTypes";
+import {Alignable, TrilogyColor} from "@trilogy-ds/react";
 
 export const ColumnScreen = (): JSX.Element => {
   return (
@@ -27,7 +27,7 @@ export const ColumnScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Gap, size</Title>
       <Text> Columns with gap size 5 </Text>
       <Columns gap={GapSize.FIVE}>
-        <ColumnsItem size={4}>
+        <ColumnsItem size={4} verticalAlign={'ALIGNED_CENTER'} >
           <Box backgroundColor={TrilogyColor.MAIN} inverted>
             <Text>Size=4</Text>
           </Box>
@@ -84,7 +84,7 @@ export const ColumnScreen = (): JSX.Element => {
       <Divider/>
       <Title level={TitleLevels.THREE}>Multiline</Title>
       <Text> Columns is multiline </Text>
-      <Columns multiline>
+      <Columns multiline >
         {
           Object.values([1,2,3,4,5,6,7,8,9,10,11,12]).map( (colSize, index) => {
           return (
@@ -131,8 +131,43 @@ export const ColumnScreen = (): JSX.Element => {
       <Divider/>
       <Title level={TitleLevels.THREE}>Sample with contents : Multiline</Title>
 
-      <Columns multiline>
+
+      <Columns multiline centered>
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} verticalCentered>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
         <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+          <Box>
+            <BoxContent>
+              <Text level={2} className='has-text-weight-bold'>Overline</Text>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet.
+              </Text>
+              <Price amount={22.99}></Price>
+              <ButtonList>
+                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+              </ButtonList>
+            </BoxContent>
+          </Box>
+        </ColumnsItem>
+      </Columns>
+
+
+      <Columns multiline >
+        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2} verticalCentered>
           <Box>
             <BoxContent>
               <Text level={2} className='has-text-weight-bold'>Overline</Text>

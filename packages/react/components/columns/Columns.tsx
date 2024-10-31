@@ -4,6 +4,7 @@ import { ColumnsProps } from "./ColumnsProps"
 import { is, has } from "@/services/classify"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+import {getAlignClassName} from "@/objects";
 
 /**
  * Columns Component
@@ -24,9 +25,9 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
     scrollable,
     mobile,
     centered,
-    verticalCentered,
     gap,
     fullBleed,
+    verticalAlign,
     ...others
   } = props
 
@@ -43,7 +44,7 @@ const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLD
       typeof gap !== 'undefined' && gap === 0 && is("gapless"),
       mobile && is("mobile"),
       centered && is("centered"),
-      verticalCentered && is("vcentered"),
+      verticalAlign && is(getAlignClassName(verticalAlign)),
       className
     )
   )
