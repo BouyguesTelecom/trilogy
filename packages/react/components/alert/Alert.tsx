@@ -145,7 +145,7 @@ const Alert = ({
             title
           )}
           {description && typeof description.valueOf() === "string" ? (
-            <Text level={TextLevels.ONE}>{description}</Text>
+            <Text level={TextLevels.TWO}>{description}</Text>
           ) : (
             description
           )}
