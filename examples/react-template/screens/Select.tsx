@@ -1,5 +1,5 @@
-import {Button, Divider, Spacer, Title, TitleLevels} from '@trilogy-ds/react'
-import {IconName, Section, Select, SelectOption} from '@trilogy-ds/react/components'
+import { Button, Divider, Spacer, Title, TitleLevels } from '@trilogy-ds/react'
+import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const SelectView = (): JSX.Element => {
@@ -12,10 +12,10 @@ export const SelectView = (): JSX.Element => {
     <>
       <Section>
         <Title>Custom select</Title>
-        <Divider/>
-        <Spacer size={20}/>
+        <Divider />
+        <Spacer size={20} />
         <Title level={TitleLevels.TWO}>Unique option</Title>
-        <Spacer size={20}/>
+        <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
           disabled
@@ -28,15 +28,15 @@ export const SelectView = (): JSX.Element => {
             setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell'/>
-          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell'/>
-          <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell'/>
-          <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell'/>
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
+          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
+          <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
         </Select>
         <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
           Set value 3
         </Button>
-        <Spacer size={20}/>
+        <Spacer size={20} />
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
@@ -44,16 +44,15 @@ export const SelectView = (): JSX.Element => {
           name='option'
           label='label'
           id='id'
-          iconName={IconName.ALERT}
           selected={optionNullable}
           onChange={(e) => {
             setOptionNullable(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile'/>
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled/>
-          <SelectOption id='id_two' value='opt_two' label='Toto'/>
-          <SelectOption id='id_three' value='Venus' label='Venus'/>
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
         <Button onClick={() => setOptionNullable(undefined)} variant='PRIMARY'>
           Set Null
@@ -61,32 +60,31 @@ export const SelectView = (): JSX.Element => {
         <Button onClick={() => setOptionNullable('opt_one')} variant='PRIMARY'>
           Set One
         </Button>
-        <Spacer size={20}/>
+        <Spacer size={20} />
 
         <Title level={TitleLevels.TWO}>Multiple options</Title>
-        <Spacer size={20}/>
+        <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
           multiple
           name='option'
           label='label'
           id='id'
-          iconName={IconName.ALERT}
           selected={options}
           onChange={(e) => {
             e?.selectedOptions && setOptions(e.selectedOptions)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile'/>
-          <SelectOption id='id_two' value='opt_two' label='Toto'/>
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled/>
-          <SelectOption id='id_three' value='Venus' label='Venus'/>
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
         </Select>
         <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant='PRIMARY'>
           Set Venus
         </Button>
 
-        <Spacer size={20}/>
+        <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
           nullable
@@ -100,10 +98,10 @@ export const SelectView = (): JSX.Element => {
             e?.selectedOptions && setOptionsNullable(e.selectedOptions)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile'/>
-          <SelectOption id='id_two' value='opt_two' label='Toto'/>
-          <SelectOption id='id_three' value='Venus' label='Venus'/>
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled/>
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
         </Select>
         <Button onClick={() => setOptionsNullable([])} variant='PRIMARY'>
           Set Null
@@ -115,47 +113,42 @@ export const SelectView = (): JSX.Element => {
 
       <Section>
         <Title>Native select {'(web)'}</Title>
-        <Divider/>
-        <Spacer size={20}/>
-        <Title level={TitleLevels.TWO}>Unique option</Title>
-        <Spacer size={20}/>
-        <Title level={TitleLevels.FOUR}>Not nullable</Title>
+        <Divider />
+        <Spacer size={20} />
+        <Title level={TitleLevels.FOUR}>Not icon</Title>
         <Select
           native
           name='option'
           label='label'
           id='select-native-id'
-          iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
             e?.selectValue && setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile'/>
-          <SelectOption id='id_two' value='opt_two' label='Toto'/>
-          <SelectOption id='id_three' value='Venus' label='Venus'/>
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled/>
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
         </Select>
-        <Spacer size={20}/>
-        <Title level={TitleLevels.TWO}>multiple option</Title>
-        <Spacer size={20}/>
-        <Title level={TitleLevels.FOUR}>Not nullable</Title>
+
+        <Title level={TitleLevels.FOUR}>With icon</Title>
         <Select
-          multiple
+          iconName='tri-alert'
           native
           name='option'
-          id='id'
-          selected={options}
+          label='label'
+          id='select-native-id'
+          selected={option}
           onChange={(e) => {
-            e?.selectedOptions && setOptions(e.selectedOptions)
+            e?.selectValue && setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile'/>
-          <SelectOption id='id_two' value='opt_two' label='Toto'/>
-          <SelectOption id='id_three' value='Venus' label='Venus'/>
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled/>
+          <SelectOption id='id_one' value='opt_one' label='Virgile' />
+          <SelectOption id='id_two' value='opt_two' label='Toto' />
+          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
         </Select>
-        <Spacer size={20}/>
       </Section>
     </>
   )
