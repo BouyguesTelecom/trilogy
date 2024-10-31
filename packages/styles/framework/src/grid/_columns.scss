@@ -231,7 +231,9 @@ $gap :
     }
   }
 
-
+  &.is-mobile>.column.is-narrow{
+    flex: none;
+  }
 
 }
 
