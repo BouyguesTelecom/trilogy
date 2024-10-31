@@ -418,6 +418,7 @@ $gap :
 
   &.is-gapless {
     gap: 0;
+    --ColumnGap: 0px; // must be px because is used in calc.
   }
 
   &.is-mobile {

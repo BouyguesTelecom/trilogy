@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ColumnsItemProps } from './ColumnsItemProps'
 import { ColumnsContext } from '@/components/columns/Columns.native'
 import { getAlignStyle } from '@/objects'
