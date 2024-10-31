@@ -13,7 +13,7 @@ import { SelectDynamic, SelectNative } from './web'
  * @param selected {string|number} Selected OptionItem for Native
  * @param iconName {IconName} icon for left of selector
  * @param disabled {boolean} disable Select
- * @param multiple {boolean} select multiple options
+ * @param multiple {boolean} select multiple options (for dynamic select only)
  * @param nullable {boolean} Unselect Select Option Item
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes

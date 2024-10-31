@@ -51,9 +51,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -89,7 +89,6 @@ const SelectDynamic = ({
             selectedOptions.push(...opts)
             return opts
           }
-          setIsFocused(false)
           selectedOptions.push(value)
           return value
         })
@@ -210,6 +209,7 @@ const SelectDynamic = ({
               selectedOptions: opts,
             })
           if (child.props.onClick) child.props.onClick()
+          if (!multiple) setIsFocused(false)
         },
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
@@ -226,7 +226,6 @@ const SelectDynamic = ({
         placeholder={label}
         onFocus={onFocus}
         customIconLeft={iconName}
-        customIconRight={focused ? 'tri-arrow-up' : 'tri-arrow-down'}
         onBlur={onBlur}
         onClick={onClickInput}
         className={hashClass(styled, clsx(focused && 'focus'))}
