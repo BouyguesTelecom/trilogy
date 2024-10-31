@@ -1,4 +1,4 @@
-import { ColumnsSize, ColumnsGap } from './ColumnsTypes'
+import {ColumnsSize, GapSize} from './ColumnsTypes'
 
 /**
  * Columns Interface
@@ -8,7 +8,7 @@ export interface ColumnsProps {
   multiline?: boolean
   scrollable?: boolean
   centered?: boolean
-  gap?: ColumnsGap
+  gap?: GapSize
   nbCols?: ColumnsSize
   fullBleed?: boolean
   marginSize?: ColumnsSize
