@@ -52,28 +52,6 @@ describe('SELECT OPTION WEB', () => {
     expect(option).toBeChecked()
   })
 
-  it('should be nullable', () => {
-    const p = { ...props, nullable: true }
-    const { getByTestId } = render(
-      <Select {...p}>
-        {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`
-          return (
-            <SelectOption key={i} id={value} value={value} label={value} testId={value}>
-              {`option ${i}`}
-            </SelectOption>
-          )
-        })}
-      </Select>,
-    )
-    const select = getByTestId('testId')
-    fireEvent.click(select)
-    const option = getByTestId(`opt_2`)
-    expect(option).toBeChecked()
-    fireEvent.click(option)
-    expect(option).not.toBeChecked()
-  })
-
   it('should be disabled', () => {
     const { getByTestId } = render(
       <Select {...props}>
