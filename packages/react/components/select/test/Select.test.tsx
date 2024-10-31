@@ -111,7 +111,7 @@ describe('SELECT NATIVE WEB', () => {
       </Select>,
     )
     const select = getByTestId('testId')
-    expect(select.parentElement?.nextSibling?.nextSibling?.firstChild?.firstChild).toHaveClass('tri-advisor')
+    expect(select.parentElement?.firstChild?.nextSibling?.nextSibling?.firstChild).toHaveClass('tri-advisor')
   })
 })
 
