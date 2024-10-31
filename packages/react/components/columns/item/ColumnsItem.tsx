@@ -48,9 +48,8 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     widescreenOffset,
     fullhdOffset,
     narrow,
-    verticalCentered,
+    verticalAlign,
     centered,
-    align,
     ...others
   } = props
 
@@ -75,9 +74,8 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
       widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
       narrow && is("narrow"),
-      verticalCentered && is("vcentered"),
+      verticalAlign && is(`${getAlignClassName(verticalAlign)}`),
       centered && has("text-centered"),
-      align && is(getAlignClassName(align)),
       className
     )
   )
