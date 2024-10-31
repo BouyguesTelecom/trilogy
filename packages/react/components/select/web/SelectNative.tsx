@@ -26,7 +26,6 @@ const SelectNative = ({
   ...others
 }: SelectProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const refSelect = React.useRef<HTMLSelectElement>(null)
 
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState(selected)
