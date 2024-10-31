@@ -4,7 +4,6 @@ $columnWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction))
 $offsetWidth: calc((100% / (var(--offset))) - ((((var(--offset)) - 1) / (var(--offset))) * var(--ColumnGap)) + var(--ColumnGap));
 
 $columnSize : (
-  "gapless"     : 0,
   "1"     : math.div(12, 1),
   "2"     : math.div(12, 2),
   "3"     : math.div(12, 3),
@@ -92,9 +91,6 @@ $gap :
       margin-left: $offsetWidth;
     }
   }
-
-
-
 
   @for $i from 1 through length($gap) {
     $item: nth($gap, $i);

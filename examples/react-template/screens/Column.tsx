@@ -18,12 +18,13 @@ import {
   Title,
   TitleLevels
 } from '@trilogy-ds/react/components'
+import {GapSize} from "@trilogy-ds/react/lib/components/columns/ColumnsTypes";
 
 export const ColumnScreen = (): JSX.Element => {
   return (
     <Section>
       <Box>
-        <Columns scrollable fullBleed>
+        <Columns scrollable fullBleed gap={GapSize.FIVE}>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
           <ColumnsItem size={4}><Text>Test</Text></ColumnsItem>
@@ -51,6 +52,16 @@ export const ColumnScreen = (): JSX.Element => {
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+          <ColumnsItem><Text>Test</Text></ColumnsItem>
+        </Columns>
+      </Box>
+
+
+
+      <Box>
+        <Columns gap={0} >
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
           <ColumnsItem><Text>Test</Text></ColumnsItem>
