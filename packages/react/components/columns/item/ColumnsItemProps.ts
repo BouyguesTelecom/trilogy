@@ -22,6 +22,5 @@ export interface ColumnsItemProps {
   fullhdOffset?: ColumnsSize
   narrow?: boolean
   className?: string
-  centered?: boolean
-  verticalAlign?: Alignable | AlignableValues
+  verticalCentered?:boolean
 }

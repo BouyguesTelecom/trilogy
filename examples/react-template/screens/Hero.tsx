@@ -43,7 +43,7 @@ export const HeroScreen = (): JSX.Element => {
       </Section>
       <Divider />
       <Hero backgroundSrc={"https://picsum.photos/id/1/1500/600"} inverted>
-        <Container inverted>
+        <Container >
           <Text>Welcome Message</Text>
           <Title level="ONE">Hero with image background</Title>
           {/* <button className='button'>Click me !</button> */}
@@ -58,7 +58,7 @@ export const HeroScreen = (): JSX.Element => {
       </Hero>
       <Divider />
       <Hero backgroundColor={TrilogyColor.MAIN} inverted>
-        <Container inverted>
+        <Container >
           <Text>Welcome Message</Text>
           <Title level="TWO">Hero with Background Color</Title>
           {/* <button className='button'>Click me !</button> */}

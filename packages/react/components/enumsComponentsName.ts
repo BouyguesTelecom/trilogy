@@ -104,7 +104,6 @@ export enum ComponentName {
   Section = 'Section',
   Select = 'Select',
   SelectOption = 'SelectOption',
-  Selector = 'Selector',
   SelectorIOtem = 'SelectorIOtem',
   Spacer = 'Spacer',
   SpacerSize = 'SpacerSize',

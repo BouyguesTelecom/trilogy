@@ -93,7 +93,7 @@ export const SurLesCotés: Story<ContainerProps> = (args) => (<>
     </Container>
   </Section>
 <Section>
-    <Container pulledLeft>
+    <Container >
       <Box>
         <Text>Pulled left</Text>
       </Box>
