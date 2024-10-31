@@ -1,11 +1,11 @@
 $price-levels: (
-    [$text-64, $text-44, $text-28, $text-16],
-    [$text-56, $text-32, $text-22, $text-16],
-    [$text-48, $text-28, $text-16, $text-16],
-    [$text-40, $text-24, $text-10, $text-10],
-    [$text-36, $text-20, $text-10, $text-10],
-    [$text-24, $text-20, $text-10, $text-10],
-    [$text-20, $text-20, $text-10, $text-10],
+  [$text-64, $text-44, $text-28, $text-16],
+  [$text-56, $text-32, $text-22, $text-16],
+  [$text-48, $text-28, $text-16, $text-16],
+  [$text-40, $text-24, $text-10, $text-10],
+  [$text-36, $text-20, $text-10, $text-10],
+  [$text-24, $text-20, $text-10, $text-10],
+  [$text-20, $text-20, $text-10, $text-10],
 );
 
 .price-container {
@@ -83,41 +83,41 @@ $price-levels: (
   line-height: 0.8;
   margin-bottom: 0;
 
-    // the details : cents + period
+  // the details : cents + period
 
-    .price-details {
-      padding-left: $spacing-1;
+  .price-details {
+    padding-left: $spacing-1;
 
-      .cents,
-      .centimes,
-      .periode,
-      .period {
-        line-height: 1;
-        display: block;
-      }
+    .cents,
+    .centimes,
+    .periode,
+    .period {
+      line-height: 1;
+      display: block;
+    }
 
-      .cents,
-      .centimes {
-        font-weight: 600;
-        font-size: 0.475em;
-        vertical-align: top;
-        text-align: left;
+    .cents,
+    .centimes {
+      font-weight: 600;
+      font-size: 0.475em;
+      vertical-align: top;
+      text-align: left;
 
-        sup {
-          font-weight: $weight-medium;
-          padding-left: 2px;
-          top: -0.3em;
-        }
-      }
-
-      .period,
-      .periode {
-        font-size: 0.375em;
-        margin-top: 0;
-        padding-left: 0.1em;
-        text-align: left;
+      sup {
+        font-weight: $weight-medium;
+        padding-left: 2px;
+        top: -0.3em;
       }
     }
+
+    .period,
+    .periode {
+      font-size: 0.375em;
+      margin-top: 0;
+      padding-left: 0.1em;
+      text-align: left;
+    }
+  }
 
   &.is-inverted {
     color: getColor('background');
