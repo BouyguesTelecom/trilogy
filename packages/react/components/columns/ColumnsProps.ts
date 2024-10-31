@@ -9,7 +9,6 @@ export interface ColumnsProps {
   scrollable?: boolean
   centered?: boolean
   gap?: GapSize
-  nbCols?: ColumnsSize
   fullBleed?: boolean
   verticalCentered?: boolean
   className?: string

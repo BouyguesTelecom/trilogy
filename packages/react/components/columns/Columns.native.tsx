@@ -20,7 +20,6 @@ const Columns = ({
                    children,
                    centered,
                    gap,
-                   nbCols,
                    verticalCentered,
                    fullBleed,
                    scrollable,
@@ -90,7 +89,7 @@ const Columns = ({
 
                 child && React.cloneElement(child, {
                   style: [child.props.style,
-                    { width: nbCols && (width / nbCols) - realGap || child.props.size && (width * child.props.size / 12) - realGap || 'auto' },
+                    { width: child.props.size && (width * child.props.size / 12) - realGap || 'auto' },
                     child.props.narrow && { flex: 'none', flexShrink: 1 },
                   ]
                 })
