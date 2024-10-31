@@ -320,8 +320,38 @@ export const ColumnScreen = (): JSX.Element => {
       </Columns>
 
       <Divider/>
-      <Title level={TitleLevels.THREE}>Another example</Title>
+      <Title level={TitleLevels.THREE}>Another example : 6 cards scrollable</Title>
       <Columns scrollable marginSize={3}>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
+        <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
+          <Card>
+            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
+            <CardContent>
+              <Title overline>Desktop Card Vertical</Title>
+              <Title level={TitleLevels.ONE}>Card Title</Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu,
+                vulputate
+                vera.
+              </Text>
+              <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
+            </CardContent>
+          </Card>
+        </ColumnsItem>
         <ColumnsItem desktopSize={3} tabletSize={6} size={12}>
           <Card>
             <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'/>
