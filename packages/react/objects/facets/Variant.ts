@@ -34,8 +34,6 @@ export const getVariantClassName = (variantType?: string): string => {
       return "primary"
     case "SECONDARY":
       return "secondary"
-    case "TERTIARY":
-      return "tertiary"
     case "GHOST":
       return "ghost"
     case "INFO":
@@ -60,8 +58,6 @@ export const getVariantStyle = (variantType?: string): string => {
       return getColorStyle(TrilogyColor.MAIN)
     case "SECONDARY":
       return getColorStyle(TrilogyColor.MAIN_FADE)
-    case "TERTIARY":
-      return getColorStyle(TrilogyColor.MAIN)
     case "INFO":
       return getColorStyle(TrilogyColor.INFO)
     default:

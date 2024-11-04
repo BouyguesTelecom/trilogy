@@ -74,11 +74,11 @@ export const BreadcrumScreen = (): JSX.Element => {
       </Card>
 
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>Breadcrumb in rows</Text>
-      <Container centered={true} verticalCentered={true}>
+      <Container >
         <Rows>
           <RowItem></RowItem>
           <RowItem>
-            <Container centered verticalCentered>
+            <Container >
               <Breadcrumb>
                 <BreadcrumbItem href='https://Home.fr'>Home</BreadcrumbItem>
                 <BreadcrumbItem to='#anchor'>Catalog</BreadcrumbItem>

@@ -28,7 +28,7 @@ import { getAlignClassName } from "@/objects"
  * @param desktopOffset {ColumnsSize} Apply => is-offset-desktop
  * @param widescreenOffset {ColumnsSize} Apply => is-offset-widescreen
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
- * @param align { Alignable | AlignableValues} align content
+ * @param verticalAlign { Alignable | AlignableValues} vertical align content
  */
 const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
@@ -49,8 +49,6 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     fullhdOffset,
     narrow,
     verticalCentered,
-    centered,
-    align,
     ...others
   } = props
 
@@ -76,8 +74,6 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
       narrow && is("narrow"),
       verticalCentered && is("vcentered"),
-      centered && has("text-centered"),
-      align && is(getAlignClassName(align)),
       className
     )
   )
