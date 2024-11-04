@@ -32,7 +32,7 @@ export type TrilogyColorValues = `${TrilogyColor}`
 export const colors: Record<any, string[]> = {
   [TrilogyColor.BACKGROUND]: ['#fff', 'white', 'main'],
   [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
-  [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main', 'white'],
+  [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main-fade', 'white'],
   [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
 
   [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],

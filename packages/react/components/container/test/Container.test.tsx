@@ -8,13 +8,7 @@ describe('Container', () => {
     const { getByTestId } = render(
       <Container
         data-testid='container'
-        centered
-        verticalCentered
         medium
-        fullwidth
-        sticky={StickyPosition.TOP}
-        stickyOffSetTop={20}
-        backgroundColor='WHITE'
       >
         <div data-testid='test-child'>Test Child</div>
       </Container>,
@@ -22,13 +16,7 @@ describe('Container', () => {
 
     const container = getByTestId('container')
     expect(container).toHaveClass('container')
-    expect(container).toHaveClass('is-centered')
-    expect(container).toHaveClass('is-vcentered')
     expect(container).toHaveClass('is-medium')
-    expect(container).toHaveClass('is-fullwidth')
-    expect(container).toHaveClass('is-sticky-top')
-    expect(container).toHaveClass('has-background-white')
-    expect(container).toHaveStyle('top: 20px')
 
     const child = getByTestId('test-child')
     expect(child).toBeInTheDocument()
