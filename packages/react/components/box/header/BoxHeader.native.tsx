@@ -9,9 +9,6 @@ import { StatesContext } from "@/context/providerStates"
 /**
  * Box Header Component
  * @param children {React.ReactNode} Childrens
- * @param centered {boolean} Center content box header
- * @param pulledLeft {boolean} Pulled-left content box header
- * @param pulledRight {boolean} Pulled-right content box header
  * @param help {string} Box Header Help Sticker
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param others
@@ -19,9 +16,6 @@ import { StatesContext } from "@/context/providerStates"
 const BoxHeader = ({
   children,
   variant,
-  pulledRight,
-  pulledLeft,
-  centered,
   help,
   ...others
 }: BoxHeaderProps): JSX.Element => {

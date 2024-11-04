@@ -11,9 +11,6 @@ import { getBackgroundClassName } from "@/objects"
  * Box Header Component
  * @param children {React.ReactNode} Children
  * @param help {string} Box Header Help Sticker
- * @param centered {boolean} Center content box header
- * @param pulledLeft {boolean} Pulled-left content box header
- * @param pulledRight {boolean} Pulled-right content box header
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
