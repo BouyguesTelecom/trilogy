@@ -9,13 +9,11 @@ import { useTrilogyContext } from "@/context"
  * @param children {React.ReactNode} Children for Accordion body
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additionnal CSS Classes
- * @param dataId {string} data attribute
  * @param testId {string} Test Id for Test Integration
  */
 const AccordionBody = ({
   children,
   className,
-  dataId,
   testId,
   ...others
 }: AccordionBodyProps): React.JSX.Element => {
@@ -24,7 +22,6 @@ const AccordionBody = ({
   return (
     <div
       data-accordion-body={true}
-      data-id={dataId}
       data-testid={testId}
       className={hashClass(
         styled,
