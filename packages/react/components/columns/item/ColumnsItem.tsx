@@ -1,10 +1,10 @@
-import * as React from "react"
-import clsx from "clsx"
-import { ColumnsItemProps } from "./ColumnsItemProps"
-import { has, is } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { getAlignClassName } from "@/objects"
+import * as React from 'react'
+import clsx from 'clsx'
+import { ColumnsItemProps } from './ColumnsItemProps'
+import { is } from '@/services/classify'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { getAlignClassName } from '@/objects'
 
 /**
  * Columns Item Component - Columns Child
@@ -28,7 +28,7 @@ import { getAlignClassName } from "@/objects"
  * @param desktopOffset {ColumnsSize} Apply => is-offset-desktop
  * @param widescreenOffset {ColumnsSize} Apply => is-offset-widescreen
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
- * @param verticalAlign { Alignable | AlignableValues} vertical align content
+ * @param align { Alignable | AlignableValues} align content
  */
 const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
@@ -48,7 +48,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     widescreenOffset,
     fullhdOffset,
     narrow,
-    verticalCentered,
+    verticalAlign,
     ...others
   } = props
 
@@ -57,7 +57,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
   const classes = hashClass(
     styled,
     clsx(
-      "column",
+      'column',
       size && is(`${size}`),
       mobileSize && is(`${mobileSize}-mobile`),
       tabletSize && is(`${tabletSize}-tablet`),
@@ -72,10 +72,10 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
       desktopOffset && is(`offset-${desktopOffset}-desktop`),
       widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
-      narrow && is("narrow"),
-      verticalCentered && is("vcentered"),
-      className
-    )
+      narrow && is('narrow'),
+      verticalAlign && is(getAlignClassName(verticalAlign)),
+      className,
+    ),
   )
 
   return <div ref={ref} className={classes} {...others} />

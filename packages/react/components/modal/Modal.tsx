@@ -72,7 +72,6 @@ const Modal = ({
   footer,
   fullwidth,
   disableHandlingClickOutside = false,
-  testId,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -170,7 +169,7 @@ const Modal = ({
   )
 
   return (
-    <div data-testid={testId} onKeyDown={onKeyDown}>
+    <div onKeyDown={onKeyDown}>
       {triggerContent && (
         <TriggerTag
           aria-haspopup='dialog'

@@ -17,7 +17,6 @@ const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListE
     className,
     hasIcon,
     children,
-    testId,
     ...others
   } = props
 
@@ -28,7 +27,7 @@ const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListE
     clsx(hasIcon ? "icon-list" : "list", className)
   )
   return (
-    <ul ref={ref} data-testid={testId} className={classes} {...others}>
+    <ul ref={ref} className={classes} {...others}>
       {children}
     </ul>
   )

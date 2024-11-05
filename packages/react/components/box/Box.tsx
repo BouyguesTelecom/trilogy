@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
-import { BoxMarkup, BoxProps } from "./BoxProps"
-import { has, is } from "@/services/classify"
-import { getBackgroundClassName } from "@/objects/atoms/Background"
-import { getColorClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import React, { useEffect, useState } from 'react'
+import { BoxProps } from './BoxProps'
+import { has, is } from '@/services/classify'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName } from '@/objects'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Box Component
@@ -19,12 +19,9 @@ import { useTrilogyContext } from "@/context"
  * @param flat {boolean} Flat box remove shadow and add plain border
  * @param backgroundSrc {string} Source of background Image
  * @param testId {string} Test id
- * @param hat {boolean} Box with a component Sticker props:hat
  * @param active {boolean} Activated box
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
- * @param markup {BoxMarkup} Clickable Box => BoxMarkup.A Not clickable box => BoxMarkup.DIV || null
- * @param to {string} Box link
  * @param fullheight
  * @param others
  */
@@ -33,16 +30,14 @@ const Box = ({
   children,
   className,
   onClick,
-  markup,
   skeleton,
-  to,
+  href,
   backgroundColor,
   highlighted,
   shadowless,
   backgroundSrc,
-  testId,
   flat,
-  hat,
+  headerOffset,
   fullheight,
   active,
   ...others
@@ -52,30 +47,29 @@ const Box = ({
   const classes = hashClass(
     styled,
     clsx(
-      "box",
-      shadowless && is("shadowless"),
+      'box',
+      shadowless && is('shadowless'),
       className,
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has("background"),
-      (inverted && is("inverted")),
-      isLoading ? is("loading") : is("loaded"),
-      highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
-      flat && is("flat"),
-      hat && has("hat"),
-      fullheight && is("fullheight"),
-      active && is("active")
-    )
+      backgroundSrc && has('background'),
+      inverted && is('inverted'),
+      isLoading ? is('loading') : is('loaded'),
+      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+      flat && is('flat'),
+      headerOffset && is('offset-header'),
+      fullheight && is('fullheight'),
+      active && is('active'),
+    ),
   )
 
   useEffect(() => {
     setIsLoading(skeleton || false)
   }, [skeleton])
 
-  if (markup === BoxMarkup.A || to) {
+  if (href) {
     return (
       <a
-        data-testid={testId}
-        href={to}
+        href={href}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
@@ -89,13 +83,12 @@ const Box = ({
   }
 
   const hoverStyle: React.CSSProperties = {
-    cursor: "pointer",
+    cursor: 'pointer',
   }
 
   return (
     <div
       style={onClick && { ...hoverStyle }}
-      data-testid={testId}
       onClick={(e) => {
         // eslint-disable-next-line no-unused-expressions
         onClick?.(e)
@@ -105,8 +98,8 @@ const Box = ({
       {...(backgroundSrc && {
         style: {
           backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
+          backgroundSize: 'cover',
+          backgroundPosition: '50%',
         },
       })}
     >

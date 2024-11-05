@@ -3,40 +3,39 @@
 $columnWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction)) - 1) / (var(--ColumnFraction))) * var(--ColumnGap)));
 $offsetWidth: calc((100% / (var(--offset))) - ((((var(--offset)) - 1) / (var(--offset))) * var(--ColumnGap)) + var(--ColumnGap));
 
-$columnSize : (
-  "1"     : math.div(12, 1),
-  "2"     : math.div(12, 2),
-  "3"     : math.div(12, 3),
-  "4"     : math.div(12, 4),
-  "5"     : math.div(12, 5),
-  "6"     : math.div(12, 6),
-  "7"     : math.div(12, 7),
-  "8"     : math.div(12, 8),
-  "9"     : math.div(12, 9),
-  "10"    : math.div(12, 10),
-  "11"    : math.div(12, 11),
-  "12"    : math.div(12, 12),
-  "full"  : math.div(12, 12),
-  "half"  : math.div(12, 6)
+$columnSize: (
+  "1" : math.div(12, 1),
+  "2" : math.div(12, 2),
+  "3" : math.div(12, 3),
+  "4" : math.div(12, 4),
+  "5" : math.div(12, 5),
+  "6" : math.div(12, 6),
+  "7" : math.div(12, 7),
+  "8" : math.div(12, 8),
+  "9" : math.div(12, 9),
+  "10" : math.div(12, 10),
+  "11" : math.div(12, 11),
+  "12" : math.div(12, 12),
+  "full" : math.div(12, 12),
+  "half" : math.div(12, 6)
 );
 
+$columnNumber: 12;
 %flex-none {
   flex: none;
 }
 
 
-$gap :
-  4px,
-  8px,
-  12px,
-  16px,
-  24px,
-  32px,
-  40px,
-  48px,
-  54px,
-  62px
-;
+$gap: 4px,
+8px,
+12px,
+16px,
+24px,
+32px,
+40px,
+48px,
+54px,
+62px;
 
 .columns {
   display: flex;
@@ -46,11 +45,11 @@ $gap :
     flex: none;
   }
 
-  .column[class*="is-"]:not(.is-narrow){
-    width:  #{$columnWidth};
+  .column[class*="is-"]:not(.is-narrow) {
+    width: #{$columnWidth};
   }
 
-  @each $key, $value in $columnSize{
+  @each $key, $value in $columnSize {
     > .column.is-#{$key} {
       flex: none;
       --ColumnFraction: #{$value};
@@ -66,42 +65,47 @@ $gap :
     $item: nth($gap, $i);
     &.is-mobile.has-gap-#{$i} {
       gap: $item;
+
       .column {
         --ColumnGap: #{$item};
       }
     }
 
-    @include tablet{
+    @include tablet {
       &.has-gap-#{$i}:not(.is-desktop) {
         gap: $item;
+
         .column {
           --ColumnGap: #{$item};
         }
       }
     }
 
-    @include desktop{
+    @include desktop {
       &.has-gap-#{$i},
       &.has-gap-#{$i}-desktop {
         gap: $item;
+
         .column {
           --ColumnGap: #{$item};
         }
       }
     }
 
-    @include widescreen{
+    @include widescreen {
       &.has-gap-#{$i}-widescreen {
         gap: $item;
+
         .column {
           --ColumnGap: #{$item};
         }
       }
     }
 
-    @include fullhd{
+    @include fullhd {
       &.has-gap-#{$i}-fullhd {
         gap: $item;
+
         .column {
           --ColumnGap: #{$item};
         }
@@ -111,13 +115,12 @@ $gap :
   }
 
 
-
-  @include mobile{
-    &.is-peek{
+  @include mobile {
+    &.is-peek {
       padding-right: 15%;
     }
 
-    @each $key, $value in $columnSize{
+    @each $key, $value in $columnSize {
       & > .column.is-#{$key}-mobile {
         flex: none;
         --ColumnFraction: #{$value};
@@ -131,9 +134,8 @@ $gap :
 
   }
 
-  @include tablet{
-
-    @each $key, $value in $columnSize{
+  @include tablet {
+    @each $key, $value in $columnSize {
       > .column.is-#{$key}-tablet {
         flex: none;
         --ColumnFraction: #{$value};
@@ -147,9 +149,8 @@ $gap :
 
   }
 
-  @include touch{
-
-    @each $key, $value in $columnSize{
+  @include touch {
+    @each $key, $value in $columnSize {
       > .column.is-#{$key}-touch {
         flex: none;
         --ColumnFraction: #{$value};
@@ -163,9 +164,8 @@ $gap :
 
   }
 
-  @include desktop{
-
-    @each $key, $value in $columnSize{
+  @include desktop {
+    @each $key, $value in $columnSize {
       > .column.is-#{$key}-desktop {
         flex: none;
         --ColumnFraction: #{$value};
@@ -179,10 +179,9 @@ $gap :
 
   }
 
-  @include widescreen{
-
-    @each $key, $value in $columnSize{
-      > .column.is-#{$key}-widescreen{
+  @include widescreen {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-widescreen {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -195,10 +194,9 @@ $gap :
 
   }
 
-  @include fullhd{
-
-    @each $key, $value in $columnSize{
-      > .column.is-#{$key}-fullhd{
+  @include fullhd {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-fullhd {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -213,39 +211,43 @@ $gap :
 
   @include mobile {
     --ColumnGap: 16px;
-    &:not(.is-mobile){
+    &:not(.is-mobile) {
       flex-direction: column;
+
       > .column,
-      > .column[class*="is-"]{
+      > .column[class*="is-"] {
         --ColumnFraction: 1;
       }
     }
   }
-  @include tablet-only{
-    &.is-desktop{
+  @include tablet-only {
+    &.is-desktop {
       flex-direction: column;
+
       > .column,
-      > .column[class*="is-"]{
+      > .column[class*="is-"] {
         --ColumnFraction: 1;
       }
     }
   }
-
-  &.is-mobile>.column.is-narrow{
-    flex: none;
-  }
-
 }
-
-
 
 .column {
   display: block;
   flex-basis: 0;
   flex-grow: 1;
   flex-shrink: 1;
-  &.is-vcentered {
+
+  &.is-aligned-start {
+    align-self: start;
+  }
+
+  &.is-aligned-center {
     align-self: center;
+  }
+
+  &.is-aligned-end {
+    align-self: end;
   }
 
 
@@ -260,7 +262,6 @@ $gap :
     &.is-narrow-tablet {
       flex: none;
     }
-
   }
 
   @include touch {
@@ -290,7 +291,7 @@ $gap :
 }
 
 .columns {
-  gap : 24px;
+  gap: 24px;
 
   &.is-scrollable {
     position: relative;
@@ -304,18 +305,21 @@ $gap :
     padding: 8px;
     scroll-padding: 8px;
 
-    >.column {
+    > .column {
       scroll-snap-align: start;
-      &:last-child{
+
+      &:last-child {
         scroll-snap-align: end;
       }
     }
-    &:not(.has-scrollbar){
+
+    &:not(.has-scrollbar) {
       &::-webkit-scrollbar {
         scrollbar-width: none;
       }
     }
-    &.has-scrollbar{
+
+    &.has-scrollbar {
       &::-webkit-scrollbar {
         height: 8px;
       }
@@ -338,7 +342,7 @@ $gap :
   }
 
   @include mobile {
-    gap : 16px;
+    gap: 16px;
 
   }
 
@@ -349,7 +353,6 @@ $gap :
 
   &.is-gapless {
     gap: 0;
-    --ColumnGap: 0px; // must be px because is used in calc.
   }
 
   &.is-mobile {
@@ -389,7 +392,7 @@ $gap :
       flex-direction: row;
     }
   }
-  @include mobile{
+  @include mobile {
     &.is-fullbleed {
       width: 100vw !important;
       margin-left: 50%;
@@ -399,15 +402,16 @@ $gap :
     &.is-fullbleed {
       scroll-padding: 24px;
     }
-    &.is-fullbleed.is-scrollable .column{
+    &.is-fullbleed.is-scrollable .column {
       scroll-snap-align: start;
       scroll-padding: 24px;
     }
-    .scroll-view{
+    .scroll-view {
       overflow: inherit;
     }
   }
 }
-:root{
-  --slider-size:min(100%, 1348px);
+
+:root {
+  --slider-size: min(100%, 1348px);
 }

@@ -26,7 +26,6 @@ const Badge = ({
   inverted,
   reversed,
   onClick,
-  testId,
   ...others
 }: BadgeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -40,7 +39,6 @@ const Badge = ({
   if (textContent) {
     return (
       <div
-        data-testid={testId}
         onClick={(e) => {
           onClick?.(e)
           e.stopPropagation()
@@ -69,7 +67,6 @@ const Badge = ({
 
   return (
     <div
-      data-testid={testId}
       onClick={(e) => {
         onClick?.(e)
         e.stopPropagation()

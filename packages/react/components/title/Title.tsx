@@ -66,7 +66,6 @@ const Title = ({
   skeleton,
   inverted,
   onClick,
-  testId,
   accessibilityLabel,
   subtitle,
   overline,
@@ -97,7 +96,7 @@ const Title = ({
     setIsLoading(skeleton || false)
   }, [skeleton])
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 
   const getClassname = () => {
     if (subtitle) return subtitleClasses
@@ -107,7 +106,6 @@ const Title = ({
 
   return (
     <Tag
-      data-testid={testId}
       aria-label={accessibilityLabel}
       onClick={onClick}
       className={getClassname()}

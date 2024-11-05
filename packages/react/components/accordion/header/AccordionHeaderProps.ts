@@ -1,10 +1,7 @@
-import { Dev } from '@/objects'
-
 /**
  * AccordionHeader Interface
  */
-export interface AccordionHeaderProps extends Dev {
+export interface AccordionHeaderProps {
   children?: React.ReactNode
   className?: string
-  disabled?: boolean
 }

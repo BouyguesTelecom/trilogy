@@ -52,7 +52,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
     data,
     status,
     onBlur,
-    testId,
     onChange,
     name,
     matching = defaultMatching,
@@ -184,7 +183,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
         {...(name ? { name: name } : {})}
         className='autocomplete-input'
         type='text'
-        testId={testId}
         status={status}
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
@@ -207,7 +205,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
         <div className={autocompleteClasses}>
           {search.length > 0 && (
             <AutoCompleteMenu
-              testId={testId}
               absolute={absoluteMenu}
               fullwidth={fullwidthMenu}
               className={classNameMenu}
@@ -216,7 +213,6 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
                 <AutoCompleteItem<T>
                   active={activeItem === i}
                   key={i}
-                  testId={testId}
                   item={item}
                   suggestionSelected={(v: T) => suggestionSelected(v, data, search)}
                 >

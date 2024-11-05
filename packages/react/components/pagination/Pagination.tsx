@@ -23,7 +23,6 @@ const Pagination = ({
   defaultPage = 1,
   pageSize = 10,
   onClick,
-  testId,
   href,
   ...others
 }: PaginationProps): JSX.Element => {
@@ -81,7 +80,7 @@ const Pagination = ({
   const totalCountPages = count / pageSize
 
   return (
-    <nav data-testid={testId} className={classes} {...others}>
+    <nav className={classes} {...others}>
       <a
         className={hashClass(styled, clsx('pagination-previous'))}
         {...(currentPage === 1) ? { 'aria-disabled': true } : {} }
@@ -101,7 +100,7 @@ const Pagination = ({
           </li>
         )}
         {pager.pages.map((pageNumber) => (
-          <li data-testid={`${testId}_${pageNumber}`} key={pageNumber}>
+          <li key={pageNumber}>
             <a
               className={hashClass(styled, clsx('pagination-link'))}
               {...(currentPage === pageNumber) ? { 'aria-current': true } : {} }

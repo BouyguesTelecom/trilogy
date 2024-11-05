@@ -1,9 +1,7 @@
-import { Dev } from "@/objects"
-
 /**
  * Accordion Body Interface
  */
-export interface AccordionBodyProps extends Dev {
+export interface AccordionBodyProps {
   children?: React.ReactNode
   className?: string
 }

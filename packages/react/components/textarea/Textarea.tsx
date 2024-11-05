@@ -61,7 +61,6 @@ const Textarea = ({
   minLength,
   iconName,
   typo,
-  testId,
   ...others
 }: TextareaProps): JSX.Element => {
   const [value, setValue] = useState(defaultValue || '')
@@ -86,7 +85,6 @@ const Textarea = ({
       {!dynamicPlaceholder && label && sample && <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
 
       <textarea
-        data-testid={testId}
         minLength={minLength}
         disabled={disabled}
         ref={ref}

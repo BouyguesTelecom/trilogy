@@ -37,7 +37,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     inverted,
     shadowless,
     textAlign,
-    testId,
     ...others
   } = props
 
@@ -100,7 +99,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
         ),
       )}
       data-tabs-context=''
-      data-testid={testId}
     >
       <div className={classes} role='tablist' {...others}>
         {React.Children.map(children, (child, index) => {

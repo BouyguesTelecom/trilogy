@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Radio } from '@/components/radio'
+import { Radio, RadioTile } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
 
@@ -52,16 +52,14 @@ const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.L
   }
 
   return (
-    <Radio
+    <RadioTile
       checked={checked}
-      tile
-      horizontalTile
-      marginless
+      horizontal
       className={selectClasses}
       value={value}
       disabled={disabled}
-      onClick={onClick}
-      iconTile={iconName}
+      onChange={onClick}
+      icon={iconName}
       description={label || children}
       testId={testId}
       {...others}

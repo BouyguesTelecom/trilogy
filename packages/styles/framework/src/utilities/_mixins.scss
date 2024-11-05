@@ -379,6 +379,13 @@
 }
 
 @mixin checkbox-and-radio($type) {
+  //TILES WRAPPER
+  .#{$type}-tiles {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
   //BOTH
   .#{$type},
   .#{$type}-tile {
@@ -480,9 +487,6 @@
     position: relative;
     max-width: 160px;
     display: inline-block;
-    margin: 0;
-    margin-right: 16px;
-    margin-top: 16px;
     text-align: center;
 
     input:disabled,
@@ -523,7 +527,6 @@
     }
 
     input {
-
       &:not(:disabled):not(:checked) ~ label.radio-label {
         @include label-states;
       }
@@ -568,8 +571,7 @@
       justify-content: space-between;
       align-items: center;
       max-width: unset;
-      width: auto;
-      margin: 16px 0;
+      width: 100%;
       position: relative;
 
       &.is-narrow {

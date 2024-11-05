@@ -1,14 +1,14 @@
 import clsx from "clsx"
 import * as React from "react"
-import {CSSProperties, useEffect, useRef, useState} from "react"
-import {getStatusClassName, getStatusIconName} from "@/objects/facets/Status"
-import {has, is} from "@/services/classify"
-import {Icon, IconName, IconSize} from "@/components/icon"
-import {Text, TextLevels} from "@/components/text"
-import {Title, TitleLevels} from "@/components/title"
-import {AlertProps, ToasterAlertPosition, ToasterStatusProps} from "./AlertProps"
-import {hashClass} from "@/helpers"
-import {useTrilogyContext} from "@/context"
+import { CSSProperties, useEffect, useRef, useState } from "react"
+import { getStatusClassName, getStatusIconName } from "@/objects/facets/Status"
+import { has, is } from "@/services/classify"
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { Text, TextLevels } from "@/components/text"
+import { Title, TitleLevels } from "@/components/title"
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from "./AlertProps"
+import { hashClass } from "@/helpers"
+import { useTrilogyContext } from "@/context"
 import ToasterContext from './context'
 
 /**
@@ -43,7 +43,6 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
   if (children) {
     return (
       <div
-        data-testid={props.testId}
         style={
           (position === ToasterAlertPosition.TOP && positionTop) ||
           (position === ToasterAlertPosition.BOTTOM && positionBottom) ||
@@ -64,7 +63,6 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
 
   return title ? (
     <div
-      data-testid={props.testId}
       style={
         (position === ToasterAlertPosition.TOP && positionTop) ||
         (position === ToasterAlertPosition.BOTTOM && positionBottom) ||
@@ -109,7 +107,6 @@ const Alert = ({
   description,
   onClick,
   display = true,
-  testId,
   ...others
 }: AlertProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -128,7 +125,6 @@ const Alert = ({
   if (display) {
     return (
       <div
-        data-testid={testId}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
@@ -194,7 +190,6 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
           onHide: toasterState?.onHide,
           closable: toasterState?.closable,
           offset: toasterState?.offset,
-          testId: toasterState?.testId,
         }}
       />
     </ToasterContext.Provider>

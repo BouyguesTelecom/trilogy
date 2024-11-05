@@ -43,7 +43,6 @@ const Button = ({
   className,
   to,
   accessibilityLabel,
-  testId,
   onClick,
   name,
   routerLink,
@@ -88,7 +87,6 @@ const Button = ({
     return (
       <button
         id={id}
-        data-testid={testId}
         aria-label={accessibilityLabel}
         className={classes}
         disabled={isDisabled}
@@ -113,7 +111,6 @@ const Button = ({
     return (
       <input
         id={id}
-        data-testid={testId}
         className={classes}
         aria-label={accessibilityLabel}
         name={name}
@@ -135,7 +132,6 @@ const Button = ({
     return (
       <RouterLink
         aria-label={accessibilityLabel}
-        data-testid={testId}
         to={to}
         className={classes}
         {...others}
@@ -151,7 +147,6 @@ const Button = ({
   return (
     <a
       id={id}
-      data-testid={testId}
       aria-label={accessibilityLabel}
       className={classes}
       href={href}

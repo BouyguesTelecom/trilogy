@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { CardContentProps } from "./CardContentProps"
-import { Title, TitleLevels } from "@/components/title"
-import { Button } from "@/components/button"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { CardContext } from "@/components/card/Card.native"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useContext } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { CardContentProps } from './CardContentProps'
+import { Title, TitleLevels } from '@/components/title'
+import { Button } from '@/components/button'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { CardContext } from '@/components/card/Card.native'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Card Content Component
@@ -19,18 +19,16 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onClick {Function} onClick Event for all content
  * @param others
  */
-const CardContent = ({
-  children,
-  titleSup,
-  title,
-  text,
-  buttonText,
-  buttonClick,
-  buttonVariant,
-  onClick,
-  ...others
-}: CardContentProps): JSX.Element => {
+const CardContent = ({ children, ...others }: CardContentProps): JSX.Element => {
   const cardContextValues = useContext(CardContext)
+
+  const titleSup = 'titleSup'
+  const title = 'title'
+  const buttonText = 'buttonText'
+  const buttonVariant = 'CONVERSION'
+  const buttonClick = () => null
+  const text = 'text'
+  const onClick = () => null
 
   const styles = StyleSheet.create({
     card: {
@@ -42,7 +40,7 @@ const CardContent = ({
       flex: cardContextValues.horizontal ? 1 : 0,
     },
     view: {
-      width: "100%",
+      width: '100%',
     },
     text: {
       color: getColorStyle(TrilogyColor.MAIN),
@@ -57,10 +55,7 @@ const CardContent = ({
     if (onClick) {
       return (
         <View style={styles.card}>
-          <TouchableOpacity
-            style={{ width: "100%", paddingBottom: 16 }}
-            onPress={onClick}
-          >
+          <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
             {children}
           </TouchableOpacity>
         </View>
@@ -75,8 +70,16 @@ const CardContent = ({
 
   const cardContent = (
     <View style={styles.card} {...others}>
-      {titleSup && <Title overline testId='titleSup-id'>{titleSup}</Title>}
-      {title && <Title level={TitleLevels.ONE} testId='title-id'>{title}</Title>}
+      {titleSup && (
+        <Title overline testId='titleSup-id'>
+          {titleSup}
+        </Title>
+      )}
+      {title && (
+        <Title level={TitleLevels.ONE} testId='title-id'>
+          {title}
+        </Title>
+      )}
       {text && (
         <>
           <View style={{ marginBottom: 16 }} />
@@ -96,11 +99,7 @@ const CardContent = ({
 
   return onClick ? (
     <View style={styles.view}>
-      <TouchableOpacity
-        style={{ width: "100%" }}
-        onPress={onClick}
-        activeOpacity={0.85}
-      >
+      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
         {cardContent}
       </TouchableOpacity>
     </View>

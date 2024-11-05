@@ -40,7 +40,6 @@ const Range = ({
   idMin,
   nameMax,
   idMax,
-  testId,
   gap = 0,
 }: RangeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -110,7 +109,6 @@ const Range = ({
 
   return (
     <div
-      data-testid={testId}
       className={hashClass(styled, clsx("range-container"))}
     >
       <label className={hashClass(styled, clsx("range-label"))}>{label}</label>
@@ -120,7 +118,6 @@ const Range = ({
           className={hashClass(styled, clsx("range-track"))}
         ></div>
         <input
-          data-testid={`${testId}_min`}
           className={hashClass(styled, clsx("range-cursor range-cursor-min"))}
           onMouseUp={handleMouseUpMin}
           onChange={handleChangeCursorMin}
@@ -133,7 +130,6 @@ const Range = ({
           aria-label={label}
         />
         <input
-          data-testid={`${testId}_max`}
           className={hashClass(styled, clsx("range-cursor range-cursor-max"))}
           onMouseUp={handleMouseUpMax}
           onChange={handleChangeCursorMax}
