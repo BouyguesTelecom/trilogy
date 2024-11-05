@@ -1,13 +1,14 @@
-import { Accessibility, Clickable } from '@/objects/facets'
-import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
 import { IconName, IconNameValues } from '@/components/icon'
 import { TextLevels } from '@/components/text'
-import { Styles } from "@/types"
+import { Dev } from '@/lib'
+import { Accessibility, Clickable } from '@/objects/facets'
+import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
+import { Styles } from '@/types'
 
 /**
  * Link Interface
  */
-export interface LinkProps extends Accessibility, Clickable {
+export interface LinkProps extends Accessibility, Clickable, Dev {
   children?: React.ReactNode
   to?: string
   className?: string

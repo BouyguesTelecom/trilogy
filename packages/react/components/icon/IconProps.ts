@@ -13,14 +13,14 @@ import {
   TextIconMarkupValues,
 } from './IconEnum'
 import { IconName, IconNameValues } from './IconNameEnum'
-import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues, Stacked, AlignableProps } from '@/objects'
+import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues, Stacked, AlignableProps, Dev } from '@/objects'
 
 type Styles = { [key: string]: unknown }
 
 /**
  * Icon Interface
  */
-export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibility {
+export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibility, Dev {
   name: IconName | IconNameValues
   status?: IconStatus | IconStatusValues
   badgeContent?: string

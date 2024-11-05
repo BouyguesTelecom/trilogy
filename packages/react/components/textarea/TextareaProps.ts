@@ -1,6 +1,7 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { IconStatus } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -15,9 +16,8 @@ import {
   InputTextContentType,
   InputTextContentTypeValues,
 } from '@/components/input/InputEnum'
+import { Accessibility, Dev, TypographyColor, TypographyColorValues } from '@/objects'
 import { TextInput } from 'react-native'
-import { IconStatus } from '@/components/icon'
-import { Accessibility, TypographyColor, TypographyColorValues } from '@/objects'
 
 export interface TextareaChangeEvent {
   textareaName: string
@@ -26,35 +26,36 @@ export interface TextareaChangeEvent {
 
 type TextareaChangeEventHandler = (event: TextareaChangeEvent) => void
 
-type TextareaPropsWeb = Accessibility & {
-  placeholder?: string
-  defaultValue?: string
-  value?: string
-  disabled?: boolean
-  onChange?: TextareaChangeEventHandler
-  status?: InputStatus | InputStatusValues | IconStatus
-  help?: string
-  /** @deprecated */
-  name?: string
-  className?: string
-  keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
-  autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
-  autoCorrect?: any
-  autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
-  textContentType?: InputTextContentType | InputTextContentTypeValues
-  keyboardType?: InputKeyboardType | InputKeyboardTypeValues
-  minLength?: number
-  maxLength?: number
-  dynamicPlaceholder?: boolean
-  rows?: number
-  label?: string
-  iconName?: IconName | IconNameValues
-  statusIconName?: IconName | IconNameValues
-  typo?: TypographyColor | TypographyColorValues
-  customHeight?: number
-  required?: boolean
-  sample?: string
-}
+type TextareaPropsWeb = Accessibility &
+  Dev & {
+    placeholder?: string
+    defaultValue?: string
+    value?: string
+    disabled?: boolean
+    onChange?: TextareaChangeEventHandler
+    status?: InputStatus | InputStatusValues | IconStatus
+    help?: string
+    /** @deprecated */
+    name?: string
+    className?: string
+    keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
+    autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
+    autoCorrect?: any
+    autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
+    textContentType?: InputTextContentType | InputTextContentTypeValues
+    keyboardType?: InputKeyboardType | InputKeyboardTypeValues
+    minLength?: number
+    maxLength?: number
+    dynamicPlaceholder?: boolean
+    rows?: number
+    label?: string
+    iconName?: IconName | IconNameValues
+    statusIconName?: IconName | IconNameValues
+    typo?: TypographyColor | TypographyColorValues
+    customHeight?: number
+    required?: boolean
+    sample?: string
+  }
 
 export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>
 

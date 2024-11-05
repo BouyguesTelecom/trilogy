@@ -1,11 +1,11 @@
 import { ClickEvent } from '@/events/OnClickEvent'
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 
 /**
  * Select Option Interface
  */
-export interface SelectOptionProps<T extends string | number = string> extends Accessibility {
+export interface SelectOptionProps<T extends string | number = string> extends Accessibility, Dev {
   children?: string
   /** @deprecated use Select "selected" props instead */
   selected?: boolean
