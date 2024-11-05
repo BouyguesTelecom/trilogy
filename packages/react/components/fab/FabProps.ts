@@ -1,11 +1,11 @@
 import { IconName, IconNameValues } from "@/components/icon"
-import { Accessibility, Clickable } from "@/objects"
+import { Accessibility, Clickable, Dev } from "@/objects"
 import { DimensionValue } from "react-native"
 
 /**
  * Fab Interface
  */
-export interface FabProps extends Accessibility, Clickable {
+export interface FabProps extends Accessibility, Clickable, Dev {
   children: string | React.ReactNode;
   extended?: boolean;
   iconName: IconName | IconNameValues;

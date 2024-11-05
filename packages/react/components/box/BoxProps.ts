@@ -1,4 +1,4 @@
-import { Accessibility, Clickable, Fullheight } from '@/objects'
+import { Accessibility, Clickable, Fullheight, Dev } from '@/objects'
 import { BackgroundProps } from '@/objects/atoms/Background'
 import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 
@@ -12,7 +12,7 @@ export type BoxMarkupValues = keyof typeof BoxMarkup
 /**
  * Box Interface
  */
-export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Accessibility {
+export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Accessibility, Dev {
   children?: React.ReactNode
   skeleton?: boolean
   className?: string

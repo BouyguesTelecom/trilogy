@@ -1,7 +1,6 @@
 import { initModals } from './components/modal'
 import { initVariant } from './components/font-variant'
 import { initCountdowns } from './components/countdown'
-import { initAccordions } from './components/accordion'
 import { initTableExpansion } from './components/table-expansion'
 import { initTabs } from './components/tabs'
 import { initAutocomplete } from './components/autocomplete'
@@ -21,7 +20,6 @@ const loadVanilla = () => {
   initVariant()
   initCountdowns()
   initTableExpansion()
-  initAccordions()
   initAutocomplete()
   initSegmentedControl()
   initTextarea()
@@ -100,8 +98,6 @@ if (!isInitialized) {
                       return initModals()
                     case 'tab':
                       return initTabs()
-                    case 'accordion':
-                      return initAccordions()
                     case 'countdown':
                       return initCountdowns()
                     case 'autocomplete':
