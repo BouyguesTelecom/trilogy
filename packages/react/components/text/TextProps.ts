@@ -1,11 +1,10 @@
-import { Clickable } from '@/objects/facets/Clickable'
-import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
+import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold, TypographyBoldValues } from '@/objects/Typography/TypographyBold'
 import { TypographyColor, TypographyColorValues } from '@/objects/Typography/TypographyColor'
 import { TypographyTransform, TypographyTransformValues } from '@/objects/Typography/TypographyTransform'
-import { TypographyBold, TypographyBoldValues } from '@/objects/Typography/TypographyBold'
-import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
-import { Accessibility, Invertable } from '@/objects/facets'
-import { Dev } from '@/lib'
+import { Accessibility, Dev, Invertable } from '@/objects/facets'
+import { Clickable } from '@/objects/facets/Clickable'
+import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -37,5 +36,4 @@ export interface TextProps extends Invertable, Accessibility, Clickable, Dev {
   marginless?: boolean
   link?: boolean
   numberOfLines?: number
-
 }
