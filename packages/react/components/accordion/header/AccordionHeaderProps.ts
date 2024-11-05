@@ -1,11 +1,10 @@
-import { Accessibility, Dev } from '@/objects'
+import { Dev } from '@/objects'
 
 /**
  * AccordionHeader Interface
  */
-export interface AccordionHeaderProps extends Accessibility, Dev {
+export interface AccordionHeaderProps extends Dev {
   children?: React.ReactNode
   className?: string
-  dataId?: string
   disabled?: boolean
 }
