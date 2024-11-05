@@ -1,10 +1,9 @@
 import * as React from "react"
 import { ContainerProps } from "./ContainerProps"
-import { has, is } from "@/services/classify"
+import { is } from "@/services/classify"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
-import { getBackgroundClassName } from "@/objects"
 
 /**
  * Container Component

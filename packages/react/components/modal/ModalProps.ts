@@ -1,6 +1,6 @@
 import { IconColor, IconColorValues, IconName, IconNameValues } from '@/components/icon'
 import { ClickEvent } from '@/events/OnClickEvent'
-import { Accessibility, Clickable, Clipped, Fullwidth } from '@/objects'
+import { Accessibility, Clickable, Clipped, Dev, Fullwidth } from '@/objects'
 import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
 
 export interface ModalContentButtonProps extends Clickable {
@@ -14,7 +14,7 @@ export interface CloseButtonProps {
 /**
  * Modal Interface
  */
-export interface ModalProps extends Clipped, Fullwidth, Accessibility {
+export interface ModalProps extends Clipped, Fullwidth, Accessibility, Dev {
   children?: React.ReactNode
   active?: boolean
   title?: string

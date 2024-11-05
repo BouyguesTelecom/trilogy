@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { is } from '@/services/index'
 import { Icon, IconName } from '@/components/icon'
 import { PaginationProps } from './PaginationProps'
 import { hashClass } from '@/helpers'

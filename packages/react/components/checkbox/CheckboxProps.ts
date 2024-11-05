@@ -1,5 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 
 export interface CheckboxChangeEvent {
   checkboxId: string
@@ -32,7 +32,7 @@ type CheckboxClickEventHandler = (event: {
 /**
  * Checkbox Interface
  */
-export interface CheckboxProps extends Accessibility {
+export interface CheckboxProps extends Accessibility, Dev {
   children?: React.ReactNode
   checked?: boolean
   disabled?: boolean

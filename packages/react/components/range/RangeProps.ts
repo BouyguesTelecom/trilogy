@@ -1,12 +1,12 @@
 /**
  * range Interface
  */
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 
 export type InputChangeEventHandlerNative = (event: { inputValue: number[]; inputName: string }) => void
 export type InputChangeEventHandlerWeb = (event: { inputValue: number; inputName: string | undefined }) => void
 
-export interface RangeProps extends Accessibility {
+export interface RangeProps extends Accessibility, Dev {
   min: number
   max: number
   label?: string
