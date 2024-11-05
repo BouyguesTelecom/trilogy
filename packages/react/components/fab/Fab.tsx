@@ -35,7 +35,6 @@ const Fab = ({
   bottom,
   left,
   right,
-  testId,
   disabled,
   ...others
 }: FabProps): JSX.Element => {
@@ -68,7 +67,6 @@ const Fab = ({
   return (
     <button
       disabled={disabled}
-      data-testid={testId}
       aria-label={accessibilityLabel}
       onClick={(e) => {
         onClick?.(e)

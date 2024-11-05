@@ -24,7 +24,6 @@ const Chips = ({
   active,
   disabled,
   id,
-  testId,
   ...others
 }: ChipsProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -42,7 +41,6 @@ const Chips = ({
     <button
       {...{ disabled: disabled }}
       aria-disabled={disabled}
-      data-testid={testId}
       id={id}
       aria-pressed={!!active}
       className={classes}

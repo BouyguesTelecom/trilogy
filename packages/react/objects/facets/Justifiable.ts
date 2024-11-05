@@ -49,3 +49,16 @@ export const getJustifyClassName = (justifyContent?: string) => {
       return 'justified-start'
   }
 }
+
+export const getJustifiedClassName = (justifyContent?: string) => {
+  switch (justifyContent) {
+    case 'ALIGNED_CENTER':
+      return 'justified-center'
+    case 'ALIGNED_START':
+      return 'justified-start'
+    case 'ALIGNED_END':
+      return 'justified-end'
+    default:
+      return 'justified-start'
+  }
+}

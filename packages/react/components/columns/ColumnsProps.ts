@@ -1,17 +1,16 @@
-import { GapSize } from './ColumnsTypes'
-import {Alignable, AlignableValues} from "@/objects"
+import { ColumnsSize, GapSize } from './ColumnsTypes'
+import { AlignableProps } from '@/objects'
 
 /**
  * Columns Interface
  */
-export interface ColumnsProps {
+export interface ColumnsProps extends AlignableProps {
   children?: React.ReactNode
   multiline?: boolean
   scrollable?: boolean
-  centered?: boolean
   gap?: GapSize
   fullBleed?: boolean
+  marginSize?: ColumnsSize
   className?: string
   mobile?: boolean
-  verticalAlign?: Alignable | AlignableValues
 }

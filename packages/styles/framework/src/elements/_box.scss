@@ -1,11 +1,13 @@
 @use 'sass:math';
 @import "../utilities/spacing";
-:root{
-  --padding-box : #{$spacing-5};
+
+:root {
+  --padding-box: #{$spacing-5};
   @include mobile {
-    --padding-box : #{$spacing-4};
+    --padding-box: #{$spacing-4};
   }
 }
+
 $highlighted-border-width: 4px;
 
 
@@ -30,8 +32,6 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-
-
   &:not(:last-child) {
     margin-bottom: 15px;
   }
@@ -40,30 +40,32 @@ a.box {
     outline: var(--border-active);
   }
 
+  &.is-offset-header {
+    @include tablet {
+      margin-top: 40px;
+
+      &.is-fullheight {
+        height: calc(100% - 40px);
+      }
+    }
+  }
+
   &.is-fullheight {
     .box-content {
       flex-grow: 1;
     }
   }
 
-
-
   &.is-flat {
     box-shadow: none;
     border: var(--border);
 
-    &.has-hat > .is-hat {
-      left: -1px;
-      right: -1px;
-    }
-
     .box-header {
-      margin-top: calc(var(--padding-box)*-1 - 1px);
-      margin-left: calc(var(--padding-box)*-1 - 1px);
-      margin-right: calc(var(--padding-box)*-1 - 1px);
+      margin-top: calc(var(--padding-box) * -1 - 1px);
+      margin-left: calc(var(--padding-box) * -1 - 1px);
+      margin-right: calc(var(--padding-box) * -1 - 1px);
     }
   }
-
 
   &.is-highlighted {
     border-left: $highlighted-border-width solid transparent;
@@ -73,25 +75,24 @@ a.box {
       $color: getColor($name);
       $brandName: getColorBrandName($name);
 
-      &.is-#{$brandName}{
+      &.is-#{$brandName} {
         border-left-color: $color;
         border-left-width: $highlighted-border-width;
       }
     }
 
-    .box-header{
-      margin-left: calc(var(--padding-box)*-1 - $highlighted-border-width);
+    .box-header {
+      margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
     }
   }
-
 
   .box-header {
     z-index: inherit;
     background-color: getColor('font');
     color: getColor('background');
-    margin-top: calc(var(--padding-box)*-1);
-    margin-left: calc(var(--padding-box)*-1);
-    margin-right: calc(var(--padding-box)*-1);
+    margin-top: calc(var(--padding-box) * -1);
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
     padding: 8px;
     padding-left: var(--padding-box);
     padding-right: var(--padding-box);
@@ -103,6 +104,8 @@ a.box {
     align-items: center;
     font-weight: $weight-semibold;
     border-radius: var(--radius) var(--radius) 0 0;
+    height: 40px;
+
     @include tablet {
       flex-direction: row;
       align-items: center;
@@ -125,16 +128,18 @@ a.box {
   }
 
   .box-content {
-    margin-left: calc(var(--padding-box)*-1);
-    margin-right: calc(var(--padding-box)*-1);
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
-    &:first-child{
-      margin-top: calc(var(--padding-box)*-1);
+
+    &:first-child {
+      margin-top: calc(var(--padding-box) * -1);
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
     }
-    &:last-child{
-      margin-bottom: calc(var(--padding-box)*-1);
+
+    &:last-child {
+      margin-bottom: calc(var(--padding-box) * -1);
       border-bottom-left-radius: var(--radius);
       border-bottom-right-radius: var(--radius);
     }
@@ -144,8 +149,8 @@ a.box {
     }
 
     > .is-unboxed {
-      margin-left: calc(var(--padding-box)*-1);
-      margin-right: calc(var(--padding-box)*-1);
+      margin-left: calc(var(--padding-box) * -1);
+      margin-right: calc(var(--padding-box) * -1);
     }
 
     &.is-transparent {
@@ -154,9 +159,9 @@ a.box {
   }
 
   .box-footer {
-    margin-left: calc(var(--padding-box)*-1);
-    margin-right: calc(var(--padding-box)*-1);
-    margin-bottom: calc(var(--padding-box)*-1);
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
+    margin-bottom: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
     border-top: 1px solid getColor('neutral-fade');
     border-bottom-left-radius: var(--radius);

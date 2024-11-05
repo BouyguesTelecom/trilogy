@@ -1,97 +1,87 @@
-import * as React from "react";
+import * as React from 'react'
 import {
+  Box,
   Checkbox,
+  CheckboxTile,
+  CheckboxTiles,
   Columns,
   ColumnsItem,
   Container,
   IconName,
   Section,
-  Spacer,
-  SpacerSize,
   Text,
-} from "@trilogy-ds/react/components";
-import { TypographyAlign } from "@trilogy-ds/react/objects";
+} from '@trilogy-ds/react/components'
+import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (
     <Section>
       <Container>
         <Text typo={TypographyAlign.TEXT_CENTERED}>
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-          consectetur, adipisci velit...
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
         </Text>
-        <Columns>
-          <ColumnsItem size={6} centered>
-            <Checkbox
-              tile
-              iconTile={IconName.CHECK_CIRCLE}
-              label="Lorem ipsum dolor"
-              name="radio1"
-              value="default value 1"
-              // eslint-disable-next-line no-console
-              onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-              checked
-            />
+        <Columns multiline>
+          <ColumnsItem size={12} centered>
+            <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
+            <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
+            <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
+            <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
           </ColumnsItem>
-          <ColumnsItem size={6}>
-            <Checkbox
-              iconTile={IconName.CHECK_CIRCLE}
-              tile
-              label="Lorem ipsum dolor"
-              name="radio1"
-              value="default value 1"
-              // eslint-disable-next-line no-console
-              onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-            />
+          <ColumnsItem size={12} centered>
+            <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
+              <CheckboxTile
+                id='tile-1'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                className='is-fullheight'
+              />
+              <CheckboxTile
+                id='tile-2'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+              <CheckboxTile
+                id='tile-3'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+            </CheckboxTiles>
+          </ColumnsItem>
+          <ColumnsItem size={12} centered>
+            <CheckboxTiles align={Alignable.ALIGNED_CENTER}>
+              <CheckboxTile
+                id='tile-horizontal-1'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+                horizontal
+              />
+              <CheckboxTile
+                id='tile-horizontal-2'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+                horizontal
+              />
+              <CheckboxTile
+                id='tile-horizontal-3'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+                horizontal
+              />
+            </CheckboxTiles>
           </ColumnsItem>
         </Columns>
-        <Spacer size={SpacerSize.FOUR} />
-        <Columns>
-          <ColumnsItem size={6} centered>
-            <Checkbox
-              tile
-              iconTile={IconName.CHECK_CIRCLE}
-              label="Lorem ipsum dolor"
-              name="radio1"
-              value="default value 1"
-              // eslint-disable-next-line no-console
-              onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-            />
-          </ColumnsItem>
-          <ColumnsItem size={6}>
-            <Checkbox
-              disabled
-              iconTile={IconName.CHECK_CIRCLE}
-              tile
-              label="Lorem ipsum dolor"
-              name="radio1"
-              value="default value 1"
-              // eslint-disable-next-line no-console
-              onChange={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-            />
-          </ColumnsItem>
-        </Columns>
-        <Spacer size={8} />
-
-        <Checkbox
-          checked
-          iconTile={IconName.EYE}
-          horizontalTile
-          tile
-          label="Checkbox checked"
-        />
-        <Checkbox disabled horizontalTile tile label="Checkbox Disabled" />
-        <Checkbox
-          description={"lorem kenenf"}
-          tile
-          horizontalTile
-          label="Checkbox simple"
-        />
-
-        <Checkbox checked label="Checkbox checked" />
-        <Checkbox disabled label="Checkbox Disabled" />
-        <Checkbox description={"lorem kenenf"} label="Checkbox simple" />
       </Container>
     </Section>
-  );
-};
+  )
+}

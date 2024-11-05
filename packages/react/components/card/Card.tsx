@@ -1,10 +1,9 @@
-import React, { useEffect, useState, createContext } from "react"
-import clsx from "clsx"
-import { CardMarkup, CardProps } from "./CardProps"
-import { has, is } from "@/services/classify"
-import { getAlignClassName, getBackgroundClassName } from "@/objects"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import React, { createContext, useEffect, useState } from 'react'
+import clsx from 'clsx'
+import { CardProps } from './CardProps'
+import { is } from '@/services/classify'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 export const CardContext = createContext({ horizontal: false })
 
@@ -31,26 +30,8 @@ export const CardContext = createContext({ horizontal: false })
  * @param testId {string} Test Id for Test Integration
  */
 const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
-  const {
-    className,
-    backgroundColor,
-    backgroundSrc,
-    inverted,
-    flat,
-    horizontal,
-    floating,
-    align,
-    justify,
-    skeleton,
-    onClick,
-    reversed,
-    testId,
-    markup,
-    to,
-    fullheight,
-    active,
-    ...others
-  } = props
+  const { className, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others } =
+    props
 
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
@@ -60,35 +41,28 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
   }, [skeleton])
 
   const hoverStyle: React.CSSProperties = {
-    cursor: "pointer",
+    cursor: 'pointer',
   }
 
   const classes = hashClass(
     styled,
     clsx(
-      "card",
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has("background"),
-      (inverted && is("inverted")) || is("base"),
-
-      flat && !floating && is("flat"),
-      horizontal && [is("horizontal"), is("vcentered")],
-      floating && !flat && is("floating"),
-      align && is(getAlignClassName(align)),
-      justify && is(justify),
-      isLoading ? is("loading") : is("loaded"),
-      reversed && is("reversed"),
+      'card',
+      flat && !floating && is('flat'),
+      horizontal && [is('horizontal'), is('vcentered')],
+      floating && !flat && is('floating'),
+      isLoading ? is('loading') : is('loaded'),
+      reversed && is('reversed'),
       className,
-      fullheight && is("fullheight"),
-      active && is("active")
-    )
+      fullheight && is('fullheight'),
+      active && is('active'),
+    ),
   )
 
-  if (markup === CardMarkup.A) {
+  if (href) {
     return (
       <a
-        data-testid={testId}
-        href={to}
+        href={href}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
@@ -103,7 +77,6 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
 
   return (
     <div
-      data-testid={testId}
       onClick={onClick && onClick}
       className={classes}
       style={onClick && { ...hoverStyle }}

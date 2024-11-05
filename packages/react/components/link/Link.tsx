@@ -41,7 +41,6 @@ const Link = ({
   title,
   onClick,
   typo,
-  testId,
   accessibilityLabel,
   routerLink,
   iconName,
@@ -64,7 +63,6 @@ const Link = ({
     const RouterLinkTrilogy = (): JSX.Element => {
       return (
         <RouterLink
-          data-testid={testId}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
           className={hashClass(styled, clsx(classes))}
@@ -94,7 +92,6 @@ const Link = ({
     return (
       <Text
         link
-        data-testid={testId}
         aria-label={accessibilityLabel}
         onClick={onClick && onClick}
         title={title}

@@ -1,10 +1,10 @@
-import { Dev } from "@/objects"
+import { Accessibility } from '@/objects'
 
 /**
  * Accordion Interface
  */
 
-export interface AccordionProps extends Dev {
+export interface AccordionProps {
   children?: React.ReactNode
   className?: string
 }

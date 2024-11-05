@@ -29,13 +29,12 @@ const Box = ({
   onClick,
   skeleton,
   highlighted,
-  testId,
   shadowless,
   backgroundColor,
   backgroundSrc,
   inverted,
   flat,
-  hat,
+  headerOffset,
   fullheight,
   active,
   ...others
@@ -56,7 +55,7 @@ const Box = ({
       borderColor: active
         ? getColorStyle(TrilogyColor.MAIN)
         : getColorStyle(TrilogyColor.NEUTRAL),
-      marginTop: hat ? 35 : 0,
+      marginTop: headerOffset ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
     shadow: shadowless
@@ -103,7 +102,7 @@ const Box = ({
     },
   })
 
-  const boxTestId = testId || "NotSpecified"
+  const boxTestId = "NotSpecified"
 
   const BoxSkeleton = () => (
     <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>

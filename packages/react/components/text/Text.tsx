@@ -39,7 +39,6 @@ const Text = ({
   typo,
   inverted,
   skeleton,
-  testId,
   accessibilityLabel,
   htmlContent,
   marginless,
@@ -96,7 +95,6 @@ const Text = ({
   return (
     <Tag
       style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}
-      data-testid={testId}
       aria-label={accessibilityLabel}
       onClick={onClick}
       title={title}

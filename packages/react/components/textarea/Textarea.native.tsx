@@ -66,7 +66,6 @@ const Textarea = (
     statusIconName,
     customHeight = 120,
     value,
-    testId,
     required,
     ...others
   }: TextareaNativeProps,
@@ -178,7 +177,7 @@ const Textarea = (
 
       {iconName && (
         <Text style={styles.leftIcon}>
-          <Icon name={iconName} size='small' testId={`${testId}-icon`} />
+          <Icon name={iconName} size='small' />
         </Text>
       )}
 
@@ -220,19 +219,18 @@ const Textarea = (
             name={statusIconName}
             size='small'
             color={status && (status.toUpperCase() as IconColor)}
-            testId={`${testId}-statusIcon`}
           />
         </Text>
       )}
 
       {displayDynamicLabel && dynamicPlaceholder && <Text style={styles.dynamicLabel}>{label}</Text>}
       {maxLength && (
-        <Text style={styles.counter} testID={`${testId}-maxLength`}>
+        <Text style={styles.counter}>
           {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
         </Text>
       )}
       {help && (
-        <Text style={styles.help} testID={`${testId}-help`}>
+        <Text style={styles.help}>
           {help}
         </Text>
       )}

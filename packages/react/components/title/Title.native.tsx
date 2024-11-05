@@ -31,7 +31,6 @@ const Title = ({
   typo,
   onClick,
   skeleton,
-  testId,
   accessibilityLabel,
   subtitle,
   overline,
@@ -99,9 +98,7 @@ const Title = ({
       height: titlesLevels(),
     },
   })
-  const titleTestId = testId
-    ? testId
-    : typeof children === "string"
+  const titleTestId = typeof children === "string"
     ? children
     : "NotSpecified"
   const titleAccessibilityLabel = accessibilityLabel
@@ -115,7 +112,6 @@ const Title = ({
       maxFontSizeMultiplier={1.3}
       accessible={!!titleAccessibilityLabel}
       accessibilityLabel={titleAccessibilityLabel}
-      testID={titleTestId}
       style={[styles.text, style]}
       {...others}
     >

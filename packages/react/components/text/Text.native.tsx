@@ -31,7 +31,6 @@ const Text = ({
   typo,
   onClick,
   skeleton,
-  testId,
   accessibilityLabel,
   link,
   numberOfLines = 0,
@@ -85,12 +84,6 @@ const Text = ({
       height: textLevels(level as TextLevels | TextLevelValues),
     },
   })
-
-  const textTestId = testId
-    ? testId
-    : typeof children === "string"
-    ? children
-    : "NotSpecified"
   const textAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === "string"
@@ -104,7 +97,6 @@ const Text = ({
       maxFontSizeMultiplier={1.3}
       accessible={!!textAccessibilityLabel}
       accessibilityLabel={textAccessibilityLabel}
-      testID={textTestId}
       style={[styles.text, style]}
       {...others}
     >

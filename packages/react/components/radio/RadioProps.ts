@@ -1,39 +1,23 @@
-import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility } from '@/objects'
 
 type RadioChangeEventHandler = (event: {
-  radioChecked: boolean
-  radioId: string | undefined
-  radioName: string
   radioValue: string
-}) => void
-
-type RadioClickEventHandler = (event: {
-  radioChecked: boolean
-  radioId: string | undefined
   radioName: string
-  radioValue: string
+  radioChecked: boolean
+  radioId: string
 }) => void
 
 /**
- * Radio Interface
+ * radio Interface
  */
-export interface RadioProps extends Accessibility, Dev {
-  children?: React.ReactNode
+export interface RadioProps extends Accessibility {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
   id?: string
-  label?: string | React.ReactNode
-  onClick?: RadioClickEventHandler
+  label?: string
   onChange?: RadioChangeEventHandler
   className?: string
   name?: string
   value?: string
-  tile?: boolean
-  description?: string | React.ReactNode
-  iconTile?: IconName | IconNameValues
-  horizontalTile?: boolean
-  narrow?: boolean
-  marginless?: boolean
 }

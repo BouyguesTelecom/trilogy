@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Meta, Story } from "@storybook/react";
-import Checkbox from "./Checkbox";
+import Radio from "./Checkbox";
 import { CheckboxProps } from "./CheckboxProps";
 import { IconName } from "../icon";
 
@@ -43,7 +43,7 @@ export const Tile: Story<CheckboxProps> = (args) => (
   <>
     <Checkbox {...args} />
     <Checkbox
-      label="Checkbox tile avec Icône"
+      label="Radio tile avec Icône"
       name="checkbox"
       value="default value 1"
       onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
@@ -54,7 +54,7 @@ export const Tile: Story<CheckboxProps> = (args) => (
       iconTile={IconName.INFOS_CIRCLE}
     />
     <Checkbox
-      label="Checkbox tile disabled"
+      label="Radio tile disabled"
       name="checkbox"
       value="default value 1"
       onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
@@ -81,7 +81,7 @@ export const TileHorizontal: Story<CheckboxProps> = (args) => (
   <>
     <Checkbox {...args} />
     <Checkbox
-      label="Checkbox tile avec Icône"
+      label="Radio tile avec Icône"
       name="checkbox"
       value="default value 1"
       onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
@@ -93,7 +93,7 @@ export const TileHorizontal: Story<CheckboxProps> = (args) => (
       horizontalTile={true}
     />
     <Checkbox
-      label="Checkbox tile horizontal disabled"
+      label="Radio tile horizontal disabled"
       name="checkbox"
       value="default value 1"
       onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}

@@ -41,7 +41,6 @@ const Price = ({
                  inverted,
                  align,
                  inline,
-                 testId,
                  accessibilityLabel,
                  strikedAmount,
                  overline,
@@ -107,13 +106,11 @@ const Price = ({
 
   const returnComponent = (
     <div className={hashClass(styled, clsx("price-container", is(`level-${level || '1'}`)) )}>
-      {overline && <p className={hashClass(styled,clsx("overline"))}>{overline}</p>}
+      {overline && <p className={hashClass(styled, clsx("overline"))}>{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
-        <>
-          <span
-            aria-hidden="true"
-            data-testid={testId}
+        <span
+            aria-hidden='true'
             className={classesStriked}
             {...others}
           >
@@ -132,11 +129,9 @@ const Price = ({
               )}
             </span>
           </span>
-        </>
       )}
       <span
-        aria-hidden="true"
-        data-testid={testId}
+        aria-hidden='true'
         aria-label={accessibilityLabel}
         className={classes}
         {...others}

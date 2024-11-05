@@ -1,8 +1,8 @@
-import * as React from "react"
-import { BreadcrumbWebProps } from "./BreadcrumbProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import { BreadcrumbWebProps } from './BreadcrumbProps'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Breadcrumb Component
@@ -13,13 +13,7 @@ import { useTrilogyContext } from "@/context"
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
-  const {
-    children,
-    className,
-    testId,
-    accessibilityLabel,
-    ...others
-  } = props
+  const { children, className, accessibilityLabel, ...others } = props
 
   const { styled } = useTrilogyContext()
 
@@ -27,8 +21,7 @@ const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.Legac
     <nav
       ref={ref}
       role='navigation'
-      data-testid={testId}
-      className={hashClass(styled, clsx("breadcrumb", className))}
+      className={hashClass(styled, clsx('breadcrumb', className))}
       aria-label={accessibilityLabel}
       {...others}
     >

@@ -101,7 +101,6 @@ const Input = (
     onSubmit,
     minLength,
     maxLength,
-    testId,
     accessibilityLabel,
     autoCompleteType,
     customIconLeft,
@@ -234,7 +233,6 @@ const Input = (
           required={required}
           role={'textbox'}
           {...others}
-          data-testid={testId}
           aria-label={accessibilityLabel}
           type={inputType}
           className={classes}
