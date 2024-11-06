@@ -123,7 +123,7 @@ export const ColumnScreen = (): JSX.Element => {
             </BoxContent>
           </Box>
         </ColumnsItem>
-        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
+        <ColumnsItem size={6}>
           <Box>
             <BoxContent>
               <Text level={2} className='has-text-weight-bold'>
@@ -131,42 +131,6 @@ export const ColumnScreen = (): JSX.Element => {
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
               <Text>Lorem ipsum dolor sit amet.</Text>
-              <Price amount={22.99}></Price>
-              <ButtonList>
-                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
-              </ButtonList>
-            </BoxContent>
-          </Box>
-        </ColumnsItem>
-        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
-          <Box>
-            <BoxContent>
-              <Text level={TextLevels.TWO} className='has-text-weight-bold'>
-                Overline
-              </Text>
-              <Title level={TitleLevels.ONE}>Card Title</Title>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
-                vera.
-              </Text>
-              <Price amount={22.99}></Price>
-              <ButtonList>
-                <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
-              </ButtonList>
-            </BoxContent>
-          </Box>
-        </ColumnsItem>
-        <ColumnsItem mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
-          <Box>
-            <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
-                Overline
-              </Text>
-              <Title level={TitleLevels.ONE}>Card Title</Title>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
-                vera.
-              </Text>
               <Price amount={22.99}></Price>
               <ButtonList>
                 <Button variant={ButtonVariant.CONVERSION}>Skeleton toggle</Button>
@@ -390,17 +354,23 @@ export const ColumnScreen = (): JSX.Element => {
 
       <Divider />
 
-      <Columns align={Alignable.ALIGNED_CENTER}>
-        <ColumnsItem size={4}>
+      <Columns align={Alignable.ALIGNED_CENTER} mobile>
+        <ColumnsItem size={3}>
           <Box>
             <Title level={1}>Test</Title>
-            <Text level={1}>Column size 4</Text>
+            <Text level={1}>Column size 3</Text>
           </Box>
         </ColumnsItem>
-        <ColumnsItem size={4}>
+        <ColumnsItem size={5}>
           <Box>
             <Title level={1}>Test</Title>
-            <Text level={1}>Column size 4</Text>
+            <Text level={1}>Column size 5</Text>
+          </Box>
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Box>
+            <Title level={1}>Test</Title>
+            <Text level={1}>Column narrow</Text>
           </Box>
         </ColumnsItem>
       </Columns>
