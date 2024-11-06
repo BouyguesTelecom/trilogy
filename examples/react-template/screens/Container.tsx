@@ -49,7 +49,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>fullwidth</Title>
         <Divider />
-        <Container fullwidth>
+        <Container >
           <Box>
             <BoxContent>
               <Text>Fullwidth content</Text>
@@ -60,7 +60,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>centré</Title>
         <Divider />
-        <Container centered>
+        <Container >
           <Box>
             <BoxContent>
               <Text>content centered</Text>

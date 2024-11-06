@@ -24,6 +24,7 @@ const BoxHeader = ({
   help,
   variant,
   testId,
+  headerOffset,
   ...others
 }: BoxHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()

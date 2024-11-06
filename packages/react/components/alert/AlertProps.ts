@@ -1,5 +1,5 @@
 import { Clickable } from '@/objects/facets/Clickable'
-import { Accessibility, StatusProps } from '@/objects/facets'
+import { Accessibility, Dev, StatusProps } from '@/objects/facets'
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { ClickEvent } from "@/events/OnClickEvent"
 
@@ -8,7 +8,7 @@ export enum ToasterAlertPosition {
   BOTTOM = 'bottom',
 }
 
-export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility {
+export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility, Dev {
   children?: React.ReactNode
   className?: string
   toasterChildren?: React.ReactNode
@@ -28,7 +28,7 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
 /**
  * Alert Interface
  */
-export interface AlertProps extends StatusProps, Clickable, Accessibility {
+export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev {
   iconName?: IconName | IconNameValues
   title?: string | React.ReactNode
   description?: string | React.ReactNode

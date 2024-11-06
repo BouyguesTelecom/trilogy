@@ -79,7 +79,7 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
         </Text>
       )}
       {firstExtremLegend && secondExtremLegend && (
-        <Columns mobile marginSize={3}>
+        <Columns mobile>
           <ColumnsItem>
             <Text level={TextLevels.TWO}>{firstExtremLegend}</Text>
           </ColumnsItem>

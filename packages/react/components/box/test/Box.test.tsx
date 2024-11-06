@@ -1,9 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import {fireEvent, render, screen} from '@testing-library/react'
 import * as React from 'react'
 import Box from '../Box'
-import { BoxMarkup } from '../BoxProps'
-import { BoxContent, BoxFooter, BoxHeader, BoxTableContainer } from '../index'
+import {BoxMarkup} from '../BoxProps'
+import {BoxContent, BoxFooter, BoxHeader, BoxTableContainer} from '../index'
 import BoxItem from '../item'
+import {StatusState} from "../../../objects";
 
 describe('Box component', () => {
   test('renders without crashing', () => {
@@ -119,7 +120,7 @@ describe('Box component', () => {
 
   test('Should have classes header', () => {
     const { getByTestId } = render(
-      <BoxHeader testId='boxHeader' centered pulledLeft pulledRight variant='SUCCESS' help='HELP' />,
+      <BoxHeader testId='boxHeader' centered pulledLeft pulledRight variant={StatusState.SUCCESS} help='HELP' />,
     )
     const boxFooter = getByTestId('boxHeader')
     const help = screen.getByTestId('boxHeader-help')

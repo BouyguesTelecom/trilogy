@@ -19,7 +19,7 @@ import {
   Title,
   TitleLevels
 } from '@trilogy-ds/react/components'
-import {TrilogyColor, TypographyAlign} from '@trilogy-ds/react/objects'
+import {TrilogyColor, TypographyAlign, VariantState} from '@trilogy-ds/react/objects'
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false);
@@ -108,7 +108,7 @@ export const BoxScreen = (): JSX.Element => {
       </Box>
 
       <Box backgroundColor={TrilogyColor.MAIN_FADE}>
-        <BoxHeader>Box with Header and Content</BoxHeader>
+        <BoxHeader variant={"WARNING"}>Box with Header and Content</BoxHeader>
         <BoxContent>
           <Text>Background color is faded.</Text>
         </BoxContent>

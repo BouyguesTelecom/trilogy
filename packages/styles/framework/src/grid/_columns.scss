@@ -20,7 +20,6 @@ $columnSize : (
   "half"  : math.div(12, 6)
 );
 
-$columnNumber : 12;
 %flex-none {
   flex: none;
 }
@@ -39,7 +38,7 @@ $gap :
   62px
 ;
 
-.columns{
+.columns {
   display: flex;
   --ColumnGap: 24px;
 
@@ -47,37 +46,8 @@ $gap :
     flex: none;
   }
 
-  @for $i from 1 through $columnNumber {
-    &.has-#{$i}-cols > .column { @extend %flex-none; }
-  }
-
   .column[class*="is-"]:not(.is-narrow){
     width:  #{$columnWidth};
-  }
-
-
-
-  &.has-1-cols > .column:not(.is-narrow),
-  &.has-2-cols > .column:not(.is-narrow),
-  &.has-3-cols > .column:not(.is-narrow),
-  &.has-4-cols > .column:not(.is-narrow),
-  &.has-5-cols > .column:not(.is-narrow),
-  &.has-6-cols > .column:not(.is-narrow),
-  &.has-7-cols > .column:not(.is-narrow),
-  &.has-8-cols > .column:not(.is-narrow),
-  &.has-9-cols > .column:not(.is-narrow),
-  &.has-10-cols > .column:not(.is-narrow),
-  &.has-11-cols > .column:not(.is-narrow),
-  &.has-12-cols > .column:not(.is-narrow)
-  {
-    width:  #{$columnWidth};
-  }
-
-  @for $i from 1 through 12 {
-    &.has-#{$i}-cols > .column{
-      --ColumnFraction: #{$i};
-      flex: none;
-    }
   }
 
   @each $key, $value in $columnSize{
@@ -146,12 +116,6 @@ $gap :
     &.is-peek{
       padding-right: 15%;
     }
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-mobile > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
 
     @each $key, $value in $columnSize{
       & > .column.is-#{$key}-mobile {
@@ -169,13 +133,6 @@ $gap :
 
   @include tablet{
 
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-tablet > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
-
     @each $key, $value in $columnSize{
       > .column.is-#{$key}-tablet {
         flex: none;
@@ -191,13 +148,6 @@ $gap :
   }
 
   @include touch{
-
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-touch > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
 
     @each $key, $value in $columnSize{
       > .column.is-#{$key}-touch {
@@ -215,13 +165,6 @@ $gap :
 
   @include desktop{
 
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-desktop > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
-
     @each $key, $value in $columnSize{
       > .column.is-#{$key}-desktop {
         flex: none;
@@ -238,13 +181,6 @@ $gap :
 
   @include widescreen{
 
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-widescreen > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
-
     @each $key, $value in $columnSize{
       > .column.is-#{$key}-widescreen{
         flex: none;
@@ -260,13 +196,6 @@ $gap :
   }
 
   @include fullhd{
-
-    @for $i from 0 through 12 {
-      &.has-#{$i}-cols-fullhd > .column{
-        --ColumnFraction: #{$i};
-        flex: none;
-      }
-    }
 
     @each $key, $value in $columnSize{
       > .column.is-#{$key}-fullhd{
@@ -302,7 +231,9 @@ $gap :
     }
   }
 
-
+  &.is-mobile>.column.is-narrow{
+    flex: none;
+  }
 
 }
 
@@ -418,6 +349,7 @@ $gap :
 
   &.is-gapless {
     gap: 0;
+    --ColumnGap: 0px; // must be px because is used in calc.
   }
 
   &.is-mobile {

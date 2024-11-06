@@ -1,25 +1,26 @@
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import {
+  Accessibility,
+  Clickable,
+  Dev,
+  Invertable,
+  Marginless,
+  TypographyAlign,
+  TypographyAlignValues,
+  TypographyBold,
+  TypographyBoldValues,
   TypographyColor,
   TypographyColorValues,
   TypographyTransform,
   TypographyTransformValues,
-  TypographyBold,
-  TypographyBoldValues,
-  TypographyAlign,
-  TypographyAlignValues,
-  Accessibility,
-  Invertable,
-  Marginless,
-  Clickable,
 } from '@/objects'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 
 type Styles = { [key: string]: unknown }
 
 /**
  * Title Interface
  */
-export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless {
+export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev {
   children?: React.ReactNode
   level?: TitleLevelValues | TitleLevels
   loading?: boolean

@@ -1,10 +1,10 @@
-import { AlignableProps } from '@/objects'
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
+import {Alignable, AlignableValues} from "@/objects";
 
 /**
  * Columns Item Interface
  */
-export interface ColumnsItemProps extends AlignableProps {
+export interface ColumnsItemProps {
   children?: React.ReactNode
   size?: ColumnsSize
   mobileSize?: ColumnsSize
@@ -22,6 +22,5 @@ export interface ColumnsItemProps extends AlignableProps {
   fullhdOffset?: ColumnsSize
   narrow?: boolean
   className?: string
-  verticalCentered?: boolean
-  centered?: boolean
+  verticalCentered?:boolean
 }

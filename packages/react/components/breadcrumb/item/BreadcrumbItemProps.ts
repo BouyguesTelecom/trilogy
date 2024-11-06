@@ -1,6 +1,6 @@
-import { Accessibility, Clickable } from '@/objects'
+import { Accessibility, Clickable, Dev } from '@/objects'
 
-export interface BreadcrumbItemProps extends Accessibility, Clickable {
+export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
   children?: string
   active?: boolean
   to?: string
@@ -9,7 +9,7 @@ export interface BreadcrumbItemProps extends Accessibility, Clickable {
 /**
  * Breadcrumb Item Interface
  */
-export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, BreadcrumbItemProps {
+export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, BreadcrumbItemProps, Dev {
   href?: string
   className?: string
   routerLink?: React.ElementType

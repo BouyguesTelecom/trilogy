@@ -1,5 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 
 type RadioChangeEventHandler = (event: {
   radioChecked: boolean
@@ -18,7 +18,7 @@ type RadioClickEventHandler = (event: {
 /**
  * Radio Interface
  */
-export interface RadioProps extends Accessibility {
+export interface RadioProps extends Accessibility, Dev {
   children?: React.ReactNode
   checked?: boolean
   disabled?: boolean

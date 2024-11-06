@@ -1,4 +1,4 @@
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 import { IconName, IconNameValues } from '../icon'
 
 export interface ISelectOption {
@@ -19,7 +19,7 @@ export type SelectChangeEventHandler<T = SelectChangeEvent> = (event: T) => void
 export type SelectedValue = string | number | string[] | undefined
 export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
 
-export interface SelectProps<T = SelectChangeEvent> extends Accessibility {
+export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev {
   onChange?: SelectChangeEventHandler<T>
   onFocus?: (event: ParamEventSelectFocus) => void
   onBlur?: (event: unknown) => void

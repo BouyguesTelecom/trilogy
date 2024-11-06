@@ -1,5 +1,6 @@
 @use 'sass:math';
 @import "../utilities/spacing";
+
 :root{
   --padding-box : #{$spacing-5};
   @include mobile {

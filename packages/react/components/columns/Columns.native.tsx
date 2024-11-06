@@ -4,14 +4,14 @@ import { View } from "@/components/view"
 import { ColumnsProps } from "./ColumnsProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { ColumnsGapValue, GapSize } from "@/components/columns/ColumnsTypes"
+import { getAlignStyle } from "@/objects"
 
 /**
  * Columns Native Component
  * @param children {React.ReactNode}
  * @param centered {boolean} Center columns
  * @param verticalCentered {boolean} Vertical centered columns
- * @param marginSize {ColumnsSize} Removes margins between columns of the specified size
- * @param scrollable {boolean} Makes columns vertically scrollable. Note: Incompatible with 'marginSize' prop
+ * @param scrollable {boolean} Makes columns vertically scrollable.
  * @param gap {GapSize} Gap between columns
  */
 
@@ -21,8 +21,7 @@ const Columns = ({
                    children,
                    centered,
                    gap,
-                   nbCols,
-                   verticalCentered,
+                   verticalAlign,
                    fullBleed,
                    scrollable,
                    multiline,
@@ -57,7 +56,7 @@ const Columns = ({
       alignSelf: "center",
     },
     verticalAlign: {
-      alignItems: "center"
+      alignItems: getAlignStyle(verticalAlign)
     },
     multiline: {
       flexWrap: "wrap",
@@ -81,7 +80,7 @@ const Columns = ({
           styles.columns,
           multiline && styles.multiline,
           centered && styles.centered,
-          verticalCentered && styles.verticalAlign,
+          verticalAlign && styles.verticalAlign,
         ]}
               {...others}
               {...{ onLayout: onLayoutHandler }}
@@ -91,7 +90,7 @@ const Columns = ({
 
                 child && React.cloneElement(child, {
                   style: [child.props.style,
-                    { width: nbCols && (width / nbCols) - realGap || child.props.size && (width * child.props.size / 12) - realGap || 'auto' },
+                    { width: child.props.size && (width * child.props.size / 12) - realGap || 'auto' },
                     child.props.narrow && { flex: 'none', flexShrink: 1 },
                   ]
                 })

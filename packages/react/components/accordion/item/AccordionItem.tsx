@@ -73,7 +73,6 @@ const AccordionItem = ({
       ? children.map((child, index: number) => {
         return React.cloneElement(child as React.ReactElement, {
           key: `article-${index}`,
-          dataId: index === 0 ? `header-${id}` : `body-${id}`,
           disabled,
         })
       })
