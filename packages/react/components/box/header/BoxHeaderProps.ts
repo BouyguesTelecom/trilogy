@@ -8,4 +8,5 @@ export interface BoxHeaderProps extends Position, Accessibility {
   help?: string
   className?: string
   variant?: TrilogyColor | TrilogyColorValues
+  headerOffset?: boolean
 }
