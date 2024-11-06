@@ -1,6 +1,6 @@
 import { IconName } from '@/components/icon'
+import { Accessibility, Dev } from '@/objects'
 import { TagVariant, TagVariantValues } from './TagEnum'
-import { Accessibility } from '@/objects'
 
 type TagClickEventHandler = React.MouseEvent<Element> | unknown
 
@@ -11,7 +11,7 @@ export interface TagClickEvent {
 /**
  * Tag Interface
  */
-export interface TagProps extends Accessibility {
+export interface TagProps extends Accessibility, Dev {
   children?: React.ReactNode
   variant?: TagVariant | TagVariantValues
   inverted?: boolean

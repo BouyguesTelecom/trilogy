@@ -1,10 +1,10 @@
 /**
  * ListItem Interface
  */
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility, Dev } from '@/objects'
 import { ReactNode } from 'react'
 import { Animated } from 'react-native'
-import { Accessibility } from '@/objects'
-import { IconName, IconNameValues } from '@/components/icon'
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',
@@ -13,7 +13,7 @@ export enum ListIconStatus {
 
 export type ListIconStatusValues = `${ListIconStatus}`
 
-export interface ListItemProps extends Accessibility {
+export interface ListItemProps extends Accessibility, Dev {
   children?: ReactNode
   className?: string
   customIcon?: IconName | IconNameValues | ReactNode

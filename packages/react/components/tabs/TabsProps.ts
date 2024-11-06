@@ -1,11 +1,11 @@
+import { Accessibility, Clickable, Dev, TypographyAlign, TypographyAlignValues } from '@/objects'
 import { Centerable } from '@/objects/facets/Centerable'
 import { JustifiableProps } from '@/objects/facets/Justifiable'
-import { Accessibility, Clickable, TypographyAlign, TypographyAlignValues } from '@/objects'
 
 /**
  * Tabs Interface
  */
-export interface TabsProps extends Centerable, JustifiableProps, Clickable, Accessibility {
+export interface TabsProps extends Centerable, JustifiableProps, Clickable, Accessibility, Dev {
   children: React.ReactNode | string
   disabled?: boolean
   activeIndex?: number

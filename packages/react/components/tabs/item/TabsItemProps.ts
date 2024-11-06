@@ -1,10 +1,10 @@
-import { Accessibility, Clickable } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility, Clickable, Dev } from '@/objects'
 
 /**
  * Tabs Item Interface
  */
-export interface TabsItemProps extends Clickable, Accessibility {
+export interface TabsItemProps extends Clickable, Accessibility, Dev {
   children: React.ReactChild
   active?: boolean
   className?: string
