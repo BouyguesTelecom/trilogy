@@ -1,10 +1,10 @@
-import { Accessibility } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 import { Pager } from './PaginationEnum'
 
 /**
  * Pagination Interface
  */
-export interface PaginationProps extends Accessibility {
+export interface PaginationProps extends Accessibility, Dev {
   count: number
   defaultPage?: number
   pageSize?: number

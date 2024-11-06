@@ -28,7 +28,7 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
 /**
  * Alert Interface
  */
-export interface AlertProps extends StatusProps, Clickable, Accessibility {
+export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev {
   iconName?: IconName | IconNameValues
   title?: string | React.ReactNode
   description?: string | React.ReactNode

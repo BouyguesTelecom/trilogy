@@ -1,10 +1,10 @@
+import { Accessibility, Dev } from '@/objects'
 import {
   PopoverArrowPosition,
   PopoverArrowPositionValues,
   PopoverDirection,
   PopoverDirectionValues,
 } from './PopoverEnum'
-import { Accessibility } from '@/objects'
 
 /**
  * Popover Interface
@@ -20,6 +20,6 @@ export interface PopoverProps {
 /**
  * Popover Web Interface
  */
-export interface PopoverWebProps extends PopoverProps, Accessibility {
+export interface PopoverWebProps extends PopoverProps, Accessibility, Dev {
   className?: string
 }

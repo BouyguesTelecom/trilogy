@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Accessibility } from '@/objects/facets'
+import { Accessibility, Dev } from '@/objects/facets'
 import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
 
 import { FocusEventHandler, ReactNode } from 'react'
@@ -78,7 +78,7 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
 /**
  * Input Interface
  */
-export interface InputProps extends Accessibility {
+export interface InputProps extends Accessibility, Dev {
   type?: InputType | InputTypeValues
   label?: string
   sample?: string
