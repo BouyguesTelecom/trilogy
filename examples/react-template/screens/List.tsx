@@ -98,7 +98,7 @@ const Avatar = () => {
       src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
       width={40}
       height={40}
-      rounded
+      circled
     />
   )
 }

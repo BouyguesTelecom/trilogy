@@ -20,6 +20,7 @@ import { useTrilogyContext } from '@/context'
  */
 const SegmentControl = ({
   className,
+  id,
   onClick,
   disabled,
   marginless,
@@ -51,7 +52,7 @@ const SegmentControl = ({
   }, [activateIndex])
 
   return (
-    <div className={classes}>
+    <div id={id} className={classes}>
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,7 +1,7 @@
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { TypographyColor } from '@/objects'
+import { Accessibility, TypographyColor } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
@@ -10,7 +10,7 @@ import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './In
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends InputProps, InputWebEvents {}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -33,7 +33,6 @@ interface IconWrapper {
  * @param type {InputType} Type for input
  * @param defaultValue {string} Default Value for Input
  * @param hasIcon {boolean} Adding if you want icon - Default icon is defined by status
- * @param customIcon {IconName} Adding if you want custom icon
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param patternValidator {RegExp} regex validator
  * @param customValidator {Function} custom function validator
@@ -42,8 +41,6 @@ interface IconWrapper {
  * @param ref Pass a ref for input
  * @param onSubmit {Function} onSubmit Event
  * @param maxLength {number} Textarea max length
- * @param customIconLeft {IconName} Adding if you want custom icon left
- * @param customIconRight {IconName} Adding if you want custom icon right
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
 
@@ -54,7 +51,6 @@ interface IconWrapper {
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
  * @param onMouseLeave {Function} onMouseLeave Input Event
- * @param iconClassname {string} Additional icon classes
  * @param onKeyPress {Function} onKeyPress Input Event
  * @param onKeyUp {Function} onKeyUp Input Event
  * @param onIconClick {Function} onIconClick Input Event
@@ -62,7 +58,6 @@ interface IconWrapper {
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Textarea min length
  * @param accessibilityLabel {string} Accessibility label
- * @param testId {string} Test Id for Test Integration
  * @param required {boolean} Required input
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
@@ -73,6 +68,7 @@ const Input = (
     label,
     sample,
     className,
+    id,
     disabled,
     onChange,
     onKeyPress,
@@ -231,6 +227,7 @@ const Input = (
       )}
       <div className={controlClasses}>
         <input
+          id={id}
           required={required}
           role={'textbox'}
           {...others}

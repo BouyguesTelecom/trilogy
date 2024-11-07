@@ -1,8 +1,9 @@
-export interface AutoCompleteMenuProps {
+import { CommonProps } from '@/objects/facets/CommonProps'
+
+export interface AutoCompleteMenuProps extends CommonProps {
   children?: React.ReactNode
   suggestions?: string[]
   handleSelectItem?: (text: string) => void
-  className?: string
   absolute?: boolean
   testId?: string
   fullwidth?: boolean

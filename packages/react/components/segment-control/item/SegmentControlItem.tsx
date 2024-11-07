@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SegmentControlItemProps } from './SegmentControlItemProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
@@ -19,6 +19,7 @@ const SegmentControlItem = ({
   onClick,
   disabled,
   className,
+  id,
   children,
 }: SegmentControlItemProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
@@ -30,6 +31,7 @@ const SegmentControlItem = ({
 
   return (
     <button
+      id={id}
       disabled={disabled}
       className={hashClass(styled, clsx('segmented-control-item', className, { 'is-active': activeItem }))}
       onClick={(e: React.MouseEvent) => {

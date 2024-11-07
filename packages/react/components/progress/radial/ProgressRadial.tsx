@@ -6,7 +6,7 @@ import { hashClass } from '../../../helpers'
 import { useTrilogyContext } from '../../../context'
 import { Title, TitleLevels } from '../../title'
 import { Text, TextLevels } from '../../text'
-import { getColorStyle } from "@/objects/facets/Color"
+import { getColorStyle } from '@/objects/facets/Color'
 
 /**
  * Progress Radial component
@@ -14,14 +14,8 @@ import { getColorStyle } from "@/objects/facets/Color"
  * @param label {string} Custom label
  * @param description {string} Custom description
  * @param children {React.ReactNode}
- * @param secondPercent {number} Second progress percent
  * @param skeleton {boolean} Skeleton Progress Radial
  * - --------------- NATIVE PROPERTIES ----------------------------------
- * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
- * @param secondStatus {StatusState} Second Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
- * @param full {boolean} Full progressRadial
- * @param disk {boolean} Disk ProgressRadial
- * @param align {Alignable} Progress Radial Alignement
  * - --------------- WEB PROPERTIES -------------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param small {boolean} Display small progress radial
@@ -34,6 +28,7 @@ const ProgressRadial = ({
   description,
   skeleton,
   className,
+  id,
   small,
   ...others
 }: ProgressRadialProps): JSX.Element => {
@@ -98,7 +93,7 @@ const ProgressRadial = ({
   }, [firstProgressCurrentValue, secondProgressCurrentValue])
 
   return (
-    <div {...others} className={classes} ref={progressRadialRef}>
+    <div id={id} {...others} className={classes} ref={progressRadialRef}>
       <div className={classesContent}>
         {label && (
           <Title level={TitleLevels.TWO} marginless>

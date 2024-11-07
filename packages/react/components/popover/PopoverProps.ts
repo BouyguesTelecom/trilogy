@@ -5,6 +5,7 @@ import {
   PopoverDirection,
   PopoverDirectionValues,
 } from './PopoverEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Popover Interface
@@ -19,6 +20,4 @@ export interface PopoverProps {
 /**
  * Popover Web Interface
  */
-export interface PopoverWebProps extends PopoverProps, Accessibility, Dev {
-  className?: string
-}
+export interface PopoverWebProps extends PopoverProps, Accessibility, Dev, CommonProps {}

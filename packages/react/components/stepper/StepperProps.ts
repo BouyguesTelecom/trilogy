@@ -1,8 +1,9 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Stepper Interface
  */
-export interface StepperProps {
+export interface StepperProps extends CommonProps {
   children?: React.ReactNode
   centered?: boolean
-  className?: string
 }

@@ -1,5 +1,6 @@
 import { Accessibility, Dev } from '@/objects'
 import { IconName, IconNameValues } from '../icon'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export interface ISelectOption {
   value: string | undefined
@@ -19,7 +20,7 @@ export type SelectChangeEventHandler<T = SelectChangeEvent> = (event: T) => void
 export type SelectedValue = string | number | string[] | undefined
 export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
 
-export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev {
+export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, CommonProps {
   onChange?: SelectChangeEventHandler<T>
   onFocus?: (event: ParamEventSelectFocus) => void
   onBlur?: (event: unknown) => void
@@ -28,10 +29,8 @@ export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev {
   disabled?: boolean
   iconName?: IconName | IconNameValues
   selected?: SelectedValue
-  id?: string
   name?: string
   multiple?: boolean
-  className?: string
   nullable?: boolean
   placeholder?: string
   native?: boolean

@@ -14,12 +14,12 @@ import { has } from '@/services'
  */
 
 const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
-  const { className, children, testId, divider, ...others } = props
+  const { className, id, children, testId, divider, ...others } = props
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
 
   return (
-    <ul ref={ref} data-testid={testId} className={classes} {...others}>
+    <ul id={id} ref={ref} data-testid={testId} className={classes} {...others}>
       {children}
     </ul>
   )

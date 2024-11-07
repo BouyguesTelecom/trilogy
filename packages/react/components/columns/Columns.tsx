@@ -4,7 +4,7 @@ import { ColumnsProps } from './ColumnsProps'
 import { has, is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
-import { getAlignClassName, getJustifiedClassName, getJustifyClassName } from '@/objects'
+import { getAlignClassName, getJustifiedClassName } from '@/objects'
 
 /**
  * Columns Component
@@ -20,7 +20,7 @@ import { getAlignClassName, getJustifiedClassName, getJustifyClassName } from '@
  * @param mobile {boolean} Responsive mode
  */
 const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, multiline, scrollable, mobile, gap, fullBleed, marginSize, align, verticalAlign, ...others } =
+  const { className, id, multiline, scrollable, mobile, gap, fullBleed, marginSize, align, verticalAlign, ...others } =
     props
 
   const { styled } = useTrilogyContext()
@@ -42,7 +42,7 @@ const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTML
     ),
   )
 
-  return <div ref={ref} className={classes} {...others} />
+  return <div id={id} ref={ref} className={classes} {...others} />
 })
 
 export default Columns

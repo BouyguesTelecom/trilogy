@@ -1,6 +1,7 @@
 import type { Centerable } from '@/objects'
 import type { DividerProps } from '@/components/divider/DividerProps'
 import type { ButtonProps } from '@/components/button/ButtonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 type ButtonListChildrenTypes = React.ReactElement<ButtonProps | DividerProps> | undefined
 
@@ -14,7 +15,6 @@ export interface ButtonListProps {
 /**
  * Button List Web Interface
  */
-export interface ButtonListWebProps extends ButtonListProps, Centerable {
-  className?: string
+export interface ButtonListWebProps extends ButtonListProps, Centerable, CommonProps {
   vertical?: boolean
 }

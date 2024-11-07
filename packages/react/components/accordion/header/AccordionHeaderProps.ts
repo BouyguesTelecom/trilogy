@@ -1,7 +1,8 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * AccordionHeader Interface
  */
-export interface AccordionHeaderProps {
+export interface AccordionHeaderProps extends CommonProps {
   children?: React.ReactNode
-  className?: string
 }

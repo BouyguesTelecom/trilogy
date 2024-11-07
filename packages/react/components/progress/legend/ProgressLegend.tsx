@@ -16,15 +16,15 @@ import { Text } from '@/components/text'
  * @param minPercent {number} Default min percent is 100
  * @param maxPercent {number} Default max percent is 100
  */
-const ProgressLegend = React.forwardRef((props: ProgressLegendProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { start, center, end, className, ...others } = props
+const ProgressLegend = React.forwardRef((props: ProgressLegendProps) => {
+  const { start, center, end, className, id, ...others } = props
 
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('progress-legends', className))
 
   return (
-    <div className={classes}>
+    <div id={id} className={classes} {...others}>
       {start && (
         <div className='progress-legend-start'>
           <Text>{start}</Text>

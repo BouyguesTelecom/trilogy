@@ -5,14 +5,14 @@ import {
   IconName,
   Input,
   InputStatus,
-  InputTextContentType,
   InputType,
   Link,
   Section,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import React, { useEffect, useRef } from 'react'
+import * as React from 'react'
+import { useEffect, useRef } from 'react'
 
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
@@ -49,8 +49,7 @@ export const InputScreen = (): JSX.Element => {
         help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
-        hasIcon
-        customIconLeft='tri-search'
+        iconNameLeft='tri-search'
       />
 
       <Input
@@ -67,7 +66,6 @@ export const InputScreen = (): JSX.Element => {
         minLength={10}
         maxLength={12}
         onKeyPress={() => console.log('key')}
-        hasIcon
         defaultValue='Input, with placeholder (without padding top)'
         help='Do not display upper padding when there is no placeholder'
         type={InputType.TEXT}
@@ -77,7 +75,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hasIcon
         defaultValue='Input, without placeholder, without search'
         help='Do not display upper padding when there is no placeholder'
         type={InputType.TEXT}
@@ -87,36 +84,33 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hasIcon
         defaultValue='Input, with placeholder, with search'
         help='this is my help message'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('lol')
         }}
-        customIcon={IconName.ALERT}
+        iconNameRight={IconName.ALERT}
         placeholder='Placeholder with activated search'
       />
 
       <Input
-        hasIcon
         defaultValue='Input, with search & customIcon'
         help='CustomIcon takes precedence over the display of the search to avoid displaying 2 icons, one above the other.'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('test')
         }}
-        customIcon={IconName.ALERT}
+        iconNameRight={IconName.ALERT}
         placeholder='Placeholder with activated search'
       />
 
       <Input
-        hasIcon
         defaultValue='My default input value'
         help='this is my help message'
         type={InputType.TEXT}
         status={InputStatus.SUCCESS}
-        customIcon={IconName.ALERT}
+        iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
         }}
@@ -124,12 +118,11 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hasIcon
         defaultValue='My default input value'
         help='this is my help message'
         type={InputType.TEXT}
         patternValidator={new RegExp(/^hello/, 'i')}
-        customIcon={IconName.ALERT}
+        iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
         }}
@@ -137,12 +130,11 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hasIcon
         defaultValue='My default input value'
         help='this is my help message'
         type={InputType.TEXT}
         customValidator={(value) => (value === 'machin' ? InputStatus.SUCCESS : InputStatus.WARNING)}
-        customIcon={IconName.ALERT}
+        iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
         }}
@@ -150,12 +142,11 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        hasIcon
         forceControl
         defaultValue='12'
         value={valueTextInput}
         status={InputStatus.SUCCESS}
-        customIcon={IconName.BELL}
+        iconNameRight={IconName.BELL}
         onIconClick={() => {
           window.alert('lol')
         }}
@@ -170,12 +161,11 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         <Input
-          hasIcon
           forceControl
           defaultValue='Input Success'
           value={valueTextInput}
           status={InputStatus.SUCCESS}
-          customIcon={IconName.CHECK_CIRCLE}
+          iconNameRight={IconName.CHECK_CIRCLE}
           onIconClick={() => {
             window.alert('lol')
           }}
@@ -198,21 +188,18 @@ export const InputScreen = (): JSX.Element => {
           placeholder='This is an error message'
         />
 
-        <Input hasIcon help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder' />
+        <Input help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder' />
 
         <Input
-          hasIcon
           help='this is my help message'
           type={InputType.TEXT}
           placeholder='This is my placeholder'
-          customIconLeft={IconName.INFOS_CIRCLE}
+          iconNameLeft={IconName.INFOS_CIRCLE}
         />
 
         <Input
           type='password'
-          hasIcon
           securityGauge
-          help={<Link>1ère connexion / Mot de passe oublié ?</Link>}
           placeholder='this is my placeholder'
           minLength={8}
           maxLength={15}
@@ -231,7 +218,7 @@ export const InputScreen = (): JSX.Element => {
           help='this is my help message'
           type={InputType.TEXT}
           status={InputStatus.WARNING}
-          customIcon={IconName.SEARCH}
+          iconNameRight={IconName.SEARCH}
           placeholder='This is my placeholder'
         />
       </AutoLayout>

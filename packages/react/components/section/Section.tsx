@@ -24,6 +24,7 @@ import { useTrilogyContext } from '@/context'
 const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
     className,
+    id,
     skeleton,
     backgroundColor,
     backgroundSrc,
@@ -52,12 +53,13 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
       isLoading ? is('loading') : is('loaded'),
       fullwidth && is('fullwidth'),
       paddingless && is('paddingless'),
-      verticalPaddingless && is('vertical-paddingless')
+      verticalPaddingless && is('vertical-paddingless'),
     ),
   )
 
   return (
     <section
+      id={id}
       ref={ref}
       {...(backgroundSrc && {
         style: { backgroundImage: `url(${backgroundSrc})` },

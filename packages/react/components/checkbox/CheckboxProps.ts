@@ -1,4 +1,5 @@
 import { Accessibility } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
@@ -10,14 +11,12 @@ type CheckboxChangeEventHandler = (event: {
 /**
  * Checkbox Interface
  */
-export interface CheckboxProps extends Accessibility {
+export interface CheckboxProps extends Accessibility, CommonProps {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
-  id?: string
   label?: string
   onChange?: CheckboxChangeEventHandler
-  className?: string
   name?: string
   value?: string
 }

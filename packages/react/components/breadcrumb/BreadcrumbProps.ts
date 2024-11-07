@@ -1,4 +1,5 @@
 import { Accessibility, Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Breadcrumb Interface
@@ -10,6 +11,4 @@ export interface BreadcrumbProps extends Accessibility, Dev {
 /**
  * Breadcrumb Web Interface
  */
-export interface BreadcrumbWebProps extends BreadcrumbProps {
-  className?: string
-}
+export interface BreadcrumbWebProps extends BreadcrumbProps, CommonProps {}

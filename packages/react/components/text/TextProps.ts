@@ -5,6 +5,7 @@ import { TypographyTransform, TypographyTransformValues } from '@/objects/Typogr
 import { Accessibility, Dev, Invertable } from '@/objects/facets'
 import { Clickable } from '@/objects/facets/Clickable'
 import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -22,12 +23,11 @@ type Typo =
 /**
  * Text Interface
  */
-export interface TextProps extends Invertable, Accessibility, Clickable, Dev {
+export interface TextProps extends Invertable, Accessibility, Clickable, Dev, CommonProps {
   level?: TextLevels | TextLevelValues
   children?: React.ReactNode
   typo?: Typo | Array<string>
   markup?: TextMarkup | TextMarkupValues
-  className?: string
   href?: string
   title?: string
   style?: Styles

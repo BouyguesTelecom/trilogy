@@ -88,6 +88,7 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
  */
 const Otp = ({
   className,
+  id,
   value,
   length = 6,
   disabled,
@@ -156,6 +157,7 @@ const Otp = ({
         </Text>
       )}
       <div
+        id={id}
         className={classes}
         onClick={() => {
           if (!disabled) {

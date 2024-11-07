@@ -24,7 +24,6 @@ import { TypographyColor } from '@/objects'
  * @param rows {number} Textarea rows
  * @param iconName {IconName | IconNameValues} display Icon
  * @param statusIconName {IconName | IconNameValues} display status Icon
- * @param testId {string} Test Id for Test Integration
  * @param dynamicPlaceholder {boolean}
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
@@ -33,17 +32,10 @@ import { TypographyColor } from '@/objects'
  * @param minLength {number} Textarea min length
  * @param typo {TypographyColor | TypographyColorValues} change help typo
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
- * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
- * @param autoCorrect {boolean} Auto correct sentence
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
- * @param textContentType {InputTextContentType} Give the keyboard and the system information
- * @param keyboardType {InputKeyboardType} Keybaord type
- * @param value {string} Value for textarea
- * @param customHeight {number} custom textarea height
  */
 const Textarea = ({
   className,
+  id,
   sample,
   required,
   disabled,
@@ -80,9 +72,22 @@ const Textarea = ({
   const counterClasses = hashClass(styled, clsx('counter', maxLength))
 
   return (
-    <div className={wrapperClasses}>
-      {!dynamicPlaceholder && <label className='textarea-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
-      {!dynamicPlaceholder && label && sample && <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
+    <div id={id} className={wrapperClasses}>
+      {!dynamicPlaceholder && (
+        <label className='textarea-label'>
+          {label}{' '}
+          {label && required && (
+            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+              *
+            </Text>
+          )}
+        </label>
+      )}
+      {!dynamicPlaceholder && label && sample && (
+        <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+          {sample}
+        </Text>
+      )}
 
       <textarea
         minLength={minLength}

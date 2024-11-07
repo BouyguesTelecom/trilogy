@@ -1,5 +1,6 @@
 import { IconName, IconNameValues } from '@/components/icon'
 import { CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Columns Item Interface

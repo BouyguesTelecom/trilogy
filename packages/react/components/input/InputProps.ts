@@ -20,6 +20,7 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export interface InputChangeEventWeb {
   inputName: string
@@ -78,7 +79,7 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
 /**
  * Input Interface
  */
-export interface InputProps extends Accessibility, Dev {
+export interface InputProps extends Accessibility, Dev, CommonProps {
   type?: InputType | InputTypeValues
   label?: string
   sample?: string
@@ -95,7 +96,6 @@ export interface InputProps extends Accessibility, Dev {
   patternValidator?: RegExp
   help?: string
   name?: string
-  className?: string
   focused?: boolean
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues

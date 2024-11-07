@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { is, has } from '@/services'
+import { has, is } from '@/services'
 import { ProductTourWebProps } from './ProductTourProps'
 import { Icon, IconName, IconSize } from '../icon'
 import { hashClass } from '@/helpers'
@@ -21,6 +21,7 @@ import { useTrilogyContext } from '@/context'
 const ProductTour = ({
   children,
   className,
+  id,
   active,
   arrowDirection,
   arrowAlign,
@@ -42,7 +43,7 @@ const ProductTour = ({
   )
 
   return (
-    <div className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {arrowDirection && (
         <div className={hashClass(styled, clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />
       )}

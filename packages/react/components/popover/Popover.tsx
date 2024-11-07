@@ -18,6 +18,7 @@ import { useTrilogyContext } from '@/context/index'
  */
 const Popover = ({
   className,
+  id,
   direction,
   children,
   active,
@@ -38,7 +39,7 @@ const Popover = ({
   )
 
   return (
-    <div className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {children}
     </div>
   )

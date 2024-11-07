@@ -14,12 +14,12 @@ import { ListItemProps } from './ListItemProps'
  * @param customIcon {IconName | React.ReactNode } Icon name | children
  * @param status {ListIconStatus} Status success|error
  */
-const ListItem = ({ className, children, iconName, status, testId }: ListItemProps): JSX.Element => {
+const ListItem = ({ className, id, children, iconName, status, testId }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = clsx('list-item', className)
 
   return (
-    <li className={hashClass(styled, clsx(classes))} data-testid={testId}>
+    <li id={id} className={hashClass(styled, clsx(classes))} data-testid={testId}>
       {iconName && (
         <Icon
           className={status && clsx(is(getColorClassName(TrilogyColor[status])))}

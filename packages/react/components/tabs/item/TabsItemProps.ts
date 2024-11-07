@@ -1,14 +1,13 @@
 import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility, Clickable, Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Item Interface
  */
-export interface TabsItemProps extends Clickable, Accessibility, Dev {
+export interface TabsItemProps extends Clickable, Accessibility, Dev, CommonProps {
   children: React.ReactChild
   active?: boolean
-  className?: string
-  id?: string
   tabIndex?: number
   to?: string
   href?: string

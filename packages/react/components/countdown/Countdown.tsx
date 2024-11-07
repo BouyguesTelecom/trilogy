@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CountdownProps } from './CountdownProps'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import clsx from 'clsx'
@@ -28,19 +28,22 @@ const calculateTimer = (timeDifference: number) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param centered
  */
-const Countdown = ({ deadline, className, format, event, small, inverted, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({
+  deadline,
+  className,
+  id,
+  format,
+  event,
+  small,
+  inverted,
+  ...others
+}: CountdownProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-
   const [timeLeft] = useState(deadline)
-
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
-
   const initialTimer = calculateTimer(initialTimeDifference)
-
   const [timer, setTimer] = useState(initialTimer)
-
   const [init, setInit] = useState(false)
-
   const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
   const parsedFormat = format?.split('-')
 
@@ -123,7 +126,7 @@ const Countdown = ({ deadline, className, format, event, small, inverted, ...oth
   }, [timer, event, init])
 
   return (
-    <ul className={classes} {...others}>
+    <ul id={id} className={classes} {...others}>
       {(show[CountdownUnite.DAY] || timer.days != 0) && (
         <li className={hashClass(styled, clsx('count'))}>
           <span className={hashClass(styled, clsx('value'))}>{timer.days ? timer.days : 0}</span>j

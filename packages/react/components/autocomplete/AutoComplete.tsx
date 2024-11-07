@@ -65,6 +65,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
     getSuggestions,
     debounceSuggestionsTimeout,
     onFocus,
+    id,
     loading,
     ...others
   }: AutoCompletePropsWeb<T>,
@@ -175,6 +176,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
   return (
     <div className={hashClass(styled, clsx('control'))}>
       <Input
+        id={id}
         ref={ref}
         defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
@@ -204,11 +206,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
       {isAutocompleteMenuVisible && (
         <div className={autocompleteClasses}>
           {search.length > 0 && (
-            <AutoCompleteMenu
-              absolute={absoluteMenu}
-              fullwidth={fullwidthMenu}
-              className={classNameMenu}
-            >
+            <AutoCompleteMenu absolute={absoluteMenu} fullwidth={fullwidthMenu} className={classNameMenu}>
               {search.map((item, i) => (
                 <AutoCompleteItem<T>
                   active={activeItem === i}

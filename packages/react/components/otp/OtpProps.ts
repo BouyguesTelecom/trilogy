@@ -1,8 +1,9 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Otp Interface
  */
-export interface OtpProps {
-  className?: string
+export interface OtpProps extends CommonProps {
   value?: string
   length?: number
   disabled?: boolean

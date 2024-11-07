@@ -11,10 +11,10 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const CardContent = ({ children, className, ...others }: CardContentProps): JSX.Element => {
+const CardContent = ({ children, className, id, ...others }: CardContentProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   return (
-    <div className={hashClass(styled, clsx('card-content', className))} {...others}>
+    <div id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
       {children}
     </div>
   )

@@ -1,8 +1,8 @@
 import { TrilogyColor } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
-export interface ProgressRadialItemProps {
+export interface ProgressRadialItemProps extends CommonProps {
   children?: React.ReactNode
   percent: number
-  className?: string
   color: 'secondary' | 'warning' | 'empty' | 'tertiary' | TrilogyColor
 }

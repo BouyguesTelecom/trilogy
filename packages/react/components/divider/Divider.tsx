@@ -19,6 +19,7 @@ import { useTrilogyContext } from '@/context'
  */
 const Divider = ({
   className,
+  id,
   unboxed,
   content,
   marginless,
@@ -41,10 +42,10 @@ const Divider = ({
   )
   const contentClasses = hashClass(styled, clsx('divider-content'))
 
-  // si il y a du text et une icone , SEULEMENT le text compte
+  // s'il y a du text et une icone , SEULEMENT le text compte
   if (content && iconName) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div id={id} data-testid='separator' className={classes}>
         <p className={contentClasses}>{content}</p>
       </div>
     )
@@ -52,7 +53,7 @@ const Divider = ({
 
   if (content) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div id={id} data-testid='separator' className={classes}>
         <p className={contentClasses}>{content}</p>
       </div>
     )
@@ -61,7 +62,7 @@ const Divider = ({
   // si il y a seulement une icone
   if (iconName) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div id={id} data-testid='separator' className={classes}>
         <p className={contentClasses}>
           <Icon name={iconName} size={IconSize.MEDIUM} />
         </p>
@@ -70,7 +71,7 @@ const Divider = ({
   }
 
   // divider normal trilogy
-  return <div data-testid='separator' className={classes} {...others} />
+  return <div id={id} data-testid='separator' className={classes} {...others} />
 }
 
 export default Divider

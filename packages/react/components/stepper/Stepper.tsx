@@ -1,9 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { StepperProps } from "./StepperProps"
-import { has } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import clsx from 'clsx'
+import { StepperProps } from './StepperProps'
+import { has } from '@/services/classify'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Stepper Component
@@ -13,20 +13,10 @@ import { useTrilogyContext } from "@/context"
  * @param className Additionnal CSS Classes
  */
 const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    className,
-    centered,
-    children,
-    ...others
-  } = props
-
+  const { className, id, centered, children, ...others } = props
   const { styled } = useTrilogyContext()
-
-  const classes = hashClass(styled, clsx("stepper-wrapper", className))
-  const centerClasses = hashClass(
-    styled,
-    clsx("section", has("text-centered"), className)
-  )
+  const classes = hashClass(styled, clsx('stepper-wrapper', className))
+  const centerClasses = hashClass(styled, clsx('section', has('text-centered'), className))
   const [currentStep, setCurrentStep] = React.useState<number>(0)
 
   const nbChild = React.useMemo<number>(() => {
@@ -54,7 +44,7 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
 
   if (centered) {
     return (
-      <section ref={ref} className={centerClasses}>
+      <section id={id} ref={ref} className={centerClasses}>
         <div className={classes} {...others}>
           {children}
           <div className='step-count'>
@@ -66,13 +56,12 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
   }
 
   return (
-    <div ref={ref} className={classes} {...others}>
+    <div id={id} ref={ref} className={classes} {...others}>
       {children}
       <div className='step-count'>
         {currentStep}/{nbChild}
       </div>
     </div>
   )
-
 })
 export default Stepper

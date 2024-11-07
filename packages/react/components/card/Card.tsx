@@ -30,8 +30,20 @@ export const CardContext = createContext({ horizontal: false })
  * @param testId {string} Test Id for Test Integration
  */
 const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
-  const { className, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others } =
-    props
+  const {
+    className,
+    id,
+    flat,
+    horizontal,
+    floating,
+    skeleton,
+    onClick,
+    reversed,
+    href,
+    fullheight,
+    active,
+    ...others
+  } = props
 
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
@@ -62,6 +74,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
   if (href) {
     return (
       <a
+        id={id}
         href={href}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
@@ -77,6 +90,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
 
   return (
     <div
+      id={id}
       onClick={onClick && onClick}
       className={classes}
       style={onClick && { ...hoverStyle }}

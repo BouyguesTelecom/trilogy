@@ -14,7 +14,7 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * @param testId test id
  */
-const BoxContent = ({ children, className, backgroundColor, ...others }: BoxContentProps): JSX.Element => {
+const BoxContent = ({ children, className, id, backgroundColor, ...others }: BoxContentProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -22,7 +22,7 @@ const BoxContent = ({ children, className, backgroundColor, ...others }: BoxCont
     clsx('box-content', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
   )
   return (
-    <div className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {children}
     </div>
   )

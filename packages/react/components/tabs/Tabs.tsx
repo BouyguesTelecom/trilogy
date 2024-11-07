@@ -27,6 +27,7 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
   const {
     children,
     className,
+    id,
     onClick,
     activeIndex,
     disabled,
@@ -87,6 +88,7 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
 
   return (
     <div
+      id={id}
       ref={ref}
       className={hashClass(
         styled,

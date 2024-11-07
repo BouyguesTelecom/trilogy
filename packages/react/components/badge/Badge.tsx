@@ -1,10 +1,10 @@
-import * as React from "react"
-import { BadgeProps } from "./BadgeProps"
-import { Text, TextMarkup } from "@/components/text"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { is } from "@/services"
+import * as React from 'react'
+import { BadgeProps } from './BadgeProps'
+import { Text, TextMarkup } from '@/components/text'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { is } from '@/services'
 
 /**
  * Badge Component
@@ -21,6 +21,7 @@ import { is } from "@/services"
 const Badge = ({
   children,
   className,
+  id,
   textContent,
   content,
   inverted,
@@ -30,15 +31,12 @@ const Badge = ({
 }: BadgeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(textContent ? "badge-and-text" : "badge",
-      className)
-  )
+  const classes = hashClass(styled, clsx(textContent ? 'badge-and-text' : 'badge', className))
 
   if (textContent) {
     return (
       <div
+        id={id}
         onClick={(e) => {
           onClick?.(e)
           e.stopPropagation()
@@ -46,38 +44,23 @@ const Badge = ({
         className={classes}
         {...others}
       >
-        { !reversed  && (
-          <Text markup={TextMarkup.P}>{textContent}</Text>
-        )}
-        <span
-          className={hashClass(
-            styled,
-            clsx("badge",
-              inverted && is('inverted'))
-          )}
-        >
-          {content || children}
-        </span>
-        {reversed && (
-          <Text markup={TextMarkup.P}>{textContent}</Text>
-        )}
+        {!reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
+        <span className={hashClass(styled, clsx('badge', inverted && is('inverted')))}>{content || children}</span>
+        {reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
       </div>
     )
   }
 
   return (
     <div
+      id={id}
       onClick={(e) => {
         onClick?.(e)
         e.stopPropagation()
       }}
     >
       <Text
-        className={clsx(
-          textContent ? "badge-and-text" : "badge",
-          inverted && is('inverted'),
-          className
-        )}
+        className={clsx(textContent ? 'badge-and-text' : 'badge', inverted && is('inverted'), className)}
         markup={TextMarkup.SPAN}
         {...others}
       >

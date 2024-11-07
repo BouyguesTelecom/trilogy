@@ -1,3 +1,5 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Arrow direction
  */
@@ -61,6 +63,4 @@ export interface ProductTourProps {
 /**
  * Product Tour Web Interface
  */
-export interface ProductTourWebProps extends ProductTourProps {
-  className?: string
-}
+export interface ProductTourWebProps extends ProductTourProps, CommonProps {}

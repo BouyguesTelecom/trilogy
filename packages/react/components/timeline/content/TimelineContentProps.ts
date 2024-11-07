@@ -2,6 +2,7 @@
  * Timeline Content Interface
  */
 import { Clickable } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export interface TimelineContentProps extends Clickable {
   children?: React.ReactNode
@@ -14,6 +15,4 @@ export interface TimelineContentProps extends Clickable {
 /**
  * Timeline Content Web Interface
  */
-export interface TimelineContentWebProps extends TimelineContentProps, Clickable {
-  className?: string
-}
+export interface TimelineContentWebProps extends TimelineContentProps, Clickable, CommonProps {}
