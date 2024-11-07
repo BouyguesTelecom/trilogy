@@ -1,14 +1,3 @@
-import type {
-  Fullwidth,
-  Layout,
-  Paddingless,
-  Position,
-  VerticalPaddingless,
-  BackgroundProps,
-  StickyPositionValues,
-  StickyPosition,
-} from '@/objects'
-
 /**
  * Container Interface
  */

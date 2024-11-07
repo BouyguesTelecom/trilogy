@@ -1,17 +1,15 @@
-import React, { useContext } from "react"
-import { Platform, StyleSheet, TouchableOpacity, View } from "react-native"
-import { WithLocalSvg } from "react-native-svg/css"
-import ContentLoader, { Circle } from "react-content-loader/native"
-import { IconProps } from "./IconProps"
-import { IconSize } from "./IconEnum"
-import CircleIcon from "./circle/CircleIcon.native"
-import StatusIcon from "./status/StatusIcon.native"
-import TextIcon from "./text/TextIcon.native"
-import { getAlignStyle } from "@/objects/facets/Alignable"
-import { getColorStyle, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
-import { ComponentName } from "../enumsComponentsName"
-import { TrilogyThemeContext } from "@/context/providerTheme.native"
-import { StatesContext } from "@/context/providerStates"
+import React, { useContext } from 'react'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { WithLocalSvg } from 'react-native-svg/css'
+import ContentLoader, { Circle } from 'react-content-loader/native'
+import { IconProps } from './IconProps'
+import { IconSize } from './IconEnum'
+import { getAlignStyle } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { ComponentName } from '../enumsComponentsName'
+import { TrilogyThemeContext } from '@/context/providerTheme.native'
+import { StatesContext } from '@/context/providerStates'
+import Text from '@/components/text/Text.native'
 
 /**
  * Icon Component
@@ -21,13 +19,11 @@ import { StatesContext } from "@/context/providerStates"
  * @param status SUCCESS|ERROR|WARNING|PRIMARY|TERTIARY|WHITE|GREY If CircleIcon or not
  * @param circled true-false if CircleIcon
  * @param content If TextIcon use it for text
- * @param position UP|DOWN|LEFT|RIGHT
  * @param stacked {boolean} Stacked icon
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param color {IconColor} Custom Icon Color
  * @param statusPosition {IconStatusPosition} Position for icon with status (TOP|BOTTOM)
  * @param stretched {boolean} Stretched icon
- * @param style {Object} Additional styles
  * @param onClick {Function} onClick Event Icon
  * @param align { Alignable | AlignableValues} align content
  * @param skeleton {boolean} Icon Skeleton
@@ -37,8 +33,6 @@ const Icon = ({
   name,
   status,
   circled,
-  content,
-  position,
   stacked,
   badgeContent,
   statusPosition,
@@ -48,7 +42,6 @@ const Icon = ({
   onClick,
   align,
   skeleton,
-  style,
   testId,
   ...others
 }: IconProps): JSX.Element => {
@@ -57,6 +50,8 @@ const Icon = ({
   } = useContext(TrilogyThemeContext)
 
   const statesContext = useContext(StatesContext)
+  const content = ''
+  const style = {}
 
   const defaultSize =
     (size === IconSize.HUGE && 66) ||
@@ -93,48 +88,40 @@ const Icon = ({
       alignSelf: getAlignStyle(align),
     },
     iconCircled: {
-      alignSelf: "center",
-      justifyContent: "center",
-      alignItems: "center",
+      alignSelf: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     icon: {
-      transform:
-        Platform.OS === "ios"
-          ? (stretched && [{ skewX: "20deg" }]) || [{ skewX: "0deg" }]
-          : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
     },
     stretched: {
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignItems: 'center',
       width: circledWidth + 15,
       height: circledWidth,
       backgroundColor: iconColor,
       borderTopRightRadius: 10,
-      transform:
-        Platform.OS === "ios"
-          ? (stretched && [{ skewX: "-20deg" }]) || [{ skewX: "0deg" }]
-          : [],
+      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
     },
     skeleton: {
       width: circledWidth,
       height: circledWidth,
       borderRadius: iconSkeletonRadius,
       backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
     },
   })
 
   const IconSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
       <View style={{ opacity: 0 }} />
-      {Platform.OS === "android" && (
+      {Platform.OS === 'android' && (
         <View>
           {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50' />) ||
             (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33' />) ||
             (size === IconSize.MEDIUM && <Circle cx='23' cy='23' r='23' />) ||
-            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15' />) || (
-              <Circle cx='15' cy='15' r='15' />
-            )}
+            (size === IconSize.SMALL && <Circle cx='15' cy='15' r='15' />) || <Circle cx='15' cy='15' r='15' />}
         </View>
       )}
     </ContentLoader>
@@ -152,11 +139,7 @@ const Icon = ({
         <View style={styles.stretched} testID={`${testId}-stretched`}>
           <WithLocalSvg
             style={[styles.iconCircled, styles.icon]}
-            asset={
-              icons[
-                name.toString().replace("tri-picto-", "").replace("tri-", "")
-              ]
-            }
+            asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
             width={defaultSize}
             height={defaultSize}
             color={getColorStyle(TrilogyColor.BACKGROUND)}
@@ -166,53 +149,20 @@ const Icon = ({
     } /* status icon */ else if (status && !circled && !stretched) {
       // TODO: fix status icon
       iconView = (
-        <StatusIcon
-          name={name}
-          status={status}
-          statusPosition={statusPosition}
-          size={defaultSize}
-          stretched={stretched}
-          color={iconColor}
-          testId={`${testId}-status`}
-        />
+        <Text>FAUT CORRIGER ÇA (status icon)</Text>
       )
     } else if (circled) {
       iconView = (
-        <CircleIcon
-          name={name}
-          size={defaultSize}
-          color={iconColor}
-          content={content}
-          circledWidth={circledWidth}
-          position={position}
-          stacked={stacked}
-          backgroundColor={backgroundColor}
-          testId={`${testId}-circled`}
-        />
+        <Text>FAUT CORRIGER ÇA (circled icon)</Text>
       )
     } /* Text icon */ else if (content && !badgeContent) {
-      iconView = (
-        <TextIcon
-          name={name}
-          content={content}
-          size={defaultSize}
-          position={position}
-          stretched={stretched}
-          color={iconColor}
-          stacked={stacked}
-          testId={`${testId}-content`}
-        />
-      )
+      iconView = <Text>FAUT CORRIGER ÇA (icon + texte)</Text>
     } else {
       iconView = (
         <View {...others}>
           <WithLocalSvg
             style={[styles.icon, style]}
-            asset={
-              icons[
-                name.toString().replace("tri-picto-", "").replace("tri-", "")
-              ]
-            }
+            asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
             width={defaultSize}
             height={defaultSize}
             color={iconColor}
@@ -224,12 +174,7 @@ const Icon = ({
 
   return onClick ? (
     <View style={styles.rootView} testID={testId}>
-      <TouchableOpacity
-        style={{ width: "100%" }}
-        onPress={onClick}
-        activeOpacity={0.85}
-        testID={`${testId}-pressable`}
-      >
+      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85} testID={`${testId}-pressable`}>
         {iconView}
       </TouchableOpacity>
     </View>

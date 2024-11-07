@@ -9,7 +9,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 /**
  * Progress component
  * @param children {ReactNode} Use Children it only if stacked progress
- * @param percent {number} Progress percent
+ * @param value {number} Progress value
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param stacked {boolean} Stacked progress
  * @param uniqueLegend {stringabsolute} Unique legend
@@ -18,7 +18,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  */
 const Progress = ({
   children,
-  percent,
+  value,
   status,
   stacked,
   uniqueLegend,
@@ -30,13 +30,13 @@ const Progress = ({
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    typeof percent === "number" &&
+    typeof value === "number" &&
       Animated.timing(animation, {
-        toValue: percent,
+        toValue: value,
         duration: 1000,
         useNativeDriver: false,
       }).start()
-  }, [animation, percent])
+  }, [animation, value])
 
   const height = 6
   const width = animation.interpolate({
@@ -53,7 +53,7 @@ const Progress = ({
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 15,
     },
-    percent: {
+    value: {
       alignSelf: "flex-start",
       height: height,
       backgroundColor: getStatusStyle(status).color,
@@ -115,7 +115,7 @@ const Progress = ({
   return (
     <>
       <View style={styles.progress} {...others}>
-        <Animated.View style={[styles.percent, { width }]}>
+        <Animated.View style={[styles.value, { width }]}>
           {children}
         </Animated.View>
       </View>

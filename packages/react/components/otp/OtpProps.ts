@@ -3,15 +3,15 @@
  */
 export interface OtpProps {
   className?: string
-  code?: string
-  codeSize?: number
+  value?: string
+  length?: number
   disabled?: boolean
   error?: boolean
+  help?: string
   onCompleted?: (code?: string) => void
   onFocus?: (focused: boolean) => void
   onChange?: (code?: string) => void
   activated?: boolean
   label?: string
-  errorMessage?: React.ReactNode | string
   autoFocus?: boolean
 }

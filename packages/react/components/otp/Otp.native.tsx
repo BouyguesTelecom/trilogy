@@ -10,8 +10,8 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * OTP Code Component
- * @param code {string} Code Text Input
- * @param codeSize {number} Code Size Number
+ * @param value {string} Code Text Input
+ * @param length {number} Code Size Number
  * @param disabled {boolean} Disabled OTP Code Input
  * @param error {boolean} OTP Code Input has error | Display error icon
  * @param onCompleted {Function} Return code input string
@@ -19,11 +19,10 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param activated {boolean} Activated OTP
  * @param onChange {Function} onChange Input return current code
  * @param label {string} Label for OTP
- * @param errorMessage {string} error message to display
  */
 const Otp = ({
-  code,
-  codeSize = 6,
+  value,
+  length = 6,
   disabled,
   error,
   onCompleted,
@@ -33,9 +32,9 @@ const Otp = ({
   label,
   ...others
 }: OtpProps): JSX.Element => {
-  const [codeInput, setCodeInput] = useState<string>(code || "")
+  const [codeInput, setCodeInput] = useState<string>(value || "")
   // eslint-disable-next-line prefer-spread
-  const [codeDigitsArray] = useState([...Array(codeSize).keys()])
+  const [codeDigitsArray] = useState([...Array(length).keys()])
 
   const [focused, setFocused] = useState(false)
   const color =
@@ -47,15 +46,15 @@ const Otp = ({
 
   useEffect(() => {
     if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
-      setCodeInput(code || "")
+      setCodeInput(value || "")
     }
-  }, [code])
+  }, [value])
 
   useEffect(() => {
-    if (!disabled && codeInput && codeInput.length >= codeSize) {
+    if (!disabled && codeInput && codeInput.length >= length) {
       onCompleted?.(codeInput)
     }
-  }, [code, codeSize, codeInput])
+  }, [value, length, codeInput])
 
   const ref = useRef<TextInput>(null)
 
@@ -157,7 +156,6 @@ const Otp = ({
         )}
         {error && (
           <Icon
-            style={style.icon}
             name={IconName.EXCLAMATION_CIRCLE}
             color={IconColor.ERROR}
             size={IconSize.SMALL}
@@ -183,7 +181,7 @@ const Otp = ({
         keyboardType={"numeric"}
         returnKeyType={"send"}
         textContentType='oneTimeCode'
-        maxLength={codeSize}
+        maxLength={length}
         onFocus={() => {
           if (!disabled) {
             setFocused(true)

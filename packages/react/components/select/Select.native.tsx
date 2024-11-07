@@ -156,11 +156,10 @@ const Select = ({
         onClick={handleOpenCloseModal}
         disabled={disabled}
         placeholder={label}
-        hasIcon={!!iconName}
-        customIconLeft={iconName}
+        iconNameLeft={iconName}
+        iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
         value={selectedNames.join(', ')}
         defaultValue={selectedNames.join(', ')}
-        customIconRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
         {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
         {...others}
       />

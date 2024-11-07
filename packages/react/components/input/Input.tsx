@@ -91,11 +91,8 @@ const Input = (
     value,
     loading,
     focused,
-    hasIcon,
-    customIcon,
     status,
     help,
-    iconClassname,
     onStatusChange,
     customValidator,
     onSubmit,
@@ -103,8 +100,9 @@ const Input = (
     maxLength,
     accessibilityLabel,
     autoCompleteType,
-    customIconLeft,
-    customIconRight,
+    iconNameLeft,
+    iconNameRight,
+    textContentType,
     securityGauge,
     validationRules,
     required,
@@ -134,11 +132,14 @@ const Input = (
     styled,
     clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
   )
+
+  const hasIcon = iconNameLeft || iconNameRight
+
   const controlClasses = hashClass(
     styled,
     clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
-      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
-      ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
+      [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
+      ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
     }),
   )
 
@@ -297,19 +298,14 @@ const Input = (
           }}
         />
         {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
-        {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
-          <IconWrapper className={iconClassname} name={inputIcon.get(localStatus)} />
-        )}
-        {customIcon && !localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
-        {customIconLeft && !loading && (
-          <IconWrapper className={clsx(customIconLeft && 'icon-left', iconClassname)} name={customIconLeft} />
-        )}
-        {customIconRight && !loading && type !== 'password' && (
-          <IconWrapper className={clsx(customIconRight && 'icon-right', iconClassname)} name={customIconRight} />
+        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
+        {iconNameLeft && !loading && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
+        {iconNameRight && !loading && type !== 'password' && (
+          <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
         )}
         {!loading && type === 'password' && (
           <IconWrapper
-            className={clsx('icon-right', iconClassname)}
+            className={'icon-right'}
             name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
             onPress={() => {
               if (inputType === 'password') {
@@ -321,10 +317,6 @@ const Input = (
               }
             }}
           />
-        )}
-        {customIcon && localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
-        {type === InputType.SEARCH && !customIcon && localStatus === 'default' && !loading && (
-          <IconWrapper color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} closeIconSearch={true} />
         )}
         {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
       </div>

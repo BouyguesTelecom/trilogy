@@ -87,16 +87,13 @@ export interface InputProps extends Accessibility, Dev {
   value?: string
   disabled?: boolean
   loading?: boolean
-  hasIcon?: boolean
-  customIcon?: IconName | IconNameValues
-  customIconLeft?: IconName | IconNameValues
-  customIconRight?: IconName | IconNameValues
-  iconClassname?: string
+  iconNameLeft?: IconName | IconNameValues
+  iconNameRight?: IconName | IconNameValues
   status?: InputStatus | InputStatusValues
   onStatusChange?: (status: InputStatus | InputStatusValues) => void
   customValidator?: (value: string) => InputStatus | InputStatusValues
   patternValidator?: RegExp
-  help?: string | ReactNode
+  help?: string
   name?: string
   className?: string
   focused?: boolean

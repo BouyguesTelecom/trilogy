@@ -9,7 +9,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const PriceScreen = (): JSX.Element => {
@@ -20,12 +19,11 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.TWO} />
 
       <Price
-        accessibilityLabel='Price label'
         overline='A partir de'
-        strikedAmount={10.99}
+        oldAmount={10.99}
         level={1}
         amount={24.99}
-        showCents={false}
+        hideCents
         period={'mois'}
         tagAmount={10}
         tagSymbol={'€'}
@@ -33,10 +31,9 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         overline='A partir de'
-        strikedAmount={10.99}
+        oldAmount={10.99}
         level={2}
         amount={24.99}
-        showCents
         period={'mois'}
         tagAmount={10}
         tagSymbol={'€'}
@@ -44,108 +41,98 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price
         overline='A partir de'
-        strikedAmount={10.99}
+        oldAmount={10.99}
         level={3}
         amount={24.99}
-        showCents
         period={'mois'}
         tagAmount={10}
         tagSymbol={'€'}
       />
 
-      <Price overline='A partir de' strikedAmount={10.99} level={4} amount={24.99} showCents period={'mois'} />
+      <Price overline='A partir de' oldAmount={10.99} level={4} amount={24.99} period={'mois'} />
 
-      <Price overline='A partir de' strikedAmount={10.99} level={5} amount={24.99} showCents period={'mois'} />
+      <Price overline='A partir de' oldAmount={10.99} level={5} amount={24.99} period={'mois'} />
 
-      <Price overline='A partir de' strikedAmount={10.99} level={6} amount={24.99} showCents period={'mois'} />
+      <Price overline='A partir de' oldAmount={10.99} level={6} amount={24.99} period={'mois'} />
 
-      <Price overline='A partir de' strikedAmount={10.99} level={7} amount={24.99} showCents period={'mois'} />
+      <Price overline='A partir de' oldAmount={10.99} level={7} amount={24.99} period={'mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
-      <Price overline='A partir de' level={1} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={1} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={2} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={2} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={3} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={3} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={4} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={4} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={5} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={5} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={6} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={6} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={7} amount={24.99} showCents period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={7} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
 
       <Spacer size={SpacerSize.THREE} />
 
       <Title level={TitleLevels.THREE}>Simple</Title>
 
-      <Price level={2} amount={18.99} showCents />
+      <Price level={2} amount={18.99} />
 
-      <Price level={2} amount={18.99} showCents striked={true} />
+      <Price level={2} amount={18.99} />
 
       <Divider />
       <Title level={TitleLevels.THREE}>Inlined</Title>
 
-      <Price
-        level={7}
-        amount={1000}
-        mention='(1)'
-        period='months'
-        showCents
-        align={Alignable.ALIGNED_START}
-        suptitle={'From '}
-        inline
-      />
+      <Price level={7} amount={1000} mention='(1)' period='months' inline />
 
       <Divider />
       <Title level={TitleLevels.THREE}>Alignement</Title>
-      <Price level={1} amount={1000} mention='(1)' period='months' showCents align={Alignable.ALIGNED_START} />
+      <Price level={1} amount={1000} mention='(1)' period='months' />
 
-      <Price level={1} amount={1000} mention='(1)' period='months' showCents align={Alignable.ALIGNED_CENTER} />
+      <Price level={1} amount={1000} mention='(1)' period='months' />
 
-      <Price level={1} amount={1000} mention='(1)' period='months' showCents align={Alignable.ALIGNED_END} />
+      <Price level={1} amount={1000} mention='(1)' period='months' />
 
       <Divider />
 
       <Title level={TitleLevels.THREE}>Size</Title>
 
-      <Price level={PriceLevel.ONE} amount={100} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.ONE} amount={100} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.TWO} amount={24.99} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.TWO} amount={24.99} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.THREE} amount={24.99} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.THREE} amount={24.99} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.FOUR} amount={18.99} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.FOUR} amount={18.99} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.FIVE} amount={18.99} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.FIVE} amount={18.99} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.SIX} amount={18.1} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.SIX} amount={18.1} mention='(1)' period='months' />
 
-      <Price level={PriceLevel.SEVEN} amount={18.1} mention='(1)' period='months' showCents />
+      <Price level={PriceLevel.SEVEN} amount={18.1} mention='(1)' period='months' />
       <Divider />
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
       <Section backgroundColor={TrilogyColor.MAIN}>
-        <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' showCents />
+        <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' />
 
-        <Price striked inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' showCents />
+        <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' />
       </Section>
 
       <Divider />
@@ -154,7 +141,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Price level={PriceLevel.FOUR} amount={18} period='months' />
 
-      <Price level={PriceLevel.FOUR} amount={18} period='months' showCents />
+      <Price level={PriceLevel.FOUR} amount={18} period='months' />
     </Section>
   )
 }

@@ -24,7 +24,7 @@ import { debounce } from './utils'
  * @param disabled {boolean} Disabled input
  * @param onIconClick {Function} onIconClick Input Event
  * @param onItemSelected {Function} OnSelectedItemList event
- * @param customIcon {string} Additional icon classes
+ * @param iconName {IconName} Additional icon
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param getSuggestions {Function} getSuggestions event
  */
@@ -34,7 +34,7 @@ const AutoComplete = ({
   onChange,
   displayMenu,
   onItemSelected,
-  customIcon,
+  iconName,
   placeholder,
   matching = defaultMatching,
   getSuggestions,
@@ -121,9 +121,8 @@ const AutoComplete = ({
           testId={testId}
           placeholder={placeholder}
           type='text'
-          customIcon={customIcon}
+          iconNameLeft={iconName}
           value={valueInput}
-          hasIcon={Boolean(customIcon)}
           onChange={onTextChanged}
           onFocus={handleFocus}
           onBlur={onBlur}

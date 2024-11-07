@@ -34,7 +34,6 @@ const Checkbox = ({
   disabled,
   readonly,
   label,
-  testId,
 }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
@@ -134,7 +133,7 @@ const Checkbox = ({
 
   if (horizontalTile) {
     return (
-      <TouchableOpacity testID={testId} disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick()}>
+      <TouchableOpacity disabled={disabled} style={styles.horizontalTile} onPress={() => handleClick()}>
         <View style={{ flexDirection: 'row' }}>
           <View
             style={{
@@ -199,7 +198,6 @@ const Checkbox = ({
   if (tile) {
     return (
       <TouchableOpacity
-        testID={testId}
         disabled={disabled}
         style={horizontalTile ? styles.horizontalTile : styles.tile}
         onPress={() => handleClick()}
@@ -249,7 +247,7 @@ const Checkbox = ({
   }
 
   return (
-    <TouchableOpacity testID={testId} disabled={disabled} style={styles.container} onPress={() => handleClick()}>
+    <TouchableOpacity disabled={disabled} style={styles.container} onPress={() => handleClick()}>
       <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
         {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
       </TouchableOpacity>

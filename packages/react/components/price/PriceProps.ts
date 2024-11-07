@@ -1,6 +1,5 @@
 import { Accessibility, AlignableProps, Dev } from '@/objects'
 import { Invertable } from '@/objects/facets/Invertable'
-import { Styles } from '@/types'
 import { PriceLevel, PriceLevelValues } from './PriceEnum'
 
 /**
@@ -11,13 +10,12 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, D
   amount: number
   mention?: string
   period?: string
-  showCents?: boolean
+  hideCents?: boolean
   inline?: boolean
   level?: PriceLevel | PriceLevelValues
   className?: string
-  strikedAmount?: number
+  oldAmount?: number
   overline?: string
-  style?: Styles
   tagAmount?: number
   tagSymbol?: '€' | '%' | string
 }

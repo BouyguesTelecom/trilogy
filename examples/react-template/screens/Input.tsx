@@ -5,6 +5,7 @@ import {
   IconName,
   Input,
   InputStatus,
+  InputTextContentType,
   InputType,
   Link,
   Section,
@@ -40,8 +41,7 @@ export const InputScreen = (): JSX.Element => {
         help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
-        hasIcon
-        customIconLeft='tri-search'
+        iconNameLeft={IconName.ARROW_LEFT}
       />
 
       <Input

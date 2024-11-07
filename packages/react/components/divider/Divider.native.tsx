@@ -13,8 +13,6 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param marginless {boolean} delete margin
  * @param iconName {IconName} Custom icon for Divider
  * @param color {TrilogyColor} Border color of Divider
- * @param backgroundColor {TrilogyColor} Background color of Divider
- * @param textColor {TrilogyColor} Text color of Divider
  * @param others
  */
 const Divider = ({
@@ -22,9 +20,7 @@ const Divider = ({
   unboxed,
   marginless,
   iconName,
-  color,
-  backgroundColor,
-  textColor,
+  inverted,
   ...others
 }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
@@ -41,7 +37,7 @@ const Divider = ({
       alignSelf: ((unboxed || marginless) && "stretch") || "auto",
     },
     dividerContent: {
-      borderBottomColor: color ? getColorStyle(color) : dividerColor,
+      borderBottomColor: dividerColor,
       borderBottomWidth: 1,
       alignSelf: "center",
       justifyContent: "center",
@@ -57,17 +53,13 @@ const Divider = ({
     },
     content: {
       justifyContent: "center",
-      backgroundColor: backgroundColor
-        ? getColorStyle(backgroundColor)
-        : "transparent",
+      backgroundColor: "transparent",
       borderRadius: iconName ? 50 : 0,
       padding: iconName ? 6 : 0,
     },
     textContent: {
       textAlign: "center",
-      color: textColor
-        ? getColorStyle(textColor)
-        : getColorStyle(TrilogyColor.MAIN_FADE),
+      color: getColorStyle(TrilogyColor.MAIN_FADE),
     },
   })
 
@@ -75,7 +67,7 @@ const Divider = ({
     if (content) return <Text style={styles.textContent}>{content}</Text>
     if (iconName && !content)
       return (
-        <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId='icon-id' />
+        <Icon name={iconName} color={IconColor.MAIN} testId='icon-id' />
       )
   }, [content, iconName])
 

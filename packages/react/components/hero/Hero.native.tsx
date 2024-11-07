@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import { ImageBackground, StyleSheet, TouchableOpacity, View, } from "react-native"
-import { HeroProps } from "./HeroProps"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { Box } from "../box"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StatesContext } from "@/context/providerStates"
+import React, { useState } from 'react'
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { HeroProps } from './HeroProps'
+import { getColorStyle, TrilogyColor } from '@/objects'
+import { Box } from '../box'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { StatesContext } from '@/context/providerStates'
 
 /**
  * Hero Component
@@ -22,7 +22,6 @@ const Hero = ({
   backgroundSrc,
   onClick,
   overlap,
-  backgroundHeight,
   inverted,
   backgroundColor,
   ...others
@@ -30,54 +29,41 @@ const Hero = ({
   const [overlapHeight, setOverlapHeight] = useState<number>(0)
   const [secondOverlapHeight, setSecondOverlapHeight] = useState<number>(0)
 
-  const isSecondOverlap =
-    overlap && Array.isArray(overlap) ? overlap?.length > 1 : false
+  const isSecondOverlap = overlap && Array.isArray(overlap) ? overlap?.length > 1 : false
   const isSecondOverlapNotEmpty = isSecondOverlap && secondOverlapHeight > 0
-
-  const overlapMargin = backgroundHeight
-    ? overlapHeight - backgroundHeight / 2
-    : overlapHeight - 60
 
   const styles = StyleSheet.create({
     hero: {
-      width: "100%",
+      width: '100%',
       minHeight: 100,
       maxHeight: 300,
-      height: backgroundHeight ? backgroundHeight : "auto",
+      height: 'auto',
     },
     content: {
       paddingLeft: 15,
     },
     background: {
-      backgroundColor: backgroundColor
-        ? getColorStyle(backgroundColor)
-        : getColorStyle(TrilogyColor.BACKGROUND),
+      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : getColorStyle(TrilogyColor.BACKGROUND),
     },
     overlap: {
-      position: "absolute",
-      top: isSecondOverlapNotEmpty
-        ? -40
-        : backgroundHeight
-        ? backgroundHeight * (-1 / 2)
-        : -60,
+      position: 'absolute',
+      top: isSecondOverlapNotEmpty ? -40 : -60,
     },
     secondOverlap: {
-      position: "absolute",
-      alignSelf: "center",
+      position: 'absolute',
+      alignSelf: 'center',
       top: secondOverlapHeight * (-1 / 2) - 40,
-      width: "100%",
+      width: '100%',
     },
     subOverlap: {
-      height: isSecondOverlapNotEmpty ? overlapHeight - 40 : overlapMargin,
+      height: isSecondOverlapNotEmpty ? overlapHeight - 40 : 'auto',
     },
   })
   let heroView: JSX.Element
 
   if (backgroundColor) {
     heroView = (
-      <StatesContext.Provider
-        value={{ inverted: !!inverted, active: false, flat: false }}
-      >
+      <StatesContext.Provider value={{ inverted: !!inverted, active: false, flat: false }}>
         <View style={[styles.background, styles.hero]} testID='background-id'>
           <View style={styles.content}>{children}</View>
         </View>
@@ -86,15 +72,13 @@ const Hero = ({
   } else {
     heroView = (
       <ImageBackground
-        source={
-          typeof backgroundSrc === "number"
-            ? backgroundSrc
-            : { uri: backgroundSrc }
-        }
+        source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
         style={styles.hero}
         {...others}
       >
-        <View style={styles.content} testID='no-background-id'>{children}</View>
+        <View style={styles.content} testID='no-background-id'>
+          {children}
+        </View>
       </ImageBackground>
     )
   }
@@ -113,7 +97,7 @@ const Hero = ({
         >
           <Box backgroundColor={TrilogyColor.NEUTRAL_FADE}>
             <View style={{ marginBottom: secondOverlapHeight / 2 }} />
-            {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
+            {overlap && typeof overlap !== 'boolean' ? overlap[0] : null}
           </Box>
         </View>
         <View
@@ -123,7 +107,7 @@ const Hero = ({
             setSecondOverlapHeight(height)
           }}
         >
-          {overlap && typeof overlap !== "boolean" ? overlap[1] : null}
+          {overlap && typeof overlap !== 'boolean' ? overlap[1] : null}
         </View>
       </View>
     )
@@ -137,7 +121,7 @@ const Hero = ({
             setOverlapHeight(height)
           }}
         >
-          {overlap && typeof overlap !== "boolean" ? overlap[0] : null}
+          {overlap && typeof overlap !== 'boolean' ? overlap[0] : null}
         </View>
       </View>
     )
@@ -150,7 +134,7 @@ const Hero = ({
       </TouchableOpacity>
     </View>
   ) : (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: '100%' }}>
       {heroView}
       {overlapView}
     </View>

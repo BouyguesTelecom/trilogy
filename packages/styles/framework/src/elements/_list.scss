@@ -1,53 +1,62 @@
 // Bullet list classiques
 ul.list,
 ol.list {
-  list-style-type: none;
+  list-style: disc inside;
+  display: grid;
+  row-gap: $spacing-3;
 
-  li {
-    padding: $spacing-4;
-    position: relative;
-
-    .list-item_content {
+  li.list-item {
+    &:has(.icon) {
+      list-style: none;
       display: flex;
-      align-items: center;
+    }
+
+    .icon {
+      margin-right: $spacing-2;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .list-item-content {
+      display: inline-grid;
+
       &_puce {
         margin-right: $spacing-4;
       }
     }
 
-
     &.has-action {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      @include hover();
 
       .list-item_action {
-        & >:first-child {
-          margin: 0px !important;
+        & > :first-child {
+          margin: 0 !important;
           cursor: pointer;
         }
 
-        .radio label.radio-label:empty, 
+        .radio label.radio-label:empty,
         .checkbox label.checkbox-label:empty {
-          padding: $spacing-1 $spacing-1 $spacing-1 calc($spacing-1 + 10px);        
+          padding: $spacing-1 $spacing-1 $spacing-1 calc($spacing-1 + 10px);
         }
-
-      } 
-
+      }
     }
 
     div b {
-      margin-bottom: $spacing-2 ;
+      margin-bottom: $spacing-2;
     }
-
-    .divider {
-      position: absolute;
-      bottom: calc(-1 * $spacing-4);
-      width: 100%;
-    }
-
   }
-  
-}
 
+  &.has-divider {
+    li {
+      border-bottom: var(--border);
+      padding-bottom: $spacing-3;
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+}

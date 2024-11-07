@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ColumnsItemProps } from './ColumnsItemProps'
 import { ColumnsContext } from '@/components/columns/Columns.native'
-import { getAlignStyle } from '@/objects'
+import { getAlignStyle, getJustifiedClassName, getJustifyStyle } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -11,13 +11,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param mobileSize {ColumnsSize} if size is missing.
  * @param children {React.ReactNode}
  * @param verticalCentered {boolean} Vertical center Column item
- * @param centered {boolean} center Column item
  * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = ({ children, size, mobileSize, align, ...others }: ColumnsItemProps): JSX.Element => {
+const ColumnsItem = ({
+  children,
+  size,
+  mobileSize,
+  align,
+  verticalAlign,
+  ...others
+}: ColumnsItemProps): JSX.Element => {
   const columnsContextValues = useContext(ColumnsContext)
-  const centered = null
-  const verticalCentered = null
 
   const realSize = size || mobileSize
 
@@ -25,11 +29,14 @@ const ColumnsItem = ({ children, size, mobileSize, align, ...others }: ColumnsIt
     columnsItem: {
       height: columnsContextValues.scrollable ? '100%' : undefined,
       flex: !realSize ? 1 : realSize,
-      justifyContent: verticalCentered ? 'center' : 'flex-start',
-      alignItems: centered ? 'center' : align ? getAlignStyle(align) : 'baseline',
-      flexBasis: `${(realSize ? realSize / 12 : 12)  * 100}%`,
+      justifyContent: verticalAlign ? getJustifyStyle(getJustifiedClassName(verticalAlign)) : 'flex-start',
+      alignItems: align ? getAlignStyle(align) : 'baseline',
+      flexBasis: `${(realSize ? realSize / 12 : 12) * 100}%`,
       flexGrow: 0,
-      maxWidth: `${(realSize ? realSize : 12) / 12 * 100}%`
+      maxWidth: `${((realSize ? realSize : 12) / 12) * 100}%`,
+      borderStyle: 'solid',
+      borderColor: 'red',
+      borderWidth: 1,
     },
   })
 

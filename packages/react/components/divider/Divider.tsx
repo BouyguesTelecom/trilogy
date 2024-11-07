@@ -1,11 +1,10 @@
-import * as React from "react"
-import { DividerProps } from "./DividerProps"
-import { has, is } from "@/services/classify"
-import { Icon, IconSize } from "../icon"
-import { getColorClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import { DividerProps } from './DividerProps'
+import { is } from '@/services/classify'
+import { Icon, IconSize } from '../icon'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Divider Component
@@ -16,8 +15,6 @@ import { useTrilogyContext } from "@/context"
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  * @param iconName {IconName} Custom icon for Divider
  * @param color {TrilogyColor} Border color of Divider
- * @param backgroundColor {TrilogyColor} Background color of Divider
- * @param textColor {TrilogyColor} Text color of Divider
  * @param others
  */
 const Divider = ({
@@ -26,9 +23,7 @@ const Divider = ({
   content,
   marginless,
   iconName,
-  color,
-  backgroundColor,
-  textColor,
+  inverted,
   ...others
 }: DividerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -36,22 +31,15 @@ const Divider = ({
   const classes = hashClass(
     styled,
     clsx(
-      "divider",
-      unboxed && is("unboxed"),
-      marginless && is("marginless"),
+      'divider',
+      unboxed && is('unboxed'),
+      marginless && is('marginless'),
       className,
-      color && has(`background-${getColorClassName(color)}`),
-      iconName && "has-icon"
-    )
+      inverted && is('inverted'),
+      iconName && 'has-icon',
+    ),
   )
-  const contentClasses = hashClass(
-    styled,
-    clsx(
-      "divider-content",
-      textColor && has(`text-${getColorClassName(textColor)}`),
-      backgroundColor && has(`background-${getColorClassName(backgroundColor)}`)
-    )
-  )
+  const contentClasses = hashClass(styled, clsx('divider-content'))
 
   // si il y a du text et une icone , SEULEMENT le text compte
   if (content && iconName) {
@@ -75,10 +63,7 @@ const Divider = ({
     return (
       <div data-testid='separator' className={classes}>
         <p className={contentClasses}>
-          <Icon
-            name={iconName}
-            size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM}
-          />
+          <Icon name={iconName} size={IconSize.MEDIUM} />
         </p>
       </div>
     )

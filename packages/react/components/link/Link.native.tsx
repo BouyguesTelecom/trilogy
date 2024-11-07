@@ -1,12 +1,12 @@
-import * as React from "react"
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View, } from "react-native"
-import { LinkProps } from "./LinkProps"
-import { TypographyAlign } from "@/objects"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { TextLevels } from "@/components/text"
-import { Icon } from "@/components/icon"
-import { Spacer, SpacerSize } from "@/components/spacer"
-import { ComponentName } from "@/components/enumsComponentsName"
+import * as React from 'react'
+import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { LinkProps } from './LinkProps'
+import { TypographyAlign } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TextLevels } from '@/components/text'
+import { Icon } from '@/components/icon'
+import { Spacer, SpacerSize } from '@/components/spacer'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Link Component
@@ -26,16 +26,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const Link = ({
   children,
   to,
-  title,
-  typo,
   onClick,
   testId,
   accessibilityLabel,
   inline,
-  level,
   iconName,
   inverted,
-  style,
   ...others
 }: LinkProps): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
@@ -60,40 +56,7 @@ const Link = ({
 
   const styles = StyleSheet.create({
     linkAlignement: {
-      alignSelf:
-        (typo &&
-          !Array.isArray(typo) &&
-          typo === TypographyAlign.TEXT_CENTERED &&
-          "center") ||
-        (typo &&
-          Array.isArray(typo) &&
-          typo.includes(TypographyAlign.TEXT_CENTERED) &&
-          "center") ||
-        (typo &&
-          !Array.isArray(typo) &&
-          typo === TypographyAlign.TEXT_LEFT &&
-          "flex-start") ||
-        (typo &&
-          Array.isArray(typo) &&
-          typo.includes(TypographyAlign.TEXT_LEFT) &&
-          "flex-start") ||
-        (typo &&
-          !Array.isArray(typo) &&
-          typo === TypographyAlign.TEXT_RIGHT &&
-          "flex-end") ||
-        (typo &&
-          Array.isArray(typo) &&
-          typo.includes(TypographyAlign.TEXT_RIGHT) &&
-          "flex-end") ||
-        (typo &&
-          !Array.isArray(typo) &&
-          typo === TypographyAlign.TEXT_JUSTIFIED &&
-          "auto") ||
-        (typo &&
-          Array.isArray(typo) &&
-          typo.includes(TypographyAlign.TEXT_JUSTIFIED) &&
-          "auto") ||
-        "baseline",
+      alignSelf: 'baseline'
     },
     container: {
       padding: inline ? 4 : 8,
@@ -107,28 +70,24 @@ const Link = ({
       paddingRight: inline ? 2 : 0,
     },
     link: {
-      color:
-        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
-        getColorStyle(TrilogyColor.MAIN),
-      fontSize: inline && level ? linkLevels(level) : 14,
-      lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      textDecorationStyle: "solid",
-      textDecorationLine: "underline",
+      color: (inverted && getColorStyle(TrilogyColor.BACKGROUND)) || getColorStyle(TrilogyColor.MAIN),
+      fontSize: 14,
+      lineHeight: 14,
+      textDecorationStyle: 'solid',
+      textDecorationLine: 'underline',
     },
     androidLink: {
-      color:
-        (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
-        getColorStyle(TrilogyColor.MAIN),
-      fontSize: inline && level ? linkLevels(level) : 14,
-      lineHeight: inline && level ? linkLevels(level) * 1.5 : 14,
-      height: inline && level ? getHeightLinkAndroid(level) : "auto",
-      textDecorationStyle: "solid",
-      textDecorationLine: "underline",
+      color: (inverted && getColorStyle(TrilogyColor.BACKGROUND)) || getColorStyle(TrilogyColor.MAIN),
+      fontSize: 14,
+      lineHeight: 14,
+      height: 'auto',
+      textDecorationStyle: 'solid',
+      textDecorationLine: 'underline',
     },
     iconView: {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "flex-end",
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-end',
     },
     icon: {
       paddingLeft: 4,
@@ -136,21 +95,17 @@ const Link = ({
     },
   })
 
-  const linkTestId = testId
-    ? testId
-    : typeof children === "string"
-    ? children
-    : "NotSpecified"
+  const linkTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === "string"
+    : typeof children === 'string'
     ? children
-    : "NotSpecified"
+    : 'NotSpecified'
 
   return (
     <View
       style={
-        Platform.OS === "android"
+        Platform.OS === 'android'
           ? [styles.linkAlignement, styles.androidContainer]
           : [styles.linkAlignement, styles.container]
       }
@@ -158,12 +113,12 @@ const Link = ({
       accessibilityLabel={linkAccessibilityLabel}
       testID={linkTestId}
     >
-      {children && typeof children.valueOf() === "string" ? (
+      {children && typeof children.valueOf() === 'string' ? (
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={(e) => {
             if (to) {
-              Linking.openURL(to || "")
+              Linking.openURL(to || '')
             }
             if (onClick) {
               onClick(e)
@@ -172,27 +127,16 @@ const Link = ({
         >
           {iconName ? (
             <View style={styles.iconView}>
-              <Text
-                accessibilityLabel={title || ""}
-                style={[styles.link, style]}
-                {...others}
-              >
+              <Text accessibilityLabel={accessibilityLabel} style={[styles.link]} {...others}>
                 {children}
               </Text>
               <Spacer size={SpacerSize.ONE} horizontal />
-              <Icon
-                color={TrilogyColor.MAIN}
-                name={iconName}
-                style={styles.icon}
-                size='small'
-              />
+              <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
             </View>
           ) : (
             <Text
-              accessibilityLabel={title || ""}
-              style={
-                Platform.OS === "android" ? [styles.androidLink, style] : [styles.link, style]
-              }
+              accessibilityLabel={accessibilityLabel}
+              style={Platform.OS === 'android' ? [styles.androidLink] : [styles.link]}
               {...others}
             >
               {children}
@@ -204,7 +148,7 @@ const Link = ({
           activeOpacity={0.8}
           onPress={(e) => {
             if (to) {
-              Linking.openURL(to || "")
+              Linking.openURL(to || '')
             }
             if (onClick) {
               onClick(e)
