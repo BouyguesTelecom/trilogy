@@ -29,6 +29,7 @@ const Box = ({
   inverted,
   children,
   className,
+  id,
   onClick,
   skeleton,
   href,
@@ -69,6 +70,7 @@ const Box = ({
   if (href) {
     return (
       <a
+        id={id}
         href={href}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
@@ -88,6 +90,7 @@ const Box = ({
 
   return (
     <div
+      id={id}
       style={onClick && { ...hoverStyle }}
       onClick={(e) => {
         // eslint-disable-next-line no-unused-expressions

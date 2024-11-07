@@ -1,9 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TableProps } from "./TableProps"
-import { is } from "@/services/classify"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { useTrilogyContext } from "@/context/index"
+import * as React from 'react'
+import clsx from 'clsx'
+import { TableProps } from './TableProps'
+import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { useTrilogyContext } from '@/context/index'
 
 /**
  * Table Component
@@ -18,6 +18,7 @@ import { useTrilogyContext } from "@/context/index"
  */
 const Table = ({
   className,
+  id,
   fullwidth,
   bordered,
   comparative,
@@ -40,7 +41,7 @@ const Table = ({
     ),
   )
 
-  return <table className={classes} {...others} />
+  return <table id={id} className={classes} {...others} />
 }
 
 export default Table

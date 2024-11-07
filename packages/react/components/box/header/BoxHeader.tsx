@@ -16,7 +16,7 @@ import { getAlignClassName, getBackgroundClassName } from '@/objects'
  * @param className {string} Additionnal CSS Classes
  */
 
-const BoxHeader = ({ children, className, align, variant, ...others }: BoxHeaderProps): JSX.Element => {
+const BoxHeader = ({ children, className, id, align, variant, ...others }: BoxHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
@@ -32,7 +32,7 @@ const BoxHeader = ({ children, className, align, variant, ...others }: BoxHeader
   )
 
   return (
-    <div className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {children && typeof children.valueOf() === 'string' ? <p>{children}</p> : children}
     </div>
   )

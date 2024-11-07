@@ -1,8 +1,9 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Rows Interface
  */
-export interface RowsProps {
+export interface RowsProps extends CommonProps {
   children?: React.ReactNode
-  className?: string
   gapless?: boolean
 }

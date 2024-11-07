@@ -1,3 +1,5 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Timeline Item Interface
  */
@@ -12,8 +14,7 @@ export interface TimelineItemProps {
 /**
  * Timeline Item Web Interface
  */
-export interface TimelineItemWebProps extends TimelineItemProps {
-  className?: string
+export interface TimelineItemWebProps extends TimelineItemProps, CommonProps {
   done?: boolean
   active?: boolean
   undone?: boolean

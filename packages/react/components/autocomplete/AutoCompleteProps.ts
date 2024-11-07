@@ -1,11 +1,12 @@
 import { InputChangeEventWeb, InputChangeEventNative, InputClickEvent, InputProps } from '@/components/input/InputProps'
 import { FocusEventHandler } from 'react'
 import { IconName, IconNameValues } from '@/components/icon'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * AutoComplete Interface
  */
-export interface AutoCompletePropsWeb<T = string> extends InputProps {
+export interface AutoCompletePropsWeb<T = string> extends InputProps, CommonProps {
   children?: (item: T) => React.ReactNode
   defaultValue?: string
   value?: string

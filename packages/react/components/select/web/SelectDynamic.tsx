@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { Input } from '@/components/input'
-import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
+import { SelectedValue, SelectProps } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers'
 import { SelectOption } from '../'
@@ -51,9 +51,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 

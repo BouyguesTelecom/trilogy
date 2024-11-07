@@ -1,6 +1,5 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { Text } from '@/components/text'
 import { LinkProps } from './LinkProps'
 import { has, is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
@@ -29,6 +28,7 @@ import { useTrilogyContext } from '@/context'
 const Link = ({
   children,
   className,
+  id,
   to,
   href,
   onClick,
@@ -49,6 +49,7 @@ const Link = ({
     const RouterLinkTrilogy = (): JSX.Element => {
       return (
         <RouterLink
+          id={id}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
           className={hashClass(styled, clsx(classes))}
@@ -69,6 +70,7 @@ const Link = ({
   const LinkTrilogy = (): JSX.Element => {
     return (
       <a
+        id={id}
         aria-label={accessibilityLabel}
         onClick={onClick && onClick}
         className={classes}

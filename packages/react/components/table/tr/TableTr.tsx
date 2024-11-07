@@ -20,6 +20,7 @@ import { getColorClassName } from "@/objects/facets/Color"
  */
 const TableTr = ({
   className,
+  id,
   expandable,
   expanded,
   expansion,
@@ -39,7 +40,7 @@ const TableTr = ({
     )
   )
 
-  return <tr className={classes} {...others} />
+  return <tr id={id} className={classes} {...others} />
 }
 
 export default TableTr

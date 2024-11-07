@@ -1,10 +1,11 @@
 import { AlignableProps } from '@/objects'
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Columns Item Interface
  */
-export interface ColumnsItemProps extends AlignableProps {
+export interface ColumnsItemProps extends AlignableProps, CommonProps {
   children?: React.ReactNode
   size?: ColumnsSize
   mobileSize?: ColumnsSize
@@ -21,5 +22,4 @@ export interface ColumnsItemProps extends AlignableProps {
   widescreenOffset?: ColumnsSize
   fullhdOffset?: ColumnsSize
   narrow?: boolean
-  className?: string
 }

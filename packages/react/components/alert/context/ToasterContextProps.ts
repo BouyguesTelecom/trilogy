@@ -13,6 +13,7 @@ import { ToasterAlertPosition } from '@/components/alert/AlertProps'
  */
 export interface ToastProps extends StatusProps, Accessibility {
   title: string
+  id?: string
   description?: string
   iconName?: IconName | IconNameValues
   onClick?: () => void

@@ -18,6 +18,7 @@ import {
 } from '@/components/input/InputEnum'
 import { Accessibility, Dev, TypographyColor, TypographyColorValues } from '@/objects'
 import { TextInput } from 'react-native'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export interface TextareaChangeEvent {
   textareaName: string
@@ -62,4 +63,4 @@ export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInp
 /**
  * Textarea Interface
  */
-export type TextareaProps = TextareaPropsWeb & Referenceable<HTMLTextAreaElement>
+export type TextareaProps = TextareaPropsWeb & Referenceable<HTMLTextAreaElement> & CommonProps

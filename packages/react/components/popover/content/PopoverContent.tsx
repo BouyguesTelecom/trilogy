@@ -10,12 +10,12 @@ import { PopoverContentProps } from '@/components/popover/content/PopoverContent
  * @param direction {PopoverDirection} Popover direction (DOWN|LEFT|RIGHT)
  * - -------------------------- WEB PROPERTIES -------------------------------
  */
-const PopoverContent = ({ children, ...others }: PopoverContentProps): JSX.Element => {
+const PopoverContent = ({ children, className, id, ...others }: PopoverContentProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('popover-content'))
+  const classes = hashClass(styled, clsx('popover-content', className))
 
   return (
-    <div className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {children}
     </div>
   )

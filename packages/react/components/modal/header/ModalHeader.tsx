@@ -11,11 +11,11 @@ import { ModalHeaderProps } from './ModalHeaderProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const ModalHeader = ({ children, className, ...others }: ModalHeaderProps): JSX.Element => {
+const ModalHeader = ({ children, className, id, ...others }: ModalHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
-    <div className={hashClass(styled, clsx('modal-header', className))} {...others}>
+    <div id={id} className={hashClass(styled, clsx('modal-header', className))} {...others}>
       {children}
     </div>
   )

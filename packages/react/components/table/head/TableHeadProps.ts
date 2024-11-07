@@ -1,8 +1,8 @@
 import { TrilogyColor, TrilogyColorValues } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
-export interface TableHeadProps {
+export interface TableHeadProps extends CommonProps {
   children: React.ReactNode
-  className?: string
   color?: TrilogyColor | TrilogyColorValues
   backgroundColor?: TrilogyColor | TrilogyColorValues
 }

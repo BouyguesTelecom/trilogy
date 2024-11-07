@@ -1,8 +1,9 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Rows Interface
  */
-export interface RowsItemProps {
+export interface RowsItemProps extends CommonProps {
   children?: React.ReactNode
   narrow?: boolean
-  className?: string
 }

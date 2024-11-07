@@ -1,7 +1,8 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
+
 /**
  * Modal Footer Interface
  */
-export interface ModalFooterProps {
+export interface ModalFooterProps extends CommonProps {
   children: React.ReactNode
-  className?: string
 }

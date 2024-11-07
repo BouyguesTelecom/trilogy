@@ -1,4 +1,5 @@
 import { ClickEvent } from '@/events/OnClickEvent'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export type TargetElement = HTMLElement & {
   active?: boolean
@@ -13,15 +14,14 @@ export type OnClickEvent = React.MouseEvent<HTMLElement> | React.TouchEvent<HTML
 export interface OnClickCallback {
   (e: OnClickEvent): void
 }
+
 /**
  * AccordionItem Interface
  */
-export interface AccordionItemProps {
+export interface AccordionItemProps extends CommonProps {
   children?: React.ReactNode | Array<React.ReactNode>
   active?: boolean
   onClick?: OnClickCallback
-  className?: string
-  id?: string
   disabled?: boolean
   onClose?: ClickEvent
   onOpen?: ClickEvent

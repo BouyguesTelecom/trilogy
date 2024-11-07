@@ -5,6 +5,7 @@ import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility, Dev } from '@/objects'
 import { ReactNode } from 'react'
 import { Animated } from 'react-native'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',
@@ -13,9 +14,8 @@ export enum ListIconStatus {
 
 export type ListIconStatusValues = `${ListIconStatus}`
 
-export interface ListItemProps extends Accessibility, Dev {
+export interface ListItemProps extends Accessibility, Dev, CommonProps {
   children?: ReactNode
-  className?: string
   iconName?: IconName | IconNameValues
   status?: ListIconStatus | ListIconStatusValues
 }

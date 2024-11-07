@@ -19,7 +19,7 @@ export const AccordionScreen = (): JSX.Element => {
       <Spacer size={3} />
       <Title level={TitleLevels.TWO}>Base</Title>
       <Spacer size={SpacerSize.THREE} />
-      <Accordion>
+      <Accordion id="accordion-1">
         <AccordionItem id="ONE" active={true}>
           <AccordionHeader>
             <Text >Hello World 1</Text>

@@ -1,4 +1,5 @@
 import { Accessibility } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 type RadioChangeEventHandler = (event: {
   radioValue: string
@@ -10,14 +11,12 @@ type RadioChangeEventHandler = (event: {
 /**
  * radio Interface
  */
-export interface RadioProps extends Accessibility {
+export interface RadioProps extends Accessibility, CommonProps {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
-  id?: string
   label?: string
   onChange?: RadioChangeEventHandler
-  className?: string
   name?: string
   value?: string
 }

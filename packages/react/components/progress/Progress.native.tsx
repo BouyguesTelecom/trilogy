@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react"
-import { Animated, StyleSheet } from "react-native"
-import { ProgressProps } from "./ProgressProps"
-import { View } from "@/components/view"
-import { Text, TextLevels } from "@/components/text"
-import { getStatusStyle, getColorStyle, TrilogyColor } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useEffect, useRef } from 'react'
+import { Animated, StyleSheet } from 'react-native'
+import { ProgressProps } from './ProgressProps'
+import { View } from '@/components/view'
+import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Progress component
@@ -16,21 +15,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param firstExtremLegend {string} First extremity legend, only with secondExtremLegend property
  * @param secondExtremLegend {string} Second extremity legend, only with firstExtremLegend property
  */
-const Progress = ({
-  children,
-  value,
-  status,
-  stacked,
-  uniqueLegend,
-  firstExtremLegend,
-  secondExtremLegend,
-  ...others
-}: ProgressProps): JSX.Element => {
+const Progress = ({ children, value, status, ...others }: ProgressProps): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    typeof value === "number" &&
+    typeof value === 'number' &&
       Animated.timing(animation, {
         toValue: value,
         duration: 1000,
@@ -41,20 +31,20 @@ const Progress = ({
   const height = 6
   const width = animation.interpolate({
     inputRange: [0, 100],
-    outputRange: ["0%", "100%"],
-    extrapolate: "clamp",
+    outputRange: ['0%', '100%'],
+    extrapolate: 'clamp',
   })
 
   const styles = StyleSheet.create({
     progress: {
-      flexDirection: "row",
-      width: "100%",
+      flexDirection: 'row',
+      width: '100%',
       height: height,
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: 15,
     },
     value: {
-      alignSelf: "flex-start",
+      alignSelf: 'flex-start',
       height: height,
       backgroundColor: getStatusStyle(status).color,
       borderRadius: 15,
@@ -69,68 +59,27 @@ const Progress = ({
     },
     test: {
       width: 20,
-      backgroundColor: "#333",
+      backgroundColor: '#333',
       height: 6,
     },
     uniqueLegend: {
-      textAlign: "center",
+      textAlign: 'center',
       paddingTop: 5,
-      fontWeight: "500",
+      fontWeight: '500',
     },
     extremLegend: {
-      width: "100%",
-      flexDirection: "row",
-      justifyContent: "space-between",
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
       paddingTop: 5,
-      fontWeight: "500",
+      fontWeight: '500',
     },
   })
 
-  if (stacked) {
-    return (
-      <View style={styles.progress} {...others}>
-        {Array.isArray(children) &&
-          children.map(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (child: any, index: number) =>
-              (child &&
-                child.type.name === "ProgressItem" &&
-                React.cloneElement(child, {
-                  key: index,
-                  style: [
-                    index === 0 && styles.progressItemFirst,
-                    index === children.length - 1 && styles.progressItemSecond,
-                    {
-                      backgroundColor: getColorStyle(child.props.status),
-                      height: height,
-                    },
-                  ],
-                })) ||
-              child
-          )}
-      </View>
-    )
-  }
-
   return (
-    <>
-      <View style={styles.progress} {...others}>
-        <Animated.View style={[styles.value, { width }]}>
-          {children}
-        </Animated.View>
-      </View>
-      {uniqueLegend && (
-        <Text style={styles.uniqueLegend} level={TextLevels.THREE}>
-          {uniqueLegend}
-        </Text>
-      )}
-      {firstExtremLegend && secondExtremLegend && !uniqueLegend && (
-        <View style={styles.extremLegend}>
-          <Text level={TextLevels.THREE}>{firstExtremLegend}</Text>
-          <Text level={TextLevels.THREE}>{secondExtremLegend}</Text>
-        </View>
-      )}
-    </>
+    <View style={styles.progress} {...others}>
+      <Animated.View style={[styles.value, { width }]}>{children}</Animated.View>
+    </View>
   )
 }
 

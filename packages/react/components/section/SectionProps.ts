@@ -1,11 +1,12 @@
 import type {
   BackgroundProps,
+  ChildrenWithNoText,
   Fullwidth,
   Layout,
   Paddingless,
   VerticalPaddingless,
-  ChildrenWithNoText,
 } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Section Interface
@@ -16,7 +17,6 @@ export interface SectionProps
     BackgroundProps,
     Paddingless,
     VerticalPaddingless,
-    ChildrenWithNoText {
-  className?: string
+    ChildrenWithNoText, CommonProps {
   skeleton?: boolean
 }

@@ -1,5 +1,6 @@
 import { AlignableProps, Clickable } from '@/objects'
 import { DimensionValue } from 'react-native'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export enum RadiusValues {
   SMALL = 'small',
@@ -7,8 +8,7 @@ export enum RadiusValues {
   LARGE = 'large',
 }
 
-export interface ImageProps extends AlignableProps, Clickable {
-  className?: string
+export interface ImageProps extends AlignableProps, Clickable, CommonProps {
   src: string | number
   alt?: string
   circled?: boolean

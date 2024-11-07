@@ -1,7 +1,7 @@
 import { BoxItemSize, BoxItemSizeValues } from './BoxItemEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
-export interface BoxItemProps {
+export interface BoxItemProps extends CommonProps {
   children?: React.ReactNode
-  className?: string
   size?: BoxItemSize | BoxItemSizeValues
 }

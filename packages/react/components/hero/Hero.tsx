@@ -26,6 +26,7 @@ const Hero = ({
   backgroundSrc,
   inverted,
   className,
+  id,
   onClick,
   overlap,
   ...others
@@ -46,6 +47,7 @@ const Hero = ({
 
   return (
     <section
+      id={id}
       onClick={onClick && onClick}
       {...(backgroundSrc && {
         style: { backgroundImage: `url(${backgroundSrc})` },

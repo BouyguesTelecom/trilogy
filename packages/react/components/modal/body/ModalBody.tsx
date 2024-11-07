@@ -9,10 +9,15 @@ import { useTrilogyContext } from '@/context'
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
+ * @param id
  */
-const ModalBody = ({ children, className }: ModalBodyProps): JSX.Element => {
+const ModalBody = ({ children, className, id }: ModalBodyProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  return <div className={hashClass(styled, clsx('modal-body', className))}>{children}</div>
+  return (
+    <div id={id} className={hashClass(styled, clsx('modal-body', className))}>
+      {children}
+    </div>
+  )
 }
 
 export default ModalBody

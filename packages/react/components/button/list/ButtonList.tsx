@@ -1,9 +1,9 @@
-import * as React from "react"
-import { ButtonListWebProps } from "./ButtonListProps"
-import { has } from "@/services"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import { ButtonListWebProps } from './ButtonListProps'
+import { has } from '@/services'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Button List Component
@@ -15,24 +15,15 @@ import { useTrilogyContext } from "@/context"
  * @param isMobile {boolean} espect mobile screen
  */
 
-const ButtonList = ({
-  className,
-  centered,
-  vertical,
-  ...others
-}: ButtonListWebProps): JSX.Element => {
+const ButtonList = ({ className, id, centered, vertical, ...others }: ButtonListWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
     <div
+      id={id}
       className={hashClass(
         styled,
-        clsx(
-          "buttons",
-          className,
-          centered && has("text-centered"),
-          vertical && "is-vertical"
-        )
+        clsx('buttons', className, centered && has('text-centered'), vertical && 'is-vertical'),
       )}
       {...others}
     />

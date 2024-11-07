@@ -13,12 +13,13 @@ import { useTrilogyContext } from '@/context'
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
-  const { children, className, accessibilityLabel, ...others } = props
+  const { children, className, id, accessibilityLabel, ...others } = props
 
   const { styled } = useTrilogyContext()
 
   return (
     <nav
+      id={id}
       ref={ref}
       role='navigation'
       className={hashClass(styled, clsx('breadcrumb', className))}

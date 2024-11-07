@@ -1,17 +1,17 @@
 import { ClickEvent } from '@/events/OnClickEvent'
 import { Accessibility, Clickable, Fullheight } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Card Interface
  */
 
-export interface CardProps extends Fullheight, Clickable, Accessibility {
+export interface CardProps extends Fullheight, Clickable, Accessibility, CommonProps {
   children?: React.ReactNode
   flat?: boolean
   horizontal?: boolean
   floating?: boolean
   skeleton?: boolean
-  className?: string
   onClick?: ClickEvent
   reversed?: boolean
   href?: string

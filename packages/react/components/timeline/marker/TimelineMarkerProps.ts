@@ -1,5 +1,6 @@
 import { IconColor, IconColorValues, IconName, IconNameValues } from '@/components/icon'
 import { Accessibility, Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Timeline Marker Interface
@@ -13,7 +14,6 @@ export interface TimelineMarkerProps extends Accessibility, Dev {
 /**
  * Timeline Marker Web Interface
  */
-export interface TimelineMarkerWebProps extends TimelineMarkerProps, Accessibility {
-  className?: string
+export interface TimelineMarkerWebProps extends TimelineMarkerProps, Accessibility, CommonProps {
   iconClassname?: string
 }

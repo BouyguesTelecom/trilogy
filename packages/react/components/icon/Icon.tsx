@@ -5,7 +5,6 @@ import { is } from '@/services/classify'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
-import { IconName } from './IconNameEnum'
 
 /**
  * Icon Component
@@ -28,6 +27,7 @@ import { IconName } from './IconNameEnum'
 
 const Icon = ({
   className,
+  id,
   size,
   name,
   status,
@@ -59,7 +59,7 @@ const Icon = ({
   // Icon with badge + badge content
   if (badgeContent) {
     return (
-      <span onClick={onClick && onClick} className={classes} {...others}>
+      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
         <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
         <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>
       </span>
@@ -69,7 +69,7 @@ const Icon = ({
   // Stretched icon
   if (stretched) {
     return (
-      <span onClick={onClick && onClick} className={classes} {...others}>
+      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
         <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
       </span>
     )
@@ -78,7 +78,7 @@ const Icon = ({
   // Custom Colored Icon
   if (color) {
     return (
-      <span onClick={onClick && onClick} className={classes} {...others}>
+      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
         <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
       </span>
     )
@@ -86,7 +86,7 @@ const Icon = ({
 
   // Static default Icon
   return (
-    <span onClick={onClick && onClick} className={classes} {...others}>
+    <span id={id} onClick={onClick && onClick} className={classes} {...others}>
       <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
     </span>
   )

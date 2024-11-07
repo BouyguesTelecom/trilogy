@@ -3,14 +3,14 @@ import { TextLevels } from '@/components/text'
 import { Accessibility, Clickable, Dev } from '@/objects/facets'
 import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
 import { Styles } from '@/types'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Link Interface
  */
-export interface LinkProps extends Accessibility, Clickable, Dev {
+export interface LinkProps extends Accessibility, Clickable, Dev, CommonProps {
   children?: React.ReactNode
   to?: string
-  className?: string
   href?: string
   routerLink?: React.ElementType
   iconName?: IconName | IconNameValues

@@ -14,37 +14,20 @@ const idTitle = shortid.generate()
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Title Modal
- * @param content {string} Content text for modal
- * @param triggerContent {string} Trigger custom element
- * @param iconName IconName for icon title
- * @param iconColor IconColor for icon title
- * @param ctaCancelOnClick {Function} function for cancel button (appear when set)
- * @param ctaOnClick {Function} On Click Event CTA
  * @param onClose {Function} Additionnal close custom function
  * @param onOpen {Function} Additionnal open custom function
- * @param closeIcon {boolean} Display close icon for Modal
  * @param children {React.ReactNode}
- * @param ctaContent {string} Content cta
- * @param fullwidth {boolean} Fullwidth Modal
  * @param disableHandlingClickOutside {boolean} Disable the handling on outside click event
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param contentClassNames {string} Additionnal CSS Classes for modal content
- * @param triggerMarkup {ModalMarkup} h1|h2|h3|h4|h5|h6|p|span|div|button|a
- * @param triggerClassNames {string} Additionnal CSS Classes for trigger element
  * @param panel {boolean} Panel Side Modal
  * @param accessibilityLabel {string} Accessibility label
- * @param testId {string} Test id
- * @param ctaCancelContent {string} content of button close
- * @param footer {React.ReactNode}
- * @param footerClassNames {string} Additionnal CSS Classes for footer
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param bottom {boolean} If bottom
- * @param swipable {boolean} Swipable Native Modal
  */
 const Modal = ({
   children,
   className,
+  id,
   accessibilityLabel = 'Close',
   active,
   onClose,
@@ -131,7 +114,7 @@ const Modal = ({
   return (
     <div onKeyDown={onKeyDown}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
-      <div className={classes} role='dialog' aria-modal={display ? 'true' : undefined} {...others}>
+      <div id={id} className={classes} role='dialog' aria-modal={display ? 'true' : undefined} {...others}>
         <div ref={modal} className='modal-content'>
           {hideCloseButton !== true && (
             <button

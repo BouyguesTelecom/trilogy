@@ -62,6 +62,7 @@ const Title = ({
   markup,
   children,
   className,
+  id,
   typo,
   skeleton,
   inverted,
@@ -106,6 +107,7 @@ const Title = ({
 
   return (
     <Tag
+      id={id}
       aria-label={accessibilityLabel}
       onClick={onClick}
       className={getClassname()}

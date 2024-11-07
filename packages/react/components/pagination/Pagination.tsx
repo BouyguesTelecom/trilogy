@@ -17,7 +17,15 @@ import { Pager } from './PaginationEnum'
  * @param href {Function} Function that generates a link for seo bots
  * @param testId {string} Test Id for Test Integration
  */
-const Pagination = ({ className, length, defaultPage = 1, onClick, href, ...others }: PaginationProps): JSX.Element => {
+const Pagination = ({
+  className,
+  id,
+  length,
+  defaultPage = 1,
+  onClick,
+  href,
+  ...others
+}: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('pagination', className))
@@ -68,7 +76,7 @@ const Pagination = ({ className, length, defaultPage = 1, onClick, href, ...othe
   }, [pager.currentPage])
 
   return (
-    <nav className={classes} {...others}>
+    <nav id={id} className={classes} {...others}>
       <a
         className={hashClass(styled, clsx('pagination-previous'))}
         {...(currentPage === 1 ? { 'aria-disabled': true } : {})}

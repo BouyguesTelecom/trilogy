@@ -33,6 +33,7 @@ import { getAlignClassName } from '@/objects'
 const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
     className,
+    id,
     size,
     mobileSize,
     tabletSize,
@@ -78,7 +79,7 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     ),
   )
 
-  return <div ref={ref} className={classes} {...others} />
+  return <div id={id} ref={ref} className={classes} {...others} />
 })
 
 export default ColumnsItem

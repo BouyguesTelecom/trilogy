@@ -19,12 +19,14 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
   testId,
   item,
   active,
+  id,
 }: AutoCompleteItemProps<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
   const [isActive, setIsActive] = React.useState(false)
 
   return (
     <div
+      id={id}
       onMouseOver={() => setIsActive(true)}
       onMouseOut={() => setIsActive(false)}
       role='listitem'

@@ -1,14 +1,14 @@
-import clsx from "clsx"
-import * as React from "react"
-import { CSSProperties, useEffect, useRef, useState } from "react"
-import { getStatusClassName, getStatusIconName } from "@/objects/facets/Status"
-import { has, is } from "@/services/classify"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { Text, TextLevels } from "@/components/text"
-import { Title, TitleLevels } from "@/components/title"
-import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from "./AlertProps"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import clsx from 'clsx'
+import * as React from 'react'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
+import { has, is } from '@/services/classify'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Text, TextLevels } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 import ToasterContext from './context'
 
 /**
@@ -18,7 +18,7 @@ import ToasterContext from './context'
 const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...others }) => {
   const { styled } = useTrilogyContext()
 
-  const { title, position, description, iconName, status, closable, onClick, className, offset, children } = props
+  const { title, position, description, iconName, status, closable, onClick, className, id, offset, children } = props
   const displayed = Boolean(title)
 
   const positionTop: CSSProperties = {
@@ -43,6 +43,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
   if (children) {
     return (
       <div
+        id={id}
         style={
           (position === ToasterAlertPosition.TOP && positionTop) ||
           (position === ToasterAlertPosition.BOTTOM && positionBottom) ||
@@ -102,6 +103,7 @@ const Alert = ({
   banner,
   status,
   className,
+  id,
   iconName,
   title,
   description,
@@ -113,7 +115,7 @@ const Alert = ({
 
   const classes = hashClass(
     styled,
-    clsx("alert", has("body"), status && is(getStatusClassName(status)), banner && is('banner'), className)
+    clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
   )
 
   const iconAlert = React.useMemo(() => {
@@ -125,6 +127,7 @@ const Alert = ({
   if (display) {
     return (
       <div
+        id={id}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
@@ -134,13 +137,9 @@ const Alert = ({
         {...others}
       >
         <Icon name={iconAlert} />
-        <div className={hashClass(styled, clsx("body"))}>
-          {title && typeof title.valueOf() === "string" ? (
-            <Title level={TitleLevels.SIX}>{title}</Title>
-          ) : (
-            title
-          )}
-          {description && typeof description.valueOf() === "string" ? (
+        <div className={hashClass(styled, clsx('body'))}>
+          {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
+          {description && typeof description.valueOf() === 'string' ? (
             <Text level={TextLevels.TWO}>{description}</Text>
           ) : (
             description
@@ -182,6 +181,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
       <ToasterAlert
         props={{
           title: toasterState?.title,
+          id: toasterState?.id,
           description: toasterState?.description,
           position: toasterState?.position,
           iconName: toasterState?.iconName,

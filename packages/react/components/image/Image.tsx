@@ -21,6 +21,7 @@ const Image = ({
   src,
   alt,
   className,
+  id,
   circled,
   width,
   height,
@@ -30,7 +31,6 @@ const Image = ({
   ...others
 }: ImageProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-
   const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,6 +43,7 @@ const Image = ({
 
   return (
     <figure
+      id={id}
       onClick={(e) => {
         onClick?.(e)
         e.stopPropagation()

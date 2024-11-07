@@ -14,13 +14,14 @@ import {
   TypographyTransformValues,
 } from '@/objects'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 type Styles = { [key: string]: unknown }
 
 /**
  * Title Interface
  */
-export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev {
+export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
   children?: React.ReactNode
   level?: TitleLevelValues | TitleLevels
   loading?: boolean
@@ -36,7 +37,6 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
     | Array<string>
     | string
   skeleton?: boolean
-  className?: string
   href?: string
   markup?: TitleMarkup | TitleMarkupValues
   style?: Styles
