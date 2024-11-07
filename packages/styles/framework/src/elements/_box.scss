@@ -1,7 +1,12 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-:root{
+$font-size-header: 15;
+$font-line-height-header: 1.5;
+$padding-top-bottom-header: 8;
+
+
+:root {
   --padding-box : #{$spacing-5};
   @include mobile {
     --padding-box : #{$spacing-4};
@@ -62,7 +67,7 @@ a.box {
   }
 
   &.is-header-offset {
-    margin-top: 15 * 1.5 + 2 * 8px;
+    margin-top: $font-size-header * $font-line-height-header + 2 * #{$padding-top-bottom-header}px;
   }
 
   &.is-highlighted {
