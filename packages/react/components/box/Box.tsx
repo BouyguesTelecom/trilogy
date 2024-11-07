@@ -64,6 +64,7 @@ const Box = ({
       highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
       flat && is("flat"),
       hat && has("hat"),
+      headerOffset && is('header-offset'),
       fullheight && is("fullheight"),
       active && is("active")
     )
