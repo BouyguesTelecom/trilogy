@@ -28,8 +28,8 @@ import { getColorStyle } from "@/objects/facets/Color"
  */
 const ProgressRadial = ({
   children,
-  percent = 0,
-  secondPercent = 0,
+  value = 0,
+  secondValue = 0,
   label,
   description,
   skeleton,
@@ -61,7 +61,11 @@ const ProgressRadial = ({
 
     let styleBackground
     styleBackground = `radial-gradient(circle at center, white 58%, transparent 58.1%),`
-    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, ${getColorStyle('MAIN')} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${secondProgressStartDegree + secondProgressDegree}deg 360deg)`
+    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, ${getColorStyle(
+      'MAIN',
+    )} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${
+      secondProgressStartDegree + secondProgressDegree
+    }deg 360deg)`
     progressRadial.style.background = styleBackground
   }
 
@@ -71,14 +75,14 @@ const ProgressRadial = ({
     // Reset the current values whenever the provided percent or secondPercent change
     setFirstProgressCurrentValue(0)
     setSecondProgressCurrentValue(0)
-    updateBackgroundStyle(percent, secondPercent) // if percent or secondPercent are 0, update immediately
+    updateBackgroundStyle(value, secondValue) // if percent or secondPercent are 0, update immediately
 
     const frame = () => {
-      setFirstProgressCurrentValue((value) => {
-        return value < percent ? value + 1 : value
+      setFirstProgressCurrentValue((currentValue) => {
+        return currentValue < value ? currentValue + 1 : currentValue
       })
-      setSecondProgressCurrentValue((value) => {
-        return value < secondPercent ? value + 1 : value
+      setSecondProgressCurrentValue((currentValue) => {
+        return currentValue < secondValue ? currentValue + 1 : currentValue
       })
       animationFrameId = requestAnimationFrame(frame)
     }
@@ -87,7 +91,7 @@ const ProgressRadial = ({
 
     // Cleanup
     return () => cancelAnimationFrame(animationFrameId)
-  }, [percent, secondPercent])
+  }, [value, secondValue])
 
   useEffect(() => {
     updateBackgroundStyle(firstProgressCurrentValue, secondProgressCurrentValue)
@@ -96,8 +100,16 @@ const ProgressRadial = ({
   return (
     <div {...others} className={classes} ref={progressRadialRef}>
       <div className={classesContent}>
-        {label && <Title level={TitleLevels.TWO} marginless>{label}</Title>}
-        {description && <Text level={TextLevels.ONE} marginless>{description}</Text>}
+        {label && (
+          <Title level={TitleLevels.TWO} marginless>
+            {label}
+          </Title>
+        )}
+        {description && (
+          <Text level={TextLevels.ONE} marginless>
+            {description}
+          </Text>
+        )}
         {!label && !description && children}
       </div>
     </div>

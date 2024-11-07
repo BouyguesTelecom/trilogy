@@ -1,4 +1,4 @@
-import { StatusProps, StatusState, StatusStateValues, AlignableProps } from '../../../objects'
+import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '@/objects'
 import React from 'react'
 import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
 
@@ -8,15 +8,15 @@ import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
 
 export interface ProgressRadialProps extends StatusProps, AlignableProps {
   children?: React.ReactElement<ProgressRadialItemProps> | React.ReactNode
-  percent?: number
   label?: string | React.ReactNode
+  value?: number
+  valueColor?: TrilogyColor | TrilogyColorValues
+  secondValue?: number
+  secondValueColor?: TrilogyColor | TrilogyColorValues
   description?: string | React.ReactNode
   className?: string
   full?: boolean
   disk?: boolean
-  secondPercent?: number
-  secondStatus?: StatusState | StatusStateValues
   skeleton?: boolean
-  stacked?: boolean
   small?: boolean
 }
