@@ -24,4 +24,5 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   hat?: boolean
   flat?: boolean
   active?: boolean
+  headerOffset?: boolean
 }

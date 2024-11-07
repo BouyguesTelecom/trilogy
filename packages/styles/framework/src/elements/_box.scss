@@ -1,13 +1,19 @@
 @use 'sass:math';
 @import "../utilities/spacing";
-:root{
+
+$font-size-header: 15;
+$font-line-height-header: 1.5;
+$padding-top-bottom-header: 8;
+
+
+:root {
   --padding-box : #{$spacing-5};
   @include mobile {
     --padding-box : #{$spacing-4};
   }
 }
-$highlighted-border-width: 4px;
 
+$highlighted-border-width: 4px;
 
 a.box {
   cursor: pointer;
@@ -30,8 +36,6 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-
-
   &:not(:last-child) {
     margin-bottom: 15px;
   }
@@ -45,8 +49,6 @@ a.box {
       flex-grow: 1;
     }
   }
-
-
 
   &.is-flat {
     box-shadow: none;
@@ -64,6 +66,9 @@ a.box {
     }
   }
 
+  &.is-header-offset {
+    margin-top: #{$font-size-header * $font-line-height-header + 2 * $padding-top-bottom-header}px;
+  }
 
   &.is-highlighted {
     border-left: $highlighted-border-width solid transparent;
@@ -84,7 +89,6 @@ a.box {
     }
   }
 
-
   .box-header {
     z-index: inherit;
     background-color: getColor('font');
@@ -103,10 +107,9 @@ a.box {
     align-items: center;
     font-weight: $weight-semibold;
     border-radius: var(--radius) var(--radius) 0 0;
+    text-align: center;
     @include tablet {
-      flex-direction: row;
       align-items: center;
-      justify-content: space-between;
     }
 
     > p:not(:last-child),

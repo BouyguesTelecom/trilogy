@@ -11,9 +11,6 @@ import { getBackgroundClassName } from "@/objects"
  * Box Header Component
  * @param children {React.ReactNode} Children
  * @param help {string} Box Header Help Sticker
- * @param centered {boolean} Center content box header
- * @param pulledLeft {boolean} Pulled-left content box header
- * @param pulledRight {boolean} Pulled-right content box header
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -25,9 +22,6 @@ const BoxHeader = ({
   children,
   className,
   help,
-  centered,
-  pulledLeft,
-  pulledRight,
   variant,
   testId,
   ...others
@@ -39,9 +33,6 @@ const BoxHeader = ({
     clsx(
       "box-header",
       className,
-      centered && "has-text-centered",
-      pulledRight && "has-text-right",
-      pulledLeft && "has-text-left",
       variant && has(getBackgroundClassName(variant))
     )
   )

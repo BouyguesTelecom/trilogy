@@ -22,6 +22,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param flex {boolean} Flex: 1 to the box if usage of Image for Example
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
+ * @param headerOffset {boolean} Auto adjust height size if others box has hat
  * @param others
  */
 const Box = ({
@@ -37,6 +38,7 @@ const Box = ({
   flat,
   hat,
   fullheight,
+  headerOffset,
   active,
   ...others
 }: BoxProps): JSX.Element => {
@@ -56,7 +58,7 @@ const Box = ({
       borderColor: active
         ? getColorStyle(TrilogyColor.MAIN)
         : getColorStyle(TrilogyColor.NEUTRAL),
-      marginTop: hat ? 35 : 0,
+      marginTop: hat || headerOffset ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
     shadow: shadowless

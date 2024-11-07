@@ -21,6 +21,7 @@ import { useTrilogyContext } from "@/context"
  * @param testId {string} Test id
  * @param hat {boolean} Box with a component Sticker props:hat
  * @param active {boolean} Activated box
+ * @param headerOffset {boolean} Auto adjust height size if others box has hat
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param markup {BoxMarkup} Clickable Box => BoxMarkup.A Not clickable box => BoxMarkup.DIV || null
@@ -45,6 +46,7 @@ const Box = ({
   hat,
   fullheight,
   active,
+  headerOffset,
   ...others
 }: BoxProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -62,6 +64,7 @@ const Box = ({
       highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
       flat && is("flat"),
       hat && has("hat"),
+      headerOffset && is('header-offset'),
       fullheight && is("fullheight"),
       active && is("active")
     )

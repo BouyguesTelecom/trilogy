@@ -1,6 +1,3 @@
-/**
- * Box Header Interface
- */
 import { Accessibility, Dev, Centerable, Position, VariantState, StatusState } from '@/objects'
 
 export interface BoxHeaderProps extends Position, Centerable, Accessibility, Dev {
