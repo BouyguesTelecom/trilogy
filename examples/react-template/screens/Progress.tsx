@@ -2,7 +2,6 @@ import * as React from 'react'
 import {
   Divider,
   Progress,
-  ProgressItem,
   ProgressLegend,
   ProgressRadial,
   Section,
@@ -20,7 +19,7 @@ export const ProgressScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
-        <ProgressRadial value={30} secondvalue={30}>
+        <ProgressRadial value={30} secondValue={30}>
           <Title level={TitleLevels.THREE} marginless>
             60
           </Title>
@@ -42,18 +41,6 @@ export const ProgressScreen = (): JSX.Element => {
         <Progress value={30} status='SUCCESS' />
       </Section>
       <Section>
-        <Title level={TitleLevels.THREE}>Barre de progression empilée</Title>
-
-        <Divider />
-
-        <Progress stacked>
-          <ProgressItem value={15} status={StatusState.SUCCESS} />
-          <ProgressItem value={15} status={StatusState.INFO} />
-          <ProgressItem value={15} status={StatusState.WARNING} />
-          <ProgressItem value={15} status={StatusState.ERROR} />
-        </Progress>
-      </Section>
-      <Section>
         <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
@@ -64,7 +51,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <Progress value={15} status={StatusState.INFO} firstExtremLegend='0 Go' secondExtremLegend='5 Go'>
-          <ProgressLegend center={"Legend"} end={'5 Go'} />
+          <ProgressLegend center={'Legend'} end={'5 Go'} />
         </Progress>
       </Section>
       <Section>
@@ -72,7 +59,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Divider />
 
-        <ProgressRadial value={30} secondvalue={30}>
+        <ProgressRadial value={30} secondValue={60}>
           <Title level={TitleLevels.THREE} marginless>
             60
           </Title>
@@ -85,7 +72,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Divider />
 
-        <ProgressRadial value={30} secondvalue={30}>
+        <ProgressRadial value={30} secondValue={60}>
           <Title level={TitleLevels.THREE} marginless>
             60
           </Title>
@@ -94,7 +81,7 @@ export const ProgressScreen = (): JSX.Element => {
           </Text>
         </ProgressRadial>
 
-        <ProgressRadial value={30} secondvalue={30} small>
+        <ProgressRadial value={30} secondValue={30} small>
           <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>
             60
           </Text>
@@ -105,8 +92,8 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Title level={TitleLevels.THREE}>Vide : </Title>
 
-        <ProgressRadial value={0} secondvalue={0} description='--' />
-        <ProgressRadial value={0} secondvalue={0} description='--' small />
+        <ProgressRadial value={0} secondValue={0} description='--' />
+        <ProgressRadial value={0} secondValue={0} description='--' small />
       </Section>
     </>
   )
