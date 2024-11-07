@@ -5,7 +5,7 @@ import { TrilogyContext } from './index'
 import { version } from '../version'
 
 const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) =>  {
-  return (process.env.ASSET_URI as string)
+  return (assetUrl)
             .replace('%VERSION%', version)
             .replace('%THEME%', theme)
     .replace('%MANGLED%', mangled?'-mangled':'')
