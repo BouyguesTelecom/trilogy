@@ -272,6 +272,7 @@ export const BoxScreen = (): JSX.Element => {
               Box with Header , Content and Footer
             </BoxHeader>
             <BoxContent>
+              <Title level={TitleLevels.FOUR}>Box with header</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis
                 dolor neque nunc. Eget suscipit enim velit ultricies justo
@@ -284,7 +285,7 @@ export const BoxScreen = (): JSX.Element => {
           </Box>
         </ColumnsItem>
         <ColumnsItem size={10}>
-          <Box>
+          <Box headerOffset>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple Box with footer</Title>
               <Text>

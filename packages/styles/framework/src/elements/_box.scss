@@ -7,8 +7,8 @@
     --padding-box : #{$spacing-4};
   }
 }
-$highlighted-border-width: 4px;
 
+$highlighted-border-width: 4px;
 
 a.box {
   cursor: pointer;
@@ -31,8 +31,6 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-
-
   &:not(:last-child) {
     margin-bottom: 15px;
   }
@@ -46,8 +44,6 @@ a.box {
       flex-grow: 1;
     }
   }
-
-
 
   &.is-flat {
     box-shadow: none;
@@ -65,6 +61,9 @@ a.box {
     }
   }
 
+  &.is-header-offset {
+    margin-top: 15 * 1.5 + 2 * 8px;
+  }
 
   &.is-highlighted {
     border-left: $highlighted-border-width solid transparent;
@@ -84,7 +83,6 @@ a.box {
       margin-left: calc(var(--padding-box)*-1 - $highlighted-border-width);
     }
   }
-
 
   .box-header {
     z-index: inherit;
@@ -106,9 +104,7 @@ a.box {
     border-radius: var(--radius) var(--radius) 0 0;
     text-align: center;
     @include tablet {
-      flex-direction: row;
       align-items: center;
-      justify-content: space-between;
     }
 
     > p:not(:last-child),

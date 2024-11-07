@@ -58,7 +58,7 @@ const Box = ({
       borderColor: active
         ? getColorStyle(TrilogyColor.MAIN)
         : getColorStyle(TrilogyColor.NEUTRAL),
-      marginTop: hat ? 35 : 0,
+      marginTop: hat || headerOffset ? 35 : 0,
       flex: fullheight ? 1 : 0,
     },
     shadow: shadowless
