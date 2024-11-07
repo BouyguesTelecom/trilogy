@@ -3,7 +3,7 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
-import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
@@ -76,8 +76,6 @@ const Input = ({
   help,
   placeholder,
   type,
-  hasIcon,
-  customIcon,
   keyboardStyle,
   autoCapitalize,
   autoCorrect,
@@ -89,8 +87,8 @@ const Input = ({
   maxLength,
   testId,
   accessibilityLabel,
-  customIconRight,
-  customIconLeft,
+  iconNameLeft,
+  iconNameRight,
   securityGauge,
   validationRules,
   onIconClick,
@@ -205,22 +203,24 @@ const Input = ({
     handleClick()
   }, [isKeyboardVisible])
 
+  const hasIcon = (iconNameLeft || iconNameRight) || false
+
   const styles = StyleSheet.create({
     input: {
       paddingLeft:
-        ((customIconLeft || type === InputType.SEARCH) && 40) ||
-        (((customIconLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||
-        (!customIconLeft && type !== InputType.SEARCH && isFocused && 9) ||
+        ((iconNameLeft || type === InputType.SEARCH) && 40) ||
+        (((iconNameLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||
+        (!iconNameLeft && type !== InputType.SEARCH && isFocused && 9) ||
         10,
-      paddingRight: ((customIcon || customIconRight || type === InputType.SEARCH) && 32) || 0,
+      paddingRight: ((iconNameRight || type === InputType.SEARCH) && 32) || 0,
       marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
-      width: hasIcon && (status || customIcon) ? '85%' : '95%',
+      width: hasIcon && status ? '85%' : '95%',
       height: 46,
       color: disabled ? getColorStyle(TrilogyColor.DISABLED) : inputColor,
     },
     dynamicPlaceholder: {
       position: 'absolute',
-      left: customIconLeft ? 40 : 10,
+      left: iconNameLeft ? 40 : 10,
       color: grayscale(getColorStyle(TrilogyColor.FONT)),
     },
     help: {
@@ -289,7 +289,7 @@ const Input = ({
       fontSize: 14,
       color: getColorStyle(TrilogyColor.BACKGROUND),
       bottom: Platform.OS === 'ios' ? 9 : 5,
-      left: customIconLeft ? (Platform.OS === 'ios' ? 38 : 37.5) : Platform.OS === 'ios' ? 8 : 7.5,
+      left: iconNameLeft ? (Platform.OS === 'ios' ? 38 : 37.5) : Platform.OS === 'ios' ? 8 : 7.5,
     },
     domain: {
       zIndex: 1,
@@ -380,16 +380,11 @@ const Input = ({
           </Text>
         )}
         {hasIcon &&
-          ((status && status !== InputStatus.DEFAULT) || customIconLeft) &&
-          type !== InputType.PASSWORD &&
-          !customIcon && (
+          ((status && status !== InputStatus.DEFAULT) || iconNameLeft) &&
+          type !== InputType.PASSWORD && (
             <Icon
-              style={styles.inputIconLeft}
               align={Alignable.ALIGNED_START}
-              name={
-                (customIconLeft && customIconLeft.replace('tri-', '').replace('ui-', '')) ||
-                inputIcon.get(status).replace('tri-', '').replace('ui-', '')
-              }
+              name={iconNameLeft as unknown as IconName}
               size={IconSize.SMALL}
               color={
                 (status && status === 'success' && StatusState.SUCCESS) ||
@@ -403,7 +398,8 @@ const Input = ({
           )}
         {hasIcon &&
           type !== InputType.SEARCH &&
-          ((status && status !== InputStatus.DEFAULT) || customIcon || customIconRight) &&
+          status &&
+          status !== InputStatus.DEFAULT &&
           type !== InputType.PASSWORD && (
             <TouchableOpacity
               style={styles.inputContainer}
@@ -420,8 +416,8 @@ const Input = ({
                 testId='icon-status-id'
                 align={Alignable.ALIGNED_CENTER}
                 name={
-                  (customIcon && customIcon.replace('tri-', '').replace('ui-', '')) ||
-                  (customIconRight && customIconRight.replace('tri-', '').replace('ui-', '')) ||
+                  (iconNameLeft as unknown as IconName) ||
+                  (iconNameRight as unknown as IconName) ||
                   inputIcon.get(status).replace('tri-', '').replace('ui-', '')
                 }
                 size={IconSize.SMALL}
@@ -429,7 +425,7 @@ const Input = ({
                   (status && status === 'success' && StatusState.SUCCESS) ||
                   (status && status === 'warning' && StatusState.WARNING) ||
                   (status && status === 'error' && StatusState.ERROR) ||
-                  (status && status === 'default' && TrilogyColor.MAIN) ||
+                  (status && TrilogyColor.MAIN) ||
                   (disabled && TrilogyColor.DISABLED) ||
                   TrilogyColor.MAIN
                 }
@@ -438,9 +434,9 @@ const Input = ({
           )}
         {hasIcon && type === InputType.PASSWORD && (
           <>
-            {hasIcon && customIconLeft && (
+            {hasIcon && iconNameLeft && (
               <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
-                <Icon name={customIconLeft} />
+                <Icon name={iconNameLeft} />
               </View>
             )}
             <TouchableOpacity

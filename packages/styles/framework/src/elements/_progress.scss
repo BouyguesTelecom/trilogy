@@ -201,3 +201,23 @@ $slides-concat: '';
     $slides-concat: $slides-concat + ' + ' + var(--#{$name});
   }
 }
+
+.progress-legends {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .progress-legend-start {
+    grid-column: 1 / 3;
+    text-align: left;
+  }
+
+  .progress-legend-center {
+    grid-column: 2 / 3;
+    text-align: center;
+  }
+
+  .progress-legend-end {
+    grid-column: 3 / 3;
+    text-align: right;
+  }
+}

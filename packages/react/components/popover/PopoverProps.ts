@@ -13,7 +13,6 @@ export interface PopoverProps {
   children: React.ReactNode
   direction?: PopoverDirection | PopoverDirectionValues
   active?: boolean
-  content?: React.ReactNode
   arrowPosition?: PopoverArrowPosition | PopoverArrowPositionValues
 }
 

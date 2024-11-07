@@ -16,13 +16,8 @@ export type ListIconStatusValues = `${ListIconStatus}`
 export interface ListItemProps extends Accessibility, Dev {
   children?: ReactNode
   className?: string
-  customIcon?: IconName | IconNameValues | ReactNode
+  iconName?: IconName | IconNameValues
   status?: ListIconStatus | ListIconStatusValues
-  title?: string
-  description?: string
-  action?: ReactNode
-  divider?: boolean
-  deletable?: ReactNode
 }
 
 export type AnimatedInterpolationProps = Animated.AnimatedInterpolation<number | string>

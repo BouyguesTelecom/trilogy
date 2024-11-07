@@ -80,7 +80,6 @@ const Fab = ({
       {extended ? (
         <>
           <Icon
-            style={styles.icon}
             name={iconName as IconName}
             color={IconColor.WHITE}
             size={IconSize.MEDIUM}
@@ -91,7 +90,6 @@ const Fab = ({
         </>
       ) : (
         <Icon
-          style={styles.icon}
           name={iconName as IconName}
           color={IconColor.WHITE}
           size={IconSize.MEDIUM}

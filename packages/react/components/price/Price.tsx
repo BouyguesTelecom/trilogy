@@ -14,7 +14,7 @@ import { PriceLevel } from "./PriceEnum"
  * @param amount {number} Amount for Price
  * @param mention {string} Mention for price ( (1)* )
  * @param period {string} Period for Price (mois)
- * @param showCents {boolean} Display cents
+ * @param hideCents {boolean} Display cents
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
@@ -25,7 +25,7 @@ import { PriceLevel } from "./PriceEnum"
  * @param overline {string} Price overline
  * @param tagAmount {number} Tag amount
  * @param tagSymbol {number} Tag symbol
- * @param strikedAmount {boolean} Striked Amount Price
+ * @param oldAmount {boolean} old Amount Price
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
@@ -36,13 +36,13 @@ const Price = ({
                  amount,
                  mention,
                  period,
-                 showCents = true,
+                 hideCents = false,
                  level,
                  inverted,
                  align,
                  inline,
                  accessibilityLabel,
-                 strikedAmount,
+                 oldAmount,
                  overline,
                  tagAmount,
                  tagSymbol,
@@ -61,13 +61,13 @@ const Price = ({
     )
   )
 
-  const classesStriked = hashClass(
+  const classesStrike = hashClass(
     styled,
     clsx(
       "price",
       inverted && is("inverted"),
       inline && is("inlined"),
-      strikedAmount && is("striked"),
+      oldAmount && "strike",
       overline && has("suptitle"),
       className
     )
@@ -88,10 +88,10 @@ const Price = ({
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
 
-  const isNegativeStriked = strikedAmount && strikedAmount < 0
-  const absoluteAmountStriked = strikedAmount && Math.abs(strikedAmount)
-  const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
-  const wholeStriked = isNegativeStriked && absoluteWholeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+  const isNegativeStrike = oldAmount && oldAmount < 0
+  const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
+  const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
+  const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
 
   let cents = checkCents(
     absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || ""
@@ -100,21 +100,21 @@ const Price = ({
   cents = (cents && cents.length === 1 && `${cents}0`) || cents
 
   const centsDisplayed =
-    (inline && showCents && `,${cents || "00"} €`) ||
-    (showCents && `€${cents || "00"}`) ||
+    (inline && hideCents && `,${cents || "00"} €`) ||
+    (hideCents && `€${cents || "00"}`) ||
     "€"
 
   const returnComponent = (
     <div className={hashClass(styled, clsx("price-container", is(`level-${level || '1'}`)) )}>
       {overline && <p className={hashClass(styled, clsx("overline"))}>{overline}</p>}
-      {/* StrikedAmount Price */}
-      {strikedAmount && (
+      {/* oldAmount Price */}
+      {oldAmount && (
         <span
             aria-hidden='true'
-            className={classesStriked}
+            className={classesStrike}
             {...others}
           >
-            <Text markup={TextMarkup.SPAN}>{`${wholeStriked}`}</Text>
+            <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
             <span className={hashClass(styled, clsx("price-details"))}>
               <span className={hashClass(styled, clsx("cents"))}>
                 {inline && centsDisplayed === "€" ? (

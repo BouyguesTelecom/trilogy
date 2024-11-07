@@ -36,7 +36,6 @@ const Breadcrumb = ({
                   size='smaller'
                   name='tri-arrow-right'
                   align='ALIGNED_CENTER'
-                  style={{ marginHorizontal: 5 }}
                 />
               )}
             </>

@@ -10,7 +10,5 @@ export interface DividerProps extends Marginless {
   unboxed?: boolean
   className?: string
   iconName?: IconNameValues | IconName
-  color?: TrilogyColor | TrilogyColorValues
-  backgroundColor?: TrilogyColor | TrilogyColorValues
-  textColor?: TrilogyColor | TrilogyColorValues
+  inverted?: boolean
 }

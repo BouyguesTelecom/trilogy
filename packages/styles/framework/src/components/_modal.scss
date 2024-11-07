@@ -71,18 +71,13 @@ body:has(.modal.is-active) {
     color: getColor('font');
     overflow: auto;
     position: relative;
-    padding: 0 30px 30px;
+    padding: $spacing-5;
     margin: 0 $modal-content-margin-mobile;
     max-height: calc(100vh - 40px);
-    text-align: center;
     width: 100%;
     z-index: zindex('tiny');
     transition: transform ease-in-out 250ms;
     transform: translateY(100%);
-
-    &:has(.modal-footer) {
-      padding-bottom: 0;
-    }
 
     @include tablet {
       max-height: calc(100vh - 120px);
@@ -113,7 +108,11 @@ body:has(.modal.is-active) {
       width: 100%;
       background: getColor('background');
       bottom: 0;
-      padding: 16px;
+
+      @include tablet {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
 
     // If Close Icon Modal & Title Modal are sibling elements, override margin
@@ -126,9 +125,9 @@ body:has(.modal.is-active) {
     @include delete;
 
     background-color: getColor('background');
-    position: sticky;
-    top: 20px;
-    left: 100%;
+    position: absolute;
+    top: $spacing-5;
+    right: $spacing-5;
     display: block;
     height: $modal-close-dimensions;
     width: $modal-close-dimensions;
@@ -144,11 +143,6 @@ body:has(.modal.is-active) {
     }
   }
 
-  .modal-title {
-    padding: 20px 0;
-  }
-
-  .modal-title, 
   .modal-header {
     color: getColor('font');
     font-family: $family-sans-serif;
@@ -161,6 +155,10 @@ body:has(.modal.is-active) {
     top: 0;
     width: 100%;
     word-wrap: break-word;
+
+    &:has(.icon) {
+      text-align: center;
+    }
 
     @include desktop {
       font-size: $size-3-desktop;

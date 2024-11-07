@@ -11,27 +11,23 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param width {number|string} Image width (Number if not percent else string)
  * @param height {number|string} Image height (Number if not percent else string)
  * @param onClick {Function} onClick Event
- * @param style {Object} Additional styles
- * @param flex {boolean} add Flex : 1
  */
 const Image = ({
   src,
   alt,
-  rounded,
+  circled,
   width,
   height,
   onClick,
-  flex,
   ...others
 }: ImageProps): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
       width: width ? width : "100%",
       height: height ? height : "100%",
-      borderRadius: rounded ? 100 : 0,
-      overflow: rounded ? "hidden" : "visible",
-      resizeMode: "contain",
-      flex: flex ? 1 : 0,
+      borderRadius: circled ? 100 : 0,
+      overflow: circled ? "hidden" : "visible",
+      resizeMode: "contain"
     },
   })
 

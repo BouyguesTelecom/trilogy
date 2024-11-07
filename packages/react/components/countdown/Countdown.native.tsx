@@ -26,7 +26,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  * @param others
  */
-const Countdown = ({ deadline, format, event, small, centered, inverted, ...others }: CountdownProps): JSX.Element => {
+const Countdown = ({ deadline, format, event, small, inverted, ...others }: CountdownProps): JSX.Element => {
   const [init, setInit] = useState(false)
   const [timeLeft, setTimeLeft] = useState(deadline)
   const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -34,6 +34,8 @@ const Countdown = ({ deadline, format, event, small, centered, inverted, ...othe
   const [timer, setTimer] = useState(initialTimer)
   const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
   const parsedFormat = format?.split('-')
+
+  const centered = false
 
   useEffect(() => {
     setTimeLeft(deadline)
@@ -136,12 +138,12 @@ const Countdown = ({ deadline, format, event, small, centered, inverted, ...othe
     text: {
       color: countdownColor,
       fontWeight: '600',
-      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
     },
     date: {
       fontSize: small ? 12 : 14,
       fontWeight: small ? '500' : '400',
-      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+      fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
     },
     separator: {
       width: 1,
@@ -159,21 +161,27 @@ const Countdown = ({ deadline, format, event, small, centered, inverted, ...othe
           <Text style={styles.date}>j</Text>
         </Text>
       )}
-      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && <View style={styles.separator} testID='hour-day-id'></View>}
+      {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && (
+        <View style={styles.separator} testID='hour-day-id'></View>
+      )}
       {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
         <Text style={styles.text}>
           {timer.hours ? timer.hours : 0}
           <Text style={styles.date}>h</Text>
         </Text>
       )}
-      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='hour-min-id'></View>}
+      {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && (
+        <View style={styles.separator} testID='hour-min-id'></View>
+      )}
       {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
         <Text style={styles.text}>
           {timer.minutes ? timer.minutes : 0}
           <Text style={styles.date}>m</Text>
         </Text>
       )}
-      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && <View style={styles.separator} testID='sec-min-id'></View>}
+      {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && (
+        <View style={styles.separator} testID='sec-min-id'></View>
+      )}
       {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
         <Text style={styles.text} level={TextLevels.ONE}>
           {timer.seconds ? timer.seconds : 0}

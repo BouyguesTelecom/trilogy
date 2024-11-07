@@ -60,7 +60,6 @@ const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }
       {iconName && (
         <Icon
           size={small ? IconSize.SMALLER : IconSize.SMALL}
-          style={styles.iconLeft}
           name={iconName}
           testId={`${testId}-icon`}
         />

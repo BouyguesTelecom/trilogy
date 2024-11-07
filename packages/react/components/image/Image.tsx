@@ -1,9 +1,10 @@
-import * as React from "react"
-import { ImageProps } from "./ImageProps"
-import { is } from "@/services"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import { ImageProps } from './ImageProps'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { getJustifiedClassName } from '@/objects'
 
 /**
  * Image Component
@@ -20,15 +21,17 @@ const Image = ({
   src,
   alt,
   className,
-  rounded,
+  circled,
   width,
   height,
   onClick,
+  radius,
+  align,
   ...others
 }: ImageProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx("image", className))
+  const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const styles: React.CSSProperties | any = {
@@ -49,8 +52,8 @@ const Image = ({
     >
       <img
         style={styles.image}
-        className={hashClass(styled, clsx(rounded ? is("rounded") : ""))}
-        src={typeof src === "string" ? src : ""}
+        className={hashClass(styled, clsx(radius && has(`border-radius-${radius}`), circled ? is('circled') : ''))}
+        src={typeof src === 'string' ? src : ''}
         alt={alt}
       />
     </figure>

@@ -24,3 +24,9 @@ export enum ModalCtaMarkup {
 }
 
 export type ModalCtaMarkupValues = `${ModalCtaMarkup}`
+
+export enum ModalSize {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}

@@ -1,15 +1,18 @@
-import { Clickable } from '@/objects'
-import { Flexable } from '@/objects/facets/Flexable'
-import { DimensionValue } from "react-native"
+import { AlignableProps, Clickable } from '@/objects'
+import { DimensionValue } from 'react-native'
 
-type Styles = { [key: string]: unknown }
+export enum RadiusValues {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
 
-export interface ImageProps extends Clickable, Flexable {
+export interface ImageProps extends AlignableProps, Clickable {
   className?: string
   src: string | number
   alt?: string
-  rounded?: boolean
+  circled?: boolean
   width?: DimensionValue | number | undefined
   height?: DimensionValue | number | undefined
-  style?: Styles
+  radius?: RadiusValues
 }

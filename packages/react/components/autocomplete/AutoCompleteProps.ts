@@ -1,5 +1,6 @@
 import { InputChangeEventWeb, InputChangeEventNative, InputClickEvent, InputProps } from '@/components/input/InputProps'
 import { FocusEventHandler } from 'react'
+import { IconName, IconNameValues } from '@/components/icon'
 
 /**
  * AutoComplete Interface
@@ -21,6 +22,7 @@ export interface AutoCompletePropsWeb<T = string> extends InputProps {
   debounceSuggestionsTimeout?: number
   onFocus?:FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
+  iconName?: IconName | IconNameValues
 }
 
 export interface AutoCompletePropsNative<T = string> extends InputProps {
@@ -40,6 +42,7 @@ export interface AutoCompletePropsNative<T = string> extends InputProps {
   debounceSuggestionsTimeout?: number
   onFocus?: (event:  React.BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
+  iconName?: IconName | IconNameValues
 }
 
 export interface Item<T = string> {

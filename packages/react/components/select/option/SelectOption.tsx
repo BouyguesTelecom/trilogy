@@ -61,7 +61,6 @@ const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.L
       onChange={onClick}
       icon={iconName}
       description={label || children}
-      testId={testId}
       {...others}
     />
   )

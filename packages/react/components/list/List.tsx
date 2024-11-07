@@ -1,33 +1,25 @@
-import * as React from "react"
-import clsx from "clsx"
-import { ListProps } from "./ListProps"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import clsx from 'clsx'
+import { ListProps } from './ListProps'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { has } from '@/services'
 
 /**
- * List Component
- * @param children {React.ReactNode}
- * - -------------------------- WEB PROPERTIES -------------------------------
+ * ListItem Component
  * @param className {string} Additionnal CSS Classes
+ * @param children {React.ReactNode}
  * @param hasIcon {boolean} If Have icon
- * @param testId {string} Test Id for Test Integration
+ * @param onDelete {() => void} OnDelete Event
  */
+
 const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
-  const {
-    className,
-    hasIcon,
-    children,
-    ...others
-  } = props
-
+  const { className, children, testId, divider, ...others } = props
   const { styled } = useTrilogyContext()
+  const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
 
-  const classes = hashClass(
-    styled,
-    clsx(hasIcon ? "icon-list" : "list", className)
-  )
   return (
-    <ul ref={ref} className={classes} {...others}>
+    <ul ref={ref} data-testid={testId} className={classes} {...others}>
       {children}
     </ul>
   )

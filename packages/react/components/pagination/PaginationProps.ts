@@ -5,7 +5,7 @@ import { Pager } from './PaginationEnum'
  * Pagination Interface
  */
 export interface PaginationProps extends Accessibility, Dev {
-  count: number
+  length: number
   defaultPage?: number
   pageSize?: number
   onClick?: (pager: Pager) => void

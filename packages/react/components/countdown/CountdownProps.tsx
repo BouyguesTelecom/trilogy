@@ -10,6 +10,5 @@ export interface CountdownProps {
   format?: CountdownFormat
   event?: ClickEvent
   small?: boolean
-  centered?: boolean
   inverted?: boolean
 }

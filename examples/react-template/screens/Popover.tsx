@@ -1,19 +1,18 @@
-import * as React from "react";
+import * as React from 'react'
 import {
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
+  Button,
   Columns,
   ColumnsItem,
-  Popover,
-  Tag,
-  TagVariant,
-  PopoverDirection,
-  Button,
   Icon,
   IconName,
-} from "@trilogy-ds/react/components";
+  Popover,
+  Section,
+  Tag,
+  TagVariant,
+  Title,
+  TitleLevels,
+} from '@trilogy-ds/react/components'
+import { Link, PopoverContent, Text } from '@trilogy-ds/react'
 
 export const PopoverScreen = (): JSX.Element => {
   return (
@@ -22,59 +21,38 @@ export const PopoverScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Popover</Title>
         <Columns>
           <ColumnsItem>
-            <Popover content="Voici une simple popover">
-              <Button variant={"PRIMARY"}>Simple</Button>
+            <Popover>
+              <PopoverContent>
+                <Tag variant={TagVariant.ERROR}>Test</Tag>
+                <Icon name={IconName.TIMES} />
+              </PopoverContent>
+              <Link>Simple</Link>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
             <Popover>
-              <Button variant={"PRIMARY"}>Without content</Button>
+              <Button variant={'PRIMARY'}>Without content</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover
-              content={
-                <>
-                  <Tag variant={TagVariant.ERROR}>Test</Tag>
-                  <Icon name={IconName.TIMES} />
-                </>
-              }
-            >
-              <Button variant={"PRIMARY"}>Node content</Button>
+            <Popover>
+              <PopoverContent>
+                <Tag variant={TagVariant.ERROR}>Test</Tag>
+                <Icon name={IconName.TIMES} />
+              </PopoverContent>
+              <Button variant={'PRIMARY'}>Node content</Button>
             </Popover>
           </ColumnsItem>
           <ColumnsItem>
-            <Popover active content="Popover active">
-              <Button variant={"PRIMARY"}>Active</Button>
-            </Popover>
-          </ColumnsItem>
-        </Columns>
-      </Section>
-      <Section>
-        <Title level={TitleLevels.THREE}>Popover direction</Title>
-        <Columns>
-          <ColumnsItem>
-            <Popover content="En haut">
-              <Button variant={"PRIMARY"}>Top</Button>
-            </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
-            <Popover direction={PopoverDirection.BOTTOM} content="En bas">
-              <Button variant={"PRIMARY"}>Bottom</Button>
-            </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
-            <Popover direction={PopoverDirection.RIGHT} content="A droite">
-              <Button variant={"PRIMARY"}>Right</Button>
-            </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
-            <Popover direction={PopoverDirection.LEFT} content="A gauche">
-              <Button variant={"PRIMARY"}>Left</Button>
+            <Popover active>
+              <PopoverContent>
+                <Text>Popover active</Text>
+              </PopoverContent>
+              <Button variant={'PRIMARY'}>Active</Button>
             </Popover>
           </ColumnsItem>
         </Columns>
       </Section>
     </>
-  );
-};
+  )
+}

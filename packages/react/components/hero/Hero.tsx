@@ -1,10 +1,10 @@
-import React from "react"
-import { HeroProps } from "./HeroProps"
-import { has, is } from "@/services/classify"
-import { getAlignClassName, getBackgroundClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import React from 'react'
+import { HeroProps } from './HeroProps'
+import { has, is } from '@/services/classify'
+import { getBackgroundClassName } from '@/objects'
+import clsx from 'clsx'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Hero Component
@@ -18,10 +18,7 @@ import { useTrilogyContext } from "@/context"
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param align { Alignable | AlignableValues} align content
- * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param backgroundHeight {BackgroundHeight} Background heigth
  */
 const Hero = ({
   children,
@@ -29,8 +26,6 @@ const Hero = ({
   backgroundSrc,
   inverted,
   className,
-  align,
-  justify,
   onClick,
   overlap,
   ...others
@@ -40,15 +35,13 @@ const Hero = ({
   const classes = hashClass(
     styled,
     clsx(
-      "hero",
+      'hero',
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
-    align && is(getAlignClassName(align)),
-      justify && is(justify),
-      overlap && is("overlapped"),
-      className
-    )
+      (inverted && is('inverted')) || is('base'),
+      overlap && is('overlapped'),
+      className,
+    ),
   )
 
   return (
@@ -60,7 +53,7 @@ const Hero = ({
       className={classes}
       {...others}
     >
-      <div className={hashClass(styled, clsx("hero-body"))}>{children}</div>
+      <div className={hashClass(styled, clsx('hero-body'))}>{children}</div>
     </section>
   )
 }

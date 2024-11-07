@@ -1,12 +1,10 @@
-import * as React from "react"
-import { ProgressProps } from "./ProgressProps"
-import { is, has } from "@/services/index"
-import { Text, TextLevels } from "../text"
-import { Columns, ColumnsItem } from "../columns"
-import { getStatusClassName } from "@/objects"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { useTrilogyContext } from "@/context"
+import * as React from 'react'
+import { ProgressProps } from './ProgressProps'
+import { is } from '@/services/index'
+import { getStatusClassName } from '@/objects'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import { useTrilogyContext } from '@/context'
 
 /**
  * Progress component
@@ -23,37 +21,22 @@ import { useTrilogyContext } from "@/context"
  * @param className {string} Additionnal CSS classes
  */
 const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    children,
-    className,
-    percent,
-    maxPercent = 100,
-    status,
-    small,
-    stacked,
-    uniqueLegend,
-    firstExtremLegend,
-    secondExtremLegend,
-    ...others
-  } = props
+  const { children, className, value, max = 100, status, small, stacked, ...others } = props
 
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
     styled,
     clsx(
-      "progress",
+      'progress',
       status && is(getStatusClassName(status)),
-      !status && is("primary"),
-      small && is("small"),
-      className
-    )
+      !status && is('primary'),
+      small && is('small'),
+      className,
+    ),
   )
 
-  const stackedClasses = hashClass(
-    styled,
-    clsx("progress", stacked && is("stacked"), className)
-  )
+  const stackedClasses = hashClass(styled, clsx('progress', stacked && is('stacked'), className))
 
   if (children && stacked) {
     return (
@@ -65,32 +48,12 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
 
   return (
     <>
-      <progress
-        className={classes}
-        value={percent}
-        max={maxPercent}
-        {...others}
-      >
-        {percent}
+      <progress className={classes} value={value} max={max} {...others}>
+        {value}
       </progress>
-      {uniqueLegend && (
-        <Text className={has("text-centered")} level={TextLevels.TWO}>
-          {uniqueLegend}
-        </Text>
-      )}
-      {firstExtremLegend && secondExtremLegend && (
-        <Columns mobile>
-          <ColumnsItem>
-            <Text level={TextLevels.TWO}>{firstExtremLegend}</Text>
-          </ColumnsItem>
-          <ColumnsItem narrow>
-            <Text level={TextLevels.TWO}>{secondExtremLegend}</Text>
-          </ColumnsItem>
-        </Columns>
-      )}
+      {children}
     </>
   )
-
 })
 
 export default Progress

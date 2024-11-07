@@ -22,7 +22,6 @@ const Popover = ({
   children,
   active,
   arrowPosition,
-  content,
   ...others
 }: PopoverWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -41,7 +40,6 @@ const Popover = ({
   return (
     <div className={classes} {...others}>
       {children}
-      {content && <div className={hashClass(styled, clsx('popover-content'))}>{content}</div>}
     </div>
   )
 }

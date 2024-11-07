@@ -127,30 +127,6 @@ $overlap-desktop: 30px;
         padding-top: 80px;
         padding-bottom: 80px;
       }
-
-      .suptitle {
-        display: none;
-
-        @include desktop {
-          display: block;
-          margin-bottom: 30px;
-          font-size: 19px;
-          text-transform: uppercase;
-        }
-      }
-
-      .title {
-        font-size: 32px;
-        margin-bottom: 25px;
-
-        @include desktop {
-          font-size: 52px;
-        }
-      }
-
-      .button {
-        width: auto;
-      }
     }
 
     &.is-overlapped {
@@ -162,9 +138,5 @@ $overlap-desktop: 30px;
         }
       }
     }
-  }
-
-  &.is-centered {
-    text-align: center;
   }
 }

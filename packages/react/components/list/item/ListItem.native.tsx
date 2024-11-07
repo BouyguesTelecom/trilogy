@@ -1,35 +1,18 @@
 import React, { useMemo } from 'react'
-import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
-import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { TrilogyColor, getColorStyle } from '@/objects'
-import { Divider } from '@/components/divider'
+import { StyleSheet, View as ReactView, View } from 'react-native'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
-import { Title, TitleLevels } from '@/components/title'
-import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
+import { ListItemProps } from './ListItemProps'
 
 /**
  * ListItem Component
  * @param children {React.ReactNode}
  * @param customIcon {IconName | React.ReactNode } Icon name | children
  * @param status {ListIconStatus} Status success|error
- * @param title {string} List item title
- * @param description {string} List item description
- * @param action {React.ReactNode} children
- * @param divider {boolean} Display divider
- * @param deletable {boolean}
  */
-const ListItem = ({
-  children,
-  customIcon,
-  status,
-  title,
-  description,
-  divider,
-  action,
-  deletable,
-}: ListItemProps): JSX.Element => {
+const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
       marginBottom: 4,
@@ -38,10 +21,10 @@ const ListItem = ({
       position: 'relative',
     },
     text: {
-      paddingHorizontal: customIcon ? 16 : undefined,
+      paddingHorizontal: iconName ? 16 : undefined,
     },
     title: {
-      paddingHorizontal: customIcon ? 16 : undefined,
+      paddingHorizontal: iconName ? 16 : undefined,
       marginBottom: children ? 8 : undefined,
     },
     container: {
@@ -56,7 +39,7 @@ const ListItem = ({
       alignItems: 'center',
       position: 'relative',
       paddingVertical: 8,
-      width: action ? '85%' : undefined,
+      width: undefined,
     },
     badge: {
       alignSelf: 'center',
@@ -83,13 +66,6 @@ const ListItem = ({
 
   const getComponent = useMemo(() => {
     if (typeof children === 'object') return <View style={styles.text}>{children}</View>
-    if (typeof children === 'undefined' && description) {
-      return (
-        <Text style={styles.text} level={TextLevels.ONE}>
-          {description}
-        </Text>
-      )
-    }
     if (['string', 'number'].includes(typeof children)) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
@@ -97,76 +73,24 @@ const ListItem = ({
         </Text>
       )
     }
-  }, [children, description])
+  }, [children])
 
   const content = useMemo(() => {
     return (
       <View style={styles.container}>
         <ReactView style={styles.content}>
-          {customIcon && typeof customIcon === 'string' && (
+          {iconName && (
             <ReactView>
-              <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
+              <Icon size='small' name={iconName as IconName} color={status || IconColor.MAIN} />
             </ReactView>
           )}
-
-          {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
-
-          <ReactView>
-            {title && (
-              <Title style={styles.title} level={TitleLevels.SIX}>
-                {title}
-              </Title>
-            )}
-            {getComponent}
-          </ReactView>
+          <ReactView>{getComponent}</ReactView>
         </ReactView>
-
-        {action && deletable && (
-          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
-            <View style={styles.badge} />
-            <View style={styles.swipeInfo} />
-          </ReactView>
-        )}
-        {action && !deletable && (
-          <ReactView style={{ marginLeft: 'auto' }}>
-            <View>{action}</View>
-          </ReactView>
-        )}
       </View>
     )
-  }, [customIcon, status, title, getComponent, action, deletable])
+  }, [iconName, status, getComponent])
 
-  if (action && deletable) {
-    const RightActions = (_: AnimatedInterpolationProps, dragX: AnimatedInterpolationProps) => {
-      const scale = dragX.interpolate({
-        inputRange: [-100, 0],
-        outputRange: [1.5, 0.9],
-        extrapolate: 'clamp',
-      })
-
-      return (
-        <View>
-          <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
-            {action}
-          </Animated.View>
-        </View>
-      )
-    }
-
-    return (
-      <>
-        <Swipeable renderRightActions={RightActions}>{content}</Swipeable>
-        {divider && <Divider />}
-      </>
-    )
-  }
-
-  return (
-    <>
-      {content}
-      {divider && <Divider />}
-    </>
-  )
+  return content
 }
 
 ListItem.displayName = ComponentName.ListItem

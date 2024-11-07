@@ -433,7 +433,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 // Radius
-$radius-list: ['radius-small', 'radius'];
+$radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
 
 @each $label in $radius-list {
   .has-border-#{$label} {

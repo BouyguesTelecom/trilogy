@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Icon, IconName } from '@/components/icon'
 import { PaginationProps } from './PaginationProps'
 import { hashClass } from '@/helpers'
@@ -17,15 +17,7 @@ import { Pager } from './PaginationEnum'
  * @param href {Function} Function that generates a link for seo bots
  * @param testId {string} Test Id for Test Integration
  */
-const Pagination = ({
-  className,
-  count,
-  defaultPage = 1,
-  pageSize = 10,
-  onClick,
-  href,
-  ...others
-}: PaginationProps): JSX.Element => {
+const Pagination = ({ className, length, defaultPage = 1, onClick, href, ...others }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('pagination', className))
@@ -33,23 +25,22 @@ const Pagination = ({
   const prevCurrentPage = useRef<number>(currentPage)
   const pager = React.useMemo<Pager>(() => {
     // Calculate total pages
-    const totalPages = Math.ceil(count / pageSize)
 
     let startPage = 1
     let endPage = 5
 
-    if (totalPages <= 5) {
+    if (length <= 5) {
       // less than pageSize(default is 5) total pages so show all
       startPage = 1
-      endPage = totalPages
+      endPage = length
     } else {
       // more than 3 total pages so calculate start and end pages
       if (currentPage <= 3) {
         startPage = 1
         endPage = 4
-      } else if (currentPage + 3 >= totalPages) {
-        startPage = totalPages - 3
-        endPage = totalPages
+      } else if (currentPage + 3 >= length) {
+        startPage = length - 3
+        endPage = length
       } else {
         startPage = currentPage - 1
         endPage = currentPage + 1
@@ -62,12 +53,11 @@ const Pagination = ({
     // Set pager object
     return {
       currentPage,
-      pageSize,
-      totalPages,
+      length,
       endPage,
       pages,
     }
-  }, [currentPage, pageSize, count])
+  }, [currentPage, length])
 
   useEffect(() => {
     if (onClick && prevCurrentPage.current !== pager.currentPage) {
@@ -77,13 +67,11 @@ const Pagination = ({
     prevCurrentPage.current = pager.currentPage
   }, [pager.currentPage])
 
-  const totalCountPages = count / pageSize
-
   return (
     <nav className={classes} {...others}>
       <a
         className={hashClass(styled, clsx('pagination-previous'))}
-        {...(currentPage === 1) ? { 'aria-disabled': true } : {} }
+        {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
         onClick={() => {
           if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -103,7 +91,7 @@ const Pagination = ({
           <li key={pageNumber}>
             <a
               className={hashClass(styled, clsx('pagination-link'))}
-              {...(currentPage === pageNumber) ? { 'aria-current': true } : {} }
+              {...(currentPage === pageNumber ? { 'aria-current': true } : {})}
               aria-label={`Aller à la page ${pageNumber}`}
               onClick={() => {
                 setCurrentPage(pageNumber)
@@ -114,7 +102,7 @@ const Pagination = ({
             </a>
           </li>
         ))}
-        {!pager.pages.includes(totalCountPages) && (
+        {!pager.pages.includes(length) && (
           <li>
             <span className={hashClass(styled, clsx('pagination-ellipsis'))}>…</span>
           </li>
@@ -122,9 +110,9 @@ const Pagination = ({
       </ul>
       <a
         className={hashClass(styled, clsx('pagination-next'))}
-        {...(currentPage === Math.max(pager.totalPages)) ? { 'aria-disabled': true } : {} }
+        {...(currentPage === Math.max(length) ? { 'aria-disabled': true } : {})}
         onClick={() => {
-          if (currentPage !== Math.max(pager.totalPages)) {
+          if (currentPage !== Math.max(length)) {
             setCurrentPage(currentPage + 1)
           }
         }}
