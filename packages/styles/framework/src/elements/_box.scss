@@ -67,7 +67,7 @@ a.box {
   }
 
   &.is-header-offset {
-    margin-top: $font-size-header * $font-line-height-header + 2 * #{$padding-top-bottom-header}px;
+    margin-top: #{$font-size-header * $font-line-height-header + 2 * $padding-top-bottom-header}px;
   }
 
   &.is-highlighted {
