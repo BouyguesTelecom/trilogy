@@ -18,7 +18,7 @@ import { TagProps } from './TagProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  **/
-const Tag = ({ children, className, id, variant, inverted, small, iconName, ...others }: TagProps): JSX.Element => {
+const Tag = ({ label, className, id, variant, inverted, small, iconName, ...others }: TagProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const tagClassNames = hashClass(
@@ -40,7 +40,7 @@ const Tag = ({ children, className, id, variant, inverted, small, iconName, ...o
   return (
     <span id={id} className={tagClassNames} {...others}>
       {iconName && <Icon className={tagIconClassNames} name={iconName} />}
-      {children}
+      {label}
     </span>
   )
 }

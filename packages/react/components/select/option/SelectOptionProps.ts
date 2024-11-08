@@ -8,8 +8,6 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  */
 export interface SelectOptionProps<T extends string | number = string> extends Accessibility, Dev, CommonProps {
   children?: string
-  /** @deprecated use Select "selected" props instead */
-  selected?: boolean
   label?: string
   value?: T
   disabled?: boolean

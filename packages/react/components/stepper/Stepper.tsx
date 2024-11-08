@@ -1,7 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { StepperProps } from './StepperProps'
-import { has } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 
@@ -13,10 +12,9 @@ import { useTrilogyContext } from '@/context'
  * @param className Additionnal CSS Classes
  */
 const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, centered, children, ...others } = props
+  const { className, id, children, ...others } = props
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-wrapper', className))
-  const centerClasses = hashClass(styled, clsx('section', has('text-centered'), className))
   const [currentStep, setCurrentStep] = React.useState<number>(0)
 
   const nbChild = React.useMemo<number>(() => {
@@ -41,19 +39,6 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
       }
     }
   }, [children])
-
-  if (centered) {
-    return (
-      <section id={id} ref={ref} className={centerClasses}>
-        <div className={classes} {...others}>
-          {children}
-          <div className='step-count'>
-            {currentStep}/{nbChild}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   return (
     <div id={id} ref={ref} className={classes} {...others}>

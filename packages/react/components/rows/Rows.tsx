@@ -3,7 +3,7 @@ import { RowsProps } from './RowsProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
+import { has, is } from '@/services'
 
 /**
  * Rows Component
@@ -13,14 +13,17 @@ import { is } from '@/services'
  * @param className {string} additionnal CSS Classes
  */
 const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, gapless, ...others } = props
+  const { className, id, gap, ...others } = props
   const { styled } = useTrilogyContext()
 
   return (
     <div
       id={id}
       ref={ref}
-      className={hashClass(styled, clsx('rows', gapless && is('gapless'), className))}
+      className={hashClass(
+        styled,
+        clsx('rows', gap && has(`gap-${gap}`), typeof gap !== 'undefined' && gap === 0 && is('gapless'), className),
+      )}
       {...others}
     />
   )

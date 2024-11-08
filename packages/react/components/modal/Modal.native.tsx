@@ -117,7 +117,7 @@ const Modal = ({
 
   return (
     <>
-      {/*{triggerContent && (*/}
+      {/* {triggerContent && (*/}
       {/*  <Button*/}
       {/*    variant={ButtonVariant.PRIMARY}*/}
       {/*    onClick={(e) => {*/}
@@ -127,7 +127,7 @@ const Modal = ({
       {/*  >*/}
       {/*    {triggerContent}*/}
       {/*  </Button>*/}
-      {/*)}*/}
+      {/* )}*/}
       <NativeModal
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onSwipeComplete={(e: any) => {

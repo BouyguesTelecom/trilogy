@@ -20,7 +20,6 @@ const TimelineMarker = ({
   id,
   iconClassname,
   iconName,
-  iconColor,
   ...others
 }: TimelineMarkerWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -30,7 +29,7 @@ const TimelineMarker = ({
   return (
     <div id={id} className={classes} {...others}>
       <div className='card-header-icon'>
-        <Icon color={iconColor} className={iconClasses} name={iconName} size={IconSize.SMALL} />
+        <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
       </div>
     </div>
   )

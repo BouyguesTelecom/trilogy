@@ -22,18 +22,7 @@ import { useTrilogyContext } from '@/context'
  * @param autolayout {boolean} Apply auto-layout rules
  **/
 const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    className,
-    id,
-    skeleton,
-    backgroundColor,
-    backgroundSrc,
-    inverted,
-    paddingless,
-    verticalPaddingless,
-    fullwidth,
-    ...others
-  } = props
+  const { className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others } = props
 
   const { styled } = useTrilogyContext()
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
@@ -51,9 +40,6 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
       backgroundSrc && has('background'),
       inverted && is('inverted'),
       isLoading ? is('loading') : is('loaded'),
-      fullwidth && is('fullwidth'),
-      paddingless && is('paddingless'),
-      verticalPaddingless && is('vertical-paddingless'),
     ),
   )
 

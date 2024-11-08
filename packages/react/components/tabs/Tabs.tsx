@@ -24,38 +24,13 @@ import { TabsProps } from './TabsProps'
  * @param testId {string} Test Id for Test Integration
  */
 const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    children,
-    className,
-    id,
-    onClick,
-    activeIndex,
-    disabled,
-    fullwidth,
-    align,
-    centered,
-    marginless,
-    inverted,
-    shadowless,
-    textAlign,
-    ...others
-  } = props
+  const { children, className, id, onClick, activeIndex, fullwidth, align, inverted, ...others } = props
 
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
   const { styled } = useTrilogyContext()
   const [isIcons, setIsIcons] = React.useState(false)
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'tabs',
-      fullwidth && is('fullwidth'),
-      centered && is('centered'),
-      marginless && is('marginless'),
-      isIcons && is('icons'),
-      className,
-    ),
-  )
+  const classes = hashClass(styled, clsx('tabs', fullwidth && is('fullwidth'), isIcons && is('icons'), className))
 
   const isActive = React.useCallback(
     (index: number, childPropsActive: React.ReactNode) => {
@@ -69,18 +44,12 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     [activateIndex],
   )
 
-  const toggleActive = React.useCallback(
-    (e: React.MouseEvent, index: number) => {
-      if (disabled) {
-        return false
-      }
-      setActivateIndex(index)
-      if (onClick) {
-        onClick(e)
-      }
-    },
-    [disabled],
-  )
+  const toggleActive = React.useCallback((e: React.MouseEvent, index: number) => {
+    setActivateIndex(index)
+    if (onClick) {
+      onClick(e)
+    }
+  }, [])
 
   useEffect(() => {
     setActivateIndex(activateIndex)
@@ -90,16 +59,7 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     <div
       id={id}
       ref={ref}
-      className={hashClass(
-        styled,
-        clsx(
-          'tab-context',
-          inverted && is('inverted'),
-          align && has(`text-${align}`),
-          shadowless && is('shadowless'),
-          textAlign && textAlign,
-        ),
-      )}
+      className={hashClass(styled, clsx('tab-context', inverted && is('inverted'), align && has(`text-${align}`)))}
       data-tabs-context=''
     >
       <div className={classes} role='tablist' {...others}>

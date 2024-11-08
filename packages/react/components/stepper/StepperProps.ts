@@ -5,5 +5,4 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  */
 export interface StepperProps extends CommonProps {
   children?: React.ReactNode
-  centered?: boolean
 }

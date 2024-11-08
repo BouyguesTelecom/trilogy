@@ -10,7 +10,6 @@ import { SelectOption } from '../'
 
 const SelectDynamic = ({
   onChange,
-  nullable,
   disabled,
   onFocus,
   onBlur,
@@ -63,18 +62,12 @@ const SelectDynamic = ({
       if (isChecked) {
         setSelectedValues((prev) => {
           switch (true) {
-            case Array.isArray(prev) && nullable:
+            case Array.isArray(prev):
               setSelectedName((prev) => prev.filter((txt) => ![children, label].includes(txt)))
               const opts = (prev as string[]).filter((item: string | number) => item !== value)
               selectedOptions.push(...opts)
               return opts
-            case Array.isArray(prev) && !nullable:
-              selectedOptions.push(...(prev as string[]))
-              return prev
-            case !Array.isArray(prev) && !nullable:
-              selectedOptions.push(value)
-              return prev
-            case !Array.isArray(prev) && nullable:
+            case !Array.isArray(prev):
               setSelectedName([])
               return undefined
             default:
@@ -99,7 +92,7 @@ const SelectDynamic = ({
       }
       return selectedOptions
     },
-    [multiple, nullable],
+    [multiple],
   )
 
   React.useEffect(() => {
@@ -181,8 +174,8 @@ const SelectDynamic = ({
       if (!React.isValidElement(child)) return null
       const clickEventValue = (v: string) => {
         switch (true) {
-          case (nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
-            (nullable && !multiple && selectedValues === child.props.value):
+          case (multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
+            (!multiple && selectedValues === child.props.value):
             return undefined
           default:
             return v
@@ -214,7 +207,7 @@ const SelectDynamic = ({
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
-  }, [multiple, nullable, selectedValues, focusedIndex, children])
+  }, [multiple, selectedValues, focusedIndex, children])
 
   return (
     <div className={selectClasses}>

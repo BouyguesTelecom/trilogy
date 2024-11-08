@@ -15,7 +15,7 @@ import { TagProps } from './TagProps'
  * @param iconName {IconName} display icon
  * @param testId {string} Test Id for Test Integration
  **/
-const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }: TagProps): JSX.Element => {
+const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: TagProps): JSX.Element => {
   const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
 
   const backgroundColor = variant && getStatusStyle(variant).backgroundColor
@@ -64,7 +64,7 @@ const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }
           testId={`${testId}-icon`}
         />
       )}
-      <Text style={styles.text}>{children}</Text>
+      <Text style={styles.text}>{label}</Text>
     </View>
   )
 }

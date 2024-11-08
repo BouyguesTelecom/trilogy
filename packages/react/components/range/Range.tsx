@@ -12,19 +12,10 @@ import { useTrilogyContext } from '@/context'
  * @param max {number} max length
  * @param label {string} label of range
  * @param labelValueCursorMin {string} label to display next to value display
- * @param labelValueCursorMax {string} label to display next to value display
- * @param onChange {function}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param nameMin {string} name input min
- * @param idMin {string} id input min
- * @param nameMax{string} name input max
- * @param idMax {string} id input max
  * @param gap {number} space max between min and max cursor
- * @param valueCursorMin {number} number of input min
- * @param valueCursorMax {number} number of input max
  * @param onChangeMin {function} on change min cursor
  * @param onChangeMax {function} on change max cursor
- * @param testId {string} Test Id for Test Integration
  */
 const Range = ({
   className,
@@ -32,22 +23,18 @@ const Range = ({
   min,
   max,
   label,
-  valueCursorMin,
-  valueCursorMax,
-  labelValueCursorMin,
-  labelValueCursorMax,
+  valueMin,
+  valueMax,
+  unit,
   onChangeMin,
   onChangeMax,
-  nameMin,
-  idMin,
-  nameMax,
-  idMax,
+  name,
   gap = 0,
 }: RangeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const [cursorMin, setCursorMin] = React.useState<number>(valueCursorMin ?? 0)
-  const [cursorMax, setCursorMax] = React.useState<number>(valueCursorMax ?? max)
+  const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
+  const [cursorMax, setCursorMax] = React.useState<number>(valueMax ?? max)
   const refTrack = React.useRef(null)
 
   React.useEffect(() => {
@@ -62,12 +49,12 @@ const Range = ({
   }, [cursorMin, cursorMax])
 
   React.useEffect(() => {
-    setCursorMin(valueCursorMin || 0)
-  }, [valueCursorMin])
+    setCursorMin(valueMin || 0)
+  }, [valueMin])
 
   React.useEffect(() => {
-    setCursorMax(valueCursorMax || max)
-  }, [valueCursorMax])
+    setCursorMax(valueMax || max)
+  }, [valueMax])
 
   const handleChangeCursorMin = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,20 +73,20 @@ const Range = ({
   const handleMouseUpMin = React.useCallback(() => {
     if (onChangeMin) {
       onChangeMin({
-        inputName: nameMin,
+        inputName: name,
         inputValue: cursorMin,
       })
     }
-  }, [onChangeMin, nameMin, cursorMin])
+  }, [onChangeMin, name, cursorMin])
 
   const handleMouseUpMax = React.useCallback(() => {
     if (onChangeMax) {
       onChangeMax({
-        inputName: nameMax,
+        inputName: name,
         inputValue: cursorMax,
       })
     }
-  }, [onChangeMax, nameMax, cursorMax])
+  }, [onChangeMax, name, cursorMax])
 
   return (
     <div id={id} className={hashClass(styled, clsx('range-container', className))}>
@@ -114,8 +101,8 @@ const Range = ({
           type='range'
           min={min}
           max={max}
-          name={nameMin}
-          id={idMin}
+          name={name}
+          id={`${id}-min`}
           aria-label={label}
         />
         <input
@@ -126,19 +113,19 @@ const Range = ({
           type='range'
           min={min}
           max={max}
-          name={nameMax}
-          id={idMax}
+          name={name}
+          id={`${id}-max`}
           aria-label={label}
         />
       </div>
       <div className={hashClass(styled, clsx('range-values'))}>
         <div>
           <span className={hashClass(styled, clsx('range-value-min'))}>{cursorMin}</span>
-          {labelValueCursorMin && <span> {labelValueCursorMin}</span>}
+          {unit && <span> {unit}</span>}
         </div>
         <div>
           <span className={hashClass(styled, clsx('range-value-max'))}>{cursorMax}</span>
-          {labelValueCursorMax && <span> {labelValueCursorMax}</span>}
+          {unit && <span> {unit}</span>}
         </div>
       </div>
     </div>

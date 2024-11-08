@@ -11,16 +11,12 @@ export interface RangeProps extends Accessibility, Dev, CommonProps {
   min: number
   max: number
   label?: string
-  valueCursorMin?: number
-  valueCursorMax?: number
-  labelValueCursorMin?: string
-  labelValueCursorMax?: string
+  valueMin?: number
+  valueMax?: number
+  unit?: string
   onChangeMin?: InputChangeEventHandlerWeb
   onChangeMax?: InputChangeEventHandlerWeb
-  nameMin?: string
-  idMin?: string
-  nameMax?: string
-  idMax?: string
+  name?: string
   gap?: number
   onChange?: InputChangeEventHandlerNative
 }

@@ -71,7 +71,6 @@ const Title = ({
   subtitle,
   overline,
   marginless,
-  htmlContent,
   ...others
 }: TitleProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
@@ -106,14 +105,7 @@ const Title = ({
   }
 
   return (
-    <Tag
-      id={id}
-      aria-label={accessibilityLabel}
-      onClick={onClick}
-      className={getClassname()}
-      {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
-      {...others}
-    >
+    <Tag id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
       {children}
     </Tag>
   )

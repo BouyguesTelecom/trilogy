@@ -7,7 +7,6 @@ export interface TimelineItemProps {
   children: React.ReactNode
   done?: boolean
   active?: boolean
-  undone?: boolean
   cancel?: boolean
 }
 
@@ -17,6 +16,5 @@ export interface TimelineItemProps {
 export interface TimelineItemWebProps extends TimelineItemProps, CommonProps {
   done?: boolean
   active?: boolean
-  undone?: boolean
   cancel?: boolean
 }

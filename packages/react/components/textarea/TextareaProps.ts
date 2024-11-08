@@ -16,7 +16,7 @@ import {
   InputTextContentType,
   InputTextContentTypeValues,
 } from '@/components/input/InputEnum'
-import { Accessibility, Dev, TypographyColor, TypographyColorValues } from '@/objects'
+import { Accessibility, Dev } from '@/objects'
 import { TextInput } from 'react-native'
 import { CommonProps } from '@/objects/facets/CommonProps'
 
@@ -38,7 +38,6 @@ type TextareaPropsWeb = Accessibility &
     help?: string
     /** @deprecated */
     name?: string
-    className?: string
     keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
     autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
     autoCorrect?: any
@@ -50,9 +49,8 @@ type TextareaPropsWeb = Accessibility &
     dynamicPlaceholder?: boolean
     rows?: number
     label?: string
-    iconName?: IconName | IconNameValues
-    statusIconName?: IconName | IconNameValues
-    typo?: TypographyColor | TypographyColorValues
+    iconNameLeft?: IconName | IconNameValues
+    iconNameRight?: IconName | IconNameValues
     customHeight?: number
     required?: boolean
     sample?: string

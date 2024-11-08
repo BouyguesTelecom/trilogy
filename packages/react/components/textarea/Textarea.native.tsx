@@ -62,8 +62,8 @@ const Textarea = (
     maxLength,
     dynamicPlaceholder = true,
     label,
-    iconName,
-    statusIconName,
+    iconNameLeft,
+    iconNameRight,
     customHeight = 120,
     value,
     required,
@@ -103,7 +103,7 @@ const Textarea = (
         textareaColor,
       height: customHeight,
       justifyContent: 'flex-start',
-      paddingLeft: iconName ? 48 : 16,
+      paddingLeft: iconNameLeft ? 48 : 16,
       paddingRight: maxLength ? 48 : 16,
       paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
       textAlignVertical: 'top',
@@ -134,7 +134,7 @@ const Textarea = (
     dynamicLabel: {
       position: 'absolute',
       top: 2,
-      left: iconName ? 40 : 8,
+      left: iconNameLeft ? 40 : 8,
       fontSize: 12,
       color: grayscale(getColorStyle(TrilogyColor.FONT)),
       backgroundColor: 'transparent',
@@ -175,9 +175,9 @@ const Textarea = (
         </>
       )}
 
-      {iconName && (
+      {iconNameLeft && (
         <Text style={styles.leftIcon}>
-          <Icon name={iconName} size='small' />
+          <Icon name={iconNameLeft} size='small' />
         </Text>
       )}
 
@@ -213,27 +213,17 @@ const Textarea = (
         }
       />
 
-      {statusIconName && (
+      {iconNameRight && (
         <Text style={styles.rightIcon}>
-          <Icon
-            name={statusIconName}
-            size='small'
-            color={status && (status.toUpperCase() as IconColor)}
-          />
+          <Icon name={iconNameRight} size='small' color={status && (status.toUpperCase() as IconColor)} />
         </Text>
       )}
 
       {displayDynamicLabel && dynamicPlaceholder && <Text style={styles.dynamicLabel}>{label}</Text>}
       {maxLength && (
-        <Text style={styles.counter}>
-          {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
-        </Text>
+        <Text style={styles.counter}>{_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}</Text>
       )}
-      {help && (
-        <Text style={styles.help}>
-          {help}
-        </Text>
-      )}
+      {help && <Text style={styles.help}>{help}</Text>}
     </View>
   )
 }

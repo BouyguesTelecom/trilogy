@@ -2,7 +2,6 @@ import * as React from 'react'
 import {
   Divider,
   Progress,
-  ProgressLegend,
   ProgressRadial,
   Section,
   StatusState,
@@ -44,15 +43,13 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
-        <Progress value={30} status={StatusState.INFO} uniqueLegend='My unique legend' />
+        <Progress value={30} status={StatusState.INFO} />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress value={15} status={StatusState.INFO} firstExtremLegend='0 Go' secondExtremLegend='5 Go'>
-          <ProgressLegend center={'Legend'} end={'5 Go'} />
-        </Progress>
+        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendCenter='Je suis une légende' legendEnd="5Go" />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>

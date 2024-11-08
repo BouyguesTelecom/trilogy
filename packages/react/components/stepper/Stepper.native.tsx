@@ -1,15 +1,15 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { TypographyBold, TypographyColor } from "@/objects"
-import { Text, TextLevels } from "@/components/text"
-import { StepperProps } from "./StepperProps"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { ComponentName } from "@/components/enumsComponentsName"
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { TypographyBold, TypographyColor } from '@/objects'
+import { Text, TextLevels } from '@/components/text'
+import { StepperProps } from './StepperProps'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 interface ICurrentStep {
-  step: number;
-  name: string;
-  iconName?: string | IconName;
+  step: number
+  name: string
+  iconName?: string | IconName
 }
 
 /**
@@ -17,30 +17,26 @@ interface ICurrentStep {
  * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({
-  children,
-  centered,
-  ...others
-}: StepperProps): JSX.Element => {
+const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
   const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({
     step: 0,
-    name: "",
-    iconName: "",
+    name: '',
+    iconName: '',
   })
 
   const styles = StyleSheet.create({
     steppers: {
-      flexDirection: "row",
-      alignSelf: centered ? "center" : "flex-start",
+      flexDirection: 'row',
+      alignSelf: 'flex-start',
     },
     step: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       marginTop: 10,
     },
     hasIcon: {
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     icon: {
       marginRight: 4,
@@ -98,26 +94,17 @@ const Stepper = ({
         <View style={styles.hasIcon}>
           {currentStep.iconName && (
             <Text style={styles.icon}>
-              <Icon
-                name={currentStep.iconName as IconName}
-                size={IconSize.SMALL}
-              />
+              <Icon name={currentStep.iconName as IconName} size={IconSize.SMALL} />
             </Text>
           )}
-          <Text
-            level={TextLevels.ONE}
-            typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
-          >
+          <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
             {currentStep.name}
           </Text>
         </View>
         <Text
           style={styles.counter}
           level={TextLevels.THREE}
-          typo={[
-            TypographyBold.TEXT_WEIGHT_SEMIBOLD,
-            TypographyColor.TEXT_MAIN,
-          ]}
+          typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_MAIN]}
         >
           {currentStep.step}/{nbChild}
         </Text>

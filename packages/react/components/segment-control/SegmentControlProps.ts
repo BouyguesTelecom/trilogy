@@ -6,8 +6,6 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  */
 export interface SegmentControlProps extends Clickable, CommonProps {
   children: React.ReactNode
-  disabled?: boolean
   activeIndex?: number
-  marginless?: boolean
   inverted?: boolean
 }

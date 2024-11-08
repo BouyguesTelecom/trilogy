@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
-import { Platform, StyleSheet, Text as TextNative, View } from "react-native"
-import { TextProps } from "./TextProps"
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "@/objects/Typography"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { TextLevels, TextLevelValues } from "./TextEnum"
-import ContentLoader, { Rect } from "react-content-loader/native"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StatesContext } from "@/context/providerStates"
+import React, { useContext } from 'react'
+import { Platform, StyleSheet, Text as TextNative, View } from 'react-native'
+import { TextProps } from './TextProps'
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TextLevels, TextLevelValues } from './TextEnum'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { StatesContext } from '@/context/providerStates'
 
 /**
  * Text Native Component
@@ -17,9 +17,7 @@ import { StatesContext } from "@/context/providerStates"
  * @param style {Object} Additional style
  * @param typo {string} Text typo
  * @param skeleton {Boolean} Text Skeleton
- * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param link {boolean} Add link variant for inline link into Text
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
@@ -29,10 +27,8 @@ const Text = ({
   style,
   inverted,
   typo,
-  onClick,
   skeleton,
   accessibilityLabel,
-  link,
   numberOfLines = 0,
   ...others
 }: TextProps): JSX.Element => {
@@ -51,27 +47,23 @@ const Text = ({
     text: {
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
-      color:
-        (!skeleton &&
-          setTypographyColor(typo, inverted || statesContext.inverted)) ||
-        (link && getColorStyle(TrilogyColor.FONT)) ||
-        "transparent",
+      color: (!skeleton && setTypographyColor(typo, inverted || statesContext.inverted)) || 'transparent',
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
-      textDecorationLine: link ? "underline" : "none",
+      textDecorationLine: 'none',
       alignSelf:
-        (setTypographyAlign(typo) === "left" && "flex-start") ||
-        (setTypographyAlign(typo) === "center" && "center") ||
-        (setTypographyAlign(typo) === "right" && "flex-end") ||
-        "flex-start",
+        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
+        (setTypographyAlign(typo) === 'center' && 'center') ||
+        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
+        'flex-start',
     },
     skeleton: {
       minWidth: 10,
       alignSelf:
-        (setTypographyAlign(typo) === "left" && "flex-start") ||
-        (setTypographyAlign(typo) === "center" && "center") ||
-        (setTypographyAlign(typo) === "right" && "flex-end") ||
-        "flex-start",
+        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
+        (setTypographyAlign(typo) === 'center' && 'center') ||
+        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
+        'flex-start',
 
       borderRadius:
         (level && level == TextLevels.ONE && 7) ||
@@ -80,13 +72,13 @@ const Text = ({
         3,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
       height: textLevels(level as TextLevels | TextLevelValues),
     },
   })
   const textAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === "string"
+    : typeof children === 'string'
     ? children
     : undefined
 
@@ -108,7 +100,7 @@ const Text = ({
     textView = (
       <ContentLoader style={styles.skeleton}>
         {textView}
-        {Platform.OS === "android" && (
+        {Platform.OS === 'android' && (
           <View>
             <Rect rx='7' ry='7' width='100%' height='100%' />
           </View>
@@ -116,13 +108,7 @@ const Text = ({
       </ContentLoader>
     )
   }
-  return onClick ? (
-    <TextNative onPress={onClick} style={styles.text}>
-      {textView}
-    </TextNative>
-  ) : (
-    textView
-  )
+  return textView
 }
 
 Text.displayName = ComponentName.Text

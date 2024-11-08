@@ -12,8 +12,6 @@ import { useTrilogyContext } from '@/context'
  * @param content {string} Text content
  * @param contentLink {string} Text for content link
  * @param heading {string} Text heading
- * @param link {string} Url link
- * @param Onclick {string} Provide event onCLick
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
@@ -23,9 +21,8 @@ const TimelineContent = ({
   id,
   heading,
   content,
-  link,
-  contentLink,
-  onClick,
+  linkLabel,
+  linkTo,
   ...others
 }: TimelineContentWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -40,22 +37,14 @@ const TimelineContent = ({
   }
 
   return (
-    <div
-      id={id}
-      className={classes}
-      {...others}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-    >
+    <div id={id} className={classes} {...others}>
       {heading && <Text markup={TextMarkup.P}>{heading}</Text>}
       {content && (
         <Text className='main-content' markup={TextMarkup.P}>
           {content}
         </Text>
       )}
-      {link && <Link href={link}>{contentLink || link}</Link>}
+      {linkTo && linkLabel && <Link href={linkTo}>{linkLabel}</Link>}
     </div>
   )
 }
