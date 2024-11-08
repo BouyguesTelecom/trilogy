@@ -172,7 +172,15 @@ const SelectDynamic = ({
   }, [focused, focusedIndex, children, isChecked])
 
   const modal = useMemo(
-    () => <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)} />,
+    () => (
+      <div
+        role='presentation'
+        className={hashClass(styled, clsx('select-trilogy_modal_open'))}
+        onClick={() => {
+          setIsFocused(false)
+        }}
+      />
+    ),
     [],
   )
 

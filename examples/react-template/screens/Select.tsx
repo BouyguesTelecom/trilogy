@@ -1,5 +1,5 @@
-import { Button, Divider, Spacer, Title, TitleLevels } from '@trilogy-ds/react'
-import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
+import { TitleLevels } from '@trilogy-ds/react'
+import { Button, Divider, IconName, Section, Select, SelectOption, Spacer, Title } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const SelectView = (): JSX.Element => {
