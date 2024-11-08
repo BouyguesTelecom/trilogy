@@ -1,7 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TableProps } from './TableProps'
-import { is } from '@/services/classify'
+import { TableBorderEnum, TableProps } from './TableProps'
+import { has, is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
 
@@ -20,8 +20,7 @@ const Table = ({
   className,
   id,
   fullwidth,
-  bordered,
-  comparative,
+  border = TableBorderEnum.LINES,
   striped,
   compact,
   ...others
@@ -33,8 +32,7 @@ const Table = ({
     clsx(
       'table',
       fullwidth && is('fullwidth'),
-      bordered && is('bordered'),
-      comparative && is('comparative'),
+      border && border !== TableBorderEnum.LINES && has(`border-${border}`),
       striped && is('striped'),
       compact && is('compact'),
       className,

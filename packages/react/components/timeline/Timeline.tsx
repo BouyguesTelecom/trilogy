@@ -14,13 +14,10 @@ import { is } from '@/services'
  * @param className {string} Additionnal CSS Classes
  */
 const Timeline = React.forwardRef((props: TimelineProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, notifications, horizontal, ...others } = props
+  const { className, id, horizontal, ...others } = props
 
   const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx('timeline', notifications && notifications, horizontal && is('horizontal'), className),
-  )
+  const classes = hashClass(styled, clsx('timeline', horizontal && is('horizontal'), className))
 
   return <div id={id} ref={ref} className={classes} {...others} />
 })

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { is } from '@/services'
 import SegmentControlItem from './item'
 import { SegmentControlProps } from './SegmentControlProps'
 import { hashClass } from '@/helpers'
@@ -12,24 +11,14 @@ import { useTrilogyContext } from '@/context'
  * @param onClick onClick event
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
- * @param marginless {boolean} delete margin
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
- * @param inverted {boolean} invert color SegmentControl
  */
-const SegmentControl = ({
-  className,
-  id,
-  onClick,
-  disabled,
-  marginless,
-  children,
-  activeIndex,
-}: SegmentControlProps): JSX.Element => {
+const SegmentControl = ({ className, id, onClick, children, activeIndex }: SegmentControlProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('segmented-control', marginless && is('marginless'), className))
+  const classes = hashClass(styled, clsx('segmented-control', className))
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
@@ -42,7 +31,6 @@ const SegmentControl = ({
   }
 
   const toggleActive = (e: React.MouseEvent, index: number) => {
-    if (disabled) return false
     setActivateIndex(index)
     if (onClick) onClick(e)
   }

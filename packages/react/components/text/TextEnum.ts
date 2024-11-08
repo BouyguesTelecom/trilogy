@@ -19,8 +19,6 @@ export type TextLevelValues = TextLevels
 export enum TextMarkup {
   P = 'p',
   SPAN = 'span',
-  DIV = 'div',
-  A = 'a',
 }
 
 /**

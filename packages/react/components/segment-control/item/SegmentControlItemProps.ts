@@ -5,8 +5,7 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  * SegmentedControl Item Interface
  */
 export interface SegmentControlItemProps extends Clickable, CommonProps {
-  children: React.ReactChild
+  children: React.ReactNode
   active?: boolean
   disabled?: boolean
-  inverted?: boolean
 }

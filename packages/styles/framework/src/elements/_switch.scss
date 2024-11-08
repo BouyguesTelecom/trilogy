@@ -1,6 +1,11 @@
 .switch {
   position: relative;
   margin: 8px;
+  width: fit-content;
+
+  &.is-fullwidth {
+    width: 100%;
+  }
 
   input {
     display: none;
@@ -8,6 +13,7 @@
     &:disabled ~ label,
     &:disabled:checked ~ label {
       cursor: not-allowed;
+
       &:before {
         background-color: getColor('disabled');
       }

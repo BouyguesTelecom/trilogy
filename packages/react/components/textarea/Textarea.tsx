@@ -44,15 +44,14 @@ const Textarea = ({
   defaultValue,
   help,
   status,
-  statusIconName,
   dynamicPlaceholder = true,
   rows,
   ref,
   label,
   maxLength,
   minLength,
-  iconName,
-  typo,
+  iconNameLeft,
+  iconNameRight,
   ...others
 }: TextareaProps): JSX.Element => {
   const [value, setValue] = useState(defaultValue || '')
@@ -65,10 +64,10 @@ const Textarea = ({
   const wrapperClasses = hashClass(styled, clsx('textarea-wrapper', className, status && is(status)))
   const classes = hashClass(
     styled,
-    clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconName && has('icon')),
+    clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')),
   )
 
-  const helpClasses = clsx('help')
+  const helpClasses = clsx('help', status && is(status))
   const counterClasses = hashClass(styled, clsx('counter', maxLength))
 
   return (
@@ -111,10 +110,10 @@ const Textarea = ({
         required={required}
       />
       {dynamicPlaceholder && <label>{label}</label>}
-      {iconName && <Icon name={iconName} size='small' />}
-      {statusIconName && <Icon name={statusIconName} size='small' />}
+      {iconNameLeft && <Icon name={iconNameLeft} size='small' />}
+      {iconNameRight && <Icon name={iconNameRight} size='small' />}
       {help && (
-        <Text typo={typo} className={helpClasses}>
+        <Text className={helpClasses}>
           {help}
         </Text>
       )}

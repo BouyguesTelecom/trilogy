@@ -14,7 +14,6 @@ import {
   Price,
   Section,
   Text,
-  TextLevels,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
@@ -26,13 +25,13 @@ export const ColumnScreen = (): JSX.Element => {
     <Section>
       <Box>
         <Columns scrollable fullBleed gap={GapSize.FIVE}>
-          <ColumnsItem size={4}>
+          <ColumnsItem verticalAlign={Alignable.ALIGNED_CENTER}>
+            <Text>Test hello</Text>
+          </ColumnsItem>
+          <ColumnsItem>
             <Text>Test</Text>
           </ColumnsItem>
-          <ColumnsItem size={4}>
-            <Text>Test</Text>
-          </ColumnsItem>
-          <ColumnsItem size={4}>
+          <ColumnsItem>
             <Text>Test</Text>
           </ColumnsItem>
         </Columns>

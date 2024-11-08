@@ -56,7 +56,7 @@ const Link = ({
 
   const styles = StyleSheet.create({
     linkAlignement: {
-      alignSelf: 'baseline'
+      alignSelf: 'baseline',
     },
     container: {
       padding: inline ? 4 : 8,

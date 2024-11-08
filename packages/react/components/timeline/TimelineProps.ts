@@ -5,6 +5,5 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  */
 export interface TimelineProps extends CommonProps {
   children: React.ReactNode
-  notifications?: boolean
   horizontal?: boolean
 }

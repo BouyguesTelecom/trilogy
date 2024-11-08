@@ -11,11 +11,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param value {number} Progress value
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param stacked {boolean} Stacked progress
- * @param uniqueLegend {stringabsolute} Unique legend
- * @param firstExtremLegend {string} First extremity legend, only with secondExtremLegend property
- * @param secondExtremLegend {string} Second extremity legend, only with firstExtremLegend property
  */
-const Progress = ({ children, value, status, ...others }: ProgressProps): JSX.Element => {
+const Progress = ({ value, status, ...others }: ProgressProps): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
@@ -78,7 +75,7 @@ const Progress = ({ children, value, status, ...others }: ProgressProps): JSX.El
 
   return (
     <View style={styles.progress} {...others}>
-      <Animated.View style={[styles.value, { width }]}>{children}</Animated.View>
+      <Animated.View style={[styles.value, { width }]} />
     </View>
   )
 }

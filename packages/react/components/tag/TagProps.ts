@@ -13,7 +13,7 @@ export interface TagClickEvent {
  * Tag Interface
  */
 export interface TagProps extends Accessibility, Dev, CommonProps {
-  children?: React.ReactNode
+  label: string
   variant?: TagVariant | TagVariantValues
   inverted?: boolean
   iconName?: IconName

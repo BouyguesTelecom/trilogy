@@ -19,4 +19,5 @@ export interface SwitchProps extends StatusProps, Invertable, CommonProps {
   value?: string
   name?: string
   reversed?: boolean
+  fullWidth?: boolean
 }

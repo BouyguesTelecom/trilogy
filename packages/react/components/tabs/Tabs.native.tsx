@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { TabsProps } from './TabsProps'
 import { Text, TextLevels } from '@/components/text'
 import TabsItem from './item'
@@ -16,7 +16,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param shadowless {boolean} No shadow
  * @param centered {boolean} Centered tabs
  */
-const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps): JSX.Element => {
+const Tabs = ({ children, onClick, activeIndex, inverted, ...others }: TabsProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 
@@ -30,9 +30,6 @@ const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ..
   }
 
   const toggleActive = (e: React.MouseEvent, index: number) => {
-    if (disabled) {
-      return false
-    }
     setActivateIndex(index)
     if (onClick) {
       onClick(e)
@@ -43,13 +40,12 @@ const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ..
     tabs: {
       height: isIcons ? 64 : 48,
       flexDirection: 'row',
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND)
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND),
     },
   })
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabs} {...others}
-    contentContainerStyle={centered && { justifyContent: "center", flexGrow: 1 }}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabs} {...others}>
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

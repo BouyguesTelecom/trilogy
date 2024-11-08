@@ -6,19 +6,16 @@ export const RangeScreen = (): JSX.Element => {
     <Section>
       <Range
         min={0}
-        max={100}
-        labelValueCursorMin={"€"}
-        labelValueCursorMax={"€"}
-        valueCursorMin={0}
-        valueCursorMax={50}
+        max={4}
+        unit={"%"}
+        valueMin={0}
+        valueMax={4}
         label="Ceci est un label"
-        idMin="min"
-        idMax="max"
-        nameMax="max"
-        nameMin="min"
+        id={"test"}
+        name="name-range"
         onChangeMin={(e) => console.log(e)}
         onChangeMax={(e) => console.log(e)}
-        gap={0}
+        gap={2}
       />
     </Section>
   );

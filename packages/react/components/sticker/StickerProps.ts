@@ -1,11 +1,10 @@
-import { Small } from "@/objects/facets/Small"
-import { VariantProps } from "@/objects/facets"
-import { Hat } from "@/objects/facets/Hat"
-import { StickerMarkup, StickerMarkupValues } from "./StickerEnum"
+import { Small } from '@/objects/facets/Small'
+import { VariantProps } from '@/objects/facets'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
 
-export interface StickerProps extends Small, VariantProps, Hat, CommonProps {
-  children: React.ReactNode;
-  markup?: StickerMarkup | StickerMarkupValues;
-  outlined?: boolean;
+export interface StickerProps extends Small, VariantProps, CommonProps {
+  label: string
+  iconName?: IconName | IconNameValues
+  outlined?: boolean
 }

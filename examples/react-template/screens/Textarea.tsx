@@ -1,10 +1,6 @@
-import * as React from "react";
-import {
-  Divider,
-  IconName,
-  Section,
-  Textarea,
-} from "@trilogy-ds/react/components";
+import * as React from 'react'
+import { Divider, InputStatus, Section, Textarea } from '@trilogy-ds/react/components'
+import { IconName } from '@trilogy-ds/react'
 
 export const TextareaScreen = (): JSX.Element => {
   return (
@@ -15,9 +11,11 @@ export const TextareaScreen = (): JSX.Element => {
         help='Search helper textarea'
         onKeyUp={(e) => console.log(e)}
         required
-        iconName={IconName.CHECK}
-        statusIconName="tri-exclamation-circle"
+        rows={10}
+        iconNameLeft={IconName.CHECK}
+        iconNameRight='tri-exclamation-circle'
         dynamicPlaceholder={false}
+        status={InputStatus.ERROR}
       />
 
       <Divider />
@@ -27,61 +25,46 @@ export const TextareaScreen = (): JSX.Element => {
         help='Search helper textarea'
         onKeyUp={(e) => console.log(e)}
         required
-        iconName={IconName.CHECK}
+        iconNameLeft={IconName.CHECK}
         dynamicPlaceholder={false}
       />
 
       <Divider />
 
-      <Textarea disabled placeholder="placeholder" label="Dynamic label" />
+      <Textarea disabled placeholder='placeholder' label='Dynamic label' />
 
       <Divider />
 
-      <Textarea
-        placeholder="placeholder"
-        label="No Dynamic label"
-        dynamicPlaceholder={false}
-        customHeight={100}
-      />
+      <Textarea placeholder='placeholder' label='No Dynamic label' dynamicPlaceholder={false} />
 
       <Divider />
 
+      <Textarea placeholder='placeholder' label='With Max Lenght ' dynamicPlaceholder={false} maxLength={150} />
+      <Divider />
+      <Textarea placeholder='Disabled' label='Label' disabled />
+
+      <Textarea placeholder='With icon' label='With maxlength' maxLength={150} iconNameLeft={IconName.CHECK} />
+      <Divider />
+
       <Textarea
-        placeholder="placeholder"
-        label="With Max Lenght "
-        dynamicPlaceholder={false}
+        placeholder='With status icon success'
+        label='Iam a label'
         maxLength={150}
-      />
-      <Divider />
-      <Textarea placeholder="Disabled" label="Label" disabled />
-
-      <Textarea
-        placeholder="With icon"
-        label="With maxlength"
-        maxLength={150}
-        iconName={IconName.CHECK}
+        iconNameLeft={IconName.CHECK}
+        iconNameRight='tri-check-circle'
+        status='success'
       />
       <Divider />
 
       <Textarea
-        placeholder="With status icon success"
-        label="Iam a label"
-        maxLength={150}
-        iconName={IconName.CHECK}
-        statusIconName="tri-check-circle"
-        status="success"
-      />
-      <Divider />
-
-      <Textarea
-        placeholder="With status icon error"
-        label="Label"
-        iconName={IconName.CHECK}
-        statusIconName="tri-exclamation-circle"
-        status="error"
-        help="This is a help message"
-        typo="has-text-error"
+        placeholder='With status icon error'
+        label='Label'
+        iconNameLeft={IconName.CHECK}
+        iconNameRight='tri-exclamation-circle'
+        status='error'
+        help='This is a help message'
+        typo='has-text-error'
       />
     </Section>
-  );
-};
+  )
+}

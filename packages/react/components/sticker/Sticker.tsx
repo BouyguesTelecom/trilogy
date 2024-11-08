@@ -2,7 +2,6 @@ import React from 'react'
 import clsx from 'clsx'
 import { StickerProps } from './StickerProps'
 import { is } from '@/services/classify'
-import { StickerMarkup, StickerMarkupValues } from './StickerEnum'
 import { getVariantClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
@@ -13,24 +12,12 @@ import { useTrilogyContext } from '@/context'
  * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
  * @param id
- * @param hat {boolean} Hat Sticker ( for box )
  * @param outlined {boolean} Outlined sticker
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param markup {StickerMarkup} HTML element : p|span|div
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({
-  className,
-  id,
-  children,
-  variant,
-  small,
-  hat,
-  markup,
-  outlined,
-  ...others
-}: StickerProps): JSX.Element => {
+const Sticker = ({ className, id, variant, small, label, outlined, ...others }: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -39,23 +26,15 @@ const Sticker = ({
       'sticker',
       variant && is(getVariantClassName(variant)),
       small && is('small'),
-      hat && is('hat'),
       className,
       outlined && is('outlined'),
     ),
   )
 
-  const isCorrectMarkup = (stringMarkup: StickerMarkup | StickerMarkupValues) => {
-    if (stringMarkup in StickerMarkup || Object.values(StickerMarkup).includes(stringMarkup as StickerMarkup))
-      return true
-  }
-
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
-
   return (
-    <Tag id={id} className={classes} {...others}>
-      {children}
-    </Tag>
+    <p id={id} className={classes} {...others}>
+      {label}
+    </p>
   )
 }
 

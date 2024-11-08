@@ -23,7 +23,7 @@ import { IconSize } from '@/components/icon'
  * @param step {number|string} Step text circle
  */
 const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.LegacyRef<any>) => {
-  const { children, className, id, active, markup, current, done, label, iconName, error, ...others } = props
+  const { className, id, active, current, done, label, iconName, error, ...others } = props
 
   const { styled } = useTrilogyContext()
   const classesStepLabel = hashClass(styled, clsx('step-label'))
@@ -39,28 +39,17 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
       className,
     ),
   )
-
   /**
    * If no markup return div
    */
 
-  const isCorrectMarkup = (stringMarkup: StepperStepMarkup | StepperStepMarkupValues) => {
-    if (
-      stringMarkup in StepperStepMarkup ||
-      Object.values(StepperStepMarkup).includes(stringMarkup as StepperStepMarkup)
-    )
-      return true
-  }
-
-  const Tag = markup && isCorrectMarkup(markup) ? markup : StepperStepMarkup.DIV
-
   return (
-    <Tag id={id} ref={ref} className={classes} data-label={label} {...others}>
+    <div id={id} ref={ref} className={classes} data-label={label} {...others}>
       <div className={classesStepLabel}>
-        {label || children}
+        {label}
         {!done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />}
       </div>
-    </Tag>
+    </div>
   )
 })
 

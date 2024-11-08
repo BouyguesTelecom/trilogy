@@ -27,7 +27,6 @@ const Select = ({
   onChange,
   disabled,
   multiple,
-  nullable,
   ...others
 }: SelectProps): JSX.Element => {
   const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
@@ -69,19 +68,12 @@ const Select = ({
       if (isChecked) {
         setSelectedValues((prev) => {
           switch (true) {
-            case Array.isArray(prev) && nullable:
+            case Array.isArray(prev):
               setSelectedNames((prev) => prev.filter((txt) => ![children, label].includes(txt)))
               const opts = (prev as string[]).filter((item: string | number) => item !== value)
               selectedOptions.push(...opts)
               return opts
-            case Array.isArray(prev) && !nullable:
-              selectedOptions.push(...(prev as string[]))
-              return prev
-            case !Array.isArray(prev) && !nullable:
-              selectedOptions.push(value)
-              setDisplay(false)
-              return prev
-            case !Array.isArray(prev) && nullable:
+            case !Array.isArray(prev):
               setDisplay(false)
               setSelectedNames([])
               return undefined
@@ -108,7 +100,7 @@ const Select = ({
       }
       return selectedOptions
     },
-    [multiple, nullable],
+    [multiple],
   )
 
   const options = React.useMemo(() => {
@@ -116,8 +108,8 @@ const Select = ({
       if (!React.isValidElement(child)) return null
       const clickEventValue = (v: string) => {
         switch (true) {
-          case (nullable && multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
-            (nullable && !multiple && selectedValues === child.props.value):
+          case (multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
+            (!multiple && selectedValues === child.props.value):
             return undefined
           default:
             return v
@@ -147,7 +139,7 @@ const Select = ({
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
-  }, [multiple, nullable, selectedValues, children])
+  }, [multiple, selectedValues, children])
 
   return (
     <>

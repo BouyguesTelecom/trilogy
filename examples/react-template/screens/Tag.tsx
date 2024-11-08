@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   Container,
   Divider,
@@ -7,105 +7,53 @@ import {
   Tag,
   TagList,
   TagVariant,
-  Text,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
+} from '@trilogy-ds/react/components'
+import { TrilogyColor } from '@trilogy-ds/react'
 
 export const TagScreen = (): JSX.Element => {
   return (
     <Section>
       <Container>
         <TagList>
-          <Tag variant={TagVariant.INFO}>Tag secondaire</Tag>
-          <Tag variant={TagVariant.ERROR}>
-            Tag error
-          </Tag>
-          <Tag variant={TagVariant.SUCCESS}>
-            Tag success
-          </Tag>
-          <Tag variant={TagVariant.WARNING}>
-            Tag warning
-          </Tag>
+          <Tag label='Tag secondaire' variant={TagVariant.INFO} />
+          <Tag label='Tag secondaire' variant={TagVariant.WARNING} />
+          <Tag label='Tag secondaire' variant={TagVariant.SUCCESS} />
+          <Tag label='Tag secondaire' variant={TagVariant.ERROR} />
         </TagList>
-      </Container>
 
-      <Container>
-        <Title level={TitleLevels.THREE}>Tag default</Title>
-        <Divider/>
-        <Text>In list</Text>
-        <TagList>
-          <Tag variant={TagVariant.ERROR}>Tag error</Tag>
-          <Tag variant={TagVariant.INFO}>Tag info</Tag>
-          <Tag variant={TagVariant.SUCCESS}>Tag success</Tag>
-          <Tag variant={TagVariant.WARNING}>Tag warning</Tag>
-        </TagList>
-      </Container>
-
-      <Container>
         <Title level={TitleLevels.THREE}>Tag avec icone</Title>
-        <Divider/>
+        <Divider />
         <TagList>
-          <Tag
-            iconName={IconName.EXCLAMATION_CIRCLE}
-            variant={TagVariant.ERROR}
-          >
-            Tag error
-          </Tag>
-          <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS}>
-            Tag success
-          </Tag>
-          <Tag iconName={IconName.ALERT} variant={TagVariant.WARNING}>
-            Tag warning
-          </Tag>
-          <Tag iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO}>
-            Tag info
-          </Tag>
-          <Tag iconName={IconName.CHECK_CIRCLE}>Tag default</Tag>
+          <Tag label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
+          <Tag label='Tag warning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
+          <Tag label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag label='Tag success' iconName={IconName.CHECK_CIRCLE} />
         </TagList>
       </Container>
 
       <Container>
         <Title level={TitleLevels.THREE}>Small tag</Title>
-        <Divider/>
-        <Tag small variant={TagVariant.ERROR}>
-          Tag error
-        </Tag>
-        <Tag small variant={TagVariant.SUCCESS}>
-          Tag success
-        </Tag>
-        <Tag small iconName={IconName.ALERT} variant={TagVariant.WARNING}>
-          Tag warning
-        </Tag>
+        <Divider />
+        <TagList>
+          <Tag small label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
+          <Tag small label='Tag warning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
+          <Tag small label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag small label='Tag success' iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS} />
+        </TagList>
       </Container>
 
-      <Section>
+      <Section inverted backgroundColor={TrilogyColor.MAIN}>
         <Title level={TitleLevels.THREE}>Inverted tag</Title>
-        <Divider/>
-        <Tag inverted variant={TagVariant.ERROR}>
-          Tag error
-        </Tag>
-        <Tag inverted variant={TagVariant.SUCCESS}>
-          Tag success
-        </Tag>
-        <Tag inverted iconName={IconName.ALERT} variant={TagVariant.WARNING}>
-          Tag warning
-        </Tag>
-        <Tag inverted iconName={IconName.ALERT} variant={TagVariant.INFO}>
-          Tag info
-        </Tag>
-      </Section>
-      <Section>
-        <Title level={TitleLevels.THREE}>Deletable Tags</Title>
-        <Divider/>
+        <Divider inverted />
         <TagList>
-          <Tag deletable>Tag Deletable</Tag>
-          <Tag deletable variant={TagVariant.ERROR}>Deletable Error</Tag>
-          <Tag deletable variant={TagVariant.SUCCESS}>Deletable Success</Tag>
-          <Tag deletable variant={TagVariant.WARNING}>Deletable Warning</Tag>
-          <Tag deletable variant={TagVariant.INFO}>Deletable Info</Tag>
+          <Tag inverted label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
+          <Tag inverted label='Tag wraning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
+          <Tag inverted label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag inverted label='Tag success' iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS} />
         </TagList>
       </Section>
     </Section>
-  );
-};
+  )
+}

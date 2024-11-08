@@ -5,6 +5,7 @@ import { getStatusClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
+import { Text } from '@/components/text'
 
 /**
  * Progress component
@@ -21,7 +22,7 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS classes
  */
 const Progress = React.forwardRef((props: ProgressProps) => {
-  const { children, className, id, value, max = 100, status, small, ...others } = props
+  const { className, id, value, max = 100, status, small, legendStart, legendCenter, legendEnd, ...others } = props
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
@@ -35,12 +36,30 @@ const Progress = React.forwardRef((props: ProgressProps) => {
   )
 
   return (
-    <>
+    <div className='progress-container'>
       <progress id={id} className={classes} value={value} max={max} {...others}>
         {value}
       </progress>
-      {children}
-    </>
+      {(legendStart || legendCenter || legendEnd) && (
+        <div className='progress-legends'>
+          {legendStart && (
+            <div className='progress-legend-start'>
+              <Text>{legendStart}</Text>
+            </div>
+          )}
+          {legendCenter && (
+            <div className='progress-legend-center'>
+              <Text>{legendCenter}</Text>
+            </div>
+          )}
+          {legendEnd && (
+            <div className='progress-legend-end'>
+              <Text>{legendEnd}</Text>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   )
 })
 

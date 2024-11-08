@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Animated, ColorValue, Easing, StyleSheet } from "react-native"
-import { StepperStepProps } from "./StepperStepProps"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import * as React from 'react'
+import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
+import { StepperStepProps } from './StepperStepProps'
+import { getColorStyle, TrilogyColor } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Stepper Step Component
@@ -13,14 +13,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {ReactNode} Stepper Step Children
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const StepperStep = ({
-                       active,
-                       current,
-                       done,
-                       error,
-                       ...others
-                     }: StepperStepProps): JSX.Element => {
-
+const StepperStep = ({ active, current, done, error, ...others }: StepperStepProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.NEUTRAL)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
   const errorColor = getColorStyle(TrilogyColor.ERROR)
@@ -28,11 +21,7 @@ const StepperStep = ({
 
   const backgroundColor = backgroundColorAnim.interpolate({
     inputRange: [0, 1, 2],
-    outputRange: [
-      defaultColor as string,
-      activeColor as string,
-      errorColor as string,
-    ],
+    outputRange: [defaultColor as string, activeColor as string, errorColor as string],
   })
 
   React.useEffect(() => {

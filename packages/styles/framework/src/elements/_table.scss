@@ -153,9 +153,25 @@
     }
   }
 
-  &:not(.is-bordered).is-comparative {
+  &.has-border-all {
+    border: 1px solid getColor('neutral-fade');
+
     th {
       border-right: 1px solid getColor('neutral-fade');
+    }
+
+    td {
+      &:not(:last-child) {
+        border-right: 1px solid getColor('neutral-fade');
+      }
+    }
+  }
+
+  &.has-border-inner {
+    th {
+      &:not(:last-child) {
+        border-right: 1px solid getColor('neutral-fade');
+      }
     }
 
     td {
@@ -169,22 +185,6 @@
     td,
     th {
       padding: math.div(20px, 3) math.div(20px, 3);
-    }
-  }
-
-  &.is-bordered {
-    td,
-    th {
-      border-width: 1px;
-    }
-
-    tr {
-      &:last-child {
-        td,
-        th {
-          border-bottom-width: 1px;
-        }
-      }
     }
   }
 

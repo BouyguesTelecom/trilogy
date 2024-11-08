@@ -24,7 +24,6 @@ type Styles = { [key: string]: unknown }
 export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
   children?: React.ReactNode
   level?: TitleLevelValues | TitleLevels
-  loading?: boolean
   typo?:
     | TypographyColor
     | TypographyColorValues
@@ -37,10 +36,8 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
     | Array<string>
     | string
   skeleton?: boolean
-  href?: string
   markup?: TitleMarkup | TitleMarkupValues
   style?: Styles
-  htmlContent?: string
   subtitle?: boolean
   overline?: boolean
 }

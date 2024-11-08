@@ -6,13 +6,11 @@ import { CommonProps } from '@/objects/facets/CommonProps'
  * Tabs Item Interface
  */
 export interface TabsItemProps extends Clickable, Accessibility, Dev, CommonProps {
-  children: React.ReactChild
+  children: React.ReactNode
   active?: boolean
-  tabIndex?: number
   to?: string
   href?: string
   routerLink?: React.ElementType
   iconName?: IconNameValues | IconName
   disabled?: boolean
-  inverted?: boolean
 }

@@ -38,7 +38,7 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
     <View markup='main' className='main-content'>
       <AutoLayout>
         <ScrollView>
-          <Section>
+          <Section inverted>
             <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
               You need to test components in other screens
             </Title>

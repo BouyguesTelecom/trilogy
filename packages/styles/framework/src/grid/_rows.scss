@@ -1,16 +1,13 @@
-
-$gap :
-  4px,
-  8px,
-  12px,
-  16px,
-  24px,
-  32px,
-  40px,
-  48px,
-  54px,
-  62px
-;
+$gap: 4px,
+8px,
+12px,
+16px,
+24px,
+32px,
+40px,
+48px,
+54px,
+62px;
 
 
 .rows {
@@ -21,8 +18,15 @@ $gap :
   height: 100%;
   gap: 24px;
 
-  @include mobile{
+  @include mobile {
     gap: 16px;
+  }
+
+  @for $i from 1 through length($gap) {
+    $item: nth($gap, $i);
+    &.has-gap-#{$i} {
+      gap: $item;
+    }
   }
 
   &.is-aligned-end {
@@ -42,6 +46,7 @@ $gap :
     display: block;
     flex-grow: 1;
     flex-shrink: 1;
+
     &.is-narrow {
       flex-grow: 0;
     }

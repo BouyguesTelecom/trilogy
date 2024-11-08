@@ -1,21 +1,24 @@
-import * as React from "react";
-import {
-  Section,
-  Divider,
-  Box,
-  BoxContent,
-  IconName,
-  Text,
-} from "@trilogy-ds/react/components";
-import { TrilogyColor } from "@trilogy-ds/react/objects";
+import * as React from 'react'
+import { Box, BoxContent, Divider, IconName, Section, Text } from '@trilogy-ds/react/components'
+import { TrilogyColor } from '@trilogy-ds/react/objects'
+import { RowItem, Rows, Spacer, SpacerSize } from '@trilogy-ds/react'
+import { GapSize } from '@trilogy-ds/react/lib/components/columns/ColumnsTypes'
 
 export const DividerScreen = (): JSX.Element => {
   return (
     <Section>
-      <Box>
-        <Divider iconName={IconName.EYE_SLASH} />
-        <Text>Lorem ipsum dolor sit amet</Text>
+      <Rows gap={GapSize.EIGHT}>
+        <RowItem>
+          <Divider />
+        </RowItem>
+        <RowItem>
+          <Divider />
+        </RowItem>
+      </Rows>
 
+      <Spacer size={SpacerSize.EIGHT} />
+
+      <Box>
         <Divider
           color={TrilogyColor.MAIN}
           backgroundColor={TrilogyColor.MAIN}
@@ -31,7 +34,7 @@ export const DividerScreen = (): JSX.Element => {
           color={TrilogyColor.MAIN}
           textColor={TrilogyColor.MAIN}
           backgroundColor={TrilogyColor.BACKGROUND}
-          content={"New Message"}
+          content={'New Message'}
         />
         <Text>Lorem ipsum dolor sit amet</Text>
       </Box>
@@ -42,5 +45,5 @@ export const DividerScreen = (): JSX.Element => {
       </Box>
       <Divider />
     </Section>
-  );
-};
+  )
+}
