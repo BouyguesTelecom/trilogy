@@ -12,12 +12,12 @@ describe('TimelineItem component', () => {
     render(
       <Timeline>
         <TimelineItem cancel>
-          <TimelineMarker iconName={IconName.CHECK} iconColor={TrilogyColor.BACKGROUND} />
+          <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent
             heading='20 Septembre'
             content='Modification de votre identifiant de connexion'
-            link={'https://bouyguestelecom.fr'}
-            contentLink="Voir l'email"
+            linkTo={'https://bouyguestelecom.fr'}
+            linkLabel="Voir l'email"
           />
         </TimelineItem>
       </Timeline>,

@@ -8,7 +8,7 @@ describe('Pagination component', () => {
   it('should render with default props', async () => {
     const onClick = jest.fn()
 
-    render(<Pagination {...{ testID: 'test' }} count={50} onClick={onClick} />)
+    render(<Pagination {...{ testID: 'test' }} length={50} onClick={onClick} />)
     expect(screen.getByTestId('test')).toBeOnTheScreen()
 
     Array.from({ length: 5 }).map((_, i) => {
