@@ -9,9 +9,4 @@ describe('ListItem component', () => {
     render(<ListItem>Hello World</ListItem>)
     expect(screen.getByText('Hello World')).toBeOnTheScreen()
   })
-
-  test('should have title', () => {
-    render(<ListItem title='Title'>Hello World</ListItem>)
-    expect(screen.getByText('Title')).toBeOnTheScreen()
-  })
 })

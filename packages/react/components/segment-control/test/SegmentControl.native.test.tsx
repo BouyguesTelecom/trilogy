@@ -10,7 +10,7 @@ describe('SegmentControl', () => {
     const onClick = jest.fn()
     const onClickDisabled = jest.fn()
     render(
-      <SegmentControl className='custom-class' disabled={false} marginless={true}>
+      <SegmentControl className='custom-class'>
         <SegmentControlItem onClick={onClick}>Segment 1</SegmentControlItem>
         <SegmentControlItem active>Segment 2</SegmentControlItem>
         <SegmentControlItem disabled onClick={onClickDisabled}>

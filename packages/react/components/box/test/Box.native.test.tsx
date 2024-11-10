@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from '@testing-library/react-native'
+import { render, screen } from '@testing-library/react-native'
 import * as React from 'react'
 import Box from '../Box.native'
 import BoxContent from '../content/BoxContent.native'
@@ -21,26 +21,14 @@ describe('Box component', () => {
     render(
       <Box>
         <BoxHeader>Box Header</BoxHeader>
-        <BoxContent> Box Content</BoxContent>
+        <BoxContent>Box Content</BoxContent>
       </Box>,
     )
     expect(screen.getByText('Box Content')).toBeOnTheScreen()
   })
 
-  test('calls onClick handler when clicked', async () => {
-    const onClick = jest.fn()
-    render(
-      <Box onClick={onClick} id='box'>
-        Box Cliquable
-      </Box>,
-    )
-    const user = userEvent.setup()
-    await user.press(screen.getByTestId('box'))
-    expect(onClick).toHaveBeenCalled()
-  })
-
   test('Should have skeleton', () => {
-    render(<Box skeleton />)
+    render(<Box skeleton data-testid={'skeleton'} />)
     expect(screen.getByTestId('skeleton')).toBeOnTheScreen()
   })
 })

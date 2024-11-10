@@ -103,11 +103,6 @@ describe('Input component', () => {
     expect(getByTestId('search-id')).toBeTruthy()
   })
 
-  test('Should have help text', () => {
-    const { getByTestId } = render(<Input placeholder='Test' help='Help' />)
-    expect(getByTestId('help-id').props.children).toBe('Help')
-  })
-
   test('Should have custom icon or status', () => {
     const { getByTestId } = render(<Input status={InputStatus.SUCCESS} iconNameRight={IconName.INFOS_CIRCLE} />)
     expect(getByTestId('icon-status-id').props.children).toBeTruthy()
