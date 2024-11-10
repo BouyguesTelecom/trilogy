@@ -7,7 +7,7 @@ describe('Alert', () => {
   it('should render correctly', () => {
     render(
       <Alert
-        testId={'alert'}
+        id={'alert'}
         display
         status={StatusState.INFO}
         title='Alert information'

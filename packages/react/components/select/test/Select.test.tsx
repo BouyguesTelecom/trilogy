@@ -10,7 +10,6 @@ describe('SELECT NATIVE WEB', () => {
     label: 'Label',
     id: 'id',
     native: true,
-    testId: 'testId',
     onFocus: jest.fn(),
     onBlur: jest.fn(),
   }
@@ -18,7 +17,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should be native-old select', () => {
     const p = { ...props, selected: 'opt_2' }
     const { getByTestId } = render(
-      <Select {...p}>
+      <Select {...p} data-testid={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -40,7 +39,7 @@ describe('SELECT NATIVE WEB', () => {
 
   it('should change value', () => {
     const { getByTestId } = render(
-      <Select {...props}>
+      <Select {...props} data-testid={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -60,7 +59,7 @@ describe('SELECT NATIVE WEB', () => {
 
   it('should call focus and blur event', () => {
     const { getByTestId } = render(
-      <Select {...props}>
+      <Select {...props} data-testid={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -81,7 +80,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should be disabled', () => {
     const p = { ...props, disabled: true }
     const { getByTestId } = render(
-      <Select {...p}>
+      <Select {...p} data-testid={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -99,7 +98,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should have icon', () => {
     const p = { ...props, iconName: 'tri-advisor' as IconName }
     const { getByTestId } = render(
-      <Select {...p}>
+      <Select {...p} data-testid={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -112,74 +111,5 @@ describe('SELECT NATIVE WEB', () => {
     )
     const select = getByTestId('testId')
     expect(select.parentElement?.firstChild?.nextSibling?.nextSibling?.firstChild).toHaveClass('tri-advisor')
-  })
-})
-
-describe('SELECT  WEB', () => {
-  const props = {
-    name: 'Option',
-    label: 'Label',
-    id: 'id',
-    testId: 'testId',
-    onFocus: jest.fn(),
-    onBlur: jest.fn(),
-    iconName: 'tri-advisor' as IconName,
-  }
-  it('should be select', () => {
-    const p = { ...props, selected: 'opt_2', native: false }
-    const { getByTestId } = render(
-      <Select {...p}>
-        {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`
-          return (
-            <SelectOption key={i} id={value} value={value} label={`opt_${i}`}>
-              {`option ${i}`}
-            </SelectOption>
-          )
-        })}
-      </Select>,
-    )
-    const select = getByTestId('testId')
-    expect(select).toHaveAttribute('role', 'listbox')
-    expect(select).toBeInTheDocument()
-    expect(select.nextSibling?.nextSibling?.firstChild?.firstChild).toHaveClass('tri-advisor')
-  })
-
-  it('should be close and open', () => {
-    const p = { ...props, selected: 'opt_2' }
-    const { getByTestId } = render(
-      <Select {...p}>
-        {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`
-          return (
-            <SelectOption key={i} id={value} value={value} label={`opt_${i}`}>
-              {`option ${i}`}
-            </SelectOption>
-          )
-        })}
-      </Select>,
-    )
-    const select = getByTestId('testId')
-    expect(select.parentElement?.parentElement?.nextElementSibling).not.toBeInTheDocument()
-    fireEvent.click(select)
-    expect(select.parentElement?.parentElement?.nextElementSibling).toBeInTheDocument()
-  })
-
-  it('should be disabled', () => {
-    const p = { ...props, disabled: true, native: false }
-    const { getByTestId } = render(
-      <Select {...p}>
-        {[...Array(5)].map((item, i) => {
-          const value = `opt_${i}`
-          return (
-            <SelectOption key={i} id={value} value={value} label={`opt_${i}`}>
-              {`option ${i}`}
-            </SelectOption>
-          )
-        })}
-      </Select>,
-    )
-    const select = getByTestId('testId')
-    expect(select).toBeDisabled()
   })
 })

@@ -1,5 +1,5 @@
-import { Clickable } from '@/objects/facets/Clickable'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Clickable } from '../../objects/facets/Clickable'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * SegmentedControl Interface

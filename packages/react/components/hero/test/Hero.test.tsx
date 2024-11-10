@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
-import React from 'react'
-import { Alignable, VariantState } from '../../../objects'
+import * as React from 'react'
+import { VariantState } from '../../../objects'
 import Hero from '../Hero'
 
 describe('Hero', () => {
@@ -28,12 +28,6 @@ describe('Hero', () => {
     const { container } = render(<Hero backgroundColor={VariantState.MAIN}>My Hero Content</Hero>)
     const heroElement = container.querySelector('.hero')
     expect(heroElement).toHaveClass('has-background-main')
-  })
-
-  it('adds alignment classes to the root element if align and justify props are provided', () => {
-    const { container } = render(<Hero align={Alignable.ALIGNED_CENTER}>My Hero Content</Hero>)
-    const heroElement = container.querySelector('.hero')
-    expect(heroElement).toHaveClass('is-aligned-center')
   })
 
   it('adds overlapped class to the root element if overlap prop is provided', () => {

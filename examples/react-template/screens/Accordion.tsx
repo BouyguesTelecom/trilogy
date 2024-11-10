@@ -24,7 +24,7 @@ export const AccordionScreen = (): JSX.Element => {
           <AccordionHeader>
             <Text >Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody data-id="totooooo-test-id" testId="totooooo">
+          <AccordionBody data-id="totooooo-test-id">
             <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>

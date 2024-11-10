@@ -8,7 +8,7 @@ jest.useFakeTimers()
 
 describe('Icon component', () => {
   it('renders the children correctly', async () => {
-    render(<Icon name={IconName.ARROW_UP} testId='icon' />, {
+    render(<Icon name={IconName.ARROW_UP} id='icon' />, {
       wrapper: WrapperReactNativeTesting,
     })
     expect(screen.getByTestId('icon')).toBeOnTheScreen()
@@ -23,7 +23,7 @@ describe('Icon component', () => {
 
   it('should be clickable', async () => {
     const onClick = jest.fn()
-    render(<Icon onClick={onClick} name={IconName.ARROW_UP} testId='icon' />, {
+    render(<Icon onClick={onClick} name={IconName.ARROW_UP} id='icon' />, {
       wrapper: WrapperReactNativeTesting,
     })
     const user = userEvent.setup()
@@ -32,24 +32,19 @@ describe('Icon component', () => {
   })
 
   it('should be stretched', async () => {
-    render(<Icon stretched name={IconName.ARROW_UP} testId='icon' />, {
+    render(<Icon stretched name={IconName.ARROW_UP} id='icon' />, {
       wrapper: WrapperReactNativeTesting,
     })
     expect(screen.getByTestId('icon-stretched')).toBeOnTheScreen()
   })
 
   it('have icon status', async () => {
-    render(<Icon status="SUCCESS" name={IconName.ARROW_UP} testId='icon-status' />)
+    render(<Icon status="SUCCESS" name={IconName.ARROW_UP} id='icon-status' />)
     expect(screen.getByTestId('icon-status')).toBeOnTheScreen()
   })
 
   it('have circled icon', async () => {
-    render(<Icon circled  name={IconName.ARROW_UP} testId='icon-circled' />)
+    render(<Icon circled  name={IconName.ARROW_UP} id='icon-circled' />)
     expect(screen.getByTestId('icon-circled')).toBeOnTheScreen()
-  })
-
-  it('have text icon', async () => {
-    render(<Icon content=""  name={IconName.ARROW_UP} testId='icon-content' />)
-    expect(screen.getByTestId('icon-content')).toBeOnTheScreen()
   })
 })

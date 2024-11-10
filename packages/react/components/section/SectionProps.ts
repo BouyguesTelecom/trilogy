@@ -1,5 +1,5 @@
-import type { BackgroundProps, ChildrenWithNoText, Paddingless } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import type { BackgroundProps, ChildrenWithNoText } from '../../objects'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Section Interface

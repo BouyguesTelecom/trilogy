@@ -1,5 +1,5 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
-import { GapSize } from '@/components/columns/ColumnsTypes'
+import { CommonProps } from '../../objects/facets/CommonProps'
+import { GapSize } from '../../components/columns/ColumnsTypes'
 
 /**
  * Rows Interface

@@ -4,7 +4,6 @@ import {
   Divider,
   Icon,
   IconColor,
-  IconPosition,
   IconSize,
   IconStatus,
   IconStatusPosition,
@@ -19,6 +18,7 @@ import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
+
       <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} />
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
@@ -106,7 +106,7 @@ export const IconScreen = (): JSX.Element => {
         </View>
 
         <View>
-          <Icon size={IconSize.LARGE} position={IconPosition.LEFT} name={IconName.TIMES} />
+          <Icon size={IconSize.LARGE} name={IconName.TIMES} />
         </View>
       </Container>
 
@@ -114,17 +114,36 @@ export const IconScreen = (): JSX.Element => {
       <Divider />
 
       <Icon
-        statusPosition={IconStatusPosition.TOP}
         status={IconStatus.SUCCESS}
-        size={IconSize.MEDIUM}
+        size={IconSize.LARGE}
         name={IconName.TIMES}
       />
 
       <Icon
-        statusPosition={IconStatusPosition.BOTTOM}
-        status={IconStatus.SUCCESS}
-        size={IconSize.MEDIUM}
+        status={IconStatus.WARNING}
+        size={IconSize.LARGE}
         name={IconName.TIMES}
+      />
+
+      <Icon
+        status={IconStatus.ERROR}
+        size={IconSize.LARGE}
+        name={IconName.TIMES}
+      />
+
+      <Icon
+        status={IconStatus.INFO}
+        size={IconSize.LARGE}
+        name={IconName.TIMES}
+      />
+
+      <Title level={TitleLevels.THREE}>Icon circled</Title>
+      <Divider />
+
+      <Icon
+        size={IconSize.LARGE}
+        name={IconName.ARROW_DOWN}
+        circled
       />
     </Section>
   )

@@ -1,5 +1,6 @@
 // Dependencies
 import * as React from 'react'
+// @ts-ignore
 import renderer from 'react-test-renderer'
 import { is } from '../../../services/index'
 
@@ -7,8 +8,8 @@ import { is } from '../../../services/index'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 // Component to test
-import { getEnumNames } from '@/helpers'
-import { getButtonVariantClassName } from '@/objects'
+import { getEnumNames } from '../../../helpers'
+import { getButtonVariantClassName } from '../../../objects'
 import { Button, ButtonMarkup, ButtonVariant } from '../'
 
 describe('Button component', () => {
@@ -112,7 +113,7 @@ describe('Button component', () => {
   test('should be disabled with input tag', () => {
     const mockCallBack = jest.fn()
     const { getByTestId } = render(
-      <Button testId='btn' markup='input' disabled onClick={mockCallBack}>
+      <Button data-testid='btn' markup='input' disabled onClick={mockCallBack}>
         DEFAULT
       </Button>,
     )
@@ -125,7 +126,7 @@ describe('Button component', () => {
   test('should be disabled with <a> tag', () => {
     const mockCallBack = jest.fn()
     const { getByTestId } = render(
-      <Button testId='btn' markup='a' disabled onClick={mockCallBack}>
+      <Button data-testid='btn' markup='a' disabled onClick={mockCallBack}>
         DEFAULT
       </Button>,
     )
@@ -137,7 +138,7 @@ describe('Button component', () => {
   test('should execute onclick with input tag', () => {
     const mockCallBack = jest.fn()
     const { getByTestId } = render(
-      <Button testId='btn' markup='input' onClick={mockCallBack}>
+      <Button data-testid='btn' markup='input' onClick={mockCallBack}>
         DEFAULT
       </Button>,
     )
@@ -148,7 +149,7 @@ describe('Button component', () => {
 
   test('should be routerlink', () => {
     const { getByTestId } = render(
-      <Button routerLink='a' to='test' testId='btn' markup='a'>
+      <Button routerLink='a' to='test' data-testid='btn' markup='a'>
         DEFAULT
       </Button>,
     )
@@ -164,7 +165,7 @@ describe('Button component', () => {
           loading={false}
           markup={ButtonMarkup.INPUT}
           className={'className'}
-          id={'id'}
+          data-testid={'id'}
           disabled={false}
           variant={ButtonVariant.PRIMARY}
           fullwidth={true}

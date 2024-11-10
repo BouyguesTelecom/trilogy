@@ -9,7 +9,7 @@ jest.useFakeTimers()
 describe('Box component', () => {
   it('should render correctly', () => {
     render(
-      <Box testId={'box'}>
+      <Box id={'box'}>
         <BoxContent>Im a box</BoxContent>
       </Box>,
     )
@@ -30,7 +30,7 @@ describe('Box component', () => {
   test('calls onClick handler when clicked', async () => {
     const onClick = jest.fn()
     render(
-      <Box onClick={onClick} testId='box'>
+      <Box onClick={onClick} id='box'>
         Box Cliquable
       </Box>,
     )

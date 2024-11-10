@@ -2,54 +2,45 @@
 import * as React from 'react'
 
 // Testing methods
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { getColorClassName } from '../../../objects'
 import { getEnumNames } from '../../../helpers'
-import { has, is } from '../../../services'
+import { is } from '../../../services'
 
 // Component to test
 import { Tag, TagVariant } from '..'
 
 describe('Tag component', () => {
   test('should contain toto as text', () => {
-    render(<Tag>toto</Tag>)
+    render(<Tag label='toto' />)
 
     expect(screen.getByText('toto')).toBeInTheDocument()
   })
 
   test('should have "tag" className', () => {
-    render(<Tag>toto</Tag>)
+    render(<Tag label='toto' />)
 
     expect(screen.getByText('toto')).toHaveClass('tag')
   })
 
   test('should have a correct variant className', () => {
     getEnumNames(TagVariant).forEach((element) => {
-      render(<Tag variant={element}>{element}</Tag>)
-      expect(screen.getByText(element)).toHaveClass(is(getColorClassName(element)))
-    })
-  })
-
-  getEnumNames(TagVariant).forEach((element) => {
-    test('should have a correct variant className', () => {
-      render(<Tag variant={element}>{element}</Tag>)
+      render(<Tag variant={element} label={element}></Tag>)
       expect(screen.getByText(element)).toHaveClass(is(getColorClassName(element)))
     })
   })
 
   test('should have "is-inverted" className', () => {
-    render(<Tag inverted={true}>INVERTED</Tag>)
+    render(<Tag label='INVERTED' inverted />)
 
     expect(screen.getByText('INVERTED')).toHaveClass(is('inverted'))
   })
 
   test('should not have "is-inverted" className', () => {
-    render(<Tag>DEFAULT</Tag>)
-    render(<Tag inverted={false}>INVERTED</Tag>)
+    render(<Tag label='DEFAULT' />)
+    render(<Tag label='NOT INVERTED' inverted={false} />)
 
     expect(screen.getByText('DEFAULT')).not.toHaveClass(is('inverted'))
-    expect(screen.getByText('INVERTED')).not.toHaveClass(is('inverted'))
+    expect(screen.getByText('NOT INVERTED')).not.toHaveClass(is('inverted'))
   })
-
-
 })

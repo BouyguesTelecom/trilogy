@@ -1,5 +1,5 @@
-import { Accessibility, AlignableProps, Clickable, Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility, AlignableProps, Clickable, Dev } from '../../objects'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Tabs Interface

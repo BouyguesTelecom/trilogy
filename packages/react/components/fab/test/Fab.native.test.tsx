@@ -8,7 +8,7 @@ jest.useFakeTimers()
 describe('Fab component', () => {
   it('renders the children correctly', () => {
     render(
-      <Fab testId='fab' iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
+      <Fab id='fab' iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
         New Conversation
       </Fab>,
     )
@@ -19,7 +19,7 @@ describe('Fab component', () => {
     const onClick = jest.fn()
 
     render(
-      <Fab testId='fab' onClick={onClick} iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
+      <Fab id='fab' onClick={onClick} iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
         New Conversation
       </Fab>,
     )
@@ -32,7 +32,7 @@ describe('Fab component', () => {
     const onClick = jest.fn()
 
     render(
-      <Fab extended testId='fab' onClick={onClick} iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
+      <Fab extended id='fab' onClick={onClick} iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
         New Conversation
       </Fab>,
     )

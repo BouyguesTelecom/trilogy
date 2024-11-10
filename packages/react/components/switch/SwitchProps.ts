@@ -1,6 +1,6 @@
-import { StatusProps } from '@/objects/facets/Status'
-import { Invertable } from '@/objects/facets/Invertable'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { StatusProps } from '../../objects/facets/Status'
+import { Invertable } from '../../objects/facets/Invertable'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 export interface SwitchChangeEvent {
   switchState: boolean

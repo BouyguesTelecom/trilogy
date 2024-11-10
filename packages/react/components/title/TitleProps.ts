@@ -12,9 +12,9 @@ import {
   TypographyColorValues,
   TypographyTransform,
   TypographyTransformValues,
-} from '@/objects'
+} from '../../objects'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 type Styles = { [key: string]: unknown }
 

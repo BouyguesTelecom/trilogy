@@ -1,7 +1,7 @@
-import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '@/objects'
+import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '../../../objects'
 import React from 'react'
 import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Progress Radial Interface

@@ -5,7 +5,7 @@ import {
   JustifiableProps,
   AlignableProps, BackgroundProps,
   Accessibility
-} from "@/objects"
+} from "../../objects"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }

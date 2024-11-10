@@ -13,11 +13,6 @@ describe("TimelineItem", () => {
     expect(container.firstChild).toHaveClass("timeline-item active");
   });
 
-  it("renders with correct classNames when undone prop is true", () => {
-    const { container } = render(<TimelineItem undone>toto</TimelineItem>);
-    expect(container.firstChild).toHaveClass("timeline-item undone");
-  });
-
   it("renders with correct classNames when cancel prop is true", () => {
     const { container } = render(<TimelineItem cancel>toto</TimelineItem>);
     expect(container.firstChild).toHaveClass("timeline-item cancel");

@@ -40,17 +40,20 @@ export const StepperScreen = (): JSX.Element => {
           step={3}
         />
         <StepperStep done={4 < activeStep} current={activeStep === 4} label='Livraison' />
-        <StepperStep
-          done={5 < activeStep}
-          current={activeStep === 5}
-          iconName={IconName.EYE}
-          label='Confirm'
-        />
+        <StepperStep done={5 < activeStep} current={activeStep === 5} iconName={IconName.EYE} label='Confirm' />
       </Stepper>
       <Spacer size={30}></Spacer>
       <Button onClick={handleClickNext} variant={'PRIMARY'}>
         Next
       </Button>
+
+      <Divider />
+
+      <Stepper>
+        <StepperStep current data-testid='test-step-1' label='Step 1' />
+        <StepperStep data-testid='test-step-2' label='Step 2' />
+        <StepperStep data-testid='test-step-3' label='Step 3' />
+      </Stepper>
     </Section>
   )
 }

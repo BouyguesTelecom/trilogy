@@ -1,6 +1,6 @@
-import { Clickable } from '@/objects'
+import { Clickable } from '../../../objects'
 import { CardImageSize, CardImageSizeValues } from './CardImageEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Card Image Interface

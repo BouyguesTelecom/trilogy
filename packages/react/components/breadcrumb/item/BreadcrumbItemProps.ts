@@ -1,5 +1,5 @@
-import { Accessibility, Clickable, Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility, Clickable, Dev } from '../../../objects'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
   children?: string

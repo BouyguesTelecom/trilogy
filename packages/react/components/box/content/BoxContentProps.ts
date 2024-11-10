@@ -1,6 +1,6 @@
-import { Accessibility, Dev } from '@/objects'
-import { BackgroundProps } from '@/objects/atoms/Background'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility, Dev } from '../../../objects'
+import { BackgroundProps } from '../../../objects/atoms/Background'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Box Content Interface

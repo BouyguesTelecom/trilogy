@@ -1,64 +1,44 @@
 // Dependencies
-import * as React from "react";
-import { getEnumNames } from "../../../helpers/index";
-import { is } from "../../../services/index";
+import * as React from 'react'
+import { is } from '../../../services/index'
 
 // Testing methods
-import { render, screen } from "@testing-library/react";
-import renderer from "react-test-renderer";
+import { render } from '@testing-library/react'
 
 // Component to test
-import { Sticker, StickerMarkup } from "../";
-import {
-  getVariantClassName,
-  VariantState,
-} from "../../..";
+import Sticker from '../Sticker'
 
-describe("Sticker component", () => {
-  test("should have a Sticker in document", () => {
-    const {getByText} = render(<Sticker>DEFAULT</Sticker>);
-    const sticker = getByText("DEFAULT")
-    expect(sticker).toBeInTheDocument();
-    expect(sticker).toHaveClass("sticker");
-    expect(sticker).not.toHaveClass(is("small"));
-    expect(sticker).not.toHaveClass(is("hat"));
-  });
+describe('Sticker component', () => {
+  test('should have a Sticker in document', () => {
+    const { getByText } = render(<Sticker label='DEFAULT' />)
+    const sticker = getByText('DEFAULT')
+    expect(sticker).toBeInTheDocument()
+    expect(sticker).toHaveClass('sticker')
+    expect(sticker).not.toHaveClass(is('small'))
+    expect(sticker).not.toHaveClass(is('hat'))
+  })
 
-  test("should have a correct html tag", () => {
-    const {getByText} = render(<Sticker>DEFAULT</Sticker>);
-    const sticker = getByText("DEFAULT")
-    expect(sticker).toBeTruthy();
-  });
+  test('should have a correct html tag', () => {
+    const { getByText } = render(<Sticker label='DEFAULT' />)
+    const sticker = getByText('DEFAULT')
+    expect(sticker).toBeTruthy()
+  })
 
   test('should have "is-small" className', () => {
-    const {getByText} = render(<Sticker small>DEFAULT</Sticker>);
-    const sticker = getByText("DEFAULT")
-    expect(sticker).toHaveClass(is("small"));
-  });
+    const { getByText } = render(<Sticker label='DEFAULT' small />)
+    const sticker = getByText('DEFAULT')
+    expect(sticker).toHaveClass(is('small'))
+  })
 
   test('should not have "is-small" className', () => {
-    const {getByText} = render(<Sticker small={false}>DEFAULT</Sticker>);
-    const sticker = getByText("DEFAULT")
-    expect(sticker).not.toHaveClass(is("small"));
-  });
-
-  test('should have "is-hat" className', () => {
-    const {getByText} = render(<Sticker hat={true}>HAT</Sticker>);
-    const sticker = getByText("HAT")
-    expect(sticker).toHaveClass(is("hat"));
-  });
-
-  test('should not have "is-hat" className', () => {
-    const {getByText} = render(<Sticker hat={false}>HAT</Sticker>);
-    const sticker = getByText("HAT")
-    expect(sticker).not.toHaveClass(is("hat"));
-  });
+    const { getByText } = render(<Sticker label='DEFAULT' small={false} />)
+    const sticker = getByText('DEFAULT')
+    expect(sticker).not.toHaveClass(is('small'))
+  })
 
   test('should have "toto" className', () => {
-    const {getByText} = render(<Sticker className="toto">DEFAULT</Sticker>);
-    const sticker = getByText("DEFAULT")
-    expect(sticker).toHaveClass("toto");
-  });
-
-
-});
+    const { getByText } = render(<Sticker label='DEFAULT' className='toto' />)
+    const sticker = getByText('DEFAULT')
+    expect(sticker).toHaveClass('toto')
+  })
+})

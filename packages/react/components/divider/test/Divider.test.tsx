@@ -3,6 +3,7 @@ import * as React from "react";
 
 // Testing methods
 import { render, screen } from "@testing-library/react";
+// @ts-ignore
 import renderer from "react-test-renderer";
 import { is } from "../../../services"; // Component to test
 import { Divider } from "..";
@@ -27,18 +28,6 @@ describe("Divider component", () => {
     expect(screen.getByTestId("separator")).not.toHaveClass(is("unboxed"));
   });
 
-  test('should have "is-marginless" className', () => {
-    render(<Divider marginless={true} />);
-
-    expect(screen.getByTestId("separator")).toHaveClass(is("marginless"));
-  });
-
-  test('should not have "is-marginless" className', () => {
-    render(<Divider marginless={false} />);
-
-    expect(screen.getByTestId("separator")).not.toHaveClass(is("marginless"));
-  });
-
   test("snapshot", () => {
     const tree = renderer
       .create(
@@ -46,7 +35,6 @@ describe("Divider component", () => {
           className={"className"}
           content={"content"}
           unboxed={true}
-          marginless={true}
         />
       )
       .toJSON();

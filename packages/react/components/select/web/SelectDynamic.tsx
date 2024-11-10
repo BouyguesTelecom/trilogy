@@ -17,7 +17,6 @@ const SelectDynamic = ({
   selected,
   name,
   id,
-  testId,
   label,
   iconName,
   multiple,
@@ -50,9 +49,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value,
+        : selectedValues === value),
     [multiple, selectedValues],
   )
 
@@ -213,7 +212,6 @@ const SelectDynamic = ({
     <div className={selectClasses}>
       <Input
         value={selectedName.join(', ')}
-        testId={testId}
         name={name}
         disabled={disabled}
         placeholder={label}

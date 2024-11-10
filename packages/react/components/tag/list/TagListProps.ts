@@ -1,5 +1,5 @@
-import { Marginless } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Marginless } from '../../../objects'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Tag list Interface

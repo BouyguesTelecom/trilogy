@@ -1,8 +1,8 @@
-import { ClickEvent } from '@/events/OnClickEvent'
-import { Accessibility, Clipped, Dev } from '@/objects'
+import { ClickEvent } from '../../events/OnClickEvent'
+import { Accessibility, Clipped, Dev } from '../../objects'
 import { ReactNode } from 'react'
-import { ModalSize } from '@/components/modal/ModalEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { ModalSize } from '../../components/modal/ModalEnum'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Modal Interface

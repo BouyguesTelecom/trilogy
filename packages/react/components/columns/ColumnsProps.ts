@@ -1,6 +1,6 @@
 import { ColumnsSize, GapSize } from './ColumnsTypes'
-import { AlignableProps } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { AlignableProps } from '../../objects'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Columns Interface

@@ -1,7 +1,7 @@
-import { Accessibility, Clickable, Fullheight, Dev } from '@/objects'
-import { BackgroundProps } from '@/objects/atoms/Background'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility, Clickable, Fullheight, Dev } from '../../objects'
+import { BackgroundProps } from '../../objects/atoms/Background'
+import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Box Interface
