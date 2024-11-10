@@ -6,10 +6,10 @@ import {
   ButtonVariant,
   ButtonVariantValues,
 } from './ButtonEnum'
-import { Fullwidth } from '@/objects/facets/Fullwidth'
-import { Accessibility, Clickable, Dev } from '@/objects/facets'
-import { IconName, IconNameValues } from '@/components/icon'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Fullwidth } from '../../objects/facets/Fullwidth'
+import { Accessibility, Clickable, Dev } from '../../objects/facets'
+import { IconName, IconNameValues } from '../../components/icon'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Button Interface

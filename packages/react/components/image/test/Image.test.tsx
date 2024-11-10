@@ -4,6 +4,7 @@ import { is } from "../../../services/";
 
 // Testing methods
 import { fireEvent, render, screen } from "@testing-library/react";
+// @ts-ignore
 import renderer from "react-test-renderer";
 
 // Component to test
@@ -32,16 +33,16 @@ describe("Image component", () => {
     expect(screen.getByRole("img")).toHaveAttribute("alt", "test");
   });
 
-  test('should have "is-rounded" className', () => {
-    render(<Image rounded={true} src={"https://www.test.com"} />);
+  test('should have "is-circled" className', () => {
+    render(<Image circled={true} src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).toHaveClass(is("rounded"));
+    expect(screen.getByRole("img")).toHaveClass(is("circled"));
   });
 
-  test('should not have "is-rounded" className', () => {
-    render(<Image rounded={false} src={"https://www.test.com"} />);
+  test('should not have "is-circled" className', () => {
+    render(<Image circled={false} src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).not.toHaveClass(is("rounded"));
+    expect(screen.getByRole("img")).not.toHaveClass(is("circled"));
   });
 
   test("should onClick attribut work", () => {
@@ -58,7 +59,7 @@ describe("Image component", () => {
         <Image
           src={"https://www.test.com"}
           alt={"test"}
-          rounded={true}
+          circled={true}
           width={400}
           height={200}
           onClick={jest.fn()}

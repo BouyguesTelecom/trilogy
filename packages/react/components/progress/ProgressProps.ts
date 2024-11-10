@@ -1,6 +1,5 @@
-import { StatusProps } from '@/objects/facets/Status'
-import { Stacked } from '@/objects/facets/Stacked'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { StatusProps } from '../../objects/facets/Status'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Progress Interface

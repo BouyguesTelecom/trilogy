@@ -35,7 +35,6 @@ const Icon = ({
   circled,
   stacked,
   badgeContent,
-  statusPosition,
   stretched,
   color,
   backgroundColor,
@@ -148,13 +147,9 @@ const Icon = ({
       )
     } /* status icon */ else if (status && !circled && !stretched) {
       // TODO: fix status icon
-      iconView = (
-        <Text>FAUT CORRIGER ÇA (status icon)</Text>
-      )
+      iconView = <Text>FAUT CORRIGER ÇA (status icon)</Text>
     } else if (circled) {
-      iconView = (
-        <Text>FAUT CORRIGER ÇA (circled icon)</Text>
-      )
+      iconView = <Text>FAUT CORRIGER ÇA (circled icon)</Text>
     } /* Text icon */ else if (content && !badgeContent) {
       iconView = <Text>FAUT CORRIGER ÇA (icon + texte)</Text>
     } else {

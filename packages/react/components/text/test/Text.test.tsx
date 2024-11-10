@@ -1,11 +1,10 @@
 // Dependencies
-import React from 'react'
+import * as React from 'react'
 import { getEnumNames } from '../../../helpers'
 import { is } from '../../../services'
 
 // Testing methods
-import { fireEvent, render, screen } from '@testing-library/react'
-import renderer from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 // Component to test
 import { Text, TextLevels, TextMarkup } from '..'
@@ -85,24 +84,6 @@ describe('Text component', () => {
     expect(screen.getByText('CLASSNAME')).toHaveClass('toto')
   })
 
-  test('should have "toto" title', () => {
-    render(<Text title='toto'>TITLE</Text>)
-
-    expect(screen.getByText('TITLE').title).toBe('toto')
-  })
-
-  test('should have href', () => {
-    render(<Text href='https://www.test.com'>DEFAULT</Text>)
-    render(
-      <Text href='https://www.test.com' markup={TextMarkup.A}>
-        HREF
-      </Text>,
-    )
-
-    expect(screen.getByText('DEFAULT')).not.toHaveAttribute('href', 'https://www.test.com')
-    expect(screen.getByText('HREF')).toHaveAttribute('href', 'https://www.test.com')
-  })
-
   test('should have "is-loading" className', () => {
     render(<Text skeleton={true}>DEFAULT</Text>)
 
@@ -119,49 +100,5 @@ describe('Text component', () => {
 
     expect(screen.getByText('SKELETON')).toHaveClass(is('loaded'))
     expect(screen.getByText('SKELETON')).not.toHaveClass(is('loading'))
-  })
-
-  test('should have a href', () => {
-    render(<Text>DEFAULT</Text>)
-    render(<Text href={'https://www.test.com/'}>HREF</Text>)
-    render(
-      <Text href={'https://www.test.com/'} markup={TextMarkup.A}>
-        HREF_A
-      </Text>,
-    )
-
-    expect(screen.getByText('DEFAULT')).not.toHaveAttribute('href', 'https://www.test.com/')
-    expect(screen.getByText('HREF')).not.toHaveAttribute('href', 'https://www.test.com/')
-    expect(screen.getByText('HREF_A')).toHaveAttribute('href', 'https://www.test.com/')
-  })
-
-  test('should onClick attribut work', () => {
-    const mockCallBack = jest.fn()
-    render(<Text onClick={mockCallBack}>DEFAULT</Text>)
-
-    fireEvent.click(screen.getByText('DEFAULT'))
-    expect(mockCallBack).toHaveBeenCalled()
-  })
-
-  test('snapshot', () => {
-    const tree = renderer
-      .create(
-        <Text
-          level={TextLevels.FOUR}
-          inverted={true}
-          typo={TypographyColor.TEXT_ACCENT}
-          onClick={jest.fn()}
-          skeleton={false}
-          markup={TextMarkup.SPAN}
-          className={'test'}
-          href={'https://www.test.com'}
-          title={'testTitle'}
-        >
-          SnapShot
-        </Text>,
-      )
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
   })
 })

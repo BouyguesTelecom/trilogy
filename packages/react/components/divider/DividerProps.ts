@@ -1,6 +1,6 @@
 import { Marginless } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Divider Interface

@@ -8,7 +8,7 @@ describe("TimelineMarker component", () => {
     const { getByTestId } = render(
       <TimelineMarker
         iconName={IconName.EXCLAMATION_CIRCLE}
-        testId={"timeline-marker"}
+        data-testid={"timeline-marker"}
       />
     );
     expect(getByTestId("timeline-marker")).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("TimelineMarker component", () => {
       <TimelineMarker
         iconName={IconName.EXCLAMATION_CIRCLE}
         className="my-custom-class"
-        testId={"timeline-marker"}
+        data-testid={"timeline-marker"}
       />
     );
     expect(getByTestId("timeline-marker")).toHaveClass("my-custom-class");
@@ -29,7 +29,7 @@ describe("TimelineMarker component", () => {
     const { getByTestId } = render(
       <TimelineMarker
         iconName={IconName.EXCLAMATION_CIRCLE}
-        testId={"timeline-marker-icon"}
+        data-testid={"timeline-marker-icon"}
       />
     );
     expect(getByTestId("timeline-marker-icon")).toHaveClass(

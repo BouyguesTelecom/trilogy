@@ -1,5 +1,5 @@
-import { Accessibility, Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility, Dev } from '../../objects'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Breadcrumb Interface

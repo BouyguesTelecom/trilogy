@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { StepperProps } from './StepperProps'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { Text } from '@/components/text'
 
 /**
  * Stepper Component
@@ -15,7 +16,7 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
   const { className, id, children, ...others } = props
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-wrapper', className))
-  const [currentStep, setCurrentStep] = React.useState<number>(0)
+  const [currentStep, setCurrentStep] = React.useState<number>(1)
 
   const nbChild = React.useMemo<number>(() => {
     if (children && Array.isArray(children)) return children.length
@@ -27,10 +28,10 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
     if (children) {
       if (Array.isArray(children)) {
         let haveCurrentStep = false
-        children.map((child) => {
+        children.map((child, index) => {
           if (child?.props?.current) {
             haveCurrentStep = true
-            setCurrentStep(child.props.step)
+            setCurrentStep(index + 1)
           }
         })
         if (!haveCurrentStep) setCurrentStep(1)
@@ -44,7 +45,9 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
     <div id={id} ref={ref} className={classes} {...others}>
       {children}
       <div className='step-count'>
-        {currentStep}/{nbChild}
+        <Text>
+          {currentStep}/{nbChild}
+        </Text>
       </div>
     </div>
   )

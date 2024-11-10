@@ -1,5 +1,5 @@
 import { Accessibility, Dev, TrilogyColor, TrilogyColorValues } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Box Footer Interface

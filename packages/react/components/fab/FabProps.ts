@@ -1,7 +1,7 @@
-import { IconName, IconNameValues } from "@/components/icon"
-import { Accessibility, Clickable, Dev } from "@/objects"
+import { IconName, IconNameValues } from "../../components/icon"
+import { Accessibility, Clickable, Dev } from "../../objects"
 import { DimensionValue } from "react-native"
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Fab Interface

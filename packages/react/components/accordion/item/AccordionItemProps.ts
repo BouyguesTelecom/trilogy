@@ -1,5 +1,5 @@
 import { ClickEvent } from '@/events/OnClickEvent'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export type TargetElement = HTMLElement & {
   active?: boolean

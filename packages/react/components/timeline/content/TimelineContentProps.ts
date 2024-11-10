@@ -1,7 +1,7 @@
 /**
  * Timeline Content Interface
  */
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface TimelineContentProps {
   children?: React.ReactNode

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Accessibility, Dev } from '@/objects/facets'
+import { Accessibility, Dev } from '../../objects/facets'
 import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
 
-import { FocusEventHandler, ReactNode } from 'react'
+import { FocusEventHandler } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -20,13 +20,13 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 export interface InputChangeEventWeb {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
-  target:  EventTarget;
+  target: EventTarget
 }
 
 export interface InputChangeEventNative {
@@ -60,7 +60,7 @@ export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
   onChange?: InputChangeEventHandlerNative
-  onFocus?: (event:  React.BaseSyntheticEvent) => void
+  onFocus?: (event: React.BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 
@@ -70,7 +70,7 @@ export interface InputWebEvents {
   onKeyPress?: InputKeyboardEventHandler
   onIconClick?: InputClickEventHandler
   onClick?: InputClickEventHandler
-  onFocus?:FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
 }
 

@@ -1,10 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { IconProps } from './IconProps'
-import { is } from '@/services/classify'
+import { getStatusBackground, has, is } from '@/services/classify'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { IconStatus } from '@/components/icon/IconEnum'
 
 /**
  * Icon Component
@@ -14,7 +16,6 @@ import { useTrilogyContext } from '@/context'
  * @param circled true-false if CircleIcon
  * @param content If TextIcon use it for text
  * @param badgeContent {string} Icon with bage content
- * @param statusPosition {IconStatusPosition} Position for icon with status (TOP|BOTTOM)
  * @param stretched {boolean} Stretched icon
  * @param color {IconColor} Custom Icon Color
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
@@ -33,7 +34,6 @@ const Icon = ({
   status,
   circled,
   badgeContent,
-  statusPosition,
   stretched,
   color,
   backgroundColor,
@@ -43,50 +43,32 @@ const Icon = ({
 }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
+  const background =
+    (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
+    (status && getStatusBackground(status, IconStatus.INFO)) ||
+    (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
+    ''
+
   const classes = hashClass(
     styled,
     clsx(
       'icon',
       stretched && is('stretched'),
       size && is(size),
+      circled && is('circled'),
+      circled && !color && has('text-white'),
       color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
       skeleton && is('loading'),
       badgeContent && is('stacked'),
+      status && is(`${status.toLowerCase()}`),
+      background,
       className,
     ),
   )
 
-  // Icon with badge + badge content
-  if (badgeContent) {
-    return (
-      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-        <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>
-      </span>
-    )
-  }
-
-  // Stretched icon
-  if (stretched) {
-    return (
-      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-      </span>
-    )
-  }
-
-  // Custom Colored Icon
-  if (color) {
-    return (
-      <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-      </span>
-    )
-  }
-
-  // Static default Icon
   return (
     <span id={id} onClick={onClick && onClick} className={classes} {...others}>
+      {badgeContent && <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>}
       <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
     </span>
   )

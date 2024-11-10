@@ -16,7 +16,7 @@ import { ListItemProps } from './ListItemProps'
  */
 const ListItem = ({ className, id, children, iconName, status, testId }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = clsx('list-item', className)
+  const classes = clsx('list-item', className, status && is(getColorClassName(TrilogyColor[status])))
 
   return (
     <li id={id} className={hashClass(styled, clsx(classes))} data-testid={testId}>

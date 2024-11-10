@@ -1,7 +1,7 @@
-import { Accessibility, AlignableProps, Dev } from '@/objects'
-import { Invertable } from '@/objects/facets/Invertable'
+import { Accessibility, AlignableProps, Dev } from '../../objects'
+import { Invertable } from '../../objects/facets/Invertable'
 import { PriceLevel, PriceLevelValues } from './PriceEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Price Interface

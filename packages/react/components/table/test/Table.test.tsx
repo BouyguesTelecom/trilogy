@@ -1,19 +1,20 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import Table from "../Table";
-import TableHead from "../head";
-import TableTr from "../tr";
-import TableTh from "../th";
-import TableBody from "../body";
-import TableTd from "../td";
-import Text from "../../text/Text";
-import Icon from "../../icon/Icon";
-import { IconName } from "../../icon";
-import View from "../../view/View";
-import { TextLevels } from "../../text";
+import * as React from 'react'
+import { render } from '@testing-library/react'
+import Table from '../Table'
+import TableHead from '../head'
+import TableTr from '../tr'
+import TableTh from '../th'
+import TableBody from '../body'
+import TableTd from '../td'
+import Text from '../../text/Text'
+import Icon from '../../icon/Icon'
+import { IconName } from '../../icon'
+import View from '../../view/View'
+import { TextLevels } from '../../text'
+import { TableBorderEnum } from '../TableProps'
 
-describe("Table component", () => {
-  it("renders a table element", () => {
+describe('Table component', () => {
+  it('renders a table element', () => {
     const { container } = render(
       <Table>
         <TableHead>
@@ -26,7 +27,7 @@ describe("Table component", () => {
           </TableTr>
         </TableHead>
         <TableBody>
-          <TableTr expandable expanded data-expandable-row="">
+          <TableTr expandable expanded data-expandable-row=''>
             <TableTd>09/11/2018</TableTd>
             <TableTd>
               <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -34,36 +35,27 @@ describe("Table component", () => {
             </TableTd>
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
-            <TableTd data-expandable-trigger="">
-              <Icon name={IconName.ARROW_DOWN} content="Afficher" />
+            <TableTd data-expandable-trigger=''>
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
-          <TableTr className="is-expansion">
+          <TableTr className='is-expansion'>
             <TableTd colSpan={7}>
-              <View
-                className="subtable"
-                backgroundSrc={
-                  "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-                }
-              >
+              <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
                 <Text level={TextLevels.FOUR}>
-                  Dolore fugiat reprehenderit nostrud velit voluptate dolor
-                  irure ullamco exercitation nulla eiusmod in
+                  Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
                 </Text>
-                <Text>
-                  Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-                  nostrud aliquip.
-                </Text>
+                <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
               </View>
             </TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    expect(container.querySelector("table")).toBeInTheDocument();
-  });
+      </Table>,
+    )
+    expect(container.querySelector('table')).toBeInTheDocument()
+  })
 
-  it("applies the fullwidth class when the prop is set", () => {
+  it('applies the fullwidth class when the prop is set', () => {
     const { container } = render(
       <Table fullwidth>
         <TableHead>
@@ -76,7 +68,7 @@ describe("Table component", () => {
           </TableTr>
         </TableHead>
         <TableBody>
-          <TableTr expandable expanded data-expandable-row="">
+          <TableTr expandable expanded data-expandable-row=''>
             <TableTd>09/11/2018</TableTd>
             <TableTd>
               <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -84,38 +76,29 @@ describe("Table component", () => {
             </TableTd>
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
-            <TableTd data-expandable-trigger="">
-              <Icon name={IconName.ARROW_DOWN} content="Afficher" />
+            <TableTd data-expandable-trigger=''>
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
-          <TableTr className="is-expansion">
+          <TableTr className='is-expansion'>
             <TableTd colSpan={7}>
-              <View
-                className="subtable"
-                backgroundSrc={
-                  "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-                }
-              >
+              <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
                 <Text level={TextLevels.FOUR}>
-                  Dolore fugiat reprehenderit nostrud velit voluptate dolor
-                  irure ullamco exercitation nulla eiusmod in
+                  Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
                 </Text>
-                <Text>
-                  Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-                  nostrud aliquip.
-                </Text>
+                <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
               </View>
             </TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    expect(container.firstChild).toHaveClass("is-fullwidth");
-  });
+      </Table>,
+    )
+    expect(container.firstChild).toHaveClass('is-fullwidth')
+  })
 
-  it("applies the bordered class when the prop is set", () => {
+  it('applies the bordered class when the prop is set', () => {
     const { container } = render(
-      <Table bordered>
+      <Table border={TableBorderEnum.ALL}>
         <TableHead>
           <TableTr>
             <TableTh>Date</TableTh>
@@ -126,7 +109,7 @@ describe("Table component", () => {
           </TableTr>
         </TableHead>
         <TableBody>
-          <TableTr expandable expanded data-expandable-row="">
+          <TableTr expandable expanded data-expandable-row=''>
             <TableTd>09/11/2018</TableTd>
             <TableTd>
               <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -134,38 +117,29 @@ describe("Table component", () => {
             </TableTd>
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
-            <TableTd data-expandable-trigger="">
-              <Icon name={IconName.ARROW_DOWN} content="Afficher" />
+            <TableTd data-expandable-trigger=''>
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
-          <TableTr className="is-expansion">
+          <TableTr className='is-expansion'>
             <TableTd colSpan={7}>
-              <View
-                className="subtable"
-                backgroundSrc={
-                  "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-                }
-              >
+              <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
                 <Text level={TextLevels.FOUR}>
-                  Dolore fugiat reprehenderit nostrud velit voluptate dolor
-                  irure ullamco exercitation nulla eiusmod in
+                  Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
                 </Text>
-                <Text>
-                  Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-                  nostrud aliquip.
-                </Text>
+                <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
               </View>
             </TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    expect(container.firstChild).toHaveClass("is-bordered");
-  });
+      </Table>,
+    )
+      expect(container.firstChild).toHaveClass('has-border-all')
+  })
 
-  it("applies the comparative class when the prop is set", () => {
+  it('applies the comparative class when the prop is set', () => {
     const { container } = render(
-      <Table comparative>
+      <Table border={TableBorderEnum.INNER}>
         <TableHead>
           <TableTr>
             <TableTh>Date</TableTh>
@@ -176,7 +150,7 @@ describe("Table component", () => {
           </TableTr>
         </TableHead>
         <TableBody>
-          <TableTr expandable expanded data-expandable-row="">
+          <TableTr expandable expanded data-expandable-row=''>
             <TableTd>09/11/2018</TableTd>
             <TableTd>
               <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -184,36 +158,27 @@ describe("Table component", () => {
             </TableTd>
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
-            <TableTd data-expandable-trigger="">
-              <Icon name={IconName.ARROW_DOWN} content="Afficher" />
+            <TableTd data-expandable-trigger=''>
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
-          <TableTr className="is-expansion">
+          <TableTr className='is-expansion'>
             <TableTd colSpan={7}>
-              <View
-                className="subtable"
-                backgroundSrc={
-                  "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-                }
-              >
+              <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
                 <Text level={TextLevels.FOUR}>
-                  Dolore fugiat reprehenderit nostrud velit voluptate dolor
-                  irure ullamco exercitation nulla eiusmod in
+                  Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
                 </Text>
-                <Text>
-                  Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-                  nostrud aliquip.
-                </Text>
+                <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
               </View>
             </TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    expect(container.firstChild).toHaveClass("is-comparative");
-  });
+      </Table>,
+    )
+    expect(container.firstChild).toHaveClass('has-border-inner')
+  })
 
-  it("applies the striped class when the prop is set", () => {
+  it('applies the striped class when the prop is set', () => {
     const { container } = render(
       <Table striped>
         <TableHead>
@@ -226,7 +191,7 @@ describe("Table component", () => {
           </TableTr>
         </TableHead>
         <TableBody>
-          <TableTr expandable expanded data-expandable-row="">
+          <TableTr expandable expanded data-expandable-row=''>
             <TableTd>09/11/2018</TableTd>
             <TableTd>
               <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
@@ -234,32 +199,23 @@ describe("Table component", () => {
             </TableTd>
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
-            <TableTd data-expandable-trigger="">
-              <Icon name={IconName.ARROW_DOWN} content="Afficher" />
+            <TableTd data-expandable-trigger=''>
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
-          <TableTr className="is-expansion">
+          <TableTr className='is-expansion'>
             <TableTd colSpan={7}>
-              <View
-                className="subtable"
-                backgroundSrc={
-                  "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-                }
-              >
+              <View className='subtable' backgroundSrc={'https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png'}>
                 <Text level={TextLevels.FOUR}>
-                  Dolore fugiat reprehenderit nostrud velit voluptate dolor
-                  irure ullamco exercitation nulla eiusmod in
+                  Dolore fugiat reprehenderit nostrud velit voluptate dolor irure ullamco exercitation nulla eiusmod in
                 </Text>
-                <Text>
-                  Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-                  nostrud aliquip.
-                </Text>
+                <Text>Laboris cupidatat culpa nisi ad consectetur ex ea laboris est nostrud aliquip.</Text>
               </View>
             </TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    expect(container.firstChild).toHaveClass("is-striped");
-  });
-});
+      </Table>,
+    )
+    expect(container.firstChild).toHaveClass('is-striped')
+  })
+})

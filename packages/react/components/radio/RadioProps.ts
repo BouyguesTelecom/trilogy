@@ -1,5 +1,5 @@
-import { Accessibility } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { Accessibility } from '../../objects'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 type RadioChangeEventHandler = (event: {
   radioValue: string

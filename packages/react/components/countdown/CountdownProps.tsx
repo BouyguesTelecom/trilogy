@@ -1,6 +1,6 @@
-import { ClickEvent } from '@/events/OnClickEvent'
+import { ClickEvent } from '../../events/OnClickEvent'
 import { CountdownFormat } from './CountdownEnum'
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Countdown Interface
