@@ -20,13 +20,13 @@ export const RadioScreen = (): JSX.Element => {
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
         </Text>
         <Columns multiline>
-          <ColumnsItem size={12} centered>
+          <ColumnsItem size={12} align={Alignable.ALIGNED_CENTER}>
             <Radio name='name-1' label='Label' value='value' checked id='checkbox1' />
             <Radio name='name-1' label='Label' value='value' id='checkbox2' />
             <Radio name='name-1' label='Label' value='value' disabled id='checkbox3' />
             <Radio name='name-1' label='Label' value='value' readonly id='checkbox4' />
           </ColumnsItem>
-          <ColumnsItem size={12} centered>
+          <ColumnsItem size={12} align={Alignable.ALIGNED_CENTER}>
             <RadioTiles>
               <RadioTile
                 id='tile-1'
@@ -54,7 +54,7 @@ export const RadioScreen = (): JSX.Element => {
               />
             </RadioTiles>
           </ColumnsItem>
-          <ColumnsItem size={12} centered>
+          <ColumnsItem size={12} align={Alignable.ALIGNED_CENTER}>
             <RadioTiles align={Alignable.ALIGNED_CENTER}>
               <RadioTile
                 id='tile-horizontal-1'
