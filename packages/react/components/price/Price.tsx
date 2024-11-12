@@ -63,16 +63,6 @@ const Price = ({
     ),
   )
 
-  const priceParentNode = hashClass(
-    styled,
-    clsx(
-      (align == Alignable.ALIGNED_START && has('text-left')) ||
-        (align == Alignable.ALIGNED_CENTER && has('text-centered')) ||
-        (align == Alignable.ALIGNED_END && has('text-right')) ||
-        '',
-    ),
-  )
-
   let amountComponent = null
   let oldAmountComponent = null
   let tagAmountComponent = null
@@ -148,8 +138,21 @@ const Price = ({
     )
   }
 
-  const returnComponent = (
-    <div id={id} className={hashClass(styled, clsx('price-container', is(`level-${level || '1'}`)))}>
+  return (
+    <div
+      id={id}
+      className={hashClass(
+        styled,
+        clsx(
+          'price-container',
+          is(`level-${level || '1'}`),
+          (align == Alignable.ALIGNED_START && is('justified-left')) ||
+            (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
+            (align == Alignable.ALIGNED_END && is('justified-right')) ||
+            '',
+        ),
+      )}
+    >
       {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
       {oldAmountComponent}
       {amountComponent}
@@ -157,12 +160,6 @@ const Price = ({
       {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
     </div>
   )
-
-  if (align) {
-    return <div className={priceParentNode}>{returnComponent}</div>
-  }
-
-  return returnComponent
 }
 
 export default Price
