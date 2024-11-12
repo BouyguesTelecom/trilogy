@@ -25,15 +25,12 @@ import { StatesContext } from '@/context/providerStates'
  * @param level {PriceLevel} Price custom size
  * @param style {Object} Additional style
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
  * @param oldAmount {boolean} Striked Amount Price
  * @param overline {string} Price overline
- * @param tagAmount {number} Tag amount
- * @param tagSymbol {number} Tag symbol
  */
 const Price = ({
   amount,
@@ -48,14 +45,14 @@ const Price = ({
   accessibilityLabel,
   oldAmount,
   overline,
-  tagAmount,
-  tagSymbol,
+  tagValue,
+  tagLabel,
   ...others
 }: PriceProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
 
-  const isNegative = amount < 0
-  const absoluteAmount = Math.abs(amount)
+  const isNegative = amount ? amount < 0 : false
+  const absoluteAmount = amount ? Math.abs(amount) : 0
   const absoluteWhole = Math.floor(absoluteAmount)
   const whole = isNegative ? -absoluteWhole : absoluteWhole
 
@@ -276,7 +273,7 @@ const Price = ({
     <View>
       {overline && <Text style={[styles.suptitle]}>{overline}</Text>}
 
-      <View style={tagAmount ? { flexDirection: 'row', alignItems: 'center' } : {}}>
+      <View style={tagValue ? { flexDirection: 'row', alignItems: 'center' } : {}}>
         <View
           style={[styles.container]}
           accessible={!!priceAccessibilityLabel}
@@ -336,7 +333,7 @@ const Price = ({
             </>
           )}
         </View>
-        {tagAmount && (
+        {tagValue && (
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
             <View style={[styles.tagArrow]} />
             <View style={[styles.tag]}>
@@ -344,15 +341,15 @@ const Price = ({
                 style={[styles.tagTextAmount]}
                 typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}
               >
-                {tagAmount} {tagSymbol ? tagSymbol : '€'}
+                {tagValue}
               </TrilogyText>
-              {tagSymbol === '€' && period && (
+              {tagLabel && (
                 <TrilogyText
                   style={[styles.tagTextPeriod]}
                   typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}
                 >
                   {' '}
-                  /{period}
+                  /{tagLabel}
                 </TrilogyText>
               )}
             </View>
