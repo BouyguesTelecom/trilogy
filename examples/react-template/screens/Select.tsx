@@ -40,7 +40,6 @@ export const SelectView = (): JSX.Element => {
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
-          nullable
           name='option'
           label='label'
           id='id'
@@ -87,7 +86,6 @@ export const SelectView = (): JSX.Element => {
         <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
-          nullable
           multiple
           name='option'
           label='label'

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import {
   Icon,
   IconName,
@@ -22,7 +23,7 @@ export const TableScreen = (): JSX.Element => {
   return (
     <Section>
       <ScrollView>
-        <Table bordered fullwidth>
+        <Table border={TableBorderEnum.ALL} fullwidth>
           <TableHead>
             <TableTr>
               <TableTh>Paramètre</TableTh>
@@ -40,7 +41,6 @@ export const TableScreen = (): JSX.Element => {
             </TableTr>
           </TableHead>
           <TableBody>
-            <TableTr></TableTr>
             <TableTr>
               <TableTd>
                 <Text>gateway.introspection.filter.enabled</Text>
@@ -110,7 +110,7 @@ export const TableScreen = (): JSX.Element => {
         </Table>
       </ScrollView>
 
-      <Table fullwidth bordered>
+      <Table fullwidth border={TableBorderEnum.ALL}>
         <TableHead>
           <TableTr>
             <TableTh>Date</TableTh>
@@ -130,7 +130,7 @@ export const TableScreen = (): JSX.Element => {
             <TableTd>-100,00 €</TableTd>
             <TableTd>0,00 €</TableTd>
             <TableTd data-expandable-trigger=''>
-              <Icon name={IconName.ARROW_DOWN} content='Afficher' />
+              <Icon name={IconName.ARROW_DOWN} />
             </TableTd>
           </TableTr>
           <TableTr expansion>
