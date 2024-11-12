@@ -1,13 +1,13 @@
-import React from "react"
-import clsx from "clsx"
-import { is } from "@/services/index"
-import { Loading, LoadingValues } from "@/objects/facets/Loadable"
-import { getButtonVariantClassName } from "@/objects/facets/Color"
-import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues, } from "./ButtonEnum"
-import { ButtonProps } from "./ButtonProps"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { Icon } from "@/components/icon"
+import { Icon } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getButtonVariantClassName } from '@/objects/facets/Color'
+import { Loading, LoadingValues } from '@/objects/facets/Loadable'
+import { is } from '@/services/index'
+import clsx from 'clsx'
+import React from 'react'
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
+import { ButtonProps } from './ButtonProps'
 
 /**
  * Button component
@@ -56,35 +56,28 @@ const Button = ({
 
   /** Check if specified markup is valid */
   const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
-    if (
-      stringMarkup in ButtonMarkup ||
-      Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)
-    )
-      return true
+    if (stringMarkup in ButtonMarkup || Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup)) return true
   }
 
   const getClassNames = (
     loading?: Loading | LoadingValues | boolean,
     variant?: ButtonVariant | ButtonVariantValues,
     fullwidth?: boolean,
-    className?: string
+    className?: string,
   ) => {
     return clsx(
-      "button",
-      loading ? is("loading") : is("loaded"),
+      'button',
+      loading ? is('loading') : is('loaded'),
       variant && is(getButtonVariantClassName(variant)),
-      fullwidth && is("fullwidth"),
-      className
+      fullwidth && is('fullwidth'),
+      className,
     )
   }
 
-  const classes = hashClass(
-    styled,
-    getClassNames(loading, variant, fullwidth, className)
-  )
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "button"
+  const classes = hashClass(getClassNames(loading, variant, fullwidth, className))
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
 
-  if (Tag === "button") {
+  if (Tag === 'button') {
     return (
       <button
         id={id}
@@ -98,18 +91,16 @@ const Button = ({
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}
-        type={type ?? "button"}
+        type={type ?? 'button'}
         {...others}
       >
-        {iconName && (
-          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
-        )}
+        {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </button>
     )
   }
 
-  if (Tag === "input") {
+  if (Tag === 'input') {
     return (
       <input
         id={id}
@@ -123,7 +114,7 @@ const Button = ({
           e.stopPropagation()
         }}
         disabled={isDisabled}
-        type={type ?? "submit"}
+        type={type ?? 'submit'}
         value={`${children}`}
         {...others}
       />
@@ -131,18 +122,10 @@ const Button = ({
   }
 
   if (routerLink && to && !isDisabled) {
-    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
+    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
-      <RouterLink
-        aria-label={accessibilityLabel}
-        data-testid={testId}
-        to={to}
-        className={classes}
-        {...others}
-      >
-        {iconName && (
-          <Icon className={!children ? "is-marginless" : ""} name={iconName} />
-        )}
+      <RouterLink aria-label={accessibilityLabel} data-testid={testId} to={to} className={classes} {...others}>
+        {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </RouterLink>
     )
@@ -162,9 +145,7 @@ const Button = ({
       }}
       {...others}
     >
-      {iconName && (
-        <Icon className={!children ? "is-marginless" : ""} name={iconName} />
-      )}
+      {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
       {children}
     </a>
   )

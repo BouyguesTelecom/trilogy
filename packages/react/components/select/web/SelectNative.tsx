@@ -30,10 +30,10 @@ const SelectNative = ({
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState(selected)
 
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = React.useMemo(() => hashClass(clsx('select', className)), [styled, className])
 
   const controlClass = React.useMemo(
-    () => hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
+    () => hashClass(clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
     [styled, iconName],
   )
 
@@ -53,10 +53,10 @@ const SelectNative = ({
 
   return (
     <div className={selectClasses}>
-      <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
+      <div className={hashClass(clsx('field', focused && 'focus'))}>
         <div className={controlClass}>
           <select
-            className={hashClass(styled, clsx(!label && 'no-label'))}
+            className={hashClass(clsx(!label && 'no-label'))}
             value={selectedValues}
             aria-label={accessibilityLabel}
             data-testid={testId}

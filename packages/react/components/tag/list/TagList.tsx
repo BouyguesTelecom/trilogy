@@ -1,9 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TagListProps } from "./TagListProps"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { is } from "@/services"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TagListProps } from './TagListProps'
 
 /**
  * Tag List Component
@@ -15,13 +15,7 @@ import { is } from "@/services"
  * @param className {string} Additionnal CSS Classes
  */
 const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTMLElement>) => {
-  const {
-    className,
-    gapless,
-    centered,
-    marginless,
-    ...others
-  } = props
+  const { className, gapless, centered, marginless, ...others } = props
 
   const { styled } = useTrilogyContext()
 
@@ -29,18 +23,10 @@ const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTML
     <span
       ref={ref}
       className={hashClass(
-        styled,
-        clsx(
-          "tags",
-          centered && is("centered"),
-          gapless && is("gapless"),
-          marginless && is("marginless"),
-          className
-        )
+        clsx('tags', centered && is('centered'), gapless && is('gapless'), marginless && is('marginless'), className),
       )}
       {...others}
     />
   )
-
 })
 export default TagList

@@ -1,10 +1,10 @@
-import * as React from "react"
-import clsx from "clsx"
-import { ColumnsProps } from "./ColumnsProps"
-import { is, has } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import {getAlignClassName} from "@/objects";
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getAlignClassName } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ColumnsProps } from './ColumnsProps'
 
 /**
  * Columns Component
@@ -18,35 +18,24 @@ import {getAlignClassName} from "@/objects";
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef((props:ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    className,
-    multiline,
-    scrollable,
-    mobile,
-    centered,
-    gap,
-    fullBleed,
-    verticalAlign,
-    ...others
-  } = props
+const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
+  const { className, multiline, scrollable, mobile, centered, gap, fullBleed, verticalAlign, ...others } = props
 
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "columns",
-      multiline && is("multiline"),
-      fullBleed && is("fullbleed"),
-      scrollable && is("scrollable"),
+      'columns',
+      multiline && is('multiline'),
+      fullBleed && is('fullbleed'),
+      scrollable && is('scrollable'),
       gap && has(`gap-${gap}`),
-      typeof gap !== 'undefined' && gap === 0 && is("gapless"),
-      mobile && is("mobile"),
-      centered && is("centered"),
+      typeof gap !== 'undefined' && gap === 0 && is('gapless'),
+      mobile && is('mobile'),
+      centered && is('centered'),
       verticalAlign && is(getAlignClassName(verticalAlign)),
-      className
-    )
+      className,
+    ),
   )
 
   return <div ref={ref} className={classes} {...others} />

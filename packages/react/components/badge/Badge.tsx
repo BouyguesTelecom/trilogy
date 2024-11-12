@@ -1,10 +1,10 @@
-import * as React from "react"
-import { BadgeProps } from "./BadgeProps"
-import { Text, TextMarkup } from "@/components/text"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { is } from "@/services"
+import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { BadgeProps } from './BadgeProps'
 
 /**
  * Badge Component
@@ -31,11 +31,7 @@ const Badge = ({
 }: BadgeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(textContent ? "badge-and-text" : "badge",
-      className)
-  )
+  const classes = hashClass(clsx(textContent ? 'badge-and-text' : 'badge', className))
 
   if (textContent) {
     return (
@@ -48,21 +44,9 @@ const Badge = ({
         className={classes}
         {...others}
       >
-        { !reversed  && (
-          <Text markup={TextMarkup.P}>{textContent}</Text>
-        )}
-        <span
-          className={hashClass(
-            styled,
-            clsx("badge",
-              inverted && is('inverted'))
-          )}
-        >
-          {content || children}
-        </span>
-        {reversed && (
-          <Text markup={TextMarkup.P}>{textContent}</Text>
-        )}
+        {!reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
+        <span className={hashClass(clsx('badge', inverted && is('inverted')))}>{content || children}</span>
+        {reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
       </div>
     )
   }
@@ -76,11 +60,7 @@ const Badge = ({
       }}
     >
       <Text
-        className={clsx(
-          textContent ? "badge-and-text" : "badge",
-          inverted && is('inverted'),
-          className
-        )}
+        className={clsx(textContent ? 'badge-and-text' : 'badge', inverted && is('inverted'), className)}
         markup={TextMarkup.SPAN}
         {...others}
       >

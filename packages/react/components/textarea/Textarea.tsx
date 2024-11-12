@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { TextareaProps } from './TextareaProps'
-import { has, is } from '@/services'
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
 import { TypographyColor } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { TextareaProps } from './TextareaProps'
 
 /**
  * Textarea Component
@@ -71,19 +71,29 @@ const Textarea = ({
     setValue(defaultValue || '')
   }, [defaultValue])
 
-  const wrapperClasses = hashClass(styled, clsx('textarea-wrapper', className, status && is(status)))
-  const classes = hashClass(
-    styled,
-    clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconName && has('icon')),
-  )
+  const wrapperClasses = hashClass(clsx('textarea-wrapper', className, status && is(status)))
+  const classes = hashClass(clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconName && has('icon')))
 
   const helpClasses = clsx('help')
-  const counterClasses = hashClass(styled, clsx('counter', maxLength))
+  const counterClasses = hashClass(clsx('counter', maxLength))
 
   return (
     <div className={wrapperClasses}>
-      {!dynamicPlaceholder && <label className='textarea-label'>{label} {label && required && <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>*</Text>}</label>}
-      {!dynamicPlaceholder && label && sample && <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>{sample}</Text>}
+      {!dynamicPlaceholder && (
+        <label className='textarea-label'>
+          {label}{' '}
+          {label && required && (
+            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+              *
+            </Text>
+          )}
+        </label>
+      )}
+      {!dynamicPlaceholder && label && sample && (
+        <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+          {sample}
+        </Text>
+      )}
 
       <textarea
         data-testid={testId}

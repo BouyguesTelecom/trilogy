@@ -1,9 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { StepperProps } from "./StepperProps"
-import { has } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { has } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { StepperProps } from './StepperProps'
 
 /**
  * Stepper Component
@@ -13,20 +13,12 @@ import { useTrilogyContext } from "@/context"
  * @param className Additionnal CSS Classes
  */
 const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    className,
-    centered,
-    children,
-    ...others
-  } = props
+  const { className, centered, children, ...others } = props
 
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx("stepper-wrapper", className))
-  const centerClasses = hashClass(
-    styled,
-    clsx("section", has("text-centered"), className)
-  )
+  const classes = hashClass(clsx('stepper-wrapper', className))
+  const centerClasses = hashClass(clsx('section', has('text-centered'), className))
   const [currentStep, setCurrentStep] = React.useState<number>(0)
 
   const nbChild = React.useMemo<number>(() => {
@@ -73,6 +65,5 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
       </div>
     </div>
   )
-
 })
 export default Stepper

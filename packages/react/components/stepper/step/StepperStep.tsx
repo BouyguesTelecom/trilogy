@@ -1,12 +1,12 @@
-import React from "react"
-import clsx from "clsx"
-import { StepperStepProps } from "./StepperStepProps"
-import { StepperStepMarkup, StepperStepMarkupValues } from "./StepperStepEnum"
-import { is } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import Icon from "@/components/icon/Icon"
-import { IconSize } from "@/components/icon"
+import { IconSize } from '@/components/icon'
+import Icon from '@/components/icon/Icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { StepperStepMarkup, StepperStepMarkupValues } from './StepperStepEnum'
+import { StepperStepProps } from './StepperStepProps'
 
 /**
  * Stepper Step Component
@@ -23,25 +23,20 @@ import { IconSize } from "@/components/icon"
  * @param step {number|string} Step text circle
  */
 const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.LegacyRef<any>) => {
-  const {
-    children,
-    className,
-    active,
-    markup,
-    current,
-    done,
-    label,
-    iconName,
-    error,
-    ...others
-  } = props
+  const { children, className, active, markup, current, done, label, iconName, error, ...others } = props
 
   const { styled } = useTrilogyContext()
-  const classesStepLabel = hashClass(styled, clsx('step-label'))
+  const classesStepLabel = hashClass(clsx('step-label'))
 
   const classes = hashClass(
-    styled,
-    clsx('stepper-item', active && is('active'), current && is('current'), done && is('done'), error && is('error'), className),
+    clsx(
+      'stepper-item',
+      active && is('active'),
+      current && is('current'),
+      done && is('done'),
+      error && is('error'),
+      className,
+    ),
   )
 
   /**
@@ -62,13 +57,10 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
     <Tag ref={ref} className={classes} data-label={label} {...others}>
       <div className={classesStepLabel}>
         {label || children}
-        {
-          !done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />
-        }
+        {!done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />}
       </div>
     </Tag>
   )
-
 })
 
 export default StepperStep

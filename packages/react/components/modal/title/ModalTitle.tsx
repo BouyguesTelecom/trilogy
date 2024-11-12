@@ -18,7 +18,7 @@ const ModalTitle = ({ children, className, iconColor, iconName, ...others }: Mod
   const { textId } = others as any
 
   return (
-    <div className={hashClass(styled, clsx('modal-title', className))}>
+    <div className={hashClass(clsx('modal-title', className))}>
       {iconName ? (
         <TextIcon
           markup='p'

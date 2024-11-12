@@ -1,8 +1,8 @@
-import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
 import { TabsProps } from './TabsProps'
 
 /**
@@ -46,7 +46,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
   const [isIcons, setIsIcons] = React.useState(false)
 
   const classes = hashClass(
-    styled,
     clsx(
       'tabs',
       fullwidth && is('fullwidth'),
@@ -90,7 +89,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     <div
       ref={ref}
       className={hashClass(
-        styled,
         clsx(
           'tab-context',
           inverted && is('inverted'),

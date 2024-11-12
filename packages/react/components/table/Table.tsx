@@ -1,9 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TableProps } from "./TableProps"
-import { is } from "@/services/classify"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { useTrilogyContext } from "@/context/index"
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TableProps } from './TableProps'
 
 /**
  * Table Component
@@ -28,7 +28,6 @@ const Table = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
       'table',
       fullwidth && is('fullwidth'),

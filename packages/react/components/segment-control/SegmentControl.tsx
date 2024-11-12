@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
 import { is } from '@/services'
+import clsx from 'clsx'
+import React, { useState } from 'react'
 import SegmentControlItem from './item'
 import { SegmentControlProps } from './SegmentControlProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
 
 /**
  * SegmentControl Component
@@ -28,7 +28,7 @@ const SegmentControl = ({
 }: SegmentControlProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('segmented-control', marginless && is('marginless'), className))
+  const classes = hashClass(clsx('segmented-control', marginless && is('marginless'), className))
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {

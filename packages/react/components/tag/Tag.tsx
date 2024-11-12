@@ -22,7 +22,6 @@ const Tag = ({ children, className, variant, inverted, small, iconName, testId, 
   const { styled } = useTrilogyContext()
 
   const tagClassNames = hashClass(
-    styled,
     clsx(
       'tag',
 
@@ -34,7 +33,6 @@ const Tag = ({ children, className, variant, inverted, small, iconName, testId, 
   )
 
   const tagIconClassNames = hashClass(
-    styled,
     clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
   )
 

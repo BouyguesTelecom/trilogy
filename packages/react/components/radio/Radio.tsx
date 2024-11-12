@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
-import shortid from "shortid"
-import { RadioProps } from "./RadioProps"
-import { is } from "@/services/classify"
-import { Icon, IconSize } from "@/components/icon"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { useTrilogyContext } from "@/context"
+import { Icon, IconSize } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import shortid from 'shortid'
+import { RadioProps } from './RadioProps'
 
 /**
  * Radio Component
@@ -65,14 +65,13 @@ const Radio = ({
     <div
       tabIndex={0}
       className={hashClass(
-        styled,
         clsx(
-          tile ? "radio-tile" : "radio",
-          narrow && is("narrow"),
-          marginless && is("marginless"),
-          horizontalTile && is("horizontal"),
-          className
-        )
+          tile ? 'radio-tile' : 'radio',
+          narrow && is('narrow'),
+          marginless && is('marginless'),
+          horizontalTile && is('horizontal'),
+          className,
+        ),
       )}
     >
       <input
@@ -92,7 +91,7 @@ const Radio = ({
           if (!readonly && target.checked) {
             setInputState({ checked: target.checked })
           }
-          target.value = value || ""
+          target.value = value || ''
           if (onChange) {
             onChange({
               radioId: target.id,
@@ -113,7 +112,7 @@ const Radio = ({
         {...others}
       />
 
-      <label htmlFor={id} className={hashClass(styled, clsx("radio-label"))}>
+      <label htmlFor={id} className={hashClass(clsx('radio-label'))}>
         {children ? (
           children
         ) : (
@@ -121,37 +120,13 @@ const Radio = ({
             {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM} />}
             {horizontalTile ? (
               <span>
-                {tile ? (
-                  <span className={hashClass(styled, clsx("radio-title"))}>
-                    {label}
-                  </span>
-                ) : (
-                  label
-                )}
-                {tile && description && (
-                  <span
-                    className={hashClass(styled, clsx("radio-description"))}
-                  >
-                    {description}
-                  </span>
-                )}
+                {tile ? <span className={hashClass(clsx('radio-title'))}>{label}</span> : label}
+                {tile && description && <span className={hashClass(clsx('radio-description'))}>{description}</span>}
               </span>
             ) : (
               <>
-                {tile ? (
-                  <span className={hashClass(styled, clsx("radio-title"))}>
-                    {label}
-                  </span>
-                ) : (
-                  label
-                )}
-                {tile && description && (
-                  <span
-                    className={hashClass(styled, clsx("radio-description"))}
-                  >
-                    {description}
-                  </span>
-                )}
+                {tile ? <span className={hashClass(clsx('radio-title'))}>{label}</span> : label}
+                {tile && description && <span className={hashClass(clsx('radio-description'))}>{description}</span>}
               </>
             )}
           </>

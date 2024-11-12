@@ -18,6 +18,7 @@
     "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/styles run optimise:svg",
     "start": "npm --workspace=@trilogy-ds/react-template run start",
+    "start:next-app": "npm --workspace=@trilogy-ds/next-app-router run dev",
     "setup:native": "cd examples/mobile && npm i && npm run setup:native",
     "start:native": "cd examples/mobile && npm run start",
     "setup:native:expo": "cd examples/mobile-expo && npm i",
@@ -152,10 +153,7 @@
     "metro-react-native-babel-preset": "^0.77.0"
   },
   "workspaces": [
-    "packages/react",
-    "packages/styles",
-    "packages/assets",
-    "packages/vanilla",
+    "packages/*",
     "examples/react-template"
   ],
   "engineStrict": true,

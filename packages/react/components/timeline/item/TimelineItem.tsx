@@ -1,8 +1,8 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TimelineItemWebProps } from "./TimelineItemProps"
-import { useTrilogyContext } from "@/context"
-import { hashClass } from "@/helpers"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TimelineItemWebProps } from './TimelineItemProps'
 
 /**
  * Timeline Item Component
@@ -15,26 +15,11 @@ import { hashClass } from "@/helpers"
  * @param className {string} Additionnal CSS Classes
  */
 const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
-    className,
-    done,
-    active,
-    undone,
-    cancel,
-    ...others
-  } = props
+  const { className, done, active, undone, cancel, ...others } = props
 
   const { styled } = useTrilogyContext()
   const classes = hashClass(
-    styled,
-    clsx(
-      "timeline-item",
-      done && "done",
-      active && "active",
-      undone && "undone",
-      cancel && "cancel",
-      className
-    )
+    clsx('timeline-item', done && 'done', active && 'active', undone && 'undone', cancel && 'cancel', className),
   )
   return <div ref={ref} className={classes} {...others} />
 })

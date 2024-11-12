@@ -1,10 +1,10 @@
-import React, { useEffect, useState, createContext } from "react"
-import clsx from "clsx"
-import { CardMarkup, CardProps } from "./CardProps"
-import { has, is } from "@/services/classify"
-import { getAlignClassName, getBackgroundClassName } from "@/objects"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getAlignClassName, getBackgroundClassName } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { createContext, useEffect, useState } from 'react'
+import { CardMarkup, CardProps } from './CardProps'
 
 export const CardContext = createContext({ horizontal: false })
 
@@ -60,28 +60,27 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
   }, [skeleton])
 
   const hoverStyle: React.CSSProperties = {
-    cursor: "pointer",
+    cursor: 'pointer',
   }
 
   const classes = hashClass(
-    styled,
     clsx(
-      "card",
+      'card',
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has("background"),
-      (inverted && is("inverted")) || is("base"),
+      backgroundSrc && has('background'),
+      (inverted && is('inverted')) || is('base'),
 
-      flat && !floating && is("flat"),
-      horizontal && [is("horizontal"), is("vcentered")],
-      floating && !flat && is("floating"),
+      flat && !floating && is('flat'),
+      horizontal && [is('horizontal'), is('vcentered')],
+      floating && !flat && is('floating'),
       align && is(getAlignClassName(align)),
       justify && is(justify),
-      isLoading ? is("loading") : is("loaded"),
-      reversed && is("reversed"),
+      isLoading ? is('loading') : is('loaded'),
+      reversed && is('reversed'),
       className,
-      fullheight && is("fullheight"),
-      active && is("active")
-    )
+      fullheight && is('fullheight'),
+      active && is('active'),
+    ),
   )
 
   if (markup === CardMarkup.A) {

@@ -1,14 +1,14 @@
-import clsx from "clsx"
-import * as React from "react"
-import {CSSProperties, useEffect, useRef, useState} from "react"
-import {getStatusClassName, getStatusIconName} from "@/objects/facets/Status"
-import {has, is} from "@/services/classify"
-import {Icon, IconName, IconSize} from "@/components/icon"
-import {Text, TextLevels} from "@/components/text"
-import {Title, TitleLevels} from "@/components/title"
-import {AlertProps, ToasterAlertPosition, ToasterStatusProps} from "./AlertProps"
-import {hashClass} from "@/helpers"
-import {useTrilogyContext} from "@/context"
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Text, TextLevels } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 
 /**
@@ -31,10 +31,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
     position: 'fixed',
   }
 
-  const classes = hashClass(
-    styled,
-    clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className),
-  )
+  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className))
 
   if (!displayed) {
     return null
@@ -79,7 +76,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
       {...others}
     >
       {iconName && <Icon name={iconName} size={IconSize.SMALL} />}
-      <div className={hashClass(styled, clsx('body'))}>
+      <div className={hashClass(clsx('body'))}>
         {title && <Title level={TitleLevels.SIX}>{title}</Title>}
         {description && <Text>{description}</Text>}
       </div>
@@ -115,8 +112,7 @@ const Alert = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
-    clsx("alert", has("body"), status && is(getStatusClassName(status)), banner && is('banner'), className)
+    clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
   )
 
   const iconAlert = React.useMemo(() => {
@@ -138,13 +134,9 @@ const Alert = ({
         {...others}
       >
         <Icon name={iconAlert} />
-        <div className={hashClass(styled, clsx("body"))}>
-          {title && typeof title.valueOf() === "string" ? (
-            <Title level={TitleLevels.SIX}>{title}</Title>
-          ) : (
-            title
-          )}
-          {description && typeof description.valueOf() === "string" ? (
+        <div className={hashClass(clsx('body'))}>
+          {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
+          {description && typeof description.valueOf() === 'string' ? (
             <Text level={TextLevels.TWO}>{description}</Text>
           ) : (
             description

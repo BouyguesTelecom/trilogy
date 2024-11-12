@@ -130,13 +130,9 @@ const Input = (
   const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
   const helpClasses = clsx('help', localStatus && is(localStatus))
-  const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
-  const wrapperClasses = hashClass(
-    styled,
-    clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
-  )
+  const classes = hashClass(clsx('input', localStatus && is(localStatus)))
+  const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
   const controlClasses = hashClass(
-    styled,
     clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
       [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
       ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
@@ -170,7 +166,7 @@ const Input = (
           {_value && _value.length > 0 && closeIconSearch && (
             <Icon
               onClick={() => setValue('')}
-              className={hashClass(styled, clsx(is('justified-self')))}
+              className={hashClass(clsx(is('justified-self')))}
               name={IconName.TIMES_CIRCLE}
               size={IconSize.SMALL}
             />
@@ -328,7 +324,7 @@ const Input = (
         {type === InputType.SEARCH && !customIcon && localStatus === 'default' && !loading && (
           <IconWrapper color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} closeIconSearch={true} />
         )}
-        {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
+        {loading && <span className={hashClass(clsx(is('searching')))} />}
       </div>
       {help && <Text className={helpClasses}>{help}</Text>}
 

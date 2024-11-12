@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 interface ITrilogyContext {
@@ -5,12 +7,13 @@ interface ITrilogyContext {
   setStyled: (e: boolean) => void
   hash?: string
   setHash?: React.Dispatch<React.SetStateAction<string>>
+  useClient?: boolean
 }
 
 const TrilogyContext = React.createContext<ITrilogyContext>({
   styled: false,
   setStyled: () => undefined,
-})
+}) || false
 
 const useTrilogyContext = () => {
   const context = React.useContext(TrilogyContext)

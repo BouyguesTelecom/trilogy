@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import { hashClass } from '@/helpers'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { IValidationRules } from '@/components/input/InputProps'
+import { hashClass } from '@/helpers'
 import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {
@@ -35,15 +35,15 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
   } = useGauge({ validationRules, inputValue })
 
   return (
-    <div data-testid='security-gauge' className={hashClass(styled, clsx('security-gauge-container'))}>
-      <div className={hashClass(styled, clsx('security-gauge'))}>
+    <div data-testid='security-gauge' className={hashClass(clsx('security-gauge-container'))}>
+      <div className={hashClass(clsx('security-gauge'))}>
         <div
           data-gauge
           style={{ width: widthGauge, backgroundColor: colorGauge }}
-          className={hashClass(styled, clsx('gauge'))}
+          className={hashClass(clsx('gauge'))}
         />
       </div>
-      <div className={hashClass(styled, clsx('security-gauge-verifies'))}>
+      <div className={hashClass(clsx('security-gauge-verifies'))}>
         <div>
           <DataVerify
             display={!!validationRules?.length}
@@ -113,7 +113,7 @@ const DataVerify = ({
   if (!display) return null
 
   return (
-    <div {...dataAttribute} className={hashClass(styled, clsx('security', classes))}>
+    <div {...dataAttribute} className={hashClass(clsx('security', classes))}>
       <Icon color={color} name={iconName} size={IconSize.SMALLER} />
       <span>{type}</span>
     </div>

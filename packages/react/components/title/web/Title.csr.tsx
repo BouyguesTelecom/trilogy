@@ -1,7 +1,11 @@
-import { TrilogyContext } from '@/context'
-import React from 'react'
-import { TitleProps } from './TitleProps'
-import TitleSSR from './web/Title.ssr'
+'use client'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { TitleLevels } from '../TitleEnum'
+import { TitleProps } from '../TitleProps'
+import TitleSsr from './Title.ssr'
 
 /**
  * Title component
@@ -23,21 +27,15 @@ import TitleSSR from './web/Title.ssr'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = (props: TitleProps): JSX.Element => {
-  try {
-    const { useClient } = React.useContext(TrilogyContext)
-    if (props.useClient || useClient) {
-      return (
-        <React.Suspense fallback={<TitleSSR {...props} />}>
-          <TitleCSR {...props} useClient />
-        </React.Suspense>
-      )
-    }
-    throw 'ssr'
-  } catch {
-    return <TitleSSR {...props} />
-  }
+const TitleCSR = ({ level = TitleLevels.ONE, skeleton, className, ...props }: TitleProps): JSX.Element => {
+  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
+  const classes = hashClass(clsx(isLoading ? is('loading') : is('loaded'), className))
+
+  useEffect(() => {
+    setIsLoading(skeleton || false)
+  }, [skeleton])
+
+  return <TitleSsr {...props} className={classes} />
 }
 
-export default Title
-const TitleCSR = React.lazy(() => import('./web/Title.ssr'))
+export default TitleCSR

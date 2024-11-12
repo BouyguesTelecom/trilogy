@@ -1,11 +1,11 @@
-import * as React from "react"
-import clsx from "clsx"
-import { Text, TextMarkup } from "@/components/text"
-import { LinkProps } from "./LinkProps"
-import { has, is } from "@/services/classify"
-import { Icon, IconSize } from "@/components/icon"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { Icon, IconSize } from '@/components/icon'
+import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { LinkProps } from './LinkProps'
 
 /**
  * Link Component
@@ -51,15 +51,10 @@ const Link = ({
 }: LinkProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = clsx(
-    iconName && has("icon"),
-    typo,
-    inverted && is("inverted"),
-    className
-  )
+  const classes = clsx(iconName && has('icon'), typo, inverted && is('inverted'), className)
 
   if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
+    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
 
     const RouterLinkTrilogy = (): JSX.Element => {
       return (
@@ -67,10 +62,10 @@ const Link = ({
           data-testid={testId}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
-          className={hashClass(styled, clsx(classes))}
-          to={to || ""}
+          className={hashClass(clsx(classes))}
+          to={to || ''}
           {...(blank && {
-            target: "_blank",
+            target: '_blank',
           })}
           {...others}
         >
@@ -81,7 +76,7 @@ const Link = ({
 
     if (typo) {
       return (
-        <div className={hashClass(styled, clsx(typo))}>
+        <div className={hashClass(clsx(typo))}>
           <RouterLinkTrilogy />
         </div>
       )
@@ -102,7 +97,7 @@ const Link = ({
         className={classes}
         href={href}
         {...(blank && {
-          target: "_blank",
+          target: '_blank',
         })}
         {...others}
       >
@@ -120,7 +115,7 @@ const Link = ({
 
   if (typo) {
     return (
-      <div className={hashClass(styled, clsx(typo))}>
+      <div className={hashClass(clsx(typo))}>
         <LinkTrilogy />
       </div>
     )

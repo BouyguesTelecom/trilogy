@@ -1,9 +1,9 @@
-import * as React from "react"
-import { RowsProps } from "./RowsProps"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { useTrilogyContext } from "@/context"
-import { is } from "@/services"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { RowsProps } from './RowsProps'
 
 /**
  * Rows Component
@@ -16,9 +16,6 @@ const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivEle
   const { className, gapless, ...others } = props
   const { styled } = useTrilogyContext()
 
-  return (
-    <div ref={ref} className={hashClass(styled, clsx("rows", gapless && is("gapless"), className))} {...others} />
-  )
-
+  return <div ref={ref} className={hashClass(clsx('rows', gapless && is('gapless'), className))} {...others} />
 })
 export default Rows

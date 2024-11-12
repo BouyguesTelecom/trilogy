@@ -1,19 +1,21 @@
-import { useTrilogyContext } from '@/context'
+import { TrilogyContext } from '@/context'
+import React from 'react'
 
 /**
- * Used to hash classes if styled components
- * @param styled Apply only if styled props
  * @param classes String classes
  */
-export const hashClass = (styled = false, classes: string): string => {
-  const { hash } = useTrilogyContext()
-
-  if (classes.trim().length < 1) return ''
-  if (styled) {
+export const hashClass = (classes: string): string => {
+  try {
+    const { hash, styled } = React.useContext(TrilogyContext)
+    if (classes.trim().length < 1) return ''
+    if (styled) {
+      return classes
+        .split(' ')
+        .map((classe: string) => (classe = `${classe}__${hash}`))
+        .join(' ')
+    }
     return classes
-      .split(' ')
-      .map((classe: string) => (classe = `${classe}__${hash}`))
-      .join(' ')
+  } catch {
+    return classes
   }
-  return classes
 }

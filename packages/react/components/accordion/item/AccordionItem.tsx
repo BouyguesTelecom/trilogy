@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
-import shortid from "shortid"
-import { AccordionItemProps } from "./AccordionItemProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import React, { useEffect, useRef, useState } from 'react'
+import shortid from 'shortid'
+import { AccordionItemProps } from './AccordionItemProps'
 
 /**
  * Accordion Item Component
@@ -48,9 +48,7 @@ const AccordionItem = ({
     }
     const { floor, abs } = Math
     const firstChild = e?.children[1]?.firstChild as HTMLElement
-    const expandedInactive = floor(
-      abs(e.clientHeight + firstChild?.clientHeight)
-    ).toString()
+    const expandedInactive = floor(abs(e.clientHeight + firstChild?.clientHeight)).toString()
     const expandedActive = floor(abs(e.clientHeight)).toString()
     const collapsedInactive = floor(abs(e.clientHeight + 1)).toString()
     const collapsedActive = floor(abs(e.children[0].clientHeight)).toString()
@@ -62,28 +60,25 @@ const AccordionItem = ({
     setIsActive(active || false)
   }, [active])
 
-  const classes = hashClass(
-    styled,
-    clsx("accordion", className)
-  )
+  const classes = hashClass(clsx('accordion', className))
 
   let childrenElement
   if (children) {
     childrenElement = Array.isArray(children)
       ? children.map((child, index: number) => {
-        return React.cloneElement(child as React.ReactElement, {
-          key: `article-${index}`,
-          disabled,
+          return React.cloneElement(child as React.ReactElement, {
+            key: `article-${index}`,
+            disabled,
+          })
         })
-      })
       : children
   }
 
-  const ariaProps: { "aria-disabled"?: boolean, tabIndex?: number } = {}
+  const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
   if (disabled) {
-    ariaProps["tabIndex"] = -1
-    ariaProps["aria-disabled"] = true
+    ariaProps['tabIndex'] = -1
+    ariaProps['aria-disabled'] = true
   }
 
   return (

@@ -1,10 +1,10 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TextProps } from "./TextProps"
-import { TextLevels, TextMarkup, TextMarkupValues } from "./TextEnum"
-import { is } from "@/services/classify"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { useTrilogyContext } from "@/context/index"
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
+import { TextProps } from './TextProps'
 
 /**
  * Text component
@@ -53,13 +53,13 @@ const Text = ({
     if (level) {
       switch (level) {
         case TextLevels.ONE:
-          return is("level-1")
+          return is('level-1')
         case TextLevels.TWO:
-          return is("level-2")
+          return is('level-2')
         case TextLevels.THREE:
-          return is("level-3")
+          return is('level-3')
         case TextLevels.FOUR:
-          return is("level-4")
+          return is('level-4')
         default:
           return is(`level-${level}`)
       }
@@ -67,31 +67,26 @@ const Text = ({
   }
 
   const classes = hashClass(
-    styled,
     clsx(
-      !link ? "text" : "link",
+      !link ? 'text' : 'link',
       level && levelText(),
-      inverted && is("inverted"),
+      inverted && is('inverted'),
       typo,
-      skeleton ? is("loading") : is("loaded"),
-      marginless && is("marginless"),
-      numberOfLines && is("text-ellipsis"),
-      className
-    )
+      skeleton ? is('loading') : is('loaded'),
+      marginless && is('marginless'),
+      numberOfLines && is('text-ellipsis'),
+      className,
+    ),
   )
 
   /**
    * If no markup return p with default level 1
    */
   const isCorrectMarkup = (stringMarkup: TextMarkup | TextMarkupValues) => {
-    if (
-      stringMarkup in TextMarkup ||
-      Object.values(TextMarkup).includes(stringMarkup as TextMarkup)
-    )
-      return true
+    if (stringMarkup in TextMarkup || Object.values(TextMarkup).includes(stringMarkup as TextMarkup)) return true
   }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "p"
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 
   return (
     <Tag

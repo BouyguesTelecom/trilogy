@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { useTrilogyContext } from "@/context"
-import { FabProps } from "./FabProps"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { IconName, Icon } from "@/components/icon"
-import { is } from "@/services"
+import { Icon, IconName } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { FabProps } from './FabProps'
 
 /**
  * Fab Component - Floating Button Action
@@ -50,20 +50,17 @@ const Fab = ({
   const positionStyle: React.CSSProperties | any =
     top || bottom || left || right
       ? {
-          position: fixed ? "fixed" : "absolute",
-          top: top ?? "auto",
-          bottom: bottom ?? "auto",
-          left: left ?? "auto",
-          right: right ?? "auto",
+          position: fixed ? 'fixed' : 'absolute',
+          top: top ?? 'auto',
+          bottom: bottom ?? 'auto',
+          left: left ?? 'auto',
+          right: right ?? 'auto',
         }
       : {
-          position: "relative",
+          position: 'relative',
         }
 
-  const _className = hashClass(
-    styled,
-    clsx("fab", extended && is("extended"), className)
-  )
+  const _className = hashClass(clsx('fab', extended && is('extended'), className))
 
   return (
     <button

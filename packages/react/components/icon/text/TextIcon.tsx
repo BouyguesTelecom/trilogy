@@ -37,7 +37,6 @@ const TextIcon = ({
     return (
       <span
         className={hashClass(
-          styled,
           clsx(
             'icon-and-text',
             (position === IconPosition.UP || position === IconPosition.DOWN) && is('stacked'),
@@ -49,12 +48,7 @@ const TextIcon = ({
           (position === IconPosition.RIGHT || position === IconPosition.DOWN) &&
             content &&
             (content && typeof content.valueOf() === 'string' ? (
-              <Tag
-                className={hashClass(styled, clsx(textClassName))}
-                id={textId}
-                aria-level={textAriaLevel}
-                role={textRole}
-              >
+              <Tag className={hashClass(clsx(textClassName))} id={textId} aria-level={textAriaLevel} role={textRole}>
                 {String(content)}
               </Tag>
             ) : (
@@ -67,12 +61,7 @@ const TextIcon = ({
           (position === IconPosition.UP || position === IconPosition.LEFT) &&
             content &&
             (content && typeof content.valueOf() === 'string' ? (
-              <Tag
-                className={hashClass(styled, clsx(textClassName))}
-                id={textId}
-                aria-level={textAriaLevel}
-                role={textRole}
-              >
+              <Tag className={hashClass(clsx(textClassName))} id={textId} aria-level={textAriaLevel} role={textRole}>
                 {String(content)}
               </Tag>
             ) : (
@@ -85,10 +74,10 @@ const TextIcon = ({
   }
 
   return (
-    <span className={hashClass(styled, clsx('icon-and-text', className))}>
+    <span className={hashClass(clsx('icon-and-text', className))}>
       <Icon name={name} {...others} />
       {content && typeof content.valueOf() === 'string' ? (
-        <Tag className={hashClass(styled, clsx(textClassName))} id={textId} aria-level={textAriaLevel} role={textRole}>
+        <Tag className={hashClass(clsx(textClassName))} id={textId} aria-level={textAriaLevel} role={textRole}>
           {String(content)}
         </Tag>
       ) : (

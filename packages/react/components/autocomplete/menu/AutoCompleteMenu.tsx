@@ -1,8 +1,8 @@
-import clsx from 'clsx'
-import * as React from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 
 /**
@@ -21,7 +21,6 @@ const AutoCompleteMenu = ({ children, className, absolute, fullwidth, testId }: 
       role='list'
       data-testid={testId}
       className={hashClass(
-        styled,
         clsx('autocomplete-menu', absolute && is('absolute'), fullwidth && is('fullwidth'), className),
       )}
     >

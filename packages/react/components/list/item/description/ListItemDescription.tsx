@@ -1,8 +1,8 @@
-import * as React from "react"
-import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ListItemDescriptionProps } from './ListItemDescriptionProps'
 
 /**
  * ListItemDescription Component
@@ -10,13 +10,10 @@ import { useTrilogyContext } from "@/context"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const ListItemDescription = ({
-  children,
-  className,
-}: ListItemDescriptionProps): JSX.Element => {
+const ListItemDescription = ({ children, className }: ListItemDescriptionProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  return <dd className={hashClass(styled, clsx(className))}>{children}</dd>
+  return <dd className={hashClass(clsx(className))}>{children}</dd>
 }
 
 export default ListItemDescription

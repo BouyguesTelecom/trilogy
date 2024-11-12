@@ -29,7 +29,7 @@ const SelectDynamic = ({
   const [selectedValues, setSelectedValues] = React.useState<SelectedValue>(selected)
   const [selectedName, setSelectedName] = React.useState<string[]>([])
   const reactId = React.useId()
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = React.useMemo(() => hashClass(clsx('select', className)), [styled, className])
   const [focusedIndex, setFocusedIndex] = useState<number>(-1)
 
   const onClickInput = React.useCallback(() => {
@@ -175,7 +175,7 @@ const SelectDynamic = ({
     () => (
       <div
         role='presentation'
-        className={hashClass(styled, clsx('select-trilogy_modal_open'))}
+        className={hashClass(clsx('select-trilogy_modal_open'))}
         onClick={() => {
           setIsFocused(false)
         }}
@@ -236,7 +236,7 @@ const SelectDynamic = ({
         customIconLeft={iconName}
         onBlur={onBlur}
         onClick={onClickInput}
-        className={hashClass(styled, clsx(focused && 'focus'))}
+        className={hashClass(clsx(focused && 'focus'))}
         onKeyPress={(e) => {
           e.preventDefault()
         }}
@@ -246,7 +246,7 @@ const SelectDynamic = ({
         }}
         {...{ readOnly: true, id, role: 'listbox' }}
       />
-      {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
+      {focused && <div className={hashClass(clsx('select-options'))}>{options}</div>}
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )

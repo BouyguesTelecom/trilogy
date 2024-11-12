@@ -1,11 +1,11 @@
-import * as React from "react"
-import { DividerProps } from "./DividerProps"
-import { has, is } from "@/services/classify"
-import { Icon, IconSize } from "../icon"
-import { getColorClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getColorClassName } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { Icon, IconSize } from '../icon'
+import { DividerProps } from './DividerProps'
 
 /**
  * Divider Component
@@ -34,23 +34,21 @@ const Divider = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "divider",
-      unboxed && is("unboxed"),
-      marginless && is("marginless"),
+      'divider',
+      unboxed && is('unboxed'),
+      marginless && is('marginless'),
       className,
       color && has(`background-${getColorClassName(color)}`),
-      iconName && "has-icon"
-    )
+      iconName && 'has-icon',
+    ),
   )
   const contentClasses = hashClass(
-    styled,
     clsx(
-      "divider-content",
+      'divider-content',
       textColor && has(`text-${getColorClassName(textColor)}`),
-      backgroundColor && has(`background-${getColorClassName(backgroundColor)}`)
-    )
+      backgroundColor && has(`background-${getColorClassName(backgroundColor)}`),
+    ),
   )
 
   // si il y a du text et une icone , SEULEMENT le text compte
@@ -75,10 +73,7 @@ const Divider = ({
     return (
       <div data-testid='separator' className={classes}>
         <p className={contentClasses}>
-          <Icon
-            name={iconName}
-            size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM}
-          />
+          <Icon name={iconName} size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM} />
         </p>
       </div>
     )

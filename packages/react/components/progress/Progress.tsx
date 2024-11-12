@@ -1,12 +1,12 @@
-import * as React from "react"
-import { ProgressProps } from "./ProgressProps"
-import { is, has } from "@/services/index"
-import { Text, TextLevels } from "../text"
-import { Columns, ColumnsItem } from "../columns"
-import { getStatusClassName } from "@/objects"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getStatusClassName } from '@/objects'
+import { has, is } from '@/services/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { Columns, ColumnsItem } from '../columns'
+import { Text, TextLevels } from '../text'
+import { ProgressProps } from './ProgressProps'
 
 /**
  * Progress component
@@ -40,20 +40,16 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "progress",
+      'progress',
       status && is(getStatusClassName(status)),
-      !status && is("primary"),
-      small && is("small"),
-      className
-    )
+      !status && is('primary'),
+      small && is('small'),
+      className,
+    ),
   )
 
-  const stackedClasses = hashClass(
-    styled,
-    clsx("progress", stacked && is("stacked"), className)
-  )
+  const stackedClasses = hashClass(clsx('progress', stacked && is('stacked'), className))
 
   if (children && stacked) {
     return (
@@ -65,16 +61,11 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
 
   return (
     <>
-      <progress
-        className={classes}
-        value={percent}
-        max={maxPercent}
-        {...others}
-      >
+      <progress className={classes} value={percent} max={maxPercent} {...others}>
         {percent}
       </progress>
       {uniqueLegend && (
-        <Text className={has("text-centered")} level={TextLevels.TWO}>
+        <Text className={has('text-centered')} level={TextLevels.TWO}>
           {uniqueLegend}
         </Text>
       )}
@@ -90,7 +81,6 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
       )}
     </>
   )
-
 })
 
 export default Progress

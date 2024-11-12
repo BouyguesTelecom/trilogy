@@ -1,10 +1,10 @@
-import * as React from "react"
-import clsx from "clsx"
-import { TimelineContentWebProps } from "./TimelineContentProps"
-import { Text, TextMarkup } from "@/components/text"
-import { Link } from "@/components/link"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { Link } from '@/components/link'
+import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TimelineContentWebProps } from './TimelineContentProps'
 
 /**
  * Timeline Content Component
@@ -28,7 +28,7 @@ const TimelineContent = ({
   ...others
 }: TimelineContentWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx("timeline-content", className))
+  const classes = hashClass(clsx('timeline-content', className))
 
   if (children) {
     return (
@@ -47,11 +47,7 @@ const TimelineContent = ({
         e.stopPropagation()
       }}
     >
-      {heading && (
-        <Text markup={TextMarkup.P}>
-          {heading}
-        </Text>
-      )}
+      {heading && <Text markup={TextMarkup.P}>{heading}</Text>}
       {content && (
         <Text className='main-content' markup={TextMarkup.P}>
           {content}

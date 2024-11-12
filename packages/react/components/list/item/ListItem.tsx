@@ -1,11 +1,11 @@
-import clsx from 'clsx'
-import * as React from 'react'
+import { Divider } from '@/components/divider'
+import { Icon, IconName, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { TrilogyColor, getColorClassName } from '@/objects'
 import { has, is } from '@/services'
-import { Divider } from '@/components/divider'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import clsx from 'clsx'
+import * as React from 'react'
 import { ListItemProps } from './ListItemProps'
 
 /**
@@ -18,7 +18,7 @@ import { ListItemProps } from './ListItemProps'
  * @param action {React.ReactNode} children
  * @param divider {boolean} Display divider
  * @param deletable {boolean}
-* - -------------------------- WEB PROPERTIES -------------------------------
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
@@ -35,26 +35,19 @@ const ListItem = ({
   deletable,
 }: ListItemProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = clsx(
-    is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)),
-    className,
-  )
+  const classes = clsx(is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)), className)
 
   return (
-    <li className={hashClass(styled, clsx(classes, action && has('action')))} data-testid={testId}>
-      <div className={hashClass(styled, clsx('list-item_content'))}>
+    <li className={hashClass(clsx(classes, action && has('action')))} data-testid={testId}>
+      <div className={hashClass(clsx('list-item_content'))}>
         {customIcon && typeof customIcon === 'string' && (
-          <div className={hashClass(styled, clsx('list-item_content_puce'))}>
-            <Icon
-              className={classes}
-              name={deletable ? 'tri-trash' : (customIcon as IconName)}
-              size={IconSize.SMALL}
-            />
+          <div className={hashClass(clsx('list-item_content_puce'))}>
+            <Icon className={classes} name={deletable ? 'tri-trash' : (customIcon as IconName)} size={IconSize.SMALL} />
           </div>
         )}
 
         {customIcon && typeof customIcon !== 'string' && (
-          <div className={hashClass(styled, clsx('list-item_content_puce'))}>{customIcon}</div>
+          <div className={hashClass(clsx('list-item_content_puce'))}>{customIcon}</div>
         )}
 
         <div>
@@ -67,7 +60,7 @@ const ListItem = ({
           {!title && !description && <div>{children}</div>}
         </div>
       </div>
-      {action && <div className={hashClass(styled, clsx('list-item_action'))}>{action}</div>}
+      {action && <div className={hashClass(clsx('list-item_action'))}>{action}</div>}
       {divider && <Divider />}
     </li>
   )

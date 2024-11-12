@@ -111,14 +111,11 @@ const Modal = ({
 
   const classes = React.useMemo(
     () =>
-      hashClass(
-        styled,
-        clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
-      ),
+      hashClass(clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className)),
     [display, panel, className, styled],
   )
   const contentClasses = React.useMemo(
-    () => hashClass(styled, clsx('modal-content', contentClassNames)),
+    () => hashClass(clsx('modal-content', contentClassNames)),
     [contentClassNames, styled],
   )
   const footerClasses = React.useMemo(() => clsx('modal-footer', footerClassNames), [footerClassNames, styled])
@@ -178,7 +175,7 @@ const Modal = ({
           onClick={(e: React.MouseEvent) => {
             handleOpen(onOpen, e)
           }}
-          className={hashClass(styled, clsx(triggerClassNames))}
+          className={hashClass(clsx(triggerClassNames))}
         >
           {triggerContent}
         </TriggerTag>
@@ -192,13 +189,13 @@ const Modal = ({
       >
         <div ref={modal} className={contentClasses}>
           {(closeIcon || title || iconName) && (
-            <div className={hashClass(styled, clsx('modal-header'))}>
+            <div className={hashClass(clsx('modal-header'))}>
               {closeIcon && (
                 <button
                   onClick={(e: React.MouseEvent) => {
                     handleClose(onClose, e)
                   }}
-                  className={hashClass(styled, clsx('modal-close', is('large')))}
+                  className={hashClass(clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                   ref={(el) => el && (refsActions.current[0] = el)}
                 >
@@ -213,7 +210,7 @@ const Modal = ({
             </div>
           )}
           {(content || (children != null && children)) && (
-            <div className={hashClass(styled, clsx('modal-body'))}>
+            <div className={hashClass(clsx('modal-body'))}>
               {content && typeof content === 'string' ? <Text {...{ id: idDescription }}>{content}</Text> : content}
               {children != null && children}
             </div>
@@ -226,7 +223,7 @@ const Modal = ({
                     onClick={(e) => {
                       handleClose(ctaCancelOnClick, e)
                     }}
-                    className={hashClass(styled, clsx('button', is('secondary')))}
+                    className={hashClass(clsx('button', is('secondary')))}
                     ref={(el) => (refsActions.current[1] = el)}
                   >
                     {ctaCancelContent}
@@ -234,7 +231,7 @@ const Modal = ({
                 )}
                 {ctaOnClick && (
                   <button
-                    className={hashClass(styled, clsx('button', is('primary')))}
+                    className={hashClass(clsx('button', is('primary')))}
                     title={ctaContent}
                     ref={(el) => (refsActions.current[2] = el)}
                     onClick={ctaOnClick}

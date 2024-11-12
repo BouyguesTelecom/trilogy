@@ -1,45 +1,40 @@
-import { Text, TextMarkup } from "@/components/text"
-import React, { useEffect, useRef, useState } from "react"
-import { OtpProps } from "./OtpProps"
-import { TypographyColor } from "@/objects/Typography"
-import clsx from "clsx"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { is } from "@/services/classify"
-import { useTrilogyContext } from "@/context/index"
+import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyColor } from '@/objects/Typography'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { useEffect, useRef, useState } from 'react'
+import { OtpProps } from './OtpProps'
 
-type NumberOrNull = number | null;
+type NumberOrNull = number | null
 
-const stringToCode = (str: string|undefined, codeSize: number): Array<NumberOrNull> => {
+const stringToCode = (str: string | undefined, codeSize: number): Array<NumberOrNull> => {
   if (!str) return new Array(codeSize).fill(null)
-  return str.split("").map((char) => (char === "" ? null : Number(char)))
+  return str.split('').map((char) => (char === '' ? null : Number(char)))
 }
 
 const codeToString = (code: NumberOrNull[]): string => {
-  return code.map((char) => (char === null ? '_' : char)).join("")
+  return code.map((char) => (char === null ? '_' : char)).join('')
 }
 
-const isCompleted = (myCode:NumberOrNull[]) => {
+const isCompleted = (myCode: NumberOrNull[]) => {
   return myCode.every((code) => code !== null)
 }
 
 const focusToNextInput = (target: HTMLInputElement, value?: string) => {
-  const nextElementSibling =
-    target.nextElementSibling as HTMLInputElement | null
+  const nextElementSibling = target.nextElementSibling as HTMLInputElement | null
 
   if (nextElementSibling) {
-    if (value)
-      nextElementSibling.value = value
+    if (value) nextElementSibling.value = value
 
-    if (target.value.length)
-      nextElementSibling.focus()
-
+    if (target.value.length) nextElementSibling.focus()
   } else {
     target.focus()
   }
 }
 const focusToPrevInput = (target: HTMLElement) => {
-  const previousElementSibling =
-    target.previousElementSibling as HTMLInputElement | null
+  const previousElementSibling = target.previousElementSibling as HTMLInputElement | null
   if (previousElementSibling) {
     previousElementSibling.focus()
   } else {
@@ -47,9 +42,9 @@ const focusToPrevInput = (target: HTMLElement) => {
   }
 }
 
-const updateCodeInput = (value: string, index: number, code: NumberOrNull[]) :NumberOrNull[] => {
+const updateCodeInput = (value: string, index: number, code: NumberOrNull[]): NumberOrNull[] => {
   const numberValue = Number(value)
-  if ( isNaN(numberValue) || value.length < 1 ) {
+  if (isNaN(numberValue) || value.length < 1) {
     return code
   }
   const newCodeInput = code.map((code, idx) => {
@@ -62,14 +57,14 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
   const { key } = e
   const target = e.target as HTMLInputElement
 
-  if (key === "ArrowRight" || key === "ArrowDown") {
+  if (key === 'ArrowRight' || key === 'ArrowDown') {
     return focusToNextInput(target)
   }
-  if (key === "ArrowLeft" || key === "ArrowUp") {
+  if (key === 'ArrowLeft' || key === 'ArrowUp') {
     return focusToPrevInput(target)
   }
-  if (key === "Backspace") {
-    return (target.value === "") && focusToPrevInput(target)
+  if (key === 'Backspace') {
+    return target.value === '' && focusToPrevInput(target)
   }
   if (key >= '0' && key <= '9') {
     focusToNextInput(target)
@@ -105,42 +100,39 @@ const Otp = ({
   autoFocus,
   ...others
 }: OtpProps): JSX.Element => {
-
-  const [codeInput, setCodeInput] = useState<NumberOrNull[]>(stringToCode(code, codeSize) || new Array(codeSize).fill(null))
+  const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
+    stringToCode(code, codeSize) || new Array(codeSize).fill(null),
+  )
   const hasChanged = useRef(false)
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx("otp-list", error && is("error"), className)
-  )
+  const classes = hashClass(clsx('otp-list', error && is('error'), className))
 
   useEffect(() => {
-    if (!disabled ) {
+    if (!disabled) {
       isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
     }
   }, [codeSize, codeInput, onCompleted, disabled])
 
   useEffect(() => {
     hasChanged.current = codeInput.find((code) => code !== null) !== undefined
-    if ( hasChanged.current ) {
+    if (hasChanged.current) {
       onChange?.(codeToString(codeInput))
     }
   }, [codeInput])
 
-  const inputOnChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    idx: number
-  ) => {
+  const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
     const { target } = e
     const targetValue = target.value.trim()
 
     if (targetValue.length > 0) {
       setCodeInput(updateCodeInput(targetValue, idx, codeInput))
     } else {
-      setCodeInput(codeInput.map((code, index) => {
-        return index === idx ? null : code
-      }))
+      setCodeInput(
+        codeInput.map((code, index) => {
+          return index === idx ? null : code
+        }),
+      )
     }
   }
 
@@ -164,7 +156,7 @@ const Otp = ({
         </Text>
       )}
       <div
-        data-testid={"otp-input"}
+        data-testid={'otp-input'}
         className={classes}
         onClick={() => {
           if (!disabled) {
@@ -184,7 +176,7 @@ const Otp = ({
             pattern='\d{1}'
             maxLength={codeSize}
             className='otp'
-            value={`${digit ?? ""}`}
+            value={`${digit ?? ''}`}
             onKeyUp={inputOnKeyUp}
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
@@ -195,11 +187,9 @@ const Otp = ({
       </div>
       {errorMessage && (
         <Text
-          className={hashClass(styled, clsx("otp-error-message"))}
+          className={hashClass(clsx('otp-error-message'))}
           markup={TextMarkup.P}
-          typo={
-            (error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN
-          }
+          typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
         >
           {errorMessage}
         </Text>

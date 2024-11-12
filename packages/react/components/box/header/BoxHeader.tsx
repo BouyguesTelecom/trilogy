@@ -1,11 +1,11 @@
-import * as React from "react"
-import { Text } from "@/components/text"
-import { BoxHeaderProps } from "./BoxHeaderProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { has } from "@/services"
-import { getBackgroundClassName } from "@/objects"
+import { Text } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getBackgroundClassName } from '@/objects'
+import { has } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { BoxHeaderProps } from './BoxHeaderProps'
 
 /**
  * Box Header Component
@@ -18,37 +18,16 @@ import { getBackgroundClassName } from "@/objects"
  * @param testId {string} Test Id for Test Integration
  */
 
-const BoxHeader = ({
-  children,
-  className,
-  help,
-  variant,
-  testId,
-  ...others
-}: BoxHeaderProps): JSX.Element => {
+const BoxHeader = ({ children, className, help, variant, testId, ...others }: BoxHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      "box-header",
-      className,
-      variant && has(getBackgroundClassName(variant))
-    )
-  )
+  const classes = hashClass(clsx('box-header', className, variant && has(getBackgroundClassName(variant))))
 
   return (
     <header data-testid={testId} className={classes} {...others}>
-      {children && typeof children.valueOf() === "string" ? (
-        <p>{children}</p>
-      ) : (
-        children
-      )}
+      {children && typeof children.valueOf() === 'string' ? <p>{children}</p> : children}
       {help && (
-        <Text
-          testId={testId && `${testId}-help`}
-          className='box-header-help sticker is-small is-success'
-        >
+        <Text testId={testId && `${testId}-help`} className='box-header-help sticker is-small is-success'>
           {String(children)}
         </Text>
       )}

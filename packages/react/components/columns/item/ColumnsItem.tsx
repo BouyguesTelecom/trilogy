@@ -1,10 +1,9 @@
-import * as React from "react"
-import clsx from "clsx"
-import { ColumnsItemProps } from "./ColumnsItemProps"
-import { has, is } from "@/services/classify"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { getAlignClassName } from "@/objects"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ColumnsItemProps } from './ColumnsItemProps'
 
 /**
  * Columns Item Component - Columns Child
@@ -55,9 +54,8 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "column",
+      'column',
       size && is(`${size}`),
       mobileSize && is(`${mobileSize}-mobile`),
       tabletSize && is(`${tabletSize}-tablet`),
@@ -72,10 +70,10 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
       desktopOffset && is(`offset-${desktopOffset}-desktop`),
       widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
       fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
-      narrow && is("narrow"),
-      verticalCentered && is("vcentered"),
-      className
-    )
+      narrow && is('narrow'),
+      verticalCentered && is('vcentered'),
+      className,
+    ),
   )
 
   return <div ref={ref} className={classes} {...others} />

@@ -1,15 +1,15 @@
-import * as React from "react"
-import clsx from "clsx"
-import { IconProps } from "./IconProps"
-import StatusIcon from "./status/index"
-import CircleIcon from "./circle/index"
-import TextIcon from "./text/index"
-import { has, is } from "@/services/classify"
-import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
-import { getAlignClassName } from "@/objects/facets/Alignable"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { IconName } from "./IconNameEnum"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import CircleIcon from './circle/index'
+import { IconName } from './IconNameEnum'
+import { IconProps } from './IconProps'
+import StatusIcon from './status/index'
+import TextIcon from './text/index'
 
 /**
  * Icon Component
@@ -65,37 +65,28 @@ const Icon = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "icon",
-      stretched && is("stretched"),
+      'icon',
+      stretched && is('stretched'),
       size && is(size),
-      stacked && is("stacked"),
-      color &&
-        is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-      skeleton && is("loading"),
-      badgeContent && is("stacked"),
-      marginless && is("marginless"),
-      className
-    )
+      stacked && is('stacked'),
+      color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
+      skeleton && is('loading'),
+      badgeContent && is('stacked'),
+      marginless && is('marginless'),
+      className,
+    ),
   )
 
   // TextIcon uses className instead of classes, verticalAlignment only affect TextIcon
-  className = clsx(
-    content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`),
-    className
-  )
+  className = clsx(content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`), className)
 
   const alignClasses = hashClass(
-    styled,
     clsx(
-      (align &&
-        getAlignClassName(align) === "aligned-start" &&
-        has("text-left")) ||
-        (getAlignClassName(align) === "aligned-center" &&
-          has("text-centered")) ||
-        (getAlignClassName(align) === "aligned-end" && has("text-right"))
-    )
+      (align && getAlignClassName(align) === 'aligned-start' && has('text-left')) ||
+        (getAlignClassName(align) === 'aligned-center' && has('text-centered')) ||
+        (getAlignClassName(align) === 'aligned-end' && has('text-right')),
+    ),
   )
 
   // circled icons
@@ -209,32 +200,20 @@ const Icon = ({
       return (
         <div className={alignClasses}>
           <span onClick={onClick && onClick} className={classes} {...others}>
-            <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-            <span className={hashClass(styled, clsx("badge", is("up")))}>
-              {badgeContent}
-            </span>
+            <i className={hashClass(clsx(name))} aria-hidden='true' />
+            <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
           </span>
-          {content && (
-            <span className={hashClass(styled, clsx(textClassName))}>
-              {content}
-            </span>
-          )}
+          {content && <span className={hashClass(clsx(textClassName))}>{content}</span>}
         </div>
       )
     }
     return (
       <>
         <span onClick={onClick && onClick} className={classes} {...others}>
-          <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
-          <span className={hashClass(styled, clsx("badge", is("up")))}>
-            {badgeContent}
-          </span>
+          <i className={hashClass(clsx(name))} aria-hidden='true' />
+          <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
         </span>
-        {content && (
-          <span className={hashClass(styled, clsx(textClassName))}>
-            {content}
-          </span>
-        )}
+        {content && <span className={hashClass(clsx(textClassName))}>{content}</span>}
       </>
     )
   }
@@ -245,14 +224,14 @@ const Icon = ({
       return (
         <div className={alignClasses}>
           <span onClick={onClick && onClick} className={classes} {...others}>
-            <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+            <i className={hashClass(clsx(name))} aria-hidden='true' />
           </span>
         </div>
       )
     }
     return (
       <span onClick={onClick && onClick} className={classes} {...others}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+        <i className={hashClass(clsx(name))} aria-hidden='true' />
       </span>
     )
   }
@@ -263,14 +242,14 @@ const Icon = ({
       return (
         <div className={alignClasses}>
           <span onClick={onClick && onClick} className={classes} {...others}>
-            <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+            <i className={hashClass(clsx(name))} aria-hidden='true' />
           </span>
         </div>
       )
     }
     return (
       <span onClick={onClick && onClick} className={classes} {...others}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+        <i className={hashClass(clsx(name))} aria-hidden='true' />
       </span>
     )
   }
@@ -279,7 +258,7 @@ const Icon = ({
     return (
       <div className={alignClasses}>
         <span onClick={onClick && onClick} className={classes} {...others}>
-          <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+          <i className={hashClass(clsx(name))} aria-hidden='true' />
         </span>
       </div>
     )
@@ -287,13 +266,8 @@ const Icon = ({
 
   // Static default Icon
   return (
-    <span
-      data-testid={testId}
-      onClick={onClick && onClick}
-      className={classes}
-      {...others}
-    >
-      <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+    <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others}>
+      <i className={hashClass(clsx(name))} aria-hidden='true' />
     </span>
   )
 }

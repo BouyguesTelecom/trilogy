@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { getColorStyle } from '@/objects/facets/Color'
 import clsx from 'clsx'
-import { ProgressRadialProps } from './ProgressRadialProps'
-import { is } from '../../../services/index'
-import { hashClass } from '../../../helpers'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTrilogyContext } from '../../../context'
-import { Title, TitleLevels } from '../../title'
+import { hashClass } from '../../../helpers'
+import { is } from '../../../services/index'
 import { Text, TextLevels } from '../../text'
-import { getColorStyle } from "@/objects/facets/Color"
+import { Title, TitleLevels } from '../../title'
+import { ProgressRadialProps } from './ProgressRadialProps'
 
 /**
  * Progress Radial component
@@ -41,8 +41,8 @@ const ProgressRadial = ({
   const [firstProgressCurrentValue, setFirstProgressCurrentValue] = useState(0)
   const [secondProgressCurrentValue, setSecondProgressCurrentValue] = useState(0)
 
-  const classes = hashClass(styled, clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
-  const classesContent = hashClass(styled, clsx('progress-radial-content'))
+  const classes = hashClass(clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
+  const classesContent = hashClass(clsx('progress-radial-content'))
 
   const progressRadialRef = useRef<HTMLDivElement>(null)
 
@@ -61,7 +61,11 @@ const ProgressRadial = ({
 
     let styleBackground
     styleBackground = `radial-gradient(circle at center, white 58%, transparent 58.1%),`
-    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, ${getColorStyle('MAIN')} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${secondProgressStartDegree + secondProgressDegree}deg 360deg)`
+    styleBackground += `conic-gradient(#0C7B91 0 ${firstProgressDegree}deg, ${getColorStyle(
+      'MAIN',
+    )} ${secondProgressStartDegree}deg ${secondProgressStartDegree + secondProgressDegree}deg, gainsboro ${
+      secondProgressStartDegree + secondProgressDegree
+    }deg 360deg)`
     progressRadial.style.background = styleBackground
   }
 
@@ -96,8 +100,16 @@ const ProgressRadial = ({
   return (
     <div {...others} className={classes} ref={progressRadialRef}>
       <div className={classesContent}>
-        {label && <Title level={TitleLevels.TWO} marginless>{label}</Title>}
-        {description && <Text level={TextLevels.ONE} marginless>{description}</Text>}
+        {label && (
+          <Title level={TitleLevels.TWO} marginless>
+            {label}
+          </Title>
+        )}
+        {description && (
+          <Text level={TextLevels.ONE} marginless>
+            {description}
+          </Text>
+        )}
         {!label && !description && children}
       </div>
     </div>

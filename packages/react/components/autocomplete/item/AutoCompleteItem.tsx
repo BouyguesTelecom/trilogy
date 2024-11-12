@@ -1,8 +1,8 @@
-import clsx from 'clsx'
-import * as React from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
 import { Item } from '../AutoCompleteProps'
 import { AutoCompleteItemProps } from './AutoCompleteItemProps'
 
@@ -29,7 +29,7 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
       onMouseOut={() => setIsActive(false)}
       role='listitem'
       data-testid={testId}
-      className={hashClass(styled, clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
+      className={hashClass(clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
       onClick={() => (suggestionSelected ? suggestionSelected(item) : '')}
     >
       {children}

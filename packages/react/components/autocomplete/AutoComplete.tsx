@@ -79,7 +79,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
   const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
 
-  const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
+  const autocompleteClasses = hashClass(clsx(is('autocomplete'), is('active')))
 
   useEffect(() => {
     setInputValue(value || '')
@@ -174,7 +174,7 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <div className={hashClass(styled, clsx('control'))}>
+    <div className={hashClass(clsx('control'))}>
       <Input
         ref={ref}
         defaultValue={defaultValue}

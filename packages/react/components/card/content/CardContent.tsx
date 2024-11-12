@@ -1,11 +1,11 @@
-import * as React from "react"
-import clsx from "clsx"
-import { CardContentProps } from "./CardContentProps"
-import { Title, TitleLevels } from "@/components/title"
-import { Text } from "@/components/text"
-import { Button, ButtonMarkup } from "@/components/button"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { Button, ButtonMarkup } from '@/components/button'
+import { Text } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
@@ -46,11 +46,7 @@ const CardContent = ({
 
   if (children) {
     return (
-      <div
-        data-testid={testId}
-        className={hashClass(styled, clsx("card-content", className))}
-        {...others}
-      >
+      <div data-testid={testId} className={hashClass(clsx('card-content', className))} {...others}>
         {children}
       </div>
     )
@@ -64,19 +60,16 @@ const CardContent = ({
         onClick?.(e)
         e.stopPropagation()
       }}
-      className={hashClass(styled, clsx("card-content", className))}
+      className={hashClass(clsx('card-content', className))}
       {...others}
     >
       {titleSup && (
-        <Text level={titleSupLevel} className={"suptitle"}>
+        <Text level={titleSupLevel} className={'suptitle'}>
           {titleSup}
         </Text>
       )}
       {title && (
-        <Title
-          testId={testId ? `${testId}-title` : undefined}
-          level={titleLevel ? titleLevel : TitleLevels.THREE}
-        >
+        <Title testId={testId ? `${testId}-title` : undefined} level={titleLevel ? titleLevel : TitleLevels.THREE}>
           {title}
         </Title>
       )}
@@ -85,7 +78,7 @@ const CardContent = ({
         <Button
           testId={testId ? `${testId}-btn` : undefined}
           onClick={buttonClick}
-          variant={buttonVariant ? buttonVariant : "PRIMARY"}
+          variant={buttonVariant ? buttonVariant : 'PRIMARY'}
           markup={buttonMarkup ? buttonMarkup : ButtonMarkup.BUTTON}
         >
           {buttonText}

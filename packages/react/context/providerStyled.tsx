@@ -5,9 +5,9 @@ import hashJSON from '../hash.json'
 import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
-  children: React.ReactNode
   theme?: 'default' | 'mangled' | 'none'
   hash?: string
+  useClient?: boolean
 }
 
 /**
@@ -20,7 +20,8 @@ const TrilogyProviderStyled = ({
   children,
   theme = 'default',
   hash: HASH = hashJSON.HASH,
-}: TrilogyProviderStyledProps): JSX.Element => {
+  useClient = true,
+}: React.PropsWithChildren<TrilogyProviderStyledProps>): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
   const [hash, setHash] = React.useState<string>(HASH)
 
@@ -43,7 +44,7 @@ const TrilogyProviderStyled = ({
   }, [theme, hash])
 
   return (
-    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
+    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash, useClient }}>
       {StyleComponent ? (
         <React.Suspense fallback={null}>
           <StyleComponent>{children}</StyleComponent>

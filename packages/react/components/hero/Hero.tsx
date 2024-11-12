@@ -1,10 +1,10 @@
-import React from "react"
-import { HeroProps } from "./HeroProps"
-import { has, is } from "@/services/classify"
-import { getAlignClassName, getBackgroundClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getAlignClassName, getBackgroundClassName } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { HeroProps } from './HeroProps'
 
 /**
  * Hero Component
@@ -38,17 +38,16 @@ const Hero = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
-    styled,
     clsx(
-      "hero",
+      'hero',
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
-    align && is(getAlignClassName(align)),
+      (inverted && is('inverted')) || is('base'),
+      align && is(getAlignClassName(align)),
       justify && is(justify),
-      overlap && is("overlapped"),
-      className
-    )
+      overlap && is('overlapped'),
+      className,
+    ),
   )
 
   return (
@@ -60,7 +59,7 @@ const Hero = ({
       className={classes}
       {...others}
     >
-      <div className={hashClass(styled, clsx("hero-body"))}>{children}</div>
+      <div className={hashClass(clsx('hero-body'))}>{children}</div>
     </section>
   )
 }

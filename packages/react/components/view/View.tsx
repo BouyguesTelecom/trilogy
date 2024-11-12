@@ -1,14 +1,10 @@
-import * as React from "react"
-import { ViewMarkup, ViewMarkupValues, ViewProps } from "./ViewProps"
-import clsx from "clsx"
-import { has, is } from "@/services"
-import {
-  getLoadingClassName,
-  getJustifyClassName,
-  getAlignClassName, getBackgroundClassName,
-} from "@/objects"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ViewMarkup, ViewMarkupValues, ViewProps } from './ViewProps'
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -49,29 +45,24 @@ const View = ({
   const { styled } = useTrilogyContext()
 
   const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
-    if (
-      stringMarkup in ViewMarkup ||
-      Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)
-    )
-      return true
+    if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
   }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "div"
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
   const classes = hashClass(
-    styled,
     clsx(
-      typeof loading === "string" && is(getLoadingClassName(loading)),
-      typeof loading === "boolean" ? is("loading") : is("loaded"),
+      typeof loading === 'string' && is(getLoadingClassName(loading)),
+      typeof loading === 'boolean' ? is('loading') : is('loaded'),
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
-      fullwidth && is("fullwidth"),
-      flexable && is("flex"),
-      typeof justify === "string" && is(getJustifyClassName(justify)),
-      typeof align === "string" && is(getAlignClassName(align)),
-      className
-    )
+      (inverted && is('inverted')) || is('base'),
+      fullwidth && is('fullwidth'),
+      flexable && is('flex'),
+      typeof justify === 'string' && is(getJustifyClassName(justify)),
+      typeof align === 'string' && is(getAlignClassName(align)),
+      className,
+    ),
   )
 
   return (
@@ -82,8 +73,8 @@ const View = ({
       {...(backgroundSrc && {
         style: {
           backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
+          backgroundSize: 'cover',
+          backgroundPosition: '50%',
         },
       })}
       {...others}

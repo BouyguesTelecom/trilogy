@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
-import { BoxMarkup, BoxProps } from "./BoxProps"
-import { has, is } from "@/services/classify"
-import { getBackgroundClassName } from "@/objects/atoms/Background"
-import { getColorClassName } from "@/objects"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getColorClassName } from '@/objects'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { BoxMarkup, BoxProps } from './BoxProps'
 
 /**
  * Box Component
@@ -52,22 +52,21 @@ const Box = ({
   const { styled } = useTrilogyContext()
   const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const classes = hashClass(
-    styled,
     clsx(
-      "box",
-      shadowless && is("shadowless"),
+      'box',
+      shadowless && is('shadowless'),
       className,
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has("background"),
-      (inverted && is("inverted")),
-      isLoading ? is("loading") : is("loaded"),
-      highlighted && `${is("highlighted")} ${is(getColorClassName(highlighted))}`,
-      flat && is("flat"),
-      hat && has("hat"),
+      backgroundSrc && has('background'),
+      inverted && is('inverted'),
+      isLoading ? is('loading') : is('loaded'),
+      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+      flat && is('flat'),
+      hat && has('hat'),
       headerOffset && is('header-offset'),
-      fullheight && is("fullheight"),
-      active && is("active")
-    )
+      fullheight && is('fullheight'),
+      active && is('active'),
+    ),
   )
 
   useEffect(() => {
@@ -92,7 +91,7 @@ const Box = ({
   }
 
   const hoverStyle: React.CSSProperties = {
-    cursor: "pointer",
+    cursor: 'pointer',
   }
 
   return (
@@ -108,8 +107,8 @@ const Box = ({
       {...(backgroundSrc && {
         style: {
           backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
+          backgroundSize: 'cover',
+          backgroundPosition: '50%',
         },
       })}
     >

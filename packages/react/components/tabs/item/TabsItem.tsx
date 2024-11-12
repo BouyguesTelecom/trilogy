@@ -1,9 +1,9 @@
-import clsx from "clsx"
-import React, { useEffect, useState } from "react"
-import { TabsItemProps } from "./TabsItemProps"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { useTrilogyContext } from "@/context/index"
-import { Icon } from "@/components/icon"
+import { Icon } from '@/components/icon'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { TabsItemProps } from './TabsItemProps'
 
 /**
  * Tabs Item Component
@@ -20,19 +20,7 @@ import { Icon } from "@/components/icon"
  * @param routerLink Custom Router Link as props
  */
 const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<any>) => {
-  const {
-    active,
-    children,
-    className,
-    onClick,
-    to,
-    href,
-    routerLink,
-    iconName,
-    disabled,
-    testId,
-    ...others
-  } = props
+  const { active, children, className, onClick, to, href, routerLink, iconName, disabled, testId, ...others } = props
 
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -40,8 +28,8 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
   // accessibility
   const a11y = {
     a: {
-      "aria-selected": activeItem,
-      "data-tab-navigation": "",
+      'aria-selected': activeItem,
+      'data-tab-navigation': '',
     },
   }
 
@@ -49,13 +37,10 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
     setActiveItem(active || false)
   }, [active])
 
-  const classes = hashClass(
-    styled,
-    clsx("tab", className, { "is-active": activeItem })
-  )
+  const classes = hashClass(clsx('tab', className, { 'is-active': activeItem }))
 
   if (routerLink && (to || href)) {
-    const RouterLink = (routerLink ? routerLink : "a") as React.ElementType
+    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
       <RouterLink
         ref={ref}
@@ -77,11 +62,7 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
           }
         }}
       >
-        <div className='tab-icon'>
-          {iconName && (
-            <Icon align='ALIGNED_CENTER' size='small' name={iconName} />
-          )}
-        </div>
+        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
         {children}
       </RouterLink>
     )
@@ -108,15 +89,10 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
         }
       }}
     >
-      <div className='tab-icon'>
-        {iconName && (
-          <Icon align='ALIGNED_CENTER' size='small' name={iconName} />
-        )}
-      </div>
+      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
       {children}
     </button>
   )
-
 })
 
 export default TabsItem

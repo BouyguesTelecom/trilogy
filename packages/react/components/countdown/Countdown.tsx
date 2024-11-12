@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { CountdownProps } from './CountdownProps'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import clsx from 'clsx'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import { useTrilogyContext } from '@/context'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { CountdownFormat, CountdownUnite } from './CountdownEnum'
+import { CountdownProps } from './CountdownProps'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -44,7 +44,7 @@ const Countdown = ({ deadline, className, format, event, small, inverted, ...oth
   const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
   const parsedFormat = format?.split('-')
 
-  const classes = hashClass(styled, clsx('countdown', inverted && is('inverted'), small && is('small'), className))
+  const classes = hashClass(clsx('countdown', inverted && is('inverted'), small && is('small'), className))
 
   if (parsedFormat) {
     parsedFormat.forEach((item) => {
@@ -125,23 +125,23 @@ const Countdown = ({ deadline, className, format, event, small, inverted, ...oth
   return (
     <ul className={classes} {...others}>
       {(show[CountdownUnite.DAY] || timer.days != 0) && (
-        <li className={hashClass(styled, clsx('count'))}>
-          <span className={hashClass(styled, clsx('value'))}>{timer.days ? timer.days : 0}</span>j
+        <li className={hashClass(clsx('count'))}>
+          <span className={hashClass(clsx('value'))}>{timer.days ? timer.days : 0}</span>j
         </li>
       )}
       {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
-        <li className={hashClass(styled, clsx('count'))}>
-          <span className={hashClass(styled, clsx('value'))}>{timer.hours ? timer.hours : 0}</span>h
+        <li className={hashClass(clsx('count'))}>
+          <span className={hashClass(clsx('value'))}>{timer.hours ? timer.hours : 0}</span>h
         </li>
       )}
       {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
-        <li className={hashClass(styled, clsx('count'))}>
-          <span className={hashClass(styled, clsx('value'))}>{timer.minutes ? timer.minutes : 0}</span>m
+        <li className={hashClass(clsx('count'))}>
+          <span className={hashClass(clsx('value'))}>{timer.minutes ? timer.minutes : 0}</span>m
         </li>
       )}
       {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
-        <li className={hashClass(styled, clsx('count'))}>
-          <span className={hashClass(styled, clsx('value'))}>{timer.seconds ? timer.seconds : 0}</span>s
+        <li className={hashClass(clsx('count'))}>
+          <span className={hashClass(clsx('value'))}>{timer.seconds ? timer.seconds : 0}</span>s
         </li>
       )}
     </ul>
