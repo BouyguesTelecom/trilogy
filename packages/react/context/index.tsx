@@ -13,7 +13,7 @@ interface ITrilogyContext {
 const TrilogyContext = React.createContext<ITrilogyContext>({
   styled: false,
   setStyled: () => undefined,
-}) || false
+})
 
 const useTrilogyContext = () => {
   const context = React.useContext(TrilogyContext)
