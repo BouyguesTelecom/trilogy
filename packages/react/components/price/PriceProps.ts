@@ -8,7 +8,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
  */
 export interface PriceProps extends Invertable, Accessibility, AlignableProps, Dev, CommonProps {
   children?: React.ReactNode
-  amount: number
+  amount?: number
   mention?: string
   period?: string
   hideCents?: boolean
@@ -16,6 +16,6 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, D
   level?: PriceLevel | PriceLevelValues
   oldAmount?: number
   overline?: string
-  tagAmount?: number
-  tagSymbol?: '€' | '%' | string
+  tagValue?: string
+  tagLabel?: string
 }

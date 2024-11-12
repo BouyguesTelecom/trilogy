@@ -7,7 +7,6 @@ import { Alignable, TypographyBold, TypographyColor } from '@/objects'
 import { checkCents } from './PriceHelpers'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
-import { PriceLevel } from './PriceEnum'
 
 /**
  * Price Component
@@ -22,8 +21,6 @@ import { PriceLevel } from './PriceEnum'
  * @param inline {boolean} Inline display Price
  * @param accessibilityLabel {string} Accessibility label
  * @param overline {string} Price overline
- * @param tagAmount {number} Tag amount
- * @param tagSymbol {number} Tag symbol
  * @param oldAmount {boolean} old Amount Price
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
@@ -43,8 +40,8 @@ const Price = ({
   accessibilityLabel,
   oldAmount,
   overline,
-  tagAmount,
-  tagSymbol,
+  tagValue,
+  tagLabel,
   ...others
 }: PriceProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -76,38 +73,45 @@ const Price = ({
     ),
   )
 
-  const isNegative = amount < 0
-  const absoluteAmount = Math.abs(amount)
-  const absoluteWhole = Math.floor(absoluteAmount)
-  const whole = isNegative ? -absoluteWhole : absoluteWhole
+  let amountComponent = null
+  let oldAmountComponent = null
+  let tagAmountComponent = null
 
-  const isNegativeStrike = oldAmount && oldAmount < 0
-  const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
-  const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
-  const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
+  if (oldAmount) {
+    const isNegativeStrike = oldAmount && oldAmount < 0
+    const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
+    const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
+    const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
 
-  let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
+    let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
+    cents = (cents && cents.length === 1 && `${cents}0`) || cents
+    const centsDisplayed = (inline && !hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
 
-  cents = (cents && cents.length === 1 && `${cents}0`) || cents
-
-  const centsDisplayed = (inline && hideCents && `,${cents || '00'} €`) || (hideCents && `€${cents || '00'}`) || '€'
-
-  const returnComponent = (
-    <div id={id} className={hashClass(styled, clsx('price-container', is(`level-${level || '1'}`)))}>
-      {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
-      {/* oldAmount Price */}
-      {oldAmount && (
-        <span aria-hidden='true' className={classesStrike} {...others}>
-          <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
-              {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
-              {mention && <sup>{mention}</sup>}
-            </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+    oldAmountComponent = (
+      <span aria-hidden='true' className={classesStrike} {...others}>
+        <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
+        <span className={hashClass(styled, clsx('price-details'))}>
+          <span className={hashClass(styled, clsx('cents'))}>
+            {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
+            {mention && <sup>{mention}</sup>}
           </span>
+          {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
         </span>
-      )}
+      </span>
+    )
+  }
+
+  if (amount) {
+    const isNegative = amount < 0
+    const absoluteAmount = Math.abs(amount)
+    const absoluteWhole = Math.floor(absoluteAmount)
+    const whole = isNegative ? -absoluteWhole : absoluteWhole
+
+    let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
+    cents = (cents && cents.length === 1 && `${cents}0`) || cents
+    const centsDisplayed = (inline && !hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
+
+    amountComponent = (
       <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
         <span className={hashClass(styled, clsx('price-details'))}>
@@ -118,26 +122,38 @@ const Price = ({
           {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
         </span>
       </span>
-      {tagAmount && (
-        <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx('price-tag'))}>
+    )
+  }
+
+  if (tagValue && amount) {
+    tagAmountComponent = (
+      <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx('price-tag'))}>
+        <Text
+          className={clsx('tag-amount')}
+          markup={TextMarkup.SPAN}
+          typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}
+        >
+          {tagValue}
+        </Text>
+        {tagLabel && (
           <Text
-            className={clsx('tag-amount')}
+            className={clsx('tag-period')}
             markup={TextMarkup.SPAN}
-            typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}
+            typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}
           >
-            {tagAmount} {tagSymbol ? tagSymbol : '€'}
+            &nbsp;{tagLabel}
           </Text>
-          {tagSymbol === '€' && period && (
-            <Text
-              className={clsx('tag-period')}
-              markup={TextMarkup.SPAN}
-              typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}
-            >
-              &nbsp;/{period}
-            </Text>
-          )}
-        </span>
-      )}
+        )}
+      </span>
+    )
+  }
+
+  const returnComponent = (
+    <div id={id} className={hashClass(styled, clsx('price-container', is(`level-${level || '1'}`)))}>
+      {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
+      {oldAmountComponent}
+      {amountComponent}
+      {tagAmountComponent}
       {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
     </div>
   )

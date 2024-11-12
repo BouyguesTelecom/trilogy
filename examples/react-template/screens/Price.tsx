@@ -1,4 +1,4 @@
-import { TrilogyColor } from '@trilogy-ds/react'
+import { Columns, ColumnsItem, TrilogyColor } from '@trilogy-ds/react'
 import {
   Divider,
   Price,
@@ -14,19 +14,67 @@ import * as React from 'react'
 export const PriceScreen = (): JSX.Element => {
   return (
     <Section>
-      <Title level={TitleLevels.THREE}>Price with stricked amount</Title>
+      <Spacer size={SpacerSize.TWO} />
+      <Title level={TitleLevels.TWO} marginless>
+        Prix classiques seuls
+      </Title>
+      <Spacer size={SpacerSize.FIVE} />
+      <Columns>
+        <ColumnsItem narrow>
+          <Price amount={10.99} level={1} />
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Price amount={10.99} level={1} hideCents />
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Price overline='A partir de' amount={10.99} level={1} hideCents />
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Price overline='A partir de' amount={10.99} level={1} hideCents period={'mois'} />
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Price
+            overline='A partir de'
+            amount={10.99}
+            level={1}
+            hideCents
+            period={'mois'}
+            tagValue='-10%'
+            tagLabel={'de réduction'}
+          />
+        </ColumnsItem>
+        <ColumnsItem narrow>
+          <Price
+            overline='A partir de'
+            amount={10.99}
+            level={1}
+            hideCents
+            period={'mois'}
+            tagValue='-5€'
+            tagLabel={'/mois'}
+          />
+        </ColumnsItem>
+      </Columns>
+
+      <Divider />
 
       <Spacer size={SpacerSize.TWO} />
+      <Title level={TitleLevels.TWO} marginless>
+        Prix barré seul
+      </Title>
+      <Spacer size={SpacerSize.FIVE} />
+      <Price overline='A partir de' oldAmount={24.99} level={1} hideCents period={'mois'} />
+
+      <Divider />
 
       <Price
         overline='A partir de'
         oldAmount={10.99}
-        level={1}
+        level={2}
         amount={24.99}
-        hideCents
         period={'mois'}
-        tagAmount={10}
-        tagSymbol={'€'}
+        tagValue={'-10€'}
+        tagLabel={'/mois'}
       />
 
       <Price
@@ -35,8 +83,8 @@ export const PriceScreen = (): JSX.Element => {
         level={2}
         amount={24.99}
         period={'mois'}
-        tagAmount={10}
-        tagSymbol={'€'}
+        tagValue={'5€'}
+        tagLabel={'de remise immédiate'}
       />
 
       <Price
@@ -45,8 +93,8 @@ export const PriceScreen = (): JSX.Element => {
         level={3}
         amount={24.99}
         period={'mois'}
-        tagAmount={10}
-        tagSymbol={'€'}
+        tagValue={'-10€'}
+        tagLabel={'/mois'}
       />
 
       <Price overline='A partir de' oldAmount={10.99} level={4} amount={24.99} period={'mois'} />
@@ -61,31 +109,31 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Price tag</Title>
 
-      <Price overline='A partir de' level={1} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={1} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={2} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={2} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={3} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={3} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={4} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={4} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={5} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={5} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={6} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={6} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Price overline='A partir de' level={7} amount={24.99} period={'mois'} tagAmount={10} tagSymbol={'€'} />
+      <Price overline='A partir de' level={7} amount={24.99} period={'mois'} tagValue={'-10€'} tagLabel={'/mois'} />
 
       <Spacer size={SpacerSize.THREE} />
 
