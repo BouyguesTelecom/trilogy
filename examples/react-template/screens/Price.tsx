@@ -1,4 +1,4 @@
-import { Columns, ColumnsItem, TrilogyColor } from '@trilogy-ds/react'
+import { Alignable, Columns, ColumnsItem, TrilogyColor } from '@trilogy-ds/react'
 import {
   Divider,
   Price,
@@ -19,9 +19,9 @@ export const PriceScreen = (): JSX.Element => {
         Prix classiques seuls
       </Title>
       <Spacer size={SpacerSize.FIVE} />
-      <Columns>
-        <ColumnsItem narrow>
-          <Price amount={10.99} level={1} />
+      <Columns multiline>
+        <ColumnsItem size={4}>
+          <Price amount={10.99} level={1} align={Alignable.ALIGNED_CENTER} />
         </ColumnsItem>
         <ColumnsItem narrow>
           <Price amount={10.99} level={1} hideCents />
