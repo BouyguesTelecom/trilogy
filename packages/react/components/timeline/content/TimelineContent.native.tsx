@@ -1,12 +1,13 @@
-import React, { useContext } from "react"
-import { StyleSheet, TouchableOpacity, View } from "react-native"
-import { TimelineContentProps } from "./TimelineContentProps"
-import { Text, TextLevels } from "@/components/text"
-import { Link } from "@/components/link"
-import { TypographyColor } from "@/objects"
-import { TimelineItemContext } from "@/components/timeline/item/TimelineItem.native"
-import { AutoLayout } from "@/components/autolayout"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useContext } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+
+import { AutoLayout } from '@/components/autolayout'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Link } from '@/components/link'
+import { Text, TextLevels } from '@/components/text'
+import { TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
+import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 
 /**
  * Timeline Content Component
@@ -17,14 +18,10 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param link {string} Url link
  * @param Onclick {string} Provide event onCLick
  */
-const TimelineContent = ({
-  content,
-  contentLink,
-  heading,
-  link,
-  onClick,
-  children,
-}: TimelineContentProps): JSX.Element => {
+const TimelineContent = (
+  { content, contentLink, heading, link, onClick, children }: TimelineContentProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const timelineContextValues = useContext(TimelineItemContext)
 
   const styles = StyleSheet.create({
@@ -38,7 +35,7 @@ const TimelineContent = ({
       marginTop: 8,
     },
     content: {
-      fontWeight: timelineContextValues.active ? "600" : "400",
+      fontWeight: timelineContextValues.active ? '600' : '400',
       marginBottom: 4,
     },
     link: {
@@ -47,17 +44,13 @@ const TimelineContent = ({
   })
 
   return children ? (
-    <View style={styles.container}>
+    <View style={styles.container} ref={ref}>
       <AutoLayout>{children}</AutoLayout>
     </View>
   ) : (
-    <View style={styles.container}>
+    <View style={styles.container} ref={ref}>
       {!!heading && (
-        <Text
-          level={TextLevels.THREE}
-          style={styles.heading}
-          typo={TypographyColor.TEXT_MAIN}
-        >
+        <Text level={TextLevels.THREE} style={styles.heading} typo={TypographyColor.TEXT_MAIN}>
           {heading}
         </Text>
       )}
@@ -79,4 +72,4 @@ const TimelineContent = ({
 
 TimelineContent.displayName = ComponentName.TimelineContent
 
-export default TimelineContent
+export default React.forwardRef(TimelineContent)

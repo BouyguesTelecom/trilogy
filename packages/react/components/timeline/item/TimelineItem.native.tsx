@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
-import { TimelineItemProps } from './TimelineItemProps'
+
 import { ComponentName } from '@/components/enumsComponentsName'
+import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
+import { TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
 
 export const TimelineItemContext = createContext({ done: false, active: false, undone: false, cancel: false })
 
@@ -14,7 +15,10 @@ export const TimelineItemContext = createContext({ done: false, active: false, u
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = ({ children, done, active, undone, cancel }: TimelineItemProps): JSX.Element => {
+const TimelineItem = (
+  { children, done, active, undone, cancel }: TimelineItemProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const { height, setHeight } = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
@@ -32,6 +36,7 @@ const TimelineItem = ({ children, done, active, undone, cancel }: TimelineItemPr
       value={{ done: done || false, active: active || false, undone: undone || false, cancel: cancel || false }}
     >
       <View
+        ref={ref}
         onLayout={(event) => {
           const { height: heightView } = event.nativeEvent.layout
           setHeight((prev) => {
@@ -49,4 +54,4 @@ const TimelineItem = ({ children, done, active, undone, cancel }: TimelineItemPr
 
 TimelineItem.displayName = ComponentName.TimelineItem
 
-export default TimelineItem
+export default React.forwardRef(TimelineItem)

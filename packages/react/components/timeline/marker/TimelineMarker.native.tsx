@@ -1,11 +1,12 @@
-import React, { useContext } from "react"
-import { StyleSheet, View } from "react-native"
-import { TimelineMarkerProps } from "./TimelineMarkerProps"
-import { Icon, IconSize } from "@/components/icon"
-import { TimelineItemContext } from "../item/TimelineItem.native"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { TimelineHeightContext } from "@/components/timeline/Timeline.native"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
+import { TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
+import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * TimelineMarker Native Component
@@ -13,26 +14,22 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param iconColor {IconColor} Icon Color
  * @param testId {string} Test Id for Test Integration
  */
-const TimelineMarker = ({
-  iconName,
-  iconColor,
-  testId
-}: TimelineMarkerProps): JSX.Element => {
-  const { active, undone, done, cancel } = useContext(TimelineItemContext)
-  const { height } = useContext(TimelineHeightContext)
+const TimelineMarker = ({ iconName, iconColor, testId }: TimelineMarkerProps, ref: React.Ref<View>): JSX.Element => {
+  const { active, undone, done, cancel } = React.useContext(TimelineItemContext)
+  const { height } = React.useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
     marker: {
       flex: 1,
-      alignSelf: "flex-start",
-      flexDirection: "column",
+      alignSelf: 'flex-start',
+      flexDirection: 'column',
     },
     divider: {
       height: height ? height - 48 : 74,
-      borderStyle: "solid",
+      borderStyle: 'solid',
       borderLeftWidth: 2,
-      marginLeft: "auto",
-      marginRight: "auto",
+      marginLeft: 'auto',
+      marginRight: 'auto',
       borderColor:
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         (undone && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
@@ -41,12 +38,12 @@ const TimelineMarker = ({
         getColorStyle(TrilogyColor.NEUTRAL_FADE),
     },
     icon: {
-      alignSelf: "center",
+      alignSelf: 'center',
     },
   })
 
   return (
-    <View style={styles.marker} testID={testId}>
+    <View style={styles.marker} testID={testId} ref={ref}>
       <View style={styles.icon}>
         <Icon
           name={iconName}
@@ -78,4 +75,4 @@ const TimelineMarker = ({
 
 TimelineMarker.displayName = ComponentName.TimelineMarker
 
-export default TimelineMarker
+export default React.forwardRef(TimelineMarker)

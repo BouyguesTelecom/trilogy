@@ -1,10 +1,10 @@
-import { Link } from '@/components/link'
-import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { TimelineContentWebProps } from './TimelineContentProps'
+
+import { Link } from '@/components/link'
+import { Text, TextMarkup } from '@/components/text'
+import { TimelineContentWebProps } from '@/components/timeline/content/TimelineContentProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Timeline Content Component
@@ -17,17 +17,10 @@ import { TimelineContentWebProps } from './TimelineContentProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TimelineContent = ({
-  children,
-  className,
-  heading,
-  content,
-  link,
-  contentLink,
-  onClick,
-  ...others
-}: TimelineContentWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const TimelineContent = (
+  { children, className, heading, content, link, contentLink, onClick, ...others }: TimelineContentWebProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('timeline-content', className))
 
   if (children) {
@@ -40,6 +33,7 @@ const TimelineContent = ({
 
   return (
     <div
+      ref={ref}
       className={classes}
       {...others}
       onClick={(e) => {
@@ -58,4 +52,4 @@ const TimelineContent = ({
   )
 }
 
-export default TimelineContent
+export default React.forwardRef(TimelineContent)

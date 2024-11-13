@@ -1,10 +1,10 @@
-import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { TimelineMarkerWebProps } from './TimelineMarkerProps'
+import React from 'react'
+
+import { Icon, IconSize } from '@/components/icon'
+import { TimelineMarkerWebProps } from '@/components/timeline/marker/TimelineMarkerProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Timeline Marker Component
@@ -15,20 +15,15 @@ import { TimelineMarkerWebProps } from './TimelineMarkerProps'
  * @param className {string} Additionnal CSS Classes
  * @param iconClassname {string} Additionnal CSS Classes for icon
  */
-const TimelineMarker = ({
-  className,
-  iconClassname,
-  iconName,
-  iconColor,
-  testId,
-  ...others
-}: TimelineMarkerWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const TimelineMarker = (
+  { className, iconClassname, iconName, iconColor, testId, ...others }: TimelineMarkerWebProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('timeline-marker', is('icon'), className))
   const iconClasses = clsx(iconClassname)
 
   return (
-    <div className={classes} {...others} data-testid={testId}>
+    <div className={classes} {...others} data-testid={testId} ref={ref}>
       <div className='card-header-icon'>
         <Icon color={iconColor} className={iconClasses} name={iconName} size={IconSize.SMALL} />
       </div>
@@ -36,4 +31,4 @@ const TimelineMarker = ({
   )
 }
 
-export default TimelineMarker
+export default React.forwardRef(TimelineMarker)

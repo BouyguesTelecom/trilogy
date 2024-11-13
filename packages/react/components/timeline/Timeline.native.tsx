@@ -1,11 +1,12 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { TimelineProps } from "./TimelineProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TimelineProps } from '@/components/timeline/TimelineProps'
 
 interface IContext {
-  height: number;
-  setHeight: React.Dispatch<React.SetStateAction<number>>;
+  height: number
+  setHeight: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const TimelineHeightContext = React.createContext<IContext>({
@@ -18,10 +19,10 @@ export const TimelineHeightContext = React.createContext<IContext>({
  * @param children {ReactNode} Text child
 
  */
-const Timeline = ({ children }: TimelineProps): JSX.Element => {
+const Timeline = ({ children }: TimelineProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
-      flexDirection: "column",
+      flexDirection: 'column',
     },
   })
 
@@ -34,11 +35,13 @@ const Timeline = ({ children }: TimelineProps): JSX.Element => {
         setHeight,
       }}
     >
-      <View style={styles.container}>{children}</View>
+      <View style={styles.container} ref={ref}>
+        {children}
+      </View>
     </TimelineHeightContext.Provider>
   )
 }
 
 Timeline.displayName = ComponentName.Timeline
 
-export default Timeline
+export default React.forwardRef(Timeline)
