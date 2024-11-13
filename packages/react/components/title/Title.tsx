@@ -24,7 +24,7 @@ import { TitleProps } from '@/components/title/TitleProps'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = (props: TitleProps, ref: LegacyRef<HTMLHeadingElement>): JSX.Element => {
+const Title = (props: TitleProps, ref: React.Ref<HTMLHeadingElement>): JSX.Element => {
   const { classes } = useTitle({ skeleton: props.skeleton })
   return <TitleBase className={classes} {...props} ref={ref} />
 }

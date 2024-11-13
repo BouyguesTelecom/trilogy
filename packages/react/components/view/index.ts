@@ -1,5 +1,2 @@
-import View from './View'
-
-export * from './ViewEnum'
-
-export { View }
+export { default as View } from '@/components/view/View'
+export * from '@/components/view/ViewEnum'

@@ -1,13 +1,13 @@
-import * as React from "react"
-import { useContext } from "react"
-import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
-import ContentLoader, { Rect } from "react-content-loader/native"
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from "@/objects"
-import { TitleProps } from "./TitleProps"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StatesContext } from "@/context/providerStates"
-import { TitleLevels } from "./TitleEnum"
+import React from 'react'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TitleLevels } from '@/components/title/TitleEnum'
+import { TitleProps } from '@/components/title/TitleProps'
+import { StatesContext } from '@/context/providerStates'
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects/Typography'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Title component
@@ -23,21 +23,24 @@ import { TitleLevels } from "./TitleEnum"
  * @param subtitle {boolean} Subtitle below title
  * @param overline {boolean} Overline above title
  */
-const Title = ({
-  children,
-  level,
-  style,
-  inverted,
-  typo,
-  onClick,
-  skeleton,
-  testId,
-  accessibilityLabel,
-  subtitle,
-  overline,
-  ...others
-}: TitleProps): JSX.Element => {
-  const statesContext = useContext(StatesContext)
+const Title = (
+  {
+    children,
+    level,
+    style,
+    inverted,
+    typo,
+    onClick,
+    skeleton,
+    testId,
+    accessibilityLabel,
+    subtitle,
+    overline,
+    ...others
+  }: TitleProps,
+  ref: React.Ref<TouchableOpacity | TextNative>,
+): JSX.Element => {
+  const statesContext = React.useContext(StatesContext)
   const titlesLevels = () => {
     switch (level) {
       case TitleLevels.ONE:
@@ -59,19 +62,20 @@ const Title = ({
 
   const getAlignSelf = () => {
     switch (true) {
-      case setTypographyAlign(typo) === "left":
-        return "flex-start"
-      case setTypographyAlign(typo) === "center":
-        return "center"
-      case setTypographyAlign(typo) === "right":
-        return "flex-end"
+      case setTypographyAlign(typo) === 'left':
+        return 'flex-start'
+      case setTypographyAlign(typo) === 'center':
+        return 'center'
+      case setTypographyAlign(typo) === 'right':
+        return 'flex-end'
       default:
-        return "flex-start"
+        return 'flex-start'
     }
   }
   const getFontFamily = () => {
-    if (level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
-      return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
+    if (level && [TitleLevels.ONE, TitleLevels.TWO].includes(level))
+      return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
+    return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
   }
 
   const styles = StyleSheet.create({
@@ -79,14 +83,11 @@ const Title = ({
       fontFamily: getFontFamily(),
       fontSize: titlesLevels(),
       color:
-        ((overline || subtitle) &&
-          !level &&
-          getColorStyle(TrilogyColor.MAIN)) ||
-        (!skeleton &&
-          setTypographyColor(typo, inverted || statesContext.inverted)) ||
-        "transparent",
+        ((overline || subtitle) && !level && getColorStyle(TrilogyColor.MAIN)) ||
+        (!skeleton && setTypographyColor(typo, inverted || statesContext.inverted)) ||
+        'transparent',
       textAlign: setTypographyAlign(typo),
-      textTransform: overline && !level ? "uppercase" : undefined,
+      textTransform: overline && !level ? 'uppercase' : undefined,
       alignSelf: getAlignSelf(),
     },
     skeleton: {
@@ -95,23 +96,20 @@ const Title = ({
       borderRadius: 5,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
       height: titlesLevels(),
     },
   })
-  const titleTestId = testId
-    ? testId
-    : typeof children === "string"
-    ? children
-    : "NotSpecified"
+  const titleTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
   const titleAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === "string"
+    : typeof children === 'string'
     ? children
     : undefined
 
   let titleView = (
     <TextNative
+      ref={ref}
       maxFontSizeMultiplier={1.3}
       accessible={!!titleAccessibilityLabel}
       accessibilityLabel={titleAccessibilityLabel}
@@ -127,7 +125,7 @@ const Title = ({
     titleView = (
       <ContentLoader style={styles.skeleton}>
         {titleView}
-        {Platform.OS === "android" && (
+        {Platform.OS === 'android' && (
           <View>
             <Rect rx='15' ry='15' width='100%' height='100%' />
           </View>
@@ -137,7 +135,7 @@ const Title = ({
   }
 
   return onClick ? (
-    <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+    <TouchableOpacity onPress={onClick} activeOpacity={0.85} ref={ref as React.Ref<TouchableOpacity>}>
       {titleView}
     </TouchableOpacity>
   ) : (
@@ -147,4 +145,4 @@ const Title = ({
 
 Title.displayName = ComponentName.Title
 
-export default Title
+export default React.forwardRef(Title)

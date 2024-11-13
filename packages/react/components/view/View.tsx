@@ -1,10 +1,13 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
-import { has, is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ViewMarkup, ViewMarkupValues, ViewProps } from './ViewProps'
+import React from 'react'
+
+import { ViewMarkup, ViewMarkupValues, ViewProps } from '@/components/view/ViewProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getJustifyClassName } from '@/objects/facets/Justifiable'
+import { getLoadingClassName } from '@/objects/facets/Loadable'
+import { has, is } from '@/services/classify'
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -26,24 +29,25 @@ import { ViewMarkup, ViewMarkupValues, ViewProps } from './ViewProps'
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
  */
-const View = ({
-  children,
-  style,
-  className,
-  loading,
-  onClick,
-  backgroundColor,
-  backgroundSrc,
-  inverted,
-  fullwidth = true,
-  markup,
-  flexable,
-  justify,
-  align,
-  ...others
-}: ViewProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const View = (
+  {
+    children,
+    style,
+    className,
+    loading,
+    onClick,
+    backgroundColor,
+    backgroundSrc,
+    inverted,
+    fullwidth = true,
+    markup,
+    flexable,
+    justify,
+    align,
+    ...others
+  }: ViewProps,
+  ref: React.Ref<any>,
+): JSX.Element => {
   const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
     if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
   }
@@ -67,6 +71,7 @@ const View = ({
 
   return (
     <Tag
+      ref={ref}
       onClick={onClick}
       style={style}
       className={classes}
@@ -84,4 +89,4 @@ const View = ({
   )
 }
 
-export default View
+export default React.forwardRef(View)

@@ -74,7 +74,7 @@ const TitleSSR = (
     htmlContent,
     ...others
   }: TitleProps,
-  ref: React.LegacyRef<HTMLHeadingElement>,
+  ref: React.Ref<HTMLHeadingElement>,
 ): JSX.Element => {
   const classes = hashClass(
     clsx(
