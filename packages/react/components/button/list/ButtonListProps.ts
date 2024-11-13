@@ -1,4 +1,4 @@
-import type { Centerable } from '../../../objects'
+import { Alignable, AlignableValues } from '../../../objects'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import type { ButtonProps } from '../../../components/button/ButtonProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -15,6 +15,7 @@ export interface ButtonListProps {
 /**
  * Button List Web Interface
  */
-export interface ButtonListWebProps extends ButtonListProps, Centerable, CommonProps {
-  vertical?: boolean
+export interface ButtonListWebProps extends ButtonListProps, CommonProps {
+  direction?: 'row' | 'column'
+  align?: Alignable | AlignableValues
 }

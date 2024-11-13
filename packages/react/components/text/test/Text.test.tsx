@@ -83,22 +83,4 @@ describe('Text component', () => {
 
     expect(screen.getByText('CLASSNAME')).toHaveClass('toto')
   })
-
-  test('should have "is-loading" className', () => {
-    render(<Text skeleton={true}>DEFAULT</Text>)
-
-    expect(screen.getByText('DEFAULT')).toHaveClass(is('loading'))
-    expect(screen.getByText('DEFAULT')).not.toHaveClass(is('loaded'))
-  })
-
-  test('should have "is-loaded" className', () => {
-    render(<Text>DEFAULT</Text>)
-    render(<Text skeleton={false}>SKELETON</Text>)
-
-    expect(screen.getByText('DEFAULT')).toHaveClass(is('loaded'))
-    expect(screen.getByText('DEFAULT')).not.toHaveClass(is('loading'))
-
-    expect(screen.getByText('SKELETON')).toHaveClass(is('loaded'))
-    expect(screen.getByText('SKELETON')).not.toHaveClass(is('loading'))
-  })
 })

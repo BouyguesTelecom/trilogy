@@ -24,23 +24,19 @@ interface AccordionChild {
  * @param active {boolean} Active Accordion Item
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
- * @param onOpen {Function} onOpen Accordion Item Function
- * @param onClose {Function} onClose Accordion Item Function
  * @param disabled {boolean} Disabled AccordionItem
  * @param children
  */
 const AccordionItem = ({
-  active,
+  open,
   id,
   onClick,
   disabled,
-  onOpen,
-  onClose,
   children,
   ...others
 }: AccordionItemProps): JSX.Element => {
   const [isActive, setIsActive] = useState<boolean>(
-    Boolean(typeof active !== "undefined" ? active : false)
+    Boolean(typeof open !== "undefined" ? open : false)
   )
   const animatedController = useRef(new Animated.Value(0)).current
   const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
@@ -100,8 +96,8 @@ const AccordionItem = ({
   })
 
   useEffect(() => {
-    setIsActive(active || false)
-  }, [active])
+    setIsActive(open || false)
+  }, [open])
 
   const toggleListItem = () => {
     if (isActive) {
@@ -123,8 +119,8 @@ const AccordionItem = ({
   }
 
   useEffect(() => {
-    active ? animatedController.setValue(1) : animatedController.setValue(0)
-  }, [active])
+    open ? animatedController.setValue(1) : animatedController.setValue(0)
+  }, [open])
 
   useEffect(() => {
     const newChilds: AccordionChild = {}
@@ -163,8 +159,6 @@ const AccordionItem = ({
           onPress={(e: any) => {
             if (!disabled) {
               toggleListItem()
-              if (onOpen && !isActive) onOpen(e)
-              if (onClose && isActive) onClose(e)
               if (onClick) onClick(e)
             }
           }}

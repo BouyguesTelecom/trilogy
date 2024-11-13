@@ -1,4 +1,3 @@
-import { ClickEvent } from '@/events/OnClickEvent'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export type TargetElement = HTMLElement & {
@@ -19,10 +18,8 @@ export interface OnClickCallback {
  * AccordionItem Interface
  */
 export interface AccordionItemProps extends CommonProps {
-  children?: React.ReactNode | Array<React.ReactNode>
-  active?: boolean
+  children: React.ReactNode | Array<React.ReactNode>
+  open?: boolean
   onClick?: OnClickCallback
   disabled?: boolean
-  onClose?: ClickEvent
-  onOpen?: ClickEvent
 }

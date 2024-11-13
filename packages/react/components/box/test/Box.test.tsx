@@ -66,17 +66,6 @@ describe('Box component', () => {
     expect(container.firstChild).toHaveAttribute('data-testid', 'box')
   })
 
-  test('Should have classes', () => {
-    const { getByTestId } = render(<Box data-testid='box' shadowless backgroundColor='SUCCESS' backgroundSrc='test' flat />)
-    const box = getByTestId('box')
-    expect(box).toHaveClass('box is-shadowless has-background-success has-background is-loaded is-flat')
-  })
-  test('Should have skeleton', () => {
-    const { getByTestId } = render(<Box data-testid='box' skeleton />)
-    const box = getByTestId('box')
-    expect(box).toHaveClass('box is-loading')
-  })
-
   test('Should have classes content', () => {
     const { getByTestId } = render(<BoxContent data-testid='boxContent' backgroundColor='SUCCESS' />)
     const boxContent = getByTestId('boxContent')

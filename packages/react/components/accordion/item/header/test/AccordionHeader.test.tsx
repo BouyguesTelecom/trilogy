@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '../../index'
+import { Accordion, AccordionHeader, AccordionItem } from '../../../index'
+import AccordionBody from '../../body'
 
 describe('AccordionItem', () => {
   it('should render correctly', () => {
     const { getByTestId } = render(
       <Accordion>
-        <AccordionItem data-testid={'accordion'} active={false}>
+        <AccordionItem data-testid={'accordion'} open={false}>
           <AccordionHeader data-testid={'header'}>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
         </AccordionItem>
@@ -38,7 +39,7 @@ describe('AccordionItem', () => {
   test('should have toggle', () => {
     const { getByTestId } = render(
       <Accordion>
-        <AccordionItem active={true}>
+        <AccordionItem open={true}>
           <AccordionHeader data-testid={'accordion'}>Accordion Header</AccordionHeader>
           <AccordionBody>content</AccordionBody>
         </AccordionItem>

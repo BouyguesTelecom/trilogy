@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import { TitleProps } from './TitleProps'
 import { is } from '@/services'
@@ -73,7 +73,6 @@ const Title = ({
   marginless,
   ...others
 }: TitleProps): JSX.Element => {
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -82,7 +81,7 @@ const Title = ({
       'title',
       level && getTitleLevel(level),
       typo,
-      isLoading ? is('loading') : is('loaded'),
+      skeleton && is('loading'),
       inverted && is('inverted'),
       marginless && is('marginless'),
       className,
@@ -91,10 +90,6 @@ const Title = ({
 
   const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
   const overlineClasses = hashClass(styled, clsx('overline', typo, className))
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 

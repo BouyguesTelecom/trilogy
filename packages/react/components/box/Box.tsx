@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BoxProps } from './BoxProps'
 import { has, is } from '@/services/classify'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -44,7 +44,6 @@ const Box = ({
   ...others
 }: BoxProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const classes = hashClass(
     styled,
     clsx(
@@ -54,7 +53,7 @@ const Box = ({
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton && is('loading'),
       highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
       flat && is('flat'),
       headerOffset && is('offset-header'),
@@ -62,10 +61,6 @@ const Box = ({
       active && is('active'),
     ),
   )
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
 
   if (href) {
     return (

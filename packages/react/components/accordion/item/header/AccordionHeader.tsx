@@ -15,13 +15,7 @@ const AccordionHeader = ({ children, className, id, ...others }: AccordionHeader
   const { styled } = useTrilogyContext()
 
   return (
-    <summary
-      id={id}
-      data-accordion-header={true}
-      className={hashClass(styled, clsx('accordion-header', className))}
-      role='button'
-      {...others}
-    >
+    <summary id={id} className={hashClass(styled, clsx('accordion-header', className))} role='button' {...others}>
       {children}
     </summary>
   )
