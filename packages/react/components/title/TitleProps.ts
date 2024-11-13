@@ -13,7 +13,6 @@ import {
   TypographyTransform,
   TypographyTransformValues,
 } from '@/objects'
-import { ClientRendering } from '@/objects/facets/ClientRendering'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 
 type Styles = { [key: string]: unknown }
@@ -21,7 +20,7 @@ type Styles = { [key: string]: unknown }
 /**
  * Title Interface
  */
-export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, ClientRendering {
+export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev {
   children?: React.ReactNode
   level?: TitleLevelValues | TitleLevels
   loading?: boolean

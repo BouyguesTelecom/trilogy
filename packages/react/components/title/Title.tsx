@@ -1,7 +1,8 @@
-import { TrilogyContext } from '@/context'
 import React from 'react'
+
+import TitleBase from './base/Title.base'
+import { useTitle } from './hook/useTitle'
 import { TitleProps } from './TitleProps'
-import TitleSSR from './web/Title.ssr'
 
 /**
  * Title component
@@ -24,20 +25,8 @@ import TitleSSR from './web/Title.ssr'
  * @param style {object} Additional styles
  */
 const Title = (props: TitleProps): JSX.Element => {
-  try {
-    const { useClient } = React.useContext(TrilogyContext)
-    if (props.useClient || useClient) {
-      return (
-        <React.Suspense fallback={<TitleSSR {...props} />}>
-          <TitleCSR {...props} useClient />
-        </React.Suspense>
-      )
-    }
-    throw 'ssr'
-  } catch {
-    return <TitleSSR {...props} />
-  }
+  const { classes } = useTitle({ skeleton: props.skeleton })
+  return <TitleBase className={classes} {...props} />
 }
 
 export default Title
-const TitleCSR = React.lazy(() => import('./web/Title.ssr'))

@@ -7,7 +7,6 @@ interface ITrilogyContext {
   setStyled: (e: boolean) => void
   hash?: string
   setHash?: React.Dispatch<React.SetStateAction<string>>
-  useClient?: boolean
 }
 
 const TrilogyContext = React.createContext<ITrilogyContext>({

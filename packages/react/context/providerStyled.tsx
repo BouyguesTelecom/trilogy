@@ -20,7 +20,6 @@ const TrilogyProviderStyled = ({
   children,
   theme = 'default',
   hash: HASH = hashJSON.HASH,
-  useClient = true,
 }: React.PropsWithChildren<TrilogyProviderStyledProps>): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
   const [hash, setHash] = React.useState<string>(HASH)
@@ -44,7 +43,7 @@ const TrilogyProviderStyled = ({
   }, [theme, hash])
 
   return (
-    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash, useClient }}>
+    <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>
       {StyleComponent ? (
         <React.Suspense fallback={null}>
           <StyleComponent>{children}</StyleComponent>
