@@ -40,7 +40,6 @@ const Price = ({
   level,
   inverted,
   align,
-  inline,
   testId,
   accessibilityLabel,
   oldAmount,
@@ -156,11 +155,7 @@ const Price = ({
     priceContainer: {
       padding: 0,
       paddingLeft:
-        (inline && 0) ||
-        (level == PriceLevel.FIVE && 2) ||
-        (level == PriceLevel.SIX && 2) ||
-        (level == PriceLevel.SEVEN && 2) ||
-        4,
+        (level == PriceLevel.FIVE && 2) || (level == PriceLevel.SIX && 2) || (level == PriceLevel.SEVEN && 2) || 4,
       flexDirection: 'column',
       justifyContent: 'center',
       width: 'auto',
@@ -213,7 +208,7 @@ const Price = ({
       height: 1,
       backgroundColor: (inverted && invertedColor) || primaryColor,
       width: period ? '96%' : '100%',
-      transform: [{ rotate: inline ? '-10deg' : strikedRotateByLevel() }],
+      transform: [{ rotate: strikedRotateByLevel() }],
       bottom: strikedBottomByLevel(),
       left: 1,
       zIndex: 20,
@@ -281,18 +276,7 @@ const Price = ({
           testID={priceTestId}
           {...others}
         >
-          {inline ? (
-            <View style={[styles.priceContainer, { flexDirection: 'row' }]}>
-              {oldAmount && <Text style={[styles.striked]}></Text>}
-              <Text style={[styles.price, styles.priceFontSize, styles.priceColor]}>
-                {whole}€{hideCents && cents}
-              </Text>
-              <Text style={[styles.inlinePeriod, styles.priceColor]}>
-                {mention}
-                {period && ` / ${period}`}
-              </Text>
-            </View>
-          ) : (
+          {
             <>
               {oldAmount && (
                 <View style={[{ flexDirection: 'row' }]}>
@@ -331,7 +315,7 @@ const Price = ({
                 </View>
               )}
             </>
-          )}
+          }
         </View>
         {tagValue && (
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>

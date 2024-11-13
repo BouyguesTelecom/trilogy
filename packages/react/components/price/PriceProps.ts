@@ -12,7 +12,6 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, D
   mention?: string
   period?: string
   hideCents?: boolean
-  inline?: boolean
   level?: PriceLevel | PriceLevelValues
   oldAmount?: number
   overline?: string
