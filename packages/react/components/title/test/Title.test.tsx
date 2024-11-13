@@ -73,24 +73,6 @@ describe('Title component', () => {
     expect(screen.getByText('CLASSNAME')).toHaveClass('toto')
   })
 
-  test('should have "is-loading" className', () => {
-    render(<Title skeleton={true}>DEFAULT</Title>)
-
-    expect(screen.getByText('DEFAULT')).toHaveClass(is('loading'))
-    expect(screen.getByText('DEFAULT')).not.toHaveClass(is('loaded'))
-  })
-
-  test('should have "is-loaded" className', () => {
-    render(<Title>DEFAULT</Title>)
-    render(<Title skeleton={false}>SKELETON</Title>)
-
-    expect(screen.getByText('DEFAULT')).toHaveClass(is('loaded'))
-    expect(screen.getByText('DEFAULT')).not.toHaveClass(is('loading'))
-
-    expect(screen.getByText('SKELETON')).toHaveClass(is('loaded'))
-    expect(screen.getByText('SKELETON')).not.toHaveClass(is('loading'))
-  })
-
   test('should onClick attribut work', () => {
     const mockCallBack = jest.fn()
     render(<Title onClick={mockCallBack}>DEFAULT</Title>)

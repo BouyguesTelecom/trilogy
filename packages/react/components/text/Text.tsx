@@ -62,7 +62,7 @@ const Text = ({
       level && levelText(),
       inverted && is('inverted'),
       typo,
-      skeleton ? is('loading') : is('loaded'),
+      skeleton && is('loading'),
       marginless && is('marginless'),
       numberOfLines && is('text-ellipsis'),
       className,

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext } from 'react'
 import clsx from 'clsx'
 import { CardProps } from './CardProps'
 import { is } from '@/services/classify'
@@ -45,12 +45,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
     ...others
   } = props
 
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
   const { styled } = useTrilogyContext()
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
 
   const hoverStyle: React.CSSProperties = {
     cursor: 'pointer',
@@ -63,7 +58,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
       flat && !floating && is('flat'),
       horizontal && [is('horizontal'), is('vcentered')],
       floating && !flat && is('floating'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton && is('loading'),
       reversed && is('reversed'),
       className,
       fullheight && is('fullheight'),

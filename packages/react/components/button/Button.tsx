@@ -70,7 +70,7 @@ const Button = ({
   ) => {
     return clsx(
       "button",
-      loading ? is("loading") : is("loaded"),
+      loading && is("loading"),
       variant && is(getButtonVariantClassName(variant)),
       fullwidth && is("fullwidth"),
       className

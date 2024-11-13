@@ -35,24 +35,6 @@ describe('Button component', () => {
     })
   })
 
-  test('should have "is-loading" className', () => {
-    const { getByText } = render(<Button loading={true}>LOADING</Button>)
-    expect(getByText('LOADING')).toHaveClass(is('loading'))
-    expect(getByText('LOADING')).not.toHaveClass(is('loaded'))
-  })
-
-  test('should have "is-loaded" className', () => {
-    const { getByText } = render(<Button>DEFAULT</Button>)
-    expect(getByText('DEFAULT')).toHaveClass(is('loaded'))
-    expect(getByText('DEFAULT')).not.toHaveClass(is('loading'))
-  })
-
-  test('shouldn have "is-loaded" className', () => {
-    const { getByText } = render(<Button loading={false}>LOADED</Button>)
-    expect(getByText('LOADED')).toHaveClass(is('loaded'))
-    expect(getByText('LOADED')).not.toHaveClass(is('loading'))
-  })
-
   test('should have disabled attribut', () => {
     render(<Button disabled>DISABLED</Button>)
     render(<Button disabled={true}>DISABLED_BIS</Button>)

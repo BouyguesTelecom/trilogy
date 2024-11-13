@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SectionProps } from './SectionProps'
 import { has, is } from '@/services'
 import { getBackgroundClassName } from '@/objects'
@@ -25,11 +25,6 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
   const { className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others } = props
 
   const { styled } = useTrilogyContext()
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
 
   const _className = hashClass(
     styled,
@@ -39,7 +34,7 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton && is('loading'),
     ),
   )
 

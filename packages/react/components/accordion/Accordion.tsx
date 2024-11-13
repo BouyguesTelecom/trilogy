@@ -9,11 +9,15 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
  * @param className {string} Additionnal CSS Classes
  */
 const Accordion = React.forwardRef((props: AccordionProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { id, className, ...others } = props
+  const { id, className, children, ...others } = props
 
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('accordions', className))
-  return <section id={id} ref={ref} className={classes} {...others} />
+  const classes = hashClass(styled, clsx('accordion', className))
+  return (
+    <div id={id} ref={ref} className={classes} {...others}>
+      {children}
+    </div>
+  )
 })
 
 export default Accordion
