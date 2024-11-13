@@ -5,4 +5,5 @@ import TableTh from './th'
 import TableTr from './tr'
 import TableTd from './td'
 
+export * from './TableProps'
 export { Table, TableHead, TableBody, TableTr, TableTh, TableTd }
