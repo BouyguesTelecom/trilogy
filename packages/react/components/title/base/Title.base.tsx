@@ -1,9 +1,10 @@
-import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '../TitleEnum'
-import { TitleProps } from '../TitleProps'
+
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
+import { TitleProps } from '@/components/title/TitleProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {

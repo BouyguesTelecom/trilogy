@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef, LegacyRef } from 'react'
 
-import TitleBase from './base/Title.base'
-import { useTitle } from './hook/useTitle'
-import { TitleProps } from './TitleProps'
+import TitleBase from '@/components/title/base/Title.base'
+import { useTitle } from '@/components/title/hook/useTitle'
+import { TitleProps } from '@/components/title/TitleProps'
 
 /**
  * Title component
@@ -24,9 +24,9 @@ import { TitleProps } from './TitleProps'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = (props: TitleProps): JSX.Element => {
+const Title = (props: TitleProps, ref: LegacyRef<HTMLHeadingElement>): JSX.Element => {
   const { classes } = useTitle({ skeleton: props.skeleton })
-  return <TitleBase className={classes} {...props} />
+  return <TitleBase className={classes} {...props} ref={ref} />
 }
 
-export default Title
+export default forwardRef(Title)

@@ -1,4 +1,2 @@
-import Title from './Title'
-
-export * from './TitleEnum'
-export { Title }
+export { default as Title } from '@/components/title/Title'
+export * from '@/components/title/TitleEnum'
