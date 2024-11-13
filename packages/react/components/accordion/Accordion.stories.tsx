@@ -19,7 +19,7 @@ export const Base: Story<AccordionProps> = (args) => (
        <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
   */
   <Accordion {...args}>
-    <AccordionItem id="UN" active>
+    <AccordionItem id="UN" open>
       <AccordionHeader>Hello World</AccordionHeader>
       <AccordionBody>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
