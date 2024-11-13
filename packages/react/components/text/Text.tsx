@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import React from 'react'
+
+import { TextLevels, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
+import { TextProps } from '@/components/text/TextProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
-import { TextProps } from './TextProps'
 
 /**
  * Text component
@@ -28,26 +28,28 @@ import { TextProps } from './TextProps'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {Object} Additional style
  */
-const Text = ({
-  level,
-  markup,
-  children,
-  className,
-  href,
-  title,
-  onClick,
-  typo,
-  inverted,
-  skeleton,
-  testId,
-  accessibilityLabel,
-  htmlContent,
-  marginless,
-  link,
-  numberOfLines,
-  ...others
-}: TextProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Text = (
+  {
+    level,
+    markup,
+    children,
+    className,
+    href,
+    title,
+    onClick,
+    typo,
+    inverted,
+    skeleton,
+    testId,
+    accessibilityLabel,
+    htmlContent,
+    marginless,
+    link,
+    numberOfLines,
+    ...others
+  }: TextProps,
+  ref: any,
+): JSX.Element => {
 
   const levelText = () => {
     if (level) {
@@ -90,6 +92,7 @@ const Text = ({
 
   return (
     <Tag
+      ref={ref}
       style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}
       data-testid={testId}
       aria-label={accessibilityLabel}
@@ -105,4 +108,4 @@ const Text = ({
   )
 }
 
-export default Text
+export default React.forwardRef(Text)

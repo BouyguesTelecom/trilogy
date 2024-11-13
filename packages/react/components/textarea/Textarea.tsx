@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Icon } from '@/components/icon'
-import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { TypographyColor } from '@/objects'
-import { has, is } from '@/services'
-import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { TextareaProps } from './TextareaProps'
+import React from 'react'
+
+import { TextareaProps } from '@/components/textarea/TextareaProps'
+import TextareaBase from '@/components/textarea/base/Textarea.base'
+import { useTextarea } from '@/components/textarea/hook/useTextarea'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 
 /**
  * Textarea Component
@@ -42,92 +38,10 @@ import { TextareaProps } from './TextareaProps'
  * @param value {string} Value for textarea
  * @param customHeight {number} custom textarea height
  */
-const Textarea = ({
-  className,
-  sample,
-  required,
-  disabled,
-  onChange,
-  placeholder,
-  defaultValue,
-  help,
-  status,
-  statusIconName,
-  dynamicPlaceholder = true,
-  rows,
-  ref,
-  label,
-  maxLength,
-  minLength,
-  iconName,
-  typo,
-  testId,
-  ...others
-}: TextareaProps): JSX.Element => {
-  const [value, setValue] = useState(defaultValue || '')
-  const { styled } = useTrilogyContext()
+const Textarea = ({ value, onChange, ...props }: TextareaProps, ref: React.Ref<HTMLTextAreaElement>): JSX.Element => {
+  const { inputValue, handleChange } = useTextarea({ inputValue: value, onChange })
 
-  useEffect(() => {
-    setValue(defaultValue || '')
-  }, [defaultValue])
-
-  const wrapperClasses = hashClass(clsx('textarea-wrapper', className, status && is(status)))
-  const classes = hashClass(clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconName && has('icon')))
-
-  const helpClasses = clsx('help')
-  const counterClasses = hashClass(clsx('counter', maxLength))
-
-  return (
-    <div className={wrapperClasses}>
-      {!dynamicPlaceholder && (
-        <label className='textarea-label'>
-          {label}{' '}
-          {label && required && (
-            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
-              *
-            </Text>
-          )}
-        </label>
-      )}
-      {!dynamicPlaceholder && label && sample && (
-        <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
-          {sample}
-        </Text>
-      )}
-
-      <textarea
-        data-testid={testId}
-        minLength={minLength}
-        disabled={disabled}
-        ref={ref}
-        {...others}
-        className={classes}
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          if (onChange) {
-            onChange({
-              textareaName: e.target.name,
-              textareaValue: e.target.value,
-            })
-          }
-        }}
-        placeholder={placeholder}
-        rows={rows}
-        maxLength={maxLength}
-        required={required}
-      />
-      {dynamicPlaceholder && <label>{label}</label>}
-      {iconName && <Icon name={iconName} size='small' />}
-      {statusIconName && <Icon name={statusIconName} size='small' />}
-      {help && (
-        <Text typo={typo} className={helpClasses}>
-          {help}
-        </Text>
-      )}
-      {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
-    </div>
-  )
+  return <TextareaBase ref={ref} value={inputValue} onChange={handleChange} {...props} />
 }
 
-export default Textarea
+export default React.forwardRef(Textarea)

@@ -1,15 +1,15 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import React from 'react'
+
+import CircleIcon from '@/components/icon/circle/index'
+import { IconName } from '@/components/icon/IconNameEnum'
+import { IconProps } from '@/components/icon/IconProps'
+import StatusIcon from '@/components/icon/status/index'
+import TextIcon from '@/components/icon/text/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import CircleIcon from './circle/index'
-import { IconName } from './IconNameEnum'
-import { IconProps } from './IconProps'
-import StatusIcon from './status/index'
-import TextIcon from './text/index'
 
 /**
  * Icon Component
@@ -38,32 +38,33 @@ import TextIcon from './text/index'
  * @param style {object} Additional styles
  */
 
-const Icon = ({
-  className,
-  textClassName,
-  size,
-  name,
-  status,
-  circled,
-  content,
-  position,
-  markup,
-  stacked,
-  badgeContent,
-  statusPosition,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  align,
-  skeleton,
-  verticalAlign,
-  testId,
-  marginless,
-  ...others
-}: IconProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Icon = (
+  {
+    className,
+    textClassName,
+    size,
+    name,
+    status,
+    circled,
+    content,
+    position,
+    markup,
+    stacked,
+    badgeContent,
+    statusPosition,
+    stretched,
+    color,
+    backgroundColor,
+    onClick,
+    align,
+    skeleton,
+    verticalAlign,
+    testId,
+    marginless,
+    ...others
+  }: IconProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'icon',
@@ -93,8 +94,9 @@ const Icon = ({
   if (circled || (circled && status)) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <CircleIcon
+            ref={ref}
             testId={testId}
             onClick={onClick && onClick}
             className={className}
@@ -110,6 +112,7 @@ const Icon = ({
     }
     return (
       <CircleIcon
+        ref={ref}
         testId={testId}
         onClick={onClick && onClick}
         className={className}
@@ -127,8 +130,9 @@ const Icon = ({
   if (status) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <StatusIcon
+            ref={ref}
             testId={testId}
             onClick={onClick && onClick}
             statusPosition={statusPosition}
@@ -143,6 +147,7 @@ const Icon = ({
     }
     return (
       <StatusIcon
+        ref={ref}
         testId={testId}
         onClick={onClick && onClick}
         statusPosition={statusPosition}
@@ -159,8 +164,9 @@ const Icon = ({
   if (content && !badgeContent) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <TextIcon
+            ref={ref}
             testId={testId}
             onClick={onClick && onClick}
             className={className}
@@ -179,6 +185,7 @@ const Icon = ({
     }
     return (
       <TextIcon
+        ref={ref}
         onClick={onClick && onClick}
         className={className}
         name={name as IconName}
@@ -198,7 +205,7 @@ const Icon = ({
   if (badgeContent) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <span onClick={onClick && onClick} className={classes} {...others}>
             <i className={hashClass(clsx(name))} aria-hidden='true' />
             <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
@@ -209,7 +216,7 @@ const Icon = ({
     }
     return (
       <>
-        <span onClick={onClick && onClick} className={classes} {...others}>
+        <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
           <i className={hashClass(clsx(name))} aria-hidden='true' />
           <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
         </span>
@@ -222,7 +229,7 @@ const Icon = ({
   if (stretched) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <span onClick={onClick && onClick} className={classes} {...others}>
             <i className={hashClass(clsx(name))} aria-hidden='true' />
           </span>
@@ -230,7 +237,7 @@ const Icon = ({
       )
     }
     return (
-      <span onClick={onClick && onClick} className={classes} {...others}>
+      <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
         <i className={hashClass(clsx(name))} aria-hidden='true' />
       </span>
     )
@@ -240,7 +247,7 @@ const Icon = ({
   if (color) {
     if (align) {
       return (
-        <div className={alignClasses}>
+        <div className={alignClasses} ref={ref}>
           <span onClick={onClick && onClick} className={classes} {...others}>
             <i className={hashClass(clsx(name))} aria-hidden='true' />
           </span>
@@ -248,7 +255,7 @@ const Icon = ({
       )
     }
     return (
-      <span onClick={onClick && onClick} className={classes} {...others}>
+      <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
         <i className={hashClass(clsx(name))} aria-hidden='true' />
       </span>
     )
@@ -256,7 +263,7 @@ const Icon = ({
 
   if (align) {
     return (
-      <div className={alignClasses}>
+      <div className={alignClasses} ref={ref}>
         <span onClick={onClick && onClick} className={classes} {...others}>
           <i className={hashClass(clsx(name))} aria-hidden='true' />
         </span>
@@ -266,10 +273,10 @@ const Icon = ({
 
   // Static default Icon
   return (
-    <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others}>
+    <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
       <i className={hashClass(clsx(name))} aria-hidden='true' />
     </span>
   )
 }
 
-export default Icon
+export default React.forwardRef(Icon)

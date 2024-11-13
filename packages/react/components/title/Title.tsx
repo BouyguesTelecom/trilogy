@@ -1,4 +1,4 @@
-import React, { forwardRef, LegacyRef } from 'react'
+import React from 'react'
 
 import TitleBase from '@/components/title/base/Title.base'
 import { useTitle } from '@/components/title/hook/useTitle'
@@ -29,4 +29,4 @@ const Title = (props: TitleProps, ref: React.Ref<HTMLHeadingElement>): JSX.Eleme
   return <TitleBase className={classes} {...props} ref={ref} />
 }
 
-export default forwardRef(Title)
+export default React.forwardRef(Title)

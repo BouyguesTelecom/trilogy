@@ -1,5 +1,5 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
-import { useContext } from 'react'
+import React from 'react'
 
 /**
  * Trilogy color
@@ -118,18 +118,24 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @returns {string} - Color style value
  */
 export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
-  if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
-    const { theme } = useContext(TrilogyThemeContext)
-    const colorsStyle = theme?.colors || colors
-
-    const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
-    if (!trilogyColor || !colors[trilogyColor]) {
-      return colorsStyle.default
+  try {
+    if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
+      const { theme } = React.useContext(TrilogyThemeContext)
+      const colorsStyle = theme?.colors || colors
+  
+      const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
+      if (!trilogyColor || !colors[trilogyColor]) {
+        return colorsStyle.default
+      }
+      return colorArray[0]
+    } else {
+      return colors[trilogyColor][0] || colors['main'][0]
     }
-    return colorArray[0]
-  } else {
+  }
+  catch{
     return colors[trilogyColor][0] || colors['main'][0]
   }
+
 }
 
 function hexToRgb(hex: string): { r: number, g: number, b: number } {

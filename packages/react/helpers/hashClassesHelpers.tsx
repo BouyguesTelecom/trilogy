@@ -1,5 +1,6 @@
-import { TrilogyContext } from '@/context'
 import React from 'react'
+
+import { TrilogyContext } from '@/context'
 
 /**
  * @param classes String classes

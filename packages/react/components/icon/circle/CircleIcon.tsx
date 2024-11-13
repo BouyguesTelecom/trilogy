@@ -1,15 +1,17 @@
+import clsx from 'clsx'
+import React from 'react'
+
 import { IconStatus } from '@/components/icon/IconEnum'
 import { IconProps } from '@/components/icon/IconProps'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName, getTextClassName, TrilogyColor } from '@/objects'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName, getTextClassName } from '@/objects/atoms'
+import { TrilogyColor } from '@/objects/facets/Color'
 import { getStatusBackground, has, is } from '@/services/index'
-import clsx from 'clsx'
-import * as React from 'react'
 
-const CircleIcon = ({ className, name, status, size, color, backgroundColor, testId }: IconProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const CircleIcon = (
+  { className, name, status, size, color, backgroundColor, testId }: IconProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
     getStatusBackground(status || '', IconStatus.INFO) ||
@@ -30,10 +32,10 @@ const CircleIcon = ({ className, name, status, size, color, backgroundColor, tes
   const circledIconClasses = hashClass(clsx(name))
 
   return (
-    <span className={classes} data-testid={testId}>
+    <span className={classes} data-testid={testId} ref={ref}>
       <i className={circledIconClasses} />
     </span>
   )
 }
 
-export default CircleIcon
+export default React.forwardRef(CircleIcon)

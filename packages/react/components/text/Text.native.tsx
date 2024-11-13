@@ -1,12 +1,15 @@
-import React, { useContext } from "react"
-import { Platform, StyleSheet, Text as TextNative, View } from "react-native"
-import { TextProps } from "./TextProps"
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, } from "@/objects/Typography"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { TextLevels, TextLevelValues } from "./TextEnum"
-import ContentLoader, { Rect } from "react-content-loader/native"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StatesContext } from "@/context/providerStates"
+import React from 'react'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { Platform, StyleSheet, Text as TextNative, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TextLevels, TextLevelValues } from '@/components/text/TextEnum'
+import { TextProps } from '@/components/text/TextProps'
+import { StatesContext } from '@/context/providerStates'
+import { setTypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { getTypographyBoldStyle } from '@/objects/Typography/TypographyBold'
+import { setTypographyColor } from '@/objects/Typography/TypographyColor'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Text Native Component
@@ -23,21 +26,24 @@ import { StatesContext } from "@/context/providerStates"
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
-const Text = ({
-  children,
-  level,
-  style,
-  inverted,
-  typo,
-  onClick,
-  skeleton,
-  testId,
-  accessibilityLabel,
-  link,
-  numberOfLines = 0,
-  ...others
-}: TextProps): JSX.Element => {
-  const statesContext = useContext(StatesContext)
+const Text = (
+  {
+    children,
+    level,
+    style,
+    inverted,
+    typo,
+    onClick,
+    skeleton,
+    testId,
+    accessibilityLabel,
+    link,
+    numberOfLines = 0,
+    ...others
+  }: TextProps,
+  ref: React.Ref<TextNative>,
+): JSX.Element => {
+  const statesContext = React.useContext(StatesContext)
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
       (level && level == TextLevels.ONE && 16) ||
@@ -53,26 +59,25 @@ const Text = ({
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
       color:
-        (!skeleton &&
-          setTypographyColor(typo, inverted || statesContext.inverted)) ||
+        (!skeleton && setTypographyColor(typo, inverted || statesContext.inverted)) ||
         (link && getColorStyle(TrilogyColor.FONT)) ||
-        "transparent",
+        'transparent',
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
-      textDecorationLine: link ? "underline" : "none",
+      textDecorationLine: link ? 'underline' : 'none',
       alignSelf:
-        (setTypographyAlign(typo) === "left" && "flex-start") ||
-        (setTypographyAlign(typo) === "center" && "center") ||
-        (setTypographyAlign(typo) === "right" && "flex-end") ||
-        "flex-start",
+        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
+        (setTypographyAlign(typo) === 'center' && 'center') ||
+        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
+        'flex-start',
     },
     skeleton: {
       minWidth: 10,
       alignSelf:
-        (setTypographyAlign(typo) === "left" && "flex-start") ||
-        (setTypographyAlign(typo) === "center" && "center") ||
-        (setTypographyAlign(typo) === "right" && "flex-end") ||
-        "flex-start",
+        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
+        (setTypographyAlign(typo) === 'center' && 'center') ||
+        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
+        'flex-start',
 
       borderRadius:
         (level && level == TextLevels.ONE && 7) ||
@@ -81,24 +86,21 @@ const Text = ({
         3,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
       height: textLevels(level as TextLevels | TextLevelValues),
     },
   })
 
-  const textTestId = testId
-    ? testId
-    : typeof children === "string"
-    ? children
-    : "NotSpecified"
+  const textTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
   const textAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === "string"
+    : typeof children === 'string'
     ? children
     : undefined
 
   let textView: JSX.Element = (
     <TextNative
+      ref={ref}
       numberOfLines={numberOfLines}
       ellipsizeMode='tail'
       maxFontSizeMultiplier={1.3}
@@ -116,7 +118,7 @@ const Text = ({
     textView = (
       <ContentLoader style={styles.skeleton}>
         {textView}
-        {Platform.OS === "android" && (
+        {Platform.OS === 'android' && (
           <View>
             <Rect rx='7' ry='7' width='100%' height='100%' />
           </View>
@@ -125,7 +127,7 @@ const Text = ({
     )
   }
   return onClick ? (
-    <TextNative onPress={onClick} style={styles.text}>
+    <TextNative onPress={onClick} style={styles.text} ref={ref}>
       {textView}
     </TextNative>
   ) : (
@@ -135,4 +137,4 @@ const Text = ({
 
 Text.displayName = ComponentName.Text
 
-export default Text
+export default React.forwardRef(Text)

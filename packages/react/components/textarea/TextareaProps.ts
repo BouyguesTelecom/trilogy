@@ -1,5 +1,4 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
-import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconStatus } from '@/components/icon'
 import {
@@ -17,14 +16,13 @@ import {
   InputTextContentTypeValues,
 } from '@/components/input/InputEnum'
 import { Accessibility, Dev, TypographyColor, TypographyColorValues } from '@/objects'
-import { TextInput } from 'react-native'
 
 export interface TextareaChangeEvent {
   textareaName: string
   textareaValue: string
 }
 
-type TextareaChangeEventHandler = (event: TextareaChangeEvent) => void
+export type TextareaChangeEventHandler = (event: TextareaChangeEvent) => void
 
 type TextareaPropsWeb = Accessibility &
   Dev & {
@@ -57,9 +55,9 @@ type TextareaPropsWeb = Accessibility &
     sample?: string
   }
 
-export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>
+export type TextareaNativeProps = TextareaPropsWeb
 
 /**
  * Textarea Interface
  */
-export type TextareaProps = TextareaPropsWeb & Referenceable<HTMLTextAreaElement>
+export type TextareaProps = TextareaPropsWeb
