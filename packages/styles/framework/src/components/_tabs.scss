@@ -1,4 +1,4 @@
-.tab-context {
+.tabs {
   @include overflow-touch;
   @include unselectable;
 
@@ -24,7 +24,7 @@
   &.is-inverted {
     background-color: getColor('font');
 
-    .tabs > .tab {
+    .tab-list > .tab {
       color: getColor('background') !important;
 
       &.is-active {
@@ -43,31 +43,12 @@
     }
   }
 
-  &.has-text-left {
-    .tabs > .tab:first-child {
-      margin-left: 24px;
-    }
-  }
-
-  .tabs {
+  .tab-list {
     background-color: transparent;
     height: 48px;
     overflow-x: auto;
     white-space: nowrap;
     display: inline-flex;
-
-    &.is-centered {
-      justify-content: center;
-    }
-
-    &.is-right {
-      justify-content: flex-end;
-    }
-
-    &.is-left {
-      justify-content: flex-start;
-    }
-
 
     &.is-fullwidth {
       @include desktop {
@@ -82,10 +63,6 @@
       box-shadow: none;
     }
 
-    &.is-icons {
-      height: 64px;
-    }
-
     @include mobile {
       justify-content: flex-start;
       > .tab:first-child {
@@ -93,10 +70,13 @@
       }
     }
 
+    &:has(.tab .icon) {
+      height: 64px;
+    }
+
     > .tab {
       height: calc(100% - 4px);
       background-color: transparent;
-      border: none;
       color: getColor('font');
       text-decoration: none;
       outline: none;

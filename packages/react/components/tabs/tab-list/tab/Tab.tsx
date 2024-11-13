@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { TabsItemProps } from './TabsItemProps'
+import { TabProps } from './TabProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
 import { Icon } from '@/components/icon'
@@ -19,8 +19,9 @@ import { Icon } from '@/components/icon'
  * @param href {string} <a />
  * @param routerLink Custom Router Link as props
  */
-const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<any>) => {
-  const { active, children, className, onClick, to, href, routerLink, iconName, disabled, testId, ...others } = props
+const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
+  const { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ...others } =
+    props
 
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -63,7 +64,7 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
         }}
       >
         <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
-        {children}
+        {label && label}
       </RouterLink>
     )
   }
@@ -90,9 +91,9 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
       }}
     >
       <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
-      {children}
+      {label && label}
     </button>
   )
 })
 
-export default TabsItem
+export default Tab
