@@ -36,7 +36,6 @@ const Price = ({
   level,
   inverted,
   align,
-  inline,
   accessibilityLabel,
   oldAmount,
   overline,
@@ -46,21 +45,11 @@ const Price = ({
 }: PriceProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx('price', inverted && is('inverted'), inline && is('inlined'), overline && has('suptitle'), className),
-  )
+  const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
 
   const classesStrike = hashClass(
     styled,
-    clsx(
-      'price',
-      inverted && is('inverted'),
-      inline && is('inlined'),
-      oldAmount && 'strike',
-      overline && has('suptitle'),
-      className,
-    ),
+    clsx('price', inverted && is('inverted'), oldAmount && 'strike', overline && has('suptitle'), className),
   )
 
   let amountComponent = null
@@ -75,14 +64,14 @@ const Price = ({
 
     let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
     cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (inline && !hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
+    const centsDisplayed = (!hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
 
     oldAmountComponent = (
       <span aria-hidden='true' className={classesStrike} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
         <span className={hashClass(styled, clsx('price-details'))}>
           <span className={hashClass(styled, clsx('cents'))}>
-            {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
+            {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
             {mention && <sup>{mention}</sup>}
           </span>
           {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
@@ -99,14 +88,14 @@ const Price = ({
 
     let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
     cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (inline && !hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
+    const centsDisplayed = (!hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
 
     amountComponent = (
       <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
         <span className={hashClass(styled, clsx('price-details'))}>
           <span className={hashClass(styled, clsx('cents'))}>
-            {inline && centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
+            {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
             {mention && <sup>{mention}</sup>}
           </span>
           {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}

@@ -2,6 +2,7 @@ import { Alignable, AlignableValues } from '../../../objects'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import type { ButtonProps } from '../../../components/button/ButtonProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { ButtonListDirectionEnum, ButtonListDirectionEnumValues } from '@/components/button/list/ButtonListEnum'
 
 type ButtonListChildrenTypes = React.ReactElement<ButtonProps | DividerProps> | undefined
 
@@ -16,6 +17,6 @@ export interface ButtonListProps {
  * Button List Web Interface
  */
 export interface ButtonListWebProps extends ButtonListProps, CommonProps {
-  direction?: 'row' | 'column'
+  direction?: ButtonListDirectionEnum | ButtonListDirectionEnumValues
   align?: Alignable | AlignableValues
 }

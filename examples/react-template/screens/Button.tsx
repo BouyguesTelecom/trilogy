@@ -8,18 +8,20 @@ import {
   Spacer,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
-import React from "react";
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
+import { ButtonListDirectionEnum } from '@trilogy-ds/react/lib/components/button/list/ButtonListEnum'
+import { Alignable } from '@trilogy-ds/react'
 
 const Separator = () => {
   return (
     <>
-      <Spacer size={10}/>
-      <Divider/>
-      <Spacer size={50}/>
+      <Spacer size={10} />
+      <Divider />
+      <Spacer size={50} />
     </>
-  );
-};
+  )
+}
 
 export const ButtonScreen = (): JSX.Element => {
   return (
@@ -28,6 +30,15 @@ export const ButtonScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>Variant </Title>
       <Spacer size={10}/>
       <ButtonList>
+        {Object.values(ButtonVariant).map((variant, index) => {
+          return <Button variant={variant} key={index}>{variant}</Button>;
+        })}
+      </ButtonList>
+      <Separator/>
+      {/*  ======== list column ======== */}
+      <Title level={TitleLevels.TWO}>List column</Title>
+      <Spacer size={10}/>
+      <ButtonList direction={ButtonListDirectionEnum.COLUMN} align={Alignable.ALIGNED_START}>
         {Object.values(ButtonVariant).map((variant, index) => {
           return <Button variant={variant} key={index}>{variant}</Button>;
         })}
