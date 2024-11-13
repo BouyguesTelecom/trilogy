@@ -6,7 +6,7 @@ import {
   ButtonList,
   ButtonVariant,
   Columns,
-  ColumnsItem,
+  Column,
   Section,
   Text,
   TextLevels,
@@ -45,7 +45,7 @@ export const TextScreen = (): JSX.Element => {
         quia reiciendis, sint.
       </Text>
       <Columns>
-        <ColumnsItem size={12} centered>
+        <Column size={12} centered>
           <Text>Mon texte</Text>
           <ButtonList>
             <Button variant={ButtonVariant.PRIMARY}>Centered button</Button>
@@ -55,7 +55,7 @@ export const TextScreen = (): JSX.Element => {
               <Text>Centered box</Text>
             </BoxContent>
           </Box>
-        </ColumnsItem>
+        </Column>
       </Columns>
     </Section>
   );

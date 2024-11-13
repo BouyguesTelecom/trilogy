@@ -2,18 +2,18 @@ import { render, screen } from '@testing-library/react-native'
 import * as React from 'react'
 import { Text } from '../../text'
 import Rows from '../Rows'
-import RowItem from '../item'
+import Row from '../row'
 
 describe('Rows', () => {
   it('renders children', () => {
     render(
       <Rows>
-        <RowItem>
+        <Row>
           <Text>1</Text>
-        </RowItem>
-        <RowItem>
+        </Row>
+        <Row>
           <Text>2</Text>
-        </RowItem>
+        </Row>
       </Rows>,
     )
 

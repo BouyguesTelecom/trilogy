@@ -1,6 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { ColumnsItemProps } from './ColumnsItemProps'
+import { ColumnProps } from './ColumnProps'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
@@ -30,7 +30,7 @@ import { getAlignClassName } from '@/objects'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
+const Column = React.forwardRef((props: ColumnProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const {
     className,
     id,
@@ -82,4 +82,4 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
   return <div id={id} ref={ref} className={classes} {...others} />
 })
 
-export default ColumnsItem
+export default Column

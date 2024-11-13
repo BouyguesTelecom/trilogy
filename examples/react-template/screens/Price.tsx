@@ -1,4 +1,4 @@
-import { Alignable, Columns, ColumnsItem, TrilogyColor } from '@trilogy-ds/react'
+import { Alignable, Columns, Column, TrilogyColor } from '@trilogy-ds/react'
 import {
   Divider,
   Price,
@@ -20,19 +20,19 @@ export const PriceScreen = (): JSX.Element => {
       </Title>
       <Spacer size={SpacerSize.FIVE} />
       <Columns multiline>
-        <ColumnsItem size={4}>
+        <Column size={4}>
           <Price amount={10.99} level={1} align={Alignable.ALIGNED_CENTER} />
-        </ColumnsItem>
-        <ColumnsItem narrow>
+        </Column>
+        <Column narrow>
           <Price amount={10.99} level={1} hideCents />
-        </ColumnsItem>
-        <ColumnsItem narrow>
+        </Column>
+        <Column narrow>
           <Price overline='A partir de' amount={10.99} level={1} hideCents />
-        </ColumnsItem>
-        <ColumnsItem narrow>
+        </Column>
+        <Column narrow>
           <Price overline='A partir de' amount={10.99} level={1} hideCents period={'mois'} />
-        </ColumnsItem>
-        <ColumnsItem narrow>
+        </Column>
+        <Column narrow>
           <Price
             overline='A partir de'
             amount={10.99}
@@ -42,8 +42,8 @@ export const PriceScreen = (): JSX.Element => {
             tagValue='-10%'
             tagLabel={'de réduction'}
           />
-        </ColumnsItem>
-        <ColumnsItem narrow>
+        </Column>
+        <Column narrow>
           <Price
             overline='A partir de'
             amount={10.99}
@@ -53,7 +53,7 @@ export const PriceScreen = (): JSX.Element => {
             tagValue='-5€'
             tagLabel={'/mois'}
           />
-        </ColumnsItem>
+        </Column>
       </Columns>
 
       <Divider />

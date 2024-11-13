@@ -7,7 +7,7 @@ import {
   Button,
   ButtonVariant,
   Columns,
-  ColumnsItem,
+  Column,
   Divider,
   Icon,
   IconName,
@@ -34,8 +34,8 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
       <Columns multiline>
-        <ColumnsItem size={6}></ColumnsItem>
-        <ColumnsItem size={10}>
+        <Column size={6}></Column>
+        <Column size={10}>
           <Box flat>
             <BoxHeader>Box with Header and Content</BoxHeader>
             <BoxContent>
@@ -52,8 +52,8 @@ export const BoxScreen = (): JSX.Element => {
               <Button variant={ButtonVariant.PRIMARY}>Check out</Button>
             </BoxFooter>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={10}>
+        </Column>
+        <Column size={10}>
           <Box>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple box</Title>
@@ -67,8 +67,8 @@ export const BoxScreen = (): JSX.Element => {
               </Text>
             </BoxContent>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={10}>
+        </Column>
+        <Column size={10}>
           <Box flat>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Flat box</Title>
@@ -82,7 +82,7 @@ export const BoxScreen = (): JSX.Element => {
               </Text>
             </BoxContent>
           </Box>
-        </ColumnsItem>
+        </Column>
       </Columns>
       <Divider />
 
@@ -142,7 +142,7 @@ export const BoxScreen = (): JSX.Element => {
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple box</Title>
               <Columns>
-                <ColumnsItem size={5}>
+                <Column size={5}>
                   <Text>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta.
                     Etiam non ex in dolor faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere, urna tortor
@@ -151,15 +151,15 @@ export const BoxScreen = (): JSX.Element => {
                     Ut gravida aliquet magna, id efficitur magna ultrices a. In quis bibendum tortor. Nam quam lacus,
                     suscipit a vehicula ac, vehicula eget risus.
                   </Text>
-                </ColumnsItem>
-                <ColumnsItem size={5}>
+                </Column>
+                <Column size={5}>
                   <Box backgroundColor={TrilogyColor.MAIN} flat inverted>
                     <BoxContent>
                       <Title level={TitleLevels.FOUR}>Simple box</Title>
                       <Text>Background color is not faded.</Text>
                     </BoxContent>
                   </Box>
-                </ColumnsItem>
+                </Column>
               </Columns>
             </BoxContent>
           </Box>
@@ -167,7 +167,7 @@ export const BoxScreen = (): JSX.Element => {
       </Box>
       <Divider />
       <Columns mobile>
-        <ColumnsItem size={6}>
+        <Column size={6}>
           <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
             <BoxHeader align={Alignable.ALIGNED_START}>Test</BoxHeader>
             <BoxContent>
@@ -185,8 +185,8 @@ export const BoxScreen = (): JSX.Element => {
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={6}>
+        </Column>
+        <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
             <BoxContent backgroundColor={"NEUTRAL_FADE"}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
@@ -202,7 +202,7 @@ export const BoxScreen = (): JSX.Element => {
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
-        </ColumnsItem>
+        </Column>
       </Columns>
       <Divider />
       <Box>
@@ -221,7 +221,7 @@ export const BoxScreen = (): JSX.Element => {
       </Box>
       <Divider />
       <Columns>
-        <ColumnsItem size={10}>
+        <Column size={10}>
           <Box>
             <BoxHeader variant={TrilogyColor.ACCENT}>Box with Header , Content and Footer</BoxHeader>
             <BoxContent>
@@ -234,8 +234,8 @@ export const BoxScreen = (): JSX.Element => {
               <Link>Link here</Link>
             </BoxFooter>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={10}>
+        </Column>
+        <Column size={10}>
           <Box>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple Box with footer</Title>
@@ -248,11 +248,11 @@ export const BoxScreen = (): JSX.Element => {
               <Link>Link here</Link>
             </BoxFooter>
           </Box>
-        </ColumnsItem>
+        </Column>
       </Columns>
       <Divider />
       <Columns>
-        <ColumnsItem size={10}>
+        <Column size={10}>
           <Box>
             <BoxContent>
               <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
@@ -265,8 +265,8 @@ export const BoxScreen = (): JSX.Element => {
               </Text>
             </BoxContent>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={10}>
+        </Column>
+        <Column size={10}>
           <Box backgroundSrc={'https://picsum.photos/id/1/1500/600'} inverted>
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
               Box with background image
@@ -280,8 +280,8 @@ export const BoxScreen = (): JSX.Element => {
               interdum nec ipsum eu facilisis.
             </Text>
           </Box>
-        </ColumnsItem>
-        <ColumnsItem size={10}>
+        </Column>
+        <Column size={10}>
           <Box backgroundSrc={'https://picsum.photos/seed/picsum/1500/600'}>
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
               Box with background image
@@ -295,7 +295,7 @@ export const BoxScreen = (): JSX.Element => {
               interdum nec ipsum eu facilisis.
             </Text>
           </Box>
-        </ColumnsItem>
+        </Column>
       </Columns>
     </Section>
   )

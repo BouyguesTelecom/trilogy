@@ -3,7 +3,7 @@ import {
   Box,
   BoxContent,
   Columns,
-  ColumnsItem,
+  Column,
   Divider,
   Icon,
   IconName,
@@ -64,12 +64,12 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                 >
                   <BoxContent>
                     <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-                      <ColumnsItem>
+                      <Column>
                         <Title level={TitleLevels.THREE}>{pathName}</Title>
-                      </ColumnsItem>
-                      <ColumnsItem narrow>
+                      </Column>
+                      <Column narrow>
                         <Icon name={IconName.ARROW_RIGHT} />
-                      </ColumnsItem>
+                      </Column>
                     </Columns>
                   </BoxContent>
                 </Box>

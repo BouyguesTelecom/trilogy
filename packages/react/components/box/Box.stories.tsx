@@ -12,7 +12,7 @@ import { Text } from "../text";
 
 import { TrilogyColor } from "../../objects";
 import { Link } from "../link";
-import { Columns, ColumnsItem } from "../columns";
+import { Columns, Column } from "../columns";
 
 export default {
   title: "Components/Box",
@@ -139,7 +139,7 @@ BoxAvecBackgroundImage.args = {
 
 export const BoxFullheight: Story<BoxProps> = (args) => (
   <Columns>
-    <ColumnsItem>
+    <Column>
       <Box {...args}>
         <BoxContent>
           <Title level={TitleLevels.ONE} inverted>
@@ -153,8 +153,8 @@ export const BoxFullheight: Story<BoxProps> = (args) => (
           </Text>
         </BoxContent>
       </Box>
-    </ColumnsItem>
-    <ColumnsItem>
+    </Column>
+    <Column>
       <Box {...args}>
         <BoxContent>
           <Title level={TitleLevels.ONE} inverted>
@@ -166,7 +166,7 @@ export const BoxFullheight: Story<BoxProps> = (args) => (
           </Text>
         </BoxContent>
       </Box>
-    </ColumnsItem>
+    </Column>
   </Columns>
 );
 BoxFullheight.args = {

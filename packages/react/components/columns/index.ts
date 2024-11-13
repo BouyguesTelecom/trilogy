@@ -1,4 +1,4 @@
 import Columns from './Columns'
-import ColumnsItem from './item'
+import Column from './column'
 
-export { Columns, ColumnsItem }
+export { Columns, Column }
