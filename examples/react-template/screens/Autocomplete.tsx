@@ -3,7 +3,7 @@ import {
   Button,
   ButtonVariant,
   Columns,
-  ColumnsItem,
+  Column,
   Divider,
   IconName,
   Text,
@@ -109,10 +109,10 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete</Title>
         <Columns>
-          <ColumnsItem>
+          <Column>
             <Text>value: {JSON.stringify(value)}</Text>
-          </ColumnsItem>
-          <ColumnsItem>
+          </Column>
+          <Column>
             <ButtonList>
               <Button variant={ButtonVariant.SECONDARY} onClick={() => setValue('')}>
                 reset
@@ -121,7 +121,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
                 {status ? 'enable' : 'disable'}
               </Button>
             </ButtonList>
-          </ColumnsItem>
+          </Column>
         </Columns>
         <AutoComplete
           customIcon={IconName.INFOS_CIRCLE}

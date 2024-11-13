@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { RowsItemProps } from './RowItemProps'
+import { RowProps } from './RowProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -8,21 +8,21 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param narrow {boolean} Align same elements horizontaly
  * @param children {React.ReactNode}
  */
-const RowItem = ({ children, narrow, ...others }: RowsItemProps): JSX.Element => {
+const Row = ({ children, narrow, ...others }: RowProps): JSX.Element => {
   const styles = StyleSheet.create({
-    rowItem: {
+    row: {
       flexGrow: (narrow && 0) || 1,
       flexShrink: 1,
     },
   })
 
   return (
-    <View style={styles.rowItem} {...others}>
+    <View style={styles.row} {...others}>
       {children}
     </View>
   )
 }
 
-RowItem.displayName = ComponentName.RowsItem
+Row.displayName = ComponentName.Rows
 
-export default RowItem
+export default Row

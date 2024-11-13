@@ -1,4 +1,4 @@
 import Rows from './Rows'
-import RowItem from './item'
+import Row from './row'
 
-export { Rows, RowItem }
+export { Rows, Row }

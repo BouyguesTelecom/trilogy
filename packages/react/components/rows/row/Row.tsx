@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RowsItemProps } from './RowItemProps'
+import { RowProps } from './RowProps'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
@@ -12,7 +12,7 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} additionnal CSS Classes
  */
-const RowItem = React.forwardRef((props: RowsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
+const Row = React.forwardRef((props: RowProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const { className, id, narrow, ...others } = props
 
   const { styled } = useTrilogyContext()
@@ -20,4 +20,4 @@ const RowItem = React.forwardRef((props: RowsItemProps, ref: React.LegacyRef<HTM
   return <div id={id} ref={ref} className={classes} {...others} />
 })
 
-export default RowItem
+export default Row

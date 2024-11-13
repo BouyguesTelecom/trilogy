@@ -2,7 +2,7 @@ import * as React from 'react'
 import {
   Button,
   Columns,
-  ColumnsItem,
+  Column,
   Icon,
   IconName,
   Popover,
@@ -20,7 +20,7 @@ export const PopoverScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Popover</Title>
         <Columns>
-          <ColumnsItem>
+          <Column>
             <Popover>
               <PopoverContent>
                 <Tag variant={TagVariant.ERROR}>Test</Tag>
@@ -28,13 +28,13 @@ export const PopoverScreen = (): JSX.Element => {
               </PopoverContent>
               <Link>Simple</Link>
             </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
+          </Column>
+          <Column>
             <Popover>
               <Button variant={'PRIMARY'}>Without content</Button>
             </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
+          </Column>
+          <Column>
             <Popover>
               <PopoverContent>
                 <Tag variant={TagVariant.ERROR}>Test</Tag>
@@ -42,15 +42,15 @@ export const PopoverScreen = (): JSX.Element => {
               </PopoverContent>
               <Button variant={'PRIMARY'}>Node content</Button>
             </Popover>
-          </ColumnsItem>
-          <ColumnsItem>
+          </Column>
+          <Column>
             <Popover active>
               <PopoverContent>
                 <Text>Popover active</Text>
               </PopoverContent>
               <Button variant={'PRIMARY'}>Active</Button>
             </Popover>
-          </ColumnsItem>
+          </Column>
         </Columns>
       </Section>
     </>

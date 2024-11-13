@@ -1,11 +1,10 @@
 import * as React from 'react'
 import {
-  Box,
   Checkbox,
   CheckboxTile,
   CheckboxTiles,
+  Column,
   Columns,
-  ColumnsItem,
   Container,
   IconName,
   Section,
@@ -21,13 +20,13 @@ export const CheckboxScreen = (): JSX.Element => {
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
         </Text>
         <Columns multiline>
-          <ColumnsItem size={12} centered>
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
             <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
             <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
             <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
-          </ColumnsItem>
-          <ColumnsItem size={12} centered>
+          </Column>
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
               <CheckboxTile
                 id='tile-1'
@@ -51,8 +50,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 icon={IconName.ALERT}
               />
             </CheckboxTiles>
-          </ColumnsItem>
-          <ColumnsItem size={12} centered>
+          </Column>
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER}>
               <CheckboxTile
                 id='tile-horizontal-1'
@@ -79,7 +78,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 horizontal
               />
             </CheckboxTiles>
-          </ColumnsItem>
+          </Column>
         </Columns>
       </Container>
     </Section>

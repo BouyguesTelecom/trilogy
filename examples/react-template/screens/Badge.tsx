@@ -3,7 +3,7 @@ import {
   Badge,
   BadgeColor,
   Columns,
-  ColumnsItem,
+  Column,
   Divider,
   Icon,
   IconName,
@@ -36,9 +36,9 @@ export const BadgeScreen = (): JSX.Element => {
       <Columns scrollable>
         {Object.values(BadgeColor).map((color, index) => {
           return (
-            <ColumnsItem size={6} key={index}>
+            <Column size={6} key={index}>
               <Badge color={color} content={2} textContent="Text"/>
-            </ColumnsItem>
+            </Column>
           );
         })}
       </Columns>
@@ -46,26 +46,26 @@ export const BadgeScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Reversed props </Title>
       <Columns scrollable>
-        <ColumnsItem size={6} key={1}>
+        <Column size={6} key={1}>
           <Badge reversed={false} content={2} textContent="Text"/>
-        </ColumnsItem>
-        <ColumnsItem size={6} key={2}>
+        </Column>
+        <Column size={6} key={2}>
           <Badge reversed={true} content={2} textContent="Text"/>
-        </ColumnsItem>
+        </Column>
       </Columns>
 
       <Title level={TitleLevels.THREE}>Inverted props </Title>
       <Box backgroundColor={TrilogyColor.MAIN} inverted >
         <Columns scrollable>
-          <ColumnsItem size={4} key={1}>
+          <Column size={4} key={1}>
             <Badge reversed={false} content={2} textContent="Text" inverted/>
-          </ColumnsItem>
-          <ColumnsItem size={4} key={2}>
+          </Column>
+          <Column size={4} key={2}>
             <Badge reversed={true} content={2} textContent="Text" inverted/>
-          </ColumnsItem>
-          <ColumnsItem size={4} key={2}>
+          </Column>
+          <Column size={4} key={2}>
             <Badge reversed={true} content={2} inverted/>
-          </ColumnsItem>
+          </Column>
         </Columns>
       </Box>
     </Section>

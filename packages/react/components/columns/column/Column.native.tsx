@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ColumnsItemProps } from './ColumnsItemProps'
+import { ColumnProps } from './ColumnProps'
 import { ColumnsContext } from '@/components/columns/Columns.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Alignable } from '@/objects'
@@ -12,13 +12,13 @@ import { Alignable } from '@/objects'
  * @param children {React.ReactNode}
  * @param verticalCentered {boolean} Vertical center Column item
  */
-const ColumnsItem = ({ children, size, mobileSize, verticalAlign, ...others }: ColumnsItemProps): JSX.Element => {
+const Column = ({ children, size, mobileSize, verticalAlign, ...others }: ColumnProps): JSX.Element => {
   const columnsContextValues = useContext(ColumnsContext)
 
   const realSize = size || mobileSize
 
   const styles = StyleSheet.create({
-    columnsItem: {
+    Column: {
       height: columnsContextValues.scrollable ? '100%' : undefined,
       flex: !realSize ? 1 : realSize,
       justifyContent: verticalAlign === Alignable.ALIGNED_CENTER ? 'center' : 'flex-start',
@@ -29,12 +29,12 @@ const ColumnsItem = ({ children, size, mobileSize, verticalAlign, ...others }: C
   })
 
   return (
-    <View style={styles.columnsItem} {...others}>
+    <View style={styles.Column} {...others}>
       {children}
     </View>
   )
 }
 
-ColumnsItem.displayName = ComponentName.ColumnsItem
+Column.displayName = ComponentName.Column
 
-export default ColumnsItem
+export default Column

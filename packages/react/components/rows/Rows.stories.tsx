@@ -1,32 +1,32 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import { RowItem } from "./index";
-import { RowsItemProps } from "./item/RowItemProps";
-import { Columns, ColumnsItem } from "../columns";
-import Rows from "./Rows";
+import { Meta, Story } from '@storybook/react'
+import { Row } from './index'
+import { RowProps } from './row/RowProps'
+import { Column, Columns } from '../columns'
+import Rows from './Rows'
 
 export default {
-  title: "Components/Rows",
-  component: RowItem,
+  title: 'Components/Rows',
+  component: Row,
   subcomponents: { Rows },
-} as Meta;
+} as Meta
 
-export const Base: Story<RowsItemProps> = (args) => (
+export const Base: Story<RowProps> = (args) => (
   <Columns>
-    <ColumnsItem>
+    <Column>
       <Rows>
-        <RowItem {...args}>1</RowItem>
-        <RowItem>2</RowItem>
-        <RowItem>3</RowItem>
+        <Row {...args}>1</Row>
+        <Row>2</Row>
+        <Row>3</Row>
       </Rows>
-    </ColumnsItem>
-    <ColumnsItem>
+    </Column>
+    <Column>
       <Rows>
-        <RowItem>4</RowItem>
-        <RowItem>5</RowItem>
-        <RowItem>6</RowItem>
+        <Row>4</Row>
+        <Row>5</Row>
+        <Row>6</Row>
       </Rows>
-    </ColumnsItem>
+    </Column>
   </Columns>
-);
+)

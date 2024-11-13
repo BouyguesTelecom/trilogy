@@ -5,7 +5,7 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
 /**
  * Columns Item Interface
  */
-export interface ColumnsItemProps extends AlignableProps, CommonProps {
+export interface ColumnProps extends AlignableProps, CommonProps {
   children?: React.ReactNode
   size?: ColumnsSize
   mobileSize?: ColumnsSize

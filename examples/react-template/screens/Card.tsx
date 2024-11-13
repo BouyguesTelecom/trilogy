@@ -20,7 +20,7 @@ import {
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { TrilogyColor } from '@trilogy-ds/react/objects'
-import { Columns, ColumnsItem } from '@trilogy-ds/react'
+import { Columns, Column } from '@trilogy-ds/react'
 
 export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false)
@@ -28,7 +28,7 @@ export const CardScreen = (): JSX.Element => {
   return (
     <Section>
       <Columns>
-        <ColumnsItem>
+        <Column>
           <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
@@ -43,8 +43,8 @@ export const CardScreen = (): JSX.Element => {
               </Text>
             </CardContent>
           </Card>
-        </ColumnsItem>
-        <ColumnsItem>
+        </Column>
+        <Column>
           <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
@@ -59,7 +59,7 @@ export const CardScreen = (): JSX.Element => {
               </Text>
             </CardContent>
           </Card>
-        </ColumnsItem>
+        </Column>
       </Columns>
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.FOUR} />
@@ -186,7 +186,7 @@ export const CardScreen = (): JSX.Element => {
       </Box>
 
       <Columns>
-        <ColumnsItem>
+        <Column>
           <Card flat fullheight>
             <CardContent>
               <Title level={TitleLevels.ONE}>Card with fullheight props</Title>
@@ -196,8 +196,8 @@ export const CardScreen = (): JSX.Element => {
               </Text>
             </CardContent>
           </Card>
-        </ColumnsItem>
-        <ColumnsItem>
+        </Column>
+        <Column>
           <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
@@ -212,8 +212,8 @@ export const CardScreen = (): JSX.Element => {
               </Text>
             </CardContent>
           </Card>
-        </ColumnsItem>
-        <ColumnsItem>
+        </Column>
+        <Column>
           <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
@@ -228,7 +228,7 @@ export const CardScreen = (): JSX.Element => {
               </Text>
             </CardContent>
           </Card>
-        </ColumnsItem>
+        </Column>
       </Columns>
     </Section>
   )

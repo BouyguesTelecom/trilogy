@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { Columns, ColumnsItem } from '@/components/columns'
+import { Columns, Column } from '@/components/columns'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { View } from '@/components/view'
 import { Text, TextLevels } from '@/components/text'
@@ -93,22 +93,22 @@ const Alert = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <View style={[styles.container, (others as any).style]}>
       <Columns>
-        <ColumnsItem size={1}>
+        <Column size={1}>
           <Icon name={iconName ? iconName : getStatusIconName(status)} />
-        </ColumnsItem>
+        </Column>
 
-        <ColumnsItem size={11}>
+        <Column size={11}>
           <Text style={styles.containerTitle} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
             {title}
           </Text>
           <Spacer size={SpacerSize.ONE} />
-        </ColumnsItem>
+        </Column>
       </Columns>
 
       {description && (
         <Columns>
-          <ColumnsItem size={1} />
-          <ColumnsItem size={11}>
+          <Column size={1} />
+          <Column size={11}>
             {typeof description.valueOf() === 'string' ? (
               <Text level={TextLevels.TWO} style={styles.description}>
                 {description}
@@ -116,7 +116,7 @@ const Alert = ({
             ) : (
               description
             )}
-          </ColumnsItem>
+          </Column>
         </Columns>
       )}
     </View>
@@ -171,8 +171,8 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
     <View style={styles.toaster}>
       <TouchableOpacity style={styles.toasterContainer} onPress={onClick}>
         <Columns>
-          <ColumnsItem size={1}>{iconName && <Icon name={iconName} />}</ColumnsItem>
-          <ColumnsItem>
+          <Column size={1}>{iconName && <Icon name={iconName} />}</Column>
+          <Column>
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (
               <>
@@ -180,9 +180,9 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
                 <Text level={TextLevels.THREE}>{description}</Text>
               </>
             )}
-          </ColumnsItem>
+          </Column>
           {closable && (
-            <ColumnsItem size={1}>
+            <Column size={1}>
               <TouchableOpacity
                 onPress={(e) => {
                   LibToast.hide()
@@ -191,7 +191,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
               >
                 <Icon name={IconName.TIMES} size={IconSize.SMALL} />
               </TouchableOpacity>
-            </ColumnsItem>
+            </Column>
           )}
         </Columns>
       </TouchableOpacity>

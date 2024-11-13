@@ -1,14 +1,14 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 import Rows from "../Rows";
-import RowItem from "../item";
+import Row from "../row";
 
 describe("Rows", () => {
   it("renders children", () => {
     const { getByText } = render(
       <Rows>
-        <RowItem>Child 1</RowItem>
-        <RowItem>Child 2</RowItem>
+        <Row>Child 1</Row>
+        <Row>Child 2</Row>
       </Rows>
     );
 
