@@ -23,7 +23,7 @@ export const PopoverScreen = (): JSX.Element => {
           <Column>
             <Popover>
               <PopoverContent>
-                <Tag variant={TagVariant.ERROR}>Test</Tag>
+                <Tag variant={TagVariant.ERROR} label="Test"/>
                 <Icon name={IconName.TIMES} />
               </PopoverContent>
               <Link>Simple</Link>
@@ -37,7 +37,7 @@ export const PopoverScreen = (): JSX.Element => {
           <Column>
             <Popover>
               <PopoverContent>
-                <Tag variant={TagVariant.ERROR}>Test</Tag>
+                <Tag variant={TagVariant.ERROR} label="Test"/>
                 <Icon name={IconName.TIMES} />
               </PopoverContent>
               <Button variant={'PRIMARY'}>Node content</Button>

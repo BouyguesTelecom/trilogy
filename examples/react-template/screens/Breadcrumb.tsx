@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import {
   Box,
   BoxContent,
@@ -8,7 +9,7 @@ import {
   Card,
   CardContent,
   Container,
-  RowItem,
+  Row,
   Rows,
   Section,
   Text,
@@ -76,8 +77,8 @@ export const BreadcrumScreen = (): JSX.Element => {
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>Breadcrumb in rows</Text>
       <Container >
         <Rows>
-          <RowItem></RowItem>
-          <RowItem>
+          <Row></Row>
+          <Row>
             <Container >
               <Breadcrumb>
                 <BreadcrumbItem href='https://Home.fr'>Home</BreadcrumbItem>
@@ -86,7 +87,7 @@ export const BreadcrumScreen = (): JSX.Element => {
                 <BreadcrumbItem active>Current page</BreadcrumbItem>
               </Breadcrumb>
             </Container>
-          </RowItem>
+          </Row>
         </Rows>
       </Container>
     </Section>
