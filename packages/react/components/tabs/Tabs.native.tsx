@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
-import { TabsProps } from './TabsProps'
-import { Text, TextLevels } from '@/components/text'
-import TabsItem from './item'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { ScrollView, StyleSheet } from 'react-native'
+
 import { ComponentName } from '@/components/enumsComponentsName'
+import TabsItem from '@/components/tabs/item'
+import { TabsProps } from '@/components/tabs/TabsProps'
+import { Text, TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Tabs Component
@@ -16,7 +17,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param shadowless {boolean} No shadow
  * @param centered {boolean} Centered tabs
  */
-const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps): JSX.Element => {
+const Tabs = (
+  { children, onClick, activeIndex, disabled, centered, inverted, ...others }: TabsProps,
+  ref: React.Ref<ScrollView>,
+): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex)
   const [isIcons, setIsIcons] = React.useState(false)
 
@@ -43,13 +47,19 @@ const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ..
     tabs: {
       height: isIcons ? 64 : 48,
       flexDirection: 'row',
-      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND)
+      backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.BACKGROUND),
     },
   })
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabs} {...others}
-    contentContainerStyle={centered && { justifyContent: "center", flexGrow: 1 }}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.tabs}
+      contentContainerStyle={centered && { justifyContent: 'center', flexGrow: 1 }}
+      ref={ref}
+      {...others}
+    >
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,4 +93,4 @@ const Tabs = ({ children, onClick, activeIndex, disabled, centered, inverted, ..
 
 Tabs.displayName = ComponentName.Tabs
 
-export default Tabs
+export default React.forwardRef(Tabs)

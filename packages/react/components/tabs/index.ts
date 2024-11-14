@@ -1,4 +1,2 @@
-import Tabs from './Tabs'
-import TabsItem from './item'
-
-export { Tabs, TabsItem }
+export { default as TabsItem } from '@/components/tabs/item/TabsItem'
+export { default as Tabs } from '@/components/tabs/Tabs'

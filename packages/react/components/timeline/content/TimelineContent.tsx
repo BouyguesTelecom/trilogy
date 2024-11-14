@@ -32,15 +32,7 @@ const TimelineContent = (
   }
 
   return (
-    <div
-      ref={ref}
-      className={classes}
-      {...others}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-    >
+    <div ref={ref} className={classes} {...others} onClick={onClick}>
       {heading && <Text markup={TextMarkup.P}>{heading}</Text>}
       {content && (
         <Text className='main-content' markup={TextMarkup.P}>

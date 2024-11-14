@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { TagListProps } from './TagListProps'
+import React from 'react'
+
+import { TagListProps } from '@/components/tag/list/TagListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Tag List Component
@@ -14,10 +14,8 @@ import { TagListProps } from './TagListProps'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTMLElement>) => {
+const TagList = (props: TagListProps, ref: React.Ref<HTMLElement>) => {
   const { className, gapless, centered, marginless, ...others } = props
-
-  const { styled } = useTrilogyContext()
 
   return (
     <span
@@ -28,5 +26,5 @@ const TagList = React.forwardRef((props: TagListProps, ref: React.LegacyRef<HTML
       {...others}
     />
   )
-})
-export default TagList
+}
+export default React.forwardRef(TagList)

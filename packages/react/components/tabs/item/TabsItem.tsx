@@ -1,9 +1,10 @@
-import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context/index'
-import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { TabsItemProps } from './TabsItemProps'
+import React from 'react'
+
+import { Icon } from '@/components/icon'
+import { TabsItemProps } from '@/components/tabs/item/TabsItemProps'
+import { useTabsItem } from '@/components/tabs/item/hook/useTabsItem'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Tabs Item Component
@@ -19,11 +20,12 @@ import { TabsItemProps } from './TabsItemProps'
  * @param href {string} <a />
  * @param routerLink Custom Router Link as props
  */
-const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<any>) => {
-  const { active, children, className, onClick, to, href, routerLink, iconName, disabled, testId, ...others } = props
-
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
+const TabsItem = (
+  { active, children, className, onClick, to, href, routerLink, iconName, disabled, testId, ...others }: TabsItemProps,
+  ref: React.Ref<HTMLElement | HTMLButtonElement>,
+) => {
+  const { activeItem, handleClick } = useTabsItem({ disabled, active, onClick })
+  const classes = hashClass(clsx('tab', className, { 'is-active': activeItem }))
 
   // accessibility
   const a11y = {
@@ -33,12 +35,6 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
     },
   }
 
-  useEffect(() => {
-    setActiveItem(active || false)
-  }, [active])
-
-  const classes = hashClass(clsx('tab', className, { 'is-active': activeItem }))
-
   if (routerLink && (to || href)) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
@@ -46,21 +42,12 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
         ref={ref}
         data-testid={testId}
         tabIndex={0}
-        {...a11y.a}
         to={to}
         href={href}
         className={classes}
+        onClick={handleClick}
+        {...a11y.a}
         {...others}
-        onClick={(e: React.MouseEvent) => {
-          if (!disabled) {
-            const target = e.target as HTMLFormElement
-            setActiveItem(active || false)
-            target.active = active
-            if (onClick) {
-              onClick(e)
-            }
-          }
-        }}
       >
         <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
         {children}
@@ -70,7 +57,7 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
 
   return (
     <button
-      ref={ref}
+      ref={ref as React.Ref<HTMLButtonElement>}
       aria-disabled={disabled}
       disabled={disabled}
       className={classes}
@@ -78,21 +65,12 @@ const TabsItem = React.forwardRef((props: TabsItemProps, ref: React.LegacyRef<an
       data-testid={testId}
       {...a11y.a}
       {...others}
-      onClick={(e: React.MouseEvent) => {
-        if (!disabled) {
-          const target = e.target as HTMLFormElement
-          setActiveItem(active || false)
-          target.active = active
-          if (onClick) {
-            onClick(e)
-          }
-        }
-      }}
+      onClick={handleClick}
     >
       <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
       {children}
     </button>
   )
-})
+}
 
-export default TabsItem
+export default React.forwardRef(TabsItem)

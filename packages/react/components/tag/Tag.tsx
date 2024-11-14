@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { Icon } from '../icon'
-import { TagProps } from './TagProps'
+
+import { Icon } from '@/components/icon'
+import { TagProps } from '@/components/tag/TagProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { is } from '@/services/classify'
 
 /**
  * Tag Component
@@ -18,13 +18,13 @@ import { TagProps } from './TagProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  **/
-const Tag = ({ children, className, variant, inverted, small, iconName, testId, ...others }: TagProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Tag = (
+  { children, className, variant, inverted, small, iconName, testId, ...others }: TagProps,
+  ref: React.Ref<HTMLSpanElement>,
+): JSX.Element => {
   const tagClassNames = hashClass(
     clsx(
       'tag',
-
       variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
       inverted && is('inverted'),
       small && is('small'),
@@ -37,11 +37,11 @@ const Tag = ({ children, className, variant, inverted, small, iconName, testId, 
   )
 
   return (
-    <span data-testid={testId} className={tagClassNames} {...others}>
+    <span data-testid={testId} className={tagClassNames} {...others} ref={ref}>
       {iconName && <Icon className={tagIconClassNames} name={iconName} />}
       {children}
     </span>
   )
 }
 
-export default Tag
+export default React.forwardRef(Tag)

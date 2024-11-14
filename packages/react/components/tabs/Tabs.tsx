@@ -1,9 +1,10 @@
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import React from 'react'
+
+import { useTabs } from '@/components/tabs/hook/useTabs'
+import { TabsProps } from '@/components/Tabs/TabsProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
-import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { TabsProps } from './TabsProps'
 
 /**
  * Tabs Component
@@ -23,8 +24,8 @@ import { TabsProps } from './TabsProps'
  * @param textAlign {TypographyAlign | TypographyAlignValues}
  * @param testId {string} Test Id for Test Integration
  */
-const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
+const Tabs = (
+  {
     children,
     className,
     onClick,
@@ -39,51 +40,14 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
     textAlign,
     testId,
     ...others
-  } = props
-
-  const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
-  const { styled } = useTrilogyContext()
-  const [isIcons, setIsIcons] = React.useState(false)
+  }: TabsProps,
+  ref: React.LegacyRef<HTMLDivElement>,
+) => {
+  const { isActive, handleClick } = useTabs({ currentIndex: activeIndex, onClick, disabled })
 
   const classes = hashClass(
-    clsx(
-      'tabs',
-      fullwidth && is('fullwidth'),
-      centered && is('centered'),
-      marginless && is('marginless'),
-      isIcons && is('icons'),
-      className,
-    ),
+    clsx('tabs', fullwidth && is('fullwidth'), centered && is('centered'), marginless && is('marginless'), className),
   )
-
-  const isActive = React.useCallback(
-    (index: number, childPropsActive: React.ReactNode) => {
-      if (typeof childPropsActive !== 'undefined' && !activateIndex) {
-        return childPropsActive
-      }
-      if (index === activateIndex) {
-        return true
-      }
-    },
-    [activateIndex],
-  )
-
-  const toggleActive = React.useCallback(
-    (e: React.MouseEvent, index: number) => {
-      if (disabled) {
-        return false
-      }
-      setActivateIndex(index)
-      if (onClick) {
-        onClick(e)
-      }
-    },
-    [disabled],
-  )
-
-  useEffect(() => {
-    setActivateIndex(activateIndex)
-  }, [activeIndex])
 
   return (
     <div
@@ -103,20 +67,12 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
       <div className={classes} role='tablist' {...others}>
         {React.Children.map(children, (child, index) => {
           if (React.isValidElement(child)) {
-            if (!isIcons && child.props.iconName) setIsIcons(true)
             const active = Boolean(isActive(index, child.props.active)) || false
             const key = index
             const props = {
               active,
               key,
-              onClick: (e: React.MouseEvent) => {
-                toggleActive(e, index)
-                if (child) {
-                  if (child.props.onClick) {
-                    child.props.onClick(e)
-                  }
-                }
-              },
+              onClick: (e: React.MouseEvent) => handleClick && handleClick(e, index, child),
             }
             return React.cloneElement(child, props)
           }
@@ -124,6 +80,6 @@ const Tabs = React.forwardRef((props: TabsProps, ref: React.LegacyRef<HTMLDivEle
       </div>
     </div>
   )
-})
+}
 
-export default Tabs
+export default React.forwardRef(Tabs)

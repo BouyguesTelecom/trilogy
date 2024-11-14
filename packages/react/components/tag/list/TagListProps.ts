@@ -1,4 +1,4 @@
-import { Marginless } from '@/objects'
+import { Marginless } from '@/objects/facets/Marginless'
 
 /**
  * Tag list Interface

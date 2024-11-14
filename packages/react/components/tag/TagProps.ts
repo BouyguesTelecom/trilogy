@@ -1,6 +1,7 @@
-import { IconName } from '@/components/icon'
-import { Accessibility, Dev } from '@/objects'
-import { TagVariant, TagVariantValues } from './TagEnum'
+import { IconName } from '@/components/icon/IconNameEnum'
+import { TagVariant, TagVariantValues } from '@/components/tag/TagEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 type TagClickEventHandler = React.MouseEvent<Element> | unknown
 

@@ -1,6 +1,8 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { TextLevels } from '@/components/text'
-import { Accessibility, Clickable, Dev } from '@/objects/facets'
+import { TextLevels } from '@/components/text/TextEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
 import { Styles } from '@/types'
 

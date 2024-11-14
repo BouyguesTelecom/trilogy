@@ -51,7 +51,6 @@
 
   .tabs {
     background-color: transparent;
-    height: 48px;
     overflow-x: auto;
     white-space: nowrap;
     display: inline-flex;
@@ -82,9 +81,6 @@
       box-shadow: none;
     }
 
-    &.is-icons {
-      height: 64px;
-    }
 
     @include mobile {
       justify-content: flex-start;
@@ -94,13 +90,12 @@
     }
 
     > .tab {
-      height: calc(100% - 4px);
       background-color: transparent;
       border: none;
       color: getColor('font');
       text-decoration: none;
       outline: none;
-      padding: 6px 14px;
+      padding: 8px 14px;
       font-size: $text-14;
       @include desktop {
         font-size: $text-16;
@@ -187,3 +182,4 @@
     }
   }
 }
+

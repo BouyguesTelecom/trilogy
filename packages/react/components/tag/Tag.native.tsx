@@ -1,10 +1,11 @@
-import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { TagProps } from './TagProps'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { TagProps } from '@/components/tag/TagProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getStatusStyle } from '@/objects/facets/Status'
 
 /**
  * Tag Component
@@ -15,7 +16,10 @@ import { TagProps } from './TagProps'
  * @param iconName {IconName} display icon
  * @param testId {string} Test Id for Test Integration
  **/
-const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }: TagProps): JSX.Element => {
+const Tag = (
+  { children, variant, inverted, iconName, small, testId, ...others }: TagProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
 
   const backgroundColor = variant && getStatusStyle(variant).backgroundColor
@@ -56,7 +60,7 @@ const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }
   })
 
   return (
-    <View style={styles.tag} {...others}>
+    <View style={styles.tag} {...others} ref={ref}>
       {iconName && (
         <Icon
           size={small ? IconSize.SMALLER : IconSize.SMALL}
@@ -72,4 +76,4 @@ const Tag = ({ children, variant, inverted, iconName, small, testId, ...others }
 
 Tag.displayName = ComponentName.Tag
 
-export default Tag
+export default React.forwardRef(Tag)

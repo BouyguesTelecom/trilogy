@@ -1,11 +1,11 @@
-import { Icon, IconSize } from '@/components/icon'
-import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { LinkProps } from './LinkProps'
+import React from 'react'
+
+import { Icon, IconSize } from '@/components/icon'
+import { LinkProps } from '@/components/link/LinkProps'
+import { Text, TextMarkup } from '@/components/text'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
 
 /**
  * Link Component
@@ -32,25 +32,26 @@ import { LinkProps } from './LinkProps'
  * @param style {Object} Additional styles
  */
 
-const Link = ({
-  children,
-  className,
-  removeLinkClass,
-  to,
-  href,
-  title,
-  onClick,
-  typo,
-  testId,
-  accessibilityLabel,
-  routerLink,
-  iconName,
-  inverted,
-  blank,
-  ...others
-}: LinkProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Link = (
+  {
+    children,
+    className,
+    removeLinkClass,
+    to,
+    href,
+    title,
+    onClick,
+    typo,
+    testId,
+    accessibilityLabel,
+    routerLink,
+    iconName,
+    inverted,
+    blank,
+    ...others
+  }: LinkProps,
+  ref: React.Ref<HTMLElement | HTMLDivElement>,
+): JSX.Element => {
   const classes = clsx(iconName && has('icon'), typo, inverted && is('inverted'), className)
 
   if (routerLink && to) {
@@ -67,6 +68,7 @@ const Link = ({
           {...(blank && {
             target: '_blank',
           })}
+          ref={ref}
           {...others}
         >
           {title || children}
@@ -76,7 +78,7 @@ const Link = ({
 
     if (typo) {
       return (
-        <div className={hashClass(clsx(typo))}>
+        <div className={hashClass(clsx(typo))} ref={ref as React.Ref<HTMLDivElement>}>
           <RouterLinkTrilogy />
         </div>
       )
@@ -99,6 +101,7 @@ const Link = ({
         {...(blank && {
           target: '_blank',
         })}
+        ref={ref}
         {...others}
       >
         {iconName ? (
@@ -115,7 +118,7 @@ const Link = ({
 
   if (typo) {
     return (
-      <div className={hashClass(clsx(typo))}>
+      <div className={hashClass(clsx(typo))} ref={ref as React.Ref<HTMLDivElement>}>
         <LinkTrilogy />
       </div>
     )
@@ -124,4 +127,4 @@ const Link = ({
   return <LinkTrilogy />
 }
 
-export default Link
+export default React.forwardRef(Link)
