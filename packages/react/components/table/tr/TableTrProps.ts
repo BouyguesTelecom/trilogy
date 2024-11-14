@@ -1,5 +1,8 @@
-import { Clickable, Referenceable, ReferenceableNative, TrilogyColor, TrilogyColorValues } from '@/objects'
 import { TouchableOpacity } from 'react-native'
+
+import { Clickable } from '@/objects/facets/Clickable'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
 
 interface TableTrPropsWeb extends Clickable {
   children: React.ReactNode

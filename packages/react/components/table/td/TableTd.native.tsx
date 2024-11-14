@@ -1,17 +1,18 @@
-import * as React from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { TableTdProps } from "./TableTdProps"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TableTdProps } from '@/components/Table/td/TableTdProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Table TD Component
  * @param children {ReactNode} Table TD children
  */
-const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
+const TableTd = ({ children, ...others }: TableTdProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     table: {
-      flexDirection: "column",
+      flexDirection: 'column',
       flex: 1,
       padding: 10,
       borderBottomWidth: 0.2,
@@ -25,8 +26,8 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.table} {...others}>
-      {children && typeof children.valueOf() === "string" ? (
+    <View style={styles.table} ref={ref} {...others}>
+      {children && typeof children.valueOf() === 'string' ? (
         <Text style={styles.text}>{String(children)}</Text>
       ) : (
         children
@@ -37,4 +38,4 @@ const TableTd = ({ children, ...others }: TableTdProps): JSX.Element => {
 
 TableTd.displayName = ComponentName.TableTd
 
-export default TableTd
+export default React.forwardRef(TableTd)

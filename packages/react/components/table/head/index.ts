@@ -1,3 +1,3 @@
-import TableHead from './TableHead'
+import TableHead from '@/components/table/head/TableHead'
 
 export default TableHead

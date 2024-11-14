@@ -1,21 +1,22 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { TableProps } from "./TableProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TableProps } from '@/components/table/TableProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Table Component
  * @param children {ReactNode}
  * @param bordered {boolean} bordered table
  */
-const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
+const Table = ({ children, bordered, ...others }: TableProps, ref: React.Ref<View>): JSX.Element => {
   const borderColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
     table: {
-      width: "100%",
-      backgroundColor: "transparent",
+      width: '100%',
+      backgroundColor: 'transparent',
     },
     bordered: {
       borderWidth: 1,
@@ -23,19 +24,12 @@ const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
     },
     noBorder: {
       borderWidth: 0,
-      borderColor: "transparent",
+      borderColor: 'transparent',
     },
   })
 
   return (
-    <View
-      style={[
-        bordered && styles.bordered,
-        !bordered && styles.noBorder,
-        styles.table,
-      ]}
-      {...others}
-    >
+    <View style={[bordered && styles.bordered, !bordered && styles.noBorder, styles.table]} ref={ref} {...others}>
       {children}
     </View>
   )
@@ -43,4 +37,4 @@ const Table = ({ children, bordered, ...others }: TableProps): JSX.Element => {
 
 Table.displayName = ComponentName.Table
 
-export default Table
+export default React.forwardRef(Table)

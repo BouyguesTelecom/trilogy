@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import React from 'react'
+
+import { TableProps } from '@/components/table/TableProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import { TableProps } from './TableProps'
 
 /**
  * Table Component
@@ -16,17 +16,10 @@ import { TableProps } from './TableProps'
  * @param comparative {boolean} If specific design add this
  * @param striped {boolean} striped lines
  */
-const Table = ({
-  className,
-  fullwidth,
-  bordered,
-  comparative,
-  striped,
-  compact,
-  ...others
-}: TableProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Table = (
+  { className, fullwidth, bordered, comparative, striped, compact, ...others }: TableProps,
+  ref: React.Ref<HTMLTableElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'table',
@@ -39,7 +32,7 @@ const Table = ({
     ),
   )
 
-  return <table className={classes} {...others} />
+  return <table className={classes} {...others} ref={ref} />
 }
 
-export default Table
+export default React.forwardRef(Table)
