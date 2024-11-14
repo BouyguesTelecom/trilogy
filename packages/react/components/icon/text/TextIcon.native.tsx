@@ -1,24 +1,28 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
-import { Text, TextLevels } from '@/components/text'
-import { IconPosition } from '@/components/icon/IconEnum'
-import { TextIconProps } from './TextIconProps'
-import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
+import { Platform, StyleSheet, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { TrilogyThemeContext } from "@/context/providerTheme.native"
 
-const TextIcon = ({
-  name,
-  content,
-  size,
-  position,
-  stretched,
-  color,
-  stacked,
-  verticalAlign = Alignable.ALIGNED_CENTER,
-  testId
-}: TextIconProps): JSX.Element => {
+import { ComponentName } from '@/components/enumsComponentsName'
+import { IconPosition } from '@/components/icon/IconEnum'
+import { TextIconProps } from '@/components/icon/text/TextIconProps'
+import { Text, TextLevels } from '@/components/text'
+import { TrilogyThemeContext } from '@/context/providerTheme.native'
+import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
+
+const TextIcon = (
+  {
+    name,
+    content,
+    size,
+    position,
+    stretched,
+    color,
+    stacked,
+    verticalAlign = Alignable.ALIGNED_CENTER,
+    testId,
+  }: TextIconProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
@@ -45,7 +49,7 @@ const TextIcon = ({
   })
 
   return (
-    <View style={[{ width: '100%' }, styles.contentContainer]} testID={testId}>
+    <View style={[{ width: '100%' }, styles.contentContainer]} testID={testId} ref={ref}>
       {!position && <Text style={styles.text}>{content}</Text>}
 
       {(position === IconPosition.RIGHT || position === IconPosition.DOWN) && content && (
@@ -81,4 +85,4 @@ const TextIcon = ({
 
 TextIcon.displayName = ComponentName.TextIcon
 
-export default TextIcon
+export default React.forwardRef(TextIcon)

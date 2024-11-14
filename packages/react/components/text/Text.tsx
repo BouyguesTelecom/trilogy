@@ -48,9 +48,8 @@ const Text = (
     numberOfLines,
     ...others
   }: TextProps,
-  ref: any,
+  ref: React.Ref<any>,
 ): JSX.Element => {
-
   const levelText = () => {
     if (level) {
       switch (level) {

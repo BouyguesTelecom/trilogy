@@ -70,8 +70,7 @@ const Textarea = (
     required,
     ...others
   }: TextareaNativeProps,
-  // eslint-disable-next-line
-  ref: any,
+  ref: React.Ref<TextInput>,
 ): JSX.Element => {
   const [_value, setValue] = useState<string>(value || '')
 
@@ -183,6 +182,7 @@ const Textarea = (
       )}
 
       <TextInput
+        ref={ref}
         maxLength={maxLength}
         value={_value}
         defaultValue={defaultValue}
@@ -208,7 +208,6 @@ const Textarea = (
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         {...others}
-        ref={ref}
         placeholderTextColor={
           disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
         }

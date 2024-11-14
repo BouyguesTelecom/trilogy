@@ -1,18 +1,22 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { IconStatus, IconStatusPosition } from '../IconEnum'
-import { StatusIconProps } from './StatusIconProps'
+import { Platform, StyleSheet, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { TrilogyThemeContext } from '@/context/providerTheme.native'
 
-const StatusIcon = ({ name, status, statusPosition, size, stretched, color, testId }: StatusIconProps): JSX.Element => {
+import { ComponentName } from '@/components/enumsComponentsName'
+import { IconStatus, IconStatusPosition } from '@/components/icon/IconEnum'
+import { StatusIconProps } from '@/components/icon/status/StatusIconProps'
+import { TrilogyThemeContext } from '@/context/providerTheme.native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+
+const StatusIcon = (
+  { name, status, statusPosition, size, stretched, color, testId }: StatusIconProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
 
-  const statusIcon = status === "SUCCESS" ? 'tri-check-circle' : 'tri-times'
+  const statusIcon = status === 'SUCCESS' ? 'tri-check-circle' : 'tri-times'
 
   const styles = StyleSheet.create({
     icon: {
@@ -50,7 +54,7 @@ const StatusIcon = ({ name, status, statusPosition, size, stretched, color, test
   })
 
   return (
-    <View testID={testId}>
+    <View testID={testId} ref={ref}>
       {icons && (
         <View>
           <WithLocalSvg
@@ -87,4 +91,4 @@ const StatusIcon = ({ name, status, statusPosition, size, stretched, color, test
 
 StatusIcon.displayName = ComponentName.StatusIcon
 
-export default StatusIcon
+export default React.forwardRef(StatusIcon)

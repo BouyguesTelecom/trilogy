@@ -33,26 +33,29 @@ import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facet
  * @param align { Alignable | AlignableValues} align content
  * @param skeleton {boolean} Icon Skeleton
  */
-const Icon = ({
-  size,
-  name,
-  status,
-  circled,
-  content,
-  position,
-  stacked,
-  badgeContent,
-  statusPosition,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  align,
-  skeleton,
-  style,
-  testId,
-  ...others
-}: IconProps): JSX.Element => {
+const Icon = (
+  {
+    size,
+    name,
+    status,
+    circled,
+    content,
+    position,
+    stacked,
+    badgeContent,
+    statusPosition,
+    stretched,
+    color,
+    backgroundColor,
+    onClick,
+    align,
+    skeleton,
+    style,
+    testId,
+    ...others
+  }: IconProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
@@ -142,7 +145,7 @@ const Icon = ({
   if (name && icons) {
     if (stretched && !circled) {
       iconView = (
-        <View style={styles.stretched} testID={`${testId}-stretched`}>
+        <View style={styles.stretched} testID={`${testId}-stretched`} ref={ref}>
           <WithLocalSvg
             style={[styles.iconCircled, styles.icon]}
             asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
@@ -156,6 +159,7 @@ const Icon = ({
       // TODO: fix status icon
       iconView = (
         <StatusIcon
+          ref={ref}
           name={name}
           status={status}
           statusPosition={statusPosition}
@@ -168,6 +172,7 @@ const Icon = ({
     } else if (circled) {
       iconView = (
         <CircleIcon
+          ref={ref}
           name={name}
           size={defaultSize}
           color={iconColor}
@@ -182,6 +187,7 @@ const Icon = ({
     } /* Text icon */ else if (content && !badgeContent) {
       iconView = (
         <TextIcon
+          ref={ref}
           name={name}
           content={content}
           size={defaultSize}
@@ -194,7 +200,7 @@ const Icon = ({
       )
     } else {
       iconView = (
-        <View {...others}>
+        <View {...others} ref={ref}>
           <WithLocalSvg
             style={[styles.icon, style]}
             asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
@@ -208,13 +214,13 @@ const Icon = ({
   }
 
   return onClick ? (
-    <View style={styles.rootView} testID={testId}>
+    <View style={styles.rootView} testID={testId} ref={ref}>
       <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85} testID={`${testId}-pressable`}>
         {iconView}
       </TouchableOpacity>
     </View>
   ) : (
-    <View style={styles.rootView} testID={testId}>
+    <View style={styles.rootView} testID={testId} ref={ref}>
       {iconView}
     </View>
   )
@@ -222,4 +228,4 @@ const Icon = ({
 
 Icon.displayName = ComponentName.Icon
 
-export default Icon
+export default React.forwardRef(Icon)
