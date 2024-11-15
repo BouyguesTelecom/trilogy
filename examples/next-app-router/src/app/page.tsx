@@ -1,4 +1,5 @@
 import { IconName } from '@/components/icon'
+import { Stepper, StepperStep } from '@/components/stepper'
 import { Sticker } from '@/components/sticker'
 import { Switch } from '@/components/switch'
 import { Tabs, TabsItem } from '@/components/tabs'
@@ -91,6 +92,14 @@ export default function Home() {
           <Sticker variant={VariantState.ACCENT} small>
             Sticker
           </Sticker>
+
+          <Stepper>
+            <StepperStep done iconName={IconName.EYE} label='Recup' step={1} />
+            <StepperStep current label='Compléments' step={2} />
+            <StepperStep error iconName={IconName.SEARCH} label='Coordonate' step={3} />
+            <StepperStep label='Livraison' step={4} />
+            <StepperStep iconName={IconName.EYE} label='Confirm' step={5} />
+          </Stepper>
         </View>
       </main>
     </div>

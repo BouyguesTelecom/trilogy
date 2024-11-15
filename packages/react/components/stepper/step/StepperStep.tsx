@@ -1,12 +1,12 @@
-import { IconSize } from '@/components/icon'
-import Icon from '@/components/icon/Icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { StepperStepMarkup, StepperStepMarkupValues } from './StepperStepEnum'
-import { StepperStepProps } from './StepperStepProps'
+
+import { IconSize } from '@/components/icon'
+import Icon from '@/components/icon/Icon'
+import { StepperStepMarkup, StepperStepMarkupValues } from '@/components/stepper/step/StepperStepEnum'
+import { StepperStepProps } from '@/components/stepper/step/StepperStepProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Stepper Step Component
@@ -22,10 +22,10 @@ import { StepperStepProps } from './StepperStepProps'
  * @param label {string} Step label
  * @param step {number|string} Step text circle
  */
-const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.LegacyRef<any>) => {
-  const { children, className, active, markup, current, done, label, iconName, error, ...others } = props
-
-  const { styled } = useTrilogyContext()
+const StepperStep = (
+  { children, className, active, markup, current, done, label, iconName, error, ...others }: StepperStepProps,
+  ref: React.LegacyRef<any>,
+) => {
   const classesStepLabel = hashClass(clsx('step-label'))
 
   const classes = hashClass(
@@ -38,10 +38,6 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
       className,
     ),
   )
-
-  /**
-   * If no markup return div
-   */
 
   const isCorrectMarkup = (stringMarkup: StepperStepMarkup | StepperStepMarkupValues) => {
     if (
@@ -61,6 +57,6 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
       </div>
     </Tag>
   )
-})
+}
 
-export default StepperStep
+export default React.forwardRef(StepperStep)

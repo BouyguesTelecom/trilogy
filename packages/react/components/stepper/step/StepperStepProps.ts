@@ -1,5 +1,5 @@
-import { StepperStepMarkup, StepperStepMarkupValues } from './StepperStepEnum'
-import { IconName, IconNameValues } from "@/components/icon"
+import { IconName, IconNameValues } from '@/components/icon'
+import { StepperStepMarkup, StepperStepMarkupValues } from '@/components/stepper/step/StepperStepEnum'
 
 /**
  * Stepper Step Interface

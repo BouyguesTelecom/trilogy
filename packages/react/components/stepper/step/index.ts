@@ -1,3 +1,3 @@
-import StepperStep from './StepperStep'
+import StepperStep from '@/components/stepper/step/StepperStep'
 
 export default StepperStep

@@ -1,6 +1,3 @@
-import Stepper from './Stepper'
-import StepperStep from './step'
-
-export * from './step/StepperStepEnum'
-
-export { Stepper, StepperStep }
+export { default as StepperStep } from '@/components/stepper/step'
+export * from '@/components/stepper/step/StepperStepEnum'
+export { default as Stepper } from '@/components/stepper/Stepper'
