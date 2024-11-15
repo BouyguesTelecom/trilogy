@@ -1,5 +1,2 @@
-import Sticker from './Sticker'
-
-export * from './StickerEnum'
-
-export { Sticker }
+export { default as Sticker } from '@/components/sticker/Sticker'
+export * from '@/components/sticker/StickerEnum'

@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { SwitchProps } from './SwitchProps'
+import React from 'react'
+
+import { SwitchProps } from '@/components/switch/SwitchProps'
+import { useSwitch } from '@/components/switch/hook/ueSwitch'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
 
 /**
  * Switch Component
@@ -24,60 +24,31 @@ import { SwitchProps } from './SwitchProps'
  * @param reversed {boolean} change switch position
  */
 
-const Switch = ({
-  className,
-  id = shortid.generate(),
-  label,
-  value,
-  checked,
-  onChange,
-  onClick,
-  status,
-  disabled,
-  readonly,
-  name,
-  reversed,
-  ...others
-}: SwitchProps): JSX.Element => {
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-  const { styled } = useTrilogyContext()
-
-  React.useEffect(() => {
-    setChecked(checked || false)
-  }, [checked])
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
+const Switch = (
+  {
+    className,
+    id = React.useId(),
+    label,
+    value,
+    checked,
+    onChange,
+    onClick,
+    status,
+    disabled,
+    readonly,
+    name,
+    reversed,
+    ...others
+  }: SwitchProps,
+  ref: React.Ref<HTMLInputElement>,
+): JSX.Element => {
+  const { _checked, handleChange, handleClick } = useSwitch({ checked, readonly, onChange, onClick })
 
   return (
     <div className={hashClass(clsx('switch', reversed && is('reversed'), className))}>
       <input
-        onChange={(e) => {
-          if (!readonly) {
-            setChecked(!_checked)
-          }
-          if (onChange) {
-            onChange({
-              switchState: e.target.checked,
-              switchName: e.target.name,
-            })
-          }
-        }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onClick={(e: any) => {
-          if (!readonly) {
-            setChecked(!_checked)
-          }
-          if (onClick) {
-            onClick({
-              switchState: e.target.checked,
-              switchName: e.target.name,
-            })
-          }
-        }}
+        onChange={handleChange}
+        onClick={handleClick}
         name={name}
         value={value}
         checked={readonly ? checked : _checked}
@@ -86,6 +57,7 @@ const Switch = ({
         type='checkbox'
         disabled={disabled}
         className={hashClass(clsx(status && is(getStatusClassName(status))))}
+        ref={ref}
         {...others}
       />
       <label htmlFor={`switch-${id}`}>{label}</label>
@@ -93,4 +65,4 @@ const Switch = ({
   )
 }
 
-export default Switch
+export default React.forwardRef(Switch)

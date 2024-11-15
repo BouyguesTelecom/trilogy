@@ -1,2 +1,2 @@
-export * from './default'
-export * from './mangled'
+export * from '@/components/styleComponent/default'
+export * from '@/components/styleComponent/mangled'

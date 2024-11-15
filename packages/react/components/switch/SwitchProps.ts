@@ -1,12 +1,12 @@
-import { StatusProps } from '@/objects/facets/Status'
 import { Invertable } from '@/objects/facets/Invertable'
+import { StatusProps } from '@/objects/facets/Status'
 
 export interface SwitchChangeEvent {
   switchState: boolean
   switchName: string
 }
 
-type SwitchEventHandler = (event: SwitchChangeEvent) => void
+export type SwitchEventHandler = (event: SwitchChangeEvent) => void
 
 export interface SwitchProps extends StatusProps, Invertable {
   checked?: boolean

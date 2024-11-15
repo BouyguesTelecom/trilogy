@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getVariantClassName } from '@/objects'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { StickerMarkup, StickerMarkupValues } from './StickerEnum'
-import { StickerProps } from './StickerProps'
+
+import { StickerMarkup, StickerMarkupValues } from '@/components/sticker/StickerEnum'
+import { StickerProps } from '@/components/sticker/StickerProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getVariantClassName } from '@/objects/facets/Variant'
+import { is } from '@/services/classify'
 
 /**
  * Sticker component
@@ -19,18 +19,10 @@ import { StickerProps } from './StickerProps'
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({
-  className,
-  children,
-  variant,
-  small,
-  hat,
-  markup,
-  outlined,
-  ...others
-}: StickerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Sticker = (
+  { className, children, variant, small, hat, markup, outlined, ...others }: StickerProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'sticker',
@@ -50,10 +42,10 @@ const Sticker = ({
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
   return (
-    <Tag className={classes} {...others}>
+    <Tag className={classes} ref={ref} {...others}>
       {children}
     </Tag>
   )
 }
 
-export default Sticker
+export default React.forwardRef(Sticker)
