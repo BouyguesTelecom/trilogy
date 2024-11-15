@@ -1,4 +1,5 @@
 import { IconName } from '@/components/icon'
+import { Select, SelectOption } from '@/components/select'
 import { Stepper, StepperStep } from '@/components/stepper'
 import { Sticker } from '@/components/sticker'
 import { Switch } from '@/components/switch'
@@ -100,6 +101,13 @@ export default function Home() {
             <StepperStep label='Livraison' step={4} />
             <StepperStep iconName={IconName.EYE} label='Confirm' step={5} />
           </Stepper>
+
+          <Select name='option' label='label' id='id' iconName={IconName.ALERT} selected={'id_four'}>
+            <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
+            <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
+            <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
+            <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
+          </Select>
         </View>
       </main>
     </div>

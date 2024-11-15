@@ -46,6 +46,7 @@ export const SelectView = (): JSX.Element => {
           id='id'
           selected={optionNullable}
           onChange={(e) => {
+            console.log('=====>', e)
             setOptionNullable(e.selectValue)
           }}
         >

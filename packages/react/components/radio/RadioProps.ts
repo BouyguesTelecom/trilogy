@@ -1,14 +1,15 @@
-import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Dev } from '@/objects'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
-type RadioChangeEventHandler = (event: {
+export type RadioChangeEventHandler = (event: {
   radioChecked: boolean
   radioId: string | undefined
   radioName: string
   radioValue: string
 }) => void
 
-type RadioClickEventHandler = (event: {
+export type RadioClickEventHandler = (event: {
   radioChecked: boolean
   radioId: string | undefined
   radioName: string

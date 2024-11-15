@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 
-import { SelectProps } from './SelectProps'
-import { SelectDynamic, SelectNative } from './web'
+import { SelectProps } from '@/components/select/SelectProps'
+import { SelectDynamic, SelectNative } from '@/components/select/web'
 
 /**
  * Select Component
@@ -24,9 +24,9 @@ import { SelectDynamic, SelectNative } from './web'
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param placeholder {string} Select Placeholder
  */
-const Select = ({ native, ...props }: SelectProps): JSX.Element => {
-  if (native) return <SelectNative {...props} />
-  return <SelectDynamic {...props} />
+const Select = ({ native, ...props }: SelectProps, ref: React.Ref<HTMLInputElement>): JSX.Element => {
+  if (native) return <SelectNative {...props} ref={ref} />
+  return <SelectDynamic {...props} ref={ref} />
 }
 
-export default Select
+export default React.forwardRef(Select)

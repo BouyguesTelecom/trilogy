@@ -1,6 +1,7 @@
-import type { Centerable, Layout } from '@/objects'
 import type { DividerProps } from '@/components/divider/DividerProps'
 import type { RadioProps } from '@/components/radio/RadioProps'
+import type { Centerable } from '@/objects/facets/Centerable'
+import type { Layout } from '@/objects/facets/Layout'
 
 type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | undefined
 

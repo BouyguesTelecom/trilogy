@@ -1,7 +1,8 @@
 import clsx from 'clsx'
+import React from 'react'
+
 import { Radio } from '@/components/radio'
-import * as React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
+import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 
 /**
  * Select Option Component
@@ -16,27 +17,16 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param onClick {function} onclick function
  * @param id {string} Select option custom id
  */
-const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.LegacyRef<HTMLOptionElement>) => {
-  const {
-    id,
-    className,
-    value,
-    disabled,
-    children,
-    onClick,
-    label,
-    iconName,
-    testId,
-    ...others
-  } = allProps
-
-  const { checked, native, focused, ...props } = others as {checked:boolean, native:boolean, focused:boolean}
-  const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
+const SelectOption = (
+  { id, className, value, disabled, children, onClick, label, iconName, testId, ...others }: SelectOptionProps,
+  ref: React.Ref<HTMLOptionElement | HTMLDivElement>,
+) => {
+  const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
 
   if (native) {
     return (
       <option
-        ref={ref}
+        ref={ref as React.Ref<HTMLOptionElement>}
         role='option'
         id={id}
         value={value}
@@ -53,11 +43,12 @@ const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.L
 
   return (
     <Radio
+      ref={ref as React.Ref<HTMLDivElement>}
       checked={checked}
       tile
       horizontalTile
       marginless
-      className={selectClasses}
+      className={clsx(focused && 'focus', className)}
       value={value}
       disabled={disabled}
       onClick={onClick}
@@ -67,6 +58,6 @@ const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.L
       {...others}
     />
   )
-})
+}
 
-export default SelectOption
+export default React.forwardRef(SelectOption)

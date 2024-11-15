@@ -1,5 +1,6 @@
-import { Accessibility, Dev } from '@/objects'
-import { IconName, IconNameValues } from '../icon'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface ISelectOption {
   value: string | undefined

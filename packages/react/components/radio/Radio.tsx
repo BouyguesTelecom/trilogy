@@ -1,11 +1,11 @@
-import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { RadioProps } from './RadioProps'
+import React from 'react'
+
+import { Icon, IconSize } from '@/components/icon'
+import { RadioProps } from '@/components/radio/RadioProps'
+import { useRadio } from '@/components/radio/hook/useRadio'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Radio Component
@@ -29,40 +29,34 @@ import { RadioProps } from './RadioProps'
  * @param testId {string} Test Id for Test Integration
  * @param marginless {boolean} delete margin
  */
-const Radio = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = shortid.generate(),
-  label,
-  onChange,
-  onClick,
-  name,
-  value,
-  tile,
-  description,
-  iconTile,
-  horizontalTile,
-  children,
-  narrow,
-  marginless,
-  testId,
-  ...others
-}: RadioProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [inputState, setInputState] = useState<{ checked: boolean }>({
-    checked: checked || false,
-  })
-
-  useEffect(() => {
-    if (!readonly) {
-      setInputState({ checked: checked || false })
-    }
-  }, [checked, readonly])
-
+const Radio = (
+  {
+    checked,
+    className,
+    disabled,
+    readonly,
+    id = React.useId(),
+    label,
+    onChange,
+    onClick,
+    name,
+    value,
+    tile,
+    description,
+    iconTile,
+    horizontalTile,
+    children,
+    narrow,
+    marginless,
+    testId,
+    ...others
+  }: RadioProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
+  const { inputState, handleClick, handleChange } = useRadio({ checked, readonly, onChange, onClick, value })
   return (
     <div
+      ref={ref}
       tabIndex={0}
       className={hashClass(
         clsx(
@@ -83,32 +77,8 @@ const Radio = ({
         name={name}
         value={value}
         checked={readonly ? checked : inputState.checked}
-        onChange={(e: React.ChangeEvent) => {
-          return e
-        }}
-        onClick={(e: React.MouseEvent) => {
-          const target = e.target as HTMLInputElement
-          if (!readonly && target.checked) {
-            setInputState({ checked: target.checked })
-          }
-          target.value = value || ''
-          if (onChange) {
-            onChange({
-              radioId: target.id,
-              radioValue: target.value,
-              radioName: target.name,
-              radioChecked: target.checked,
-            })
-          }
-          if (onClick) {
-            onClick({
-              radioId: target.id,
-              radioValue: target.value,
-              radioName: target.name,
-              radioChecked: target.checked,
-            })
-          }
-        }}
+        onChange={handleChange}
+        onClick={handleClick}
         {...others}
       />
 
@@ -136,4 +106,4 @@ const Radio = ({
   )
 }
 
-export default Radio
+export default React.forwardRef(Radio)

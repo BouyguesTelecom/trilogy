@@ -1,3 +1,1 @@
-import RadioList from './RadioList'
-
-export { RadioList }
+export { default as RadioList } from '@/components/radio/list/RadioList'

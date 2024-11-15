@@ -1,6 +1,7 @@
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { ClickEvent } from '@/events/OnClickEvent'
-import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Select Option Interface

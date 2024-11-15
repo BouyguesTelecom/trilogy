@@ -1,5 +1,2 @@
-import Spacer from './Spacer'
-
-export * from './SpacerEnum'
-
-export { Spacer }
+export { default as Spacer } from '@/components/spacer/Spacer'
+export * from '@/components/spacer/SpacerEnum'

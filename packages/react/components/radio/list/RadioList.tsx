@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { has, is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { RadioListWebProps } from './RadioListProps'
+import React from 'react'
+
+import { RadioListWebProps } from '@/components/radio/list/RadioListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
 
 /**
  * Radio List Component
@@ -14,11 +14,13 @@ import { RadioListWebProps } from './RadioListProps'
  * @param vertical {boolean} Verical radios
  * @param isMobile {boolean} espect mobile screen
  */
-const RadioList = ({ className, centered, isMobile, vertical, ...others }: RadioListWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const RadioList = (
+  { className, centered, isMobile, vertical, ...others }: RadioListWebProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   return (
     <div
+      ref={ref}
       className={hashClass(
         clsx(
           'radios',
@@ -33,4 +35,4 @@ const RadioList = ({ className, centered, isMobile, vertical, ...others }: Radio
   )
 }
 
-export default RadioList
+export default React.forwardRef(RadioList)
