@@ -1,7 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { StepperStepProps } from './StepperStepProps'
-import { StepperStepMarkup, StepperStepMarkupValues } from './StepperStepEnum'
+import { StepProps } from './StepProps'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
@@ -22,7 +21,7 @@ import { IconSize } from '@/components/icon'
  * @param label {string} Step label
  * @param step {number|string} Step text circle
  */
-const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.LegacyRef<any>) => {
+const Step = React.forwardRef((props: StepProps, ref: React.LegacyRef<any>) => {
   const { className, id, active, current, done, label, iconName, error, ...others } = props
 
   const { styled } = useTrilogyContext()
@@ -53,4 +52,4 @@ const StepperStep = React.forwardRef((props: StepperStepProps, ref: React.Legacy
   )
 })
 
-export default StepperStep
+export default Step

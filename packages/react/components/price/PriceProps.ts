@@ -15,6 +15,4 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, D
   level?: PriceLevel | PriceLevelValues
   oldAmount?: number
   overline?: string
-  tagValue?: string
-  tagLabel?: string
 }

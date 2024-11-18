@@ -2,17 +2,22 @@
 
 .radios {
   width: 100%;
-  column-gap: 16px;
+  gap: 16px;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 
-  &.is-vertical {
-    row-gap: 16px;
+  @include tablet {
+    flex-direction: row;
+
+    &.is-vertical-desktop {
+      flex-direction: column;
+    }
   }
 
   @include mobile {
-    &:not(.is-mobile){
-      display: block;
+    &.is-horizontal-mobile {
+      flex-direction: row;
     }
   }
 
@@ -25,51 +30,52 @@
 
 .radio,
 .radio-tile {
-    input:checked ~ label.radio-label {
-        cursor: default;
-        &:after {
-            content: '';
-            width: 12px;
-            height: 12px;
-        }
-    }
+  input:checked ~ label.radio-label {
+    cursor: default;
 
-    label.radio-label {
-        &:before,
-        &:after {
-            border-radius: 9999px;
-        }
+    &:after {
+      content: '';
+      width: 12px;
+      height: 12px;
     }
+  }
+
+  label.radio-label {
+    &:before,
+    &:after {
+      border-radius: 9999px;
+    }
+  }
 }
 
 .radio {
-    input:checked ~ label.radio-label {
-        &:after {
-            left: 3px;
-        }
+  input:checked ~ label.radio-label {
+    &:after {
+      left: 3px;
     }
+  }
 
-    input:not(:disabled):not(:checked) ~ label.radio-label:hover {
-        &:before {
-            @include hoverRules()
-        }
+  input:not(:disabled):not(:checked) ~ label.radio-label:hover {
+    &:before {
+      @include hoverRules()
     }
-      
+  }
+
 }
 
 .radio-tile {
-    input:checked ~ label.radio-label {
-        &:after {
-            top: 18px;
-            right: 18px;
-        }
+  input:checked ~ label.radio-label {
+    &:after {
+      top: 18px;
+      right: 18px;
     }
+  }
 
-    input:checked:disabled ~ label.radio-label {
-        &:after {
-            background-color: getColor('neutral');
-            top: 19px;
-            right: 19px;
-        }
+  input:checked:disabled ~ label.radio-label {
+    &:after {
+      background-color: getColor('neutral');
+      top: 19px;
+      right: 19px;
     }
+  }
 }

@@ -36,7 +36,7 @@ const Modal = ({
   size,
   hideCloseButton = false,
   trigger,
-  disableHandlingClickOutside = false,
+  unClosable = false,
   ...others
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
@@ -63,7 +63,7 @@ const Modal = ({
   }, [display, refsActions?.current.length])
 
   useEffect(() => {
-    if (display && !disableHandlingClickOutside) {
+    if (display && !unClosable) {
       document.addEventListener('mousedown', handleClickOutside)
     } else {
       document.removeEventListener('mousedown', handleClickOutside)
@@ -71,7 +71,7 @@ const Modal = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [display, disableHandlingClickOutside])
+  }, [display, unClosable])
 
   const classes = React.useMemo(
     () => hashClass(styled, clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),

@@ -14,4 +14,5 @@ export interface LinkProps extends Accessibility, Clickable, Dev, CommonProps {
   inline?: boolean
   inverted?: boolean
   blank?: boolean
+  title?: string
 }

@@ -13,26 +13,23 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param title {string} Title Modal
  * @param onClose {Function} Additionnal close custom function
  * @param onOpen {Function} Additionnal open custom function
- * @param bottom {boolean} Default true : Open modal from bottom
  * @param children {React.ReactNode}
- * @param fullwidth {boolean} Fullwidth Modal
  * @param onModalHide {Function} Callback on Hide
- * @param swipable {boolean} Swipable Native Modal
+ * @param unClosable {boolean} unClosable Native Modal
  */
 const Modal = ({
   children,
   active = false,
   onClose,
   onOpen,
-  bottom = true,
   onModalHide,
   hideCloseButton = false,
-  swipable = true,
+  unClosable = false,
   ...others
 }: ModalProps): JSX.Element => {
   const styles = StyleSheet.create({
     centeredView: {
-      justifyContent: bottom ? 'flex-end' : 'center',
+      justifyContent: 'flex-end',
       alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
@@ -41,7 +38,7 @@ const Modal = ({
       marginBottom: 30,
     },
     modalView: {
-      margin: bottom ? 0 : 20,
+      margin: 0,
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 6,
       padding: 17,
@@ -85,7 +82,7 @@ const Modal = ({
     },
     horizontalMargin: {
       marginTop: 50,
-      marginBottom: bottom ? 0 : 50,
+      marginBottom: 0,
     },
   })
 
@@ -135,14 +132,14 @@ const Modal = ({
           close(e)
         }}
         onModalHide={onModalHide}
-        swipeDirection={swipable ? 'down' : undefined}
+        swipeDirection={unClosable ? undefined : 'down'}
         isVisible={visible}
         statusBarTranslucent={true}
         style={{ width: '100%', padding: 0, margin: 0 }}
         {...others}
       >
-        <View style={[styles.overlay, bottom ? styles.bottomModal : styles.middleModal]}>
-          <TouchableOpacity activeOpacity={1} style={{ width: bottom ? 0 : 20, height: '100%' }} onPress={close} />
+        <View style={[styles.overlay, styles.bottomModal]}>
+          <TouchableOpacity activeOpacity={1} style={{ width: 0, height: '100%' }} onPress={close} />
           <View
             style={{
               display: 'flex',
@@ -170,13 +167,13 @@ const Modal = ({
               activeOpacity={1}
               style={{
                 width: '100%',
-                minHeight: bottom ? 0 : 50,
-                flexGrow: bottom ? 0 : 1,
+                minHeight: 0,
+                flexGrow: 0,
               }}
               onPress={close}
             />
           </View>
-          <TouchableOpacity onPress={close} activeOpacity={1} style={{ width: bottom ? 0 : 20, height: '100%' }} />
+          <TouchableOpacity onPress={close} activeOpacity={1} style={{ width: 0, height: '100%' }} />
         </View>
       </NativeModal>
     </>

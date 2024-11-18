@@ -1,7 +1,7 @@
 /**
  * Available Markup for Stepper Step Component
  */
-export enum StepperStepMarkup {
+export enum StepMarkup {
   P = 'p',
   SPAN = 'span',
   DIV = 'div',
@@ -11,4 +11,4 @@ export enum StepperStepMarkup {
 /**
  * Available Markup values for Stepper Step Component
  */
-export type StepperStepMarkupValues = `${StepperStepMarkup}`
+export type StepMarkupValues = `${StepMarkup}`

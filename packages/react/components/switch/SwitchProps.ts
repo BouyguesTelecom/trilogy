@@ -1,5 +1,4 @@
 import { StatusProps } from '../../objects/facets/Status'
-import { Invertable } from '../../objects/facets/Invertable'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 export interface SwitchChangeEvent {
@@ -9,7 +8,7 @@ export interface SwitchChangeEvent {
 
 type SwitchEventHandler = (event: SwitchChangeEvent) => void
 
-export interface SwitchProps extends StatusProps, Invertable, CommonProps {
+export interface SwitchProps extends StatusProps, CommonProps {
   checked?: boolean
   onChange?: SwitchEventHandler
   onClick?: SwitchEventHandler

@@ -13,10 +13,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param onClick onClick event
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
- * @param marginless {boolean} delete margin
- * @param inverted {boolean} invert color SegmentControl
  */
-const SegmentControl = ({ children, onClick, activeIndex, inverted, ...others }: SegmentControlProps): JSX.Element => {
+const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentControlProps): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
@@ -58,7 +56,6 @@ const SegmentControl = ({ children, onClick, activeIndex, inverted, ...others }:
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           children.map((child: any, index: number) => {
             const props = {
-              inverted: Boolean(isActive(index, child.props.active) && inverted) || false,
               active: Boolean(isActive(index, child.props.active)) || false,
               disabled: child.props.disabled,
               key: index,
