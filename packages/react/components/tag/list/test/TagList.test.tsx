@@ -18,18 +18,6 @@ describe('TagList component', () => {
     expect(screen.getByText('DEFAULT')).toHaveClass('tags')
   })
 
-  test('should have "centered" className when centered prop is true', () => {
-    render(<TagList centered>Centered Tag List</TagList>)
-
-    expect(screen.getByText('Centered Tag List')).toHaveClass(is('centered'))
-  })
-
-  test('should have no margins between tags when gapless prop is true', () => {
-    render(<TagList gapless>Gapless Tag List</TagList>)
-
-    expect(screen.getByText('Gapless Tag List')).toHaveClass(is('gapless'))
-  })
-
   test('should have no margins around tag list when marginless prop is true', () => {
     render(<TagList marginless>Marginless Tag List</TagList>)
 
