@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { RowsProps } from './RowsProps'
+import React from 'react'
+
+import { RowsProps } from '@/components/rows/RowsProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Rows Component
@@ -12,10 +12,7 @@ import { RowsProps } from './RowsProps'
  * - ------------------- WEB PROPERTIES -------------------------
  * @param className {string} additionnal CSS Classes
  */
-const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, gapless, ...others } = props
-  const { styled } = useTrilogyContext()
-
+const Rows = ({ className, gapless, ...others }: RowsProps, ref: React.Ref<HTMLDivElement>) => {
   return <div ref={ref} className={hashClass(clsx('rows', gapless && is('gapless'), className))} {...others} />
-})
-export default Rows
+}
+export default React.forwardRef(Rows)

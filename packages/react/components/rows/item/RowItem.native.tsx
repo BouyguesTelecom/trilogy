@@ -1,19 +1,16 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { RowsItemProps } from "./RowItemProps"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { RowsContext } from "../Rows.native"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { RowsItemProps } from '@/components/rows/item/RowItemProps'
+import { RowsContext } from '@/components/rows/Rows.native'
 
 /**
  * Rows Item Component
  * @param narrow {boolean} Align same elements horizontaly
  * @param children {React.ReactNode}
  */
-const RowItem = ({
-  children,
-  narrow,
-  ...others
-}: RowsItemProps): JSX.Element => {
+const RowItem = ({ children, narrow, ...others }: RowsItemProps, ref: React.Ref<View>): JSX.Element => {
   const { gapless } = React.useContext(RowsContext)
 
   const styles = StyleSheet.create({
@@ -25,7 +22,7 @@ const RowItem = ({
   })
 
   return (
-    <View style={styles.rowItem} {...others}>
+    <View style={styles.rowItem} ref={ref} {...others}>
       {children}
     </View>
   )
@@ -33,4 +30,4 @@ const RowItem = ({
 
 RowItem.displayName = ComponentName.RowsItem
 
-export default RowItem
+export default React.forwardRef(RowItem)

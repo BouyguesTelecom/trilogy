@@ -1,4 +1,2 @@
-import Rows from './Rows'
-import RowItem from './item'
-
-export { Rows, RowItem }
+export { default as Rows } from '@/components/rows/Rows'
+export { default as RowItem } from '@/components/rows/item'
