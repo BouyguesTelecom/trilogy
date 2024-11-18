@@ -1,6 +1,8 @@
-import { StatusProps, StatusState, StatusStateValues, AlignableProps } from '../../../objects'
 import React from 'react'
-import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
+
+import { ProgressRadialItemProps } from '@/components/progress/radial/item/ProgressRadialItemProps'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { StatusProps, StatusState, StatusStateValues } from '@/objects/facets/Status'
 
 /**
  * Progress Radial Interface

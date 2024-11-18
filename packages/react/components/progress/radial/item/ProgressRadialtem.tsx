@@ -1,15 +1,16 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ProgressRadialItemProps } from './ProgressRadialItemProps'
+import React from 'react'
 
-const ProgressRadialItem = ({ color, className }: ProgressRadialItemProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+import { ProgressRadialItemProps } from '@/components/progress/radial/item/ProgressRadialItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
+const ProgressRadialItem = (
+  { color, className }: ProgressRadialItemProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(clsx(`progress-circle-slice progress-circle-background-${color}`, className))
 
-  return <div className={classes}></div>
+  return <div className={classes} ref={ref}></div>
 }
 
-export default ProgressRadialItem
+export default React.forwardRef(ProgressRadialItem)

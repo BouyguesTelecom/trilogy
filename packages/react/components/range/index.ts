@@ -1,3 +1,1 @@
-import Range from './Range'
-
-export { Range }
+export { default as Range } from '@/components/range/Range'

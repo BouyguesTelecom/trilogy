@@ -1,12 +1,13 @@
-import * as React from "react"
-import { Platform, StyleSheet, View } from "react-native"
-import { ProgressRadialProps } from "./ProgressRadialProps"
-import { AnimatedCircularProgress } from "./react-native-circular-progress"
-import { Text, TextLevels } from "@/components/text"
-import { getAlignStyle, TypographyAlign, } from "@/objects"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import ContentLoader, { Circle } from "react-content-loader/native"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import ContentLoader, { Circle } from 'react-content-loader/native'
+import { Platform, StyleSheet, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressRadialProps } from '@/components/progress/radial/ProgressRadialProps'
+import { AnimatedCircularProgress } from '@/components/progress/radial/react-native-circular-progress'
+import { Text, TextLevels } from '@/components/text'
+import { getAlignStyle, TypographyAlign } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Progress Radial component
@@ -22,19 +23,22 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param align {Alignable} Progress Radial Alignement
  * @param skeleton {boolean} Skeleton Progress Radial
  */
-const ProgressRadial = ({
-  percent,
-  label,
-  description,
-  status,
-  full,
-  disk,
-  secondPercent,
-  secondStatus,
-  align,
-  skeleton,
-  ...others
-}: ProgressRadialProps): JSX.Element => {
+const ProgressRadial = (
+  {
+    percent,
+    label,
+    description,
+    status,
+    full,
+    disk,
+    secondPercent,
+    secondStatus,
+    align,
+    skeleton,
+    ...others
+  }: ProgressRadialProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.INFO)
   const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = percent || 0
@@ -48,14 +52,14 @@ const ProgressRadial = ({
       alignSelf: getAlignStyle(align),
     },
     label: {
-      textAlign: "center",
+      textAlign: 'center',
       fontSize: 20,
-      fontWeight: "600",
+      fontWeight: '600',
       paddingTop: 8,
     },
     description: {
-      alignSelf: "center",
-      fontWeight: "500",
+      alignSelf: 'center',
+      fontWeight: '500',
     },
     disk: {
       width: progressRadialWidth,
@@ -65,32 +69,32 @@ const ProgressRadial = ({
     },
     labelDisk: {
       color: getColorStyle(TrilogyColor.FONT),
-      textAlign: "center",
+      textAlign: 'center',
       fontSize: 20,
-      fontWeight: "500",
+      fontWeight: '500',
     },
     descriptionDisk: {
       color: getColorStyle(TrilogyColor.FONT),
-      textAlign: "center",
-      fontWeight: "400",
+      textAlign: 'center',
+      fontWeight: '400',
     },
     alignCenter: {
-      alignItems: "center",
-      justifyContent: "center",
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     skeleton: {
       width: progressRadialWidth,
       height: progressRadialWidth,
       borderRadius: progressRadialSkeletonRadius,
       backgroundColor: getColorStyle(TrilogyColor.DISABLED_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
     },
   })
 
   const ProgressRadialSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{ opacity: 0 }} />
-      {Platform.OS === "android" && (
+      <View style={{ opacity: 0 }} ref={ref} />
+      {Platform.OS === 'android' && (
         <View>
           <Circle cx='50' cy='50' r='50' />
         </View>
@@ -104,23 +108,19 @@ const ProgressRadial = ({
 
   if (disk) {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} ref={ref}>
         <View style={[styles.disk, styles.alignCenter]} {...others}>
-          {label && typeof label.valueOf() === "string" ? (
+          {label && typeof label.valueOf() === 'string' ? (
             <Text style={styles.labelDisk} level={TextLevels.TWO}>
-              {label || ""}
+              {label || ''}
             </Text>
           ) : (
             label
           )}
 
-          {description && typeof description.valueOf() === "string" ? (
-            <Text
-              style={styles.descriptionDisk}
-              level={TextLevels.THREE}
-              typo={TypographyAlign.TEXT_CENTERED}
-            >
-              {description || ""}
+          {description && typeof description.valueOf() === 'string' ? (
+            <Text style={styles.descriptionDisk} level={TextLevels.THREE} typo={TypographyAlign.TEXT_CENTERED}>
+              {description || ''}
             </Text>
           ) : (
             description
@@ -131,7 +131,7 @@ const ProgressRadial = ({
   }
 
   return (
-    <View style={styles.container} {...others}>
+    <View style={styles.container} ref={ref} {...others}>
       <AnimatedCircularProgress
         size={90}
         width={7}
@@ -144,17 +144,17 @@ const ProgressRadial = ({
       >
         {() => (
           <View style={styles.alignCenter}>
-            {label && typeof label.valueOf() === "string" ? (
+            {label && typeof label.valueOf() === 'string' ? (
               <Text style={styles.label} level={TextLevels.TWO}>
-                {label || ""}
+                {label || ''}
               </Text>
             ) : (
               <View>{label}</View>
             )}
 
-            {description && typeof description.valueOf() === "string" ? (
+            {description && typeof description.valueOf() === 'string' ? (
               <Text style={styles.description} level={TextLevels.FOUR}>
-                {description || ""}
+                {description || ''}
               </Text>
             ) : (
               <View>{description}</View>
@@ -168,4 +168,4 @@ const ProgressRadial = ({
 
 ProgressRadial.displayName = ComponentName.ProgressRadial
 
-export default ProgressRadial
+export default React.forwardRef(ProgressRadial)

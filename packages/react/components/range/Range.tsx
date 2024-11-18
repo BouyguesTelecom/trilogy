@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import clsx from 'clsx'
-import * as React from 'react'
-import { RangeProps } from './RangeProps'
+import React from 'react'
+
+import { useRange } from '@/components/range/hook/useRange'
+import { RangeProps } from '@/components/range/RangeProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Range Component
@@ -26,82 +26,38 @@ import { RangeProps } from './RangeProps'
  * @param onChangeMax {function} on change max cursor
  * @param testId {string} Test Id for Test Integration
  */
-const Range = ({
-  min,
-  max,
-  label,
-  valueCursorMin,
-  valueCursorMax,
-  labelValueCursorMin,
-  labelValueCursorMax,
-  onChangeMin,
-  onChangeMax,
-  nameMin,
-  idMin,
-  nameMax,
-  idMax,
-  testId,
-  gap = 0,
-}: RangeProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const [cursorMin, setCursorMin] = React.useState<number>(valueCursorMin ?? 0)
-  const [cursorMax, setCursorMax] = React.useState<number>(valueCursorMax ?? max)
-  const refTrack = React.useRef(null)
-
-  React.useEffect(() => {
-    if (refTrack.current) {
-      const track = refTrack.current as HTMLElement
-      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${
-        (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMin / max) * 100}% , ${getColorStyle(
-        TrilogyColor.MAIN_FADE,
-      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${(cursorMax / max) * 100}%) `
-    }
-  }, [cursorMin, cursorMax])
-
-  React.useEffect(() => {
-    setCursorMin(valueCursorMin || 0)
-  }, [valueCursorMin])
-
-  React.useEffect(() => {
-    setCursorMax(valueCursorMax || max)
-  }, [valueCursorMax])
-
-  const handleChangeCursorMin = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
-    },
-    [cursorMax, cursorMin],
-  )
-
-  const handleChangeCursorMax = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (Number(e.target.value) > cursorMin + gap) setCursorMax(Number(e.target.value))
-    },
-    [cursorMax, cursorMin],
-  )
-
-  const handleMouseUpMin = React.useCallback(() => {
-    if (onChangeMin) {
-      onChangeMin({
-        inputName: nameMin,
-        inputValue: cursorMin,
-      })
-    }
-  }, [onChangeMin, nameMin, cursorMin])
-
-  const handleMouseUpMax = React.useCallback(() => {
-    if (onChangeMax) {
-      onChangeMax({
-        inputName: nameMax,
-        inputValue: cursorMax,
-      })
-    }
-  }, [onChangeMax, nameMax, cursorMax])
+const Range = (
+  {
+    min,
+    max,
+    label,
+    valueCursorMin,
+    valueCursorMax,
+    labelValueCursorMin,
+    labelValueCursorMax,
+    onChangeMin,
+    onChangeMax,
+    nameMin,
+    idMin,
+    nameMax,
+    idMax,
+    testId,
+    gap = 0,
+  }: RangeProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
+  const {
+    refTrack,
+    cursorMax,
+    cursorMin,
+    handleMouseUpMin,
+    handleChangeCursorMin,
+    handleMouseUpMax,
+    handleChangeCursorMax,
+  } = useRange({ valueCursorMin, valueCursorMax, max, gap, onChangeMin, onChangeMax, nameMin, nameMax })
 
   return (
-    <div data-testid={testId} className={hashClass(clsx('range-container'))}>
+    <div data-testid={testId} className={hashClass(clsx('range-container'))} ref={ref}>
       <label className={hashClass(clsx('range-label'))}>{label}</label>
       <div className={hashClass(clsx('range'))}>
         <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>
@@ -146,4 +102,4 @@ const Range = ({
   )
 }
 
-export default Range
+export default React.forwardRef(Range)

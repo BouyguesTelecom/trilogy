@@ -1,4 +1,4 @@
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/objects/facets/Color'
 
 export interface ProgressRadialItemProps {
   children?: React.ReactNode

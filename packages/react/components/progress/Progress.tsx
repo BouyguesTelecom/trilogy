@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
-import { has, is } from '@/services/index'
 import clsx from 'clsx'
-import * as React from 'react'
-import { Columns, ColumnsItem } from '../columns'
-import { Text, TextLevels } from '../text'
-import { ProgressProps } from './ProgressProps'
+import React from 'react'
+
+import { Columns, ColumnsItem } from '@/components/columns'
+import { ProgressProps } from '@/components/progress/ProgressProps'
+import { Text, TextLevels } from '@/components/text'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { has, is } from '@/services/classify'
 
 /**
  * Progress component
@@ -22,8 +22,8 @@ import { ProgressProps } from './ProgressProps'
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
+const Progress = (
+  {
     children,
     className,
     percent,
@@ -35,10 +35,9 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
     firstExtremLegend,
     secondExtremLegend,
     ...others
-  } = props
-
-  const { styled } = useTrilogyContext()
-
+  }: ProgressProps,
+  ref: React.LegacyRef<HTMLDivElement>,
+) => {
   const classes = hashClass(
     clsx(
       'progress',
@@ -81,6 +80,6 @@ const Progress = React.forwardRef((props: ProgressProps, ref: React.LegacyRef<HT
       )}
     </>
   )
-})
+}
 
-export default Progress
+export default React.forwardRef(Progress)

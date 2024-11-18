@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
-import { is } from '@/services/index'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ProgressItemProps } from './ProgressItemProps'
+import React from 'react'
+
+import { ProgressItemProps } from '@/components/progress/item/ProgressItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
 
 /**
  * Progress Item component - Only if stacked
@@ -17,11 +17,10 @@ import { ProgressItemProps } from './ProgressItemProps'
  * @param minPercent {number} Default min percent is 100
  * @param maxPercent {number} Default max percent is 100
  */
-const ProgressItem = React.forwardRef((props: ProgressItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, ...others } = props
-
-  const { styled } = useTrilogyContext()
-
+const ProgressItem = (
+  { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, ...others }: ProgressItemProps,
+  ref: React.LegacyRef<HTMLDivElement>,
+) => {
   const classes = hashClass(
     clsx('progress-bar', status && is(getStatusClassName(status)), !status && is('primary'), className),
   )
@@ -39,6 +38,6 @@ const ProgressItem = React.forwardRef((props: ProgressItemProps, ref: React.Lega
       {...others}
     />
   )
-})
+}
 
-export default ProgressItem
+export default React.forwardRef(ProgressItem)

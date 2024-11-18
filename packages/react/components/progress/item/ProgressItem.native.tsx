@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+import type { View as ViewType } from 'react-native'
 import { Animated } from 'react-native'
-import { ProgressItemProps } from './ProgressItemProps'
+
 import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressItemProps } from '@/components/progress/item/ProgressItemProps'
 
 /**
  * Progress Item component - Only if stacked
@@ -10,7 +12,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode}
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProps): JSX.Element => {
+const ProgressItem = (
+  { children, percent, status, ...others }: ProgressItemProps,
+  ref: React.Ref<ViewType>,
+): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const givenProps = others as any
   const givenstyle = givenProps.style
@@ -34,7 +39,7 @@ const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProp
   })
 
   return (
-    <Animated.View {...others} style={[{ width }, ...givenstyle]}>
+    <Animated.View ref={ref} style={[{ width }, ...givenstyle]} {...others}>
       {children}
     </Animated.View>
   )
@@ -42,4 +47,4 @@ const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProp
 
 ProgressItem.dispmayName = ComponentName.ProgressItem
 
-export default ProgressItem
+export default React.forwardRef(ProgressItem)

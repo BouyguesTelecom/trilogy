@@ -1,4 +1,8 @@
 import { IconName } from '@/components/icon'
+import { Progress, ProgressItem, ProgressRadial } from '@/components/progress'
+import { Radio } from '@/components/radio'
+import { Range } from '@/components/range'
+import { RowItem, Rows } from '@/components/rows'
 import { Section } from '@/components/section'
 import { SegmentControl, SegmentControlItem } from '@/components/segment-control'
 import { Select, SelectOption } from '@/components/select'
@@ -7,11 +11,12 @@ import { Sticker } from '@/components/sticker'
 import { Switch } from '@/components/switch'
 import { Tabs, TabsItem } from '@/components/tabs'
 import { Tag, TagVariant } from '@/components/tag'
+import { Text, TextLevels } from '@/components/text'
 import { Timeline, TimelineContent, TimelineItem, TimelineMarker } from '@/components/timeline'
 import { View } from '@/components/view'
-import { StatusState, VariantState } from '@/objects'
+import { StatusState, TypographyAlign, VariantState } from '@/objects'
 import { Textarea } from '@trilogy-ds/react/components/textarea'
-import { Title } from '@trilogy-ds/react/components/title'
+import { Title, TitleLevels } from '@trilogy-ds/react/components/title'
 import '@trilogy-ds/styles/dist/default/trilogy.css'
 import styles from './page.module.css'
 
@@ -120,6 +125,57 @@ export default function Home() {
               <SegmentControlItem onClick={() => alert('Équipements')}>Item 3</SegmentControlItem>
               <SegmentControlItem disabled>Item 4</SegmentControlItem>
             </SegmentControl>
+
+            <Range
+              min={0}
+              max={100}
+              labelValueCursorMin={'€'}
+              labelValueCursorMax={'€'}
+              valueCursorMin={0}
+              valueCursorMax={50}
+              label='Ceci est un label'
+              idMin='min'
+              idMax='max'
+              nameMax='max'
+              nameMin='min'
+              onChangeMin={(e) => console.log(e)}
+              onChangeMax={(e) => console.log(e)}
+              gap={0}
+            />
+
+            <Rows>
+              <RowItem>
+                <Text typo={TypographyAlign.TEXT_CENTERED}>
+                  Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                </Text>
+              </RowItem>
+            </Rows>
+
+            <Radio
+              tile
+              iconTile={IconName.CHECK_CIRCLE}
+              label='Lorem ipsum dolor'
+              name='radio1'
+              value='default value 1'
+              // eslint-disable-next-line no-console
+              onChange={(e) => console.log(e.radioValue, e.radioChecked)}
+            />
+
+            <ProgressRadial percent={30} secondPercent={30}>
+              <Title level={TitleLevels.THREE} marginless>
+                60
+              </Title>
+              <Text level={TextLevels.ONE} marginless>
+                / 100 Go
+              </Text>
+            </ProgressRadial>
+
+            <Progress stacked>
+              <ProgressItem percent={15} status={StatusState.SUCCESS} />
+              <ProgressItem percent={15} status={StatusState.INFO} />
+              <ProgressItem percent={15} status={StatusState.WARNING} />
+              <ProgressItem percent={15} status={StatusState.ERROR} />
+            </Progress>
           </View>
         </Section>
       </main>
