@@ -1,10 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useState } from 'react'
-import SegmentControlItem from './item'
-import { SegmentControlProps } from './SegmentControlProps'
+import React from 'react'
+
+import { useSegmentControl } from '@/components/segment-control/hook/useSegmentControl'
+import SegmentControlItem from '@/components/segment-control/item'
+import { SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * SegmentControl Component
@@ -18,18 +19,12 @@ import { SegmentControlProps } from './SegmentControlProps'
  * - -------------- NATIVE PROPERTIES ---------------
  * @param inverted {boolean} invert color SegmentControl
  */
-const SegmentControl = ({
-  className,
-  onClick,
-  disabled,
-  marginless,
-  children,
-  activeIndex,
-}: SegmentControlProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const SegmentControl = (
+  { className, onClick, disabled, marginless, children, activeIndex }: SegmentControlProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('segmented-control', marginless && is('marginless'), className))
-  const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
+  const { activateIndex, handleClick } = useSegmentControl({ activeIndex, disabled, onClick })
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
     if (typeof childPropsActive !== 'undefined' && !activateIndex) {
@@ -40,34 +35,18 @@ const SegmentControl = ({
     }
   }
 
-  const toggleActive = (e: React.MouseEvent, index: number) => {
-    if (disabled) return false
-    setActivateIndex(index)
-    if (onClick) onClick(e)
-  }
-
-  React.useEffect(() => {
-    setActivateIndex(activateIndex)
-  }, [activateIndex])
-
   return (
-    <div className={classes}>
+    <div className={classes} ref={ref}>
       {children &&
         Array.isArray(children) &&
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        children.map((child: any, index: number) => {
+        children.map((child, index) => {
           const props = {
             active: Boolean(isActive(index, child.props.active)) || false,
             disabled: child.props.disabled,
             key: index,
-            onClick: (event: React.MouseEvent) => {
-              toggleActive(event, index)
-              if (child) {
-                if (child.props.onClick) {
-                  child.props.onClick(event)
-                }
-              }
-            },
+            onClick: handleClick
+              ? (e: React.MouseEvent<Element, MouseEvent>) => handleClick(e, index, child)
+              : undefined,
           }
 
           return child && typeof child.valueOf() === 'string' ? (
@@ -87,4 +66,4 @@ const SegmentControl = ({
   )
 }
 
-export default SegmentControl
+export default React.forwardRef(SegmentControl)

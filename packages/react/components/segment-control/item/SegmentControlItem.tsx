@@ -1,8 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
+import React from 'react'
+
+import { useSegmentControlItem } from '@/components/segment-control/item/hook/useSegmentControlItem'
+import { SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * SegmentControl Item Component
@@ -14,36 +15,21 @@ import { SegmentControlItemProps } from './SegmentControlItemProps'
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  */
-const SegmentControlItem = ({
-  active,
-  onClick,
-  disabled,
-  className,
-  children,
-}: SegmentControlItemProps): JSX.Element => {
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
-
-  useEffect(() => {
-    setActiveItem(active || false)
-  }, [active])
+const SegmentControlItem = (
+  { active, onClick, disabled, className, children }: SegmentControlItemProps,
+  ref: React.Ref<HTMLButtonElement>,
+): JSX.Element => {
+  const { activeItem, handleClick } = useSegmentControlItem({ active, onClick })
 
   return (
     <button
       disabled={disabled}
       className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
-      onClick={(e: React.MouseEvent) => {
-        const target = e.target as HTMLFormElement
-        setActiveItem(active || false)
-        target.active = active
-        if (onClick) {
-          onClick(e)
-        }
-      }}
+      onClick={handleClick}
     >
       {children}
     </button>
   )
 }
 
-export default SegmentControlItem
+export default React.forwardRef(SegmentControlItem)

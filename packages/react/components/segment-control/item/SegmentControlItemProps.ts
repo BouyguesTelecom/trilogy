@@ -1,10 +1,10 @@
-import { Clickable } from '@/objects'
+import { Clickable } from '@/objects/facets/Clickable'
 
 /**
  * SegmentedControl Item Interface
  */
 export interface SegmentControlItemProps extends Clickable {
-  children: React.ReactChild
+  children: React.ReactNode
   active?: boolean
   disabled?: boolean
   inverted?: boolean

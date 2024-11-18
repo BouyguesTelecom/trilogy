@@ -1,4 +1,5 @@
 import { IconName } from '@/components/icon'
+import { SegmentControl, SegmentControlItem } from '@/components/segment-control'
 import { Select, SelectOption } from '@/components/select'
 import { Stepper, StepperStep } from '@/components/stepper'
 import { Sticker } from '@/components/sticker'
@@ -108,6 +109,15 @@ export default function Home() {
             <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
             <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
           </Select>
+
+          <SegmentControl>
+            <SegmentControlItem active onClick={() => alert('Appels')}>
+              Item 1
+            </SegmentControlItem>
+            <SegmentControlItem onClick={() => alert('SMS')}>Item 2</SegmentControlItem>
+            <SegmentControlItem onClick={() => alert('Équipements')}>Item 3</SegmentControlItem>
+            <SegmentControlItem disabled>Item 4</SegmentControlItem>
+          </SegmentControl>
         </View>
       </main>
     </div>
