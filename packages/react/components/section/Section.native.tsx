@@ -1,9 +1,10 @@
-import * as React from "react"
-import { ImageBackground, StyleSheet, View } from "react-native"
-import { SectionProps } from "./SectionProps"
-import { AutoLayoutWrapper } from "@/components/autolayout"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { ImageBackground, StyleSheet, View } from 'react-native'
+
+import { AutoLayoutWrapper } from '@/components/autolayout'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { SectionProps } from '@/components/section/SectionProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -15,15 +16,18 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param fullwidth {boolean} Fullwidth section
  * @param autolayout {boolean} Apply auto-layout rules
  **/
-const Section = ({
-  autolayout = true,
-  backgroundColor,
-  backgroundSrc,
-  children,
-  paddingless,
-  verticalPaddingless,
-  fullwidth,
-}: SectionProps): JSX.Element => {
+const Section = (
+  {
+    autolayout = true,
+    backgroundColor,
+    backgroundSrc,
+    children,
+    paddingless,
+    verticalPaddingless,
+    fullwidth,
+  }: SectionProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
@@ -33,25 +37,21 @@ const Section = ({
       paddingBottom: paddingless || verticalPaddingless ? 0 : 32,
       paddingRight: paddingless ? 0 : 24,
       paddingLeft: paddingless ? 0 : 24,
-      width: fullwidth ? "100%" : "auto",
+      width: fullwidth ? '100%' : 'auto',
     },
     sectionImage: {
-      width: "100%",
+      width: '100%',
       minHeight: 100,
-      height: "auto",
+      height: 'auto',
     },
   })
 
   return (
-    <View style={styles.section}>
+    <View style={styles.section} ref={ref}>
       {backgroundSrc ? (
         <ImageBackground
           style={styles.sectionImage}
-          source={
-            typeof backgroundSrc === "number"
-              ? backgroundSrc
-              : { uri: backgroundSrc }
-          }
+          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
         >
           <AutoLayoutWrapper {...{ autolayout }}>{children}</AutoLayoutWrapper>
         </ImageBackground>
@@ -64,4 +64,4 @@ const Section = ({
 
 Section.displayName = ComponentName.Section
 
-export default Section
+export default React.forwardRef(Section)

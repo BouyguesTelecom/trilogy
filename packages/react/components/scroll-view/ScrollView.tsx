@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { ScrollDirectionEnum } from '@/objects'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ScrollViewProps } from './ScrollViewProps'
+import React from 'react'
+
+import { ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { ScrollDirectionEnum } from '@/objects/facets/ScrollDirection'
+import { is } from '@/services/classify'
 
 /**
  * Scroll View Component
@@ -22,30 +22,29 @@ import { ScrollViewProps } from './ScrollViewProps'
  * @param scrollDirection {Direction} Scroll vertically in default
  * @param onRefresh {void} On Refreshing ScrollView
  */
-const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
-  ({ id, scrollDirection, children }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
-    const scrollDirectionClassName = () => {
-      switch (scrollDirection) {
-        case ScrollDirectionEnum?.HORIZONTAL:
-          return is('horizontal')
-        case ScrollDirectionEnum?.VERTICAL:
-          return is('vertical')
-        default:
-          return ''
-      }
+const ScrollView = (
+  { id, scrollDirection, children }: ScrollViewProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
+  const scrollDirectionClassName = () => {
+    switch (scrollDirection) {
+      case ScrollDirectionEnum?.HORIZONTAL:
+        return is('horizontal')
+      case ScrollDirectionEnum?.VERTICAL:
+        return is('vertical')
+      default:
+        return ''
     }
+  }
 
-    const classes = hashClass(clsx('scroll-view', scrollDirection && scrollDirectionClassName()))
-    return (
-      <div ref={ref} className={classes} id={id}>
-        {children}
-      </div>
-    )
-  },
-)
+  const classes = hashClass(clsx('scroll-view', scrollDirection && scrollDirectionClassName()))
+  return (
+    <div ref={ref} className={classes} id={id}>
+      {children}
+    </div>
+  )
+}
 
 ScrollView.displayName = 'ScrollView'
 
-export default ScrollView
+export default React.forwardRef(ScrollView)

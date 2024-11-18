@@ -1,3 +1,1 @@
-import ScrollView from './ScrollView'
-
-export { ScrollView }
+export { default as ScrollView } from '@/components/scroll-view/ScrollView'

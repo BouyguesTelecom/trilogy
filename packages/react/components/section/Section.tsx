@@ -1,10 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects'
-import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { SectionProps } from './SectionProps'
+import React from 'react'
+
+import { SectionProps } from '@/components/section/SectionProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has, is } from '@/services/classify'
+import { useSection } from './hook/useSection'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -21,8 +22,8 @@ import { SectionProps } from './SectionProps'
  * - -------------- NATIVE PROPERTIES ---------------
  * @param autolayout {boolean} Apply auto-layout rules
  **/
-const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
+const Section = (
+  {
     className,
     skeleton,
     backgroundColor,
@@ -32,14 +33,10 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
     verticalPaddingless,
     fullwidth,
     ...others
-  } = props
-
-  const { styled } = useTrilogyContext()
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
+  }: SectionProps,
+  ref: React.Ref<HTMLDivElement>,
+) => {
+  const { isLoading } = useSection({ skeleton })
 
   const _className = hashClass(
     clsx(
@@ -65,6 +62,6 @@ const Section = React.forwardRef((props: SectionProps, ref: React.LegacyRef<HTML
       {...others}
     />
   )
-})
+}
 
-export default Section
+export default React.forwardRef(Section)

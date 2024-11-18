@@ -1,4 +1,5 @@
 import { IconName } from '@/components/icon'
+import { Section } from '@/components/section'
 import { SegmentControl, SegmentControlItem } from '@/components/segment-control'
 import { Select, SelectOption } from '@/components/select'
 import { Stepper, StepperStep } from '@/components/stepper'
@@ -18,107 +19,109 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <View>
-          <Tag variant={TagVariant.WARNING}>Tag</Tag>
-          <Title>Je suis un titre SSR</Title>
-          <Textarea />
-          <Timeline>
-            <TimelineItem cancel>
-              <TimelineMarker iconName={IconName.CHECK} />
-              <TimelineContent
-                heading='20 September'
-                content='Modification de votre identifiant de connexion'
-                link='link'
-                contentLink='Check the email'
-              />
-            </TimelineItem>
-            <TimelineItem done>
-              <TimelineMarker iconName={IconName.CHECK} />
-              <TimelineContent
-                heading='20 September'
-                content='Modification de votre identifiant de connexion'
-                link='link'
-                contentLink='Check the email'
-              />
-            </TimelineItem>
-            <TimelineItem active>
-              <TimelineMarker iconName={IconName.CHECK} />
-              <TimelineContent
-                heading='20 September'
-                content='Modification de votre identifiant de connexion'
-                link='link'
-                contentLink='Check the email'
-              />
-            </TimelineItem>
-            <TimelineItem undone>
-              <TimelineMarker iconName={IconName.CHECK} />
-              <TimelineContent
-                heading='20 September'
-                content='Modification de votre identifiant de connexion'
-                link='link'
-                contentLink='Check the email'
-              />
-            </TimelineItem>
-          </Timeline>
+        <Section>
+          <View>
+            <Tag variant={TagVariant.WARNING}>Tag</Tag>
+            <Title>Je suis un titre SSR</Title>
+            <Textarea />
+            <Timeline>
+              <TimelineItem cancel>
+                <TimelineMarker iconName={IconName.CHECK} />
+                <TimelineContent
+                  heading='20 September'
+                  content='Modification de votre identifiant de connexion'
+                  link='link'
+                  contentLink='Check the email'
+                />
+              </TimelineItem>
+              <TimelineItem done>
+                <TimelineMarker iconName={IconName.CHECK} />
+                <TimelineContent
+                  heading='20 September'
+                  content='Modification de votre identifiant de connexion'
+                  link='link'
+                  contentLink='Check the email'
+                />
+              </TimelineItem>
+              <TimelineItem active>
+                <TimelineMarker iconName={IconName.CHECK} />
+                <TimelineContent
+                  heading='20 September'
+                  content='Modification de votre identifiant de connexion'
+                  link='link'
+                  contentLink='Check the email'
+                />
+              </TimelineItem>
+              <TimelineItem undone>
+                <TimelineMarker iconName={IconName.CHECK} />
+                <TimelineContent
+                  heading='20 September'
+                  content='Modification de votre identifiant de connexion'
+                  link='link'
+                  contentLink='Check the email'
+                />
+              </TimelineItem>
+            </Timeline>
 
-          <Tabs activeIndex={0}>
-            <TabsItem iconName={IconName.BELL}>One</TabsItem>
-            <TabsItem iconName={IconName.BELL}>Two</TabsItem>
-            <TabsItem iconName={IconName.BELL}>Three</TabsItem>
-          </Tabs>
+            <Tabs activeIndex={0}>
+              <TabsItem iconName={IconName.BELL}>One</TabsItem>
+              <TabsItem iconName={IconName.BELL}>Two</TabsItem>
+              <TabsItem iconName={IconName.BELL}>Three</TabsItem>
+            </Tabs>
 
-          <Tabs inverted>
-            <TabsItem iconName={IconName.BELL} active>
-              Centered
-            </TabsItem>
-            <TabsItem iconName={IconName.BELL}>Two</TabsItem>
-            <TabsItem iconName={IconName.BELL}>Three</TabsItem>
-          </Tabs>
+            <Tabs inverted>
+              <TabsItem iconName={IconName.BELL} active>
+                Centered
+              </TabsItem>
+              <TabsItem iconName={IconName.BELL}>Two</TabsItem>
+              <TabsItem iconName={IconName.BELL}>Three</TabsItem>
+            </Tabs>
 
-          <Switch
-            status={StatusState.ERROR}
-            label='Switch one'
-            name='switch one'
-            onChange={(e) => {
-              console.log('SwitchState =>', e.switchState)
-              console.log('SwitchSName =>', e.switchName)
-            }}
-            onClick={(e) => {
-              console.log('SwitchState =>', e.switchState)
-              console.log('SwitchSName =>', e.switchName)
-            }}
-          />
-          <Sticker>Sticker</Sticker>
-          <Sticker variant={'ACCENT'}>Sticker</Sticker>
-          <Sticker variant={'INFO'}>Sticker</Sticker>
-          <Sticker variant={VariantState.ACCENT} small>
-            Sticker
-          </Sticker>
+            <Switch
+              status={StatusState.ERROR}
+              label='Switch one'
+              name='switch one'
+              onChange={(e) => {
+                console.log('SwitchState =>', e.switchState)
+                console.log('SwitchSName =>', e.switchName)
+              }}
+              onClick={(e) => {
+                console.log('SwitchState =>', e.switchState)
+                console.log('SwitchSName =>', e.switchName)
+              }}
+            />
+            <Sticker>Sticker</Sticker>
+            <Sticker variant={'ACCENT'}>Sticker</Sticker>
+            <Sticker variant={'INFO'}>Sticker</Sticker>
+            <Sticker variant={VariantState.ACCENT} small>
+              Sticker
+            </Sticker>
 
-          <Stepper>
-            <StepperStep done iconName={IconName.EYE} label='Recup' step={1} />
-            <StepperStep current label='Compléments' step={2} />
-            <StepperStep error iconName={IconName.SEARCH} label='Coordonate' step={3} />
-            <StepperStep label='Livraison' step={4} />
-            <StepperStep iconName={IconName.EYE} label='Confirm' step={5} />
-          </Stepper>
+            <Stepper>
+              <StepperStep done iconName={IconName.EYE} label='Recup' step={1} />
+              <StepperStep current label='Compléments' step={2} />
+              <StepperStep error iconName={IconName.SEARCH} label='Coordonate' step={3} />
+              <StepperStep label='Livraison' step={4} />
+              <StepperStep iconName={IconName.EYE} label='Confirm' step={5} />
+            </Stepper>
 
-          <Select name='option' label='label' id='id' iconName={IconName.ALERT} native>
-            <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
-            <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
-            <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
-            <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
-          </Select>
+            <Select name='option' label='label' id='id' iconName={IconName.ALERT} native>
+              <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
+              <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
+              <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
+              <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
+            </Select>
 
-          <SegmentControl>
-            <SegmentControlItem active onClick={() => alert('Appels')}>
-              Item 1
-            </SegmentControlItem>
-            <SegmentControlItem onClick={() => alert('SMS')}>Item 2</SegmentControlItem>
-            <SegmentControlItem onClick={() => alert('Équipements')}>Item 3</SegmentControlItem>
-            <SegmentControlItem disabled>Item 4</SegmentControlItem>
-          </SegmentControl>
-        </View>
+            <SegmentControl>
+              <SegmentControlItem active onClick={() => alert('Appels')}>
+                Item 1
+              </SegmentControlItem>
+              <SegmentControlItem onClick={() => alert('SMS')}>Item 2</SegmentControlItem>
+              <SegmentControlItem onClick={() => alert('Équipements')}>Item 3</SegmentControlItem>
+              <SegmentControlItem disabled>Item 4</SegmentControlItem>
+            </SegmentControl>
+          </View>
+        </Section>
       </main>
     </div>
   )

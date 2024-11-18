@@ -1,3 +1,1 @@
-import Section from './Section'
-
-export { Section }
+export { default as Section } from '@/components/section/Section'
