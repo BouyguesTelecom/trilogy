@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { DimensionValue, StyleSheet, View } from 'react-native'
-import { TrilogyColor, getColorStyle } from '@/objects'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text } from '@/components/text'
 import { IValidationRules } from '@/components/input/InputProps'
-import { useGauge } from './hook/useGauge'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
+import { Text } from '@/components/text'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import { DimensionValue, StyleSheet, View } from 'react-native'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules

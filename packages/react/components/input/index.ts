@@ -1,6 +1,3 @@
-import Input from './Input'
-
-export * from './InputEnum'
-export * from './InputProps'
-
-export { Input }
+export { default as Input } from '@/components/input/Input'
+export * from '@/components/input/InputEnum'
+export * from '@/components/input/InputProps'

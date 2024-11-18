@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom'
 
 import { Input } from '@/components/input'
 import { SelectProps } from '@/components/select/SelectProps'
+import { useSelectDynamic } from '@/components/select/web/hooks/useSelectDynamic'
 import { hashClass } from '@/helpers'
-import { useSelectDynamic } from './hook/useSelectDynamic'
 
 const SelectDynamic = (
   {

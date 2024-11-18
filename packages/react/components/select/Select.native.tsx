@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import type { TextInput } from 'react-native'
+
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { Modal } from '@/components/modal'
-import { SelectProps, SelectedValue } from './SelectProps'
-import SelectOption from './option'
+import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
+import SelectOption from '@/components/select/option'
 
 /**
  * Select Component
@@ -18,18 +20,10 @@ import SelectOption from './option'
  * @param multiple {boolean} select multiple options
  * @param nullable {boolean} Unselect Select Option Item
  */
-const Select = ({
-  children,
-  id,
-  selected,
-  label,
-  iconName,
-  onChange,
-  disabled,
-  multiple,
-  nullable,
-  ...others
-}: SelectProps): JSX.Element => {
+const Select = (
+  { children, id, selected, label, iconName, onChange, disabled, multiple, nullable, ...others }: SelectProps,
+  ref: React.Ref<TextInput>,
+): JSX.Element => {
   const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
   const [selectedNames, setSelectedNames] = React.useState<string[]>([])
   const [display, setDisplay] = useState<boolean>(false)
@@ -57,9 +51,9 @@ const Select = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -152,6 +146,7 @@ const Select = ({
   return (
     <>
       <Input
+        ref={ref}
         onIconClick={handleOpenCloseModal}
         onClick={handleOpenCloseModal}
         disabled={disabled}
@@ -172,4 +167,4 @@ const Select = ({
 }
 
 Select.displayName = ComponentName.Select
-export default Select
+export default React.forwardRef(Select)

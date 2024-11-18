@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Accessibility, Dev } from '@/objects/facets'
-import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
+import type { FocusEventHandler, ReactNode } from 'react'
+import type { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
 
-import { FocusEventHandler, ReactNode } from 'react'
-import { IconName, IconNameValues } from '../icon'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -19,13 +17,15 @@ import {
   InputTextContentTypeValues,
   InputType,
   InputTypeValues,
-} from './InputEnum'
+} from '@/components/input/InputEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface InputChangeEventWeb {
   inputName: string
   inputValue: string
   inputSelectionStart: number | null
-  target:  EventTarget;
+  target: EventTarget
 }
 
 export interface InputChangeEventNative {
@@ -59,7 +59,7 @@ export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
   onChange?: InputChangeEventHandlerNative
-  onFocus?: (event:  React.BaseSyntheticEvent) => void
+  onFocus?: (event: React.BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 
@@ -69,7 +69,7 @@ export interface InputWebEvents {
   onKeyPress?: InputKeyboardEventHandler
   onIconClick?: InputClickEventHandler
   onClick?: InputClickEventHandler
-  onFocus?:FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
 }
 

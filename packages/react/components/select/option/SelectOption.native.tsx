@@ -1,13 +1,14 @@
-import {Columns, ColumnsItem} from '@/components/columns'
-import {ComponentName} from '@/components/enumsComponentsName'
-import {Icon, IconSize} from '@/components/icon'
-import {Text} from '@/components/text'
-import {TypographyBold} from '@/objects/Typography'
-import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
-import * as React from 'react'
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native'
-import {SelectOptionProps} from './SelectOptionProps'
-import {Alignable} from "@/objects";
+import React from 'react'
+import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
+
+import { Columns, ColumnsItem } from '@/components/columns'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
+import { Text } from '@/components/text'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 
 /**
  * Select Option Component
@@ -15,7 +16,10 @@ import {Alignable} from "@/objects";
  * @param label {string} Label value
  * @param children {React.ReactNode}
  */
-const SelectOption = ({ disabled, children, onClick, label, iconName, ...others }: SelectOptionProps): JSX.Element => {
+const SelectOption = (
+  { disabled, children, onClick, label, iconName, ...others }: SelectOptionProps,
+  ref: React.Ref<TouchableOpacity>,
+): JSX.Element => {
   const { checked } = others as { checked: string }
 
   const styles = React.useMemo(
@@ -23,9 +27,9 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
       StyleSheet.create({
         container: {
           backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || undefined,
-          width: Dimensions.get('screen').width-40,
+          width: Dimensions.get('screen').width - 40,
           paddingHorizontal: 16,
-          paddingVertical: 8
+          paddingVertical: 8,
         },
       }),
     [disabled],
@@ -50,36 +54,35 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
   }, [disabled])
 
   const columnLabelSize = React.useMemo(() => {
-   return iconName ? checked && 10 || 11 :  checked && 11 || 12
+    return iconName ? (checked && 10) || 11 : (checked && 11) || 12
   }, [iconName, checked])
 
   return (
-    <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
-          <Columns gap={0} verticalAlign={Alignable.ALIGNED_CENTER}>
-            {iconName && (
-              <ColumnsItem size={1} >
-                <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
-              </ColumnsItem>
-            )}
-            <ColumnsItem size={columnLabelSize} >
-              <Text
-                typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
-                {...{ style: { paddingLeft: 8, color: textColor, } }}
-              >
-                {children || label}
-              </Text>
-            </ColumnsItem>
-            {checked && (
-              <ColumnsItem size={1} >
-                <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
-              </ColumnsItem>
-            )}
-          </Columns>
-
+    <TouchableOpacity style={[styles.container]} onPress={onClick} ref={ref} {...others}>
+      <Columns gap={0} verticalAlign={Alignable.ALIGNED_CENTER}>
+        {iconName && (
+          <ColumnsItem size={1}>
+            <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
+          </ColumnsItem>
+        )}
+        <ColumnsItem size={columnLabelSize}>
+          <Text
+            typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
+            {...{ style: { paddingLeft: 8, color: textColor } }}
+          >
+            {children || label}
+          </Text>
+        </ColumnsItem>
+        {checked && (
+          <ColumnsItem size={1}>
+            <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
+          </ColumnsItem>
+        )}
+      </Columns>
     </TouchableOpacity>
   )
 }
 
 SelectOption.displayName = ComponentName.SelectOption
 
-export default SelectOption
+export default React.forwardRef(SelectOption)

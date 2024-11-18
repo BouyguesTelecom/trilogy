@@ -102,7 +102,7 @@ export default function Home() {
             <StepperStep iconName={IconName.EYE} label='Confirm' step={5} />
           </Stepper>
 
-          <Select name='option' label='label' id='id' iconName={IconName.ALERT} selected={'id_four'}>
+          <Select name='option' label='label' id='id' iconName={IconName.ALERT} native>
             <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
             <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
             <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />

@@ -3,7 +3,7 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
-import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
@@ -63,40 +63,43 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param required {boolean} Required input
  * @param accessibilityActivate {boolean}
  */
-const Input = ({
-  defaultValue,
-  name,
-  label,
-  sample,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled,
-  status,
-  help,
-  placeholder,
-  type,
-  hasIcon,
-  customIcon,
-  keyboardStyle,
-  autoCapitalize,
-  autoCorrect,
-  autoCompleteType,
-  textContentType,
-  keyboardType,
-  keyType,
-  onSubmit,
-  maxLength,
-  testId,
-  accessibilityLabel,
-  customIconRight,
-  customIconLeft,
-  securityGauge,
-  validationRules,
-  onIconClick,
-  required,
-  ...others
-}: InputNativeProps): JSX.Element => {
+const Input = (
+  {
+    defaultValue,
+    name,
+    label,
+    sample,
+    onChange,
+    onFocus,
+    onBlur,
+    disabled,
+    status,
+    help,
+    placeholder,
+    type,
+    hasIcon,
+    customIcon,
+    keyboardStyle,
+    autoCapitalize,
+    autoCorrect,
+    autoCompleteType,
+    textContentType,
+    keyboardType,
+    keyType,
+    onSubmit,
+    maxLength,
+    testId,
+    accessibilityLabel,
+    customIconRight,
+    customIconLeft,
+    securityGauge,
+    validationRules,
+    onIconClick,
+    required,
+    ...others
+  }: InputNativeProps,
+  ref: React.Ref<TextInput>,
+): JSX.Element => {
   const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
   const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
   const animationDuration = 200
@@ -334,6 +337,7 @@ const Input = ({
         )}
 
         <TextInput
+          ref={ref}
           testID='input-id'
           clearTextOnFocus={false}
           secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
@@ -526,4 +530,4 @@ const Input = ({
 
 Input.displayName = ComponentName.Input
 
-export default Input
+export default React.forwardRef(Input)
