@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import type { TextInput } from 'react-native'
 
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Input } from '@/components/input'
+import Input from '@/components/input/Input.native'
 import { Modal } from '@/components/modal'
 import { SelectProps, SelectedValue } from '@/components/select/SelectProps'
 import SelectOption from '@/components/select/option'

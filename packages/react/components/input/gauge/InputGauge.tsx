@@ -8,7 +8,6 @@ import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
-  styled: boolean
   inputValue: string
 }
 
@@ -19,10 +18,9 @@ interface DataVerifyProps {
   color: string
   iconName: IconName
   classes: string
-  styled?: boolean
 }
 
-const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): JSX.Element => {
+const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Element => {
   const {
     widthGauge,
     colorGauge,
@@ -54,7 +52,6 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
             data-length-max={validationRules?.length?.max}
             color={isLengthVerify.color}
             iconName={isLengthVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
-            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.specialChars}
@@ -63,7 +60,6 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
             type='Caractères spéciaux'
             color={isSpecialCharsVerify.color}
             iconName={isSpecialCharsVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
-            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.number}
@@ -72,7 +68,6 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
             type='Chiffre'
             color={isNumberVerify.color}
             iconName={isNumberVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
-            styled={styled}
           />
         </div>
 
@@ -84,7 +79,6 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
             type='Majuscule'
             color={isUppercaseVerify.color}
             iconName={isUppercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
-            styled={styled}
           />
           <DataVerify
             display={!!validationRules?.lowercase}
@@ -93,7 +87,6 @@ const InputGauge = ({ validationRules, styled, inputValue }: InputGaugeProps): J
             type='Minuscule'
             color={isLowerercaseVerify.color}
             iconName={isLowerercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
-            styled={styled}
           />
         </div>
       </div>
@@ -108,7 +101,6 @@ const DataVerify = ({
   color,
   iconName,
   classes,
-  styled,
 }: DataVerifyProps): JSX.Element | null => {
   if (!display) return null
 
