@@ -43,6 +43,14 @@
     }
   }
 
+  &:has(.tab-list.is-aligned-start) {
+    text-align: left;
+  }
+
+  &:has(.tab-list.is-aligned-end) {
+    text-align: right;
+  }
+
   .tab-list {
     background-color: transparent;
     height: 48px;
