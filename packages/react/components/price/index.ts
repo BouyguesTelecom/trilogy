@@ -1,5 +1,2 @@
-import Price from './Price'
-
-export * from './PriceEnum'
-
-export { Price }
+export { default as Price } from '@/components/price/Price'
+export * from '@/components/price/PriceEnum'

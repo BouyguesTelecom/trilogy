@@ -1,5 +1,2 @@
-import Pagination from './Pagination'
-
-export { Pagination }
-
-export * from './PaginationEnum'
+export { default as Pagination } from '@/components/pagination/Pagination'
+export * from '@/components/pagination/PaginationEnum'

@@ -1,4 +1,7 @@
 import { IconName } from '@/components/icon'
+import { Pagination } from '@/components/pagination'
+import { Popover } from '@/components/popover'
+import { Price } from '@/components/price'
 import { Progress, ProgressItem, ProgressRadial } from '@/components/progress'
 import { Radio } from '@/components/radio'
 import { Range } from '@/components/range'
@@ -176,6 +179,23 @@ export default function Home() {
               <ProgressItem percent={15} status={StatusState.WARNING} />
               <ProgressItem percent={15} status={StatusState.ERROR} />
             </Progress>
+
+            <Price
+              accessibilityLabel='Price label'
+              overline='A partir de'
+              strikedAmount={10.99}
+              level={1}
+              amount={24.99}
+              showCents={false}
+              period={'mois'}
+              tagAmount={10}
+              tagSymbol={'€'}
+            />
+            <Popover content='Voici une simple popover'>
+              <Text>Popover</Text>
+            </Popover>
+
+            <Pagination onClick={(e) => console.log('event', e)} count={50} defaultPage={2} />
           </View>
         </Section>
       </main>

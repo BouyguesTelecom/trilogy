@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import React from 'react'
+
+import { PopoverWebProps } from '@/components/popover/PopoverProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import { PopoverWebProps } from './PopoverProps'
 
 /**
  * Popover Component
@@ -16,18 +16,10 @@ import { PopoverWebProps } from './PopoverProps'
  * @param testId {string} Test Id for Test Integration
  * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
  */
-const Popover = ({
-  className,
-  direction,
-  children,
-  active,
-  arrowPosition,
-  content,
-  testId,
-  ...others
-}: PopoverWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Popover = (
+  { className, direction, children, active, arrowPosition, content, testId, ...others }: PopoverWebProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'popover',
@@ -39,7 +31,7 @@ const Popover = ({
   )
 
   return (
-    <div data-testid={testId} className={classes} {...others}>
+    <div data-testid={testId} className={classes} ref={ref} {...others}>
       {children}
       {content && (
         <div data-testid={`${testId}_content`} className={hashClass(clsx('popover-content'))}>
@@ -50,4 +42,4 @@ const Popover = ({
   )
 }
 
-export default Popover
+export default React.forwardRef(Popover)

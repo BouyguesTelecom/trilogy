@@ -1,10 +1,11 @@
-import { Accessibility, Dev } from '@/objects'
 import {
   PopoverArrowPosition,
   PopoverArrowPositionValues,
   PopoverDirection,
   PopoverDirectionValues,
-} from './PopoverEnum'
+} from '@/components/popover/PopoverEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Popover Interface

@@ -1,7 +1,9 @@
-import { Accessibility, AlignableProps, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import {  AlignableProps } from '@/objects/facets/Alignable'
 import { Invertable } from '@/objects/facets/Invertable'
 import { Styles } from '@/types'
-import { PriceLevel, PriceLevelValues } from './PriceEnum'
+import { PriceLevel, PriceLevelValues } from '@/components/price/PriceEnum'
 
 /**
  * Price Interface

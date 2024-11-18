@@ -1,13 +1,13 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { Alignable, TypographyBold, TypographyColor } from '@/objects'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { Text, TextMarkup } from '../text'
-import { PriceLevel } from './PriceEnum'
-import { checkCents } from './PriceHelpers'
-import { PriceProps } from './PriceProps'
+import React from 'react'
+
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceProps } from '@/components/price/PriceProps'
+import { Text, TextMarkup } from '@/components/text'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { Alignable } from '@/objects/facets/Alignable'
+import { TypographyBold, TypographyColor } from '@/objects/Typography'
+import { has, is } from '@/services/classify'
 
 /**
  * Price Component
@@ -31,26 +31,27 @@ import { PriceProps } from './PriceProps'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {Object} Additional style
  */
-const Price = ({
-  className,
-  amount,
-  mention,
-  period,
-  showCents = true,
-  level,
-  inverted,
-  align,
-  inline,
-  testId,
-  accessibilityLabel,
-  strikedAmount,
-  overline,
-  tagAmount,
-  tagSymbol,
-  ...others
-}: PriceProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Price = (
+  {
+    className,
+    amount,
+    mention,
+    period,
+    showCents = true,
+    level,
+    inverted,
+    align,
+    inline,
+    testId,
+    accessibilityLabel,
+    strikedAmount,
+    overline,
+    tagAmount,
+    tagSymbol,
+    ...others
+  }: PriceProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx('price', inverted && is('inverted'), inline && is('inlined'), overline && has('suptitle'), className),
   )
@@ -92,7 +93,7 @@ const Price = ({
   const centsDisplayed = (inline && showCents && `,${cents || '00'} €`) || (showCents && `€${cents || '00'}`) || '€'
 
   const returnComponent = (
-    <div className={hashClass(clsx('price-container', is(`level-${level || '1'}`)))}>
+    <div className={hashClass(clsx('price-container', is(`level-${level || '1'}`)))} ref={ref}>
       {overline && <p className={hashClass(clsx('overline'))}>{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
@@ -150,4 +151,4 @@ const Price = ({
   return returnComponent
 }
 
-export default Price
+export default React.forwardRef(Price)

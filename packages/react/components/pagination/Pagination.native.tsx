@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react"
-import { StyleSheet, TouchableOpacity, View } from "react-native"
-import { PaginationProps } from "./PaginationProps"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { Pager } from "./PaginationEnum"
-import { Text } from "@/components/text"
+import React, { useEffect, useRef, useState } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Pager } from '@/components/pagination/PaginationEnum'
+import { PaginationProps } from '@/components/pagination/PaginationProps'
+import { Text } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Pagination Component
@@ -14,17 +15,12 @@ import { Text } from "@/components/text"
  * @param pageSize {number} Element per page (default is 10)
  * @param onClick {Function} Return pagination object
  */
-const Pagination = ({
-                      count,
-                      defaultPage = 1,
-                      pageSize = 10,
-                      onClick,
-                      ...others
-                    }: PaginationProps): JSX.Element => {
+const Pagination = (
+  { count, defaultPage = 1, pageSize = 10, onClick, ...others }: PaginationProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
-  const [arrayPage] = useState<Array<number>>(
-    Array.from(Array(count + 1).keys())
-  )
+  const [arrayPage] = useState<Array<number>>(Array.from(Array(count + 1).keys()))
   const prevCurrentPage = useRef<number>(currentPage)
 
   const [pager, setPager] = useState<Pager>({
@@ -61,9 +57,7 @@ const Pagination = ({
     }
 
     // Create an array of pages
-    const pages = [...Array(endPage + 1 - startPage).keys()].map(
-      (i) => startPage + i
-    )
+    const pages = [...Array(endPage + 1 - startPage).keys()].map((i) => startPage + i)
 
     // Set pager object
     setPager({
@@ -85,18 +79,18 @@ const Pagination = ({
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-around",
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
     },
     text: {
       color: getColorStyle(TrilogyColor.FONT),
-      alignSelf: "center",
+      alignSelf: 'center',
       lineHeight: 0,
     },
     textCurrent: {
       color: getColorStyle(TrilogyColor.BACKGROUND),
-      alignSelf: "center",
+      alignSelf: 'center',
       lineHeight: 0,
     },
     rounded: {
@@ -104,7 +98,7 @@ const Pagination = ({
       width: 26,
       height: 26,
       borderRadius: 26,
-      justifyContent: "center",
+      justifyContent: 'center',
     },
 
     textContainer: {
@@ -112,7 +106,7 @@ const Pagination = ({
       width: 26,
       height: 26,
       borderRadius: 26,
-      justifyContent: "center",
+      justifyContent: 'center',
     },
     currentPage: {
       color: getColorStyle(TrilogyColor.MAIN),
@@ -128,7 +122,7 @@ const Pagination = ({
   })
 
   return (
-    <View style={styles.container} {...others}>
+    <View style={styles.container} ref={ref} {...others}>
       <TouchableOpacity
         onPress={() => {
           if (currentPage !== 1) {
@@ -137,15 +131,10 @@ const Pagination = ({
           }
         }}
       >
-        <Icon
-          name={IconName.ARROW_LEFT}
-          size={IconSize.SMALL}
-          color={TrilogyColor.MAIN}
-        />
+        <Icon name={IconName.ARROW_LEFT} size={IconSize.SMALL} color={TrilogyColor.MAIN} />
       </TouchableOpacity>
 
-      <View
-        style={{ flexDirection: "row", alignItems: 'center' }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {!pager.pages.includes(1) && (
           <View>
             <Text style={styles.dotsLeft}>…</Text>
@@ -160,13 +149,7 @@ const Pagination = ({
                 prevCurrentPage.current = pageNumber
               }}
             >
-              <Text
-                style={
-                  currentPage === pageNumber ? styles.textCurrent : styles.text
-                }
-              >
-                {pageNumber}
-              </Text>
+              <Text style={currentPage === pageNumber ? styles.textCurrent : styles.text}>{pageNumber}</Text>
             </TouchableOpacity>
           </View>
         ))}
@@ -177,7 +160,6 @@ const Pagination = ({
         )}
       </View>
       <TouchableOpacity
-
         onPress={() => {
           if (currentPage !== Math.max(pager.totalPages)) {
             setCurrentPage(currentPage + 1)
@@ -185,11 +167,7 @@ const Pagination = ({
           }
         }}
       >
-        <Icon
-          name={IconName.ARROW_RIGHT}
-          size={IconSize.SMALL}
-          color={TrilogyColor.MAIN}
-        />
+        <Icon name={IconName.ARROW_RIGHT} size={IconSize.SMALL} color={TrilogyColor.MAIN} />
       </TouchableOpacity>
     </View>
   )
@@ -197,4 +175,4 @@ const Pagination = ({
 
 Pagination.displayName = ComponentName.Pagination
 
-export default Pagination
+export default React.forwardRef(Pagination)
