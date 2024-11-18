@@ -1,4 +1,4 @@
-import { ColumnsSize, GapSize } from './ColumnsTypes'
+import { GapSize } from './ColumnsTypes'
 import { AlignableProps } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
@@ -11,6 +11,6 @@ export interface ColumnsProps extends AlignableProps, CommonProps {
   scrollable?: boolean
   gap?: GapSize
   fullBleed?: boolean
-  marginSize?: ColumnsSize
   mobile?: boolean
+  marginless?: boolean
 }

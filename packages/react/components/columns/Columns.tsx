@@ -20,7 +20,7 @@ import { getAlignClassName, getJustifiedClassName } from '@/objects'
  * @param mobile {boolean} Responsive mode
  */
 const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, multiline, scrollable, mobile, gap, fullBleed, marginSize, align, verticalAlign, ...others } =
+  const { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, ...others } =
     props
 
   const { styled } = useTrilogyContext()
@@ -37,7 +37,7 @@ const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTML
       mobile && is('mobile'),
       align && is(getJustifiedClassName(align)),
       verticalAlign && is(getAlignClassName(verticalAlign)),
-      marginSize && is(`${marginSize}`),
+      marginless && is(`marginless`),
       className,
     ),
   )
