@@ -2,10 +2,10 @@ $tag-delete-margin: 1px !default;
 
 // container pour multi-tags ou tags avec actions
 .tags {
-  align-items: center;
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
   justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 
   // multi-tags : ajout d'une marge bottom, supprimable par facette

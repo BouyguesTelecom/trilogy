@@ -12,16 +12,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Link Component
  * @param to {string} Url to open
  * @param title {string} Title attribute
- * @param typo {TypographyAlign} Typos align link
  * @param onClick {Function} onClick Event
  * @param children {React.ReactNode}
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
  * @param inline {boolean} If link is inside paragraphe
- * @param level {TextLevels} if inline, size to match with Text
  * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
- * @param style {Object} Additional styles
  */
 const Link = ({
   children,

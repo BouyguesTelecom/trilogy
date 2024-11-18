@@ -1,3 +1,3 @@
-import StepperStep from './StepperStep'
+import Step from './Step'
 
-export default StepperStep
+export default Step

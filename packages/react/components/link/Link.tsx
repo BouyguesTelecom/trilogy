@@ -9,6 +9,7 @@ import { useTrilogyContext } from '@/context'
 /**
  * Link Component
  * @param children {React.ReactNode} Content children for Link
+ * @param id
  * @param href {string} Link to open
  * @param to {string} use for router
  * @param title {string} Title attribute
@@ -37,6 +38,7 @@ const Link = ({
   iconName,
   inverted,
   blank,
+  title,
   ...others
 }: LinkProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -74,6 +76,7 @@ const Link = ({
         aria-label={accessibilityLabel}
         onClick={onClick && onClick}
         className={classes}
+        title={title}
         href={href}
         {...(blank && {
           target: '_blank',

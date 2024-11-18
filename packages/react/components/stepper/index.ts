@@ -1,6 +1,6 @@
 import Stepper from './Stepper'
-import StepperStep from './step'
+import Step from './step'
 
-export * from './step/StepperStepEnum'
+export * from './step/StepEnum'
 
-export { Stepper, StepperStep }
+export { Stepper, Step }

@@ -4,7 +4,7 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
 /**
  * Stepper Step Interface
  */
-export interface StepperStepProps extends CommonProps {
+export interface StepProps extends CommonProps {
   active?: boolean
   current?: boolean
   done?: boolean

@@ -2,8 +2,20 @@
   border-radius: 6px;
   padding: $spacing-1;
   background-color: getColor('neutral-fade');
-  display: inline-block;
-  margin: 16px 0;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+
+  &.justified-start {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  &.justified-end {
+    margin-right: 0;
+    margin-left: auto;
+  }
 
   @include mobile {
     display: flex;

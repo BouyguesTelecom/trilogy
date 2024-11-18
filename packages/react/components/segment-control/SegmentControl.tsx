@@ -4,6 +4,7 @@ import { SegmentControlProps } from './SegmentControlProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
+import { getJustifiedClassName } from '@/objects'
 
 /**
  * SegmentControl Component
@@ -15,10 +16,10 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
  */
-const SegmentControl = ({ className, id, onClick, children, activeIndex }: SegmentControlProps): JSX.Element => {
+const SegmentControl = ({ className, id, onClick, children, activeIndex, align }: SegmentControlProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('segmented-control', className))
+  const classes = hashClass(styled, clsx('segmented-control', align && getJustifiedClassName(align), className))
   const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {

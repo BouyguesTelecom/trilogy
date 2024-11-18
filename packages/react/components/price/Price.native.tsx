@@ -44,8 +44,6 @@ const Price = ({
   accessibilityLabel,
   oldAmount,
   overline,
-  tagValue,
-  tagLabel,
   ...others
 }: PriceProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
@@ -268,7 +266,7 @@ const Price = ({
     <View>
       {overline && <Text style={[styles.suptitle]}>{overline}</Text>}
 
-      <View style={tagValue ? { flexDirection: 'row', alignItems: 'center' } : {}}>
+      <View>
         <View
           style={[styles.container]}
           accessible={!!priceAccessibilityLabel}
@@ -317,28 +315,6 @@ const Price = ({
             </>
           }
         </View>
-        {tagValue && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-            <View style={[styles.tagArrow]} />
-            <View style={[styles.tag]}>
-              <TrilogyText
-                style={[styles.tagTextAmount]}
-                typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}
-              >
-                {tagValue}
-              </TrilogyText>
-              {tagLabel && (
-                <TrilogyText
-                  style={[styles.tagTextPeriod]}
-                  typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}
-                >
-                  {' '}
-                  /{tagLabel}
-                </TrilogyText>
-              )}
-            </View>
-          </View>
-        )}
       </View>
     </View>
   )

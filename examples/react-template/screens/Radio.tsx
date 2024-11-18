@@ -1,7 +1,7 @@
-import { Alignable, TypographyAlign } from '@trilogy-ds/react'
+import { Alignable, RadioList, TypographyAlign } from '@trilogy-ds/react'
 import {
-  Columns,
   Column,
+  Columns,
   Container,
   IconName,
   Radio,
@@ -21,10 +21,12 @@ export const RadioScreen = (): JSX.Element => {
         </Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Radio name='name-1' label='Label' value='value' checked id='checkbox1' />
-            <Radio name='name-1' label='Label' value='value' id='checkbox2' />
-            <Radio name='name-1' label='Label' value='value' disabled id='checkbox3' />
-            <Radio name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            <RadioList>
+              <Radio name='name-1' label='Label' value='value' checked id='checkbox1' />
+              <Radio name='name-1' label='Label' value='value' id='checkbox2' />
+              <Radio name='name-1' label='Label' value='value' disabled id='checkbox3' />
+              <Radio name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            </RadioList>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <RadioTiles>

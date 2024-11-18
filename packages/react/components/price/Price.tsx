@@ -39,8 +39,6 @@ const Price = ({
   accessibilityLabel,
   oldAmount,
   overline,
-  tagValue,
-  tagLabel,
   ...others
 }: PriceProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -54,7 +52,7 @@ const Price = ({
 
   let amountComponent = null
   let oldAmountComponent = null
-  let tagAmountComponent = null
+  const tagAmountComponent = null
 
   if (oldAmount) {
     const isNegativeStrike = oldAmount && oldAmount < 0
@@ -100,29 +98,6 @@ const Price = ({
           </span>
           {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
         </span>
-      </span>
-    )
-  }
-
-  if (tagValue && amount) {
-    tagAmountComponent = (
-      <span {...{ role: 'paragraph' }} className={hashClass(styled, clsx('price-tag'))}>
-        <Text
-          className={clsx('tag-amount')}
-          markup={TextMarkup.SPAN}
-          typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_WHITE]}
-        >
-          {tagValue}
-        </Text>
-        {tagLabel && (
-          <Text
-            className={clsx('tag-period')}
-            markup={TextMarkup.SPAN}
-            typo={[TypographyBold.TEXT_WEIGHT_NORMAL, TypographyColor.TEXT_WHITE]}
-          >
-            &nbsp;{tagLabel}
-          </Text>
-        )}
       </span>
     )
   }

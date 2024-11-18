@@ -1,12 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { IconProps } from './IconProps'
-import { getStatusBackground, has, is } from '@/services/classify'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { IconStatus } from '@/components/icon/IconEnum'
+import { getStatusBackground, has, is } from '@/services'
 
 /**
  * Icon Component

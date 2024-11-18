@@ -1,4 +1,4 @@
-import type { Centerable, Layout } from '../../../objects'
+import { Alignable, AlignableValues } from '../../../objects'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import type { RadioProps } from '../../../components/radio/RadioProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -8,15 +8,16 @@ type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | un
 /**
  * Radio List Interface
  */
-export interface RadioListProps extends Layout {
+export interface RadioListProps {
   children?: RadioListChildrenTypes | RadioListChildrenTypes[]
 }
 
 /**
  * Radio List Web Interface
  */
-export interface RadioListWebProps extends RadioListProps, Centerable, CommonProps {
+export interface RadioListWebProps extends RadioListProps, CommonProps {
+  align?: Alignable | AlignableValues
   className?: string
-  isMobile?: boolean
-  vertical?: boolean
+  horizontalMobile?: boolean
+  verticalDesktop?: boolean
 }
