@@ -6,7 +6,6 @@ import {
   Input,
   InputStatus,
   InputType,
-  Link,
   Section,
   Title,
   TitleLevels,
@@ -34,6 +33,16 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      <Input
+        ref={refinput}
+        label='Input label not dynamic with sample'
+        sample='Input sample'
+        help='Search helper input'
+        onKeyUp={(e) => console.log(e)}
+        required
+        iconNameRight={IconName.ARROW_LEFT}
+      />
+
       <Input
         ref={refinput}
         label='Input label not dynamic with sample'

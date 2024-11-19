@@ -1,73 +1,109 @@
 import * as React from 'react'
 import { BadgeProps } from './BadgeProps'
-import { Text, TextMarkup } from '@/components/text'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
+import { has, is } from '@/services'
+import { getStatusClassName, getVariantClassName, StatusState, TrilogyColor } from '@/objects'
+import { Icon, IconColor, IconName } from '@/components/icon'
 
 /**
  * Badge Component
  * @param children {React.ReactNode} If no content add children (Icon for example)
- * @param textContent {string} Content text for badge with text, if textContent props, it will display badge with text
- * @param content {string|number} Badge content text
+ * @param id
+ * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
- * @param reversed {boolean} Text reversed for Badge
  * @param onClick {Function} onClick Event for Badge
- * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param variant
+ * @param position
+ * @param others
  */
 const Badge = ({
-  children,
   className,
+  children,
   id,
-  textContent,
-  content,
+  label,
   inverted,
-  reversed,
   onClick,
+  variant,
+  position,
+  status,
   ...others
 }: BadgeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx(textContent ? 'badge-and-text' : 'badge', className))
+  const classes = hashClass(
+    styled,
+    clsx(
+      'badge',
+      inverted && is('inverted'),
+      variant && has(`background-${getVariantClassName(variant) || getStatusClassName(variant)}`),
+      position && is(position),
+      className,
+    ),
+  )
 
-  if (textContent) {
-    return (
-      <div
+  let iconName: IconName | null = null
+  let iconColor: IconColor | null = null
+
+  switch (status) {
+    case StatusState.SUCCESS:
+      iconName = IconName.CHECK_CIRCLE
+      iconColor = IconColor.SUCCESS
+      break
+    case StatusState.WARNING:
+      iconName = IconName.EXCLAMATION_CIRCLE
+      iconColor = IconColor.WARNING
+      break
+    case StatusState.ERROR:
+      iconName = IconName.TIMES_CIRCLE
+      iconColor = IconColor.ERROR
+      break
+    case StatusState.INFO:
+      iconName = IconName.INFOS_CIRCLE
+      iconColor = IconColor.INFO
+      break
+    default:
+      break
+  }
+
+  const simpleBadge =
+    status && iconName && iconColor ? (
+      <Icon
+        name={iconName}
+        className={clsx(position && is(position), 'badge-icon')}
+        circled
+        backgroundColor={TrilogyColor.BACKGROUND}
+        color={iconColor}
         id={id}
+        {...others}
+      />
+    ) : (
+      <span
+        id={id}
+        className={classes}
         onClick={(e) => {
           onClick?.(e)
           e.stopPropagation()
         }}
-        className={classes}
         {...others}
       >
-        {!reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
-        <span className={hashClass(styled, clsx('badge', inverted && is('inverted')))}>{content || children}</span>
-        {reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
-      </div>
+        {label}
+      </span>
+    )
+
+  if (children) {
+    return (
+      <span className='badge-container'>
+        {children}
+        {simpleBadge}
+      </span>
     )
   }
 
-  return (
-    <div
-      id={id}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-    >
-      <Text
-        className={clsx(textContent ? 'badge-and-text' : 'badge', inverted && is('inverted'), className)}
-        markup={TextMarkup.SPAN}
-        {...others}
-      >
-        {content || children}
-      </Text>
-    </div>
-  )
+  return simpleBadge
 }
 
 export default Badge

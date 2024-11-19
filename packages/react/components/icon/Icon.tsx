@@ -31,9 +31,7 @@ const Icon = ({
   id,
   size,
   name,
-  status,
   circled,
-  badgeContent,
   stretched,
   color,
   backgroundColor,
@@ -59,8 +57,6 @@ const Icon = ({
       circled && !color && has('text-white'),
       color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
       skeleton && is('loading'),
-      badgeContent && is('stacked'),
-      status && is(`${status.toLowerCase()}`),
       background,
       className,
     ),
@@ -68,7 +64,6 @@ const Icon = ({
 
   return (
     <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      {badgeContent && <span className={hashClass(styled, clsx('badge', is('up')))}>{badgeContent}</span>}
       <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
     </span>
   )

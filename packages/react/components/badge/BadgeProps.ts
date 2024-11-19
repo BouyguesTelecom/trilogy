@@ -1,14 +1,15 @@
-import { Accessibility, Dev } from '@/objects'
-import { Clickable } from '@/objects/facets/Clickable'
-import { Invertable } from '@/objects/facets/Invertable'
+import { Accessibility, Dev, StatusState, StatusStateValues, VariantProps } from '../../objects'
+import { Clickable } from '../../objects/facets/Clickable'
+import { Invertable } from '../../objects/facets/Invertable'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { BadgePositionEnum, BadgePositionValues } from '@/components/badge/BadgeEnum'
 
 /**
  * Badge Interface
  */
-export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, CommonProps {
+export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, CommonProps, VariantProps {
   children?: React.ReactNode
-  content?: string | number
-  textContent?: string
-  reversed?: boolean
+  label?: string | number
+  position?: BadgePositionEnum | BadgePositionValues
+  status?: StatusState | StatusStateValues
 }

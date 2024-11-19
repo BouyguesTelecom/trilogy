@@ -3,6 +3,46 @@
   margin-right: 0.6em;
 }
 
+.badge-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 40px;
+  min-height: 40px;
+
+  .badge,
+  .badge-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &.is-bottom-left {
+      bottom: 0;
+      left: 0;
+      right: auto;
+      top: auto;
+    }
+
+    &.is-bottom-right {
+      bottom: 0;
+      right: 0;
+      top: auto;
+    }
+
+    &.is-top-left {
+      top: 0;
+      left: 0;
+      right: auto;
+    }
+  }
+
+  .badge-icon {
+    width: $text-20;
+    height: $text-20;
+  }
+}
+
 .badge {
   display: inline-flex;
   border-radius: 9999px;
@@ -19,28 +59,10 @@
     min-height: $text-10;
   }
 
-  &.is-up {
-    position: absolute;
-    left: 50%;
-    top: $text-10;
-    right: $text-24;
-  }
-
   &.is-inverted {
     color: getColor('main') !important;
     background: getColor('background');
   }
-}
-
-.badge-and-text {
-  display: flex;
-  align-items: center;
-  gap: $text-40;
-
-  p {
-    margin-bottom: 0 !important;
-  }
-
 }
 
 [data-badge-number] {

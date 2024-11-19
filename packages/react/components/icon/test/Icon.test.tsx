@@ -9,7 +9,6 @@ import { Alignable, TrilogyColor } from '../../../objects'
 const defaultProps: IconProps = {
   size: 'medium',
   name: IconName.TIMES,
-  status: 'SUCCESS',
   circled: false,
   // @ts-ignore
   content: '',
