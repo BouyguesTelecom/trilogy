@@ -1,5 +1,5 @@
-import { Clickable } from '@/objects'
-import { CardImageSize, CardImageSizeValues } from './CardImageEnum'
+import { CardImageSize, CardImageSizeValues } from '@/components/card/image/CardImageEnum'
+import { Clickable } from '@/objects/facets/Clickable'
 
 /**
  * Card Image Interface

@@ -1,6 +1,3 @@
-import Button from './Button'
-import { ButtonList } from './list'
-
-export * from './ButtonEnum'
-
-export { Button, ButtonList }
+export { default as Button } from '@/components/button/Button'
+export * from '@/components/button/ButtonEnum'
+export { default as ButtonList } from '@/components/button/list/ButtonList'

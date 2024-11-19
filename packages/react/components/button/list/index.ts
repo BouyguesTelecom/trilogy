@@ -1,3 +1,1 @@
-import ButtonList from './ButtonList'
-
-export { ButtonList }
+export { default as ButtonList } from '@/components/button/list/ButtonList'

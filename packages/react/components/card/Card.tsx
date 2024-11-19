@@ -1,12 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import React from 'react'
+
+import { CardMarkup, CardProps } from '@/components/card/CardProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName, getBackgroundClassName } from '@/objects'
 import { has, is } from '@/services/classify'
-import clsx from 'clsx'
-import React, { createContext, useEffect, useState } from 'react'
-import { CardMarkup, CardProps } from './CardProps'
-
-export const CardContext = createContext({ horizontal: false })
+import { useCard } from './hook/useCard'
 
 /**
  * Card Component
@@ -30,8 +29,8 @@ export const CardContext = createContext({ horizontal: false })
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * @param testId {string} Test Id for Test Integration
  */
-const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
-  const {
+const Card = (
+  {
     className,
     backgroundColor,
     backgroundSrc,
@@ -50,14 +49,10 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
     fullheight,
     active,
     ...others
-  } = props
-
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
-  const { styled } = useTrilogyContext()
-
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
+  }: CardProps,
+  ref: React.Ref<HTMLElement>,
+) => {
+  const { isLoading } = useCard({ skeleton })
 
   const hoverStyle: React.CSSProperties = {
     cursor: 'pointer',
@@ -69,7 +64,6 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       (inverted && is('inverted')) || is('base'),
-
       flat && !floating && is('flat'),
       horizontal && [is('horizontal'), is('vcentered')],
       floating && !flat && is('floating'),
@@ -88,14 +82,10 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
       <a
         data-testid={testId}
         href={to}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
+        onClick={onClick && onClick}
         className={classes}
-        ref={ref as React.LegacyRef<HTMLAnchorElement>}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        {...others}
       />
     )
   }
@@ -106,9 +96,9 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
       onClick={onClick && onClick}
       className={classes}
       style={onClick && { ...hoverStyle }}
+      ref={ref as React.Ref<HTMLDivElement>}
       {...others}
-      ref={ref as React.LegacyRef<HTMLDivElement>}
     />
   )
-})
-export default Card
+}
+export default React.forwardRef(Card)

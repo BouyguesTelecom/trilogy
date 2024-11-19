@@ -1,5 +1,2 @@
-import Badge from './Badge'
-
-export * from './BadgeEnum'
-
-export { Badge }
+export { default as Badge } from '@/components/badge/Badge'
+export * from '@/components/badge/BadgeEnum'

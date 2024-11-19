@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { has } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ButtonListWebProps } from './ButtonListProps'
+import React from 'react'
+
+import { ButtonListWebProps } from '@/components/button/list/ButtonListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has } from '@/services/classify'
 
 /**
  * Button List Component
@@ -15,15 +15,17 @@ import { ButtonListWebProps } from './ButtonListProps'
  * @param isMobile {boolean} espect mobile screen
  */
 
-const ButtonList = ({ className, centered, vertical, ...others }: ButtonListWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const ButtonList = (
+  { className, centered, vertical, ...others }: ButtonListWebProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   return (
     <div
+      ref={ref}
       className={hashClass(clsx('buttons', className, centered && has('text-centered'), vertical && 'is-vertical'))}
       {...others}
     />
   )
 }
 
-export default ButtonList
+export default React.forwardRef(ButtonList)

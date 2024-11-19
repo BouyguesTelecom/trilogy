@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { ChipsProps } from './ChipsProps'
+
+import { ChipsProps } from '@/components/chips/ChipsProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -17,9 +17,10 @@ import { ChipsProps } from './ChipsProps'
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
-const Chips = ({ className, onClick, children, active, disabled, id, testId, ...others }: ChipsProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Chips = (
+  { className, onClick, children, active, disabled, id, testId, ...others }: ChipsProps,
+  ref: React.Ref<HTMLButtonElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('chips', active && is('active'), className))
 
   return (
@@ -30,9 +31,8 @@ const Chips = ({ className, onClick, children, active, disabled, id, testId, ...
       id={id}
       aria-pressed={!!active}
       className={classes}
-      onClick={(e) => {
-        onClick?.(e)
-      }}
+      onClick={onClick && onClick}
+      ref={ref}
       {...others}
     >
       {children}
@@ -40,4 +40,4 @@ const Chips = ({ className, onClick, children, active, disabled, id, testId, ...
   )
 }
 
-export default Chips
+export default React.forwardRef(Chips)

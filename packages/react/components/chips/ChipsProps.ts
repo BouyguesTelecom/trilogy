@@ -1,5 +1,7 @@
 import { ClickEvent } from '@/events/OnClickEvent'
-import { Accessibility, Clickable, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Chips Interface

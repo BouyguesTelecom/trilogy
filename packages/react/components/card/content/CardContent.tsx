@@ -1,11 +1,11 @@
+import clsx from 'clsx'
+import React from 'react'
+
 import { Button, ButtonMarkup } from '@/components/button'
+import { CardContentProps } from '@/components/card/content/CardContentProps'
 import { Text } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import * as React from 'react'
-import { CardContentProps } from './CardContentProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Card Content Component
@@ -25,28 +25,29 @@ import { CardContentProps } from './CardContentProps'
  * @param buttonMarkup {ButtonMarkup} if Button, can change the button tag
  * @param testId {string} Test Id for Test Integration
  */
-const CardContent = ({
-  children,
-  className,
-  titleSup,
-  titleSupLevel,
-  title,
-  titleLevel,
-  buttonText,
-  buttonMarkup,
-  buttonVariant,
-  buttonClick,
-  text,
-  textLevel,
-  onClick,
-  testId,
-  ...others
-}: CardContentProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const CardContent = (
+  {
+    children,
+    className,
+    titleSup,
+    titleSupLevel,
+    title,
+    titleLevel,
+    buttonText,
+    buttonMarkup,
+    buttonVariant,
+    buttonClick,
+    text,
+    textLevel,
+    onClick,
+    testId,
+    ...others
+  }: CardContentProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   if (children) {
     return (
-      <div data-testid={testId} className={hashClass(clsx('card-content', className))} {...others}>
+      <div data-testid={testId} className={hashClass(clsx('card-content', className))} ref={ref} {...others}>
         {children}
       </div>
     )
@@ -54,12 +55,9 @@ const CardContent = ({
 
   return (
     <div
+      ref={ref}
       data-testid={testId}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={onClick && onClick}
       className={hashClass(clsx('card-content', className))}
       {...others}
     >
@@ -88,4 +86,4 @@ const CardContent = ({
   )
 }
 
-export default CardContent
+export default React.forwardRef(CardContent)

@@ -1,9 +1,10 @@
-import * as React from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { BadgeProps } from "./BadgeProps"
-import { BadgeColor } from "./BadgeEnum"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+
+import { BadgeColor } from '@/components/badge/BadgeEnum'
+import { BadgeProps } from '@/components/badge/BadgeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Badge Native Component
@@ -15,30 +16,22 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param reversed {boolean} Text reversed for Badge
  * @param testId {string} Test Id for Test Integration
  */
-const Badge = ({
-  children,
-  textContent,
-  content,
-  reversed,
-  onClick,
-  testId,
-  ...others
-}: BadgeProps): JSX.Element => {
+const Badge = ({ children, textContent, content, reversed, onClick, testId, ...others }: BadgeProps, ref:React.Ref<View>): JSX.Element => {
   const badgeColor = getColorStyle(BadgeColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     badge: {
-      alignSelf: "baseline",
+      alignSelf: 'baseline',
       minWidth: 20,
       height: 20,
       backgroundColor: badgeColor,
       borderRadius: 30,
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     text: {
       color: textColor,
@@ -56,19 +49,17 @@ const Badge = ({
 
   if (textContent) {
     badgeView = (
-      <View style={styles.container}>
+      <View style={styles.container} ref={ref}>
         {!reversed && <Text style={styles.textContent}>{textContent}</Text>}
         <View style={styles.badge}>
           <Text style={styles.text}>{content}</Text>
         </View>
-        {reversed && (
-          <Text style={styles.textContent}>{textContent}</Text>
-        )}
+        {reversed && <Text style={styles.textContent}>{textContent}</Text>}
       </View>
     )
   } else {
     badgeView = (
-      <View>
+      <View ref={ref}>
         {content ? (
           <View style={styles.badge} {...others}>
             <Text style={styles.text}>{content}</Text>
@@ -95,4 +86,4 @@ const Badge = ({
 
 Badge.displayName = ComponentName.Badge
 
-export default Badge
+export default React.forwardRef(Badge)

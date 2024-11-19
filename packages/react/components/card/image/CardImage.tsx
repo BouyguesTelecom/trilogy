@@ -1,10 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { CardImageProps } from './CardImageProps'
+import React from 'react'
 
+import { CardImageProps } from '@/components/card/image/CardImageProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 /**
  * Card Image Component
  * @param src Image source
@@ -16,19 +15,14 @@ import { CardImageProps } from './CardImageProps'
  * - -------------------------- WEB PROPERTIES ----------------------------------
  * @param className Additionnal CSS Classes
  */
-const CardImage = ({ src, alt, className, size, onClick, ...others }: CardImageProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const CardImage = (
+  { src, alt, className, size, onClick, ...others }: CardImageProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
   return (
-    <div
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-      className={classes}
-    >
+    <div onClick={onClick && onClick} className={classes} ref={ref}>
       <figure className={hashClass(clsx('image'))} {...others}>
         <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
       </figure>
@@ -36,4 +30,4 @@ const CardImage = ({ src, alt, className, size, onClick, ...others }: CardImageP
   )
 }
 
-export default CardImage
+export default React.forwardRef(CardImage)

@@ -1,3 +1,3 @@
-import CardImage from './CardImage'
+import CardImage from '@/components/card/image/CardImage'
 
 export default CardImage

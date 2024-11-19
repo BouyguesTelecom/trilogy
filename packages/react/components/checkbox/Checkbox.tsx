@@ -1,11 +1,11 @@
-import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { CheckboxProps } from './CheckboxProps'
+import React from 'react'
+
+import { CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { useCheckbox } from '@/components/checkbox/hook/useCheckbox'
+import { Icon, IconSize } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Checkbox Component
@@ -27,33 +27,28 @@ import { CheckboxProps } from './CheckboxProps'
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
-const Checkbox = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = shortid.generate(),
-  label,
-  onChange,
-  onClick,
-  name,
-  value,
-  tile,
-  description,
-  iconTile,
-  horizontalTile,
-  testId,
-  ...others
-}: CheckboxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
+const Checkbox = (
+  {
+    checked,
+    className,
+    disabled,
+    readonly,
+    id = React.useId(),
+    label,
+    onChange,
+    onClick,
+    name,
+    value,
+    tile,
+    description,
+    iconTile,
+    horizontalTile,
+    testId,
+    ...others
+  }: CheckboxProps,
+  ref: React.Ref<HTMLInputElement>,
+): JSX.Element => {
+  const { handleChange, handleClick, _checked } = useCheckbox({ checked, readonly, value, onChange, onClick })
 
   return (
     <div
@@ -61,6 +56,7 @@ const Checkbox = ({
       tabIndex={0}
     >
       <input
+        ref={ref}
         aria-checked={checked}
         type='checkbox'
         readOnly={readonly}
@@ -70,32 +66,8 @@ const Checkbox = ({
         name={name}
         value={value}
         checked={readonly ? checked : _checked}
-        onChange={(e: React.ChangeEvent) => {
-          return e
-        }}
-        onClick={(e: React.MouseEvent) => {
-          const target = e.target as HTMLInputElement
-          if (!readonly && target.checked !== undefined) {
-            setChecked(target.checked)
-          }
-          target.value = value || ''
-          if (onChange) {
-            onChange({
-              checkboxId: target.id,
-              checkboxValue: target.value,
-              checkboxName: target.name,
-              checkboxChecked: target.checked,
-            })
-          }
-          if (onClick) {
-            onClick({
-              checkboxId: target.id,
-              checkboxValue: target.value,
-              checkboxName: target.name,
-              checkboxChecked: target.checked,
-            })
-          }
-        }}
+        onChange={handleChange}
+        onClick={handleClick}
         {...others}
       />
       <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
@@ -116,4 +88,4 @@ const Checkbox = ({
   )
 }
 
-export default Checkbox
+export default React.forwardRef(Checkbox)

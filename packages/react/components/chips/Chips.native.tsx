@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from "react"
-import { GestureResponderEvent, StyleSheet, TouchableOpacity, } from "react-native"
-import { ChipsProps } from "./ChipsProps"
-import { Text, TextLevels } from "@/components/text"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { Icon, IconColor, IconName, IconSize } from "../icon"
-import { ChipsContext } from "./list/ChipsList.native"
-import { Spacer, SpacerSize } from "@/components/spacer"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useContext, useEffect, useState } from 'react'
+import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
+
+import { ChipsProps } from '@/components/chips/ChipsProps'
+import { ChipsContext } from '@/components/chips/list/ChipsList.native'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { Spacer, SpacerSize } from '@/components/spacer'
+import { Text, TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -17,13 +18,10 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param disabled {boolean} Disabled chips
  */
 
-const Chips = ({
-                 children,
-                 onClick,
-                 disabled,
-                 active,
-                 ...others
-               }: ChipsProps): JSX.Element => {
+const Chips = (
+  { children, onClick, disabled, active, ...others }: ChipsProps,
+  ref: React.Ref<TouchableOpacity>,
+): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const chipsContext = useContext(ChipsContext)
 
@@ -45,20 +43,21 @@ const Chips = ({
       margin: 6,
       borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
       borderWidth: 1,
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     text: {
-      alignSelf: "center",
+      alignSelf: 'center',
       color:
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN),
       paddingTop: 1,
-    }
+    },
   })
 
   return (
     <TouchableOpacity
+      ref={ref}
       disabled={disabled}
       style={styles.chips}
       onPress={(e?: GestureResponderEvent) => {
@@ -71,12 +70,8 @@ const Chips = ({
     >
       {chipsContext.isMultiple && active && (
         <>
-          <Icon
-            size={IconSize.SMALLER}
-            color={IconColor.WHITE}
-            name={IconName.CHECK}
-          />
-          <Spacer horizontal size={SpacerSize.ONE}/>
+          <Icon size={IconSize.SMALLER} color={IconColor.WHITE} name={IconName.CHECK} />
+          <Spacer horizontal size={SpacerSize.ONE} />
         </>
       )}
       <Text level={TextLevels.TWO} style={styles.text}>
@@ -88,4 +83,4 @@ const Chips = ({
 
 Chips.displayName = ComponentName.Chips
 
-export default Chips
+export default React.forwardRef(Chips)

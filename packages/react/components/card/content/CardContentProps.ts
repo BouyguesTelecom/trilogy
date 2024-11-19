@@ -2,7 +2,10 @@ import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } 
 import { TextLevelValues } from '@/components/text/TextEnum'
 import { TitleLevels, TitleLevelValues } from '@/components/title/TitleEnum'
 import { ClickEvent } from '@/events/OnClickEvent'
-import { Accessibility, Clickable, Dev, TrilogyColor } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { TrilogyColor } from '@/objects/facets/Color'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Card Content Interface

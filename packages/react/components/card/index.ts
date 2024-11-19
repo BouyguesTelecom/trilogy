@@ -1,7 +1,4 @@
-import Card from './Card'
-import CardImage from './image'
-import CardContent from './content'
-
-export * from './image/CardImageEnum'
-
-export { Card, CardImage, CardContent }
+export { default as Card } from '@/components/card/Card'
+export { default as CardContent } from '@/components/card/content/CardContent'
+export { default as CardImage } from '@/components/card/image/CardImage'
+export * from '@/components/card/image/CardImageEnum'

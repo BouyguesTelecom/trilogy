@@ -1,5 +1,6 @@
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 import { Invertable } from '@/objects/facets/Invertable'
 
 /**

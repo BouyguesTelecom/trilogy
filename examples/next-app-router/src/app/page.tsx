@@ -1,3 +1,9 @@
+import { Badge } from '@/components/badge'
+import { Button, ButtonVariant } from '@/components/button'
+import { Card, CardContent, CardImage } from '@/components/card'
+import { Checkbox } from '@/components/checkbox'
+import { Chips } from '@/components/chips'
+import ChipsList from '@/components/chips/list/ChipsList'
 import { IconName } from '@/components/icon'
 import { Otp } from '@/components/otp'
 import { Pagination } from '@/components/pagination'
@@ -18,7 +24,7 @@ import { Tag, TagVariant } from '@/components/tag'
 import { Text, TextLevels } from '@/components/text'
 import { Timeline, TimelineContent, TimelineItem, TimelineMarker } from '@/components/timeline'
 import { View } from '@/components/view'
-import { StatusState, TypographyAlign, VariantState } from '@/objects'
+import { StatusState, TrilogyColor, TypographyAlign, VariantState } from '@/objects'
 import { Textarea } from '@trilogy-ds/react/components/textarea'
 import { Title, TitleLevels } from '@trilogy-ds/react/components/title'
 import '@trilogy-ds/styles/dist/default/trilogy.css'
@@ -199,6 +205,33 @@ export default function Home() {
             <Pagination onClick={(e) => console.log('event', e)} count={50} defaultPage={2} />
 
             <Otp label='Set your OTP' autoFocus code='111111' />
+            <Badge reversed={true} content={2} />
+            <Card active backgroundColor={TrilogyColor.BACKGROUND}>
+              <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+              <CardContent>
+                <Title overline>Desktop Card Vertical Markup A</Title>
+                <Title level={TitleLevels.ONE}>Card Title</Title>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                  vera.
+                </Text>
+                <Button variant={ButtonVariant.PRIMARY}>Skeleton toogle click</Button>
+              </CardContent>
+            </Card>
+
+            <Checkbox
+              iconTile={IconName.CHECK_CIRCLE}
+              tile
+              label='Lorem ipsum dolor'
+              name='radio1'
+              value='default value 1'
+            />
+            <ChipsList>
+              <Chips>Chips 1</Chips>
+              <Chips>Chips 2</Chips>
+              <Chips>Chips 3</Chips>
+              <Chips>Chips 4</Chips>
+            </ChipsList>
           </View>
         </Section>
       </main>

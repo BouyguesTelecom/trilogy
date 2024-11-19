@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ChipsListProps } from './ChipsListProps'
+import React from 'react'
+
+import { ChipsListProps } from '@/components/chips/list/ChipsListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * ChipsList Component - Container for Chips
@@ -11,11 +11,7 @@ import { ChipsListProps } from './ChipsListProps'
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
  */
-const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { children, multiple, scrollable, ...others } = props
-
-  const { styled } = useTrilogyContext()
-
+const ChipsList = ({ children, multiple, scrollable, ...others }: ChipsListProps, ref: React.Ref<HTMLDivElement>) => {
   const classes = hashClass(clsx('chips-list', multiple && is('multiple'), scrollable && is('scrollable')))
 
   return (
@@ -23,6 +19,6 @@ const ChipsList = React.forwardRef((props: ChipsListProps, ref: React.LegacyRef<
       {children}
     </div>
   )
-})
+}
 
-export default ChipsList
+export default React.forwardRef(ChipsList)

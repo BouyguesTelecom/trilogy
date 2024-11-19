@@ -1,5 +1,6 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface CheckboxChangeEvent {
   checkboxId: string
@@ -8,7 +9,7 @@ export interface CheckboxChangeEvent {
   checkboxChecked: boolean
 }
 
-type CheckboxChangeEventHandler = (event: {
+export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
   checkboxName: string
   checkboxChecked: boolean

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
-import { CardImageProps } from './CardImageProps'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+
 import { CardContext } from '@/components/card/Card.native'
+import { CardImageProps } from '@/components/card/image/CardImageProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -13,7 +14,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param horizontal {boolean} Horizontal Card orientation
  * @param contain {boolean} Resize mode contain
  */
-const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImageProps): JSX.Element => {
+const CardImage = (
+  { src, size, alt, onClick, contain, ...others }: CardImageProps,
+  ref: React.Ref<Image>,
+): JSX.Element => {
   const { horizontal, reversed, active } = useContext(CardContext)
   const maxSize = horizontal ? '50%' : '100%'
   const [ratio, setRatio] = useState(1)
@@ -52,6 +56,7 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
 
   const image = (
     <Image
+      ref={ref}
       accessibilityLabel={alt}
       style={styles.cardImage}
       source={typeof src === 'number' ? src : { uri: src }}
@@ -72,4 +77,4 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
 
 CardImage.displayName = ComponentName.CardImage
 
-export default CardImage
+export default React.forwardRef(CardImage)

@@ -1,13 +1,13 @@
+import clsx from 'clsx'
+import React from 'react'
+
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from '@/components/button/ButtonEnum'
+import { ButtonProps } from '@/components/button/ButtonProps'
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
 import { is } from '@/services/index'
-import clsx from 'clsx'
-import React from 'react'
-import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
-import { ButtonProps } from './ButtonProps'
 
 /**
  * Button component
@@ -32,27 +32,29 @@ import { ButtonProps } from './ButtonProps'
  * @param type {ButtonType} button type (button|reset|submit)
  */
 
-const Button = ({
-  markup,
-  loading,
-  variant,
-  href,
-  id,
-  fullwidth,
-  children,
-  className,
-  to,
-  accessibilityLabel,
-  testId,
-  onClick,
-  name,
-  routerLink,
-  type,
-  iconName,
-  ...others
-}: ButtonProps): JSX.Element => {
+const Button = (
+  {
+    markup,
+    loading,
+    variant,
+    href,
+    id,
+    fullwidth,
+    children,
+    className,
+    to,
+    accessibilityLabel,
+    testId,
+    onClick,
+    name,
+    routerLink,
+    type,
+    iconName,
+    ...others
+  }: ButtonProps,
+  ref: React.Ref<HTMLButtonElement | HTMLInputElement | HTMLLinkElement>,
+): JSX.Element => {
   const isDisabled = others.disabled || false
-  const { styled } = useTrilogyContext()
 
   /** Check if specified markup is valid */
   const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
@@ -80,17 +82,14 @@ const Button = ({
   if (Tag === 'button') {
     return (
       <button
+        ref={ref as React.Ref<HTMLButtonElement>}
         id={id}
         data-testid={testId}
         aria-label={accessibilityLabel}
         className={classes}
         disabled={isDisabled}
         name={name}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
-        }}
+        onClick={onClick && !isDisabled ? onClick : undefined}
         type={type ?? 'button'}
         {...others}
       >
@@ -103,16 +102,13 @@ const Button = ({
   if (Tag === 'input') {
     return (
       <input
+        ref={ref as React.Ref<HTMLInputElement>}
         id={id}
         data-testid={testId}
         className={classes}
         aria-label={accessibilityLabel}
         name={name}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
-        }}
+        onClick={onClick && !isDisabled ? onClick : undefined}
         disabled={isDisabled}
         type={type ?? 'submit'}
         value={`${children}`}
@@ -124,7 +120,14 @@ const Button = ({
   if (routerLink && to && !isDisabled) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
-      <RouterLink aria-label={accessibilityLabel} data-testid={testId} to={to} className={classes} {...others}>
+      <RouterLink
+        aria-label={accessibilityLabel}
+        data-testid={testId}
+        to={to}
+        className={classes}
+        ref={ref}
+        {...others}
+      >
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </RouterLink>
@@ -133,16 +136,13 @@ const Button = ({
 
   return (
     <a
+      ref={ref as React.Ref<HTMLAnchorElement>}
       id={id}
       data-testid={testId}
       aria-label={accessibilityLabel}
       className={classes}
       href={href}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        !isDisabled && onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={onClick && !isDisabled ? onClick : undefined}
       {...others}
     >
       {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
@@ -151,4 +151,4 @@ const Button = ({
   )
 }
 
-export default Button
+export default React.forwardRef(Button)
