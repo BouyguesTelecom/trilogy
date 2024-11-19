@@ -1,44 +1,31 @@
-import * as React from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { BadgeProps } from "./BadgeProps"
-import { BadgeColor } from "./BadgeEnum"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
+import * as React from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { BadgeProps } from './BadgeProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Badge Native Component
  * @param children {React.ReactNode} If no content add children (Icon for example)
- * @param textContent {string} Content text for badge with text, if textContent props, it will display badge with text
- * @param content content {string|number} Badge content text
- * @param direction {boolean} Text direction for Badge (LEFT|RIGHT)
  * @param onClick {Function} onClick Event for Badge
- * @param reversed {boolean} Text reversed for Badge
  * @param testId {string} Test Id for Test Integration
  */
-const Badge = ({
-  children,
-  textContent,
-  content,
-  reversed,
-  onClick,
-  testId,
-  ...others
-}: BadgeProps): JSX.Element => {
-  const badgeColor = getColorStyle(BadgeColor.MAIN)
+const Badge = ({ label, onClick, testId, variant, ...others }: BadgeProps): JSX.Element => {
+  const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     badge: {
-      alignSelf: "baseline",
+      alignSelf: 'baseline',
       minWidth: 20,
       height: 20,
       backgroundColor: badgeColor,
       borderRadius: 30,
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     text: {
       color: textColor,
@@ -52,44 +39,18 @@ const Badge = ({
     },
   })
 
-  let badgeView: JSX.Element
-
-  if (textContent) {
-    badgeView = (
-      <View style={styles.container}>
-        {!reversed && <Text style={styles.textContent}>{textContent}</Text>}
-        <View style={styles.badge}>
-          <Text style={styles.text}>{content}</Text>
-        </View>
-        {reversed && (
-          <Text style={styles.textContent}>{textContent}</Text>
-        )}
-      </View>
-    )
-  } else {
-    badgeView = (
-      <View>
-        {content ? (
-          <View style={styles.badge} {...others}>
-            <Text style={styles.text}>{content}</Text>
-          </View>
-        ) : (
-          <View style={styles.badge} {...others}>
-            {children}
-          </View>
-        )}
-      </View>
-    )
-  }
-
   return onClick ? (
     <View>
       <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
-        {badgeView}
+        <View style={styles.badge} {...others}>
+          {label}
+        </View>
       </TouchableOpacity>
     </View>
   ) : (
-    badgeView
+    <View style={styles.badge} {...others}>
+      {label}
+    </View>
   )
 }
 

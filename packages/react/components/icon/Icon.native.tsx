@@ -31,10 +31,7 @@ import Text from '@/components/text/Text.native'
 const Icon = ({
   size,
   name,
-  status,
   circled,
-  stacked,
-  badgeContent,
   stretched,
   color,
   backgroundColor,
@@ -62,7 +59,6 @@ const Icon = ({
 
   const iconColor =
     (color && getColorStyle(color as TrilogyColor | TrilogyColorValues)) ||
-    (status && getColorStyle(status as TrilogyColor | TrilogyColorValues)) ||
     (statesContext.inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
     getColorStyle(TrilogyColor.MAIN)
 
@@ -145,13 +141,8 @@ const Icon = ({
           />
         </View>
       )
-    } /* status icon */ else if (status && !circled && !stretched) {
-      // TODO: fix status icon
-      iconView = <Text>FAUT CORRIGER ÇA (status icon)</Text>
     } else if (circled) {
       iconView = <Text>FAUT CORRIGER ÇA (circled icon)</Text>
-    } /* Text icon */ else if (content && !badgeContent) {
-      iconView = <Text>FAUT CORRIGER ÇA (icon + texte)</Text>
     } else {
       iconView = (
         <View {...others}>

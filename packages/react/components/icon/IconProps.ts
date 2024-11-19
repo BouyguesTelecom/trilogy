@@ -8,8 +8,6 @@ import { CommonProps } from '../../objects/facets/CommonProps'
  */
 export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibility, Dev, CommonProps {
   name: IconName | IconNameValues
-  status?: IconStatus | IconStatusValues
-  badgeContent?: string
   size?: IconSize | IconSizeValues
   circled?: boolean
   stretched?: boolean

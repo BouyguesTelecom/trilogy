@@ -1,73 +1,100 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   Badge,
-  BadgeColor,
-  Columns,
   Column,
+  Columns,
   Divider,
   Icon,
   IconName,
+  IconSize,
   Section,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
-import {Box, TrilogyColor} from "@trilogy-ds/react";
+} from '@trilogy-ds/react/components'
+import { Alignable, Box, StatusState, Text, TrilogyColor, VariantState } from '@trilogy-ds/react'
+import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {
   return (
     <Section>
       <Title level={TitleLevels.THREE}>Content props string</Title>
-      <Badge content={"1"}/>
-      <Divider/>
+      <Badge label={'1'} />
+      <Divider />
 
       <Title level={TitleLevels.THREE}>Content props number</Title>
-      <Badge content={1}/>
-      <Divider/>
+      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
+        <Column narrow>
+          <Badge label={1} variant={VariantState.ACCENT} position={BadgePositionEnum.TOP_RIGHT}>
+            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+          </Badge>
+        </Column>
+        <Column narrow>
+          <Text>PANIER</Text>
+        </Column>
+      </Columns>
+
+      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
+        <Column narrow>
+          <Badge
+            variant={VariantState.INFO}
+            status={StatusState.SUCCESS}
+            position={BadgePositionEnum.TOP_LEFT}
+          >
+            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+          </Badge>
+        </Column>
+        <Column narrow>
+          <Text>Success</Text>
+        </Column>
+      </Columns>
+
+      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
+        <Column narrow>
+          <Badge
+            variant={VariantState.INFO}
+            position={BadgePositionEnum.TOP_LEFT}
+          >
+            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+          </Badge>
+        </Column>
+        <Column narrow>
+          <Text>Success</Text>
+        </Column>
+      </Columns>
+      <Divider />
 
       <Title level={TitleLevels.THREE}>TextContent props</Title>
-      <Badge content={2} textContent="Text with badge"/>
-      <Divider/>
+      <Badge label={2} />
+      <Divider />
 
       <Title level={TitleLevels.THREE}>Icon badgeContent </Title>
-      <Icon name={IconName.INFOS_CIRCLE} badgeContent="42"/>
-      <Divider/>
-
-      <Title level={TitleLevels.THREE}>Color + TextContent props </Title>
-      <Columns scrollable>
-        {Object.values(BadgeColor).map((color, index) => {
-          return (
-            <Column size={6} key={index}>
-              <Badge color={color} content={2} textContent="Text"/>
-            </Column>
-          );
-        })}
-      </Columns>
-      <Divider/>
+      <Icon name={IconName.INFOS_CIRCLE} />
+      <Divider />
 
       <Title level={TitleLevels.THREE}>Reversed props </Title>
       <Columns scrollable>
         <Column size={6} key={1}>
-          <Badge reversed={false} content={2} textContent="Text"/>
+          <Badge label={2} />
         </Column>
         <Column size={6} key={2}>
-          <Badge reversed={true} content={2} textContent="Text"/>
+          <Badge label={2} />
         </Column>
       </Columns>
 
       <Title level={TitleLevels.THREE}>Inverted props </Title>
-      <Box backgroundColor={TrilogyColor.MAIN} inverted >
+      <Box backgroundColor={TrilogyColor.MAIN} inverted>
         <Columns scrollable>
           <Column size={4} key={1}>
-            <Badge reversed={false} content={2} textContent="Text" inverted/>
+            <Badge label={2} />
           </Column>
           <Column size={4} key={2}>
-            <Badge reversed={true} content={2} textContent="Text" inverted/>
+            <Badge label={2} />
           </Column>
           <Column size={4} key={2}>
-            <Badge reversed={true} content={2} inverted/>
+            <Badge label={2} />
           </Column>
         </Columns>
       </Box>
     </Section>
-  );
-};
+  )
+}
