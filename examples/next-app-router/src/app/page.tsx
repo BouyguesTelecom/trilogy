@@ -1,4 +1,5 @@
 import { IconName } from '@/components/icon'
+import { Otp } from '@/components/otp'
 import { Pagination } from '@/components/pagination'
 import { Popover } from '@/components/popover'
 import { Price } from '@/components/price'
@@ -196,6 +197,8 @@ export default function Home() {
             </Popover>
 
             <Pagination onClick={(e) => console.log('event', e)} count={50} defaultPage={2} />
+
+            <Otp label='Set your OTP' autoFocus code='111111' />
           </View>
         </Section>
       </main>

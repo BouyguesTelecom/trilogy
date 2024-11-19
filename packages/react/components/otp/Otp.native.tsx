@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Pressable, SafeAreaView, StyleSheet, TextInput, View, } from "react-native"
-import { OtpProps } from "./OtpProps"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
-import { Title, TitleLevels } from "@/components/title"
-import { Text, TextLevels } from "@/components/text"
-import { TypographyAlign } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useEffect, useRef, useState } from 'react'
+import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { OtpProps } from '@/components/otp/OtpProps'
+import { Text, TextLevels } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
+import { TypographyAlign } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * OTP Code Component
@@ -21,19 +22,11 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param label {string} Label for OTP
  * @param errorMessage {string} error message to display
  */
-const Otp = ({
-  code,
-  codeSize = 6,
-  disabled,
-  error,
-  onCompleted,
-  onFocus,
-  activated,
-  onChange,
-  label,
-  ...others
-}: OtpProps): JSX.Element => {
-  const [codeInput, setCodeInput] = useState<string>(code || "")
+const Otp = (
+  { code, codeSize = 6, disabled, error, onCompleted, onFocus, activated, onChange, label, ...others }: OtpProps,
+  reff: React.Ref<SafeAreaView>,
+): JSX.Element => {
+  const [codeInput, setCodeInput] = useState<string>(code || '')
   // eslint-disable-next-line prefer-spread
   const [codeDigitsArray] = useState([...Array(codeSize).keys()])
 
@@ -47,7 +40,7 @@ const Otp = ({
 
   useEffect(() => {
     if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
-      setCodeInput(code || "")
+      setCodeInput(code || '')
     }
   }, [code])
 
@@ -66,14 +59,14 @@ const Otp = ({
   const style = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: "flex-start",
-      justifyContent: "center",
-      alignSelf: "center",
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      alignSelf: 'center',
     },
     inputsContainer: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     inputContainer: {
       borderColor:
@@ -84,9 +77,9 @@ const Otp = ({
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignContent: 'center',
+      alignItems: 'center',
       width: 28,
       height: 35,
     },
@@ -95,14 +88,14 @@ const Otp = ({
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignContent: 'center',
+      alignItems: 'center',
       width: 28,
       height: 35,
     },
     hiddenCodeInput: {
-      position: "absolute",
+      position: 'absolute',
       height: 1,
       width: 1,
       opacity: 0,
@@ -114,8 +107,7 @@ const Otp = ({
     currentInput: {
       width: 15,
       height: 1,
-      backgroundColor:
-        (focused && getColorStyle(TrilogyColor.MAIN)) || "transparent",
+      backgroundColor: (focused && getColorStyle(TrilogyColor.MAIN)) || 'transparent',
     },
     text: {
       paddingLeft: 5,
@@ -125,7 +117,7 @@ const Otp = ({
   })
 
   const toDigitInput = (_value: number, idx: number): JSX.Element => {
-    const emptyInputChar = " "
+    const emptyInputChar = ' '
     const digit = codeInput[idx] || emptyInputChar
     if (idx <= codeInput.length) {
       return (
@@ -133,9 +125,7 @@ const Otp = ({
           <Text typo={TypographyAlign.TEXT_CENTERED} level={TextLevels.TWO}>
             {digit}
           </Text>
-          {Boolean(idx === codeInput.length) && (
-            <View style={style.currentInput} />
-          )}
+          {Boolean(idx === codeInput.length) && <View style={style.currentInput} />}
         </View>
       )
     }
@@ -148,20 +138,15 @@ const Otp = ({
   }
 
   return (
-    <SafeAreaView style={style.container} {...others}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <SafeAreaView style={style.container} ref={reff} {...others}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {Boolean(label) && (
           <Text style={style.text} level={TextLevels.FOUR}>
             {label}
           </Text>
         )}
         {error && (
-          <Icon
-            style={style.icon}
-            name={IconName.EXCLAMATION_CIRCLE}
-            color={IconColor.ERROR}
-            size={IconSize.SMALL}
-          />
+          <Icon style={style.icon} name={IconName.EXCLAMATION_CIRCLE} color={IconColor.ERROR} size={IconSize.SMALL} />
         )}
       </View>
       <Pressable style={style.inputsContainer} onPress={handleOnPress}>
@@ -180,8 +165,8 @@ const Otp = ({
             setCodeInput(code)
           }
         }}
-        keyboardType={"numeric"}
-        returnKeyType={"send"}
+        keyboardType={'numeric'}
+        returnKeyType={'send'}
         textContentType='oneTimeCode'
         maxLength={codeSize}
         onFocus={() => {
@@ -204,4 +189,4 @@ const Otp = ({
 
 Otp.displayName = ComponentName.Otp
 
-export default Otp
+export default React.forwardRef(Otp)
