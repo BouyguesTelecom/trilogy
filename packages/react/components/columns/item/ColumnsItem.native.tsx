@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ColumnsItemProps } from './ColumnsItemProps'
+
 import { ColumnsContext } from '@/components/columns/Columns.native'
+import { ColumnsItemProps } from '@/components/columns/item/ColumnsItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -13,7 +14,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param centered {boolean} center Column item
  * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = ({ children, size, mobileSize, verticalCentered, ...others }: ColumnsItemProps): JSX.Element => {
+const ColumnsItem = (
+  { children, size, mobileSize, verticalCentered, ...others }: ColumnsItemProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const columnsContextValues = useContext(ColumnsContext)
 
   const realSize = size || mobileSize
@@ -23,14 +27,14 @@ const ColumnsItem = ({ children, size, mobileSize, verticalCentered, ...others }
       height: columnsContextValues.scrollable ? '100%' : undefined,
       flex: !realSize ? 1 : realSize,
       justifyContent: verticalCentered ? 'center' : 'flex-start',
-      flexBasis: `${(realSize ? realSize / 12 : 12)  * 100}%`,
+      flexBasis: `${(realSize ? realSize / 12 : 12) * 100}%`,
       flexGrow: 0,
-      maxWidth: `${(realSize ? realSize : 12) / 12 * 100}%`
+      maxWidth: `${((realSize ? realSize : 12) / 12) * 100}%`,
     },
   })
 
   return (
-    <View style={styles.columnsItem} {...others}>
+    <View ref={ref} style={styles.columnsItem} {...others}>
       {children}
     </View>
   )
@@ -38,4 +42,4 @@ const ColumnsItem = ({ children, size, mobileSize, verticalCentered, ...others }
 
 ColumnsItem.displayName = ComponentName.ColumnsItem
 
-export default ColumnsItem
+export default React.forwardRef(ColumnsItem)

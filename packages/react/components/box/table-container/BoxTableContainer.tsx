@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxTableContainerProps } from './BoxTableContainerProps'
+import React from 'react'
+
+import { BoxTableContainerProps } from '@/components/box/table-container/BoxTableContainerProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Box Table Component
@@ -11,10 +11,13 @@ import { BoxTableContainerProps } from './BoxTableContainerProps'
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const BoxTableContainer = ({ className, testId, ...others }: BoxTableContainerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  return <div data-testid={testId} className={hashClass(clsx('box table-container', className))} {...others} />
+const BoxTableContainer = (
+  { className, testId, ...others }: BoxTableContainerProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
+  return (
+    <div data-testid={testId} className={hashClass(clsx('box table-container', className))} ref={ref} {...others} />
+  )
 }
 
-export default BoxTableContainer
+export default React.forwardRef(BoxTableContainer)

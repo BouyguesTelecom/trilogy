@@ -1,4 +1,4 @@
-import { BoxItemSize, BoxItemSizeValues } from './BoxItemEnum'
+import { BoxItemSize, BoxItemSizeValues } from '@/components/box/item/BoxItemEnum'
 
 export interface BoxItemProps {
   children?: React.ReactNode

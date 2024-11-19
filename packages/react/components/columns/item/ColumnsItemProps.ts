@@ -1,5 +1,4 @@
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
-import {Alignable, AlignableValues} from "@/objects";
 
 /**
  * Columns Item Interface
@@ -22,5 +21,5 @@ export interface ColumnsItemProps {
   fullhdOffset?: ColumnsSize
   narrow?: boolean
   className?: string
-  verticalCentered?:boolean
+  verticalCentered?: boolean
 }

@@ -1,5 +1,5 @@
-import { GapSize } from './ColumnsTypes'
-import {Alignable, AlignableValues} from "@/objects"
+import { GapSize } from '@/components/columns/ColumnsTypes'
+import { Alignable, AlignableValues } from '@/objects/facets/Alignable'
 
 /**
  * Columns Interface

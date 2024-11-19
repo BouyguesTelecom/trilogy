@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import React from 'react'
+
+import { BoxContentProps } from '@/components/box/content/BoxContentProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import { BoxContentProps } from './BoxContentProps'
 
 /**
  * Box Content
@@ -14,17 +14,18 @@ import { BoxContentProps } from './BoxContentProps'
  * @param className {string} Additionnal CSS Classes
  * @param testId test id
  */
-const BoxContent = ({ children, className, backgroundColor, testId, ...others }: BoxContentProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const BoxContent = (
+  { children, className, backgroundColor, testId, ...others }: BoxContentProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx('box-content', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
   )
   return (
-    <div data-testid={testId} className={classes} {...others}>
+    <div ref={ref} data-testid={testId} className={classes} {...others}>
       {children}
     </div>
   )
 }
 
-export default BoxContent
+export default React.forwardRef(BoxContent)

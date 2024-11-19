@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getAlignClassName } from '@/objects'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ColumnsProps } from './ColumnsProps'
+import React from 'react'
+
+import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { hashClass } from '@/helpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { has, is } from '@/services/classify'
 
 /**
  * Columns Component
@@ -18,11 +18,10 @@ import { ColumnsProps } from './ColumnsProps'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, multiline, scrollable, mobile, centered, gap, fullBleed, verticalAlign, ...others } = props
-
-  const { styled } = useTrilogyContext()
-
+const Columns = (
+  { className, multiline, scrollable, mobile, centered, gap, fullBleed, verticalAlign, ...others }: ColumnsProps,
+  ref: React.Ref<HTMLDivElement>,
+) => {
   const classes = hashClass(
     clsx(
       'columns',
@@ -39,6 +38,6 @@ const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTML
   )
 
   return <div ref={ref} className={classes} {...others} />
-})
+}
 
-export default Columns
+export default React.forwardRef(Columns)

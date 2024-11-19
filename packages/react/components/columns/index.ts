@@ -1,4 +1,2 @@
-import Columns from './Columns'
-import ColumnsItem from './item'
-
-export { Columns, ColumnsItem }
+export { default as Columns } from '@/components/columns/Columns'
+export { default as ColumnsItem } from '@/components/columns/item'

@@ -1,5 +1,4 @@
-import BoxItem from './BoxItem'
+import BoxItem from '@/components/box/item/BoxItem'
 
-export * from './BoxItemEnum'
-
+export * from '@/components/box/item/BoxItemEnum'
 export default BoxItem

@@ -1,11 +1,11 @@
-import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects'
-import { has } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxHeaderProps } from './BoxHeaderProps'
+import React from 'react'
+
+import { BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
+import { Text } from '@/components/text'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has } from '@/services/classify'
 
 /**
  * Box Header Component
@@ -18,13 +18,14 @@ import { BoxHeaderProps } from './BoxHeaderProps'
  * @param testId {string} Test Id for Test Integration
  */
 
-const BoxHeader = ({ children, className, help, variant, testId, ...others }: BoxHeaderProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const BoxHeader = (
+  { children, className, help, variant, testId, ...others }: BoxHeaderProps,
+  ref: React.Ref<HTMLHeadElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('box-header', className, variant && has(getBackgroundClassName(variant))))
 
   return (
-    <header data-testid={testId} className={classes} {...others}>
+    <header data-testid={testId} className={classes} ref={ref} {...others}>
       {children && typeof children.valueOf() === 'string' ? <p>{children}</p> : children}
       {help && (
         <Text testId={testId && `${testId}-help`} className='box-header-help sticker is-small is-success'>
@@ -35,4 +36,4 @@ const BoxHeader = ({ children, className, help, variant, testId, ...others }: Bo
   )
 }
 
-export default BoxHeader
+export default React.forwardRef(BoxHeader)

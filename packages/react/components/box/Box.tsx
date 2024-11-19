@@ -1,11 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName } from '@/objects'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { BoxMarkup, BoxProps } from './BoxProps'
+import React from 'react'
+
+import { BoxMarkup, BoxProps } from '@/components/box/BoxProps'
+import { useBox } from '@/components/box/hook/useBox'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
 
 /**
  * Box Component
@@ -29,28 +30,31 @@ import { BoxMarkup, BoxProps } from './BoxProps'
  * @param fullheight
  * @param others
  */
-const Box = ({
-  inverted,
-  children,
-  className,
-  onClick,
-  markup,
-  skeleton,
-  to,
-  backgroundColor,
-  highlighted,
-  shadowless,
-  backgroundSrc,
-  testId,
-  flat,
-  hat,
-  fullheight,
-  active,
-  headerOffset,
-  ...others
-}: BoxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [isLoading, setIsLoading] = useState<boolean>(skeleton || false)
+const Box = (
+  {
+    inverted,
+    children,
+    className,
+    onClick,
+    markup,
+    skeleton,
+    to,
+    backgroundColor,
+    highlighted,
+    shadowless,
+    backgroundSrc,
+    testId,
+    flat,
+    hat,
+    fullheight,
+    active,
+    headerOffset,
+    ...others
+  }: BoxProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
+  const { isLoading } = useBox({ skeleton })
+
   const classes = hashClass(
     clsx(
       'box',
@@ -69,22 +73,9 @@ const Box = ({
     ),
   )
 
-  useEffect(() => {
-    setIsLoading(skeleton || false)
-  }, [skeleton])
-
   if (markup === BoxMarkup.A || to) {
     return (
-      <a
-        data-testid={testId}
-        href={to}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
-        className={classes}
-        {...others}
-      >
+      <a data-testid={testId} href={to} onClick={onClick && onClick} className={classes} {...others}>
         {children}
       </a>
     )
@@ -96,12 +87,10 @@ const Box = ({
 
   return (
     <div
+      ref={ref}
       style={onClick && { ...hoverStyle }}
       data-testid={testId}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-      }}
+      onClick={onClick && onClick}
       className={classes}
       {...others}
       {...(backgroundSrc && {
@@ -117,4 +106,4 @@ const Box = ({
   )
 }
 
-export default Box
+export default React.forwardRef(Box)

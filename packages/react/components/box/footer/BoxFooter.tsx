@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects'
-import { has } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxFooterProps } from './BoxFooterProps'
+import React from 'react'
+
+import { BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has } from '@/services/classify'
 
 /**
  * Box Footer Component
@@ -13,11 +13,13 @@ import { BoxFooterProps } from './BoxFooterProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const BoxFooter = ({ className, children, backgroundColor, testId, ...others }: BoxFooterProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const BoxFooter = (
+  { className, children, backgroundColor, testId, ...others }: BoxFooterProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   return (
     <div
+      ref={ref}
       data-testid={testId}
       className={hashClass(
         clsx('box-footer', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
@@ -29,4 +31,4 @@ const BoxFooter = ({ className, children, backgroundColor, testId, ...others }: 
   )
 }
 
-export default BoxFooter
+export default React.forwardRef(BoxFooter)

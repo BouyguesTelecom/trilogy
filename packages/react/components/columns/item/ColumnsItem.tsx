@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ColumnsItemProps } from './ColumnsItemProps'
+import React from 'react'
+
+import { ColumnsItemProps } from '@/components/columns/item/ColumnsItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Columns Item Component - Columns Child
@@ -29,8 +29,8 @@ import { ColumnsItemProps } from './ColumnsItemProps'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param verticalAlign { Alignable | AlignableValues} vertical align content
  */
-const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const {
+const ColumnsItem = (
+  {
     className,
     size,
     mobileSize,
@@ -49,10 +49,9 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
     narrow,
     verticalCentered,
     ...others
-  } = props
-
-  const { styled } = useTrilogyContext()
-
+  }: ColumnsItemProps,
+  ref: React.LegacyRef<HTMLDivElement>,
+) => {
   const classes = hashClass(
     clsx(
       'column',
@@ -77,6 +76,6 @@ const ColumnsItem = React.forwardRef((props: ColumnsItemProps, ref: React.Legacy
   )
 
   return <div ref={ref} className={classes} {...others} />
-})
+}
 
-export default ColumnsItem
+export default React.forwardRef(ColumnsItem)

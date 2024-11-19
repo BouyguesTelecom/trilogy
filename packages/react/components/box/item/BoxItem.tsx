@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxItemProps } from './BoxItemProps'
+import React from 'react'
+
+import { BoxItemProps } from '@/components/box/item/BoxItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Box Item Component
@@ -11,14 +11,12 @@ import { BoxItemProps } from './BoxItemProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const BoxItem = ({ className, children, ...others }: BoxItemProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const BoxItem = ({ className, children, ...others }: BoxItemProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div className={hashClass(clsx('box-item', className))} {...others}>
+    <div className={hashClass(clsx('box-item', className))} ref={ref} {...others}>
       {children}
     </div>
   )
 }
 
-export default BoxItem
+export default React.forwardRef(BoxItem)

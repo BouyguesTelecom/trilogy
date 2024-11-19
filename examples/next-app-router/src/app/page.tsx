@@ -1,4 +1,5 @@
 import { Badge } from '@/components/badge'
+import { Box, BoxContent, BoxFooter, BoxHeader } from '@/components/box'
 import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
 import { Button, ButtonMarkup, ButtonVariant } from '@/components/button'
 import { Card, CardContent, CardImage } from '@/components/card'
@@ -283,6 +284,24 @@ export default function Home() {
               <BreadcrumbItem>Accessories</BreadcrumbItem>
               <BreadcrumbItem>Current page</BreadcrumbItem>
             </Breadcrumb>
+
+            <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
+              <BoxHeader>Test</BoxHeader>
+              <BoxContent>
+                <Title level={TitleLevels.FOUR}>Highlited box</Title>
+                <Text>
+                  Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim
+                  velit ultricies justo ultrices sed leo cras.
+                </Text>
+                <Text>
+                  Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim
+                  velit ultricies justo ultrices sed leo cras.
+                </Text>
+              </BoxContent>
+              <BoxFooter>
+                <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+              </BoxFooter>
+            </Box>
           </View>
         </Section>
       </main>
