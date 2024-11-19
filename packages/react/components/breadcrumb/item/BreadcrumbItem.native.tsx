@@ -1,9 +1,11 @@
-import * as React from "react"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { BreadcrumbItemProps } from "./BreadcrumbItemProps"
-import { Text } from "@/components/text"
-import { Linking, StyleSheet, TouchableOpacity } from "react-native"
-import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import React from 'react'
+import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
+
+import { BreadcrumbItemProps } from '@/components/breadcrumb/item/BreadcrumbItemProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 
 /**
  * Breadcrumb Item Component
@@ -13,24 +15,21 @@ import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
  * @param onClick {Function} Click Event
  * @param testId {string} Test Id for Test Integration
  */
-const BreadcrumbItem = ({
-  children,
-  active,
-  to,
-  testId,
-  onClick,
-  ...others
-}: BreadcrumbItemProps): JSX.Element => {
+const BreadcrumbItem = (
+  { children, active, to, testId, onClick, ...others }: BreadcrumbItemProps,
+  ref: React.Ref<TouchableOpacity>,
+): JSX.Element => {
   const { textStyle } = StyleSheet.create({
     textStyle: {
       color: getColorStyle(TrilogyColor.FONT),
-      textDecorationLine: !active ? "underline" : "none",
-      textDecorationStyle: "solid",
+      textDecorationLine: !active ? 'underline' : 'none',
+      textDecorationStyle: 'solid',
     },
   })
 
   return (
     <TouchableOpacity
+      ref={ref}
       testID={testId}
       onPress={(e) => {
         if (to) Linking.openURL(to)
@@ -38,11 +37,13 @@ const BreadcrumbItem = ({
       }}
       {...others}
     >
-      <Text typo={TypographyBold.TEXT_WEIGHT_MEDIUM} style={{ ...textStyle }}>{children}</Text>
+      <Text typo={TypographyBold.TEXT_WEIGHT_MEDIUM} style={{ ...textStyle }}>
+        {children}
+      </Text>
     </TouchableOpacity>
   )
 }
 
 BreadcrumbItem.displayName = ComponentName.BreadcrumbItem
 
-export default BreadcrumbItem
+export default React.forwardRef(BreadcrumbItem)

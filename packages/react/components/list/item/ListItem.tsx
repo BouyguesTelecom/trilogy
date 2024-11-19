@@ -1,12 +1,12 @@
+import clsx from 'clsx'
+import React from 'react'
+
 import { Divider } from '@/components/divider'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { TrilogyColor, getColorClassName } from '@/objects'
-import { has, is } from '@/services'
-import clsx from 'clsx'
-import * as React from 'react'
-import { ListItemProps } from './ListItemProps'
+import { ListItemProps } from '@/components/list/item/ListItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TrilogyColor, getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
 
 /**
  * ListItem Component
@@ -22,23 +22,14 @@ import { ListItemProps } from './ListItemProps'
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ListItem = ({
-  className,
-  children,
-  customIcon,
-  status,
-  title,
-  description,
-  testId,
-  action,
-  divider,
-  deletable,
-}: ListItemProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const ListItem = (
+  { className, children, customIcon, status, title, description, testId, action, divider, deletable }: ListItemProps,
+  ref: React.Ref<HTMLLIElement>,
+): JSX.Element => {
   const classes = clsx(is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)), className)
 
   return (
-    <li className={hashClass(clsx(classes, action && has('action')))} data-testid={testId}>
+    <li className={hashClass(clsx(classes, action && has('action')))} data-testid={testId} ref={ref}>
       <div className={hashClass(clsx('list-item_content'))}>
         {customIcon && typeof customIcon === 'string' && (
           <div className={hashClass(clsx('list-item_content_puce'))}>
@@ -66,4 +57,4 @@ const ListItem = ({
   )
 }
 
-export default ListItem
+export default React.forwardRef(ListItem)

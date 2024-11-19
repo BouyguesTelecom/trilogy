@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName } from '@/objects'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { Icon, IconSize } from '../icon'
-import { DividerProps } from './DividerProps'
+import React from 'react'
+
+import { DividerProps } from '@/components//divider/DividerProps'
+import { Icon, IconSize } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
 
 /**
  * Divider Component
@@ -20,19 +20,10 @@ import { DividerProps } from './DividerProps'
  * @param textColor {TrilogyColor} Text color of Divider
  * @param others
  */
-const Divider = ({
-  className,
-  unboxed,
-  content,
-  marginless,
-  iconName,
-  color,
-  backgroundColor,
-  textColor,
-  ...others
-}: DividerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Divider = (
+  { className, unboxed, content, marginless, iconName, color, backgroundColor, textColor, ...others }: DividerProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'divider',
@@ -54,7 +45,7 @@ const Divider = ({
   // si il y a du text et une icone , SEULEMENT le text compte
   if (content && iconName) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div data-testid='separator' className={classes} ref={ref}>
         <p className={contentClasses}>{content}</p>
       </div>
     )
@@ -62,7 +53,7 @@ const Divider = ({
 
   if (content) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div data-testid='separator' className={classes} ref={ref}>
         <p className={contentClasses}>{content}</p>
       </div>
     )
@@ -71,7 +62,7 @@ const Divider = ({
   // si il y a seulement une icone
   if (iconName) {
     return (
-      <div data-testid='separator' className={classes}>
+      <div data-testid='separator' className={classes} ref={ref}>
         <p className={contentClasses}>
           <Icon name={iconName} size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM} />
         </p>
@@ -80,7 +71,7 @@ const Divider = ({
   }
 
   // divider normal trilogy
-  return <div data-testid='separator' className={classes} {...others} />
+  return <div data-testid='separator' className={classes} ref={ref} {...others} />
 }
 
-export default Divider
+export default React.forwardRef(Divider)

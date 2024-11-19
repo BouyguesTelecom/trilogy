@@ -1,7 +1,8 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { ContainerProps } from "./ContainerProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { ContainerProps } from '@/components/container/ContainerProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Container Native Component
@@ -9,27 +10,18 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {React.ReactNode
  */
 
-const Container = ({
-  children,
-  ...others
-}: ContainerProps): JSX.Element => {
-
+const Container = ({ children, ...others }: ContainerProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
-      width: "100%",
-      alignItems: "stretch",
-      justifyContent: "flex-start",
+      width: '100%',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
       flex: 0,
     },
   })
 
   return (
-    <View
-      style={
-        styles.container
-      }
-      {...others}
-    >
+    <View style={styles.container} ref={ref} {...others}>
       {children}
     </View>
   )
@@ -37,4 +29,4 @@ const Container = ({
 
 Container.displayName = ComponentName.Container
 
-export default Container
+export default React.forwardRef(Container)

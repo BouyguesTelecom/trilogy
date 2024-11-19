@@ -1,10 +1,9 @@
-/**
- * ListItem Interface
- */
-import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Dev } from '@/objects'
 import { ReactNode } from 'react'
 import { Animated } from 'react-native'
+
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',

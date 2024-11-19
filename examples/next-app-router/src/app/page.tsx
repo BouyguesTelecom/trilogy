@@ -1,10 +1,17 @@
 import { Badge } from '@/components/badge'
-import { Button, ButtonVariant } from '@/components/button'
+import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
+import { Button, ButtonMarkup, ButtonVariant } from '@/components/button'
 import { Card, CardContent, CardImage } from '@/components/card'
 import { Checkbox } from '@/components/checkbox'
 import { Chips } from '@/components/chips'
 import ChipsList from '@/components/chips/list/ChipsList'
-import { IconName } from '@/components/icon'
+import { Container } from '@/components/container'
+import { Countdown } from '@/components/countdown'
+import { Fab } from '@/components/fab'
+import { Hero } from '@/components/hero'
+import { Icon, IconName } from '@/components/icon'
+import { Image } from '@/components/image'
+import { List, ListIconStatus, ListItem, ListItemDescription } from '@/components/list'
 import { Otp } from '@/components/otp'
 import { Pagination } from '@/components/pagination'
 import { Popover } from '@/components/popover'
@@ -232,6 +239,50 @@ export default function Home() {
               <Chips>Chips 3</Chips>
               <Chips>Chips 4</Chips>
             </ChipsList>
+
+            <List>
+              <ListItem
+                deletable
+                status={ListIconStatus.ERROR}
+                customIcon={IconName.TIMES}
+                action={<Icon name='tri-trash' size='small' />}
+                title='Ceci est le titre'
+                description='Lorem ipsum dolor sit amet consectetur '
+              ></ListItem>
+              <ListItem
+                customIcon={<Icon name='tri-trash' size='small' />}
+                action={<Switch name='switch' onChange={(e) => console.log(e.switchState)} />}
+              >
+                <Title level={6}>Ceci est le titre</Title>
+                <ListItemDescription>Lorem ipsum dolor sit amet consectetur adipisicing</ListItemDescription>
+              </ListItem>
+            </List>
+
+            <Image width={150} height={150} src='https://picsum.photos/id/1/1500/600' />
+
+            <Hero backgroundSrc={'https://picsum.photos/id/1/1500/600'} inverted>
+              <Container>
+                <Text>Welcome Message</Text>
+                <Title level={1}>Hero with image background</Title>
+                {/* <button className='button'>Click me !</button> */}
+                <Button markup={ButtonMarkup.BUTTON} variant={'PRIMARY'}>
+                  Click me !
+                </Button>
+              </Container>
+            </Hero>
+
+            <Fab iconName={IconName.INFOS_CIRCLE} right={20} bottom={15}>
+              New Conversation
+            </Fab>
+
+            <Countdown deadline={new Date('2025-12-24 20:00:00')}></Countdown>
+
+            <Breadcrumb>
+              <BreadcrumbItem href='https://Home.fr'>Home</BreadcrumbItem>
+              <BreadcrumbItem to='#anchor'>Catalog</BreadcrumbItem>
+              <BreadcrumbItem>Accessories</BreadcrumbItem>
+              <BreadcrumbItem>Current page</BreadcrumbItem>
+            </Breadcrumb>
           </View>
         </Section>
       </main>

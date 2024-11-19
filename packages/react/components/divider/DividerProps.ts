@@ -1,5 +1,6 @@
-import { Marginless, TrilogyColor, TrilogyColorValues } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { Marginless } from '@/objects/facets/Marginless'
 
 /**
  * Divider Interface

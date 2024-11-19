@@ -1,5 +1,5 @@
+import { CountdownFormat } from '@/components/countdown/CountdownEnum'
 import { ClickEvent } from '@/events/OnClickEvent'
-import { CountdownFormat } from './CountdownEnum'
 
 /**
  * Countdown Interface

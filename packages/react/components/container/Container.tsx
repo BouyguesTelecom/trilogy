@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
+import clsx from 'clsx'
+import React from 'react'
+
+import { ContainerProps } from '@/components/container/ContainerProps'
 import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
-import clsx from 'clsx'
-import * as React from 'react'
-import { ContainerProps } from './ContainerProps'
 
 /**
  * Container Component
@@ -12,12 +12,10 @@ import { ContainerProps } from './ContainerProps'
  * @param className {string} Additionnal CSS Classes
  */
 
-const Container = ({ className, medium, ...others }: ContainerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Container = ({ className, medium, ...others }: ContainerProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
   const classes = hashClass(clsx('container', medium && is('medium'), className))
 
-  return <div className={classes} {...others} />
+  return <div className={classes} ref={ref} {...others} />
 }
 
-export default Container
+export default React.forwardRef(Container)

@@ -1,3 +1,1 @@
-import Divider from './Divider'
-
-export { Divider }
+export { default as Divider } from '@/components/divider/Divider'

@@ -1,10 +1,10 @@
-import { Icon, IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { FabProps } from './FabProps'
+import React from 'react'
+
+import { FabProps } from '@/components/fab/FabProps'
+import { Icon, IconName } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Fab Component - Floating Button Action
@@ -23,29 +23,25 @@ import { FabProps } from './FabProps'
  * @param testId {string} Test Id for Test Integration
  **/
 
-const Fab = ({
-  children,
-  extended,
-  iconName,
-  accessibilityLabel,
-  onClick,
-  className,
-  fixed = true,
-  top,
-  bottom,
-  left,
-  right,
-  testId,
-  disabled,
-  ...others
-}: FabProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [isExtended, setIsExtended] = useState<boolean>(extended || false)
-
-  useEffect(() => {
-    setIsExtended(extended || false)
-  }, [isExtended])
-
+const Fab = (
+  {
+    children,
+    extended,
+    iconName,
+    accessibilityLabel,
+    onClick,
+    className,
+    fixed = true,
+    top,
+    bottom,
+    left,
+    right,
+    testId,
+    disabled,
+    ...others
+  }: FabProps,
+  ref: React.Ref<HTMLButtonElement>,
+): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const positionStyle: React.CSSProperties | any =
     top || bottom || left || right
@@ -64,16 +60,14 @@ const Fab = ({
 
   return (
     <button
+      ref={ref}
       disabled={disabled}
       data-testid={testId}
       aria-label={accessibilityLabel}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={onClick && onClick}
       style={{ ...positionStyle }}
-      {...others}
       className={_className}
+      {...others}
     >
       <Icon name={iconName as IconName} />
       {children}
@@ -81,4 +75,4 @@ const Fab = ({
   )
 }
 
-export default Fab
+export default React.forwardRef(Fab)

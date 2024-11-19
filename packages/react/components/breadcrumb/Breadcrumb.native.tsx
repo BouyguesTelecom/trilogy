@@ -1,43 +1,35 @@
-import * as React from "react"
-import { BreadcrumbProps } from "./BreadcrumbProps"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StyleSheet, View } from "react-native"
-import { Icon } from "@/components/icon"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { BreadcrumbProps } from '@/components/breadcrumb/BreadcrumbProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
 
 /**
  * Breadcrumb Native Component
  * @param children {React.ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  */
-const Breadcrumb = ({
-  children,
-  testId,
-  ...others
-}: BreadcrumbProps): JSX.Element => {
+const Breadcrumb = ({ children, testId, ...others }: BreadcrumbProps, ref: React.Ref<View>): JSX.Element => {
   const { containerStyle } = React.useMemo(
     () =>
       StyleSheet.create({
         containerStyle: {
-          flexDirection: "row",
-          flexWrap: "wrap",
+          flexDirection: 'row',
+          flexWrap: 'wrap',
         },
       }),
-    []
+    [],
   )
 
   return (
-    <View testID={testId} style={[containerStyle]} {...others}>
+    <View testID={testId} style={[containerStyle]} ref={ref} {...others}>
       {Array.isArray(children)
         ? React.Children.map(children, (child, index) => (
             <>
               {React.cloneElement(child)}
               {index != children.length - 1 && (
-                <Icon
-                  size='smaller'
-                  name='tri-arrow-right'
-                  align='ALIGNED_CENTER'
-                  style={{ marginHorizontal: 5 }}
-                />
+                <Icon size='smaller' name='tri-arrow-right' align='ALIGNED_CENTER' style={{ marginHorizontal: 5 }} />
               )}
             </>
           ))
@@ -48,4 +40,4 @@ const Breadcrumb = ({
 
 Breadcrumb.displayName = ComponentName.Breadcrumb
 
-export default Breadcrumb
+export default React.forwardRef(Breadcrumb)

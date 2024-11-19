@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BreadcrumbWebProps } from './BreadcrumbProps'
+import React from 'react'
+
+import { BreadcrumbWebProps } from '@/components/breadcrumb/BreadcrumbProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Breadcrumb Component
@@ -12,11 +12,10 @@ import { BreadcrumbWebProps } from './BreadcrumbProps'
  * @param className {string} Additionnal CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
-  const { children, className, testId, accessibilityLabel, ...others } = props
-
-  const { styled } = useTrilogyContext()
-
+const Breadcrumb = (
+  { children, className, testId, accessibilityLabel, ...others }: BreadcrumbWebProps,
+  ref: React.Ref<HTMLElement>,
+) => {
   return (
     <nav
       ref={ref}
@@ -29,6 +28,6 @@ const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.Legac
       <ul>{children}</ul>
     </nav>
   )
-})
+}
 
-export default Breadcrumb
+export default React.forwardRef(Breadcrumb)

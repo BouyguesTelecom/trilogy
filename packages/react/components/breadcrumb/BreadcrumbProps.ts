@@ -1,4 +1,5 @@
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Breadcrumb Interface

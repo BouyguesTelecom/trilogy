@@ -1,19 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownProps } from './CountdownProps'
+import React from 'react'
 
-const calculateTimer = (timeDifference: number) => {
-  const seconds = Math.floor((timeDifference / 1000) % 60)
-  const minutes = Math.floor((timeDifference / 1000 / 60) % 60)
-  const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24)
-  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
-
-  return { days, hours, minutes, seconds }
-}
+import { CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownProps } from '@/components/countdown/CountdownProps'
+import { useCountdown } from '@/components/countdown/hook/useCountdown'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Countdown Component
@@ -29,22 +21,10 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  */
 const Countdown = ({ deadline, className, format, event, small, inverted, ...others }: CountdownProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const [timeLeft] = useState(deadline)
-
-  const initialTimeDifference = deadline.getTime() - new Date().getTime()
-
-  const initialTimer = calculateTimer(initialTimeDifference)
-
-  const [timer, setTimer] = useState(initialTimer)
-
-  const [init, setInit] = useState(false)
-
+  const { timer } = useCountdown({ event, format, deadline })
+  const classes = hashClass(clsx('countdown', inverted && is('inverted'), small && is('small'), className))
   const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
   const parsedFormat = format?.split('-')
-
-  const classes = hashClass(clsx('countdown', inverted && is('inverted'), small && is('small'), className))
 
   if (parsedFormat) {
     parsedFormat.forEach((item) => {
@@ -71,56 +51,6 @@ const Countdown = ({ deadline, className, format, event, small, inverted, ...oth
     show[CountdownUnite.MIN] = true
     show[CountdownUnite.SEC] = true
   }
-
-  useEffect(() => {
-    setInterval(() => {
-      const difference = timeLeft.getTime() - new Date().getTime()
-      if (difference > 0) {
-        switch (format) {
-          case CountdownFormat.DAY:
-            setTimer({
-              days: Math.ceil(difference / (1000 * 60 * 60 * 24)),
-              hours: 0,
-              minutes: 0,
-              seconds: 0,
-            })
-            break
-          case CountdownFormat.DAY_HOUR:
-            setTimer({
-              days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-              hours: Math.ceil((difference / (1000 * 60 * 60)) % 24),
-              minutes: 0,
-              seconds: 0,
-            })
-            break
-          case CountdownFormat.DAY_HOUR_MIN:
-            setTimer({
-              days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-              hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-              minutes: Math.ceil((difference / 1000 / 60) % 60),
-              seconds: 0,
-            })
-            break
-          default:
-            setTimer({
-              days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-              hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-              minutes: Math.floor((difference / 1000 / 60) % 60),
-              seconds: Math.floor((difference / 1000) % 60),
-            })
-            break
-        }
-      }
-      setInit(true)
-    }, 1000)
-  }, [timeLeft, format])
-
-  useEffect(() => {
-    if (timer.days + timer.hours + timer.minutes + timer.seconds === 0 && event && init) {
-      event(null)
-      setInit(false)
-    }
-  }, [timer, event, init])
 
   return (
     <ul className={classes} {...others}>

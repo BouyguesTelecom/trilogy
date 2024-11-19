@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ListItemDescriptionProps } from './ListItemDescriptionProps'
+import React from 'react'
+
+import { ListItemDescriptionProps } from '@/components/list/item/description/ListItemDescriptionProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * ListItemDescription Component
@@ -10,10 +10,15 @@ import { ListItemDescriptionProps } from './ListItemDescriptionProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const ListItemDescription = ({ children, className }: ListItemDescriptionProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  return <dd className={hashClass(clsx(className))}>{children}</dd>
+const ListItemDescription = (
+  { children, className }: ListItemDescriptionProps,
+  ref: React.Ref<HTMLElement>,
+): JSX.Element => {
+  return (
+    <dd className={hashClass(clsx(className))} ref={ref}>
+      {children}
+    </dd>
+  )
 }
 
-export default ListItemDescription
+export default React.forwardRef(ListItemDescription)

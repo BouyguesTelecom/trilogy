@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ImageProps } from './ImageProps'
+import React from 'react'
+
+import { ImageProps } from '@/components/image/ImageProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Image Component
@@ -16,9 +16,10 @@ import { ImageProps } from './ImageProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
-const Image = ({ src, alt, className, rounded, width, height, onClick, ...others }: ImageProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Image = (
+  { src, alt, className, rounded, width, height, onClick, ...others }: ImageProps,
+  ref: React.Ref<HTMLElement>,
+): JSX.Element => {
   const classes = hashClass(clsx('image', className))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,14 +31,7 @@ const Image = ({ src, alt, className, rounded, width, height, onClick, ...others
   }
 
   return (
-    <figure
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-      className={classes}
-      {...others}
-    >
+    <figure onClick={onClick && onClick} className={classes} ref={ref} {...others}>
       <img
         style={styles.image}
         className={hashClass(clsx(rounded ? is('rounded') : ''))}
@@ -48,4 +42,4 @@ const Image = ({ src, alt, className, rounded, width, height, onClick, ...others
   )
 }
 
-export default Image
+export default React.forwardRef(Image)

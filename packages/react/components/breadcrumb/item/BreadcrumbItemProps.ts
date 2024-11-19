@@ -1,4 +1,6 @@
-import { Accessibility, Clickable, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
   children?: string

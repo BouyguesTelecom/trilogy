@@ -1,16 +1,22 @@
-import * as React from "react"
-import { View } from "@/components/view"
-import { ListProps } from "./ListProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import type { View as ViewType } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ListProps } from '@/components/list/ListProps'
+import { View } from '@/components/view'
 
 /**
  * List Component
  * @param children {React.ReactNode}
  */
-const List = ({ children, ...others }: ListProps): JSX.Element => {
-  return <View {...others}>{children}</View>
+const List = ({ children, ...others }: ListProps, ref: React.Ref<ViewType>): JSX.Element => {
+  return (
+    <View ref={ref} {...others}>
+      {children}
+    </View>
+  )
 }
 
 List.displayName = ComponentName.List
 
-export default List
+export default React.forwardRef(List)

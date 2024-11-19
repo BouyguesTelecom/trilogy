@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ListProps } from './ListProps'
+import React from 'react'
+
+import { ListProps } from '@/components/list/ListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * List Component
@@ -12,17 +12,13 @@ import { ListProps } from './ListProps'
  * @param hasIcon {boolean} If Have icon
  * @param testId {string} Test Id for Test Integration
  */
-const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
-  const { className, hasIcon, children, testId, ...others } = props
-
-  const { styled } = useTrilogyContext()
-
+const List = ({ className, hasIcon, children, testId, ...others }: ListProps, ref: React.Ref<HTMLUListElement>) => {
   const classes = hashClass(clsx(hasIcon ? 'icon-list' : 'list', className))
   return (
     <ul ref={ref} data-testid={testId} className={classes} {...others}>
       {children}
     </ul>
   )
-})
+}
 
-export default List
+export default React.forwardRef(List)

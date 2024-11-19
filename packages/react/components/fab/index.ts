@@ -1,3 +1,1 @@
-import Fab from "./Fab"
-
-export { Fab }
+export { default as Fab } from '@/components/fab/Fab'

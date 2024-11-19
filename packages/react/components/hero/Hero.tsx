@@ -1,10 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getAlignClassName, getBackgroundClassName } from '@/objects'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { HeroProps } from './HeroProps'
+
+import { HeroProps } from '@/components/hero/HeroProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { has, is } from '@/services/classify'
 
 /**
  * Hero Component
@@ -23,20 +24,21 @@ import { HeroProps } from './HeroProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param backgroundHeight {BackgroundHeight} Background heigth
  */
-const Hero = ({
-  children,
-  backgroundColor,
-  backgroundSrc,
-  inverted,
-  className,
-  align,
-  justify,
-  onClick,
-  overlap,
-  ...others
-}: HeroProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const Hero = (
+  {
+    children,
+    backgroundColor,
+    backgroundSrc,
+    inverted,
+    className,
+    align,
+    justify,
+    onClick,
+    overlap,
+    ...others
+  }: HeroProps,
+  ref: React.Ref<HTMLElement>,
+): JSX.Element => {
   const classes = hashClass(
     clsx(
       'hero',
@@ -52,6 +54,7 @@ const Hero = ({
 
   return (
     <section
+      ref={ref}
       onClick={onClick && onClick}
       {...(backgroundSrc && {
         style: { backgroundImage: `url(${backgroundSrc})` },
@@ -64,4 +67,4 @@ const Hero = ({
   )
 }
 
-export default Hero
+export default React.forwardRef(Hero)

@@ -1,4 +1,2 @@
-import Countdown from "./Countdown"
-import { CountdownFormat, CountdownUnite } from "./CountdownEnum"
-
-export { Countdown, CountdownFormat, CountdownUnite }
+export { default as Countdown } from '@/components/countdown/Countdown'
+export * from '@/components/countdown/CountdownEnum'

@@ -1,5 +1,3 @@
-import ListItem from './ListItem'
-
-export * from './description'
-export * from './ListItemProps'
-export { ListItem }
+export * from '@/components/list/item/description'
+export { default as ListItem } from '@/components/list/item/ListItem'
+export * from '@/components/list/item/ListItemProps'

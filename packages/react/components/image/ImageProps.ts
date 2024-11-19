@@ -1,6 +1,7 @@
-import { Clickable } from '@/objects'
+import { DimensionValue } from 'react-native'
+
+import { Clickable } from '@/objects/facets/Clickable'
 import { Flexable } from '@/objects/facets/Flexable'
-import { DimensionValue } from "react-native"
 
 type Styles = { [key: string]: unknown }
 

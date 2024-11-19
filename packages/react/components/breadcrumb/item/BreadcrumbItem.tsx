@@ -1,10 +1,10 @@
-import { Link } from '@/components/link'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
+import React from 'react'
+
+import { BreadcrumbItemPropsWeb } from '@/components/breadcrumb/item/BreadcrumbItemProps'
+import { Link } from '@/components/link'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Breadcrumb Item Component
@@ -18,25 +18,22 @@ import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
  * @param href {string} Url. Use native-old <a> tag (only when the `to` property is not filled)
  * @param className {string} Additionnal CSS Classes
  */
-const BreadcrumbItem = ({
-  children,
-  active,
-  className,
-  href,
-  to,
-  routerLink,
-  testId,
-  onClick,
-  ...others
-}: BreadcrumbItemPropsWeb): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+const BreadcrumbItem = (
+  { children, active, className, href, to, routerLink, testId, onClick, ...others }: BreadcrumbItemPropsWeb,
+  ref: React.Ref<HTMLLIElement>,
+): JSX.Element => {
   const classes = hashClass(clsx(active && is('active'), className))
 
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
-      <li data-testid={testId} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      <li
+        data-testid={testId}
+        className={classes}
+        onClick={onClick}
+        aria-current={active ? 'page' : undefined}
+        ref={ref}
+      >
         <RouterLink className={hashClass(clsx('link'))} to={to} {...others}>
           {children}
         </RouterLink>
@@ -45,7 +42,7 @@ const BreadcrumbItem = ({
   }
 
   return (
-    <li className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
+    <li className={classes} onClick={onClick} aria-current={active ? 'page' : undefined} ref={ref}>
       <Link href={active ? undefined : href} {...others}>
         {children}
       </Link>
@@ -53,4 +50,4 @@ const BreadcrumbItem = ({
   )
 }
 
-export default BreadcrumbItem
+export default React.forwardRef(BreadcrumbItem)

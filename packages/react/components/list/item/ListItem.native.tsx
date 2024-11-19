@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react'
 import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
-import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { TrilogyColor, getColorStyle } from '@/objects'
+
 import { Divider } from '@/components/divider'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName } from '@/components/icon'
+import { AnimatedInterpolationProps, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 
 /**
  * ListItem Component
@@ -20,16 +21,10 @@ import { AnimatedInterpolationProps, ListItemProps } from './ListItemProps'
  * @param divider {boolean} Display divider
  * @param deletable {boolean}
  */
-const ListItem = ({
-  children,
-  customIcon,
-  status,
-  title,
-  description,
-  divider,
-  action,
-  deletable,
-}: ListItemProps): JSX.Element => {
+const ListItem = (
+  { children, customIcon, status, title, description, divider, action, deletable }: ListItemProps,
+  ref: React.Ref<View>,
+): JSX.Element => {
   const styles = StyleSheet.create({
     item: {
       marginBottom: 4,
@@ -101,7 +96,7 @@ const ListItem = ({
 
   const content = useMemo(() => {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} ref={ref}>
         <ReactView style={styles.content}>
           {customIcon && typeof customIcon === 'string' && (
             <ReactView>
@@ -146,9 +141,7 @@ const ListItem = ({
 
       return (
         <View>
-          <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>
-            {action}
-          </Animated.View>
+          <Animated.View style={[styles.rightAction, { transform: [{ scale }] }]}>{action}</Animated.View>
         </View>
       )
     }

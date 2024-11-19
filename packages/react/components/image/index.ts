@@ -1,3 +1,1 @@
-import Image from './Image'
-
-export { Image }
+export { default as Image } from '@/components/image/Image'

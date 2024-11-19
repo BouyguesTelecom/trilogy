@@ -1,4 +1,2 @@
-import Breadcrumb from './Breadcrumb'
-import BreadcrumbItem from './item'
-
-export { Breadcrumb, BreadcrumbItem }
+export { default as Breadcrumb } from '@/components/breadcrumb/Breadcrumb'
+export { default as BreadcrumbItem } from '@/components/breadcrumb/item'
