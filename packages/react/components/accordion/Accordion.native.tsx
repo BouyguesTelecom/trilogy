@@ -1,23 +1,24 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { AccordionProps } from "./AccordionProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { AccordionProps } from '@/components/accordion/AccordionProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Accordion Component
  * @param children {ReactNode}
  */
-const Accordion = ({ ...others }: AccordionProps): JSX.Element => {
+const Accordion = ({ ...others }: AccordionProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     accordion: {
-      width: "100%",
+      width: '100%',
       minHeight: 10,
       borderRadius: 6,
     },
   })
 
-  return <View style={styles.accordion} {...others} />
+  return <View ref={ref} style={styles.accordion} {...others} />
 }
 
 Accordion.displayName = ComponentName.Accordion
-export default Accordion
+export default React.forwardRef(Accordion)

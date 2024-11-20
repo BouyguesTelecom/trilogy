@@ -1,4 +1,4 @@
-import { Dev } from '@/objects'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * AccordionHeader Interface

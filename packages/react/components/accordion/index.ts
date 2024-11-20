@@ -1,6 +1,4 @@
-import Accordion from './Accordion'
-import AccordionItem from './item'
-import AccordionHeader from './header'
-import AccordionBody from './body'
-
-export { Accordion, AccordionItem, AccordionHeader, AccordionBody }
+export { default as Accordion } from '@/components/accordion/Accordion'
+export { default as AccordionBody } from '@/components/accordion/body'
+export { default as AccordionHeader } from '@/components/accordion/header'
+export { default as AccordionItem } from '@/components/accordion/item'
