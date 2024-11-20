@@ -205,8 +205,6 @@ export default function Home() {
               label='Lorem ipsum dolor'
               name='radio1'
               value='default value 1'
-              // eslint-disable-next-line no-console
-              onChange={(e) => console.log(e.radioValue, e.radioChecked)}
             />
 
             <ProgressRadial percent={30} secondPercent={30}>

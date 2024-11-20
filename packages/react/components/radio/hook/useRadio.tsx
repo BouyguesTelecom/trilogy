@@ -54,7 +54,7 @@ export const useRadio = ({ checked, readonly, onChange, value, onClick }: IParam
   } catch {
     return {
       inputState: {
-        checked: checked || false,
+        checked: checked,
       },
     }
   }
