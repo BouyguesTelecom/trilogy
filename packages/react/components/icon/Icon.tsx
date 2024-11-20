@@ -5,8 +5,7 @@ import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/f
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { IconStatus } from '@/components/icon/IconEnum'
-import { getStatusBackground, has, is } from '@/services'
+import { has, is } from '@/services'
 
 /**
  * Icon Component
@@ -27,23 +26,22 @@ import { getStatusBackground, has, is } from '@/services'
  */
 
 const Icon = ({
-  className,
-  id,
-  size,
-  name,
-  circled,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  skeleton,
-  ...others
-}: IconProps): JSX.Element => {
+                className,
+                id,
+                size,
+                name,
+                circled,
+                stretched,
+                color,
+                backgroundColor,
+                onClick,
+                skeleton,
+                ...others
+              }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-    (status && getStatusBackground(status, IconStatus.INFO)) ||
     (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
     ''
 
@@ -64,7 +62,7 @@ const Icon = ({
 
   return (
     <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+      <i className={hashClass(styled, clsx(name))} aria-hidden="true" />
     </span>
   )
 }
