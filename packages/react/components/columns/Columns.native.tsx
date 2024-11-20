@@ -104,7 +104,7 @@ const Columns = (
     <View
       ref={ref}
       style={{
-        width: `100% + ${enlarge * 2}px`,
+        // width: `100% + ${enlarge * 2}px`,
         marginHorizontal: -enlarge,
       }}
       {...{ onLayout: onLayoutHandler }}

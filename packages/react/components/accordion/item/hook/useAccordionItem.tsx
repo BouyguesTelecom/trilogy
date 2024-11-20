@@ -18,11 +18,14 @@ export const useAccordionItem = ({ active, onOpen, onClick, onClose }: IParams) 
     const [expandedHeight, setExpandedHeight] = React.useState<string>()
     const [collapsedHeight, setCollapsedHeight] = React.useState<string>()
 
-    const handleClick = React.useCallback((e: React.MouseEvent<HTMLDetailsElement>) => {
-      if (onOpen && !isActive) onOpen(e)
-      if (onClose && isActive) onClose(e)
-      if (onClick) onClick(e)
-    }, [])
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLDetailsElement>) => {
+        if (onOpen && !isActive) onOpen(e)
+        if (onClose && isActive) onClose(e)
+        if (onClick) onClick(e)
+      },
+      [onOpen, onClose, onClick, isActive],
+    )
 
     // Faire à l'avance un pré-calcul de la hauteur de l'accordéon plié et déplié,
     // Ces infos sont enregistrées dans les data-attributs "data-collapsed" et "data-expanded".

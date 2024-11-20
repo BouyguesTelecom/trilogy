@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 
 import { AccordionBodyProps } from '@/components/accordion/body/AccordionBodyProps'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -9,12 +9,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode} Children for Accordion body
  */
 const AccordionBody = ({ children, ...others }: AccordionBodyProps, ref: React.Ref<View>): JSX.Element => {
-  const styles = StyleSheet.create({
-    accordionBody: {},
-  })
-
   return (
-    <View ref={ref} style={[styles.accordionBody]} {...others}>
+    <View ref={ref} {...others}>
       {children}
     </View>
   )

@@ -27,4 +27,4 @@ const RadioList = ({ autolayout = SPACING_MATRIX, children }: RadioListProps): J
 
 RadioList.displayName = ComponentName.RadioList
 
-export default React.forwardRef(RadioList)
+export default RadioList

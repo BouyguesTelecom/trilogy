@@ -10,7 +10,7 @@ describe('Accordion', () => {
   it('should render correctly', () => {
     render(
       <Accordion>
-        <AccordionItem active={false}>
+        <AccordionItem active={true}>
           <AccordionHeader>
             <Text>header</Text>
           </AccordionHeader>

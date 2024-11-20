@@ -31,7 +31,12 @@ const AccordionItem = (
   }: AccordionItemProps,
   ref: React.Ref<HTMLDetailsElement>,
 ): JSX.Element => {
-  const { isActive, collapsedHeight, expandedHeight, localRef, handleClick } = useAccordionItem({ active })
+  const { isActive, collapsedHeight, expandedHeight, localRef, handleClick } = useAccordionItem({
+    active,
+    onOpen,
+    onClick,
+    onClose,
+  })
 
   const classes = hashClass(clsx('accordion', className))
   const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}

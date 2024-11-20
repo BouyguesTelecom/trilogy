@@ -115,7 +115,7 @@ const Textarea = (
           {help}
         </Text>
       )}
-      {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
+      {maxLength && <div className={counterClasses}>{`${inputValue?.length}/${maxLength?.toString()}`}</div>}
     </div>
   )
 }
