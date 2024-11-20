@@ -1,6 +1,7 @@
-import { Accessibility, StatusProps } from '@/objects'
-import { IconName, IconNameValues } from '@/components/icon'
 import { ToasterAlertPosition } from '@/components/alert/AlertProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { StatusProps } from '@/objects/facets/Status'
 
 /**
  * @param title {string} Notification title content

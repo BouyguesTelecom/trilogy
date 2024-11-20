@@ -1,3 +1,3 @@
-import ToasterContext from './ToasterContext'
+import ToasterContext from '@/components/alert/context/ToasterContext'
 
 export default ToasterContext

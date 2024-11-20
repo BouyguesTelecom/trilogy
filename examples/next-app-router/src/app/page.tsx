@@ -1,3 +1,4 @@
+import { Alert } from '@/components/alert'
 import { Badge } from '@/components/badge'
 import { Box, BoxContent, BoxFooter, BoxHeader } from '@/components/box'
 import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
@@ -302,6 +303,11 @@ export default function Home() {
                 <Button variant={ButtonVariant.CONVERSION}>Test</Button>
               </BoxFooter>
             </Box>
+            <Alert
+              status='ERROR'
+              title='Titlre'
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
+            />
           </View>
         </Section>
       </main>
