@@ -36,7 +36,7 @@ const View = (
     align,
     ...others
   }: ViewProps,
-  ref: React.Ref<ViewNative | ImageBackground>,
+  ref: React.Ref<ViewNative>,
 ): JSX.Element => {
   const viewColor = (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || 'transparent'
 
@@ -61,25 +61,19 @@ const View = (
   })
 
   let returnView = (
-    <ViewNative ref={ref} testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+    <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
       {children}
     </ViewNative>
   )
   if (!children) {
     returnView = (
-      <ViewNative
-        ref={ref}
-        testID={id}
-        nativeID={id}
-        style={[styles.view, bottom && styles.bottom, style]}
-        {...others}
-      />
+      <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others} />
     )
   }
 
   if (onClick) {
     returnView = (
-      <ViewNative ref={ref} testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+      <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
         <TouchableOpacity activeOpacity={1} onPress={onClick}>
           {children}
         </TouchableOpacity>
@@ -89,7 +83,6 @@ const View = (
 
   return backgroundSrc ? (
     <ImageBackground
-      ref={ref as React.Ref<ImageBackground>}
       style={styles.sectionImage}
       source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
     >

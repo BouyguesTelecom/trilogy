@@ -1,16 +1,15 @@
 import React from 'react'
-import type { View as ViewType } from 'react-native'
+import { View } from 'react-native'
 
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ListItemDescriptionProps } from '@/components/list/item/description/ListItemDescriptionProps'
 import { Text } from '@/components/text'
-import { View } from '@/components/view'
 
 /**
  * ListItemDescription Component
  * @param children {React.ReactNode}
  */
-const ListItemDescription = ({ children }: ListItemDescriptionProps, ref: React.Ref<ViewType>): JSX.Element => {
+const ListItemDescription = ({ children }: ListItemDescriptionProps, ref: React.Ref<View>): JSX.Element => {
   if (['string', 'number'].includes(typeof children)) {
     return <Text ref={ref}>{children}</Text>
   }
@@ -20,4 +19,4 @@ const ListItemDescription = ({ children }: ListItemDescriptionProps, ref: React.
 
 ListItemDescription.displayName = ComponentName.ListItemDescription
 
-export default ListItemDescription
+export default React.forwardRef(ListItemDescription)

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 
-import { hasDisplayName } from '@/components/accordion/item/AccordionItem.helper'
 import { AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
@@ -109,26 +108,37 @@ const AccordionItem = (
     active ? animatedController.setValue(1) : animatedController.setValue(0)
   }, [active])
 
+  const isForwardRefComponent = (element: any): element is React.ForwardRefExoticComponent<any> => {
+    return (
+      typeof element === 'object' &&
+      element !== null &&
+      (element.$$typeof as symbol) === Symbol.for('react.forward_ref')
+    )
+  }
+
+  const getDisplayName = (component: any): string | null => {
+    if (component?.render?.displayName) return component.render.displayName
+    return null
+  }
+
   useEffect(() => {
     const newChilds: AccordionChild = {}
     if (Array.isArray(children)) {
       children.forEach((child) => {
-        if (
-          child &&
-          typeof child === 'object' &&
-          'type' in child &&
-          typeof child.type === 'function' &&
-          hasDisplayName(child.type)
-        ) {
-          switch (child.type.displayName) {
-            case 'AccordionHeader':
-              newChilds.header = child
-              break
-            case 'AccordionBody':
-              newChilds.body = child
-              break
-            default:
-              break
+        if (React.isValidElement(child) && isForwardRefComponent(child.type)) {
+          const displayName = getDisplayName(child.type)
+
+          if (displayName) {
+            switch (true) {
+              case displayName.includes('AccordionHeader'):
+                newChilds.header = child
+                break
+              case displayName.includes('AccordionBody'):
+                newChilds.body = child
+                break
+              default:
+                break
+            }
           }
         }
       })

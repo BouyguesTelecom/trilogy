@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
-import { Animated, View as ReactView, StyleSheet, View } from 'react-native'
+import { Animated, StyleSheet, View } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 
 import { Divider } from '@/components/divider'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -8,7 +9,6 @@ import { AnimatedInterpolationProps, ListItemProps } from '@/components/list/ite
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
-import Swipeable from 'react-native-gesture-handler/Swipeable'
 
 /**
  * ListItem Component
@@ -77,7 +77,9 @@ const ListItem = (
   })
 
   const getComponent = useMemo(() => {
-    if (typeof children === 'object') return <View style={styles.text}>{children}</View>
+    if (typeof children === 'object') {
+      return <View style={styles.text}>{children}</View>
+    }
     if (typeof children === 'undefined' && description) {
       return (
         <Text style={styles.text} level={TextLevels.ONE}>
@@ -92,40 +94,41 @@ const ListItem = (
         </Text>
       )
     }
+    return <></>
   }, [children, description])
 
   const content = useMemo(() => {
     return (
       <View style={styles.container} ref={ref}>
-        <ReactView style={styles.content}>
+        <View style={styles.content}>
           {customIcon && typeof customIcon === 'string' && (
-            <ReactView>
+            <View>
               <Icon size='small' name={customIcon as IconName} color={status || IconColor.MAIN} />
-            </ReactView>
+            </View>
           )}
 
-          {customIcon && typeof customIcon !== 'string' && <ReactView>{customIcon}</ReactView>}
+          {customIcon && typeof customIcon !== 'string' && <View>{customIcon}</View>}
 
-          <ReactView>
+          <View>
             {title && (
               <Title style={styles.title} level={TitleLevels.SIX}>
                 {title}
               </Title>
             )}
             {getComponent}
-          </ReactView>
-        </ReactView>
+          </View>
+        </View>
 
         {action && deletable && (
-          <ReactView style={{ flexDirection: 'row', marginLeft: 'auto' }}>
+          <View style={{ flexDirection: 'row', marginLeft: 'auto' }}>
             <View style={styles.badge} />
             <View style={styles.swipeInfo} />
-          </ReactView>
+          </View>
         )}
         {action && !deletable && (
-          <ReactView style={{ marginLeft: 'auto' }}>
+          <View style={{ marginLeft: 'auto' }}>
             <View>{action}</View>
-          </ReactView>
+          </View>
         )}
       </View>
     )
@@ -164,4 +167,4 @@ const ListItem = (
 
 ListItem.displayName = ComponentName.ListItem
 
-export default ListItem
+export default React.forwardRef(ListItem)
