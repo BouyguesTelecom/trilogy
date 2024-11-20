@@ -1,19 +1,15 @@
-import { ButtonList, ButtonType } from '@/components/button'
-import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context/index'
-import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
-import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import shortid from 'shortid'
-import ModalFooter from './footer/ModalFooter'
-import { ModalMarkup, ModalMarkupValues } from './ModalEnum'
-import { ModalProps } from './ModalProps'
-import ModalTitle from './title/ModalTitle'
+import React from 'react'
 
-const idDescription = shortid.generate()
-const idTitle = shortid.generate()
+import { ButtonList, ButtonType } from '@/components/button'
+import ModalFooter from '@/components/modal/footer/ModalFooter'
+import { useModal } from '@/components/modal/hook/useModal'
+import { ModalMarkup, ModalMarkupValues } from '@/components/modal/ModalEnum'
+import { ModalProps } from '@/components/modal/ModalProps'
+import ModalTitle from '@/components/modal/title/ModalTitle'
+import { Text } from '@/components/text'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 
 /**
  * Modal Component
@@ -75,65 +71,18 @@ const Modal = ({
   testId,
   ...others
 }: ModalProps): JSX.Element => {
-  const modal = useRef<HTMLDivElement>(null)
-  const [display, setDisplay] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
-  const refsActions = useRef<Array<HTMLButtonElement | null>>([])
-  const refBtnModal = useRef<any>(null)
-  const [, setIndexFocusable] = useState(0)
+  const idDescription = React.useId()
+  const idTitle = React.useId()
 
-  const handleClickOutside = (e: Event) => {
-    if (modal?.current?.contains(e.target as Node)) {
-      return
-    } else {
-      handleClose(onClose, e)
-    }
-  }
+  const { onKeyDown, display, refBtnModal, modal, refsActions, handleClose, handleOpen } = useModal({
+    active,
+    onClose,
+    disableHandlingClickOutside,
+  })
 
-  useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
-
-  useEffect(() => {
-    display && refsActions.current[0] && refsActions.current[0].focus()
-  }, [display, refsActions?.current.length])
-
-  useEffect(() => {
-    if (display && !disableHandlingClickOutside) {
-      document.addEventListener('mousedown', handleClickOutside)
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [display, disableHandlingClickOutside])
-
-  const classes = React.useMemo(
-    () =>
-      hashClass(clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className)),
-    [display, panel, className, styled],
+  const classes = hashClass(
+    clsx('modal', display && is('active'), panel && is('panel'), fullwidth && is('fullwidth'), className),
   )
-  const contentClasses = React.useMemo(
-    () => hashClass(clsx('modal-content', contentClassNames)),
-    [contentClassNames, styled],
-  )
-  const footerClasses = React.useMemo(() => clsx('modal-footer', footerClassNames), [footerClassNames, styled])
-
-  function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(false)
-    refBtnModal.current && refBtnModal.current.focus()
-    if (onCloseFunc) {
-      onCloseFunc(e)
-    }
-  }
-
-  function handleOpen(onOpenFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(true)
-    if (onOpenFunc) {
-      onOpenFunc(e)
-    }
-  }
 
   /**
    * key in Enum works only in TS or with number enum for JS
@@ -148,33 +97,19 @@ const Modal = ({
     [triggerMarkup],
   )
 
-  const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (display && refsActions.current) {
-        const refs = refsActions.current.filter((ref) => ref)
-        const { key } = event
-        if (key === 'Tab') {
-          event.preventDefault()
-          setIndexFocusable((prev) => {
-            const nextIndex = (prev + 1) % refs.length
-            refs[nextIndex] && refs[nextIndex]?.focus()
-            return nextIndex
-          })
-        }
-      }
-    },
-    [refsActions.current.length, display],
-  )
-
   return (
     <div data-testid={testId} onKeyDown={onKeyDown}>
       {triggerContent && (
         <TriggerTag
           aria-haspopup='dialog'
           ref={refBtnModal}
-          onClick={(e: React.MouseEvent) => {
-            handleOpen(onOpen, e)
-          }}
+          onClick={
+            handleOpen
+              ? (e: React.MouseEvent) => {
+                  handleOpen(onOpen, e)
+                }
+              : undefined
+          }
           className={hashClass(clsx(triggerClassNames))}
         >
           {triggerContent}
@@ -187,17 +122,21 @@ const Modal = ({
         aria-labelledby={title ? idTitle : undefined}
         {...others}
       >
-        <div ref={modal} className={contentClasses}>
+        <div ref={modal} className={hashClass(clsx('modal-content', contentClassNames))}>
           {(closeIcon || title || iconName) && (
             <div className={hashClass(clsx('modal-header'))}>
               {closeIcon && (
                 <button
-                  onClick={(e: React.MouseEvent) => {
-                    handleClose(onClose, e)
-                  }}
+                  onClick={
+                    handleClose
+                      ? (e: React.MouseEvent) => {
+                          handleClose(onClose, e)
+                        }
+                      : undefined
+                  }
                   className={hashClass(clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
-                  ref={(el) => el && (refsActions.current[0] = el)}
+                  ref={refsActions ? (el) => el && (refsActions.current[0] = el) : undefined}
                 >
                   {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
                 </button>
@@ -215,16 +154,20 @@ const Modal = ({
               {children != null && children}
             </div>
           )}
-          <ModalFooter className={footerClasses}>
+          <ModalFooter className={clsx('modal-footer', footerClassNames)}>
             {((ctaOnClick != null || ctaCancelOnClick != null) && (
               <ButtonList centered className={is('flex')}>
                 {ctaCancelOnClick && (
                   <button
-                    onClick={(e) => {
-                      handleClose(ctaCancelOnClick, e)
-                    }}
+                    onClick={
+                      handleClose
+                        ? (e) => {
+                            handleClose(ctaCancelOnClick, e)
+                          }
+                        : undefined
+                    }
                     className={hashClass(clsx('button', is('secondary')))}
-                    ref={(el) => (refsActions.current[1] = el)}
+                    ref={refsActions ? (el) => (refsActions.current[1] = el) : undefined}
                   >
                     {ctaCancelContent}
                   </button>
@@ -233,7 +176,7 @@ const Modal = ({
                   <button
                     className={hashClass(clsx('button', is('primary')))}
                     title={ctaContent}
-                    ref={(el) => (refsActions.current[2] = el)}
+                    ref={refsActions ? (el) => (refsActions.current[2] = el) : undefined}
                     onClick={ctaOnClick}
                   >
                     {ctaContent}

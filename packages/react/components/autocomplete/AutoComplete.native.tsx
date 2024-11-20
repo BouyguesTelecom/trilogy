@@ -1,12 +1,13 @@
+import React, { useEffect, useMemo, useState } from 'react'
+import type { TextInput } from 'react-native'
+import { Keyboard, StyleSheet, View } from 'react-native'
+
+import { AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteProps'
+import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
+import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
+import { debounce } from '@/components/autocomplete/utils'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
-import React, { useEffect, useMemo, useState } from 'react'
-import { Keyboard, StyleSheet, View } from 'react-native'
-import { AutoCompletePropsNative } from './AutoCompleteProps'
-import { defaultMatching, getLabel } from './Autocomplete.helpers'
-import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
-import { debounce } from './utils'
-
 /**
  * AutoComplete Component
  * @param placeholder {string} placeholder for input
@@ -28,25 +29,28 @@ import { debounce } from './utils'
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param getSuggestions {Function} getSuggestions event
  */
-const AutoComplete = ({
-  value,
-  data,
-  onChange,
-  displayMenu,
-  onItemSelected,
-  customIcon,
-  placeholder,
-  matching = defaultMatching,
-  getSuggestions,
-  debounceSuggestionsTimeout,
-  onFocus,
-  testId,
-  status,
-  onBlur,
-  disabled,
-  onIconClick,
-  ...others
-}: AutoCompletePropsNative): JSX.Element => {
+const AutoComplete = (
+  {
+    value,
+    data,
+    onChange,
+    displayMenu,
+    onItemSelected,
+    customIcon,
+    placeholder,
+    matching = defaultMatching,
+    getSuggestions,
+    debounceSuggestionsTimeout,
+    onFocus,
+    testId,
+    status,
+    onBlur,
+    disabled,
+    onIconClick,
+    ...others
+  }: AutoCompletePropsNative,
+  ref: React.Ref<TextInput>,
+): JSX.Element => {
   const [valueInput, setValueInput] = useState<string>(value ?? '')
   const [suggestions, setSuggestions] = useState(data ?? [])
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
@@ -117,6 +121,7 @@ const AutoComplete = ({
     <View style={styles.autoComplete}>
       <View>
         <Input
+          ref={ref}
           status={status}
           testId={testId}
           placeholder={placeholder}
@@ -142,4 +147,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AutoComplete
+export default React.forwardRef(AutoComplete)

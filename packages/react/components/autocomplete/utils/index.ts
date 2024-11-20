@@ -1,1 +1,1 @@
-export * from './debounce'
+export * from '@/components/autocomplete/utils/debounce'

@@ -1,5 +1,6 @@
-import { InputChangeEventWeb, InputChangeEventNative, InputClickEvent, InputProps } from '@/components/input/InputProps'
 import { FocusEventHandler } from 'react'
+
+import { InputChangeEventNative, InputChangeEventWeb, InputClickEvent, InputProps } from '@/components/input/InputProps'
 
 /**
  * AutoComplete Interface
@@ -19,7 +20,7 @@ export interface AutoCompletePropsWeb<T = string> extends InputProps {
   onIconClick?: (event: InputClickEvent) => void
   getSuggestions?: (search: string) => Promise<T[]>
   debounceSuggestionsTimeout?: number
-  onFocus?:FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
 }
 
@@ -38,7 +39,7 @@ export interface AutoCompletePropsNative<T = string> extends InputProps {
   onIconClick?: (event: InputClickEvent) => void
   getSuggestions?: (search: string) => Promise<T[]>
   debounceSuggestionsTimeout?: number
-  onFocus?: (event:  React.BaseSyntheticEvent) => void
+  onFocus?: (event: React.BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 

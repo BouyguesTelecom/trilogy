@@ -1,9 +1,9 @@
-import TextIcon from '@/components/icon/text/TextIcon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ModalTitleProps } from './ModalTitleProps'
+import React from 'react'
+
+import TextIcon from '@/components/icon/text/TextIcon'
+import { ModalTitleProps } from '@/components/modal/title/ModalTitleProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Modal Title Component
@@ -14,7 +14,6 @@ import { ModalTitleProps } from './ModalTitleProps'
  * @param className {string} Additionnal css classes
  */
 const ModalTitle = ({ children, className, iconColor, iconName, ...others }: ModalTitleProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const { textId } = others as any
 
   return (

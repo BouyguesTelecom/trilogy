@@ -1,20 +1,20 @@
-"use client"
-
+'use client'
 import React, { useLayoutEffect } from 'react'
-import { TrilogyContext } from './index'
-import { version } from '../version'
 
-const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) =>  {
-  return (assetUrl)
-            .replace('%VERSION%', version)
-            .replace('%THEME%', theme)
-    .replace('%MANGLED%', mangled?'-mangled':'')
+import { TrilogyContext } from '@/context/index'
+import { version } from '@/version'
+
+const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) => {
+  return assetUrl
+    .replace('%VERSION%', version)
+    .replace('%THEME%', theme)
+    .replace('%MANGLED%', mangled ? '-mangled' : '')
 }
 
 const injectTrilogy = (mangled: boolean, id: string, theme: string, assetUrl: string) => {
-  const link = document.createElement("link")
-  link.type = "text/css"
-  link.rel = "stylesheet"
+  const link = document.createElement('link')
+  link.type = 'text/css'
+  link.rel = 'stylesheet'
   link.href = getHrefFromAssetUri(assetUrl, theme, mangled)
   link.id = id
   document?.head.appendChild(link)
@@ -30,18 +30,18 @@ const injectTrilogy = (mangled: boolean, id: string, theme: string, assetUrl: st
  * @param assetUrl URL to the file with some possible replacement (%VERSION%, %THEME%, %MANGLED%)
  */
 const TrilogyProvider = ({
-                           children,
-                           mangled = false,
-                           injectTrilogyAssets = false,
-                           id = 'trilogy',
-                           theme = '',
-                           assetUrl = ''
-                         }: {
+  children,
+  mangled = false,
+  injectTrilogyAssets = false,
+  id = 'trilogy',
+  theme = '',
+  assetUrl = '',
+}: {
   children: React.ReactNode
   mangled?: boolean
   injectTrilogyAssets?: boolean
   id?: string
-  theme?: string,
+  theme?: string
   assetUrl?: string
 }): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(mangled)

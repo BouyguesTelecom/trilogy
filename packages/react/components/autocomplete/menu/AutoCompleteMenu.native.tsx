@@ -1,8 +1,9 @@
-import * as React from 'react'
+import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
-import { TrilogyColor, getColorStyle } from '@/objects'
+
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
   const styles = StyleSheet.create({

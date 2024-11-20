@@ -1,8 +1,9 @@
-import * as React from 'react'
+import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { Text } from '@/components/text'
+
 import { getLabel } from '@/components/autocomplete/Autocomplete.helpers'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
+import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
+import { Text } from '@/components/text'
 
 const AutoCompleteItemNative = ({ item, onSelect }: AutoCompleteItemProps): JSX.Element => {
   return (

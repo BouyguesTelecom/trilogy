@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ModalFooterProps } from './ModalFooterProps'
+import React from 'react'
+
+import { ModalFooterProps } from '@/components/modal/footer/ModalFooterProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Modal Footer Component
@@ -11,7 +11,6 @@ import { ModalFooterProps } from './ModalFooterProps'
  * @param className {string} Additionnal css classes
  */
 const ModalFooter = ({ children, className }: ModalFooterProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   return <div className={hashClass(clsx('modal-footer', className))}>{children}</div>
 }
 

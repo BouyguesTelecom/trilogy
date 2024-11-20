@@ -33,9 +33,8 @@ export const useAccordionItem = ({ active, onOpen, onClick, onClose }: IParams) 
 
     React.useEffect(() => {
       const e = localRef.current
-      if (!e) {
-        return
-      }
+      if (!e) return
+
       const { floor, abs } = Math
       const firstChild = e?.children[1]?.firstChild as HTMLElement
       const expandedInactive = floor(abs(e.clientHeight + firstChild?.clientHeight)).toString()
@@ -44,7 +43,7 @@ export const useAccordionItem = ({ active, onOpen, onClick, onClose }: IParams) 
       const collapsedActive = floor(abs(e.children[0].clientHeight)).toString()
       setExpandedHeight(isActive ? expandedActive : expandedInactive)
       setCollapsedHeight(isActive ? collapsedActive : collapsedInactive)
-    }, [isActive])
+    }, [isActive, localRef])
 
     React.useEffect(() => {
       setIsActive(active || false)

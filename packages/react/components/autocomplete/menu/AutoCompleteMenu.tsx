@@ -1,9 +1,9 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import React from 'react'
+
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services'
 
 /**
  * AutoCompleteMenu Component
@@ -14,8 +14,6 @@ import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
  * @param fullwidth {boolean} Fullwidth size for Menu
  */
 const AutoCompleteMenu = ({ children, className, absolute, fullwidth, testId }: AutoCompleteMenuProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
     <div
       role='list'

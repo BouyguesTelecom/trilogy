@@ -1,8 +1,9 @@
 'use client'
 
-import * as React from 'react'
-import hashJSON from '../hash.json'
-import { TrilogyContext } from './index'
+import React from 'react'
+
+import { TrilogyContext } from '@/context/index'
+import hashJSON from '@/hash.json'
 
 interface TrilogyProviderStyledProps {
   theme?: 'default' | 'mangled' | 'none'

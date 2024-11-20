@@ -1,1 +1,1 @@
-export * from './classify'
+export * from '@/services/classify'

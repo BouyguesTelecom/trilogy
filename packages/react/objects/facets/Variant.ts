@@ -1,21 +1,21 @@
-import { getColorStyle, TrilogyColor } from "./Color"
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Variant State
  */
 export enum VariantState {
-  MAIN = "MAIN",
-  ACCENT = "ACCENT",
-  INFO = "INFO",
+  MAIN = 'MAIN',
+  ACCENT = 'ACCENT',
+  INFO = 'INFO',
 }
 
-export type VariantStateValues = `${VariantState}`;
+export type VariantStateValues = `${VariantState}`
 
 /**
  * Variant props
  */
 export interface VariantProps {
-  variant?: VariantState | VariantStateValues;
+  variant?: VariantState | VariantStateValues
 }
 
 /**
@@ -24,22 +24,22 @@ export interface VariantProps {
  * @returns {string} - Variant value
  */
 export const getVariantClassName = (variantType?: string): string => {
-  if (!variantType) return ""
+  if (!variantType) return ''
   switch (variantType) {
-    case "MAIN":
-      return "main"
-    case "ACCENT":
-      return "accent"
-    case "PRIMARY":
-      return "primary"
-    case "SECONDARY":
-      return "secondary"
-    case "GHOST":
-      return "ghost"
-    case "INFO":
-      return "info"
+    case 'MAIN':
+      return 'main'
+    case 'ACCENT':
+      return 'accent'
+    case 'PRIMARY':
+      return 'primary'
+    case 'SECONDARY':
+      return 'secondary'
+    case 'GHOST':
+      return 'ghost'
+    case 'INFO':
+      return 'info'
     default:
-      return ""
+      return ''
   }
 }
 
@@ -50,17 +50,17 @@ export const getVariantClassName = (variantType?: string): string => {
  */
 export const getVariantStyle = (variantType?: string): string => {
   switch (variantType) {
-    case "PRIMARY":
+    case 'PRIMARY':
       return getColorStyle(TrilogyColor.MAIN)
-    case "ACCENT":
+    case 'ACCENT':
       return getColorStyle(TrilogyColor.ACCENT)
-    case "MAIN":
+    case 'MAIN':
       return getColorStyle(TrilogyColor.MAIN)
-    case "SECONDARY":
+    case 'SECONDARY':
       return getColorStyle(TrilogyColor.MAIN_FADE)
-    case "INFO":
+    case 'INFO':
       return getColorStyle(TrilogyColor.INFO)
     default:
-      return ""
+      return ''
   }
 }

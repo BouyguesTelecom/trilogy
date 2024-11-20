@@ -1,7 +1,7 @@
 'use client'
-
 import React, { Dispatch, ReactNode, SetStateAction } from 'react'
-import { ITrilogyTheme } from './interfaces'
+
+import { ITrilogyTheme } from '@/context/interfaces'
 
 export const defaultTheme: ITrilogyTheme = {
   icons: {},
