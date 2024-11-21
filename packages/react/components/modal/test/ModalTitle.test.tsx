@@ -1,11 +1,7 @@
-// Dependencies
-import * as React from 'react'
-
-// Testing methods
 import { render, screen } from '@testing-library/react'
+import React from 'react'
 
-// Component to test
-import { ModalTitle } from '../'
+import { ModalTitle } from '@/components'
 
 describe('ModalTitle component', () => {
   test('should ModalTitle have "modal-title" className', () => {

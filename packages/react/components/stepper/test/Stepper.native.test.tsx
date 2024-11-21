@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
-import Stepper from '../Stepper'
-import StepperStep from '../step'
+import React from 'react'
+
+import Stepper from '@/components/stepper/Stepper'
+import StepperStep from '@/components/stepper/step/StepperStep'
 
 jest.useFakeTimers()
 

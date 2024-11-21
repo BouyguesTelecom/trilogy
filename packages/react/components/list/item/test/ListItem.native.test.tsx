@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
-import ListItem from '../ListItem.native'
+import React from 'react'
+
+import ListItem from '@/components/list/item/ListItem.native'
 
 jest.useFakeTimers()
 

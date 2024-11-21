@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import * as React from 'react'
-import AutoComplete from '../AutoComplete'
+import React from 'react'
+
+import AutoComplete from '@/components/autocomplete/AutoComplete'
 
 const testItems = ['Apple', 'Banana', 'Cherry', 'Grape']
 

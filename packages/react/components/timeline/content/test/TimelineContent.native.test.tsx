@@ -1,6 +1,7 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
-import TimelineContent from '../TimelineContent'
+import React from 'react'
+
+import TimelineContent from '@/components/timeline/content/TimelineContent'
 
 jest.useFakeTimers()
 
@@ -22,7 +23,7 @@ describe('TimelineContent component', () => {
     expect(screen.getByText("Voir l'email")).toBeOnTheScreen()
 
     const user = userEvent.setup()
-    await user.press(screen.getByTestId("click-id"))
+    await user.press(screen.getByTestId('click-id'))
     expect(onClick).toHaveBeenCalled()
   })
 })

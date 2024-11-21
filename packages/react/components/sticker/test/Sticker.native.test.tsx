@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
-import { Text } from '../../text'
-import { Sticker } from '../index'
+import React from 'react'
+
+import { Sticker } from '@/components/sticker'
+import { Text } from '@/components/text'
 
 jest.useFakeTimers()
 

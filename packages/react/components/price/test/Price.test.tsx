@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react'
-import * as React from 'react'
-import Price from '../Price'
-import { checkCents } from '../PriceHelpers'
+import React from 'react'
+
+import Price from '@/components/price/Price'
+import { checkCents } from '@/components/price/PriceHelpers'
 
 describe('Price', () => {
   it('renders correctly with whole amount', () => {

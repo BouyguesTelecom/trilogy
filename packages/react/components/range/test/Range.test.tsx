@@ -1,13 +1,12 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import Range from "../Range";
+import { render } from '@testing-library/react'
+import React from 'react'
 
-describe("Range component", () => {
-  test("renders with default values", () => {
-    const { getByText } = render(
-      <Range min={0} max={100} label="Test Range" />
-    );
-    const range = getByText("Test Range");
-    expect(range).toBeInTheDocument();
-  });
-});
+import Range from '@/components/range/Range'
+
+describe('Range component', () => {
+  test('renders with default values', () => {
+    const { getByText } = render(<Range min={0} max={100} label='Test Range' />)
+    const range = getByText('Test Range')
+    expect(range).toBeInTheDocument()
+  })
+})

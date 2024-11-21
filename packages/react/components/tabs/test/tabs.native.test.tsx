@@ -1,7 +1,8 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
-import Tabs from '../Tabs'
-import { TabsItem } from '../index'
+import React from 'react'
+
+import { TabsItem } from '@/components/tabs/'
+import Tabs from '@/components/tabs/Tabs'
 
 jest.useFakeTimers()
 
@@ -39,7 +40,9 @@ describe('Tabs', () => {
     const onClick = jest.fn()
     render(
       <Tabs>
-        <TabsItem disabled onClick={onClick}>Tab 1</TabsItem>
+        <TabsItem disabled onClick={onClick}>
+          Tab 1
+        </TabsItem>
         <TabsItem>Tab 2</TabsItem>
         <TabsItem>Tab 3</TabsItem>
       </Tabs>,

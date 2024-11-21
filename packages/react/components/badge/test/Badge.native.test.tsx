@@ -1,7 +1,8 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
-import Text from '../../text/Text.native'
-import Badge from '../Badge.native'
+import React from 'react'
+
+import Badge from '@/components/badge/Badge.native'
+import Text from '@/components/text/Text.native'
 
 jest.useFakeTimers()
 
@@ -29,7 +30,11 @@ describe('Badge component', () => {
     const onClick = jest.fn()
     const user = userEvent.setup()
 
-    render(<Badge testId="badge" onClick={onClick}>DEFAULT</Badge>)
+    render(
+      <Badge testId='badge' onClick={onClick}>
+        DEFAULT
+      </Badge>,
+    )
 
     await user.press(screen.getByTestId('badge'))
     expect(onClick).toHaveBeenCalled()

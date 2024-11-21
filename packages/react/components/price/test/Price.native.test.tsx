@@ -1,6 +1,7 @@
 import { getDefaultNormalizer, render, screen } from '@testing-library/react-native'
-import * as React from 'react'
-import Price from '../Price'
+import React from 'react'
+
+import Price from '@/components/price/Price'
 
 describe('Price', () => {
   it('renders correctly with whole amount', () => {

@@ -1,6 +1,7 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
 import React from 'react'
-import Radio from '../Radio.native'
+
+import Radio from '@/components/radio/Radio.native'
 
 jest.useFakeTimers()
 
@@ -9,7 +10,6 @@ describe('Radio', () => {
     render(<Radio label='Test radio' />)
     expect(screen.getByText('Test radio')).toBeOnTheScreen()
   })
-
 
   it('handles onChange correctly', async () => {
     const onChange = jest.fn()
@@ -48,7 +48,7 @@ describe('Radio', () => {
     expect(onChange).not.toHaveBeenCalled()
   })
 
-    it('renders correctly tile', () => {
+  it('renders correctly tile', () => {
     render(<Radio id='tile' tile />)
     expect(screen.getByTestId('tile')).toBeOnTheScreen()
   })
@@ -68,6 +68,4 @@ describe('Radio', () => {
     await user.press(screen.getByText('Test radio'))
     expect(onChange).not.toHaveBeenCalled()
   })
-
-
 })

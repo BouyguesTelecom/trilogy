@@ -1,7 +1,8 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
+import React from 'react'
+
+import Fab from '@/components/fab/Fab.native'
 import { IconName } from '@trilogy-ds/assets'
-import * as React from 'react'
-import Fab from '../Fab.native'
 
 jest.useFakeTimers()
 

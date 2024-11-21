@@ -1,15 +1,12 @@
 // Dependencies
-import * as React from 'react'
-import renderer from 'react-test-renderer'
-import { is } from '../../../services/index'
-
-// Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
+import renderer from 'react-test-renderer'
 
-// Component to test
+import { Button, ButtonMarkup, ButtonVariant } from '@/components/button'
 import { getEnumNames } from '@/helpers'
 import { getButtonVariantClassName } from '@/objects'
-import { Button, ButtonMarkup, ButtonVariant } from '../'
+import { is } from '@/services/index'
 
 describe('Button component', () => {
   test('should have "button" className', () => {

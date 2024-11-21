@@ -1,12 +1,7 @@
-// Dependencies
-import * as React from 'react'
-
-// Testing methods
 import { render, screen } from '@testing-library/react-native'
+import React from 'react'
 
-// Component to test
-import TagList from '..'
-import Tag from '../../Tag'
+import { Tag, TagList } from '@/components/tag'
 
 describe('Tag component', () => {
   test('should contain toto as text', () => {

@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react-native'
 import { IconName } from '@trilogy-ds/assets'
-import * as React from 'react'
-import { TrilogyColor } from '../../../../objects'
-import Timeline from '../../Timeline'
-import TimelineContent from '../../content'
-import TimelineMarker from '../../marker'
-import TimelineItem from '../TimelineItem'
+import React from 'react'
+
+import Timeline from '@/components/timeline/Timeline'
+import TimelineContent from '@/components/timeline/content'
+import TimelineItem from '@/components/timeline/item/TimelineItem'
+import TimelineMarker from '@/components/timeline/marker'
+import { TrilogyColor } from '@/objects'
 
 describe('TimelineItem component', () => {
   it('renders without crashing', () => {

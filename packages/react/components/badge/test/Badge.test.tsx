@@ -1,11 +1,7 @@
-// Dependencies
-import * as React from 'react'
-
-// Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 
-// Component to test
-import { Badge } from '../'
+import { Badge } from '@/components/badge'
 
 describe('Badge component', () => {
   test('should contain toto as text', () => {

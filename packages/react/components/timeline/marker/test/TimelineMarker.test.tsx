@@ -1,39 +1,26 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import TimelineMarker from "../TimelineMarker";
-import { IconName } from "../../../icon";
+import { render } from '@testing-library/react'
+import React from 'react'
 
-describe("TimelineMarker component", () => {
-  it("should render without errors", () => {
-    const { getByTestId } = render(
-      <TimelineMarker
-        iconName={IconName.EXCLAMATION_CIRCLE}
-        testId={"timeline-marker"}
-      />
-    );
-    expect(getByTestId("timeline-marker")).toBeInTheDocument();
-  });
+import { IconName } from '@/components/icon'
+import TimelineMarker from '@/components/timeline/marker/TimelineMarker'
 
-  it("should render with additional CSS classes", () => {
-    const { getByTestId } = render(
-      <TimelineMarker
-        iconName={IconName.EXCLAMATION_CIRCLE}
-        className="my-custom-class"
-        testId={"timeline-marker"}
-      />
-    );
-    expect(getByTestId("timeline-marker")).toHaveClass("my-custom-class");
-  });
+describe('TimelineMarker component', () => {
+  it('should render without errors', () => {
+    const { getByTestId } = render(<TimelineMarker iconName={IconName.EXCLAMATION_CIRCLE} testId={'timeline-marker'} />)
+    expect(getByTestId('timeline-marker')).toBeInTheDocument()
+  })
 
-  it("should render an icon", () => {
+  it('should render with additional CSS classes', () => {
     const { getByTestId } = render(
-      <TimelineMarker
-        iconName={IconName.EXCLAMATION_CIRCLE}
-        testId={"timeline-marker-icon"}
-      />
-    );
-    expect(getByTestId("timeline-marker-icon")).toHaveClass(
-      "timeline-marker is-icon"
-    );
-  });
-});
+      <TimelineMarker iconName={IconName.EXCLAMATION_CIRCLE} className='my-custom-class' testId={'timeline-marker'} />,
+    )
+    expect(getByTestId('timeline-marker')).toHaveClass('my-custom-class')
+  })
+
+  it('should render an icon', () => {
+    const { getByTestId } = render(
+      <TimelineMarker iconName={IconName.EXCLAMATION_CIRCLE} testId={'timeline-marker-icon'} />,
+    )
+    expect(getByTestId('timeline-marker-icon')).toHaveClass('timeline-marker is-icon')
+  })
+})

@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react-native'
 import React from 'react'
-import { Text } from '../../text'
-import Section from '../Section'
+
+import Section from '@/components/section/Section'
+import { Text } from '@/components/text'
 
 describe('Section', () => {
   it('renders with all props', () => {

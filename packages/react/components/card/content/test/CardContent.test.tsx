@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react'
-import * as React from 'react'
-import CardContent from '../CardContent'
+import React from 'react'
+
+import CardContent from '@/components/card/content/CardContent'
 
 describe('CardContent component', () => {
   it('should render a div with a class of card-content', () => {

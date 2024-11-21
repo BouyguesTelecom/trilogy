@@ -1,8 +1,9 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
-import Text from '../../text/Text.native'
-import Card from '../Card.native'
-import CardContent from '../content/CardContent.native'
+import React from 'react'
+
+import Card from '@/components/card/Card.native'
+import CardContent from '@/components/card/content/CardContent.native'
+import Text from '@/components/text/Text.native'
 
 jest.useFakeTimers()
 

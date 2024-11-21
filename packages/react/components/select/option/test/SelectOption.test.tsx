@@ -1,7 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
-import * as React from 'react'
-import Select from '../../Select'
-import SelectOption from '../SelectOption'
+import React from 'react'
+
+import Select from '@/components/select/Select'
+import SelectOption from '@/components/select/option/SelectOption'
 
 describe('SELECT OPTION WEB', () => {
   const props = {

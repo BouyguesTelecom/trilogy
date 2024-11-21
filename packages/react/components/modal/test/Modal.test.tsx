@@ -1,14 +1,10 @@
-// Dependencies
-import * as React from 'react'
+import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 
-// Testing methods
+import Modal from '@/components/modal/Modal'
+import { ModalMarkup } from '@/components/modal/ModalEnum'
 import { getEnumNames } from '@/helpers'
 import { is } from '@/services'
-import { fireEvent, render, screen } from '@testing-library/react'
-import Modal from '../Modal'
-import { ModalMarkup } from '../ModalEnum'
-
-// Component to test
 
 describe('Modal component', () => {
   test('should Modal have correct initial className', () => {

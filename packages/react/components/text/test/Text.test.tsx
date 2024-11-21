@@ -1,15 +1,11 @@
-// Dependencies
-import React from 'react'
-import { getEnumNames } from '../../../helpers'
-import { is } from '../../../services'
-
-// Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 import renderer from 'react-test-renderer'
 
-// Component to test
-import { Text, TextLevels, TextMarkup } from '..'
-import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../../objects'
+import { Text, TextLevels, TextMarkup } from '@/components/'
+import { getEnumNames } from '@/helpers'
+import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '@/objects'
+import { is } from '@/services'
 
 describe('Text component', () => {
   test('should have "text" className', () => {

@@ -1,9 +1,10 @@
 import { fireEvent, render } from '@testing-library/react'
-import * as React from 'react'
+import React from 'react'
 import renderer from 'react-test-renderer'
-import { StatusState } from '../../../objects'
-import { IconName } from '../../icon'
-import { Alert } from '../index'
+
+import { Alert } from '@/components/alert'
+import { IconName } from '@/components/icon'
+import { StatusState } from '@/objects'
 
 describe('Alert', () => {
   it('should render correctly', () => {
@@ -68,12 +69,7 @@ describe('Alert', () => {
 
   it('should have iconClassName with right icon', () => {
     const { getByTestId } = render(
-      <Alert
-        testId={'alert'}
-        display
-        status={StatusState.INFO}
-        iconName={IconName.BELL}
-      />,
+      <Alert testId={'alert'} display status={StatusState.INFO} iconName={IconName.BELL} />,
     )
     const alert = getByTestId('alert')
     expect(alert.firstChild).toHaveClass('icon')

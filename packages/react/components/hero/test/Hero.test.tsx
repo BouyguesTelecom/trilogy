@@ -1,7 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
 import React from 'react'
-import { Alignable, VariantState } from '../../../objects'
-import Hero from '../Hero'
+
+import Hero from '@/components/hero/Hero'
+import { Alignable, VariantState } from '@/objects'
 
 describe('Hero', () => {
   it('renders children', () => {

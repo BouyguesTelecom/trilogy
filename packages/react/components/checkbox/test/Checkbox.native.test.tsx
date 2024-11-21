@@ -1,6 +1,7 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
-import Checkbox from '../Checkbox.native'
+import React from 'react'
+
+import Checkbox from '@/components/checkbox/Checkbox'
 
 jest.useFakeTimers()
 
