@@ -97,8 +97,7 @@ const Price = (
       {overline && <p className={hashClass(clsx('overline'))}>{overline}</p>}
       {/* StrikedAmount Price */}
       {strikedAmount && (
-        <>
-          <span aria-hidden='true' data-testid={testId} className={classesStriked} {...others}>
+        <span aria-hidden='true' data-testid={testId} className={classesStriked} {...others}>
             <Text markup={TextMarkup.SPAN}>{`${wholeStriked}`}</Text>
             <span className={hashClass(clsx('price-details'))}>
               <span className={hashClass(clsx('cents'))}>
@@ -108,7 +107,6 @@ const Price = (
               {period && <span className={hashClass(clsx('period'))}>/{period}</span>}
             </span>
           </span>
-        </>
       )}
       <span aria-hidden='true' data-testid={testId} aria-label={accessibilityLabel} className={classes} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>

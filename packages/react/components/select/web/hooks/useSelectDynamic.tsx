@@ -43,9 +43,9 @@ export const useSelectDynamic = ({
 
     const isChecked = React.useCallback(
       (value: string) =>
-        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value,
+          : selectedValues === value),
       [multiple, selectedValues],
     )
 
@@ -242,9 +242,9 @@ export const useSelectDynamic = ({
     }
   } catch {
     const optionIsChecked = (value: string, selectedValues: SelectedValue, multiple?: boolean) =>
-      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value
+        : selectedValues === value)
 
     const createOptions = (
       children: React.ReactNode,

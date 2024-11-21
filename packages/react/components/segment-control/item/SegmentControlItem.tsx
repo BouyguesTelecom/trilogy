@@ -23,6 +23,7 @@ const SegmentControlItem = (
 
   return (
     <button
+      ref={ref}
       disabled={disabled}
       className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
       onClick={handleClick}

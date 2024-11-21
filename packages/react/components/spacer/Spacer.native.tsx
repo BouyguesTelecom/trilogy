@@ -16,7 +16,7 @@ const Spacer = ({ size, horizontal }: SpacerProps, ref: React.Ref<View>): JSX.El
       marginTop: (!horizontal && parseInt(size.toString())) || 0,
     },
   })
-  return <View style={styles.spacer} />
+  return <View style={styles.spacer} ref={ref} />
 }
 
 Spacer.displayName = ComponentName.Spacer

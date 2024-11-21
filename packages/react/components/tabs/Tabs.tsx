@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { useTabs } from '@/components/tabs/hook/useTabs'
-import { TabsProps } from '@/components/Tabs/TabsProps'
+import { TabsProps } from '@/components/tabs/TabsProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 

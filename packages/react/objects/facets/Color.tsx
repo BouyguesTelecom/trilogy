@@ -122,7 +122,7 @@ export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): 
     if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
       const { theme } = React.useContext(TrilogyThemeContext)
       const colorsStyle = theme?.colors || colors
-  
+
       const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
       if (!trilogyColor || !colors[trilogyColor]) {
         return colorsStyle.default
@@ -131,8 +131,7 @@ export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): 
     } else {
       return colors[trilogyColor][0] || colors['main'][0]
     }
-  }
-  catch{
+  } catch {
     return colors[trilogyColor][0] || colors['main'][0]
   }
 

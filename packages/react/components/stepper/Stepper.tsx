@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { useStepper } from '@/components/stepper/hook/useStepper'
-import { StepperProps } from '@/components/Stepper/StepperProps'
+import { StepperProps } from '@/components/stepper/StepperProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 

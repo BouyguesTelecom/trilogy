@@ -5,7 +5,7 @@ import { ToasterShowContext } from '@/components/alert/context/ToasterContextPro
 
 const emptyFn = () => 0
 
-const ToasterContext = React.createContext<{ show: ToasterShowContext; hide: () => void }>({
+const ToasterContext = React.createContext<{ show: ToasterShowContext; hide:() => void }>({
   show: emptyFn,
   hide: emptyFn,
 })
