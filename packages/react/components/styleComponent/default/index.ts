@@ -1,1 +1,1 @@
-export { default as StyleComponent } from './styleComponent'
+export { default as StyleComponent } from '@/components/styleComponent/default/styleComponent'

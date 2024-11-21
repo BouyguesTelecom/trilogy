@@ -1,3 +1,6 @@
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
+
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor } from '@/components/icon'
 import {
@@ -6,15 +9,13 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
+import { Spacer, SpacerSize } from '@/components/spacer'
+import { Text as TrilogyText } from '@/components/text'
+import { TextLevels } from '@/components/text/TextEnum'
+import { TextareaNativeProps } from '@/components/textarea/TextareaProps'
 import { grayscale, TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
-import { Spacer, SpacerSize } from '../spacer'
-import { Text as TrilogyText } from '../text'
-import { TextLevels } from '../text/TextEnum'
-import { TextareaNativeProps } from './TextareaProps'
 
 /**
  * Textarea Component

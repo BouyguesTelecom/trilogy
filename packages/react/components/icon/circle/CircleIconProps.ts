@@ -1,7 +1,7 @@
+import { IconPosition, IconPositionValues } from '@/components/icon/IconEnum'
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { Accessibility, Dev, TrilogyColor, TrilogyColorValues } from '@/objects'
 import { Stacked } from '@/objects/facets/Stacked'
-import { IconPosition, IconPositionValues } from '../IconEnum'
 
 export interface CircleIconProps extends Stacked, Accessibility, Dev {
   name: IconName | IconNameValues

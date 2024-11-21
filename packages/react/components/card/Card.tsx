@@ -2,10 +2,10 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { CardMarkup, CardProps } from '@/components/card/CardProps'
+import { useCard } from '@/components/card/hook/useCard'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName, getBackgroundClassName } from '@/objects'
 import { has, is } from '@/services/classify'
-import { useCard } from './hook/useCard'
 
 /**
  * Card Component

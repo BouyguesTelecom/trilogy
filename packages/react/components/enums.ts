@@ -1,3 +1,3 @@
-export * from './button/ButtonEnum'
-export * from './text/TextEnum'
-export * from './icon/IconEnum'
+export * from '@/components/button/ButtonEnum'
+export * from '@/components/icon/IconEnum'
+export * from '@/components/text/TextEnum'

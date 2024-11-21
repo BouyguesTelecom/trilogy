@@ -1,3 +1,4 @@
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
 import {
   Accessibility,
   Clickable,
@@ -13,7 +14,6 @@ import {
   TypographyTransform,
   TypographyTransformValues,
 } from '@/objects'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 
 type Styles = { [key: string]: unknown }
 

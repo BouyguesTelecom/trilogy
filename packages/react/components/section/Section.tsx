@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { useSection } from '@/components/section/hook/useSection'
 import { SectionProps } from '@/components/section/SectionProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has, is } from '@/services/classify'
-import { useSection } from './hook/useSection'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

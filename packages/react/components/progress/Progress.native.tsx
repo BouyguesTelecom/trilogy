@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 
 import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressProps } from '@/components/progress/ProgressProps'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getStatusStyle } from '@/objects/facets/Status'
-import { ProgressProps } from './ProgressProps'
 
 /**
  * Progress component

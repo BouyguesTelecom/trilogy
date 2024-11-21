@@ -1,19 +1,19 @@
 import {
-  IconSize,
-  IconStatus,
-  IconPosition,
-  TextIconMarkup,
-  IconStatusPosition,
   IconColor,
-  IconStatusValues,
-  IconSizeValues,
-  IconPositionValues,
-  IconStatusPositionValues,
   IconColorValues,
+  IconPosition,
+  IconPositionValues,
+  IconSize,
+  IconSizeValues,
+  IconStatus,
+  IconStatusPosition,
+  IconStatusPositionValues,
+  IconStatusValues,
+  TextIconMarkup,
   TextIconMarkupValues,
-} from './IconEnum'
-import { IconName, IconNameValues } from './IconNameEnum'
-import { Accessibility, Clickable, TrilogyColor, TrilogyColorValues, Stacked, AlignableProps, Dev } from '@/objects'
+} from '@/components/icon/IconEnum'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility, AlignableProps, Clickable, Dev, Stacked, TrilogyColor, TrilogyColorValues } from '@/objects'
 
 type Styles = { [key: string]: unknown }
 

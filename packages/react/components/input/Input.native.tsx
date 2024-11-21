@@ -1,10 +1,3 @@
-import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text, TextLevels } from '@/components/text'
-import { grayscale, TypographyColor } from '@/objects'
-import { Alignable } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Animated,
@@ -18,7 +11,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Spacer, SpacerSize } from '../spacer'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -26,9 +21,15 @@ import {
   InputStatus,
   InputTextContentType,
   InputType,
-} from './InputEnum'
-import { InputNativeEvents, InputProps } from './InputProps'
-import InputGauge from './gauge/InputGauge.native'
+} from '@/components/input/InputEnum'
+import { InputNativeEvents, InputProps } from '@/components/input/InputProps'
+import InputGauge from '@/components/input/gauge/InputGauge.native'
+import { Spacer, SpacerSize } from '@/components/spacer'
+import { Text, TextLevels } from '@/components/text'
+import { grayscale, TypographyColor } from '@/objects'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { StatusState } from '@/objects/facets/Status'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
