@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { CardMarkup, CardProps } from '@/components/card/CardProps'
-import { useCard } from '@/components/card/hook/useCard'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName, getBackgroundClassName } from '@/objects'
 import { has, is } from '@/services/classify'
@@ -52,8 +51,6 @@ const Card = (
   }: CardProps,
   ref: React.Ref<HTMLElement>,
 ) => {
-  const { isLoading } = useCard({ skeleton })
-
   const hoverStyle: React.CSSProperties = {
     cursor: 'pointer',
   }
@@ -69,7 +66,7 @@ const Card = (
       floating && !flat && is('floating'),
       align && is(getAlignClassName(align)),
       justify && is(justify),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton ? is('loading') : is('loaded'),
       reversed && is('reversed'),
       className,
       fullheight && is('fullheight'),

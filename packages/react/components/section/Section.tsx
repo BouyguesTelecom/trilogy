@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import { useSection } from '@/components/section/hook/useSection'
 import { SectionProps } from '@/components/section/SectionProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -36,8 +35,6 @@ const Section = (
   }: SectionProps,
   ref: React.Ref<HTMLDivElement>,
 ) => {
-  const { isLoading } = useSection({ skeleton })
-
   const _className = hashClass(
     clsx(
       'section',
@@ -45,7 +42,7 @@ const Section = (
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton ? is('loading') : is('loaded'),
       fullwidth && is('fullwidth'),
       paddingless && is('paddingless'),
       verticalPaddingless && is('vertical-paddingless'),

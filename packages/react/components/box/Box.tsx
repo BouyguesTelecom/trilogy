@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { BoxMarkup, BoxProps } from '@/components/box/BoxProps'
-import { useBox } from '@/components/box/hook/useBox'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
@@ -53,7 +52,6 @@ const Box = (
   }: BoxProps,
   ref: React.Ref<HTMLDivElement>,
 ): JSX.Element => {
-  const { isLoading } = useBox({ skeleton })
 
   const classes = hashClass(
     clsx(
@@ -63,7 +61,7 @@ const Box = (
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton ? is('loading') : is('loaded'),
       highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
       flat && is('flat'),
       hat && has('hat'),

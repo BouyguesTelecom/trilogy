@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import { useTitle } from '@/components/title/hook/useTitle'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
 import { TitleProps } from '@/components/title/TitleProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -78,8 +77,6 @@ const Title = (
   }: TitleProps,
   ref: React.Ref<HTMLHeadingElement>,
 ): JSX.Element => {
-  const { isLoading } = useTitle({ skeleton })
-
   const classes = hashClass(
     clsx(
       'title',
@@ -87,7 +84,7 @@ const Title = (
       typo,
       inverted && is('inverted'),
       marginless && is('marginless'),
-      isLoading ? is('loading') : is('loaded'),
+      skeleton ? is('loading') : is('loaded'),
       className,
     ),
   )
