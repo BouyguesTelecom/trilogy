@@ -3,7 +3,7 @@ import { BackgroundProps } from '@/objects/atoms/Background'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { Clickable } from '@/objects/facets/Clickable'
-import { Dev } from '@/objects/facets/dev'
+import { Dev } from '@/objects/facets/Dev'
 import { Fullheight } from '@/objects/facets/Fullheight'
 import { JustifiableProps } from '@/objects/facets/Justifiable'
 

@@ -45,6 +45,7 @@ import {
   SegmentControlItem,
   Select,
   SelectOption,
+  StatusState,
   Stepper,
   StepperStep,
   Sticker,
@@ -60,11 +61,14 @@ import {
   TimelineContent,
   TimelineItem,
   TimelineMarker,
+  Title,
+  TitleLevels,
+  TrilogyColor,
+  TypographyAlign,
+  VariantState,
   View,
-} from '@/components'
+} from '@trilogy-ds/react'
 
-import { StatusState, TrilogyColor, TypographyAlign, VariantState } from '@/objects'
-import { Title, TitleLevels } from '@trilogy-ds/react/components/title'
 import '@trilogy-ds/styles/dist/default/trilogy.css'
 import styles from './page.module.css'
 

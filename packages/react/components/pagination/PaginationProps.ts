@@ -1,6 +1,6 @@
 import { Pager } from '@/components/pagination/PaginationEnum'
 import { Accessibility } from '@/objects/facets/Accessibility'
-import { Dev } from '@/objects/facets/dev'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Pagination Interface

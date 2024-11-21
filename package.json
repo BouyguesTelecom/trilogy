@@ -154,8 +154,7 @@
   },
   "workspaces": [
     "packages/*",
-    "examples/react-template",
-    "examples/next-app-router"
+    "examples/react-template"
   ],
   "engineStrict": true,
   "engines": {
