@@ -17,8 +17,7 @@ export const isFragment = (element: React.ReactElement): boolean => element?.typ
 
 const getTrilogyComponentName = (child: any): string | undefined => {
   const componentsKeys = Object.keys(ComponentName).filter((key) => key)
-
-  return componentsKeys.find((key) => key === child.type.displayName)
+  return componentsKeys.find((key) => key === child?.type?.render?.displayName || key === child?.type?.displayName)
 }
 
 /**
@@ -29,7 +28,7 @@ const getTrilogyComponentName = (child: any): string | undefined => {
  * @returns
  */
 export const isElementType = (element: React.ReactElement, componentType: TrilogyComponents): boolean =>
-  (element?.type as any)?.displayName === componentType
+  (element?.type as any)?.render?.displayName === componentType || (element?.type as any)?.displayName === componentType
 
 /**
  * Iterate over children and apply the `handleBetweenChildren` method.
@@ -59,10 +58,14 @@ export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren
     }
 
     const nextChildType: TrilogyComponents | undefined =
-      (getChildCandidateToComparison(nextChild)?.type as any)?.displayName || undefined
+      (getChildCandidateToComparison(nextChild)?.type as any)?.render?.displayName ||
+      (getChildCandidateToComparison(nextChild)?.type as any)?.displayName ||
+      undefined
 
     const previousChildType: TrilogyComponents | undefined =
-      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)?.displayName || undefined
+      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)?.render?.displayName ||
+      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)?.displayName ||
+      undefined
 
     handleBetweenChildren?.({
       accumulator,
@@ -126,14 +129,20 @@ const createChildrenArray = (array: JSX.Element[], children: React.ReactNode): v
       })
     } else if (
       child?.type &&
-      child.type.displayName !== getTrilogyComponentName(child) &&
-      child.type.$$typeof === undefined
+      child?.type?.displayName !== getTrilogyComponentName(child) &&
+      child?.type?.$$typeof === undefined
     ) {
       createChildrenArray(array, child.type(child.props))
     } else if (
       child?.type &&
-      child.type.displayName !== getTrilogyComponentName(child) &&
-      child.type.$$typeof === Symbol.for('react.memo')
+      child?.type?.displayName !== getTrilogyComponentName(child) &&
+      child?.type?.$$typeof === Symbol.for('react.memo')
+    ) {
+      createChildrenArray(array, child.type.type(child.props))
+    } else if (
+      child?.type &&
+      child?.type?.$$typeof === Symbol.for('react.forward_ref') &&
+      child?.type?.render?.displayName !== getTrilogyComponentName(child)
     ) {
       createChildrenArray(array, child.type.type(child.props))
     } else {
