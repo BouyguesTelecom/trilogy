@@ -30,28 +30,27 @@ import { getAlignClassName } from '@/objects'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param align { Alignable | AlignableValues} align content
  */
-const Column = React.forwardRef((props: ColumnProps) => {
-  const {
-    className,
-    id,
-    size,
-    mobileSize,
-    tabletSize,
-    touchSize,
-    desktopSize,
-    widescreenSize,
-    fullhdSize,
-    offset,
-    mobileOffset,
-    tabletOffset,
-    touchOffset,
-    desktopOffset,
-    widescreenOffset,
-    fullhdOffset,
-    narrow,
-    verticalAlign,
-    ...others
-  } = props
+const Column = React.forwardRef(({
+                                   className,
+                                   id,
+                                   size,
+                                   mobileSize,
+                                   tabletSize,
+                                   touchSize,
+                                   desktopSize,
+                                   widescreenSize,
+                                   fullhdSize,
+                                   offset,
+                                   mobileOffset,
+                                   tabletOffset,
+                                   touchOffset,
+                                   desktopOffset,
+                                   widescreenOffset,
+                                   fullhdOffset,
+                                   narrow,
+                                   verticalAlign,
+                                   ...others
+                                 }: ColumnProps) => {
 
   const { styled } = useTrilogyContext()
 
