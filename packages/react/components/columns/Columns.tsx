@@ -19,7 +19,7 @@ import { getAlignClassName, getJustifiedClassName } from '@/objects'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTMLDivElement>) => {
+const Columns = React.forwardRef((props: ColumnsProps) => {
   const { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, ...others } =
     props
 
@@ -42,7 +42,7 @@ const Columns = React.forwardRef((props: ColumnsProps, ref: React.LegacyRef<HTML
     ),
   )
 
-  return <div id={id} ref={ref} className={classes} {...others} />
+  return <div id={id} className={classes} {...others} />
 })
 
 export default Columns
