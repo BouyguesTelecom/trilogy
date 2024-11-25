@@ -12,8 +12,7 @@ import { Text } from '@/components/text'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additionnal CSS Classes
  */
-const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, children, ...others } = props
+const Stepper = ({ className, id, children, ...others }: StepperProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-wrapper', className))
   const [currentStep, setCurrentStep] = React.useState<number>(1)
@@ -42,14 +41,14 @@ const Stepper = React.forwardRef((props: StepperProps, ref: React.LegacyRef<HTML
   }, [children])
 
   return (
-    <div id={id} ref={ref} className={classes} {...others}>
+    <div id={id} className={classes} {...others}>
       {children}
-      <div className='step-count'>
+      <div className="step-count">
         <Text>
           {currentStep}/{nbChild}
         </Text>
       </div>
     </div>
   )
-})
+}
 export default Stepper

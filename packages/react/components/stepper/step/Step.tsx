@@ -17,13 +17,9 @@ import { IconSize } from '@/components/icon'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param iconName {IconName | IconNameValues} display icon
- * @param markup {StepperStepMarkup} Markup for Step - P|SPAN|DIV|A
  * @param label {string} Step label
- * @param step {number|string} Step text circle
  */
-const Step = React.forwardRef((props: StepProps, ref: React.LegacyRef<any>) => {
-  const { className, id, active, current, done, label, iconName, error, ...others } = props
-
+const Step = ({ className, id, active, current, done, label, iconName, error, ...others }: StepProps) => {
   const { styled } = useTrilogyContext()
   const classesStepLabel = hashClass(styled, clsx('step-label'))
 
@@ -43,13 +39,13 @@ const Step = React.forwardRef((props: StepProps, ref: React.LegacyRef<any>) => {
    */
 
   return (
-    <div id={id} ref={ref} className={classes} data-label={label} {...others}>
+    <div id={id} className={classes} data-label={label} {...others}>
       <div className={classesStepLabel}>
         {label}
         {!done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />}
       </div>
     </div>
   )
-})
+}
 
 export default Step

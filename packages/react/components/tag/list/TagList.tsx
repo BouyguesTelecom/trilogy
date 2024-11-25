@@ -9,15 +9,11 @@ import { getJustifiedClassName } from '@/objects'
 /**
  * Tag List Component
  * @param children {ReactNode} Children Tag List
- * @param centered {boolean} Center tags
- * @param gapless {boolean} Delete margins between tags
  * @param marginless {boolean} delete margin
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = React.forwardRef((props: TagListProps) => {
-  const { className, id, align, marginless, ...others } = props
-
+const TagList = ({ className, id, align, marginless, ...others }: TagListProps) => {
   const { styled } = useTrilogyContext()
 
   return (
@@ -30,5 +26,5 @@ const TagList = React.forwardRef((props: TagListProps) => {
       {...others}
     />
   )
-})
+}
 export default TagList

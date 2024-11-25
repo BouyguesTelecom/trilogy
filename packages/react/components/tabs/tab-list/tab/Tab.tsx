@@ -19,9 +19,19 @@ import { Icon } from '@/components/icon'
  * @param href {string} <a />
  * @param routerLink Custom Router Link as props
  */
-const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
-  const { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ...others } =
-    props
+const Tab = ({
+               active,
+               className,
+               onClick,
+               to,
+               href,
+               routerLink,
+               iconName,
+               label,
+               disabled,
+               testId,
+               ...others
+             }: TabProps) => {
 
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -44,7 +54,6 @@ const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
       <RouterLink
-        ref={ref}
         data-testid={testId}
         tabIndex={0}
         {...a11y.a}
@@ -63,7 +72,7 @@ const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
           }
         }}
       >
-        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+        <div className="tab-icon">{iconName && <Icon align="ALIGNED_CENTER" size="small" name={iconName} />}</div>
         {label && label}
       </RouterLink>
     )
@@ -71,11 +80,10 @@ const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
 
   return (
     <button
-      ref={ref}
       aria-disabled={disabled}
       disabled={disabled}
       className={classes}
-      role='tab'
+      role="tab"
       data-testid={testId}
       {...a11y.a}
       {...others}
@@ -90,10 +98,10 @@ const Tab = React.forwardRef((props: TabProps, ref: React.LegacyRef<any>) => {
         }
       }}
     >
-      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+      <div className="tab-icon">{iconName && <Icon align="ALIGNED_CENTER" size="small" name={iconName} />}</div>
       {label && label}
     </button>
   )
-})
+}
 
 export default Tab

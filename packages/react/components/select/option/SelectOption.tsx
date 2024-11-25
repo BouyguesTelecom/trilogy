@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Radio, RadioTile } from '@/components/radio'
+import { RadioTile } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
 
@@ -15,29 +15,28 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param disabled {boolean} disable option
  * @param onClick {function} onclick function
  * @param id {string} Select option custom id
+ * @param others
  */
-const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.LegacyRef<HTMLOptionElement>) => {
-  const {
-    id,
-    className,
-    value,
-    disabled,
-    children,
-    onClick,
-    label,
-    iconName,
-    testId,
-    ...others
-  } = allProps
+const SelectOption = ({
+                        id,
+                        className,
+                        value,
+                        disabled,
+                        children,
+                        onClick,
+                        label,
+                        iconName,
+                        testId,
+                        ...others
+                      }: SelectOptionProps) => {
 
-  const { checked, native, focused, ...props } = others as {checked:boolean, native:boolean, focused:boolean}
+  const { checked, native, focused, ...props } = others as { checked: boolean, native: boolean, focused: boolean }
   const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
 
   if (native) {
     return (
       <option
-        ref={ref}
-        role='option'
+        role="option"
         id={id}
         value={value}
         disabled={disabled}
@@ -64,6 +63,6 @@ const SelectOption = React.forwardRef((allProps: SelectOptionProps, ref: React.L
       {...others}
     />
   )
-})
+}
 
 export default SelectOption

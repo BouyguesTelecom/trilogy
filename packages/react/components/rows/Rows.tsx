@@ -8,18 +8,15 @@ import { has, is } from '@/services'
 /**
  * Rows Component
  * @param children {React.ReactNode} Rows children
- * @param gapless {boolean} Delete margins between row
  * - ------------------- WEB PROPERTIES -------------------------
  * @param className {string} additionnal CSS Classes
  */
-const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, gap, ...others } = props
+const Rows = ({ className, id, gap, ...others }: RowsProps) => {
   const { styled } = useTrilogyContext()
 
   return (
     <div
       id={id}
-      ref={ref}
       className={hashClass(
         styled,
         clsx('rows', gap && has(`gap-${gap}`), typeof gap !== 'undefined' && gap === 0 && is('gapless'), className),
@@ -27,5 +24,6 @@ const Rows = React.forwardRef((props: RowsProps, ref: React.LegacyRef<HTMLDivEle
       {...others}
     />
   )
-})
+}
+
 export default Rows

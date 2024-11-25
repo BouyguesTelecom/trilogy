@@ -19,10 +19,19 @@ import { getAlignClassName, getJustifiedClassName } from '@/objects'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef((props: ColumnsProps) => {
-  const { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, ...others } =
-    props
-
+const Columns = ({
+                   className,
+                   id,
+                   multiline,
+                   scrollable,
+                   mobile,
+                   gap,
+                   fullBleed,
+                   marginless,
+                   align,
+                   verticalAlign,
+                   ...others
+                 }: ColumnsProps) => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -43,6 +52,6 @@ const Columns = React.forwardRef((props: ColumnsProps) => {
   )
 
   return <div id={id} className={classes} {...others} />
-})
+}
 
 export default Columns
