@@ -27,21 +27,20 @@ export const useRange = ({
   try {
     const [cursorMin, setCursorMin] = React.useState<number>(valueCursorMin ?? 0)
     const [cursorMax, setCursorMax] = React.useState<number>(valueCursorMax ?? max)
-
     const refTrack = React.useRef(null)
 
     const handleChangeCursorMin = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
       },
-      [cursorMax, cursorMin],
+      [cursorMax, cursorMin, gap],
     )
 
     const handleChangeCursorMax = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) > cursorMin + gap) setCursorMax(Number(e.target.value))
       },
-      [cursorMax, cursorMin],
+      [cursorMax, cursorMin, gap],
     )
 
     const handleMouseUpMin = React.useCallback(() => {
@@ -71,7 +70,7 @@ export const useRange = ({
           TrilogyColor.MAIN_FADE,
         )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${(cursorMax / max) * 100}%) `
       }
-    }, [cursorMin, cursorMax])
+    }, [cursorMin, cursorMax, refTrack, max])
 
     React.useEffect(() => {
       setCursorMin(valueCursorMin || 0)
@@ -79,7 +78,7 @@ export const useRange = ({
 
     React.useEffect(() => {
       setCursorMax(valueCursorMax || max)
-    }, [valueCursorMax])
+    }, [valueCursorMax, max])
 
     return {
       refTrack,
