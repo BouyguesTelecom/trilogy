@@ -1,18 +1,18 @@
-.accordions#{$suffix} {
+.accordion#{$suffix} {
   padding-left: 0;
   padding-right: 0;
 
   /* Chrome + Webkit */
-  details.accordion ::-webkit-details-marker {
+  details.accordion-item ::-webkit-details-marker {
     display: none;
     content: "";
   }
 
-  details.accordion summary {
+  details.accordion-item summary {
     list-style-image: none;
   }
 
-  .accordion {
+  .accordion-item {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
