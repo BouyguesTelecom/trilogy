@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { SwitchProps } from '@/components/switch/SwitchProps'
 import { useSwitch } from '@/components/switch/hook/ueSwitch'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -24,45 +25,48 @@ import { is } from '@/services/classify'
  * @param reversed {boolean} change switch position
  */
 
-const Switch = (
-  {
-    className,
-    id = React.useId(),
-    label,
-    value,
-    checked,
-    onChange,
-    onClick,
-    status,
-    disabled,
-    readonly,
-    name,
-    reversed,
-    ...others
-  }: SwitchProps,
-  ref: React.Ref<HTMLInputElement>,
-): JSX.Element => {
-  const { _checked, handleChange, handleClick } = useSwitch({ checked, readonly, onChange, onClick })
+const Switch = React.forwardRef(
+  (
+    {
+      className,
+      id = React.useId(),
+      label,
+      value,
+      checked,
+      onChange,
+      onClick,
+      status,
+      disabled,
+      readonly,
+      name,
+      reversed,
+      ...others
+    }: SwitchProps,
+    ref: React.Ref<HTMLInputElement>,
+  ): JSX.Element => {
+    const { _checked, handleChange, handleClick } = useSwitch({ checked, readonly, onChange, onClick })
 
-  return (
-    <div className={hashClass(clsx('switch', reversed && is('reversed'), className))}>
-      <input
-        onChange={handleChange}
-        onClick={handleClick}
-        name={name}
-        value={value}
-        checked={readonly ? checked : _checked}
-        readOnly={readonly}
-        id={`switch-${id}`}
-        type='checkbox'
-        disabled={disabled}
-        className={hashClass(clsx(status && is(getStatusClassName(status))))}
-        ref={ref}
-        {...others}
-      />
-      <label htmlFor={`switch-${id}`}>{label}</label>
-    </div>
-  )
-}
+    return (
+      <div className={hashClass(clsx('switch', reversed && is('reversed'), className))}>
+        <input
+          onChange={handleChange}
+          onClick={handleClick}
+          name={name}
+          value={value}
+          checked={readonly ? checked : _checked}
+          readOnly={readonly}
+          id={`switch-${id}`}
+          type='checkbox'
+          disabled={disabled}
+          className={hashClass(clsx(status && is(getStatusClassName(status))))}
+          ref={ref}
+          {...others}
+        />
+        <label htmlFor={`switch-${id}`}>{label}</label>
+      </div>
+    )
+  },
+)
 
-export default React.forwardRef(Switch)
+Switch.displayName = ComponentName.Switch
+export default Switch

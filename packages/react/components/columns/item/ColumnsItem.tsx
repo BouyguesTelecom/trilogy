@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { ColumnsItemProps } from '@/components/columns/item/ColumnsItemProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 
@@ -29,53 +30,56 @@ import { is } from '@/services/classify'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param verticalAlign { Alignable | AlignableValues} vertical align content
  */
-const ColumnsItem = (
-  {
-    className,
-    size,
-    mobileSize,
-    tabletSize,
-    touchSize,
-    desktopSize,
-    widescreenSize,
-    fullhdSize,
-    offset,
-    mobileOffset,
-    tabletOffset,
-    touchOffset,
-    desktopOffset,
-    widescreenOffset,
-    fullhdOffset,
-    narrow,
-    verticalCentered,
-    ...others
-  }: ColumnsItemProps,
-  ref: React.LegacyRef<HTMLDivElement>,
-) => {
-  const classes = hashClass(
-    clsx(
-      'column',
-      size && is(`${size}`),
-      mobileSize && is(`${mobileSize}-mobile`),
-      tabletSize && is(`${tabletSize}-tablet`),
-      touchSize && is(`${touchSize}-tablet`),
-      desktopSize && is(`${desktopSize}-desktop`),
-      widescreenSize && is(`${widescreenSize}-widescreen`),
-      fullhdSize && is(`${fullhdSize}-fullhd`),
-      offset && is(`offset-${offset}`),
-      mobileOffset && is(`offset-${mobileOffset}-mobile`),
-      tabletOffset && is(`offset-${tabletOffset}-tablet`),
-      touchOffset && is(`offset-${touchOffset}-tablet`),
-      desktopOffset && is(`offset-${desktopOffset}-desktop`),
-      widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
-      fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
-      narrow && is('narrow'),
-      verticalCentered && is('vcentered'),
+const ColumnsItem = React.forwardRef(
+  (
+    {
       className,
-    ),
-  )
+      size,
+      mobileSize,
+      tabletSize,
+      touchSize,
+      desktopSize,
+      widescreenSize,
+      fullhdSize,
+      offset,
+      mobileOffset,
+      tabletOffset,
+      touchOffset,
+      desktopOffset,
+      widescreenOffset,
+      fullhdOffset,
+      narrow,
+      verticalCentered,
+      ...others
+    }: ColumnsItemProps,
+    ref: React.LegacyRef<HTMLDivElement>,
+  ) => {
+    const classes = hashClass(
+      clsx(
+        'column',
+        size && is(`${size}`),
+        mobileSize && is(`${mobileSize}-mobile`),
+        tabletSize && is(`${tabletSize}-tablet`),
+        touchSize && is(`${touchSize}-tablet`),
+        desktopSize && is(`${desktopSize}-desktop`),
+        widescreenSize && is(`${widescreenSize}-widescreen`),
+        fullhdSize && is(`${fullhdSize}-fullhd`),
+        offset && is(`offset-${offset}`),
+        mobileOffset && is(`offset-${mobileOffset}-mobile`),
+        tabletOffset && is(`offset-${tabletOffset}-tablet`),
+        touchOffset && is(`offset-${touchOffset}-tablet`),
+        desktopOffset && is(`offset-${desktopOffset}-desktop`),
+        widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
+        fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
+        narrow && is('narrow'),
+        verticalCentered && is('vcentered'),
+        className,
+      ),
+    )
 
-  return <div ref={ref} className={classes} {...others} />
-}
+    return <div ref={ref} className={classes} {...others} />
+  },
+)
 
-export default React.forwardRef(ColumnsItem)
+ColumnsItem.displayName = ComponentName.ColumnsItem
+export default ColumnsItem

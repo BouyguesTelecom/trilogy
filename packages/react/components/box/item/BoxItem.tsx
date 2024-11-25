@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { BoxItemProps } from '@/components/box/item/BoxItemProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
@@ -11,12 +12,15 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const BoxItem = ({ className, children, ...others }: BoxItemProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
-  return (
-    <div className={hashClass(clsx('box-item', className))} ref={ref} {...others}>
-      {children}
-    </div>
-  )
-}
+const BoxItem = React.forwardRef(
+  ({ className, children, ...others }: BoxItemProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
+    return (
+      <div className={hashClass(clsx('box-item', className))} ref={ref} {...others}>
+        {children}
+      </div>
+    )
+  },
+)
 
-export default React.forwardRef(BoxItem)
+BoxItem.displayName = ComponentName.BoxItem
+export default BoxItem

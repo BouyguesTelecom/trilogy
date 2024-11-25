@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import CircleIcon from '@/components/icon/circle/index'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { IconProps } from '@/components/icon/IconProps'
@@ -38,245 +39,248 @@ import { has, is } from '@/services/classify'
  * @param style {object} Additional styles
  */
 
-const Icon = (
-  {
-    className,
-    textClassName,
-    size,
-    name,
-    status,
-    circled,
-    content,
-    position,
-    markup,
-    stacked,
-    badgeContent,
-    statusPosition,
-    stretched,
-    color,
-    backgroundColor,
-    onClick,
-    align,
-    skeleton,
-    verticalAlign,
-    testId,
-    marginless,
-    ...others
-  }: IconProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'icon',
-      stretched && is('stretched'),
-      size && is(size),
-      stacked && is('stacked'),
-      color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-      skeleton && is('loading'),
-      badgeContent && is('stacked'),
-      marginless && is('marginless'),
+const Icon = React.forwardRef(
+  (
+    {
       className,
-    ),
-  )
+      textClassName,
+      size,
+      name,
+      status,
+      circled,
+      content,
+      position,
+      markup,
+      stacked,
+      badgeContent,
+      statusPosition,
+      stretched,
+      color,
+      backgroundColor,
+      onClick,
+      align,
+      skeleton,
+      verticalAlign,
+      testId,
+      marginless,
+      ...others
+    }: IconProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'icon',
+        stretched && is('stretched'),
+        size && is(size),
+        stacked && is('stacked'),
+        color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
+        skeleton && is('loading'),
+        badgeContent && is('stacked'),
+        marginless && is('marginless'),
+        className,
+      ),
+    )
 
-  // TextIcon uses className instead of classes, verticalAlignment only affect TextIcon
-  className = clsx(content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`), className)
+    // TextIcon uses className instead of classes, verticalAlignment only affect TextIcon
+    className = clsx(content && verticalAlign && is(`${getAlignClassName(verticalAlign)}`), className)
 
-  const alignClasses = hashClass(
-    clsx(
-      (align && getAlignClassName(align) === 'aligned-start' && has('text-left')) ||
-        (getAlignClassName(align) === 'aligned-center' && has('text-centered')) ||
-        (getAlignClassName(align) === 'aligned-end' && has('text-right')),
-    ),
-  )
+    const alignClasses = hashClass(
+      clsx(
+        (align && getAlignClassName(align) === 'aligned-start' && has('text-left')) ||
+          (getAlignClassName(align) === 'aligned-center' && has('text-centered')) ||
+          (getAlignClassName(align) === 'aligned-end' && has('text-right')),
+      ),
+    )
 
-  // circled icons
-  if (circled || (circled && status)) {
-    if (align) {
+    // circled icons
+    if (circled || (circled && status)) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <CircleIcon
+              ref={ref}
+              testId={testId}
+              onClick={onClick && onClick}
+              className={className}
+              name={name as IconName}
+              status={status}
+              size={size}
+              color={color}
+              backgroundColor={backgroundColor}
+              {...others}
+            />
+          </div>
+        )
+      }
       return (
-        <div className={alignClasses} ref={ref}>
-          <CircleIcon
-            ref={ref}
-            testId={testId}
-            onClick={onClick && onClick}
-            className={className}
-            name={name as IconName}
-            status={status}
-            size={size}
-            color={color}
-            backgroundColor={backgroundColor}
-            {...others}
-          />
-        </div>
+        <CircleIcon
+          ref={ref}
+          testId={testId}
+          onClick={onClick && onClick}
+          className={className}
+          name={name as IconName}
+          status={status}
+          size={size}
+          color={color}
+          backgroundColor={backgroundColor}
+          {...others}
+        />
       )
     }
-    return (
-      <CircleIcon
-        ref={ref}
-        testId={testId}
-        onClick={onClick && onClick}
-        className={className}
-        name={name as IconName}
-        status={status}
-        size={size}
-        color={color}
-        backgroundColor={backgroundColor}
-        {...others}
-      />
-    )
-  }
 
-  // status icons
-  if (status) {
-    if (align) {
+    // status icons
+    if (status) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <StatusIcon
+              ref={ref}
+              testId={testId}
+              onClick={onClick && onClick}
+              statusPosition={statusPosition}
+              className={className}
+              name={name as IconName}
+              size={size}
+              status={status}
+              {...others}
+            />
+          </div>
+        )
+      }
       return (
-        <div className={alignClasses} ref={ref}>
-          <StatusIcon
-            ref={ref}
-            testId={testId}
-            onClick={onClick && onClick}
-            statusPosition={statusPosition}
-            className={className}
-            name={name as IconName}
-            size={size}
-            status={status}
-            {...others}
-          />
-        </div>
+        <StatusIcon
+          ref={ref}
+          testId={testId}
+          onClick={onClick && onClick}
+          statusPosition={statusPosition}
+          className={className}
+          name={name as IconName}
+          size={size}
+          status={status}
+          {...others}
+        />
       )
     }
-    return (
-      <StatusIcon
-        ref={ref}
-        testId={testId}
-        onClick={onClick && onClick}
-        statusPosition={statusPosition}
-        className={className}
-        name={name as IconName}
-        size={size}
-        status={status}
-        {...others}
-      />
-    )
-  }
 
-  // Text icon
-  if (content && !badgeContent) {
-    if (align) {
+    // Text icon
+    if (content && !badgeContent) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <TextIcon
+              ref={ref}
+              testId={testId}
+              onClick={onClick && onClick}
+              className={className}
+              name={name as IconName}
+              content={content}
+              position={position}
+              textClassName={textClassName}
+              size={size}
+              markup={markup}
+              status={status}
+              color={color}
+              {...others}
+            />
+          </div>
+        )
+      }
       return (
-        <div className={alignClasses} ref={ref}>
-          <TextIcon
-            ref={ref}
-            testId={testId}
-            onClick={onClick && onClick}
-            className={className}
-            name={name as IconName}
-            content={content}
-            position={position}
-            textClassName={textClassName}
-            size={size}
-            markup={markup}
-            status={status}
-            color={color}
-            {...others}
-          />
-        </div>
+        <TextIcon
+          ref={ref}
+          onClick={onClick && onClick}
+          className={className}
+          name={name as IconName}
+          content={content}
+          position={position}
+          textClassName={textClassName}
+          size={size}
+          markup={markup}
+          status={status}
+          color={color}
+          {...others}
+        />
       )
     }
-    return (
-      <TextIcon
-        ref={ref}
-        onClick={onClick && onClick}
-        className={className}
-        name={name as IconName}
-        content={content}
-        position={position}
-        textClassName={textClassName}
-        size={size}
-        markup={markup}
-        status={status}
-        color={color}
-        {...others}
-      />
-    )
-  }
 
-  // Icon with badge + badge content
-  if (badgeContent) {
-    if (align) {
+    // Icon with badge + badge content
+    if (badgeContent) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <span onClick={onClick && onClick} className={classes} {...others}>
+              <i className={hashClass(clsx(name))} aria-hidden='true' />
+              <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
+            </span>
+            {content && <span className={hashClass(clsx(textClassName))}>{content}</span>}
+          </div>
+        )
+      }
       return (
-        <div className={alignClasses} ref={ref}>
-          <span onClick={onClick && onClick} className={classes} {...others}>
+        <>
+          <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
             <i className={hashClass(clsx(name))} aria-hidden='true' />
             <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
           </span>
           {content && <span className={hashClass(clsx(textClassName))}>{content}</span>}
-        </div>
+        </>
       )
     }
-    return (
-      <>
+
+    // Stretched icon
+    if (stretched) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <span onClick={onClick && onClick} className={classes} {...others}>
+              <i className={hashClass(clsx(name))} aria-hidden='true' />
+            </span>
+          </div>
+        )
+      }
+      return (
         <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
           <i className={hashClass(clsx(name))} aria-hidden='true' />
-          <span className={hashClass(clsx('badge', is('up')))}>{badgeContent}</span>
         </span>
-        {content && <span className={hashClass(clsx(textClassName))}>{content}</span>}
-      </>
-    )
-  }
-
-  // Stretched icon
-  if (stretched) {
-    if (align) {
-      return (
-        <div className={alignClasses} ref={ref}>
-          <span onClick={onClick && onClick} className={classes} {...others}>
-            <i className={hashClass(clsx(name))} aria-hidden='true' />
-          </span>
-        </div>
       )
     }
-    return (
-      <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
-        <i className={hashClass(clsx(name))} aria-hidden='true' />
-      </span>
-    )
-  }
 
-  // Custom Colored Icon
-  if (color) {
-    if (align) {
+    // Custom Colored Icon
+    if (color) {
+      if (align) {
+        return (
+          <div className={alignClasses} ref={ref}>
+            <span onClick={onClick && onClick} className={classes} {...others}>
+              <i className={hashClass(clsx(name))} aria-hidden='true' />
+            </span>
+          </div>
+        )
+      }
       return (
-        <div className={alignClasses} ref={ref}>
-          <span onClick={onClick && onClick} className={classes} {...others}>
-            <i className={hashClass(clsx(name))} aria-hidden='true' />
-          </span>
-        </div>
-      )
-    }
-    return (
-      <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
-        <i className={hashClass(clsx(name))} aria-hidden='true' />
-      </span>
-    )
-  }
-
-  if (align) {
-    return (
-      <div className={alignClasses} ref={ref}>
-        <span onClick={onClick && onClick} className={classes} {...others}>
+        <span onClick={onClick && onClick} className={classes} {...others} ref={ref}>
           <i className={hashClass(clsx(name))} aria-hidden='true' />
         </span>
-      </div>
+      )
+    }
+
+    if (align) {
+      return (
+        <div className={alignClasses} ref={ref}>
+          <span onClick={onClick && onClick} className={classes} {...others}>
+            <i className={hashClass(clsx(name))} aria-hidden='true' />
+          </span>
+        </div>
+      )
+    }
+
+    // Static default Icon
+    return (
+      <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
+        <i className={hashClass(clsx(name))} aria-hidden='true' />
+      </span>
     )
-  }
+  },
+)
 
-  // Static default Icon
-  return (
-    <span data-testid={testId} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
-      <i className={hashClass(clsx(name))} aria-hidden='true' />
-    </span>
-  )
-}
-
-export default React.forwardRef(Icon)
+Icon.displayName = ComponentName.Icon
+export default Icon

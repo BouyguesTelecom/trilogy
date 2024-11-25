@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TextLevels, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
 import { TextProps } from '@/components/text/TextProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -28,83 +29,86 @@ import { is } from '@/services/classify'
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {Object} Additional style
  */
-const Text = (
-  {
-    level,
-    markup,
-    children,
-    className,
-    href,
-    title,
-    onClick,
-    typo,
-    inverted,
-    skeleton,
-    testId,
-    accessibilityLabel,
-    htmlContent,
-    marginless,
-    link,
-    numberOfLines,
-    ...others
-  }: TextProps,
-  ref: React.Ref<any>,
-): JSX.Element => {
-  const levelText = () => {
-    if (level) {
-      switch (level) {
-        case TextLevels.ONE:
-          return is('level-1')
-        case TextLevels.TWO:
-          return is('level-2')
-        case TextLevels.THREE:
-          return is('level-3')
-        case TextLevels.FOUR:
-          return is('level-4')
-        default:
-          return is(`level-${level}`)
+const Text = React.forwardRef(
+  (
+    {
+      level,
+      markup,
+      children,
+      className,
+      href,
+      title,
+      onClick,
+      typo,
+      inverted,
+      skeleton,
+      testId,
+      accessibilityLabel,
+      htmlContent,
+      marginless,
+      link,
+      numberOfLines,
+      ...others
+    }: TextProps,
+    ref: React.Ref<any>,
+  ): JSX.Element => {
+    const levelText = () => {
+      if (level) {
+        switch (level) {
+          case TextLevels.ONE:
+            return is('level-1')
+          case TextLevels.TWO:
+            return is('level-2')
+          case TextLevels.THREE:
+            return is('level-3')
+          case TextLevels.FOUR:
+            return is('level-4')
+          default:
+            return is(`level-${level}`)
+        }
       }
     }
-  }
 
-  const classes = hashClass(
-    clsx(
-      !link ? 'text' : 'link',
-      level && levelText(),
-      inverted && is('inverted'),
-      typo,
-      skeleton ? is('loading') : is('loaded'),
-      marginless && is('marginless'),
-      numberOfLines && is('text-ellipsis'),
-      className,
-    ),
-  )
+    const classes = hashClass(
+      clsx(
+        !link ? 'text' : 'link',
+        level && levelText(),
+        inverted && is('inverted'),
+        typo,
+        skeleton ? is('loading') : is('loaded'),
+        marginless && is('marginless'),
+        numberOfLines && is('text-ellipsis'),
+        className,
+      ),
+    )
 
-  /**
-   * If no markup return p with default level 1
-   */
-  const isCorrectMarkup = (stringMarkup: TextMarkup | TextMarkupValues) => {
-    if (stringMarkup in TextMarkup || Object.values(TextMarkup).includes(stringMarkup as TextMarkup)) return true
-  }
+    /**
+     * If no markup return p with default level 1
+     */
+    const isCorrectMarkup = (stringMarkup: TextMarkup | TextMarkupValues) => {
+      if (stringMarkup in TextMarkup || Object.values(TextMarkup).includes(stringMarkup as TextMarkup)) return true
+    }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 
-  return (
-    <Tag
-      ref={ref}
-      style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}
-      data-testid={testId}
-      aria-label={accessibilityLabel}
-      onClick={onClick}
-      title={title}
-      className={classes}
-      {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
-      {...(Tag === TextMarkup.A && { href: href })}
-      {...others}
-    >
-      {children}
-    </Tag>
-  )
-}
+    return (
+      <Tag
+        ref={ref}
+        style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}
+        data-testid={testId}
+        aria-label={accessibilityLabel}
+        onClick={onClick}
+        title={title}
+        className={classes}
+        {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
+        {...(Tag === TextMarkup.A && { href: href })}
+        {...others}
+      >
+        {children}
+      </Tag>
+    )
+  },
+)
 
-export default React.forwardRef(Text)
+Text.displayName = ComponentName.Text
+export default Text

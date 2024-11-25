@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { CardImageProps } from '@/components/card/image/CardImageProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 /**
@@ -15,19 +16,19 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES ----------------------------------
  * @param className Additionnal CSS Classes
  */
-const CardImage = (
-  { src, alt, className, size, onClick, ...others }: CardImageProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
+const CardImage = React.forwardRef(
+  ({ src, alt, className, size, onClick, ...others }: CardImageProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
+    const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
-  return (
-    <div onClick={onClick && onClick} className={classes} ref={ref}>
-      <figure className={hashClass(clsx('image'))} {...others}>
-        <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
-      </figure>
-    </div>
-  )
-}
+    return (
+      <div onClick={onClick && onClick} className={classes} ref={ref}>
+        <figure className={hashClass(clsx('image'))} {...others}>
+          <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
+        </figure>
+      </div>
+    )
+  },
+)
 
-export default React.forwardRef(CardImage)
+CardImage.displayName = ComponentName.CardImage
+export default CardImage

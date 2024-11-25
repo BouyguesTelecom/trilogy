@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TableHeadProps } from '@/components/table/head/TableHeadProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -15,18 +16,21 @@ import { has, is } from '@/services/classify'
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */
-const TableHead = (
-  { className, color, backgroundColor, ...others }: TableHeadProps,
-  ref: React.Ref<HTMLTableSectionElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      color && is(getColorClassName(color)),
-    ),
-  )
-  return <thead className={classes} ref={ref} {...others} />
-}
+const TableHead = React.forwardRef(
+  (
+    { className, color, backgroundColor, ...others }: TableHeadProps,
+    ref: React.Ref<HTMLTableSectionElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        color && is(getColorClassName(color)),
+      ),
+    )
+    return <thead className={classes} ref={ref} {...others} />
+  },
+)
 
-export default React.forwardRef(TableHead)
+TableHead.displayName = ComponentName.TableHead
+export default TableHead

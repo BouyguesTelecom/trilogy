@@ -10,23 +10,24 @@ import { getColorStyle } from '@/objects/facets/Color'
  * @param children {React.ReactNode} Childrens
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  */
-const BoxContent = ({ children, backgroundColor, ...others }: BoxContentProps, ref: React.Ref<View>): JSX.Element => {
-  const styles = StyleSheet.create({
-    boxContent: {
-      padding: 16,
-      justifyContent: 'center',
-      backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-      borderRadius: 6,
-    },
-  })
+const BoxContent = React.forwardRef(
+  ({ children, backgroundColor, ...others }: BoxContentProps, ref: React.Ref<View>): JSX.Element => {
+    const styles = StyleSheet.create({
+      boxContent: {
+        padding: 16,
+        justifyContent: 'center',
+        backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
+        borderRadius: 6,
+      },
+    })
 
-  return (
-    <View ref={ref} style={[styles.boxContent]} {...others}>
-      {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
-    </View>
-  )
-}
+    return (
+      <View ref={ref} style={[styles.boxContent]} {...others}>
+        {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
+      </View>
+    )
+  },
+)
 
 BoxContent.displayName = ComponentName.BoxContent
-
-export default React.forwardRef(BoxContent)
+export default BoxContent

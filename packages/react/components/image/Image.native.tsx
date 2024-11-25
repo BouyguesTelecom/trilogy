@@ -15,42 +15,43 @@ import { ImageProps } from '@/components/image/ImageProps'
  * @param style {Object} Additional styles
  * @param flex {boolean} add Flex : 1
  */
-const Image = (
-  { src, alt, rounded, width, height, onClick, flex, ...others }: ImageProps,
-  ref: React.Ref<ImageNative>,
-): JSX.Element => {
-  const styles = StyleSheet.create({
-    image: {
-      width: width ? width : '100%',
-      height: height ? height : '100%',
-      borderRadius: rounded ? 100 : 0,
-      overflow: rounded ? 'hidden' : 'visible',
-      resizeMode: 'contain',
-      flex: flex ? 1 : 0,
-    },
-  })
+const Image = React.forwardRef(
+  (
+    { src, alt, rounded, width, height, onClick, flex, ...others }: ImageProps,
+    ref: React.Ref<ImageNative>,
+  ): JSX.Element => {
+    const styles = StyleSheet.create({
+      image: {
+        width: width ? width : '100%',
+        height: height ? height : '100%',
+        borderRadius: rounded ? 100 : 0,
+        overflow: rounded ? 'hidden' : 'visible',
+        resizeMode: 'contain',
+        flex: flex ? 1 : 0,
+      },
+    })
 
-  const image = (
-    <ImageNative
-      ref={ref}
-      style={styles.image}
-      accessibilityLabel={alt}
-      source={typeof src === 'number' ? src : { uri: src }}
-      {...others}
-    />
-  )
+    const image = (
+      <ImageNative
+        ref={ref}
+        style={styles.image}
+        accessibilityLabel={alt}
+        source={typeof src === 'number' ? src : { uri: src }}
+        {...others}
+      />
+    )
 
-  return onClick ? (
-    <View>
-      <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
-        {image}
-      </TouchableOpacity>
-    </View>
-  ) : (
-    image
-  )
-}
+    return onClick ? (
+      <View>
+        <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+          {image}
+        </TouchableOpacity>
+      </View>
+    ) : (
+      image
+    )
+  },
+)
 
 Image.displayName = ComponentName.Image
-
-export default React.forwardRef(Image)
+export default Image

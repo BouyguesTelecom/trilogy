@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode} BoxItem Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
  */
-const BoxItem = ({ children, size, ...others }: BoxItemProps, ref: React.Ref<View>): JSX.Element => {
+const BoxItem = React.forwardRef(({ children, size, ...others }: BoxItemProps, ref: React.Ref<View>): JSX.Element => {
   const height = Number(size) || 48
   const styles = StyleSheet.create({
     boxItem: {
@@ -26,8 +26,7 @@ const BoxItem = ({ children, size, ...others }: BoxItemProps, ref: React.Ref<Vie
       {children}
     </View>
   )
-}
+})
 
 BoxItem.displayName = ComponentName.BoxItem
-
-export default React.forwardRef(BoxItem)
+export default BoxItem

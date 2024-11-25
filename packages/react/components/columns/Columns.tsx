@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { has, is } from '@/services/classify'
@@ -18,26 +19,29 @@ import { has, is } from '@/services/classify'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = (
-  { className, multiline, scrollable, mobile, centered, gap, fullBleed, verticalAlign, ...others }: ColumnsProps,
-  ref: React.Ref<HTMLDivElement>,
-) => {
-  const classes = hashClass(
-    clsx(
-      'columns',
-      multiline && is('multiline'),
-      fullBleed && is('fullbleed'),
-      scrollable && is('scrollable'),
-      gap && has(`gap-${gap}`),
-      typeof gap !== 'undefined' && gap === 0 && is('gapless'),
-      mobile && is('mobile'),
-      centered && is('centered'),
-      verticalAlign && is(getAlignClassName(verticalAlign)),
-      className,
-    ),
-  )
+const Columns = React.forwardRef(
+  (
+    { className, multiline, scrollable, mobile, centered, gap, fullBleed, verticalAlign, ...others }: ColumnsProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const classes = hashClass(
+      clsx(
+        'columns',
+        multiline && is('multiline'),
+        fullBleed && is('fullbleed'),
+        scrollable && is('scrollable'),
+        gap && has(`gap-${gap}`),
+        typeof gap !== 'undefined' && gap === 0 && is('gapless'),
+        mobile && is('mobile'),
+        centered && is('centered'),
+        verticalAlign && is(getAlignClassName(verticalAlign)),
+        className,
+      ),
+    )
 
-  return <div ref={ref} className={classes} {...others} />
-}
+    return <div ref={ref} className={classes} {...others} />
+  },
+)
 
-export default React.forwardRef(Columns)
+Columns.displayName = ComponentName.Columns
+export default Columns

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { StickerMarkup, StickerMarkupValues } from '@/components/sticker/StickerEnum'
 import { StickerProps } from '@/components/sticker/StickerProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -19,33 +20,36 @@ import { is } from '@/services/classify'
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = (
-  { className, children, variant, small, hat, markup, outlined, ...others }: StickerProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'sticker',
-      variant && is(getVariantClassName(variant)),
-      small && is('small'),
-      hat && is('hat'),
-      className,
-      outlined && is('outlined'),
-    ),
-  )
+const Sticker = React.forwardRef(
+  (
+    { className, children, variant, small, hat, markup, outlined, ...others }: StickerProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'sticker',
+        variant && is(getVariantClassName(variant)),
+        small && is('small'),
+        hat && is('hat'),
+        className,
+        outlined && is('outlined'),
+      ),
+    )
 
-  const isCorrectMarkup = (stringMarkup: StickerMarkup | StickerMarkupValues) => {
-    if (stringMarkup in StickerMarkup || Object.values(StickerMarkup).includes(stringMarkup as StickerMarkup))
-      return true
-  }
+    const isCorrectMarkup = (stringMarkup: StickerMarkup | StickerMarkupValues) => {
+      if (stringMarkup in StickerMarkup || Object.values(StickerMarkup).includes(stringMarkup as StickerMarkup))
+        return true
+    }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
-  return (
-    <Tag className={classes} ref={ref} {...others}>
-      {children}
-    </Tag>
-  )
-}
+    return (
+      <Tag className={classes} ref={ref} {...others}>
+        {children}
+      </Tag>
+    )
+  },
+)
 
-export default React.forwardRef(Sticker)
+Sticker.displayName = ComponentName.Sticker
+export default Sticker

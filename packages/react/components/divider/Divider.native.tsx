@@ -18,80 +18,81 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param textColor {TrilogyColor} Text color of Divider
  * @param others
  */
-const Divider = (
-  { content, unboxed, marginless, iconName, color, backgroundColor, textColor, ...others }: DividerProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const [textWidth, setTextWidth] = React.useState(0)
-  const [containerWidth, setContainerWidth] = React.useState(0)
-  const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
+const Divider = React.forwardRef(
+  (
+    { content, unboxed, marginless, iconName, color, backgroundColor, textColor, ...others }: DividerProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const [textWidth, setTextWidth] = React.useState(0)
+    const [containerWidth, setContainerWidth] = React.useState(0)
+    const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
 
-  const styles = StyleSheet.create({
-    divider: {
-      marginBottom: 16,
-      marginTop: 16,
-      borderBottomColor: dividerColor,
-      borderBottomWidth: 1,
-      width: '100%',
-      alignSelf: ((unboxed || marginless) && 'stretch') || 'auto',
-    },
-    dividerContent: {
-      borderBottomColor: color ? getColorStyle(color) : dividerColor,
-      borderBottomWidth: 1,
-      alignSelf: 'center',
-      justifyContent: 'center',
-      width: `${((containerWidth - (textWidth + 16)) / 2 / containerWidth) * 100}%`,
-    },
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      maxWidth: '100%',
-    },
-    content: {
-      justifyContent: 'center',
-      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
-      borderRadius: iconName ? 50 : 0,
-      padding: iconName ? 6 : 0,
-    },
-    textContent: {
-      textAlign: 'center',
-      color: textColor ? getColorStyle(textColor) : getColorStyle(TrilogyColor.MAIN_FADE),
-    },
-  })
+    const styles = StyleSheet.create({
+      divider: {
+        marginBottom: 16,
+        marginTop: 16,
+        borderBottomColor: dividerColor,
+        borderBottomWidth: 1,
+        width: '100%',
+        alignSelf: ((unboxed || marginless) && 'stretch') || 'auto',
+      },
+      dividerContent: {
+        borderBottomColor: color ? getColorStyle(color) : dividerColor,
+        borderBottomWidth: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: `${((containerWidth - (textWidth + 16)) / 2 / containerWidth) * 100}%`,
+      },
+      container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        maxWidth: '100%',
+      },
+      content: {
+        justifyContent: 'center',
+        backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
+        borderRadius: iconName ? 50 : 0,
+        padding: iconName ? 6 : 0,
+      },
+      textContent: {
+        textAlign: 'center',
+        color: textColor ? getColorStyle(textColor) : getColorStyle(TrilogyColor.MAIN_FADE),
+      },
+    })
 
-  const ContentDivider = React.useMemo(() => {
-    if (content) return <Text style={styles.textContent}>{content}</Text>
-    if (iconName && !content)
-      return <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId='icon-id' />
-  }, [content, iconName])
+    const ContentDivider = React.useMemo(() => {
+      if (content) return <Text style={styles.textContent}>{content}</Text>
+      if (iconName && !content)
+        return <Icon name={iconName} color={textColor ? textColor : IconColor.MAIN} testId='icon-id' />
+    }, [content, iconName])
 
-  if (content || iconName) {
-    return (
-      <View
-        ref={ref}
-        style={styles.container}
-        onLayout={(event) => {
-          setContainerWidth(event.nativeEvent.layout.width)
-        }}
-      >
-        <View style={styles.dividerContent} {...others} />
+    if (content || iconName) {
+      return (
         <View
-          style={styles.content}
+          ref={ref}
+          style={styles.container}
           onLayout={(event) => {
-            setTextWidth(event.nativeEvent.layout.width)
+            setContainerWidth(event.nativeEvent.layout.width)
           }}
         >
-          {ContentDivider}
+          <View style={styles.dividerContent} {...others} />
+          <View
+            style={styles.content}
+            onLayout={(event) => {
+              setTextWidth(event.nativeEvent.layout.width)
+            }}
+          >
+            {ContentDivider}
+          </View>
+          <View style={styles.dividerContent} {...others} />
         </View>
-        <View style={styles.dividerContent} {...others} />
-      </View>
-    )
-  }
+      )
+    }
 
-  return <View style={styles.divider} ref={ref} {...others} />
-}
+    return <View style={styles.divider} ref={ref} {...others} />
+  },
+)
 
 Divider.displayName = ComponentName.Divider
-
-export default React.forwardRef(Divider)
+export default Divider

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { LinkProps } from '@/components/link/LinkProps'
 import { Text, TextMarkup } from '@/components/text'
@@ -32,99 +33,102 @@ import { has, is } from '@/services/classify'
  * @param style {Object} Additional styles
  */
 
-const Link = (
-  {
-    children,
-    className,
-    removeLinkClass,
-    to,
-    href,
-    title,
-    onClick,
-    typo,
-    testId,
-    accessibilityLabel,
-    routerLink,
-    iconName,
-    inverted,
-    blank,
-    ...others
-  }: LinkProps,
-  ref: React.Ref<HTMLElement | HTMLDivElement>,
-): JSX.Element => {
-  const classes = clsx(iconName && has('icon'), typo, inverted && is('inverted'), className)
+const Link = React.forwardRef(
+  (
+    {
+      children,
+      className,
+      removeLinkClass,
+      to,
+      href,
+      title,
+      onClick,
+      typo,
+      testId,
+      accessibilityLabel,
+      routerLink,
+      iconName,
+      inverted,
+      blank,
+      ...others
+    }: LinkProps,
+    ref: React.Ref<HTMLElement | HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = clsx(iconName && has('icon'), typo, inverted && is('inverted'), className)
 
-  if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    if (routerLink && to) {
+      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
 
-    const RouterLinkTrilogy = (): JSX.Element => {
+      const RouterLinkTrilogy = (): JSX.Element => {
+        return (
+          <RouterLink
+            data-testid={testId}
+            aria-label={accessibilityLabel}
+            onClick={onClick && onClick}
+            className={hashClass(clsx(classes))}
+            to={to || ''}
+            {...(blank && {
+              target: '_blank',
+            })}
+            ref={ref}
+            {...others}
+          >
+            {title || children}
+          </RouterLink>
+        )
+      }
+
+      if (typo) {
+        return (
+          <div className={hashClass(clsx(typo))} ref={ref as React.Ref<HTMLDivElement>}>
+            <RouterLinkTrilogy />
+          </div>
+        )
+      }
+
+      return <RouterLinkTrilogy />
+    }
+
+    const LinkTrilogy = (): JSX.Element => {
       return (
-        <RouterLink
+        <Text
+          link
           data-testid={testId}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
-          className={hashClass(clsx(classes))}
-          to={to || ''}
+          title={title}
+          markup={TextMarkup.A}
+          className={classes}
+          href={href}
           {...(blank && {
             target: '_blank',
           })}
           ref={ref}
           {...others}
         >
-          {title || children}
-        </RouterLink>
+          {iconName ? (
+            <>
+              <Text markup='span'>{children}</Text>
+              <Icon name={iconName} size={IconSize.SMALL} />
+            </>
+          ) : (
+            children
+          )}
+        </Text>
       )
     }
 
     if (typo) {
       return (
         <div className={hashClass(clsx(typo))} ref={ref as React.Ref<HTMLDivElement>}>
-          <RouterLinkTrilogy />
+          <LinkTrilogy />
         </div>
       )
     }
 
-    return <RouterLinkTrilogy />
-  }
+    return <LinkTrilogy />
+  },
+)
 
-  const LinkTrilogy = (): JSX.Element => {
-    return (
-      <Text
-        link
-        data-testid={testId}
-        aria-label={accessibilityLabel}
-        onClick={onClick && onClick}
-        title={title}
-        markup={TextMarkup.A}
-        className={classes}
-        href={href}
-        {...(blank && {
-          target: '_blank',
-        })}
-        ref={ref}
-        {...others}
-      >
-        {iconName ? (
-          <>
-            <Text markup='span'>{children}</Text>
-            <Icon name={iconName} size={IconSize.SMALL} />
-          </>
-        ) : (
-          children
-        )}
-      </Text>
-    )
-  }
-
-  if (typo) {
-    return (
-      <div className={hashClass(clsx(typo))} ref={ref as React.Ref<HTMLDivElement>}>
-        <LinkTrilogy />
-      </div>
-    )
-  }
-
-  return <LinkTrilogy />
-}
-
-export default React.forwardRef(Link)
+Link.displayName = ComponentName.Link
+export default Link

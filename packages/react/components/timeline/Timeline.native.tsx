@@ -19,7 +19,7 @@ export const TimelineHeightContext = React.createContext<IContext>({
  * @param children {ReactNode} Text child
 
  */
-const Timeline = ({ children }: TimelineProps, ref: React.Ref<View>): JSX.Element => {
+const Timeline = React.forwardRef(({ children }: TimelineProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'column',
@@ -40,8 +40,7 @@ const Timeline = ({ children }: TimelineProps, ref: React.Ref<View>): JSX.Elemen
       </View>
     </TimelineHeightContext.Provider>
   )
-}
+})
 
 Timeline.displayName = ComponentName.Timeline
-
-export default React.forwardRef(Timeline)
+export default Timeline

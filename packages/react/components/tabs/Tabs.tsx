@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTabs } from '@/components/tabs/hook/useTabs'
 import { TabsProps } from '@/components/tabs/TabsProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -24,62 +25,65 @@ import { has, is } from '@/services/classify'
  * @param textAlign {TypographyAlign | TypographyAlignValues}
  * @param testId {string} Test Id for Test Integration
  */
-const Tabs = (
-  {
-    children,
-    className,
-    onClick,
-    activeIndex,
-    disabled,
-    fullwidth,
-    align,
-    centered,
-    marginless,
-    inverted,
-    shadowless,
-    textAlign,
-    testId,
-    ...others
-  }: TabsProps,
-  ref: React.LegacyRef<HTMLDivElement>,
-) => {
-  const { isActive, handleClick } = useTabs({ currentIndex: activeIndex, onClick, disabled })
+const Tabs = React.forwardRef(
+  (
+    {
+      children,
+      className,
+      onClick,
+      activeIndex,
+      disabled,
+      fullwidth,
+      align,
+      centered,
+      marginless,
+      inverted,
+      shadowless,
+      textAlign,
+      testId,
+      ...others
+    }: TabsProps,
+    ref: React.LegacyRef<HTMLDivElement>,
+  ) => {
+    const { isActive, handleClick } = useTabs({ currentIndex: activeIndex, onClick, disabled })
 
-  const classes = hashClass(
-    clsx('tabs', fullwidth && is('fullwidth'), centered && is('centered'), marginless && is('marginless'), className),
-  )
+    const classes = hashClass(
+      clsx('tabs', fullwidth && is('fullwidth'), centered && is('centered'), marginless && is('marginless'), className),
+    )
 
-  return (
-    <div
-      ref={ref}
-      className={hashClass(
-        clsx(
-          'tab-context',
-          inverted && is('inverted'),
-          align && has(`text-${align}`),
-          shadowless && is('shadowless'),
-          textAlign && textAlign,
-        ),
-      )}
-      data-tabs-context=''
-      data-testid={testId}
-    >
-      <div className={classes} role='tablist' {...others}>
-        {React.Children.map(children, (child, index) => {
-          if (React.isValidElement(child)) {
-            const active = Boolean(isActive(index, child.props.active)) || false
-            const key = index
-            const props = {
-              active,
-              key,
-              onClick: (e: React.MouseEvent) => handleClick && handleClick(e, index, child),
+    return (
+      <div
+        ref={ref}
+        className={hashClass(
+          clsx(
+            'tab-context',
+            inverted && is('inverted'),
+            align && has(`text-${align}`),
+            shadowless && is('shadowless'),
+            textAlign && textAlign,
+          ),
+        )}
+        data-tabs-context=''
+        data-testid={testId}
+      >
+        <div className={classes} role='tablist' {...others}>
+          {React.Children.map(children, (child, index) => {
+            if (React.isValidElement(child)) {
+              const active = Boolean(isActive(index, child.props.active)) || false
+              const key = index
+              const props = {
+                active,
+                key,
+                onClick: (e: React.MouseEvent) => handleClick && handleClick(e, index, child),
+              }
+              return React.cloneElement(child, props)
             }
-            return React.cloneElement(child, props)
-          }
-        })}
+          })}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  },
+)
 
-export default React.forwardRef(Tabs)
+Tabs.displayName = ComponentName.Tabs
+export default Tabs

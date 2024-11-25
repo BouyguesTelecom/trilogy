@@ -6,6 +6,7 @@ import { AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteP
 import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
 import { debounce } from '@/components/autocomplete/utils'
+import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
 /**
@@ -29,117 +30,119 @@ import { InputChangeEventNative } from '@/components/input/InputProps'
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param getSuggestions {Function} getSuggestions event
  */
-const AutoComplete = (
-  {
-    value,
-    data,
-    onChange,
-    displayMenu,
-    onItemSelected,
-    customIcon,
-    placeholder,
-    matching = defaultMatching,
-    getSuggestions,
-    debounceSuggestionsTimeout,
-    onFocus,
-    testId,
-    status,
-    onBlur,
-    disabled,
-    onIconClick,
-    ...others
-  }: AutoCompletePropsNative,
-  ref: React.Ref<TextInput>,
-): JSX.Element => {
-  const [valueInput, setValueInput] = useState<string>(value ?? '')
-  const [suggestions, setSuggestions] = useState(data ?? [])
-  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
+const AutoComplete = React.forwardRef(
+  (
+    {
+      value,
+      data,
+      onChange,
+      displayMenu,
+      onItemSelected,
+      customIcon,
+      placeholder,
+      matching = defaultMatching,
+      getSuggestions,
+      debounceSuggestionsTimeout,
+      onFocus,
+      testId,
+      status,
+      onBlur,
+      disabled,
+      onIconClick,
+      ...others
+    }: AutoCompletePropsNative,
+    ref: React.Ref<TextInput>,
+  ): JSX.Element => {
+    const [valueInput, setValueInput] = useState<string>(value ?? '')
+    const [suggestions, setSuggestions] = useState(data ?? [])
+    const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
 
-  const updateSuggestions = async (valueInput: string) => {
-    if (getSuggestions) {
-      const suggestions = await getSuggestions(valueInput)
-      suggestions && setSuggestions(suggestions)
-      setIsOpenMenu(Boolean(suggestions?.length))
-    } else if (matching && data.length) {
-      const suggestions = matching(data, valueInput)
-      setSuggestions(suggestions)
-      setIsOpenMenu(Boolean(suggestions.length))
+    const updateSuggestions = async (valueInput: string) => {
+      if (getSuggestions) {
+        const suggestions = await getSuggestions(valueInput)
+        suggestions && setSuggestions(suggestions)
+        setIsOpenMenu(Boolean(suggestions?.length))
+      } else if (matching && data.length) {
+        const suggestions = matching(data, valueInput)
+        setSuggestions(suggestions)
+        setIsOpenMenu(Boolean(suggestions.length))
+      }
     }
-  }
-  const updateSuggestionsFn = useMemo(() => {
-    return debounceSuggestionsTimeout ? debounce(updateSuggestions, debounceSuggestionsTimeout) : updateSuggestions
-  }, [debounceSuggestionsTimeout])
+    const updateSuggestionsFn = useMemo(() => {
+      return debounceSuggestionsTimeout ? debounce(updateSuggestions, debounceSuggestionsTimeout) : updateSuggestions
+    }, [debounceSuggestionsTimeout])
 
-  useEffect(() => {
-    updateSuggestionsFn(valueInput)
-  }, [valueInput])
+    useEffect(() => {
+      updateSuggestionsFn(valueInput)
+    }, [valueInput])
 
-  useEffect(() => {
-    setValueInput(value || '')
-  }, [value])
+    useEffect(() => {
+      setValueInput(value || '')
+    }, [value])
 
-  const onTextChanged = async (e: InputChangeEventNative) => {
-    const { inputValue, inputName, inputSelectionStart } = e
-    setValueInput(inputValue)
-    if (onChange) {
-      onChange({
-        inputName,
-        inputValue,
-        inputSelectionStart,
-      })
+    const onTextChanged = async (e: InputChangeEventNative) => {
+      const { inputValue, inputName, inputSelectionStart } = e
+      setValueInput(inputValue)
+      if (onChange) {
+        onChange({
+          inputName,
+          inputValue,
+          inputSelectionStart,
+        })
+      }
     }
-  }
 
-  const handleSelectItem = (item: string) => {
-    setValueInput(getLabel(item))
-    setIsOpenMenu(false)
-    Keyboard.dismiss()
-    if (onItemSelected && (data || suggestions)) {
-      onItemSelected({
-        value: item,
-        index: (data.length ? data : suggestions).indexOf(item),
-      })
+    const handleSelectItem = (item: string) => {
+      setValueInput(getLabel(item))
+      setIsOpenMenu(false)
+      Keyboard.dismiss()
+      if (onItemSelected && (data || suggestions)) {
+        onItemSelected({
+          value: item,
+          index: (data.length ? data : suggestions).indexOf(item),
+        })
+      }
     }
-  }
 
-  const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
-    setIsOpenMenu(true)
-    if (onFocus) onFocus(event)
-  }
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setIsOpenMenu(true))
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setIsOpenMenu(false))
-
-    return () => {
-      keyboardDidHideListener.remove()
-      keyboardDidShowListener.remove()
+    const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+      setIsOpenMenu(true)
+      if (onFocus) onFocus(event)
     }
-  }, [])
 
-  return (
-    <View style={styles.autoComplete}>
-      <View>
-        <Input
-          ref={ref}
-          status={status}
-          testId={testId}
-          placeholder={placeholder}
-          type='text'
-          customIcon={customIcon}
-          value={valueInput}
-          hasIcon={Boolean(customIcon)}
-          onChange={onTextChanged}
-          onFocus={handleFocus}
-          onBlur={onBlur}
-          disabled={disabled}
-          onClick={onIconClick}
-        />
+    useEffect(() => {
+      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setIsOpenMenu(true))
+      const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setIsOpenMenu(false))
+
+      return () => {
+        keyboardDidHideListener.remove()
+        keyboardDidShowListener.remove()
+      }
+    }, [])
+
+    return (
+      <View style={styles.autoComplete}>
+        <View>
+          <Input
+            ref={ref}
+            status={status}
+            testId={testId}
+            placeholder={placeholder}
+            type='text'
+            customIcon={customIcon}
+            value={valueInput}
+            hasIcon={Boolean(customIcon)}
+            onChange={onTextChanged}
+            onFocus={handleFocus}
+            onBlur={onBlur}
+            disabled={disabled}
+            onClick={onIconClick}
+          />
+        </View>
+        {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}
       </View>
-      {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}
-    </View>
-  )
-}
+    )
+  },
+)
 
 const styles = StyleSheet.create({
   autoComplete: {
@@ -147,4 +150,5 @@ const styles = StyleSheet.create({
   },
 })
 
-export default React.forwardRef(AutoComplete)
+AutoComplete.displayName = ComponentName.AutoComplete
+export default AutoComplete

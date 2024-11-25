@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TagListProps } from '@/components/tag/list/TagListProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -14,7 +15,7 @@ import { is } from '@/services/classify'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = (props: TagListProps, ref: React.Ref<HTMLElement>) => {
+const TagList = React.forwardRef((props: TagListProps, ref: React.Ref<HTMLElement>) => {
   const { className, gapless, centered, marginless, ...others } = props
 
   return (
@@ -26,5 +27,7 @@ const TagList = (props: TagListProps, ref: React.Ref<HTMLElement>) => {
       {...others}
     />
   )
-}
-export default React.forwardRef(TagList)
+})
+
+TagList.displayName = ComponentName.TagList
+export default TagList

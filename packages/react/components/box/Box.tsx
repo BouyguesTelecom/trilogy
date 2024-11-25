@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { BoxMarkup, BoxProps } from '@/components/box/BoxProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
@@ -29,79 +30,81 @@ import { has, is } from '@/services/classify'
  * @param fullheight
  * @param others
  */
-const Box = (
-  {
-    inverted,
-    children,
-    className,
-    onClick,
-    markup,
-    skeleton,
-    to,
-    backgroundColor,
-    highlighted,
-    shadowless,
-    backgroundSrc,
-    testId,
-    flat,
-    hat,
-    fullheight,
-    active,
-    headerOffset,
-    ...others
-  }: BoxProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-
-  const classes = hashClass(
-    clsx(
-      'box',
-      shadowless && is('shadowless'),
+const Box = React.forwardRef(
+  (
+    {
+      inverted,
+      children,
       className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton ? is('loading') : is('loaded'),
-      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
-      flat && is('flat'),
-      hat && has('hat'),
-      headerOffset && is('header-offset'),
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
-
-  if (markup === BoxMarkup.A || to) {
-    return (
-      <a data-testid={testId} href={to} onClick={onClick && onClick} className={classes} {...others}>
-        {children}
-      </a>
+      onClick,
+      markup,
+      skeleton,
+      to,
+      backgroundColor,
+      highlighted,
+      shadowless,
+      backgroundSrc,
+      testId,
+      flat,
+      hat,
+      fullheight,
+      active,
+      headerOffset,
+      ...others
+    }: BoxProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'box',
+        shadowless && is('shadowless'),
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton ? is('loading') : is('loaded'),
+        highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+        flat && is('flat'),
+        hat && has('hat'),
+        headerOffset && is('header-offset'),
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
     )
-  }
 
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
+    if (markup === BoxMarkup.A || to) {
+      return (
+        <a data-testid={testId} href={to} onClick={onClick && onClick} className={classes} {...others}>
+          {children}
+        </a>
+      )
+    }
 
-  return (
-    <div
-      ref={ref}
-      style={onClick && { ...hoverStyle }}
-      data-testid={testId}
-      onClick={onClick && onClick}
-      className={classes}
-      {...others}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-        },
-      })}
-    >
-      {children}
-    </div>
-  )
-}
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
 
-export default React.forwardRef(Box)
+    return (
+      <div
+        ref={ref}
+        style={onClick && { ...hoverStyle }}
+        data-testid={testId}
+        onClick={onClick && onClick}
+        className={classes}
+        {...others}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+            backgroundSize: 'cover',
+            backgroundPosition: '50%',
+          },
+        })}
+      >
+        {children}
+      </div>
+    )
+  },
+)
+
+Box.displayName = ComponentName.Box
+export default Box

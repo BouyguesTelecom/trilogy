@@ -12,39 +12,37 @@ import { ProgressItemProps } from '@/components/progress/item/ProgressItemProps'
  * @param children {React.ReactNode}
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProgressItem = (
-  { children, percent, status, ...others }: ProgressItemProps,
-  ref: React.Ref<ViewType>,
-): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const givenProps = others as any
-  const givenstyle = givenProps.style
+const ProgressItem = React.forwardRef(
+  ({ children, percent, status, ...others }: ProgressItemProps, ref: React.Ref<ViewType>): JSX.Element => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const givenProps = others as any
+    const givenstyle = givenProps.style
 
-  const animation = useRef(new Animated.Value(0)).current
+    const animation = useRef(new Animated.Value(0)).current
 
-  useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    percent &&
-      Animated.timing(animation, {
-        toValue: percent,
-        duration: 1000,
-        useNativeDriver: false,
-      }).start()
-  }, [animation, percent])
+    useEffect(() => {
+      // eslint-disable-next-line no-unused-expressions
+      percent &&
+        Animated.timing(animation, {
+          toValue: percent,
+          duration: 1000,
+          useNativeDriver: false,
+        }).start()
+    }, [animation, percent])
 
-  const width = animation.interpolate({
-    inputRange: [0, 100],
-    outputRange: ['0%', '100%'],
-    extrapolate: 'clamp',
-  })
+    const width = animation.interpolate({
+      inputRange: [0, 100],
+      outputRange: ['0%', '100%'],
+      extrapolate: 'clamp',
+    })
 
-  return (
-    <Animated.View ref={ref} style={[{ width }, ...givenstyle]} {...others}>
-      {children}
-    </Animated.View>
-  )
-}
+    return (
+      <Animated.View ref={ref} style={[{ width }, ...givenstyle]} {...others}>
+        {children}
+      </Animated.View>
+    )
+  },
+)
 
-ProgressItem.dispmayName = ComponentName.ProgressItem
-
-export default React.forwardRef(ProgressItem)
+ProgressItem.displayName = ComponentName.ProgressItem
+export default ProgressItem

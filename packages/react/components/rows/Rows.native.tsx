@@ -11,7 +11,7 @@ export const RowsContext = React.createContext({ gapless: false })
  * @param children {React.ReactNode} Rows children
  * @param gapless {boolean} Delete margins between row
  */
-const Rows = ({ children, gapless, ...others }: RowsProps, ref: React.Ref<View>): JSX.Element => {
+const Rows = React.forwardRef(({ children, gapless, ...others }: RowsProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     rows: {
       display: 'flex',
@@ -27,8 +27,7 @@ const Rows = ({ children, gapless, ...others }: RowsProps, ref: React.Ref<View>)
       </View>
     </RowsContext.Provider>
   )
-}
+})
 
 Rows.displayName = ComponentName.Rows
-
-export default React.forwardRef(Rows)
+export default Rows

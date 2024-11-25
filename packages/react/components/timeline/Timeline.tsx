@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TimelineProps } from '@/components/timeline/TimelineProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -13,12 +14,13 @@ import { is } from '@/services/classify'
  * @param horizontal {boolean} timeline horizontal
  * @param className {string} Additionnal CSS Classes
  */
-const Timeline = (props: TimelineProps, ref: React.Ref<HTMLDivElement>) => {
+const Timeline = React.forwardRef((props: TimelineProps, ref: React.Ref<HTMLDivElement>) => {
   const { className, notifications, horizontal, ...others } = props
 
   const classes = hashClass(clsx('timeline', notifications && notifications, horizontal && is('horizontal'), className))
 
   return <div ref={ref} className={classes} {...others} />
-}
+})
 
-export default React.forwardRef(Timeline)
+Timeline.displayName = ComponentName.Timeline
+export default Timeline

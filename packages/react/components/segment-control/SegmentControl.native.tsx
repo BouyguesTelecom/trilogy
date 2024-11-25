@@ -18,86 +18,87 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param marginless {boolean} delete margin
  * @param inverted {boolean} invert color SegmentControl
  */
-const SegmentControl = (
-  { children, onClick, activeIndex, disabled, marginless, inverted, ...others }: SegmentControlProps,
-  ref: React.Ref<ViewType>,
-): JSX.Element => {
-  const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
+const SegmentControl = React.forwardRef(
+  (
+    { children, onClick, activeIndex, disabled, marginless, inverted, ...others }: SegmentControlProps,
+    ref: React.Ref<ViewType>,
+  ): JSX.Element => {
+    const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
-  const isActive = (index: number, childPropsActive: React.ReactNode) => {
-    if (typeof childPropsActive !== 'undefined' && !activateIndex) {
-      return childPropsActive
+    const isActive = (index: number, childPropsActive: React.ReactNode) => {
+      if (typeof childPropsActive !== 'undefined' && !activateIndex) {
+        return childPropsActive
+      }
+      if (index === activateIndex) {
+        return true
+      }
     }
-    if (index === activateIndex) {
-      return true
-    }
-  }
 
-  const toggleActive = (e: React.MouseEvent, index: number) => {
-    if (disabled) {
-      return false
+    const toggleActive = (e: React.MouseEvent, index: number) => {
+      if (disabled) {
+        return false
+      }
+      setActivateIndex(index)
+      if (onClick) {
+        onClick(e)
+      }
     }
-    setActivateIndex(index)
-    if (onClick) {
-      onClick(e)
-    }
-  }
 
-  const styles = StyleSheet.create({
-    padding: {
-      paddingLeft: marginless ? 0 : 10,
-      paddingRight: marginless ? 0 : 10,
-    },
-    segmentedControl: {
-      flexDirection: 'row',
-      width: '100%',
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      borderRadius: 4,
-      padding: 4,
-      paddingRight: -4,
-    },
-  })
+    const styles = StyleSheet.create({
+      padding: {
+        paddingLeft: marginless ? 0 : 10,
+        paddingRight: marginless ? 0 : 10,
+      },
+      segmentedControl: {
+        flexDirection: 'row',
+        width: '100%',
+        backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        borderRadius: 4,
+        padding: 4,
+        paddingRight: -4,
+      },
+    })
 
-  return (
-    <View style={styles.padding} ref={ref}>
-      <View style={styles.segmentedControl} {...others}>
-        {children &&
-          Array.isArray(children) &&
-          children.map((child, index) => {
-            const props = {
-              inverted: Boolean(isActive(index, child.props.active) && inverted) || false,
-              active: Boolean(isActive(index, child.props.active)) || false,
-              disabled: child.props.disabled,
-              key: index,
-              tabIndex: index,
-              onClick: (event: React.MouseEvent) => {
-                toggleActive(event, index)
-                if (child) {
-                  if (child.props.onClick) {
-                    child.props.onClick(event)
+    return (
+      <View style={styles.padding} ref={ref}>
+        <View style={styles.segmentedControl} {...others}>
+          {children &&
+            Array.isArray(children) &&
+            children.map((child, index) => {
+              const props = {
+                inverted: Boolean(isActive(index, child.props.active) && inverted) || false,
+                active: Boolean(isActive(index, child.props.active)) || false,
+                disabled: child.props.disabled,
+                key: index,
+                tabIndex: index,
+                onClick: (event: React.MouseEvent) => {
+                  toggleActive(event, index)
+                  if (child) {
+                    if (child.props.onClick) {
+                      child.props.onClick(event)
+                    }
                   }
-                }
-              },
-            }
-            if (index < 5) {
-              return typeof child.valueOf() === 'string' ? (
-                <SegmentedControlItem
-                  disabled={props.disabled}
-                  active={props.active}
-                  onClick={(e: unknown) => onClick?.(e)}
-                >
-                  <Text level={TextLevels.ONE}>{String(child)}</Text>
-                </SegmentedControlItem>
-              ) : (
-                React.cloneElement(child, props)
-              )
-            }
-          })}
+                },
+              }
+              if (index < 5) {
+                return typeof child.valueOf() === 'string' ? (
+                  <SegmentedControlItem
+                    disabled={props.disabled}
+                    active={props.active}
+                    onClick={(e: unknown) => onClick?.(e)}
+                  >
+                    <Text level={TextLevels.ONE}>{String(child)}</Text>
+                  </SegmentedControlItem>
+                ) : (
+                  React.cloneElement(child, props)
+                )
+              }
+            })}
+        </View>
       </View>
-    </View>
-  )
-}
+    )
+  },
+)
 
 SegmentControl.displayName = ComponentName.SegmentControl
-
-export default React.forwardRef(SegmentControl)
+export default SegmentControl

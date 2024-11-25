@@ -18,51 +18,52 @@ import { getStatusStyle } from '@/objects/facets/Status'
  * @param name {string} Switch name
  */
 
-const Switch = (
-  { id = shortid.generate(), checked, onChange, status, disabled, readonly, name }: SwitchProps,
-  ref: React.Ref<SwitchNative>,
-): JSX.Element => {
-  const [_checked, setChecked] = useState<boolean>(checked || false)
+const Switch = React.forwardRef(
+  (
+    { id = shortid.generate(), checked, onChange, status, disabled, readonly, name }: SwitchProps,
+    ref: React.Ref<SwitchNative>,
+  ): JSX.Element => {
+    const [_checked, setChecked] = useState<boolean>(checked || false)
 
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
+    useEffect(() => {
+      if (!readonly) {
+        setChecked(checked || false)
+      }
+    }, [checked, readonly])
 
-  const backgroundColorOff = getColorStyle(TrilogyColor.NEUTRAL)
-  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
-  const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const backgroundColorOff = getColorStyle(TrilogyColor.NEUTRAL)
+    const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
+    const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
 
-  const styles = StyleSheet.create({
-    switchIos: {
-      transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }],
-    },
-  })
+    const styles = StyleSheet.create({
+      switchIos: {
+        transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }],
+      },
+    })
 
-  return (
-    <SwitchNative
-      ref={ref}
-      testID='switch-id'
-      style={Platform.OS === 'ios' ? styles.switchIos : {}}
-      trackColor={{
-        false: disabled ? backgroundColorDisabled : backgroundColorOff,
-        true: disabled ? backgroundColorDisabled : getStatusStyle(status).color,
-      }}
-      thumbColor={thumbColor}
-      ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
-      onValueChange={(state) => {
-        if (onChange) {
-          onChange({ switchState: state, switchName: name || '' })
-        }
-      }}
-      nativeID={name ? `${name}_${id}` : id}
-      disabled={disabled}
-      value={_checked}
-    />
-  )
-}
+    return (
+      <SwitchNative
+        ref={ref}
+        testID='switch-id'
+        style={Platform.OS === 'ios' ? styles.switchIos : {}}
+        trackColor={{
+          false: disabled ? backgroundColorDisabled : backgroundColorOff,
+          true: disabled ? backgroundColorDisabled : getStatusStyle(status).color,
+        }}
+        thumbColor={thumbColor}
+        ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
+        onValueChange={(state) => {
+          if (onChange) {
+            onChange({ switchState: state, switchName: name || '' })
+          }
+        }}
+        nativeID={name ? `${name}_${id}` : id}
+        disabled={disabled}
+        value={_checked}
+      />
+    )
+  },
+)
 
 Switch.displayName = ComponentName.Switch
-
-export default React.forwardRef(Switch)
+export default Switch

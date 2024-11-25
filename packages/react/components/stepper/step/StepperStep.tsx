@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon'
 import Icon from '@/components/icon/Icon'
 import { StepperStepMarkup, StepperStepMarkupValues } from '@/components/stepper/step/StepperStepEnum'
@@ -22,41 +23,44 @@ import { is } from '@/services/classify'
  * @param label {string} Step label
  * @param step {number|string} Step text circle
  */
-const StepperStep = (
-  { children, className, active, markup, current, done, label, iconName, error, ...others }: StepperStepProps,
-  ref: React.LegacyRef<any>,
-) => {
-  const classesStepLabel = hashClass(clsx('step-label'))
+const StepperStep = React.forwardRef(
+  (
+    { children, className, active, markup, current, done, label, iconName, error, ...others }: StepperStepProps,
+    ref: React.LegacyRef<any>,
+  ) => {
+    const classesStepLabel = hashClass(clsx('step-label'))
 
-  const classes = hashClass(
-    clsx(
-      'stepper-item',
-      active && is('active'),
-      current && is('current'),
-      done && is('done'),
-      error && is('error'),
-      className,
-    ),
-  )
-
-  const isCorrectMarkup = (stringMarkup: StepperStepMarkup | StepperStepMarkupValues) => {
-    if (
-      stringMarkup in StepperStepMarkup ||
-      Object.values(StepperStepMarkup).includes(stringMarkup as StepperStepMarkup)
+    const classes = hashClass(
+      clsx(
+        'stepper-item',
+        active && is('active'),
+        current && is('current'),
+        done && is('done'),
+        error && is('error'),
+        className,
+      ),
     )
-      return true
-  }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : StepperStepMarkup.DIV
+    const isCorrectMarkup = (stringMarkup: StepperStepMarkup | StepperStepMarkupValues) => {
+      if (
+        stringMarkup in StepperStepMarkup ||
+        Object.values(StepperStepMarkup).includes(stringMarkup as StepperStepMarkup)
+      )
+        return true
+    }
 
-  return (
-    <Tag ref={ref} className={classes} data-label={label} {...others}>
-      <div className={classesStepLabel}>
-        {label || children}
-        {!done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />}
-      </div>
-    </Tag>
-  )
-}
+    const Tag = markup && isCorrectMarkup(markup) ? markup : StepperStepMarkup.DIV
 
-export default React.forwardRef(StepperStep)
+    return (
+      <Tag ref={ref} className={classes} data-label={label} {...others}>
+        <div className={classesStepLabel}>
+          {label || children}
+          {!done && iconName && <Icon name={iconName && iconName} className={'step-icon'} size={IconSize.MEDIUM} />}
+        </div>
+      </Tag>
+    )
+  },
+)
+
+StepperStep.displayName = ComponentName.StepperStep
+export default StepperStep

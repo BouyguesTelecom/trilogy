@@ -18,58 +18,59 @@ import { TypographyColor } from '@/objects/Typography/TypographyColor'
  * @param link {string} Url link
  * @param Onclick {string} Provide event onCLick
  */
-const TimelineContent = (
-  { content, contentLink, heading, link, onClick, children }: TimelineContentProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const timelineContextValues = useContext(TimelineItemContext)
+const TimelineContent = React.forwardRef(
+  (
+    { content, contentLink, heading, link, onClick, children }: TimelineContentProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const timelineContextValues = useContext(TimelineItemContext)
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 6,
-      marginBottom: 8,
-      marginLeft: 4,
-    },
-    heading: {
-      marginBottom: 4,
-      marginTop: 8,
-    },
-    content: {
-      fontWeight: timelineContextValues.active ? '600' : '400',
-      marginBottom: 4,
-    },
-    link: {
-      marginTop: 6,
-    },
-  })
+    const styles = StyleSheet.create({
+      container: {
+        flex: 6,
+        marginBottom: 8,
+        marginLeft: 4,
+      },
+      heading: {
+        marginBottom: 4,
+        marginTop: 8,
+      },
+      content: {
+        fontWeight: timelineContextValues.active ? '600' : '400',
+        marginBottom: 4,
+      },
+      link: {
+        marginTop: 6,
+      },
+    })
 
-  return children ? (
-    <View style={styles.container} ref={ref}>
-      <AutoLayout>{children}</AutoLayout>
-    </View>
-  ) : (
-    <View style={styles.container} ref={ref}>
-      {!!heading && (
-        <Text level={TextLevels.THREE} style={styles.heading} typo={TypographyColor.TEXT_MAIN}>
-          {heading}
-        </Text>
-      )}
-      {!!content && (
-        <Text level={TextLevels.TWO} style={styles.content}>
-          {content}
-        </Text>
-      )}
-      {(link || onClick) && (
-        <TouchableOpacity onPress={(e?) => onClick?.(e)} testID='click-id'>
-          <View style={styles.link}>
-            <Link to={link}>{contentLink || link}</Link>
-          </View>
-        </TouchableOpacity>
-      )}
-    </View>
-  )
-}
+    return children ? (
+      <View style={styles.container} ref={ref}>
+        <AutoLayout>{children}</AutoLayout>
+      </View>
+    ) : (
+      <View style={styles.container} ref={ref}>
+        {!!heading && (
+          <Text level={TextLevels.THREE} style={styles.heading} typo={TypographyColor.TEXT_MAIN}>
+            {heading}
+          </Text>
+        )}
+        {!!content && (
+          <Text level={TextLevels.TWO} style={styles.content}>
+            {content}
+          </Text>
+        )}
+        {(link || onClick) && (
+          <TouchableOpacity onPress={(e?) => onClick?.(e)} testID='click-id'>
+            <View style={styles.link}>
+              <Link to={link}>{contentLink || link}</Link>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
+    )
+  },
+)
 
 TimelineContent.displayName = ComponentName.TimelineContent
-
-export default React.forwardRef(TimelineContent)
+export default TimelineContent

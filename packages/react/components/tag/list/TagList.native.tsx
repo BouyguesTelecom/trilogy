@@ -10,29 +10,30 @@ import { TagListProps } from '@/components/tag/list/TagListProps'
  * @param centered {boolean} Center tags
  * @param gapless {boolean} Delete margins between tags
  */
-const TagList = ({ children, centered, gapless, ...others }: TagListProps, ref: React.Ref<View>): JSX.Element => {
-  const styles = StyleSheet.create({
-    tagList: {
-      width: '100%',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-    },
-    centered: {
-      alignSelf: 'center',
-    },
-    gapless: {
-      margin: 0,
-      padding: 0,
-    },
-  })
+const TagList = React.forwardRef(
+  ({ children, centered, gapless, ...others }: TagListProps, ref: React.Ref<View>): JSX.Element => {
+    const styles = StyleSheet.create({
+      tagList: {
+        width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      },
+      centered: {
+        alignSelf: 'center',
+      },
+      gapless: {
+        margin: 0,
+        padding: 0,
+      },
+    })
 
-  return (
-    <View ref={ref} style={[styles.tagList, centered && styles.centered, gapless && styles.gapless]} {...others}>
-      {children}
-    </View>
-  )
-}
+    return (
+      <View ref={ref} style={[styles.tagList, centered && styles.centered, gapless && styles.gapless]} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 TagList.displayName = ComponentName.TagList
-
-export default React.forwardRef(TagList)
+export default TagList

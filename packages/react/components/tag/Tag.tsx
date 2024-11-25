@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TagProps } from '@/components/tag/TagProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -18,30 +19,33 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  **/
-const Tag = (
-  { children, className, variant, inverted, small, iconName, testId, ...others }: TagProps,
-  ref: React.Ref<HTMLSpanElement>,
-): JSX.Element => {
-  const tagClassNames = hashClass(
-    clsx(
-      'tag',
-      variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
-      inverted && is('inverted'),
-      small && is('small'),
-      className,
-    ),
-  )
+const Tag = React.forwardRef(
+  (
+    { children, className, variant, inverted, small, iconName, testId, ...others }: TagProps,
+    ref: React.Ref<HTMLSpanElement>,
+  ): JSX.Element => {
+    const tagClassNames = hashClass(
+      clsx(
+        'tag',
+        variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+        inverted && is('inverted'),
+        small && is('small'),
+        className,
+      ),
+    )
 
-  const tagIconClassNames = hashClass(
-    clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
-  )
+    const tagIconClassNames = hashClass(
+      clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
+    )
 
-  return (
-    <span data-testid={testId} className={tagClassNames} {...others} ref={ref}>
-      {iconName && <Icon className={tagIconClassNames} name={iconName} />}
-      {children}
-    </span>
-  )
-}
+    return (
+      <span data-testid={testId} className={tagClassNames} {...others} ref={ref}>
+        {iconName && <Icon className={tagIconClassNames} name={iconName} />}
+        {children}
+      </span>
+    )
+  },
+)
 
-export default React.forwardRef(Tag)
+Tag.displayName = ComponentName.Tag
+export default Tag

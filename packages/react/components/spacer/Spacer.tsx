@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerProps } from '@/components/spacer/SpacerProps'
 
 /**
@@ -7,7 +8,7 @@ import { SpacerProps } from '@/components/spacer/SpacerProps'
  * @param size {SpacerSize} ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT
  * @param horizontal {Boolean} If horizontal margin
  */
-const Spacer = ({ size, horizontal }: SpacerProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
+const Spacer = React.forwardRef(({ size, horizontal }: SpacerProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
   const styles = {
     spacer: {
       marginLeft: horizontal ? `${size}px` : '0px',
@@ -15,6 +16,7 @@ const Spacer = ({ size, horizontal }: SpacerProps, ref: React.Ref<HTMLDivElement
     },
   }
   return <div style={styles.spacer} ref={ref} />
-}
+})
 
-export default React.forwardRef(Spacer)
+Spacer.displayName = ComponentName.Spacer
+export default Spacer

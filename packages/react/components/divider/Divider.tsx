@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { DividerProps } from '@/components//divider/DividerProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getColorClassName } from '@/objects/facets/Color'
@@ -20,58 +21,61 @@ import { has, is } from '@/services/classify'
  * @param textColor {TrilogyColor} Text color of Divider
  * @param others
  */
-const Divider = (
-  { className, unboxed, content, marginless, iconName, color, backgroundColor, textColor, ...others }: DividerProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'divider',
-      unboxed && is('unboxed'),
-      marginless && is('marginless'),
-      className,
-      color && has(`background-${getColorClassName(color)}`),
-      iconName && 'has-icon',
-    ),
-  )
-  const contentClasses = hashClass(
-    clsx(
-      'divider-content',
-      textColor && has(`text-${getColorClassName(textColor)}`),
-      backgroundColor && has(`background-${getColorClassName(backgroundColor)}`),
-    ),
-  )
-
-  // si il y a du text et une icone , SEULEMENT le text compte
-  if (content && iconName) {
-    return (
-      <div data-testid='separator' className={classes} ref={ref}>
-        <p className={contentClasses}>{content}</p>
-      </div>
+const Divider = React.forwardRef(
+  (
+    { className, unboxed, content, marginless, iconName, color, backgroundColor, textColor, ...others }: DividerProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'divider',
+        unboxed && is('unboxed'),
+        marginless && is('marginless'),
+        className,
+        color && has(`background-${getColorClassName(color)}`),
+        iconName && 'has-icon',
+      ),
     )
-  }
-
-  if (content) {
-    return (
-      <div data-testid='separator' className={classes} ref={ref}>
-        <p className={contentClasses}>{content}</p>
-      </div>
+    const contentClasses = hashClass(
+      clsx(
+        'divider-content',
+        textColor && has(`text-${getColorClassName(textColor)}`),
+        backgroundColor && has(`background-${getColorClassName(backgroundColor)}`),
+      ),
     )
-  }
 
-  // si il y a seulement une icone
-  if (iconName) {
-    return (
-      <div data-testid='separator' className={classes} ref={ref}>
-        <p className={contentClasses}>
-          <Icon name={iconName} size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM} />
-        </p>
-      </div>
-    )
-  }
+    // si il y a du text et une icone , SEULEMENT le text compte
+    if (content && iconName) {
+      return (
+        <div data-testid='separator' className={classes} ref={ref}>
+          <p className={contentClasses}>{content}</p>
+        </div>
+      )
+    }
 
-  // divider normal trilogy
-  return <div data-testid='separator' className={classes} ref={ref} {...others} />
-}
+    if (content) {
+      return (
+        <div data-testid='separator' className={classes} ref={ref}>
+          <p className={contentClasses}>{content}</p>
+        </div>
+      )
+    }
 
-export default React.forwardRef(Divider)
+    // si il y a seulement une icone
+    if (iconName) {
+      return (
+        <div data-testid='separator' className={classes} ref={ref}>
+          <p className={contentClasses}>
+            <Icon name={iconName} size={backgroundColor ? IconSize.SMALL : IconSize.MEDIUM} />
+          </p>
+        </div>
+      )
+    }
+
+    // divider normal trilogy
+    return <div data-testid='separator' className={classes} ref={ref} {...others} />
+  },
+)
+
+Divider.displayName = ComponentName.Divider
+export default Divider

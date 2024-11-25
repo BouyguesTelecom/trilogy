@@ -20,90 +20,91 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param onClick {Function} onClick Event for all content
  * @param others
  */
-const CardContent = (
-  { children, titleSup, title, text, buttonText, buttonClick, buttonVariant, onClick, ...others }: CardContentProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const cardContextValues = useContext(CardContext)
+const CardContent = React.forwardRef(
+  (
+    { children, titleSup, title, text, buttonText, buttonClick, buttonVariant, onClick, ...others }: CardContentProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const cardContextValues = useContext(CardContext)
 
-  const styles = StyleSheet.create({
-    card: {
-      paddingTop: 16,
-      paddingLeft: 16,
-      paddingRight: 16,
-      paddingBottom: 16,
-      minHeight: 10,
-      flex: cardContextValues.horizontal ? 1 : 0,
-    },
-    view: {
-      width: '100%',
-    },
-    text: {
-      color: getColorStyle(TrilogyColor.MAIN),
-      fontSize: 12,
-    },
-    padding: {
-      marginBottom: 16,
-    },
-  })
+    const styles = StyleSheet.create({
+      card: {
+        paddingTop: 16,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingBottom: 16,
+        minHeight: 10,
+        flex: cardContextValues.horizontal ? 1 : 0,
+      },
+      view: {
+        width: '100%',
+      },
+      text: {
+        color: getColorStyle(TrilogyColor.MAIN),
+        fontSize: 12,
+      },
+      padding: {
+        marginBottom: 16,
+      },
+    })
 
-  if (children) {
-    if (onClick) {
+    if (children) {
+      if (onClick) {
+        return (
+          <View style={styles.card} ref={ref}>
+            <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
+              {children}
+            </TouchableOpacity>
+          </View>
+        )
+      }
       return (
-        <View style={styles.card} ref={ref}>
-          <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
-            {children}
-          </TouchableOpacity>
+        <View style={styles.card} ref={ref} {...others}>
+          {children}
         </View>
       )
     }
-    return (
+
+    const cardContent = (
       <View style={styles.card} ref={ref} {...others}>
-        {children}
+        {titleSup && (
+          <Title overline testId='titleSup-id'>
+            {titleSup}
+          </Title>
+        )}
+        {title && (
+          <Title level={TitleLevels.ONE} testId='title-id'>
+            {title}
+          </Title>
+        )}
+        {text && (
+          <>
+            <View style={{ marginBottom: 16 }} />
+            <Text style={styles.text}>{text}</Text>
+          </>
+        )}
+        {buttonText && (
+          <>
+            <View style={{ marginBottom: 16 }} />
+            <Button variant={buttonVariant} onClick={buttonClick} testId='button-id'>
+              {buttonText}
+            </Button>
+          </>
+        )}
       </View>
     )
-  }
 
-  const cardContent = (
-    <View style={styles.card} ref={ref} {...others}>
-      {titleSup && (
-        <Title overline testId='titleSup-id'>
-          {titleSup}
-        </Title>
-      )}
-      {title && (
-        <Title level={TitleLevels.ONE} testId='title-id'>
-          {title}
-        </Title>
-      )}
-      {text && (
-        <>
-          <View style={{ marginBottom: 16 }} />
-          <Text style={styles.text}>{text}</Text>
-        </>
-      )}
-      {buttonText && (
-        <>
-          <View style={{ marginBottom: 16 }} />
-          <Button variant={buttonVariant} onClick={buttonClick} testId='button-id'>
-            {buttonText}
-          </Button>
-        </>
-      )}
-    </View>
-  )
-
-  return onClick ? (
-    <View style={styles.view}>
-      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
-        {cardContent}
-      </TouchableOpacity>
-    </View>
-  ) : (
-    cardContent
-  )
-}
+    return onClick ? (
+      <View style={styles.view}>
+        <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
+          {cardContent}
+        </TouchableOpacity>
+      </View>
+    ) : (
+      cardContent
+    )
+  },
+)
 
 CardContent.displayName = ComponentName.CardContent
-
-export default React.forwardRef(CardContent)
+export default CardContent

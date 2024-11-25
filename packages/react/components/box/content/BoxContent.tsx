@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { BoxContentProps } from '@/components/box/content/BoxContentProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
@@ -14,18 +15,21 @@ import { has } from '@/services/classify'
  * @param className {string} Additionnal CSS Classes
  * @param testId test id
  */
-const BoxContent = (
-  { children, className, backgroundColor, testId, ...others }: BoxContentProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx('box-content', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
-  )
-  return (
-    <div ref={ref} data-testid={testId} className={classes} {...others}>
-      {children}
-    </div>
-  )
-}
+const BoxContent = React.forwardRef(
+  (
+    { children, className, backgroundColor, testId, ...others }: BoxContentProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx('box-content', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
+    )
+    return (
+      <div ref={ref} data-testid={testId} className={classes} {...others}>
+        {children}
+      </div>
+    )
+  },
+)
 
-export default React.forwardRef(BoxContent)
+BoxContent.displayName = ComponentName.BoxContent
+export default BoxContent

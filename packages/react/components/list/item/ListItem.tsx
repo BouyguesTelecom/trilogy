@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { Divider } from '@/components/divider'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { ListItemProps } from '@/components/list/item/ListItemProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -22,39 +23,46 @@ import { has, is } from '@/services/classify'
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ListItem = (
-  { className, children, customIcon, status, title, description, testId, action, divider, deletable }: ListItemProps,
-  ref: React.Ref<HTMLLIElement>,
-): JSX.Element => {
-  const classes = clsx(is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)), className)
+const ListItem = React.forwardRef(
+  (
+    { className, children, customIcon, status, title, description, testId, action, divider, deletable }: ListItemProps,
+    ref: React.Ref<HTMLLIElement>,
+  ): JSX.Element => {
+    const classes = clsx(is(getColorClassName(status ? TrilogyColor[status] : TrilogyColor.BACKGROUND)), className)
 
-  return (
-    <li className={hashClass(clsx(classes, action && has('action')))} data-testid={testId} ref={ref}>
-      <div className={hashClass(clsx('list-item_content'))}>
-        {customIcon && typeof customIcon === 'string' && (
-          <div className={hashClass(clsx('list-item_content_puce'))}>
-            <Icon className={classes} name={deletable ? 'tri-trash' : (customIcon as IconName)} size={IconSize.SMALL} />
-          </div>
-        )}
-
-        {customIcon && typeof customIcon !== 'string' && (
-          <div className={hashClass(clsx('list-item_content_puce'))}>{customIcon}</div>
-        )}
-
-        <div>
-          {(title || description) && (
-            <>
-              {title && <b>{title}</b>}
-              {children || (description && <p>{children || description}</p>)}
-            </>
+    return (
+      <li className={hashClass(clsx(classes, action && has('action')))} data-testid={testId} ref={ref}>
+        <div className={hashClass(clsx('list-item_content'))}>
+          {customIcon && typeof customIcon === 'string' && (
+            <div className={hashClass(clsx('list-item_content_puce'))}>
+              <Icon
+                className={classes}
+                name={deletable ? 'tri-trash' : (customIcon as IconName)}
+                size={IconSize.SMALL}
+              />
+            </div>
           )}
-          {!title && !description && <div>{children}</div>}
-        </div>
-      </div>
-      {action && <div className={hashClass(clsx('list-item_action'))}>{action}</div>}
-      {divider && <Divider />}
-    </li>
-  )
-}
 
-export default React.forwardRef(ListItem)
+          {customIcon && typeof customIcon !== 'string' && (
+            <div className={hashClass(clsx('list-item_content_puce'))}>{customIcon}</div>
+          )}
+
+          <div>
+            {(title || description) && (
+              <>
+                {title && <b>{title}</b>}
+                {children || (description && <p>{children || description}</p>)}
+              </>
+            )}
+            {!title && !description && <div>{children}</div>}
+          </div>
+        </div>
+        {action && <div className={hashClass(clsx('list-item_action'))}>{action}</div>}
+        {divider && <Divider />}
+      </li>
+    )
+  },
+)
+
+ListItem.displayName = ComponentName.ListItem
+export default ListItem

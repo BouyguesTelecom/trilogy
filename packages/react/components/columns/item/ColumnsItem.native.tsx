@@ -14,32 +14,33 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param centered {boolean} center Column item
  * @param align { Alignable | AlignableValues} align content
  */
-const ColumnsItem = (
-  { children, size, mobileSize, verticalCentered, ...others }: ColumnsItemProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const columnsContextValues = useContext(ColumnsContext)
+const ColumnsItem = React.forwardRef(
+  (
+    { children, size, mobileSize, verticalCentered, ...others }: ColumnsItemProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const columnsContextValues = useContext(ColumnsContext)
 
-  const realSize = size || mobileSize
+    const realSize = size || mobileSize
 
-  const styles = StyleSheet.create({
-    columnsItem: {
-      height: columnsContextValues.scrollable ? '100%' : undefined,
-      flex: !realSize ? 1 : realSize,
-      justifyContent: verticalCentered ? 'center' : 'flex-start',
-      flexBasis: `${(realSize ? realSize / 12 : 12) * 100}%`,
-      flexGrow: 0,
-      maxWidth: `${((realSize ? realSize : 12) / 12) * 100}%`,
-    },
-  })
+    const styles = StyleSheet.create({
+      columnsItem: {
+        height: columnsContextValues.scrollable ? '100%' : undefined,
+        flex: !realSize ? 1 : realSize,
+        justifyContent: verticalCentered ? 'center' : 'flex-start',
+        flexBasis: `${(realSize ? realSize / 12 : 12) * 100}%`,
+        flexGrow: 0,
+        maxWidth: `${((realSize ? realSize : 12) / 12) * 100}%`,
+      },
+    })
 
-  return (
-    <View ref={ref} style={styles.columnsItem} {...others}>
-      {children}
-    </View>
-  )
-}
+    return (
+      <View ref={ref} style={styles.columnsItem} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 ColumnsItem.displayName = ComponentName.ColumnsItem
-
-export default React.forwardRef(ColumnsItem)
+export default ColumnsItem

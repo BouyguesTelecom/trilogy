@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Button, ButtonMarkup } from '@/components/button'
 import { CardContentProps } from '@/components/card/content/CardContentProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -25,65 +26,68 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
  * @param buttonMarkup {ButtonMarkup} if Button, can change the button tag
  * @param testId {string} Test Id for Test Integration
  */
-const CardContent = (
-  {
-    children,
-    className,
-    titleSup,
-    titleSupLevel,
-    title,
-    titleLevel,
-    buttonText,
-    buttonMarkup,
-    buttonVariant,
-    buttonClick,
-    text,
-    textLevel,
-    onClick,
-    testId,
-    ...others
-  }: CardContentProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  if (children) {
+const CardContent = React.forwardRef(
+  (
+    {
+      children,
+      className,
+      titleSup,
+      titleSupLevel,
+      title,
+      titleLevel,
+      buttonText,
+      buttonMarkup,
+      buttonVariant,
+      buttonClick,
+      text,
+      textLevel,
+      onClick,
+      testId,
+      ...others
+    }: CardContentProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    if (children) {
+      return (
+        <div data-testid={testId} className={hashClass(clsx('card-content', className))} ref={ref} {...others}>
+          {children}
+        </div>
+      )
+    }
+
     return (
-      <div data-testid={testId} className={hashClass(clsx('card-content', className))} ref={ref} {...others}>
-        {children}
+      <div
+        ref={ref}
+        data-testid={testId}
+        onClick={onClick && onClick}
+        className={hashClass(clsx('card-content', className))}
+        {...others}
+      >
+        {titleSup && (
+          <Text level={titleSupLevel} className={'suptitle'}>
+            {titleSup}
+          </Text>
+        )}
+        {title && (
+          <Title testId={testId ? `${testId}-title` : undefined} level={titleLevel ? titleLevel : TitleLevels.THREE}>
+            {title}
+          </Title>
+        )}
+        {text && <Text level={textLevel}>{text}</Text>}
+        {buttonText && (
+          <Button
+            testId={testId ? `${testId}-btn` : undefined}
+            onClick={buttonClick}
+            variant={buttonVariant ? buttonVariant : 'PRIMARY'}
+            markup={buttonMarkup ? buttonMarkup : ButtonMarkup.BUTTON}
+          >
+            {buttonText}
+          </Button>
+        )}
       </div>
     )
-  }
+  },
+)
 
-  return (
-    <div
-      ref={ref}
-      data-testid={testId}
-      onClick={onClick && onClick}
-      className={hashClass(clsx('card-content', className))}
-      {...others}
-    >
-      {titleSup && (
-        <Text level={titleSupLevel} className={'suptitle'}>
-          {titleSup}
-        </Text>
-      )}
-      {title && (
-        <Title testId={testId ? `${testId}-title` : undefined} level={titleLevel ? titleLevel : TitleLevels.THREE}>
-          {title}
-        </Title>
-      )}
-      {text && <Text level={textLevel}>{text}</Text>}
-      {buttonText && (
-        <Button
-          testId={testId ? `${testId}-btn` : undefined}
-          onClick={buttonClick}
-          variant={buttonVariant ? buttonVariant : 'PRIMARY'}
-          markup={buttonMarkup ? buttonMarkup : ButtonMarkup.BUTTON}
-        >
-          {buttonText}
-        </Button>
-      )}
-    </div>
-  )
-}
-
-export default React.forwardRef(CardContent)
+CardContent.displayName = ComponentName.CardContent
+export default CardContent

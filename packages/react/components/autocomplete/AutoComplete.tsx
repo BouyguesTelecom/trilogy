@@ -6,6 +6,7 @@ import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplet
 import { useAutocomplete } from '@/components/autocomplete/hook/useAutocomplete'
 import AutoCompleteItem from '@/components/autocomplete/item'
 import AutoCompleteMenu from '@/components/autocomplete/menu'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -40,114 +41,116 @@ import { is } from '@/services/classify'
  * @param accessibilityLabel {string} Accessibility label
  * @param loading {boolean} Loading input
  */
-const AutoComplete = <T extends string | Item<unknown> = string>(
-  {
-    defaultValue,
-    value,
-    classNameMenu,
-    absoluteMenu,
-    fullwidthMenu,
-    placeholder,
-    data,
-    status,
-    onBlur,
-    testId,
-    onChange,
-    name,
-    matching = defaultMatching,
-    displayMenu = true,
-    onItemSelected,
-    customIcon,
-    disabled,
-    children,
-    accessibilityLabel,
-    onIconClick,
-    getSuggestions,
-    debounceSuggestionsTimeout,
-    onFocus,
-    loading,
-    ...others
-  }: AutoCompletePropsWeb<T>,
-  ref: React.Ref<HTMLInputElement>,
-): JSX.Element => {
-  const {
-    handleFocus,
-    handleKeyPress,
-    suggestionSelected,
-    _inputValue,
-    isAutocompleteMenuVisible,
-    search,
-    activeItem,
-    handleBlur,
-    handleChange,
-  } = useAutocomplete({
-    value,
-    data,
-    displayMenu,
-    matching,
-    onChange,
-    name,
-    getSuggestions,
-    debounceSuggestionsTimeout,
-    onItemSelected,
-    onFocus,
-    onBlur,
-  })
+const AutoComplete = React.forwardRef(
+  <T extends string | Item<unknown> = string>(
+    {
+      defaultValue,
+      value,
+      classNameMenu,
+      absoluteMenu,
+      fullwidthMenu,
+      placeholder,
+      data,
+      status,
+      onBlur,
+      testId,
+      onChange,
+      name,
+      matching = defaultMatching,
+      displayMenu = true,
+      onItemSelected,
+      customIcon,
+      disabled,
+      children,
+      accessibilityLabel,
+      onIconClick,
+      getSuggestions,
+      debounceSuggestionsTimeout,
+      onFocus,
+      loading,
+      ...others
+    }: AutoCompletePropsWeb<T>,
+    ref: React.Ref<HTMLInputElement>,
+  ): JSX.Element => {
+    const {
+      handleFocus,
+      handleKeyPress,
+      suggestionSelected,
+      _inputValue,
+      isAutocompleteMenuVisible,
+      search,
+      activeItem,
+      handleBlur,
+      handleChange,
+    } = useAutocomplete({
+      value,
+      data,
+      displayMenu,
+      matching,
+      onChange,
+      name,
+      getSuggestions,
+      debounceSuggestionsTimeout,
+      onItemSelected,
+      onFocus,
+      onBlur,
+    })
 
-  const autocompleteClasses = hashClass(clsx(is('autocomplete'), is('active')))
+    const autocompleteClasses = hashClass(clsx(is('autocomplete'), is('active')))
 
-  return (
-    <div className={hashClass(clsx('control'))}>
-      <Input
-        ref={ref}
-        defaultValue={defaultValue}
-        accessibilityLabel={accessibilityLabel}
-        {...(customIcon ? { customIcon: customIcon } : {})}
-        placeholder={placeholder}
-        {...(name ? { name: name } : {})}
-        className='autocomplete-input'
-        type='text'
-        testId={testId}
-        status={status}
-        autoCompleteType={InputAutoCompleteType.OFF}
-        disabled={disabled}
-        // Add delay for selection of suggestion
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        onKeyUp={handleKeyPress}
-        value={_inputValue}
-        onChange={handleChange}
-        onIconClick={onIconClick}
-        loading={loading}
-      />
+    return (
+      <div className={hashClass(clsx('control'))}>
+        <Input
+          ref={ref}
+          defaultValue={defaultValue}
+          accessibilityLabel={accessibilityLabel}
+          {...(customIcon ? { customIcon: customIcon } : {})}
+          placeholder={placeholder}
+          {...(name ? { name: name } : {})}
+          className='autocomplete-input'
+          type='text'
+          testId={testId}
+          status={status}
+          autoCompleteType={InputAutoCompleteType.OFF}
+          disabled={disabled}
+          // Add delay for selection of suggestion
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onKeyUp={handleKeyPress}
+          value={_inputValue}
+          onChange={handleChange}
+          onIconClick={onIconClick}
+          loading={loading}
+        />
 
-      {isAutocompleteMenuVisible && (
-        <div className={autocompleteClasses}>
-          {search.length > 0 && (
-            <AutoCompleteMenu
-              testId={testId}
-              absolute={absoluteMenu}
-              fullwidth={fullwidthMenu}
-              className={classNameMenu}
-            >
-              {search.map((item, i) => (
-                <AutoCompleteItem<T>
-                  active={activeItem === i}
-                  key={i}
-                  testId={testId}
-                  item={item}
-                  suggestionSelected={suggestionSelected ? (v: T) => suggestionSelected(v, data, search) : undefined}
-                >
-                  {children ? children(item) : getLabel(item)}
-                </AutoCompleteItem>
-              ))}
-            </AutoCompleteMenu>
-          )}
-        </div>
-      )}
-      <div />
-    </div>
-  )
-}
-
-export default React.forwardRef(AutoComplete)
+        {isAutocompleteMenuVisible && (
+          <div className={autocompleteClasses}>
+            {search.length > 0 && (
+              <AutoCompleteMenu
+                testId={testId}
+                absolute={absoluteMenu}
+                fullwidth={fullwidthMenu}
+                className={classNameMenu}
+              >
+                {search.map((item, i) => (
+                  <AutoCompleteItem<T>
+                    active={activeItem === i}
+                    key={i}
+                    testId={testId}
+                    item={item}
+                    suggestionSelected={suggestionSelected ? (v: T) => suggestionSelected(v, data, search) : undefined}
+                  >
+                    {children ? children(item) : getLabel(item)}
+                  </AutoCompleteItem>
+                ))}
+              </AutoCompleteMenu>
+            )}
+          </div>
+        )}
+        <div />
+      </div>
+    )
+  },
+)
+AutoComplete.displayName = ComponentName.AutoComplete
+export default AutoComplete

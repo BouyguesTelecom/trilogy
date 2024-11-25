@@ -45,201 +45,202 @@ import { StatusState } from '@/objects/facets/Status'
  * @param customHeight {number} custom textarea height
  * @param required {boolean} Required
  */
-const Textarea = (
-  {
-    defaultValue,
-    name,
-    sample,
-    onChange,
-    disabled,
-    help,
-    placeholder,
-    keyboardStyle,
-    autoCapitalize,
-    autoCorrect,
-    textContentType,
-    keyboardType,
-    status,
-    maxLength,
-    dynamicPlaceholder = true,
-    label,
-    iconName,
-    statusIconName,
-    customHeight = 120,
-    value,
-    testId,
-    required,
-    ...others
-  }: TextareaNativeProps,
-  ref: React.Ref<TextInput>,
-): JSX.Element => {
-  const [_value, setValue] = useState<string>(value || '')
+const Textarea = forwardRef(
+  (
+    {
+      defaultValue,
+      name,
+      sample,
+      onChange,
+      disabled,
+      help,
+      placeholder,
+      keyboardStyle,
+      autoCapitalize,
+      autoCorrect,
+      textContentType,
+      keyboardType,
+      status,
+      maxLength,
+      dynamicPlaceholder = true,
+      label,
+      iconName,
+      statusIconName,
+      customHeight = 120,
+      value,
+      testId,
+      required,
+      ...others
+    }: TextareaNativeProps,
+    ref: React.Ref<TextInput>,
+  ): JSX.Element => {
+    const [_value, setValue] = useState<string>(value || '')
 
-  const [isFocus, setIsFocus] = useState<boolean>(false)
+    const [isFocus, setIsFocus] = useState<boolean>(false)
 
-  const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
-  const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL)
+    const [displayDynamicLabel, setDisplayDynamicLabel] = useState<boolean>(false)
+    const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL)
 
-  const animation = useRef(new Animated.Value(0)).current
+    const animation = useRef(new Animated.Value(0)).current
 
-  useEffect(() => {
-    if (displayDynamicLabel) {
-      Animated.timing(animation, {
-        toValue: 1,
-        duration: 5000,
-        useNativeDriver: false,
-      }).start()
-    }
-  }, [displayDynamicLabel, animation])
+    useEffect(() => {
+      if (displayDynamicLabel) {
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 5000,
+          useNativeDriver: false,
+        }).start()
+      }
+    }, [displayDynamicLabel, animation])
 
-  const styles = StyleSheet.create({
-    textarea: {
-      borderWidth: isFocus ? 2 : 1,
-      borderRadius: 3,
-      borderColor:
-        (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
-        (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
-        (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
-        (status && status === 'default' && textareaColor) ||
-        textareaColor,
-      height: customHeight,
-      justifyContent: 'flex-start',
-      paddingLeft: iconName ? 48 : 16,
-      paddingRight: maxLength ? 48 : 16,
-      paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
-      textAlignVertical: 'top',
-      color: getColorStyle(TrilogyColor.MAIN),
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
-      /*  width: '',*/
-    },
-    help: {
-      fontSize: 12,
-      color:
-        (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
-        (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
-        (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
-        (status && status === 'default' && textareaColor) ||
-        textareaColor,
-      paddingLeft: 4,
-      paddingTop: 2,
-    },
-    counter: {
-      fontSize: 10,
-      color: getColorStyle(TrilogyColor.MAIN),
-      position: 'absolute',
-      bottom: help ? 24 : 8,
-      right: 8,
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED) : 'white',
-      padding: 3,
-    },
-    dynamicLabel: {
-      position: 'absolute',
-      top: 2,
-      left: iconName ? 40 : 8,
-      fontSize: 12,
-      color: grayscale(getColorStyle(TrilogyColor.FONT)),
-      backgroundColor: 'transparent',
-      padding: 8,
-      paddingBottom: 4,
-    },
-    leftIcon: {
-      position: 'absolute',
-      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
-      left: 16,
-      zIndex: 10,
-    },
-    rightIcon: {
-      position: 'absolute',
-      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
-      right: 16,
-      zIndex: 10,
-    },
-  })
+    const styles = StyleSheet.create({
+      textarea: {
+        borderWidth: isFocus ? 2 : 1,
+        borderRadius: 3,
+        borderColor:
+          (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
+          (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
+          (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
+          (status && status === 'default' && textareaColor) ||
+          textareaColor,
+        height: customHeight,
+        justifyContent: 'flex-start',
+        paddingLeft: iconName ? 48 : 16,
+        paddingRight: maxLength ? 48 : 16,
+        paddingTop: dynamicPlaceholder && displayDynamicLabel ? 24 : 8,
+        textAlignVertical: 'top',
+        color: getColorStyle(TrilogyColor.MAIN),
+        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
+        /*  width: '',*/
+      },
+      help: {
+        fontSize: 12,
+        color:
+          (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
+          (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
+          (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
+          (status && status === 'default' && textareaColor) ||
+          textareaColor,
+        paddingLeft: 4,
+        paddingTop: 2,
+      },
+      counter: {
+        fontSize: 10,
+        color: getColorStyle(TrilogyColor.MAIN),
+        position: 'absolute',
+        bottom: help ? 24 : 8,
+        right: 8,
+        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED) : 'white',
+        padding: 3,
+      },
+      dynamicLabel: {
+        position: 'absolute',
+        top: 2,
+        left: iconName ? 40 : 8,
+        fontSize: 12,
+        color: grayscale(getColorStyle(TrilogyColor.FONT)),
+        backgroundColor: 'transparent',
+        padding: 8,
+        paddingBottom: 4,
+      },
+      leftIcon: {
+        position: 'absolute',
+        top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
+        left: 16,
+        zIndex: 10,
+      },
+      rightIcon: {
+        position: 'absolute',
+        top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
+        right: 16,
+        zIndex: 10,
+      },
+    })
 
-  return (
-    <View>
-      {!dynamicPlaceholder && label && (
-        <>
-          <TrilogyText typo={TypographyColor.TEXT_DISABLED}>
-            {label} {label && required && <TrilogyText typo={TypographyColor.TEXT_ERROR}>*</TrilogyText>}
-          </TrilogyText>
-          <Spacer size={SpacerSize.THREE} />
-        </>
-      )}
+    return (
+      <View>
+        {!dynamicPlaceholder && label && (
+          <>
+            <TrilogyText typo={TypographyColor.TEXT_DISABLED}>
+              {label} {label && required && <TrilogyText typo={TypographyColor.TEXT_ERROR}>*</TrilogyText>}
+            </TrilogyText>
+            <Spacer size={SpacerSize.THREE} />
+          </>
+        )}
 
-      {!dynamicPlaceholder && label && sample && (
-        <>
-          <TrilogyText level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>
-            {sample}
-          </TrilogyText>
-          <Spacer size={SpacerSize.THREE} />
-        </>
-      )}
+        {!dynamicPlaceholder && label && sample && (
+          <>
+            <TrilogyText level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>
+              {sample}
+            </TrilogyText>
+            <Spacer size={SpacerSize.THREE} />
+          </>
+        )}
 
-      {iconName && (
-        <Text style={styles.leftIcon}>
-          <Icon name={iconName} size='small' testId={`${testId}-icon`} />
-        </Text>
-      )}
+        {iconName && (
+          <Text style={styles.leftIcon}>
+            <Icon name={iconName} size='small' testId={`${testId}-icon`} />
+          </Text>
+        )}
 
-      <TextInput
-        ref={ref}
-        maxLength={maxLength}
-        value={_value}
-        defaultValue={defaultValue}
-        editable={!disabled}
-        multiline={true}
-        keyboardAppearance={keyboardStyle || InputKeyboardAppearance.DEFAULT}
-        autoCapitalize={autoCapitalize || InputAutoCapitalize.NONE}
-        autoCorrect={autoCorrect || false}
-        textContentType={textContentType || InputTextContentType.NONE}
-        keyboardType={keyboardType || InputKeyboardType.DEFAULT}
-        onChangeText={(text) => {
-          setDisplayDynamicLabel(text.length > 0)
-          setValue(text)
-          if (onChange) {
-            onChange({
-              textareaName: (name && name) || '',
-              textareaValue: text,
-            })
+        <TextInput
+          ref={ref}
+          maxLength={maxLength}
+          value={_value}
+          defaultValue={defaultValue}
+          editable={!disabled}
+          multiline={true}
+          keyboardAppearance={keyboardStyle || InputKeyboardAppearance.DEFAULT}
+          autoCapitalize={autoCapitalize || InputAutoCapitalize.NONE}
+          autoCorrect={autoCorrect || false}
+          textContentType={textContentType || InputTextContentType.NONE}
+          keyboardType={keyboardType || InputKeyboardType.DEFAULT}
+          onChangeText={(text) => {
+            setDisplayDynamicLabel(text.length > 0)
+            setValue(text)
+            if (onChange) {
+              onChange({
+                textareaName: (name && name) || '',
+                textareaValue: text,
+              })
+            }
+          }}
+          placeholder={placeholder}
+          style={styles.textarea}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          {...others}
+          placeholderTextColor={
+            disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
           }
-        }}
-        placeholder={placeholder}
-        style={styles.textarea}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        {...others}
-        placeholderTextColor={
-          disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
-        }
-      />
+        />
 
-      {statusIconName && (
-        <Text style={styles.rightIcon}>
-          <Icon
-            name={statusIconName}
-            size='small'
-            color={status && (status.toUpperCase() as IconColor)}
-            testId={`${testId}-statusIcon`}
-          />
-        </Text>
-      )}
+        {statusIconName && (
+          <Text style={styles.rightIcon}>
+            <Icon
+              name={statusIconName}
+              size='small'
+              color={status && (status.toUpperCase() as IconColor)}
+              testId={`${testId}-statusIcon`}
+            />
+          </Text>
+        )}
 
-      {displayDynamicLabel && dynamicPlaceholder && <Text style={styles.dynamicLabel}>{label}</Text>}
-      {maxLength && (
-        <Text style={styles.counter} testID={`${testId}-maxLength`}>
-          {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
-        </Text>
-      )}
-      {help && (
-        <Text style={styles.help} testID={`${testId}-help`}>
-          {help}
-        </Text>
-      )}
-    </View>
-  )
-}
+        {displayDynamicLabel && dynamicPlaceholder && <Text style={styles.dynamicLabel}>{label}</Text>}
+        {maxLength && (
+          <Text style={styles.counter} testID={`${testId}-maxLength`}>
+            {_value ? `${_value?.length} / ${maxLength}` : `0 / ${maxLength}`}
+          </Text>
+        )}
+        {help && (
+          <Text style={styles.help} testID={`${testId}-help`}>
+            {help}
+          </Text>
+        )}
+      </View>
+    )
+  },
+)
 
 Textarea.displayName = ComponentName.Textarea
-
-export default forwardRef(Textarea)
+export default Textarea

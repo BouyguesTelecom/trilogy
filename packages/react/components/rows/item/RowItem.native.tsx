@@ -10,24 +10,25 @@ import { RowsContext } from '@/components/rows/Rows.native'
  * @param narrow {boolean} Align same elements horizontaly
  * @param children {React.ReactNode}
  */
-const RowItem = ({ children, narrow, ...others }: RowsItemProps, ref: React.Ref<View>): JSX.Element => {
-  const { gapless } = React.useContext(RowsContext)
+const RowItem = React.forwardRef(
+  ({ children, narrow, ...others }: RowsItemProps, ref: React.Ref<View>): JSX.Element => {
+    const { gapless } = React.useContext(RowsContext)
 
-  const styles = StyleSheet.create({
-    rowItem: {
-      flexGrow: (narrow && 0) || 1,
-      padding: gapless ? 0 : 5,
-      flexShrink: 1,
-    },
-  })
+    const styles = StyleSheet.create({
+      rowItem: {
+        flexGrow: (narrow && 0) || 1,
+        padding: gapless ? 0 : 5,
+        flexShrink: 1,
+      },
+    })
 
-  return (
-    <View style={styles.rowItem} ref={ref} {...others}>
-      {children}
-    </View>
-  )
-}
+    return (
+      <View style={styles.rowItem} ref={ref} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 RowItem.displayName = ComponentName.RowsItem
-
-export default React.forwardRef(RowItem)
+export default RowItem

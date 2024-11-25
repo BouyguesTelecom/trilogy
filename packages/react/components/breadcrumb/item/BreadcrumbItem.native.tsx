@@ -15,35 +15,36 @@ import { TypographyBold } from '@/objects/Typography/TypographyBold'
  * @param onClick {Function} Click Event
  * @param testId {string} Test Id for Test Integration
  */
-const BreadcrumbItem = (
-  { children, active, to, testId, onClick, ...others }: BreadcrumbItemProps,
-  ref: React.Ref<TouchableOpacity>,
-): JSX.Element => {
-  const { textStyle } = StyleSheet.create({
-    textStyle: {
-      color: getColorStyle(TrilogyColor.FONT),
-      textDecorationLine: !active ? 'underline' : 'none',
-      textDecorationStyle: 'solid',
-    },
-  })
+const BreadcrumbItem = React.forwardRef(
+  (
+    { children, active, to, testId, onClick, ...others }: BreadcrumbItemProps,
+    ref: React.Ref<TouchableOpacity>,
+  ): JSX.Element => {
+    const { textStyle } = StyleSheet.create({
+      textStyle: {
+        color: getColorStyle(TrilogyColor.FONT),
+        textDecorationLine: !active ? 'underline' : 'none',
+        textDecorationStyle: 'solid',
+      },
+    })
 
-  return (
-    <TouchableOpacity
-      ref={ref}
-      testID={testId}
-      onPress={(e) => {
-        if (to) Linking.openURL(to)
-        if (onClick) onClick(e)
-      }}
-      {...others}
-    >
-      <Text typo={TypographyBold.TEXT_WEIGHT_MEDIUM} style={{ ...textStyle }}>
-        {children}
-      </Text>
-    </TouchableOpacity>
-  )
-}
+    return (
+      <TouchableOpacity
+        ref={ref}
+        testID={testId}
+        onPress={(e) => {
+          if (to) Linking.openURL(to)
+          if (onClick) onClick(e)
+        }}
+        {...others}
+      >
+        <Text typo={TypographyBold.TEXT_WEIGHT_MEDIUM} style={{ ...textStyle }}>
+          {children}
+        </Text>
+      </TouchableOpacity>
+    )
+  },
+)
 
 BreadcrumbItem.displayName = ComponentName.BreadcrumbItem
-
-export default React.forwardRef(BreadcrumbItem)
+export default BreadcrumbItem

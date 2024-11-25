@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { ViewMarkup, ViewMarkupValues, ViewProps } from '@/components/view/ViewProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -29,64 +30,67 @@ import { has, is } from '@/services/classify'
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
  */
-const View = (
-  {
-    children,
-    style,
-    className,
-    loading,
-    onClick,
-    backgroundColor,
-    backgroundSrc,
-    inverted,
-    fullwidth = true,
-    markup,
-    flexable,
-    justify,
-    align,
-    ...others
-  }: ViewProps,
-  ref: React.Ref<any>,
-): JSX.Element => {
-  const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
-    if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
-  }
-
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
-
-  const classes = hashClass(
-    clsx(
-      typeof loading === 'string' && is(getLoadingClassName(loading)),
-      typeof loading === 'boolean' ? is('loading') : is('loaded'),
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      (inverted && is('inverted')) || is('base'),
-      fullwidth && is('fullwidth'),
-      flexable && is('flex'),
-      typeof justify === 'string' && is(getJustifyClassName(justify)),
-      typeof align === 'string' && is(getAlignClassName(align)),
+const View = React.forwardRef(
+  (
+    {
+      children,
+      style,
       className,
-    ),
-  )
+      loading,
+      onClick,
+      backgroundColor,
+      backgroundSrc,
+      inverted,
+      fullwidth = true,
+      markup,
+      flexable,
+      justify,
+      align,
+      ...others
+    }: ViewProps,
+    ref: React.Ref<any>,
+  ): JSX.Element => {
+    const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
+      if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
+    }
 
-  return (
-    <Tag
-      ref={ref}
-      onClick={onClick}
-      style={style}
-      className={classes}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-        },
-      })}
-      {...others}
-    >
-      {children}
-    </Tag>
-  )
-}
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
-export default React.forwardRef(View)
+    const classes = hashClass(
+      clsx(
+        typeof loading === 'string' && is(getLoadingClassName(loading)),
+        typeof loading === 'boolean' ? is('loading') : is('loaded'),
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        (inverted && is('inverted')) || is('base'),
+        fullwidth && is('fullwidth'),
+        flexable && is('flex'),
+        typeof justify === 'string' && is(getJustifyClassName(justify)),
+        typeof align === 'string' && is(getAlignClassName(align)),
+        className,
+      ),
+    )
+
+    return (
+      <Tag
+        ref={ref}
+        onClick={onClick}
+        style={style}
+        className={classes}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+            backgroundSize: 'cover',
+            backgroundPosition: '50%',
+          },
+        })}
+        {...others}
+      >
+        {children}
+      </Tag>
+    )
+  },
+)
+
+View.displayName = ComponentName.View
+export default View

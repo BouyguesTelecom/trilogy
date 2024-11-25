@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TimelineItemWebProps } from '@/components/timeline/item/TimelineItemProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 
@@ -14,13 +15,14 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TimelineItem = (props: TimelineItemWebProps, ref: React.LegacyRef<HTMLDivElement>) => {
+const TimelineItem = React.forwardRef((props: TimelineItemWebProps, ref: React.LegacyRef<HTMLDivElement>) => {
   const { className, done, active, undone, cancel, ...others } = props
 
   const classes = hashClass(
     clsx('timeline-item', done && 'done', active && 'active', undone && 'undone', cancel && 'cancel', className),
   )
   return <div ref={ref} className={classes} {...others} />
-}
+})
 
-export default React.forwardRef(TimelineItem)
+TimelineItem.displayName = ComponentName.TimelineItem
+export default TimelineItem

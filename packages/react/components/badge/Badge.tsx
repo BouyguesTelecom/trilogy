@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { BadgeProps } from '@/components/badge/BadgeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextMarkup } from '@/components/text'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -18,33 +19,35 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
-const Badge = (
-  { children, className, textContent, content, inverted, reversed, onClick, testId, ...others }: BadgeProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  const classes = hashClass(clsx(textContent ? 'badge-and-text' : 'badge', className))
+const Badge = React.forwardRef(
+  (
+    { children, className, textContent, content, inverted, reversed, onClick, testId, ...others }: BadgeProps,
+    ref: React.Ref<HTMLDivElement>,
+  ): JSX.Element => {
+    const classes = hashClass(clsx(textContent ? 'badge-and-text' : 'badge', className))
 
-  if (textContent) {
+    if (textContent) {
+      return (
+        <div data-testid={testId} onClick={onClick} className={classes} ref={ref} {...others}>
+          {!reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
+          <span className={hashClass(clsx('badge', inverted && is('inverted')))}>{content || children}</span>
+          {reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
+        </div>
+      )
+    }
+
     return (
-      <div data-testid={testId} onClick={onClick} className={classes} ref={ref} {...others}>
-        {!reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
-        <span className={hashClass(clsx('badge', inverted && is('inverted')))}>{content || children}</span>
-        {reversed && <Text markup={TextMarkup.P}>{textContent}</Text>}
+      <div data-testid={testId} onClick={onClick} ref={ref}>
+        <Text
+          className={clsx(textContent ? 'badge-and-text' : 'badge', inverted && is('inverted'), className)}
+          markup={TextMarkup.SPAN}
+          {...others}
+        >
+          {content || children}
+        </Text>
       </div>
     )
-  }
-
-  return (
-    <div data-testid={testId} onClick={onClick} ref={ref}>
-      <Text
-        className={clsx(textContent ? 'badge-and-text' : 'badge', inverted && is('inverted'), className)}
-        markup={TextMarkup.SPAN}
-        {...others}
-      >
-        {content || children}
-      </Text>
-    </div>
-  )
-}
-
-export default React.forwardRef(Badge)
+  },
+)
+Badge.displayName = ComponentName.Badge
+export default Badge

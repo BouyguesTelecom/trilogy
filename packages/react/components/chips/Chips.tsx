@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { ChipsProps } from '@/components/chips/ChipsProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 
@@ -17,27 +18,30 @@ import { is } from '@/services/classify'
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
-const Chips = (
-  { className, onClick, children, active, disabled, id, testId, ...others }: ChipsProps,
-  ref: React.Ref<HTMLButtonElement>,
-): JSX.Element => {
-  const classes = hashClass(clsx('chips', active && is('active'), className))
+const Chips = React.forwardRef(
+  (
+    { className, onClick, children, active, disabled, id, testId, ...others }: ChipsProps,
+    ref: React.Ref<HTMLButtonElement>,
+  ): JSX.Element => {
+    const classes = hashClass(clsx('chips', active && is('active'), className))
 
-  return (
-    <button
-      {...{ disabled: disabled }}
-      aria-disabled={disabled}
-      data-testid={testId}
-      id={id}
-      aria-pressed={!!active}
-      className={classes}
-      onClick={onClick && onClick}
-      ref={ref}
-      {...others}
-    >
-      {children}
-    </button>
-  )
-}
+    return (
+      <button
+        {...{ disabled: disabled }}
+        aria-disabled={disabled}
+        data-testid={testId}
+        id={id}
+        aria-pressed={!!active}
+        className={classes}
+        onClick={onClick && onClick}
+        ref={ref}
+        {...others}
+      >
+        {children}
+      </button>
+    )
+  },
+)
 
-export default React.forwardRef(Chips)
+Chips.displayName = ComponentName.Chips
+export default Chips

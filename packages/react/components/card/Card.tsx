@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { CardMarkup, CardProps } from '@/components/card/CardProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName, getBackgroundClassName } from '@/objects'
 import { has, is } from '@/services/classify'
@@ -28,74 +29,78 @@ import { has, is } from '@/services/classify'
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * @param testId {string} Test Id for Test Integration
  */
-const Card = (
-  {
-    className,
-    backgroundColor,
-    backgroundSrc,
-    inverted,
-    flat,
-    horizontal,
-    floating,
-    align,
-    justify,
-    skeleton,
-    onClick,
-    reversed,
-    testId,
-    markup,
-    to,
-    fullheight,
-    active,
-    ...others
-  }: CardProps,
-  ref: React.Ref<HTMLElement>,
-) => {
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
-
-  const classes = hashClass(
-    clsx(
-      'card',
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      (inverted && is('inverted')) || is('base'),
-      flat && !floating && is('flat'),
-      horizontal && [is('horizontal'), is('vcentered')],
-      floating && !flat && is('floating'),
-      align && is(getAlignClassName(align)),
-      justify && is(justify),
-      skeleton ? is('loading') : is('loaded'),
-      reversed && is('reversed'),
+const Card = React.forwardRef(
+  (
+    {
       className,
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+      backgroundColor,
+      backgroundSrc,
+      inverted,
+      flat,
+      horizontal,
+      floating,
+      align,
+      justify,
+      skeleton,
+      onClick,
+      reversed,
+      testId,
+      markup,
+      to,
+      fullheight,
+      active,
+      ...others
+    }: CardProps,
+    ref: React.Ref<HTMLElement>,
+  ) => {
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
 
-  if (markup === CardMarkup.A) {
+    const classes = hashClass(
+      clsx(
+        'card',
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        (inverted && is('inverted')) || is('base'),
+        flat && !floating && is('flat'),
+        horizontal && [is('horizontal'), is('vcentered')],
+        floating && !flat && is('floating'),
+        align && is(getAlignClassName(align)),
+        justify && is(justify),
+        skeleton ? is('loading') : is('loaded'),
+        reversed && is('reversed'),
+        className,
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
+
+    if (markup === CardMarkup.A) {
+      return (
+        <a
+          data-testid={testId}
+          href={to}
+          onClick={onClick && onClick}
+          className={classes}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...others}
+        />
+      )
+    }
+
     return (
-      <a
+      <div
         data-testid={testId}
-        href={to}
         onClick={onClick && onClick}
         className={classes}
-        ref={ref as React.Ref<HTMLAnchorElement>}
+        style={onClick && { ...hoverStyle }}
+        ref={ref as React.Ref<HTMLDivElement>}
         {...others}
       />
     )
-  }
+  },
+)
 
-  return (
-    <div
-      data-testid={testId}
-      onClick={onClick && onClick}
-      className={classes}
-      style={onClick && { ...hoverStyle }}
-      ref={ref as React.Ref<HTMLDivElement>}
-      {...others}
-    />
-  )
-}
-export default React.forwardRef(Card)
+Card.displayName = ComponentName.Card
+export default Card

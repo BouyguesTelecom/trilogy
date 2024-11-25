@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { ButtonListWebProps } from '@/components/button/list/ButtonListProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 
@@ -15,17 +16,17 @@ import { has } from '@/services/classify'
  * @param isMobile {boolean} espect mobile screen
  */
 
-const ButtonList = (
-  { className, centered, vertical, ...others }: ButtonListWebProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element => {
-  return (
-    <div
-      ref={ref}
-      className={hashClass(clsx('buttons', className, centered && has('text-centered'), vertical && 'is-vertical'))}
-      {...others}
-    />
-  )
-}
+const ButtonList = React.forwardRef(
+  ({ className, centered, vertical, ...others }: ButtonListWebProps, ref: React.Ref<HTMLDivElement>): JSX.Element => {
+    return (
+      <div
+        ref={ref}
+        className={hashClass(clsx('buttons', className, centered && has('text-centered'), vertical && 'is-vertical'))}
+        {...others}
+      />
+    )
+  },
+)
 
-export default React.forwardRef(ButtonList)
+ButtonList.displayName = ComponentName.ButtonList
+export default ButtonList

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
 import { TitleProps } from '@/components/title/TitleProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -57,61 +58,64 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = (
-  {
-    level = TitleLevels.ONE,
-    markup,
-    children,
-    className,
-    typo,
-    inverted,
-    onClick,
-    testId,
-    accessibilityLabel,
-    subtitle,
-    overline,
-    marginless,
-    htmlContent,
-    skeleton,
-    ...others
-  }: TitleProps,
-  ref: React.Ref<HTMLHeadingElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'title',
-      level && getTitleLevel(level),
-      typo,
-      inverted && is('inverted'),
-      marginless && is('marginless'),
-      skeleton ? is('loading') : is('loaded'),
+const Title = React.forwardRef(
+  (
+    {
+      level = TitleLevels.ONE,
+      markup,
+      children,
       className,
-    ),
-  )
+      typo,
+      inverted,
+      onClick,
+      testId,
+      accessibilityLabel,
+      subtitle,
+      overline,
+      marginless,
+      htmlContent,
+      skeleton,
+      ...others
+    }: TitleProps,
+    ref: React.Ref<HTMLHeadingElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'title',
+        level && getTitleLevel(level),
+        typo,
+        inverted && is('inverted'),
+        marginless && is('marginless'),
+        skeleton ? is('loading') : is('loaded'),
+        className,
+      ),
+    )
 
-  const subtitleClasses = hashClass(clsx('subtitle', typo, className))
-  const overlineClasses = hashClass(clsx('overline', typo, className))
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
+    const subtitleClasses = hashClass(clsx('subtitle', typo, className))
+    const overlineClasses = hashClass(clsx('overline', typo, className))
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'div'
 
-  const getClassname = () => {
-    if (subtitle) return subtitleClasses
-    if (overline) return overlineClasses
-    return classes
-  }
+    const getClassname = () => {
+      if (subtitle) return subtitleClasses
+      if (overline) return overlineClasses
+      return classes
+    }
 
-  return (
-    <Tag
-      ref={ref}
-      data-testid={testId}
-      aria-label={accessibilityLabel}
-      onClick={onClick}
-      className={getClassname()}
-      {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
-      {...others}
-    >
-      {children}
-    </Tag>
-  )
-}
+    return (
+      <Tag
+        ref={ref}
+        data-testid={testId}
+        aria-label={accessibilityLabel}
+        onClick={onClick}
+        className={getClassname()}
+        {...(htmlContent && { dangerouslySetInnerHTML: { __html: htmlContent } })}
+        {...others}
+      >
+        {children}
+      </Tag>
+    )
+  },
+)
 
-export default React.forwardRef(Title)
+Title.displayName = ComponentName.Title
+export default Title

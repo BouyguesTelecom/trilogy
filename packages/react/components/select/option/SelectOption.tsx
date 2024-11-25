@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Radio } from '@/components/radio'
 import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 
@@ -17,47 +18,50 @@ import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
  * @param onClick {function} onclick function
  * @param id {string} Select option custom id
  */
-const SelectOption = (
-  { id, className, value, disabled, children, onClick, label, iconName, testId, ...others }: SelectOptionProps,
-  ref: React.Ref<HTMLOptionElement | HTMLDivElement>,
-) => {
-  const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
+const SelectOption = React.forwardRef(
+  (
+    { id, className, value, disabled, children, onClick, label, iconName, testId, ...others }: SelectOptionProps,
+    ref: React.Ref<HTMLOptionElement | HTMLDivElement>,
+  ) => {
+    const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
 
-  if (native) {
+    if (native) {
+      return (
+        <option
+          ref={ref as React.Ref<HTMLOptionElement>}
+          role='option'
+          id={id}
+          value={value}
+          disabled={disabled}
+          aria-label={label}
+          data-testid={testId}
+          onClick={onClick}
+          {...props}
+        >
+          {children || label}
+        </option>
+      )
+    }
+
     return (
-      <option
-        ref={ref as React.Ref<HTMLOptionElement>}
-        role='option'
-        id={id}
+      <Radio
+        ref={ref as React.Ref<HTMLDivElement>}
+        checked={checked}
+        tile
+        horizontalTile
+        marginless
+        className={clsx(focused && 'focus', className)}
         value={value}
         disabled={disabled}
-        aria-label={label}
-        data-testid={testId}
         onClick={onClick}
-        {...props}
-      >
-        {children || label}
-      </option>
+        iconTile={iconName}
+        description={label || children}
+        testId={testId}
+        {...others}
+      />
     )
-  }
+  },
+)
 
-  return (
-    <Radio
-      ref={ref as React.Ref<HTMLDivElement>}
-      checked={checked}
-      tile
-      horizontalTile
-      marginless
-      className={clsx(focused && 'focus', className)}
-      value={value}
-      disabled={disabled}
-      onClick={onClick}
-      iconTile={iconName}
-      description={label || children}
-      testId={testId}
-      {...others}
-    />
-  )
-}
-
-export default React.forwardRef(SelectOption)
+SelectOption.displayName = ComponentName.SelectOption
+export default SelectOption

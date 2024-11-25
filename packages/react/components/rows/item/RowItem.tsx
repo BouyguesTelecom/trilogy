@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { RowsItemProps } from '@/components/rows/item/RowItemProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -12,9 +13,10 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} additionnal CSS Classes
  */
-const RowItem = ({ className, narrow, ...others }: RowsItemProps, ref: React.Ref<HTMLDivElement>) => {
+const RowItem = React.forwardRef(({ className, narrow, ...others }: RowsItemProps, ref: React.Ref<HTMLDivElement>) => {
   const classes = hashClass(clsx('row', narrow && is('narrow'), className))
   return <div ref={ref} className={classes} {...others} />
-}
+})
 
-export default React.forwardRef(RowItem)
+RowItem.displayName = ComponentName.RowsItem
+export default RowItem

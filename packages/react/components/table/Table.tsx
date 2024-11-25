@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TableProps } from '@/components/table/TableProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -16,23 +17,26 @@ import { is } from '@/services/classify'
  * @param comparative {boolean} If specific design add this
  * @param striped {boolean} striped lines
  */
-const Table = (
-  { className, fullwidth, bordered, comparative, striped, compact, ...others }: TableProps,
-  ref: React.Ref<HTMLTableElement>,
-): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'table',
-      fullwidth && is('fullwidth'),
-      bordered && is('bordered'),
-      comparative && is('comparative'),
-      striped && is('striped'),
-      compact && is('compact'),
-      className,
-    ),
-  )
+const Table = React.forwardRef(
+  (
+    { className, fullwidth, bordered, comparative, striped, compact, ...others }: TableProps,
+    ref: React.Ref<HTMLTableElement>,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'table',
+        fullwidth && is('fullwidth'),
+        bordered && is('bordered'),
+        comparative && is('comparative'),
+        striped && is('striped'),
+        compact && is('compact'),
+        className,
+      ),
+    )
 
-  return <table className={classes} {...others} ref={ref} />
-}
+    return <table className={classes} {...others} ref={ref} />
+  },
+)
 
-export default React.forwardRef(Table)
+Table.displayName = ComponentName.Table
+export default Table

@@ -13,7 +13,7 @@ import { TypographyBold } from '@/objects/Typography/TypographyBold'
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = ({ children, ...others }: TableThProps, ref: React.Ref<ViewType>): JSX.Element => {
+const TableTh = React.forwardRef(({ children, ...others }: TableThProps, ref: React.Ref<ViewType>): JSX.Element => {
   const styles = StyleSheet.create({
     tableTh: {
       flexDirection: 'column',
@@ -36,8 +36,7 @@ const TableTh = ({ children, ...others }: TableThProps, ref: React.Ref<ViewType>
       </Text>
     </View>
   )
-}
+})
 
 TableTh.displayName = ComponentName.TableTh
-
-export default React.forwardRef(TableTh)
+export default TableTh

@@ -9,7 +9,7 @@ import { SpacerProps } from '@/components/spacer/SpacerProps'
  * @param size {SpacerSize} Size of the spacer
  * @param horizontal {Boolean} If horizontal margin
  */
-const Spacer = ({ size, horizontal }: SpacerProps, ref: React.Ref<View>): JSX.Element => {
+const Spacer = React.forwardRef(({ size, horizontal }: SpacerProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     spacer: {
       marginLeft: (horizontal && parseInt(size.toString())) || 0,
@@ -17,8 +17,7 @@ const Spacer = ({ size, horizontal }: SpacerProps, ref: React.Ref<View>): JSX.El
     },
   })
   return <View style={styles.spacer} ref={ref} />
-}
+})
 
 Spacer.displayName = ComponentName.Spacer
-
-export default React.forwardRef(Spacer)
+export default Spacer

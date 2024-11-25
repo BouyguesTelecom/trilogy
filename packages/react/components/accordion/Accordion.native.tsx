@@ -8,12 +8,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Accordion Component
  * @param children {ReactNode}
  */
-const Accordion = ({ ...others }: AccordionProps, ref: React.Ref<View>): JSX.Element => {
+const Accordion = React.forwardRef(({ ...others }: AccordionProps, ref: React.Ref<View>): JSX.Element => {
   return <View ref={ref} style={styles.accordion} {...others} />
-}
+})
 
 Accordion.displayName = ComponentName.Accordion
-export default React.forwardRef(Accordion)
+export default Accordion
 
 const styles = StyleSheet.create({
   accordion: {

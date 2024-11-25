@@ -3,6 +3,7 @@ import React from 'react'
 
 import { CheckboxProps } from '@/components/checkbox/CheckboxProps'
 import { useCheckbox } from '@/components/checkbox/hook/useCheckbox'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -27,65 +28,68 @@ import { is } from '@/services/classify'
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
-const Checkbox = (
-  {
-    checked,
-    className,
-    disabled,
-    readonly,
-    id = React.useId(),
-    label,
-    onChange,
-    onClick,
-    name,
-    value,
-    tile,
-    description,
-    iconTile,
-    horizontalTile,
-    testId,
-    ...others
-  }: CheckboxProps,
-  ref: React.Ref<HTMLInputElement>,
-): JSX.Element => {
-  const { handleChange, handleClick, _checked } = useCheckbox({ checked, readonly, value, onChange, onClick })
+const Checkbox = React.forwardRef(
+  (
+    {
+      checked,
+      className,
+      disabled,
+      readonly,
+      id = React.useId(),
+      label,
+      onChange,
+      onClick,
+      name,
+      value,
+      tile,
+      description,
+      iconTile,
+      horizontalTile,
+      testId,
+      ...others
+    }: CheckboxProps,
+    ref: React.Ref<HTMLInputElement>,
+  ): JSX.Element => {
+    const { handleChange, handleClick, _checked } = useCheckbox({ checked, readonly, value, onChange, onClick })
 
-  return (
-    <div
-      className={hashClass(clsx(tile ? 'checkbox-tile' : 'checkbox', horizontalTile && is('horizontal'), className))}
-      tabIndex={0}
-    >
-      <input
-        ref={ref}
-        aria-checked={checked}
-        type='checkbox'
-        readOnly={readonly}
-        id={id}
-        data-testid={testId}
-        disabled={disabled}
-        name={name}
-        value={value}
-        checked={readonly ? checked : _checked}
-        onChange={handleChange}
-        onClick={handleClick}
-        {...others}
-      />
-      <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
-        {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM} />}
-        {horizontalTile ? (
-          <span>
-            {tile ? <span className={hashClass(clsx('checkbox-title'))}>{label}</span> : label}
-            {tile && description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
-          </span>
-        ) : (
-          <>
-            {tile ? <span className={hashClass(clsx('checkbox-title'))}>{label}</span> : label}
-            {tile && description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
-          </>
-        )}
-      </label>
-    </div>
-  )
-}
+    return (
+      <div
+        className={hashClass(clsx(tile ? 'checkbox-tile' : 'checkbox', horizontalTile && is('horizontal'), className))}
+        tabIndex={0}
+      >
+        <input
+          ref={ref}
+          aria-checked={checked}
+          type='checkbox'
+          readOnly={readonly}
+          id={id}
+          data-testid={testId}
+          disabled={disabled}
+          name={name}
+          value={value}
+          checked={readonly ? checked : _checked}
+          onChange={handleChange}
+          onClick={handleClick}
+          {...others}
+        />
+        <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
+          {iconTile && <Icon name={iconTile} size={IconSize.MEDIUM} />}
+          {horizontalTile ? (
+            <span>
+              {tile ? <span className={hashClass(clsx('checkbox-title'))}>{label}</span> : label}
+              {tile && description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
+            </span>
+          ) : (
+            <>
+              {tile ? <span className={hashClass(clsx('checkbox-title'))}>{label}</span> : label}
+              {tile && description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
+            </>
+          )}
+        </label>
+      </div>
+    )
+  },
+)
 
-export default React.forwardRef(Checkbox)
+Checkbox.displayName = ComponentName.Checkbox
+export default Checkbox

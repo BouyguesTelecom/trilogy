@@ -9,7 +9,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * Table TD Component
  * @param children {ReactNode} Table TD children
  */
-const TableTd = ({ children, ...others }: TableTdProps, ref: React.Ref<View>): JSX.Element => {
+const TableTd = React.forwardRef(({ children, ...others }: TableTdProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     table: {
       flexDirection: 'column',
@@ -34,8 +34,7 @@ const TableTd = ({ children, ...others }: TableTdProps, ref: React.Ref<View>): J
       )}
     </View>
   )
-}
+})
 
 TableTd.displayName = ComponentName.TableTd
-
-export default React.forwardRef(TableTd)
+export default TableTd

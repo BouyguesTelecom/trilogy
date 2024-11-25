@@ -9,14 +9,13 @@ import { View } from '@/components/view'
  * List Component
  * @param children {React.ReactNode}
  */
-const List = ({ children, ...others }: ListProps, ref: React.Ref<ViewType>): JSX.Element => {
+const List = React.forwardRef(({ children, ...others }: ListProps, ref: React.Ref<ViewType>): JSX.Element => {
   return (
     <View ref={ref} {...others}>
       {children}
     </View>
   )
-}
+})
 
 List.displayName = ComponentName.List
-
-export default React.forwardRef(List)
+export default List

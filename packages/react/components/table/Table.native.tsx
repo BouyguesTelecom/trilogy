@@ -10,7 +10,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param children {ReactNode}
  * @param bordered {boolean} bordered table
  */
-const Table = ({ children, bordered, ...others }: TableProps, ref: React.Ref<View>): JSX.Element => {
+const Table = React.forwardRef(({ children, bordered, ...others }: TableProps, ref: React.Ref<View>): JSX.Element => {
   const borderColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
@@ -33,8 +33,7 @@ const Table = ({ children, bordered, ...others }: TableProps, ref: React.Ref<Vie
       {children}
     </View>
   )
-}
+})
 
 Table.displayName = ComponentName.Table
-
-export default React.forwardRef(Table)
+export default Table

@@ -10,7 +10,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode
  */
 
-const Container = ({ children, ...others }: ContainerProps, ref: React.Ref<View>): JSX.Element => {
+const Container = React.forwardRef(({ children, ...others }: ContainerProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -25,8 +25,7 @@ const Container = ({ children, ...others }: ContainerProps, ref: React.Ref<View>
       {children}
     </View>
   )
-}
+})
 
 Container.displayName = ComponentName.Container
-
-export default React.forwardRef(Container)
+export default Container

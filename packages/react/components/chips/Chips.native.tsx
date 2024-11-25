@@ -18,69 +18,67 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param disabled {boolean} Disabled chips
  */
 
-const Chips = (
-  { children, onClick, disabled, active, ...others }: ChipsProps,
-  ref: React.Ref<TouchableOpacity>,
-): JSX.Element => {
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const chipsContext = useContext(ChipsContext)
+const Chips = React.forwardRef(
+  ({ children, onClick, disabled, active, ...others }: ChipsProps, ref: React.Ref<TouchableOpacity>): JSX.Element => {
+    const [activeItem, setActiveItem] = useState<boolean>(active || false)
+    const chipsContext = useContext(ChipsContext)
 
-  useEffect(() => {
-    setActiveItem(active || false)
-  }, [active])
+    useEffect(() => {
+      setActiveItem(active || false)
+    }, [active])
 
-  const styles = StyleSheet.create({
-    chips: {
-      backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
-        (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.BACKGROUND),
-      borderRadius: 30,
-      paddingLeft: 12,
-      paddingRight: 12,
-      paddingTop: 6,
-      paddingBottom: 5,
-      margin: 6,
-      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
-      borderWidth: 1,
-      flexDirection: 'row',
-    },
-    text: {
-      alignSelf: 'center',
-      color:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
-        getColorStyle(TrilogyColor.MAIN),
-      paddingTop: 1,
-    },
-  })
+    const styles = StyleSheet.create({
+      chips: {
+        backgroundColor:
+          (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
+          (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
+          getColorStyle(TrilogyColor.BACKGROUND),
+        borderRadius: 30,
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 6,
+        paddingBottom: 5,
+        margin: 6,
+        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
+        borderWidth: 1,
+        flexDirection: 'row',
+      },
+      text: {
+        alignSelf: 'center',
+        color:
+          (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+          (active && getColorStyle(TrilogyColor.BACKGROUND)) ||
+          getColorStyle(TrilogyColor.MAIN),
+        paddingTop: 1,
+      },
+    })
 
-  return (
-    <TouchableOpacity
-      ref={ref}
-      disabled={disabled}
-      style={styles.chips}
-      onPress={(e?: GestureResponderEvent) => {
-        setActiveItem(active || false)
-        if (onClick) {
-          onClick(e)
-        }
-      }}
-      {...others}
-    >
-      {chipsContext.isMultiple && active && (
-        <>
-          <Icon size={IconSize.SMALLER} color={IconColor.WHITE} name={IconName.CHECK} />
-          <Spacer horizontal size={SpacerSize.ONE} />
-        </>
-      )}
-      <Text level={TextLevels.TWO} style={styles.text}>
-        {children}
-      </Text>
-    </TouchableOpacity>
-  )
-}
+    return (
+      <TouchableOpacity
+        ref={ref}
+        disabled={disabled}
+        style={styles.chips}
+        onPress={(e?: GestureResponderEvent) => {
+          setActiveItem(active || false)
+          if (onClick) {
+            onClick(e)
+          }
+        }}
+        {...others}
+      >
+        {chipsContext.isMultiple && active && (
+          <>
+            <Icon size={IconSize.SMALLER} color={IconColor.WHITE} name={IconName.CHECK} />
+            <Spacer horizontal size={SpacerSize.ONE} />
+          </>
+        )}
+        <Text level={TextLevels.TWO} style={styles.text}>
+          {children}
+        </Text>
+      </TouchableOpacity>
+    )
+  },
+)
 
 Chips.displayName = ComponentName.Chips
-
-export default React.forwardRef(Chips)
+export default Chips

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { SectionProps } from '@/components/section/SectionProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -21,44 +22,47 @@ import { has, is } from '@/services/classify'
  * - -------------- NATIVE PROPERTIES ---------------
  * @param autolayout {boolean} Apply auto-layout rules
  **/
-const Section = (
-  {
-    className,
-    skeleton,
-    backgroundColor,
-    backgroundSrc,
-    inverted,
-    paddingless,
-    verticalPaddingless,
-    fullwidth,
-    ...others
-  }: SectionProps,
-  ref: React.Ref<HTMLDivElement>,
-) => {
-  const _className = hashClass(
-    clsx(
-      'section',
+const Section = React.forwardRef(
+  (
+    {
       className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton ? is('loading') : is('loaded'),
-      fullwidth && is('fullwidth'),
-      paddingless && is('paddingless'),
-      verticalPaddingless && is('vertical-paddingless'),
-    ),
-  )
+      skeleton,
+      backgroundColor,
+      backgroundSrc,
+      inverted,
+      paddingless,
+      verticalPaddingless,
+      fullwidth,
+      ...others
+    }: SectionProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const _className = hashClass(
+      clsx(
+        'section',
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton ? is('loading') : is('loaded'),
+        fullwidth && is('fullwidth'),
+        paddingless && is('paddingless'),
+        verticalPaddingless && is('vertical-paddingless'),
+      ),
+    )
 
-  return (
-    <section
-      ref={ref}
-      {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})` },
-      })}
-      className={_className}
-      {...others}
-    />
-  )
-}
+    return (
+      <section
+        ref={ref}
+        {...(backgroundSrc && {
+          style: { backgroundImage: `url(${backgroundSrc})` },
+        })}
+        className={_className}
+        {...others}
+      />
+    )
+  },
+)
 
-export default React.forwardRef(Section)
+Section.displayName = ComponentName.Section
+export default Section

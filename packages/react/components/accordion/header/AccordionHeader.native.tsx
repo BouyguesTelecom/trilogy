@@ -8,7 +8,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Accordion Header
  * @param children {React.ReactNode}
  */
-const AccordionHeader = ({ children }: AccordionHeaderProps, ref: React.Ref<View>): JSX.Element => {
+const AccordionHeader = React.forwardRef(({ children }: AccordionHeaderProps, ref: React.Ref<View>): JSX.Element => {
   const styles = StyleSheet.create({
     header: {
       maxWidth: '95%',
@@ -22,8 +22,7 @@ const AccordionHeader = ({ children }: AccordionHeaderProps, ref: React.Ref<View
       {children}
     </View>
   )
-}
+})
 
 AccordionHeader.displayName = ComponentName.AccordionHeader
-
-export default React.forwardRef(AccordionHeader)
+export default AccordionHeader

@@ -23,174 +23,175 @@ interface AccordionChild {
  * @param disabled {boolean} Disabled AccordionItem
  * @param children
  */
-const AccordionItem = (
-  { active, id, onClick, disabled, onOpen, onClose, children, ...others }: AccordionItemProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
-  const animatedController = useRef(new Animated.Value(0)).current
-  const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
-  const [childs, setChilds] = useState<AccordionChild>({
-    header: undefined,
-    body: undefined,
-  })
+const AccordionItem = React.forwardRef(
+  (
+    { active, id, onClick, disabled, onOpen, onClose, children, ...others }: AccordionItemProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const [isActive, setIsActive] = useState<boolean>(Boolean(typeof active !== 'undefined' ? active : false))
+    const animatedController = useRef(new Animated.Value(0)).current
+    const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
+    const [childs, setChilds] = useState<AccordionChild>({
+      header: undefined,
+      body: undefined,
+    })
 
-  const styles = StyleSheet.create({
-    item: {
-      width: '100%',
-      padding: 5,
-      borderRadius: 6,
-      backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
-      borderWidth: 1,
-      borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.NEUTRAL),
-    },
-    bodyBackground: {
-      borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-      overflow: 'hidden',
-    },
-    titleContainer: {
-      minWidth: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingLeft: 10,
-      paddingRight: 5,
-      paddingTop: 5,
-      paddingBottom: 5,
-      borderColor: getColorStyle(TrilogyColor.BACKGROUND),
-    },
-    bodyContainer: {
-      padding: 10,
-      paddingLeft: 10,
-      paddingRight: 10,
-      position: 'absolute',
-      bottom: 0,
-      borderRadius: 6,
-    },
-  })
+    const styles = StyleSheet.create({
+      item: {
+        width: '100%',
+        padding: 5,
+        borderRadius: 6,
+        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
+        borderWidth: 1,
+        borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.NEUTRAL),
+      },
+      bodyBackground: {
+        borderRadius: 6,
+        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+        overflow: 'hidden',
+      },
+      titleContainer: {
+        minWidth: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderColor: getColorStyle(TrilogyColor.BACKGROUND),
+      },
+      bodyContainer: {
+        padding: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        position: 'absolute',
+        bottom: 0,
+        borderRadius: 6,
+      },
+    })
 
-  const bodyHeight = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, bodySectionHeight],
-  })
+    const bodyHeight = animatedController.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, bodySectionHeight],
+    })
 
-  const arrowAngle = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0rad', `${Math.PI}rad`],
-  })
+    const arrowAngle = animatedController.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0rad', `${Math.PI}rad`],
+    })
 
-  useEffect(() => {
-    setIsActive(active || false)
-  }, [active])
+    useEffect(() => {
+      setIsActive(active || false)
+    }, [active])
 
-  const toggleListItem = () => {
-    if (isActive) {
-      Animated.timing(animatedController, {
-        duration: 300,
-        toValue: 0,
-        easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-        useNativeDriver: false,
-      }).start()
-    } else {
-      Animated.timing(animatedController, {
-        duration: 300,
-        toValue: 1,
-        easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-        useNativeDriver: false,
-      }).start()
+    const toggleListItem = () => {
+      if (isActive) {
+        Animated.timing(animatedController, {
+          duration: 300,
+          toValue: 0,
+          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
+          useNativeDriver: false,
+        }).start()
+      } else {
+        Animated.timing(animatedController, {
+          duration: 300,
+          toValue: 1,
+          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
+          useNativeDriver: false,
+        }).start()
+      }
+      setIsActive(!isActive)
     }
-    setIsActive(!isActive)
-  }
 
-  useEffect(() => {
-    active ? animatedController.setValue(1) : animatedController.setValue(0)
-  }, [active])
+    useEffect(() => {
+      active ? animatedController.setValue(1) : animatedController.setValue(0)
+    }, [active])
 
-  const isForwardRefComponent = (element: any): element is React.ForwardRefExoticComponent<any> => {
-    return (
-      typeof element === 'object' &&
-      element !== null &&
-      (element.$$typeof as symbol) === Symbol.for('react.forward_ref')
-    )
-  }
+    const isForwardRefComponent = (element: any): element is React.ForwardRefExoticComponent<any> => {
+      return (
+        typeof element === 'object' &&
+        element !== null &&
+        (element.$$typeof as symbol) === Symbol.for('react.forward_ref')
+      )
+    }
 
-  const getDisplayName = (component: any): string | null => {
-    if (component?.render?.displayName) return component.render.displayName
-    return null
-  }
+    const getDisplayName = (component: any): string | null => {
+      if (component?.render?.displayName) return component.render.displayName
+      return null
+    }
 
-  useEffect(() => {
-    const newChilds: AccordionChild = {}
-    if (Array.isArray(children)) {
-      children.forEach((child) => {
-        if (React.isValidElement(child) && isForwardRefComponent(child.type)) {
-          const displayName = getDisplayName(child.type)
+    useEffect(() => {
+      const newChilds: AccordionChild = {}
+      if (Array.isArray(children)) {
+        children.forEach((child) => {
+          if (React.isValidElement(child) && isForwardRefComponent(child.type)) {
+            const displayName = getDisplayName(child.type)
 
-          if (displayName) {
-            switch (true) {
-              case displayName.includes('AccordionHeader'):
-                newChilds.header = child
-                break
-              case displayName.includes('AccordionBody'):
-                newChilds.body = child
-                break
-              default:
-                break
+            if (displayName) {
+              switch (true) {
+                case displayName.includes('AccordionHeader'):
+                  newChilds.header = child
+                  break
+                case displayName.includes('AccordionBody'):
+                  newChilds.body = child
+                  break
+                default:
+                  break
+              }
             }
           }
-        }
-      })
-      setChilds(newChilds)
-    }
-  }, [children])
+        })
+        setChilds(newChilds)
+      }
+    }, [children])
 
-  return (
-    <>
-      <View style={styles.item} ref={ref}>
-        <TouchableWithoutFeedback
-          style={styles.item}
-          testID={id || ''}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onPress={(e: any) => {
-            if (!disabled) {
-              toggleListItem()
-              if (onOpen && !isActive) onOpen(e)
-              if (onClose && isActive) onClose(e)
-              if (onClick) onClick(e)
-            }
-          }}
-          {...others}
-        >
-          <View style={styles.titleContainer}>
-            {childs.header && <View>{childs.header}</View>}
-            <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
-              <Icon
-                name={IconName.ARROW_DOWN}
-                size={IconSize.SMALLER}
-                color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-              />
-            </Animated.View>
-          </View>
-        </TouchableWithoutFeedback>
-        <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
-          <View
-            style={styles.bodyContainer}
+    return (
+      <>
+        <View style={styles.item} ref={ref}>
+          <TouchableWithoutFeedback
+            style={styles.item}
+            testID={id || ''}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onLayout={(e: any) => {
-              setBodySectionHeight(e.nativeEvent.layout.height)
+            onPress={(e: any) => {
+              if (!disabled) {
+                toggleListItem()
+                if (onOpen && !isActive) onOpen(e)
+                if (onClose && isActive) onClose(e)
+                if (onClick) onClick(e)
+              }
             }}
+            {...others}
           >
-            {childs.body && <View>{childs.body}</View>}
-          </View>
-        </Animated.View>
-      </View>
-      <Spacer size={SpacerSize.TWO} />
-    </>
-  )
-}
+            <View style={styles.titleContainer}>
+              {childs.header && <View>{childs.header}</View>}
+              <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
+                <Icon
+                  name={IconName.ARROW_DOWN}
+                  size={IconSize.SMALLER}
+                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+                />
+              </Animated.View>
+            </View>
+          </TouchableWithoutFeedback>
+          <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
+            <View
+              style={styles.bodyContainer}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onLayout={(e: any) => {
+                setBodySectionHeight(e.nativeEvent.layout.height)
+              }}
+            >
+              {childs.body && <View>{childs.body}</View>}
+            </View>
+          </Animated.View>
+        </View>
+        <Spacer size={SpacerSize.TWO} />
+      </>
+    )
+  },
+)
 
 AccordionItem.displayName = ComponentName.AccordionItem
-
-export default React.forwardRef(AccordionItem)
+export default AccordionItem

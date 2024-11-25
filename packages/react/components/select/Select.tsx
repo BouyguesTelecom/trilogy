@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { SelectProps } from '@/components/select/SelectProps'
 import { SelectDynamic, SelectNative } from '@/components/select/web'
 
@@ -24,12 +25,12 @@ import { SelectDynamic, SelectNative } from '@/components/select/web'
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param placeholder {string} Select Placeholder
  */
-const Select = (
-  { native, ...props }: SelectProps,
-  ref: React.Ref<HTMLInputElement | HTMLSelectElement>,
-): JSX.Element => {
-  if (native) return <SelectNative {...props} ref={ref as React.Ref<HTMLSelectElement>} />
-  return <SelectDynamic {...props} ref={ref as React.Ref<HTMLInputElement>} />
-}
+const Select = React.forwardRef(
+  ({ native, ...props }: SelectProps, ref: React.Ref<HTMLInputElement | HTMLSelectElement>): JSX.Element => {
+    if (native) return <SelectNative {...props} ref={ref as React.Ref<HTMLSelectElement>} />
+    return <SelectDynamic {...props} ref={ref as React.Ref<HTMLInputElement>} />
+  },
+)
 
-export default React.forwardRef(Select)
+Select.displayName = ComponentName.Select
+export default Select

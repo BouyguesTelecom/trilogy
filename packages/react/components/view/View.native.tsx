@@ -21,78 +21,79 @@ import { getJustifyStyle } from '@/objects/facets/Justifiable'
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * @param bottom {boolean} Bottom position
  */
-const View = (
-  {
-    children,
-    style,
-    onClick,
-    flexable,
-    bottom,
-    backgroundColor,
-    backgroundSrc,
-    id,
-    justify,
-    fullwidth = true,
-    align,
-    ...others
-  }: ViewProps,
-  ref: React.Ref<ViewNative>,
-): JSX.Element => {
-  const viewColor = (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || 'transparent'
+const View = React.forwardRef(
+  (
+    {
+      children,
+      style,
+      onClick,
+      flexable,
+      bottom,
+      backgroundColor,
+      backgroundSrc,
+      id,
+      justify,
+      fullwidth = true,
+      align,
+      ...others
+    }: ViewProps,
+    ref: React.Ref<ViewNative>,
+  ): JSX.Element => {
+    const viewColor = (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || 'transparent'
 
-  const styles = StyleSheet.create({
-    view: {
-      flex: flexable ? 1 : 0,
-      backgroundColor: viewColor,
-      width: fullwidth ? '100%' : 'auto',
-      ...(justify && { justifyContent: getJustifyStyle(justify) }),
-      ...(align && { alignItems: getAlignStyle(align) }),
-    },
-    bottom: {
-      position: 'absolute',
-      bottom: 0,
-      width: fullwidth ? '100%' : 'auto',
-    },
-    sectionImage: {
-      flex: flexable ? 1 : 0,
-      width: '100%',
-      height: 'auto',
-    },
-  })
+    const styles = StyleSheet.create({
+      view: {
+        flex: flexable ? 1 : 0,
+        backgroundColor: viewColor,
+        width: fullwidth ? '100%' : 'auto',
+        ...(justify && { justifyContent: getJustifyStyle(justify) }),
+        ...(align && { alignItems: getAlignStyle(align) }),
+      },
+      bottom: {
+        position: 'absolute',
+        bottom: 0,
+        width: fullwidth ? '100%' : 'auto',
+      },
+      sectionImage: {
+        flex: flexable ? 1 : 0,
+        width: '100%',
+        height: 'auto',
+      },
+    })
 
-  let returnView = (
-    <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
-      {children}
-    </ViewNative>
-  )
-  if (!children) {
-    returnView = (
-      <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others} />
-    )
-  }
-
-  if (onClick) {
-    returnView = (
+    let returnView = (
       <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
-        <TouchableOpacity activeOpacity={1} onPress={onClick}>
-          {children}
-        </TouchableOpacity>
+        {children}
       </ViewNative>
     )
-  }
+    if (!children) {
+      returnView = (
+        <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others} />
+      )
+    }
 
-  return backgroundSrc ? (
-    <ImageBackground
-      style={styles.sectionImage}
-      source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-    >
-      {returnView}
-    </ImageBackground>
-  ) : (
-    returnView
-  )
-}
+    if (onClick) {
+      returnView = (
+        <ViewNative testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+          <TouchableOpacity activeOpacity={1} onPress={onClick}>
+            {children}
+          </TouchableOpacity>
+        </ViewNative>
+      )
+    }
+
+    return backgroundSrc ? (
+      <ImageBackground
+        style={styles.sectionImage}
+        source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+      >
+        {returnView}
+      </ImageBackground>
+    ) : (
+      returnView
+    )
+  },
+)
 
 View.displayName = ComponentName.View
-
-export default React.forwardRef(View)
+export default View

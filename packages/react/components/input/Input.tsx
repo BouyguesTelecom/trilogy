@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { IconColor } from '@/components/icon/IconEnum'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { InputStatus, InputType } from '@/components/input/InputEnum'
@@ -61,183 +62,191 @@ export interface InputProp extends InputProps, InputWebEvents {}
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = (
-  {
-    forceControl,
-    label,
-    sample,
-    className,
-    disabled,
-    onChange,
-    onKeyPress,
-    onKeyUp,
-    onIconClick,
-    onClick,
-    onFocus,
-    onBlur,
-    patternValidator,
-    onMouseEnter,
-    onMouseLeave,
-    name,
-    placeholder,
-    type = 'text',
-    defaultValue,
-    value,
-    loading,
-    focused,
-    hasIcon,
-    customIcon,
-    status,
-    help,
-    iconClassname,
-    onStatusChange,
-    customValidator,
-    onSubmit,
-    minLength,
-    maxLength,
-    testId,
-    accessibilityLabel,
-    autoCompleteType,
-    customIconLeft,
-    customIconRight,
-    securityGauge,
-    validationRules,
-    required,
-    ...others
-  }: InputProp,
-  ref: React.Ref<HTMLInputElement>,
-): JSX.Element => {
-  const validator =
-    !customValidator && patternValidator
-      ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-      : customValidator
+const Input = React.forwardRef(
+  (
+    {
+      forceControl,
+      label,
+      sample,
+      className,
+      disabled,
+      onChange,
+      onKeyPress,
+      onKeyUp,
+      onIconClick,
+      onClick,
+      onFocus,
+      onBlur,
+      patternValidator,
+      onMouseEnter,
+      onMouseLeave,
+      name,
+      placeholder,
+      type = 'text',
+      defaultValue,
+      value,
+      loading,
+      focused,
+      hasIcon,
+      customIcon,
+      status,
+      help,
+      iconClassname,
+      onStatusChange,
+      customValidator,
+      onSubmit,
+      minLength,
+      maxLength,
+      testId,
+      accessibilityLabel,
+      autoCompleteType,
+      customIconLeft,
+      customIconRight,
+      securityGauge,
+      validationRules,
+      required,
+      ...others
+    }: InputProp,
+    ref: React.Ref<HTMLInputElement>,
+  ): JSX.Element => {
+    const validator =
+      !customValidator && patternValidator
+        ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
+        : customValidator
 
-  const {
-    localStatus,
-    inputType,
-    _value,
-    handleBlur,
-    handleChange,
-    handleClick,
-    handleFocus,
-    handleKeyPress,
-    handleKeyUp,
-    handleMouseEnter,
-    handleMouseLeave,
-    IconWrapper,
-    isShowPwd,
-    handlePressIconPwd,
-  } = useInput({
-    defaultValue,
-    focused,
-    status,
-    type,
-    value,
-    validator,
-    onStatusChange,
-    onKeyUp,
-    onKeyPress,
-    onMouseEnter,
-    onMouseLeave,
-    onClick,
-    forceControl,
-    onChange,
-    onFocus,
-    onBlur,
-    onIconClick,
-  })
+    const {
+      localStatus,
+      inputType,
+      _value,
+      handleBlur,
+      handleChange,
+      handleClick,
+      handleFocus,
+      handleKeyPress,
+      handleKeyUp,
+      handleMouseEnter,
+      handleMouseLeave,
+      IconWrapper,
+      isShowPwd,
+      handlePressIconPwd,
+    } = useInput({
+      defaultValue,
+      focused,
+      status,
+      type,
+      value,
+      validator,
+      onStatusChange,
+      onKeyUp,
+      onKeyPress,
+      onMouseEnter,
+      onMouseLeave,
+      onClick,
+      forceControl,
+      onChange,
+      onFocus,
+      onBlur,
+      onIconClick,
+    })
 
-  const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
-  const inputIcon = new Map()
-  inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
-  inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
-  inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
+    const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
+    const inputIcon = new Map()
+    inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
+    inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
+    inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const helpClasses = clsx('help', localStatus && is(localStatus))
-  const classes = hashClass(clsx('input', localStatus && is(localStatus)))
-  const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
+    const helpClasses = clsx('help', localStatus && is(localStatus))
+    const classes = hashClass(clsx('input', localStatus && is(localStatus)))
+    const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
 
-  const controlClasses = hashClass(
-    clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
-      [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
-      ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
-    }),
-  )
+    const controlClasses = hashClass(
+      clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
+        [has('icons-right')]: hasIcon ?? (customIcon || customIconRight || type === 'password'),
+        ['has-icons-left']: customIconLeft || type === InputType.SEARCH,
+      }),
+    )
 
-  return (
-    <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
-      {!hasPlaceholder && (
-        <label className='input-label'>
-          {label}{' '}
-          {label && required && (
-            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
-              *
-            </Text>
-          )}
-        </label>
-      )}
-      {!hasPlaceholder && label && sample && (
-        <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
-          {sample}
-        </Text>
-      )}
-      <div className={controlClasses}>
-        <input
-          required={required}
-          role={'textbox'}
-          {...others}
-          data-testid={testId}
-          aria-label={accessibilityLabel}
-          type={inputType}
-          className={classes}
-          value={_value}
-          defaultValue={defaultValue}
-          name={name}
-          onSubmit={onSubmit}
-          ref={ref}
-          disabled={disabled}
-          minLength={minLength}
-          maxLength={maxLength}
-          autoComplete={autoCompleteType}
-          onKeyUp={handleKeyUp}
-          onKeyPress={handleKeyPress}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          placeholder={placeholder}
-          onClick={handleClick}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
-        {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
-          <IconWrapper className={iconClassname} name={inputIcon.get(localStatus)} />
+    return (
+      <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
+        {!hasPlaceholder && (
+          <label className='input-label'>
+            {label}{' '}
+            {label && required && (
+              <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                *
+              </Text>
+            )}
+          </label>
         )}
-        {customIcon && !localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
-        {customIconLeft && !loading && (
-          <IconWrapper className={clsx(customIconLeft && 'icon-left', iconClassname)} name={customIconLeft} />
+        {!hasPlaceholder && label && sample && (
+          <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+            {sample}
+          </Text>
         )}
-        {customIconRight && !loading && type !== 'password' && (
-          <IconWrapper className={clsx(customIconRight && 'icon-right', iconClassname)} name={customIconRight} />
-        )}
-        {!loading && type === 'password' && (
-          <IconWrapper
-            className={clsx('icon-right', iconClassname)}
-            name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
-            onPress={handlePressIconPwd}
+        <div className={controlClasses}>
+          <input
+            required={required}
+            role={'textbox'}
+            {...others}
+            data-testid={testId}
+            aria-label={accessibilityLabel}
+            type={inputType}
+            className={classes}
+            value={_value}
+            defaultValue={defaultValue}
+            name={name}
+            onSubmit={onSubmit}
+            ref={ref}
+            disabled={disabled}
+            minLength={minLength}
+            maxLength={maxLength}
+            autoComplete={autoCompleteType}
+            onKeyUp={handleKeyUp}
+            onKeyPress={handleKeyPress}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            placeholder={placeholder}
+            onClick={handleClick}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
-        )}
-        {customIcon && localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
-        {type === InputType.SEARCH && !customIcon && localStatus === 'default' && !loading && (
-          <IconWrapper color={IconColor.MAIN} className={iconClassname} name={IconName.SEARCH} closeIconSearch={true} />
-        )}
-        {loading && <span className={hashClass(clsx(is('searching')))} />}
+          {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
+          {hasIcon && localStatus && !customIcon && !loading && !customIconLeft && !customIconRight && (
+            <IconWrapper className={iconClassname} name={inputIcon.get(localStatus)} />
+          )}
+          {customIcon && !localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
+          {customIconLeft && !loading && (
+            <IconWrapper className={clsx(customIconLeft && 'icon-left', iconClassname)} name={customIconLeft} />
+          )}
+          {customIconRight && !loading && type !== 'password' && (
+            <IconWrapper className={clsx(customIconRight && 'icon-right', iconClassname)} name={customIconRight} />
+          )}
+          {!loading && type === 'password' && (
+            <IconWrapper
+              className={clsx('icon-right', iconClassname)}
+              name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
+              onPress={handlePressIconPwd}
+            />
+          )}
+          {customIcon && localStatus && !loading && <IconWrapper className={iconClassname} name={customIcon} />}
+          {type === InputType.SEARCH && !customIcon && localStatus === 'default' && !loading && (
+            <IconWrapper
+              color={IconColor.MAIN}
+              className={iconClassname}
+              name={IconName.SEARCH}
+              closeIconSearch={true}
+            />
+          )}
+          {loading && <span className={hashClass(clsx(is('searching')))} />}
+        </div>
+        {help && <Text className={helpClasses}>{help}</Text>}
+
+        {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
       </div>
-      {help && <Text className={helpClasses}>{help}</Text>}
+    )
+  },
+)
 
-      {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
-    </div>
-  )
-}
-
-export default React.forwardRef(Input)
+Input.displayName = ComponentName.Input
+export default Input

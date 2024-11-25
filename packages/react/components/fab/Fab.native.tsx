@@ -22,58 +22,71 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param right {number} position right
  * @param disabled {boolean} disabled button
  */
-const Fab = (
-  { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId }: FabProps,
-  ref: React.Ref<TouchableOpacity>,
-): JSX.Element => {
-  const styles = StyleSheet.create({
-    button: {
-      backgroundColor: getColorStyle(TrilogyColor.MAIN),
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 16,
-      minHeight: 56,
-      height: 'auto',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: 0.2,
-      shadowRadius: 6,
-      elevation: 3,
-      position: top || bottom || left || right ? 'absolute' : 'relative',
-      top: top ? top : 'auto',
-      right: right ? right : 'auto',
-      left: left ? left : 'auto',
-      bottom: bottom ? bottom : 'auto',
-      width: extended ? 'auto' : 60,
-      flexDirection: 'row',
-      zIndex: 999,
-    },
-    label: {
-      marginTop: 'auto',
-      marginBottom: 'auto',
-      marginLeft: 10,
-      marginRight: 16,
-    },
-    icon: {
-      marginLeft: extended ? 16 : 0,
-      marginRight: extended ? 8 : 0,
-    },
-    extended: {
-      height: 56,
-    },
-  })
+const Fab = React.forwardRef(
+  (
+    { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId }: FabProps,
+    ref: React.Ref<TouchableOpacity>,
+  ): JSX.Element => {
+    const styles = StyleSheet.create({
+      button: {
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 16,
+        minHeight: 56,
+        height: 'auto',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 3,
+        position: top || bottom || left || right ? 'absolute' : 'relative',
+        top: top ? top : 'auto',
+        right: right ? right : 'auto',
+        left: left ? left : 'auto',
+        bottom: bottom ? bottom : 'auto',
+        width: extended ? 'auto' : 60,
+        flexDirection: 'row',
+        zIndex: 999,
+      },
+      label: {
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        marginLeft: 10,
+        marginRight: 16,
+      },
+      icon: {
+        marginLeft: extended ? 16 : 0,
+        marginRight: extended ? 8 : 0,
+      },
+      extended: {
+        height: 56,
+      },
+    })
 
-  return (
-    <TouchableOpacity
-      ref={ref}
-      style={[styles.button, extended && styles.extended]}
-      accessibilityLabel={accessibilityLabel}
-      onPress={(e?: unknown) => onClick?.(e)}
-      disabled={disabled}
-      testID={testId}
-    >
-      {extended ? (
-        <>
+    return (
+      <TouchableOpacity
+        ref={ref}
+        style={[styles.button, extended && styles.extended]}
+        accessibilityLabel={accessibilityLabel}
+        onPress={(e?: unknown) => onClick?.(e)}
+        disabled={disabled}
+        testID={testId}
+      >
+        {extended ? (
+          <>
+            <Icon
+              style={styles.icon}
+              name={iconName as IconName}
+              color={IconColor.WHITE}
+              size={IconSize.MEDIUM}
+              align={Alignable.ALIGNED_CENTER}
+            />
+            <Text style={styles.label} typo={[TypographyColor.TEXT_WHITE, TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>
+              {children}
+            </Text>
+          </>
+        ) : (
           <Icon
             style={styles.icon}
             name={iconName as IconName}
@@ -81,23 +94,11 @@ const Fab = (
             size={IconSize.MEDIUM}
             align={Alignable.ALIGNED_CENTER}
           />
-          <Text style={styles.label} typo={[TypographyColor.TEXT_WHITE, TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>
-            {children}
-          </Text>
-        </>
-      ) : (
-        <Icon
-          style={styles.icon}
-          name={iconName as IconName}
-          color={IconColor.WHITE}
-          size={IconSize.MEDIUM}
-          align={Alignable.ALIGNED_CENTER}
-        />
-      )}
-    </TouchableOpacity>
-  )
-}
+        )}
+      </TouchableOpacity>
+    )
+  },
+)
 
 Fab.displayName = ComponentName.Fab
-
-export default React.forwardRef(Fab)
+export default Fab

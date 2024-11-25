@@ -15,43 +15,41 @@ export const TimelineItemContext = createContext({ done: false, active: false, u
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = (
-  { children, done, active, undone, cancel }: TimelineItemProps,
-  ref: React.Ref<View>,
-): JSX.Element => {
-  const { height, setHeight } = useContext(TimelineHeightContext)
+const TimelineItem = React.forwardRef(
+  ({ children, done, active, undone, cancel }: TimelineItemProps, ref: React.Ref<View>): JSX.Element => {
+    const { height, setHeight } = useContext(TimelineHeightContext)
 
-  const styles = StyleSheet.create({
-    item: {
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      height: height != 0 ? height - 8 : undefined,
-      marginBottom: 8,
-    },
-  })
+    const styles = StyleSheet.create({
+      item: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        height: height != 0 ? height - 8 : undefined,
+        marginBottom: 8,
+      },
+    })
 
-  return (
-    <TimelineItemContext.Provider
-      value={{ done: done || false, active: active || false, undone: undone || false, cancel: cancel || false }}
-    >
-      <View
-        ref={ref}
-        onLayout={(event) => {
-          const { height: heightView } = event.nativeEvent.layout
-          setHeight((prev) => {
-            if (prev < heightView) return heightView
-            return prev
-          })
-        }}
-        style={styles.item}
+    return (
+      <TimelineItemContext.Provider
+        value={{ done: done || false, active: active || false, undone: undone || false, cancel: cancel || false }}
       >
-        {children}
-      </View>
-    </TimelineItemContext.Provider>
-  )
-}
+        <View
+          ref={ref}
+          onLayout={(event) => {
+            const { height: heightView } = event.nativeEvent.layout
+            setHeight((prev) => {
+              if (prev < heightView) return heightView
+              return prev
+            })
+          }}
+          style={styles.item}
+        >
+          {children}
+        </View>
+      </TimelineItemContext.Provider>
+    )
+  },
+)
 
 TimelineItem.displayName = ComponentName.TimelineItem
-
-export default React.forwardRef(TimelineItem)
+export default TimelineItem
