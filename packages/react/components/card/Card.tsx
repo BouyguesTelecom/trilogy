@@ -29,7 +29,7 @@ export const CardContext = createContext({ horizontal: false })
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * @param testId {string} Test Id for Test Integration
  */
-const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElement>) => {
+const Card = React.forwardRef((props: CardProps) => {
   const {
     className,
     id,
@@ -78,7 +78,6 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
         }}
         {...others}
         className={classes}
-        ref={ref as React.LegacyRef<HTMLAnchorElement>}
       />
     )
   }
@@ -90,7 +89,6 @@ const Card = React.forwardRef((props: CardProps, ref: React.LegacyRef<HTMLElemen
       className={classes}
       style={onClick && { ...hoverStyle }}
       {...others}
-      ref={ref as React.LegacyRef<HTMLDivElement>}
     />
   )
 })

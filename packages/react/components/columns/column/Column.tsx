@@ -30,7 +30,7 @@ import { getAlignClassName } from '@/objects'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param align { Alignable | AlignableValues} align content
  */
-const Column = React.forwardRef((props: ColumnProps, ref: React.LegacyRef<HTMLDivElement>) => {
+const Column = React.forwardRef((props: ColumnProps) => {
   const {
     className,
     id,
@@ -79,7 +79,7 @@ const Column = React.forwardRef((props: ColumnProps, ref: React.LegacyRef<HTMLDi
     ),
   )
 
-  return <div id={id} ref={ref} className={classes} {...others} />
+  return <div id={id} className={classes} {...others} />
 })
 
 export default Column
