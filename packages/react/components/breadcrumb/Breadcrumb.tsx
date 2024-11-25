@@ -12,16 +12,13 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.LegacyRef<HTMLElement>) => {
-  const { children, className, id, accessibilityLabel, ...others } = props
-
+const Breadcrumb = ({ children, className, id, accessibilityLabel, ...others }: BreadcrumbWebProps) => {
   const { styled } = useTrilogyContext()
 
   return (
     <nav
       id={id}
-      ref={ref}
-      role='navigation'
+      role="navigation"
       className={hashClass(styled, clsx('breadcrumb', className))}
       aria-label={accessibilityLabel}
       {...others}
@@ -29,6 +26,6 @@ const Breadcrumb = React.forwardRef((props: BreadcrumbWebProps, ref: React.Legac
       <ul>{children}</ul>
     </nav>
   )
-})
+}
 
 export default Breadcrumb

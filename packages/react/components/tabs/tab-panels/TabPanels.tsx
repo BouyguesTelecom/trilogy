@@ -7,9 +7,12 @@ import { useTrilogyContext } from '@/context'
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
+ * @param className
+ * @param id
+ * @param testId
+ * @param others
  */
-const TabPanels = React.forwardRef((props: TabPanelsProps) => {
-  const { children, className, id, testId, ...others } = props
+const TabPanels = ({ children, className, id, testId, ...others }: TabPanelsProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('tab-panels', className))
 
@@ -18,6 +21,6 @@ const TabPanels = React.forwardRef((props: TabPanelsProps) => {
       {children}
     </div>
   )
-})
+}
 
 export default TabPanels

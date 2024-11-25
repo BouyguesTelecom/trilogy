@@ -12,12 +12,10 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} additionnal CSS Classes
  */
-const Row = React.forwardRef((props: RowProps, ref: React.LegacyRef<HTMLDivElement>) => {
-  const { className, id, narrow, ...others } = props
-
+const Row = ({ className, id, narrow, ...others }: RowProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('row', narrow && is('narrow'), className))
-  return <div id={id} ref={ref} className={classes} {...others} />
-})
+  return <div id={id} className={classes} {...others} />
+}
 
 export default Row

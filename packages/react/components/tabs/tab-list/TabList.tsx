@@ -9,9 +9,13 @@ import { is } from '@/services'
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
+ * @param className
+ * @param id
+ * @param testId
+ * @param align
+ * @param others
  */
-const TabList = React.forwardRef((props: TabListProps) => {
-  const { children, className, id, testId, align, ...others } = props
+const TabList = ({ children, className, id, testId, align, ...others }: TabListProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
 
@@ -20,6 +24,6 @@ const TabList = React.forwardRef((props: TabListProps) => {
       {children}
     </div>
   )
-})
+}
 
 export default TabList

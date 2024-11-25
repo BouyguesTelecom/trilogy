@@ -7,9 +7,11 @@ import clsx from 'clsx'
 /**
  * Tab Panel Component
  * @param children {ReactChild} React Child Element
+ * @param className
+ * @param testId
+ * @param others
  */
-const TabPanel = React.forwardRef((props: TabPanelProps) => {
-  const { children, className, testId, ...others } = props
+const TabPanel = ({ children, className, testId, ...others }: TabPanelProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('tab-panel', className))
 
@@ -18,6 +20,6 @@ const TabPanel = React.forwardRef((props: TabPanelProps) => {
       {children}
     </div>
   )
-})
+}
 
 export default TabPanel

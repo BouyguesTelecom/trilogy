@@ -10,19 +10,17 @@ import { has } from '@/services'
  * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode}
  * @param hasIcon {boolean} If Have icon
- * @param onDelete {() => void} OnDelete Event
  */
 
-const List = React.forwardRef((props: ListProps, ref: React.LegacyRef<HTMLUListElement>) => {
-  const { className, id, children, testId, divider, ...others } = props
+const List = ({ className, id, children, testId, divider, ...others }: ListProps) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
 
   return (
-    <ul id={id} ref={ref} data-testid={testId} className={classes} {...others}>
+    <ul id={id} data-testid={testId} className={classes} {...others}>
       {children}
     </ul>
   )
-})
+}
 
 export default List
