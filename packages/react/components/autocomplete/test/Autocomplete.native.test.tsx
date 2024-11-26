@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, userEvent } from '@testing-library/react-native'
 import React from 'react'
 
-import AutoComplete from '@/components/Autocomplete/AutoComplete.native'
+import AutoComplete from '@/components/autocomplete/AutoComplete.native'
 
 jest.useFakeTimers()
 const testItems = ['Apple', 'Banana', 'Cherry', 'Grape']
