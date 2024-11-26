@@ -1,11 +1,9 @@
-// Dependencies
-import * as React from 'react'
+import React from 'react'
 
-// Testing methods
-import { fireEvent, render, screen } from '@testing-library/react'
-import { getColorClassName } from '../../../objects'
-import { getEnumNames } from '../../../helpers'
-import { has, is } from '../../../services'
+import { getEnumNames } from '@/helpers'
+import { getColorClassName } from '@/objects'
+import { is } from '@/services'
+import { render, screen } from '@testing-library/react'
 
 // Component to test
 import { Tag, TagVariant } from '..'
@@ -50,6 +48,4 @@ describe('Tag component', () => {
     expect(screen.getByText('DEFAULT')).not.toHaveClass(is('inverted'))
     expect(screen.getByText('INVERTED')).not.toHaveClass(is('inverted'))
   })
-
-
 })
