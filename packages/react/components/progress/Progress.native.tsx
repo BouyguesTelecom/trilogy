@@ -95,24 +95,23 @@ const Progress = React.forwardRef(
       return (
         <View style={styles.progress} {...others} ref={ref}>
           {Array.isArray(children) &&
-            children.map(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (child: any, index: number) =>
-                (child &&
-                  child.type.name === 'ProgressItem' &&
-                  React.cloneElement(child, {
-                    key: index,
-                    style: [
-                      index === 0 && styles.progressItemFirst,
-                      index === children.length - 1 && styles.progressItemSecond,
-                      {
-                        backgroundColor: getColorStyle(child.props.status),
-                        height: height,
-                      },
-                    ],
-                  })) ||
-                child,
-            )}
+            children.map((child, index: number) => {
+              if (child && child?.type?.render?.displayName === 'ProgressItem') {
+                return React.cloneElement(child, {
+                  key: index,
+                  style: [
+                    index === 0 && styles.progressItemFirst,
+                    index === children.length - 1 && styles.progressItemSecond,
+                    {
+                      backgroundColor: getColorStyle(child.props.status),
+                      height: height,
+                    },
+                  ],
+                })
+              }
+
+              return child
+            })}
         </View>
       )
     }

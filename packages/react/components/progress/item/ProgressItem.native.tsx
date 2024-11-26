@@ -16,8 +16,7 @@ const ProgressItem = React.forwardRef(
   ({ children, percent, status, ...others }: ProgressItemProps, ref: React.Ref<ViewType>): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const givenProps = others as any
-    const givenstyle = givenProps.style
-
+    const { style } = givenProps
     const animation = useRef(new Animated.Value(0)).current
 
     useEffect(() => {
@@ -37,7 +36,7 @@ const ProgressItem = React.forwardRef(
     })
 
     return (
-      <Animated.View ref={ref} style={[{ width }, ...givenstyle]} {...others}>
+      <Animated.View ref={ref} style={[{ width }, ...style]}>
         {children}
       </Animated.View>
     )
