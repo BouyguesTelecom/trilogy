@@ -18,4 +18,5 @@ export interface ModalProps extends Accessibility, Dev, CommonProps {
   onModalHide?: () => void
   unClosable?: boolean
   size?: ModalSize
+  title: string
 }
