@@ -142,6 +142,17 @@ $gap: 4px,
       }
     }
 
+    &.is-aligned-start {
+      align-items: start !important;
+    }
+
+    &.is-aligned-center {
+      align-items: center !important;
+    }
+
+    &.is-aligned-end {
+      align-items: end !important;
+    }
   }
 
   @include touch {
@@ -214,6 +225,18 @@ $gap: 4px,
         --ColumnFraction: 1;
       }
     }
+
+    &.is-aligned-start {
+      align-items: unset !important;
+    }
+
+    &.is-aligned-center {
+      align-items: unset !important;
+    }
+
+    &.is-aligned-end {
+      align-items: unset !important;
+    }
   }
   @include tablet-only {
     &.is-desktop {
@@ -232,19 +255,6 @@ $gap: 4px,
   flex-basis: 0;
   flex-grow: 1;
   flex-shrink: 1;
-
-  &.is-aligned-start {
-    align-self: start;
-  }
-
-  &.is-aligned-center {
-    align-self: center;
-  }
-
-  &.is-aligned-end {
-    align-self: end;
-  }
-
 
   @include mobile {
     &.is-narrow-mobile {
@@ -358,6 +368,10 @@ $gap: 4px,
         --offset: #{$value};
         margin-left: $offsetWidth;
       }
+    }
+
+    .column.is-narrow {
+      flex: none;
     }
   }
 
