@@ -62,7 +62,7 @@ const Price = ({
 
     let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
     cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (!hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
+    const centsDisplayed = (!hideCents && `€${cents || '00'}`) || '€'
 
     oldAmountComponent = (
       <span aria-hidden='true' className={classesStrike} {...others}>
@@ -86,7 +86,7 @@ const Price = ({
 
     let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
     cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (!hideCents && `,${cents || '00'} €`) || (!hideCents && `€${cents || '00'}`) || '€'
+    const centsDisplayed = (!hideCents && `€${cents || '00'}`) || '€'
 
     amountComponent = (
       <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>

@@ -155,7 +155,7 @@ const Select = ({
         {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
         {...others}
       />
-      <Modal active={display} onClose={handleOpenCloseModal} unClosable>
+      <Modal active={display} onClose={handleOpenCloseModal} unClosable title="">
         {options}
       </Modal>
     </>

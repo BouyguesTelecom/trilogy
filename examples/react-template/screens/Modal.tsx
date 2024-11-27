@@ -6,10 +6,10 @@ import {
   Divider,
   Icon,
   IconName,
+  IconSize,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
   ModalSize,
   Section,
   Title,
@@ -23,6 +23,7 @@ function Buttons() {
 export const ModalScreen = (): JSX.Element => {
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
+  const [openModal3, setOpenModal3] = useState(false)
   return (
     <>
       <Section>
@@ -30,22 +31,46 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
+          title="Hello"
           size={ModalSize.SMALL}
           trigger={
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(true)}>
               Click to open modal
             </Button>
           }
-          hideCloseButton
           active={openModal1}
           onClose={() => setOpenModal1(false)}
         >
-          <ModalHeader>
-            <Icon name={IconName.ARROW_RIGHT} />
-            <Title>Hello</Title>
-          </ModalHeader>
           <ModalBody>
             <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
+            <p>Modal content</p>
             <p>Modal content</p>
           </ModalBody>
           <ModalFooter>
@@ -57,18 +82,34 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
-          trigger={<Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal2(true)} />}
+          title="Hello"
+          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal2(true)} />}
           active={openModal2}
           onClose={() => setOpenModal2(false)}
         >
-          <ModalHeader>
-            <Title>Hello</Title>
-          </ModalHeader>
           <ModalBody>
             <p>Modal content</p>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal2(false)}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+
+        <Modal
+          title="Hello"
+          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal3(true)} />}
+          active={openModal3}
+          onClose={() => setOpenModal3(false)}
+          panel
+        >
+          <ModalBody>
+            <p>Modal content</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal3(false)}>
               Close
             </Button>
           </ModalFooter>

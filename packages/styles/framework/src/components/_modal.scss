@@ -71,7 +71,6 @@ body:has(.modal.is-active) {
     color: getColor('font');
     overflow: auto;
     position: relative;
-    padding: $spacing-5;
     margin: 0 $modal-content-margin-mobile;
     max-height: calc(100vh - 40px);
     width: 100%;
@@ -103,7 +102,64 @@ body:has(.modal.is-active) {
       }
     }
 
+    // If Close Icon Modal & Title Modal are sibling elements, override margin
+    .modal-close ~ .modal-title {
+      margin-top: -32px;
+    }
+
+    .modal-header {
+      padding: $spacing-5;
+      color: getColor('font');
+      font-family: $family-sans-serif;
+      font-size: $size-3;
+      font-weight: $weight-semibold;
+      line-height: 1.1;
+      background-color: getColor('background');
+      z-index: zindex('small');
+      position: sticky;
+      top: 0;
+      width: 100%;
+      word-wrap: break-word;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      &:has(.icon) {
+        text-align: center;
+      }
+
+      @include desktop {
+        font-size: $size-3-desktop;
+      }
+
+      .modal-close {
+        @include delete;
+
+        background-color: getColor('background');
+        display: block;
+        height: $modal-close-dimensions;
+        width: $modal-close-dimensions;
+        z-index: zindex('medium');
+
+        #{$hoverSelector} {
+          background-color: getColor('neutral-fade');
+        }
+
+        &::after,
+        &::before {
+          background-color: getColor('font');
+        }
+      }
+    }
+
+    .modal-body {
+      padding: $spacing-5;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
     .modal-footer {
+      padding: $spacing-5;
       position: sticky;
       width: 100%;
       background: getColor('background');
@@ -113,55 +169,6 @@ body:has(.modal.is-active) {
         display: flex;
         justify-content: flex-end;
       }
-    }
-
-    // If Close Icon Modal & Title Modal are sibling elements, override margin
-    .modal-close ~ .modal-title {
-      margin-top: -32px;
-    }
-  }
-
-  .modal-close {
-    @include delete;
-
-    background-color: getColor('background');
-    position: absolute;
-    top: $spacing-5;
-    right: $spacing-5;
-    display: block;
-    height: $modal-close-dimensions;
-    width: $modal-close-dimensions;
-    z-index: zindex('medium');
-
-    #{$hoverSelector} {
-      background-color: getColor('neutral-fade');
-    }
-
-    &::after,
-    &::before {
-      background-color: getColor('font');
-    }
-  }
-
-  .modal-header {
-    color: getColor('font');
-    font-family: $family-sans-serif;
-    font-size: $size-3;
-    font-weight: $weight-semibold;
-    line-height: 1.1;
-    background-color: getColor('background');
-    z-index: zindex('small');
-    position: sticky;
-    top: 0;
-    width: 100%;
-    word-wrap: break-word;
-
-    &:has(.icon) {
-      text-align: center;
-    }
-
-    @include desktop {
-      font-size: $size-3-desktop;
     }
   }
 
