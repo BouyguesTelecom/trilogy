@@ -54,11 +54,6 @@ $gap: 4px,
       flex: none;
       --ColumnFraction: #{$value};
     }
-
-    .column.is-offset-#{$key} {
-      --offset: #{$value};
-      margin-left: $offsetWidth;
-    }
   }
 
   @for $i from 1 through length($gap) {
@@ -357,6 +352,13 @@ $gap: 4px,
 
   &.is-mobile {
     display: flex;
+
+    @each $key, $value in $columnSize {
+      .column.is-offset-#{$key} {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
   }
 
   &.is-multiline {
