@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "./components/**/*.stories.tsx",
+    "node_modules",
+    "./jest*",
+    "./snapshotResolver.ts",
+    "./fileTransformer.cjs",
+    "./package.json",
+    "./coverage",
+    "**/test/**",
+  ]
+}
