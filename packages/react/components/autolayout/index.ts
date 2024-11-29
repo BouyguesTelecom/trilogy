@@ -1,4 +1,2 @@
-import AutoLayout from './AutoLayout'
-import AutoLayoutWrapper from './AutoLayoutWrapper'
-
-export { AutoLayout, AutoLayoutWrapper }
+export { default as AutoLayout } from '@/components/autolayout/AutoLayout'
+export { default as AutoLayoutWrapper } from '@/components/autolayout/AutoLayoutWrapper'

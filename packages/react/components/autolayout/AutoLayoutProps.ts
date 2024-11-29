@@ -1,18 +1,19 @@
-import * as React from "react"
-import { SpacerSize } from "@/components/spacer"
-import { SpacingMatrix } from "./SpacingMatrix"
+import * as React from 'react'
 
-type EdgeType = "bottom" | "top";
+import { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
+import { SpacerSize } from '@/components/spacer'
+
+type EdgeType = 'bottom' | 'top'
 
 type AutoLayoutProps = {
-  children: React.ReactNode;
-  edges?: EdgeType[];
-  edgeSize?: SpacerSize;
-  noSpace?: boolean;
+  children: React.ReactNode
+  edges?: EdgeType[]
+  edgeSize?: SpacerSize
+  noSpace?: boolean
   /**
    * @deprecated
    */
-  matrix?: SpacingMatrix;
-};
+  matrix?: SpacingMatrix
+}
 
-export type { EdgeType, AutoLayoutProps }
+export type { AutoLayoutProps, EdgeType }
