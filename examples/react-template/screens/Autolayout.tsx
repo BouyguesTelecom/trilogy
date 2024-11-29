@@ -1,27 +1,26 @@
+import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
   Alert,
+  AutoComplete,
   AutoLayout,
   Box,
   BoxContent,
   BoxHeader,
   Button,
+  Card,
+  CardContent,
+  Icon,
   IconName,
-  Input,
+  IconSize,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-  Icon,
-  IconSize,
-  Card,
-  CardContent,
-  Divider,
 } from '@trilogy-ds/react/components'
-import { StatusState, TrilogyColor } from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
@@ -77,15 +76,15 @@ export const AutolayoutScreen = (): JSX.Element => {
       <Button variant={'PRIMARY'}>Click</Button>
 
       <Accordion>
-        <AccordionItem id="ONE" active={true}>
+        <AccordionItem id='ONE' active={true}>
           <AccordionHeader>
-            <Text >Hello World 1</Text>
+            <Text>Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody dataId="totooooo-test-id" testId="totooooo">
+          <AccordionBody dataId='totooooo-test-id' testId='totooooo'>
             <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id="TWO">
+        <AccordionItem active={true} id='TWO'>
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -93,7 +92,7 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Lorem ipsum dolor sit amet</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem id="THREE">
+        <AccordionItem id='THREE'>
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -101,7 +100,7 @@ export const AutolayoutScreen = (): JSX.Element => {
             <Text>Collpased by default</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id="FOUR">
+        <AccordionItem disabled id='FOUR'>
           <AccordionHeader>
             <Text>Hello World 3</Text>
           </AccordionHeader>
@@ -118,7 +117,7 @@ export const AutolayoutScreen = (): JSX.Element => {
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
 
-      <Input.AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
+      <AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
     </AutoLayout>
   )
 }

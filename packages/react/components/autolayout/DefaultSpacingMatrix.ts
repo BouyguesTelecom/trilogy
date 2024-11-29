@@ -1,5 +1,5 @@
+import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { SpacerSize } from '@/components/spacer'
-import { SpacingMatrix, SpacingMatrixMode } from './SpacingMatrix'
 
 const { FOUR, THREE, TWO } = SpacerSize
 
