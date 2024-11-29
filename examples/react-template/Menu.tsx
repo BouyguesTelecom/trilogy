@@ -2,8 +2,8 @@ import {
   AutoLayout,
   Box,
   BoxContent,
-  Columns,
   Column,
+  Columns,
   Divider,
   Icon,
   IconName,
@@ -16,9 +16,9 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
+import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 import * as Screens from './screens'
-import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {
@@ -50,31 +50,33 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
               Screens
             </Title>
-            {Object.keys(list).map((name: any, index) => {
-              const [pathName] = list[name].split('Screen')
-              return (
-                <Box
-                  key={index}
-                  onClick={() => {
-                    console.log(navigation)
-                    if (navigation) {
-                      navigation.navigate(pathName)
-                    }
-                  }}
-                >
-                  <BoxContent>
-                    <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-                      <Column>
-                        <Title level={TitleLevels.THREE}>{pathName}</Title>
-                      </Column>
-                      <Column narrow>
-                        <Icon name={IconName.ARROW_RIGHT} />
-                      </Column>
-                    </Columns>
-                  </BoxContent>
-                </Box>
-              )
-            })}
+            <AutoLayout>
+              {Object.keys(list).map((name, index) => {
+                const [pathName] = list[name].split('Screen')
+                return (
+                  <Box
+                    key={index}
+                    onClick={() => {
+                      console.log(navigation)
+                      if (navigation) {
+                        navigation.navigate(pathName)
+                      }
+                    }}
+                  >
+                    <BoxContent>
+                      <Columns verticalAlign='ALIGNED_CENTER' gap={0}>
+                        <Column size={11}>
+                          <Title level={TitleLevels.THREE}>{pathName}</Title>
+                        </Column>
+                        <Column size={1}>
+                          <Icon name={IconName.ARROW_RIGHT} />
+                        </Column>
+                      </Columns>
+                    </BoxContent>
+                  </Box>
+                )
+              })}
+            </AutoLayout>
           </Section>
         </ScrollView>
       </AutoLayout>
