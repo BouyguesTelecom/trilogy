@@ -13,4 +13,5 @@ export interface TabProps extends Clickable, Accessibility, Dev, CommonProps {
   iconName?: IconNameValues | IconName
   label?: string
   disabled?: boolean
+  ariaControls?: string
 }

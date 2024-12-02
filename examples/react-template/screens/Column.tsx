@@ -8,8 +8,8 @@ import {
   Card,
   CardContent,
   CardImage,
-  Columns,
   Column,
+  Columns,
   Divider,
   Price,
   Section,
@@ -17,8 +17,7 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { GapSize } from '@trilogy-ds/react/lib/components/columns/ColumnsTypes'
-import { Alignable } from '@trilogy-ds/react'
+import { Alignable, GapSize } from '@trilogy-ds/react'
 
 export const ColumnScreen = (): JSX.Element => {
   return (
@@ -110,7 +109,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column narrow>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -125,7 +124,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column size={6}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -140,7 +139,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -158,7 +157,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column mobileSize={6} tabletSize={5} desktopSize={4} widescreenSize={3} fullhdSize={2}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -176,7 +175,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -197,7 +196,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column size={9}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -220,7 +219,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column size={8}>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>size=8</Title>
@@ -235,7 +234,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -253,7 +252,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box shadowless>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -271,7 +270,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box shadowless>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -289,7 +288,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box shadowless>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -307,7 +306,7 @@ export const ColumnScreen = (): JSX.Element => {
         <Column>
           <Box shadowless>
             <BoxContent>
-              <Text level={2} className='has-text-weight-bold'>
+              <Text level={2} className="has-text-weight-bold">
                 Overline
               </Text>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -325,27 +324,27 @@ export const ColumnScreen = (): JSX.Element => {
       </Columns>
       <Columns mobile multiline>
         <Column>
-          <Text level={1} className='has-background-warning'>
+          <Text level={1} className="has-background-warning">
             Column 1
           </Text>
         </Column>
         <Column>
-          <Text level={1} className='has-background-warning'>
+          <Text level={1} className="has-background-warning">
             Column 2
           </Text>
         </Column>
         <Column>
-          <Text level={1} className='has-background-warning'>
+          <Text level={1} className="has-background-warning">
             Column 3
           </Text>
         </Column>
         <Column>
-          <Text level={1} className='has-background-warning'>
+          <Text level={1} className="has-background-warning">
             Column 4
           </Text>
         </Column>
         <Column>
-          <Text level={1} className='has-background-warning'>
+          <Text level={1} className="has-background-warning">
             Column 5
           </Text>
         </Column>
@@ -404,7 +403,7 @@ export const ColumnScreen = (): JSX.Element => {
       <Columns scrollable marginSize={3}>
         <Column desktopSize={3} tabletSize={6} size={12}>
           <Card>
-            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+            <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
             <CardContent>
               <Title overline>Desktop Card Vertical</Title>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -418,7 +417,7 @@ export const ColumnScreen = (): JSX.Element => {
         </Column>
         <Column desktopSize={3} tabletSize={6} size={12}>
           <Card>
-            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+            <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
             <CardContent>
               <Title overline>Desktop Card Vertical</Title>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -432,7 +431,7 @@ export const ColumnScreen = (): JSX.Element => {
         </Column>
         <Column desktopSize={3} tabletSize={6} size={12}>
           <Card>
-            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+            <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
             <CardContent>
               <Title overline>Desktop Card Vertical</Title>
               <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -446,7 +445,7 @@ export const ColumnScreen = (): JSX.Element => {
         </Column>
         <Column desktopSize={3} tabletSize={6} size={12}>
           <Card>
-            <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+            <CardImage src="https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg" />
             <CardContent>
               <Title overline>Desktop Card Vertical</Title>
               <Title level={TitleLevels.ONE}>Card Title</Title>

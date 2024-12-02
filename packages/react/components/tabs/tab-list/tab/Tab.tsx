@@ -30,19 +30,12 @@ const Tab = ({
                label,
                disabled,
                testId,
+               ariaControls,
                ...others
              }: TabProps) => {
 
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
-
-  // accessibility
-  const a11y = {
-    a: {
-      'aria-selected': activeItem,
-      'data-tab-navigation': '',
-    },
-  }
 
   useEffect(() => {
     setActiveItem(active || false)
@@ -55,8 +48,6 @@ const Tab = ({
     return (
       <RouterLink
         data-testid={testId}
-        tabIndex={0}
-        {...a11y.a}
         to={to}
         href={href}
         className={classes}
@@ -80,12 +71,14 @@ const Tab = ({
 
   return (
     <button
+      aria-controls={ariaControls}
       aria-disabled={disabled}
+      aria-selected={activeItem}
+      data-tab-navigation=""
       disabled={disabled}
       className={classes}
       role="tab"
       data-testid={testId}
-      {...a11y.a}
       {...others}
       onClick={(e: React.MouseEvent) => {
         if (!disabled) {
