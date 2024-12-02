@@ -17,14 +17,15 @@ import { useTrilogyContext } from '@/context/index'
  * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
  */
 const Popover = ({
-  className,
-  id,
-  direction,
-  children,
-  active,
-  arrowPosition,
-  ...others
-}: PopoverWebProps): JSX.Element => {
+                   className,
+                   id,
+                   direction,
+                   children,
+                   active,
+                   arrowPosition,
+                   trigger,
+                   ...others
+                 }: PopoverWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -40,7 +41,8 @@ const Popover = ({
 
   return (
     <div id={id} className={classes} {...others}>
-      {children}
+      <div className={hashClass(styled, 'popover-content')}>{children}</div>
+      {trigger && trigger}
     </div>
   )
 }

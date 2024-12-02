@@ -6,6 +6,7 @@ import {
   PopoverDirectionValues,
 } from './PopoverEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { ReactNode } from 'react'
 
 /**
  * Popover Interface
@@ -15,6 +16,7 @@ export interface PopoverProps {
   direction?: PopoverDirection | PopoverDirectionValues
   active?: boolean
   arrowPosition?: PopoverArrowPosition | PopoverArrowPositionValues
+  trigger?: ReactNode
 }
 
 /**

@@ -61,7 +61,7 @@ $gap: 4px,
     &.is-mobile.has-gap-#{$i} {
       gap: $item;
 
-      .column {
+      > .column {
         --ColumnGap: #{$item};
       }
     }
@@ -70,7 +70,7 @@ $gap: 4px,
       &.has-gap-#{$i}:not(.is-desktop) {
         gap: $item;
 
-        .column {
+        > .column {
           --ColumnGap: #{$item};
         }
       }
@@ -81,7 +81,7 @@ $gap: 4px,
       &.has-gap-#{$i}-desktop {
         gap: $item;
 
-        .column {
+        > .column {
           --ColumnGap: #{$item};
         }
       }
@@ -91,7 +91,7 @@ $gap: 4px,
       &.has-gap-#{$i}-widescreen {
         gap: $item;
 
-        .column {
+        > .column {
           --ColumnGap: #{$item};
         }
       }
@@ -101,7 +101,7 @@ $gap: 4px,
       &.has-gap-#{$i}-fullhd {
         gap: $item;
 
-        .column {
+        > .column {
           --ColumnGap: #{$item};
         }
       }
@@ -126,7 +126,6 @@ $gap: 4px,
         margin-left: $offsetWidth;
       }
     }
-
   }
 
   @include tablet {
@@ -137,6 +136,11 @@ $gap: 4px,
       }
 
       .column.is-offset-#{$key}-tablet {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+
+      .column.is-offset-#{$key} {
         --offset: #{$value};
         margin-left: $offsetWidth;
       }
@@ -238,6 +242,7 @@ $gap: 4px,
       align-items: unset !important;
     }
   }
+
   @include tablet-only {
     &.is-desktop {
       flex-direction: column;
@@ -342,13 +347,8 @@ $gap: 4px,
     }
   }
 
-  &:not(:last-child) {
-    margin-bottom: $column-gap-tablet-desktop;
-  }
-
   @include mobile {
     gap: 16px;
-
   }
 
   // Modifiers
@@ -362,6 +362,18 @@ $gap: 4px,
 
   &.is-mobile {
     display: flex;
+
+    &.is-aligned-start {
+      align-items: start !important;
+    }
+
+    &.is-aligned-center {
+      align-items: center !important;
+    }
+
+    &.is-aligned-end {
+      align-items: end !important;
+    }
 
     @each $key, $value in $columnSize {
       .column.is-offset-#{$key} {

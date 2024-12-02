@@ -1,18 +1,21 @@
 import * as React from 'react'
 import {
   Button,
-  Columns,
+  ButtonVariant,
   Column,
+  Columns,
   Icon,
   IconName,
+  Link,
   Popover,
+  PopoverDirection,
   Section,
   Tag,
   TagVariant,
+  Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import { Link, PopoverContent, Text } from '@trilogy-ds/react'
+} from '@trilogy-ds/react'
 
 export const PopoverScreen = (): JSX.Element => {
   return (
@@ -21,34 +24,20 @@ export const PopoverScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Popover</Title>
         <Columns>
           <Column>
-            <Popover>
-              <PopoverContent>
-                <Tag variant={TagVariant.ERROR} label="Test"/>
-                <Icon name={IconName.TIMES} />
-              </PopoverContent>
-              <Link>Simple</Link>
+            <Popover trigger={<Link>Simple</Link>}>
+              <Tag variant={TagVariant.ERROR} label="Test" />
+              <Icon name={IconName.TIMES} />
             </Popover>
           </Column>
           <Column>
-            <Popover>
-              <Button variant={'PRIMARY'}>Without content</Button>
+            <Popover trigger={<Link>Simple</Link>} direction={PopoverDirection.RIGHT}>
+              <Tag variant={TagVariant.ERROR} label="Test" />
+              <Icon name={IconName.TIMES} />
             </Popover>
           </Column>
           <Column>
-            <Popover>
-              <PopoverContent>
-                <Tag variant={TagVariant.ERROR} label="Test"/>
-                <Icon name={IconName.TIMES} />
-              </PopoverContent>
-              <Button variant={'PRIMARY'}>Node content</Button>
-            </Popover>
-          </Column>
-          <Column>
-            <Popover active>
-              <PopoverContent>
-                <Text>Popover active</Text>
-              </PopoverContent>
-              <Button variant={'PRIMARY'}>Active</Button>
+            <Popover active trigger={<Button variant={ButtonVariant.PRIMARY}>Active</Button>}>
+              <Text>Popover active</Text>
             </Popover>
           </Column>
         </Columns>
