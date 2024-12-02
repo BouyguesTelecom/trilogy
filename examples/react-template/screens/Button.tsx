@@ -45,6 +45,10 @@ export const ButtonScreen = (): JSX.Element => {
       </ButtonList>
       <Separator/>
 
+      <Title level={TitleLevels.TWO}>Link</Title>
+      <Button variant={ButtonVariant.PRIMARY} href='/hello'>Hello !</Button>
+
+
       {/*  ======== loading & variant ======== */}
       <Title level={TitleLevels.TWO}>loading + variant </Title>
       <Spacer size={10}/>
