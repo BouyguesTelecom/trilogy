@@ -21,9 +21,6 @@
 
   @include desktop {
     max-width: $desktop - 2 * $gap;
-    margin-left: $gap;
-    margin-right: $gap;
-    max-width: none;
     width: auto;
   }
 
