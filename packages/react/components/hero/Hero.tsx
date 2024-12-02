@@ -1,10 +1,13 @@
-import React from 'react'
-import { HeroProps } from './HeroProps'
-import { has, is } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import React from 'react'
+import type { View } from 'react-native'
+
+import { ComponentName } from '@/components/enumsComponentsName'
+import { HeroProps } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has, is } from '@/services/classify'
 
 /**
  * Hero Component
@@ -20,44 +23,41 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Hero = ({
-  children,
-  backgroundColor,
-  backgroundSrc,
-  inverted,
-  className,
-  id,
-  onClick,
-  overlap,
-  ...others
-}: HeroProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Hero = React.forwardRef(
+  (
+    { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others }: HeroProps,
+    ref: React.Ref<HTMLDivElement | View>,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'hero',
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      (inverted && is('inverted')) || is('base'),
-      overlap && is('overlapped'),
-      className,
-    ),
-  )
+    const classes = hashClass(
+      styled,
+      clsx(
+        'hero',
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        (inverted && is('inverted')) || is('base'),
+        overlap && is('overlapped'),
+        className,
+      ),
+    )
 
-  return (
-    <section
-      id={id}
-      onClick={onClick && onClick}
-      {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})` },
-      })}
-      className={classes}
-      {...others}
-    >
-      <div className={hashClass(styled, clsx('hero-body'))}>{children}</div>
-    </section>
-  )
-}
+    return (
+      <section
+        ref={ref as React.RefObject<HTMLDivElement>}
+        id={id}
+        onClick={onClick && onClick}
+        className={classes}
+        {...(backgroundSrc && {
+          style: { backgroundImage: `url(${backgroundSrc})` },
+        })}
+        {...others}
+      >
+        <div className={hashClass(styled, clsx('hero-body'))}>{children}</div>
+      </section>
+    )
+  },
+)
 
+Hero.displayName = ComponentName.Hero
 export default Hero

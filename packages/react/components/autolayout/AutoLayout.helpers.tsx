@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as React from "react"
-import { SpacingMatrix, SpacingMatrixMode } from "./SpacingMatrix"
-import { Spacer, SpacerSize } from "@/components/spacer"
-import type { HandleBetweenChildren, ParseChildren } from "./AutoLayout.d"
-import type { TrilogyComponents } from "@/components/index.d"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React from 'react'
+
+import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/AutoLayout.d'
+import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
+import { ComponentName } from '@/components/enumsComponentsName'
+import type { TrilogyComponents } from '@/components/index.d'
+import { Spacer, SpacerSize } from '@/components/spacer'
 
 /**
  * Test if an element is a React Fragment
@@ -12,13 +13,11 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param element
  * @returns
  */
-export const isFragment = (element: React.ReactElement): boolean =>
-  element?.type === React.Fragment
+export const isFragment = (element: React.ReactElement): boolean => element?.type === React.Fragment
 
 const getTrilogyComponentName = (child: any): string | undefined => {
   const componentsKeys = Object.keys(ComponentName).filter((key) => key)
-
-  return componentsKeys.find((key) => key === child.type.displayName)
+  return componentsKeys.find((key) => key === child?.type?.render?.displayName || key === child?.type?.displayName)
 }
 
 /**
@@ -28,19 +27,14 @@ const getTrilogyComponentName = (child: any): string | undefined => {
  * @param componentType
  * @returns
  */
-export const isElementType = (
-  element: React.ReactElement,
-  componentType: TrilogyComponents
-): boolean => (element?.type as any)?.displayName === componentType
+export const isElementType = (element: React.ReactElement, componentType: TrilogyComponents): boolean =>
+  (element?.type as any)?.render?.displayName === componentType || (element?.type as any)?.displayName === componentType
 
 /**
  * Iterate over children and apply the `handleBetweenChildren` method.
  */
 
-export const parseChildren = ({
-  children,
-  handleBetweenChildren,
-}: ParseChildren): JSX.Element[] => {
+export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren): JSX.Element[] => {
   const array: JSX.Element[] = [] // React.Children.toArray(children)
   createChildrenArray(array, children)
 
@@ -51,30 +45,27 @@ export const parseChildren = ({
 
     const getChildCandidateToComparison = (
       child: React.ReactElement,
-      accumulator?: JSX.Element[]
+      accumulator?: JSX.Element[],
     ): React.ReactElement => {
-      if (isElementType(child, "AutoLayout")) {
-        return getChildCandidateToComparison(
-          React.Children.toArray(child.props.children)[0] as React.ReactElement
-        )
+      if (isElementType(child, 'AutoLayout')) {
+        return getChildCandidateToComparison(React.Children.toArray(child.props.children)[0] as React.ReactElement)
       }
       if (child === null && accumulator && accumulator.length >= 2) {
-        return getChildCandidateToComparison(
-          accumulator[accumulator.length - 2],
-          accumulator.slice(0, -1)
-        )
+        return getChildCandidateToComparison(accumulator[accumulator.length - 2], accumulator.slice(0, -1))
       }
 
       return child
     }
 
     const nextChildType: TrilogyComponents | undefined =
+      (getChildCandidateToComparison(nextChild)?.type as any)?.render?.displayName ||
       (getChildCandidateToComparison(nextChild)?.type as any)?.displayName ||
       undefined
 
     const previousChildType: TrilogyComponents | undefined =
-      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)
-        ?.displayName || undefined
+      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)?.render?.displayName ||
+      (getChildCandidateToComparison(previousChild, accumulator)?.type as any)?.displayName ||
+      undefined
 
     handleBetweenChildren?.({
       accumulator,
@@ -99,18 +90,10 @@ export const parseChildren = ({
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const autoLayoutChildrenHandler = (
   matrix: SpacingMatrix,
-  {
-    accumulator,
-    previousChildType,
-    nextChildType,
-    childIndex,
-  }: HandleBetweenChildren
+  { accumulator, previousChildType, nextChildType, childIndex }: HandleBetweenChildren,
 ): void => {
   const eligibleRule = (mode: SpacingMatrixMode) =>
-    [
-      SpacingMatrixMode.INSERT_SPACE_BETWEEN,
-      SpacingMatrixMode.INSERT_ELEMENT_BETWEEN,
-    ].includes(mode)
+    [SpacingMatrixMode.INSERT_SPACE_BETWEEN, SpacingMatrixMode.INSERT_ELEMENT_BETWEEN].includes(mode)
 
   let alreadySpaced = false
 
@@ -124,15 +107,13 @@ export const autoLayoutChildrenHandler = (
       nextType,
       previousChildType,
       nextChildType,
-      alreadySpaced
+      alreadySpaced,
     )
 
     if (isRuleApplicable) {
       alreadySpaced = true
       if (mode === SpacingMatrixMode.INSERT_SPACE_BETWEEN) {
-        accumulator.push(
-          <Spacer key={`spacer${childIndex}`} size={value as SpacerSize} />
-        )
+        accumulator.push(<Spacer key={`spacer${childIndex}`} size={value as SpacerSize} />)
       } else if (mode === SpacingMatrixMode.INSERT_ELEMENT_BETWEEN) {
         accumulator.push(value as JSX.Element)
       }
@@ -140,10 +121,7 @@ export const autoLayoutChildrenHandler = (
   })
 }
 
-const createChildrenArray = (
-  array: JSX.Element[],
-  children: React.ReactNode
-): void => {
+const createChildrenArray = (array: JSX.Element[], children: React.ReactNode): void => {
   React.Children.forEach(children, (child: any) => {
     if (isFragment(child)) {
       React.Children.forEach(child?.props.children, (item) => {
@@ -151,14 +129,20 @@ const createChildrenArray = (
       })
     } else if (
       child?.type &&
-      child.type.displayName !== getTrilogyComponentName(child) &&
-      child.type.$$typeof === undefined
+      child?.type?.displayName !== getTrilogyComponentName(child) &&
+      child?.type?.$$typeof === undefined
     ) {
       createChildrenArray(array, child.type(child.props))
     } else if (
       child?.type &&
-      child.type.displayName !== getTrilogyComponentName(child) &&
-      child.type.$$typeof === Symbol.for("react.memo")
+      child?.type?.displayName !== getTrilogyComponentName(child) &&
+      child?.type?.$$typeof === Symbol.for('react.memo')
+    ) {
+      createChildrenArray(array, child.type.type(child.props))
+    } else if (
+      child?.type &&
+      child?.type?.$$typeof === Symbol.for('react.forward_ref') &&
+      child?.type?.render?.displayName !== getTrilogyComponentName(child)
     ) {
       createChildrenArray(array, child.type.type(child.props))
     } else {
@@ -168,11 +152,11 @@ const createChildrenArray = (
 }
 
 const checkRuleApplicable = (
-  previousType: TrilogyComponents | undefined | "default",
-  nextType: TrilogyComponents | undefined | "default",
+  previousType: TrilogyComponents | undefined | 'default',
+  nextType: TrilogyComponents | undefined | 'default',
   previousChildType: TrilogyComponents | undefined,
   nextChildType: TrilogyComponents | undefined,
-  alreadySpaced: boolean
+  alreadySpaced: boolean,
 ): boolean => {
   if (previousChildType === undefined || nextChildType === undefined) {
     return false
@@ -181,9 +165,9 @@ const checkRuleApplicable = (
     return false
   } else if (
     (previousType === previousChildType && nextType === nextChildType) ||
-    (previousType === "default" && nextType === nextChildType) ||
-    (previousType === previousChildType && nextType === "default") ||
-    (previousType === "default" && nextType === "default")
+    (previousType === 'default' && nextType === nextChildType) ||
+    (previousType === previousChildType && nextType === 'default') ||
+    (previousType === 'default' && nextType === 'default')
   ) {
     return true
   }

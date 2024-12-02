@@ -1,15 +1,12 @@
 import { render } from '@testing-library/react'
-import * as React from 'react'
-import { StickyPosition } from '../../../objects'
-import Container from '../Container'
+import React from 'react'
+
+import Container from '@/components/container/Container'
 
 describe('Container', () => {
   it('should render with correct classes and props', () => {
     const { getByTestId } = render(
-      <Container
-        data-testid='container'
-        medium
-      >
+      <Container data-testid='container' medium>
         <div data-testid='test-child'>Test Child</div>
       </Container>,
     )
