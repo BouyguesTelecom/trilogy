@@ -1,3 +1,1 @@
-import Container from './Container'
-
-export { Container }
+export { default as Container } from '@/components/container/Container'
