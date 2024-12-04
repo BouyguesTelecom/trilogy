@@ -41,9 +41,8 @@ const Checkbox = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('checkbox', className))} tabIndex={0}>
+    <div className={hashClass(styled, clsx('checkbox', className))}>
       <input
-        aria-checked={checked}
         type='checkbox'
         readOnly={readonly}
         id={id}
