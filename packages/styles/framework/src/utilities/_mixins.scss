@@ -409,7 +409,9 @@
     }
 
     input {
-      display: none;
+      opacity: 0;
+      position: absolute;
+      outline: none;
 
       &:checked ~ label.#{$type}-label {
         border-color: getColor('main');
@@ -421,6 +423,9 @@
         &:after {
           background-color: getColor('main');
         }
+      }
+      &:focus-visible ~ label.#{$type}-label:before {
+        outline: 1px solid;
       }
 
       &:disabled,
@@ -494,6 +499,9 @@
       & ~ label.#{$type}-label {
         @include disabledRules;
       }
+    }
+    &:has(input:focus-visible) label.#{$type}-label{
+      outline:  1px solid;
     }
 
     &:first-child {
