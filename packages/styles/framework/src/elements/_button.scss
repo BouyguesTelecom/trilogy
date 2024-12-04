@@ -53,6 +53,11 @@ $button-border-width: 2px !default;
     }
   }
 
+  &.is-ghost:hover {
+    background-color: var(--color-main-fade);
+    filter: none !important;
+  }
+
   &[disabled],
   &[aria-disabled=true] {
     background-color: getColorValue('main-fade') !important;
