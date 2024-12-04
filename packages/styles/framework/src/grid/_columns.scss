@@ -272,6 +272,18 @@ $gap: 4px,
     &.is-narrow-tablet {
       flex: none;
     }
+
+    &.is-aligned-start {
+      align-self: start !important;
+    }
+
+    &.is-aligned-center {
+      align-self: center !important;
+    }
+
+    &.is-aligned-end {
+      align-self: end !important;
+    }
   }
 
   @include touch {
@@ -382,8 +394,22 @@ $gap: 4px,
       }
     }
 
-    .column.is-narrow {
-      flex: none;
+    .column {
+      &.is-narrow {
+        flex: none;
+      }
+
+      &.is-aligned-start {
+        align-self: start !important;
+      }
+
+      &.is-aligned-center {
+        align-self: center !important;
+      }
+
+      &.is-aligned-end {
+        align-self: end !important;
+      }
     }
   }
 
