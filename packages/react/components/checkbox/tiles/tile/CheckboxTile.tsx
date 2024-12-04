@@ -40,9 +40,8 @@ const CheckboxTile = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))} tabIndex={0}>
+    <div className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
       <input
-        aria-checked={checked}
         type='checkbox'
         readOnly={readonly}
         id={id}
