@@ -61,7 +61,7 @@
 
   &.is-inverted {
     color: getColor('main') !important;
-    background: getColor('background');
+    background: getColor('background') !important;
   }
 }
 
