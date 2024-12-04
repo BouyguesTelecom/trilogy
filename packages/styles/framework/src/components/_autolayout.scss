@@ -5,10 +5,13 @@ body:not(.is-tight) {
   .card:not(:last-child) {
     margin-bottom: 24px;
   }
+  .columns:not(:last-child) {
+    margin-bottom: 24px;
+  }
   .box:not(:last-child) {
     margin-bottom: 24px;
   }
-  *:has(+.divider):not(:last-child) {
+  *:has(+ .divider):not(:last-child) {
     margin-bottom: 24px;
   }
   .divider:not(:last-child) {
@@ -156,10 +159,13 @@ body:not(.is-tight) {
   .card:not(:last-child) {
       margin-bottom: 16px;
     }
+  .columns:not(:last-child) {
+      margin-bottom: 16px;
+    }
   .box:not(:last-child) {
       margin-bottom: 16px;
     }
-  *:has(+.divider):not(:last-child) {
+  *:has(+ .divider):not(:last-child) {
       margin-bottom: 16px;
     }
   .divider:not(:last-child) {

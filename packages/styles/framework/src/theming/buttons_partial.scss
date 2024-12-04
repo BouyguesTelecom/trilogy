@@ -10,7 +10,7 @@ $button-colors: (
   'accent':['conversion', 'accent', 'background'],
   'primary': ['primary', 'main', 'background'],
   'secondary': ['secondary', 'main-fade', 'main'],
-  'ghost': ['ghost', 'background', 'main'],
+  'ghost': ['ghost', 'transparent', 'main']
 ) !default;
 
 %buttons-states {

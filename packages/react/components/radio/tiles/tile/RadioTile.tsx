@@ -40,9 +40,8 @@ const RadioTile = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))} tabIndex={0}>
+    <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
       <input
-        aria-checked={checked}
         type='radio'
         readOnly={readonly}
         id={id}
