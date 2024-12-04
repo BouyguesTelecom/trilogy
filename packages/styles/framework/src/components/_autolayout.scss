@@ -44,7 +44,7 @@ body:not(.is-tight) {
   .price-container:not(:last-child) {
     margin-bottom: 12px;
   }
-  .button:not(:last-child) {
+  :not(.buttons) > .button:not(:last-child) {
     margin-bottom: 24px;
   }
   .countdown:not(:last-child) {
@@ -195,7 +195,7 @@ body:not(.is-tight) {
   .price-container:not(:last-child) {
       margin-bottom: 8px;
     }
-  .button:not(:last-child) {
+  :not(.buttons) > .button:not(:last-child) {
       margin-bottom: 16px;
     }
   .countdown:not(:last-child) {
