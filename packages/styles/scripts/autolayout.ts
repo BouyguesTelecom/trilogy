@@ -29,7 +29,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.range', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.stepper', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.price-container', 'default', THREE, TWO],
-  [INSERT_SPACE_BETWEEN, '.button', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, ':not(.buttons) > .button', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.countdown', 'default', FOUR, THREE],
   [INSERT_SPACE_BETWEEN, '.countdown.is-small', 'default', THREE, THREE],
   [INSERT_SPACE_BETWEEN, '.chips-list', 'default', THREE, THREE],
