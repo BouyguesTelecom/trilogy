@@ -10,7 +10,8 @@ import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './In
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {
+}
 
 interface IconWrapper {
   className?: string
@@ -82,7 +83,7 @@ const Input = (
     onMouseLeave,
     name,
     placeholder,
-    type = 'text',
+    type = InputType.TEXT,
     defaultValue,
     value,
     loading,
@@ -108,7 +109,6 @@ const Input = (
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const hasPlaceholder = placeholder !== undefined && placeholder.length > 0
   const inputIcon = new Map()
   inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
@@ -133,7 +133,7 @@ const Input = (
 
   const controlClasses = hashClass(
     styled,
-    clsx('control', hasPlaceholder && type !== InputType.SEARCH && has('dynamic-placeholder'), {
+    clsx('control', {
       [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
       ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
     }),
@@ -210,18 +210,18 @@ const Input = (
 
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
-      {!hasPlaceholder && (
-        <label className='input-label'>
+      {label && (
+        <label className="input-label">
           {label}{' '}
-          {label && required && (
+          {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
               *
             </Text>
           )}
         </label>
       )}
-      {!hasPlaceholder && label && sample && (
-        <Text className='input-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+      {sample && (
+        <Text className="input-sample" level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
           {sample}
         </Text>
       )}
@@ -294,7 +294,6 @@ const Input = (
             setIsFocused(false)
           }}
         />
-        {hasPlaceholder && type !== InputType.SEARCH && <label>{placeholder}</label>}
         {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
         {iconNameLeft && !loading && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
         {iconNameRight && !loading && type !== 'password' && (
@@ -303,13 +302,13 @@ const Input = (
         {!loading && type === 'password' && (
           <IconWrapper
             className={'icon-right'}
-            name={isShowPwd ? 'tri-eye-slash' : 'tri-eye'}
+            name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
             onPress={() => {
               if (inputType === 'password') {
-                setInputType('text')
+                setInputType(InputType.TEXT)
                 setIsShowPwd(true)
               } else {
-                setInputType('password')
+                setInputType(InputType.PASSWORD)
                 setIsShowPwd(false)
               }
             }}
