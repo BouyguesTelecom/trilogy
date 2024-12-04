@@ -1,8 +1,9 @@
-import * as React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { BadgeProps } from './BadgeProps'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+
+import { BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
  * Badge Native Component
@@ -43,13 +44,13 @@ const Badge = ({ label, onClick, testId, variant, ...others }: BadgeProps): JSX.
     <View>
       <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
         <View style={styles.badge} {...others}>
-          {label}
+          <Text style={styles.text}>{label}</Text>
         </View>
       </TouchableOpacity>
     </View>
   ) : (
     <View style={styles.badge} {...others}>
-      {label}
+      <Text style={styles.text}>{label}</Text>
     </View>
   )
 }
