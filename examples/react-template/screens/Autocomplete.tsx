@@ -2,8 +2,8 @@ import { ButtonList, Section } from '@trilogy-ds/react'
 import {
   Button,
   ButtonVariant,
-  Columns,
   Column,
+  Columns,
   Divider,
   IconName,
   Text,
@@ -70,7 +70,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete custom data</Title>
         <AutoComplete<Item<{ info: number }>>
-          customIcon={IconName.INFOS_CIRCLE}
+          iconNameLeft={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[
             { label: 'name', data: { info: 1 } },
@@ -91,8 +91,8 @@ export const AutoCompleteScreen = (): JSX.Element => {
       <Divider />
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete with getSuggestions function</Title>
-        <AutoComplete<Item<{ info: number }>>
-          customIcon={IconName.INFOS_CIRCLE}
+        <AutoComplete
+          iconNameLeft={IconName.INFOS_CIRCLE}
           displayMenu={false}
           data={[]}
           getSuggestions={getSuggestions}
@@ -124,7 +124,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           </Column>
         </Columns>
         <AutoComplete
-          customIcon={IconName.INFOS_CIRCLE}
+          iconNameLeft={IconName.INFOS_CIRCLE}
           displayMenu={true}
           value={value}
           data={data}
