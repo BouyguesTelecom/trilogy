@@ -1,47 +1,20 @@
+import clsx from 'clsx'
+import React, { FocusEvent, useEffect, useState } from 'react'
+
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import clsx from 'clsx'
-import React, { FocusEvent, forwardRef, LegacyRef, useEffect, useState } from 'react'
+import { ComponentName } from '../enumsComponentsName'
 import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
 import { debounce } from './utils'
 
-/**
- * AutoComplete Component
- * @param placeholder {string} placeholder for input
- * @param defaultValue {string} Default Value for Input
- * @param data {string[]} Datas AutoComplete list Item
- * @param value {string} Value of Input
- * @param onChange {Function} OnChange Input Event
- * @param onFocus {Function} OnFocus Input Event
- * @param children {Function} Custom Component for dropdown list
- * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
- * @param matching {Function} matching function
- * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
- * @param onBlur {Function} onBlur Input Event
- * @param testId {string} Test Id for Test Integration
- * @param disabled {boolean} Disabled input
- * @param onIconClick {Function} onIconClick Input Event
- * @param onItemSelected {Function} onSelectedItemList event
- * @param customIcon {string} Additional icon classes
- * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
- * @param getSuggestions {Function} getSuggestions event
- * - ------------------ WEB PROPERTIES -----------------------
- * @param name {string} Input name
- * @param classNameMenu {string} Additionnal CSS Classes for Menu
- * @param absoluteMenu {boolean} Absolute position for Menu
- * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additionnal CSS Classes
- * @param accessibilityLabel {string} Accessibility label
- * @param loading {boolean} Loading input
- */
-const AutoComplete = <T extends string | Item<unknown> = string>(
+const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   {
     defaultValue,
     value,
@@ -57,7 +30,8 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
     matching = defaultMatching,
     displayMenu = true,
     onItemSelected,
-    iconName,
+    iconNameLeft,
+    iconNameRight,
     disabled,
     children,
     accessibilityLabel,
@@ -67,9 +41,8 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
     onFocus,
     id,
     loading,
-    ...others
   }: AutoCompletePropsWeb<T>,
-  ref: LegacyRef<HTMLInputElement>,
+  ref: React.Ref<HTMLInputElement>,
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
 
@@ -180,7 +153,8 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
         ref={ref}
         defaultValue={defaultValue}
         accessibilityLabel={accessibilityLabel}
-        iconNameLeft={iconName}
+        iconNameLeft={iconNameLeft}
+        iconNameRight={iconNameRight}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
         className='autocomplete-input'
@@ -226,4 +200,39 @@ const AutoComplete = <T extends string | Item<unknown> = string>(
   )
 }
 
-export default forwardRef(AutoComplete)
+AutoCompleteRef.displayName = ComponentName.AutoComplete
+
+/**
+ * AutoComplete Component
+ * @param placeholder {string} placeholder for input
+ * @param defaultValue {string} Default Value for Input
+ * @param data {string[]} Datas AutoComplete list Item
+ * @param value {string} Value of Input
+ * @param onChange {Function} OnChange Input Event
+ * @param onFocus {Function} OnFocus Input Event
+ * @param children {Function} Custom Component for dropdown list
+ * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
+ * @param matching {Function} matching function
+ * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param onBlur {Function} onBlur Input Event
+ * @param testId {string} Test Id for Test Integration
+ * @param disabled {boolean} Disabled input
+ * @param onIconClick {Function} onIconClick Input Event
+ * @param onItemSelected {Function} onSelectedItemList event
+ * @param customIcon {string} Additional icon classes
+ * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
+ * @param getSuggestions {Function} getSuggestions event
+ * - ------------------ WEB PROPERTIES -----------------------
+ * @param name {string} Input name
+ * @param classNameMenu {string} Additionnal CSS Classes for Menu
+ * @param absoluteMenu {boolean} Absolute position for Menu
+ * @param fullwidthMenu {boolean} Fullwidth size for Menu
+ * @param className {string} Additionnal CSS Classes
+ * @param accessibilityLabel {string} Accessibility label
+ * @param loading {boolean} Loading input
+ */
+const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
+  props: React.PropsWithRef<AutoCompletePropsWeb<T>>,
+) => JSX.Element
+
+export default AutoComplete

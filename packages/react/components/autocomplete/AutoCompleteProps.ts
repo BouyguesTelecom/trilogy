@@ -1,6 +1,10 @@
-import { InputChangeEventWeb, InputChangeEventNative, InputClickEvent, InputProps } from '../../components/input/InputProps'
 import { FocusEventHandler } from 'react'
-import { IconName, IconNameValues } from '../../components/icon'
+import {
+  InputChangeEventNative,
+  InputChangeEventWeb,
+  InputClickEvent,
+  InputProps,
+} from '../../components/input/InputProps'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
@@ -21,9 +25,8 @@ export interface AutoCompletePropsWeb<T = string> extends InputProps, CommonProp
   onIconClick?: (event: InputClickEvent) => void
   getSuggestions?: (search: string) => Promise<T[]>
   debounceSuggestionsTimeout?: number
-  onFocus?:FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
-  iconName?: IconName | IconNameValues
 }
 
 export interface AutoCompletePropsNative<T = string> extends InputProps {
@@ -41,9 +44,8 @@ export interface AutoCompletePropsNative<T = string> extends InputProps {
   onIconClick?: (event: InputClickEvent) => void
   getSuggestions?: (search: string) => Promise<T[]>
   debounceSuggestionsTimeout?: number
-  onFocus?: (event:  React.BaseSyntheticEvent) => void
+  onFocus?: (event: React.BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
-  iconName?: IconName | IconNameValues
 }
 
 export interface Item<T = string> {
