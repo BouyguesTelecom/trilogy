@@ -451,7 +451,6 @@
   .#{$type} {
     display: flex;
     align-items: center;
-    margin: 6px 8px;
     width: fit-content;
 
     input:disabled,
@@ -462,8 +461,7 @@
     }
 
     label.#{$type}-label {
-      padding: 4px;
-      padding-left: 34px;
+      padding-left: 30px;
 
       &:before,
       &:after {

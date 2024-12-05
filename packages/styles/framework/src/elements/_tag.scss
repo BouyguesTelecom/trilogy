@@ -6,23 +6,8 @@ $tag-delete-margin: 1px !default;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 16px;
-
-  // multi-tags : ajout d'une marge bottom, supprimable par facette
-  &:not(.is-gapless) {
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-
-    .tag {
-      margin-bottom: 10px;
-    }
-  }
-
+  gap: $spacing-3;
   // multi-tags : ajout d'une marge à droite de chaque tag
-  .tag:not(:last-child) {
-    margin-right: 8px;
-  }
 
   // centrage des tags
   &.is-centered {
@@ -34,7 +19,6 @@ $tag-delete-margin: 1px !default;
     cursor: pointer;
 
     .tag {
-      margin-right: 0;
 
       &:not(:first-child) {
         border-bottom-left-radius: 0;
