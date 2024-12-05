@@ -7,6 +7,7 @@ import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/Inpu
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
+import type { View } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
@@ -232,7 +233,7 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param loading {boolean} Loading input
  */
 const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
-  props: React.PropsWithRef<AutoCompletePropsWeb<T>>,
+  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<HTMLInputElement | View> },
 ) => JSX.Element
 
 export default AutoComplete
