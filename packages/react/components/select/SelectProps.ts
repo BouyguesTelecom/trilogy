@@ -32,5 +32,5 @@ export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, 
   name?: string
   multiple?: boolean
   placeholder?: string
-  native?: boolean
+  custom?: boolean
 }

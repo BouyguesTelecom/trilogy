@@ -18,45 +18,47 @@ export const SelectView = (): JSX.Element => {
         <Spacer size={20} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
+          custom
           disabled
-          name='option'
-          label='label'
-          id='id'
+          name="option"
+          label="label"
+          id="id"
           iconName={IconName.ALERT}
           selected={option}
           onChange={(e) => {
             setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
-          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
-          <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled iconName="tri-bell" />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" iconName="tri-bell" />
+          <SelectOption id="id_two" value="opt_two" label="Toto" iconName="tri-bell" />
+          <SelectOption id="id_three" value="Venus" label="Venus" iconName="tri-bell" />
         </Select>
-        <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
+        <Button onClick={() => setOption('Venus')} variant="PRIMARY">
           Set value 3
         </Button>
         <Spacer size={20} />
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
-          name='option'
-          label='label'
-          id='id'
+          custom
+          name="option"
+          label="label"
+          id="id"
           selected={optionNullable}
           onChange={(e) => {
             setOptionNullable(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled />
+          <SelectOption id="id_two" value="opt_two" label="Toto" />
+          <SelectOption id="id_three" value="Venus" label="Venus" />
         </Select>
-        <Button onClick={() => setOptionNullable(undefined)} variant='PRIMARY'>
+        <Button onClick={() => setOptionNullable(undefined)} variant="PRIMARY">
           Set Null
         </Button>
-        <Button onClick={() => setOptionNullable('opt_one')} variant='PRIMARY'>
+        <Button onClick={() => setOptionNullable('opt_one')} variant="PRIMARY">
           Set One
         </Button>
         <Spacer size={20} />
@@ -66,20 +68,20 @@ export const SelectView = (): JSX.Element => {
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
           multiple
-          name='option'
-          label='label'
-          id='id'
+          name="option"
+          label="label"
+          id="id"
           selected={options}
           onChange={(e) => {
             e?.selectedOptions && setOptions(e.selectedOptions)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" />
+          <SelectOption id="id_two" value="opt_two" label="Toto" />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled />
+          <SelectOption id="id_three" value="Venus" label="Venus" />
         </Select>
-        <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant='PRIMARY'>
+        <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant="PRIMARY">
           Set Venus
         </Button>
 
@@ -87,24 +89,24 @@ export const SelectView = (): JSX.Element => {
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
           multiple
-          name='option'
-          label='label'
-          id='id'
+          name="option"
+          label="label"
+          id="id"
           iconName={IconName.ALERT}
           selected={optionsNullable}
           onChange={(e) => {
             e?.selectedOptions && setOptionsNullable(e.selectedOptions)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" iconName={IconName.EYE_SLASH} />
+          <SelectOption id="id_two" value="opt_two" label="Toto" />
+          <SelectOption id="id_three" value="Venus" label="Venus" />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled />
         </Select>
-        <Button onClick={() => setOptionsNullable([])} variant='PRIMARY'>
+        <Button onClick={() => setOptionsNullable([])} variant="PRIMARY">
           Set Null
         </Button>
-        <Button onClick={() => setOptionsNullable(['opt_one', 'opt_two'])} variant='PRIMARY'>
+        <Button onClick={() => setOptionsNullable(['opt_one', 'opt_two'])} variant="PRIMARY">
           Set one & two
         </Button>
       </Section>
@@ -116,36 +118,36 @@ export const SelectView = (): JSX.Element => {
         <Title level={TitleLevels.FOUR}>Not icon</Title>
         <Select
           native
-          name='option'
-          label='label'
-          id='select-native-id'
+          name="option"
+          label="label"
+          id="select-native-id"
           selected={option}
           onChange={(e) => {
             e?.selectValue && setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" />
+          <SelectOption id="id_two" value="opt_two" label="Toto" />
+          <SelectOption id="id_three" value="Venus" label="Venus" />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled />
         </Select>
 
         <Title level={TitleLevels.FOUR}>With icon</Title>
         <Select
-          iconName='tri-alert'
+          iconName="tri-alert"
           native
-          name='option'
-          label='label'
-          id='select-native-id'
+          name="option"
+          label="label"
+          id="select-native-id"
           selected={option}
           onChange={(e) => {
             e?.selectValue && setOption(e.selectValue)
           }}
         >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
+          <SelectOption id="id_one" value="opt_one" label="Virgile" />
+          <SelectOption id="id_two" value="opt_two" label="Toto" />
+          <SelectOption id="id_three" value="Venus" label="Venus" />
+          <SelectOption id="id_four" value="disabled" label="disabled" disabled />
         </Select>
       </Section>
     </>

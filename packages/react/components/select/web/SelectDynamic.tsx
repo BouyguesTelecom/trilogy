@@ -110,59 +110,6 @@ const SelectDynamic = ({
     setSelectedValues(selected)
   }, [selected])
 
-  React.useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      const childs = children as React.ReactElement[]
-      const child = childs[focusedIndex]
-      e.preventDefault()
-      switch (true) {
-        case e.key === 'ArrowDown':
-          options &&
-            setFocusedIndex((prev) => {
-              let nextIndex = (prev + 1) % options.length
-              if (childs[nextIndex].props.disabled) nextIndex++
-              return nextIndex % options.length
-            })
-          break
-        case e.key === 'ArrowUp' && focusedIndex !== -1:
-          options &&
-            setFocusedIndex((prev) => {
-              let nextIndex = (prev - 1 + options.length) % options.length
-              if (childs[nextIndex].props.disabled) nextIndex--
-              if (nextIndex === -1) nextIndex = options.length - 1
-              return nextIndex % options.length
-            })
-          break
-        case e.key === 'ArrowUp' && focusedIndex === -1:
-          options &&
-            setFocusedIndex(() => {
-              let nextIndex = options.length - 1
-              if (childs[nextIndex].props.disabled) nextIndex--
-              return nextIndex
-            })
-          break
-        case ['Enter'].includes(e.key) && focusedIndex !== -1 && !child.props.disabled:
-          const isCheckedOption = isChecked(child.props.value)
-          setNewSelectedValues({
-            children: child.props.children,
-            label: child.props.label,
-            value: child.props.value,
-            isChecked: isCheckedOption,
-          })
-          break
-        case e.key === 'Escape':
-          setFocusedIndex(-1)
-          setIsFocused(false)
-          break
-        default:
-          return
-      }
-    }
-    focused && document.addEventListener('keydown', onKeyDown)
-    !focused && setFocusedIndex(-1)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [focused, focusedIndex, children, isChecked])
-
   const modal = useMemo(
     () => <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)} />,
     [],
@@ -227,9 +174,9 @@ const SelectDynamic = ({
           e.preventDefault()
           onKeyPressInput(e.inputKeyCode)
         }}
-        {...{ readOnly: true, id, role: 'listbox' }}
+        {...{ readOnly: true, id, role: 'combobox' }}
       />
-      {focused && <div className={hashClass(styled, clsx('select-options'))}>{options}</div>}
+      {focused && <ul role="listbox"  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )
