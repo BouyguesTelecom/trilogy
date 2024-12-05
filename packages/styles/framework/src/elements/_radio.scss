@@ -2,7 +2,8 @@
 
 .radios {
   width: 100%;
-  gap: 16px;
+  column-gap: $spacing-5;
+  row-gap: $spacing-3;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
