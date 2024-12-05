@@ -3,7 +3,7 @@
   margin: -2.5px;
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   text-align: center;
 
   .pagination-previous,
@@ -38,7 +38,6 @@
   .pagination-list {
     flex: 0 0 auto;
     flex-wrap: wrap;
-    flex-grow: 1;
     align-items: center;
     display: flex;
     justify-content: center;
