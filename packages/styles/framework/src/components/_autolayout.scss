@@ -1,5 +1,8 @@
 body:not(.is-tight) {
-  .accordions:not(:last-child) {
+  .accordion:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .buttons:not(:last-child) {
     margin-bottom: 24px;
   }
   .card:not(:last-child) {
@@ -68,7 +71,10 @@ body:not(.is-tight) {
   .progress-radial:not(:last-child) {
     margin-bottom: 8px;
   }
-  .radio:not(:last-child) {
+  .radios:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  :not(.radios) >.radios:not(:last-child) {
     margin-bottom: 12px;
   }
   .checkbox:not(:last-child) {
@@ -77,10 +83,16 @@ body:not(.is-tight) {
   .switch:not(:last-child) {
     margin-bottom: 12px;
   }
-  .radio-tile:not(:last-child) {
+  .radio-tiles:not(:last-child) {
     margin-bottom: 24px;
   }
-  .checkbox-tile:not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .checkbox-tiles:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  :not(.checkbox-tiles) > .checkbox-tile:not(:last-child) {
     margin-bottom: 24px;
   }
   .field:not(:last-child) {
@@ -104,7 +116,10 @@ body:not(.is-tight) {
   .sticker:not(:last-child) {
     margin-bottom: 8px;
   }
-  .tag:not(:last-child) {
+  .tags:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  :not(.tags) > .tag:not(:last-child) {
     margin-bottom: 8px;
   }
   .title.is-level-1:not(:last-child) {
@@ -153,7 +168,10 @@ body:not(.is-tight) {
 
 @include mobile() {
   body:not(.is-tight) {
-    .accordions:not(:last-child) {
+    .accordion:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .buttons:not(:last-child) {
       margin-bottom: 16px;
     }
   .card:not(:last-child) {
@@ -222,7 +240,10 @@ body:not(.is-tight) {
   .progress-radial:not(:last-child) {
       margin-bottom: 8px;
     }
-  .radio:not(:last-child) {
+  .radios:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  :not(.radios) >.radios:not(:last-child) {
       margin-bottom: 12px;
     }
   .checkbox:not(:last-child) {
@@ -231,10 +252,16 @@ body:not(.is-tight) {
   .switch:not(:last-child) {
       margin-bottom: 12px;
     }
-  .radio-tile:not(:last-child) {
+  .radio-tiles:not(:last-child) {
       margin-bottom: 16px;
     }
-  .checkbox-tile:not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .checkbox-tiles:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  :not(.checkbox-tiles) > .checkbox-tile:not(:last-child) {
       margin-bottom: 16px;
     }
   .field:not(:last-child) {
@@ -258,7 +285,10 @@ body:not(.is-tight) {
   .sticker:not(:last-child) {
       margin-bottom: 8px;
     }
-  .tag:not(:last-child) {
+  .tags:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  :not(.tags) > .tag:not(:last-child) {
       margin-bottom: 8px;
     }
   .title.is-level-1:not(:last-child) {
