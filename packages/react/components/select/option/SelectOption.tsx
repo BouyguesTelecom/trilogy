@@ -1,7 +1,10 @@
 import clsx from 'clsx'
-import { RadioTile } from '@/components/radio'
 import * as React from 'react'
 import { SelectOptionProps } from './SelectOptionProps'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { Icon } from '@/components/icon'
+import { is } from '@/lib/services/classify'
 
 /**
  * Select Option Component
@@ -30,8 +33,9 @@ const SelectOption = ({
                         ...others
                       }: SelectOptionProps) => {
 
+  const { styled } = useTrilogyContext()
   const { checked, native, focused, ...props } = others as { checked: boolean, native: boolean, focused: boolean }
-  const selectClasses = React.useMemo(() => clsx(focused && 'focus', className), [focused, className])
+  const selectClasses = React.useMemo(() => hashClass(styled, clsx('option', focused && 'focus', disabled && is('disabled'), className)), [focused, className])
 
   if (native) {
     return (
@@ -50,18 +54,34 @@ const SelectOption = ({
     )
   }
 
+  // return (
+  //   <RadioTile
+  //     checked={checked}
+  //     horizontal
+  //     className={selectClasses}
+  //     value={value}
+  //     disabled={disabled}
+  //     onChange={onClick}
+  //     icon={iconName}
+  //     description={label || children}
+  //     {...others}
+  //   />
+  // )
+
   return (
-    <RadioTile
-      checked={checked}
-      horizontal
+    <li
+      id={id}
       className={selectClasses}
-      value={value}
-      disabled={disabled}
-      onChange={onClick}
-      icon={iconName}
-      description={label || children}
+      data-selected={checked}
+      role="option"
+      aria-selected={checked}
+      data-value={value}
+      onClick={!disabled ? onClick : null}
       {...others}
-    />
+    >
+      {iconName && <Icon name={iconName} />}
+      {label || children}
+    </li>
   )
 }
 

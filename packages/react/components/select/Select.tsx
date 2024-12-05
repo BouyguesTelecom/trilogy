@@ -7,12 +7,12 @@ import { SelectDynamic, SelectNative } from './web'
  * Select Component
  * @param children {React.ReactNode} Children for Select
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param native {boolean} Display native-old select web
+ * @param custom {boolean} Display native-old select web
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Select = ({ native, ...props }: SelectProps): JSX.Element => {
-  if (native) return <SelectNative {...props} />
-  return <SelectDynamic {...props} />
+const Select = ({ custom, multiple, ...props }: SelectProps): JSX.Element => {
+  if (custom || multiple) return <SelectDynamic {...props} />
+  return <SelectNative {...props} />
 }
 
 export default Select
