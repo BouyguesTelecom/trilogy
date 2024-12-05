@@ -4,7 +4,7 @@ import { SelectOptionProps } from './SelectOptionProps'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { Icon } from '@/components/icon'
-import { is } from '@/lib/services/classify'
+import { is } from '@/services/classify'
 
 /**
  * Select Option Component
@@ -76,7 +76,7 @@ const SelectOption = ({
       role="option"
       aria-selected={checked}
       data-value={value}
-      onClick={!disabled ? onClick : null}
+      onClick={(!disabled && onClick) ? onClick : undefined}
       {...others}
     >
       {iconName && <Icon name={iconName} />}
