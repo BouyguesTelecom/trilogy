@@ -27,23 +27,23 @@ import { useTrilogyContext } from '@/context'
  */
 
 const Link = ({
-  children,
-  className,
-  id,
-  to,
-  href,
-  onClick,
-  accessibilityLabel,
-  routerLink,
-  iconName,
-  inverted,
-  blank,
-  title,
-  ...others
-}: LinkProps): JSX.Element => {
+                children,
+                className,
+                id,
+                to,
+                href,
+                onClick,
+                accessibilityLabel,
+                routerLink,
+                iconName,
+                inverted,
+                blank,
+                title,
+                ...others
+              }: LinkProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = clsx('link', iconName && has('icon'), inverted && is('inverted'), className)
+  const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
 
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
