@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TimelineContentProps } from './TimelineContentProps'
-import { Text, TextLevels } from '@/components/text'
-import { Link } from '@/components/link'
-import { TypographyColor } from '@/objects'
-import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import { AutoLayout } from '@/components/autolayout'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { Link } from '@/components/link'
+import { Text, TextLevels } from '@/components/text'
+import { TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
+import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
+import { TypographyColor } from '@/objects'
+import React, { useContext } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 /**
  * Timeline Content Component

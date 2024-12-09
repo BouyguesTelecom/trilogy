@@ -1,8 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
+import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import React, { createContext, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
-import { TimelineItemProps } from './TimelineItemProps'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 export const TimelineItemContext = createContext({ done: false, active: false, cancel: false })
 

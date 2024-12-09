@@ -1,15 +1,14 @@
-import React, { useContext } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { WithLocalSvg } from 'react-native-svg/css'
-import ContentLoader, { Circle } from 'react-content-loader/native'
-import { IconProps } from './IconProps'
-import { IconSize } from './IconEnum'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { IconSize } from '@/components/icon/IconEnum'
+import { IconProps } from '@/components/icon/IconProps'
+import { StatesContext } from '@/context/providerStates'
+import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { ComponentName } from '../enumsComponentsName'
-import { TrilogyThemeContext } from '@/context/providerTheme.native'
-import { StatesContext } from '@/context/providerStates'
-import Text from '@/components/text/Text.native'
+import React, { useContext } from 'react'
+import ContentLoader, { Circle } from 'react-content-loader/native'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { WithLocalSvg } from 'react-native-svg/css'
 
 /**
  * Icon Component
@@ -46,7 +45,6 @@ const Icon = ({
   } = useContext(TrilogyThemeContext)
 
   const statesContext = useContext(StatesContext)
-  const content = ''
   const style = {}
 
   const defaultSize =
@@ -61,6 +59,9 @@ const Icon = ({
     (color && getColorStyle(color as TrilogyColor | TrilogyColorValues)) ||
     (statesContext.inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
     getColorStyle(TrilogyColor.MAIN)
+
+  const background =
+    (backgroundColor && getColorStyle(backgroundColor)) || (circled && getColorStyle(TrilogyColor.MAIN)) || ''
 
   const iconSkeletonRadius =
     (size === IconSize.HUGE && 50) ||
@@ -106,6 +107,14 @@ const Icon = ({
       backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       overflow: 'hidden',
     },
+    circled: {
+      width: circledWidth,
+      height: circledWidth,
+      borderRadius: circledWidth,
+      backgroundColor: background,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   })
 
   const IconSkeleton = (): JSX.Element => (
@@ -142,7 +151,17 @@ const Icon = ({
         </View>
       )
     } else if (circled) {
-      iconView = <Text>FAUT CORRIGER ÇA (circled icon)</Text>
+      iconView = (
+        <View style={styles.circled} testID={`${testId}-circled`}>
+          <WithLocalSvg
+            style={[styles.iconCircled, styles.icon]}
+            asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
+            width={defaultSize}
+            height={defaultSize}
+            color={iconColor}
+          />
+        </View>
+      )
     } else {
       iconView = (
         <View {...others}>
