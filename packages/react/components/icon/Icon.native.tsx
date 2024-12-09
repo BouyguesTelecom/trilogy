@@ -1,3 +1,6 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { IconSize } from '@/components/icon/IconEnum'
+import { IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
@@ -6,9 +9,6 @@ import React, { useContext } from 'react'
 import ContentLoader, { Circle } from 'react-content-loader/native'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
-import { ComponentName } from '../enumsComponentsName'
-import { IconSize } from './IconEnum'
-import { IconProps } from './IconProps'
 
 /**
  * Icon Component
@@ -45,7 +45,6 @@ const Icon = ({
   } = useContext(TrilogyThemeContext)
 
   const statesContext = useContext(StatesContext)
-  const content = ''
   const style = {}
 
   const defaultSize =
