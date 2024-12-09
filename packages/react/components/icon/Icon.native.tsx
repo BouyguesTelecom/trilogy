@@ -28,7 +28,7 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * @param skeleton {boolean} Icon Skeleton
  */
 const Icon = ({
-  size = IconSize.SMALL,
+  size,
   name,
   circled,
   stretched,
