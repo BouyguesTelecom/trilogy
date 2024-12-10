@@ -12,7 +12,6 @@ import { useTrilogyContext } from '@/context/index'
  * @param inverted {Boolean} Text white color
  * @param level {TextLevels | number} Text size : 1-4
  * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
- * @param onClick {Function} onClick Event
  * @param skeleton {Boolean} Text Skeleton
  * @param accessibilityLabel {string} Accessibility label
  * @param marginless {boolean} Removes margin after Text
