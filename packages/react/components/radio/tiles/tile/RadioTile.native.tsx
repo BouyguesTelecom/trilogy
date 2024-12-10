@@ -49,12 +49,10 @@ const RadioTile = ({
           borderRadius: 6,
           padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
           maxWidth: horizontal ? undefined : '50%',
-          borderColor:
-            (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-            (checked && getColorStyle(TrilogyColor.MAIN)) ||
-            getColorStyle(TrilogyColor.NEUTRAL),
-          backgroundColor:
-            (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.BACKGROUND),
+          backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
+          borderColor: getColorStyle(
+            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
+          ),
         },
         icon: {
           width: 'auto',
@@ -83,9 +81,7 @@ const RadioTile = ({
   }, [horizontal, disabled])
 
   const handleChange = useCallback(() => {
-    onChange &&
-      !readonly &&
-      !disabled &&
+    if (onChange && !readonly && !disabled)
       onChange({
         radioValue: value || '',
         radioName: name || '',
@@ -125,32 +121,38 @@ const RadioTile = ({
 }
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
-  const styles = StyleSheet.create({
-    input: {
-      marginLeft: 'auto',
-      width: 18,
-      height: 18,
-      borderWidth: 1,
-      borderRadius: 18,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        (checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL),
-    },
-    inputRadio: {
-      width: 12,
-      height: 12,
-      borderRadius: 12,
-      backgroundColor:
-        (checked &&
-          ((disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-            (checked && getColorStyle(TrilogyColor.MAIN)) ||
-            getColorStyle(TrilogyColor.BACKGROUND))) ||
-        undefined,
-    },
-  })
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        input: {
+          marginLeft: 'auto',
+          width: 18,
+          height: 18,
+          borderWidth: 1,
+          borderRadius: 18,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderColor: getColorStyle(
+            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
+          ),
+        },
+        inputRadio: {
+          width: 12,
+          height: 12,
+          borderRadius: 12,
+          backgroundColor: getColorStyle(
+            disabled && checked
+              ? TrilogyColor.DISABLED
+              : disabled && !checked
+              ? TrilogyColor.DISABLED_FADE
+              : checked
+              ? TrilogyColor.MAIN
+              : TrilogyColor.BACKGROUND,
+          ),
+        },
+      }),
+    [checked, disabled],
+  )
   return (
     <View style={[styles.input]}>
       <View style={[styles.inputRadio]} />
