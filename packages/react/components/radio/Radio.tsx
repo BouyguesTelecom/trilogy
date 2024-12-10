@@ -1,9 +1,9 @@
+import { RadioProps } from '@/components/radio/RadioProps'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import shortid from 'shortid'
-import { RadioProps } from './RadioProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * radio Component
@@ -14,8 +14,8 @@ import { useTrilogyContext } from '@/context'
  * @param label {string} Label for radio
  * @param onChange {ChangeEvent}
  * @param name {string} Name for radio
- * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for radio
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
 const Radio = ({

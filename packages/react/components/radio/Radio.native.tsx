@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { RadioProps } from './RadioProps'
-import shortid from 'shortid'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
+import { RadioProps } from '@/components/radio/RadioProps'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '@/objects'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import shortid from 'shortid'
 
 /**
- * Radio Component
- * @param checked {boolean} Checked Radio
+ * radio Component
+ * @param checked {boolean} Checked radio
  * @param disabled {boolean} Disabled
- * @param readOnly {boolean} readonly Radio
+ * @param readOnly {boolean} readonly radio
  * @param id {string} Id for button, by default id is generate
- * @param label {string|ReactNode} Label for Radio
- * @param onClick {ClickEvent}
+ * @param label {string} Label for radio
  * @param onChange {ChangeEvent}
  * @param name {string} Name for radio
  * @param value {string} Value for radio
- * @param iconTile {IconName} Icon for Radio
- * @param narrow {boolean} Apply narrow
- * @param children {React.ReactNode} If Children is provided, don't use label / Icon / Description
- * @param tile {boolean} Radio Tile
- * @param description {string} Description for Radio tile
- * @param horizontalTile {boolean} display horizontal Radio tile
  */
 const Radio = ({
   id = shortid.generate(),

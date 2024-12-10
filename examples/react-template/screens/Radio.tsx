@@ -1,20 +1,11 @@
 import { Alignable, RadioList, TypographyAlign } from '@trilogy-ds/react'
-import {
-  Column,
-  Columns,
-  Container,
-  IconName,
-  Radio,
-  RadioTile,
-  RadioTiles,
-  Section,
-  Text,
-} from '@trilogy-ds/react/components'
+import { Column, Columns, Container, IconName, Radio, RadioTile, RadioTiles, Text } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {
+  const [radioTile, setRadioTile] = React.useState('one')
   return (
-    <Section>
+    <>
       <Container>
         <Text typo={TypographyAlign.TEXT_CENTERED}>
           Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
@@ -31,22 +22,26 @@ export const RadioScreen = (): JSX.Element => {
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <RadioTiles>
               <RadioTile
+                checked={radioTile === 'one'}
+                disabled
                 id='tile-1'
                 label='label'
                 value='value'
-                description='Je suis une description simple'
+                description='Je suis'
                 className='is-fullheight'
                 name={'name-tile-1'}
               />
               <RadioTile
+                checked={radioTile === 'two'}
                 id='tile-2'
                 label='label'
                 value='value'
-                description='Je suis une description simple'
+                description='Je suis une'
                 icon={IconName.ALERT}
                 name={'name-tile-1'}
               />
               <RadioTile
+                checked={radioTile === 'three'}
                 id='tile-3'
                 label='label'
                 value='value'
@@ -89,6 +84,6 @@ export const RadioScreen = (): JSX.Element => {
           </Column>
         </Columns>
       </Container>
-    </Section>
+    </>
   )
 }
