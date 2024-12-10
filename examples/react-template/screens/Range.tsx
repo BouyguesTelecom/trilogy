@@ -6,10 +6,10 @@ export const RangeScreen = (): JSX.Element => {
     <Section>
       <Range
         min={0}
-        max={4}
+        max={100}
         unit={"%"}
         valueMin={0}
-        valueMax={4}
+        valueMax={100}
         label="Ceci est un label"
         id={"test"}
         name="name-range"

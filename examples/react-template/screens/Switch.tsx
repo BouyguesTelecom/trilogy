@@ -8,6 +8,7 @@ export const SwitchScreen = (): JSX.Element => {
         label='Switch one fullwidth'
         fullWidth
         name='switch one'
+
         // eslint-disable-next-line no-console
         onChange={(e) => {
           console.log('SwitchState =>', e.switchState)
