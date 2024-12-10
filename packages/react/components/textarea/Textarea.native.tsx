@@ -143,13 +143,13 @@ const Textarea = (
     },
     leftIcon: {
       position: 'absolute',
-      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
+      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 70) || 45,
       left: 16,
       zIndex: 10,
     },
     rightIcon: {
       position: 'absolute',
-      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 60) || 55,
+      top: (dynamicPlaceholder && 16) || (!dynamicPlaceholder && label && sample && 70) || 45,
       right: 16,
       zIndex: 10,
     },
