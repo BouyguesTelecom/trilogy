@@ -1,9 +1,8 @@
 import { RadioProps } from '@/components/radio/RadioProps'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
 
 /**
  * radio Component
@@ -23,7 +22,7 @@ const Radio = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,

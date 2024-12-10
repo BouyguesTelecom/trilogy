@@ -3,18 +3,30 @@ import { Icon, IconSize } from '@/components/icon'
 import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import shortid from 'shortid'
 
+/**
+ * radioTile Component
+ * @param checked {boolean} Checked radio
+ * @param disabled {boolean} Disabled
+ * @param readOnly {boolean} readonly radio
+ * @param id {string} Id for button, by default id is generate
+ * @param label {string} Label for radio
+ * @param description {ReactNode} Description for radio
+ * @param onChange {ChangeEvent}
+ * @param name {string} Name for radio
+ * @param value {string} Value for radio
+ * @param icon {IconName} icon for radio
+ * @param horizontal Horizontal radio
+ */
 const RadioTile = ({
   checked,
-  className,
   disabled,
-  readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
@@ -22,35 +34,40 @@ const RadioTile = ({
   description,
   icon,
   horizontal,
+  readonly,
   ...others
 }: RadioTileProps): JSX.Element => {
-  const styles = StyleSheet.create({
-    container: {
-      flexDirection: horizontal ? 'row' : 'column',
-      width: horizontal ? '100%' : undefined,
-      borderWidth: 1,
-      alignItems: 'center',
-      gap: SpacerSize.TWO,
-      borderRadius: 6,
-      padding: SpacerSize.FOUR,
-      maxWidth: horizontal ? undefined : '50%',
-      borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        (checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL),
-      backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.BACKGROUND),
-    },
-    icon: {
-      width: 'auto',
-    },
-    content: {
-      width: 'auto',
-      gap: SpacerSize.ONE,
-      maxWidth: horizontal ? '80%' : undefined,
-    },
-  })
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flexDirection: horizontal ? 'row' : 'column',
+          width: horizontal ? '100%' : undefined,
+          borderWidth: checked ? 2 : 1,
+          alignItems: 'center',
+          gap: SpacerSize.TWO,
+          borderRadius: 6,
+          padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
+          maxWidth: horizontal ? undefined : '50%',
+          borderColor:
+            (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+            (checked && getColorStyle(TrilogyColor.MAIN)) ||
+            getColorStyle(TrilogyColor.NEUTRAL),
+          backgroundColor:
+            (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.BACKGROUND),
+        },
+        icon: {
+          width: 'auto',
+        },
+        content: {
+          width: 'auto',
+          gap: SpacerSize.ONE,
+          maxWidth: horizontal ? '80%' : undefined,
+        },
+      }),
 
+    [horizontal, checked, disabled],
+  )
   const typoTitle = useMemo(() => {
     const typos: string[] = [TypographyBold.TEXT_WEIGHT_SEMIBOLD]
     if (!horizontal) typos.push(TypographyAlign.TEXT_CENTERED)
@@ -65,8 +82,20 @@ const RadioTile = ({
     return typos
   }, [horizontal, disabled])
 
+  const handleChange = useCallback(() => {
+    onChange &&
+      !readonly &&
+      !disabled &&
+      onChange({
+        radioValue: value || '',
+        radioName: name || '',
+        radioChecked: true,
+        radioId: id,
+      })
+  }, [value, name, id, disabled, readonly, onChange])
+
   return (
-    <TouchableOpacity disabled={disabled} style={[styles.container]} {...others}>
+    <TouchableOpacity disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
       {!horizontal && <InputRadio checked={checked} disabled={disabled} />}
 
       {icon && (
@@ -99,16 +128,27 @@ const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boole
   const styles = StyleSheet.create({
     input: {
       marginLeft: 'auto',
-    },
-    inputRadio: {
       width: 18,
       height: 18,
       borderWidth: 1,
       borderRadius: 18,
+      justifyContent: 'center',
+      alignItems: 'center',
       borderColor:
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (checked && getColorStyle(TrilogyColor.MAIN)) ||
         getColorStyle(TrilogyColor.NEUTRAL),
+    },
+    inputRadio: {
+      width: 12,
+      height: 12,
+      borderRadius: 12,
+      backgroundColor:
+        (checked &&
+          ((disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+            (checked && getColorStyle(TrilogyColor.MAIN)) ||
+            getColorStyle(TrilogyColor.BACKGROUND))) ||
+        undefined,
     },
   })
   return (
