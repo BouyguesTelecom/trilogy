@@ -1,16 +1,15 @@
-import * as React from 'react'
+import { StatusState, TypographyBold } from '@trilogy-ds/react'
 import {
   Divider,
   Progress,
   ProgressRadial,
   Section,
-  StatusState,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-  TypographyBold,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const ProgressScreen = (): JSX.Element => {
   return (
@@ -49,7 +48,13 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendCenter='Je suis une légende' legendEnd="5Go" />
+        <Progress
+          value={15}
+          status={StatusState.INFO}
+          legendStart='0Go'
+          legendCenter='Je suis une légende'
+          legendEnd='5Go'
+        />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>
