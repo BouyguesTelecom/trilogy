@@ -13,7 +13,6 @@ import { StatesContext } from '@/context/providerStates'
  * @param children {string} Text child
  * @param level {TextLevels|number} Title size : 1-4
  * @param inverted {Boolean} Text white color
- * @param onClick {Function} onClick Event
  * @param style {Object} Additional style
  * @param typo {string} Text typo
  * @param skeleton {Boolean} Text Skeleton
