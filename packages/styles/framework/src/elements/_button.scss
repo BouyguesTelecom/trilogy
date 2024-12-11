@@ -60,6 +60,7 @@ $button-border-width: 2px !default;
 
   &[disabled],
   &[aria-disabled=true] {
+    border-color: transparent !important;
     background-color: getColorValue('main-fade') !important;
     color: getColorValue('disabled-fade') !important
   }

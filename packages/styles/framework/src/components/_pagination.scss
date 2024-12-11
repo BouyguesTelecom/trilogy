@@ -33,6 +33,10 @@
     padding-left: 0.75em;
     padding-right: 0.75em;
     white-space: nowrap;
+
+    &[aria-disabled=true]{
+      border-color: transparent !important;
+    }
   }
 
   .pagination-list {
