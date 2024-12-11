@@ -1,11 +1,11 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { View } from '@/components/view'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
-import NativeModal from 'react-native-modal'
+import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
 import { ModalProps } from './ModalProps'
-import { View } from '@/components/view'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Modal Component
@@ -21,10 +21,10 @@ const Modal = ({
   children,
   active = false,
   onClose,
-  onOpen,
   onModalHide,
   hideCloseButton = false,
   unClosable = false,
+  trigger,
   ...others
 }: ModalProps): JSX.Element => {
   const styles = StyleSheet.create({
@@ -104,31 +104,18 @@ const Modal = ({
     } else {
       translateAnim.setValue(defaultAnimPosition)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible])
 
-  const close = (e: GestureResponderEvent) => {
+  const close = (e: OnSwipeCompleteParams | GestureResponderEvent) => {
     if (onClose) onClose(e)
     setVisible(false)
   }
 
   return (
     <>
-      {/* {triggerContent && (*/}
-      {/*  <Button*/}
-      {/*    variant={ButtonVariant.PRIMARY}*/}
-      {/*    onClick={(e) => {*/}
-      {/*      if (onOpen) onOpen(e)*/}
-      {/*      setVisible(true)*/}
-      {/*    }}*/}
-      {/*  >*/}
-      {/*    {triggerContent}*/}
-      {/*  </Button>*/}
-      {/* )}*/}
+      {trigger}
       <NativeModal
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onSwipeComplete={(e: any) => {
-          //          setVisible(!visible)
+        onSwipeComplete={(e: OnSwipeCompleteParams) => {
           close(e)
         }}
         onModalHide={onModalHide}
