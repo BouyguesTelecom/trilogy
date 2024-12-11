@@ -117,7 +117,7 @@ const Input = ({
 
   const paddingTopByPlatform = (os: PlatformOSType, dynamicPlaceholder: boolean): number => {
     if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'ios') {
-      return isFocused ? 9 : 10
+      return 10
     }
 
     if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'android') {
@@ -203,13 +203,13 @@ const Input = ({
     handleClick()
   }, [isKeyboardVisible])
 
-  const hasIcon = (iconNameLeft || iconNameRight) || false
+  const hasIcon = iconNameLeft || iconNameRight || false
 
   const styles = StyleSheet.create({
     input: {
       paddingLeft:
-        ((iconNameLeft || type === InputType.SEARCH) && 40) ||
         (((iconNameLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||
+        ((iconNameLeft || type === InputType.SEARCH) && 40) ||
         (!iconNameLeft && type !== InputType.SEARCH && isFocused && 9) ||
         10,
       paddingRight: ((iconNameRight || type === InputType.SEARCH) && 32) || 0,
@@ -222,6 +222,8 @@ const Input = ({
       position: 'absolute',
       left: iconNameLeft ? 40 : 10,
       color: grayscale(getColorStyle(TrilogyColor.FONT)),
+      marginTop: isFocused ? -1 : 0,
+      marginLeft: isFocused ? -1 : 0,
     },
     help: {
       fontSize: 12,
@@ -256,32 +258,30 @@ const Input = ({
       height: 46,
       width: 46,
       position: 'absolute',
-      right: 0,
+      right: isFocused ? -1 : 0,
       justifyContent: 'center',
     },
     inputContainerLeft: {
       height: 46,
       width: 46,
       position: 'absolute',
-      left: 0,
+      left: isFocused ? -1 : 0,
       justifyContent: 'center',
     },
     inputContainerRight: {
       height: 46,
       width: 46,
       position: 'absolute',
-      right: 0,
+      right: isFocused ? -1 : 0,
       justifyContent: 'center',
-    },
-    inputIcon: {
-      position: 'absolute',
-      right: 10,
-      top: dynamicPlaceholder && !label && value ? -38 : -33,
     },
     inputIconLeft: {
       position: 'absolute',
-      left: 10,
-      top: dynamicPlaceholder && !label && value ? -38 : -33,
+      left: isFocused ? 9 : 10,
+      top: 0,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     text: {
       zIndex: -1,
@@ -379,9 +379,8 @@ const Input = ({
             <Text style={styles.domain}>{email}</Text>
           </Text>
         )}
-        {hasIcon &&
-          ((status && status !== InputStatus.DEFAULT) || iconNameLeft) &&
-          type !== InputType.PASSWORD && (
+        {hasIcon && type !== InputType.PASSWORD && type !== InputType.SEARCH && (
+          <View style={styles.inputIconLeft}>
             <Icon
               align={Alignable.ALIGNED_START}
               name={iconNameLeft as unknown as IconName}
@@ -390,12 +389,12 @@ const Input = ({
                 (status && status === 'success' && StatusState.SUCCESS) ||
                 (status && status === 'warning' && StatusState.WARNING) ||
                 (status && status === 'error' && StatusState.ERROR) ||
-                (status && status === 'default' && TrilogyColor.MAIN) ||
                 (disabled && TrilogyColor.DISABLED) ||
                 TrilogyColor.MAIN
               }
             />
-          )}
+          </View>
+        )}
         {hasIcon &&
           type !== InputType.SEARCH &&
           status &&
