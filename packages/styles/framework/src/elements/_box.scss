@@ -97,7 +97,6 @@ a.box {
     padding-left: var(--padding-box);
     padding-right: var(--padding-box);
     box-shadow: none;
-    font-size: 15px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -163,8 +162,14 @@ a.box {
     margin-right: calc(var(--padding-box) * -1);
     margin-bottom: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
-    border-top: 1px solid getColor('neutral-fade');
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
+  }
+  .box-footer:not(.is-borderless):not([class*="has-background"])::before{
+    content: '';
+    display: block;
+    border-top: var(--border);
+    position: relative;
+    top: calc(var(--padding-box) * -1);
   }
 }
