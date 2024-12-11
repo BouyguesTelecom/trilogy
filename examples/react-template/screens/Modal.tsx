@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalSize,
   Section,
+  Text,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
@@ -43,35 +44,35 @@ export const ModalScreen = (): JSX.Element => {
         >
           <ModalBody>
             <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
@@ -88,7 +89,7 @@ export const ModalScreen = (): JSX.Element => {
           onClose={() => setOpenModal2(false)}
         >
           <ModalBody>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal2(false)}>
@@ -106,7 +107,7 @@ export const ModalScreen = (): JSX.Element => {
           panel
         >
           <ModalBody>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal3(false)}>

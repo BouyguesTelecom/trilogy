@@ -1,7 +1,7 @@
-import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility, Dev } from '../../objects'
 import { ReactNode } from 'react'
 import { ModalSize } from '../../components/modal/ModalEnum'
+import { ClickEvent } from '../../events/OnClickEvent'
+import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
@@ -18,5 +18,5 @@ export interface ModalProps extends Accessibility, Dev, CommonProps {
   onModalHide?: () => void
   unClosable?: boolean
   size?: ModalSize
-  title: string
+  title?: string
 }
