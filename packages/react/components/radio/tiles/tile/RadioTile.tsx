@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 /**
  * radioTile Component
@@ -39,14 +39,6 @@ const RadioTile = ({
 }: RadioTileProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
-
   return (
     <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
       <input
@@ -56,8 +48,17 @@ const RadioTile = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        checked={checked}
+        onChange={(e) => {
+          if (onChange && !disabled && !readonly) {
+            onChange({
+              radioId: e.target.id,
+              radioValue: e.target.value,
+              radioName: e.target.name,
+              radioChecked: e.target.checked,
+            })
+          }
+        }}
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
