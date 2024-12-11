@@ -23,7 +23,6 @@ export const PriceScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.FIVE} />
       <Columns multiline>
         <Column size={4}>
-          Align center
           <Price amount={10.99} level={1} align={Alignable.ALIGNED_CENTER} overline='À partir de' oldAmount={19.99} />
         </Column>
         <Column narrow>
