@@ -99,6 +99,8 @@ export enum ComponentName {
   Otp = 'Otp',
   Radio = 'Radio',
   RadioList = 'RadioList',
+  RadioTiles = 'RadioTiles',
+  RadioTile = 'RadioTile',
   Rows = 'Rows',
   Row = 'Row',
   ScrollView = 'ScrollView',

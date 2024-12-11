@@ -1,25 +1,33 @@
-import * as React from 'react'
-import { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { RadioTileProps } from './RadioTileProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { Icon, IconSize } from '@/components/icon'
-import shortid from 'shortid'
+import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
- * Columns Item Component - Columns Child
- * @param size {ColumnsSize} Size 1-12
+ * radioTile Component
+ * @param checked {boolean} Checked radio
+ * @param disabled {boolean} Disabled
+ * @param readOnly {boolean} readonly radio
+ * @param id {string} Id for button, by default id is generate
+ * @param label {string} Label for radio
+ * @param description {ReactNode} Description for radio
+ * @param onChange {ChangeEvent}
+ * @param name {string} Name for radio
+ * @param value {string} Value for radio
+ * @param icon {IconName} icon for radio
+ * @param horizontal Horizontal radio
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
 const RadioTile = ({
   checked,
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
@@ -31,14 +39,6 @@ const RadioTile = ({
 }: RadioTileProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
-
   return (
     <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
       <input
@@ -48,8 +48,17 @@ const RadioTile = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        checked={checked}
+        onChange={(e) => {
+          if (onChange && !disabled && !readonly) {
+            onChange({
+              radioId: e.target.id,
+              radioValue: e.target.value,
+              radioName: e.target.name,
+              radioChecked: e.target.checked,
+            })
+          }
+        }}
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
