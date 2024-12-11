@@ -5,14 +5,14 @@
   .otp {
     @include hover();
     outline: none;
-    border: 1px solid currentColor;
+    border: var(--border);
     border-radius: var(--radius-small);
     background: transparent;
     width: 33px;
     height: 40px;
     margin: 4px 4px 0 4px;
     text-align: center;
-    color: getColor('neutral');
+    color: getColor('main');
 
     &:first-child {
       margin: 4px 4px 0 0;
