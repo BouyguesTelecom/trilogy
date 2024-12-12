@@ -46,19 +46,37 @@ const Modal = ({
   const { styled } = useTrilogyContext()
   const refsActions = useRef<Array<HTMLButtonElement | null>>([])
   const refBtnModal = useRef<any>(null)
+  const refModal = useRef<HTMLDivElement>(null)
   const [, setIndexFocusable] = useState(0)
 
-  const handleClickOutside = (e: Event) => {
-    if (modal?.current?.contains(e.target as Node)) {
-      return
-    } else {
+  const handleClose = React.useCallback(
+    (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
+      setDisplay(false)
+      refBtnModal.current && refBtnModal.current.focus()
+      if (onCloseFunc) onCloseFunc(e)
+    },
+    [refBtnModal.current],
+  )
+
+  const handleClickOutside = React.useCallback(
+    (e: Event) => {
+      if (modal?.current?.contains(e.target as Node)) return
       handleClose(onClose, e)
-    }
-  }
+    },
+    [handleClose, modal, onClose],
+  )
 
   useEffect(() => {
     setDisplay(active || false)
   }, [active])
+
+  useEffect(() => {
+    if (refModal.current) {
+      const footer = refModal.current.querySelector('[data-modal-footer]')
+      const getCTA = footer?.querySelectorAll('button')
+      if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
+    }
+  }, [refModal])
 
   useEffect(() => {
     display && refsActions.current[0] && refsActions.current[0].focus()
@@ -80,21 +98,6 @@ const Modal = ({
     [display, panel, className, styled],
   )
 
-  function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(false)
-    refBtnModal.current && refBtnModal.current.focus()
-    if (onCloseFunc) {
-      onCloseFunc(e)
-    }
-  }
-
-  function handleOpen(onOpenFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(true)
-    if (onOpenFunc) {
-      onOpenFunc(e)
-    }
-  }
-
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (display && refsActions.current) {
@@ -114,7 +117,7 @@ const Modal = ({
   )
 
   return (
-    <div onKeyDown={onKeyDown}>
+    <div onKeyDown={onKeyDown} ref={refModal}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
       <div id={id} className={classes} role='dialog' aria-labelledby={modalGeneratedId} aria-modal={true} {...others}>
         <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
