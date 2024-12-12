@@ -67,36 +67,6 @@ export const PriceScreen = (): JSX.Element => {
 
       <Spacer size={SpacerSize.TWO} />
 
-      <Title level={TitleLevels.THREE}>Price tag</Title>
-
-      <Price overline='A partir de' level={1} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={2} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={3} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={4} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={5} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={6} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.TWO} />
-
-      <Price overline='A partir de' level={7} amount={24.99} period={'mois'} />
-
-      <Spacer size={SpacerSize.THREE} />
-
       <Title level={TitleLevels.THREE}>Simple</Title>
 
       <Price level={2} amount={18.99} />
