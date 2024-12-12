@@ -11,7 +11,6 @@ export const CardContext = createContext({ horizontal: false })
  * Card Component
  * @param flat {boolean} Adding border for Card content
  * @param horizontal {boolean} Horizontal Card orientation
- * @param backgroundColor {TrilogyColor} Card Background Color
  * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Loading card
