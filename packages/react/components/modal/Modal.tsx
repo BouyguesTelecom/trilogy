@@ -53,6 +53,7 @@ const Modal = ({
     (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
       setDisplay(false)
       refBtnModal.current && refBtnModal.current.focus()
+      setIndexFocusable(0)
       if (onCloseFunc) onCloseFunc(e)
     },
     [refBtnModal.current],
@@ -87,7 +88,10 @@ const Modal = ({
 
   useEffect(() => {
     setDisplay((prev) => {
-      if (prev) refBtnModal.current && refBtnModal.current.focus()
+      if (prev) {
+        refBtnModal.current && refBtnModal.current.focus()
+        setIndexFocusable(0)
+      }
       return active || false
     })
   }, [active])
@@ -98,7 +102,7 @@ const Modal = ({
       const getCTA = footer?.querySelectorAll('button')
       if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
     }
-  }, [refModal])
+  }, [refModal.current])
 
   return (
     <div onKeyDown={onKeyDown} ref={refModal}>
