@@ -21,6 +21,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param skeleton {boolean} Skeleton Progress Radial
  */
 const ProgressRadial = ({
+  children,
   value,
   label,
   description,
@@ -151,7 +152,7 @@ const ProgressRadial = ({
                 {description || ''}
               </Text>
             ) : (
-              <View>{description}</View>
+              <View>{description || children}</View>
             )}
           </View>
         )}
