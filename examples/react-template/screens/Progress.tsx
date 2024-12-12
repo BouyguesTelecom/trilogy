@@ -10,6 +10,7 @@ import {
   Title,
   TitleLevels,
   TypographyBold,
+  View
 } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
