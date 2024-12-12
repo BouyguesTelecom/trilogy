@@ -58,41 +58,6 @@ const Modal = ({
     [refBtnModal.current],
   )
 
-  const handleClickOutside = React.useCallback(
-    (e: Event) => {
-      if (modal?.current?.contains(e.target as Node)) return
-      handleClose(onClose, e)
-    },
-    [handleClose, modal, onClose],
-  )
-
-  useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
-
-  useEffect(() => {
-    if (refModal.current) {
-      const footer = refModal.current.querySelector('[data-modal-footer]')
-      const getCTA = footer?.querySelectorAll('button')
-      if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
-    }
-  }, [refModal])
-
-  useEffect(() => {
-    display && refsActions.current[0] && refsActions.current[0].focus()
-  }, [display, refsActions?.current.length])
-
-  useEffect(() => {
-    if (display && !unClosable) {
-      document.addEventListener('mousedown', handleClickOutside)
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [display, unClosable])
-
   const classes = React.useMemo(
     () => hashClass(styled, clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
     [display, panel, className, styled],
@@ -116,10 +81,38 @@ const Modal = ({
     [refsActions.current.length, display],
   )
 
+  useEffect(() => {
+    display && refsActions.current[0] && refsActions.current[0].focus()
+  }, [display, refsActions?.current.length])
+
+  useEffect(() => {
+    setDisplay(active || false)
+  }, [active])
+
+  useEffect(() => {
+    if (refModal.current) {
+      const footer = refModal.current.querySelector('[data-modal-footer]')
+      const getCTA = footer?.querySelectorAll('button')
+      if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
+    }
+  }, [refModal])
+
   return (
     <div onKeyDown={onKeyDown} ref={refModal}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
-      <div id={id} className={classes} role='dialog' aria-labelledby={modalGeneratedId} aria-modal={true} {...others}>
+      <div
+        id={id}
+        className={classes}
+        role='dialog'
+        aria-labelledby={modalGeneratedId}
+        aria-modal={true}
+        onClick={(e) => {
+          if (!modal?.current?.contains(e.target as Node)) {
+            handleClose(onClose, e)
+          }
+        }}
+        {...others}
+      >
         <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
           <div className={hashClass(styled, clsx('modal-header'))}>
             {hideCloseButton !== true && (
