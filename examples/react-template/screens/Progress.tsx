@@ -9,6 +9,7 @@ import {
   TextLevels,
   Title,
   TitleLevels,
+  TypographyAlign,
   TypographyBold,
   View
 } from '@trilogy-ds/react'
@@ -20,12 +21,14 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
         <ProgressRadial value={30} secondValue={30}>
-          <Title level={TitleLevels.THREE} marginless>
-            60
-          </Title>
-          <Text level={TextLevels.ONE} marginless>
-            / 100 Go
-          </Text>
+          <View>
+            <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
+              60
+            </Title>
+            <Text level={TextLevels.ONE} marginless>
+              / 100 Go
+            </Text>
+          </View>
         </ProgressRadial>
 
         <Divider />
@@ -58,7 +61,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <ProgressRadial value={30} secondValue={60}>
-          <Title level={TitleLevels.THREE} marginless>
+          <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
             60
           </Title>
           <Text level={TextLevels.ONE} marginless>
@@ -71,7 +74,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <ProgressRadial value={30} secondValue={60}>
-          <Title level={TitleLevels.THREE} marginless>
+          <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
             60
           </Title>
           <Text level={TextLevels.ONE} marginless>
@@ -80,7 +83,7 @@ export const ProgressScreen = (): JSX.Element => {
         </ProgressRadial>
 
         <ProgressRadial value={30} secondValue={30} small>
-          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]} marginless>
             60
           </Text>
           <Text level={TextLevels.FOUR} marginless>
