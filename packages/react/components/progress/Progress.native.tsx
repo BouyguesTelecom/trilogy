@@ -74,6 +74,7 @@ const Progress = ({
       textAlign: "center",
       paddingTop: 5,
       fontWeight: "500",
+      alignSelf: "center"
     },
     extremLegend: {
       width: "100%",
