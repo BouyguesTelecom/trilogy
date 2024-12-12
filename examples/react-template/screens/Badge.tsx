@@ -21,7 +21,7 @@ export const BadgeScreen = (): JSX.Element => {
       <Badge label={'1'} />
       <Divider />
 
-      <Title level={TitleLevels.THREE}>Content props number</Title>
+      <Title level={TitleLevels.THREE}>Badge with icon</Title>
       <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
         <Column narrow>
           <Badge label={1} variant={VariantState.ACCENT} position={BadgePositionEnum.TOP_RIGHT}>
@@ -82,13 +82,13 @@ export const BadgeScreen = (): JSX.Element => {
       <Box backgroundColor={TrilogyColor.MAIN}>
         <Columns scrollable>
           <Column size={4} key={1}>
-            <Badge inverted label={2} />
+            <Badge inverted label={1} />
           </Column>
           <Column size={4} key={2}>
             <Badge inverted label={2} />
           </Column>
-          <Column size={4} key={2}>
-            <Badge inverted label={2} />
+          <Column size={4} key={3}>
+            <Badge inverted label={3} />
           </Column>
         </Columns>
       </Box>
