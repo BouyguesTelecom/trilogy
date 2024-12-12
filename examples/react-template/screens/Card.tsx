@@ -19,7 +19,6 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { TrilogyColor } from '@trilogy-ds/react/objects'
 import { Columns, Column } from '@trilogy-ds/react'
 
 export const CardScreen = (): JSX.Element => {
@@ -28,8 +27,8 @@ export const CardScreen = (): JSX.Element => {
   return (
     <Section>
       <Columns>
-        <Column>
-          <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
+        <Column size={6}>
+          <Card>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -44,8 +43,8 @@ export const CardScreen = (): JSX.Element => {
             </CardContent>
           </Card>
         </Column>
-        <Column>
-          <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
+        <Column size={6}>
+          <Card>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -63,7 +62,7 @@ export const CardScreen = (): JSX.Element => {
       </Columns>
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.FOUR} />
-      <Card active backgroundColor={TrilogyColor.BACKGROUND}>
+      <Card active>
         <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -79,7 +78,7 @@ export const CardScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.FOUR} />
-      <Card backgroundColor={TrilogyColor.BACKGROUND}>
+      <Card>
         <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
@@ -138,7 +137,7 @@ export const CardScreen = (): JSX.Element => {
           size={'3'}
           src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
         />
-        <CardContent backgroundColor={TrilogyColor.BACKGROUND}>
+        <CardContent>
           <Title overline>Desktop Card Horizontal</Title>
           <Title level={TitleLevels.ONE}>Card Title</Title>
           <Text>
@@ -186,7 +185,7 @@ export const CardScreen = (): JSX.Element => {
       </Box>
 
       <Columns>
-        <Column>
+        <Column size={4}>
           <Card flat fullheight>
             <CardContent>
               <Title level={TitleLevels.ONE}>Card with fullheight props</Title>
@@ -197,8 +196,8 @@ export const CardScreen = (): JSX.Element => {
             </CardContent>
           </Card>
         </Column>
-        <Column>
-          <Card inverted backgroundColor={TrilogyColor.SUCCESS}>
+        <Column size={4}>
+          <Card>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
@@ -213,8 +212,8 @@ export const CardScreen = (): JSX.Element => {
             </CardContent>
           </Card>
         </Column>
-        <Column>
-          <Card backgroundColor={TrilogyColor.SUCCESS_FADE}>
+        <Column size={4}>
+          <Card>
             <CardContent>
               <Title level={TitleLevels.ONE}>Title</Title>
               <Text>
