@@ -1,5 +1,3 @@
-import * as React from 'react'
-import { useState } from 'react'
 import {
   Button,
   ButtonVariant,
@@ -12,9 +10,12 @@ import {
   ModalFooter,
   ModalSize,
   Section,
+  Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
+import { useState } from 'react'
 
 function Buttons() {
   return null
@@ -31,7 +32,7 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
-          title="Hello"
+          title='Hello'
           size={ModalSize.SMALL}
           trigger={
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(true)}>
@@ -43,35 +44,35 @@ export const ModalScreen = (): JSX.Element => {
         >
           <ModalBody>
             <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
@@ -82,13 +83,13 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
-          title="Hello"
+          title='Hello'
           trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal2(true)} />}
           active={openModal2}
           onClose={() => setOpenModal2(false)}
         >
           <ModalBody>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal2(false)}>
@@ -99,14 +100,14 @@ export const ModalScreen = (): JSX.Element => {
         <Divider />
 
         <Modal
-          title="Hello"
+          title='Hello'
           trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal3(true)} />}
           active={openModal3}
           onClose={() => setOpenModal3(false)}
           panel
         >
           <ModalBody>
-            <p>Modal content</p>
+            <Text>Modal content</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal3(false)}>

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Button,
   ButtonVariant,
@@ -15,7 +14,8 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const PopoverScreen = (): JSX.Element => {
   return (
@@ -25,13 +25,13 @@ export const PopoverScreen = (): JSX.Element => {
         <Columns>
           <Column>
             <Popover trigger={<Link>Simple</Link>}>
-              <Tag variant={TagVariant.ERROR} label="Test" />
+              <Tag variant={TagVariant.ERROR} label='Test' />
               <Icon name={IconName.TIMES} />
             </Popover>
           </Column>
           <Column>
             <Popover trigger={<Link>Simple</Link>} direction={PopoverDirection.RIGHT}>
-              <Tag variant={TagVariant.ERROR} label="Test" />
+              <Tag variant={TagVariant.ERROR} label='Test' />
               <Icon name={IconName.TIMES} />
             </Popover>
           </Column>

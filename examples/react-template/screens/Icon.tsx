@@ -1,24 +1,21 @@
-import * as React from 'react'
+import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
 import {
   Container,
   Divider,
   Icon,
   IconColor,
   IconSize,
-  IconStatus,
-  IconStatusPosition,
   Section,
   Text,
   Title,
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
-import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
+import * as React from 'react'
 
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
-
       <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} />
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
@@ -110,41 +107,10 @@ export const IconScreen = (): JSX.Element => {
         </View>
       </Container>
 
-      <Title level={TitleLevels.THREE}>Icon with status</Title>
-      <Divider />
-
-      <Icon
-        status={IconStatus.SUCCESS}
-        size={IconSize.LARGE}
-        name={IconName.TIMES}
-      />
-
-      <Icon
-        status={IconStatus.WARNING}
-        size={IconSize.LARGE}
-        name={IconName.TIMES}
-      />
-
-      <Icon
-        status={IconStatus.ERROR}
-        size={IconSize.LARGE}
-        name={IconName.TIMES}
-      />
-
-      <Icon
-        status={IconStatus.INFO}
-        size={IconSize.LARGE}
-        name={IconName.TIMES}
-      />
-
       <Title level={TitleLevels.THREE}>Icon circled</Title>
       <Divider />
 
-      <Icon
-        size={IconSize.LARGE}
-        name={IconName.ARROW_DOWN}
-        circled
-      />
+      <Icon size={IconSize.LARGE} name={IconName.ARROW_DOWN} circled backgroundColor='ACCENT' />
     </Section>
   )
 }

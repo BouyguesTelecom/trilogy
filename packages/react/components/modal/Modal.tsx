@@ -1,3 +1,5 @@
+import { ButtonType } from '@/components/button'
+import { Title, TitleLevels, TitleMarkup } from '@/components/title'
 import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -6,8 +8,6 @@ import clsx from 'clsx'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import shortid from 'shortid'
 import { ModalProps } from './ModalProps'
-import { ButtonType } from '@/components/button'
-import { Title, TitleLevels, TitleMarkup } from '@/components/title'
 
 const modalGeneratedId = shortid.generate()
 
@@ -26,21 +26,21 @@ const modalGeneratedId = shortid.generate()
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 const Modal = ({
-                 children,
-                 className,
-                 id,
-                 accessibilityLabel = 'Close',
-                 active,
-                 onClose,
-                 onOpen,
-                 panel,
-                 size,
-                 hideCloseButton = false,
-                 trigger,
-                 unClosable = false,
-                 title,
-                 ...others
-               }: ModalProps): JSX.Element => {
+  children,
+  className,
+  id,
+  accessibilityLabel = 'Close',
+  active,
+  onClose,
+  onOpen,
+  panel,
+  size,
+  hideCloseButton = false,
+  trigger,
+  unClosable = false,
+  title,
+  ...others
+}: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -116,9 +116,9 @@ const Modal = ({
   return (
     <div onKeyDown={onKeyDown}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
-      <div id={id} className={classes} role="dialog" aria-labelledby={modalGeneratedId} aria-modal={true} {...others}>
-        <div ref={modal} className="modal-content">
-          <div className={'modal-header'}>
+      <div id={id} className={classes} role='dialog' aria-labelledby={modalGeneratedId} aria-modal={true} {...others}>
+        <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
+          <div className={hashClass(styled, clsx('modal-header'))}>
             {hideCloseButton !== true && (
               <button
                 onClick={(e: React.MouseEvent) => {
@@ -128,10 +128,12 @@ const Modal = ({
                 type={ButtonType.BUTTON}
                 ref={(el) => el && (refsActions.current[0] = el)}
               >
-                {accessibilityLabel && <span className="sr-only">{accessibilityLabel}</span>}
+                {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
               </button>
             )}
-            <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>{title}</Title>
+            <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
+              {title}
+            </Title>
           </div>
           {children && children}
         </div>

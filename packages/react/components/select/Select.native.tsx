@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { Modal } from '@/components/modal'
+import React, { useCallback, useEffect, useState } from 'react'
+import { View } from 'react-native'
 import { SelectProps, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 
@@ -56,9 +57,9 @@ const Select = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -142,23 +143,27 @@ const Select = ({
   }, [multiple, selectedValues, children])
 
   return (
-    <>
-      <Input
-        onIconClick={handleOpenCloseModal}
-        onClick={handleOpenCloseModal}
-        disabled={disabled}
-        placeholder={label}
-        iconNameLeft={iconName}
-        iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
-        value={selectedNames.join(', ')}
-        defaultValue={selectedNames.join(', ')}
-        {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
-        {...others}
-      />
-      <Modal active={display} onClose={handleOpenCloseModal} unClosable title="">
-        {options}
-      </Modal>
-    </>
+    <Modal
+      active={display}
+      onClose={handleOpenCloseModal}
+      unClosable
+      trigger={
+        <Input
+          onIconClick={handleOpenCloseModal}
+          onClick={handleOpenCloseModal}
+          disabled={disabled}
+          placeholder={label}
+          iconNameLeft={iconName}
+          iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
+          value={selectedNames.join(', ')}
+          defaultValue={selectedNames.join(', ')}
+          {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
+          {...others}
+        />
+      }
+    >
+      <View style={{ paddingBottom: 20 }}>{options}</View>
+    </Modal>
   )
 }
 

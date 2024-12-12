@@ -4,15 +4,13 @@ import {
   Progress,
   ProgressRadial,
   Section,
-  StatusState,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-  TypographyAlign,
-  TypographyBold,
   View
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import { StatusState, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
   return (
@@ -99,3 +97,4 @@ export const ProgressScreen = (): JSX.Element => {
     </>
   )
 }
+
