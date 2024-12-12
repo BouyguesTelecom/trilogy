@@ -11,8 +11,8 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { Alignable, Box, StatusState, Text, TrilogyColor, VariantState } from '@trilogy-ds/react'
-import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
+import {Alignable, Box, StatusState, Text, TrilogyColor, VariantState} from '@trilogy-ds/react'
+import {BadgePositionEnum} from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {
   return (
@@ -65,10 +65,7 @@ export const BadgeScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>TextContent props</Title>
       <Badge label={2} />
-      <Divider />
 
-      <Title level={TitleLevels.THREE}>Icon badgeContent </Title>
-      <Icon name={IconName.INFOS_CIRCLE} />
       <Divider />
 
       <Title level={TitleLevels.THREE}>Reversed props </Title>
@@ -82,16 +79,16 @@ export const BadgeScreen = (): JSX.Element => {
       </Columns>
 
       <Title level={TitleLevels.THREE}>Inverted props </Title>
-      <Box backgroundColor={TrilogyColor.MAIN} inverted>
+      <Box backgroundColor={TrilogyColor.MAIN}>
         <Columns scrollable>
           <Column size={4} key={1}>
-            <Badge label={2} />
+            <Badge inverted label={2} />
           </Column>
           <Column size={4} key={2}>
-            <Badge label={2} />
+            <Badge inverted label={2} />
           </Column>
           <Column size={4} key={2}>
-            <Badge label={2} />
+            <Badge inverted label={2} />
           </Column>
         </Columns>
       </Box>
