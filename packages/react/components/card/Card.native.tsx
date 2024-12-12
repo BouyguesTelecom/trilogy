@@ -23,7 +23,6 @@ export const CardContext = createContext({
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Loading card
  * @param reversed {boolean} Reversed card
- * @param backgroundColor {TrilogyColor} Card Background Color
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
  * @param others
