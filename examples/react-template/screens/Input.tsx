@@ -35,9 +35,9 @@ export const InputScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Input
         ref={refinput}
-        label="Input label not dynamic with sample"
-        sample="Input sample"
-        help="Search helper input"
+        label='Input label not dynamic with sample'
+        sample='Input sample'
+        help='Search helper input'
         placeholder="I'm a placeholder"
         onKeyUp={(e) => console.log(e)}
         required
@@ -46,26 +46,26 @@ export const InputScreen = (): JSX.Element => {
 
       <Input
         ref={refinput}
-        label="Input label not dynamic with sample"
-        sample="Input sample"
-        help="Search helper input"
+        label='Input label not dynamic with sample'
+        sample='Input sample'
+        help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
         iconNameLeft={IconName.ARROW_LEFT}
       />
 
       <Input
-        label="Input label not dynamic without sample"
-        help="Search helper input"
+        label='Input label not dynamic without sample'
+        help='Search helper input'
         onKeyUp={(e) => console.log(e)}
         required
-        iconNameLeft="tri-search"
+        iconNameLeft='tri-search'
       />
 
       <Input
         type={InputType.DATE}
-        placeholder="Start"
-        name="leavingDate"
+        placeholder='Start'
+        name='leavingDate'
         value={leavingDate}
         onChange={(e) => setLeavingDate(e.inputValue)}
       />
@@ -76,8 +76,8 @@ export const InputScreen = (): JSX.Element => {
         minLength={10}
         maxLength={12}
         onKeyPress={() => console.log('key')}
-        defaultValue="Input, with placeholder (without padding top)"
-        help="Do not display upper padding when there is no placeholder"
+        defaultValue='Input, with placeholder (without padding top)'
+        help='Do not display upper padding when there is no placeholder'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('test')
@@ -85,8 +85,8 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        defaultValue="Input, without placeholder, without search"
-        help="Do not display upper padding when there is no placeholder"
+        defaultValue='Input, without placeholder, without search'
+        help='Do not display upper padding when there is no placeholder'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('test')
@@ -94,54 +94,54 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        defaultValue="Input, with placeholder, with search"
-        help="this is my help message"
+        defaultValue='Input, with placeholder, with search'
+        help='this is my help message'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('lol')
         }}
         iconNameRight={IconName.ALERT}
-        placeholder="Placeholder with activated search"
+        placeholder='Placeholder with activated search'
       />
 
       <Input
-        defaultValue="Input, with search & customIcon"
-        help="CustomIcon takes precedence over the display of the search to avoid displaying 2 icons, one above the other."
+        defaultValue='Input, with search & customIcon'
+        help='CustomIcon takes precedence over the display of the search to avoid displaying 2 icons, one above the other.'
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('test')
         }}
         iconNameRight={IconName.ALERT}
-        placeholder="Placeholder with activated search"
+        placeholder='Placeholder with activated search'
       />
 
       <Input
-        defaultValue="My default input value"
-        help="this is my help message"
+        defaultValue='My default input value'
+        help='this is my help message'
         type={InputType.TEXT}
         status={InputStatus.SUCCESS}
         iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
         }}
-        placeholder="This is my placeholder"
+        placeholder='This is my placeholder'
       />
 
       <Input
-        defaultValue="My default input value"
-        help="this is my help message"
+        defaultValue='My default input value'
+        help='this is my help message'
         type={InputType.TEXT}
         patternValidator={new RegExp(/^hello/, 'i')}
         iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
         }}
-        placeholder="Pattern start by hello"
+        placeholder='Pattern start by hello'
       />
 
       <Input
-        defaultValue="My default input value"
-        help="this is my help message"
+        defaultValue='My default input value'
+        help='this is my help message'
         type={InputType.TEXT}
         customValidator={(value) => (value === 'machin' ? InputStatus.SUCCESS : InputStatus.WARNING)}
         iconNameRight={IconName.ALERT}
@@ -153,14 +153,14 @@ export const InputScreen = (): JSX.Element => {
 
       <Input
         forceControl
-        defaultValue="12"
+        defaultValue='12'
         value={valueTextInput}
         status={InputStatus.SUCCESS}
         iconNameRight={IconName.BELL}
         onIconClick={() => {
           window.alert('lol')
         }}
-        placeholder="Forced control formatted normal input"
+        placeholder='Forced control formatted normal input'
         onChange={(e) => {
           setValueTextInput(formatMontant(e.inputValue))
         }}
@@ -172,45 +172,46 @@ export const InputScreen = (): JSX.Element => {
 
         <Input
           forceControl
-          defaultValue="Input Success"
+          defaultValue='Input Success'
           value={valueTextInput}
           status={InputStatus.SUCCESS}
           iconNameRight={IconName.CHECK_CIRCLE}
           onIconClick={() => {
             window.alert('lol')
           }}
-          placeholder="Placeholder in success input type"
+          placeholder='Placeholder in success input type'
           onChange={(e) => {
             setValueTextInput(formatMontant(e.inputValue))
           }}
         />
 
-        <Input type={InputType.TEXT} placeholder="Input type texte" />
-        <Input type={InputType.NUMBER} placeholder="Input type number" />
-        <Input type={InputType.PASSWORD} placeholder="Input type password" />
-        <Input type={InputType.DATE} placeholder="Input type date" />
-        <Input type={InputType.EMAIL} placeholder="Input type mail" />
+        <Input type={InputType.TEXT} placeholder='Input type texte' />
+        <Input type={InputType.NUMBER} placeholder='Input type number' />
+        <Input iconNameLeft='tri-alert' type={InputType.PASSWORD} placeholder='Input type password' />
+        <Input type={InputType.DATE} placeholder='Input type date' />
+        <Input type={InputType.EMAIL} placeholder='Input type mail' />
+        <Input iconNameLeft='tri-alert' type={InputType.SEARCH} placeholder='Input type mail' />
 
         <Input
-          help="This password does not meet the security requirements."
+          help='This password does not meet the security requirements.'
           type={InputType.TEXT}
           status={InputStatus.ERROR}
-          placeholder="This is an error message"
+          placeholder='This is an error message'
         />
 
-        <Input help="this is my help message" type={InputType.TEXT} placeholder="This is my placeholder" />
+        <Input help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder' />
 
         <Input
-          help="this is my help message"
+          help='this is my help message'
           type={InputType.TEXT}
-          placeholder="This is my placeholder"
+          placeholder='This is my placeholder'
           iconNameLeft={IconName.INFOS_CIRCLE}
         />
 
         <Input
-          type="password"
+          type='password'
           securityGauge
-          placeholder="this is my placeholder"
+          placeholder='this is my placeholder'
           minLength={8}
           maxLength={15}
           validationRules={{
@@ -222,14 +223,14 @@ export const InputScreen = (): JSX.Element => {
           }}
         />
 
-        <Input type="password" help="test" placeholder="this is my placeholder" />
+        <Input type='password' help='test' placeholder='this is my placeholder' />
         <Input
-          defaultValue="My 2nd default input value"
-          help="this is my help message"
+          defaultValue='My 2nd default input value'
+          help='this is my help message'
           type={InputType.TEXT}
           status={InputStatus.WARNING}
           iconNameRight={IconName.SEARCH}
-          placeholder="This is my placeholder"
+          placeholder='This is my placeholder'
         />
       </AutoLayout>
     </Section>

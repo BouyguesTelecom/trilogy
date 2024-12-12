@@ -1,11 +1,11 @@
 import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyColor } from '@/objects/Typography'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { OtpProps } from './OtpProps'
-import { TypographyColor } from '@/objects/Typography'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
-import { useTrilogyContext } from '@/context/index'
 
 type NumberOrNull = number | null
 
@@ -176,7 +176,7 @@ const Otp = ({
             autoFocus={idx === 0 && autoFocus}
             pattern='\d{1}'
             maxLength={length}
-            className='otp'
+            className={hashClass(styled, clsx('otp'))}
             value={`${digit ?? ''}`}
             onKeyUp={inputOnKeyUp}
             onFocus={inputOnFocus}
