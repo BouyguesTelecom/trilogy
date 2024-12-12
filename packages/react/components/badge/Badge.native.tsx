@@ -11,7 +11,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * @param onClick {Function} onClick Event for Badge
  * @param testId {string} Test Id for Test Integration
  */
-const Badge = ({ label, onClick, testId, variant, ...others }: BadgeProps): JSX.Element => {
+const Badge = ({ children, label, onClick, testId, variant, inverted, ...others }: BadgeProps): JSX.Element => {
   const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
@@ -23,13 +23,13 @@ const Badge = ({ label, onClick, testId, variant, ...others }: BadgeProps): JSX.
       alignSelf: 'baseline',
       minWidth: 20,
       height: 20,
-      backgroundColor: badgeColor,
+      backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
       justifyContent: 'center',
       alignItems: 'center',
     },
     text: {
-      color: textColor,
+      color: !inverted ? textColor : getColorStyle(variant || TrilogyColor.MAIN),
       fontSize: 10,
     },
     textContent: {
@@ -51,6 +51,9 @@ const Badge = ({ label, onClick, testId, variant, ...others }: BadgeProps): JSX.
   ) : (
     <View style={styles.badge} {...others}>
       <Text style={styles.text}>{label}</Text>
+      {!label && children && (
+        children
+      )}
     </View>
   )
 }
