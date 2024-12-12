@@ -86,7 +86,10 @@ const Modal = ({
   }, [display, refsActions?.current.length])
 
   useEffect(() => {
-    setDisplay(active || false)
+    setDisplay((prev) => {
+      if (prev) refBtnModal.current && refBtnModal.current.focus()
+      return active || false
+    })
   }, [active])
 
   useEffect(() => {
