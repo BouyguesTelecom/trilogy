@@ -77,6 +77,13 @@ const Modal = ({
             return nextIndex
           })
         }
+        if (key === 'Escape') {
+          event.preventDefault()
+          setDisplay(false)
+          refBtnModal.current && refBtnModal.current.focus()
+          setIndexFocusable(0)
+          onClose && onClose()
+        }
       }
     },
     [refsActions.current.length, display],
@@ -106,7 +113,7 @@ const Modal = ({
 
   return (
     <div onKeyDown={onKeyDown} ref={refModal}>
-      {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
+      {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
       <div
         id={id}
         className={classes}
