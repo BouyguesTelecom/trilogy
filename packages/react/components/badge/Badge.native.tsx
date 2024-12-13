@@ -48,10 +48,11 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
     },
     iconPosition: {
       position: "absolute",
-      bottom: 10,
+      bottom: 15,
       left: 10,
       right: 0,
-      top: 0
+      top: 15,
+      zIndex: 1000
     }
   })
 
@@ -81,10 +82,13 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
 
   if (status) {
     return (
-      <View style={styles.badge} {...others}>
+      <View {...others}>
         {iconName && iconColor && (
-          <View style={styles.iconPosition}>
-            <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
+          <View>
+            <View style={styles.iconPosition}>
+              <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
+            </View>
+            {children}
           </View>
         )}
       </View>
