@@ -1,8 +1,9 @@
-import React from 'react'
-import { TabPanelsProps } from './TabPanelsProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
+import TabPanel from '@/components/tabs/tab-panels/tab-panel'
+import { TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Tabs Nav Component
@@ -18,7 +19,10 @@ const TabPanels = ({ children, className, id, testId, ...others }: TabPanelsProp
 
   return (
     <div id={id} data-testid={testId} className={classes} {...others}>
-      {children}
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return false
+        return <TabPanel {...child.props} index={index} />
+      })}
     </div>
   )
 }
