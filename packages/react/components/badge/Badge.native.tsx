@@ -5,6 +5,7 @@ import {ComponentName} from '@/components/enumsComponentsName'
 import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
 import {Icon, IconColor, IconName, IconSize} from "@/components/icon"
 import {StatusState} from "@/objects"
+import {BadgePositionEnum} from "@/components/badge/BadgeEnum";
 
 /**
  * Badge Component
@@ -46,17 +47,29 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
       marginLeft: 5,
       color: getColorStyle(TrilogyColor.MAIN),
     },
-    iconPosition: {
+    iconStatus: {
       position: "absolute",
-      top: 20,
-      bottom: 0,
-      left: 0,
-      right: 0,
       zIndex: 1000,
       backgroundColor: 'white',
-      width: 15,
-      minHeight: 15,
+      width: 16,
+      minHeight: 16,
       borderRadius: 15
+    },
+    iconStatusPositionTopLeft: {
+      top: -4,
+      left: -4
+    },
+    iconStatusPositionTopRight: {
+      top: -4,
+      left: 17
+    },
+    iconStatusPositionBottomLeft: {
+      top: 17,
+      left: -4
+    },
+    iconStatusPositionBottomRight: {
+      top: 17,
+      left: 17
     }
   })
 
@@ -86,10 +99,20 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
 
   if (status) {
     return (
-      <View style={{ borderColor: 'red', borderWidth: 1 }} {...others}>
+      <View {...others}>
         {iconName && iconColor && (
           <View>
-            <View style={styles.iconPosition}>
+            <View
+              style={
+              [
+                styles.iconStatus,
+                position === BadgePositionEnum.TOP_LEFT && styles.iconStatusPositionTopLeft ||
+                position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight ||
+                position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft ||
+                position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight ||
+                {}
+              ]
+            }>
               <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
             </View>
             <View style={{ position: "absolute", zIndex: 1 }}>
