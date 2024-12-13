@@ -35,34 +35,35 @@ export const BadgeScreen = (): JSX.Element => {
         </Column>
       </Columns>
 
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
-          <Badge
-            variant={VariantState.INFO}
-            status={StatusState.SUCCESS}
-            position={BadgePositionEnum.TOP_LEFT}
-          >
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column narrow>
-          <Text>Success</Text>
-        </Column>
-      </Columns>
+      {/*<Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>*/}
+      {/*  <Column narrow>*/}
+      {/*    <Badge*/}
+      {/*      variant={VariantState.INFO}*/}
+      {/*      status={StatusState.SUCCESS}*/}
+      {/*      position={BadgePositionEnum.TOP_LEFT}*/}
+      {/*    >*/}
+      {/*      <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />*/}
+      {/*    </Badge>*/}
+      {/*  </Column>*/}
+      {/*  <Column narrow>*/}
+      {/*    <Text>Success</Text>*/}
+      {/*  </Column>*/}
+      {/*</Columns>*/}
 
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
-          <Badge
-            variant={VariantState.INFO}
-            position={BadgePositionEnum.TOP_LEFT}
-          >
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column narrow>
-          <Text>Success</Text>
-        </Column>
-      </Columns>
+      {/*<Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>*/}
+      {/*  <Column narrow>*/}
+      {/*    <Badge*/}
+      {/*      variant={VariantState.INFO}*/}
+      {/*      position={BadgePositionEnum.TOP_LEFT}*/}
+      {/*    >*/}
+      {/*      <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />*/}
+      {/*    </Badge>*/}
+      {/*  </Column>*/}
+      {/*  <Column narrow>*/}
+      {/*    <Text>Success</Text>*/}
+      {/*  </Column>*/}
+      {/*</Columns>*/}
+
       <Divider />
 
       <Title level={TitleLevels.THREE}>TextContent props</Title>
