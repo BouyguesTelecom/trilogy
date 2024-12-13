@@ -52,7 +52,7 @@ const Tab = ({
 
   React.useEffect(() => {
     if (active) setActiveIndex(index)
-  }, [active, setActiveIndex])
+  }, [active, setActiveIndex, index])
 
   if (routerLink && (to || href)) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
