@@ -13,11 +13,11 @@ import {StatusState} from "@/objects"
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param onClick {Function} onClick Event for Badge
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  * @param variant
  * @param position
  * @param others
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
 const Badge = ({ children, label, onClick, testId, variant, inverted, position, status, ...others }: BadgeProps): JSX.Element => {
   const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
@@ -48,11 +48,15 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
     },
     iconPosition: {
       position: "absolute",
-      bottom: 15,
-      left: 10,
+      top: 20,
+      bottom: 0,
+      left: 0,
       right: 0,
-      top: 15,
-      zIndex: 1000
+      zIndex: 1000,
+      backgroundColor: 'white',
+      width: 15,
+      minHeight: 15,
+      borderRadius: 15
     }
   })
 
@@ -82,13 +86,15 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
 
   if (status) {
     return (
-      <View {...others}>
+      <View style={{ borderColor: 'red', borderWidth: 1 }} {...others}>
         {iconName && iconColor && (
           <View>
             <View style={styles.iconPosition}>
               <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
             </View>
-            {children}
+            <View style={{ position: "absolute", zIndex: 1 }}>
+              {children}
+            </View>
           </View>
         )}
       </View>

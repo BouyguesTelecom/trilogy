@@ -24,9 +24,11 @@ export const BadgeScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Badge with icon</Title>
       <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
         <Column narrow>
-          <Badge variant={VariantState.INFO}
-                 status={StatusState.SUCCESS}
-                 position={BadgePositionEnum.TOP_RIGHT}>
+          <Badge
+            variant={VariantState.INFO}
+            status={StatusState.SUCCESS}
+            position={BadgePositionEnum.TOP_RIGHT}
+          >
             <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
           </Badge>
         </Column>
