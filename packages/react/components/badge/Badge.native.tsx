@@ -115,7 +115,7 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
             }>
               <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
             </View>
-            <View style={{ position: "absolute", zIndex: 1 }}>
+            <View>
               {children}
             </View>
           </View>
