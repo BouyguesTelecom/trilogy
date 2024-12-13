@@ -23,16 +23,16 @@ export const BadgeScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Badge with icon</Title>
       <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
+        <Column size={3}>
           <Badge
             variant={VariantState.INFO}
             status={StatusState.SUCCESS}
-            position={BadgePositionEnum.TOP_RIGHT}
+            position={BadgePositionEnum.BOTTOM_RIGHT}
           >
             <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
           </Badge>
         </Column>
-        <Column narrow>
+        <Column size={3}>
           <Text>PANIER</Text>
         </Column>
       </Columns>
