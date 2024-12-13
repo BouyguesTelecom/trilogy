@@ -22,49 +22,22 @@ export const BadgeScreen = (): JSX.Element => {
       <Divider />
 
       <Title level={TitleLevels.THREE}>Badge with icon</Title>
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column size={3}>
-          <Badge
-            variant={VariantState.INFO}
-            status={StatusState.SUCCESS}
-            position={BadgePositionEnum.BOTTOM_RIGHT}
-          >
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column size={3}>
-          <Text>PANIER</Text>
-        </Column>
-      </Columns>
 
-      {/*<Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>*/}
-      {/*  <Column narrow>*/}
-      {/*    <Badge*/}
-      {/*      variant={VariantState.INFO}*/}
-      {/*      status={StatusState.SUCCESS}*/}
-      {/*      position={BadgePositionEnum.TOP_LEFT}*/}
-      {/*    >*/}
-      {/*      <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />*/}
-      {/*    </Badge>*/}
-      {/*  </Column>*/}
-      {/*  <Column narrow>*/}
-      {/*    <Text>Success</Text>*/}
-      {/*  </Column>*/}
-      {/*</Columns>*/}
+      <Badge
+        variant={VariantState.INFO}
+        status={StatusState.SUCCESS}
+        position={BadgePositionEnum.TOP_LEFT}
+      >
+        <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+      </Badge>
 
-      {/*<Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>*/}
-      {/*  <Column narrow>*/}
-      {/*    <Badge*/}
-      {/*      variant={VariantState.INFO}*/}
-      {/*      position={BadgePositionEnum.TOP_LEFT}*/}
-      {/*    >*/}
-      {/*      <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />*/}
-      {/*    </Badge>*/}
-      {/*  </Column>*/}
-      {/*  <Column narrow>*/}
-      {/*    <Text>Success</Text>*/}
-      {/*  </Column>*/}
-      {/*</Columns>*/}
+      <Badge
+        variant={VariantState.INFO}
+        status={StatusState.SUCCESS}
+        position={BadgePositionEnum.BOTTOM_RIGHT}
+      >
+        <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+      </Badge>
 
       <Divider />
 
