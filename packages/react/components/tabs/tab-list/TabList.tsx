@@ -1,10 +1,11 @@
-import React from 'react'
-import { TabListProps } from './TabListProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
+import Tab from '@/components/tabs/tab-list/tab/Tab'
+import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { useTrilogyContext } from '@/context'
-import { getAlignClassName } from '@/objects'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Tabs Nav Component
@@ -21,7 +22,10 @@ const TabList = ({ children, className, id, testId, align, ...others }: TabListP
 
   return (
     <div id={id} data-testid={testId} className={classes} {...others}>
-      {children}
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return false
+        return <Tab {...child.props} index={index} />
+      })}
     </div>
   )
 }
