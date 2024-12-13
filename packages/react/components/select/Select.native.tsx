@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { Modal } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { SelectProps, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 
@@ -52,6 +52,7 @@ const Select = ({
   }, [selected])
 
   const handleOpenCloseModal = useCallback(() => {
+    console.log('click')
     !disabled && setDisplay((prev) => !prev)
   }, [disabled])
 
@@ -148,18 +149,19 @@ const Select = ({
       onClose={handleOpenCloseModal}
       unClosable
       trigger={
-        <Input
-          onIconClick={handleOpenCloseModal}
-          onClick={handleOpenCloseModal}
-          disabled={disabled}
-          placeholder={label}
-          iconNameLeft={iconName}
-          iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
-          value={selectedNames.join(', ')}
-          defaultValue={selectedNames.join(', ')}
-          {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
-          {...others}
-        />
+        <TouchableOpacity onPress={handleOpenCloseModal}>
+          <Input
+            onIconClick={handleOpenCloseModal}
+            disabled={disabled}
+            placeholder={label}
+            iconNameLeft={iconName}
+            iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
+            value={selectedNames.join(', ')}
+            defaultValue={selectedNames.join(', ')}
+            {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
+            {...others}
+          />
+        </TouchableOpacity>
       }
     >
       <View style={{ paddingBottom: 20 }}>{options}</View>
