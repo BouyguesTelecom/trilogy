@@ -110,7 +110,7 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
                 position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight ||
                 position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft ||
                 position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight ||
-                {}
+                styles.iconStatusPositionTopLeft
               ]
             }>
               <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
