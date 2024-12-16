@@ -1,8 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import { TabsContext } from '../context'
 
 /**
  * Tabs Nav Component
@@ -14,15 +16,18 @@ import { ScrollView, StyleSheet } from 'react-native'
  * @param others
  */
 const TabList = ({ children, ...others }: TabListProps) => {
+  const { inverted } = React.useContext(TabsContext)
+
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
         tabList: {
           flexDirection: 'row',
           overflow: 'visible',
+          backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : undefined,
         },
       }),
-    [],
+    [inverted],
   )
 
   return (

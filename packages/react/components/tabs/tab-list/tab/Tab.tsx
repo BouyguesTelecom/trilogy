@@ -45,11 +45,11 @@ const Tab = ({
   const handleClick = React.useCallback(
     (e: React.MouseEvent) => {
       if (!disabled) {
-        setActiveIndex(index)
+        if (!routerLink) setActiveIndex(index)
         if (onClick) onClick(e)
       }
     },
-    [disabled, onClick, index, setActiveIndex],
+    [disabled, onClick, index, setActiveIndex, routerLink],
   )
 
   React.useEffect(() => {
