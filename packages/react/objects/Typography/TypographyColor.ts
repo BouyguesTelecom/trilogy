@@ -1,4 +1,4 @@
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color";
 
 /**
  * Typo color
@@ -30,6 +30,10 @@ export const setTypographyColor = (
   inverted = false
 ): string => {
   return (
+    (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_DISABLED)
+    ? getColorStyle(TrilogyColor.DISABLED)
+    : typo === TypographyColor.TEXT_DISABLED &&
+      getColorStyle(TrilogyColor.DISABLED)) ||
     (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_ACCENT)
       ? getColorStyle(TrilogyColor.ACCENT)
       : typo === TypographyColor.TEXT_ACCENT &&

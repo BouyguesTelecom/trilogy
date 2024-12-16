@@ -1,14 +1,17 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { RadioTilesProps } from './RadioTilesProps'
-import { hashClass } from '@/helpers'
+import { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
 import { getAlignClassName } from '@/objects'
 import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
 
 /**
  * Columns Item Component - Columns Child
- * @param size {ColumnsSize} Size 1-12
+ * @param id {string}
+ * @param children {ReactNode}
+ * @param align { Alignable | AlignableValues} align content
+ * @param verticalAlign { Alignable | AlignableValues} align vertical content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
