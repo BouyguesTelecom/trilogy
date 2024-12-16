@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 /**
  * Tabs Nav Component
@@ -13,8 +13,18 @@ import { View } from 'react-native'
  * @param others
  */
 const TabPanels = ({ children, ...others }: TabPanelsProps) => {
+  const styles = React.useMemo(
+    () =>
+      StyleSheet.create({
+        tabPanels: {
+          paddingVertical: 8,
+        },
+      }),
+    [],
+  )
+
   return (
-    <View {...others}>
+    <View style={styles.tabPanels} {...others}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return false
         return <TabPanel {...child.props} index={index} />
