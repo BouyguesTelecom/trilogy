@@ -80,6 +80,7 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id="id_two" value="opt_two" label="Toto" />
           <SelectOption id="id_four" value="disabled" label="disabled" disabled />
           <SelectOption id="id_three" value="Venus" label="Venus" />
+          <SelectOption id="id_four" value="Solar saint clair" label="SolarSaintClair" />
         </Select>
         <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant="PRIMARY">
           Set Venus
@@ -130,6 +131,7 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id="id_two" value="opt_two" label="Toto" />
           <SelectOption id="id_three" value="Venus" label="Venus" />
           <SelectOption id="id_four" value="disabled" label="disabled" disabled />
+          <SelectOption id="id_five" value="Solar saint clair plutonium enigmus" label="Solar saint clair plutonium enigmus" />
         </Select>
 
         <Title level={TitleLevels.FOUR}>With icon</Title>
@@ -148,6 +150,8 @@ export const SelectView = (): JSX.Element => {
           <SelectOption id="id_two" value="opt_two" label="Toto" />
           <SelectOption id="id_three" value="Venus" label="Venus" />
           <SelectOption id="id_four" value="disabled" label="disabled" disabled />
+          <SelectOption id="id_five" value="Solar saint clair plutonium enigmus" label="Solar saint clair plutonium enigmus" />
+
         </Select>
       </Section>
     </>

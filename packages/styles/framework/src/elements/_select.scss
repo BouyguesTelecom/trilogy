@@ -8,6 +8,7 @@
   select {
     width: 100%;
     @include input;
+    padding-right: 40px;
 
     &:focus {
       padding-left: 15px !important;
