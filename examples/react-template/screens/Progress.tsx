@@ -1,4 +1,4 @@
-import { StatusState, TypographyBold } from '@trilogy-ds/react'
+import * as React from 'react'
 import {
   Divider,
   Progress,
@@ -8,8 +8,9 @@ import {
   TextLevels,
   Title,
   TitleLevels,
+  View
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
+import { StatusState, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
   return (
@@ -18,12 +19,14 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
         <ProgressRadial value={30} secondValue={30}>
-          <Title level={TitleLevels.THREE} marginless>
-            60
-          </Title>
-          <Text level={TextLevels.ONE} marginless>
-            / 100 Go
-          </Text>
+          <View>
+            <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
+              60
+            </Title>
+            <Text level={TextLevels.ONE} marginless>
+              / 100 Go
+            </Text>
+          </View>
         </ProgressRadial>
 
         <Divider />
@@ -42,19 +45,13 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
-        <Progress value={30} status={StatusState.INFO} />
+        <Progress legendCenter={'Unique legend'} value={30} status={StatusState.INFO} />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress
-          value={15}
-          status={StatusState.INFO}
-          legendStart='0Go'
-          legendCenter='Je suis une légende'
-          legendEnd='5Go'
-        />
+        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendEnd="5Go" />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>
@@ -62,7 +59,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <ProgressRadial value={30} secondValue={60}>
-          <Title level={TitleLevels.THREE} marginless>
+          <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
             60
           </Title>
           <Text level={TextLevels.ONE} marginless>
@@ -75,7 +72,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Divider />
 
         <ProgressRadial value={30} secondValue={60}>
-          <Title level={TitleLevels.THREE} marginless>
+          <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
             60
           </Title>
           <Text level={TextLevels.ONE} marginless>
@@ -84,7 +81,7 @@ export const ProgressScreen = (): JSX.Element => {
         </ProgressRadial>
 
         <ProgressRadial value={30} secondValue={30} small>
-          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} marginless>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]} marginless>
             60
           </Text>
           <Text level={TextLevels.FOUR} marginless>
@@ -100,3 +97,4 @@ export const ProgressScreen = (): JSX.Element => {
     </>
   )
 }
+
