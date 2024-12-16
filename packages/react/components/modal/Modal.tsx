@@ -46,54 +46,23 @@ const Modal = ({
   const { styled } = useTrilogyContext()
   const refsActions = useRef<Array<HTMLButtonElement | null>>([])
   const refBtnModal = useRef<any>(null)
+  const refModal = useRef<HTMLDivElement>(null)
   const [, setIndexFocusable] = useState(0)
 
-  const handleClickOutside = (e: Event) => {
-    if (modal?.current?.contains(e.target as Node)) {
-      return
-    } else {
-      handleClose(onClose, e)
-    }
-  }
-
-  useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
-
-  useEffect(() => {
-    display && refsActions.current[0] && refsActions.current[0].focus()
-  }, [display, refsActions?.current.length])
-
-  useEffect(() => {
-    if (display && !unClosable) {
-      document.addEventListener('mousedown', handleClickOutside)
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [display, unClosable])
+  const handleClose = React.useCallback(
+    (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
+      setDisplay(false)
+      refBtnModal.current && refBtnModal.current.focus()
+      setIndexFocusable(0)
+      if (onCloseFunc) onCloseFunc(e)
+    },
+    [refBtnModal.current],
+  )
 
   const classes = React.useMemo(
     () => hashClass(styled, clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
     [display, panel, className, styled],
   )
-
-  function handleClose(onCloseFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(false)
-    refBtnModal.current && refBtnModal.current.focus()
-    if (onCloseFunc) {
-      onCloseFunc(e)
-    }
-  }
-
-  function handleOpen(onOpenFunc: ClickEvent | undefined, e: OnClickEvent) {
-    setDisplay(true)
-    if (onOpenFunc) {
-      onOpenFunc(e)
-    }
-  }
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -108,15 +77,56 @@ const Modal = ({
             return nextIndex
           })
         }
+        if (key === 'Escape') {
+          event.preventDefault()
+          setDisplay(false)
+          refBtnModal.current && refBtnModal.current.focus()
+          setIndexFocusable(0)
+          onClose && onClose()
+        }
       }
     },
     [refsActions.current.length, display],
   )
 
+  useEffect(() => {
+    display && refsActions.current[0] && refsActions.current[0].focus()
+  }, [display, refsActions?.current.length])
+
+  useEffect(() => {
+    setDisplay((prev) => {
+      if (prev) {
+        refBtnModal.current && refBtnModal.current.focus()
+        setIndexFocusable(0)
+      }
+      return active || false
+    })
+  }, [active])
+
+  useEffect(() => {
+    if (refModal.current) {
+      const footer = refModal.current.querySelector('[data-modal-footer]')
+      const getCTA = footer?.querySelectorAll('button')
+      if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
+    }
+  }, [refModal.current])
+
   return (
-    <div onKeyDown={onKeyDown}>
-      {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal })}
-      <div id={id} className={classes} role='dialog' aria-labelledby={modalGeneratedId} aria-modal={true} {...others}>
+    <div onKeyDown={onKeyDown} ref={refModal}>
+      {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
+      <div
+        id={id}
+        className={classes}
+        role='dialog'
+        aria-labelledby={modalGeneratedId}
+        aria-modal={true}
+        onClick={(e) => {
+          if (!modal?.current?.contains(e.target as Node)) {
+            handleClose(onClose, e)
+          }
+        }}
+        {...others}
+      >
         <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
           <div className={hashClass(styled, clsx('modal-header'))}>
             {hideCloseButton !== true && (
