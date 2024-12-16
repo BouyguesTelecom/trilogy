@@ -1,3 +1,5 @@
+import { HTMLInputTypeAttribute } from 'react'
+
 /**
  * Input types
  */
@@ -11,7 +13,7 @@ export enum InputType {
   EMAIL = 'email',
 }
 
-export type InputTypeValues = `${InputType}`
+export type InputTypeValues = `${InputType}` | HTMLInputTypeAttribute
 
 export enum InputStatus {
   SUCCESS = 'success',
