@@ -40,11 +40,11 @@ const Range = ({
   React.useEffect(() => {
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
-      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${
+      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
         (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMin / max) * 100}% , ${getColorStyle(
-        TrilogyColor.MAIN_FADE,
-      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.NEUTRAL_FADE)} ${(cursorMax / max) * 100}%) `
+      }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(
+        TrilogyColor.MAIN,
+      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
     }
   }, [cursorMin, cursorMax])
 
