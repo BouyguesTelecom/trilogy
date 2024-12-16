@@ -9,7 +9,7 @@ import {
   Tabs,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
 import { Alignable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
@@ -21,25 +21,9 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs>
         <TabList>
-          <Tab
-            active={index === 0}
-            label='Tab 1'
-            iconName={IconName.ALERT}
-            href='/hello'
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
-          <Tab
-            active={index === 1}
-            label='Tab 2'
-            iconName={IconName.ALERT}
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
-          <Tab
-            active={index === 2}
-            label='Tab 3'
-            iconName={IconName.ALERT}
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
+          <Tab active={index === 0} label='Tab 1' iconName={IconName.ALERT} href='/hello' onClick={() => setIndex(0)} />
+          <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)} />
+          <Tab active={index === 2} label='Tab 3' iconName={IconName.ALERT} onClick={() => setIndex(2)} disabled />
         </TabList>
         <TabPanels>
           <TabPanel>

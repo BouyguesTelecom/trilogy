@@ -143,6 +143,10 @@
 
       &[disabled], &[aria-disabled=true] {
         background-color: transparent !important;
+        border-bottom-color: transparent !important;
+        &.is-active{
+          border-bottom-color: currentColor !important;
+        }
       }
 
     }

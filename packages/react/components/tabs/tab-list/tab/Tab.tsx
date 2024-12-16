@@ -44,8 +44,10 @@ const Tab = ({
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent) => {
-      setActiveIndex(index)
-      if (!disabled && onClick) onClick(e)
+      if (!disabled) {
+        setActiveIndex(index)
+        if (onClick) onClick(e)
+      }
     },
     [disabled, onClick, index, setActiveIndex],
   )
