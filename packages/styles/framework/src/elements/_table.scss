@@ -26,7 +26,7 @@
 
   td,
   th {
-    border: 1px solid getColor('neutral-fade');
+    border: var(--border);
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid getColor('neutral-fade');
+      border-bottom: var(--border);
 
       > p {
         margin: 0;
@@ -89,7 +89,6 @@
 
       td,
       th {
-        border-color: currentColor;
         color: currentColor;
       }
     }
@@ -154,15 +153,15 @@
   }
 
   &.has-border-all {
-    border: 1px solid getColor('neutral-fade');
+    border: var(--border);
 
     th {
-      border-right: 1px solid getColor('neutral-fade');
+      border-right: var(--border);
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getColor('neutral-fade');
+        border-right: var(--border);
       }
     }
   }
@@ -170,13 +169,13 @@
   &.has-border-inner {
     th {
       &:not(:last-child) {
-        border-right: 1px solid getColor('neutral-fade');
+        border-right: var(--border);
       }
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid getColor('neutral-fade');
+        border-right: var(--border);
       }
     }
   }
@@ -216,7 +215,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: 1px solid getColor('neutral');
+          border-top: var(--border);
         }
       }
 
