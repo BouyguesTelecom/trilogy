@@ -1,6 +1,6 @@
-import { IconName, IconNameValues } from '../../../../components/icon'
-import { Accessibility, Clickable, Dev } from '../../../../objects'
-import { CommonProps } from '../../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility, Clickable, Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Item Interface

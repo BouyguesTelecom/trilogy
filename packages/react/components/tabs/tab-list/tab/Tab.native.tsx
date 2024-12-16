@@ -15,14 +15,10 @@ import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } fr
  * @param iconName {IconNameValues | IconName} add icon name
  * @param disabled {boolean} disable tab item
  * @param label {string} Tab content
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
- * @param testId {string} Test Id for Test Integration
  * @param to {string} Link
- * @param href {string} <a />
- * @param routerLink Custom Router Link as props
+ * @param href {string} Link
  */
-const Tab = ({ active, onClick, to, href, routerLink, iconName, label, disabled, ...others }: TabProps) => {
+const Tab = ({ active, onClick, to, href, iconName, label, disabled, ...others }: TabProps) => {
   const { index, ...props } = others as any
   const { activeIndex, setActiveIndex, inverted } = React.useContext(TabsContext)
   const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
@@ -31,13 +27,11 @@ const Tab = ({ active, onClick, to, href, routerLink, iconName, label, disabled,
     (e: GestureResponderEvent) => {
       if (!disabled) {
         if (onClick) onClick(e)
-        if (!routerLink) setActiveIndex(index)
-        if (routerLink && (to || href)) {
-          Linking.openURL(to || href || '')
-        }
+        if (!to && !href) setActiveIndex(index)
+        if (to || href) Linking.openURL(to || href || '')
       }
     },
-    [disabled, onClick, index, setActiveIndex, routerLink],
+    [disabled, onClick, index, setActiveIndex, to, href],
   )
 
   const styles = React.useMemo(
