@@ -1,15 +1,5 @@
 import * as React from 'react'
-import {
-  Divider,
-  Progress,
-  ProgressRadial,
-  Section,
-  Text,
-  TextLevels,
-  Title,
-  TitleLevels,
-  View
-} from '@trilogy-ds/react/components'
+import { Divider, Progress, ProgressRadial, Section, Text, TextLevels, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import { StatusState, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
@@ -23,7 +13,7 @@ export const ProgressScreen = (): JSX.Element => {
             <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
               60
             </Title>
-            <Text level={TextLevels.ONE} marginless>
+            <Text level={TextLevels.ONE} marginless typo={TypographyAlign.TEXT_CENTERED}>
               / 100 Go
             </Text>
           </View>
