@@ -11,7 +11,7 @@ import { SelectDynamic, SelectNative } from './web'
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 const Select = ({ custom, multiple, ...props }: SelectProps): JSX.Element => {
-  if (custom || multiple) return <SelectDynamic {...props} />
+  if (custom || multiple) return <SelectDynamic {...props} multiple={multiple} />
   return <SelectNative {...props} />
 }
 
