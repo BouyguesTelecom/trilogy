@@ -10,22 +10,32 @@ import React, { useEffect, useState } from 'react'
  * Tabs Component
  * @param children {ReactNode} Children for tabs
  * @param activeIndex {number} default active tab index
+ * @param inverted {boolean} Inverted style
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs
  * @param id
  */
-const Tabs = ({ children, className, id, activeIndex, fullwidth }: TabsProps) => {
+const Tabs = ({ children, className, id, activeIndex, fullwidth, inverted }: TabsProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
+  const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
+
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tabs', fullwidth && is('fullwidth'), className))
+  const classes = hashClass(styled, clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), className))
 
   useEffect(() => {
     activeIndex !== undefined && setCurrentIndex(activeIndex)
   }, [activeIndex])
 
   return (
-    <TabsContext.Provider value={{ activeIndex: currentIndex, setActiveIndex: setCurrentIndex }}>
+    <TabsContext.Provider
+      value={{
+        activeIndex: currentIndex,
+        inverted: isInverted,
+        setInverted: setIsInverted,
+        setActiveIndex: setCurrentIndex,
+      }}
+    >
       <div id={id} className={classes} data-tabs-context=''>
         {children}
       </div>

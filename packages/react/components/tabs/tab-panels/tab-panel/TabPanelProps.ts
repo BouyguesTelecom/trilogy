@@ -1,5 +1,5 @@
-import { Dev } from '../../../../objects'
-import { CommonProps } from '../../../../objects/facets/CommonProps'
+import { Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Item Interface

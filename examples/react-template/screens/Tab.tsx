@@ -21,29 +21,17 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs>
         <TabList>
-          <Tab
-            active={index === 0}
-            label='Tab 1'
-            iconName={IconName.ALERT}
-            href='/hello'
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
-          <Tab
-            active={index === 1}
-            label='Tab 2'
-            iconName={IconName.ALERT}
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
-          <Tab
-            active={index === 2}
-            label='Tab 3'
-            iconName={IconName.ALERT}
-            onClick={(e) => setIndex(e.target.dataset.index)}
-          />
+          <Tab active={index === 0} label='Tab 1' iconName={IconName.ALERT} href='/hello' onClick={() => setIndex(0)} />
+          <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)} />
+          <Tab active={index === 2} label='Tab 3' iconName={IconName.ALERT} onClick={() => setIndex(2)} disabled />
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Title>Tab 1</Title>
+            <Title>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ratione impedit ipsam quidem autem ipsum
+              tempora magnam dignissimos nulla consequuntur molestias architecto soluta at qui, delectus, repellat ea
+              obcaecati numquam.
+            </Title>
           </TabPanel>
           <TabPanel>
             <Title>Tab 2</Title>
