@@ -1,5 +1,5 @@
-import { Alignable, AlignableValues, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Alignable, AlignableValues, Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Item Interface

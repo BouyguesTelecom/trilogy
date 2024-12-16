@@ -14,11 +14,11 @@ import React from 'react'
  * @param iconName {IconNameValues | IconName} add icon name
  * @param disabled {boolean} disable tab item
  * @param label {string} Tab content
+ * @param to {string} Link
+ * @param href {string} <a />
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
- * @param to {string} Link
- * @param href {string} <a />
  * @param routerLink Custom Router Link as props
  */
 const Tab = ({

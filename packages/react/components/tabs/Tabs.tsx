@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react'
  * Tabs Component
  * @param children {ReactNode} Children for tabs
  * @param activeIndex {number} default active tab index
+ * @param inverted {boolean} Inverted style
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs

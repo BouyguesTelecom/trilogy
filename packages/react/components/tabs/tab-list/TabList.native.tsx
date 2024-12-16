@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { TabsContext } from '@/components/tabs/context'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import { TabsContext } from '../context'
 
 /**
  * Tabs Nav Component

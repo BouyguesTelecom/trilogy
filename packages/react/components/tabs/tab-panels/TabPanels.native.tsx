@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { TabsContext } from '@/components/tabs/context'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TabsContext } from '../context'
 
 /**
  * Tabs Nav Component
