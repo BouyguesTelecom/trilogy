@@ -1,6 +1,5 @@
-import * as React from 'react'
 import {
-  Alignable,
+  Button,
   IconName,
   Section,
   Tab,
@@ -10,49 +9,89 @@ import {
   Tabs,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react'
+} from '@trilogy-ds/react/components'
+import { Alignable } from '@trilogy-ds/react/objects'
+import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {
+  const [index, setIndex] = React.useState(0)
   return (
     <Section>
-      <script defer src="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.1/trilogy-vanilla.min.js" />
       <Title level={TitleLevels.THREE}>Simple</Title>
 
       <Tabs>
         <TabList>
-          <Tab label="Tab 1 helo" iconName={IconName.ALERT} href='/hello' />
-          <Tab label="Tab 2" iconName={IconName.ALERT} />
-          <Tab label="Tab 3" iconName={IconName.ALERT} />
+          <Tab
+            active={index === 0}
+            label='Tab 1'
+            iconName={IconName.ALERT}
+            href='/hello'
+            onClick={(e) => setIndex(e.target.dataset.index)}
+          />
+          <Tab
+            active={index === 1}
+            label='Tab 2'
+            iconName={IconName.ALERT}
+            onClick={(e) => setIndex(e.target.dataset.index)}
+          />
+          <Tab
+            active={index === 2}
+            label='Tab 3'
+            iconName={IconName.ALERT}
+            onClick={(e) => setIndex(e.target.dataset.index)}
+          />
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Title>Hello</Title>
+            <Title>Tab 1</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 2</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 3</Title>
           </TabPanel>
         </TabPanels>
       </Tabs>
 
+      <Button variant='CONVERSION' onClick={() => setIndex(1)}>
+        Set Tab 2
+      </Button>
+
       <Tabs>
         <TabList align={Alignable.ALIGNED_START}>
-          <Tab label="Tab 1" iconName={IconName.ALERT} />
-          <Tab label="Tab 2" iconName={IconName.ALERT} />
-          <Tab label="Tab 3" iconName={IconName.ALERT} />
+          <Tab label='Tab 1' iconName={IconName.ALERT} />
+          <Tab label='Tab 2' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Title>Hello</Title>
+            <Title>Tab 1</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 2</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 3</Title>
           </TabPanel>
         </TabPanels>
       </Tabs>
 
       <Tabs>
         <TabList align={Alignable.ALIGNED_END}>
-          <Tab label="Tab 1" iconName={IconName.ALERT} />
-          <Tab label="Tab 2" iconName={IconName.ALERT} />
-          <Tab label="Tab 3" iconName={IconName.ALERT} />
+          <Tab label='Tab 1' iconName={IconName.ALERT} />
+          <Tab label='Tab 2' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Title>Hello</Title>
+            <Title>Tab 1</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 2</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 3</Title>
           </TabPanel>
         </TabPanels>
       </Tabs>
