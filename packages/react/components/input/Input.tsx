@@ -6,19 +6,17 @@ import { hashClass } from '../../helpers'
 import { Accessibility, TypographyColor } from '../../objects'
 import { has, is } from '../../services'
 import { ComponentName } from '../enumsComponentsName'
-import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
+import { Icon, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
-interface IconWrapper {
+interface IconWrapperProps {
   className?: string
   name: IconName | IconNameValues
-  color?: IconColor
   onPress?: () => void
-  closeIconSearch?: boolean
 }
 
 /**
@@ -130,12 +128,10 @@ const Input = (
     clsx('field', className, type === InputType.PASSWORD && securityGauge && has('gauge')),
   )
 
-  const hasIcon = iconNameLeft || iconNameRight
-
   const controlClasses = hashClass(
     styled,
     clsx('control', {
-      [has('icons-right')]: hasIcon ?? (iconNameRight || type === InputType.PASSWORD),
+      [has('icons-right')]: iconNameRight || type === InputType.PASSWORD,
       [has('icons-left')]: iconNameLeft || type === InputType.SEARCH,
     }),
   )
@@ -152,30 +148,27 @@ const Input = (
   }, [])
 
   const IconWrapper = useCallback(
-    ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+    ({ className, name, onPress }: IconWrapperProps) => {
       return (
         <div
           {...(type === InputType.PASSWORD && { 'data-show-pwd': true })}
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
+              onIconClick({
+                inputName: name,
+                inputValue: value ?? '',
+                target: e.target,
+              })
             }
           }}
+          className={onClick ? is('cursor-pointer') : ''}
         >
-          <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
-          {_value && _value.length > 0 && closeIconSearch && (
-            <Icon
-              onClick={() => setValue('')}
-              className={hashClass(styled, clsx(is('justified-self')))}
-              name={IconName.TIMES_CIRCLE}
-              size={IconSize.SMALL}
-            />
-          )}
+          <Icon className={className} name={name} size={IconSize.SMALL} />
         </div>
       )
     },
-    [_value, styled],
+    [styled],
   )
 
   const validator =
@@ -296,8 +289,6 @@ const Input = (
             setIsFocused(false)
           }}
         />
-        {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
-
         {(iconNameLeft || type === InputType.SEARCH) && (
           <IconWrapper className='icon-left' name={iconNameLeft || IconName.SEARCH} />
         )}
@@ -311,13 +302,8 @@ const Input = (
             className='icon-right'
             name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
             onPress={() => {
-              if (inputType === InputType.PASSWORD) {
-                setInputType(InputType.TEXT)
-                setIsShowPwd(true)
-              } else {
-                setInputType(InputType.PASSWORD)
-                setIsShowPwd(false)
-              }
+              setIsShowPwd(!isShowPwd)
+              setInputType(isShowPwd ? InputType.PASSWORD : InputType.TEXT)
             }}
           />
         )}

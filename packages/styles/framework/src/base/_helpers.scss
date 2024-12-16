@@ -38,6 +38,10 @@
   white-space: nowrap;
 }
 
+.is-cursor-pointer {
+  cursor: pointer !important;
+}
+
 $alignments: (
   'centered': 'center',
   'justified': 'justify',
