@@ -3,12 +3,6 @@ import { Accessibility, Dev } from '../../objects'
 import { TagVariant, TagVariantValues } from './TagEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
-type TagClickEventHandler = React.MouseEvent<Element> | unknown
-
-export interface TagClickEvent {
-  (e: TagClickEventHandler): void
-}
-
 /**
  * Tag Interface
  */
