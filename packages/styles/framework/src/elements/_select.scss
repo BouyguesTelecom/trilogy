@@ -8,6 +8,8 @@
   select {
     width: 100%;
     @include input;
+    padding-right: 40px;
+    text-overflow: ellipsis;
 
     &:focus {
       padding-left: 15px !important;
