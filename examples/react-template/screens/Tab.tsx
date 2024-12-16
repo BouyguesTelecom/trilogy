@@ -9,7 +9,7 @@ import {
   Tabs,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 import { Alignable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
