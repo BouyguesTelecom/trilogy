@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { RadioProps } from './RadioProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { RadioProps } from '@/components/radio/RadioProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * radio Component
@@ -14,8 +13,8 @@ import { useTrilogyContext } from '@/context'
  * @param label {string} Label for radio
  * @param onChange {ChangeEvent}
  * @param name {string} Name for radio
- * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for radio
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
 const Radio = ({
@@ -23,7 +22,7 @@ const Radio = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
@@ -31,14 +30,6 @@ const Radio = ({
   ...others
 }: RadioProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
 
   return (
     <div className={hashClass(styled, clsx('radio', className))}>
@@ -49,8 +40,17 @@ const Radio = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        checked={checked}
+        onChange={(e) => {
+          if (onChange && !disabled && !readonly) {
+            onChange({
+              radioId: e.target.id,
+              radioValue: e.target.value,
+              radioName: e.target.name,
+              radioChecked: e.target.checked,
+            })
+          }
+        }}
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
