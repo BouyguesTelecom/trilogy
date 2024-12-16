@@ -18,7 +18,7 @@ $progressbar-small: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
 
-  background-color: getColor('neutral-fade');
+  background-color: getColor('main-fade');
 
   &::-webkit-progress-bar {
     background-color: getColor('main-fade');
@@ -98,7 +98,7 @@ $progress-circle-slices: (
   secondary: getColor('info'),
   tertiary: getColor('font'),
   warning: getColor('warning'),
-  empty: getColor('neutral-fade')
+  empty: getColor('main-fade')
 );
 
 .progress-circle {
