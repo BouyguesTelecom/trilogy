@@ -11,8 +11,8 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { Alignable, Box, StatusState, Text, TrilogyColor, VariantState } from '@trilogy-ds/react'
-import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
+import {Alignable, Box, StatusState, Text, TrilogyColor, VariantState} from '@trilogy-ds/react'
+import {BadgePositionEnum} from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {
   return (
@@ -21,54 +21,29 @@ export const BadgeScreen = (): JSX.Element => {
       <Badge label={'1'} />
       <Divider />
 
-      <Title level={TitleLevels.THREE}>Content props number</Title>
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
-          <Badge label={1} variant={VariantState.ACCENT} position={BadgePositionEnum.TOP_RIGHT}>
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column narrow>
-          <Text>PANIER</Text>
-        </Column>
-      </Columns>
+      <Title level={TitleLevels.THREE}>Badge with icon</Title>
 
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
-          <Badge
-            variant={VariantState.INFO}
-            status={StatusState.SUCCESS}
-            position={BadgePositionEnum.TOP_LEFT}
-          >
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column narrow>
-          <Text>Success</Text>
-        </Column>
-      </Columns>
+      <Badge
+        variant={VariantState.INFO}
+        status={StatusState.SUCCESS}
+        position={BadgePositionEnum.TOP_LEFT}
+      >
+        <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+      </Badge>
 
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER} gap={2}>
-        <Column narrow>
-          <Badge
-            variant={VariantState.INFO}
-            position={BadgePositionEnum.TOP_LEFT}
-          >
-            <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
-          </Badge>
-        </Column>
-        <Column narrow>
-          <Text>Success</Text>
-        </Column>
-      </Columns>
+      <Badge
+        variant={VariantState.INFO}
+        status={StatusState.SUCCESS}
+        position={BadgePositionEnum.BOTTOM_RIGHT}
+      >
+        <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
+      </Badge>
+
       <Divider />
 
       <Title level={TitleLevels.THREE}>TextContent props</Title>
       <Badge label={2} />
-      <Divider />
 
-      <Title level={TitleLevels.THREE}>Icon badgeContent </Title>
-      <Icon name={IconName.INFOS_CIRCLE} />
       <Divider />
 
       <Title level={TitleLevels.THREE}>Reversed props </Title>
@@ -82,16 +57,16 @@ export const BadgeScreen = (): JSX.Element => {
       </Columns>
 
       <Title level={TitleLevels.THREE}>Inverted props </Title>
-      <Box backgroundColor={TrilogyColor.MAIN} inverted>
+      <Box backgroundColor={TrilogyColor.MAIN}>
         <Columns scrollable>
           <Column size={4} key={1}>
-            <Badge label={2} />
+            <Badge inverted label={1} />
           </Column>
           <Column size={4} key={2}>
-            <Badge label={2} />
+            <Badge inverted label={2} />
           </Column>
-          <Column size={4} key={2}>
-            <Badge label={2} />
+          <Column size={4} key={3}>
+            <Badge inverted label={3} />
           </Column>
         </Columns>
       </Box>

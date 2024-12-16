@@ -14,11 +14,11 @@ import { Icon, IconColor, IconName } from '@/components/icon'
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param onClick {Function} onClick Event for Badge
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  * @param variant
  * @param position
  * @param others
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
 const Badge = ({
   className,
