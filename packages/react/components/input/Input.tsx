@@ -221,7 +221,7 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+        <Text className="input-sample" level={TextLevels.TWO}>
           {sample}
         </Text>
       )}
