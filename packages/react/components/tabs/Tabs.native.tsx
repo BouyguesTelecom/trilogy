@@ -1,7 +1,7 @@
 import { TabsProps } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
@@ -9,24 +9,28 @@ import { ComponentName } from '../enumsComponentsName'
  * @param children {ReactNode} Children for tabs
  * @param activeIndex {number} default active tab index
  */
-const Tabs = ({ children, activeIndex }: TabsProps) => {
+const Tabs = ({ children, activeIndex, inverted }: TabsProps) => {
   const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
-
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
-        tabs: {},
-      }),
-    [],
-  )
+  const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
   React.useEffect(() => {
     activeIndex !== undefined && setCurrentIndex(activeIndex)
   }, [activeIndex])
 
+  React.useEffect(() => {
+    setIsInverted(inverted || false)
+  }, [inverted])
+
   return (
-    <TabsContext.Provider value={{ activeIndex: currentIndex, setActiveIndex: setCurrentIndex }}>
-      <View style={styles.tabs}>{children}</View>
+    <TabsContext.Provider
+      value={{
+        activeIndex: currentIndex,
+        inverted: isInverted,
+        setInverted: setIsInverted,
+        setActiveIndex: setCurrentIndex,
+      }}
+    >
+      <View>{children}</View>
     </TabsContext.Provider>
   )
 }
