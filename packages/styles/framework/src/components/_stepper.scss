@@ -204,7 +204,7 @@
 
 @keyframes progress {
   0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral-fade') 50%, getColor('neutral-fade') 100%);
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral') 50%, getColor('neutral') 100%);
   }
   0% {
     background-position: 100% 0;
