@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 import { CheckboxTilesProps } from './CheckboxTilesProps'
-import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 
-const CheckboxTiles = ({ children }: CheckboxTilesProps): JSX.Element => {
+const CheckboxTiles = ({
+                         children,
+                         align,
+                         verticalAlign,
+                         ...others }: CheckboxTilesProps): JSX.Element => {
 
-  return (
-    <TouchableOpacity >
-      <Text>CheckboxTitles</Text>
-    </TouchableOpacity>
+  // Alignement styles
+  const styles = StyleSheet.create({
+
+  })
+
+    return (
+    <View {...others}>
+      {children}
+    </View>
   )
 }
 
