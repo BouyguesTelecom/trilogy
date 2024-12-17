@@ -9,6 +9,7 @@ import {
   IconName,
   Section,
   Text,
+  AutoLayout
 } from '@trilogy-ds/react/components'
 import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
 
@@ -21,35 +22,37 @@ export const CheckboxScreen = (): JSX.Element => {
         </Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
-            <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
-            <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
-            <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            <AutoLayout>
+              <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
+              <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
+              <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
+              <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            </AutoLayout>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
-              <CheckboxTile
-                id='tile-1'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                className='is-fullheight'
-              />
-              <CheckboxTile
-                id='tile-2'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                icon={IconName.ALERT}
-              />
-              <CheckboxTile
-                id='tile-3'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                icon={IconName.ALERT}
-              />
-            </CheckboxTiles>
+                <CheckboxTile
+                  id='tile-1'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  className='is-fullheight'
+                />
+                <CheckboxTile
+                  id='tile-2'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  icon={IconName.ALERT}
+                />
+                <CheckboxTile
+                  id='tile-3'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  icon={IconName.ALERT}
+                />
+          </CheckboxTiles>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER}>
