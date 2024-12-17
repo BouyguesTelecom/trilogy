@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TextLevels } from '@/components/text'
 import { Icon } from '@/components/icon'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -31,26 +29,6 @@ const Link = ({
   inverted,
   ...others
 }: LinkProps): JSX.Element => {
-  const linkLevels = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 16) ||
-      (level && level == TextLevels.TWO && 14) ||
-      (level && level == TextLevels.THREE && 12) ||
-      (level && level == TextLevels.FOUR && 10) ||
-      10
-    )
-  }
-
-  const getHeightLinkAndroid = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 20) ||
-      (level && level == TextLevels.TWO && 18) ||
-      (level && level == TextLevels.THREE && 15) ||
-      (level && level == TextLevels.FOUR && 13) ||
-      14
-    )
-  }
-
   const styles = StyleSheet.create({
     linkAlignement: {
       alignSelf: 'baseline',

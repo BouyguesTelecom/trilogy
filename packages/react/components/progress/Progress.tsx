@@ -40,24 +40,24 @@ const Progress = ({
   )
 
   return (
-    <div className="progress-container">
+    <div className='progress-container'>
       <progress id={id} className={classes} value={value} max={max} {...others}>
         {value}
       </progress>
       {(legendStart || legendCenter || legendEnd) && (
-        <div className="progress-legends">
+        <div className='progress-legends'>
           {legendStart && (
-            <div className="progress-legend-start">
+            <div className='progress-legend-start'>
               <Text>{legendStart}</Text>
             </div>
           )}
           {legendCenter && (
-            <div className="progress-legend-center">
+            <div className='progress-legend-center'>
               <Text>{legendCenter}</Text>
             </div>
           )}
           {legendEnd && (
-            <div className="progress-legend-end">
+            <div className='progress-legend-end'>
               <Text>{legendEnd}</Text>
             </div>
           )}

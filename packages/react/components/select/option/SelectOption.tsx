@@ -40,7 +40,7 @@ const SelectOption = ({
   if (native) {
     return (
       <option
-        role="option"
+        role='option'
         id={id}
         value={value}
         disabled={disabled}
@@ -73,7 +73,7 @@ const SelectOption = ({
       id={id}
       className={selectClasses}
       data-selected={checked}
-      role="option"
+      role='option'
       aria-selected={checked}
       data-value={value}
       onClick={(!disabled && onClick) ? onClick : undefined}
