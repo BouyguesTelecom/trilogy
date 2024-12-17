@@ -1,7 +1,12 @@
+/**
+ * Ensures cents are displayed with 2 digits by padding with a trailing zero if needed.
+ * @param text - The cents portion of a price (e.g., "5" or "50")
+ * @returns The padded cents string (e.g., "50" or "50")
+ * @throws {Error} If text contains non-digit characters
+ */
 export const checkCents = (text: string): string => {
-  let result = text
-  if (text.length === 1) {
-    result += '0'
+  if (!/^\d+$/.test(text)) {
+    throw new Error('Input must contain only digits')
   }
-  return result
+  return text.length === 1 ? `${text}0` : text
 }
