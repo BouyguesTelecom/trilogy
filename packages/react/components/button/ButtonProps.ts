@@ -20,12 +20,11 @@ import {
 export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, CommonProps {
   children?: React.ReactNode
   disabled?: boolean
-  markup?: ButtonMarkup | ButtonMarkupValues
+  markup?: React.ElementType
   href?: string
   to?: string
   loading?: boolean
   name?: string
-  routerLink?: React.ElementType
   type?: ButtonType | ButtonTypeValues
   iconName?: IconName | IconNameValues
   variant?: ButtonVariant | ButtonVariantValues
