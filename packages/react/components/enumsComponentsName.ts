@@ -31,6 +31,8 @@ export enum ComponentName {
   CircleIcon = 'CircleIcon',
   Checkbox = 'Checkbox',
   CheckboxesList = 'CheckboxesList',
+  CheckboxTiles = 'CheckboxTitles',
+  CheckboxTile = 'CheckboxTitle',
   Columns = 'Columns',
   Column = 'Column',
   Container = 'Container',
