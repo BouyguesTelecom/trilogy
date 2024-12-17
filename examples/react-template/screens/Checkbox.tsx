@@ -9,7 +9,6 @@ import {
   IconName,
   Section,
   Text,
-  AutoLayout
 } from '@trilogy-ds/react/components'
 import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
 
@@ -22,12 +21,10 @@ export const CheckboxScreen = (): JSX.Element => {
         </Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <AutoLayout>
-              <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
-              <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
-              <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
-              <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
-            </AutoLayout>
+            <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
+            <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
+            <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
+            <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
