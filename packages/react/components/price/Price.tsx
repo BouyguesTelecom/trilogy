@@ -102,20 +102,16 @@ const Price = ({
     )
   }
 
+  const alignmentClasses = {
+    [Alignable.ALIGNED_START]: 'justified-start',
+    [Alignable.ALIGNED_CENTER]: 'justified-center',
+    [Alignable.ALIGNED_END]: 'justified-end',
+  }
+
   return (
     <div
       id={id}
-      className={hashClass(
-        styled,
-        clsx(
-          'price-container',
-          is(`level-${level || '1'}`),
-          (align == Alignable.ALIGNED_START && is('justified-left')) ||
-            (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
-            (align == Alignable.ALIGNED_END && is('justified-right')) ||
-            '',
-        ),
-      )}
+      className={hashClass(styled, clsx('price-container', is(`level-${level || '1'}`), align && is(alignmentClasses[align])))}
     >
       {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
       {oldAmountComponent}
