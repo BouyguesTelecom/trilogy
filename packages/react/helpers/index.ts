@@ -1,4 +1,3 @@
+export * from './device'
 export * from './enumHelpers'
 export * from './hashClassesHelpers'
-export * from './testHelpers'
-export * from './device'
