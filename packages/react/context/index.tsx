@@ -1,4 +1,6 @@
-import * as React from 'react'
+'use client'
+
+import React from 'react'
 
 interface ITrilogyContext {
   styled: boolean
