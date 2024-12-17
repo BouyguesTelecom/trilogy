@@ -13,7 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param inverted {Boolean} Text white color
  * @param level {TextLevels | number} Text size : 1-4
  * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
- * @param skeleton {Boolean} Text Skeleton
+ * @param loading {Boolean} Text Skeleton
  * @param accessibilityLabel {string} Accessibility label
  * @param marginless {boolean} Removes margin after Text
  * @param numberOfLines {number} Ellipsis after limit number of lines
@@ -30,7 +30,7 @@ const Text = React.forwardRef<TextRef, TextProps>(({
   id,
   typo,
   inverted,
-  skeleton,
+  loading,
   accessibilityLabel,
   marginless,
   numberOfLines,
@@ -62,7 +62,7 @@ const Text = React.forwardRef<TextRef, TextProps>(({
       level && levelText(),
       inverted && is('inverted'),
       typo,
-      skeleton && is('loading'),
+      loading && is('loading'),
       marginless && is('marginless'),
       numberOfLines && is('text-ellipsis'),
       className,

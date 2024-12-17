@@ -27,14 +27,14 @@ export const Base: Story<SectionProps> = (args) => (
 
 export const Skeleton: Story<SectionProps> = (args) => (
   <Section {...args}>
-    <Title level={TitleLevels.THREE} skeleton>
+    <Title level={TitleLevels.THREE} loading>
       Section skeleton
     </Title>
   </Section>
 );
 
 Skeleton.args = {
-  skeleton: true,
+  loading: true,
 };
 
 export const CouleurDeFond: Story<SectionProps> = (args) => (
@@ -51,7 +51,7 @@ CouleurDeFond.args = {
 export const ImageDeFond: Story<SectionProps> = (args) => (
   <Section {...args}>
     <Section>
-      <Title level={TitleLevels.THREE} skeleton>
+      <Title level={TitleLevels.THREE} loading>
         Section avec image de fond
       </Title>
     </Section>

@@ -19,7 +19,7 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
  * @param disk {boolean} Disk ProgressRadial
  * @param secondValueColor {TrilogyColor} Second Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
  * @param align {Alignable} Progress Radial Alignement
- * @param skeleton {boolean} Skeleton Progress Radial
+ * @param loading {boolean} Skeleton Progress Radial
  */
 const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(({
   children,
@@ -32,7 +32,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   secondValue,
   secondValueColor,
   align,
-  skeleton,
+  loading,
   ...others
 }, ref): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.MAIN)
@@ -98,7 +98,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
     </ContentLoader>
   )
 
-  if (skeleton) {
+  if (loading) {
     return <ProgressRadialSkeleton />
   }
 

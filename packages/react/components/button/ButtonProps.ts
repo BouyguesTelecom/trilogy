@@ -13,17 +13,17 @@ import {
   ButtonVariant,
   ButtonVariantValues,
 } from './ButtonEnum'
+import { Loadable } from '../../objects'
 
 /**
  * Button Interface
  */
-export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, CommonProps {
+export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, Loadable, CommonProps {
   children?: React.ReactNode
   disabled?: boolean
   markup?: ButtonMarkup | ButtonMarkupValues
   href?: string
   to?: string
-  loading?: boolean
   name?: string
   routerLink?: React.ElementType
   type?: ButtonType | ButtonTypeValues

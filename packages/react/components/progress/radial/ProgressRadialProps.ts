@@ -1,4 +1,4 @@
-import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '../../../objects'
+import { AlignableProps, Loadable, StatusProps, TrilogyColor, TrilogyColorValues } from '../../../objects'
 import React from 'react'
 import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -8,7 +8,7 @@ import { View } from 'react-native'
  * Progress Radial Interface
  */
 
-export interface ProgressRadialProps extends StatusProps, AlignableProps, CommonProps {
+export interface ProgressRadialProps extends StatusProps, Loadable, AlignableProps, CommonProps {
   children?: React.ReactElement<ProgressRadialItemProps> | React.ReactNode
   label?: string | React.ReactNode
   value?: number
@@ -18,7 +18,6 @@ export interface ProgressRadialProps extends StatusProps, AlignableProps, Common
   description?: string | React.ReactNode
   full?: boolean
   disk?: boolean
-  skeleton?: boolean
   small?: boolean
 }
 

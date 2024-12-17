@@ -88,7 +88,7 @@ describe('Title component', () => {
           level={TitleLevels.THREE}
           inverted={true}
           onClick={jest.fn()}
-          skeleton={false}
+          loading={false}
           markup={TitleMarkup.H3}
           className={'test'}
         >

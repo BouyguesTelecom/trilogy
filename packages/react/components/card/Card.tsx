@@ -14,7 +14,7 @@ export const CardContext = createContext({ horizontal: false })
  * @param horizontal {boolean} Horizontal Card orientation
  * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
- * @param skeleton {boolean} Loading card
+ * @param loading {boolean} Loading card
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
  * - ------------------ WEB PROPERTIES -----------------------
@@ -23,7 +23,7 @@ export const CardContext = createContext({ horizontal: false })
  */
 const Card = React.forwardRef<CardRef, CardProps>(
   (
-    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
+    { className, id, flat, horizontal, floating, loading, onClick, reversed, href, fullheight, active, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
@@ -39,7 +39,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
         flat && !floating && is('flat'),
         horizontal && [is('horizontal'), is('vcentered')],
         floating && !flat && is('floating'),
-        skeleton && is('loading'),
+        loading && is('loading'),
         reversed && is('reversed'),
         className,
         fullheight && is('fullheight'),
