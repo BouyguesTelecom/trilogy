@@ -37,9 +37,7 @@ const Checkbox = ({
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      borderColor: 'red',
-      borderWidth: 1,
+      justifyContent: 'flex-start'
     },
     checkBox: {
       alignItems: 'center',
