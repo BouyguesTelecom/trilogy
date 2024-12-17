@@ -9,7 +9,6 @@ import {
   TrilogyColor,
   getButtonColorStyle,
   getColorStyle,
-  getLoadingClassName,
   getVariantClassName
 } from "@/objects/facets"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -51,12 +50,8 @@ const Button = ({
   }: ButtonProps): string => {
     return (
       (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
-      (typeof loading === "string" &&
-      getLoadingClassName(loading) === "loading" &&
-      getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
-      (typeof loading === "boolean" &&
-      loading &&
-      getColorStyle(TrilogyColor.NEUTRAL)) ||
+      (loading && getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
+      (loading && getColorStyle(TrilogyColor.NEUTRAL)) ||
       (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
       (variant === ButtonVariant.SECONDARY &&
         getColorStyle(TrilogyColor.MAIN_FADE)) ||
@@ -202,20 +197,7 @@ const Button = ({
       onPress={(e?: unknown) => onClick?.(e)}
       {...others}
     >
-      {loading &&
-        typeof loading === "string" &&
-        getLoadingClassName(loading) === "loading" && (
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              height: 45,
-            }}
-          >
-            <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
-          </View>
-        )}
-      {loading && typeof loading === "boolean" && loading === true && (
+      {loading && (
         <View
           style={{
             alignItems: "center",
@@ -226,17 +208,6 @@ const Button = ({
           <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
         </View>
       )}
-      {loading &&
-        typeof loading === "string" &&
-        getLoadingClassName(loading) === "loaded" && (
-          <Text
-            style={
-              (!disabled && styles.text) || (disabled && styles.textDisabled)
-            }
-          >
-            {children}
-          </Text>
-        )}
       {!loading && children && typeof children === "string" && !iconName && (
         <Text
           style={
