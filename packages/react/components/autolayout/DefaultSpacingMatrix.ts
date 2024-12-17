@@ -1,7 +1,7 @@
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { SpacerSize } from '@/components/spacer'
 
-const { FOUR, THREE, TWO } = SpacerSize
+const { FOUR, THREE, TWO, ONE } = SpacerSize
 
 export const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
@@ -29,7 +29,9 @@ export const DEFAULT_SPACING_MATRIX: SpacingMatrix = [
   [INSERT_SPACE_BETWEEN, 'Progress', 'default', TWO],
   [INSERT_SPACE_BETWEEN, 'ProgressRadial', 'default', TWO],
   [INSERT_SPACE_BETWEEN, 'Radio', 'default', THREE],
-  [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', THREE],
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', TWO],
+  [INSERT_SPACE_BETWEEN, 'CheckboxTiles', 'default', ONE],
+  [INSERT_SPACE_BETWEEN, 'CheckboxTile', 'default', ONE],
   [INSERT_SPACE_BETWEEN, 'Switch', 'default', THREE],
   [INSERT_SPACE_BETWEEN, 'Radio', 'default', FOUR],
   [INSERT_SPACE_BETWEEN, 'Checkbox', 'default', FOUR],

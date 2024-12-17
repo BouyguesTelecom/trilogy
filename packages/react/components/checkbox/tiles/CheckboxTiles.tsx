@@ -7,8 +7,10 @@ import { getAlignClassName } from '@/objects'
 import { is } from '@/services'
 
 /**
- * Columns Item Component - Columns Child
- * @param size {ColumnsSize} Size 1-12
+ * CheckboxTiles
+ * @param id
+ * @param align {Alignable}
+ * @param verticalAlign {Alignable}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
