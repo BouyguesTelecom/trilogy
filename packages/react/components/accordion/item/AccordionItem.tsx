@@ -1,8 +1,8 @@
-import { hashClass } from '@/helpers'
+import { AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
+import { useAccordionItem } from '@/components/accordion/item/hooks/useAccordionItem'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useRef } from 'react'
-import shortid from 'shortid'
-import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
+import React from 'react'
 
 /**
  * Accordion Item Component
@@ -17,15 +17,13 @@ const AccordionItem = ({
   open,
   className,
   children,
-  id = shortid.generate(),
+  id = React.useId(),
   onClick,
   disabled,
   ...others
 }: AccordionItemProps): JSX.Element => {
-  const ref = useRef<HTMLDetailsElement>(null)
-
+  const { handleClick } = useAccordionItem({ onClick })
   const classes = hashClass(clsx('accordion-item', className))
-
   const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
   if (disabled) {
@@ -34,16 +32,7 @@ const AccordionItem = ({
   }
 
   return (
-    <details
-      open={open}
-      {...ariaProps}
-      data-testid={id}
-      className={classes}
-      ref={ref}
-      id={id}
-      {...others}
-      onClick={(e: OnClickEvent) => (onClick ? onClick(e) : null)}
-    >
+    <details open={open} data-testid={id} className={classes} id={id} onClick={handleClick} {...ariaProps} {...others}>
       {children}
     </details>
   )
