@@ -28,28 +28,28 @@ export const CheckboxScreen = (): JSX.Element => {
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
-              <CheckboxTile
-                id='tile-1'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                className='is-fullheight'
-              />
-              <CheckboxTile
-                id='tile-2'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                icon={IconName.ALERT}
-              />
-              <CheckboxTile
-                id='tile-3'
-                label='label'
-                value='value'
-                description='Je suis une description simple'
-                icon={IconName.ALERT}
-              />
-            </CheckboxTiles>
+                <CheckboxTile
+                  id='tile-1'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  className='is-fullheight'
+                />
+                <CheckboxTile
+                  id='tile-2'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  icon={IconName.ALERT}
+                />
+                <CheckboxTile
+                  id='tile-3'
+                  label='label'
+                  value='value'
+                  description='Je suis une description simple'
+                  icon={IconName.ALERT}
+                />
+          </CheckboxTiles>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER}>

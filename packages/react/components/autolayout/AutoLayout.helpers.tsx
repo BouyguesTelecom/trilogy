@@ -136,16 +136,19 @@ const createChildrenArray = (array: JSX.Element[], children: React.ReactNode): v
     } else if (
       child?.type &&
       child?.type?.displayName !== getTrilogyComponentName(child) &&
-      child?.type?.$$typeof === Symbol.for('react.memo')
+      child?.type?.$$typeof === Symbol.for('react.memo') &&
+      child?.type?.type !== undefined
     ) {
       createChildrenArray(array, child.type.type(child.props))
     } else if (
       child?.type &&
       child?.type?.$$typeof === Symbol.for('react.forward_ref') &&
-      child?.type?.render?.displayName !== getTrilogyComponentName(child)
+      child?.type?.render?.displayName !== getTrilogyComponentName(child) &&
+      child?.type?.type !== undefined
     ) {
       createChildrenArray(array, child.type.type(child.props))
     } else {
+      console.log('in else function'),
       array.push(child as JSX.Element)
     }
   })
