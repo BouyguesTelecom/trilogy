@@ -30,8 +30,6 @@ const Checkbox = ({
 }: CheckboxProps): JSX.Element => {
   const [_checked, setChecked] = useState(checked || false)
 
-  const horizontalTile = false
-
   useEffect(() => {
     setChecked(checked || false)
   }, [checked])
@@ -39,12 +37,13 @@ const Checkbox = ({
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
-      paddingBottom: 5,
       justifyContent: 'flex-start',
+      borderColor: 'red',
+      borderWidth: 1,
     },
     checkBox: {
       alignItems: 'center',
-      justifyContent: horizontalTile ? 'center' : 'flex-start',
+      justifyContent: 'flex-start',
       borderColor: getColorStyle(TrilogyColor.FONT),
       borderWidth: 0.6,
       width: 19,
@@ -58,6 +57,7 @@ const Checkbox = ({
         'transparent',
     },
     label: {
+      marginTop: 2,
       color:
         (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
