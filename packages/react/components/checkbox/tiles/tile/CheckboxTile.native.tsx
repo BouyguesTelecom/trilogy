@@ -5,7 +5,7 @@ import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 
-const CheckboxTile = ({ children }: CheckboxTileProps): JSX.Element => {
+const CheckboxTile = ({ description }: CheckboxTileProps): JSX.Element => {
 
   return (
     <TouchableOpacity >
