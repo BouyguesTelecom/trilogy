@@ -48,8 +48,6 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param help {string} Help for input
  * @param hasIcon {boolean} Input Has Icon, Precise IconName with customIcon
- * @param ref Pass a ref for input
- * @param customIcon {IconName} Adding if you want custom icon
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
  * @param autoCorrect {boolean} Auto correct sentence
@@ -62,7 +60,6 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param required {boolean} Required input
- * @param accessibilityActivate {boolean}
  * @param readOnly {boolean} Read only input
  */
 const Input = React.forwardRef<InputNativeRef, InputNativeProps>(({
