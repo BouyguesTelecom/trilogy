@@ -9,8 +9,18 @@ import { Icon, IconSize } from '@/components/icon'
 import shortid from 'shortid'
 
 /**
- * Columns Item Component - Columns Child
- * @param size {ColumnsSize} Size 1-12
+ * CheckboxTile
+ * @param id {string}
+ * @param checked {Boolean}
+ * @param disabled {Boolean}
+ * @param readonly {Boolean}
+ * @param label {string}
+ * @param onChange {Function}
+ * @param name {string}
+ * @param value {string}
+ * @param description {string}
+ * @param icon {IconName}
+ * @param horizontal {boolean}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
