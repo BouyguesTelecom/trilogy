@@ -99,7 +99,6 @@ const Input = (
     autoCompleteType,
     iconNameLeft,
     iconNameRight,
-    textContentType,
     securityGauge,
     validationRules,
     required,

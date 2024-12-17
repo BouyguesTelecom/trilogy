@@ -15,7 +15,7 @@ import { DividerProps } from './DividerProps'
  * @param color {TrilogyColor} Border color of Divider
  * @param others
  */
-const Divider = ({ content, unboxed, marginless, iconName, inverted, ...others }: DividerProps): JSX.Element => {
+const Divider = ({ content, unboxed, marginless, iconName, ...others }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
   const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
