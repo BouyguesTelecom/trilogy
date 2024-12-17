@@ -44,54 +44,34 @@ const Box = ({
   ...others
 }: BoxProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx(
-      'box',
-      shadowless && is('shadowless'),
-      className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton && is('loading'),
-      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
-      flat && is('flat'),
-      headerOffset && is('offset-header'),
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
 
-  if (href) {
-    return (
-      <a
-        id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
-        className={classes}
-        {...others}
-      >
-        {children}
-      </a>
-    )
-  }
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
+  const BoxComponent = href ? 'a' : 'div'
 
   return (
-    <div
+    <BoxComponent
+      className={hashClass(
+        styled,
+        clsx(
+          'box',
+          shadowless && is('shadowless'),
+          className,
+          backgroundColor && has(getBackgroundClassName(backgroundColor)),
+          backgroundSrc && has('background'),
+          inverted && is('inverted'),
+          skeleton && is('loading'),
+          highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+          flat && is('flat'),
+          headerOffset && is('offset-header'),
+          fullheight && is('fullheight'),
+          active && is('active'),
+        ),
+      )}
       id={id}
-      style={onClick && { ...hoverStyle }}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
+      style={{
+        cursor: onClick ? 'pointer' : 'default',
       }}
-      className={classes}
+      href={href}
+      onClick={onClick}
       {...others}
       {...(backgroundSrc && {
         style: {
@@ -102,7 +82,7 @@ const Box = ({
       })}
     >
       {children}
-    </div>
+    </BoxComponent>
   )
 }
 
