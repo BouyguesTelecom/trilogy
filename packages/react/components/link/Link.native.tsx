@@ -29,26 +29,6 @@ const Link = ({
                 inverted,
                 ...others
               }: LinkPropsNative): JSX.Element => {
-  const linkLevels = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 16) ||
-      (level && level == TextLevels.TWO && 14) ||
-      (level && level == TextLevels.THREE && 12) ||
-      (level && level == TextLevels.FOUR && 10) ||
-      10
-    )
-  }
-
-  const getHeightLinkAndroid = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 20) ||
-      (level && level == TextLevels.TWO && 18) ||
-      (level && level == TextLevels.THREE && 15) ||
-      (level && level == TextLevels.FOUR && 13) ||
-      14
-    )
-  }
-
   const styles = StyleSheet.create({
     linkAlignement: {
       alignSelf: 'baseline',

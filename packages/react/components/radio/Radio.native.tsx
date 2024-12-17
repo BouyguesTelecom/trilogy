@@ -56,7 +56,7 @@ const Radio = ({
     },
   })
 
-  const handleClick = (value: any) => {
+  const handleClick = (value: string) => {
     if (!readonly) {
       if (onChange) {
         onChange({
@@ -70,7 +70,7 @@ const Radio = ({
   }
 
   return (
-    <TouchableOpacity disabled={disabled} style={styles.container} onPress={() => handleClick(value || false)}>
+    <TouchableOpacity disabled={disabled} style={styles.container} onPress={() => handleClick(value ?? '')}>
       <View style={styles.radio} testID={id}>
         {checked && <View style={styles.icon} />}
       </View>
