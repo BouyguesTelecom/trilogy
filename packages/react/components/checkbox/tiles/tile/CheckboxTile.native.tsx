@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { CheckboxTileProps } from './CheckboxTileProps'
 import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
 import shortid from "shortid"
-import {Icon, IconName, IconSize} from "@/components/icon"
-import {getColorStyle, TrilogyColor, TypographyAlign, TypographyBold} from "@/objects"
-import {View} from "@/components/view"
-
+import { Icon, IconName, IconSize } from "@/components/icon"
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from "@/objects"
+import { View } from "@/components/view"
 
 const CheckboxTile = ({
                         disabled,
