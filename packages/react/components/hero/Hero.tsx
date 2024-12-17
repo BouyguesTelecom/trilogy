@@ -4,7 +4,6 @@ import type { View } from 'react-native'
 
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroProps } from '@/components/hero/HeroProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has, is } from '@/services/classify'
@@ -28,10 +27,7 @@ const Hero = React.forwardRef(
     { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others }: HeroProps,
     ref: React.Ref<HTMLDivElement | View>,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'hero',
         backgroundColor && has(getBackgroundClassName(backgroundColor)),
@@ -53,7 +49,7 @@ const Hero = React.forwardRef(
         })}
         {...others}
       >
-        <div className={hashClass(styled, clsx('hero-body'))}>{children}</div>
+        <div className={hashClass(clsx('hero-body'))}>{children}</div>
       </section>
     )
   },

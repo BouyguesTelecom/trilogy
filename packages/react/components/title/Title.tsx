@@ -1,10 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { TitleProps } from './TitleProps'
-import { is } from '@/services'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
+import { TitleProps } from './TitleProps'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {
@@ -73,10 +72,7 @@ const Title = ({
   marginless,
   ...others
 }: TitleProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'title',
       level && getTitleLevel(level),
@@ -88,8 +84,8 @@ const Title = ({
     ),
   )
 
-  const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
-  const overlineClasses = hashClass(styled, clsx('overline', typo, className))
+  const subtitleClasses = hashClass(clsx('subtitle', typo, className))
+  const overlineClasses = hashClass(clsx('overline', typo, className))
 
   const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 

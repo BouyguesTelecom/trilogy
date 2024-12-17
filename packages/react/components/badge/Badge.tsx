@@ -1,11 +1,10 @@
+import { Icon, IconColor, IconName } from '@/components/icon'
+import { hashClass } from '@/helpers'
+import { getStatusClassName, getVariantClassName, StatusState, TrilogyColor } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
 import * as React from 'react'
 import { BadgeProps } from './BadgeProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { has, is } from '@/services'
-import { getStatusClassName, getVariantClassName, StatusState, TrilogyColor } from '@/objects'
-import { Icon, IconColor, IconName } from '@/components/icon'
 
 /**
  * Badge Component
@@ -32,10 +31,7 @@ const Badge = ({
   status,
   ...others
 }: BadgeProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'badge',
       inverted && is('inverted'),

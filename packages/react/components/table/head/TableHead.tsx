@@ -1,11 +1,10 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TableHeadProps } from './TableHeadProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
-import { has, is } from '@/services/classify'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TableHeadProps } from './TableHeadProps'
 
 /**
  * Table Head Component
@@ -16,9 +15,7 @@ import { getColorClassName } from '@/objects/facets/Color'
  * @param backgroundColor {TrilogyColor} background color
  */
 const TableHead = ({ className, id, color, backgroundColor, ...others }: TableHeadProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const classes = hashClass(
-    styled,
     clsx(
       className,
       backgroundColor && has(getBackgroundClassName(backgroundColor)),

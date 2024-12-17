@@ -1,9 +1,8 @@
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import shortid from 'shortid'
 import { CheckboxProps } from './CheckboxProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Checkbox Component
@@ -30,8 +29,6 @@ const Checkbox = ({
   value,
   ...others
 }: CheckboxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -41,7 +38,7 @@ const Checkbox = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('checkbox', className))}>
+    <div className={hashClass(clsx('checkbox', className))}>
       <input
         type='checkbox'
         readOnly={readonly}
@@ -53,7 +50,7 @@ const Checkbox = ({
         onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+      <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
         {label}
       </label>
     </div>

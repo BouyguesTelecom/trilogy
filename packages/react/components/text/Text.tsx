@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TextProps } from './TextProps'
-import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
-import { is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
+import { TextProps } from './TextProps'
 
 /**
  * Text component
@@ -35,8 +34,6 @@ const Text = ({
   numberOfLines,
   ...others
 }: TextProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const levelText = () => {
     if (level) {
       switch (level) {
@@ -55,7 +52,6 @@ const Text = ({
   }
 
   const classes = hashClass(
-    styled,
     clsx(
       'text',
       level && levelText(),

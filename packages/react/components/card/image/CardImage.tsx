@@ -1,9 +1,8 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { CardImageProps } from './CardImageProps'
-import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CardImageProps } from './CardImageProps'
 
 /**
  * Card Image Component
@@ -17,8 +16,7 @@ import { useTrilogyContext } from '@/context'
  * @param className Additionnal CSS Classes
  */
 const CardImage = ({ src, alt, className, id, size, onClick, ...others }: CardImageProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('card-image', size && is(`${size}`), className))
+  const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
   return (
     <div
@@ -30,7 +28,7 @@ const CardImage = ({ src, alt, className, id, size, onClick, ...others }: CardIm
       }}
       className={classes}
     >
-      <figure className={hashClass(styled, clsx('image'))} {...others}>
+      <figure className={hashClass(clsx('image'))} {...others}>
         <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
       </figure>
     </div>

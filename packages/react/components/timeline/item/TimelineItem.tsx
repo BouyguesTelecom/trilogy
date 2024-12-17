@@ -1,8 +1,7 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TimelineItemWebProps } from './TimelineItemProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TimelineItemWebProps } from './TimelineItemProps'
 
 /**
  * Timeline Item Component
@@ -14,11 +13,7 @@ import { hashClass } from '@/helpers'
  * @param className {string} Additionnal CSS Classes
  */
 const TimelineItem = ({ className, id, done, active, cancel, ...others }: TimelineItemWebProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx('timeline-item', done && 'done', active && 'active', cancel && 'cancel', className),
-  )
+  const classes = hashClass(clsx('timeline-item', done && 'done', active && 'active', cancel && 'cancel', className))
   return <div id={id} className={classes} {...others} />
 }
 

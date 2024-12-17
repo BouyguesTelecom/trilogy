@@ -1,11 +1,10 @@
+import { Text } from '@/components/text'
+import { hashClass } from '@/helpers'
+import { getStatusClassName } from '@/objects'
+import { is } from '@/services/index'
+import clsx from 'clsx'
 import * as React from 'react'
 import { ProgressProps } from './ProgressProps'
-import { is } from '@/services/index'
-import { getStatusClassName } from '@/objects'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { Text } from '@/components/text'
 
 /**
  * Progress component
@@ -16,20 +15,18 @@ import { Text } from '@/components/text'
  * @param className {string} Additionnal CSS classes
  */
 const Progress = ({
-                    className,
-                    id,
-                    value,
-                    max = 100,
-                    status,
-                    small,
-                    legendStart,
-                    legendCenter,
-                    legendEnd,
-                    ...others
-                  }: ProgressProps) => {
-  const { styled } = useTrilogyContext()
+  className,
+  id,
+  value,
+  max = 100,
+  status,
+  small,
+  legendStart,
+  legendCenter,
+  legendEnd,
+  ...others
+}: ProgressProps) => {
   const classes = hashClass(
-    styled,
     clsx(
       'progress',
       status && is(getStatusClassName(status)),
@@ -40,24 +37,24 @@ const Progress = ({
   )
 
   return (
-    <div className="progress-container">
+    <div className='progress-container'>
       <progress id={id} className={classes} value={value} max={max} {...others}>
         {value}
       </progress>
       {(legendStart || legendCenter || legendEnd) && (
-        <div className="progress-legends">
+        <div className='progress-legends'>
           {legendStart && (
-            <div className="progress-legend-start">
+            <div className='progress-legend-start'>
               <Text>{legendStart}</Text>
             </div>
           )}
           {legendCenter && (
-            <div className="progress-legend-center">
+            <div className='progress-legend-center'>
               <Text>{legendCenter}</Text>
             </div>
           )}
           {legendEnd && (
-            <div className="progress-legend-end">
+            <div className='progress-legend-end'>
               <Text>{legendEnd}</Text>
             </div>
           )}

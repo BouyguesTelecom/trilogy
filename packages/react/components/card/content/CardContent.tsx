@@ -1,8 +1,7 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { CardContentProps } from './CardContentProps'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
@@ -12,9 +11,8 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  */
 const CardContent = ({ children, className, id, ...others }: CardContentProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   return (
-    <div id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
+    <div id={id} className={hashClass(clsx('card-content', className))} {...others}>
       {children}
     </div>
   )

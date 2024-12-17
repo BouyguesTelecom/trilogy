@@ -1,10 +1,9 @@
+import { hashClass } from '@/helpers'
+import { getAlignClassName, getBackgroundClassName } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
 import * as React from 'react'
 import { BoxHeaderProps } from './BoxHeaderProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { has, is } from '@/services'
-import { getAlignClassName, getBackgroundClassName } from '@/objects'
 
 /**
  * Box Header Component
@@ -17,7 +16,6 @@ import { getAlignClassName, getBackgroundClassName } from '@/objects'
  */
 
 const BoxHeader = ({ children, className, id, align, variant, ...others }: BoxHeaderProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
     alignClass =
@@ -27,7 +25,6 @@ const BoxHeader = ({ children, className, id, align, variant, ...others }: BoxHe
       null
   }
   const classes = hashClass(
-    styled,
     clsx('box-header', className, variant && has(getBackgroundClassName(variant)), align && alignClass),
   )
 

@@ -1,9 +1,8 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { StepperProps } from './StepperProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { Text } from '@/components/text'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { StepperProps } from './StepperProps'
 
 /**
  * Stepper Component
@@ -13,8 +12,7 @@ import { Text } from '@/components/text'
  * @param className Additionnal CSS Classes
  */
 const Stepper = ({ className, id, children, ...others }: StepperProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('stepper-wrapper', className))
+  const classes = hashClass(clsx('stepper-wrapper', className))
   const [currentStep, setCurrentStep] = React.useState<number>(1)
 
   const nbChild = React.useMemo<number>(() => {
@@ -43,7 +41,7 @@ const Stepper = ({ className, id, children, ...others }: StepperProps) => {
   return (
     <div id={id} className={classes} {...others}>
       {children}
-      <div className="step-count">
+      <div className='step-count'>
         <Text>
           {currentStep}/{nbChild}
         </Text>

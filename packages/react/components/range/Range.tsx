@@ -1,9 +1,8 @@
-import * as React from 'react'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { RangeProps } from './RangeProps'
 import { hashClass } from '@/helpers'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import * as React from 'react'
+import { RangeProps } from './RangeProps'
 
 /**
  * Range Component
@@ -31,8 +30,6 @@ const Range = ({
   name,
   gap = 0,
 }: RangeProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
   const [cursorMax, setCursorMax] = React.useState<number>(valueMax ?? max)
   const refTrack = React.useRef(null)
@@ -42,9 +39,9 @@ const Range = ({
       const track = refTrack.current as HTMLElement
       track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
         (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(
-        TrilogyColor.MAIN,
-      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
+      }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN)} ${
+        (cursorMax / max) * 100
+      }%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
     }
   }, [cursorMin, cursorMax])
 
@@ -89,12 +86,12 @@ const Range = ({
   }, [onChangeMax, name, cursorMax])
 
   return (
-    <div id={id} className={hashClass(styled, clsx('range-container', className))}>
-      <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
-      <div className={hashClass(styled, clsx('range'))}>
-        <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
+    <div id={id} className={hashClass(clsx('range-container', className))}>
+      <label className={hashClass(clsx('range-label'))}>{label}</label>
+      <div className={hashClass(clsx('range'))}>
+        <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>
         <input
-          className={hashClass(styled, clsx('range-cursor range-cursor-min'))}
+          className={hashClass(clsx('range-cursor range-cursor-min'))}
           onMouseUp={handleMouseUpMin}
           onChange={handleChangeCursorMin}
           value={cursorMin}
@@ -106,7 +103,7 @@ const Range = ({
           aria-label={label}
         />
         <input
-          className={hashClass(styled, clsx('range-cursor range-cursor-max'))}
+          className={hashClass(clsx('range-cursor range-cursor-max'))}
           onMouseUp={handleMouseUpMax}
           onChange={handleChangeCursorMax}
           value={cursorMax}
@@ -118,13 +115,13 @@ const Range = ({
           aria-label={label}
         />
       </div>
-      <div className={hashClass(styled, clsx('range-values'))}>
+      <div className={hashClass(clsx('range-values'))}>
         <div>
-          <span className={hashClass(styled, clsx('range-value-min'))}>{cursorMin}</span>
+          <span className={hashClass(clsx('range-value-min'))}>{cursorMin}</span>
           {unit && <span> {unit}</span>}
         </div>
         <div>
-          <span className={hashClass(styled, clsx('range-value-max'))}>{cursorMax}</span>
+          <span className={hashClass(clsx('range-value-max'))}>{cursorMax}</span>
           {unit && <span> {unit}</span>}
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { is } from '@/services/classify'
@@ -19,10 +18,7 @@ import { TagProps } from './TagProps'
  * @param className {string} Additionnal CSS Classes
  **/
 const Tag = ({ label, className, id, variant, inverted, small, iconName, ...others }: TagProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const tagClassNames = hashClass(
-    styled,
     clsx(
       'tag',
       variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
@@ -33,7 +29,6 @@ const Tag = ({ label, className, id, variant, inverted, small, iconName, ...othe
   )
 
   const tagIconClassNames = hashClass(
-    styled,
     clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
   )
 

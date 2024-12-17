@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 
 import { Input } from '@/components/input'
 import { SelectedValue, SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers'
 import { SelectOption } from '../'
 
@@ -22,12 +21,11 @@ const SelectDynamic = ({
   multiple,
   className,
 }: PropsWithChildren<SelectProps>): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState<SelectedValue>(selected)
   const [selectedName, setSelectedName] = React.useState<string[]>([])
   const reactId = React.useId()
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = React.useMemo(() => hashClass(clsx('select', className)), [className])
   const [focusedIndex, setFocusedIndex] = useState<number>(-1)
 
   const onClickInput = React.useCallback(() => {
@@ -49,9 +47,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -166,7 +164,7 @@ const SelectDynamic = ({
         iconNameLeft={iconName}
         onBlur={onBlur}
         onClick={onClickInput}
-        className={hashClass(styled, clsx(focused && 'focus'))}
+        className={hashClass(clsx(focused && 'focus'))}
         onKeyPress={(e) => {
           e.preventDefault()
         }}
@@ -176,7 +174,11 @@ const SelectDynamic = ({
         }}
         {...{ readOnly: true, id, role: 'combobox' }}
       />
-      {focused && <ul role="listbox"  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
+      {focused && (
+        <ul role='listbox' className={hashClass(clsx('select-options'))}>
+          {options}
+        </ul>
+      )}
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )

@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { ColumnProps } from './ColumnProps'
-import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { getAlignClassName } from '@/objects'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ColumnProps } from './ColumnProps'
 
 /**
  * Columns Item Component - Columns Child
@@ -31,31 +30,27 @@ import { getAlignClassName } from '@/objects'
  * @param align { Alignable | AlignableValues} align content
  */
 const Column = ({
-                  className,
-                  id,
-                  size,
-                  mobileSize,
-                  tabletSize,
-                  touchSize,
-                  desktopSize,
-                  widescreenSize,
-                  fullhdSize,
-                  offset,
-                  mobileOffset,
-                  tabletOffset,
-                  touchOffset,
-                  desktopOffset,
-                  widescreenOffset,
-                  fullhdOffset,
-                  narrow,
-                  verticalAlign,
-                  ...others
-                }: ColumnProps) => {
-
-  const { styled } = useTrilogyContext()
-
+  className,
+  id,
+  size,
+  mobileSize,
+  tabletSize,
+  touchSize,
+  desktopSize,
+  widescreenSize,
+  fullhdSize,
+  offset,
+  mobileOffset,
+  tabletOffset,
+  touchOffset,
+  desktopOffset,
+  widescreenOffset,
+  fullhdOffset,
+  narrow,
+  verticalAlign,
+  ...others
+}: ColumnProps) => {
   const classes = hashClass(
-    styled,
     clsx(
       'column',
       size && is(`${size}`),

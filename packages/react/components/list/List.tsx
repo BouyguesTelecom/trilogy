@@ -1,9 +1,8 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { ListProps } from './ListProps'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { has } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ListProps } from './ListProps'
 
 /**
  * ListItem Component
@@ -13,8 +12,7 @@ import { has } from '@/services'
  */
 
 const List = ({ className, id, children, testId, divider, ...others }: ListProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
+  const classes = hashClass(clsx('list', divider && has('divider'), className))
 
   return (
     <ul id={id} data-testid={testId} className={classes} {...others}>

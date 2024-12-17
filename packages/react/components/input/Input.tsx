@@ -1,17 +1,15 @@
+import clsx from 'clsx'
+import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
-import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
 import { Accessibility, TypographyColor } from '../../objects'
 import { has, is } from '../../services'
-import clsx from 'clsx'
-import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends Accessibility, InputProps, InputWebEvents {
-}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -107,8 +105,6 @@ const Input = (
   }: InputProp,
   ref: LegacyRef<HTMLInputElement>,
 ): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const inputIcon = new Map()
   inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
@@ -123,16 +119,12 @@ const Input = (
   const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
   const helpClasses = clsx('help', localStatus && is(localStatus))
-  const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
-  const wrapperClasses = hashClass(
-    styled,
-    clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
-  )
+  const classes = hashClass(clsx('input', localStatus && is(localStatus)))
+  const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
 
   const hasIcon = iconNameLeft || iconNameRight
 
   const controlClasses = hashClass(
-    styled,
     clsx('control', {
       [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
       ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
@@ -166,7 +158,7 @@ const Input = (
           {_value && _value.length > 0 && closeIconSearch && (
             <Icon
               onClick={() => setValue('')}
-              className={hashClass(styled, clsx(is('justified-self')))}
+              className={hashClass(clsx(is('justified-self')))}
               name={IconName.TIMES_CIRCLE}
               size={IconSize.SMALL}
             />
@@ -174,7 +166,7 @@ const Input = (
         </div>
       )
     },
-    [_value, styled],
+    [_value],
   )
 
   const validator =
@@ -211,7 +203,7 @@ const Input = (
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className="input-label">
+        <label className='input-label'>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -221,7 +213,7 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO}>
           {sample}
         </Text>
       )}
@@ -314,13 +306,11 @@ const Input = (
             }}
           />
         )}
-        {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
+        {loading && <span className={hashClass(clsx(is('searching')))} />}
       </div>
       {help && <Text className={helpClasses}>{help}</Text>}
 
-      {securityGauge && type === 'password' && (
-        <InputGauge validationRules={validationRules} styled={styled} inputValue={_value} />
-      )}
+      {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
     </div>
   )
 }

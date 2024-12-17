@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { ColumnsProps } from './ColumnsProps'
-import { has, is } from '@/services/classify'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { getAlignClassName, getJustifiedClassName } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ColumnsProps } from './ColumnsProps'
 
 /**
  * Columns Component
@@ -20,22 +19,19 @@ import { getAlignClassName, getJustifiedClassName } from '@/objects'
  * @param mobile {boolean} Responsive mode
  */
 const Columns = ({
-                   className,
-                   id,
-                   multiline,
-                   scrollable,
-                   mobile,
-                   gap,
-                   fullBleed,
-                   marginless,
-                   align,
-                   verticalAlign,
-                   ...others
-                 }: ColumnsProps) => {
-  const { styled } = useTrilogyContext()
-
+  className,
+  id,
+  multiline,
+  scrollable,
+  mobile,
+  gap,
+  fullBleed,
+  marginless,
+  align,
+  verticalAlign,
+  ...others
+}: ColumnsProps) => {
   const classes = hashClass(
-    styled,
     clsx(
       'columns',
       multiline && is('multiline'),

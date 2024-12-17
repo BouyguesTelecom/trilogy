@@ -4,7 +4,6 @@ import React, { FocusEvent, useEffect, useState } from 'react'
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import type { View } from 'react-native'
@@ -45,15 +44,13 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }: AutoCompletePropsWeb<T>,
   ref: React.Ref<HTMLInputElement>,
 ): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const [itemSelected, setItemSelected] = useState<T | null>(null)
   const [_inputValue, setInputValue] = useState<string>(value ?? '')
   const [activeItem, setActiveItem] = useState<number>(0)
   const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = useState<boolean>(displayMenu || false)
   const [search, setSearch] = useState<T[]>([])
 
-  const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
+  const autocompleteClasses = hashClass(clsx(is('autocomplete'), is('active')))
 
   useEffect(() => {
     setInputValue(value || '')
@@ -148,7 +145,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <div className={hashClass(styled, clsx('control'))}>
+    <div className={hashClass(clsx('control'))}>
       <Input
         id={id}
         ref={ref}

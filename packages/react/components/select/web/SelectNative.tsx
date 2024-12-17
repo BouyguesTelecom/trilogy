@@ -4,7 +4,6 @@ import * as React from 'react'
 import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
 import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 
@@ -25,16 +24,14 @@ const SelectNative = ({
   accessibilityLabel,
   ...others
 }: SelectProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState(selected)
 
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = React.useMemo(() => hashClass(clsx('select', className)), [className])
 
   const controlClass = React.useMemo(
-    () => hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
-    [styled, iconName],
+    () => hashClass(clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
+    [iconName],
   )
 
   const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
@@ -53,10 +50,10 @@ const SelectNative = ({
 
   return (
     <div className={selectClasses}>
-      <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
+      <div className={hashClass(clsx('field', focused && 'focus'))}>
         <div className={controlClass}>
           <select
-            className={hashClass(styled, clsx(!label && 'no-label'))}
+            className={hashClass(clsx(!label && 'no-label'))}
             value={selectedValues}
             aria-label={accessibilityLabel}
             data-testid={testId}

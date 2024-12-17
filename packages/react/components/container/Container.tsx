@@ -4,7 +4,6 @@ import type { View } from 'react-native'
 
 import { ContainerProps } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 
@@ -18,8 +17,7 @@ import { is } from '@/services/classify'
  */
 const Container = React.forwardRef(
   ({ className, id, medium, ...others }: ContainerProps, ref: React.Ref<HTMLDivElement | View>): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
+    const classes = hashClass(clsx('container', medium && is('medium'), className))
 
     return <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} {...others} />
   },

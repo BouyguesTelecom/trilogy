@@ -1,8 +1,7 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TableThProps } from './TableThProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TableThProps } from './TableThProps'
 
 /**
  * Table TH Component
@@ -14,9 +13,7 @@ import { useTrilogyContext } from '@/context/index'
  * @param onClick {ClickEvent} On click event
  */
 const TableTh = ({ className, id, colSpan, rowSpan, ...others }: TableThProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(styled, clsx(className))
+  const classes = hashClass(clsx(className))
   return <th id={id} className={classes} colSpan={colSpan} rowSpan={rowSpan} {...others} />
 }
 

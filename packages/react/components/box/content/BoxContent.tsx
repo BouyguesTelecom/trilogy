@@ -1,10 +1,9 @@
+import { hashClass } from '@/helpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has } from '@/services/classify'
+import clsx from 'clsx'
 import * as React from 'react'
 import { BoxContentProps } from './BoxContentProps'
-import { has } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Box Content
@@ -15,10 +14,7 @@ import { useTrilogyContext } from '@/context'
  * @param testId test id
  */
 const BoxContent = ({ children, className, id, backgroundColor, ...others }: BoxContentProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx('box-content', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
   )
   return (

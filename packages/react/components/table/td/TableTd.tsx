@@ -1,8 +1,7 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TableTdProps } from './TableTdProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TableTdProps } from './TableTdProps'
 
 /**
  * Table TD Component
@@ -13,9 +12,7 @@ import { useTrilogyContext } from '@/context/index'
  * @param colSpan {number} Defines the number of columns a cell should span
  */
 const TableTd = ({ className, id, rowSpan, colSpan, ...others }: TableTdProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(styled, clsx(className))
+  const classes = hashClass(clsx(className))
   return <td id={id} className={classes} rowSpan={rowSpan} colSpan={colSpan} {...others} />
 }
 

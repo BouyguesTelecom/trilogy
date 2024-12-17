@@ -1,6 +1,5 @@
 import { Icon, IconSize } from '@/components/icon'
 import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -37,10 +36,8 @@ const RadioTile = ({
   horizontal,
   ...others
 }: RadioTileProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
-    <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
+    <div className={hashClass(clsx('radio-tile', horizontal && is('horizontal'), className))}>
       <input
         type='radio'
         readOnly={readonly}
@@ -61,17 +58,17 @@ const RadioTile = ({
         }}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
+      <label htmlFor={id} className={hashClass(clsx('radio-label'))}>
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
         {horizontal ? (
           <span>
-            <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
+            <span className={hashClass(clsx('radio-title'))}>{label}</span>
+            {description && <span className={hashClass(clsx('radio-description'))}>{description}</span>}
           </span>
         ) : (
           <>
-            <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
+            <span className={hashClass(clsx('radio-title'))}>{label}</span>
+            {description && <span className={hashClass(clsx('radio-description'))}>{description}</span>}
           </>
         )}
       </label>

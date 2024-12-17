@@ -1,5 +1,4 @@
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
@@ -56,7 +55,6 @@ const Button = React.forwardRef(
     ref: React.Ref<HTMLButtonElement>,
   ): JSX.Element => {
     const isDisabled = others.disabled || false
-    const { styled } = useTrilogyContext()
 
     /** Check if specified markup is valid */
     const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
@@ -79,7 +77,7 @@ const Button = React.forwardRef(
       )
     }
 
-    const classes = hashClass(styled, getClassNames(loading, variant, fullwidth, className))
+    const classes = hashClass(getClassNames(loading, variant, fullwidth, className))
     const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
 
     if (Tag === 'button' && !href && !to) {

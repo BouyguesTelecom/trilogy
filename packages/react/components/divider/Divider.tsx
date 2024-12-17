@@ -1,10 +1,9 @@
-import * as React from 'react'
-import { DividerProps } from './DividerProps'
-import { is } from '@/services/classify'
-import { Icon, IconSize } from '../icon'
-import clsx from 'clsx'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { Icon, IconSize } from '../icon'
+import { DividerProps } from './DividerProps'
 
 /**
  * Divider Component
@@ -27,10 +26,7 @@ const Divider = ({
   inverted,
   ...others
 }: DividerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'divider',
       unboxed && is('unboxed'),
@@ -40,7 +36,7 @@ const Divider = ({
       iconName && 'has-icon',
     ),
   )
-  const contentClasses = hashClass(styled, clsx('divider-content'))
+  const contentClasses = hashClass(clsx('divider-content'))
 
   // s'il y a du text et une icone , SEULEMENT le text compte
   if (content && iconName) {

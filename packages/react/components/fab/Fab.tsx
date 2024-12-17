@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '@/context'
-import { FabProps } from './FabProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
 import { Icon, IconName } from '@/components/icon'
+import { hashClass } from '@/helpers'
 import { is } from '@/services'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { FabProps } from './FabProps'
 
 /**
  * Fab Component - Floating Button Action
@@ -39,7 +38,6 @@ const Fab = ({
   disabled,
   ...others
 }: FabProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const [isExtended, setIsExtended] = useState<boolean>(extended || false)
 
   useEffect(() => {
@@ -60,7 +58,7 @@ const Fab = ({
           position: 'relative',
         }
 
-  const _className = hashClass(styled, clsx('fab', extended && is('extended'), className))
+  const _className = hashClass(clsx('fab', extended && is('extended'), className))
 
   return (
     <button
