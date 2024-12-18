@@ -3,10 +3,12 @@ import clsx from 'clsx'
 import { PriceProps } from './PriceProps'
 import { has, is } from '@/services/classify'
 import { Text, TextMarkup } from '../text'
-import { Alignable, TypographyBold, TypographyColor } from '@/objects'
+import { Alignable } from '@/objects'
 import { checkCents } from './PriceHelpers'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { PriceLevel } from './PriceEnum'
+import { useMemo } from 'react'
 
 /**
  * Price Component
@@ -18,7 +20,6 @@ import { useTrilogyContext } from '@/context'
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
  * @param align {Alignable} Price alignement
- * @param inline {boolean} Inline display Price
  * @param accessibilityLabel {string} Accessibility label
  * @param overline {string} Price overline
  * @param oldAmount {boolean} old Amount Price
@@ -33,7 +34,7 @@ const Price = ({
   mention,
   period,
   hideCents = false,
-  level,
+  level = PriceLevel.ONE,
   inverted,
   align,
   accessibilityLabel,
@@ -52,52 +53,44 @@ const Price = ({
 
   let amountComponent = null
   let oldAmountComponent = null
-  const tagAmountComponent = null
+
+  const getAmountContent = useMemo(
+    () => (amount: number, cents: string) =>
+      (
+        <>
+          <Text markup={TextMarkup.SPAN}>{amount}</Text>
+          <span className={hashClass(styled, clsx('price-details'))}>
+            <span className={hashClass(styled, clsx('cents'))}>
+              &nbsp;€{hideCents ? '' : cents}
+              {mention && <sup>{mention}</sup>}
+            </span>
+            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+          </span>
+        </>
+      ),
+    [hideCents, mention, period, styled],
+  )
 
   if (oldAmount) {
-    const isNegativeStrike = oldAmount && oldAmount < 0
-    const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
-    const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
-    const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
+    const wholeStrike: number = oldAmount < 0 ? Math.ceil(oldAmount) : Math.floor(oldAmount)
 
-    let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-    cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (!hideCents && `€${cents}`) || '€'
+    const cents: string = checkCents(oldAmount.toString().split('.')[1]?.substring(0, 2) ?? '00')
 
     oldAmountComponent = (
       <span aria-hidden='true' className={classesStrike} {...others}>
-        <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
-        <span className={hashClass(styled, clsx('price-details'))}>
-          <span className={hashClass(styled, clsx('cents'))}>
-            {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
-            {mention && <sup>{mention}</sup>}
-          </span>
-          {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
-        </span>
+        {getAmountContent(wholeStrike, cents)}
       </span>
     )
   }
 
   if (amount) {
-    const isNegative = amount < 0
-    const absoluteAmount = Math.abs(amount)
-    const absoluteWhole = Math.floor(absoluteAmount)
-    const whole = isNegative ? -absoluteWhole : absoluteWhole
+    const whole: number = amount < 0 ? Math.ceil(amount) : Math.floor(amount)
 
-    let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-    cents = (cents && cents.length === 1 && `${cents}0`) || cents
-    const centsDisplayed = (!hideCents && `€${cents}`) || '€'
+    const cents: string = checkCents(amount.toString().split('.')[1]?.substring(0, 2) ?? '00')
 
     amountComponent = (
       <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>
-        <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
-        <span className={hashClass(styled, clsx('price-details'))}>
-          <span className={hashClass(styled, clsx('cents'))}>
-            {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
-            {mention && <sup>{mention}</sup>}
-          </span>
-          {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
-        </span>
+        {getAmountContent(whole, cents)}
       </span>
     )
   }
@@ -109,7 +102,7 @@ const Price = ({
         styled,
         clsx(
           'price-container',
-          is(`level-${level || '1'}`),
+          is(`level-${level}`),
           (align == Alignable.ALIGNED_START && is('justified-left')) ||
             (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
             (align == Alignable.ALIGNED_END && is('justified-right')) ||
@@ -120,7 +113,6 @@ const Price = ({
       {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
       {oldAmountComponent}
       {amountComponent}
-      {tagAmountComponent}
       {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
     </div>
   )
