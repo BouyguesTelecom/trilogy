@@ -19,7 +19,7 @@ import { has, is } from '@/services'
  * @param color {IconColor} Custom Icon Color
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param onClick {Function} onClick Event Icon
- * @param skeleton {boolean} Icon Skeleton
+ * @param loading {boolean} Icon Skeleton
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additionnal css classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
@@ -35,7 +35,7 @@ const Icon = ({
                 color,
                 backgroundColor,
                 onClick,
-                skeleton,
+                loading,
                 ...others
               }: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -54,7 +54,7 @@ const Icon = ({
       circled && is('circled'),
       circled && !color && has('text-white'),
       color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-      skeleton && is('loading'),
+      loading && is('loading'),
       background,
       className,
     ),

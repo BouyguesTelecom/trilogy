@@ -15,7 +15,7 @@ import { StatesContext } from '@/context/providerStates'
  * @param inverted {Boolean} Text white color
  * @param style {Object} Additional style
  * @param typo {string} Text typo
- * @param skeleton {Boolean} Text Skeleton
+ * @param loading {Boolean} Text Skeleton
  * @param accessibilityLabel {string}
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
@@ -26,7 +26,7 @@ const Text = ({
   style,
   inverted,
   typo,
-  skeleton,
+  loading,
   accessibilityLabel,
   numberOfLines = 0,
   ...others
@@ -46,7 +46,7 @@ const Text = ({
     text: {
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
-      color: (!skeleton && setTypographyColor(typo, inverted || statesContext.inverted)) || 'transparent',
+      color: (!loading && setTypographyColor(typo, inverted || statesContext.inverted)) || 'transparent',
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
       textDecorationLine: 'none',
@@ -95,7 +95,7 @@ const Text = ({
     </TextNative>
   )
 
-  if (skeleton) {
+  if (loading) {
     textView = (
       <ContentLoader style={styles.skeleton}>
         {textView}

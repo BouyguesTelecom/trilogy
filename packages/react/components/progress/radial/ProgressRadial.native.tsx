@@ -18,7 +18,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param disk {boolean} Disk ProgressRadial
  * @param secondValueColor {TrilogyColor} Second Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
  * @param align {Alignable} Progress Radial Alignement
- * @param skeleton {boolean} Skeleton Progress Radial
+ * @param loading {boolean} Skeleton Progress Radial
  */
 const ProgressRadial = ({
   children,
@@ -31,7 +31,7 @@ const ProgressRadial = ({
   secondValue,
   secondValueColor,
   align,
-  skeleton,
+  loading,
   ...others
 }: ProgressRadialProps): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.INFO)
@@ -97,7 +97,7 @@ const ProgressRadial = ({
     </ContentLoader>
   )
 
-  if (skeleton) {
+  if (loading) {
     return <ProgressRadialSkeleton />
   }
 
