@@ -1,7 +1,7 @@
+import { AccordionProps } from '@/components/accordion/AccordionProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { AccordionProps } from './AccordionProps'
+import React from 'react'
 
 /**
  * Accordion Component

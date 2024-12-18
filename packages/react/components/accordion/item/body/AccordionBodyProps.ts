@@ -1,5 +1,5 @@
-import { CommonProps } from '../../../../objects/facets/CommonProps'
-import { Dev } from '@/objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Accordion Body Interface
