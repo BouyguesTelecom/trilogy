@@ -148,7 +148,6 @@ const createChildrenArray = (array: JSX.Element[], children: React.ReactNode): v
     ) {
       createChildrenArray(array, child.type.type(child.props))
     } else {
-      console.log('in else function'),
       array.push(child as JSX.Element)
     }
   })
