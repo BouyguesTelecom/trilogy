@@ -1,6 +1,5 @@
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services'
@@ -17,8 +16,7 @@ import React from 'react'
  * @param others
  */
 const TabList = ({ children, className, id, testId, align, ...others }: TabListProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
+  const classes = hashClass(clsx('tab-list', align && is(getAlignClassName(align)), className))
 
   return (
     <div id={id} data-testid={testId} className={classes} {...others}>

@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TimelineMarkerWebProps } from './TimelineMarkerProps'
-import { is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TimelineMarkerWebProps } from './TimelineMarkerProps'
 
 /**
  * Timeline Marker Component
@@ -15,15 +14,8 @@ import { hashClass } from '@/helpers'
  * @param className {string} Additionnal CSS Classes
  * @param iconClassname {string} Additionnal CSS Classes for icon
  */
-const TimelineMarker = ({
-  className,
-  id,
-  iconClassname,
-  iconName,
-  ...others
-}: TimelineMarkerWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
+const TimelineMarker = ({ className, id, iconClassname, iconName, ...others }: TimelineMarkerWebProps): JSX.Element => {
+  const classes = hashClass(clsx('timeline-marker', is('icon'), className))
   const iconClasses = clsx(iconClassname)
 
   return (

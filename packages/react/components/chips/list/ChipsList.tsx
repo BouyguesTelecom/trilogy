@@ -1,9 +1,8 @@
-import * as React from 'react'
-import { is } from '@/services'
-import { ChipsListProps } from './ChipsListProps'
-import clsx from 'clsx'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ChipsListProps } from './ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
@@ -15,15 +14,10 @@ import { useTrilogyContext } from '@/context'
  * @param others
  */
 const ChipsList = ({ className, id, children, multiple, scrollable, ...others }: ChipsListProps) => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(
-    styled,
-    clsx('chips-list', multiple && is('multiple'), scrollable && is('scrollable'), className),
-  )
+  const classes = hashClass(clsx('chips-list', multiple && is('multiple'), scrollable && is('scrollable'), className))
 
   return (
-    <div id={id} role="group" className={classes} {...others}>
+    <div id={id} role='group' className={classes} {...others}>
       {children}
     </div>
   )

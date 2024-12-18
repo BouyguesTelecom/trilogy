@@ -1,11 +1,10 @@
+import { hashClass } from '@/helpers'
+import { getStatusClassName } from '@/objects'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import shortid from 'shortid'
-import clsx from 'clsx'
 import { SwitchProps } from './SwitchProps'
-import { is } from '@/services/classify'
-import { getStatusClassName } from '@/objects'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Switch Component
@@ -41,7 +40,6 @@ const Switch = ({
   ...others
 }: SwitchProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
-  const { styled } = useTrilogyContext()
 
   React.useEffect(() => {
     setChecked(checked || false)
@@ -54,9 +52,7 @@ const Switch = ({
   }, [checked, readonly])
 
   return (
-    <div
-      className={hashClass(styled, clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}
-    >
+    <div className={hashClass(clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}>
       <input
         onChange={(e) => {
           if (!readonly) {
@@ -88,7 +84,7 @@ const Switch = ({
         id={`switch-${id}`}
         type='checkbox'
         disabled={disabled}
-        className={hashClass(styled, clsx(status && is(getStatusClassName(status))))}
+        className={hashClass(clsx(status && is(getStatusClassName(status))))}
         {...others}
       />
       <label htmlFor={`switch-${id}`}>{label}</label>

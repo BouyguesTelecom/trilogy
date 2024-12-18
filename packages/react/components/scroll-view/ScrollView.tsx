@@ -1,10 +1,9 @@
-import * as React from "react"
-import { ScrollViewProps } from "./ScrollViewProps"
-import { useTrilogyContext } from "@/context"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { is } from "@/services"
-import { ScrollDirectionEnum } from "@/objects"
+import { hashClass } from '@/helpers'
+import { ScrollDirectionEnum } from '@/objects'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ScrollViewProps } from './ScrollViewProps'
 
 /**
  * Scroll View Component
@@ -24,31 +23,26 @@ import { ScrollDirectionEnum } from "@/objects"
  */
 const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
   ({ id, scrollDirection, children }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const scrollDirectionClassName = () => {
       switch (scrollDirection) {
         case ScrollDirectionEnum?.HORIZONTAL:
-          return is("horizontal")
+          return is('horizontal')
         case ScrollDirectionEnum?.VERTICAL:
-          return is("vertical")
+          return is('vertical')
         default:
-          return ""
+          return ''
       }
     }
 
-    const classes = hashClass(
-      styled,
-      clsx("scroll-view", scrollDirection && scrollDirectionClassName())
-    )
+    const classes = hashClass(clsx('scroll-view', scrollDirection && scrollDirectionClassName()))
     return (
       <div ref={ref} className={classes} id={id}>
         {children}
       </div>
     )
-  }
+  },
 )
 
-ScrollView.displayName = "ScrollView"
+ScrollView.displayName = 'ScrollView'
 
 export default ScrollView

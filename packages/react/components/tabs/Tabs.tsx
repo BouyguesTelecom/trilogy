@@ -1,6 +1,5 @@
 import { TabsProps } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -20,8 +19,7 @@ const Tabs = ({ children, className, id, activeIndex, fullwidth, inverted }: Tab
   const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
   const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), className))
+  const classes = hashClass(clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), className))
 
   useEffect(() => {
     activeIndex !== undefined && setCurrentIndex(activeIndex)
