@@ -1,5 +1,4 @@
 import { AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
-import { useAccordionItem } from '@/components/accordion/item/hooks/useAccordionItem'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -22,7 +21,6 @@ const AccordionItem = ({
   disabled,
   ...others
 }: AccordionItemProps): JSX.Element => {
-  const { handleClick } = useAccordionItem({ onClick })
   const classes = hashClass(clsx('accordion-item', className))
   const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
@@ -32,7 +30,7 @@ const AccordionItem = ({
   }
 
   return (
-    <details open={open} data-testid={id} className={classes} id={id} onClick={handleClick} {...ariaProps} {...others}>
+    <details open={open} data-testid={id} className={classes} id={id} onClick={onClick} {...ariaProps} {...others}>
       {children}
     </details>
   )
