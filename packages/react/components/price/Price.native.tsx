@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Text as TrilogyText } from '@/components/text'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { PriceProps } from './PriceProps'
 import { PriceLevel } from './PriceEnum'
@@ -10,8 +9,7 @@ import {
   getTypographyBoldStyle,
   TrilogyColor,
   TypographyBold,
-  TypographyColor,
-} from '../../objects'
+} from '@/objects'
 import { checkCents } from './PriceHelpers'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'

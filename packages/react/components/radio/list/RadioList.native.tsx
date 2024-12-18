@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { AutoLayoutWrapper } from '@/components/autolayout'
 import { SpacerSize } from '@/components/spacer'
-// eslint-disable-next-line no-duplicate-imports
-import type { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
-import { SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
+import { SpacingMatrixMode, SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
 import type { RadioListProps } from './RadioListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 

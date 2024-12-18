@@ -20,7 +20,6 @@ const Divider = ({
   unboxed,
   marginless,
   iconName,
-  inverted,
   ...others
 }: DividerProps): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
