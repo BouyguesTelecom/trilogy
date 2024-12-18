@@ -1,9 +1,9 @@
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '@trilogy-ds/react/lib/components/accordion'
-import styles from './page.module.css'
+import '@trilogy-ds/styles/dist/default/trilogy.css'
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <div>
+      <main>
         <Accordion id='accordion-1'>
           <AccordionItem id='ONE'>
             <AccordionHeader>

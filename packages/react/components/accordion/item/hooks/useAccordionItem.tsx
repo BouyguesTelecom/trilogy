@@ -7,14 +7,11 @@ interface IParams {
 
 export const useAccordionItem = ({ onClick }: IParams) => {
   try {
-    const handleClick = React.useCallback(
-      (e: React.MouseEvent<HTMLDetailsElement>) => {
-        if (onClick) onClick(e)
-      },
-      [onClick],
-    )
+    const handleClick = (e: React.MouseEvent<HTMLDetailsElement>) => {
+      if (onClick) onClick(e)
+    }
 
-    return { handleClick }
+    return { handleClick: onClick ? handleClick : undefined }
   } catch {
     return {}
   }

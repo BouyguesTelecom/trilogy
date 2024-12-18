@@ -1,7 +1,7 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { AccordionProps } from "./AccordionProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { AccordionProps } from '@/components/accordion/AccordionProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
 
 /**
  * Accordion Component
@@ -10,7 +10,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const Accordion = ({ ...others }: AccordionProps): JSX.Element => {
   const styles = StyleSheet.create({
     accordion: {
-      width: "100%",
+      width: '100%',
       minHeight: 10,
       borderRadius: 6,
     },
