@@ -9,7 +9,7 @@ interface IProps {
   onClick?: () => void
 }
 
-const AccordionExample = (props?: IProps) => (
+const AccordionExample = ({ onClick }: IProps) => (
   <Accordion id='accordion-1' data-testid='accordion'>
     <AccordionItem id='ONE' open data-testid='accordion-item'>
       <AccordionHeader>
@@ -35,8 +35,8 @@ const AccordionExample = (props?: IProps) => (
         <Text>Collpased by default</Text>
       </AccordionBody>
     </AccordionItem>
-    <AccordionItem disabled id='FOUR'>
-      <AccordionHeader>
+    <AccordionItem disabled id='FOUR' data-testid='accordion-disabled' onClick={onClick}>
+      <AccordionHeader data-testid='header-disabled'>
         <Text>Hello World 3</Text>
       </AccordionHeader>
       <AccordionBody>
