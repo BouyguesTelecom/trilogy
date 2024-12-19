@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { LinkProps } from './LinkProps'
-import { has, is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { LinkProps } from './LinkProps'
 
 /**
  * Link Component
@@ -27,23 +26,21 @@ import { useTrilogyContext } from '@/context'
  */
 
 const Link = ({
-                children,
-                className,
-                id,
-                to,
-                href,
-                onClick,
-                accessibilityLabel,
-                routerLink,
-                iconName,
-                inverted,
-                blank,
-                title,
-                ...others
-              }: LinkProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
+  children,
+  className,
+  id,
+  to,
+  href,
+  onClick,
+  accessibilityLabel,
+  routerLink,
+  iconName,
+  inverted,
+  blank,
+  title,
+  ...others
+}: LinkProps): JSX.Element => {
+  const classes = hashClass(clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
 
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
@@ -54,7 +51,7 @@ const Link = ({
           id={id}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
-          className={hashClass(styled, clsx(classes))}
+          className={hashClass(clsx(classes))}
           to={to || ''}
           {...(blank && {
             target: '_blank',

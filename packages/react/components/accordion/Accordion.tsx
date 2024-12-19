@@ -1,8 +1,7 @@
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
 import * as React from 'react'
 import { AccordionProps } from './AccordionProps'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context/index'
-import { hashClass } from '@/helpers/hashClassesHelpers'
 
 /**
  * Accordion Component
@@ -12,8 +11,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
  * @param others
  */
 const Accordion = ({ id, className, children, ...others }: AccordionProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('accordion', className))
+  const classes = hashClass(clsx('accordion', className))
   return (
     <div id={id} className={classes} {...others}>
       {children}

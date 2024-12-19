@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
 import { Icon, IconName } from '@/components/icon'
-import { PaginationProps } from './PaginationProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import React, { useEffect, useRef, useState } from 'react'
 import { Pager } from './PaginationEnum'
+import { PaginationProps } from './PaginationProps'
 
 /**
  * Pagination Component
@@ -27,8 +26,8 @@ const Pagination = ({
   ...others
 }: PaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('pagination', className))
+
+  const classes = hashClass(clsx('pagination', className))
 
   const prevCurrentPage = useRef<number>(currentPage)
   const pager = React.useMemo<Pager>(() => {
@@ -78,7 +77,7 @@ const Pagination = ({
   return (
     <nav id={id} className={classes} {...others}>
       <a
-        className={hashClass(styled, clsx('pagination-previous'))}
+        className={hashClass(clsx('pagination-previous'))}
         {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
         onClick={() => {
           if (currentPage !== 1) {
@@ -89,16 +88,16 @@ const Pagination = ({
       >
         <Icon name={IconName.ARROW_LEFT} />
       </a>
-      <ul className={hashClass(styled, clsx('pagination-list'))}>
+      <ul className={hashClass(clsx('pagination-list'))}>
         {!pager.pages.includes(1) && (
           <li>
-            <span className={hashClass(styled, clsx('pagination-ellipsis'))}>…</span>
+            <span className={hashClass(clsx('pagination-ellipsis'))}>…</span>
           </li>
         )}
         {pager.pages.map((pageNumber) => (
           <li key={pageNumber}>
             <a
-              className={hashClass(styled, clsx('pagination-link'))}
+              className={hashClass(clsx('pagination-link'))}
               {...(currentPage === pageNumber ? { 'aria-current': true } : {})}
               aria-label={`Aller à la page ${pageNumber}`}
               onClick={() => {
@@ -112,12 +111,12 @@ const Pagination = ({
         ))}
         {!pager.pages.includes(length) && (
           <li>
-            <span className={hashClass(styled, clsx('pagination-ellipsis'))}>…</span>
+            <span className={hashClass(clsx('pagination-ellipsis'))}>…</span>
           </li>
         )}
       </ul>
       <a
-        className={hashClass(styled, clsx('pagination-next'))}
+        className={hashClass(clsx('pagination-next'))}
         {...(currentPage === Math.max(length) ? { 'aria-disabled': true } : {})}
         onClick={() => {
           if (currentPage !== Math.max(length)) {

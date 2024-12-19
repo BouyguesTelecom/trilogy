@@ -1,5 +1,4 @@
 import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
@@ -105,9 +104,8 @@ const Otp = ({
     stringToCode(value, length) || new Array(length).fill(null),
   )
   const hasChanged = useRef(false)
-  const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
+  const classes = hashClass(clsx('otp-list', error && is('error'), className))
 
   useEffect(() => {
     if (!disabled) {
@@ -176,7 +174,7 @@ const Otp = ({
             autoFocus={idx === 0 && autoFocus}
             pattern='\d{1}'
             maxLength={length}
-            className={hashClass(styled, clsx('otp'))}
+            className={hashClass(clsx('otp'))}
             value={`${digit ?? ''}`}
             onKeyUp={inputOnKeyUp}
             onFocus={inputOnFocus}
@@ -188,7 +186,7 @@ const Otp = ({
       </div>
       {help && (
         <Text
-          className={hashClass(styled, clsx('help'))}
+          className={hashClass(clsx('help'))}
           markup={TextMarkup.P}
           typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
         >

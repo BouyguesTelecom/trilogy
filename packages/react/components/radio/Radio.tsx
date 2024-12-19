@@ -1,5 +1,4 @@
 import { RadioProps } from '@/components/radio/RadioProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -29,10 +28,8 @@ const Radio = ({
   value,
   ...others
 }: RadioProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
-    <div className={hashClass(styled, clsx('radio', className))}>
+    <div className={hashClass(clsx('radio', className))}>
       <input
         type='radio'
         readOnly={readonly}
@@ -53,7 +50,7 @@ const Radio = ({
         }}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
+      <label htmlFor={id} className={hashClass(clsx('radio-label'))}>
         {label}
       </label>
     </div>

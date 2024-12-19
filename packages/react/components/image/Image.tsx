@@ -1,10 +1,9 @@
-import * as React from 'react'
-import { ImageProps } from './ImageProps'
+import { hashClass } from '@/helpers'
+import { getJustifiedClassName } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
+import * as React from 'react'
+import { ImageProps } from './ImageProps'
 
 /**
  * Image Component
@@ -30,8 +29,7 @@ const Image = ({
   align,
   ...others
 }: ImageProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
+  const classes = hashClass(clsx('image', className, align && is(getJustifiedClassName(align))))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const styles: React.CSSProperties | any = {
@@ -53,7 +51,7 @@ const Image = ({
     >
       <img
         style={styles.image}
-        className={hashClass(styled, clsx(radius && has(`border-radius-${radius}`), circled ? is('circled') : ''))}
+        className={hashClass(clsx(radius && has(`border-radius-${radius}`), circled ? is('circled') : ''))}
         src={typeof src === 'string' ? src : ''}
         alt={alt}
       />

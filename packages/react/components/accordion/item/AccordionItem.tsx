@@ -1,9 +1,8 @@
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
 import React, { useRef } from 'react'
 import shortid from 'shortid'
 import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Accordion Item Component
@@ -24,9 +23,8 @@ const AccordionItem = ({
   ...others
 }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDetailsElement>(null)
-  const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('accordion-item', className))
+  const classes = hashClass(clsx('accordion-item', className))
 
   const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
