@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { AccordionBodyProps } from './AccordionBodyProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Accordion Body Component

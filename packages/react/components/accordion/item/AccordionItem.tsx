@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
-import shortid from 'shortid'
-import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { AccordionItemProps, OnClickEvent } from '@/components/accordion/item/AccordionItemProps'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React, { useRef } from 'react'
 
 /**
  * Accordion Item Component
@@ -18,7 +17,7 @@ const AccordionItem = ({
   open,
   className,
   children,
-  id = shortid.generate(),
+  id = React.useId(),
   onClick,
   disabled,
   ...others

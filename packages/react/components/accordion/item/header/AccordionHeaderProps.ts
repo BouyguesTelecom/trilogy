@@ -1,4 +1,4 @@
-import { CommonProps } from '../../../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * AccordionHeader Interface
