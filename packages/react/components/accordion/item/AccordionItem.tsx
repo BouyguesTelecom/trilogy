@@ -3,7 +3,6 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useRef } from 'react'
-import shortid from 'shortid'
 
 /**
  * Accordion Item Component
@@ -18,7 +17,7 @@ const AccordionItem = ({
   open,
   className,
   children,
-  id = shortid.generate(),
+  id = React.useId(),
   onClick,
   disabled,
   ...others
