@@ -5,7 +5,11 @@ import AccordionHeader from '@/components/accordion/item/header'
 import Text from '@/components/text/Text'
 import React from 'react'
 
-const AccordionExample = () => (
+interface IProps {
+  onClick?: () => void
+}
+
+const AccordionExample = ({ onClick }: IProps) => (
   <Accordion id='accordion-1' data-testid='accordion'>
     <AccordionItem id='ONE' open data-testid='accordion-item'>
       <AccordionHeader>
@@ -31,7 +35,7 @@ const AccordionExample = () => (
         <Text>Collpased by default</Text>
       </AccordionBody>
     </AccordionItem>
-    <AccordionItem disabled id='FOUR' data-testid='accordion-disabled'>
+    <AccordionItem disabled id='FOUR' data-testid='accordion-disabled' onClick={onClick}>
       <AccordionHeader data-testid='header-disabled'>
         <Text>Hello World 3</Text>
       </AccordionHeader>
