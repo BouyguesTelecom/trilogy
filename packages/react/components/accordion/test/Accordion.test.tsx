@@ -1,17 +1,10 @@
-import * as React from 'react'
+import AccordionExample from '@/components/accordion/examples'
 import { render } from '@testing-library/react'
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '../index'
+import * as React from 'react'
 
 describe('Accordion', () => {
   it('should render correctly', () => {
-    const { getByTestId } = render(
-      <Accordion data-testid={'accordion'}>
-        <AccordionItem>
-          <AccordionHeader>Accordion Header</AccordionHeader>
-          <AccordionBody> content </AccordionBody>
-        </AccordionItem>
-      </Accordion>,
-    )
+    const { getByTestId } = render(<AccordionExample />)
     const accordion = getByTestId('accordion')
     expect(accordion).toBeInTheDocument()
   })

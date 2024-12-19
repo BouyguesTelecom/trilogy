@@ -1,52 +1,22 @@
-import * as React from 'react'
+import { AccordionExample } from '@/components/accordion'
 import { fireEvent, render } from '@testing-library/react'
-import { Accordion, AccordionHeader, AccordionItem } from '../../../index'
-import AccordionBody from '../../body'
+import React from 'react'
 
 describe('AccordionItem', () => {
   it('should render correctly', () => {
-    const { getByTestId } = render(
-      <Accordion>
-        <AccordionItem data-testid={'accordion'} open={false}>
-          <AccordionHeader data-testid={'header'}>Accordion Header</AccordionHeader>
-          <AccordionBody> content </AccordionBody>
-        </AccordionItem>
-      </Accordion>,
-    )
+    const { getByTestId } = render(<AccordionExample />)
     const accordionHeader = getByTestId('header')
     expect(accordionHeader).toBeInTheDocument()
     expect(accordionHeader).toHaveClass('accordion-header')
+    expect(accordionHeader).toHaveTextContent('Hello World 2')
   })
 
   test('should not expand on accordion disabled when clicked', () => {
-    const { getByTestId } = render(
-      <Accordion>
-        <AccordionItem data-testid={'accordion'} disabled={true}>
-          <AccordionHeader data-testid={'header'}>Accordion Header</AccordionHeader>
-          <AccordionBody> content </AccordionBody>
-        </AccordionItem>
-      </Accordion>,
-    )
-
+    const { getByTestId } = render(<AccordionExample />)
     const accordionItemDisabled = getByTestId('accordion')
-
     const header = getByTestId('header')
     fireEvent.click(header)
     expect(accordionItemDisabled.querySelector('input[type=checkbox]')).toBeFalsy()
     fireEvent.click(accordionItemDisabled)
-  })
-
-  test('should have toggle', () => {
-    const { getByTestId } = render(
-      <Accordion>
-        <AccordionItem open={true}>
-          <AccordionHeader data-testid={'accordion'}>Accordion Header</AccordionHeader>
-          <AccordionBody>content</AccordionBody>
-        </AccordionItem>
-      </Accordion>,
-    )
-
-    const accordion = getByTestId('accordion')
-    expect(accordion).toHaveTextContent('Accordion Header')
   })
 })

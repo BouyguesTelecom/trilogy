@@ -1,16 +1,10 @@
-// Dependencies
-import * as React from "react";
+import { AccordionExample } from '@/components/accordion'
+import { render, screen } from '@testing-library/react'
+import React from 'react'
 
-// Testing methods
-import { render, screen } from "@testing-library/react";
-import { AccordionBody } from "../../..";
-
-// Component to test
-
-describe("Accordion component", () => {
-  test("should contain toto as text", () => {
-    render(<AccordionBody>toto</AccordionBody>);
-
-    expect(screen.getByText("toto")).toBeInTheDocument();
-  });
-});
+describe('Accordion component', () => {
+  test('should contain lorem text', () => {
+    render(<AccordionExample />)
+    expect(screen.getByText('Lorem ipsum dolor sit amet lorem')).toBeInTheDocument()
+  })
+})
