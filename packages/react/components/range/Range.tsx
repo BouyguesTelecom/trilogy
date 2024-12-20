@@ -4,6 +4,7 @@ import { RangeProps } from './RangeProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
+import shortid from 'shortid'
 
 /**
  * Range Component
@@ -19,7 +20,7 @@ import { useTrilogyContext } from '@/context'
  */
 const Range = ({
   className,
-  id,
+  id = shortid.generate(),
   min,
   max,
   label,
