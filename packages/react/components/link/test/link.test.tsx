@@ -40,7 +40,7 @@ describe('Link component', () => {
   test('should have link with routerlink', () => {
     const fn = jest.fn()
     const { getByTestId } = render(
-      <Link onClick={fn} accessibilityLabel='label' data-testid='routerlink' routerLink={'a'} to='https://Example.com'>
+      <Link onClick={fn} accessibilityLabel='label' data-testid='routerlink' markup={'a'} to='https://Example.com'>
         example
       </Link>,
     )
