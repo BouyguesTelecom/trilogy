@@ -1,8 +1,8 @@
-import { hashClass } from '@/helpers'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import React from 'react'
 
 /**
  * AutoCompleteMenu Component

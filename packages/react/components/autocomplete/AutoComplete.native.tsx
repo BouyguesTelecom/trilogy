@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
 
+import { AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteProps'
+import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
+import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
+import { debounce } from '@/components/autocomplete/utils'
+import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
-import { ComponentName } from '../enumsComponentsName'
-import { AutoCompletePropsNative } from './AutoCompleteProps'
-import { defaultMatching, getLabel } from './Autocomplete.helpers'
-import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
-import { debounce } from './utils'
 
 /**
  * AutoComplete Component
