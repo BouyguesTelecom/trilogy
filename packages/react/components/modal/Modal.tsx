@@ -18,7 +18,6 @@ const modalGeneratedId = shortid.generate()
  * @param onClose {Function} Additionnal close custom function
  * @param onOpen {Function} Additionnal open custom function
  * @param children {React.ReactNode}
- * @param disableHandlingClickOutside {boolean} Disable the handling on outside click event
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param panel {boolean} Panel Side Modal
@@ -32,12 +31,10 @@ const Modal = ({
   accessibilityLabel = 'Close',
   active,
   onClose,
-  onOpen,
   panel,
   size,
   hideCloseButton = false,
   trigger,
-  unClosable = false,
   title,
   ...others
 }: ModalProps): JSX.Element => {

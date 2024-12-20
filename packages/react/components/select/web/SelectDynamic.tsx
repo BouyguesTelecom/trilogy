@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useCallback, useMemo, useState } from 'react'
+import React, { PropsWithChildren, useCallback, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 
 import { Input } from '@/components/input'
 import { SelectedValue, SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { SelectOption } from '../'
 
@@ -28,7 +28,6 @@ const SelectDynamic = ({
   const [selectedName, setSelectedName] = React.useState<string[]>([])
   const reactId = React.useId()
   const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
 
   const onClickInput = React.useCallback(() => {
     setIsFocused((prev) => !prev)
@@ -131,7 +130,6 @@ const SelectDynamic = ({
       const props = {
         ...child.props,
         checked: isChecked(child.props.value),
-        focused: focusedIndex === index ? 'true' : undefined,
         onClick: () => {
           const opts = setNewSelectedValues({
             children: child.props.children,
@@ -153,7 +151,7 @@ const SelectDynamic = ({
       }
       return <SelectOption {...props} key={`${reactId}_${index}`} />
     })
-  }, [multiple, selectedValues, focusedIndex, children])
+  }, [multiple, selectedValues, children])
 
   return (
     <div className={selectClasses}>
@@ -176,7 +174,7 @@ const SelectDynamic = ({
         }}
         {...{ readOnly: true, id, role: 'combobox' }}
       />
-      {focused && <ul role="listbox"  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
+      {focused && <ul role='listbox'  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )

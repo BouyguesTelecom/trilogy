@@ -98,9 +98,6 @@ const Title = ({
       height: titlesLevels(),
     },
   })
-  const titleTestId = typeof children === "string"
-    ? children
-    : "NotSpecified"
   const titleAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === "string"

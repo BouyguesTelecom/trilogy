@@ -86,9 +86,9 @@ const Columns = ({
           {...{ onLayout: onLayoutHandler }}
         >
           {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             React.Children.map(
               children,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (child: any) =>
                 child &&
                 React.cloneElement(child, {

@@ -1,11 +1,11 @@
 import React from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {BadgeProps} from '@/components/badge/BadgeProps'
-import {ComponentName} from '@/components/enumsComponentsName'
-import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
-import {Icon, IconColor, IconName, IconSize} from "@/components/icon"
-import {StatusState} from "@/objects"
-import {BadgePositionEnum} from "@/components/badge/BadgeEnum"
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { BadgeProps } from '@/components/badge/BadgeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
+import { StatusState } from "@/objects"
+import { BadgePositionEnum } from "@/components/badge/BadgeEnum"
 
 /**
  * Badge Component

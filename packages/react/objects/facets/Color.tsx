@@ -29,7 +29,7 @@ export type TrilogyColorValues = `${TrilogyColor}`
 /**
  * Trilogy color values
  */
-export const colors: Record<any, string[]> = {
+export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.BACKGROUND]: ['#fff', 'white', 'main'],
   [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
   [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main-fade', 'white'],
@@ -128,7 +128,7 @@ export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): 
     }
     return colorArray[0]
   } else {
-    return colors[trilogyColor][0] || colors['main'][0]
+    return colors[trilogyColor][0] || colors[TrilogyColor.MAIN][0]
   }
 }
 

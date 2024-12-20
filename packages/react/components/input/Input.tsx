@@ -99,7 +99,6 @@ const Input = (
     autoCompleteType,
     iconNameLeft,
     iconNameRight,
-    textContentType,
     securityGauge,
     validationRules,
     required,
@@ -211,7 +210,7 @@ const Input = (
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className="input-label">
+        <label className='input-label'>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -221,7 +220,7 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO}>
           {sample}
         </Text>
       )}

@@ -1,4 +1,4 @@
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color";
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 
 /**
  * Typo color
