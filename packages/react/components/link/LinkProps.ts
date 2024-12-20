@@ -1,6 +1,7 @@
 import { IconName, IconNameValues } from '../../components/icon'
 import { Accessibility, Clickable, Dev } from '../../objects/facets'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { AriaRole } from 'react'
 
 /**
  * Link Interface
@@ -15,4 +16,5 @@ export interface LinkProps extends Accessibility, Clickable, Dev, CommonProps {
   inverted?: boolean
   blank?: boolean
   title?: string
+  role?: AriaRole
 }
