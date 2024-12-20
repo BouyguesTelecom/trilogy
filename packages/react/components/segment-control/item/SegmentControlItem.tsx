@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import React, { useEffect, useState } from 'react'
+import { SegmentControlItemProps } from './SegmentControlItemProps'
 
 /**
  * SegmentControl Item Component
@@ -23,7 +22,6 @@ const SegmentControlItem = ({
   children,
 }: SegmentControlItemProps): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
 
   useEffect(() => {
     setActiveItem(active || false)
@@ -33,7 +31,7 @@ const SegmentControlItem = ({
     <button
       id={id}
       disabled={disabled}
-      className={hashClass(styled, clsx('segmented-control-item', className, { 'is-active': activeItem }))}
+      className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
       onClick={(e: React.MouseEvent) => {
         const target = e.target as HTMLFormElement
         setActiveItem(active || false)

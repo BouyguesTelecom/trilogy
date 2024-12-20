@@ -1,11 +1,10 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { IconProps } from './IconProps'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { has, is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { IconProps } from './IconProps'
 
 /**
  * Icon Component
@@ -26,27 +25,24 @@ import { has, is } from '@/services'
  */
 
 const Icon = ({
-                className,
-                id,
-                size,
-                name,
-                circled,
-                stretched,
-                color,
-                backgroundColor,
-                onClick,
-                skeleton,
-                ...others
-              }: IconProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
+  className,
+  id,
+  size,
+  name,
+  circled,
+  stretched,
+  color,
+  backgroundColor,
+  onClick,
+  skeleton,
+  ...others
+}: IconProps): JSX.Element => {
   const background =
     (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
     (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
     ''
 
   const classes = hashClass(
-    styled,
     clsx(
       'icon',
       stretched && is('stretched'),
@@ -62,7 +58,7 @@ const Icon = ({
 
   return (
     <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      <i className={hashClass(styled, clsx(name))} aria-hidden="true" />
+      <i className={hashClass(clsx(name))} aria-hidden='true' />
     </span>
   )
 }

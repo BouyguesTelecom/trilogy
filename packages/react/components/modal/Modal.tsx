@@ -1,6 +1,5 @@
 import { ButtonType } from '@/components/button'
 import { Title, TitleLevels, TitleMarkup } from '@/components/title'
-import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
@@ -43,7 +42,7 @@ const Modal = ({
 }: ModalProps): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
+
   const refsActions = useRef<Array<HTMLButtonElement | null>>([])
   const refBtnModal = useRef<any>(null)
   const refModal = useRef<HTMLDivElement>(null)
@@ -60,8 +59,8 @@ const Modal = ({
   )
 
   const classes = React.useMemo(
-    () => hashClass(styled, clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
-    [display, panel, className, styled],
+    () => hashClass(clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
+    [display, panel, className],
   )
 
   const onKeyDown = useCallback(
@@ -127,14 +126,14 @@ const Modal = ({
         }}
         {...others}
       >
-        <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
-          <div className={hashClass(styled, clsx('modal-header'))}>
+        <div ref={modal} className={hashClass(clsx('modal-content'))}>
+          <div className={hashClass(clsx('modal-header'))}>
             {hideCloseButton !== true && (
               <button
                 onClick={(e: React.MouseEvent) => {
                   handleClose(onClose, e)
                 }}
-                className={hashClass(styled, clsx('modal-close', is('large')))}
+                className={hashClass(clsx('modal-close', is('large')))}
                 type={ButtonType.BUTTON}
                 ref={(el) => el && (refsActions.current[0] = el)}
               >

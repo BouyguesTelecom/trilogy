@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TagListProps } from './TagListProps'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
 import { getJustifiedClassName } from '@/objects'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TagListProps } from './TagListProps'
 
 /**
  * Tag List Component
@@ -14,13 +13,10 @@ import { getJustifiedClassName } from '@/objects'
  * @param className {string} Additionnal CSS Classes
  */
 const TagList = ({ className, id, align, marginless, ...others }: TagListProps) => {
-  const { styled } = useTrilogyContext()
-
   return (
     <div
       id={id}
       className={hashClass(
-        styled,
         clsx('tags', align && is(getJustifiedClassName(align)), marginless && is('marginless'), className),
       )}
       {...others}

@@ -1,9 +1,8 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TableBorderEnum, TableProps } from './TableProps'
-import { has, is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TableBorderEnum, TableProps } from './TableProps'
 
 /**
  * Table Component
@@ -25,10 +24,7 @@ const Table = ({
   compact,
   ...others
 }: TableProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'table',
       fullwidth && is('fullwidth'),

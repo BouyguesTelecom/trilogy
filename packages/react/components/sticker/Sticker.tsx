@@ -1,10 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import { StickerProps } from './StickerProps'
-import { is } from '@/services/classify'
-import { getVariantClassName } from '@/objects'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { getVariantClassName } from '@/objects'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { StickerProps } from './StickerProps'
 
 /**
  * Sticker component
@@ -18,10 +17,7 @@ import { useTrilogyContext } from '@/context'
  * @param others
  */
 const Sticker = ({ className, id, variant, small, label, outlined, ...others }: StickerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'sticker',
       variant && is(getVariantClassName(variant)),
