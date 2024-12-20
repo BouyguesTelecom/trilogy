@@ -68,7 +68,7 @@ const Tab = ({
         data-index={index}
         {...others}
       >
-        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+        <div className='tab-icon'>{iconName && <Icon size='small' name={iconName} />}</div>
         {label && label}
       </RouterLink>
     )
@@ -88,7 +88,7 @@ const Tab = ({
       onClick={handleClick}
       {...props}
     >
-      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+      <div className='tab-icon'>{iconName && <Icon size='small' name={iconName} />}</div>
       {label && label}
     </button>
   )

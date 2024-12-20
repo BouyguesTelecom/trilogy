@@ -93,7 +93,6 @@ const Fab = ({
           name={iconName as IconName}
           color={IconColor.WHITE}
           size={IconSize.MEDIUM}
-          align={Alignable.ALIGNED_CENTER}
         />
       )}
     </TouchableOpacity>
