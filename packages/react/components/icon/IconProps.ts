@@ -6,7 +6,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 /**
  * Icon Interface
  */
-export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibility, Dev, CommonProps {
+export interface IconProps extends Stacked, Clickable, Accessibility, Dev, CommonProps {
   name: IconName | IconNameValues
   size?: IconSize | IconSizeValues
   circled?: boolean
@@ -15,3 +15,8 @@ export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibi
   backgroundColor?: TrilogyColor | TrilogyColorValues
   skeleton?: boolean
 }
+
+/**
+ * Icon Native Interface
+ */
+export interface IconNativeProps extends IconProps, Omit<AlignableProps, 'verticalAlign'> {}
