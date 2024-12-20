@@ -1,20 +1,12 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Spacer, SpacerSize } from '@/components/spacer'
+import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Text as TrilogyText } from '@/components/text'
-import { Spacer, SpacerSize } from '@/components/spacer'
-import { PriceProps } from './PriceProps'
+import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
 import { PriceLevel } from './PriceEnum'
-import {
-  Alignable,
-  getColorStyle,
-  getTypographyBoldStyle,
-  TrilogyColor,
-  TypographyBold,
-  TypographyColor,
-} from '../../objects'
 import { checkCents } from './PriceHelpers'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { StatesContext } from '@/context/providerStates'
+import { PriceProps } from './PriceProps'
 
 /**
  * Price Component
@@ -276,9 +268,9 @@ const Price = ({
         >
           {
             <>
-              {oldAmount && (
+              {oldAmount !== undefined && (
                 <View style={[{ flexDirection: 'row' }]}>
-                  {oldAmount && <Text style={[styles.striked]}></Text>}
+                  {oldAmount !== undefined && <Text style={[styles.striked]}></Text>}
                   <View style={[styles.priceContainer]}>
                     <Text
                       style={[styles.price, styles.priceFontSizeStriked, styles.priceStrikedColor]}
@@ -286,7 +278,7 @@ const Price = ({
                   </View>
                   <View style={[styles.priceContainer]}>
                     <Text style={[styles.cents, styles.centsFontSizeStriked, styles.priceStrikedColor]}>
-                      €{hideCents && (centsStriked || '00')}
+                      €{!hideCents && (centsStriked || '00')}
                       {mention && mention}
                     </Text>
                     <Text style={[styles.period, styles.periodFontSizeStriked, styles.priceStrikedColor]}>
@@ -295,15 +287,15 @@ const Price = ({
                   </View>
                 </View>
               )}
-              {amount && oldAmount && <Spacer horizontal size={SpacerSize.ONE} />}
-              {amount && (
+              {amount !== undefined && oldAmount !== undefined && <Spacer horizontal size={SpacerSize.ONE} />}
+              {amount !== undefined && (
                 <View style={[{ flexDirection: 'row' }]}>
                   <View style={[styles.priceContainer]}>
                     <Text style={[styles.price, styles.priceFontSize, styles.priceColor]}>{`${whole}`}</Text>
                   </View>
                   <View style={[styles.priceContainer]}>
                     <Text style={[styles.cents, styles.centsFontSize, styles.priceColor]}>
-                      €{hideCents && (cents || '00')}
+                      €{!hideCents && (cents || '00')}
                       {mention && mention}
                     </Text>
                     <Text style={[styles.period, styles.periodFontSize, styles.priceColor]}>
