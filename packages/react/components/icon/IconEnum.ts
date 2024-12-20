@@ -15,22 +15,6 @@ export enum IconSize {
 export type IconSizeValues = `${IconSize}`;
 
 /**
- * Icon Status
- */
-export enum IconStatus {
-  SUCCESS = "SUCCESS",
-  ERROR = "ERROR",
-  WARNING = "WARNING",
-  INFO = "INFO",
-  WHITE = "WHITE",
-}
-
-/**
- * Icon Status values
- */
-export type IconStatusValues = `${IconStatus}`;
-
-/**
  * Icon Color
  */
 export enum IconColor {
