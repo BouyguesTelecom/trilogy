@@ -6,12 +6,11 @@ import { has, is } from '../../services'
 import clsx from 'clsx'
 import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
+import { InputStatus, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends Accessibility, InputProps, InputWebEvents {
-}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -35,9 +34,6 @@ interface IconWrapper {
  * @param defaultValue {string} Default Value for Input
  * @param hasIcon {boolean} Adding if you want icon - Default icon is defined by status
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
- * @param patternValidator {RegExp} regex validator
- * @param customValidator {Function} custom function validator
- * @param onStatusChange {Function} status change event
  * @param help {string} Help for input
  * @param ref Pass a ref for input
  * @param onSubmit {Function} onSubmit Event
@@ -48,7 +44,6 @@ interface IconWrapper {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
- * @param focused {boolean} Fucus mode
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
  * @param onMouseLeave {Function} onMouseLeave Input Event
@@ -78,7 +73,6 @@ const Input = (
     onClick,
     onFocus,
     onBlur,
-    patternValidator,
     onMouseEnter,
     onMouseLeave,
     name,
@@ -87,11 +81,8 @@ const Input = (
     defaultValue,
     value,
     loading,
-    focused,
     status,
     help,
-    onStatusChange,
-    customValidator,
     onSubmit,
     minLength,
     maxLength,
@@ -99,7 +90,6 @@ const Input = (
     autoCompleteType,
     iconNameLeft,
     iconNameRight,
-    textContentType,
     securityGauge,
     validationRules,
     required,
@@ -115,15 +105,11 @@ const Input = (
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
   const [_value, setValue] = useState<string>(defaultValue ?? '')
-  const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
-  const [isDirty, setIsDirty] = useState<boolean>(false)
-  const [isTouched, setIsTouched] = useState<boolean>(false)
-  const [localStatus, setLocalStatus] = useState<InputStatus | InputStatusValues>(status || InputStatus.DEFAULT)
   const [inputType, setInputType] = useState<InputType | InputTypeValues>(type)
   const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
-  const helpClasses = clsx('help', localStatus && is(localStatus))
-  const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
+  const helpClasses = clsx('help', status && is(status ?? InputStatus.DEFAULT))
+  const classes = hashClass(styled, clsx('input', status && is(status ?? InputStatus.DEFAULT)))
   const wrapperClasses = hashClass(
     styled,
     clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
@@ -177,41 +163,14 @@ const Input = (
     [_value, styled],
   )
 
-  const validator =
-    !customValidator && patternValidator
-      ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-      : customValidator
-
   useEffect(() => {
     setValue(value ?? defaultValue ?? '')
   }, [value, defaultValue])
 
-  useEffect(() => {
-    setIsFocused(focused ?? false)
-  }, [focused])
-
-  useEffect(() => {
-    if (isFocused) setIsDirty(true)
-    else if (isDirty) setIsTouched(true)
-  }, [isFocused, isDirty])
-
-  useEffect(() => {
-    if (!validator || !isTouched) return
-    setLocalStatus(validator(_value))
-  }, [isFocused, isTouched])
-
-  useEffect(() => {
-    setLocalStatus(status || InputStatus.DEFAULT)
-  }, [status])
-
-  useEffect(() => {
-    if (onStatusChange) onStatusChange(localStatus)
-  }, [localStatus])
-
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className="input-label">
+        <label className='input-label'>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -221,7 +180,7 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO}>
           {sample}
         </Text>
       )}
@@ -285,16 +244,10 @@ const Input = (
               })
             }
           }}
-          onFocus={(e) => {
-            onFocus?.(e)
-            setIsFocused(true)
-          }}
-          onBlur={(e) => {
-            onBlur?.(e)
-            setIsFocused(false)
-          }}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
-        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
+        {hasIcon && !status && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
         {iconNameLeft && !loading && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
         {iconNameRight && !loading && type !== 'password' && (
           <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
