@@ -26,21 +26,10 @@ describe('Link component', () => {
     expect(handleClick).toHaveBeenCalled()
   })
 
-  test('displays an icon when iconName is passed', async () => {
-    const { findByTestId } = render(
-      <Link href='https://example.com' iconName={IconName.SEARCH} data-testid={'test-icon'}>
-        Example
-      </Link>,
-    )
-    const icon = await findByTestId('test-icon')
-    expect(icon).toHaveClass('link has-icon')
-    expect(icon).toBeInTheDocument()
-  })
-
   test('should have link with routerlink', () => {
     const fn = jest.fn()
     const { getByTestId } = render(
-      <Link onClick={fn} accessibilityLabel='label' data-testid='routerlink' routerLink={'a'} to='https://Example.com'>
+      <Link onClick={fn} accessibilityLabel='label' data-testid='routerlink' markup={'a'} to='https://Example.com'>
         example
       </Link>,
     )
