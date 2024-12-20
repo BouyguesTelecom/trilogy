@@ -5,20 +5,18 @@ import { Accessibility, TypographyColor } from '../../objects'
 import { has, is } from '../../services'
 import clsx from 'clsx'
 import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
-import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
+import { Icon, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
-import { InputProps, InputWebEvents } from './InputProps'
+import { InputClickEventHandler, InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {
 }
 
-interface IconWrapper {
+interface IconWrapperProps {
   className?: string
   name: IconName | IconNameValues
-  color?: IconColor
-  onPress?: () => void
-  closeIconSearch?: boolean
+  onClick?: InputClickEventHandler
 }
 
 /**
@@ -129,13 +127,11 @@ const Input = (
     clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
   )
 
-  const hasIcon = iconNameLeft || iconNameRight
-
   const controlClasses = hashClass(
     styled,
     clsx('control', {
-      [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
-      ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
+      [has('icons-right')]: iconNameRight || type === InputType.PASSWORD,
+      [has('icons-left')]: iconNameLeft,
     }),
   )
 
@@ -151,30 +147,24 @@ const Input = (
   }, [])
 
   const IconWrapper = useCallback(
-    ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+    ({ className, name, onClick }: IconWrapperProps) => {
       return (
         <div
-          {...(type === 'password' && { 'data-show-pwd': true })}
+          {...(type === InputType.PASSWORD && { 'data-show-pwd': true })}
           onClick={(e) => {
-            onPress && onPress()
-            if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
-            }
+            onClick?.({
+              inputName: name,
+              inputValue: value ?? '',
+              target: e.target,
+            })
           }}
+          style={{ cursor: onClick ? 'pointer' : 'default' }}
         >
-          <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
-          {_value && _value.length > 0 && closeIconSearch && (
-            <Icon
-              onClick={() => setValue('')}
-              className={hashClass(styled, clsx(is('justified-self')))}
-              name={IconName.TIMES_CIRCLE}
-              size={IconSize.SMALL}
-            />
-          )}
+          <Icon className={className} name={name} size={IconSize.SMALL} />
         </div>
       )
     },
-    [_value, styled],
+    [styled],
   )
 
   const validator =
@@ -294,23 +284,17 @@ const Input = (
             setIsFocused(false)
           }}
         />
-        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
-        {iconNameLeft && !loading && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
+        {iconNameLeft && !loading && <IconWrapper className='icon-left' name={iconNameLeft} />}
+        {iconNameRight && !loading && type !== InputType.PASSWORD && (
+          <IconWrapper className='icon-right' name={iconNameRight} />
         )}
-        {!loading && type === 'password' && (
+        {!loading && type === InputType.PASSWORD && (
           <IconWrapper
-            className={'icon-right'}
+            className='icon-right'
             name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
-            onPress={() => {
-              if (inputType === 'password') {
-                setInputType(InputType.TEXT)
-                setIsShowPwd(true)
-              } else {
-                setInputType(InputType.PASSWORD)
-                setIsShowPwd(false)
-              }
+            onClick={() => {
+              setIsShowPwd(!isShowPwd)
+              setInputType(isShowPwd ? InputType.PASSWORD : InputType.TEXT)
             }}
           />
         )}
