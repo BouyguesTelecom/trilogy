@@ -53,7 +53,7 @@ const ProductTour = ({
         </span>
       )}
       {closeable && (
-        <div style={{ cursor: 'pointer' }} onClick={() => setDisplay(!display)}>
+        <div className={is('cursor-pointer')} onClick={() => setDisplay(!display)}>
           <Icon size={IconSize.SMALL} name={IconName.TIMES} className='close' />
         </div>
       )}
