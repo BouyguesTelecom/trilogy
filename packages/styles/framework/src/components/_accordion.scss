@@ -32,6 +32,7 @@
     .accordion-body {
       padding: $spacing-4;
       padding-top: 0 !important;
+      box-sizing: border-box;
     }
 
     &:has(summary:hover):not(.is-disabled)  {
