@@ -22,15 +22,10 @@ export const CardContext = createContext({ horizontal: false })
  * @param fullheight
  */
 const Card = React.forwardRef<CardRef, CardProps>(
-  (
-    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
-    ref,
-  ) => {
+  ({ className, id, flat, horizontal, floating, skeleton, reversed, fullheight, active, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
-    const hoverStyle: React.CSSProperties = {
-      cursor: 'pointer',
-    }
+    const Tag = others.href || others.to ? 'a' : 'div'
 
     const classes = hashClass(
       styled,
@@ -44,33 +39,15 @@ const Card = React.forwardRef<CardRef, CardProps>(
         className,
         fullheight && is('fullheight'),
         active && is('active'),
+        others.onClick && is('cursor-pointer'),
       ),
     )
 
-    if (href) {
-      return (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          id={id}
-          href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-            e.stopPropagation()
-          }}
-          {...others}
-          className={classes}
-        />
-      )
-    }
-
     return (
-      <div
-        ref={ref as React.Ref<HTMLDivElement>}
+      <Tag
+        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
         id={id}
-        onClick={onClick && onClick}
         className={classes}
-        style={onClick && { ...hoverStyle }}
         {...others}
       />
     )
