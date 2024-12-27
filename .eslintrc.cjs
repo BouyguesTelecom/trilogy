@@ -14,6 +14,7 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:storybook/recommended',
   ],
   parserOptions: {
     project: ['packages/react/tsconfig.json'],
