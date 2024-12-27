@@ -1,18 +1,37 @@
-/*
-  Hack to fix "show code" buttons see:
-*/
-pre.prismjs {
-  color: inherit;
-}
-pre.prismjs .language-jsx .tag, pre.prismjs .language-jsx {
-  display: inline;
-  margin-right: 0px;
-  cursor: auto;
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0);
-  padding-left: 0;
-  padding-right: 0;
-  font-size: 1em;
-  font-weight: normal;
+.prismjs .plain-text {
+  color: white !important;
 }
 
+.prismjs .tag {
+  background-color: unset;
+  align-items: unset;
+  border-radius: unset;
+  display: unset;
+  font-size: unset;
+  justify-content: unset;
+  padding: unset;
+  white-space: unset;
+  line-height: unset;
+}
+
+.sbdocs-p {
+  display: none;
+}
+
+div.token-line > span.tag {
+  background: none !important;
+  padding: 0 !important;
+  white-space: unset !important;
+  height: unset !important;
+  font-size: 14px !important;
+  display: inline !important;
+}
+
+#stories {
+  display: none
+}
+
+.number {
+  background-color: transparent;
+  font-size: 1.2rem;
+}

@@ -1,40 +1,38 @@
-import ts from 'typescript';
-import ReactDocgenTypescriptPlugin from 'react-docgen-typescript-plugin';
-import * as path from 'path'
+import type { StorybookConfig } from '@storybook/react-webpack5'
 
-export {};
+import { join, dirname } from 'path'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
-module.exports = {
-  reactDocgen: 'react-docgen-typescript',
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    {
-      name: '@storybook/addon-docs',
-    },
-    '@storybook/addon-storysource',
-    '@storybook/theming',
-    '@storybook/addon-a11y',
-  ],
-  babel: async (options: any) => ({
-    ...options,
-    presets: [
-      ...options.presets,
-    ],
-    plugins: [
-      ...options.plugins,
-      "@babel/plugin-transform-runtime"
-    ],
-    sourceType: "module"
-  }),
-  framework: '@storybook/react',
-  stories: [path.resolve(__dirname, '../../../packages/react/components/**/**.stories.tsx')],
-  staticDirs: ["../../../react/components"],
-  exclude: ['../../../styles'],
-  plugins: [
-    new ReactDocgenTypescriptPlugin({
-      tsconfigPath: 'tsconfig.json',
-      compilerOptions: { jsx: ts.JsxEmit.Preserve },
-    }),
-  ],
+/**
+ * This function is used to resolve the absolute path of a package.
+ * It is needed in projects that use Yarn PnP or are set up within a monorepo.
+ */
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, 'package.json')))
 }
+
+const config: StorybookConfig = {
+  stories: ['../../../packages/react/components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-a11y'),
+  ],
+  framework: {
+    name: getAbsolutePath('@storybook/react-webpack5'),
+    options: {},
+  },
+  webpackFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.plugins = [
+        ...(config.resolve.plugins || []),
+        new TsconfigPathsPlugin({
+          configFile: '../../packages/react/tsconfig.json',
+          extensions: config.resolve.extensions,
+        }),
+      ]
+    }
+    return config
+  },
+}
+export default config

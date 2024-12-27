@@ -1,37 +1,42 @@
 import { create } from '@storybook/theming'
-import { getColorStyle } from '../../../packages/react'
+import { getColorStyle, TrilogyColor } from '@trilogy-ds/react'
 
 export default create({
   base: 'light',
-
-  colorPrimary: getColorStyle('PRIMARY'),
-  colorSecondary: getColorStyle('SECONDARY'),
-
-  // UI
-  appBg: 'white',
-  appContentBg: 'white',
-  appBorderRadius: 4,
 
   // Typography
   fontBase: '"Open Sans", sans-serif',
   fontCode: 'monospace',
 
-  // Text colors
-  textColor: getColorStyle('TERTIARY'),
-  textInverseColor: 'rgba(255,255,255,0.9)',
-
-  // Toolbar default and active colors
-  barTextColor: '#25465F',
-  barSelectedColor: '#25465F',
-  barBg: '#F6F6F6',
-
-  // Form colors
-  inputBg: '#D44A4A',
-  inputBorder: '#D44A4A',
-  inputTextColor: 'white',
-  inputBorderRadius: 4,
-
   brandTitle: 'Trilogy DS',
   brandUrl: '',
+  brandImage: 'https://design.bouyguestelecom.fr/trilogy.svg',
   brandTarget: '_self',
+
+  //
+  colorPrimary: getColorStyle(TrilogyColor.ACCENT),
+  colorSecondary: getColorStyle(TrilogyColor.MAIN),
+
+  // UI
+  appBg: getColorStyle(TrilogyColor.BACKGROUND),
+  appContentBg: getColorStyle(TrilogyColor.BACKGROUND),
+  appPreviewBg: getColorStyle(TrilogyColor.BACKGROUND),
+  appBorderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+  appBorderRadius: 4,
+
+  // Text colors
+  textColor: getColorStyle(TrilogyColor.FONT),
+  textInverseColor: getColorStyle(TrilogyColor.BACKGROUND),
+
+  // Toolbar default and active colors
+  barTextColor: getColorStyle(TrilogyColor.MAIN),
+  barSelectedColor: getColorStyle(TrilogyColor.MAIN),
+  barHoverColor: getColorStyle(TrilogyColor.ACCENT),
+  barBg: getColorStyle(TrilogyColor.BACKGROUND),
+
+  // Form colors
+  inputBg: getColorStyle(TrilogyColor.BACKGROUND),
+  inputBorder: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+  inputTextColor: getColorStyle(TrilogyColor.FONT),
+  inputBorderRadius: 4,
 })
