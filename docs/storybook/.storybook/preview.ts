@@ -1,52 +1,21 @@
-import trilogyTheme from './trilogyTheme'
+import type { Preview } from '@storybook/react'
 
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
-    expanded: false,
-  },
-  html: {
-    prettier: {
-      tabWidth: 2,
-      bracketSameLine: true,
-    },
-  },
-  docs: {
-    theme: trilogyTheme,
-  },
-  backgrounds: {
-    default: 'white', // Set the default background color of the canvas
-    values: [
-      { name: 'white', value: '#ffffff' }, // You can add more color options here
-      { name: 'light gray', value: '#f5f5f5' },
-      { name: 'dark gray', value: '#333333' },
-    ],
-  },
-  options: {
-    storySort: {
-      order: ['Quick start' ]
-    }
-  }
- /* viewport: {
-    defaultViewport: 'Container', // Set the default size
-    viewports: {
-      backgroundColor: 'red',
-      'Container': {
-        name: 'Container',
-        styles: {
-          width: '1100px',
-          height: '1000px',
-        },
+import '../../../packages/styles/dist/default/trilogy.css';
+import './show-code-fix.css';
+
+const preview: Preview = {
+  parameters: {
+    disableSaveFromUI: true,
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    layout: 'centered',
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
-      // Add more custom viewports if needed
     },
-  },*/
+  },
+  tags: ['autodocs'],
 }
 
-
-
-
+export default preview

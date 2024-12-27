@@ -1,44 +1,42 @@
 import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Meta, Story } from "@storybook/react";
+import { Spacer, SpacerSize } from './index'
 import { SpacerProps } from "./SpacerProps";
-import Spacer from "./Spacer";
-import { SpacerSize } from "./SpacerEnum";
-import { Tag, TagVariant } from "../tag";
+import { Button, ButtonVariant } from '../button'
 
-const spacerSizeOptions = [
-  SpacerSize.NONE,
-  SpacerSize.SMALLER,
-  SpacerSize.SMALL,
-  SpacerSize.MEDIUM,
-  SpacerSize.LARGE,
-  SpacerSize.HUGE,
-];
-
-export default {
+const meta = {
   title: "Components/Spacer",
   component: Spacer,
   argTypes: {
-    // ...autres propriétés...
     size: {
-      control: {
-        type: "select",
-        options: spacerSizeOptions, // Remplacez MyEnum par votre propre enum
+      options: Object.values(SpacerSize).filter(x => typeof x === "string"),
+      mapping: Object.assign({}, SpacerSize),
+      table:{
+        type: { summary: 'SpacerSize' },
       },
     },
   },
-} as Meta;
+} satisfies Meta<SpacerProps>;
 
-export const Base: Story<SpacerProps> = (args) => {
-  const { size, ...otherProps } = args;
+export default meta
+type Story = StoryObj<typeof meta>
 
-  return (
+const Template = (args: SpacerProps) => (
+  (
     <>
-      <Tag variant={TagVariant.SUCCESS}>
+      <Button variant={ButtonVariant.PRIMARY}>
         Play with the props <code>size</code>
-      </Tag>
-      <Spacer {...otherProps} size={size} />
-      <Tag>Dans le pannel de contrôle ⬇</Tag>
+      </Button>
+      <Spacer {...args} />
+      <Button variant={ButtonVariant.SECONDARY}>Dans le pannel de contrôle ⬇</Button>
     </>
-  );
-};
+  )
+)
+
+export const Base: Story = {
+  render: Template,
+  args: {
+    size: SpacerSize.ZERO,
+  },
+}
