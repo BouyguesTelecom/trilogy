@@ -2,16 +2,16 @@ import * as React from 'react'
 
 import { Meta, Story } from '@storybook/react'
 
-import { IconName } from '../../icon'
 import AutoComplete from './AutoComplete'
-import { AutoCompleteProps, Item } from './AutoCompleteProps'
+import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
+import { IconName } from '../icon'
 
 export default {
   title: 'Components/AutoComplete',
   component: AutoComplete,
 } as Meta
 
-export const Base: Story<AutoCompleteProps> = (args) => (
+export const Base: Story<AutoCompletePropsWeb> = (args) => (
   /* L'utilisation de l'autocomplete nécessite l'injection de Trilogy-Vanilla pour fonctioner :
    <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
 */
@@ -31,7 +31,7 @@ export const Base: Story<AutoCompleteProps> = (args) => (
   </AutoComplete>
 )
 Base.args = {
-  customIcon: IconName.EYE,
+  iconNameLeft: IconName.EYE,
   displayMenu: false,
   placeholder: 'Autocomplete',
   onItemSelected: (e) => console.log('itemSelected => ', e),

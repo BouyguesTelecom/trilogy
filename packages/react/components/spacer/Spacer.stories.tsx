@@ -4,15 +4,20 @@ import { Meta, Story } from "@storybook/react";
 import { SpacerProps } from "./SpacerProps";
 import Spacer from "./Spacer";
 import { SpacerSize } from "./SpacerEnum";
-import { Tag, TagVariant } from "../tag";
+import { Button, ButtonVariant } from '../button'
 
 const spacerSizeOptions = [
-  SpacerSize.NONE,
-  SpacerSize.SMALLER,
-  SpacerSize.SMALL,
-  SpacerSize.MEDIUM,
-  SpacerSize.LARGE,
-  SpacerSize.HUGE,
+  SpacerSize.ZERO,
+  SpacerSize.ONE,
+  SpacerSize.TWO,
+  SpacerSize.THREE,
+  SpacerSize.FOUR,
+  SpacerSize.FIVE,
+  SpacerSize.SIX,
+  SpacerSize.SEVEN,
+  SpacerSize.EIGHT,
+  SpacerSize.NINE,
+  SpacerSize.TEN,
 ];
 
 export default {
@@ -34,11 +39,11 @@ export const Base: Story<SpacerProps> = (args) => {
 
   return (
     <>
-      <Tag variant={TagVariant.SUCCESS}>
+      <Button variant={ButtonVariant.PRIMARY}>
         Play with the props <code>size</code>
-      </Tag>
+      </Button>
       <Spacer {...otherProps} size={size} />
-      <Tag>Dans le pannel de contrôle ⬇</Tag>
+      <Button>Dans le pannel de contrôle ⬇</Button>
     </>
   );
 };

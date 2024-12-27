@@ -45,7 +45,7 @@ export const CouleurDeFond: Story<SectionProps> = (args) => (
   </Section>
 );
 CouleurDeFond.args = {
-  background: TrilogyColor.MAIN,
+  backgroundColor: TrilogyColor.MAIN,
 };
 
 export const ImageDeFond: Story<SectionProps> = (args) => (

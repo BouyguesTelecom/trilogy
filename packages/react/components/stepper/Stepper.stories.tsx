@@ -9,36 +9,36 @@ import { IconName } from "../icon";
 export default {
   title: "Components/Stepper",
   component: Stepper,
-  subcomponents: { StepperStep: Step },
+  subcomponents: { Step },
 } as Meta;
 
 export const Base: Story<StepperProps> = (args) => (
   <Stepper {...args}>
-    <Step done label="Récapitulatif" step={1} />
-    <Step done label="Compléments" step={2} />
-    <Step done label="Coordonnées" step={3} />
-    <Step current label="Livraison" step={4} />
-    <Step label="Confirmation" step={5} />
+    <Step done label="Récapitulatif" />
+    <Step done label="Compléments"  />
+    <Step done label="Coordonnées"  />
+    <Step current label="Livraison"/>
+    <Step label="Confirmation" />
   </Stepper>
 );
 
 export const EtapeEnCours: Story<StepperProps> = (args) => (
   <Stepper {...args}>
-    <Step label={"is-current"} step={1} current />
-    <Step label="Compléments" step={2} />
+    <Step label="is-current" current />
+    <Step label="Compléments"  />
   </Stepper>
 );
 
 export const EtapeTerminee: Story<StepperProps> = (args) => (
   <Stepper {...args}>
-    <Step label={"is-done"} step={1} done />
-    <Step done label="is-done" step={2} />
+    <Step label={"is-done"} done />
+    <Step done label="is-done" />
   </Stepper>
 );
 
 export const EtapeEnErreur: Story<StepperProps> = (args) => (
   <Stepper {...args}>
-    <Step label={"is-error"} error step={1} />
+    <Step label={"is-error"} error />
   </Stepper>
 );
 
@@ -47,22 +47,20 @@ export const EtapeAvecIcone: Story<StepperProps> = (args) => (
     <Step
       label={"Paiement"}
       current
-      step={1}
-      iconName={IconName.CREDIT_CARD}
+      iconName={IconName.BELL}
     />
-    <Step label={"Livraison"} step={2} iconName={IconName.TRAIN} />
+    <Step label={"Livraison"} iconName={IconName.INFOS_CIRCLE} />
     <Step
       label={"Confirmation"}
-      step={2}
-      iconName={IconName.BOX_CHECK}
+      iconName={IconName.CHECK}
     />
   </Stepper>
 );
 
 export const Etape: Story<StepperProps> = (args) => (
   <Stepper {...args}>
-    <Step label={"step 1"} step={1} />
-    <Step label={"step 2"} step={1} />
-    <Step label={"step 3"} step={1} />
+    <Step label={"step 1"} />
+    <Step label={"step 2"} />
+    <Step label={"step 3"} />
   </Stepper>
 );

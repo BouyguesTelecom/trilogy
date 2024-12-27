@@ -1,8 +1,7 @@
-import React from "react"
+import * as React from "react";
 
 import { Meta, Story } from "@storybook/react"
-import Column from "./item"
-import Columns from "./Columns"
+import { Columns,Column } from './index'
 import { ColumnsProps } from "./ColumnsProps"
 import Box from "../box/Box"
 import { Title, TitleLevels } from "../title"

@@ -1,4 +1,5 @@
-import React from "react";
+import * as React from "react";
+
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Button from "./Button";
 import { ButtonList } from "./list";
@@ -54,7 +55,7 @@ export const Group: ComponentStory<typeof ButtonList> = (args) => (
   <ButtonList {...args}>
     <Button variant={ButtonVariant.PRIMARY}>Button Primary</Button>
     <Button variant={ButtonVariant.SECONDARY}>Button Secondary</Button>
-    <Button variant={ButtonVariant.ACCENT}>Button Accent</Button>
+    <Button variant={ButtonVariant.CONVERSION}>Button Conversion</Button>
     <Button variant={ButtonVariant.GHOST}>Button Ghost</Button>
   </ButtonList>
 );

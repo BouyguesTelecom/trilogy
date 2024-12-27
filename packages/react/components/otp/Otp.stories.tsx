@@ -18,7 +18,7 @@ Base.args = {
 export const EnErreur: Story<OtpProps> = (args) => <Otp {...args} />;
 EnErreur.args = {
   error: true,
-  errorMessage: "Ceci est un message  derreur",
+  help: "Ceci est un message  derreur",
   onChange: (code) => console.log(code),
   onCompleted: (code) => console.log(code),
   label: "Saisir votre otp",
@@ -33,7 +33,7 @@ Disabled.args = {
 
 export const CodeSize: Story<OtpProps> = (args) => <Otp {...args} />;
 CodeSize.args = {
-  codeSize: 3,
+  length: 3,
   onChange: (code) => console.log(code),
   onCompleted: (code) => console.log(code),
   label: "Saisir votre otp",

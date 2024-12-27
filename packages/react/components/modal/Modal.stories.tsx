@@ -1,44 +1,56 @@
-import React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Modal from "./Modal";
-import ModalFooter from "./footer/ModalFooter";
-import ModalTitle from "./title/ModalTitle";
-import { ModalProps } from "./ModalProps";
-import { ModalMarkup } from "./ModalEnum";
-import { IconName } from "../icon";
+import { Meta, Story } from '@storybook/react'
+import { ModalProps } from './ModalProps'
+import { ModalBody, ModalFooter, Modal } from './index'
+import { Button, ButtonVariant } from '../button'
+import { Text } from '../text'
 
 export default {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: Modal,
-  subcomponents: { ModalTitle, ModalFooter },
+  subcomponents: { ModalBody, ModalFooter },
 } as Meta;
 
-export const Base: Story<ModalProps> = (args) => <Modal {...args} />;
+export const Base: Story<ModalProps> = (args) => (
+  <Modal {...args}>
+    <ModalBody>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+    </ModalBody>
+    <ModalFooter>
+      <Button variant={ButtonVariant.CONVERSION}>
+        Close
+      </Button>
+    </ModalFooter>
+  </Modal>
+);
 Base.args = {
-  content: "Contenu de ma modal",
-  triggerMarkup: ModalMarkup.A,
-  triggerClassNames: "button is-main",
+  trigger: <a className='button is-main'>Open modal</a>,
   title: "title modal",
-  triggerContent: "Open modal",
-  ctaContent: "Action",
-  ctaOnClick: () => alert("Click on cta"),
-  iconName: IconName.EYE,
-  closeIcon: true,
-  ctaCancelOnClick: () => alert("cancel action"),
-};
+}
 
-export const ModalLatéral: Story<ModalProps> = (args) => <Modal {...args} />;
-ModalLatéral.args = {
+export const ModalPanel: Story<ModalProps> = (args) => (
+  <Modal {...args}>
+    <ModalBody>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+      <Text>Modal content</Text>
+    </ModalBody>
+    <ModalFooter>
+      <Button variant={ButtonVariant.CONVERSION}>
+        Close
+      </Button>
+    </ModalFooter>
+  </Modal>
+);
+ModalPanel.args = {
   panel: true,
-  content: "Contenu de ma modal",
-  triggerMarkup: ModalMarkup.A,
-  triggerClassNames: "button is-main",
+  trigger: <a className='button is-main'>Open modal</a>,
   title: "title modal",
-  triggerContent: "Open modal",
-  ctaContent: "Action",
-  ctaOnClick: () => alert("Click on cta"),
-  iconName: IconName.EYE,
-  closeIcon: true,
-  ctaCancelOnClick: () => alert("cancel action"),
 };

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Meta, Story } from "@storybook/react";
 import Box from "./Box";
-import { BoxMarkup, BoxProps } from "./BoxProps";
+import { BoxProps } from "./BoxProps";
 import BoxContent from "./content";
 import BoxFooter from "./footer";
 import BoxHeader from "./header";
@@ -58,7 +58,7 @@ export const BoxCliquable: Story<BoxProps> = (args) => (
   </Box>
 );
 BoxCliquable.args = {
-  markup: BoxMarkup.A,
+  onclick: () => console.log('box clicked'),
 };
 
 export const BoxAccentuée: Story<BoxProps> = (args) => (
@@ -73,7 +73,7 @@ export const BoxAccentuée: Story<BoxProps> = (args) => (
   </Box>
 );
 BoxAccentuée.args = {
-  leftBorder: TrilogyColor.WARNING,
+  highlighted: TrilogyColor.WARNING,
 };
 
 export const BoxFlat: Story<BoxProps> = (args) => (

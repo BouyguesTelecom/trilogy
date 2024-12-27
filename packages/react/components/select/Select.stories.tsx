@@ -1,14 +1,15 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import { Select, SelectOption } from "./index";
-import { SelectProps } from "./SelectProps";
+import { Meta, Story } from '@storybook/react'
+import { Select, SelectOption } from './index'
+import { SelectProps } from './SelectProps'
+import { IconName } from '../icon'
 
 export default {
-  title: "Components/Select",
+  title: 'Components/Select',
   component: Select,
   subcomponents: { SelectOption },
-} as Meta;
+} as Meta
 
 export const Base: Story<SelectProps> = (args) => (
   /* L'utilisation du select nécessite l'injection de Trilogy-Vanilla pour fonctioner :
@@ -17,7 +18,7 @@ export const Base: Story<SelectProps> = (args) => (
 
   <Select {...args}>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.ARROW_DOWN}
       id="id_one"
       value="opt_one"
       label="option1"
@@ -25,7 +26,7 @@ export const Base: Story<SelectProps> = (args) => (
       option 1
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.ARROW_UP}
       id="id_two"
       value="opt_two"
       label="option2"
@@ -33,7 +34,7 @@ export const Base: Story<SelectProps> = (args) => (
       option 2
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.ARROW_LEFT}
       disabled
       id="id_three"
       value="opt_three"
@@ -48,12 +49,12 @@ Base.args = {
   onFocus: (e) => console.log("OUVERT", e),
   onBlur: (e) => console.log("FERMÉ", e),
   onChange: (e) => console.log(e),
-  iconName: "tri-advisor",
+  iconName: IconName.ARROW_RIGHT,
 };
 export const Disabled: Story<SelectProps> = (args) => (
   <Select {...args}>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       id="id_one"
       value="opt_one"
       label="option1"
@@ -61,7 +62,7 @@ export const Disabled: Story<SelectProps> = (args) => (
       option 1
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       id="id_two"
       value="opt_two"
       label="option2"
@@ -69,7 +70,7 @@ export const Disabled: Story<SelectProps> = (args) => (
       option 2
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       disabled
       id="id_three"
       value="opt_three"
@@ -85,13 +86,13 @@ Disabled.args = {
   onFocus: (e) => console.log("OUVERT", e),
   onBlur: (e) => console.log("FERMÉ", e),
   onChange: (e) => console.log(e),
-  iconName: "tri-advisor",
+  iconName: IconName.ALERT,
 };
 
-export const Native: Story<SelectProps> = (args) => (
+export const Multiple: Story<SelectProps> = (args) => (
   <Select {...args}>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       id="id_one"
       value="opt_one"
       label="option1"
@@ -99,7 +100,7 @@ export const Native: Story<SelectProps> = (args) => (
       option 1
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       id="id_two"
       value="opt_two"
       label="option2"
@@ -107,7 +108,7 @@ export const Native: Story<SelectProps> = (args) => (
       option 2
     </SelectOption>
     <SelectOption
-      iconName="tri-advisor"
+      iconName={IconName.CHECK}
       disabled
       id="id_three"
       value="opt_three"
@@ -117,13 +118,13 @@ export const Native: Story<SelectProps> = (args) => (
     </SelectOption>
   </Select>
 );
-Native.args = {
-  native: true,
-  label: "Choisir une option",
+Multiple.args = {
+  label: "Choisir plusieurs option",
   id: "option",
   name: "option",
   onFocus: () => console.log("Focus"),
   onBlur: () => console.log("Blur"),
   onChange: () => console.log("onchange"),
-  iconName: "tri-advisor",
+  iconName: IconName.TIMES,
+  multiple: true,
 };

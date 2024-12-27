@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Meta, Story } from "@storybook/react";
 import Range from "./Range";
-import { InputChangeEvent, RangeProps } from "./RangeProps";
+import { RangeProps } from "./RangeProps";
 
 export default {
   title: "Components/Range",
@@ -18,15 +18,10 @@ export const Base: Story<RangeProps> = (args) => (
 Base.args = {
   min: 0,
   max: 100,
-  labelValueCursorMin: "€",
-  labelValueCursorMax: "€",
-  valueCursorMin: 0,
-  valueCursorMax: 50,
+  unit: "€",
+  valueMin: 0,
+  valueMax: 50,
   label: "Ceci est un label",
-  idMin: "min",
-  idMax: "max",
-  nameMax: "max",
-  nameMin: "min",
-  onChangeMin: (e: InputChangeEvent) => console.log(e),
+  onChangeMin: (e) => console.log(e),
   gap: 0,
 };

@@ -43,7 +43,7 @@ export const AvecUneIcône: Story<TextareaProps> = (args) => (
 AvecUneIcône.args = {
   placeholder: "placeholder",
   label: "Label dynamique",
-  iconName: IconName.INFOS_CIRCLE,
+  iconNameLeft: IconName.INFOS_CIRCLE,
 };
 
 export const AvecCompteur: Story<TextareaProps> = (args) => (

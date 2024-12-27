@@ -24,12 +24,3 @@ export const AvecUneIcône: Story<DividerProps> = (args) => (
 AvecUneIcône.args = {
   iconName: IconName.EYE,
 };
-
-export const AvecBackground: Story<DividerProps> = (args) => (
-  <Divider {...args} />
-);
-AvecBackground.args = {
-  backgroundColor: TrilogyColor.MAIN,
-  textColor: TrilogyColor.BACKGROUND,
-  iconName: IconName.EYE,
-};

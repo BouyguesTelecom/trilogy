@@ -34,12 +34,11 @@ export const Type: Story<InputProps> = (args) => (
 
 export const AvecIcône: Story<InputProps> = (args) => <Input {...args} />;
 AvecIcône.args = {
-  hasIcon: true,
   help: "this is my help message",
   type: InputType.TEXT,
   placeholder: "This is my placeholder",
-  customIconLeft: IconName.INFOS_CIRCLE,
-  customIconRight: IconName.SEARCH,
+  iconNameLeft: IconName.INFOS_CIRCLE,
+  iconNameRight: IconName.SEARCH,
   status: InputStatus.SUCCESS,
 };
 
@@ -51,12 +50,11 @@ export const Status: Story<InputProps> = (args) => (
   <Input {...args} />
 );
 Status.args = {
-  hasIcon: true,
   help: "this is my help message",
   type: InputType.TEXT,
   placeholder: "This is my placeholder",
-  customIconLeft: IconName.INFOS_CIRCLE,
-  customIconRight: IconName.SEARCH,
+  iconNameLeft: IconName.INFOS_CIRCLE,
+  iconNameRight: IconName.SEARCH,
   status: InputStatus.ERROR,
   disabled: false,
 };
@@ -68,10 +66,8 @@ export const Password: Story<InputProps> = (args) => (
   <Input {...args} />
 );
 Password.args = {
-  hasIcon: true,
   type: InputType.PASSWORD,
   placeholder: "This is my placeholder",
-  customIconLeft: IconName.LOCK,
   securityGauge: true,
   help: "this is my help message",
   minLength: 8,
