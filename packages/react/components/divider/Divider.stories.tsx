@@ -1,35 +1,34 @@
-import * as React from "react";
+import * as React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Meta, Story } from "@storybook/react";
-import Divider from "./Divider";
-import { DividerProps } from "./DividerProps";
-import { IconName } from "../icon";
-import { TrilogyColor } from "../../objects";
+import { Divider } from './index'
+import { DividerProps } from './DividerProps'
+import { IconName } from '../icon'
 
-export default {
-  title: "Components/Divider",
+const meta = {
+  title: 'Components/Divider',
   component: Divider,
-} as Meta;
+} satisfies Meta<DividerProps>
 
-export const Base: Story<DividerProps> = (args) => <Divider {...args} />;
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const AvecText: Story<DividerProps> = (args) => <Divider {...args} />;
-AvecText.args = {
-  content: "Nouveau Message",
-};
+const Template = (args: DividerProps) => <Divider {...args} />
 
-export const AvecUneIcône: Story<DividerProps> = (args) => (
-  <Divider {...args} />
-);
-AvecUneIcône.args = {
-  iconName: IconName.EYE,
-};
+export const Base: Story = {
+  render: Template,
+}
 
-export const AvecBackground: Story<DividerProps> = (args) => (
-  <Divider {...args} />
-);
-AvecBackground.args = {
-  backgroundColor: TrilogyColor.MAIN,
-  textColor: TrilogyColor.BACKGROUND,
-  iconName: IconName.EYE,
-};
+export const AvecText: Story = {
+  render: Template,
+  args:{
+    content: "Nouveau Message",
+  }
+}
+
+export const AvecUneIcône: Story = {
+  render: Template,
+  args:{
+    iconName: IconName.EYE,
+  }
+}

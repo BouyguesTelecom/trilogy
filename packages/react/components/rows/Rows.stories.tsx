@@ -1,18 +1,23 @@
 import * as React from 'react'
 
-import { Meta, Story } from '@storybook/react'
-import { Row } from './index'
+import type { Meta, StoryObj } from '@storybook/react'
+import Row from './row'
 import { RowProps } from './row/RowProps'
-import { Column, Columns } from '../columns'
 import Rows from './Rows'
+import { Column, Columns } from '../columns'
+import { RangeProps } from '../range/RangeProps'
+import { Range } from '../range'
 
-export default {
+const meta = {
   title: 'Components/Rows',
   component: Row,
   subcomponents: { Rows },
-} as Meta
+} satisfies Meta<RowProps>
 
-export const Base: Story<RowProps> = (args) => (
+export default meta
+type Story = StoryObj<typeof meta>
+
+const Template = (args: RowProps) => (
   <Columns>
     <Column>
       <Rows>
@@ -30,3 +35,7 @@ export const Base: Story<RowProps> = (args) => (
     </Column>
   </Columns>
 )
+
+export const Base: Story = {
+  render: Template,
+}

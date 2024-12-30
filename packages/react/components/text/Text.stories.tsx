@@ -1,36 +1,38 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Text, TextLevels, TextMarkup } from './index'
+import { TextProps } from './TextProps'
+import { TypographyBold } from '../../objects'
 
-import { Meta, Story } from "@storybook/react";
-
-import Text from "./Text";
-import { TextProps } from "./TextProps";
-import { TextLevels, TextMarkup } from "./TextEnum";
-import { TypographyBold } from "../../objects";
-
-export default {
-  title: "Components/Text",
+const meta = {
+  title: 'Components/Text',
   component: Text,
-} as Meta;
+} satisfies Meta<TextProps>
 
-export const Base: Story<TextProps> = (args) => (
-  <Text {...args}>Ceci est mon paragraphe</Text>
-);
-Base.args = {
-  level: TextLevels.ONE,
-  typo: TypographyBold.TEXT_WEIGHT_SEMIBOLD,
-  markup: TextMarkup.P,
-  accessibilityLabel: "ceci est un paragraphe",
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Inverted: Story<TextProps> = (args) => (
-  <div style={{ backgroundColor: "black", padding: 10 }}>
-    <Text {...args}>Ceci est mon paragraphe</Text>
-  </div>
-);
-Inverted.args = {
-  inverted: true,
-  level: TextLevels.ONE,
-  typo: TypographyBold.TEXT_WEIGHT_SEMIBOLD,
-  markup: TextMarkup.P,
-  accessibilityLabel: "ceci est un paragraphe",
-};
+export const Base: Story = {
+  args: {
+    children: 'Ceci est mon paragraphe',
+    level: TextLevels.ONE,
+    typo: TypographyBold.TEXT_WEIGHT_SEMIBOLD,
+    markup: TextMarkup.P,
+    accessibilityLabel: 'ceci est un paragraphe A11Y',
+  },
+}
+
+export const Inverted: Story = {
+  args: {
+    inverted: true,
+    children: 'Ceci est mon paragraphe',
+    level: TextLevels.ONE,
+    typo: TypographyBold.TEXT_WEIGHT_SEMIBOLD,
+    markup: TextMarkup.P,
+    accessibilityLabel: 'ceci est un paragraphe A11Y',
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Dark',
+    },
+  },
+}

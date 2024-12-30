@@ -1,32 +1,34 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Range from "./Range";
-import { InputChangeEvent, RangeProps } from "./RangeProps";
+import type { Meta, StoryObj } from '@storybook/react'
 
-export default {
-  title: "Components/Range",
+import { Range } from './index'
+import { RangeProps } from './RangeProps'
+
+const meta = {
+  title: 'Components/Range',
   component: Range,
-} as Meta;
+} satisfies Meta<RangeProps>
 
-export const Base: Story<RangeProps> = (args) => (
-  /* L'utilisation du Range nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-     <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-  */
+export default meta
+type Story = StoryObj<typeof meta>
+
+const Template = (args: RangeProps) => (
+  // L'utilisation du Range nécessite l'injection de Trilogy-Vanilla pour fonctioner :
+  // <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
   <Range {...args} />
-);
-Base.args = {
-  min: 0,
-  max: 100,
-  labelValueCursorMin: "€",
-  labelValueCursorMax: "€",
-  valueCursorMin: 0,
-  valueCursorMax: 50,
-  label: "Ceci est un label",
-  idMin: "min",
-  idMax: "max",
-  nameMax: "max",
-  nameMin: "min",
-  onChangeMin: (e: InputChangeEvent) => console.log(e),
-  gap: 0,
-};
+)
+
+export const Base: Story = {
+  render: Template,
+  args: {
+    min: 0,
+    max: 100,
+    unit: '€',
+    valueMin: 0,
+    valueMax: 50,
+    label: 'Ceci est un label',
+    onChangeMin: (e) => console.log(e),
+    gap: 0,
+  },
+}

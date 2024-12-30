@@ -1,79 +1,45 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import { Progress, ProgressItem } from "./index";
-import { ProgressProps } from "./ProgressProps";
-import { StatusState } from "../../objects";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Progress } from './index'
+import { ProgressProps } from './ProgressProps'
+import { StatusState } from '../../objects'
 
-export default {
-  title: "Components/ProgressBar",
+const meta = {
+  title: 'Components/ProgressBar',
   component: Progress,
-} as Meta;
+} satisfies Meta<ProgressProps>
 
-export const Base: Story<ProgressProps> = (args) => (
-  /* L'utilisation de la progress bar Circulaire nécessite l'injection de Trilogy-Vanilla pour fonctioner :
- <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
-  <>
-    <Progress {...args} />
-    <Progress percent={20} alert="INFO" />
-    <Progress percent={40} alert="WARNING" />
-    <Progress percent={60} alert="ERROR" />
-    <Progress percent={80} alert="SUCCESS" />
-  </>
-);
-Base.args = {
-  percent: 10,
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Empilé: Story<ProgressProps> = (args) => (
-  <Progress {...args}>
-    <ProgressItem
-      percent={10}
-      alert={StatusState.SUCCESS}
-      accessibilityLabel={"progress-sucess"}
-    />
-    <ProgressItem
-      percent={15}
-      alert={StatusState.INFO}
-      accessibilityLabel={"progress-info"}
-    />
-    <ProgressItem
-      percent={35}
-      alert={StatusState.WARNING}
-      accessibilityLabel={"progress-warning"}
-    />
-    <ProgressItem
-      percent={25}
-      alert={StatusState.ERROR}
-      accessibilityLabel={"progress-error"}
-    />
-  </Progress>
-);
-Empilé.args = {
-  stacked: true,
-};
+const Template = (args: ProgressProps) => (
+  // L'utilisation de la progress bar nécessite l'injection de Trilogy-Vanilla pour fonctioner :
+  // <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
+  <Progress {...args} />
+)
 
-export const AvecLégende: Story<ProgressProps> = (args) => (
-  <>
-    <Progress {...args} />
-    <Progress
-      percent={15}
-      alert={StatusState.INFO}
-      firstExtremLegend="0 Go"
-      secondExtremLegend="5 Go"
-    />
-  </>
-);
-AvecLégende.args = {
-  percent: 30,
-  alert: StatusState.INFO,
-  uniqueLegend: "My unique legend",
-};
+export const Base: Story = {
+  render: Template,
+  args: {
+    value: 10,
+  },
+}
 
-export const Petite: Story<ProgressProps> = (args) => <Progress {...args} />;
-Petite.args = {
-  percent: 30,
-  alert: StatusState.INFO,
-  small: true,
-};
+export const AvecLégende: Story = {
+  render: Template,
+  args: {
+    value: 30,
+    status: StatusState.INFO,
+    legendCenter: 'My unique legend',
+  },
+}
+
+export const Petite: Story = {
+  render: Template,
+  args: {
+    value: 30,
+    status: StatusState.INFO,
+    small: true,
+  },
+}
