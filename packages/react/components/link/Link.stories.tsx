@@ -1,60 +1,59 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Link from "./Link";
-import { LinkProps } from "./LinkProps";
-import { Divider } from "../divider";
-import { Text } from "../text";
-import { IconName } from "../icon";
+import type { Meta, StoryObj } from '@storybook/react'
+import Link from './Link'
+import { LinkProps } from './LinkProps'
+import { Text } from '../text'
+import { IconName } from '../icon'
 
-export default {
-  title: "Components/Link",
+const meta = {
+  title: 'Components/Link',
   component: Link,
-} as Meta;
+} satisfies Meta<LinkProps>
 
-export const Base: Story<LinkProps> = (args) => (
-  <>
-    <Link {...args}> Mot de passe oublié ?</Link>
-    <Divider />
-    <Text>
-      Je suis dans un paragraphe et ceci est un{" "}
-      <Link inline>lien standard</Link> tandis que ceci est un
-      <Link inline> lien standard non souligné</Link>. ou bien
-      <Link inline>celui-ci non souligné</Link>.
-    </Text>
-  </>
-);
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const DansUnParagraphe: Story<LinkProps> = (args) => (
+const Template = (args: LinkProps) => (
   <Text>
-    Je suis dans un paragraphe et ceci est un{" "}
-    <Link {...args}>lien standard</Link> inline.
+    Je suis dans un paragraphe et ceci est un <Link {...args}>lien standard</Link>
   </Text>
-);
-DansUnParagraphe.args = {
-  inline: true,
-};
+)
 
-export const LiensVersPageExterne: Story<LinkProps> = (args) => (
-  <Link {...args}>En savoir plus</Link>
-);
-LiensVersPageExterne.args = {
-  iconName: IconName.NEW_TABBED_PAGE,
-  href: "_blank",
-};
+export const Base: Story = {
+  render: Template,
+}
 
-export const LienAutonome: Story<LinkProps> = (args) => (
-  <Link {...args}>Mot de passe oublié</Link>
-);
-LienAutonome.args = {
-  href: "_blank",
-};
+export const DansUnParagraphe: Story = {
+  render: Template,
+  args: {
+    inline: true,
+  },
+}
 
-export const Inverted: Story<LinkProps> = (args) => (
-  <div style={{ backgroundColor: "#25465f", padding: 10 }}>
-    <Link {...args}> Mot de passe oublié ?</Link>
-  </div>
-);
-Inverted.args = {
-  inverted: true,
-};
+export const LiensVersPageExterne: Story = {
+  render: Template,
+  args: {
+    iconName: IconName.ARROW_UP,
+    blank: true,
+  },
+}
+
+export const LienAutonome: Story = {
+  render: Template,
+  args: {
+    href: '_blank',
+  },
+}
+
+export const Inverted: Story = {
+  render: Template,
+  args: {
+    inverted: true,
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Dark',
+    },
+  },
+}

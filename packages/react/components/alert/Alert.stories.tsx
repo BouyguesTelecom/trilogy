@@ -1,50 +1,57 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import Alert from "./Alert";
-import { StatusProps } from "./StatusProps";
-import { StatusState } from "../../objects";
+import * as React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import Alert from './Alert'
+import { AlertProps } from './AlertProps'
+import { StatusState } from '../../objects'
 
-export default {
-  title: "Components/Alert",
+const meta = {
+  title: 'Components/Alert',
   component: Alert,
-} as Meta;
+} satisfies Meta<AlertProps>
 
-export const Base: Story<StatusProps> = (args) => <Alert {...args} />;
+export default meta
+type Story = StoryObj<typeof meta>
 
-Base.args = {
-  display: true,
-  alert: StatusState.INFO,
-  title: "Alert information",
-  description:
-    "Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..",
-};
+export const Base: Story = {
+  args: {
+    display: true,
+    status: StatusState.INFO,
+    title: 'Alert information',
+    description: 'Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..',
+  },
+}
 
-export const Variant: Story<StatusProps> = () => (
+const TemplateMultiple = (args: AlertProps) => (
   <>
-    {" "}
     <Alert
+      {...args}
       display
-      alert={StatusState.INFO}
-      title="Alert information"
-      description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
-    />{" "}
-    <Alert
-      display
-      alert={StatusState.WARNING}
-      title="Alert information"
-      description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
+      status={StatusState.INFO}
+      title='Alert information'
+      description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
     />
     <Alert
       display
-      alert={StatusState.SUCCESS}
-      title="Alert information"
-      description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
+      status={StatusState.WARNING}
+      title='Alert information'
+      description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
     />
     <Alert
       display
-      alert={StatusState.ERROR}
-      title="Alert information"
-      description="Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book.."
-    />{" "}
+      status={StatusState.SUCCESS}
+      title='Alert information'
+      description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
+    />
+    <Alert
+      display
+      status={StatusState.ERROR}
+      title='Alert information'
+      description='Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..'
+    />
   </>
-);
+)
+
+export const Variant: Story = {
+  render: TemplateMultiple,
+}
+

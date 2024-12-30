@@ -1,67 +1,35 @@
-import React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import { Hero } from "../hero";
-import { HeroProps } from "./HeroProps";
-import { VariantState } from "../../objects";
-import { Title, TitleLevels, TitleMarkup } from "../title";
-import { Text, TextMarkup } from "../text";
-import { Container } from "../container";
-import { Button } from "../button";
-import { Box } from "../box";
-import { Section } from "../section";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Hero } from './index'
+import { HeroProps } from './HeroProps'
+import { ContainerProps } from 'postcss'
+import { Container } from '../container'
+import { Box } from '../box'
+import { Text, TextMarkup } from '../text'
+import { Title, TitleLevels, TitleMarkup } from '../title'
+import { IconName } from '../icon'
+import { TrilogyColor } from '../../objects'
+import { Section } from '../section'
 
-export default {
-  title: "Components/Hero",
+const meta = {
+  title: 'Components/Hero',
   component: Hero,
-} as Meta;
+} satisfies Meta<HeroProps>
 
-export const Base: Story<HeroProps> = (args) => (
-  <Hero {...args}>
-    <Title markup={TitleMarkup.H1} inverted level={TitleLevels.TWO}>
-      Bonjour Michel
-    </Title>
-    <Text markup={TextMarkup.P} inverted>
-      Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute
-      excepteur tempor.
-    </Text>
-  </Hero>
-);
+export default meta
+type Story = StoryObj<typeof meta>
 
-Base.args = {
-  variant: VariantState.MAIN,
-};
-export const AvecImageDeFond: Story<HeroProps> = (args) => (
-  <Hero {...args}>
-    <Container>
-      <Title markup={TitleMarkup.H1} inverted level={TitleLevels.TWO}>
-        Bonjour Michel
-      </Title>
-      <Title markup={TextMarkup.SPAN} subtitle inverted>
-        Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore
-        aute excepteur tempor.
-      </Title>
-      <Button>Click me ! </Button>
-    </Container>
-  </Hero>
-);
-
-AvecImageDeFond.args = {
-  backgroundSrc: "https://picsum.photos/id/1/1500/600",
-};
-
-export const ContenuSuperposer: Story<HeroProps> = (args) => (
+const Template = (args: HeroProps) => (
   <>
-    {" "}
     <Hero {...args}>
       <Container>
         <Title markup={TitleMarkup.H1} inverted level={TitleLevels.TWO}>
-          Internet garanti
+          Bonjour Michel
         </Title>
-        <Title overline inverted className={"is-inverted"}>
-          Profitez dInternet dès labonnement et même en cas de coupure grâce à
-          une clé 4G dans les nouvelles offres Bbox.
-        </Title>
+        <Text markup={TextMarkup.P} inverted>
+          Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.
+        </Text>
       </Container>
     </Hero>
     <Section>
@@ -72,9 +40,26 @@ export const ContenuSuperposer: Story<HeroProps> = (args) => (
       </Container>
     </Section>
   </>
-);
+)
 
-ContenuSuperposer.args = {
-  overlap: true,
-  variant: VariantState.MAIN,
-};
+export const Base: Story = {
+  render: Template,
+  args: {
+    backgroundColor: TrilogyColor.MAIN,
+  },
+}
+
+export const AvecImageDeFond: Story = {
+  render: Template,
+  args: {
+    backgroundSrc: 'https://picsum.photos/id/1/1500/600',
+  },
+}
+
+export const ContenuSuperposer: Story = {
+  render: Template,
+  args: {
+    overlap: true,
+    backgroundColor: TrilogyColor.MAIN,
+  },
+}

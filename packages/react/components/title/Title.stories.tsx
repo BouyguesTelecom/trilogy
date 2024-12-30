@@ -1,34 +1,47 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Title, TitleLevels } from './index'
+import { TitleProps } from './TitleProps'
 
-import { Meta, Story } from "@storybook/react";
-
-import Title from "./Title";
-import { TitleProps } from "./TitleProps";
-import { TitleLevels } from "./TitleEnum";
-
-export default {
-  title: "Components/Title",
+const meta = {
+  title: 'Components/Title',
   component: Title,
-} as Meta;
+} satisfies Meta<TitleProps>
 
-export const Base: Story<TitleProps> = (args) => (
-  <>
-    <Title {...args}>Ceci titre</Title>
-    <Title subtitle>Ceci est un sous-titre</Title>
-    <Title overline>Ceci est text surligner</Title>
-  </>
-);
-Base.args = {
-  level: TitleLevels.ONE,
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Inverted: Story<TitleProps> = (args) => (
-  <div style={{ backgroundColor: "black", padding: 10 }}>
-    {" "}
-    <Title {...args}>Ceci titre</Title>
-  </div>
-);
-Inverted.args = {
-  level: TitleLevels.ONE,
-  inverted: true,
-};
+export const Base: Story = {
+  args: {
+    children: 'Ceci est un titre',
+    level: TitleLevels.ONE,
+  },
+}
+
+export const Subtitle: Story = {
+  args: {
+    children: 'Ceci est un titre',
+    level: TitleLevels.ONE,
+    subtitle: true,
+  },
+}
+
+export const Overline: Story = {
+  args: {
+    children: 'Ceci est un sous-titre',
+    level: TitleLevels.ONE,
+    overline: true,
+  },
+}
+
+export const Inverted: Story = {
+  args: {
+    inverted: true,
+    children: 'Ceci est text surligner',
+    level: TitleLevels.ONE,
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Dark',
+    },
+  },
+}

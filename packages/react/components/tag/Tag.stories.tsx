@@ -1,51 +1,67 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
+import Tag from './Tag'
+import TagList from './list'
+import { TagProps } from './TagProps'
+import { TabsProps } from '../tabs/TabsProps'
+import Tabs from '../tabs/Tabs'
+import { Tab, TabList } from '../tabs'
+import { TagVariant } from './TagEnum'
+import { IconName } from '../icon'
 
-import { Tag, TagList, TagVariant } from "./index";
-import { TagProps } from "./TagProps";
-import { IconName } from "../icon";
-
-export default {
-  title: "Components/Tag",
+const meta = {
+  title: 'Components/Tag',
   component: Tag,
   subcomponents: { TagList },
-} as Meta;
+} satisfies Meta<TagProps>
 
-export const Base: Story<TagProps> = (args) => (
-  <TagList>
-    <Tag {...args}>Play With me !</Tag>
-  </TagList>
-);
-Base.args = {
-  variant: TagVariant.INFO,
-};
-export const Inversé: Story<TagProps> = (args) => (
-  <TagList>
-    <Tag {...args}>Play With me !</Tag>
-  </TagList>
-);
-Inversé.args = {
-  variant: TagVariant.INFO,
-  inverted: true,
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const TagAvecIcônes: Story<TagProps> = (args) => (
+const Template = (args: TagProps) => (
   <TagList>
-    <Tag {...args}>Tag</Tag>
-    <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS}>
-      Tag success
-    </Tag>
-    <Tag iconName={IconName.ALERT} variant={TagVariant.WARNING}>
-      Tag warning
-    </Tag>
+    <Tag {...args} />
+    <Tag {...args} />
+    <Tag {...args} />
   </TagList>
-);
-TagAvecIcônes.args = {
-  iconName: IconName.EXCLAMATION_CIRCLE,
-  variant: TagVariant.ERROR,
-};
-export const Small: Story<TagProps> = (args) => <Tag {...args}>Tag</Tag>;
-Small.args = {
-  small: true,
-};
+)
+
+export const Base: Story = {
+  render: Template,
+  args: {
+    variant: TagVariant.INFO,
+    label: 'Play With me !',
+  },
+}
+
+export const Inversé: Story = {
+  render: Template,
+  args: {
+    variant: TagVariant.INFO,
+    inverted: true,
+    label: 'Play With me !',
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Dark',
+    },
+  },
+}
+
+export const TagAvecIcônes: Story = {
+  render: Template,
+  args: {
+    iconName: IconName.EXCLAMATION_CIRCLE,
+    variant: TagVariant.ERROR,
+    label: 'Play With me !',
+  },
+}
+
+export const Small: Story = {
+  render: Template,
+  args: {
+    small: true,
+    label: 'Play With me !',
+  },
+}
