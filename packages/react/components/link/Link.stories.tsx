@@ -39,8 +39,8 @@ export const LiensVersPageExterne: Story<LinkProps> = (args) => (
   <Link {...args}>En savoir plus</Link>
 );
 LiensVersPageExterne.args = {
-  iconName: IconName.NEW_TABBED_PAGE,
-  href: "_blank",
+  iconName: IconName.ARROW_UP,
+  blank: true,
 };
 
 export const LienAutonome: Story<LinkProps> = (args) => (
