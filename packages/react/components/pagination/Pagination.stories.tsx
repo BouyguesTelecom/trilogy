@@ -1,18 +1,20 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Pagination } from './index'
+import { PaginationProps } from './PaginationProps'
 
-import { Meta, Story } from "@storybook/react";
-import { PaginationProps } from "./PaginationProps";
-import Pagination from "./Pagination";
-
-export default {
-  title: "Components/Pagination",
+const meta = {
+  title: 'Components/Pagination',
   component: Pagination,
-} as Meta;
+} satisfies Meta<PaginationProps>
 
-export const Base: Story<PaginationProps> = (args) => <Pagination {...args} />;
-Base.args = {
-  onClick: (e) => console.log("event", e),
-  count: 50,
-  defaultPage: 2,
-  href: (page) => `?page=${page}`,
-};
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Base: Story = {
+  args: {
+    onClick: (e) => console.log('event', e),
+    length: 50,
+    defaultPage: 2,
+    href: (page) => `?page=${page}`,
+  },
+}

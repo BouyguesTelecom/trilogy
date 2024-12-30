@@ -1,24 +1,40 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Meta, Story } from "@storybook/react";
-import Badge from "./Badge";
-import { BadgeProps } from "./BadgeProps";
+import { Badge } from './index'
+import { BadgeProps } from './BadgeProps'
+import { BadgePositionEnum } from './BadgeEnum'
+import { VariantState } from '../../objects'
 
-export default {
-  title: "Components/Badge",
+const meta = {
+  title: 'Components/Badge',
   component: Badge,
-} as Meta;
+  argTypes: {
+    position: {
+      options: Object.values(BadgePositionEnum),
+    },
+    variant: {
+      table:{
+        type: { summary: 'VariantState' },
+      },
+      options: Object.values(VariantState),
+    }
+  },
+} satisfies Meta<BadgeProps>
 
-export const Base: Story<BadgeProps> = (args) => <Badge {...args} />;
+export default meta
+type Story = StoryObj<typeof meta>
 
-Base.args = {
-  content: 5,
-};
+export const Base: Story = {
+  args: {
+    label: 5,
+  },
+}
 
-export const WithContent: Story<BadgeProps> = (args) => <Badge {...args} />;
-
-WithContent.args = {
-  content: 2,
-  textContent: "Actions à réaliser",
-  reversed: "right",
-};
+export const WithContent: Story = {
+  args: {
+    label: 2,
+    children: 'Actions à réaliser',
+    position: BadgePositionEnum.TOP_RIGHT,
+    variant: VariantState.ACCENT
+  },
+}

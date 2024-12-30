@@ -1,71 +1,77 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
+import Tabs from './Tabs'
+import { TabsProps } from './TabsProps'
+import { StepProps } from '../stepper/step/StepProps'
+import { StepperProps } from '../stepper/StepperProps'
+import { Stepper } from '../stepper'
+import Step from '../stepper/step'
+import { TabProps } from './tab-list/tab/TabProps'
+import { Tab, TabList, TabPanel, TabPanels } from './index'
+import { IconName } from '../icon'
 
-import { Tabs, TabsItem } from "./index";
-import { TabsProps } from "./TabsProps";
-import { IconName } from "../icon";
-
-export default {
-  title: "Components/Tabs",
+const meta = {
+  title: 'Components/Tabs',
   component: Tabs,
-  subcomponents: { TabsItem },
-} as Meta;
+  subcomponents: { Tab, TabList, TabPanel, TabPanels },
+} satisfies Meta<TabsProps>
 
-export const Base: Story<TabsProps> = (args) => (
-  /* L'utilisation des Tabs nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-<script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
-  <Tabs {...args}>
-    <TabsItem disabled>One</TabsItem>
-    <TabsItem>Two</TabsItem>
-    <TabsItem>Three</TabsItem>
-  </Tabs>
-);
-Base.args = {
-  activeIndex: 2,
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Disabled: Story<TabsProps> = (args) => (
-  /* L'utilisation des Tabs nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-<script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
+const Template = (args: TabsProps) => (
+  // L'utilisation des Tabs nécessite l'injection de Trilogy-Vanilla pour fonctioner :
+  // <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
   <Tabs {...args}>
-    <TabsItem disabled>One</TabsItem>
-    <TabsItem disabled>Two</TabsItem>
-    <TabsItem disabled>Three</TabsItem>
+    <TabList>
+      <Tab disabled iconName={IconName.BELL}>
+        One
+      </Tab>
+      <Tab iconName={IconName.BELL}>Two</Tab>
+      <Tab iconName={IconName.BELL}>Three</Tab>
+    </TabList>
   </Tabs>
-);
-Disabled.args = {
-  activeIndex: 2,
-};
+)
 
-export const AvecIcone: Story<TabsProps> = (args) => (
-  /* L'utilisation des Tabs nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-<script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
+const TemplatePanel = (args: TabsProps) => (
+  // L'utilisation des Tabs nécessite l'injection de Trilogy-Vanilla pour fonctioner :
+  // <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
   <Tabs {...args}>
-    <TabsItem disabled iconName={IconName.BELL}>
-      One
-    </TabsItem>
-    <TabsItem iconName={IconName.BELL}>Two</TabsItem>
-    <TabsItem iconName={IconName.BELL}>Three</TabsItem>
+    <TabList>
+      <Tab disabled iconName={IconName.BELL}>
+        One
+      </Tab>
+      <Tab iconName={IconName.BELL}>Two</Tab>
+      <Tab iconName={IconName.BELL}>Three</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>Panel One</TabPanel>
+      <TabPanel>Panel Two</TabPanel>
+      <TabPanel>Panel Three</TabPanel>
+    </TabPanels>
   </Tabs>
-);
-AvecIcone.args = {
-  activeIndex: 2,
-};
+)
 
-export const Inversé: Story<TabsProps> = (args) => (
-  <Tabs {...args}>
-    <TabsItem disabled iconName={IconName.BELL}>
-      One
-    </TabsItem>
-    <TabsItem iconName={IconName.BELL}>Two</TabsItem>
-    <TabsItem iconName={IconName.BELL}>Three</TabsItem>
-  </Tabs>
-);
-Inversé.args = {
-  activeIndex: 2,
-  inverted: true,
-};
+export const Base: Story = {
+  render: Template,
+  args: {
+    activeIndex: 2,
+  },
+}
+
+export const Inversé: Story = {
+  render: Template,
+  args: {
+    inverted: true,
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Dark',
+    },
+  },
+}
+
+export const AvecPanel: Story = {
+  render: TemplatePanel,
+}

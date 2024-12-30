@@ -1,43 +1,29 @@
-import React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Sticker } from './index'
+import { StickerProps } from './StickerProps'
+import { VariantState } from '../../objects'
 
-import { Sticker } from "./index";
-import { StickerProps } from "./StickerProps";
-import { VariantState } from "../../objects";
-import { Box } from "../box";
-
-export default {
-  title: "Components/Sticker",
+const meta = {
+  title: 'Components/Sticker',
   component: Sticker,
-} as Meta;
+} satisfies Meta<StickerProps>
 
-export const Base: Story<StickerProps> = (args) => (
-  <Sticker {...args}> Code promo </Sticker>
-);
-Base.args = {
-  variant: VariantState.MAIN,
-};
-export const Small: Story<StickerProps> = (args) => (
-  <Sticker {...args}> Code promo </Sticker>
-);
-Small.args = {
-  variant: VariantState.MAIN,
-  small: true,
-};
-export const Fanion: Story<StickerProps> = (args) => (
-  <Sticker {...args}> Code promo </Sticker>
-);
-Fanion.args = {
-  variant: VariantState.MAIN,
-  flag: true,
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const EnChapeauBox: Story<StickerProps> = (args) => (
-  <Box hat>
-    <Sticker {...args}> Label </Sticker>
-  </Box>
-);
-EnChapeauBox.args = {
-  hat: true,
-};
+export const Base: Story = {
+  args: {
+    label: 'Code promo',
+    variant: VariantState.MAIN,
+  },
+}
+
+export const Small: Story = {
+  args: {
+    label: 'Code promo',
+    variant: VariantState.MAIN,
+    small: true,
+  },
+}

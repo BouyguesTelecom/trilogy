@@ -1,93 +1,61 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { ChipsProps } from "./ChipsProps";
-import Chips from "./Chips";
-import ChipsList from "./list/ChipsList";
-import { Text } from "../text";
+import * as React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Chips, ChipsList } from './index'
+import { ChipsProps } from './ChipsProps'
 
-export default {
-  title: "Components/Chips",
+const meta = {
+  title: 'Components/Chips',
   component: Chips,
   subcomponents: { ChipsList },
-} as Meta;
+} satisfies Meta<ChipsProps>
 
-export const Base: Story<ChipsProps> = (args) => (
-  /* L'utilisation des Chips nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-   <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
-  <>
-    <Text>Exemple de selection unique :</Text>
-    <ChipsList>
-      <Chips {...args}>Chips du panel de controls</Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips 2");
-        }}
-        active={false}
-      >
-        Chips 2
-      </Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips 3");
-        }}
-        active={true}
-      >
-        Chips 3
-      </Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips 4");
-        }}
-      >
-        Chips 4
-      </Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips disbabled");
-        }}
-        active={true}
-        disabled
-      >
-        Chips disabled
-      </Chips>
-    </ChipsList>
-  </>
-);
-Base.args = {
-  active: true,
-  onClick: () => {
-    console.log("click chips 1");
-  },
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Multiple: Story<ChipsProps> = (args) => (
-  <>
-    <Text>Exemple des filtres multiples :</Text>
-    <ChipsList multiple>
-      <Chips {...args}>Chips 1</Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips 2");
-        }}
-        active={false}
-      >
-        Chips 2
-      </Chips>
-      <Chips
-        onClick={() => {
-          console.log("click chips 3");
-        }}
-        active={true}
-      >
-        Chips 3
-      </Chips>
-    </ChipsList>
-  </>
-);
-Multiple.args = {
-  active: true,
-  onClick: () => {
-    console.log("click chips 1");
+const Template = (args: ChipsProps) => (
+  <ChipsList>
+    <Chips {...args} />
+    <Chips
+      onClick={() => {
+        console.log('click chips 2')
+      }}
+    >
+      Chips 2
+    </Chips>
+    <Chips
+      onClick={() => {
+        console.log('click chips 3')
+      }}
+      active
+    >
+      Chips 3
+    </Chips>
+    <Chips
+      onClick={() => {
+        console.log('click chips 4')
+      }}
+    >
+      Chips 4
+    </Chips>
+    <Chips
+      onClick={() => {
+        console.log('click chips disbabled')
+      }}
+      active
+      disabled
+    >
+      Chips disabled
+    </Chips>
+  </ChipsList>
+)
+
+export const Base: Story = {
+  render: Template,
+  args: {
+    children: 'Chips du panel de controls',
+    active: true,
+    onClick: () => {
+      console.log('click chips 1')
+    },
   },
-};
+}
