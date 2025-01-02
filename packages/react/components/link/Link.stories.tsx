@@ -9,6 +9,14 @@ import { IconName } from '../icon'
 const meta = {
   title: 'Components/Link',
   component: Link,
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<LinkProps>
 
 export default meta

@@ -7,6 +7,22 @@ import { Alignable } from '../../objects'
 const meta = {
   title: 'Components/Price',
   component: Price,
+  argTypes: {
+    align: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    verticalAlign: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+  },
 } satisfies Meta<PriceProps>
 
 export default meta

@@ -5,11 +5,28 @@ import { Column, Columns } from './index'
 import { ColumnsProps } from './ColumnsProps'
 import { Box } from '../box'
 import { Title, TitleLevels } from '../title'
+import { Alignable } from '../../objects'
 
 const meta = {
   title: 'Components/Columns',
   component: Columns,
   subcomponents: { Column },
+  argTypes: {
+    align: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    verticalAlign: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+  }
 } satisfies Meta<ColumnsProps>
 
 export default meta

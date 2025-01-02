@@ -3,10 +3,32 @@ import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { AutoComplete, AutoCompletePropsWeb, Item } from './index'
 import { IconName } from '../icon'
+import { StatusState } from '../../objects'
+import { InputStatus } from '../input'
 
 const meta = {
   title: 'Components/AutoComplete',
   component: AutoComplete,
+  argTypes: {
+    iconNameLeft: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    iconNameRight: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    status: {
+      options: Object.values(InputStatus),
+      table: {
+        type: { summary: 'InputStatus' },
+      },
+    },
+  }
 } satisfies Meta<AutoCompletePropsWeb>
 
 export default meta

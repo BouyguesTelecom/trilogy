@@ -10,11 +10,28 @@ import Step from '../stepper/step'
 import { TabProps } from './tab-list/tab/TabProps'
 import { Tab, TabList, TabPanel, TabPanels } from './index'
 import { IconName } from '../icon'
+import { Alignable } from '../../objects'
 
 const meta = {
   title: 'Components/Tabs',
   component: Tabs,
   subcomponents: { Tab, TabList, TabPanel, TabPanels },
+  argTypes: {
+    align: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    verticalAlign: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+  },
 } satisfies Meta<TabsProps>
 
 export default meta

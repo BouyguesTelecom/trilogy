@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Badge } from './index'
 import { BadgeProps } from './BadgeProps'
 import { BadgePositionEnum } from './BadgeEnum'
-import { VariantState } from '../../objects'
+import { StatusState, VariantState } from '../../objects'
 
 const meta = {
   title: 'Components/Badge',
@@ -17,7 +17,13 @@ const meta = {
         type: { summary: 'VariantState' },
       },
       options: Object.values(VariantState),
-    }
+    },
+    status: {
+      options: Object.values(StatusState),
+      table: {
+        type: { summary: 'StatusState' },
+      },
+    },
   },
 } satisfies Meta<BadgeProps>
 
