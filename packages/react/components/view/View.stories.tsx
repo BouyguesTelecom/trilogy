@@ -5,10 +5,34 @@ import { View } from './index'
 import { ViewProps } from './ViewProps'
 import { Text } from '../text'
 import { Icon, IconName, IconSize } from '../icon'
+import { Alignable, Justifiable } from '../../objects'
 
 const meta = {
   title: 'Components/View',
   component: View,
+  argTypes: {
+    align: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    verticalAlign: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    justify: {
+      options: Object.values(Justifiable),
+      mapping: Object.assign({}, Justifiable),
+      table: {
+        type: { summary: 'Justifiable' },
+      },
+    },
+  },
 } satisfies Meta<ViewProps>
 
 export default meta

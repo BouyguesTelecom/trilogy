@@ -9,6 +9,14 @@ const meta = {
   title: "Components/Button",
   component: Button,
   subcomponents: { ButtonList },
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<ButtonProps>;
 
 export default meta

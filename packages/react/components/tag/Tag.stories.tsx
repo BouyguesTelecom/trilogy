@@ -14,6 +14,14 @@ const meta = {
   title: 'Components/Tag',
   component: Tag,
   subcomponents: { TagList },
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<TagProps>
 
 export default meta

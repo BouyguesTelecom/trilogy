@@ -8,6 +8,14 @@ import { IconName } from '../icon'
 const meta = {
   title: 'Components/Divider',
   component: Divider,
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<DividerProps>
 
 export default meta
