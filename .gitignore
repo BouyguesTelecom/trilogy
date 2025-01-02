@@ -93,3 +93,5 @@ mangled
 packages/react/components/icon/iconsPath.ts
 packages/styles/assets/icons/*.scss
 /docs/templates/
+
+*storybook.log

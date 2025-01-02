@@ -1,17 +1,43 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Section from "./Section";
-import { SectionProps } from "./SectionProps";
-import { TrilogyColor } from "../../objects";
-import { Title, TitleLevels } from "../title";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Section } from './index'
+import { SectionProps } from './SectionProps'
+import { Title, TitleLevels } from '../title'
+import { TrilogyColor } from '../../objects'
 
-export default {
-  title: "Components/Section",
+const meta = {
+  title: 'Components/Section',
   component: Section,
-} as Meta;
+} satisfies Meta<SectionProps>
 
-export const Base: Story<SectionProps> = (args) => (
+export default meta
+type Story = StoryObj<typeof meta>
+
+const Template = (args: SectionProps) => {
+  let title: string
+  switch (true) {
+    case args.skeleton:
+      title = 'Section skeleton'
+      break
+    case args.backgroundColor !== undefined:
+      title = 'Section avec background'
+      break
+    case args.backgroundSrc !== undefined:
+      title = 'Section avec image de fond'
+      break
+    default:
+      title = 'Section Template'
+      break
+  }
+  return (
+    <Section {...args}>
+      <Title level={TitleLevels.THREE}>{title}</Title>
+    </Section>
+  )
+}
+
+const TemplateMultiple = (args: SectionProps) => (
   <>
     <Section {...args}>
       <Title level={TitleLevels.ONE}>Premiére section</Title>
@@ -23,41 +49,29 @@ export const Base: Story<SectionProps> = (args) => (
       <Title level={TitleLevels.ONE}>Troisiéme section</Title>
     </Section>
   </>
-);
+)
 
-export const Skeleton: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Title level={TitleLevels.THREE} skeleton>
-      Section skeleton
-    </Title>
-  </Section>
-);
+export const Base: Story = {
+  render: TemplateMultiple,
+}
 
-Skeleton.args = {
-  skeleton: true,
-};
+export const Skeleton: Story = {
+  render: Template,
+  args: {
+    skeleton: true,
+  },
+}
 
-export const CouleurDeFond: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Title level={TitleLevels.THREE} inverted>
-      Section avec background
-    </Title>
-  </Section>
-);
-CouleurDeFond.args = {
-  background: TrilogyColor.MAIN,
-};
+export const CouleurDeFond: Story = {
+  render: Template,
+  args: {
+    backgroundColor: TrilogyColor.MAIN,
+  },
+}
 
-export const ImageDeFond: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Section>
-      <Title level={TitleLevels.THREE} skeleton>
-        Section avec image de fond
-      </Title>
-    </Section>
-  </Section>
-);
-ImageDeFond.args = {
-  backgroundSrc:
-    "https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png",
-};
+export const ImageDeFond: Story = {
+  render: Template,
+  args: {
+    backgroundSrc: 'https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png',
+  },
+}

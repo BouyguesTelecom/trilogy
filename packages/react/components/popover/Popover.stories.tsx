@@ -1,50 +1,37 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { PopoverProps } from "./PopoverProps";
-import { Popover, PopoverDirection } from ".";
-import { Button } from "../button";
+import * as React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Popover, PopoverDirection } from './index'
+import { PopoverProps } from './PopoverProps'
+import { Button } from '../button'
 
-export default {
-  title: "Components/Popover",
+const meta = {
+  title: 'Components/Popover',
   component: Popover,
-} as Meta;
+} satisfies Meta<PopoverProps>
 
-export const Base: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
-Base.args = {
-  content: "Voici une simple popover",
-};
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const PopoverActive: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
-PopoverActive.args = {
-  active: true,
-  content: "Popover active",
-};
+export const Base: Story = {
+  args: {
+    children: 'Voici une simple popover',
+    trigger: <Button variant='PRIMARY'>Simple Popover</Button>,
+  },
+}
 
-export const PopoverDirections: Story<PopoverProps> = (args) => (
-  <>
-    <Popover {...args}>
-      <Button variant={"PRIMARY"}>Bottom</Button>
-    </Popover>
-    <Popover content="En haut">
-      <Button variant={"PRIMARY"}>top</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.RIGHT} content="A droite">
-      <Button variant={"PRIMARY"}>Right</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.LEFT} content="A gauche">
-      <Button variant={"PRIMARY"}>Left</Button>
-    </Popover>
-  </>
-);
-PopoverDirections.args = {
-  direction: PopoverDirection.BOTTOM,
-  content: "Bottom popover",
-};
+export const PopoverActive: Story = {
+  args: {
+    active: true,
+    children: 'Voici une simple popover active',
+    trigger: <Button variant='PRIMARY'>Simple Popover</Button>,
+  },
+}
+
+export const PopoverDirections: Story = {
+  args: {
+    active: true,
+    direction: PopoverDirection.BOTTOM,
+    children: 'Voici popover',
+    trigger: <Button variant='PRIMARY'>Simple Popover</Button>,
+  },
+}
