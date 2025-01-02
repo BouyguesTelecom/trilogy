@@ -1,8 +1,8 @@
-import { Accessibility, Dev, StatusState, StatusStateValues, VariantProps } from '../../objects'
-import { Clickable } from '../../objects/facets/Clickable'
-import { Invertable } from '../../objects/facets/Invertable'
-import { CommonProps } from '../../objects/facets/CommonProps'
 import { BadgePositionEnum, BadgePositionValues } from '@/components/badge/BadgeEnum'
+import { Accessibility, Dev, StatusState, StatusStateValues, VariantProps } from '@/objects'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Invertable } from '@/objects/facets/Invertable'
 
 /**
  * Badge Interface
