@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react'
-
-import '../../../packages/styles/dist/default/trilogy.css';
-import './show-code-fix.css';
 import { getColorStyle, TrilogyColor } from '@trilogy-ds/react'
+
+import '../../../packages/styles/dist/default/trilogy.css'
+import './show-code-fix.css'
 
 const preview: Preview = {
   parameters: {

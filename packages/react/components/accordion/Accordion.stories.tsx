@@ -6,6 +6,7 @@ import { AccordionProps } from './AccordionProps'
 const meta = {
   title: 'Components/Accordion',
   component: Accordion,
+  subcomponents: { AccordionItem, AccordionHeader, AccordionBody },
 } satisfies Meta<AccordionProps>
 
 export default meta

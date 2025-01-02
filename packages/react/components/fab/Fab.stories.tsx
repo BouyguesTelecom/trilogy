@@ -6,6 +6,14 @@ import { IconName } from '../icon'
 const meta = {
   title: 'Components/Fab',
   component: Fab,
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<FabProps>
 
 export default meta

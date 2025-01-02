@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Alert from './Alert'
 import { AlertProps } from './AlertProps'
 import { StatusState } from '../../objects'
+import { BadgePositionEnum } from '../badge/BadgeEnum'
+import { IconName } from '../icon'
 
 const meta = {
   title: 'Components/Alert',
@@ -18,6 +20,20 @@ export const Base: Story = {
     status: StatusState.INFO,
     title: 'Alert information',
     description: 'Lorem Ipsum is simply dummy text type and scrambled it to make a type specimen book..',
+  },
+  argTypes: {
+    status: {
+      options: Object.values(StatusState),
+      table: {
+        type: { summary: 'StatusState' },
+      },
+    },
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
   },
 }
 
@@ -54,4 +70,3 @@ const TemplateMultiple = (args: AlertProps) => (
 export const Variant: Story = {
   render: TemplateMultiple,
 }
-

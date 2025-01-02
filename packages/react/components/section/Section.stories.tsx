@@ -9,6 +9,14 @@ import { TrilogyColor } from '../../objects'
 const meta = {
   title: 'Components/Section',
   component: Section,
+  argTypes: {
+    backgroundColor: {
+      options: Object.values(TrilogyColor),
+      table: {
+        type: { summary: 'TrilogyColor' },
+      },
+    },
+  },
 } satisfies Meta<SectionProps>
 
 export default meta
@@ -42,7 +50,7 @@ const TemplateMultiple = (args: SectionProps) => (
     <Section {...args}>
       <Title level={TitleLevels.ONE}>Premiére section</Title>
     </Section>
-    <Section {...args}>
+    <Section {...args} backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Title level={TitleLevels.ONE}>Deuxiéme section</Title>
     </Section>
     <Section {...args}>
@@ -65,7 +73,7 @@ export const Skeleton: Story = {
 export const CouleurDeFond: Story = {
   render: Template,
   args: {
-    backgroundColor: TrilogyColor.MAIN,
+    backgroundColor: TrilogyColor.MAIN_FADE,
   },
 }
 

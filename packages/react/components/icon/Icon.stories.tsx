@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import type { Meta, StoryObj } from '@storybook/react'
 import { Icon, IconSize } from './index'
 import { IconProps } from './IconProps'
@@ -9,11 +7,32 @@ import { Alignable } from '../../objects'
 const meta = {
   title: 'Components/Icon',
   component: Icon,
+  argTypes: {
+    align: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    verticalAlign: {
+      options: Object.values(Alignable),
+      mapping: Object.assign({}, Alignable),
+      table: {
+        type: { summary: 'Alignable' },
+      },
+    },
+    name: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  },
 } satisfies Meta<IconProps>
 
 export default meta
 type Story = StoryObj<typeof meta>
-
 
 export const Base: Story = {
   args: {

@@ -9,6 +9,14 @@ const meta = {
   title: 'Components/Stepper/Step',
   component: Step,
   subcomponents: { Stepper },
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<StepProps>
 
 export default meta
