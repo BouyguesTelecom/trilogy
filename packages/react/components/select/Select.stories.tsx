@@ -12,6 +12,14 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   subcomponents: { SelectOption },
+  argTypes:{
+    iconName: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+  }
 } satisfies Meta<SelectProps>
 
 export default meta

@@ -1,10 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Switch } from './index'
 import { SwitchProps } from './SwitchProps'
+import { StatusState } from '../../objects'
 
 const meta = {
   title: 'Components/Switch',
   component: Switch,
+  argTypes: {
+    status: {
+      options: Object.values(StatusState),
+      table: {
+        type: { summary: 'StatusState' },
+      },
+    },
+  },
 } satisfies Meta<SwitchProps>
 
 export default meta

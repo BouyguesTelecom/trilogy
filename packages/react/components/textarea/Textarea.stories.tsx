@@ -11,6 +11,26 @@ import { InputStatus } from '../input'
 const meta = {
   title: 'Components/Textarea',
   component: Textarea,
+  argTypes:{
+    iconNameLeft: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    iconNameRight: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    status: {
+      options: Object.values(InputStatus),
+      table: {
+        type: { summary: 'InputStatus' },
+      },
+    },
+  }
 } satisfies Meta<TextareaProps>
 
 export default meta

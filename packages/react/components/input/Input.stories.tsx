@@ -9,6 +9,26 @@ import { IconName } from '../icon'
 const meta = {
   title: 'Components/Input',
   component: Input,
+  argTypes: {
+    iconNameLeft: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    iconNameRight: {
+      options: Object.values(IconName),
+      table: {
+        type: { summary: 'IconName' },
+      },
+    },
+    status: {
+      options: Object.values(InputStatus),
+      table: {
+        type: { summary: 'InputStatus' },
+      },
+    },
+  }
 } satisfies Meta<InputProps>
 
 export default meta

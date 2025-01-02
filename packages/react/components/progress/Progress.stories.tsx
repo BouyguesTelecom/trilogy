@@ -8,6 +8,14 @@ import { StatusState } from '../../objects'
 const meta = {
   title: 'Components/ProgressBar',
   component: Progress,
+  argTypes:{
+    status: {
+      options: Object.values(StatusState),
+      table: {
+        type: { summary: 'StatusState' },
+      },
+    },
+  }
 } satisfies Meta<ProgressProps>
 
 export default meta
