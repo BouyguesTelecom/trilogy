@@ -1,4 +1,4 @@
-import Tab from '@/components/tabs/tab-list/tab/Tab'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -16,18 +16,22 @@ import React from 'react'
  * @param align
  * @param others
  */
-const TabList = ({ children, className, id, testId, align, ...others }: TabListProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
+const TabList = React.forwardRef(
+  ({ children, className, id, testId, align, ...others }: TabListProps, ref: React.Ref<HTMLDivElement>) => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
 
-  return (
-    <div id={id} data-testid={testId} className={classes} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
-        return <Tab {...child.props} index={index} />
-      })}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
+        {Array.isArray(children) &&
+          React.Children.map(children, (child, index) => {
+            if (!React.isValidElement(child)) return
+            return React.cloneElement(child, { index } as any)
+          })}
+      </div>
+    )
+  },
+)
 
+TabList.displayName = ComponentName.TabList
 export default TabList

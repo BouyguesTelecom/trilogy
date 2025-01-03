@@ -1,3 +1,4 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
 import { TabPanelProps } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
 import { useTrilogyContext } from '@/context'
@@ -13,18 +14,21 @@ import React from 'react'
  * @param testId
  * @param others
  */
-const TabPanel = ({ children, className, testId, ...others }: TabPanelProps) => {
-  const { styled } = useTrilogyContext()
-  const { index, ...props } = others as any
-  const { activeIndex } = React.useContext(TabsContext)
+const TabPanel = React.forwardRef(
+  ({ children, className, testId, ...others }: TabPanelProps, ref: React.Ref<HTMLDivElement>) => {
+    const { styled } = useTrilogyContext()
+    const { index, ...props } = others as any
+    const { activeIndex } = React.useContext(TabsContext)
 
-  const classes = hashClass(styled, clsx('tab-panel', index === activeIndex && is('active'), className))
+    const classes = hashClass(styled, clsx('tab-panel', index === activeIndex && is('active'), className))
 
-  return (
-    <div data-testid={testId} className={classes} {...props}>
-      {children}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} data-testid={testId} className={classes} {...props}>
+        {children}
+      </div>
+    )
+  },
+)
 
+TabPanel.displayName = ComponentName.TabPanel
 export default TabPanel
