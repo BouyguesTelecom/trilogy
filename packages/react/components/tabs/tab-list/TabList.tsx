@@ -1,5 +1,4 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -24,10 +23,12 @@ const TabList = React.forwardRef(
 
     return (
       <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-        {children &&
+        {Array.isArray(children) &&
           React.Children.map(children, (child, index) => {
-            if (!React.isValidElement(child)) return false
-            return <Tab {...child.props} index={index} />
+            return React.cloneElement(child, {
+              index,
+              ...child.props,
+            })
           })}
       </div>
     )
