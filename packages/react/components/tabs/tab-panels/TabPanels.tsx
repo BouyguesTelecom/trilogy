@@ -21,10 +21,11 @@ const TabPanels = React.forwardRef(
 
     return (
       <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) return false
-          return <TabPanel {...child.props} index={index} />
-        })}
+        {children &&
+          React.Children.map(children, (child, index) => {
+            if (!React.isValidElement(child)) return false
+            return <TabPanel {...child.props} index={index} />
+          })}
       </div>
     )
   },
