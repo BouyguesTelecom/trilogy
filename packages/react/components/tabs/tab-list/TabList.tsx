@@ -27,7 +27,7 @@ const TabList = React.forwardRef(
           React.Children.map(children, (child, index) => {
             return React.cloneElement(child, {
               index,
-              ...child.props,
+              ...child?.props,
             })
           })}
       </div>
