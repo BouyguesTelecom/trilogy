@@ -1,3 +1,4 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import { useTrilogyContext } from '@/context'
@@ -13,18 +14,21 @@ import React from 'react'
  * @param testId
  * @param others
  */
-const TabPanels = ({ children, className, id, testId, ...others }: TabPanelsProps) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tab-panels', className))
+const TabPanels = React.forwardRef(
+  ({ children, className, id, testId, ...others }: TabPanelsProps, ref: React.Ref<HTMLDivElement>) => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('tab-panels', className))
 
-  return (
-    <div id={id} data-testid={testId} className={classes} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
-        return <TabPanel {...child.props} index={index} />
-      })}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) return false
+          return <TabPanel {...child.props} index={index} />
+        })}
+      </div>
+    )
+  },
+)
 
+TabPanels.displayName = ComponentName.TabPanels
 export default TabPanels
