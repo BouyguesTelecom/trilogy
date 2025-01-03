@@ -18,7 +18,10 @@ import React, { useEffect, useState } from 'react'
  * @param id
  */
 const Tabs = React.forwardRef(
-  ({ children, className, id, activeIndex, fullwidth, inverted }: TabsProps, ref: React.Ref<HTMLDivElement>) => {
+  (
+    { children, className, id, activeIndex, fullwidth, inverted, ...others }: TabsProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
     const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
     const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
@@ -38,7 +41,7 @@ const Tabs = React.forwardRef(
           setActiveIndex: setCurrentIndex,
         }}
       >
-        <div ref={ref} id={id} className={classes} data-tabs-context=''>
+        <div ref={ref} id={id} className={classes} data-tabs-context='' {...others}>
           {children}
         </div>
       </TabsContext.Provider>
