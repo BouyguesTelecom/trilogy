@@ -3,13 +3,13 @@ $button-border-width: 2px !default;
 .buttons {
   width: 100%;
   column-gap: 16px;
+  display: flex;
 
   &.is-vertical {
     row-gap: 16px;
   }
 
   @include tablet {
-    display: flex;
     align-items: center;
     width: auto;
   }
