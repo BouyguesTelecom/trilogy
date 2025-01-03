@@ -17,22 +17,21 @@ import React from 'react'
  * @param align
  * @param others
  */
-const TabList = (
-  { children, className, id, testId, align, ...others }: TabListProps,
-  ref: React.Ref<HTMLDivElement>,
-) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
+const TabList = React.forwardRef(
+  ({ children, className, id, testId, align, ...others }: TabListProps, ref: React.Ref<HTMLDivElement>) => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
 
-  return (
-    <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
-        return <Tab {...child.props} index={index} />
-      })}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) return false
+          return <Tab {...child.props} index={index} />
+        })}
+      </div>
+    )
+  },
+)
 
 TabList.displayName = ComponentName.TabList
 export default TabList
