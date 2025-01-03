@@ -16,4 +16,5 @@ export interface CardProps extends Fullheight, Clickable, Accessibility, CommonP
   reversed?: boolean
   href?: string
   active?: boolean
+  markup?: React.ElementType
 }

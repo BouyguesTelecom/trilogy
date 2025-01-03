@@ -17,4 +17,5 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   flat?: boolean
   active?: boolean
   inverted?: boolean
+  markup?: React.ElementType
 }

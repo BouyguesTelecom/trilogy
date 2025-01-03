@@ -21,25 +21,19 @@ export const CardContext = createContext({ horizontal: false })
  * @param fullheight
  */
 const Card = ({
-                className,
-                id,
-                flat,
-                horizontal,
-                floating,
-                skeleton,
-                onClick,
-                reversed,
-                href,
-                fullheight,
-                active,
-                ...others
-              }: CardProps) => {
-
+  className,
+  flat,
+  horizontal,
+  floating,
+  skeleton,
+  onClick,
+  reversed,
+  markup: CardComponent = 'div',
+  fullheight,
+  active,
+  ...others
+}: CardProps) => {
   const { styled } = useTrilogyContext()
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
 
   const classes = hashClass(
     styled,
@@ -53,33 +47,10 @@ const Card = ({
       className,
       fullheight && is('fullheight'),
       active && is('active'),
+      onClick && is('cursor-pointer'),
     ),
   )
 
-  if (href) {
-    return (
-      <a
-        id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-        className={classes}
-      />
-    )
-  }
-
-  return (
-    <div
-      id={id}
-      onClick={onClick && onClick}
-      className={classes}
-      style={onClick && { ...hoverStyle }}
-      {...others}
-    />
-  )
+  return <CardComponent onClick={onClick} className={classes} {...others} />
 }
 export default Card

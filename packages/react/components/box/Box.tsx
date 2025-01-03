@@ -6,6 +6,7 @@ import { getColorClassName } from '@/objects'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { OnClickEvent } from '@/events/OnClickEvent'
 
 /**
  * Box Component
@@ -29,10 +30,9 @@ const Box = ({
   inverted,
   children,
   className,
-  id,
   onClick,
   skeleton,
-  href,
+  markup: BoxComponent = 'div',
   backgroundColor,
   highlighted,
   shadowless,
@@ -59,38 +59,13 @@ const Box = ({
       headerOffset && is('offset-header'),
       fullheight && is('fullheight'),
       active && is('active'),
+      onClick && is('cursor-pointer'),
     ),
   )
 
-  if (href) {
-    return (
-      <a
-        id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
-        className={classes}
-        {...others}
-      >
-        {children}
-      </a>
-    )
-  }
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
-
   return (
-    <div
-      id={id}
-      style={onClick && { ...hoverStyle }}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-      }}
+    <BoxComponent
+      onClick={onClick}
       className={classes}
       {...others}
       {...(backgroundSrc && {
@@ -102,7 +77,7 @@ const Box = ({
       })}
     >
       {children}
-    </div>
+    </BoxComponent>
   )
 }
 
