@@ -22,10 +22,8 @@ const TabPanels = React.forwardRef(
       <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
         {Array.isArray(children) &&
           React.Children.map(children, (child, index) => {
-            return React.cloneElement(child, {
-              index,
-              ...child?.props,
-            })
+            if (!React.isValidElement(child)) return
+            return React.cloneElement(child, { index } as any)
           })}
       </div>
     )
