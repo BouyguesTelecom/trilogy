@@ -1,10 +1,9 @@
-import * as React from 'react'
-import { RadioListWebProps } from './RadioListProps'
+import { hashClass } from '@/helpers'
+import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
+import * as React from 'react'
+import { RadioListWebProps } from './RadioListProps'
 
 /**
  * Radio List Component
@@ -23,13 +22,10 @@ const RadioList = ({
   verticalDesktop,
   ...others
 }: RadioListWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
     <div
       id={id}
       className={hashClass(
-        styled,
         clsx(
           'radios',
           className,

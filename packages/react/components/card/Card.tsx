@@ -1,9 +1,8 @@
-import React, { createContext } from 'react'
-import clsx from 'clsx'
-import { CardProps } from './CardProps'
-import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { createContext } from 'react'
+import { CardProps } from './CardProps'
 
 export const CardContext = createContext({ horizontal: false })
 
@@ -21,28 +20,24 @@ export const CardContext = createContext({ horizontal: false })
  * @param fullheight
  */
 const Card = ({
-                className,
-                id,
-                flat,
-                horizontal,
-                floating,
-                skeleton,
-                onClick,
-                reversed,
-                href,
-                fullheight,
-                active,
-                ...others
-              }: CardProps) => {
-
-  const { styled } = useTrilogyContext()
-
+  className,
+  id,
+  flat,
+  horizontal,
+  floating,
+  skeleton,
+  onClick,
+  reversed,
+  href,
+  fullheight,
+  active,
+  ...others
+}: CardProps) => {
   const hoverStyle: React.CSSProperties = {
     cursor: 'pointer',
   }
 
   const classes = hashClass(
-    styled,
     clsx(
       'card',
       flat && !floating && is('flat'),
@@ -73,13 +68,7 @@ const Card = ({
   }
 
   return (
-    <div
-      id={id}
-      onClick={onClick && onClick}
-      className={classes}
-      style={onClick && { ...hoverStyle }}
-      {...others}
-    />
+    <div id={id} onClick={onClick && onClick} className={classes} style={onClick && { ...hoverStyle }} {...others} />
   )
 }
 export default Card

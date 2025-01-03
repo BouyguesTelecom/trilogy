@@ -1,5 +1,4 @@
 import { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getAlignClassName } from '@/objects'
 import { is } from '@/services'
@@ -16,7 +15,6 @@ import * as React from 'react'
  * @param className {string} Additionnal CSS Classes
  */
 const RadioTiles = ({ id, className, children, align, verticalAlign, ...others }: RadioTilesProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
     alignClass =
@@ -37,10 +35,7 @@ const RadioTiles = ({ id, className, children, align, verticalAlign, ...others }
   return (
     <div
       id={id}
-      className={hashClass(
-        styled,
-        clsx('radio-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
-      )}
+      className={hashClass(clsx('radio-tiles', className, align && alignClass, verticalAlign && verticalAlignClass))}
       {...others}
     >
       {children}

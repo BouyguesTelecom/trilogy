@@ -1,8 +1,7 @@
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
 import * as React from 'react'
 import { AccordionBodyProps } from './AccordionBodyProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Accordion Body Component
@@ -12,10 +11,8 @@ import { useTrilogyContext } from '@/context'
  * @param dataId {string} data attribute
  */
 const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProps): React.JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
-    <div id={id} className={hashClass(styled, clsx('accordion-body', className))} {...others}>
+    <div id={id} className={hashClass(clsx('accordion-body', className))} {...others}>
       {children}
     </div>
   )

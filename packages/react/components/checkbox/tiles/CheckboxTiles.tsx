@@ -1,10 +1,9 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { CheckboxTilesProps } from './CheckboxTilesProps'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { getAlignClassName } from '@/objects'
 import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CheckboxTilesProps } from './CheckboxTilesProps'
 
 /**
  * CheckboxTiles
@@ -22,7 +21,6 @@ const CheckboxTiles = ({
   verticalAlign,
   ...others
 }: CheckboxTilesProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
     alignClass =
@@ -43,10 +41,7 @@ const CheckboxTiles = ({
   return (
     <div
       id={id}
-      className={hashClass(
-        styled,
-        clsx('checkbox-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
-      )}
+      className={hashClass(clsx('checkbox-tiles', className, align && alignClass, verticalAlign && verticalAlignClass))}
       {...others}
     >
       {children}

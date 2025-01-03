@@ -1,12 +1,11 @@
+import { Icon, IconSize } from '@/components/icon'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { CheckboxTileProps } from './CheckboxTileProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { Icon, IconSize } from '@/components/icon'
 import shortid from 'shortid'
+import { CheckboxTileProps } from './CheckboxTileProps'
 
 /**
  * CheckboxTile
@@ -39,8 +38,6 @@ const CheckboxTile = ({
   horizontal,
   ...others
 }: CheckboxTileProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -50,7 +47,7 @@ const CheckboxTile = ({
   }, [checked, readonly])
 
   return (
-    <div className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
+    <div className={hashClass(clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
       <input
         type='checkbox'
         readOnly={readonly}
@@ -62,17 +59,17 @@ const CheckboxTile = ({
         onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+      <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
         {horizontal ? (
           <span>
-            <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
+            <span className={hashClass(clsx('checkbox-title'))}>{label}</span>
+            {description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
           </span>
         ) : (
           <>
-            <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
+            <span className={hashClass(clsx('checkbox-title'))}>{label}</span>
+            {description && <span className={hashClass(clsx('checkbox-description'))}>{description}</span>}
           </>
         )}
       </label>

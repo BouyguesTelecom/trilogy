@@ -1,7 +1,6 @@
 import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabProps } from '@/components/tabs/tab-list/tab/TabProps'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -35,12 +34,11 @@ const Tab = ({
   ariaControls,
   ...others
 }: TabProps) => {
-  const { styled } = useTrilogyContext()
   const { index, ...props } = others as any
   const { activeIndex, setActiveIndex } = React.useContext(TabsContext)
 
   const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
-  const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
+  const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent) => {
