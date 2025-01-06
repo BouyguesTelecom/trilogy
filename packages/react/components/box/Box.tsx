@@ -64,7 +64,10 @@ const Box = ({
       <a
         id={id}
         href={href}
-        onClick={onClick && onClick}
+        onClick={(e) => {
+          // eslint-disable-next-line no-unused-expressions
+          onClick?.(e)
+        }}
         className={classes}
         {...others}
       >
@@ -81,7 +84,10 @@ const Box = ({
     <div
       id={id}
       style={onClick && { ...hoverStyle }}
-      onClick={onClick && onClick}
+      onClick={(e) => {
+        // eslint-disable-next-line no-unused-expressions
+        onClick?.(e)
+      }}
       className={classes}
       {...others}
       {...(backgroundSrc && {
