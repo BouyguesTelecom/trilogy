@@ -10,6 +10,7 @@ const meta = {
   component: Progress,
   argTypes:{
     status: {
+      control: 'select',
       options: Object.values(StatusState),
       table: {
         type: { summary: 'StatusState' },

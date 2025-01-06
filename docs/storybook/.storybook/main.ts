@@ -12,11 +12,12 @@ function getAbsolutePath(value: string): any {
 }
 
 const config: StorybookConfig = {
-  stories: ['../../../packages/react/components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../../../packages/react/components/**/*.stories.@(js|jsx|mjs|ts|tsx)','../pages/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-storysource'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),

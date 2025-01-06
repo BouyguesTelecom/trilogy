@@ -12,11 +12,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args: AccordionProps) => (
-  /* L'utilisation de l'accordion nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-       <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-  */
-  <Accordion {...args}>
+const childrenAccordion = (
+  <>
     <AccordionItem id='UN' open>
       <AccordionHeader>Hello World</AccordionHeader>
       <AccordionBody>
@@ -57,9 +54,19 @@ const Template = (args: AccordionProps) => (
         urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
       </AccordionBody>
     </AccordionItem>
-  </Accordion>
+  </>
+)
+
+const Template = ({ children, ...args }: AccordionProps) => (
+  /* L'utilisation de l'accordion nécessite l'injection de Trilogy-Vanilla pour fonctioner :
+       <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
+  */
+  <Accordion {...args}>{children}</Accordion>
 )
 
 export const Base: Story = {
   render: Template,
+  args: {
+    children: childrenAccordion,
+  },
 }

@@ -8,6 +8,7 @@ const meta = {
   component: Switch,
   argTypes: {
     status: {
+      control: 'select',
       options: Object.values(StatusState),
       table: {
         type: { summary: 'StatusState' },

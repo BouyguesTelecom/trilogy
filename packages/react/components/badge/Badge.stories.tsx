@@ -10,15 +10,18 @@ const meta = {
   component: Badge,
   argTypes: {
     position: {
+      control: 'select',
       options: Object.values(BadgePositionEnum),
     },
     variant: {
+      control: 'select',
       table:{
         type: { summary: 'VariantState' },
       },
       options: Object.values(VariantState),
     },
     status: {
+      control: 'select',
       options: Object.values(StatusState),
       table: {
         type: { summary: 'StatusState' },

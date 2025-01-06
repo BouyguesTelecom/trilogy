@@ -14,6 +14,7 @@ const meta = {
   subcomponents: { SelectOption },
   argTypes:{
     iconName: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },

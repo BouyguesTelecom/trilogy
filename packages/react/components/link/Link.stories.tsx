@@ -11,6 +11,7 @@ const meta = {
   component: Link,
   argTypes:{
     iconName: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },

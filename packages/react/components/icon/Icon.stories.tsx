@@ -9,6 +9,7 @@ const meta = {
   component: Icon,
   argTypes: {
     align: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {
@@ -16,6 +17,7 @@ const meta = {
       },
     },
     verticalAlign: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {
@@ -23,6 +25,7 @@ const meta = {
       },
     },
     name: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },

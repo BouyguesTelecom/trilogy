@@ -12,6 +12,7 @@ const meta = {
   component: View,
   argTypes: {
     align: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {
@@ -19,6 +20,7 @@ const meta = {
       },
     },
     verticalAlign: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {

@@ -23,12 +23,14 @@ export const Base: Story = {
   },
   argTypes: {
     status: {
+      control: 'select',
       options: Object.values(StatusState),
       table: {
         type: { summary: 'StatusState' },
       },
     },
     iconName: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },

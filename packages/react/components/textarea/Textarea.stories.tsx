@@ -13,18 +13,21 @@ const meta = {
   component: Textarea,
   argTypes:{
     iconNameLeft: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },
       },
     },
     iconNameRight: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },
       },
     },
     status: {
+      control: 'select',
       options: Object.values(InputStatus),
       table: {
         type: { summary: 'InputStatus' },

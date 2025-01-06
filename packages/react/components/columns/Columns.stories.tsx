@@ -20,6 +20,7 @@ const meta = {
       },
     },
     verticalAlign: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {

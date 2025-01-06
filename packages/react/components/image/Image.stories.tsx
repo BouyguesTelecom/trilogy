@@ -8,6 +8,7 @@ const meta = {
   component: Image,
   argTypes: {
     align: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {
@@ -15,6 +16,7 @@ const meta = {
       },
     },
     verticalAlign: {
+      control: 'select',
       options: Object.values(Alignable),
       mapping: Object.assign({}, Alignable),
       table: {

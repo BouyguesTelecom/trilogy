@@ -16,6 +16,7 @@ const meta = {
   subcomponents: { TagList },
   argTypes:{
     iconName: {
+      control: 'select',
       options: Object.values(IconName),
       table: {
         type: { summary: 'IconName' },

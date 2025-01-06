@@ -10,6 +10,7 @@ const meta = {
   component: Spacer,
   argTypes: {
     size: {
+      control: 'select',
       options: Object.values(SpacerSize).filter((x) => typeof x === 'string'),
       mapping: Object.assign({}, SpacerSize),
       table: {

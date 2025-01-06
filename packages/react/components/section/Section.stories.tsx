@@ -11,6 +11,7 @@ const meta = {
   component: Section,
   argTypes: {
     backgroundColor: {
+      control: 'select',
       options: Object.values(TrilogyColor),
       table: {
         type: { summary: 'TrilogyColor' },
