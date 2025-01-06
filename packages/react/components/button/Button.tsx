@@ -89,11 +89,7 @@ const Button = React.forwardRef(
           className={classes}
           disabled={isDisabled}
           name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={onClick}
           type={type ?? 'button'}
           {...others}
         >
@@ -110,11 +106,7 @@ const Button = React.forwardRef(
           className={classes}
           aria-label={accessibilityLabel}
           name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={onClick}
           disabled={isDisabled}
           type={type ?? 'submit'}
           value={`${children}`}
@@ -134,18 +126,7 @@ const Button = React.forwardRef(
     }
 
     return (
-      <a
-        id={id}
-        aria-label={accessibilityLabel}
-        className={classes}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-      >
+      <a id={id} aria-label={accessibilityLabel} className={classes} href={href} onClick={onClick} {...others}>
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </a>
