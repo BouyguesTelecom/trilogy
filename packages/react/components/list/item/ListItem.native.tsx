@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import { StyleSheet, View as ReactView, View } from 'react-native'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconColor, IconName } from '@/components/icon'
+import { Icon, IconName } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects'
+import React, { useMemo } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { ListItemProps } from './ListItemProps'
 
 /**
@@ -14,53 +14,20 @@ import { ListItemProps } from './ListItemProps'
  */
 const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element => {
   const styles = StyleSheet.create({
-    item: {
-      marginBottom: 4,
-      flexDirection: 'row',
-      alignItems: 'center',
-      position: 'relative',
-    },
     text: {
-      paddingHorizontal: iconName ? 16 : undefined,
-    },
-    title: {
-      paddingHorizontal: iconName ? 16 : undefined,
-      marginBottom: children ? 8 : undefined,
-    },
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      position: 'relative',
-      paddingVertical: 8,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+      paddingHorizontal: 16,
     },
     content: {
       flexDirection: 'row',
       alignItems: 'center',
-      position: 'relative',
-      paddingVertical: 8,
-      width: undefined,
+      paddingVertical: 16,
     },
-    badge: {
+    disc: {
       alignSelf: 'center',
-      width: 10,
-      height: 10,
-      marginRight: 8,
-      backgroundColor: getColorStyle(TrilogyColor.ERROR),
-      borderRadius: 30,
-    },
-    swipeInfo: {
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      width: 2,
-      height: 20,
-      borderRadius: 6,
-    },
-    rightAction: {
-      justifyContent: 'center',
-      flex: 1,
-      alignItems: 'flex-end',
-      paddingLeft: 16,
-      paddingRight: 4,
+      width: 4,
+      height: 4,
+      backgroundColor: getColorStyle(TrilogyColor.MAIN),
+      borderRadius: 4,
     },
   })
 
@@ -75,22 +42,21 @@ const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element =>
     }
   }, [children])
 
-  const content = useMemo(() => {
-    return (
-      <View style={styles.container}>
-        <ReactView style={styles.content}>
-          {iconName && (
-            <ReactView>
-              <Icon size='small' name={iconName as IconName} color={status || IconColor.MAIN} />
-            </ReactView>
-          )}
-          <ReactView>{getComponent}</ReactView>
-        </ReactView>
-      </View>
-    )
-  }, [iconName, status, getComponent])
-
-  return content
+  return (
+    <View style={styles.content}>
+      {!iconName && (
+        <View>
+          <View style={styles.disc} />
+        </View>
+      )}
+      {iconName && (
+        <View>
+          <Icon size='small' name={iconName as IconName} color={status} />
+        </View>
+      )}
+      <View>{getComponent}</View>
+    </View>
+  )
 }
 
 ListItem.displayName = ComponentName.ListItem
