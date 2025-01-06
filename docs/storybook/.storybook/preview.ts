@@ -14,6 +14,7 @@ const preview: Preview = {
       ],
       default: 'Light',
     },
+    storysource: { disable: true },
     disableSaveFromUI: true,
     actions: { argTypesRegex: '^on[A-Z].*' },
     layout: 'centered',
