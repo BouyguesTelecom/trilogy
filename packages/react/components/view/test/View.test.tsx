@@ -8,7 +8,7 @@ import { ViewMarkup } from "../ViewProps";
 
 // Component to test
 
-describe("Modal component", () => {
+describe("View", () => {
   test("should View keep className with content", () => {
     render(
       <View data-testid={"DEFAULT"} className={"testClassName"}>
