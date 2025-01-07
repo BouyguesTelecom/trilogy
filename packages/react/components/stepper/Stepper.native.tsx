@@ -27,7 +27,7 @@ const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
   const styles = StyleSheet.create({
     steppers: {
       flexDirection: 'row',
-      alignSelf: 'flex-start',
+      flex: 1,
     },
     step: {
       flexDirection: 'row',
