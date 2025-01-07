@@ -12,7 +12,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param error {boolean} display error step
  * @param children {ReactNode} Stepper Step Children
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StepperStep = ({ active, current, done, error, ...others }: StepProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.NEUTRAL)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
@@ -37,7 +36,7 @@ const StepperStep = ({ active, current, done, error, ...others }: StepProps): JS
     Animated.timing(backgroundColorAnim, {
       toValue: targetValue,
       duration: 650,
-      useNativeDriver: true,
+      useNativeDriver: false,
       easing: Easing.linear,
     }).start()
   }, [active, current, done, error])
@@ -45,8 +44,6 @@ const StepperStep = ({ active, current, done, error, ...others }: StepProps): JS
   const styles = StyleSheet.create({
     step: {
       flex: 1,
-      width: 59,
-      maxWidth: 59,
       height: 4,
       marginRight: 8,
       borderRadius: 4,
