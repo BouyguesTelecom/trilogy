@@ -31,8 +31,8 @@ const Hero = React.forwardRef(
     const styles = StyleSheet.create({
       hero: {
         width: '100%',
-        minHeight: 100,
-        maxHeight: 300,
+        minHeight: 150,
+        maxHeight: 350,
         height: 'auto',
       },
       content: {
