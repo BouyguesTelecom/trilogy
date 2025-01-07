@@ -48,8 +48,9 @@ const Columns = ({
       paddingHorizontal: enlarge,
       flexDirection: 'row',
       gap: realGap,
-      display: 'flex',
-      justifyContent: 'space-evenly',
+      borderStyle: 'solid',
+      borderColor: 'red',
+      borderWidth: 1,
     },
     centered: {
       alignSelf: 'center',
@@ -79,7 +80,7 @@ const Columns = ({
           style={[
             styles.columns,
             multiline && styles.multiline,
-            (align === Alignable.ALIGNED_CENTER) && styles.centered,
+            align === Alignable.ALIGNED_CENTER && styles.centered,
             verticalAlign && styles.verticalAlign,
           ]}
           {...others}
@@ -94,8 +95,16 @@ const Columns = ({
                 React.cloneElement(child, {
                   style: [
                     child.props.style,
-                    { width: (child.props.size && (width * child.props.size) / 12 - realGap) || 'auto' },
-                    child.props.narrow && { flex: 'none', flexShrink: 1 },
+                    {
+                      height: scrollable ? '100%' : undefined,
+                      flex: 1,
+                      flexGrow: (child.props.size || child.props.narrow) ? 0 : 1,
+                      flexShrink: child.props.narrow ? 0 : 1,
+                      flexBasis: child.props.size
+                        ? (child.props.size / 12) * width -
+                          realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
+                        : 'auto',
+                    },
                   ],
                 }),
             )
