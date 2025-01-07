@@ -1,9 +1,9 @@
+import { FabProps } from '@/components/fab/FabProps'
 import { Icon, IconName } from '@/components/icon'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { FabProps } from './FabProps'
+import React from 'react'
 
 /**
  * Fab Component - Floating Button Action
@@ -38,12 +38,6 @@ const Fab = ({
   disabled,
   ...others
 }: FabProps): JSX.Element => {
-  const [isExtended, setIsExtended] = useState<boolean>(extended || false)
-
-  useEffect(() => {
-    setIsExtended(extended || false)
-  }, [isExtended])
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const positionStyle: React.CSSProperties | any =
     top || bottom || left || right
@@ -65,10 +59,7 @@ const Fab = ({
       id={id}
       disabled={disabled}
       aria-label={accessibilityLabel}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={onClick}
       style={{ ...positionStyle }}
       {...others}
       className={_className}
