@@ -1,10 +1,8 @@
-import { hashClass } from '@/helpers'
+import { CardProps } from '@/components/card/CardProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { createContext } from 'react'
-import { CardProps } from './CardProps'
-
-export const CardContext = createContext({ horizontal: false })
+import React from 'react'
 
 /**
  * Card Component
@@ -34,7 +32,7 @@ const Card = ({
   ...others
 }: CardProps) => {
   const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
+    cursor: onClick ? 'pointer' : 'default',
   }
 
   const classes = hashClass(
@@ -52,23 +50,9 @@ const Card = ({
   )
 
   if (href) {
-    return (
-      <a
-        id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-        className={classes}
-      />
-    )
+    return <a id={id} href={href} onClick={onClick} {...others} className={classes} />
   }
 
-  return (
-    <div id={id} onClick={onClick && onClick} className={classes} style={onClick && { ...hoverStyle }} {...others} />
-  )
+  return <div id={id} onClick={onClick} className={classes} style={hoverStyle} {...others} />
 }
 export default Card

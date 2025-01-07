@@ -1,7 +1,7 @@
-import { hashClass } from '@/helpers'
+import { CardContentProps } from '@/components/card/content/CardContentProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { CardContentProps } from './CardContentProps'
+import React from 'react'
 
 /**
  * Card Content Component
