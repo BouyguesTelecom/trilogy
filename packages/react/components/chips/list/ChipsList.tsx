@@ -1,8 +1,8 @@
-import { hashClass } from '@/helpers'
+import { ChipsListProps } from '@/components/chips/list/ChipsListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ChipsListProps } from './ChipsListProps'
+import React from 'react'
 
 /**
  * ChipsList Component - Container for Chips

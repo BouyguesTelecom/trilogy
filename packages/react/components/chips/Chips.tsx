@@ -1,8 +1,8 @@
-import { hashClass } from '@/helpers'
+import { ChipsProps } from '@/components/chips/ChipsProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { ChipsProps } from './ChipsProps'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -26,9 +26,7 @@ const Chips = ({ className, onClick, children, active, disabled, id, ...others }
       id={id}
       aria-pressed={!!active}
       className={classes}
-      onClick={(e) => {
-        onClick?.(e)
-      }}
+      onClick={onClick}
       {...others}
     >
       {children}
