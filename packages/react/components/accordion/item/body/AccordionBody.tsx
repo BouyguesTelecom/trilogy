@@ -15,7 +15,14 @@ const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProp
   const { styled } = useTrilogyContext()
 
   return (
-    <div id={id} className={hashClass(styled, clsx('accordion-body', className))} {...others}>
+    <div
+      id={id}
+      className={hashClass(styled, clsx('accordion-body', className))}
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
+      {...others}
+    >
       {children}
     </div>
   )
