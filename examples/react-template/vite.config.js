@@ -32,7 +32,7 @@ export default defineConfig({
   },
   plugins: [react(), tsconfigPaths()],
   optimizeDeps: {
-    exclude: ['react-native'], // Exclut react-native des dépendances à optimiser
+    exclude: ['react-native'],
   },
   server: {
     open: true,
