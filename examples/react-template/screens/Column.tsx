@@ -1,6 +1,7 @@
-import * as React from 'react'
+import { Alignable, getColorStyle, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
 import { Box, BoxContent, Column, Columns, GapSize, Section } from '@trilogy-ds/react/components'
-import { Alignable, Spacer, SpacerSize } from '@trilogy-ds/react'
+import * as React from 'react'
+import { View } from 'react-native'
 
 export const ColumnScreen = (): JSX.Element => {
   return (
@@ -32,9 +33,9 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </Column>
         <Column narrow>
-          <Box flat>
+          <View style={{ borderWidth: 1, borderColor: getColorStyle(TrilogyColor.NEUTRAL), borderRadius: 6 }}>
             <BoxContent>Column 2</BoxContent>
-          </Box>
+          </View>
         </Column>
       </Columns>
 
