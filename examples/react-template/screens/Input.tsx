@@ -225,7 +225,6 @@ export const InputScreen = (): JSX.Element => {
 
         <Input type='password' help='test' placeholder='this is my placeholder' />
         <Input
-          defaultValue='My 2nd default input value'
           help='this is my help message'
           type={InputType.TEXT}
           status={InputStatus.WARNING}
