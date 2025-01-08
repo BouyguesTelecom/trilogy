@@ -1,10 +1,10 @@
+import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { View } from '@/components/view'
+import { Alignable, getAlignStyle } from '@/objects'
 import React, { createContext, useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet } from 'react-native'
-import { View } from '@/components/view'
 import { ColumnsProps } from './ColumnsProps'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
-import { Alignable, getAlignStyle } from '@/objects'
 
 /**
  * Columns Native Component
@@ -48,12 +48,9 @@ const Columns = ({
       paddingHorizontal: enlarge,
       flexDirection: 'row',
       gap: realGap,
-      borderStyle: 'solid',
-      borderColor: 'red',
-      borderWidth: 1,
     },
     centered: {
-      alignSelf: 'center',
+      justifyContent: 'center',
     },
     verticalAlign: {
       alignItems: getAlignStyle(verticalAlign),
@@ -88,26 +85,26 @@ const Columns = ({
         >
           {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(
-              children,
-              (child: any) =>
+            React.Children.map(children, (child: any) => {
+              return (
                 child &&
                 React.cloneElement(child, {
                   style: [
                     child.props.style,
                     {
                       height: scrollable ? '100%' : undefined,
-                      flex: 1,
-                      flexGrow: (child.props.size || child.props.narrow) ? 0 : 1,
-                      flexShrink: child.props.narrow ? 0 : 1,
+                      flex: child.props.narrow ? 0 : 1,
+                      flexGrow: child.props.size || child.props.narrow ? 0 : 1,
+                      flexShrink: child.props.narrow ? 1 : 0,
                       flexBasis: child.props.size
                         ? (child.props.size / 12) * width -
                           realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
                         : 'auto',
                     },
                   ],
-                }),
-            )
+                })
+              )
+            })
           }
         </View>
       </>
