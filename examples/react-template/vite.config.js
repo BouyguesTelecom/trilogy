@@ -19,12 +19,21 @@ const aliases = [
 export default defineConfig({
   resolve: {
     extensions: ['.web.tsx', '.tsx', '.ts', '.js', '.jsx', '.d.ts', '.ttf', '.css'],
-    alias: aliases.map((alias) => ({
-      find: `@${alias}`,
-      replacement: path.resolve(__dirname, `../lib/${alias}`),
-    })),
+    alias: [
+      ...aliases.map((alias) => ({
+        find: `@${alias}`,
+        replacement: path.resolve(__dirname, `../lib/${alias}`),
+      })),
+      {
+        find: 'react-native',
+        replacement: 'react-native-web'
+      }
+    ],
   },
   plugins: [react(), tsconfigPaths()],
+  optimizeDeps: {
+    exclude: ['react-native'], // Exclut react-native des dépendances à optimiser
+  },
   server: {
     open: true,
   },
@@ -32,7 +41,4 @@ export default defineConfig({
   css: {
     modules: false,
   },
-  build: {
-    commonjsOptions: { transformMixedEsModules: true }
-  }
 })
