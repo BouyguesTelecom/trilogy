@@ -1,7 +1,7 @@
-import { hashClass } from '@/helpers'
+import { ModalFooterProps } from '@/components/modal/footer/ModalFooterProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ModalFooterProps } from './ModalFooterProps'
+import React from 'react'
 
 /**
  * Modal Footer Component
