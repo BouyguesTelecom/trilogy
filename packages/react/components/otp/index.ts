@@ -1,3 +1,3 @@
-import Otp from './Otp'
+import Otp from '@/components/otp/Otp'
 
 export { Otp }
