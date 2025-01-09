@@ -6,8 +6,8 @@ import {
   BoxHeader,
   Button,
   ButtonVariant,
-  Columns,
   Column,
+  Columns,
   Divider,
   Icon,
   IconName,
@@ -17,14 +17,39 @@ import {
   Text,
   Title,
   TitleLevels,
+  IconSize
 } from '@trilogy-ds/react/components'
-import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
+import {Alignable, TrilogyColor, TypographyAlign} from '@trilogy-ds/react/objects'
+import {Spacer, SpacerSize, TypographyBold, View} from "@trilogy-ds/react";
+
+const TestComp = ({ style }) => {
+  return (
+    <Column>
+      <Text>Test column in other component</Text>
+    </Column>
+  )
+}
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false)
+  const data = [1, 2, 3, 4, 5]
 
   return (
     <Section>
+      <Box>
+        <BoxContent>
+          <Columns>
+            {data.map((item, index) => (
+              <Column>
+                <Text>Test column in other component</Text>
+              </Column>
+            ))}
+          </Columns>
+        </BoxContent>
+      </Box>
+
+      <Spacer size={SpacerSize.FOUR} />
+
       <Box>
         <BoxHeader>
           <Title level={TitleLevels.FIVE}>Box active</Title>
