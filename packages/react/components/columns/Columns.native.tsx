@@ -87,22 +87,20 @@ const Columns = ({
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             React.Children.map(children, (child: any) => {
               return (
-                child &&
-                React.cloneElement(child, {
-                  style: [
-                    child.props.style,
-                    {
-                      height: scrollable ? '100%' : undefined,
-                      flex: child.props.narrow ? 0 : 1,
-                      flexGrow: child.props.size || child.props.narrow ? 0 : 1,
-                      flexShrink: child.props.narrow ? 1 : 0,
-                      flexBasis: child.props.size
-                        ? (child.props.size / 12) * width -
-                          realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
-                        : 'auto',
-                    },
-                  ],
-                })
+                child && (
+                  <View style={{
+                          height: scrollable ? '100%' : undefined,
+                          flex: child.props.narrow ? 0 : 1,
+                          flexGrow: child.props.size || child.props.narrow ? 0 : 1,
+                          flexShrink: child.props.narrow ? 1 : 0,
+                          flexBasis: child.props.size
+                            ? (child.props.size / 12) * width -
+                              realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
+                            : 'auto',
+                        }}>
+                    {child}
+                  </View>
+                )
               )
             })
           }
