@@ -1,11 +1,10 @@
-import React from 'react'
-import clsx from 'clsx'
-import { StepProps } from './StepProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import Icon from '@/components/icon/Icon'
 import { IconSize } from '@/components/icon'
+import Icon from '@/components/icon/Icon'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { StepProps } from './StepProps'
 
 /**
  * Stepper Step Component
@@ -20,11 +19,9 @@ import { IconSize } from '@/components/icon'
  * @param label {string} Step label
  */
 const Step = ({ className, id, active, current, done, label, iconName, error, ...others }: StepProps) => {
-  const { styled } = useTrilogyContext()
-  const classesStepLabel = hashClass(styled, clsx('step-label'))
+  const classesStepLabel = hashClass(clsx('step-label'))
 
   const classes = hashClass(
-    styled,
     clsx(
       'stepper-item',
       active && is('active'),
