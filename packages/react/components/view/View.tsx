@@ -29,6 +29,7 @@ import { useTrilogyContext } from "@/context"
  * @param inverted {boolean} Inverted View Color
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
+ * @param centerContent {boolean} center content in view
  */
 const View = ({
   children,
@@ -44,6 +45,7 @@ const View = ({
   flexable,
   justify,
   align,
+  centerContent,
   ...others
 }: ViewProps): JSX.Element => {
   const { styled } = useTrilogyContext()
