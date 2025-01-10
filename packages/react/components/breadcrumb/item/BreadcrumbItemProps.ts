@@ -1,4 +1,4 @@
-import { Accessibility, Clickable, Dev } from '../../../objects'
+import { Accessibility, Clickable, Dev, Link } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
@@ -10,7 +10,6 @@ export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
 /**
  * Breadcrumb Item Interface
  */
-export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, BreadcrumbItemProps, Dev, CommonProps {
-  href?: string
+export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, Link, BreadcrumbItemProps, Dev, CommonProps {
   routerLink?: React.ElementType
 }
