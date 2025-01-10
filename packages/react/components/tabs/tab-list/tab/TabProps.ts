@@ -1,15 +1,13 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Clickable, Dev } from '@/objects'
+import { Accessibility, Clickable, Dev, Link } from '@/objects'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { TouchableOpacity } from 'react-native'
 
 /**
  * Tabs Item Interface
  */
-export interface TabProps extends Clickable, Accessibility, Dev, CommonProps {
+export interface TabProps extends Clickable, Accessibility, Link, Dev, CommonProps {
   active?: boolean
-  to?: string
-  href?: string
   routerLink?: React.ElementType
   iconName?: IconNameValues | IconName
   label?: string
