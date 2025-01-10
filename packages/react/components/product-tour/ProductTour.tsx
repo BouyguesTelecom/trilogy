@@ -1,9 +1,10 @@
 import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Icon, IconName, IconSize } from '../icon'
 import { ProductTourWebProps } from './ProductTourProps'
+import { useProductTour } from './hooks/useProductTour'
 
 /**
  * Product Tour Component
@@ -29,11 +30,7 @@ const ProductTour = ({
   avatarDirection,
   ...others
 }: ProductTourWebProps): JSX.Element => {
-  const [display, setDisplay] = useState<boolean>(active || false)
-
-  useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
+  const { display, handleClick } = useProductTour({ active })
 
   const classes = hashClass(
     clsx('product-tour', display && is('active'), avatarDirection && has(`icon-${avatarDirection}`), className),
@@ -48,7 +45,7 @@ const ProductTour = ({
         </span>
       )}
       {closeable && (
-        <div style={{ cursor: 'pointer' }} onClick={() => setDisplay(!display)}>
+        <div style={{ cursor: 'pointer' }} onClick={handleClick}>
           <Icon size={IconSize.SMALL} name={IconName.TIMES} className='close' />
         </div>
       )}
