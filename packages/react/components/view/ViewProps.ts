@@ -43,4 +43,5 @@ export interface ViewProps extends Loadable, Clickable, JustifiableProps, Fullwi
   bottom?: boolean
   id?: string
   markup?: ViewMarkup | ViewMarkupValues
+  centerContent?: boolean
 }

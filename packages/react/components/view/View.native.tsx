@@ -31,6 +31,7 @@ const View = ({
   justify,
   fullwidth = true,
   align,
+  centerContent,
   ...others
 }: ViewProps): JSX.Element => {
   const viewColor =
@@ -54,13 +55,17 @@ const View = ({
       width: "100%",
       height: "auto",
     },
+    centerContent: {
+      flex: 1,
+      justifyContent: "center",
+    }
   })
 
   let returnView = (
     <ViewNative
       testID={id}
       nativeID={id}
-      style={[styles.view, bottom && styles.bottom, style]}
+      style={[styles.view, bottom && styles.bottom, centerContent && styles.centerContent, style]}
       {...others}
     >
       {children}
@@ -71,7 +76,7 @@ const View = ({
       <ViewNative
         testID={id}
         nativeID={id}
-        style={[styles.view, bottom && styles.bottom, style]}
+        style={[styles.view, bottom && styles.bottom, centerContent && styles.centerContent, style]}
         {...others}
       />
     )
@@ -82,7 +87,7 @@ const View = ({
       <ViewNative
         testID={id}
         nativeID={id}
-        style={[styles.view, bottom && styles.bottom, style]}
+        style={[styles.view, bottom && styles.bottom, centerContent && styles.centerContent, style]}
         {...others}
       >
         <TouchableOpacity activeOpacity={1} onPress={onClick}>
