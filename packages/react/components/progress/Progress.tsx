@@ -1,10 +1,10 @@
+import { ProgressProps } from '@/components/progress/ProgressProps'
 import { Text } from '@/components/text'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
 import { is } from '@/services/index'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ProgressProps } from './ProgressProps'
+import React from 'react'
 
 /**
  * Progress component
