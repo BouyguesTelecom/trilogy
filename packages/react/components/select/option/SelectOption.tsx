@@ -1,9 +1,9 @@
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers'
+import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
+import React from 'react'
 
 /**
  * Select Option Component
@@ -32,10 +32,7 @@ const SelectOption = ({
   ...others
 }: SelectOptionProps) => {
   const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
-  const selectClasses = React.useMemo(
-    () => hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className)),
-    [focused, className],
-  )
+  const selectClasses = hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className))
 
   if (native) {
     return (
