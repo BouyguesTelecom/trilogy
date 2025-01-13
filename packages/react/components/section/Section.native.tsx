@@ -11,7 +11,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  **/
-const Section = ({ backgroundColor, backgroundSrc, children }: SectionProps): JSX.Element => {
+const Section = ({ backgroundColor, backgroundSrc, children, ...others }: SectionProps): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
@@ -31,7 +31,7 @@ const Section = ({ backgroundColor, backgroundSrc, children }: SectionProps): JS
   })
 
   return (
-    <View style={styles.section}>
+    <View style={[styles.section, others.style]} {...others}>
       {backgroundSrc ? (
         <ImageBackground
           style={styles.sectionImage}
