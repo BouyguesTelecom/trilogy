@@ -58,6 +58,24 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </Column>
       </Columns>
+
+      <Columns align={Alignable.ALIGNED_CENTER} gap={GapSize.THREE} scrollable>
+        <Column narrow>
+          <View style={{ borderWidth: 1, borderColor: getColorStyle(TrilogyColor.NEUTRAL), borderRadius: 6 }}>
+            <BoxContent>Column</BoxContent>
+          </View>
+        </Column>
+        <Column size={6}>
+          <View style={{ borderWidth: 1, borderColor: getColorStyle(TrilogyColor.NEUTRAL), borderRadius: 6 }}>
+            <BoxContent>Column 2</BoxContent>
+          </View>
+        </Column>
+        <Column>
+          <View style={{ borderWidth: 1, borderColor: getColorStyle(TrilogyColor.NEUTRAL), borderRadius: 6 }}>
+            <BoxContent>Column 2</BoxContent>
+          </View>
+        </Column>
+      </Columns>
     </Section>
   )
 }

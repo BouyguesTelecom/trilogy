@@ -88,16 +88,18 @@ const Columns = ({
             React.Children.map(children, (child: any) => {
               return (
                 child && (
-                  <View style={{
-                          height: scrollable ? '100%' : undefined,
-                          flex: child.props.narrow ? 0 : 1,
-                          flexGrow: child.props.size || child.props.narrow ? 0 : 1,
-                          flexShrink: child.props.narrow ? 1 : 0,
-                          flexBasis: child.props.size
-                            ? (child.props.size / 12) * width -
-                              realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
-                            : 'auto',
-                        }}>
+                  <View
+                    style={{
+                      height: scrollable ? '100%' : undefined,
+                      flex: child.props.narrow ? 0 : 1,
+                      flexGrow: child.props.size || child.props.narrow ? 0 : 1,
+                      flexShrink: child.props.narrow ? 1 : 0,
+                      flexBasis: child.props.size
+                        ? (child.props.size / 12) * width -
+                          realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
+                        : 'auto',
+                    }}
+                  >
                     {child}
                   </View>
                 )
@@ -117,21 +119,27 @@ const Columns = ({
       }}
       {...{ onLayout: onLayoutHandler }}
     >
-      <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
+      <ScrollView horizontal contentContainerStyle={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
         {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          React.Children.map(children, (child: any) =>
-            React.cloneElement(child, {
-              style: [
-                child.props.style,
-                {
-                  width: width / (12 / (child.props.size || child.props.mobileSize || 12)) - 2 * realGap,
-                  flexGrow: 0,
-                },
-                child.props.narrow && { flex: 'none', flexShrink: 1 },
-              ],
-            }),
-          )
+          React.Children.map(children, (child: any) => {
+            return (
+              child && (
+                <View
+                  style={{
+                    width: child.props.size
+                      ? (child.props.size / 12) * width -
+                        realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
+                      : child.props.narrow
+                      ? 'auto'
+                      : width - 2 * realGap,
+                  }}
+                >
+                  {child}
+                </View>
+              )
+            )
+          })
         }
       </ScrollView>
     </View>
