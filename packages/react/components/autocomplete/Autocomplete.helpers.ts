@@ -1,4 +1,4 @@
-import { Item } from './AutoCompleteProps'
+import { Item } from '@/components/autocomplete/AutoCompleteProps'
 
 export const getLabel = (data: string | Item<unknown>) => (typeof data === 'string' ? data : data['label'])
 const escapeRegExp = (str: string) => {
