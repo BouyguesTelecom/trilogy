@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ImageBackground, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionProps } from './SectionProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
