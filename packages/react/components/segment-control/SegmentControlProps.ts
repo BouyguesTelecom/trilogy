@@ -1,6 +1,6 @@
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Alignable, AlignableValues } from '@/objects'
+import { Alignable, AlignableValues } from '@/objects/facets/Alignable'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * SegmentedControl Interface
