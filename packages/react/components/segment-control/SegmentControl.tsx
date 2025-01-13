@@ -1,9 +1,11 @@
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useSegmentControl } from '@/components/segment-control/hooks/useSegmentControl'
+import SegmentControlItem from '@/components/segment-control/item'
+import { SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import clsx from 'clsx'
-import React, { useState } from 'react'
-import SegmentControlItem from './item'
-import { SegmentControlProps } from './SegmentControlProps'
+import React from 'react'
 
 /**
  * SegmentControl Component
@@ -11,13 +13,15 @@ import { SegmentControlProps } from './SegmentControlProps'
  * @param onClick onClick event
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
+ * @param marginless {boolean} delete margin
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
+ * @param inverted {boolean} invert color SegmentControl
  */
 const SegmentControl = ({ className, id, onClick, children, activeIndex, align }: SegmentControlProps): JSX.Element => {
   const classes = hashClass(clsx('segmented-control', align && getJustifiedClassName(align), className))
-  const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
+  const { activateIndex, handleClick } = useSegmentControl({ activeIndex, onClick })
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
     if (typeof childPropsActive !== 'undefined' && !activateIndex) {
@@ -28,33 +32,18 @@ const SegmentControl = ({ className, id, onClick, children, activeIndex, align }
     }
   }
 
-  const toggleActive = (e: React.MouseEvent, index: number) => {
-    setActivateIndex(index)
-    if (onClick) onClick(e)
-  }
-
-  React.useEffect(() => {
-    setActivateIndex(activateIndex)
-  }, [activateIndex])
-
   return (
-    <div id={id} className={classes}>
+    <div className={classes}>
       {children &&
         Array.isArray(children) &&
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        children.map((child: any, index: number) => {
+        children.map((child, index) => {
           const props = {
             active: Boolean(isActive(index, child.props.active)) || false,
             disabled: child.props.disabled,
             key: index,
-            onClick: (event: React.MouseEvent) => {
-              toggleActive(event, index)
-              if (child) {
-                if (child.props.onClick) {
-                  child.props.onClick(event)
-                }
-              }
-            },
+            onClick: handleClick
+              ? (e: React.MouseEvent<Element, MouseEvent>) => handleClick(e, index, child)
+              : undefined,
           }
 
           return child && typeof child.valueOf() === 'string' ? (
@@ -74,4 +63,5 @@ const SegmentControl = ({ className, id, onClick, children, activeIndex, align }
   )
 }
 
+SegmentControl.displayName = ComponentName.SegmentControl
 export default SegmentControl

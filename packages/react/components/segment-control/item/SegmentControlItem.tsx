@@ -1,7 +1,9 @@
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useSegmentControlItem } from '@/components/segment-control/item/hooks/useSegmentControlItem'
+import { SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
+import React from 'react'
 
 /**
  * SegmentControl Item Component
@@ -21,29 +23,19 @@ const SegmentControlItem = ({
   id,
   children,
 }: SegmentControlItemProps): JSX.Element => {
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
-
-  useEffect(() => {
-    setActiveItem(active || false)
-  }, [active])
+  const { activeItem, handleClick } = useSegmentControlItem({ active, onClick })
 
   return (
     <button
       id={id}
       disabled={disabled}
       className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
-      onClick={(e: React.MouseEvent) => {
-        const target = e.target as HTMLFormElement
-        setActiveItem(active || false)
-        target.active = active
-        if (onClick) {
-          onClick(e)
-        }
-      }}
+      onClick={handleClick}
     >
       {children}
     </button>
   )
 }
 
+SegmentControlItem.displayName = ComponentName.SegmentControlItem
 export default SegmentControlItem
