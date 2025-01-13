@@ -32,6 +32,7 @@ const SelectDynamic = ({
   return (
     <div className={selectClasses}>
       <Input
+        defaultValue={selectedName && selectedName.join(', ')}
         value={selectedName && selectedName.join(', ')}
         name={name}
         disabled={disabled}

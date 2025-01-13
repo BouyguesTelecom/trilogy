@@ -74,7 +74,7 @@ const SelectOption = ({
       aria-selected={checked}
       data-value={value}
       onClick={!disabled && onClick ? onClick : undefined}
-      {...others}
+      {...props}
     >
       {iconName && <Icon name={iconName} />}
       {label || children}
