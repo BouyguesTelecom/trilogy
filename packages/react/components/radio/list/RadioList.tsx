@@ -1,9 +1,9 @@
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
+import { RadioListWebProps } from '@/components/radio/list/RadioListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { RadioListWebProps } from './RadioListProps'
+import React from 'react'
 
 /**
  * Radio List Component

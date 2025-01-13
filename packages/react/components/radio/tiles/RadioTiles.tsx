@@ -1,9 +1,9 @@
 import { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
-import { hashClass } from '@/helpers'
-import { getAlignClassName } from '@/objects'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
+import React from 'react'
 
 /**
  * Columns Item Component - Columns Child
