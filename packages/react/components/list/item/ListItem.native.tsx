@@ -20,7 +20,7 @@ const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element =>
     content: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingVertical: 16,
+      paddingVertical: 8,
     },
     disc: {
       alignSelf: 'center',
