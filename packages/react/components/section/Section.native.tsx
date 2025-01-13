@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ImageBackground, StyleSheet, View } from 'react-native'
+import {ImageBackground, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import { SectionProps } from './SectionProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -31,7 +31,7 @@ const Section = ({ backgroundColor, backgroundSrc, children, ...others }: Sectio
   })
 
   return (
-    <View style={styles.section} {...others}>
+    <View style={[styles.section, others.style]} {...others}>
       {backgroundSrc ? (
         <ImageBackground
           style={styles.sectionImage}
