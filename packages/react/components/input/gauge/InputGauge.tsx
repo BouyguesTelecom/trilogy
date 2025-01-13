@@ -8,7 +8,7 @@ import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
-  inputValue: string
+  inputValue?: string
 }
 
 interface DataVerifyProps {
