@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/react",
-  "version": "0.0.1-beta.78",
+  "version": "4.0.3",
   "author": "Bouygues Telecom",
   "files": [
     "lib"
