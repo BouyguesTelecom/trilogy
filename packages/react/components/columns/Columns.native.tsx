@@ -68,16 +68,16 @@ const Columns = ({
     },
   })
 
-  if (!scrollable) {
-    return (
-      <ColumnsContext.Provider
-        value={{
-          width,
-          realGap,
-          scrollable: false,
-          childrensLength: React.Children.count(children),
-        }}
-      >
+  return (
+    <ColumnsContext.Provider
+      value={{
+        width,
+        realGap,
+        scrollable: scrollable || false,
+        childrensLength: React.Children.count(children),
+      }}
+    >
+      {!scrollable && (
         <View
           style={[
             styles.columns,
@@ -90,42 +90,22 @@ const Columns = ({
         >
           {children}
         </View>
-      </ColumnsContext.Provider>
-    )
-  }
+      )}
 
-  return (
-    <View
-      style={{
-        width: `100% + ${enlarge * 2}px`,
-        marginHorizontal: -enlarge,
-      }}
-      {...{ onLayout: onLayoutHandler }}
-    >
-      <ScrollView horizontal contentContainerStyle={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
-        {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          React.Children.map(children, (child: any) => {
-            return (
-              child && (
-                <View
-                  style={{
-                    width: child.props.size
-                      ? (child.props.size / 12) * width -
-                        realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
-                      : child.props.narrow
-                      ? 'auto'
-                      : width - 2 * realGap,
-                  }}
-                >
-                  {child}
-                </View>
-              )
-            )
-          })
-        }
-      </ScrollView>
-    </View>
+      {scrollable && (
+        <View
+          style={{
+            width: `100% + ${enlarge * 2}px`,
+            marginHorizontal: -enlarge,
+          }}
+          {...{ onLayout: onLayoutHandler }}
+        >
+          <ScrollView horizontal contentContainerStyle={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
+            {children}
+          </ScrollView>
+        </View>
+      )}
+    </ColumnsContext.Provider>
   )
 }
 
