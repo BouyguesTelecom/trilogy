@@ -11,6 +11,7 @@ $sticker-height: 35px;
   flex-shrink: 0;
   background-color: getColor('font');
   font-weight: 600;
+  max-height: 36px;
 
   &:not(.is-hat) {
     width: fit-content;
