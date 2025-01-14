@@ -2,9 +2,10 @@ import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { View } from '@/components/view'
 import { Alignable, getAlignStyle } from '@/objects'
-import React, { createContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet } from 'react-native'
 import { ColumnsProps } from './ColumnsProps'
+import { ColumnsContext } from './context'
 
 /**
  * Columns Native Component
@@ -14,8 +15,6 @@ import { ColumnsProps } from './ColumnsProps'
  * @param scrollable {boolean} Makes columns vertically scrollable.
  * @param gap {GapSize} Gap between columns
  */
-
-export const ColumnsContext = createContext({ scrollable: false })
 
 const Columns = ({
   children,
@@ -71,8 +70,14 @@ const Columns = ({
 
   if (!scrollable) {
     return (
-      <>
-        {/* eslint-disable-next-line react/jsx-no-undef */}
+      <ColumnsContext.Provider
+        value={{
+          width,
+          realGap,
+          scrollable: false,
+          childrensLength: React.Children.count(children),
+        }}
+      >
         <View
           style={[
             styles.columns,
@@ -83,31 +88,9 @@ const Columns = ({
           {...others}
           {...{ onLayout: onLayoutHandler }}
         >
-          {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(children, (child: any) => {
-              return (
-                child && (
-                  <View
-                    style={{
-                      height: scrollable ? '100%' : undefined,
-                      flex: child.props.narrow ? 0 : 1,
-                      flexGrow: child.props.size || child.props.narrow ? 0 : 1,
-                      flexShrink: child.props.narrow ? 1 : 0,
-                      flexBasis: child.props.size
-                        ? (child.props.size / 12) * width -
-                          realGap * ((React.Children.count(children) - 1) / React.Children.count(children))
-                        : 'auto',
-                    }}
-                  >
-                    {child}
-                  </View>
-                )
-              )
-            })
-          }
+          {children}
         </View>
-      </>
+      </ColumnsContext.Provider>
     )
   }
 
