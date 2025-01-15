@@ -13,6 +13,17 @@ $sticker-height: 35px;
   font-weight: 600;
   max-height: 36px;
 
+  .icon {
+    width: 1em;
+    margin-right: 5px;
+  }
+
+  &.is-small {
+    .icon {
+      margin-right: 3px;
+    }
+  }
+
   &:not(.is-hat) {
     width: fit-content;
 
