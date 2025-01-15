@@ -7,17 +7,18 @@ export const ColumnScreen = (): JSX.Element => {
   return (
     <Section>
       <Columns gap={GapSize.THREE}>
-        <Column size={2}>
+        <Column size={6}>
           <Box flat>
-            <BoxContent>Column 1</BoxContent>
+            <BoxContent>Column </BoxContent>
+          </Box>
+        </Column>
+
+        <Column>
+          <Box flat>
+            <BoxContent>Column </BoxContent>
           </Box>
         </Column>
         <Column>
-          <Box flat>
-            <BoxContent>Column 2</BoxContent>
-          </Box>
-        </Column>
-        <Column size={2}>
           <Box flat>
             <BoxContent>Column 3</BoxContent>
           </Box>
@@ -32,10 +33,10 @@ export const ColumnScreen = (): JSX.Element => {
             <BoxContent>Column 1</BoxContent>
           </Box>
         </Column>
-        <Column narrow>
-          <View style={{ borderWidth: 1, borderColor: getColorStyle(TrilogyColor.NEUTRAL), borderRadius: 6 }}>
-            <BoxContent>Column 2</BoxContent>
-          </View>
+        <Column>
+          <Box flat>
+            <BoxContent>Column 1</BoxContent>
+          </Box>
         </Column>
       </Columns>
 
@@ -52,12 +53,14 @@ export const ColumnScreen = (): JSX.Element => {
             <BoxContent>Column 2</BoxContent>
           </Box>
         </Column>
-        <Column size={4}>
+        <Column>
           <Box flat>
             <BoxContent>Column 3</BoxContent>
           </Box>
         </Column>
       </Columns>
+
+      <Spacer size={SpacerSize.FIVE} />
 
       <Columns align={Alignable.ALIGNED_CENTER} gap={GapSize.THREE} scrollable>
         <Column narrow>
