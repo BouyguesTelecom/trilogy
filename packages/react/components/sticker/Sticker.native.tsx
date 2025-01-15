@@ -22,8 +22,8 @@ const Sticker = ({ variant, small, outlined, label, iconName, ...others }: Stick
     sticker: {
       flexDirection: 'row',
       justifyContent: 'center',
-      paddingTop: small ? 4 : 8,
-      paddingBottom: small ? 4 : 8,
+      paddingTop: small ? 3 : 7,
+      paddingBottom: small ? 3 : 7,
       paddingLeft: small ? 8 : 16,
       paddingRight: small ? 8 : 16,
       alignSelf: 'flex-start',
