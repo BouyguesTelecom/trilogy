@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { Spacer, SpacerSize } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -17,10 +17,9 @@ import {
   Text,
   Title,
   TitleLevels,
-  IconSize
 } from '@trilogy-ds/react/components'
-import {Alignable, TrilogyColor, TypographyAlign} from '@trilogy-ds/react/objects'
-import {Spacer, SpacerSize, TypographyBold, View} from "@trilogy-ds/react";
+import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
+import * as React from 'react'
 
 const TestComp = ({ style }) => {
   return (
@@ -213,7 +212,7 @@ export const BoxScreen = (): JSX.Element => {
         </Column>
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={"NEUTRAL_FADE"}>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
