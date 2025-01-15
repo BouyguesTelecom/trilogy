@@ -7,9 +7,9 @@ export const ColumnScreen = (): JSX.Element => {
   return (
     <Section>
       <Columns gap={GapSize.THREE}>
-        <Column narrow>
+        <Column size={6}>
           <Box flat>
-            <BoxContent>Column narrow </BoxContent>
+            <BoxContent>Column </BoxContent>
           </Box>
         </Column>
 
