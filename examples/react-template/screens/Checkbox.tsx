@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Checkbox,
   CheckboxTile,
@@ -11,6 +10,7 @@ import {
   Text,
 } from '@trilogy-ds/react/components'
 import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
+import * as React from 'react'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (
@@ -28,28 +28,28 @@ export const CheckboxScreen = (): JSX.Element => {
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
-                <CheckboxTile
-                  id='tile-1'
-                  label='label'
-                  value='value'
-                  description='Je suis une description simple'
-                  className='is-fullheight'
-                />
-                <CheckboxTile
-                  id='tile-2'
-                  label='label'
-                  value='value'
-                  description='Je suis une description simple'
-                  icon={IconName.ALERT}
-                />
-                <CheckboxTile
-                  id='tile-3'
-                  label='label'
-                  value='value'
-                  description='Je suis une description simple'
-                  icon={IconName.ALERT}
-                />
-          </CheckboxTiles>
+              <CheckboxTile
+                id='tile-1'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                className='is-fullheight'
+              />
+              <CheckboxTile
+                id='tile-2'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+              <CheckboxTile
+                id='tile-3'
+                label='label'
+                value='value'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+            </CheckboxTiles>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER}>
@@ -58,7 +58,6 @@ export const CheckboxScreen = (): JSX.Element => {
                 label='label'
                 value='value'
                 description='Je suis une description simple'
-                icon={IconName.ALERT}
                 horizontal
               />
               <CheckboxTile

@@ -1,29 +1,29 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { SpacerSize } from '@/components/spacer'
+import { Text, TextLevels } from '@/components/text'
+import { View } from '@/components/view'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '@/objects'
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
+import shortid from 'shortid'
 import { CheckboxTileProps } from './CheckboxTileProps'
-import { Text, TextLevels } from '@/components/text'
-import { ComponentName } from '@/components/enumsComponentsName'
-import shortid from "shortid"
-import { Icon, IconName, IconSize } from "@/components/icon"
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from "@/objects"
-import { View } from "@/components/view"
 
 const CheckboxTile = ({
-                        disabled,
-                        checked,
-                        readonly,
-                        id = shortid.generate(),
-                        label,
-                        onChange,
-                        name,
-                        value,
-                        description,
-                        icon,
-                        horizontal,
-                        ...others }: CheckboxTileProps): JSX.Element => {
-
+  disabled,
+  checked,
+  readonly,
+  id = shortid.generate(),
+  label,
+  onChange,
+  name,
+  value,
+  description,
+  icon,
+  horizontal,
+  ...others
+}: CheckboxTileProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
-
 
   const styles = StyleSheet.create({
     container: {
@@ -39,8 +39,6 @@ const CheckboxTile = ({
       width: 19,
       height: 19,
       borderRadius: 4,
-      marginRight: 10,
-      marginLeft: 0,
       backgroundColor:
         (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
         (_checked && getColorStyle(TrilogyColor.MAIN)) ||
@@ -53,8 +51,7 @@ const CheckboxTile = ({
         getColorStyle(TrilogyColor.MAIN),
     },
     tile: {
-      padding: _checked ? 3 : 4,
-      paddingBottom: _checked ? 7 : 8,
+      padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
       maxWidth: 140,
       borderWidth: (_checked && 2) || 1,
       width: 126,
@@ -72,8 +69,7 @@ const CheckboxTile = ({
       alignSelf: horizontal ? 'flex-start' : 'center',
     },
     horizontal: {
-      paddingVertical: _checked ? 17 : 18,
-      paddingHorizontal: _checked ? 5 : 6,
+      padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
       width: '100%',
       height: 'auto',
       borderWidth: (_checked && 2) || 1,
@@ -104,37 +100,33 @@ const CheckboxTile = ({
     return (
       <TouchableOpacity disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
         <View style={{ flexDirection: 'row' }}>
-          <View
-            style={{
-              width: '10%',
-              height: 'auto',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginLeft: 10,
-            }}
-          >
-            {icon && (
+          {icon && (
+            <View
+              style={{
+                width: '10%',
+                height: 'auto',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <View>
-                <Icon
-                  size={IconSize.SMALL}
-                  name={icon}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-                />
+                <Icon size={IconSize.SMALL} name={icon} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} />
               </View>
-            )}
-          </View>
+            </View>
+          )}
+
           <View
             style={{
-              width: '78%',
+              width: icon ? '78%' : '88%',
               flexDirection: 'row',
               alignSelf: 'stretch',
               flexWrap: 'wrap',
               height: 'auto',
             }}
           >
-            <View>
+            <View style={{ gap: SpacerSize.ONE }}>
               {label && typeof label.valueOf() === 'string' && (
-                <Text style={styles.label} level={TextLevels.TWO} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                   {String(label)}
                 </Text>
               )}
@@ -150,9 +142,8 @@ const CheckboxTile = ({
           <View
             style={{
               width: '12%',
-              alignItems: 'flex-end',
               justifyContent: 'center',
-              paddingRight: 10,
+              alignItems: 'flex-end',
             }}
           >
             <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
@@ -168,45 +159,40 @@ const CheckboxTile = ({
     <TouchableOpacity
       disabled={disabled}
       style={horizontal ? styles.horizontal : styles.tile}
-      onPress={() => handleClick()}
+      onPress={handleClick}
       {...others}
     >
-      <TouchableOpacity
-        style={[{ alignSelf: 'flex-end', marginTop: 10 }, styles.checkBox]}
-        disabled={disabled}
-        testID={id}
-        onPressIn={() => handleClick()}
-      >
-        {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
-      </TouchableOpacity>
-      <View style={{ width: '70%' }}>
+      <View style={{ gap: SpacerSize.TWO }}>
+        <TouchableOpacity
+          style={[{ alignSelf: 'flex-end' }, styles.checkBox]}
+          disabled={disabled}
+          testID={id}
+          onPressIn={handleClick}
+        >
+          {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+        </TouchableOpacity>
         {icon && (
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 5,
             }}
           >
-            <Icon
-              size={IconSize.MEDIUM}
-              color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-              name={icon}
-            />
+            <Icon size={IconSize.SMALL} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} name={icon} />
           </View>
         )}
         {label && typeof label.valueOf() === 'string' && (
           <Text
-            level={TextLevels.TWO}
+            level={TextLevels.ONE}
             typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
-            style={styles.label}
+            style={[styles.label]}
           >
             {String(label)}
           </Text>
         )}
         {description && typeof description.valueOf() === 'string' && (
-          <Text level={TextLevels.THREE} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>
+          <Text level={TextLevels.TWO} typo={[TypographyAlign.TEXT_CENTERED]}>
             {String(description)}
           </Text>
         )}
