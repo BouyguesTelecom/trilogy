@@ -1,4 +1,4 @@
-import { Spacer, SpacerSize } from '@trilogy-ds/react'
+import { IconSize, Spacer, SpacerSize, TextLevels, TypographyBold, View } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -35,6 +35,28 @@ export const BoxScreen = (): JSX.Element => {
 
   return (
     <Section>
+      <Box fullheight {...{ style: { alignItems: 'center' } }}>
+        <BoxContent>
+          <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+            <Column narrow>
+              <View id='homeNotificationIcon'>
+                <Icon name='tri-eye' size={IconSize.SMALL} testId='homeNotificationIcon' />
+              </View>
+            </Column>
+            <Column>
+              <Text level={TextLevels.THREE} numberOfLines={2} typo={[TypographyBold.TEXT_WEIGHT_NORMAL]}>
+                Mon text
+              </Text>
+            </Column>
+            <Column narrow>
+              <View>
+                <Icon name={IconName.TIMES} size={IconSize.SMALL} />
+              </View>
+            </Column>
+          </Columns>
+        </BoxContent>
+      </Box>
+
       <Box>
         <BoxContent>
           <Columns>
