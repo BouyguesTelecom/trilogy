@@ -82,14 +82,12 @@ const Box = ({
       height: boxHeight,
       backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
     },
-    column: {},
     boxImage: {
       width: '100%',
       minHeight: 100,
       maxHeight: 300,
       height: 'auto',
     },
-    boxImageProps: {},
     content: {
       padding: 16,
     },
@@ -166,13 +164,13 @@ const Box = ({
         >
           {Boolean(highlighted) && <View style={styles.highlighted} />}
           <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-            <View style={styles.column}>{children}</View>
+            {children}
           </StatesContext.Provider>
         </ImageBackground>
       ) : (
         <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
           {Boolean(highlighted) && <View style={styles.highlighted} />}
-          <View style={styles.column}>{children}</View>
+          {children}
         </StatesContext.Provider>
       )}
     </View>
