@@ -131,14 +131,14 @@ const Box = ({
           >
             {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              <View style={styles.column}>{children}</View>
+              {children}
             </StatesContext.Provider>
           </ImageBackground>
         ) : (
           <>
             {Boolean(highlighted) && <View style={styles.highlighted} />}
             <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              <View style={styles.column}>{children}</View>
+              {children}
             </StatesContext.Provider>
           </>
         )}
