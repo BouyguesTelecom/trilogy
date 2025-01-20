@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Meta, Story } from "@storybook/react";
-import { Progress, ProgressItem } from "./index";
+import { Progress } from "./index";
 import { ProgressProps } from "./ProgressProps";
 import { StatusState } from "../../objects";
 
@@ -16,64 +16,36 @@ export const Base: Story<ProgressProps> = (args) => (
 */
   <>
     <Progress {...args} />
-    <Progress percent={20} alert="INFO" />
-    <Progress percent={40} alert="WARNING" />
-    <Progress percent={60} alert="ERROR" />
-    <Progress percent={80} alert="SUCCESS" />
+    <Progress value={20} status={StatusState.INFO} />
+    <Progress value={40} status={StatusState.WARNING} />
+    <Progress value={60} status={StatusState.ERROR} />
+    <Progress value={80} status={StatusState.SUCCESS} />
   </>
 );
 Base.args = {
-  percent: 10,
-};
-
-export const Empilé: Story<ProgressProps> = (args) => (
-  <Progress {...args}>
-    <ProgressItem
-      percent={10}
-      alert={StatusState.SUCCESS}
-      accessibilityLabel={"progress-sucess"}
-    />
-    <ProgressItem
-      percent={15}
-      alert={StatusState.INFO}
-      accessibilityLabel={"progress-info"}
-    />
-    <ProgressItem
-      percent={35}
-      alert={StatusState.WARNING}
-      accessibilityLabel={"progress-warning"}
-    />
-    <ProgressItem
-      percent={25}
-      alert={StatusState.ERROR}
-      accessibilityLabel={"progress-error"}
-    />
-  </Progress>
-);
-Empilé.args = {
-  stacked: true,
+  value: 10,
 };
 
 export const AvecLégende: Story<ProgressProps> = (args) => (
   <>
     <Progress {...args} />
     <Progress
-      percent={15}
-      alert={StatusState.INFO}
-      firstExtremLegend="0 Go"
-      secondExtremLegend="5 Go"
+      value={15}
+      status={StatusState.INFO}
+      legendStart="0 Go"
+      legendEnd="5 Go"
     />
   </>
 );
 AvecLégende.args = {
-  percent: 30,
-  alert: StatusState.INFO,
-  uniqueLegend: "My unique legend",
+  value: 30,
+  status: StatusState.INFO,
+  legendCenter: "My unique legend",
 };
 
 export const Petite: Story<ProgressProps> = (args) => <Progress {...args} />;
 Petite.args = {
-  percent: 30,
-  alert: StatusState.INFO,
+  value: 30,
+  status: StatusState.INFO,
   small: true,
 };

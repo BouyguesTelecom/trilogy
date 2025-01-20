@@ -1,24 +1,25 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Badge from "./Badge";
-import { BadgeProps } from "./BadgeProps";
+import { Meta, Story } from '@storybook/react'
+import Badge from './Badge'
+import { BadgeProps } from './BadgeProps'
+import { BadgePositionEnum } from './BadgeEnum'
 
 export default {
-  title: "Components/Badge",
+  title: 'Components/Badge',
   component: Badge,
-} as Meta;
+} as Meta
 
-export const Base: Story<BadgeProps> = (args) => <Badge {...args} />;
+export const Base: Story<BadgeProps> = (args) => <Badge {...args} />
 
 Base.args = {
-  content: 5,
-};
+  label: 5,
+}
 
-export const WithContent: Story<BadgeProps> = (args) => <Badge {...args} />;
+export const WithContent: Story<BadgeProps> = (args) => <Badge {...args} />
 
 WithContent.args = {
-  content: 2,
-  textContent: "Actions à réaliser",
-  reversed: "right",
-};
+  label: 2,
+  children: 'Actions à réaliser',
+  position: BadgePositionEnum.TOP_RIGHT,
+}

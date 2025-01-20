@@ -19,13 +19,13 @@ export default {
 
 export const Base: Story<TimelineProps> = (args) => (
   <Timeline {...args}>
-    <TimelineItem undone>
+    <TimelineItem cancel>
       <TimelineMarker iconName={IconName.CHECK} />
       <TimelineContent
         heading="20 Septembre"
         content="Modification de votre identifiant de connexion"
-        link="link"
-        contentLink="Voir l'email"
+        linkTo="_blank"
+        linkLabel="Voir l'email"
       />
     </TimelineItem>
 
@@ -34,8 +34,8 @@ export const Base: Story<TimelineProps> = (args) => (
       <TimelineContent
         heading="08 Juillet"
         content="SMS Bon voyage avec seuil usage inclus"
-        link="link"
-        contentLink="Voir le SMS"
+        linkTo="_blank"
+        linkLabel="Voir le SMS"
       />
     </TimelineItem>
 
@@ -58,7 +58,7 @@ export const Base: Story<TimelineProps> = (args) => (
 );
 export const ItemUndone: Story<TimelineProps> = (args) => (
   <Timeline {...args}>
-    <TimelineItem undone>
+    <TimelineItem cancel>
       <TimelineMarker iconName={IconName.CHECK} />
       <TimelineContent
         heading="05 Mai"
@@ -74,8 +74,8 @@ export const ItemActive: Story<TimelineProps> = (args) => (
       <TimelineContent
         heading="08 Juillet"
         content="SMS Bon voyage avec seuil usage inclus"
-        link="link"
-        contentLink="Voir le SMS"
+        linkTo="_blank"
+        linkLabel="Voir le SMS"
       />
     </TimelineItem>
   </Timeline>
@@ -111,37 +111,36 @@ export const horizontal: Story<TimelineProps> = (args) => (
       <TimelineContent
         heading="20 Septembre"
         content="Modification de votre identifiant de connexion"
-        link={"https://bouyguestelecom.fr"}
-        contentLink="Voir l'email"
-        onClick={(e) => console.log(e)}
+        linkTo={"https://bouyguestelecom.fr"}
+        linkLabel="Voir l'email"
       />
     </TimelineItem>
 
     <TimelineItem done>
-      <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+      <TimelineMarker iconName={IconName.CHECK} />
       <TimelineContent
         heading="08 Juillet"
         content="SMS Bon voyage avec seuil usage inclus"
-        link="link"
-        contentLink="Voir le SMS"
+        linkTo="_blank"
+        linkLabel="Voir le SMS"
       />
     </TimelineItem>
     <TimelineItem active>
-      <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+      <TimelineMarker iconName={IconName.CHECK} />
       <TimelineContent
         heading="08 Juillet"
         content="SMS Bon voyage avec seuil usage inclus"
-        link="link"
-        contentLink="Voir le SMS"
+        linkTo="_blank"
+        linkLabel="Voir le SMS"
       />
     </TimelineItem>
-    <TimelineItem undone>
-      <TimelineMarker iconColor={"WHITE"} iconName={IconName.CHECK} />
+    <TimelineItem cancel>
+      <TimelineMarker iconClassname={'is-success'} iconName={IconName.CHECK} />
       <TimelineContent
         heading="08 Juillet"
         content="SMS Bon voyage avec seuil usage inclus"
-        link="link"
-        contentLink="Voir le SMS"
+        linkTo="_blank"
+        linkLabel="Voir le SMS"
       />
     </TimelineItem>
   </Timeline>

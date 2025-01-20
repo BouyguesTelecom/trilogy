@@ -12,7 +12,7 @@ export default {
 export const Base: Story<PaginationProps> = (args) => <Pagination {...args} />;
 Base.args = {
   onClick: (e) => console.log("event", e),
-  count: 50,
+  length: 50,
   defaultPage: 2,
   href: (page) => `?page=${page}`,
 };
