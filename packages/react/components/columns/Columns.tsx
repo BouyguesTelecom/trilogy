@@ -1,10 +1,12 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { ColumnsProps } from './ColumnsProps'
-import { has, is } from '@/services/classify'
-import { hashClass } from '@/helpers'
+import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
-import { getAlignClassName, getJustifiedClassName } from '@/objects'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Columns Component
@@ -19,39 +21,44 @@ import { getAlignClassName, getJustifiedClassName } from '@/objects'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = ({
-                   className,
-                   id,
-                   multiline,
-                   scrollable,
-                   mobile,
-                   gap,
-                   fullBleed,
-                   marginless,
-                   align,
-                   verticalAlign,
-                   ...others
-                 }: ColumnsProps) => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      'columns',
-      multiline && is('multiline'),
-      fullBleed && is('fullbleed'),
-      scrollable && is('scrollable'),
-      gap && has(`gap-${gap}`),
-      typeof gap !== 'undefined' && gap === 0 && is('gapless'),
-      mobile && is('mobile'),
-      align && is(getJustifiedClassName(align)),
-      verticalAlign && is(getAlignClassName(verticalAlign)),
-      marginless && is(`marginless`),
+const Columns = React.forwardRef(
+  (
+    {
       className,
-    ),
-  )
+      id,
+      multiline,
+      scrollable,
+      mobile,
+      gap,
+      fullBleed,
+      marginless,
+      align,
+      verticalAlign,
+      ...others
+    }: ColumnsProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const { styled } = useTrilogyContext()
 
-  return <div id={id} className={classes} {...others} />
-}
+    const classes = hashClass(
+      styled,
+      clsx(
+        'columns',
+        multiline && is('multiline'),
+        fullBleed && is('fullbleed'),
+        scrollable && is('scrollable'),
+        gap && has(`gap-${gap}`),
+        typeof gap !== 'undefined' && gap === 0 && is('gapless'),
+        mobile && is('mobile'),
+        align && is(getJustifiedClassName(align)),
+        verticalAlign && is(getAlignClassName(verticalAlign)),
+        marginless && is(`marginless`),
+        className,
+      ),
+    )
 
+    return <div ref={ref} id={id} className={classes} {...others} />
+  },
+)
+Columns.displayName = ComponentName.Columns
 export default Columns

@@ -24,7 +24,6 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
         container: {
           backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || undefined,
           width: '100%',
-          paddingHorizontal: 16,
           paddingVertical: checked && !iconName ? 8.5 : 10,
         },
       }),
@@ -55,7 +54,7 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
 
   return (
     <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
-      <Columns gap={0} verticalAlign={Alignable.ALIGNED_CENTER}>
+      <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
         {iconName && (
           <Column size={1}>
             <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
