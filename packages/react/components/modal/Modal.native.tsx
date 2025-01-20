@@ -5,6 +5,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
 import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
+import { Column, Columns } from '../columns'
 import { SpacerSize } from '../spacer'
 import { Title } from '../title'
 import { ModalProps } from './ModalProps'
@@ -143,18 +144,17 @@ const Modal = ({
                 style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }], overflow: 'hidden' }]}
               >
                 {!hideCloseButton && (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      paddingHorizontal: SpacerSize.FOUR,
-                    }}
-                  >
-                    <Title level={4}>{title}</Title>
-                    <TouchableOpacity onPress={close}>
-                      <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
-                    </TouchableOpacity>
+                  <View style={{ paddingHorizontal: SpacerSize.FOUR }}>
+                    <Columns>
+                      <Column>
+                        <Title level={4}>{title}</Title>
+                      </Column>
+                      <Column narrow>
+                        <TouchableOpacity onPress={close}>
+                          <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
+                        </TouchableOpacity>
+                      </Column>
+                    </Columns>
                   </View>
                 )}
                 {children}
