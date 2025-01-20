@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { IconName, Link, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
-import { Divider } from '@trilogy-ds/react'
+import { Link, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
+import { Icon, IconName } from '@trilogy-ds/react'
 
 export const LinkScreen = (): JSX.Element => {
   return (
@@ -16,14 +16,9 @@ export const LinkScreen = (): JSX.Element => {
         External link
       </Link>
       <Title level={TitleLevels.THREE}>Link with icon</Title>
-      <Link href='https://google.com' blank iconName={IconName.ARROW_RIGHT}>
+      <Link href='https://google.com' blank>
         External link
-      </Link>
-
-      <Divider />
-
-      <Link href='https://example.com' iconName={IconName.SEARCH} data-testid={'test-icon'}>
-        Example
+        <Icon name={IconName.ARROW_RIGHT} />
       </Link>
     </Section>
   )

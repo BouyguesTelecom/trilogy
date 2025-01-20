@@ -1,8 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { LinkProps } from './LinkProps'
-import { has, is } from '@/services/classify'
-import { Icon, IconSize } from '@/components/icon'
+import {  is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 
@@ -15,7 +14,6 @@ import { useTrilogyContext } from '@/context'
  * @param title {string} Title attribute
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label
- * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -27,75 +25,30 @@ import { useTrilogyContext } from '@/context'
  */
 
 const Link = ({
-                children,
-                className,
-                id,
-                to,
-                href,
-                onClick,
-                accessibilityLabel,
-                routerLink,
-                iconName,
-                inverted,
-                blank,
-                title,
-                ...others
-              }: LinkProps): JSX.Element => {
+  children,
+  className,
+  accessibilityLabel,
+  markup: LinkComponent = 'a',
+  inverted,
+  blank,
+  ...others
+}: LinkProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
+  const classes = hashClass(styled, clsx('link', inverted && is('inverted'), className))
 
-  if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-
-    const RouterLinkTrilogy = (): JSX.Element => {
-      return (
-        <RouterLink
-          id={id}
-          aria-label={accessibilityLabel}
-          onClick={onClick && onClick}
-          className={hashClass(styled, clsx(classes))}
-          to={to || ''}
-          {...(blank && {
-            target: '_blank',
-          })}
-          {...others}
-        >
-          {children}
-        </RouterLink>
-      )
-    }
-
-    return <RouterLinkTrilogy />
-  }
-
-  const LinkTrilogy = (): JSX.Element => {
-    return (
-      <a
-        id={id}
-        aria-label={accessibilityLabel}
-        onClick={onClick && onClick}
-        className={classes}
-        title={title}
-        href={href}
-        {...(blank && {
-          target: '_blank',
-        })}
-        {...others}
-      >
-        {iconName ? (
-          <>
-            <span>{children}</span>
-            <Icon name={iconName} size={IconSize.SMALL} />
-          </>
-        ) : (
-          children
-        )}
-      </a>
-    )
-  }
-
-  return <LinkTrilogy />
+  return (
+    <LinkComponent
+      aria-label={accessibilityLabel}
+      className={classes}
+      {...(blank && {
+        target: '_blank',
+      })}
+      {...others}
+    >
+      {children}
+    </LinkComponent>
+  )
 }
 
 export default Link

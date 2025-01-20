@@ -1,11 +1,7 @@
 import * as React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TextLevels } from '@/components/text'
-import { Icon } from '@/components/icon'
-import { Spacer, SpacerSize } from '@/components/spacer'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -16,55 +12,24 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode}
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param inline {boolean} If link is inside paragraphe
- * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
  */
-const Link = ({
-  children,
-  to,
-  onClick,
-  testId,
-  accessibilityLabel,
-  inline,
-  iconName,
-  inverted,
-  ...others
-}: LinkProps): JSX.Element => {
-  const linkLevels = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 16) ||
-      (level && level == TextLevels.TWO && 14) ||
-      (level && level == TextLevels.THREE && 12) ||
-      (level && level == TextLevels.FOUR && 10) ||
-      10
-    )
-  }
-
-  const getHeightLinkAndroid = (level: TextLevels) => {
-    return (
-      (level && level == TextLevels.ONE && 20) ||
-      (level && level == TextLevels.TWO && 18) ||
-      (level && level == TextLevels.THREE && 15) ||
-      (level && level == TextLevels.FOUR && 13) ||
-      14
-    )
-  }
+const Link = ({ children, to, onClick, testId, accessibilityLabel, inverted, ...others }: LinkProps): JSX.Element => {
 
   const styles = StyleSheet.create({
     linkAlignement: {
       alignSelf: 'baseline',
     },
     container: {
-      padding: inline ? 4 : 8,
-      marginTop: inline ? -4 : 0,
-      marginBottom: inline ? -3 : -10,
-      paddingLeft: inline ? 4 : 0,
-      paddingRight: inline ? 4 : 0,
+      padding: 8,
+      marginTop: 0,
+      marginBottom: -10,
+      paddingLeft: 0,
+      paddingRight: 0,
     },
     androidContainer: {
-      paddingLeft: inline ? 2 : 0,
-      paddingRight: inline ? 2 : 0,
+      paddingLeft: 0,
+      paddingRight: 0,
     },
     link: {
       color: (inverted && getColorStyle(TrilogyColor.BACKGROUND)) || getColorStyle(TrilogyColor.MAIN),
@@ -122,23 +87,13 @@ const Link = ({
             }
           }}
         >
-          {iconName ? (
-            <View style={styles.iconView}>
-              <Text accessibilityLabel={accessibilityLabel} style={[styles.link]} {...others}>
-                {children}
-              </Text>
-              <Spacer size={SpacerSize.ONE} horizontal />
-              <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
-            </View>
-          ) : (
-            <Text
-              accessibilityLabel={accessibilityLabel}
-              style={Platform.OS === 'android' ? [styles.androidLink] : [styles.link]}
-              {...others}
-            >
-              {children}
-            </Text>
-          )}
+          <Text
+            accessibilityLabel={accessibilityLabel}
+            style={Platform.OS === 'android' ? [styles.androidLink] : [styles.link]}
+            {...others}
+          >
+            {children}
+          </Text>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
