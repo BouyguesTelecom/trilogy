@@ -1,8 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionProps } from './SectionProps'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -11,7 +11,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  **/
-const Section = ({ backgroundColor, backgroundSrc, children }: SectionProps): JSX.Element => {
+const Section = ({ backgroundColor, backgroundSrc, children, style, ...others }: SectionProps): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
@@ -31,7 +31,7 @@ const Section = ({ backgroundColor, backgroundSrc, children }: SectionProps): JS
   })
 
   return (
-    <View style={styles.section}>
+    <View style={[styles.section, style]} {...others}>
       {backgroundSrc ? (
         <ImageBackground
           style={styles.sectionImage}

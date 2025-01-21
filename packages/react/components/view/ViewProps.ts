@@ -20,7 +20,14 @@ export enum ViewMarkup {
   UL = 'ul',
   LI = 'li',
   LABEL = 'label',
-  MAIN = 'main'
+  MAIN = 'main',
+  SUMMARY = 'summary',
+  DETAILS = 'details',
+  OL = 'ol',
+  DL = 'dl',
+  DT = 'dt',
+  DD = 'dd',
+  DIALOG = 'dialog',
 }
 
 export type ViewMarkupValues = `${ViewMarkup}`

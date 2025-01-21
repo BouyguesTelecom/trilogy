@@ -1,9 +1,10 @@
-import { hashClass } from '@/helpers'
-import { getAlignClassName } from '@/objects'
+import { ColumnProps } from '@/components/columns/column/ColumnProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ColumnProps } from './ColumnProps'
+import React from 'react'
 
 /**
  * Columns Item Component - Columns Child
@@ -29,51 +30,57 @@ import { ColumnProps } from './ColumnProps'
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  * @param align { Alignable | AlignableValues} align content
  */
-const Column = ({
-  className,
-  id,
-  size,
-  mobileSize,
-  tabletSize,
-  touchSize,
-  desktopSize,
-  widescreenSize,
-  fullhdSize,
-  offset,
-  mobileOffset,
-  tabletOffset,
-  touchOffset,
-  desktopOffset,
-  widescreenOffset,
-  fullhdOffset,
-  narrow,
-  verticalAlign,
-  ...others
-}: ColumnProps) => {
-  const classes = hashClass(
-    clsx(
-      'column',
-      size && is(`${size}`),
-      mobileSize && is(`${mobileSize}-mobile`),
-      tabletSize && is(`${tabletSize}-tablet`),
-      touchSize && is(`${touchSize}-tablet`),
-      desktopSize && is(`${desktopSize}-desktop`),
-      widescreenSize && is(`${widescreenSize}-widescreen`),
-      fullhdSize && is(`${fullhdSize}-fullhd`),
-      offset && is(`offset-${offset}`),
-      mobileOffset && is(`offset-${mobileOffset}-mobile`),
-      tabletOffset && is(`offset-${tabletOffset}-tablet`),
-      touchOffset && is(`offset-${touchOffset}-tablet`),
-      desktopOffset && is(`offset-${desktopOffset}-desktop`),
-      widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
-      fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
-      narrow && is('narrow'),
-      verticalAlign && is(getAlignClassName(verticalAlign)),
+
+const Column = React.forwardRef(
+  (
+    {
       className,
-    ),
-  )
+      id,
+      size,
+      mobileSize,
+      tabletSize,
+      touchSize,
+      desktopSize,
+      widescreenSize,
+      fullhdSize,
+      offset,
+      mobileOffset,
+      tabletOffset,
+      touchOffset,
+      desktopOffset,
+      widescreenOffset,
+      fullhdOffset,
+      narrow,
+      verticalAlign,
+      ...others
+    }: ColumnProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const classes = hashClass(
+      clsx(
+        'column',
+        size && is(`${size}`),
+        mobileSize && is(`${mobileSize}-mobile`),
+        tabletSize && is(`${tabletSize}-tablet`),
+        touchSize && is(`${touchSize}-tablet`),
+        desktopSize && is(`${desktopSize}-desktop`),
+        widescreenSize && is(`${widescreenSize}-widescreen`),
+        fullhdSize && is(`${fullhdSize}-fullhd`),
+        offset && is(`offset-${offset}`),
+        mobileOffset && is(`offset-${mobileOffset}-mobile`),
+        tabletOffset && is(`offset-${tabletOffset}-tablet`),
+        touchOffset && is(`offset-${touchOffset}-tablet`),
+        desktopOffset && is(`offset-${desktopOffset}-desktop`),
+        widescreenOffset && is(`offset-${widescreenOffset}-widescreen`),
+        fullhdOffset && is(`offset-${fullhdOffset}-fullhd`),
+        narrow && is('narrow'),
+        verticalAlign && is(getAlignClassName(verticalAlign)),
+        className,
+      ),
+    )
 
-  return <div id={id} className={classes} {...others} />
-}
-
+    return <div ref={ref} id={id} className={classes} {...others} />
+  },
+)
+Column.displayName = ComponentName.Column
 export default Column

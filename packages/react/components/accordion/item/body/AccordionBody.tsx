@@ -12,7 +12,14 @@ import React from 'react'
  */
 const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProps): React.JSX.Element => {
   return (
-    <div id={id} className={hashClass(clsx('accordion-body', className))} {...others}>
+    <div
+      id={id}
+      className={hashClass(clsx('accordion-body', className))}
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
+      {...others}
+    >
       {children}
     </div>
   )

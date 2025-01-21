@@ -1,3 +1,4 @@
+import { Icon, IconSize } from '@/components/icon'
 import { hashClass } from '@/helpers'
 import { getVariantClassName } from '@/objects'
 import { is } from '@/services/classify'
@@ -12,11 +13,21 @@ import { StickerProps } from './StickerProps'
  * @param small {boolean} Small Sticker
  * @param id
  * @param outlined {boolean} Outlined sticker
+ * @param iconName {IconName} Icon
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({ className, id, variant, small, label, outlined, ...others }: StickerProps): JSX.Element => {
+const Sticker = ({
+  className,
+  id,
+  variant,
+  small,
+  label,
+  outlined,
+  iconName,
+  ...others
+}: StickerProps): JSX.Element => {
   const classes = hashClass(
     clsx(
       'sticker',
@@ -24,11 +35,13 @@ const Sticker = ({ className, id, variant, small, label, outlined, ...others }: 
       small && is('small'),
       className,
       outlined && is('outlined'),
+      is('vcentered'),
     ),
   )
 
   return (
     <p id={id} className={classes} {...others}>
+      {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>
   )

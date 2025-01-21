@@ -54,7 +54,7 @@ export const getTypographyBoldStyle = (typo?: string | Array<string>) => {
       return theme?.fontFamily?.bold || 'poppins-semibold'
 
     case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_BOLD):
-      return theme?.fontFamily?.bold || 'poppins-semibold'
+      return theme?.fontFamily?.speak || 'poppins-semibold'
 
     default:
       return theme?.fontFamily?.regular || 'poppins-regular'
