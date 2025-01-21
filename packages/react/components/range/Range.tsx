@@ -1,7 +1,8 @@
 import { hashClass } from '@/helpers'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import clsx from 'clsx'
-import * as React from 'react'
+import React from 'react'
+import shortid from 'shortid'
 import { RangeProps } from './RangeProps'
 
 /**
@@ -18,7 +19,7 @@ import { RangeProps } from './RangeProps'
  */
 const Range = ({
   className,
-  id,
+  id = shortid.generate(),
   min,
   max,
   label,

@@ -1,7 +1,7 @@
 import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import React from 'react'
 import { Icon, IconSize } from '../icon'
 import { DividerProps } from './DividerProps'
 
@@ -33,41 +33,19 @@ const Divider = ({
       marginless && is('marginless'),
       className,
       inverted && is('inverted'),
-      iconName && 'has-icon',
+      iconName && has('icon'),
     ),
   )
   const contentClasses = hashClass(clsx('divider-content'))
 
-  // s'il y a du text et une icone , SEULEMENT le text compte
-  if (content && iconName) {
-    return (
-      <div id={id} data-testid='separator' className={classes}>
-        <p className={contentClasses}>{content}</p>
-      </div>
-    )
-  }
-
-  if (content) {
-    return (
-      <div id={id} data-testid='separator' className={classes}>
-        <p className={contentClasses}>{content}</p>
-      </div>
-    )
-  }
-
-  // si il y a seulement une icone
-  if (iconName) {
-    return (
-      <div id={id} data-testid='separator' className={classes}>
-        <p className={contentClasses}>
-          <Icon name={iconName} size={IconSize.MEDIUM} />
-        </p>
-      </div>
-    )
-  }
-
-  // divider normal trilogy
-  return <div id={id} data-testid='separator' className={classes} {...others} />
+  return (
+    <div id={id} data-testid='separator' className={classes} {...others}>
+      <p className={contentClasses}>
+        {iconName && !content && <Icon name={iconName} size={IconSize.MEDIUM} />}
+        {content && content}
+      </p>
+    </div>
+  )
 }
 
 export default Divider

@@ -35,7 +35,7 @@ const TimelineMarker = ({ iconName }: TimelineMarkerProps): JSX.Element => {
         (active && getColorStyle(TrilogyColor.MAIN)) ||
         (cancel && getColorStyle(TrilogyColor.NEUTRAL)) ||
         (done && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        getColorStyle(TrilogyColor.NEUTRAL),
     },
     icon: {
       alignSelf: 'center',
@@ -58,7 +58,7 @@ const TimelineMarker = ({ iconName }: TimelineMarkerProps): JSX.Element => {
             (active && TrilogyColor.MAIN) ||
             (cancel && TrilogyColor.NEUTRAL) ||
             (done && TrilogyColor.MAIN) ||
-            TrilogyColor.NEUTRAL_FADE
+            TrilogyColor.NEUTRAL
           }
           size={IconSize.SMALL}
         />
