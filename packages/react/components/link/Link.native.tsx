@@ -1,12 +1,11 @@
-import * as React from 'react'
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TextLevels } from '@/components/text'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import * as React from 'react'
+import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { LinkPropsNative } from './LinkProps'
 
 /**
  * Link Component
@@ -30,7 +29,7 @@ const Link = ({
   iconName,
   inverted,
   ...others
-}: LinkProps): JSX.Element => {
+}: LinkPropsNative): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
     return (
       (level && level == TextLevels.ONE && 16) ||

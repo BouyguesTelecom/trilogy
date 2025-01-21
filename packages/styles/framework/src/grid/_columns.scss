@@ -328,7 +328,7 @@ $gap: 4px,
     scroll-padding: 8px;
 
     > .column {
-      scroll-snap-align: start;
+      scroll-snap-align: center;
 
       &:last-child {
         scroll-snap-align: end;
@@ -454,11 +454,11 @@ $gap: 4px,
       padding: 24px;
     }
     &.is-fullbleed {
-      scroll-padding: 24px;
+      scroll-padding: 16px;
     }
-    &.is-fullbleed.is-scrollable .column {
-      scroll-snap-align: start;
-      scroll-padding: 24px;
+    &.is-fullbleed.is-scrollable > .column {
+      scroll-snap-align: center;
+      scroll-padding: 16px;
     }
     .scroll-view {
       overflow: inherit;

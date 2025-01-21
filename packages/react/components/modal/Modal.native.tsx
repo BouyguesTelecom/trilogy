@@ -3,8 +3,11 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, GestureResponderEvent, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
 import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
+import { Column, Columns } from '../columns'
+import { SpacerSize } from '../spacer'
+import { Title } from '../title'
 import { ModalProps } from './ModalProps'
 
 /**
@@ -25,6 +28,7 @@ const Modal = ({
   hideCloseButton = false,
   unClosable = false,
   trigger,
+  title,
   ...others
 }: ModalProps): JSX.Element => {
   const styles = StyleSheet.create({
@@ -115,14 +119,13 @@ const Modal = ({
     <>
       {trigger}
       <NativeModal
-        onSwipeComplete={(e: OnSwipeCompleteParams) => {
-          close(e)
-        }}
+        onSwipeComplete={(e: OnSwipeCompleteParams) => close(e)}
         onModalHide={onModalHide}
         swipeDirection={unClosable ? undefined : 'down'}
         isVisible={visible}
         statusBarTranslucent={true}
         style={{ width: '100%', padding: 0, margin: 0 }}
+        propagateSwipe
         {...others}
       >
         <View style={[styles.overlay, styles.bottomModal]}>
@@ -141,13 +144,20 @@ const Modal = ({
                 style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }], overflow: 'hidden' }]}
               >
                 {!hideCloseButton && (
-                  <View style={{ width: '100%' }}>
-                    <TouchableOpacity style={{ alignSelf: 'flex-end', right: 20 }} onPress={close}>
-                      <Icon name={IconName.TIMES} size={IconSize.SMALL} color={TrilogyColor.NEUTRAL} />
-                    </TouchableOpacity>
+                  <View style={{ paddingHorizontal: SpacerSize.FOUR }}>
+                    <Columns>
+                      <Column>
+                        <Title level={4}>{title}</Title>
+                      </Column>
+                      <Column narrow>
+                        <TouchableOpacity onPress={close}>
+                          <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
+                        </TouchableOpacity>
+                      </Column>
+                    </Columns>
                   </View>
                 )}
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{children}</ScrollView>
+                {children}
               </Animated.View>
             </View>
             <TouchableOpacity

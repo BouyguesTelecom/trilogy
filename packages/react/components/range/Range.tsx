@@ -18,7 +18,7 @@ import React from 'react'
  */
 const Range = ({
   className,
-  id,
+  id = React.useId(),
   min,
   max,
   label,

@@ -1,10 +1,10 @@
-import React, { createContext, useState } from 'react'
-import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet } from 'react-native'
-import { View } from '@/components/view'
-import { ColumnsProps } from './ColumnsProps'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { ColumnsProps } from '@/components/columns/ColumnsProps'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
-import { Alignable, getAlignStyle } from '@/objects'
+import { ColumnsContext } from '@/components/columns/context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
+import React, { useState } from 'react'
+import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
 
 /**
  * Columns Native Component
@@ -15,125 +15,96 @@ import { Alignable, getAlignStyle } from '@/objects'
  * @param gap {GapSize} Gap between columns
  */
 
-export const ColumnsContext = createContext({ scrollable: false })
+const Columns = React.forwardRef(
+  (
+    { children, align, gap, verticalAlign, fullBleed, scrollable, multiline, ...others }: ColumnsProps,
+    ref: React.Ref<View>,
+  ): JSX.Element => {
+    const [width, setWidth] = useState(0)
+    const [enlarge, setEnlarge] = useState(0)
 
-const Columns = ({
-  children,
-  align,
-  gap,
-  verticalAlign,
-  fullBleed,
-  scrollable,
-  multiline,
-  ...others
-}: ColumnsProps): JSX.Element => {
-  const [width, setWidth] = useState(0)
-  const [enlarge, setEnlarge] = useState(0)
-
-  const onLayoutHandler = (event: LayoutChangeEvent) => {
-    if (!width) {
-      const { width } = event.nativeEvent.layout
-      if (fullBleed) {
-        setEnlarge((Dimensions.get('screen').width - width) / 2)
-      }
-      setWidth(width)
-    }
-  }
-  const realGap = (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize]
-
-  const styles = StyleSheet.create({
-    columns: {
-      width: width ? width + enlarge * 2 : '100%',
-      marginHorizontal: -enlarge,
-      paddingHorizontal: enlarge,
-      flexDirection: 'row',
-      gap: realGap,
-      display: 'flex',
-      justifyContent: 'space-evenly',
-    },
-    centered: {
-      alignSelf: 'center',
-    },
-    verticalAlign: {
-      alignItems: getAlignStyle(verticalAlign),
-    },
-    multiline: {
-      flexWrap: 'wrap',
-    },
-    scrollContainer: {
-      width: 'auto',
-      paddingHorizontal: enlarge,
-      justifyContent: 'space-around',
-      gap: realGap,
-    },
-    mobile: {
-      flexDirection: 'column',
-    },
-  })
-
-  if (!scrollable) {
-    return (
-      <>
-        {/* eslint-disable-next-line react/jsx-no-undef */}
-        <View
-          style={[
-            styles.columns,
-            multiline && styles.multiline,
-            (align === Alignable.ALIGNED_CENTER) && styles.centered,
-            verticalAlign && styles.verticalAlign,
-          ]}
-          {...others}
-          {...{ onLayout: onLayoutHandler }}
-        >
-          {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.Children.map(
-              children,
-              (child: any) =>
-                child &&
-                React.cloneElement(child, {
-                  style: [
-                    child.props.style,
-                    { width: (child.props.size && (width * child.props.size) / 12 - realGap) || 'auto' },
-                    child.props.narrow && { flex: 'none', flexShrink: 1 },
-                  ],
-                }),
-            )
-          }
-        </View>
-      </>
-    )
-  }
-
-  return (
-    <View
-      style={{
-        width: `100% + ${enlarge * 2}px`,
-        marginHorizontal: -enlarge,
-      }}
-      {...{ onLayout: onLayoutHandler }}
-    >
-      <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
-        {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          React.Children.map(children, (child: any) =>
-            React.cloneElement(child, {
-              style: [
-                child.props.style,
-                {
-                  width: width / (12 / (child.props.size || child.props.mobileSize || 12)) - 2 * realGap,
-                  flexGrow: 0,
-                },
-                child.props.narrow && { flex: 'none', flexShrink: 1 },
-              ],
-            }),
-          )
+    const onLayoutHandler = (event: LayoutChangeEvent) => {
+      if (!width) {
+        const { width } = event.nativeEvent.layout
+        if (fullBleed) {
+          setEnlarge((Dimensions.get('screen').width - width) / 2)
         }
-      </ScrollView>
-    </View>
-  )
-}
+        setWidth(width)
+      }
+    }
+    const realGap = (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize]
+
+    const styles = StyleSheet.create({
+      columns: {
+        width: fullBleed && width ? width + enlarge * 2 : '100%',
+        marginHorizontal: -enlarge,
+        paddingHorizontal: enlarge,
+        flexDirection: 'row',
+        gap: realGap,
+      },
+      centered: {
+        justifyContent: 'center',
+      },
+      verticalAlign: {
+        alignItems: getAlignStyle(verticalAlign),
+      },
+      multiline: {
+        flexWrap: 'wrap',
+      },
+      scrollContainer: {
+        paddingHorizontal: enlarge,
+        gap: realGap,
+      },
+      mobile: {
+        flexDirection: 'column',
+      },
+    })
+
+    return (
+      <ColumnsContext.Provider
+        value={{
+          width,
+          realGap,
+          scrollable: scrollable || false,
+          childrensLength: React.Children.count(children),
+        }}
+      >
+        {!scrollable && (
+          <View
+            ref={ref}
+            style={[
+              styles.columns,
+              multiline && styles.multiline,
+              align === Alignable.ALIGNED_CENTER && styles.centered,
+              verticalAlign && styles.verticalAlign,
+            ]}
+            {...others}
+            {...{ onLayout: onLayoutHandler }}
+          >
+            {children}
+          </View>
+        )}
+
+        {scrollable && (
+          <View
+            style={{
+              marginHorizontal: -enlarge,
+            }}
+            {...{ onLayout: onLayoutHandler }}
+          >
+            <ScrollView
+              horizontal
+              contentContainerStyle={styles.scrollContainer}
+              showsHorizontalScrollIndicator={false}
+            >
+              {children}
+            </ScrollView>
+          </View>
+        )}
+      </ColumnsContext.Provider>
+    )
+  },
+)
 
 Columns.displayName = ComponentName.Columns
-
 export default Columns
