@@ -1,5 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -21,7 +22,9 @@ const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => 
         paddingBottom: insets.bottom,
       }}
     >
-      <View style={{ width: '100%', height: 16, marginTop: -16 }} />
+      <View
+        style={{ width: '100%', height: 16, marginTop: -16, backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }}
+      />
       <View style={{ paddingHorizontal: 16 }}>
         {(typeof children === 'string' && (
           <Title level={TitleLevels.THREE} style={{ width: '100%', textAlign: 'center' }}>
