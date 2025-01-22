@@ -102,8 +102,8 @@ export const ColumnScreen = (): JSX.Element => {
         ].map((item, i) => {
           return (
             <Column
-              key={i}
               narrow
+              key={i}
               verticalAlign={Alignable.ALIGNED_CENTER}
               ref={(el) => el && (refColumn.current[i] = el)}
             >
@@ -111,7 +111,7 @@ export const ColumnScreen = (): JSX.Element => {
                 <Box>
                   <BoxContent>
                     <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-                      <Column narrow>
+                      <Column>
                         <Icon size={IconSize.MEDIUM} name={IconName.BELL} />
                       </Column>
                       <Column>
