@@ -23,16 +23,20 @@ const Columns = React.forwardRef(
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
-    const onLayoutHandler = (event: LayoutChangeEvent) => {
-      if (!width) {
-        const { width } = event.nativeEvent.layout
-        if (fullBleed) {
-          setEnlarge((Dimensions.get('screen').width - width) / 2)
+    const onLayoutHandler = React.useCallback(
+      (event: LayoutChangeEvent) => {
+        if (!width) {
+          const { width } = event.nativeEvent.layout
+          if (fullBleed) {
+            setEnlarge((Dimensions.get('screen').width - width) / 2)
+          }
+          setWidth(width)
         }
-        setWidth(width)
-      }
-    }
-    const realGap = (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize]
+      },
+      [fullBleed],
+    )
+
+    const realGap = React.useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
 
     const styles = StyleSheet.create({
       columns: {
@@ -72,6 +76,7 @@ const Columns = React.forwardRef(
         {!scrollable && (
           <View
             ref={ref}
+            onLayout={onLayoutHandler}
             style={[
               styles.columns,
               multiline && styles.multiline,
@@ -79,7 +84,6 @@ const Columns = React.forwardRef(
               verticalAlign && styles.verticalAlign,
             ]}
             {...others}
-            {...{ onLayout: onLayoutHandler }}
           >
             {children}
           </View>
@@ -87,10 +91,10 @@ const Columns = React.forwardRef(
 
         {scrollable && (
           <View
+            onLayout={onLayoutHandler}
             style={{
               marginHorizontal: -enlarge,
             }}
-            {...{ onLayout: onLayoutHandler }}
           >
             <ScrollView
               horizontal
