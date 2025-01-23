@@ -93,7 +93,7 @@ export const ColumnScreen = (): JSX.Element => {
         </Column>
       </Columns>
 
-      <Columns scrollable>
+      <Columns scrollable fullBleed>
         {[
           'Forfait mobile',
           'Forfait 5GO abonnement seulement',
