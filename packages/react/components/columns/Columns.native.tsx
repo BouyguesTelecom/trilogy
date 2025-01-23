@@ -33,7 +33,7 @@ const Columns = React.forwardRef(
           setWidth(width)
         }
       },
-      [fullBleed],
+      [fullBleed, width],
     )
 
     const realGap = React.useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
