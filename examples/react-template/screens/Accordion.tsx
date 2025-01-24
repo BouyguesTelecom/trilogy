@@ -1,9 +1,10 @@
-import * as React from "react";
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
+  Column,
+  Columns,
   Divider,
   Section,
   Spacer,
@@ -11,7 +12,8 @@ import {
   Text,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
+} from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const AccordionScreen = (): JSX.Element => {
   return (
@@ -19,41 +21,46 @@ export const AccordionScreen = (): JSX.Element => {
       <Spacer size={3} />
       <Title level={TitleLevels.TWO}>Base</Title>
       <Spacer size={SpacerSize.THREE} />
-      <Accordion id="accordion-1">
-        <AccordionItem id="ONE" active={true}>
+      <Accordion id='accordion-1'>
+        <AccordionItem id='ONE' open>
           <AccordionHeader>
-            <Text >Hello World 1</Text>
+            <Title level={6}>Hello World 1</Title>
           </AccordionHeader>
-          <AccordionBody data-id="totooooo-test-id">
-            <Text>Lorem ipsum dolor sit amet lorem</Text>
+          <AccordionBody data-id='totooooo-test-id'>
+            <Columns>
+              <Column>
+                <Text>Accordion Body 1</Text>
+              </Column>
+            </Columns>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id="TWO">
+        <AccordionItem id='TWO'>
           <AccordionHeader>
-            <Text>Hello World 2</Text>
+            <Title level={6}>Hello World 2</Title>
           </AccordionHeader>
           <AccordionBody>
-            <Text>Lorem ipsum dolor sit amet</Text>
+            <Text>Accordion Body 2</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem id="THREE">
+        <AccordionItem id='THREE'>
           <AccordionHeader>
-            <Text>Hello World 2</Text>
+            <Title level={6}>Hello World 3</Title>
           </AccordionHeader>
           <AccordionBody>
-            <Text>Collpased by default</Text>
+            <Text>Accordion Body 3</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem disabled id="FOUR">
+        <AccordionItem disabled id='FOUR'>
           <AccordionHeader>
-            <Text>Hello World 3</Text>
+            <Title level={6}>Hello World 4</Title>
           </AccordionHeader>
           <AccordionBody>
-            <Text>Lorem ipsum dolor sit amet</Text>
+            <Text>Accordion Body 4</Text>
           </AccordionBody>
         </AccordionItem>
       </Accordion>
+
       <Divider />
     </Section>
-  );
-};
+  )
+}
