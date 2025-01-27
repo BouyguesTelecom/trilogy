@@ -1,7 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { ScrollView, TouchableOpacity } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ModalBodyProps } from './ModalBodyProps'
 
 /**
@@ -10,10 +9,8 @@ import { ModalBodyProps } from './ModalBodyProps'
  * @param others
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
-  const insets = useSafeAreaInsets()
-
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: insets.bottom }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }}>
       <TouchableOpacity
         activeOpacity={1}
         {...others}
