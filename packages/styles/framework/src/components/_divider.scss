@@ -10,4 +10,20 @@
     padding: 0 $spacing-4;
     background-color: invertColor('neutral');
   }
+
+  &:not(.is-marginless) {
+    margin: $spacing-5 0;
+  }
+
+  @include mobile {
+    &:not(.is-marginless) {
+      margin: $spacing-4 0;
+    }
+  }
 }
+
+*:has(+ .divider) {
+  margin-top: 0 !important; 
+  margin-bottom: 0 !important;
+}
+

@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { DividerProps } from './DividerProps'
-import { is, has } from '@/services/classify'
-import { Icon, IconSize } from '../icon'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { DividerProps } from '@/components/divider/DividerProps'
+import { Icon, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Divider Component
