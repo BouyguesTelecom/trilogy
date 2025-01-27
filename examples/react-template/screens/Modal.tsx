@@ -74,6 +74,11 @@ export const ModalScreen = (): JSX.Element => {
             <Text>Modal content</Text>
             <Text>Modal content</Text>
           </ModalBody>
+          <ModalFooter>
+            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
+              Close
+            </Button>
+          </ModalFooter>
         </Modal>
         <Divider />
 
