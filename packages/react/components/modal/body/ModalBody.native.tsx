@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { ScrollView, TouchableOpacity } from 'react-native'
+import { Platform, ScrollView, TouchableOpacity } from 'react-native'
 import { ModalBodyProps } from './ModalBodyProps'
 
 /**
@@ -10,7 +10,7 @@ import { ModalBodyProps } from './ModalBodyProps'
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: Platform.OS === 'ios' ? 40 : 10 }}>
       <TouchableOpacity
         activeOpacity={1}
         {...others}

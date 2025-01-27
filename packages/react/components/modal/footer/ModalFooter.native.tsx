@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { View } from 'react-native'
+import { Platform, View } from 'react-native'
 import { ModalFooterProps } from './ModalFooterProps'
 
 /**
@@ -16,7 +16,7 @@ const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => 
       style={{
         bottom: 0,
         width: '100%',
-        paddingBottom: 40,
+        paddingBottom: Platform.OS === 'ios' ? 40 : 10,
       }}
     >
       <View
