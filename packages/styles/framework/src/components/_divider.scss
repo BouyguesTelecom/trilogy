@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: $spacing-5 0;
 
   p.divider-content {
     white-space: nowrap;
@@ -12,8 +11,12 @@
     background-color: invertColor('neutral');
   }
 
+  &:not(.is-marginless) {
+    margin: $spacing-5 0;
+  }
+
   @include mobile {
-    & {
+    &:not(.is-marginless) {
       margin: $spacing-4 0;
     }
   }
