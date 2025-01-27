@@ -4,10 +4,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: $spacing-5 0;
 
   p.divider-content {
     white-space: nowrap;
     padding: 0 $spacing-4;
     background-color: invertColor('neutral');
   }
+
+  @include mobile {
+    & {
+      margin: $spacing-4 0;
+    }
+  }
 }
+
+*:has(+ .divider) {
+  margin-top: 0 !important; 
+  margin-bottom: 0 !important;
+}
+
