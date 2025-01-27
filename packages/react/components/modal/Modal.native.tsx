@@ -5,7 +5,6 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity, View } from 'react-native'
 import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Column, Columns } from '../columns'
 import { SpacerSize } from '../spacer'
 import { Title } from '../title'
@@ -93,7 +92,6 @@ const Modal = ({
   const defaultAnimPosition = Dimensions.get('window').height
   const translateAnim = useRef(new Animated.Value(defaultAnimPosition)).current
   const [visible, setVisible] = useState(active || false)
-  const insets = useSafeAreaInsets()
 
   useEffect(() => {
     setVisible(active)
