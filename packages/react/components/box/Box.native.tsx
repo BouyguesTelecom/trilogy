@@ -1,10 +1,11 @@
+import { BoxProps } from '@/components/box/BoxProps'
+import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { BoxProps } from './BoxProps'
 
 /**
  * Box Component
@@ -147,33 +148,35 @@ const Box = ({
   }
 
   return (
-    <View
-      onLayout={(event) => {
-        const { height } = event.nativeEvent.layout
-        setBoxHeight(height)
-      }}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-      testID={boxTestId}
-    >
-      {backgroundSrc ? (
-        <ImageBackground
-          imageStyle={{ borderRadius: boxRadius }}
-          style={styles.boxImage}
-          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-        >
-          {Boolean(highlighted) && <View style={styles.highlighted} />}
+    <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+      <View
+        onLayout={(event) => {
+          const { height } = event.nativeEvent.layout
+          setBoxHeight(height)
+        }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+        testID={boxTestId}
+      >
+        {backgroundSrc ? (
+          <ImageBackground
+            imageStyle={{ borderRadius: boxRadius }}
+            style={styles.boxImage}
+            source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+          >
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
+            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+              {children}
+            </StatesContext.Provider>
+          </ImageBackground>
+        ) : (
           <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+            {Boolean(highlighted) && <View style={styles.highlighted} />}
             {children}
           </StatesContext.Provider>
-        </ImageBackground>
-      ) : (
-        <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-          {Boolean(highlighted) && <View style={styles.highlighted} />}
-          {children}
-        </StatesContext.Provider>
-      )}
-    </View>
+        )}
+      </View>
+    </BoxContext.Provider>
   )
 }
 
