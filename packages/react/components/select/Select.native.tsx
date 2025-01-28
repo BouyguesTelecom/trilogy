@@ -52,7 +52,6 @@ const Select = ({
   }, [selected])
 
   const handleOpenCloseModal = useCallback(() => {
-    console.log('click')
     !disabled && setDisplay((prev) => !prev)
   }, [disabled])
 
