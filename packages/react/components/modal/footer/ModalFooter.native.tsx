@@ -2,8 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Platform, View } from 'react-native'
 import { ModalFooterProps } from './ModalFooterProps'
 
 /**
@@ -11,15 +10,13 @@ import { ModalFooterProps } from './ModalFooterProps'
  * @param children {React.ReactNode}
  */
 const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => {
-  const insets = useSafeAreaInsets()
-
   return (
     <View
       {...others}
       style={{
         bottom: 0,
         width: '100%',
-        paddingBottom: insets.bottom,
+        paddingBottom: Platform.OS === 'ios' ? 40 : 10,
       }}
     >
       <View
