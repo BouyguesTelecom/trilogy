@@ -143,7 +143,7 @@ const Modal = ({
                 style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }], overflow: 'hidden' }]}
               >
                 {!hideCloseButton && (
-                  <View style={{ paddingHorizontal: SpacerSize.FOUR, paddingVertical: 8 }}>
+                  <View style={{ paddingHorizontal: SpacerSize.FOUR, paddingVertical: 16 }}>
                     <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
                       <Column>
                         <Title level={4}>{title}</Title>
