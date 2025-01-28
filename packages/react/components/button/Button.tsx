@@ -8,6 +8,7 @@ import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
 import { ButtonProps } from './ButtonProps'
+import { useButton } from './hooks/useButton'
 
 /**
  * Button component
@@ -55,6 +56,7 @@ const Button = React.forwardRef(
     ref: React.Ref<HTMLButtonElement>,
   ): JSX.Element => {
     const isDisabled = others.disabled || false
+    const { handleClick } = useButton({ isDisabled, onClick })
 
     /** Check if specified markup is valid */
     const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
@@ -89,7 +91,7 @@ const Button = React.forwardRef(
           className={classes}
           disabled={isDisabled}
           name={name}
-          onClick={onClick}
+          onClick={handleClick}
           type={type ?? 'button'}
           {...others}
         >
@@ -106,7 +108,7 @@ const Button = React.forwardRef(
           className={classes}
           aria-label={accessibilityLabel}
           name={name}
-          onClick={onClick}
+          onClick={handleClick}
           disabled={isDisabled}
           type={type ?? 'submit'}
           value={`${children}`}
@@ -126,7 +128,7 @@ const Button = React.forwardRef(
     }
 
     return (
-      <a id={id} aria-label={accessibilityLabel} className={classes} href={href} onClick={onClick} {...others}>
+      <a id={id} aria-label={accessibilityLabel} className={classes} href={href} onClick={handleClick} {...others}>
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </a>
