@@ -43,13 +43,8 @@ const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: T
       fontSize: small ? 12 : 16,
     },
     icon: {
-      marginTop: 1,
+      marginRight: small ? 3 : 6,
     },
-
-    iconLeft: {
-      marginRight: small ? 4 : 8,
-    },
-
     button: {
       flexDirection: 'row',
     },
@@ -58,11 +53,13 @@ const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: T
   return (
     <View style={styles.tag} {...others}>
       {iconName && (
-        <Icon
-          size={small ? IconSize.SMALLER : IconSize.SMALL}
-          name={iconName}
-          testId={`${testId}-icon`}
-        />
+        <View style={styles.icon}>
+          <Icon
+            size={small ? IconSize.SMALLER : IconSize.SMALL}
+            name={iconName}
+            testId={`${testId}-icon`}
+          />
+        </View>
       )}
       <Text style={styles.text}>{label}</Text>
     </View>

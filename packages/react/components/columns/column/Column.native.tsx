@@ -1,39 +1,46 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { ColumnProps } from './ColumnProps'
-import { ColumnsContext } from '@/components/columns/Columns.native'
+import { ColumnProps } from '@/components/columns/column/ColumnProps'
+import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Alignable } from '@/objects'
+import React from 'react'
+import { View, ViewStyle } from 'react-native'
 
 /**
  * Columns Item Component - Columns Child
- * @param size {ColumnsSize} Size 1-12
- * @param mobileSize {ColumnsSize} if size is missing.
  * @param children {React.ReactNode}
- * @param verticalCentered {boolean} Vertical center Column item
  */
-const Column = ({ children, size, mobileSize, verticalAlign, ...others }: ColumnProps): JSX.Element => {
-  const columnsContextValues = useContext(ColumnsContext)
 
-  const realSize = size || mobileSize
+const Column = React.forwardRef(
+  ({ children, narrow, size, ...others }: ColumnProps, ref: React.Ref<View>): JSX.Element => {
+    const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
-  const styles = StyleSheet.create({
-    Column: {
-      height: columnsContextValues.scrollable ? '100%' : undefined,
-      flex: !realSize ? 1 : realSize,
-      justifyContent: verticalAlign === Alignable.ALIGNED_CENTER ? 'center' : 'flex-start',
-      flexBasis: `${(realSize ? realSize / 12 : 12) * 100}%`,
-      flexGrow: 0,
-      maxWidth: `${((realSize ? realSize : 12) / 12) * 100}%`,
-    },
-  })
+    const scrollableStyle: ViewStyle = React.useMemo(
+      () => ({
+        width: size
+          ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength)
+          : narrow
+          ? 'auto'
+          : width - 2 * realGap,
+      }),
+      [size, narrow, width, realGap, childrensLength],
+    )
 
-  return (
-    <View style={styles.Column} {...others}>
-      {children}
-    </View>
-  )
-}
+    const noScrollableStyle: ViewStyle = React.useMemo(
+      () => ({
+        flex: narrow ? 0 : 1,
+        flexGrow: size || narrow ? 0 : 1,
+        flexShrink: narrow ? 1 : 0,
+        flexBasis: size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : 'auto',
+      }),
+      [size, narrow, width, realGap, childrensLength],
+    )
+
+    return (
+      <View ref={ref} style={[scrollable && scrollableStyle, !scrollable && noScrollableStyle]} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 Column.displayName = ComponentName.Column
 

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "link:react": "(cd ../../packages/react && npm link) && npm link @trilogy-ds/react"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -20,7 +21,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.0",
-    "@eslint/eslintrc": "^3",
-    "@trilogy-ds/react": "file:trilogy-ds.tgz"
+    "@eslint/eslintrc": "^3"
   }
 }

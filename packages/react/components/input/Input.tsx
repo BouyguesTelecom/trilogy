@@ -287,7 +287,7 @@ const Input = (
           }}
         />
         {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
-        {iconNameLeft && !loading && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
+        {iconNameLeft && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
         {iconNameRight && !loading && type !== 'password' && (
           <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
         )}
