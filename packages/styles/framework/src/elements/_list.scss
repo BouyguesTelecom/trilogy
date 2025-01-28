@@ -1,7 +1,7 @@
 // Bullet list classiques
 ul.list,
 ol.list {
-  list-style: disc inside;
+  list-style: disc ;
   display: grid;
   row-gap: $spacing-3;
 

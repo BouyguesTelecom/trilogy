@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { View } from '@/components/view'
+import { Alignable } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
+import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity, View } from 'react-native'
 import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
 import { Column, Columns } from '../columns'
 import { SpacerSize } from '../spacer'
@@ -79,7 +79,6 @@ const Modal = ({
     },
     childrenContainer: {
       flexWrap: 'wrap',
-      paddingTop: 10,
       borderRadius: 6,
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       width: '100%',
@@ -144,8 +143,8 @@ const Modal = ({
                 style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }], overflow: 'hidden' }]}
               >
                 {!hideCloseButton && (
-                  <View style={{ paddingHorizontal: SpacerSize.FOUR }}>
-                    <Columns>
+                  <View style={{ paddingHorizontal: SpacerSize.FOUR, paddingVertical: 16 }}>
+                    <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
                       <Column>
                         <Title level={4}>{title}</Title>
                       </Column>
