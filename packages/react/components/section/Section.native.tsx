@@ -15,37 +15,32 @@ const Section = ({ backgroundColor, backgroundSrc, children, style, ...others }:
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
   const styles = StyleSheet.create({
-    section: {
-      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-      paddingTop: 32,
-      paddingBottom: 32,
-      paddingRight: 24,
-      paddingLeft: 24,
-      width: 'auto',
-    },
-    sectionImage: {
-      width: '100%',
-      minHeight: 100,
-      height: 'auto',
+    container: {
+      backgroundColor: backgroundSrc ? undefined : backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
+      paddingVertical: 32,
+      paddingHorizontal: 24,
     },
   })
 
-  return (
-    <View style={[styles.section, style]} {...others}>
-      {backgroundSrc ? (
-        <ImageBackground
-          style={styles.sectionImage}
-          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-        >
+  if (backgroundSrc) {
+    return (
+      <ImageBackground
+        resizeMode='cover'
+        source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+      >
+        <View style={[styles.container, style]} {...others}>
           {children}
-        </ImageBackground>
-      ) : (
-        children
-      )}
+        </View>
+      </ImageBackground>
+    )
+  }
+
+  return (
+    <View style={[styles.container, style]} {...others}>
+      {children}
     </View>
   )
 }
 
 Section.displayName = ComponentName.Section
-
 export default Section
