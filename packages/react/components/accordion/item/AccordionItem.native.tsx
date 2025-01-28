@@ -132,8 +132,6 @@ const AccordionItem = ({ open, id, onClick, disabled, children, ...others }: Acc
     }
   }, [children])
 
-  console.log(childs.body)
-
   return (
     <>
       <View style={styles.item}>
