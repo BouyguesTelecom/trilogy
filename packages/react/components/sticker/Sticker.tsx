@@ -1,11 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import {StickerProps} from './StickerProps'
-import {is} from '@/services/classify'
-import {getVariantClassName} from '@/objects'
-import {hashClass} from '@/helpers'
-import {useTrilogyContext} from '@/context'
-import {Icon, IconSize} from "@/components/icon";
+import { StickerProps } from './StickerProps'
+import { is } from '@/services/classify'
+import { getVariantClassName } from '@/objects'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { Icon, IconSize } from '@/components/icon'
 
 /**
  * Sticker component
@@ -19,7 +19,17 @@ import {Icon, IconSize} from "@/components/icon";
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({ className, id, variant, small, label, outlined, iconName, ...others }: StickerProps): JSX.Element => {
+const Sticker = ({
+  className,
+  id,
+  variant,
+  small,
+  label,
+  outlined,
+  iconName,
+  accessibilityLabel,
+  ...others
+}: StickerProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -30,12 +40,12 @@ const Sticker = ({ className, id, variant, small, label, outlined, iconName, ...
       small && is('small'),
       className,
       outlined && is('outlined'),
-      is('vcentered')
+      is('vcentered'),
     ),
   )
 
   return (
-    <p id={id} className={classes} {...others}>
+    <p id={id} className={classes} aria-label={accessibilityLabel} {...others}>
       {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>
