@@ -8,7 +8,7 @@ export const StickerScreen = (): JSX.Element => {
         iconName={IconName.EYE}
         small
         label={'Sticker icon small'}
-        variant={TagVariant.INFO}
+        variant={VariantState.ACCENT}
       />
 
       <Spacer size={SpacerSize.FOUR} />
