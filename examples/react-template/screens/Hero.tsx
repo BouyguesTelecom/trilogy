@@ -20,13 +20,15 @@ export const HeroScreen = (): JSX.Element => {
   return (
     <Section>
       <Hero backgroundColor={TrilogyColor.MAIN} overlap inverted>
-          <Title markup={TitleMarkup.H1} level={TitleLevels.TWO}>
+        <Container>
+        <Title markup={TitleMarkup.H1} level={TitleLevels.TWO}>
             Hero Overlapped
           </Title>
           <Text level={TextLevels.TWO}>
             Profitez dInternet dès labonnement et même en cas de coupure grâce à
             une clé 4G dans les nouvelles offres Bbox.
           </Text>
+        </Container>
       </Hero>
       <Section>
         <Container>
