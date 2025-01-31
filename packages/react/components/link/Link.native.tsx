@@ -123,7 +123,9 @@ const Link = ({
               <Text accessibilityLabel={accessibilityLabel} style={[styles.link]} {...others}>
                 {children}
               </Text>
-              <Icon color={TrilogyColor.MAIN} name={iconName} size='small' style={styles.icon} />
+              <View style={styles.icon}>
+                <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
+              </View>
             </View>
           ) : (
             <Text
