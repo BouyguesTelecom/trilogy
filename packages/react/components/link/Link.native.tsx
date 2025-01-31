@@ -1,11 +1,10 @@
-import { ComponentName } from '@/components/enumsComponentsName';
-import { Icon } from '@/components/icon';
-import { Spacer, SpacerSize } from '@/components/spacer';
-import { TextLevels } from '@/components/text';
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color';
-import * as React from 'react';
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { LinkPropsNative } from './LinkProps';
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import * as React from 'react'
+import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { LinkPropsNative } from './LinkProps'
 
 /**
  * Link Component
@@ -82,19 +81,19 @@ const Link = ({
     },
     iconView: {
       flexDirection: 'row',
-      alignItems: 'center', // Aligner les items au centre verticalement
+      alignItems: 'center',
     },
     icon: {
-      marginLeft: 4, // Ajouter une marge à gauche de l'icône pour l'espacement
+      marginLeft: 4,
     },
-  });
+  })
 
-  const linkTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified';
+  const linkTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
       ? children
-      : 'NotSpecified';
+      : 'NotSpecified'
 
   return (
     <View
