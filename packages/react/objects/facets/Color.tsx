@@ -117,51 +117,54 @@ export const getButtonColorStyle = (buttonVariant?: string): string => {
  * @param index {number} - Index of color ( 1 for BG )
  * @returns {string} - Color style value
  */
-export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues): string => {
+export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues | 'transparent'): string => {
   if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
     const colorsStyle = theme?.colors || colors
 
     const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
+    if (trilogyColor === 'transparent') return 'transparent'
+
     if (!trilogyColor || !colors[trilogyColor]) {
       return colorsStyle.default
     }
     return colorArray[0]
   } else {
+    if (trilogyColor === 'transparent') return 'transparent'
     return colors[trilogyColor][0] || colors['main'][0]
   }
 }
 
-function hexToRgb(hex: string): { r: number, g: number, b: number } {
-    if (hex.charAt(0) === '#') {
-        hex = hex.slice(1)
-    }
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  if (hex.charAt(0) === '#') {
+    hex = hex.slice(1)
+  }
 
-    if (hex.length !== 6) {
-        throw new Error('Wrong format (hexadecimal)')
-    }
-    // Conversion
-    const r = parseInt(hex.substring(0, 2), 16)
-    const g = parseInt(hex.substring(2, 4), 16)
-    const b = parseInt(hex.substring(4, 6), 16)
+  if (hex.length !== 6) {
+    throw new Error('Wrong format (hexadecimal)')
+  }
+  // Conversion
+  const r = parseInt(hex.substring(0, 2), 16)
+  const g = parseInt(hex.substring(2, 4), 16)
+  const b = parseInt(hex.substring(4, 6), 16)
 
-    return { r, g, b }
+  return { r, g, b }
 }
 
 function rgbToHex(r: number, g: number, b: number): string {
-    const toHex = (n: number) => {
-        const hex = n.toString(16)
-        return hex.length === 1 ? `0${hex}` : hex
-    }
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+  const toHex = (n: number) => {
+    const hex = n.toString(16)
+    return hex.length === 1 ? `0${hex}` : hex
+  }
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
 }
 
 export function grayscale(hex: string): string {
-    const { r, g, b } = hexToRgb(hex)
+  const { r, g, b } = hexToRgb(hex)
 
-    // Formule de luminosité relative
-    const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b)
+  // Formule de luminosité relative
+  const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b)
 
-    // Retourner la couleur en niveaux de gris
-    return rgbToHex(gray, gray, gray)
+  // Retourner la couleur en niveaux de gris
+  return rgbToHex(gray, gray, gray)
 }

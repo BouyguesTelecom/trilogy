@@ -17,17 +17,12 @@ import { StyleSheet, View } from 'react-native'
 const TabPanels = ({ children, ...others }: TabPanelsProps) => {
   const { inverted } = React.useContext(TabsContext)
 
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
-        tabPanels: {
-          paddingVertical: 8,
-          backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : undefined,
-        },
-      }),
-    [inverted],
-  )
-
+  const styles = StyleSheet.create({
+    tabPanels: {
+      paddingVertical: 8,
+      backgroundColor: getColorStyle(inverted ? TrilogyColor.MAIN : 'transparent'),
+    },
+  })
   return (
     <View style={styles.tabPanels} {...others}>
       {React.Children.map(children, (child, index) => {
