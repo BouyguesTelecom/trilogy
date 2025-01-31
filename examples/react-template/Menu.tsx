@@ -57,7 +57,6 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                   <Box
                     key={index}
                     onClick={() => {
-                      console.log(navigation)
                       if (navigation) {
                         navigation.navigate(pathName)
                       }

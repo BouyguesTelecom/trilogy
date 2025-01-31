@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
 
+import { IconColor } from '@/components/icon'
 import { IValidationRules } from '@/components/input/InputProps'
 import { TrilogyColor, getColorStyle } from '@/objects'
-import { IconColor } from '@/components/icon'
 
 interface IParams {
   validationRules?: IValidationRules
@@ -31,13 +31,13 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
     return '0%'
   }, [points, nbAllVerifies])
 
-  const colorGauge = React.useMemo(() => {
+  const colorGauge = () => {
     const calc = Number(((points / nbAllVerifies) * 100).toFixed(0))
     if (calc <= 50 && calc > 0) return getColorStyle(TrilogyColor.ERROR)
     if (calc <= 99 && calc > 50) return getColorStyle(TrilogyColor.WARNING)
     if (calc === 100) return getColorStyle(TrilogyColor.SUCCESS)
     return getColorStyle(TrilogyColor.NEUTRAL_FADE)
-  }, [points, nbAllVerifies])
+  }
 
   const LengthvalidationRulesText = useMemo(() => {
     switch (true) {
@@ -47,8 +47,8 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
         return `Minimum ${validationRules?.length?.min} caractères`
       case validationRules?.length?.max && !validationRules?.length?.min:
         return `Maximum ${validationRules?.length?.max} caractères`
-        default:
-          return ''
+      default:
+        return ''
     }
   }, [validationRules?.length?.min, validationRules?.length?.max])
 
