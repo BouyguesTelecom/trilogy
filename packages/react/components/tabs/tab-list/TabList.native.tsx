@@ -18,17 +18,13 @@ import { ScrollView, StyleSheet } from 'react-native'
 const TabList = ({ children, ...others }: TabListProps) => {
   const { inverted } = React.useContext(TabsContext)
 
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
-        tabList: {
-          flexDirection: 'row',
-          overflow: 'visible',
-          backgroundColor: inverted ? getColorStyle(TrilogyColor.MAIN) : undefined,
-        },
-      }),
-    [inverted],
-  )
+  const styles = StyleSheet.create({
+    tabList: {
+      flexDirection: 'row',
+      overflow: 'visible',
+      backgroundColor: getColorStyle(inverted ? TrilogyColor.MAIN : 'transparent'),
+    },
+  })
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabList} {...others}>
