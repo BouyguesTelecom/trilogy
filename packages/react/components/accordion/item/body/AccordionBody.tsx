@@ -1,7 +1,8 @@
-import { hashClass } from '@/helpers'
+import { AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
+import { useAccordionBody } from '@/components/accordion/item/body/hooks/useAccordionBoy'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { AccordionBodyProps } from './AccordionBodyProps'
+import React from 'react'
 
 /**
  * Accordion Body Component
@@ -11,15 +12,9 @@ import { AccordionBodyProps } from './AccordionBodyProps'
  * @param dataId {string} data attribute
  */
 const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProps): React.JSX.Element => {
+  const { onClick } = useAccordionBody()
   return (
-    <div
-      id={id}
-      className={hashClass(clsx('accordion-body', className))}
-      onClick={(e) => {
-        e.stopPropagation()
-      }}
-      {...others}
-    >
+    <div id={id} className={hashClass(clsx('accordion-body', className))} onClick={onClick} {...others}>
       {children}
     </div>
   )
