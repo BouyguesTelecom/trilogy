@@ -39,98 +39,84 @@ export const useAutocomplete = <T extends string | Item<unknown> = string>({
     const [isAutocompleteMenuVisible, setIsAutocompleteMenuVisible] = React.useState<boolean>(displayMenu || false)
     const [search, setSearch] = React.useState<T[]>([])
 
-    const onTextChanged = React.useCallback(
-      async (e: InputChangeEventWeb) => {
-        setIsAutocompleteMenuVisible(true)
+    const onTextChanged = async (e: InputChangeEventWeb) => {
+      setIsAutocompleteMenuVisible(true)
 
-        if (onChange) {
-          onChange({
-            inputName: name || '',
-            inputValue: e.inputValue,
-            inputSelectionStart: null,
-            target: e.target,
-          })
-        }
+      if (onChange) {
+        onChange({
+          inputName: name || '',
+          inputValue: e.inputValue,
+          inputSelectionStart: null,
+          target: e.target,
+        })
+      }
 
-        // Check if the input value is a regular expression or a string
-        if (e.inputValue.startsWith('/') && e.inputValue.endsWith('/')) {
-          try {
-            const pattern = e.inputValue.substring(1, e.inputValue.lastIndexOf('/'))
-            setInputValue(new RegExp(pattern, 'i').source)
-          } catch (error) {
-            // If the regular expression is invalid, keep the input value as a string
-            setInputValue(e.inputValue)
-          }
-        } else {
+      // Check if the input value is a regular expression or a string
+      if (e.inputValue.startsWith('/') && e.inputValue.endsWith('/')) {
+        try {
+          const pattern = e.inputValue.substring(1, e.inputValue.lastIndexOf('/'))
+          setInputValue(new RegExp(pattern, 'i').source)
+        } catch (error) {
+          // If the regular expression is invalid, keep the input value as a string
           setInputValue(e.inputValue)
         }
+      } else {
+        setInputValue(e.inputValue)
+      }
 
-        if (getSuggestions) {
-          const data = await getSuggestions(e.inputValue)
-          setSearch(data)
-        } else if (matching && data) {
-          setSearch(matching(data, e.inputValue))
-        }
-      },
-      [onChange, name, getSuggestions, matching],
-    )
+      if (getSuggestions) {
+        const data = await getSuggestions(e.inputValue)
+        setSearch(data)
+      } else if (matching && data) {
+        setSearch(matching(data, e.inputValue))
+      }
+    }
 
     const onInputChange = debounceSuggestionsTimeout
       ? debounce(onTextChanged, debounceSuggestionsTimeout)
       : onTextChanged
 
-    const suggestionSelected = React.useCallback(
-      (value: T, data: T[], search: T[]) => {
-        setIsAutocompleteMenuVisible(false)
-        setInputValue(getLabel(value))
-        setItemSelected(value)
-        if ((data || search) && onItemSelected) {
+    const suggestionSelected = (value: T, data: T[], search: T[]) => {
+      setIsAutocompleteMenuVisible(false)
+      setInputValue(getLabel(value))
+      setItemSelected(value)
+      if (data || search) {
+        if (onItemSelected) {
           onItemSelected({
             value: value,
             index: value ? (data.length ? data : search).indexOf(value) : -1,
           })
         }
-      },
-      [onItemSelected],
-    )
+      }
+    }
 
-    const handleKeyPress = React.useCallback(
-      (e: InputKeyboardEvent) => {
-        switch (e.inputKeyCode) {
-          case 38:
-            if (activeItem === 0) return
-            setActiveItem(activeItem - 1)
-            break
-          case 40:
-            if (activeItem === search.length - 1) return
-            setActiveItem(activeItem + 1)
-            break
-          case 13:
-            if (search[activeItem] != null) {
-              suggestionSelected(search[activeItem], data, search)
-            }
-            break
-          default:
-        }
-      },
-      [suggestionSelected, search, activeItem],
-    )
+    const handleKeyPress = (e: InputKeyboardEvent) => {
+      switch (e.inputKeyCode) {
+        case 38:
+          if (activeItem === 0) return
+          setActiveItem(activeItem - 1)
+          break
+        case 40:
+          if (activeItem === search.length - 1) return
+          setActiveItem(activeItem + 1)
+          break
+        case 13:
+          if (search[activeItem] != null) {
+            suggestionSelected(search[activeItem], data, search)
+          }
+          break
+        default:
+      }
+    }
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement, Element>) => {
+      setIsAutocompleteMenuVisible(true)
+      if (onFocus) onFocus(event)
+    }
 
-    const handleFocus = React.useCallback(
-      (event: React.FocusEvent<HTMLInputElement, Element>) => {
-        setIsAutocompleteMenuVisible(true)
-        if (onFocus) onFocus(event)
-      },
-      [onFocus],
-    )
-
-    const handleBlur = React.useCallback(
-      (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
-        if (onBlur) onBlur(e)
-      },
-      [onBlur],
-    )
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+      setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
+      if (onBlur) onBlur(e)
+    }
 
     const handleChange = React.useCallback(
       (event: InputChangeEventWeb) => {
@@ -145,13 +131,19 @@ export const useAutocomplete = <T extends string | Item<unknown> = string>({
 
     React.useEffect(() => {
       setActiveItem(0)
-      if (data?.length && matching) setSearch(matching(data, _inputValue))
-      if (itemSelected && getLabel(itemSelected) !== _inputValue) setItemSelected(null)
-    }, [_inputValue, matching, data])
+      if (data?.length) {
+        if (matching) {
+          setSearch(matching(data, _inputValue))
+        }
+      }
+      if (itemSelected && getLabel(itemSelected) !== _inputValue) {
+        setItemSelected(null)
+      }
+    }, [_inputValue])
 
     React.useEffect(() => {
       setSearch(matching(data, _inputValue))
-    }, [data, _inputValue])
+    }, [data])
 
     return {
       handleChange,

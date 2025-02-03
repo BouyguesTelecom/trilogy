@@ -4,6 +4,7 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
+import { useAutocompleteItem } from './hooks/useAutocompleteItem'
 
 /**
  * AutoCompleteItem Component
@@ -20,12 +21,16 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
   active,
   id,
 }: AutoCompleteItemProps<T>): JSX.Element => {
+  const { isActive, onMouseOut, onMouseOver } = useAutocompleteItem()
+
   return (
     <div
       id={id}
       role='listitem'
       data-testid={testId}
-      className={hashClass(clsx('autocomplete-item', active && is('active')))}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      className={hashClass(clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
       onClick={suggestionSelected ? () => suggestionSelected(item) : undefined}
     >
       {children}
