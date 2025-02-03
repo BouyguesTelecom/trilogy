@@ -2,13 +2,13 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { Icon, IconName, IconSize } from '@/components/icon'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
 import { IValidationRules } from '@/components/input/InputProps'
-import { hashClass } from '@/helpers'
-import { useGauge } from './hook/useGauge'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
-  inputValue: string
+  inputValue?: string
 }
 
 interface DataVerifyProps {
