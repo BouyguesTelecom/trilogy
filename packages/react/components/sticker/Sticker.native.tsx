@@ -1,10 +1,10 @@
 import * as React from 'react'
-import {Platform, StyleSheet, View} from 'react-native'
-import {StickerProps} from './StickerProps'
-import {getColorStyle, getVariantStyle, TrilogyColor} from '@/objects'
-import {ComponentName} from '@/components/enumsComponentsName'
-import {Text} from '@/components/text'
-import {Icon, IconSize} from "@/components/icon";
+import { Platform, StyleSheet, View } from 'react-native'
+import { StickerProps } from './StickerProps'
+import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text } from '@/components/text'
+import { Icon, IconSize } from '@/components/icon'
 
 /**
  * Sticker component
@@ -16,7 +16,15 @@ import {Icon, IconSize} from "@/components/icon";
  * @param iconName {IconName} Icon
  * @param others
  */
-const Sticker = ({ variant, small, outlined, label, iconName, ...others }: StickerProps): JSX.Element => {
+const Sticker = ({
+  variant,
+  small,
+  outlined,
+  label,
+  iconName,
+  accessibilityLabel,
+  ...others
+}: StickerProps): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
@@ -38,7 +46,7 @@ const Sticker = ({ variant, small, outlined, label, iconName, ...others }: Stick
       fontSize: small ? 12 : 16,
       top: 0,
       alignItems: 'center',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     text: {
       lineHeight: (!small && 20) || 15,
@@ -50,13 +58,15 @@ const Sticker = ({ variant, small, outlined, label, iconName, ...others }: Stick
       fontSize: (!small && 16) || 12,
       transform: Platform.OS === 'ios' ? [{ skewX: '0deg' }] : [],
       marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
-      marginTop: 1
+      marginTop: 1,
     },
   })
 
   return (
-    <View style={styles.sticker} {...others}>
-      {iconName && <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
+    <View style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
+      {iconName && (
+        <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
+      )}
       {label && <Text style={styles.text}>{label}</Text>}
     </View>
   )
