@@ -1,50 +1,40 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { PopoverProps } from "./PopoverProps";
-import { Popover, PopoverDirection } from ".";
-import { Button } from "../button";
+import * as React from 'react'
+import { Meta, Story } from '@storybook/react'
+import { PopoverProps } from './PopoverProps'
+import { Popover, PopoverDirection } from '.'
+import { Button } from '../button'
 
 export default {
-  title: "Components/Popover",
+  title: 'Components/Popover',
   component: Popover,
-} as Meta;
+} as Meta
 
-export const Base: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
+export const Base: Story<PopoverProps> = (args) => <Popover {...args} />
 Base.args = {
-  content: "Voici une simple popover",
-};
+  children: 'Voici une simple popover',
+  trigger: <Button variant={'PRIMARY'}>Simple Popover</Button>,
+}
 
-export const PopoverActive: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
+export const PopoverActive: Story<PopoverProps> = (args) => <Popover {...args} />
 PopoverActive.args = {
   active: true,
-  content: "Popover active",
-};
+  children: 'Popover active',
+  trigger: <Button variant={'PRIMARY'}>Simple Popover</Button>,
+}
 
 export const PopoverDirections: Story<PopoverProps> = (args) => (
   <>
-    <Popover {...args}>
-      <Button variant={"PRIMARY"}>Bottom</Button>
+    <Popover {...args} trigger={<Button variant={'PRIMARY'}>Bottom</Button>} />
+    <Popover trigger={<Button variant={'PRIMARY'}>top</Button>}>En haut</Popover>
+    <Popover direction={PopoverDirection.RIGHT} trigger={<Button variant={'PRIMARY'}>Right</Button>}>
+      A droite
     </Popover>
-    <Popover content="En haut">
-      <Button variant={"PRIMARY"}>top</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.RIGHT} content="A droite">
-      <Button variant={"PRIMARY"}>Right</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.LEFT} content="A gauche">
-      <Button variant={"PRIMARY"}>Left</Button>
+    <Popover direction={PopoverDirection.LEFT} trigger={<Button variant={'PRIMARY'}>Left</Button>}>
+      A gauche
     </Popover>
   </>
-);
+)
 PopoverDirections.args = {
   direction: PopoverDirection.BOTTOM,
-  content: "Bottom popover",
-};
+  children: 'Bottom popover',
+}
