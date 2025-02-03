@@ -37,35 +37,29 @@ const RadioTile = ({
   readonly,
   ...others
 }: RadioTileProps): JSX.Element => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        container: {
-          flexDirection: horizontal ? 'row' : 'column',
-          width: horizontal ? '100%' : undefined,
-          borderWidth: checked ? 2 : 1,
-          alignItems: 'center',
-          gap: SpacerSize.TWO,
-          borderRadius: 6,
-          padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
-          maxWidth: horizontal ? undefined : '50%',
-          backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
-          borderColor: getColorStyle(
-            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
-          ),
-        },
-        icon: {
-          width: 'auto',
-        },
-        content: {
-          width: 'auto',
-          gap: SpacerSize.ONE,
-          maxWidth: horizontal ? '80%' : undefined,
-        },
-      }),
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: horizontal ? 'row' : 'column',
+      width: horizontal ? '100%' : undefined,
+      borderWidth: checked ? 2 : 1,
+      alignItems: 'center',
+      gap: SpacerSize.TWO,
+      borderRadius: 6,
+      padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
+      maxWidth: horizontal ? undefined : '50%',
+      backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
+      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL),
+    },
+    icon: {
+      width: 'auto',
+    },
+    content: {
+      width: 'auto',
+      gap: SpacerSize.ONE,
+      maxWidth: horizontal ? '80%' : undefined,
+    },
+  })
 
-    [horizontal, checked, disabled],
-  )
   const typoTitle = useMemo(() => {
     const typos: string[] = [TypographyBold.TEXT_WEIGHT_SEMIBOLD]
     if (!horizontal) typos.push(TypographyAlign.TEXT_CENTERED)
@@ -121,38 +115,32 @@ const RadioTile = ({
 }
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        input: {
-          marginLeft: 'auto',
-          width: 18,
-          height: 18,
-          borderWidth: 1,
-          borderRadius: 18,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderColor: getColorStyle(
-            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
-          ),
-        },
-        inputRadio: {
-          width: 12,
-          height: 12,
-          borderRadius: 12,
-          backgroundColor: getColorStyle(
-            disabled && checked
-              ? TrilogyColor.DISABLED
-              : disabled && !checked
-              ? TrilogyColor.DISABLED_FADE
-              : checked
-              ? TrilogyColor.MAIN
-              : TrilogyColor.BACKGROUND,
-          ),
-        },
-      }),
-    [checked, disabled],
-  )
+  const styles = StyleSheet.create({
+    input: {
+      marginLeft: 'auto',
+      width: 18,
+      height: 18,
+      borderWidth: 1,
+      borderRadius: 18,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL),
+    },
+    inputRadio: {
+      width: 12,
+      height: 12,
+      borderRadius: 12,
+      backgroundColor: getColorStyle(
+        disabled && checked
+          ? TrilogyColor.DISABLED
+          : disabled && !checked
+          ? TrilogyColor.DISABLED_FADE
+          : checked
+          ? TrilogyColor.MAIN
+          : TrilogyColor.BACKGROUND,
+      ),
+    },
+  })
   return (
     <View style={[styles.input]}>
       <View style={[styles.inputRadio]} />
