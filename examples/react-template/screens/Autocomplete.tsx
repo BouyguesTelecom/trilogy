@@ -44,7 +44,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
     <>
       <Section>
         <Title level={TitleLevels.THREE}>Autocomplete With Debounce Suggests</Title>
-
         <AutoComplete
           getSuggestions={async (search) => {
             const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)

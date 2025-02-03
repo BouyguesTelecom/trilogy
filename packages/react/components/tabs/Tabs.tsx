@@ -1,9 +1,9 @@
+import { useTabs } from '@/components/tabs/hooks/useTabs'
 import { TabsProps } from '@/components/tabs/TabsProps'
-import { TabsContext } from '@/components/tabs/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 /**
  * Tabs Component
@@ -16,28 +16,15 @@ import React, { useEffect, useState } from 'react'
  * @param id
  */
 const Tabs = ({ children, className, id, activeIndex, fullwidth, inverted }: TabsProps) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
-  const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
-
-  const classes = hashClass(clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), className))
-
-  useEffect(() => {
-    activeIndex !== undefined && setCurrentIndex(activeIndex)
-  }, [activeIndex])
+  const { ContextProvider, isInverted } = useTabs({ activeIndex, inverted })
+  const classes = hashClass(clsx('tabs', fullwidth && is('fullwidth'), isInverted && is('inverted'), className))
 
   return (
-    <TabsContext.Provider
-      value={{
-        activeIndex: currentIndex,
-        inverted: isInverted,
-        setInverted: setIsInverted,
-        setActiveIndex: setCurrentIndex,
-      }}
-    >
+    <ContextProvider>
       <div id={id} className={classes} data-tabs-context=''>
         {children}
       </div>
-    </TabsContext.Provider>
+    </ContextProvider>
   )
 }
 

@@ -114,36 +114,38 @@ const Box = ({
 
   if (onClick) {
     return (
-      <TouchableOpacity
-        onPress={(e?: unknown) => onClick?.(e)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout
-          setBoxHeight(height)
-        }}
-        testID={boxTestId}
-      >
-        {backgroundSrc ? (
-          <ImageBackground
-            imageStyle={{ borderRadius: boxRadius }}
-            style={styles.boxImage}
-            source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-          >
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
-            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              {children}
-            </StatesContext.Provider>
-          </ImageBackground>
-        ) : (
-          <>
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
-            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              {children}
-            </StatesContext.Provider>
-          </>
-        )}
-      </TouchableOpacity>
+      <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+        <TouchableOpacity
+          onPress={(e?: unknown) => onClick?.(e)}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout
+            setBoxHeight(height)
+          }}
+          testID={boxTestId}
+        >
+          {backgroundSrc ? (
+            <ImageBackground
+              imageStyle={{ borderRadius: boxRadius }}
+              style={styles.boxImage}
+              source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+            >
+              {Boolean(highlighted) && <View style={styles.highlighted} />}
+              <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                {children}
+              </StatesContext.Provider>
+            </ImageBackground>
+          ) : (
+            <>
+              {Boolean(highlighted) && <View style={styles.highlighted} />}
+              <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                {children}
+              </StatesContext.Provider>
+            </>
+          )}
+        </TouchableOpacity>
+      </BoxContext.Provider>
     )
   }
 

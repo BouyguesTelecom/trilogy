@@ -1,9 +1,9 @@
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
+import { ImageProps } from '@/components/image/ImageProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ImageProps } from './ImageProps'
+import React from 'react'
 
 /**
  * Image Component
@@ -40,15 +40,7 @@ const Image = ({
   }
 
   return (
-    <figure
-      id={id}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
-      className={classes}
-      {...others}
-    >
+    <figure id={id} onClick={onClick} className={classes} {...others}>
       <img
         style={styles.image}
         className={hashClass(clsx(radius && has(`border-radius-${radius}`), circled ? is('circled') : ''))}

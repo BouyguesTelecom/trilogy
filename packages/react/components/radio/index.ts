@@ -1,6 +1,6 @@
-import { RadioList } from './list'
-import Radio from './Radio'
-import RadioTiles from './tiles/RadioTiles'
-import RadioTile from './tiles//tile/RadioTile'
+import { RadioList } from '@/components/radio/list'
+import Radio from '@/components/radio/Radio'
+import RadioTile from '@/components/radio/tiles//tile/RadioTile'
+import RadioTiles from '@/components/radio/tiles/RadioTiles'
 
-export { Radio, RadioList, RadioTiles, RadioTile }
+export { Radio, RadioList, RadioTile, RadioTiles }
