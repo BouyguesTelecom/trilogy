@@ -38,16 +38,18 @@ const Radio = ({
         name={name}
         value={value}
         checked={checked}
-        onChange={(e) => {
-          if (onChange && !disabled && !readonly) {
-            onChange({
-              radioId: e.target.id,
-              radioValue: e.target.value,
-              radioName: e.target.name,
-              radioChecked: e.target.checked,
-            })
-          }
-        }}
+        onChange={
+          onChange && !disabled && !readonly
+            ? (e) => {
+                onChange({
+                  radioId: e.target.id,
+                  radioValue: e.target.value,
+                  radioName: e.target.name,
+                  radioChecked: e.target.checked,
+                })
+              }
+            : undefined
+        }
         {...others}
       />
       <label htmlFor={id} className={hashClass(clsx('radio-label'))}>

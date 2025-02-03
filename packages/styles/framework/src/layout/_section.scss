@@ -5,6 +5,11 @@
     padding: $spacing-8 $spacing-5;
   }
 
+  &.has-background {
+    background-size: cover;
+    background-position: center;
+  }
+
   &.has-overlap > .container {
     margin-top: -$spacing-6 - $spacing-4;
 

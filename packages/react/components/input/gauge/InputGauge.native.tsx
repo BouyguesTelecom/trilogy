@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { DimensionValue, StyleSheet, View } from 'react-native'
-import { TrilogyColor, getColorStyle } from '@/objects'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text } from '@/components/text'
 import { IValidationRules } from '@/components/input/InputProps'
+import { Text } from '@/components/text'
+import { TrilogyColor, getColorStyle } from '@/objects'
+import { DimensionValue, StyleSheet, View } from 'react-native'
 import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {
@@ -34,7 +34,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
   return (
     <View>
       <View style={[styles.containerGauge, { backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE) }]}>
-        <View style={[styles.gauge, { width: widthGauge as DimensionValue, backgroundColor: colorGauge }]} />
+        <View style={[styles.gauge, { width: widthGauge as DimensionValue, backgroundColor: colorGauge() }]} />
       </View>
       <View style={styles.verifies}>
         <View>

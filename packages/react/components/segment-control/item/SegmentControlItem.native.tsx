@@ -1,8 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { SegmentControlItemProps } from './SegmentControlItemProps'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * SegmentControlItem Item Component
@@ -31,7 +31,7 @@ const SegmentControlItem = ({
       backgroundColor:
         (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
         (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
-        getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        getColorStyle(TrilogyColor.BACKGROUND),
     },
     text: {
       paddingHorizontal: 16,

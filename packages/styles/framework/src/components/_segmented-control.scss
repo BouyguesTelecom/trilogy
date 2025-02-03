@@ -1,11 +1,13 @@
 .segmented-control {
   border-radius: 6px;
   padding: $spacing-1;
-  background-color: getColor('neutral-fade');
+  background-color: getColor('background');
   display: flex;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
+  border: 1px solid getColor('neutral');
+
 
   &.justified-start {
     margin-left: 0;
@@ -31,7 +33,7 @@
     border: 2px solid transparent;
     height: 42px;
     color: getColor('font');
-    background-color: getColor('neutral-fade');
+    background-color: getColor('background');
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -53,6 +55,10 @@
     &.is-active {
       background-color: getColor('main');
       color: invertColor('main');
+    }
+
+    &:disabled{
+      border-color: transparent !important;
     }
   }
 }

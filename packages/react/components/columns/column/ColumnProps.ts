@@ -1,6 +1,6 @@
-import { AlignableProps } from '../../../objects'
-import { ColumnsSize } from '../../../components/columns/ColumnsTypes'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { ColumnsSize } from '@/components/columns/ColumnsTypes'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Columns Item Interface

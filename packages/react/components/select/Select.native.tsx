@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
-import { Modal } from '@/components/modal'
+import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { SelectProps, SelectedValue } from './SelectProps'
@@ -52,7 +52,6 @@ const Select = ({
   }, [selected])
 
   const handleOpenCloseModal = useCallback(() => {
-    console.log('click')
     !disabled && setDisplay((prev) => !prev)
   }, [disabled])
 
@@ -164,7 +163,9 @@ const Select = ({
         </TouchableOpacity>
       }
     >
-      <View style={{ paddingBottom: 20 }}>{options}</View>
+      <ModalBody>
+        <View style={{ paddingBottom: 20 }}>{options}</View>
+      </ModalBody>
     </Modal>
   )
 }

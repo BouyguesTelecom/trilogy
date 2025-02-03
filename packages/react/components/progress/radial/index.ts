@@ -1,3 +1,3 @@
-import ProgressRadial from './ProgressRadial'
+import ProgressRadial from '@/components/progress/radial/ProgressRadial'
 
 export default ProgressRadial
