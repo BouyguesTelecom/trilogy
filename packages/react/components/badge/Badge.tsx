@@ -1,10 +1,12 @@
+import { BadgeProps } from '@/components/badge/BadgeProps'
 import { Icon, IconColor, IconName } from '@/components/icon'
-import { hashClass } from '@/helpers'
-import { getStatusClassName, getVariantClassName, StatusState, TrilogyColor } from '@/objects'
-import { has, is } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TrilogyColor } from '@/objects/facets/Color'
+import { getStatusClassName, StatusState } from '@/objects/facets/Status'
+import { getVariantClassName } from '@/objects/facets/Variant'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BadgeProps } from './BadgeProps'
+import React from 'react'
 
 /**
  * Badge Component
@@ -77,15 +79,7 @@ const Badge = ({
         {...others}
       />
     ) : (
-      <span
-        id={id}
-        className={classes}
-        onClick={(e) => {
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-      >
+      <span id={id} className={classes} onClick={onClick} {...others}>
         {label}
       </span>
     )
