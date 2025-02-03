@@ -1,10 +1,10 @@
 import { IconSize } from '@/components/icon'
 import Icon from '@/components/icon/Icon'
-import { hashClass } from '@/helpers'
+import { StepProps } from '@/components/stepper/step/StepProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { StepProps } from './StepProps'
 
 /**
  * Stepper Step Component
