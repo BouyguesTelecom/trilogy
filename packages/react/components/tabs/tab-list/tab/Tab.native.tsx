@@ -34,26 +34,26 @@ const Tab = ({ active, onClick, to, href, iconName, label, disabled, ...others }
     [disabled, onClick, index, setActiveIndex, to, href],
   )
 
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
-        tab: {
-          paddingVertical: 4,
-          paddingHorizontal: 12,
-          borderBottomWidth: 2,
-          borderBottomColor: isActive
-            ? getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN)
-            : 'transparent',
-        },
-        text: {
-          textAlign: 'center',
-          color: getColorStyle(
-            disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN,
-          ),
-        },
-      }),
-    [isActive, disabled, inverted],
-  )
+  const styles = StyleSheet.create({
+    tab: {
+      paddingVertical: 4,
+      paddingHorizontal: 12,
+      borderBottomWidth: 2,
+      borderBottomColor: getColorStyle(
+        isActive && disabled
+          ? TrilogyColor.DISABLED
+          : isActive && inverted
+          ? TrilogyColor.BACKGROUND
+          : isActive
+          ? TrilogyColor.MAIN
+          : 'transparent',
+      ),
+    },
+    text: {
+      textAlign: 'center',
+      color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
+    },
+  })
 
   React.useEffect(() => {
     if (active) setActiveIndex(index)

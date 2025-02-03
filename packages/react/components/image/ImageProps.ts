@@ -1,6 +1,7 @@
-import { AlignableProps, Clickable } from '../../objects'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { DimensionValue } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
 
 export enum RadiusValues {
   SMALL = 'small',

@@ -1,14 +1,13 @@
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
+import { useAlert, useToasterAlertProvider } from '@/components/alert/hooks/useAlert'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
-import ToasterContext from './context'
+import React, { CSSProperties } from 'react'
 
 /**
  * Toaster Component
@@ -17,6 +16,8 @@ import ToasterContext from './context'
 const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...others }) => {
   const { title, position, description, iconName, status, closable, onClick, className, id, offset, children } = props
   const displayed = Boolean(title)
+  const { handleClick } = useAlert({ onClick })
+  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className))
 
   const positionTop: CSSProperties = {
     top: offset || 0,
@@ -27,8 +28,6 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
     bottom: offset || 0,
     position: 'fixed',
   }
-
-  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className))
 
   if (!displayed) {
     return null
@@ -43,11 +42,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
           (position === ToasterAlertPosition.BOTTOM && positionBottom) ||
           positionTop
         }
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
+        onClick={handleClick}
         className={classes}
         {...others}
       >
@@ -63,11 +58,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
         (position === ToasterAlertPosition.BOTTOM && positionBottom) ||
         positionTop
       }
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={handleClick}
       className={classes}
       {...others}
     >
@@ -105,6 +96,8 @@ const Alert = ({
   display = true,
   ...others
 }: AlertProps): JSX.Element => {
+  const { handleClick } = useAlert({ onClick })
+
   const classes = hashClass(
     clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
   )
@@ -117,16 +110,7 @@ const Alert = ({
 
   if (display) {
     return (
-      <div
-        id={id}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        className={classes}
-        {...others}
-      >
+      <div id={id} onClick={handleClick} className={classes} {...others}>
         <Icon name={iconAlert} />
         <div className={hashClass(clsx('body'))}>
           {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
@@ -150,24 +134,10 @@ const Alert = ({
  * @param others
  */
 export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
-  const [toasterState, setToasterState] = useState<ToasterStatusProps | null>(null)
-  const [duration, setDuration] = useState(5000)
-  const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const showToast = (params: ToasterStatusProps) => {
-    setToasterState(params)
-    params.duration && params.duration > 0 && setDuration(params.duration)
-    timeRef.current && clearTimeout(timeRef.current)
-  }
-
-  useEffect(() => {
-    timeRef.current = setTimeout(() => {
-      setToasterState(null)
-    }, duration)
-  }, [toasterState, toasterState?.title])
+  const { toasterState, ToasterProvider } = useToasterAlertProvider()
 
   return (
-    <ToasterContext.Provider value={{ show: showToast, hide: () => null }}>
+    <ToasterProvider>
       {children}
       <ToasterAlert
         props={{
@@ -183,7 +153,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
           offset: toasterState?.offset,
         }}
       />
-    </ToasterContext.Provider>
+    </ToasterProvider>
   )
 }
 

@@ -1,11 +1,11 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text, TextLevels } from '@/components/text'
+import { View } from '@/components/view'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { SegmentControlProps } from './SegmentControlProps'
-import { View } from '@/components/view'
-import { Text, TextLevels } from '@/components/text'
 import SegmentedControlItem from './item'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { SegmentControlProps } from './SegmentControlProps'
 
 /**
  * SegmentControl Component
@@ -41,10 +41,12 @@ const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentCo
     segmentedControl: {
       flexDirection: 'row',
       width: '100%',
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 4,
       padding: 4,
       paddingRight: -4,
+      borderWidth: 1,
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL),
     },
   })
 

@@ -53,7 +53,7 @@ $button-border-width: 2px !default;
     }
   }
 
-  &.is-ghost:hover {
+  &.is-ghost:hover:not([disabled]) {
     background-color: var(--color-main-fade);
     filter: none !important;
   }
@@ -62,7 +62,7 @@ $button-border-width: 2px !default;
   &[aria-disabled=true] {
     border-color: transparent !important;
     background-color: getColorValue('main-fade') !important;
-    color: getColorValue('disabled-fade') !important
+    color: getColorValue('disabled') !important
   }
 
   &.is-loading {

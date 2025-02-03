@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from '../../../../components/icon'
-import { RadioProps } from '../../../../components/radio/RadioProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { RadioProps } from '@/components/radio/RadioProps'
 
 /**
  * Columns Item Interface

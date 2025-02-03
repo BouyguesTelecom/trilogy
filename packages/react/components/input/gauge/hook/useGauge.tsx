@@ -31,13 +31,13 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
       return '0%'
     }, [points, nbAllVerifies])
 
-    const colorGauge = React.useMemo(() => {
+    const colorGauge = () => {
       const calc = Number(((points / nbAllVerifies) * 100).toFixed(0))
       if (calc <= 50 && calc > 0) return getColorStyle(TrilogyColor.ERROR)
       if (calc <= 99 && calc > 50) return getColorStyle(TrilogyColor.WARNING)
       if (calc === 100) return getColorStyle(TrilogyColor.SUCCESS)
       return getColorStyle(TrilogyColor.NEUTRAL_FADE)
-    }, [points, nbAllVerifies])
+    }
 
     React.useEffect(() => {
       if (!inputValue) return
@@ -75,7 +75,7 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
   } catch {
     return {
       LengthvalidationRulesText: LengthvalidationRulesText(validationRules),
-      colorGauge: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      colorGauge: () => getColorStyle(TrilogyColor.NEUTRAL_FADE),
       widthGauge: '0%',
       isLengthVerify: initStateVerifies,
       isLowerercaseVerify: initStateVerifies,

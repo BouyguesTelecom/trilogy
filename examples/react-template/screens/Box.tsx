@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { IconSize, Spacer, SpacerSize, TextLevels, TypographyBold, View } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -6,8 +6,8 @@ import {
   BoxHeader,
   Button,
   ButtonVariant,
-  Columns,
   Column,
+  Columns,
   Divider,
   Icon,
   IconName,
@@ -19,12 +19,58 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
+import * as React from 'react'
+
+const TestComp = ({ style }) => {
+  return (
+    <Column>
+      <Text>Test column in other component</Text>
+    </Column>
+  )
+}
 
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false)
+  const data = [1, 2, 3, 4, 5]
 
   return (
     <Section>
+      <Box fullheight {...{ style: { alignItems: 'center' } }}>
+        <BoxContent>
+          <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+            <Column narrow>
+              <View id='homeNotificationIcon'>
+                <Icon name='tri-eye' size={IconSize.SMALL} testId='homeNotificationIcon' />
+              </View>
+            </Column>
+            <Column>
+              <Text level={TextLevels.THREE} numberOfLines={2} typo={[TypographyBold.TEXT_WEIGHT_NORMAL]}>
+                Mon text
+              </Text>
+            </Column>
+            <Column narrow>
+              <View>
+                <Icon name={IconName.TIMES} size={IconSize.SMALL} />
+              </View>
+            </Column>
+          </Columns>
+        </BoxContent>
+      </Box>
+
+      <Box>
+        <BoxContent>
+          <Columns>
+            {data.map((item, index) => (
+              <Column>
+                <Text>Test column in other component</Text>
+              </Column>
+            ))}
+          </Columns>
+        </BoxContent>
+      </Box>
+
+      <Spacer size={SpacerSize.FOUR} />
+
       <Box>
         <BoxHeader>
           <Title level={TitleLevels.FIVE}>Box active</Title>
@@ -188,7 +234,7 @@ export const BoxScreen = (): JSX.Element => {
         </Column>
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={"NEUTRAL_FADE"}>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
