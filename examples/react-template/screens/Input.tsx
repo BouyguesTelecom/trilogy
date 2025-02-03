@@ -9,7 +9,7 @@ import {
   Section,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react/lib/components'
 import * as React from 'react'
 import { useEffect } from 'react'
 

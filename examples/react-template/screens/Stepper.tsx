@@ -1,15 +1,16 @@
-import * as React from 'react'
 import {
   Button,
   Divider,
   IconName,
   Section,
   Spacer,
-  Stepper,
+  SpacerSize,
   Step,
+  Stepper,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const StepperScreen = (): JSX.Element => {
   const [activeStep, setActiveStep] = React.useState<number>(1)
@@ -27,7 +28,7 @@ export const StepperScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Etapes</Title>
       <Divider />
       <Title level={TitleLevels.ONE}>Mon panier</Title>
-      <Spacer size={30}></Spacer>
+      <Spacer size={SpacerSize.SIX}></Spacer>
       <Stepper>
         <Step done={1 < activeStep} current={activeStep === 1} iconName={IconName.EYE} label='Recup' />
         <Step done={2 < activeStep} current={activeStep === 2} label='Compléments' />
@@ -42,7 +43,7 @@ export const StepperScreen = (): JSX.Element => {
         <Step done={4 < activeStep} current={activeStep === 4} label='Livraison' />
         <Step done={5 < activeStep} current={activeStep === 5} iconName={IconName.EYE} label='Confirm' />
       </Stepper>
-      <Spacer size={30}></Spacer>
+      <Spacer size={SpacerSize.SIX}></Spacer>
       <Button onClick={handleClickNext} variant={'PRIMARY'}>
         Next
       </Button>

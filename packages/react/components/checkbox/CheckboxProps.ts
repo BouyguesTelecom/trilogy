@@ -1,7 +1,7 @@
 import { Accessibility } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
-type CheckboxChangeEventHandler = (event: {
+export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
   checkboxName: string
   checkboxChecked: boolean

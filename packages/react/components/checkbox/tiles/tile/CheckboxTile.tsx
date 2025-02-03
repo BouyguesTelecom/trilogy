@@ -3,7 +3,6 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { useEffect, useState } from 'react'
 import shortid from 'shortid'
 import { CheckboxTileProps } from './CheckboxTileProps'
 
@@ -38,14 +37,6 @@ const CheckboxTile = ({
   horizontal,
   ...others
 }: CheckboxTileProps): JSX.Element => {
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
-
   return (
     <div className={hashClass(clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
       <input
@@ -55,8 +46,18 @@ const CheckboxTile = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        checked={checked}
+        onChange={
+          onChange && !disabled && !readonly
+            ? (e) =>
+                onChange({
+                  checkboxId: e.target.id,
+                  checkboxValue: e.target.value,
+                  checkboxName: e.target.name,
+                  checkboxChecked: e.target.checked,
+                })
+            : undefined
+        }
         {...others}
       />
       <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>

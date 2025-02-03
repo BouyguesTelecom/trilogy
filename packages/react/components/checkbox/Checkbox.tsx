@@ -1,7 +1,6 @@
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
+import React from 'react'
 import { CheckboxProps } from './CheckboxProps'
 
 /**
@@ -22,21 +21,13 @@ const Checkbox = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
   value,
   ...others
 }: CheckboxProps): JSX.Element => {
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
-
   return (
     <div className={hashClass(clsx('checkbox', className))}>
       <input
@@ -46,8 +37,18 @@ const Checkbox = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        checked={checked}
+        onChange={
+          onChange && !disabled && !readonly
+            ? (e) =>
+                onChange({
+                  checkboxId: e.target.id,
+                  checkboxValue: e.target.value,
+                  checkboxName: e.target.name,
+                  checkboxChecked: e.target.checked,
+                })
+            : undefined
+        }
         {...others}
       />
       <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
