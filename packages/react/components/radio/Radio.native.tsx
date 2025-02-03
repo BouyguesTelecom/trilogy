@@ -34,7 +34,7 @@ const Radio = ({
     radio: {
       alignItems: 'center',
       justifyContent: 'center',
-      borderColor: getColorStyle(TrilogyColor.FONT),
+      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT),
       borderWidth: 1,
       width: 18,
       height: 18,

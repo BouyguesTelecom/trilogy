@@ -1,15 +1,7 @@
-import * as React from 'react'
-import { ModalBodyProps } from './ModalBodyProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { View } from '@/components/view'
-
-const styles = {
-  position: 'sticky',
-  bottom: 0,
-  width: '100%',
-  textAlign: 'right',
-  padding: 16,
-}
+import * as React from 'react'
+import { Platform, ScrollView, TouchableOpacity } from 'react-native'
+import { ModalBodyProps } from './ModalBodyProps'
 
 /**
  * Modal Footer Component
@@ -18,9 +10,19 @@ const styles = {
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
   return (
-    <View {...others} style={styles}>
-      {children}
-    </View>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: Platform.OS === 'ios' ? 40 : 10 }}>
+      <TouchableOpacity
+        activeOpacity={1}
+        {...others}
+        style={{
+          bottom: 0,
+          width: '100%',
+          paddingHorizontal: 16,
+        }}
+      >
+        {children}
+      </TouchableOpacity>
+    </ScrollView>
   )
 }
 

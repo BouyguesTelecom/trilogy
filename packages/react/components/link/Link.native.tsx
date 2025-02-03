@@ -1,12 +1,10 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { TextLevels } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { LinkProps } from './LinkProps'
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TextLevels } from '@/components/text'
-import { Icon } from '@/components/icon'
-import { Spacer, SpacerSize } from '@/components/spacer'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { LinkPropsNative } from './LinkProps'
 
 /**
  * Link Component
@@ -21,16 +19,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param inverted {boolean} Inverted link
  */
 const Link = ({
-  children,
-  to,
-  onClick,
-  testId,
-  accessibilityLabel,
-  inline,
-  iconName,
-  inverted,
-  ...others
-}: LinkProps): JSX.Element => {
+                children,
+                to,
+                onClick,
+                testId,
+                accessibilityLabel,
+                inline,
+                iconName,
+                inverted,
+                ...others
+              }: LinkPropsNative): JSX.Element => {
   const linkLevels = (level: TextLevels) => {
     return (
       (level && level == TextLevels.ONE && 16) ||
@@ -83,12 +81,10 @@ const Link = ({
     },
     iconView: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-end',
+      alignItems: 'center',
     },
     icon: {
-      paddingLeft: 4,
-      paddingRight: 4,
+      marginLeft: 4,
     },
   })
 
@@ -96,8 +92,8 @@ const Link = ({
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
-    ? children
-    : 'NotSpecified'
+      ? children
+      : 'NotSpecified'
 
   return (
     <View
@@ -127,8 +123,9 @@ const Link = ({
               <Text accessibilityLabel={accessibilityLabel} style={[styles.link]} {...others}>
                 {children}
               </Text>
-              <Spacer size={SpacerSize.ONE} horizontal />
-              <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
+              <View style={styles.icon}>
+                <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
+              </View>
             </View>
           ) : (
             <Text

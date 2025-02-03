@@ -1,8 +1,9 @@
+import { StepperProps } from '@/components/stepper/StepperProps'
+import { useStepper } from '@/components/stepper/hooks/useStepper'
 import { Text } from '@/components/text'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { StepperProps } from './StepperProps'
+import React from 'react'
 
 /**
  * Stepper Component
@@ -13,30 +14,7 @@ import { StepperProps } from './StepperProps'
  */
 const Stepper = ({ className, id, children, ...others }: StepperProps) => {
   const classes = hashClass(clsx('stepper-wrapper', className))
-  const [currentStep, setCurrentStep] = React.useState<number>(1)
-
-  const nbChild = React.useMemo<number>(() => {
-    if (children && Array.isArray(children)) return children.length
-    if (children && !Array.isArray(children)) return 1
-    return 0
-  }, [children])
-
-  React.useEffect(() => {
-    if (children) {
-      if (Array.isArray(children)) {
-        let haveCurrentStep = false
-        children.map((child, index) => {
-          if (child?.props?.current) {
-            haveCurrentStep = true
-            setCurrentStep(index + 1)
-          }
-        })
-        if (!haveCurrentStep) setCurrentStep(1)
-      } else {
-        setCurrentStep(1)
-      }
-    }
-  }, [children])
+  const { currentStep, nbChild } = useStepper({ children })
 
   return (
     <div id={id} className={classes} {...others}>

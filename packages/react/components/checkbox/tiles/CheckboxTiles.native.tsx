@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { CheckboxTilesProps } from './CheckboxTilesProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from "@/objects"
+import { SpacerSize } from "@/components/spacer"
 
 const CheckboxTiles = ({
                          children,
@@ -14,6 +15,7 @@ const CheckboxTiles = ({
       container: {
         justifyContent: getAlignStyle(align),
         alignItems: verticalAlign && getAlignStyle(verticalAlign) || align && getAlignStyle(align) || 'stretch',
+        gap: SpacerSize.TWO,
       }
     })
 

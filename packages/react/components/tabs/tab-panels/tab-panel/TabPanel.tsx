@@ -1,4 +1,4 @@
-import { TabsContext } from '@/components/tabs/context'
+import { useTabPanel } from '@/components/tabs/tab-panels/tab-panel/hooks/useTabPanel'
 import { TabPanelProps } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -14,8 +14,7 @@ import React from 'react'
  */
 const TabPanel = ({ children, className, testId, ...others }: TabPanelProps) => {
   const { index, ...props } = others as any
-  const { activeIndex } = React.useContext(TabsContext)
-
+  const { activeIndex } = useTabPanel()
   const classes = hashClass(clsx('tab-panel', index === activeIndex && is('active'), className))
 
   return (
