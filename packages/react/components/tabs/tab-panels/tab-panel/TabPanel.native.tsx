@@ -16,16 +16,12 @@ const TabPanel = ({ children, testId, ...others }: TabPanelProps) => {
   const { activeIndex } = React.useContext(TabsContext)
   const opacity = React.useRef(new Animated.Value(0)).current
 
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
-        tabPanel: {
-          display: activeIndex !== index ? 'none' : 'flex',
-          opacity: opacity,
-        },
-      }),
-    [activeIndex, index, opacity],
-  )
+  const styles = StyleSheet.create({
+    tabPanel: {
+      display: activeIndex !== index ? 'none' : 'flex',
+      opacity: opacity,
+    },
+  })
 
   React.useEffect(() => {
     if (activeIndex === index) {

@@ -37,7 +37,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
       <div className={hashClass(clsx('security-gauge'))}>
         <div
           data-gauge
-          style={{ width: widthGauge, backgroundColor: colorGauge }}
+          style={{ width: widthGauge, backgroundColor: colorGauge() }}
           className={hashClass(clsx('gauge'))}
         />
       </div>
