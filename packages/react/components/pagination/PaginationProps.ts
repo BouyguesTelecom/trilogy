@@ -1,6 +1,7 @@
-import { Accessibility, Dev } from '@/objects'
-import { Pager } from './PaginationEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Pager } from '@/components/pagination/PaginationEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Pagination Interface
