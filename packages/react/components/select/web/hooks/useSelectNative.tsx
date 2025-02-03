@@ -1,4 +1,4 @@
-import { ParamEventSelectFocus, SelectChangeEventHandler, SelectedValue } from '@/components/Select/SelectProps'
+import { ParamEventSelectFocus, SelectChangeEventHandler, SelectedValue } from '@/components/select/SelectProps'
 import React from 'react'
 
 interface IParams {
