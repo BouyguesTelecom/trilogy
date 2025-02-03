@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Icon } from '@/components/icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { hashClass } from '@/helpers'
-import { TypographyColor } from '@/objects'
+import { TextareaProps } from '@/components/textarea/TextareaProps'
+import { useTextarea } from '@/components/textarea/hooks/useTextarea'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { TextareaProps } from './TextareaProps'
+import React from 'react'
 
 /**
  * Textarea Component
@@ -53,15 +54,9 @@ const Textarea = ({
   iconNameRight,
   ...others
 }: TextareaProps): JSX.Element => {
-  const [value, setValue] = useState(defaultValue || '')
-
-  useEffect(() => {
-    setValue(defaultValue || '')
-  }, [defaultValue])
-
+  const { handleChange, value } = useTextarea({ onChange, defaultValue })
   const wrapperClasses = hashClass(clsx('textarea-wrapper', className, status && is(status)))
   const classes = hashClass(clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')))
-
   const helpClasses = clsx('help', status && is(status))
   const counterClasses = hashClass(clsx('counter', maxLength))
 
@@ -90,15 +85,7 @@ const Textarea = ({
         {...others}
         className={classes}
         value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          if (onChange) {
-            onChange({
-              textareaName: e.target.name,
-              textareaValue: e.target.value,
-            })
-          }
-        }}
+        onChange={handleChange}
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
@@ -108,7 +95,7 @@ const Textarea = ({
       {iconNameLeft && <Icon name={iconNameLeft} size='small' />}
       {iconNameRight && <Icon name={iconNameRight} size='small' />}
       {help && <Text className={helpClasses}>{help}</Text>}
-      {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
+      {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
     </div>
   )
 }
