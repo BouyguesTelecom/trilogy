@@ -39,3 +39,26 @@ $fade-colors: (
   'disabled': 'disabled-fade',
   'neutral': 'neutral-fade',
 ) !default;
+
+@function getColor( $name ) {
+  @return var(--color-#{nth(map-get($colors,$name),2)});
+}
+
+@function getColorValue( $name ) {
+  @return #{nth(map-get($colors,$name),1)}
+}
+
+@function getColorBrandName( $name ) {
+  @return #{nth(map-get($colors,$name),2)}
+}
+
+
+
+@function invertColor ($colorName) {
+  @return var(--color-#{nth(map-get($colors,$colorName),3)})
+}
+
+@function fadeColor ($colorName) {
+  $name: map-get($fade-colors,$colorName);
+  @return getColor($name);
+}
