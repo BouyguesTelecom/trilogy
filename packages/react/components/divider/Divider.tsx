@@ -1,9 +1,9 @@
-import { hashClass } from '@/helpers'
+import { DividerProps } from '@/components/divider/DividerProps'
+import { Icon, IconSize } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { Icon, IconSize } from '../icon'
-import { DividerProps } from './DividerProps'
 
 /**
  * Divider Component

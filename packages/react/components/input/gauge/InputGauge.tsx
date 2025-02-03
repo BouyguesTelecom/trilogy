@@ -2,13 +2,13 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { Icon, IconName, IconSize } from '@/components/icon'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
 import { IValidationRules } from '@/components/input/InputProps'
-import { hashClass } from '@/helpers'
-import { useGauge } from './hook/useGauge'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
-  inputValue: string
+  inputValue?: string
 }
 
 interface DataVerifyProps {
@@ -37,7 +37,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
       <div className={hashClass(clsx('security-gauge'))}>
         <div
           data-gauge
-          style={{ width: widthGauge, backgroundColor: colorGauge }}
+          style={{ width: widthGauge, backgroundColor: colorGauge() }}
           className={hashClass(clsx('gauge'))}
         />
       </div>

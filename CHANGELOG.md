@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.5] - 2025-01-30
+- Fix Native Columns
+- Fix Scrollable Columns
+- Fix CheckboxTiles Native
+- Update Link interface
+- Fix List style
+- Fix Section background src
+- Fix font color inside Container
+- Fix AccordionBody Width Native
+
 ## [4.0.4] - 2025-01-14
 ### Fix
 - Add npmrc

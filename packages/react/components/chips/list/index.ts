@@ -1,3 +1,3 @@
-import ChipsList from "./ChipsList"
+import ChipsList from '@/components/chips/list/ChipsList'
 
 export default ChipsList

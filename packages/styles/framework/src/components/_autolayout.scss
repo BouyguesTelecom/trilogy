@@ -14,12 +14,6 @@ body:not(.is-tight) {
   .box:not(:last-child) {
     margin-bottom: 24px;
   }
-  *:has(+ .divider):not(:last-child) {
-    margin-bottom: 24px;
-  }
-  .divider:not(:last-child) {
-    margin-bottom: 24px;
-  }
   .table:not(:last-child) {
     margin-bottom: 24px;
   }
@@ -181,12 +175,6 @@ body:not(.is-tight) {
       margin-bottom: 16px;
     }
   .box:not(:last-child) {
-      margin-bottom: 16px;
-    }
-  *:has(+ .divider):not(:last-child) {
-      margin-bottom: 16px;
-    }
-  .divider:not(:last-child) {
       margin-bottom: 16px;
     }
   .table:not(:last-child) {

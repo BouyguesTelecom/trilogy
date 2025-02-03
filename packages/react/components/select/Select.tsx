@@ -1,7 +1,6 @@
-import * as React from 'react'
-
-import { SelectProps } from './SelectProps'
-import { SelectDynamic, SelectNative } from './web'
+import { SelectProps } from '@/components/select/SelectProps'
+import { SelectDynamic, SelectNative } from '@/components/select/web'
+import React from 'react'
 
 /**
  * Select Component

@@ -11,12 +11,11 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
-  const refinput = useRef(null)
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -34,7 +33,6 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Input
-        ref={refinput}
         label='Input label not dynamic with sample'
         sample='Input sample'
         help='Search helper input'
@@ -45,7 +43,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        ref={refinput}
         label='Input label not dynamic with sample'
         sample='Input sample'
         help='Search helper input'
