@@ -1,5 +1,8 @@
 'use client'
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import { createContext } from 'react'
 
 export const StatesContext = createContext({
