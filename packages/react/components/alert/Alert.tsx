@@ -17,7 +17,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
   const { title, position, description, iconName, status, closable, onClick, className, id, offset, children } = props
   const displayed = Boolean(title)
   const { handleClick } = useAlert({ onClick })
-  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className))
+  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !status && is('info'), className))
 
   const positionTop: CSSProperties = {
     top: offset || 0,
