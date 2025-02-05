@@ -1,14 +1,14 @@
-import clsx from 'clsx'
-import * as React from 'react'
-import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
-import { has, is } from '@/services/classify'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 
 /**
@@ -33,7 +33,7 @@ const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props, ...other
 
   const classes = hashClass(
     styled,
-    clsx('toaster', status && is(getStatusClassName(status)), !alert && is('info'), className),
+    clsx('toaster', status && is(getStatusClassName(status)), !status && is('info'), className),
   )
 
   if (!displayed) {
