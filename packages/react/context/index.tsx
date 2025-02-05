@@ -1,10 +1,6 @@
 'use client'
-<<<<<<< Updated upstream
 
 import React from 'react'
-=======
-import * as React from 'react'
->>>>>>> Stashed changes
 
 interface ITrilogyContext {
   styled: boolean

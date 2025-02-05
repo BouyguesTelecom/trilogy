@@ -1,8 +1,4 @@
 'use client'
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import React, { Dispatch, ReactNode, SetStateAction } from 'react'
 import { ITrilogyTheme } from './interfaces'
 
