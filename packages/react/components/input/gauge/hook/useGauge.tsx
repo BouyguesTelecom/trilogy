@@ -40,19 +40,19 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
     }
 
     React.useEffect(() => {
-      if (!inputValue) return
       const min = validationRules?.length?.min || 0
       const max = validationRules?.length?.max || ''
       const regex = new RegExp(`^.{${min},${max}}$`)
       const validations = []
 
       validationRules?.specialChars &&
-        validations.push({ test: /[^\w]/.test(inputValue), setState: setIsSpecialCharsVerify })
-      validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), setState: setIsNumberVerify })
-      validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), setState: setIsUppercaseVerify })
+        validations.push({ test: /[^\w]/.test(inputValue || ''), setState: setIsSpecialCharsVerify })
+      validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue || ''), setState: setIsNumberVerify })
+      validationRules?.uppercase &&
+        validations.push({ test: /[A-Z]/.test(inputValue || ''), setState: setIsUppercaseVerify })
       validationRules?.lowercase &&
-        validations.push({ test: /[a-z]/.test(inputValue), setState: setisLowerercaseVerify })
-      validationRules?.length && validations.push({ test: regex.test(inputValue), setState: setIsLengthVerify })
+        validations.push({ test: /[a-z]/.test(inputValue || ''), setState: setisLowerercaseVerify })
+      validationRules?.length && validations.push({ test: regex.test(inputValue || ''), setState: setIsLengthVerify })
 
       validations.forEach(({ test, setState }) => {
         if (test) return setState({ isVerify: true, color: IconColor.SUCCESS })

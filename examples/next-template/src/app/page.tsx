@@ -1,9 +1,11 @@
+'use client'
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
   Divider,
+  Input,
   Section,
   Spacer,
   SpacerSize,
@@ -53,6 +55,20 @@ export default function Home() {
           </AccordionItem>
         </Accordion>
 
+        <Input
+          type='password'
+          securityGauge
+          placeholder='this is my placeholder'
+          minLength={8}
+          maxLength={15}
+          validationRules={{
+            lowercase: true,
+            uppercase: true,
+            number: true,
+            specialChars: true,
+            length: { max: 4, min: 2 },
+          }}
+        />
         <Divider />
       </Section>
     </main>
