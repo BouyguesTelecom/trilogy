@@ -1,6 +1,6 @@
+'use client'
+import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
-import { TextLevels, TextLevelValues } from '@/components/text'
-import { TrilogyThemeContext } from "@/context/providerTheme"
 
 /**
  * Typo bold
@@ -60,4 +60,3 @@ export const getTypographyBoldStyle = (typo?: string | Array<string>) => {
       return theme?.fontFamily?.regular || 'poppins-regular'
   }
 }
-

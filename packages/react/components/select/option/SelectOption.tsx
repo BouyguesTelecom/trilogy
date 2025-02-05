@@ -1,10 +1,9 @@
-import clsx from 'clsx'
-import * as React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { Icon } from '@/components/icon'
+import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Select Option Component
@@ -21,26 +20,24 @@ import { is } from '@/services/classify'
  * @param others
  */
 const SelectOption = ({
-                        id,
-                        className,
-                        value,
-                        disabled,
-                        children,
-                        onClick,
-                        label,
-                        iconName,
-                        testId,
-                        ...others
-                      }: SelectOptionProps) => {
-
-  const { styled } = useTrilogyContext()
-  const { checked, native, focused, ...props } = others as { checked: boolean, native: boolean, focused: boolean }
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('option', focused && 'focus', disabled && is('disabled'), className)), [focused, className])
+  id,
+  className,
+  value,
+  disabled,
+  children,
+  onClick,
+  label,
+  iconName,
+  testId,
+  ...others
+}: SelectOptionProps) => {
+  const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
+  const selectClasses = hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className))
 
   if (native) {
     return (
       <option
-        role="option"
+        role='option'
         id={id}
         value={value}
         disabled={disabled}
@@ -73,11 +70,11 @@ const SelectOption = ({
       id={id}
       className={selectClasses}
       data-selected={checked}
-      role="option"
+      role='option'
       aria-selected={checked}
       data-value={value}
-      onClick={(!disabled && onClick) ? onClick : undefined}
-      {...others}
+      onClick={!disabled && onClick ? onClick : undefined}
+      {...props}
     >
       {iconName && <Icon name={iconName} />}
       {label || children}

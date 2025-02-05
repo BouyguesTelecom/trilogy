@@ -1,3 +1,4 @@
+import { Column, Columns } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -19,7 +20,6 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { Columns, Column } from '@trilogy-ds/react'
 
 export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false)
@@ -160,7 +160,7 @@ export const CardScreen = (): JSX.Element => {
           <Accordion className='is-marginless'>
             <AccordionItem active>
               <AccordionHeader>
-                <Text level={'ONE'}>Card floating (inside component)</Text>
+                <Text level={1}>Card floating (inside component)</Text>
               </AccordionHeader>
               <AccordionBody>
                 <Card floating>

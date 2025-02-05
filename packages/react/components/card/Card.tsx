@@ -1,11 +1,8 @@
-import React, { createContext } from 'react'
-import clsx from 'clsx'
-import { CardProps } from './CardProps'
+import { CardProps } from '@/components/card/CardProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-
-export const CardContext = createContext({ horizontal: false })
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Card Component
@@ -21,28 +18,24 @@ export const CardContext = createContext({ horizontal: false })
  * @param fullheight
  */
 const Card = ({
-                className,
-                id,
-                flat,
-                horizontal,
-                floating,
-                skeleton,
-                onClick,
-                reversed,
-                href,
-                fullheight,
-                active,
-                ...others
-              }: CardProps) => {
-
-  const { styled } = useTrilogyContext()
-
+  className,
+  id,
+  flat,
+  horizontal,
+  floating,
+  skeleton,
+  onClick,
+  reversed,
+  href,
+  fullheight,
+  active,
+  ...others
+}: CardProps) => {
   const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
+    cursor: onClick ? 'pointer' : 'default',
   }
 
   const classes = hashClass(
-    styled,
     clsx(
       'card',
       flat && !floating && is('flat'),
@@ -57,29 +50,9 @@ const Card = ({
   )
 
   if (href) {
-    return (
-      <a
-        id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-        className={classes}
-      />
-    )
+    return <a id={id} href={href} onClick={onClick} {...others} className={classes} />
   }
 
-  return (
-    <div
-      id={id}
-      onClick={onClick && onClick}
-      className={classes}
-      style={onClick && { ...hoverStyle }}
-      {...others}
-    />
-  )
+  return <div id={id} onClick={onClick} className={classes} style={hoverStyle} {...others} />
 }
 export default Card

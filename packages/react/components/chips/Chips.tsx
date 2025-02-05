@@ -1,9 +1,8 @@
-import React from "react"
-import { is } from "@/services"
-import { ChipsProps } from "./ChipsProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { ChipsProps } from '@/components/chips/ChipsProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -17,25 +16,8 @@ import { useTrilogyContext } from "@/context"
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
-const Chips = ({
-  className,
-  onClick,
-  children,
-  active,
-  disabled,
-  id,
-  ...others
-}: ChipsProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      "chips",
-      active && is("active"),
-      className
-    )
-  )
+const Chips = ({ className, onClick, children, active, disabled, id, ...others }: ChipsProps): JSX.Element => {
+  const classes = hashClass(clsx('chips', active && is('active'), className))
 
   return (
     <button
@@ -44,9 +26,7 @@ const Chips = ({
       id={id}
       aria-pressed={!!active}
       className={classes}
-      onClick={(e) => {
-        onClick?.(e)
-      }}
+      onClick={onClick}
       {...others}
     >
       {children}

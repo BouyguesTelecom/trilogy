@@ -1,12 +1,11 @@
-import clsx from 'clsx'
-import * as React from 'react'
-
 import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
-import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context/index'
+import { SelectProps } from '@/components/select/SelectProps'
+import { useSelectNative } from '@/components/select/web/hooks/useSelectNative'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 const SelectNative = ({
   onChange,
@@ -25,54 +24,26 @@ const SelectNative = ({
   accessibilityLabel,
   ...others
 }: SelectProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+  const selectClasses = hashClass(clsx('select', className))
+  const controlClass = hashClass(clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left'))
 
-  const [focused, setIsFocused] = React.useState<boolean>(false)
-  const [selectedValues, setSelectedValues] = React.useState(selected)
-
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
-
-  const controlClass = React.useMemo(
-    () => hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
-    [styled, iconName],
-  )
-
-  const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
-    setIsFocused(true)
-    onFocus && onFocus(e)
-  }, [])
-
-  const handleBlur = React.useCallback((e: ParamEventSelectFocus) => {
-    setIsFocused(false)
-    onBlur && onBlur(e)
-  }, [])
-
-  React.useEffect(() => {
-    setSelectedValues(selected)
-  }, [selected])
+  const { focused, selectedValues, handleFocus, handleBlur, handleChange } = useSelectNative({
+    onBlur,
+    onChange,
+    onFocus,
+    selected,
+  })
 
   return (
     <div className={selectClasses}>
-      <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
+      <div className={hashClass(clsx('field', focused && 'focus'))}>
         <div className={controlClass}>
           <select
-            className={hashClass(styled, clsx(!label && 'no-label'))}
+            className={hashClass(clsx(!label && 'no-label'))}
             value={selectedValues}
             aria-label={accessibilityLabel}
             data-testid={testId}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-              const selectedV = Array.from(e.target.selectedOptions).map((select) => select.value)
-              setSelectedValues(selectedV)
-              if (onChange) {
-                onChange({
-                  selectValue: e.target.value,
-                  selectName: e.target.name,
-                  selectId: e.target.id,
-                  name: e.target.name,
-                  selectedOptions: selectedV,
-                })
-              }
-            }}
+            onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             id={id ? String(id) : undefined}

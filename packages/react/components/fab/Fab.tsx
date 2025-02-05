@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '@/context'
-import { FabProps } from './FabProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
+import { FabProps } from '@/components/fab/FabProps'
 import { Icon, IconName } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Fab Component - Floating Button Action
@@ -39,13 +38,6 @@ const Fab = ({
   disabled,
   ...others
 }: FabProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [isExtended, setIsExtended] = useState<boolean>(extended || false)
-
-  useEffect(() => {
-    setIsExtended(extended || false)
-  }, [isExtended])
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const positionStyle: React.CSSProperties | any =
     top || bottom || left || right
@@ -60,17 +52,14 @@ const Fab = ({
           position: 'relative',
         }
 
-  const _className = hashClass(styled, clsx('fab', extended && is('extended'), className))
+  const _className = hashClass(clsx('fab', extended && is('extended'), className))
 
   return (
     <button
       id={id}
       disabled={disabled}
       aria-label={accessibilityLabel}
-      onClick={(e) => {
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={onClick}
       style={{ ...positionStyle }}
       {...others}
       className={_className}

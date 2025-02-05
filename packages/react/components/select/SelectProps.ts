@@ -1,6 +1,7 @@
-import { Accessibility, Dev } from '../../objects'
-import { IconName, IconNameValues } from '../icon'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface ISelectOption {
   value: string | undefined

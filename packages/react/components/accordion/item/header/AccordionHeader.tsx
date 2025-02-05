@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { AccordionHeaderProps } from './AccordionHeaderProps'
+import { AccordionHeaderProps } from '@/components/accordion/item/header/AccordionHeaderProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import React from 'react'
 
 /**
  * Accordion Header
@@ -12,10 +11,8 @@ import { useTrilogyContext } from '@/context'
  * @param others
  */
 const AccordionHeader = ({ children, className, id, ...others }: AccordionHeaderProps): React.JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   return (
-    <summary id={id} className={hashClass(styled, clsx('accordion-header', className))} role='button' {...others}>
+    <summary id={id} className={hashClass(clsx('accordion-header', className))} role='button' {...others}>
       {children}
     </summary>
   )

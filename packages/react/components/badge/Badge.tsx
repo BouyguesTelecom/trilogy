@@ -1,11 +1,12 @@
-import * as React from 'react'
-import { BadgeProps } from './BadgeProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { has, is } from '@/services'
-import { getStatusClassName, getVariantClassName, StatusState, TrilogyColor } from '@/objects'
+import { BadgeProps } from '@/components/badge/BadgeProps'
 import { Icon, IconColor, IconName } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TrilogyColor } from '@/objects/facets/Color'
+import { getStatusClassName, StatusState } from '@/objects/facets/Status'
+import { getVariantClassName } from '@/objects/facets/Variant'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Badge Component
@@ -32,10 +33,7 @@ const Badge = ({
   status,
   ...others
 }: BadgeProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'badge',
       inverted && is('inverted'),
@@ -81,15 +79,7 @@ const Badge = ({
         {...others}
       />
     ) : (
-      <span
-        id={id}
-        className={classes}
-        onClick={(e) => {
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
-      >
+      <span id={id} className={classes} onClick={onClick} {...others}>
         {label}
       </span>
     )

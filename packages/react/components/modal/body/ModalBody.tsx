@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { ModalBodyProps } from './ModalBodyProps'
+import { ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import React from 'react'
 
 /**
  * Modal Footer Component
@@ -12,9 +11,8 @@ import { useTrilogyContext } from '@/context'
  * @param id
  */
 const ModalBody = ({ children, className, id }: ModalBodyProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   return (
-    <div id={id} className={hashClass(styled, clsx('modal-body', className))}>
+    <div id={id} className={hashClass(clsx('modal-body', className))}>
       {children}
     </div>
   )
