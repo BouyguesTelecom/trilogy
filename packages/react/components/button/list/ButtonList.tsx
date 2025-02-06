@@ -5,13 +5,20 @@ import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { getJustifiedClassName } from '@/objects'
+import { ButtonListDirectionEnum } from './'
 
 /**
  * Button List Component
  * @param children {ReactNode} ButtonList children
  */
 
-const ButtonList = ({ className, id, align, direction = 'row', ...others }: ButtonListWebProps): JSX.Element => {
+const ButtonList = ({
+  className,
+  id,
+  align,
+  direction,
+  ...others
+}: ButtonListWebProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
@@ -19,7 +26,12 @@ const ButtonList = ({ className, id, align, direction = 'row', ...others }: Butt
       id={id}
       className={hashClass(
         styled,
-        clsx('buttons', className, align && is(getJustifiedClassName(align)), direction === 'column' && 'is-vertical'),
+        clsx(
+          'buttons',
+          className,
+          align && is(getJustifiedClassName(align)),
+          direction === ButtonListDirectionEnum.COLUMN && is('vertical'),
+        ),
       )}
       {...others}
     />
