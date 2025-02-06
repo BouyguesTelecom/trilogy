@@ -74,17 +74,12 @@ export const PriceScreen = (): JSX.Element => {
       <Price level={2} amount={18.99} />
 
       <Divider />
-      <Title level={TitleLevels.THREE}>Inlined</Title>
-
-      <Price level={7} amount={1000} mention='(1)' period='months' />
-
-      <Divider />
       <Title level={TitleLevels.THREE}>Alignement</Title>
-      <Price level={1} amount={1000} mention='(1)' period='months' />
+      <Price level={1} amount={1000} mention='(1)' period='months' align={Alignable.ALIGNED_START} />
 
-      <Price level={1} amount={1000} mention='(1)' period='months' />
+      <Price level={1} amount={1000} mention='(1)' period='months' align={Alignable.ALIGNED_CENTER} />
 
-      <Price level={1} amount={1000} mention='(1)' period='months' />
+      <Price level={1} amount={1000} mention='(1)' period='months' align={Alignable.ALIGNED_END} />
 
       <Divider />
 
