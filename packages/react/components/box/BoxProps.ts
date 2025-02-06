@@ -10,6 +10,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   children?: React.ReactNode
   skeleton?: boolean
   href?: string
+  to?: string
   highlighted?: TrilogyColor | TrilogyColorValues
   shadowless?: boolean
   backgroundSrc?: string
@@ -17,4 +18,5 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   flat?: boolean
   active?: boolean
   inverted?: boolean
+  markup?: React.ElementType
 }
