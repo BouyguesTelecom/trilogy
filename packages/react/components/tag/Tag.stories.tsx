@@ -32,16 +32,13 @@ Inversé.args = {
 
 export const TagAvecIcônes: Story<TagProps> = (args) => (
   <TagList>
-    <Tag {...args}>Tag</Tag>
-    <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS}>
-      Tag success
-    </Tag>
-    <Tag iconName={IconName.ALERT} variant={TagVariant.WARNING}>
-      Tag warning
-    </Tag>
+    <Tag {...args}/>
+    <Tag iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS} label='Tag Success'/>
+    <Tag iconName={IconName.ALERT} variant={TagVariant.WARNING} label='Tag Warning'/>
   </TagList>
 );
 TagAvecIcônes.args = {
+  label: "Tag",
   iconName: IconName.EXCLAMATION_CIRCLE,
   variant: TagVariant.ERROR,
 };
