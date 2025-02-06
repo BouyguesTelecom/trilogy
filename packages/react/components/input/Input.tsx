@@ -10,8 +10,7 @@ import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './In
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends Accessibility, InputProps, InputWebEvents {
-}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -56,7 +55,6 @@ interface IconWrapper {
  * @param onKeyUp {Function} onKeyUp Input Event
  * @param onIconClick {Function} onIconClick Input Event
  * @param onClick {Function} onClick Input Event
- * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Textarea min length
  * @param accessibilityLabel {string} Accessibility label
  * @param required {boolean} Required input
@@ -65,7 +63,6 @@ interface IconWrapper {
  */
 const Input = (
   {
-    forceControl,
     label,
     sample,
     className,
@@ -109,12 +106,6 @@ const Input = (
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const inputIcon = new Map()
-  inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
-  inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
-  inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
-
-  const [_value, setValue] = useState<string>(defaultValue ?? '')
   const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
   const [isDirty, setIsDirty] = useState<boolean>(false)
   const [isTouched, setIsTouched] = useState<boolean>(false)
@@ -158,14 +149,13 @@ const Input = (
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
-              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
+              onIconClick({ inputName: name ?? '', inputValue: value ?? '', target: e.target })
             }
           }}
         >
           <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
-          {_value && _value.length > 0 && closeIconSearch && (
+          {value && value.length > 0 && closeIconSearch && (
             <Icon
-              onClick={() => setValue('')}
               className={hashClass(styled, clsx(is('justified-self')))}
               name={IconName.TIMES_CIRCLE}
               size={IconSize.SMALL}
@@ -174,17 +164,13 @@ const Input = (
         </div>
       )
     },
-    [_value, styled],
+    [value, styled],
   )
 
   const validator =
     !customValidator && patternValidator
       ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
       : customValidator
-
-  useEffect(() => {
-    setValue(value ?? defaultValue ?? '')
-  }, [value, defaultValue])
 
   useEffect(() => {
     setIsFocused(focused ?? false)
@@ -197,7 +183,7 @@ const Input = (
 
   useEffect(() => {
     if (!validator || !isTouched) return
-    setLocalStatus(validator(_value))
+    setLocalStatus(validator(value ?? ''))
   }, [isFocused, isTouched])
 
   useEffect(() => {
@@ -211,7 +197,7 @@ const Input = (
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className="input-label">
+        <label className='input-label'>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -221,7 +207,7 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO}>
           {sample}
         </Text>
       )}
@@ -234,7 +220,7 @@ const Input = (
           aria-label={accessibilityLabel}
           type={inputType}
           className={classes}
-          value={_value}
+          value={value}
           defaultValue={defaultValue}
           name={name}
           onSubmit={onSubmit}
@@ -273,9 +259,6 @@ const Input = (
                 element.selectionEnd = caret
               })
             }
-            // ---------------------------------------
-            // eslint-disable-next-line no-console
-            if (!forceControl) setValue(e.target.value)
             if (onChange) {
               onChange({
                 inputName: e.target.name,
@@ -319,7 +302,7 @@ const Input = (
       {help && <Text className={helpClasses}>{help}</Text>}
 
       {securityGauge && type === 'password' && (
-        <InputGauge validationRules={validationRules} styled={styled} inputValue={_value} />
+        <InputGauge validationRules={validationRules} styled={styled} inputValue={value ?? ''} />
       )}
     </div>
   )
