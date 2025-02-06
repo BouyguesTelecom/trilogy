@@ -19,7 +19,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  */
 const Hero = React.forwardRef(
   (
-    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, ...others }: HeroProps,
+    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, ...others }: HeroProps,
     ref: React.Ref<View>,
   ): JSX.Element => {
     const [overlapHeight, setOverlapHeight] = useState<number>(0)
@@ -28,22 +28,26 @@ const Hero = React.forwardRef(
     const isSecondOverlap = overlap && Array.isArray(overlap) ? overlap?.length > 1 : false
     const isSecondOverlapNotEmpty = isSecondOverlap && secondOverlapHeight > 0
 
+    const overlapMargin = backgroundHeight ? overlapHeight - backgroundHeight / 2 : overlapHeight - 60
+    const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60
+
     const styles = StyleSheet.create({
       hero: {
         width: '100%',
         minHeight: 150,
         maxHeight: 350,
-        height: 'auto',
+        height: backgroundHeight ? backgroundHeight : 'auto',
       },
       content: {
         paddingLeft: 15,
+        marginBottom: overlap ? marginBottomOverlap : 0,
       },
       background: {
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : getColorStyle(TrilogyColor.BACKGROUND),
       },
       overlap: {
         position: 'absolute',
-        top: isSecondOverlapNotEmpty ? -40 : -60,
+        top: isSecondOverlapNotEmpty ? -40 : backgroundHeight ? backgroundHeight * (-1 / 2) : -60,
       },
       secondOverlap: {
         position: 'absolute',
@@ -52,7 +56,7 @@ const Hero = React.forwardRef(
         width: '100%',
       },
       subOverlap: {
-        height: isSecondOverlapNotEmpty ? overlapHeight - 40 : overlapHeight,
+        height: isSecondOverlapNotEmpty ? overlapHeight - 40 : overlapMargin,
       },
     })
     let heroView: JSX.Element
