@@ -1,7 +1,6 @@
 import { IconName, IconNameValues } from '../../components/icon/IconNameEnum'
 import { Referenceable, ReferenceableNative } from '../../objects/facets/Referenceable'
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IconStatus } from '../../components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -34,7 +33,7 @@ type TextareaPropsWeb = Accessibility &
     value?: string
     disabled?: boolean
     onChange?: TextareaChangeEventHandler
-    status?: InputStatus | InputStatusValues | IconStatus
+    status?: InputStatus | InputStatusValues
     help?: string
     /** @deprecated */
     name?: string

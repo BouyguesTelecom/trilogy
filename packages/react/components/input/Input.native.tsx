@@ -382,7 +382,6 @@ const Input = ({
         {hasIcon && type !== InputType.PASSWORD && type !== InputType.SEARCH && (
           <View style={styles.inputIconLeft}>
             <Icon
-              align={Alignable.ALIGNED_START}
               name={iconNameLeft as unknown as IconName}
               size={IconSize.SMALL}
               color={

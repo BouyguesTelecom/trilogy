@@ -3,7 +3,7 @@ import * as React from "react";
 import { Meta, Story } from "@storybook/react";
 import Icon from "./Icon";
 import { IconProps } from "./IconProps";
-import { IconColor, IconSize, IconStatus } from "./IconEnum";
+import { IconColor, IconSize } from "./IconEnum";
 import { IconName } from "./IconNameEnum";
 import { Alignable } from "../../objects";
 
@@ -37,7 +37,6 @@ export const AvecStatus: Story<IconProps> = (args) => (
 AvecStatus.args = {
   size: IconSize.SMALL,
   name: IconName.EXCLAMATION_CIRCLE,
-  status: IconStatus.SUCCESS,
 };
 
 export const Circled: Story<IconProps> = (args) => <Icon {...args} />;
