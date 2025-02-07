@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { ImageProps } from './ImageProps'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getJustifiedClassName } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
+import * as React from 'react'
+import { ImageProps } from './ImageProps'
 
 /**
  * Image Component
@@ -19,7 +19,7 @@ import { getJustifiedClassName } from '@/objects'
  */
 const Image = ({
   src,
-  alt,
+  alt = '',
   className,
   id,
   circled,
