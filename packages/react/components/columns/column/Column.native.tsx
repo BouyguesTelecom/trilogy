@@ -1,6 +1,7 @@
 import { ColumnProps } from '@/components/columns/column/ColumnProps'
 import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getAlignStyle } from '@/objects'
 import React from 'react'
 import { View, ViewStyle } from 'react-native'
 
@@ -10,7 +11,7 @@ import { View, ViewStyle } from 'react-native'
  */
 
 const Column = React.forwardRef(
-  ({ children, narrow, size, ...others }: ColumnProps, ref: React.Ref<View>): JSX.Element => {
+  ({ children, narrow, size, verticalAlign, ...others }: ColumnProps, ref: React.Ref<View>): JSX.Element => {
     const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
     const scrollableStyle: ViewStyle = React.useMemo(
@@ -35,7 +36,15 @@ const Column = React.forwardRef(
     )
 
     return (
-      <View ref={ref} style={[scrollable && scrollableStyle, !scrollable && noScrollableStyle]} {...others}>
+      <View
+        ref={ref}
+        style={[
+          scrollable && scrollableStyle,
+          !scrollable && noScrollableStyle,
+          { justifyContent: getAlignStyle(verticalAlign) },
+        ]}
+        {...others}
+      >
         {children}
       </View>
     )

@@ -1,11 +1,11 @@
+import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
+import { BadgeProps } from '@/components/badge/BadgeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { StatusState } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {BadgeProps} from '@/components/badge/BadgeProps'
-import {ComponentName} from '@/components/enumsComponentsName'
-import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
-import {Icon, IconColor, IconName, IconSize} from "@/components/icon"
-import {StatusState} from "@/objects"
-import {BadgePositionEnum} from "@/components/badge/BadgeEnum"
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 /**
  * Badge Component
@@ -20,7 +20,17 @@ import {BadgePositionEnum} from "@/components/badge/BadgeEnum"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
-const Badge = ({ children, label, onClick, testId, variant, inverted, position, status, ...others }: BadgeProps): JSX.Element => {
+const Badge = ({
+  children,
+  label,
+  onClick,
+  testId,
+  variant,
+  inverted,
+  position,
+  status,
+  ...others
+}: BadgeProps): JSX.Element => {
   const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
   const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
@@ -30,8 +40,8 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
     },
     badge: {
       alignSelf: 'baseline',
-      minWidth: 20,
-      height: 20,
+      minWidth: label ? 20 : 12,
+      height: label ? 20 : 12,
       backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
       justifyContent: 'center',
@@ -48,29 +58,29 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
       color: getColorStyle(TrilogyColor.MAIN),
     },
     iconStatus: {
-      position: "absolute",
+      position: 'absolute',
       zIndex: 1000,
       backgroundColor: 'white',
       width: 16,
       minHeight: 16,
-      borderRadius: 15
+      borderRadius: 15,
     },
     iconStatusPositionTopLeft: {
       top: -4,
-      left: -4
+      left: -4,
     },
     iconStatusPositionTopRight: {
       top: -4,
-      left: 17
+      left: 17,
     },
     iconStatusPositionBottomLeft: {
       top: 17,
-      left: -4
+      left: -4,
     },
     iconStatusPositionBottomRight: {
       top: 17,
-      left: 17
-    }
+      left: 17,
+    },
   })
 
   let iconName: IconName | null = null
@@ -103,21 +113,18 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
         {iconName && iconColor && (
           <View>
             <View
-              style={
-              [
+              style={[
                 styles.iconStatus,
-                position === BadgePositionEnum.TOP_LEFT && styles.iconStatusPositionTopLeft ||
-                position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight ||
-                position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft ||
-                position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight ||
-                styles.iconStatusPositionTopLeft
-              ]
-            }>
+                (position === BadgePositionEnum.TOP_LEFT && styles.iconStatusPositionTopLeft) ||
+                  (position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight) ||
+                  (position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft) ||
+                  (position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight) ||
+                  styles.iconStatusPositionTopLeft,
+              ]}
+            >
               <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
             </View>
-            <View>
-              {children}
-            </View>
+            <View>{children}</View>
           </View>
         )}
       </View>
@@ -135,9 +142,7 @@ const Badge = ({ children, label, onClick, testId, variant, inverted, position, 
   ) : (
     <View style={styles.badge} {...others}>
       <Text style={styles.text}>{label}</Text>
-      {!label && children && (
-        children
-      )}
+      {!label && children && children}
     </View>
   )
 }
