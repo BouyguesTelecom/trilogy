@@ -1,12 +1,12 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { PriceProps } from './PriceProps'
-import { has, is } from '@/services/classify'
-import { Text, TextMarkup } from '../text'
-import { Alignable, TypographyBold, TypographyColor } from '@/objects'
-import { checkCents } from './PriceHelpers'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { Alignable } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { Text, TextMarkup } from '../text'
+import { checkCents } from './PriceHelpers'
+import { PriceProps } from './PriceProps'
 
 /**
  * Price Component
@@ -54,7 +54,7 @@ const Price = ({
   let oldAmountComponent = null
   const tagAmountComponent = null
 
-  if (oldAmount) {
+  if (oldAmount !== undefined) {
     const isNegativeStrike = oldAmount && oldAmount < 0
     const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
@@ -78,7 +78,7 @@ const Price = ({
     )
   }
 
-  if (amount) {
+  if (amount !== undefined) {
     const isNegative = amount < 0
     const absoluteAmount = Math.abs(amount)
     const absoluteWhole = Math.floor(absoluteAmount)
