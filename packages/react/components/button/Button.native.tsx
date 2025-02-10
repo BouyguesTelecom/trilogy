@@ -41,6 +41,34 @@ const Button = ({
   const loaderColor = getColorStyle(TrilogyColor.BACKGROUND)
   const isLoading = typeof loading === 'string' && getLoadingClassName(loading) === 'loading'
 
+  const background = disabled
+    ? TrilogyColor.NEUTRAL_FADE
+    : isLoading
+    ? getButtonColorStyle(TrilogyColor.BACKGROUND)
+    : typeof loading === 'boolean' && loading
+    ? TrilogyColor.NEUTRAL
+    : variant === ButtonVariant.SECONDARY
+    ? TrilogyColor.MAIN_FADE
+    : variant === ButtonVariant.CONVERSION
+    ? TrilogyColor.ACCENT
+    : variant === ButtonVariant.GHOST
+    ? TrilogyColor.BACKGROUND
+    : TrilogyColor.MAIN
+
+  const color =
+    variant && ['secondary', 'ghost'].includes(getVariantClassName(variant))
+      ? TrilogyColor.FONT
+      : TrilogyColor.BACKGROUND
+
+  const borderColor =
+    disabled && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.DISABLED
+      : !disabled && !!loading && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.DISABLED
+      : !disabled && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.INFO_FADE
+      : TrilogyColor.BACKGROUND
+
   const styles = StyleSheet.create({
     button: {
       maxWidth: '100%',
@@ -51,41 +79,15 @@ const Button = ({
       paddingRight: variant === ButtonVariant.PRIMARY ? 13 : 15,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: getColorStyle(
-        disabled
-          ? TrilogyColor.NEUTRAL_FADE
-          : isLoading
-          ? getButtonColorStyle(TrilogyColor.BACKGROUND)
-          : typeof loading === 'boolean' && loading
-          ? TrilogyColor.NEUTRAL
-          : variant === ButtonVariant.SECONDARY
-          ? TrilogyColor.MAIN_FADE
-          : variant === ButtonVariant.CONVERSION
-          ? TrilogyColor.ACCENT
-          : variant === ButtonVariant.GHOST
-          ? TrilogyColor.BACKGROUND
-          : TrilogyColor.MAIN,
-      ),
+      backgroundColor: getColorStyle(background),
       borderRadius: 4,
       minHeight: 45,
       height: loading ? 52 : 'auto',
-      borderColor: getColorStyle(
-        disabled && variant === ButtonVariant.PRIMARY
-          ? TrilogyColor.DISABLED
-          : !disabled && !!loading && variant === ButtonVariant.PRIMARY
-          ? TrilogyColor.DISABLED
-          : !disabled && variant === ButtonVariant.PRIMARY
-          ? TrilogyColor.INFO_FADE
-          : TrilogyColor.BACKGROUND,
-      ),
+      borderColor: getColorStyle(borderColor),
     },
     text: {
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
-      color: getColorStyle(
-        variant && ['secondary', 'ghost'].includes(getVariantClassName(variant))
-          ? TrilogyColor.FONT
-          : TrilogyColor.BACKGROUND,
-      ),
+      color: getColorStyle(color),
       alignSelf: 'center',
       alignItems: 'center',
       fontWeight: 'bold',
@@ -117,11 +119,7 @@ const Button = ({
       justifyContent: 'center',
     },
     buttonIconText: {
-      color: getColorStyle(
-        variant && ['secondary', 'ghost'].includes(getVariantClassName(variant))
-          ? TrilogyColor.FONT
-          : TrilogyColor.BACKGROUND,
-      ),
+      color: getColorStyle(color),
       alignSelf: 'center',
       alignItems: 'center',
       fontWeight: 'bold',
