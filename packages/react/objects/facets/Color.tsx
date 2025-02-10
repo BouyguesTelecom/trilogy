@@ -96,7 +96,7 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
   }
 }
 
-export const getButtonColorStyle = (buttonVariant?: string): string => {
+export const getButtonColorStyle = (buttonVariant?: string): TrilogyColor => {
   switch (buttonVariant) {
     case 'ACCENT':
       return TrilogyColor.ACCENT
