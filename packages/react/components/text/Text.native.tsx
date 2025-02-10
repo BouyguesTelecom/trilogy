@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { Platform, StyleSheet, Text as TextNative, View } from 'react-native'
-import { TextProps } from './TextProps'
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TextLevels, TextLevelValues } from './TextEnum'
-import ContentLoader, { Rect } from 'react-content-loader/native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React, { useContext } from 'react'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { Platform, StyleSheet, Text as TextNative, View } from 'react-native'
+import { TextLevels, TextLevelValues } from './TextEnum'
+import { TextProps } from './TextProps'
 
 /**
  * Text Native Component
@@ -46,7 +46,7 @@ const Text = ({
     text: {
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
-      color: (!skeleton && setTypographyColor(typo, inverted || statesContext.inverted)) || 'transparent',
+      color: setTypographyColor(typo, inverted || statesContext.inverted, skeleton),
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
       textDecorationLine: 'none',
