@@ -40,6 +40,16 @@ const Checkbox = ({
     }
   }, [checked, readonly])
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { target } = e
+    onChange ? onChange({
+      checkboxId: target.id,
+      checkboxValue: target.value,
+      checkboxName: target.name,
+      checkboxChecked: target.checked,
+    }) : setChecked(target.checked)
+  }
+
   return (
     <div className={hashClass(styled, clsx('checkbox', className))}>
       <input
@@ -50,7 +60,7 @@ const Checkbox = ({
         name={name}
         value={value}
         checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+        onChange={handleOnChange}
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
@@ -61,3 +71,4 @@ const Checkbox = ({
 }
 
 export default Checkbox
+
