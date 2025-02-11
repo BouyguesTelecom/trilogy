@@ -1,78 +1,77 @@
-import {
-  IconName,
-  List,
-  ListIconStatus,
-  ListItem,
-  Section,
-  Text,
-  TextLevels,
-  Title,
-  TitleLevels,
-} from '@trilogy-ds/react/components'
+import { Container, Icon, IconName, List, ListIconStatus, ListItem, Section, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const ListScreen = (): JSX.Element => {
   return (
     <Section>
-      <Title level={TitleLevels.THREE}>List simple</Title>
-      <List>
-        <ListItem>
-          <Text level={TextLevels.ONE}>
-            <Text>Hello</Text>
-            <Text>Ceci est la description</Text>
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-        <ListItem>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-      </List>
+      <Container>
+        <Title level={TitleLevels.THREE}>List simple non ordonnée</Title>
 
-      <Title level={TitleLevels.THREE}>List with icons</Title>
-      <List>
-        <ListItem iconName={IconName.ALERT}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-        <ListItem iconName={IconName.ALERT}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-        <ListItem iconName={IconName.ALERT}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-      </List>
+        <List>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue, egestas in lorem. Donec vel pellentesque turpis.</Text>
+          </ListItem>
+          <ListItem>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+          <ListItem>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+        </List>
+        <Title level={TitleLevels.THREE}>List simple ordonnée</Title>
 
-      <Title level={TitleLevels.THREE}>List with divider</Title>
-      <List divider>
-        <ListItem iconName={IconName.ALERT} status={ListIconStatus.ERROR}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-        <ListItem iconName={IconName.ALERT} status={ListIconStatus.SUCCESS}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-        <ListItem iconName={IconName.ALERT}>
-          <Text level={TextLevels.ONE}>
-            <Text>Ceci est un titre</Text>
-          </Text>
-          <Text level={TextLevels.ONE}>Ceci est la description</Text>
-        </ListItem>
-      </List>
+        <ol className={'list'}>
+          <li className={"list-item"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue</li>
+          <li className={"list-item"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue</li>
+          <li className={"list-item"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue</li>
+          <li className={"list-item"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue</li>
+          <li className={"list-item"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue turpis, scelerisque vel tempus congue</li>
+        </ol>
+
+        <Title level={TitleLevels.THREE}>List with icons</Title>
+        <List>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>List with divider</Title>
+        <List divider>
+          <ListItem iconName={IconName.ALERT} status={ListIconStatus.ERROR}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT} status={ListIconStatus.SUCCESS}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>
+              <Text>Ceci est un titre</Text>
+            </Text>
+            <Text level={TextLevels.ONE}>Ceci est la description</Text>
+          </ListItem>
+        </List>
+      </Container>
     </Section>
   )
 }

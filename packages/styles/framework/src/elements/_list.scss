@@ -1,25 +1,43 @@
 // Bullet list classiques
+
+ul.list li.list-item:not(:has(>.icon)){
+  &:before{
+    content: "•";
+    font-size: 28px;
+    line-height: 18px;
+  }
+
+}
+ol.list li.list-item:not(:has(>.icon)){
+  counter-increment: step-counter;
+  &:before{
+    content: counter(step-counter) ".";
+    font-weight: 600;
+  }
+}
+
 ul.list,
 ol.list {
-  list-style: disc ;
-  display: grid;
-  row-gap: $spacing-3;
-
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
   li.list-item {
-    &:has(.icon) {
-      list-style: none;
-      display: flex;
+    display: flex;
+    &:before{
+      width: 12px;
+      margin-right: $spacing-2;
+      align-self: flex-start;
     }
-
-    .icon {
+    &:has(>.icon) {
+      row-gap: $spacing-3;
+    }
+    > .icon {
       margin-right: $spacing-2;
       justify-content: flex-start;
       align-items: flex-start;
     }
 
     .list-item-content {
-      display: inline-grid;
-
       &_puce {
         margin-right: $spacing-4;
       }
@@ -29,7 +47,6 @@ ol.list {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       .list-item_action {
         & > :first-child {
           margin: 0 !important;
@@ -42,21 +59,12 @@ ol.list {
         }
       }
     }
-
-    div b {
-      margin-bottom: $spacing-2;
-    }
   }
 
   &.has-divider {
-    li {
+    li:not(:last-child) {
       border-bottom: var(--border);
-      padding-bottom: $spacing-3;
-
-      &:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-      }
+      padding-bottom: $spacing-4;
     }
   }
 }
