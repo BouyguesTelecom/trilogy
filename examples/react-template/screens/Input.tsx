@@ -149,7 +149,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Input
-        forceControl
         defaultValue='12'
         value={valueTextInput}
         status={InputStatus.SUCCESS}
@@ -168,7 +167,6 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         <Input
-          forceControl
           defaultValue='Input Success'
           value={valueTextInput}
           status={InputStatus.SUCCESS}
