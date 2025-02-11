@@ -40,9 +40,6 @@ const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element =>
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
       borderRadius: 4,
     },
-    divider: {
-      borderBottomWidth: 1,
-    },
   })
 
   const getComponent = useMemo(() => {
