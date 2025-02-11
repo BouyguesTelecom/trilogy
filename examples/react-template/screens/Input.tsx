@@ -39,8 +39,9 @@ export const InputScreen = (): JSX.Element => {
         placeholder="I'm a placeholder"
         onKeyUp={(e) => console.log(e)}
         required
-        iconNameRight={IconName.ARROW_LEFT}
+        type='search'
       />
+      <input type='search' placeholder='Search' />
 
       <Input
         label='Input label not dynamic with sample'
