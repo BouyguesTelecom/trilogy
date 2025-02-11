@@ -1,13 +1,13 @@
-import * as React from "react"
-import { useContext } from "react"
-import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View, } from "react-native"
-import ContentLoader, { Rect } from "react-content-loader/native"
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from "@/objects"
-import { TitleProps } from "./TitleProps"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { StatesContext } from "@/context/providerStates"
-import { TitleLevels } from "./TitleEnum"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { StatesContext } from '@/context/providerStates'
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import * as React from 'react'
+import { useContext } from 'react'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
+import { TitleLevels } from './TitleEnum'
+import { TitleProps } from './TitleProps'
 
 /**
  * Title component
@@ -37,6 +37,14 @@ const Title = ({
   ...others
 }: TitleProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
+  const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
+  const colorOverline = getColorStyle(TrilogyColor.MAIN)
+
+  const fontFamily =
+    level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)
+      ? TypographyBold.TEXT_WEIGHT_BOLD
+      : TypographyBold.TEXT_WEIGHT_SEMIBOLD
+
   const titlesLevels = () => {
     switch (level) {
       case TitleLevels.ONE:
@@ -58,34 +66,24 @@ const Title = ({
 
   const getAlignSelf = () => {
     switch (true) {
-      case setTypographyAlign(typo) === "left":
-        return "flex-start"
-      case setTypographyAlign(typo) === "center":
-        return "center"
-      case setTypographyAlign(typo) === "right":
-        return "flex-end"
+      case setTypographyAlign(typo) === 'left':
+        return 'flex-start'
+      case setTypographyAlign(typo) === 'center':
+        return 'center'
+      case setTypographyAlign(typo) === 'right':
+        return 'flex-end'
       default:
-        return "flex-start"
+        return 'flex-start'
     }
-  }
-  const getFontFamily = () => {
-    if (level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)) return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_BOLD)
-      return getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
   }
 
   const styles = StyleSheet.create({
     text: {
-      fontFamily: getFontFamily(),
+      fontFamily: getTypographyBoldStyle(fontFamily),
       fontSize: titlesLevels(),
-      color:
-        ((overline || subtitle) &&
-          !level &&
-          getColorStyle(TrilogyColor.MAIN)) ||
-        (!skeleton &&
-          setTypographyColor(typo, inverted || statesContext.inverted)) ||
-        "transparent",
+      color: ((overline || subtitle) && !level && colorOverline) || color,
       textAlign: setTypographyAlign(typo),
-      textTransform: overline && !level ? "uppercase" : undefined,
+      textTransform: overline && !level ? 'uppercase' : undefined,
       alignSelf: getAlignSelf(),
     },
     skeleton: {
@@ -94,16 +92,14 @@ const Title = ({
       borderRadius: 5,
       borderWidth: 0.1,
       borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: "hidden",
+      overflow: 'hidden',
       height: titlesLevels(),
     },
   })
-  const titleTestId = typeof children === "string"
-    ? children
-    : "NotSpecified"
+
   const titleAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
-    : typeof children === "string"
+    : typeof children === 'string'
     ? children
     : undefined
 
@@ -123,7 +119,7 @@ const Title = ({
     titleView = (
       <ContentLoader style={styles.skeleton}>
         {titleView}
-        {Platform.OS === "android" && (
+        {Platform.OS === 'android' && (
           <View>
             <Rect rx='15' ry='15' width='100%' height='100%' />
           </View>
