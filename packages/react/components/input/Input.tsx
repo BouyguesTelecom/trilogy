@@ -297,11 +297,16 @@ const Input = (
             setIsFocused(false)
           }}
         />
-        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
-        {iconNameLeft && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
+        {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
+
+        {(iconNameLeft || type === 'search') && (
+          <IconWrapper className={'icon-left'} name={iconNameLeft || IconName.SEARCH} />
         )}
+
+        {iconNameRight && !loading && type !== 'password' && (
+          <IconWrapper className={'icon-right'} name={iconNameRight} />
+        )}
+
         {!loading && type === 'password' && (
           <IconWrapper
             className={'icon-right'}
