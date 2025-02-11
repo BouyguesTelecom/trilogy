@@ -50,7 +50,7 @@ const Price = ({
   let oldAmountComponent = null
   const tagAmountComponent = null
 
-  if (oldAmount) {
+  if (oldAmount !== undefined) {
     const isNegativeStrike = oldAmount && oldAmount < 0
     const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
@@ -74,7 +74,7 @@ const Price = ({
     )
   }
 
-  if (amount) {
+  if (amount !== undefined) {
     const isNegative = amount < 0
     const absoluteAmount = Math.abs(amount)
     const absoluteWhole = Math.floor(absoluteAmount)

@@ -18,7 +18,7 @@ import React from 'react'
  */
 const Image = ({
   src,
-  alt,
+  alt = '',
   className,
   id,
   circled,

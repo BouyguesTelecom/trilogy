@@ -11,7 +11,7 @@ import { BreadcrumbWebProps } from './BreadcrumbProps'
  * @param className {string} Additionnal CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = ({ children, className, id, accessibilityLabel, ...others }: BreadcrumbWebProps) => {
+const Breadcrumb = ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }: BreadcrumbWebProps) => {
   return (
     <nav
       id={id}

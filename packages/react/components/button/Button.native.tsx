@@ -38,39 +38,36 @@ const Button = ({
   iconName,
   ...others
 }: ButtonProps): JSX.Element => {
-  const findBackgroundColor = ({ disabled, loading, variant }: ButtonProps): string => {
-    return (
-      (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
-      (typeof loading === 'string' &&
-        getLoadingClassName(loading) === 'loading' &&
-        getButtonColorStyle(TrilogyColor.BACKGROUND)) ||
-      (typeof loading === 'boolean' && loading && getColorStyle(TrilogyColor.NEUTRAL)) ||
-      (variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.MAIN)) ||
-      (variant === ButtonVariant.SECONDARY && getColorStyle(TrilogyColor.MAIN_FADE)) ||
-      (variant === ButtonVariant.CONVERSION && getColorStyle(TrilogyColor.ACCENT)) ||
-      (variant === ButtonVariant.GHOST && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      getColorStyle(TrilogyColor.MAIN)
-    )
-  }
+  const loaderColor = getColorStyle(TrilogyColor.BACKGROUND)
+  const isLoading = typeof loading === 'string' && getLoadingClassName(loading) === 'loading'
 
-  const findTextColor = ({ variant }: ButtonProps): string => {
-    return (
-      (variant && getVariantClassName(variant) === 'secondary' && getColorStyle(TrilogyColor.FONT)) ||
-      (variant && getVariantClassName(variant) === 'accent' && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      (variant && getVariantClassName(variant) === 'primary' && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      (variant && getVariantClassName(variant) === 'ghost' && getColorStyle(TrilogyColor.FONT)) ||
-      getColorStyle(TrilogyColor.BACKGROUND)
-    )
-  }
+  const background = disabled
+    ? TrilogyColor.NEUTRAL_FADE
+    : isLoading
+    ? getButtonColorStyle(TrilogyColor.BACKGROUND)
+    : typeof loading === 'boolean' && loading
+    ? TrilogyColor.NEUTRAL
+    : variant === ButtonVariant.SECONDARY
+    ? TrilogyColor.MAIN_FADE
+    : variant === ButtonVariant.CONVERSION
+    ? TrilogyColor.ACCENT
+    : variant === ButtonVariant.GHOST
+    ? TrilogyColor.BACKGROUND
+    : TrilogyColor.MAIN
 
-  const findBorderColor = ({ disabled, variant, loading }: ButtonProps): string => {
-    return (
-      (disabled && variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.DISABLED)) ||
-      (!disabled && !!loading && variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.DISABLED)) ||
-      (!disabled && variant === ButtonVariant.PRIMARY && getColorStyle(TrilogyColor.INFO_FADE)) ||
-      getColorStyle(TrilogyColor.BACKGROUND)
-    )
-  }
+  const color =
+    variant && ['secondary', 'ghost'].includes(getVariantClassName(variant))
+      ? TrilogyColor.FONT
+      : TrilogyColor.BACKGROUND
+
+  const borderColor =
+    disabled && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.DISABLED
+      : !disabled && !!loading && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.DISABLED
+      : !disabled && variant === ButtonVariant.PRIMARY
+      ? TrilogyColor.INFO_FADE
+      : TrilogyColor.BACKGROUND
 
   const styles = StyleSheet.create({
     button: {
@@ -82,15 +79,15 @@ const Button = ({
       paddingRight: variant === ButtonVariant.PRIMARY ? 13 : 15,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: findBackgroundColor({ disabled, loading, variant }),
+      backgroundColor: getColorStyle(background),
       borderRadius: 4,
       minHeight: 45,
       height: loading ? 52 : 'auto',
-      borderColor: findBorderColor({ disabled, variant, loading }),
+      borderColor: getColorStyle(borderColor),
     },
     text: {
       fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
-      color: disabled ? getColorStyle(TrilogyColor.BACKGROUND) : findTextColor({ variant }),
+      color: getColorStyle(color),
       alignSelf: 'center',
       alignItems: 'center',
       fontWeight: 'bold',
@@ -122,7 +119,7 @@ const Button = ({
       justifyContent: 'center',
     },
     buttonIconText: {
-      color: disabled ? getColorStyle(TrilogyColor.BACKGROUND) : findTextColor({ variant }),
+      color: getColorStyle(color),
       alignSelf: 'center',
       alignItems: 'center',
       fontWeight: 'bold',
@@ -137,17 +134,6 @@ const Button = ({
     : typeof children === 'string'
     ? children
     : 'NotSpecified'
-
-  /**
-   * Returns variant's classname depending on variant type
-   * @param variantType {string} - VariantType
-   * @returns {string} - Variant value
-   */
-  const iconColorVariant = (variantType?: string) => {
-    if (variantType && ['PRIMARY', 'ACCENT'].includes(variantType)) return TrilogyColor.BACKGROUND
-    if (variantType === 'SECONDARY' || variantType === 'GHOST') return TrilogyColor.MAIN
-    return TrilogyColor.BACKGROUND
-  }
 
   return (
     <TouchableOpacity
@@ -167,7 +153,7 @@ const Button = ({
             height: 45,
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
+          <ActivityIndicator color={loaderColor} testID='activity-indicator' />
         </View>
       )}
       {loading && typeof loading === 'boolean' && loading === true && (
@@ -178,7 +164,7 @@ const Button = ({
             justifyContent: 'center',
           }}
         >
-          <ActivityIndicator color={getColorStyle(TrilogyColor.BACKGROUND)} testID='activity-indicator' />
+          <ActivityIndicator color={loaderColor} testID='activity-indicator' />
         </View>
       )}
       {loading && typeof loading === 'string' && getLoadingClassName(loading) === 'loaded' && (
@@ -189,16 +175,18 @@ const Button = ({
       )}
       {!loading && children && typeof children === 'string' && iconName && (
         <View style={styles.buttonIconContainer}>
-          {!disabled ? (
-            <Icon name={iconName} size={IconSize.SMALL} color={iconColorVariant(variant)} testId='button-icon' />
-          ) : (
-            <Icon
-              testId='button-icon'
-              name={iconName}
-              size={IconSize.SMALL}
-              color={getColorStyle(TrilogyColor.DISABLED)}
-            />
-          )}
+          <Icon
+            name={iconName}
+            size={IconSize.SMALL}
+            color={
+              disabled
+                ? TrilogyColor.DISABLED
+                : variant === 'SECONDARY' || variant === 'GHOST'
+                ? TrilogyColor.MAIN
+                : TrilogyColor.BACKGROUND
+            }
+            testId='button-icon'
+          />
           <Text style={(!disabled && styles.buttonIconText) || (disabled && styles.textDisabledIcon)}>{children}</Text>
         </View>
       )}
