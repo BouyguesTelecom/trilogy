@@ -8,4 +8,5 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 export interface ListProps extends Accessibility, Dev, CommonProps {
   children?: ReactNode
   divider?: boolean
+  ordered?: boolean
 }
