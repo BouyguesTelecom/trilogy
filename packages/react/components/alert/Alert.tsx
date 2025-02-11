@@ -194,6 +194,9 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
       toasterState?.onHide?.()
       setToasterState(null)
     }, duration)
+    return () => {
+      timeRef.current && clearTimeout(timeRef.current)
+    }
   }, [toasterState, toasterState?.title])
 
   return (
