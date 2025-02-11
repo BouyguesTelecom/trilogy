@@ -72,6 +72,39 @@
     padding-left: 0;
     padding-right: 0;
   }
+
+  &::-webkit-search-cancel-button{
+    $colorSvg: encodecolor(getColorValue('main'));
+    position:absolute;
+    right: 0px;
+    bottom : 0px;
+    top:0px;
+    padding: 0 24px;
+    opacity: 1;
+    display: block;
+    background-image: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
+    background-size : 20px;
+    -webkit-appearance: none;
+    background-repeat: no-repeat;
+    background-color: getColor('background') ;
+    background-position: center;    
+  }
+
+  &[type="search"] {
+    padding-right: 45px;
+    &:hover:not(:focus){
+      &::-webkit-search-cancel-button {
+        background-color: getColor('main-fade');
+      }
+    }
+    &:focus{
+      &::-webkit-search-cancel-button {
+        padding: 0 23px;
+      }
+    }
+  }
+
+
 }
 
 .textarea {
