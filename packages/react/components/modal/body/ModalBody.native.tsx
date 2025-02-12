@@ -1,6 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
-import { Platform, ScrollView, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
+import { ModalContext } from '../context/ModalContext'
 import { ModalBodyProps } from './ModalBodyProps'
 
 /**
@@ -9,19 +11,13 @@ import { ModalBodyProps } from './ModalBodyProps'
  * @param others
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
+  const context = React.useContext(ModalContext)
+
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: Platform.OS === 'ios' ? 40 : 10 }}>
-      <TouchableOpacity
-        activeOpacity={1}
-        {...others}
-        style={{
-          bottom: 0,
-          width: '100%',
-          paddingHorizontal: 16,
-        }}
-      >
+    <ScrollView ref={context.scrollViewRef} scrollEventThrottle={16} onScroll={context.handleOnScroll}>
+      <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]} {...others}>
         {children}
-      </TouchableOpacity>
+      </View>
     </ScrollView>
   )
 }
@@ -29,3 +25,10 @@ const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
 ModalBody.displayName = ComponentName.ModalBody
 
 export default ModalBody
+
+const styles = StyleSheet.create({
+  content: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+})
