@@ -1,7 +1,20 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef, useState } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, type ScrollView, StyleSheet, View } from 'react-native'
+import {
+  Dimensions,
+  GestureResponderEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  type ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import ModalRN, { OnSwipeCompleteParams } from 'react-native-modal'
+import { Column, Columns } from '../columns'
+import { Icon, IconName, IconSize } from '../icon'
+import { Title } from '../title'
 import { ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
 
@@ -29,6 +42,7 @@ const Modal = ({
   const scrollViewRef = useRef<ScrollView>(null)
   const [scrollOffset, setScrollOffset] = useState(0)
   const [visible, setVisible] = useState(active || false)
+  const [isFooter, setIsFooter] = useState(active || false)
 
   const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScrollOffset(event.nativeEvent.contentOffset.y)
@@ -38,7 +52,7 @@ const Modal = ({
     if (scrollViewRef.current) scrollViewRef.current.scrollTo(p)
   }
 
-  const handleClose = (e: OnSwipeCompleteParams) => {
+  const handleClose = (e: OnSwipeCompleteParams | GestureResponderEvent) => {
     if (onClose) onClose(e)
     setVisible(false)
   }
@@ -48,19 +62,37 @@ const Modal = ({
   }, [active])
 
   return (
-    <ModalContext.Provider value={{ scrollViewRef, handleOnScroll }}>
+    <ModalContext.Provider value={{ scrollViewRef, handleOnScroll, isFooter, setIsFooter }}>
       {trigger}
       <ModalRN
         isVisible={visible}
         onSwipeComplete={handleClose}
-        swipeDirection={['down']}
+        swipeDirection={unClosable ? undefined : ['down']}
         scrollTo={handleScrollTo}
         scrollOffset={scrollOffset}
-        scrollOffsetMax={400 - 300}
+        scrollOffsetMax={100}
         propagateSwipe={true}
-        style={styles.modal}
+        style={[styles.modal]}
+        {...others}
       >
-        <View style={styles.scrollableModal}>{children}</View>
+        <View style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
+          <View style={{ paddingVertical: !title && hideCloseButton ? 8 : 16 }}>
+            <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+              <Column>
+                <Title level={4}>{title}</Title>
+              </Column>
+              {!hideCloseButton && (
+                <Column narrow>
+                  <TouchableOpacity onPress={handleClose}>
+                    <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
+                  </TouchableOpacity>
+                </Column>
+              )}
+            </Columns>
+          </View>
+
+          {children}
+        </View>
       </ModalRN>
     </ModalContext.Provider>
   )
@@ -75,7 +107,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
-  scrollableModal: {
-    height: 300,
+  body: {
+    paddingHorizontal: 16,
+    maxHeight: Dimensions.get('screen').height / 1.1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    borderRadius: 6,
   },
 })

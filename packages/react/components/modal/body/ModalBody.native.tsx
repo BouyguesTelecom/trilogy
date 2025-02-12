@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { Platform, ScrollView, View } from 'react-native'
 import { ModalContext } from '../context/ModalContext'
 import { ModalBodyProps } from './ModalBodyProps'
 
@@ -11,11 +11,25 @@ import { ModalBodyProps } from './ModalBodyProps'
  * @param others
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
-  const context = React.useContext(ModalContext)
+  const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
 
   return (
-    <ScrollView ref={context.scrollViewRef} scrollEventThrottle={16} onScroll={context.handleOnScroll}>
-      <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]} {...others}>
+    <ScrollView
+      ref={scrollViewRef}
+      scrollEventThrottle={16}
+      onScroll={handleOnScroll}
+      showsVerticalScrollIndicator={false}
+    >
+      <View
+        style={[
+          {
+            backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+            paddingTop: 8,
+            paddingBottom: isFooter ? 8 : Platform.OS === 'ios' ? 40 : 16,
+          },
+        ]}
+        {...others}
+      >
         {children}
       </View>
     </ScrollView>
@@ -25,10 +39,3 @@ const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
 ModalBody.displayName = ComponentName.ModalBody
 
 export default ModalBody
-
-const styles = StyleSheet.create({
-  content: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-})
