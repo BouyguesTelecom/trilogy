@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName } from '@/components/icon'
+import { ListContext } from '@/components/list/context'
+import { ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import React, { useMemo } from 'react'
+import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
+import React, { useContext, useEffect, useId, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ListItemProps } from './ListItemProps'
 
 /**
  * ListItem Component
@@ -13,6 +14,14 @@ import { ListItemProps } from './ListItemProps'
  * @param status {ListIconStatus} Status success|error
  */
 const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element => {
+  const id = useId()
+  const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)
+  const isLastItem = chilIndexes[chilIndexes.length - 1] === id
+
+  useEffect(() => {
+    setChildIndexes((prev) => [...prev, id])
+  }, [id])
+
   const styles = StyleSheet.create({
     text: {
       paddingHorizontal: 16,
@@ -21,6 +30,8 @@ const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element =>
       flexDirection: 'row',
       alignItems: 'center',
       paddingVertical: iconName ? 8 : 2,
+      borderBottomWidth: divider && !isLastItem ? 1 : 0,
+      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL),
     },
     disc: {
       alignSelf: 'center',
@@ -43,8 +54,13 @@ const ListItem = ({ children, status, iconName }: ListItemProps): JSX.Element =>
   }, [children])
 
   return (
-    <View style={styles.content}>
-      {!iconName && (
+    <View style={[styles.content]}>
+      {ordered && !iconName && (
+        <View>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{chilIndexes.indexOf(id) + 1}.</Text>
+        </View>
+      )}
+      {!iconName && !ordered && (
         <View>
           <View style={styles.disc} />
         </View>
