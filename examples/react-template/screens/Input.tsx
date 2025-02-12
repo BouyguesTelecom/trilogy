@@ -16,6 +16,7 @@ import { useEffect } from 'react'
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
+  const [inputSearch, setInputSearch] = React.useState('')
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -33,13 +34,15 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Input
+        value={inputSearch}
         label='Input label not dynamic with sample'
         sample='Input sample'
         help='Search helper input'
         placeholder="I'm a placeholder"
         onKeyUp={(e) => console.log(e)}
         required
-        iconNameRight={IconName.ARROW_LEFT}
+        type='search'
+        onChange={(e) => setInputSearch(e.inputValue)}
       />
 
       <Input

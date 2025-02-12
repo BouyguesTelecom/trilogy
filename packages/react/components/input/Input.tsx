@@ -1,17 +1,17 @@
+import clsx from 'clsx'
+import React, { forwardRef, LegacyRef, useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
 import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
 import { Accessibility, TypographyColor } from '../../objects'
 import { has, is } from '../../services'
-import clsx from 'clsx'
-import React, { forwardRef, LegacyRef, useCallback, useEffect, useState } from 'react'
+import { ComponentName } from '../enumsComponentsName'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
-export interface InputProp extends Accessibility, InputProps, InputWebEvents {
-}
+export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
 interface IconWrapper {
   className?: string
@@ -69,7 +69,7 @@ const Input = (
     label,
     sample,
     className,
-    id,
+    id = React.useId(),
     disabled,
     onChange,
     onKeyPress,
@@ -108,6 +108,8 @@ const Input = (
   ref: LegacyRef<HTMLInputElement>,
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
+  const idHelp = useId()
+  const idSample = useId()
 
   const inputIcon = new Map()
   inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
@@ -211,7 +213,7 @@ const Input = (
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className="input-label">
+        <label className='input-label' htmlFor={id}>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -221,12 +223,13 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className="input-sample" level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO} id={idSample}>
           {sample}
         </Text>
       )}
       <div className={controlClasses}>
         <input
+          aria-describedby={`${idHelp} ${idSample}`}
           id={id}
           required={required}
           role={'textbox'}
@@ -294,11 +297,16 @@ const Input = (
             setIsFocused(false)
           }}
         />
-        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
-        {iconNameLeft && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
+        {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
+
+        {(iconNameLeft || type === 'search') && (
+          <IconWrapper className={'icon-left'} name={iconNameLeft || IconName.SEARCH} />
         )}
+
+        {iconNameRight && !loading && type !== 'password' && (
+          <IconWrapper className={'icon-right'} name={iconNameRight} />
+        )}
+
         {!loading && type === 'password' && (
           <IconWrapper
             className={'icon-right'}
@@ -316,7 +324,11 @@ const Input = (
         )}
         {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
       </div>
-      {help && <Text className={helpClasses}>{help}</Text>}
+      {help && (
+        <Text className={helpClasses} id={idHelp}>
+          {help}
+        </Text>
+      )}
 
       {securityGauge && type === 'password' && (
         <InputGauge validationRules={validationRules} styled={styled} inputValue={_value} />
@@ -324,5 +336,5 @@ const Input = (
     </div>
   )
 }
-
+Input.displayName = ComponentName.Input
 export default forwardRef(Input)
