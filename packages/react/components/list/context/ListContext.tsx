@@ -5,5 +5,5 @@ export const ListContext = React.createContext<ListContextProps>({
   divider: false,
   ordered: false,
   chilIndexes: [],
-  setChildIndexes: () => {},
+  setChildIndexes: () => [''],
 })
