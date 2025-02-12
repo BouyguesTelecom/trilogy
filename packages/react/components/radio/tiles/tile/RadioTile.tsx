@@ -35,9 +35,12 @@ const RadioTile = ({
   description,
   icon,
   horizontal,
+  children,
   ...others
 }: RadioTileProps): JSX.Element => {
   const { styled } = useTrilogyContext()
+
+  const Tag = horizontal ? 'div' : 'span'
 
   return (
     <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
@@ -63,17 +66,10 @@ const RadioTile = ({
       />
       <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
-        {horizontal ? (
-          <span>
-            <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
-          </span>
-        ) : (
-          <>
-            <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
-          </>
-        )}
+        <Tag>
+          <span className={hashClass(styled, clsx('radio-title'))}>{label ?? children}</span>
+          {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
+        </Tag>
       </label>
     </div>
   )

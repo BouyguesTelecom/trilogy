@@ -27,6 +27,7 @@ const Radio = ({
   onChange,
   name,
   value,
+  children,
   ...others
 }: RadioProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -54,7 +55,7 @@ const Radio = ({
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
-        {label}
+        {label ?? children}
       </label>
     </div>
   )
