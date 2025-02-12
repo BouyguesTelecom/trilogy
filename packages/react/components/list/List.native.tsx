@@ -9,7 +9,7 @@ import { View } from 'react-native'
  * @param children {React.ReactNode}
  * @param ordered {boolean} Display ordered list
  */
-const List = ({ children, ordered = false, divider = false, testId, ...others }: ListProps): JSX.Element => {
+const List = ({ children, ordered = false, divider = false, testId, id, ...others }: ListProps): JSX.Element => {
   const [chilIndexes, setChildIndexes] = React.useState<string[]>([])
 
   return (
