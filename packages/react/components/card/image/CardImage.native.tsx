@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
-import { CardImageProps } from './CardImageProps'
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
+import React, { useContext, useEffect, useState } from 'react'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { CardImageProps } from './CardImageProps'
 
 /**
  * Card Image Component
@@ -14,16 +14,9 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param contain {boolean} Resize mode contain
  */
 const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImageProps): JSX.Element => {
-  const { horizontal, reversed, active } = useContext(CardContext)
+  const { horizontal } = useContext(CardContext)
   const maxSize = horizontal ? '50%' : '100%'
   const [ratio, setRatio] = useState(1)
-
-  const getBorderRadius = (isHorizontal: boolean, isReversed: boolean, isActive: boolean) => ({
-    borderBottomRightRadius: (isHorizontal && 1) || (isReversed && 8) || 0,
-    borderBottomLeftRadius: (isHorizontal && 8) || (isReversed && 8) || 0,
-    borderTopRightRadius: (isHorizontal && 1) || (isReversed && 1) || (isActive && 5) || 8,
-    borderTopLeftRadius: (isHorizontal && 1) || (isReversed && 1) || (isActive && 5) || 8,
-  })
 
   const styles = StyleSheet.create({
     cardImage: {
@@ -32,7 +25,6 @@ const CardImage = ({ src, size, alt, onClick, contain, ...others }: CardImagePro
       resizeMode: contain ? 'contain' : 'cover',
       alignSelf: contain ? 'flex-end' : 'auto',
       marginBottom: 0,
-      ...getBorderRadius(horizontal, reversed, active),
     },
   })
 
