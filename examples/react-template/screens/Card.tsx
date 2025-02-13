@@ -19,13 +19,13 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { Columns, Column } from '@trilogy-ds/react'
+import { Columns, Column, TrilogyColor } from '@trilogy-ds/react'
 
 export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false)
 
   return (
-    <Section>
+    <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Columns>
         <Column size={6}>
           <Card>
