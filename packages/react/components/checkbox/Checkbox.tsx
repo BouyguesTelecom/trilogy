@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { CheckboxProps } from './CheckboxProps'
-import clsx from 'clsx'
 import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import clsx from 'clsx'
+import React from 'react'
+import { CheckboxProps } from './CheckboxProps'
 
 /**
  * Checkbox Component
@@ -24,7 +22,7 @@ const Checkbox = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
@@ -32,28 +30,8 @@ const Checkbox = ({
   children,
   ...others
 }: CheckboxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const [_checked, setChecked] = useState<boolean>(checked || false)
-
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { target } = e
-    onChange ? onChange({
-      checkboxId: target.id,
-      checkboxValue: target.value,
-      checkboxName: target.name,
-      checkboxChecked: target.checked,
-    }) : setChecked(target.checked)
-  }
-
   return (
-    <div className={hashClass(styled, clsx('checkbox', className))}>
+    <div className={hashClass(clsx('checkbox', className))}>
       <input
         type='checkbox'
         readOnly={readonly}
@@ -61,11 +39,21 @@ const Checkbox = ({
         disabled={disabled}
         name={name}
         value={value}
-        checked={readonly ? checked : _checked}
-        onChange={handleOnChange}
+        checked={checked}
+        onChange={
+          onChange && !disabled && !readonly
+            ? (e) =>
+                onChange({
+                  checkboxId: e.target.id,
+                  checkboxValue: e.target.value,
+                  checkboxName: e.target.name,
+                  checkboxChecked: e.target.checked,
+                })
+            : undefined
+        }
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+      <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
         {label ?? children}
       </label>
     </div>
@@ -73,4 +61,3 @@ const Checkbox = ({
 }
 
 export default Checkbox
-

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { TextareaProps } from './TextareaProps'
-import { has, is } from '@/services'
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { TypographyColor } from '@/objects'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
+import { TextareaProps } from '@/components/textarea/TextareaProps'
+import { useTextarea } from '@/components/textarea/hooks/useTextarea'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Textarea Component
@@ -54,21 +54,11 @@ const Textarea = ({
   iconNameRight,
   ...others
 }: TextareaProps): JSX.Element => {
-  const [value, setValue] = useState(defaultValue || '')
-  const { styled } = useTrilogyContext()
-
-  useEffect(() => {
-    setValue(defaultValue || '')
-  }, [defaultValue])
-
-  const wrapperClasses = hashClass(styled, clsx('textarea-wrapper', className, status && is(status)))
-  const classes = hashClass(
-    styled,
-    clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')),
-  )
-
+  const { handleChange, value } = useTextarea({ onChange, defaultValue })
+  const wrapperClasses = hashClass(clsx('textarea-wrapper', className, status && is(status)))
+  const classes = hashClass(clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')))
   const helpClasses = clsx('help', status && is(status))
-  const counterClasses = hashClass(styled, clsx('counter', maxLength))
+  const counterClasses = hashClass(clsx('counter', maxLength))
 
   return (
     <div id={id} className={wrapperClasses}>
@@ -95,15 +85,7 @@ const Textarea = ({
         {...others}
         className={classes}
         value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          if (onChange) {
-            onChange({
-              textareaName: e.target.name,
-              textareaValue: e.target.value,
-            })
-          }
-        }}
+        onChange={handleChange}
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
@@ -112,12 +94,8 @@ const Textarea = ({
       {dynamicPlaceholder && <label>{label}</label>}
       {iconNameLeft && <Icon name={iconNameLeft} size='small' />}
       {iconNameRight && <Icon name={iconNameRight} size='small' />}
-      {help && (
-        <Text className={helpClasses}>
-          {help}
-        </Text>
-      )}
-      {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
+      {help && <Text className={helpClasses}>{help}</Text>}
+      {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
     </div>
   )
 }

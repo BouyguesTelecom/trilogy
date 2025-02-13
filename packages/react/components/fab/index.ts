@@ -1,3 +1,3 @@
-import Fab from "./Fab"
+import Fab from '@/components/fab/Fab'
 
 export { Fab }

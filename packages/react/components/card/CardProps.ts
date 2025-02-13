@@ -1,6 +1,8 @@
-import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility, Clickable, Fullheight } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Fullheight } from '@/objects/facets/Fullheight'
 
 /**
  * Card Interface

@@ -1,16 +1,13 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { AccordionBodyProps } from "./AccordionBodyProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
 
 /**
  * Accordion Body Component
  * @param children {React.ReactNode} Children for Accordion body
  */
-const AccordionBody = ({
-  children,
-  ...others
-}: AccordionBodyProps): JSX.Element => {
+const AccordionBody = ({ children, ...others }: AccordionBodyProps): JSX.Element => {
   const styles = StyleSheet.create({
     accordionBody: {},
   })

@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { Alignable } from '@/objects'
 import { has, is } from '@/services/classify'
@@ -41,12 +40,9 @@ const Price = ({
   overline,
   ...others
 }: PriceProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
-  const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
+  const classes = hashClass(clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
 
   const classesStrike = hashClass(
-    styled,
     clsx('price', inverted && is('inverted'), oldAmount && 'strike', overline && has('suptitle'), className),
   )
 
@@ -67,12 +63,12 @@ const Price = ({
     oldAmountComponent = (
       <span aria-hidden='true' className={classesStrike} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
-        <span className={hashClass(styled, clsx('price-details'))}>
-          <span className={hashClass(styled, clsx('cents'))}>
+        <span className={hashClass(clsx('price-details'))}>
+          <span className={hashClass(clsx('cents'))}>
             {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
             {mention && <sup>{mention}</sup>}
           </span>
-          {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+          {period && <span className={hashClass(clsx('period'))}>/{period}</span>}
         </span>
       </span>
     )
@@ -91,12 +87,12 @@ const Price = ({
     amountComponent = (
       <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>
         <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
-        <span className={hashClass(styled, clsx('price-details'))}>
-          <span className={hashClass(styled, clsx('cents'))}>
+        <span className={hashClass(clsx('price-details'))}>
+          <span className={hashClass(clsx('cents'))}>
             {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
             {mention && <sup>{mention}</sup>}
           </span>
-          {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+          {period && <span className={hashClass(clsx('period'))}>/{period}</span>}
         </span>
       </span>
     )
@@ -106,7 +102,6 @@ const Price = ({
     <div
       id={id}
       className={hashClass(
-        styled,
         clsx(
           'price-container',
           is(`level-${level || '1'}`),
@@ -117,7 +112,7 @@ const Price = ({
         ),
       )}
     >
-      {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
+      {overline && <p className={hashClass(clsx('overline'))}>{overline}</p>}
       {oldAmountComponent}
       {amountComponent}
       {tagAmountComponent}

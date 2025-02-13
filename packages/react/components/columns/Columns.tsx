@@ -1,6 +1,5 @@
 import { ColumnsProps } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
@@ -38,10 +37,7 @@ const Columns = React.forwardRef(
     }: ColumnsProps,
     ref: React.Ref<HTMLDivElement>,
   ) => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'columns',
         multiline && is('multiline'),

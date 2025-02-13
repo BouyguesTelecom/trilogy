@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
@@ -13,13 +12,11 @@ import { BreadcrumbWebProps } from './BreadcrumbProps'
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }: BreadcrumbWebProps) => {
-  const { styled } = useTrilogyContext()
-
   return (
     <nav
       id={id}
       role='navigation'
-      className={hashClass(styled, clsx('breadcrumb', className))}
+      className={hashClass(clsx('breadcrumb', className))}
       aria-label={accessibilityLabel}
       {...others}
     >

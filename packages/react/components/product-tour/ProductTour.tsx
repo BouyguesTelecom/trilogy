@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { has, is } from '@/services'
-import { ProductTourWebProps } from './ProductTourProps'
-import { Icon, IconName, IconSize } from '../icon'
 import { hashClass } from '@/helpers'
+import { has, is } from '@/services'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import React from 'react'
+import { Icon, IconName, IconSize } from '../icon'
+import { ProductTourWebProps } from './ProductTourProps'
+import { useProductTour } from './hooks/useProductTour'
 
 /**
  * Product Tour Component
@@ -30,34 +30,26 @@ const ProductTour = ({
   avatarDirection,
   ...others
 }: ProductTourWebProps): JSX.Element => {
-  const [display, setDisplay] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
-
-  useEffect(() => {
-    setDisplay(active || false)
-  }, [active])
+  const { display, handleClick } = useProductTour({ active })
 
   const classes = hashClass(
-    styled,
     clsx('product-tour', display && is('active'), avatarDirection && has(`icon-${avatarDirection}`), className),
   )
 
   return (
     <div id={id} className={classes} {...others}>
-      {arrowDirection && (
-        <div className={hashClass(styled, clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />
-      )}
+      {arrowDirection && <div className={hashClass(clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />}
       {avatarSrc && (
-        <span className={hashClass(styled, clsx('icon', is('medium')))}>
-          <img className={hashClass(styled, clsx(is('rounded')))} src={avatarSrc} />
+        <span className={hashClass(clsx('icon', is('medium')))}>
+          <img className={hashClass(clsx(is('rounded')))} src={avatarSrc} />
         </span>
       )}
       {closeable && (
-        <div style={{ cursor: 'pointer' }} onClick={() => setDisplay(!display)}>
+        <div style={{ cursor: 'pointer' }} onClick={handleClick}>
           <Icon size={IconSize.SMALL} name={IconName.TIMES} className='close' />
         </div>
       )}
-      <div className={hashClass(styled, clsx('product-tour-content'))}>{children}</div>
+      <div className={hashClass(clsx('product-tour-content'))}>{children}</div>
     </div>
   )
 }

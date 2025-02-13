@@ -1,5 +1,5 @@
-import { IconName, IconNameValues } from '../../../components/icon'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Stepper Step Interface

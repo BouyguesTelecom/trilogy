@@ -1,7 +1,6 @@
 import { Icon } from '@/components/icon'
-import { TabsContext } from '@/components/tabs/context'
+import { useTab } from '@/components/tabs/tab-list/tab/hooks/useTab'
 import { TabProps } from '@/components/tabs/tab-list/tab/TabProps'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -35,26 +34,9 @@ const Tab = ({
   ariaControls,
   ...others
 }: TabProps) => {
-  const { styled } = useTrilogyContext()
   const { index, ...props } = others as any
-  const { activeIndex, setActiveIndex } = React.useContext(TabsContext)
-
-  const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
-  const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
-
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent) => {
-      if (!disabled) {
-        if (!routerLink) setActiveIndex(index)
-        if (onClick) onClick(e)
-      }
-    },
-    [disabled, onClick, index, setActiveIndex, routerLink],
-  )
-
-  React.useEffect(() => {
-    if (active) setActiveIndex(index)
-  }, [active, setActiveIndex, index])
+  const { handleClick, isActive } = useTab({ index, disabled, routerLink, onClick, active })
+  const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
 
   if (routerLink && (to || href)) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType

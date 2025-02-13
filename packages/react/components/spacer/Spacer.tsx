@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { SpacerProps } from './SpacerProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import * as React from 'react'
+import { SpacerProps } from './SpacerProps'
 
 /**
  * Spacer Component
@@ -10,14 +9,13 @@ import { useTrilogyContext } from '@/context'
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = ({ size, horizontal, className, id }: SpacerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const styles = {
     spacer: {
       marginLeft: horizontal ? `${size}px` : '0px',
       marginTop: !horizontal ? `${size}px` : '0px',
     },
   }
-  const classes = hashClass(styled, clsx(className))
+  const classes = hashClass(clsx(className))
 
   return <div id={id} style={styles.spacer} className={classes} />
 }

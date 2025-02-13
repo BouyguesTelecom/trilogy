@@ -1,11 +1,10 @@
+import { hashClass } from '@/helpers'
+import { getColorClassName } from '@/objects'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
 import React from 'react'
 import { BoxProps } from './BoxProps'
-import { has, is } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getColorClassName } from '@/objects'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Box Component
@@ -43,9 +42,7 @@ const Box = ({
   active,
   ...others
 }: BoxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const classes = hashClass(
-    styled,
     clsx(
       'box',
       shadowless && is('shadowless'),
@@ -67,10 +64,7 @@ const Box = ({
       <a
         id={id}
         href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
+        onClick={onClick && onClick}
         className={classes}
         {...others}
       >
@@ -87,10 +81,7 @@ const Box = ({
     <div
       id={id}
       style={onClick && { ...hoverStyle }}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-      }}
+      onClick={onClick && onClick}
       className={classes}
       {...others}
       {...(backgroundSrc && {

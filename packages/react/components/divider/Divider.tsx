@@ -1,6 +1,5 @@
 import { DividerProps } from '@/components/divider/DividerProps'
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
@@ -27,10 +26,7 @@ const Divider = ({
   inverted,
   ...others
 }: DividerProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-
   const classes = hashClass(
-    styled,
     clsx(
       'divider',
       unboxed && is('unboxed'),
@@ -40,7 +36,7 @@ const Divider = ({
       iconName && has('icon'),
     ),
   )
-  const contentClasses = hashClass(styled, clsx('divider-content'))
+  const contentClasses = hashClass(clsx('divider-content'))
 
   return (
     <div id={id} data-testid='separator' className={classes} {...others}>

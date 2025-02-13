@@ -1,10 +1,9 @@
+import { hashClass } from '@/helpers'
+import { getBackgroundClassName } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
 import React from 'react'
 import { SectionProps } from './SectionProps'
-import { has, is } from '@/services'
-import { getBackgroundClassName } from '@/objects'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -18,10 +17,7 @@ import { useTrilogyContext } from '@/context'
  * - -------------- NATIVE PROPERTIES ---------------
  **/
 const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }: SectionProps) => {
-  const { styled } = useTrilogyContext()
-
   const _className = hashClass(
-    styled,
     clsx(
       'section',
       className,

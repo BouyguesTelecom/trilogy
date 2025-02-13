@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { Box, StatusState, TrilogyColor, VariantState } from '@trilogy-ds/react'
 import {
   Badge,
   Column,
@@ -11,8 +11,8 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import {Alignable, Box, StatusState, Text, TrilogyColor, VariantState} from '@trilogy-ds/react'
-import {BadgePositionEnum} from '../../../packages/react/components/badge/BadgeEnum'
+import * as React from 'react'
+import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {
   return (
@@ -23,19 +23,11 @@ export const BadgeScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Badge with icon</Title>
 
-      <Badge
-        variant={VariantState.INFO}
-        status={StatusState.SUCCESS}
-        position={BadgePositionEnum.TOP_LEFT}
-      >
+      <Badge variant={VariantState.INFO} status={StatusState.SUCCESS} position={BadgePositionEnum.TOP_LEFT}>
         <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
       </Badge>
 
-      <Badge
-        variant={VariantState.INFO}
-        status={StatusState.SUCCESS}
-        position={BadgePositionEnum.BOTTOM_RIGHT}
-      >
+      <Badge variant={VariantState.INFO} status={StatusState.SUCCESS} position={BadgePositionEnum.BOTTOM_RIGHT}>
         <Icon name={IconName.INFOS_CIRCLE} size={IconSize.MEDIUM} />
       </Badge>
 
