@@ -6,18 +6,25 @@
   ol {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-3;
+    gap: $spacing-2;
   }
 
   li {
     position: relative;
-    @include desktop {
-      display: flex;
-    }
+    display: flex;
+    align-items: center;
+    font-weight: 500;
 
     + li::before {
-      content: ">";
-      padding-right: $spacing-3;
+      content: "";
+      width: 18px;
+      height: 18px;
+      mask-image: url('./assets/icons/all/arrow-right.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      background-color: #1b3650;
+      margin-right: $spacing-2;
     }
   }
 
