@@ -153,9 +153,10 @@ body:has(.modal.is-active) {
     }
 
     .modal-body {
-      padding: $spacing-5;
-      padding-top: 0;
-      padding-bottom: 0;
+      padding: 0 $spacing-5 $spacing-5 ;
+    }
+    &:has(>.modal-footer) > .modal-body {
+      padding-bottom: 0; /* Spacing par défaut si modal-footer est présent */
     }
 
     .modal-footer {
