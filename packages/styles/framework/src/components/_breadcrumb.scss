@@ -23,7 +23,7 @@
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: cover;
-      background-color: #1b3650;
+      background-color: getColor('main');
       margin-right: $spacing-2;
     }
   }
