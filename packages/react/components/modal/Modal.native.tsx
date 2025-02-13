@@ -73,6 +73,7 @@ const Modal = ({
         scrollOffsetMax={100}
         propagateSwipe={true}
         style={[styles.modal]}
+        onModalHide={onModalHide}
         {...others}
       >
         <View style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
