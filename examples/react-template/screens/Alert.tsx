@@ -16,7 +16,7 @@ import {StatusState} from "@trilogy-ds/react/objects";
 import {useContext, useState} from "react";
 import ToasterContext from "@trilogy-ds/react/lib/components/alert/context/ToasterContext";
 import {ToasterAlertProvider} from "@trilogy-ds/react/lib/components/alert";
-import {ToasterAlertPosition} from "@trilogy-ds/react/lib/components/alert/AlertProps";
+import { ToasterAlertFloat, ToasterAlertPosition } from '@trilogy-ds/react/lib/components/alert/AlertProps'
 
 export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
@@ -40,6 +40,7 @@ export const AlertScreen = (): JSX.Element => {
         description,
         iconName: IconName.ALERT,
         status: StatusState.WARNING,
+        float: ToasterAlertFloat.RIGHT,
         onClick: () => console.log('onClick'),
         closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
