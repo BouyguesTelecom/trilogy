@@ -6,7 +6,11 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
-  BOTTOM = 'bottom',
+  BOTTOM = 'bottom'
+}
+export enum ToasterAlertFloat {
+  RIGHT = 'right',
+  LEFT = 'left'
 }
 
 export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility, Dev {
@@ -19,6 +23,7 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
   deletable?: ClickEvent | boolean
   closable?: ClickEvent
   position?: ToasterAlertPosition
+  float?: ToasterAlertFloat
   duration?: number
   offset?: number
   display?: boolean
