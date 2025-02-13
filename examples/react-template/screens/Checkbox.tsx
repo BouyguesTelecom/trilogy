@@ -13,6 +13,22 @@ import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const CheckboxScreen = (): JSX.Element => {
+  const [checked, setChecked] = React.useState<string>()
+  const [checkedTile, setCheckedTile] = React.useState<string>()
+
+  const setId = (e: { checkboxValue: string; checkboxName: string; checkboxChecked: boolean; checkboxId: string }) => {
+    setChecked(e.checkboxId)
+  }
+
+  const setIdTile = (e: {
+    checkboxValue: string
+    checkboxName: string
+    checkboxChecked: boolean
+    checkboxId: string
+  }) => {
+    setCheckedTile(e.checkboxId)
+  }
+
   return (
     <Section>
       <Container>
@@ -21,10 +37,50 @@ export const CheckboxScreen = (): JSX.Element => {
         </Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Checkbox name='name-1' label='Label' value='value' checked id='checkbox1' />
-            <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
-            <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
-            <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            <Checkbox
+              name='name-1'
+              label='Label 1'
+              value='value'
+              checked={checked === 'checkbox1'}
+              id='checkbox1'
+              onChange={setId}
+            />
+            <Checkbox
+              name='name-1'
+              label='Label 2'
+              value='value'
+              id='checkbox2'
+              onChange={setId}
+              checked={checked === 'checkbox2'}
+            />
+            <Checkbox
+              name='name-1'
+              label='Disable'
+              value='value'
+              disabled
+              id='checkbox3'
+              onChange={setId}
+              checked={checked === 'checkbox3'}
+            />
+            <Checkbox
+              name='name-1'
+              label='Read only'
+              value='value'
+              readonly
+              id='checkbox4'
+              onChange={setId}
+              checked={checked === 'checkbox4'}
+            />
+            <Checkbox
+              label='Label 5'
+              name='name-1'
+              value='value'
+              id='checkbox5'
+              onChange={setId}
+              checked={checked === 'checkbox5'}
+            >
+              Multi line <br /> label with <strong>HTML</strong>.
+            </Checkbox>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
@@ -34,6 +90,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 value='value'
                 description='Je suis une description simple'
                 className='is-fullheight'
+                onChange={setIdTile}
+                checked={checkedTile === 'tile-1'}
               />
               <CheckboxTile
                 id='tile-2'
@@ -41,6 +99,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 value='value'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
+                onChange={setIdTile}
+                checked={checkedTile === 'tile-2'}
               />
               <CheckboxTile
                 id='tile-3'
@@ -48,6 +108,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 value='value'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
+                onChange={setIdTile}
+                checked={checkedTile === 'tile-3'}
               />
             </CheckboxTiles>
           </Column>

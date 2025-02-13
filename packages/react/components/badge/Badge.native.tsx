@@ -40,8 +40,8 @@ const Badge = ({
     },
     badge: {
       alignSelf: 'baseline',
-      minWidth: label ? 20 : 12,
-      height: label ? 20 : 12,
+      minWidth: label ? 20 : 10,
+      height: label ? 20 : 10,
       backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 30,
       justifyContent: 'center',

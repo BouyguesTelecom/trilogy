@@ -26,6 +26,7 @@ const Sticker = ({
   label,
   outlined,
   iconName,
+  accessibilityLabel,
   ...others
 }: StickerProps): JSX.Element => {
   const classes = hashClass(
@@ -40,7 +41,7 @@ const Sticker = ({
   )
 
   return (
-    <p id={id} className={classes} {...others}>
+    <p id={id} className={classes} aria-label={accessibilityLabel} {...others}>
       {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>

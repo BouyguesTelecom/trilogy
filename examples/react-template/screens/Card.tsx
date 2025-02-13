@@ -1,4 +1,4 @@
-import { Column, Columns } from '@trilogy-ds/react'
+import { Column, Columns, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -25,7 +25,7 @@ export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false)
 
   return (
-    <Section>
+    <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Columns>
         <Column size={6}>
           <Card>

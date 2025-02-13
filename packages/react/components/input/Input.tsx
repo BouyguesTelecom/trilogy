@@ -9,7 +9,8 @@ import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { forwardRef, LegacyRef } from 'react'
+import React, { forwardRef, LegacyRef, useId } from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
@@ -61,7 +62,7 @@ const Input = (
     label,
     sample,
     className,
-    id,
+    id = React.useId(),
     disabled,
     onChange,
     onKeyPress,
@@ -138,6 +139,8 @@ const Input = (
     onBlur,
     onIconClick,
   })
+  const idHelp = useId()
+  const idSample = useId()
 
   const inputIcon = new Map()
   inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
@@ -159,7 +162,7 @@ const Input = (
   return (
     <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
       {label && (
-        <label className='input-label'>
+        <label className='input-label' htmlFor={id}>
           {label}{' '}
           {required && (
             <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -169,12 +172,13 @@ const Input = (
         </label>
       )}
       {sample && (
-        <Text className='input-sample' level={TextLevels.TWO}>
+        <Text className='input-sample' level={TextLevels.TWO} id={idSample}>
           {sample}
         </Text>
       )}
       <div className={controlClasses}>
         <input
+          aria-describedby={`${idHelp} ${idSample}`}
           id={id}
           required={required}
           role={'textbox'}
@@ -201,11 +205,16 @@ const Input = (
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-        {hasIcon && !localStatus && !loading && <IconWrapper name={iconNameLeft as unknown as IconName} />}
-        {iconNameLeft && <IconWrapper className={'icon-left'} name={iconNameLeft as unknown as IconName} />}
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight as unknown as IconName} />
+        {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
+
+        {(iconNameLeft || type === 'search') && (
+          <IconWrapper className={'icon-left'} name={iconNameLeft || IconName.SEARCH} />
         )}
+
+        {iconNameRight && !loading && type !== 'password' && (
+          <IconWrapper className={'icon-right'} name={iconNameRight} />
+        )}
+
         {!loading && type === 'password' && (
           <IconWrapper
             className={'icon-right'}
@@ -215,11 +224,15 @@ const Input = (
         )}
         {loading && <span className={hashClass(clsx(is('searching')))} />}
       </div>
-      {help && <Text className={helpClasses}>{help}</Text>}
+      {help && (
+        <Text className={helpClasses} id={idHelp}>
+          {help}
+        </Text>
+      )}
 
       {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
     </div>
   )
 }
-
+Input.displayName = ComponentName.Input
 export default forwardRef(Input)

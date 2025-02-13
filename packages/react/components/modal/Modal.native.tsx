@@ -1,14 +1,22 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { Alignable } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, GestureResponderEvent, StyleSheet, TouchableOpacity, View } from 'react-native'
-import NativeModal, { OnSwipeCompleteParams } from 'react-native-modal'
+import {
+  Dimensions,
+  GestureResponderEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  type ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import ModalRN, { OnSwipeCompleteParams } from 'react-native-modal'
 import { Column, Columns } from '../columns'
-import { SpacerSize } from '../spacer'
+import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
 import { ModalProps } from './ModalProps'
+import { ModalContext } from './context/ModalContext'
 
 /**
  * Modal Component
@@ -31,151 +39,86 @@ const Modal = ({
   title,
   ...others
 }: ModalProps): JSX.Element => {
-  const styles = StyleSheet.create({
-    centeredView: {
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    iconCenter: {
-      alignSelf: 'center',
-      marginBottom: 30,
-    },
-    modalView: {
-      margin: 0,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-      borderRadius: 6,
-      padding: 17,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
-      flex: 1,
-    },
-    title: {
-      textAlign: 'center',
-      fontSize: 21,
-      fontWeight: '600',
-    },
-    content: {
-      textAlign: 'center',
-      fontSize: 15,
-      paddingTop: 10,
-    },
-    overlay: {
-      flexDirection: 'row',
-      width: '100%',
-      height: '100%',
-    },
-    middleModal: {
-      justifyContent: 'center',
-    },
-    bottomModal: {
-      justifyContent: 'flex-end',
-    },
-    childrenContainer: {
-      flexWrap: 'wrap',
-      borderRadius: 6,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-      width: '100%',
-    },
-    horizontalMargin: {
-      marginTop: 50,
-      marginBottom: 0,
-    },
-  })
-
-  const defaultAnimPosition = Dimensions.get('window').height
-  const translateAnim = useRef(new Animated.Value(defaultAnimPosition)).current
+  const scrollViewRef = useRef<ScrollView>(null)
+  const [scrollOffset, setScrollOffset] = useState(0)
   const [visible, setVisible] = useState(active || false)
+  const [isFooter, setIsFooter] = useState(active || false)
+
+  const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setScrollOffset(event.nativeEvent.contentOffset.y)
+  }
+
+  const handleScrollTo = (p: number) => {
+    if (scrollViewRef.current) scrollViewRef.current.scrollTo(p)
+  }
+
+  const handleClose = (e: OnSwipeCompleteParams | GestureResponderEvent) => {
+    if (onClose) onClose(e)
+    setVisible(false)
+  }
 
   useEffect(() => {
     setVisible(active)
   }, [active])
 
-  useEffect(() => {
-    if (visible) {
-      Animated.timing(translateAnim, {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: true,
-      }).start()
-    } else {
-      translateAnim.setValue(defaultAnimPosition)
-    }
-  }, [visible])
-
-  const close = (e: OnSwipeCompleteParams | GestureResponderEvent) => {
-    if (onClose) onClose(e)
-    setVisible(false)
-  }
-
   return (
-    <>
+    <ModalContext.Provider value={{ scrollViewRef, handleOnScroll, isFooter, setIsFooter }}>
       {trigger}
-      <NativeModal
-        onSwipeComplete={(e: OnSwipeCompleteParams) => close(e)}
-        onModalHide={onModalHide}
-        swipeDirection={unClosable ? undefined : 'down'}
+      <ModalRN
         isVisible={visible}
-        statusBarTranslucent={true}
-        style={{ width: '100%', padding: 0, margin: 0 }}
-        propagateSwipe
+        onSwipeComplete={handleClose}
+        swipeDirection={unClosable ? undefined : ['down']}
+        scrollTo={handleScrollTo}
+        scrollOffset={scrollOffset}
+        scrollOffsetMax={100}
+        propagateSwipe={true}
+        style={[styles.modal]}
+        onModalHide={onModalHide}
         {...others}
       >
-        <View style={[styles.overlay, styles.bottomModal]}>
-          <TouchableOpacity activeOpacity={1} style={{ width: 0, height: '100%' }} onPress={close} />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flex: 1,
-            }}
-          >
-            <TouchableOpacity activeOpacity={1} style={{ width: '100%', minHeight: 50, flexGrow: 1 }} onPress={close} />
-
-            <View style={{ flexShrink: 1 }}>
-              <Animated.View
-                style={[styles.childrenContainer, { transform: [{ translateY: translateAnim }], overflow: 'hidden' }]}
-              >
-                {!hideCloseButton && (
-                  <View style={{ paddingHorizontal: SpacerSize.FOUR, paddingVertical: 16 }}>
-                    <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-                      <Column>
-                        <Title level={4}>{title}</Title>
-                      </Column>
-                      <Column narrow>
-                        <TouchableOpacity onPress={close}>
-                          <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
-                        </TouchableOpacity>
-                      </Column>
-                    </Columns>
-                  </View>
-                )}
-                {children}
-              </Animated.View>
-            </View>
-            <TouchableOpacity
-              activeOpacity={1}
-              style={{
-                width: '100%',
-                minHeight: 0,
-                flexGrow: 0,
-              }}
-              onPress={close}
-            />
+        <View style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
+          <View style={{ paddingVertical: !title && hideCloseButton ? 8 : 16 }}>
+            <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+              <Column>
+                <Title level={4}>{title}</Title>
+              </Column>
+              {!hideCloseButton && (
+                <Column narrow>
+                  <TouchableOpacity onPress={handleClose}>
+                    <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
+                  </TouchableOpacity>
+                </Column>
+              )}
+            </Columns>
           </View>
-          <TouchableOpacity onPress={close} activeOpacity={1} style={{ width: 0, height: '100%' }} />
+
+          {children}
         </View>
-      </NativeModal>
-    </>
+      </ModalRN>
+    </ModalContext.Provider>
   )
 }
 
 Modal.displayName = ComponentName.Modal
 
 export default Modal
+
+const styles = StyleSheet.create({
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  body: {
+    paddingHorizontal: 16,
+    maxHeight: Dimensions.get('screen').height / 1.1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    borderRadius: 6,
+  },
+})

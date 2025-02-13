@@ -3,7 +3,6 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import shortid from 'shortid'
 import { CheckboxTileProps } from './CheckboxTileProps'
 
 /**
@@ -27,7 +26,7 @@ const CheckboxTile = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   onChange,
   name,
