@@ -1,10 +1,10 @@
-import React, { createContext } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { CardProps } from './CardProps'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import ContentLoader, { Rect } from 'react-content-loader/native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React, { createContext, PropsWithChildren } from 'react'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { CardProps } from './CardProps'
 
 export const CardContext = createContext({
   floating: false,
@@ -53,6 +53,8 @@ const Card = ({
         'transparent',
       borderRadius: cardRadius,
       flex: fullheight ? 1 : 0,
+      overflow: 'hidden',
+      backgroundColor: getColorStyle(floating ? 'transparent' : TrilogyColor.BACKGROUND),
     },
     horizontal: {
       flexDirection: 'row',
@@ -64,12 +66,6 @@ const Card = ({
       shadowOpacity: 0.8,
       shadowRadius: 2,
       elevation: 5,
-    },
-    contentHorizontal: {
-      borderWidth: 2,
-      margin: 2,
-      padding: 10,
-      minHeight: 10,
     },
     skeleton: {
       width: '100%',
@@ -92,6 +88,10 @@ const Card = ({
         </View>
       )}
     </ContentLoader>
+  )
+
+  const ShadowWrapper = ({ children }: PropsWithChildren) => (
+    <View style={[!flat && !floating ? styles.shadow : undefined]}>{children}</View>
   )
 
   let cardView: JSX.Element
@@ -133,7 +133,7 @@ const Card = ({
       >
         <View style={{ width: '100%' }}>
           <TouchableOpacity testID='card-click-test' style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
-            {cardView}
+            <ShadowWrapper>{cardView}</ShadowWrapper>
           </TouchableOpacity>
         </View>
       </CardContext.Provider>
@@ -149,7 +149,7 @@ const Card = ({
           active: active || false,
         }}
       >
-        {cardView}
+        <ShadowWrapper>{cardView}</ShadowWrapper>
       </CardContext.Provider>
     </StatesContext.Provider>
   )
