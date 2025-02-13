@@ -1,6 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
-import { Platform, ScrollView, TouchableOpacity } from 'react-native'
+import { Platform, ScrollView, View } from 'react-native'
+import { ModalContext } from '../context/ModalContext'
 import { ModalBodyProps } from './ModalBodyProps'
 
 /**
@@ -9,19 +11,27 @@ import { ModalBodyProps } from './ModalBodyProps'
  * @param others
  */
 const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
+  const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
+
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: Platform.OS === 'ios' ? 40 : 10 }}>
-      <TouchableOpacity
-        activeOpacity={1}
+    <ScrollView
+      ref={scrollViewRef}
+      scrollEventThrottle={16}
+      onScroll={handleOnScroll}
+      showsVerticalScrollIndicator={false}
+    >
+      <View
+        style={[
+          {
+            backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+            paddingTop: 8,
+            paddingBottom: isFooter ? 8 : Platform.OS === 'ios' ? 40 : 16,
+          },
+        ]}
         {...others}
-        style={{
-          bottom: 0,
-          width: '100%',
-          paddingHorizontal: 16,
-        }}
       >
         {children}
-      </TouchableOpacity>
+      </View>
     </ScrollView>
   )
 }
