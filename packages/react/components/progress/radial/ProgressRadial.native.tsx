@@ -34,7 +34,7 @@ const ProgressRadial = ({
   skeleton,
   ...others
 }: ProgressRadialProps): JSX.Element => {
-  const color = getColorStyle(status || TrilogyColor.INFO)
+  const color = getColorStyle(status || TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = value || 0
   const secondFill = secondValue ? { secondFill: secondValue } : null
