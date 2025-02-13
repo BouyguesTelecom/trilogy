@@ -34,12 +34,10 @@ const BreadcrumbItem = ({
 }: BreadcrumbItemPropsWeb): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx(active && is('active'), className))
-
   if (routerLink && to) {
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
-      <li id={id} data-testid={testId} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      <li id={id} data-testid={testId} onClick={onClick} aria-current={active ? 'page' : undefined}>
         <RouterLink className={hashClass(styled, clsx('link'))} to={to} {...others}>
           {children}
         </RouterLink>
@@ -48,10 +46,16 @@ const BreadcrumbItem = ({
   }
 
   return (
-    <li id={id} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
-      <Link href={active ? undefined : href} {...others}>
-        {children}
-      </Link>
+    <li id={id} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      {active ? (
+        <>
+          {children}
+        </>
+      ) : (
+        <Link href={href} {...others}>
+          {children}
+        </Link>
+      )}
     </li>
   )
 }
