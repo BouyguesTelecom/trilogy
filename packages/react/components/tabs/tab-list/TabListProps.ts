@@ -1,10 +1,9 @@
-import { Alignable, AlignableValues, Dev } from '@/objects'
+import { AlignableProps, Dev } from '@/objects'
 import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Item Interface
  */
-export interface TabListProps extends Dev, CommonProps {
+export interface TabListProps extends Omit<AlignableProps, 'verticalAlign'>, Dev, CommonProps {
   children: React.ReactNode
-  align?: Alignable | AlignableValues
 }

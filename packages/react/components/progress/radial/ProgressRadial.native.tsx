@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
-import { ProgressRadialProps } from './ProgressRadialProps'
+import { ProgressRadialNativeProps } from './ProgressRadialProps'
 import { AnimatedCircularProgress } from './react-native-circular-progress'
 import { Text, TextLevels } from '@/components/text'
 import { getAlignStyle, TypographyAlign } from '@/objects'
@@ -33,7 +33,7 @@ const ProgressRadial = ({
   align,
   skeleton,
   ...others
-}: ProgressRadialProps): JSX.Element => {
+}: ProgressRadialNativeProps): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = value || 0
