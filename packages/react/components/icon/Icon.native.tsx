@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon/IconEnum'
-import { IconProps } from '@/components/icon/IconProps'
+import { IconNativeProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
@@ -39,7 +39,7 @@ const Icon = ({
   skeleton,
   testId,
   ...others
-}: IconProps): JSX.Element => {
+}: IconNativeProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)

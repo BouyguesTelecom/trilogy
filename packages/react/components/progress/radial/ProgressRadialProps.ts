@@ -7,7 +7,7 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
  * Progress Radial Interface
  */
 
-export interface ProgressRadialProps extends StatusProps, AlignableProps, CommonProps {
+export interface ProgressRadialProps extends StatusProps, CommonProps {
   children?: React.ReactElement<ProgressRadialItemProps> | React.ReactNode
   label?: string | React.ReactNode
   value?: number
@@ -20,3 +20,5 @@ export interface ProgressRadialProps extends StatusProps, AlignableProps, Common
   skeleton?: boolean
   small?: boolean
 }
+
+export interface ProgressRadialNativeProps extends ProgressRadialProps, Omit<AlignableProps, 'verticalAlign'> {}

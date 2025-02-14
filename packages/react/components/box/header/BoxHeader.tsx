@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { has, is } from '@/services'
-import { getAlignClassName, getBackgroundClassName } from '@/objects'
+import { getAlignClassName, getBackgroundClassName, getJustifiedClassName } from '@/objects'
 
 /**
  * Box Header Component
@@ -18,17 +18,14 @@ import { getAlignClassName, getBackgroundClassName } from '@/objects'
 
 const BoxHeader = ({ children, className, id, align, variant, ...others }: BoxHeaderProps): JSX.Element => {
   const { styled } = useTrilogyContext()
-  let alignClass = null
-  if (align) {
-    alignClass =
-      (getAlignClassName(align) === 'aligned-start' && is('justified-start')) ||
-      (getAlignClassName(align) === 'aligned-center' && is('justified-center')) ||
-      (getAlignClassName(align) === 'aligned-end' && is('justified-end')) ||
-      null
-  }
   const classes = hashClass(
     styled,
-    clsx('box-header', className, variant && has(getBackgroundClassName(variant)), align && alignClass),
+    clsx(
+      'box-header',
+      className,
+      variant && has(getBackgroundClassName(variant)),
+      align && is(getJustifiedClassName(align)),
+    ),
   )
 
   return (
