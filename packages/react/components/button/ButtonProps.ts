@@ -7,19 +7,17 @@ import {
   ButtonVariantValues,
 } from './ButtonEnum'
 import { Fullwidth } from '../../objects/facets/Fullwidth'
-import { Accessibility, Clickable, Dev } from '../../objects/facets'
+import { Accessibility, Clickable, Dev, Link } from '../../objects/facets'
 import { IconName, IconNameValues } from '../../components/icon'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Button Interface
  */
-export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, CommonProps {
+export interface ButtonProps extends Accessibility, Fullwidth, Clickable,Link, Dev, CommonProps {
   children?: React.ReactNode
   disabled?: boolean
   markup?: ButtonMarkup | ButtonMarkupValues
-  href?: string
-  to?: string
   loading?: boolean
   name?: string
   routerLink?: React.ElementType
