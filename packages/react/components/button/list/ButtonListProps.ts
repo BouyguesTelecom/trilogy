@@ -1,4 +1,4 @@
-import { Alignable, AlignableValues } from '../../../objects'
+import { Alignable, AlignableProps, AlignableValues } from '../../../objects'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import type { ButtonProps } from '../../../components/button/ButtonProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -16,7 +16,6 @@ export interface ButtonListProps {
 /**
  * Button List Web Interface
  */
-export interface ButtonListWebProps extends ButtonListProps, CommonProps {
+export interface ButtonListWebProps extends ButtonListProps, CommonProps, Omit<AlignableProps, 'verticalAlign'> {
   direction?: ButtonListDirectionEnum | ButtonListDirectionEnumValues
-  align?: Alignable | AlignableValues
 }
