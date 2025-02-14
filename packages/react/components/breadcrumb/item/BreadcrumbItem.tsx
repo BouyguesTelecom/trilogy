@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
-import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
@@ -23,7 +22,6 @@ import { Link } from '@/components/link'
 const BreadcrumbItem = ({
   children,
   active,
-  className,
   id,
   href,
   to,
@@ -48,9 +46,7 @@ const BreadcrumbItem = ({
   return (
     <li id={id} onClick={onClick} aria-current={active ? 'page' : undefined}>
       {active ? (
-        <>
-          {children}
-        </>
+        children
       ) : (
         <Link href={href} {...others}>
           {children}

@@ -62,7 +62,7 @@ const Icon = ({
 
   return (
     <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      <i className={hashClass(styled, clsx(name))} aria-hidden="true" />
+      <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
     </span>
   )
 }

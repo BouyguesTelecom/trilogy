@@ -65,7 +65,7 @@ const ProgressRadial = ({
   }
 
   useEffect(() => {
-    let animationFrameId: any
+    let animationFrameId: number
 
     // Reset the current values whenever the provided percent or secondPercent change
     setFirstProgressCurrentValue(0)
