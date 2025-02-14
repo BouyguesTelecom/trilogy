@@ -43,7 +43,7 @@ const Stepper = ({ className, id, children, ...others }: StepperProps) => {
   return (
     <div id={id} className={classes} {...others}>
       {children}
-      <div className="step-count">
+      <div className='step-count'>
         <Text>
           {currentStep}/{nbChild}
         </Text>

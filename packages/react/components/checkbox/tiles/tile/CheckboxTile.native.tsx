@@ -17,7 +17,6 @@ const CheckboxTile = ({
   label,
   onChange,
   name,
-  value,
   description,
   icon,
   horizontal,

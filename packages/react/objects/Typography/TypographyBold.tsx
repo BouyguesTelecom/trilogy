@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { TextLevels, TextLevelValues } from '@/components/text'
 import { TrilogyThemeContext } from "@/context/providerTheme"
 
 /**

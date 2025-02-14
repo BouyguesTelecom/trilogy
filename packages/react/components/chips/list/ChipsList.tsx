@@ -23,7 +23,7 @@ const ChipsList = ({ className, id, children, multiple, scrollable, ...others }:
   )
 
   return (
-    <div id={id} role="group" className={classes} {...others}>
+    <div id={id} role='group' className={classes} {...others}>
       {children}
     </div>
   )
