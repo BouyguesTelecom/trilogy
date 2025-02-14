@@ -1,10 +1,10 @@
-import { Accessibility, AlignableProps, Clickable, Dev } from '@/objects'
+import { Accessibility,  Clickable, Dev } from '@/objects'
 import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Tabs Interface
  */
-export interface TabsProps extends AlignableProps, Clickable, Accessibility, Dev, CommonProps {
+export interface TabsProps extends Clickable, Accessibility, Dev, CommonProps {
   children: React.ReactNode | string
   activeIndex?: number
   fullwidth?: boolean

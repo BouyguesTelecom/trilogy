@@ -1,6 +1,6 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { Alignable } from '@/objects'
+import { Alignable, getJustifiedClassName } from '@/objects'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
@@ -110,10 +110,7 @@ const Price = ({
         clsx(
           'price-container',
           is(`level-${level || '1'}`),
-          (align == Alignable.ALIGNED_START && is('justified-left')) ||
-            (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
-            (align == Alignable.ALIGNED_END && is('justified-right')) ||
-            '',
+          align && is(getJustifiedClassName(align)),
         ),
       )}
     >
