@@ -21,7 +21,7 @@ export const CardContext = createContext({
  * @param floating Floating card
  * @param children {ReactNode}
  * @param onClick {Function} onClick Event
- * @param skeleton {boolean} Loading card
+ * @param loading {boolean} Loading card
  * @param reversed {boolean} Reversed card
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
@@ -33,7 +33,7 @@ const Card = ({
   horizontal,
   floating,
   onClick,
-  skeleton,
+  loading,
   reversed,
   fullheight,
   active,
@@ -96,7 +96,7 @@ const Card = ({
 
   let cardView: JSX.Element
 
-  if (skeleton) {
+  if (loading) {
     return <CardSkeleton />
   }
 

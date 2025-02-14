@@ -87,7 +87,6 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   defaultValue?: string
   value?: string
   disabled?: boolean
-  loading?: boolean
   iconNameLeft?: IconName | IconNameValues
   iconNameRight?: IconName | IconNameValues
   status?: InputStatus | InputStatusValues

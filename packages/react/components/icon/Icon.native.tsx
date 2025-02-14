@@ -25,7 +25,7 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * @param stretched {boolean} Stretched icon
  * @param onClick {Function} onClick Event Icon
  * @param align { Alignable | AlignableValues} align content
- * @param skeleton {boolean} Icon Skeleton
+ * @param loading {boolean} Icon Skeleton
  */
 const Icon = ({
   size,
@@ -36,7 +36,7 @@ const Icon = ({
   backgroundColor,
   onClick,
   align,
-  skeleton,
+  loading,
   testId,
   ...others
 }: IconProps): JSX.Element => {
@@ -131,7 +131,7 @@ const Icon = ({
     </ContentLoader>
   )
 
-  if (skeleton) {
+  if (loading) {
     return <IconSkeleton />
   }
 
