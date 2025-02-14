@@ -1,21 +1,28 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Breadcrumb from "./Breadcrumb";
-import BreadcrumbItem from "./item";
-import { BreadcrumbProps } from "./BreadcrumbProps";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Breadcrumb } from './index'
+import BreadcrumbItem from './item'
+import { BreadcrumbProps } from './BreadcrumbProps'
 
-export default {
-  title: "Components/Breadcrumb",
+const meta = {
+  title: 'Components/Breadcrumb',
   component: Breadcrumb,
   subcomponents: { BreadcrumbItem },
-} as Meta;
+} satisfies Meta<BreadcrumbProps>
 
-export const Base: Story<BreadcrumbProps> = (args) => (
+export default meta
+type Story = StoryObj<typeof meta>
+
+const Template = (args: BreadcrumbProps) => (
   <Breadcrumb {...args}>
-    <BreadcrumbItem href="https://google.fr">Google</BreadcrumbItem>
-    <BreadcrumbItem to="#anchor">Parent avec ancre</BreadcrumbItem>
+    <BreadcrumbItem href='https://google.fr'>Google</BreadcrumbItem>
+    <BreadcrumbItem to='#anchor'>Parent avec ancre</BreadcrumbItem>
     <BreadcrumbItem>Parent</BreadcrumbItem>
     <BreadcrumbItem active>Page en cours</BreadcrumbItem>
   </Breadcrumb>
-);
+)
+
+export const Base: Story = {
+  render: Template,
+}
