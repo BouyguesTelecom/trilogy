@@ -6,7 +6,7 @@ import { View } from 'react-native'
 /**
  * Columns Item Interface
  */
-export interface ColumnProps extends AlignableProps, CommonProps {
+export interface ColumnProps extends  Omit<AlignableProps, 'align'>, CommonProps {
   children?: React.ReactNode
   size?: ColumnsSize
   mobileSize?: ColumnsSize

@@ -8,7 +8,7 @@ import { View } from 'react-native'
  * Progress Radial Interface
  */
 
-export interface ProgressRadialProps extends StatusProps, AlignableProps, CommonProps {
+export interface ProgressRadialProps extends StatusProps, CommonProps {
   children?: React.ReactElement<ProgressRadialItemProps> | React.ReactNode
   label?: string | React.ReactNode
   value?: number
@@ -24,3 +24,5 @@ export interface ProgressRadialProps extends StatusProps, AlignableProps, Common
 
 export type ProgressRadialRef = HTMLDivElement
 export type ProgressRadialNativeRef = View
+
+export interface ProgressRadialNativeProps extends ProgressRadialProps, Omit<AlignableProps, 'verticalAlign'> {}

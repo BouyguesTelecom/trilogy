@@ -8,7 +8,7 @@ export enum RadiusValues {
   LARGE = 'large',
 }
 
-export interface ImageProps extends AlignableProps, Clickable, CommonProps {
+export interface ImageProps extends Omit<AlignableProps, 'verticalAlign'>, Clickable, CommonProps {
   src: string | number
   alt?: string
   circled?: boolean

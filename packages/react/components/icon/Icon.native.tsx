@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon/IconEnum'
-import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
+import { IconNativeRef, IconNativeProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isAndroid, isIOS } from '@/helpers/device.native'
@@ -28,7 +28,7 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * @param align { Alignable | AlignableValues} align content
  * @param skeleton {boolean} Icon Skeleton
  */
-const Icon = React.forwardRef<IconNativeRef, IconProps>(
+const Icon = React.forwardRef<IconNativeRef, IconNativeProps>(
   (
     { size, name, circled, stretched, color, backgroundColor, onClick, align, skeleton, testId, ...others },
     ref,

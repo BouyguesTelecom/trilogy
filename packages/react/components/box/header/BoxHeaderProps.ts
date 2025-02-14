@@ -7,7 +7,7 @@ import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
-export interface BoxHeaderProps extends AlignableProps, Accessibility, CommonProps {
+export interface BoxHeaderProps extends Omit<AlignableProps, 'verticalAlign'>, Accessibility, CommonProps {
   children?: React.ReactNode
   variant?: TrilogyColor | TrilogyColorValues
 }

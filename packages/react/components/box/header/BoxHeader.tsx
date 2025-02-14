@@ -1,12 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
+import { has, is } from '@/services'
+import { getBackgroundClassName, getJustifiedClassName } from '@/objects'
 
 /**
  * Box Header Component
@@ -21,17 +20,15 @@ import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
 const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
   ({ children, className, id, align, variant, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-    let alignClass = null
-    if (align) {
-      alignClass =
-        (getAlignClassName(align) === 'aligned-start' && is('justified-start')) ||
-        (getAlignClassName(align) === 'aligned-center' && is('justified-center')) ||
-        (getAlignClassName(align) === 'aligned-end' && is('justified-end')) ||
-        null
-    }
+
     const classes = hashClass(
       styled,
-      clsx('box-header', className, variant && has(getBackgroundClassName(variant)), align && alignClass),
+      clsx(
+        'box-header',
+        className,
+        variant && has(getBackgroundClassName(variant)),
+        align && is(getJustifiedClassName(align)),
+      ),
     )
 
     return (

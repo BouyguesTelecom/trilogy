@@ -1,4 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressRadialNativeProps } from './ProgressRadialProps'
 import { Text, TextLevels } from '@/components/text'
 import { isAndroid } from '@/helpers/device.native'
 import { getAlignStyle, TypographyAlign } from '@/objects'
@@ -6,7 +7,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import ContentLoader, { Circle } from 'react-content-loader/native'
 import { StyleSheet, View } from 'react-native'
-import { ProgressRadialNativeRef, ProgressRadialProps } from './ProgressRadialProps'
+import { ProgressRadialNativeRef } from './ProgressRadialProps'
 import { AnimatedCircularProgress } from './react-native-circular-progress'
 
 /**
@@ -21,7 +22,7 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
  * @param align {Alignable} Progress Radial Alignement
  * @param skeleton {boolean} Skeleton Progress Radial
  */
-const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(({
+const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialNativeProps>(({
   children,
   value,
   label,
