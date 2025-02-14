@@ -128,7 +128,7 @@ const Input = (
   const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
   const wrapperClasses = hashClass(
     styled,
-    clsx('field', className, type === 'password' && securityGauge && 'has-gauge'),
+    clsx('field', className, type === InputType.PASSWORD && securityGauge && has('gauge')),
   )
 
   const hasIcon = iconNameLeft || iconNameRight
@@ -136,8 +136,8 @@ const Input = (
   const controlClasses = hashClass(
     styled,
     clsx('control', {
-      [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
-      ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
+      [has('icons-right')]: hasIcon ?? (iconNameRight || type === InputType.PASSWORD),
+      [has('icons-left')]: iconNameLeft || type === InputType.SEARCH,
     }),
   )
 
@@ -156,7 +156,7 @@ const Input = (
     ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
       return (
         <div
-          {...(type === 'password' && { 'data-show-pwd': true })}
+          {...(type === InputType.PASSWORD && { 'data-show-pwd': true })}
           onClick={(e) => {
             onPress && onPress()
             if (onIconClick) {
@@ -232,7 +232,7 @@ const Input = (
           aria-describedby={`${idHelp} ${idSample}`}
           id={id}
           required={required}
-          role={'textbox'}
+          role='textbox'
           {...others}
           aria-label={accessibilityLabel}
           type={inputType}
@@ -299,20 +299,20 @@ const Input = (
         />
         {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
 
-        {(iconNameLeft || type === 'search') && (
-          <IconWrapper className={'icon-left'} name={iconNameLeft || IconName.SEARCH} />
+        {(iconNameLeft || type === InputType.SEARCH) && (
+          <IconWrapper className='icon-left' name={iconNameLeft || IconName.SEARCH} />
         )}
 
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight} />
+        {iconNameRight && !loading && type !== InputType.PASSWORD && (
+          <IconWrapper className='icon-right' name={iconNameRight} />
         )}
 
-        {!loading && type === 'password' && (
+        {!loading && type === InputType.PASSWORD && (
           <IconWrapper
-            className={'icon-right'}
+            className='icon-right'
             name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
             onPress={() => {
-              if (inputType === 'password') {
+              if (inputType === InputType.PASSWORD) {
                 setInputType(InputType.TEXT)
                 setIsShowPwd(true)
               } else {
@@ -330,7 +330,7 @@ const Input = (
         </Text>
       )}
 
-      {securityGauge && type === 'password' && (
+      {securityGauge && type ===  InputType.PASSWORD && (
         <InputGauge validationRules={validationRules} styled={styled} inputValue={_value} />
       )}
     </div>
