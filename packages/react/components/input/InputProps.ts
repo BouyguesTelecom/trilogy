@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Accessibility, Dev } from '../../objects/facets'
-import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
+import { NativeSyntheticEvent, TextInputSubmitEditingEventData, TextInputProps } from 'react-native'
 
-import { FocusEventHandler } from 'react'
+import { FocusEventHandler, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
-  InputAutoCompleteType,
-  InputAutoCompleteTypeValues,
   InputKeyboardAppearance,
   InputKeyboardAppearanceValues,
   InputKeyboardType,
@@ -79,7 +77,7 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
 /**
  * Input Interface
  */
-export interface InputProps extends Accessibility, Dev, CommonProps {
+export interface Input extends Accessibility, Dev, CommonProps {
   type?: InputType | InputTypeValues
   label?: string
   sample?: string
@@ -100,7 +98,6 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
   autoCorrect?: any
-  autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
   forceControl?: boolean
@@ -113,6 +110,14 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   securityGauge?: boolean
   validationRules?: IValidationRules
   required?: boolean
+}
+
+export interface InputProps extends Input {
+  autoCompleteType?: HTMLInputAutoCompleteAttribute
+}
+
+export interface InputNativeProps extends Input, InputNativeEvents {
+  autoCompleteType?: TextInputProps['autoComplete']
 }
 
 export interface ILengthVerify {
