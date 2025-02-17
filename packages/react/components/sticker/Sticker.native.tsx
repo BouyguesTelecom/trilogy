@@ -5,6 +5,7 @@ import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
 import { Icon, IconSize } from '@/components/icon'
+import { isIOS } from '@/helpers'
 
 /**
  * Sticker component
@@ -56,7 +57,7 @@ const Sticker = ({
       alignSelf: 'center',
       fontWeight: 'bold',
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === 'ios' ? [{ skewX: '0deg' }] : [],
+      transform: isIOS ? [{ skewX: '0deg' }] : [],
       marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
       marginTop: 1,
     },

@@ -3,7 +3,6 @@ import { Role } from 'react-native'
 import { IconName, IconNameValues } from '../../components/icon'
 import { Accessibility, Clickable, Dev } from '../../objects/facets'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { TypographyAlign, TypographyAlignValues } from '@/objects'
 
 /**
  * Link Interface
@@ -27,5 +26,4 @@ export interface LinkProps extends Link {
 
 export interface LinkPropsNative extends Link {
   role?: Role
-  typo?: TypographyAlign | TypographyAlignValues
 }
