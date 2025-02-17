@@ -9,11 +9,12 @@ import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { TypographyBold } from '@/objects'
+import { Alignable, TypographyBold } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
 import ToasterContext from './context'
 import LibToast from 'react-native-toast-message'
 import { ToasterShowContext } from './context/ToasterContextProps'
+import { Row, Rows } from '../rows'
 
 /**
  * Function call by context for showing toast
@@ -59,9 +60,9 @@ const Alert = ({
   const styles = StyleSheet.create({
     container: {
       width: '100%',
-      paddingTop: 10,
+      paddingTop: 12,
       borderColor: status !== undefined ? color : backgroundColor,
-      paddingBottom: 10,
+      paddingBottom: 12,
       borderWidth: banner ? 0 : 1,
       backgroundColor: backgroundColor,
       borderRadius: banner ? 0 : 6,
@@ -78,7 +79,6 @@ const Alert = ({
     description: {
       justifyContent: 'center',
       alignItems: 'center',
-      paddingBottom: 5,
       textAlignVertical: 'center',
       paddingLeft: 8,
     },
@@ -92,33 +92,29 @@ const Alert = ({
   alertView = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <View style={[styles.container, (others as any).style]}>
-      <Columns>
-        <Column size={1}>
+      <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
+        <Column narrow>
           <Icon name={iconName ? iconName : getStatusIconName(status)} />
         </Column>
-
-        <Column size={11}>
-          <Text style={styles.containerTitle} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
-            {title}
-          </Text>
-          <Spacer size={SpacerSize.ONE} />
+        <Column>
+          <Rows gap={2}>
+            <Row>
+              <Text style={styles.containerTitle} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                {title}
+              </Text>
+            </Row>
+            <Row>
+              {description && typeof description.valueOf() === 'string' ? (
+                <Text level={TextLevels.TWO} style={styles.description}>
+                  {description}
+                </Text>
+              ) : (
+                <View style={styles.description}>{description}</View>
+              )}
+            </Row>
+          </Rows>
         </Column>
       </Columns>
-
-      {description && (
-        <Columns>
-          <Column size={1} />
-          <Column size={11}>
-            {typeof description.valueOf() === 'string' ? (
-              <Text level={TextLevels.TWO} style={styles.description}>
-                {description}
-              </Text>
-            ) : (
-              description
-            )}
-          </Column>
-        </Columns>
-      )}
     </View>
   )
 
