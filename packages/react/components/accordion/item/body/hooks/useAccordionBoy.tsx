@@ -1,15 +1,12 @@
+import { isServer } from '@/helpers/isServer'
 import React from 'react'
 
 export const useAccordionBody = () => {
-  try {
-    const _ = React.useState()
+  if (isServer) return {}
 
-    const onClick = React.useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.stopPropagation()
-    }, [])
+  const onClick = React.useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation()
+  }, [])
 
-    return { onClick }
-  } catch {
-    return {}
-  }
+  return { onClick }
 }

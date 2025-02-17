@@ -1,3 +1,4 @@
+import { isServer } from '@/helpers/isServer'
 import React from 'react'
 
 interface IParams {
@@ -5,26 +6,26 @@ interface IParams {
 }
 
 export const useStepper = ({ children }: IParams) => {
-  try {
-    const [currentStep, setCurrentStep] = React.useState<number>(1)
-
-    const nbChild = React.useMemo<number>(() => {
-      return getNbChilds(children)
-    }, [children])
-
-    React.useEffect(() => {
-      getCurrentStep(children, setCurrentStep)
-    }, [children])
-
-    return {
-      currentStep,
-      nbChild,
-    }
-  } catch {
+  if (isServer) {
     return {
       currentStep: getCurrentStep(children),
       nbChild: getNbChilds(children),
     }
+  }
+
+  const [currentStep, setCurrentStep] = React.useState<number>(1)
+
+  const nbChild = React.useMemo<number>(() => {
+    return getNbChilds(children)
+  }, [children])
+
+  React.useEffect(() => {
+    getCurrentStep(children, setCurrentStep)
+  }, [children])
+
+  return {
+    currentStep,
+    nbChild,
   }
 }
 

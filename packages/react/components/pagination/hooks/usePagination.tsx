@@ -1,4 +1,5 @@
 import { Pager } from '@/components/pagination/PaginationEnum'
+import { isServer } from '@/helpers/isServer'
 import React from 'react'
 
 interface IProps {
@@ -8,46 +9,46 @@ interface IProps {
 }
 
 export const usePagination = ({ defaultPage, onClick, length }: IProps) => {
-  try {
-    const [currentPage, setCurrentPage] = React.useState<number>(defaultPage)
-    const prevCurrentPage = React.useRef<number>(currentPage)
-
-    const pager = React.useMemo<Pager>(() => {
-      return calcPager(currentPage, length)
-    }, [currentPage, length])
-
-    const handleClickPrev = React.useCallback(() => {
-      if (currentPage !== 1) setCurrentPage(currentPage - 1)
-    }, [currentPage])
-
-    const handleClickNext = React.useCallback(() => {
-      if (currentPage !== Math.max(length)) setCurrentPage(currentPage + 1)
-    }, [currentPage])
-
-    const handleClickPage = React.useCallback((pageNumber: number) => {
-      setCurrentPage(pageNumber)
-    }, [])
-
-    React.useEffect(() => {
-      if (onClick && prevCurrentPage.current !== pager.currentPage) {
-        onClick(pager)
-      }
-      setCurrentPage(pager.currentPage)
-      prevCurrentPage.current = pager.currentPage
-    }, [pager.currentPage])
-
-    return {
-      currentPage,
-      handleClickNext,
-      handleClickPage,
-      handleClickPrev,
-      pager,
-    }
-  } catch {
+  if (isServer) {
     return {
       currentPage: defaultPage,
       pager: calcPager(defaultPage, length),
     }
+  }
+
+  const [currentPage, setCurrentPage] = React.useState<number>(defaultPage)
+  const prevCurrentPage = React.useRef<number>(currentPage)
+
+  const pager = React.useMemo<Pager>(() => {
+    return calcPager(currentPage, length)
+  }, [currentPage, length])
+
+  const handleClickPrev = React.useCallback(() => {
+    if (currentPage !== 1) setCurrentPage(currentPage - 1)
+  }, [currentPage])
+
+  const handleClickNext = React.useCallback(() => {
+    if (currentPage !== Math.max(length)) setCurrentPage(currentPage + 1)
+  }, [currentPage])
+
+  const handleClickPage = React.useCallback((pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  }, [])
+
+  React.useEffect(() => {
+    if (onClick && prevCurrentPage.current !== pager.currentPage) {
+      onClick(pager)
+    }
+    setCurrentPage(pager.currentPage)
+    prevCurrentPage.current = pager.currentPage
+  }, [pager.currentPage])
+
+  return {
+    currentPage,
+    handleClickNext,
+    handleClickPage,
+    handleClickPrev,
+    pager,
   }
 }
 

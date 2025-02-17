@@ -11,6 +11,7 @@ import {
   InputKeyboardEventHandler,
 } from '@/components/input/InputProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { isServer } from '@/helpers/isServer'
 import { is } from '@/services/classify'
 
 interface IconWrapper {
@@ -64,178 +65,7 @@ export const useInput = ({
   onBlur,
   onIconClick,
 }: IParams) => {
-  try {
-    const [_value, setValue] = React.useState<string>(defaultValue ?? '')
-    const [isFocused, setIsFocused] = React.useState<boolean>(focused ?? false)
-    const [isDirty, setIsDirty] = React.useState<boolean>(false)
-    const [isTouched, setIsTouched] = React.useState<boolean>(false)
-    const [localStatus, setLocalStatus] = React.useState<InputStatus | InputStatusValues>(status || InputStatus.DEFAULT)
-    const [inputType, setInputType] = React.useState<InputType | InputTypeValues>(type)
-    const [isShowPwd, setIsShowPwd] = React.useState<boolean>(false)
-
-    const onPressKey = React.useCallback((e: React.KeyboardEvent) => {
-      const target = e.target as HTMLFormElement
-      return {
-        inputName: target.name,
-        inputValue: target.value,
-        inputKeyCode: e.keyCode,
-        target,
-        preventDefault: () => e.preventDefault(),
-      }
-    }, [])
-
-    const IconWrapper = React.useCallback(
-      ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
-        return (
-          <CreateIconWrapper
-            className={className}
-            name={name}
-            color={color}
-            closeIconSearch={closeIconSearch}
-            onClick={(e) => {
-              onPress && onPress()
-              if (onIconClick) {
-                onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
-              }
-            }}
-            type={type}
-            _value={_value}
-            onClickCloseIconSearch={() => setValue('')}
-          />
-        )
-      },
-      [_value, onIconClick, type],
-    )
-
-    const handleKeyUp = React.useCallback((e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e)), [onKeyUp])
-
-    const handleMouseEnter = React.useCallback(
-      (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => onMouseEnter?.(e),
-      [onMouseEnter],
-    )
-
-    const handleMouseLeave = React.useCallback(
-      (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => onMouseLeave?.(e),
-      [onMouseLeave],
-    )
-
-    const handleKeyPress = React.useCallback(
-      (e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e)),
-      [onKeyPress],
-    )
-
-    const handleClick = React.useCallback(
-      (e: React.MouseEvent<Element>) => {
-        const target = e.target as HTMLFormElement
-        if (onClick) {
-          onClick({
-            inputName: target.name,
-            inputValue: target.value,
-            target: target,
-          })
-        }
-      },
-      [onClick],
-    )
-
-    const handleChange = React.useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        // --- solution to prevent cursor jump ---
-        if (
-          inputType !== InputType.DATE &&
-          inputType !== InputType.DATETIME_LOCAL &&
-          inputType !== InputType.NUMBER &&
-          inputType !== InputType.EMAIL
-        ) {
-          const caret = e.target.selectionStart
-          const element = e.target
-          window.requestAnimationFrame(() => {
-            element.selectionStart = caret
-            element.selectionEnd = caret
-          })
-        }
-        if (!forceControl) setValue(e.target.value)
-        if (onChange) {
-          onChange({
-            inputName: e.target.name,
-            inputValue: e.target.value,
-            inputSelectionStart: e.target.selectionStart,
-            target: e.target,
-          })
-        }
-      },
-      [forceControl, onChange, inputType],
-    )
-
-    const handleFocus = React.useCallback(
-      (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        onFocus?.(e)
-        setIsFocused(true)
-      },
-      [onFocus],
-    )
-
-    const handleBlur = React.useCallback(
-      (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        onBlur?.(e)
-        setIsFocused(false)
-      },
-      [onBlur],
-    )
-
-    const handlePressIconPwd = React.useCallback(() => {
-      if (inputType === 'password') {
-        setInputType('text')
-        setIsShowPwd(true)
-      } else {
-        setInputType('password')
-        setIsShowPwd(false)
-      }
-    }, [inputType])
-
-    React.useEffect(() => {
-      setValue(value ?? defaultValue ?? '')
-    }, [value, defaultValue])
-
-    React.useEffect(() => {
-      setIsFocused(focused ?? false)
-    }, [focused])
-
-    React.useEffect(() => {
-      if (isFocused) setIsDirty(true)
-      else if (isDirty) setIsTouched(true)
-    }, [isFocused, isDirty])
-
-    React.useEffect(() => {
-      if (!validator || !isTouched) return
-      setLocalStatus(validator(_value))
-    }, [isFocused, isTouched, validator])
-
-    React.useEffect(() => {
-      setLocalStatus(status || InputStatus.DEFAULT)
-    }, [status])
-
-    React.useEffect(() => {
-      if (onStatusChange) onStatusChange(localStatus)
-    }, [localStatus, onStatusChange])
-
-    return {
-      localStatus,
-      inputType,
-      _value,
-      isShowPwd,
-      handleBlur,
-      handleChange,
-      handleClick,
-      handleFocus,
-      handleKeyPress,
-      handleKeyUp,
-      handleMouseEnter,
-      handleMouseLeave,
-      IconWrapper,
-      handlePressIconPwd,
-    }
-  } catch {
+  if (isServer) {
     return {
       localStatus: status || InputStatus.DEFAULT,
       inputType: type,
@@ -243,6 +73,177 @@ export const useInput = ({
       isShowPwd: false,
       IconWrapper: CreateIconWrapper,
     }
+  }
+
+  const [_value, setValue] = React.useState<string>(defaultValue ?? '')
+  const [isFocused, setIsFocused] = React.useState<boolean>(focused ?? false)
+  const [isDirty, setIsDirty] = React.useState<boolean>(false)
+  const [isTouched, setIsTouched] = React.useState<boolean>(false)
+  const [localStatus, setLocalStatus] = React.useState<InputStatus | InputStatusValues>(status || InputStatus.DEFAULT)
+  const [inputType, setInputType] = React.useState<InputType | InputTypeValues>(type)
+  const [isShowPwd, setIsShowPwd] = React.useState<boolean>(false)
+
+  const onPressKey = React.useCallback((e: React.KeyboardEvent) => {
+    const target = e.target as HTMLFormElement
+    return {
+      inputName: target.name,
+      inputValue: target.value,
+      inputKeyCode: e.keyCode,
+      target,
+      preventDefault: () => e.preventDefault(),
+    }
+  }, [])
+
+  const IconWrapper = React.useCallback(
+    ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+      return (
+        <CreateIconWrapper
+          className={className}
+          name={name}
+          color={color}
+          closeIconSearch={closeIconSearch}
+          onClick={(e) => {
+            onPress && onPress()
+            if (onIconClick) {
+              onIconClick({ inputName: name ?? '', inputValue: _value, target: e.target })
+            }
+          }}
+          type={type}
+          _value={_value}
+          onClickCloseIconSearch={() => setValue('')}
+        />
+      )
+    },
+    [_value, onIconClick, type],
+  )
+
+  const handleKeyUp = React.useCallback((e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e)), [onKeyUp])
+
+  const handleMouseEnter = React.useCallback(
+    (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => onMouseEnter?.(e),
+    [onMouseEnter],
+  )
+
+  const handleMouseLeave = React.useCallback(
+    (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => onMouseLeave?.(e),
+    [onMouseLeave],
+  )
+
+  const handleKeyPress = React.useCallback(
+    (e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e)),
+    [onKeyPress],
+  )
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<Element>) => {
+      const target = e.target as HTMLFormElement
+      if (onClick) {
+        onClick({
+          inputName: target.name,
+          inputValue: target.value,
+          target: target,
+        })
+      }
+    },
+    [onClick],
+  )
+
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      // --- solution to prevent cursor jump ---
+      if (
+        inputType !== InputType.DATE &&
+        inputType !== InputType.DATETIME_LOCAL &&
+        inputType !== InputType.NUMBER &&
+        inputType !== InputType.EMAIL
+      ) {
+        const caret = e.target.selectionStart
+        const element = e.target
+        window.requestAnimationFrame(() => {
+          element.selectionStart = caret
+          element.selectionEnd = caret
+        })
+      }
+      if (!forceControl) setValue(e.target.value)
+      if (onChange) {
+        onChange({
+          inputName: e.target.name,
+          inputValue: e.target.value,
+          inputSelectionStart: e.target.selectionStart,
+          target: e.target,
+        })
+      }
+    },
+    [forceControl, onChange, inputType],
+  )
+
+  const handleFocus = React.useCallback(
+    (e: React.FocusEvent<HTMLInputElement, Element>) => {
+      onFocus?.(e)
+      setIsFocused(true)
+    },
+    [onFocus],
+  )
+
+  const handleBlur = React.useCallback(
+    (e: React.FocusEvent<HTMLInputElement, Element>) => {
+      onBlur?.(e)
+      setIsFocused(false)
+    },
+    [onBlur],
+  )
+
+  const handlePressIconPwd = React.useCallback(() => {
+    if (inputType === 'password') {
+      setInputType('text')
+      setIsShowPwd(true)
+    } else {
+      setInputType('password')
+      setIsShowPwd(false)
+    }
+  }, [inputType])
+
+  React.useEffect(() => {
+    setValue(value ?? defaultValue ?? '')
+  }, [value, defaultValue])
+
+  React.useEffect(() => {
+    setIsFocused(focused ?? false)
+  }, [focused])
+
+  React.useEffect(() => {
+    if (isFocused) setIsDirty(true)
+    else if (isDirty) setIsTouched(true)
+  }, [isFocused, isDirty])
+
+  React.useEffect(() => {
+    if (!validator || !isTouched) return
+    setLocalStatus(validator(_value))
+  }, [isFocused, isTouched, validator])
+
+  React.useEffect(() => {
+    setLocalStatus(status || InputStatus.DEFAULT)
+  }, [status])
+
+  React.useEffect(() => {
+    if (onStatusChange) onStatusChange(localStatus)
+  }, [localStatus, onStatusChange])
+
+  return {
+    localStatus,
+    inputType,
+    _value,
+    isShowPwd,
+    handleBlur,
+    handleChange,
+    handleClick,
+    handleFocus,
+    handleKeyPress,
+    handleKeyUp,
+    handleMouseEnter,
+    handleMouseLeave,
+    IconWrapper,
+    handlePressIconPwd,
   }
 }
 

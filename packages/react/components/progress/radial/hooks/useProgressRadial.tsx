@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { isServer } from '@/helpers/isServer'
 import { getColorStyle } from '@/objects/facets/Color'
 
 interface IParams {
@@ -8,47 +9,47 @@ interface IParams {
 }
 
 export const useProgressRadial = ({ value, secondValue }: IParams) => {
-  try {
-    const [firstProgressCurrentValue, setFirstProgressCurrentValue] = React.useState(0)
-    const [secondProgressCurrentValue, setSecondProgressCurrentValue] = React.useState(0)
-
-    const progressRadialRef = React.useRef<HTMLDivElement>(null)
-
-    React.useEffect(() => {
-      let animationFrameId: any
-
-      // Reset the current values whenever the provided percent or secondPercent change
-      setFirstProgressCurrentValue(0)
-      setSecondProgressCurrentValue(0)
-      updateBackgroundStyle(value, secondValue, progressRadialRef) // if percent or secondPercent are 0, update immediately
-
-      const frame = () => {
-        setFirstProgressCurrentValue((value) => {
-          return value < value ? value + 1 : value
-        })
-        setSecondProgressCurrentValue((value) => {
-          return value < secondValue ? value + 1 : value
-        })
-        animationFrameId = requestAnimationFrame(frame)
-      }
-
-      animationFrameId = requestAnimationFrame(frame)
-
-      // Cleanup
-      return () => cancelAnimationFrame(animationFrameId)
-    }, [value, secondValue])
-
-    React.useEffect(() => {
-      updateBackgroundStyle(firstProgressCurrentValue, secondProgressCurrentValue, progressRadialRef)
-    }, [firstProgressCurrentValue, secondProgressCurrentValue, progressRadialRef])
-
-    return {
-      progressRadialRef,
-    }
-  } catch {
+  if (isServer) {
     return {
       styleSSR: updateBackgroundStyle(value, secondValue),
     }
+  }
+
+  const [firstProgressCurrentValue, setFirstProgressCurrentValue] = React.useState(0)
+  const [secondProgressCurrentValue, setSecondProgressCurrentValue] = React.useState(0)
+
+  const progressRadialRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    let animationFrameId: any
+
+    // Reset the current values whenever the provided percent or secondPercent change
+    setFirstProgressCurrentValue(0)
+    setSecondProgressCurrentValue(0)
+    updateBackgroundStyle(value, secondValue, progressRadialRef) // if percent or secondPercent are 0, update immediately
+
+    const frame = () => {
+      setFirstProgressCurrentValue((value) => {
+        return value < value ? value + 1 : value
+      })
+      setSecondProgressCurrentValue((value) => {
+        return value < secondValue ? value + 1 : value
+      })
+      animationFrameId = requestAnimationFrame(frame)
+    }
+
+    animationFrameId = requestAnimationFrame(frame)
+
+    // Cleanup
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [value, secondValue])
+
+  React.useEffect(() => {
+    updateBackgroundStyle(firstProgressCurrentValue, secondProgressCurrentValue, progressRadialRef)
+  }, [firstProgressCurrentValue, secondProgressCurrentValue, progressRadialRef])
+
+  return {
+    progressRadialRef,
   }
 }
 

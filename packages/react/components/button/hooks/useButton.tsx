@@ -1,4 +1,5 @@
 import { ClickEvent } from '@/events/OnClickEvent'
+import { isServer } from '@/helpers/isServer'
 import React from 'react'
 
 interface IParams {
@@ -7,16 +8,12 @@ interface IParams {
 }
 
 export const useButton = ({ isDisabled, onClick }: IParams) => {
-  try {
-    const _ = React.useState()
+  if (isServer) return {}
 
-    const handleClick = (e: React.MouseEvent<HTMLInputElement | HTMLElement, MouseEvent>) => {
-      !isDisabled && onClick?.(e)
-      e.stopPropagation()
-    }
-
-    return { handleClick }
-  } catch {
-    return {}
+  const handleClick = (e: React.MouseEvent<HTMLInputElement | HTMLElement, MouseEvent>) => {
+    !isDisabled && onClick?.(e)
+    e.stopPropagation()
   }
+
+  return { handleClick }
 }

@@ -1,3 +1,4 @@
+import { isServer } from '@/helpers/isServer'
 import React from 'react'
 
 interface IProps {
@@ -73,50 +74,50 @@ export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProp
     }
   }
 
-  try {
-    const [codeInput, setCodeInput] = React.useState<NumberOrNull[]>(
-      stringToCode(value, length) || new Array(length).fill(null),
-    )
-
-    const hasChanged = React.useRef(false)
-
-    React.useEffect(() => {
-      if (!disabled) {
-        isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
-      }
-    }, [length, codeInput, onCompleted, disabled])
-
-    React.useEffect(() => {
-      hasChanged.current = codeInput.find((code) => code !== null) !== undefined
-      if (hasChanged.current) {
-        onChange?.(codeToString(codeInput))
-      }
-    }, [codeInput])
-
-    const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
-      const { target } = e
-      const targetValue = target.value.trim()
-
-      if (targetValue.length > 0) {
-        setCodeInput(updateCodeInput(targetValue, idx, codeInput))
-      } else {
-        setCodeInput(
-          codeInput.map((code, index) => {
-            return index === idx ? null : code
-          }),
-        )
-      }
-    }
-
-    const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      const { target } = e
-      target.setSelectionRange(0, target.value.length)
-    }
-
-    return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange }
-  } catch {
+  if (isServer) {
     return {
       codeInput: stringToCode(value, length) || new Array(length).fill(null),
     }
   }
+
+  const [codeInput, setCodeInput] = React.useState<NumberOrNull[]>(
+    stringToCode(value, length) || new Array(length).fill(null),
+  )
+
+  const hasChanged = React.useRef(false)
+
+  React.useEffect(() => {
+    if (!disabled) {
+      isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
+    }
+  }, [length, codeInput, onCompleted, disabled])
+
+  React.useEffect(() => {
+    hasChanged.current = codeInput.find((code) => code !== null) !== undefined
+    if (hasChanged.current) {
+      onChange?.(codeToString(codeInput))
+    }
+  }, [codeInput])
+
+  const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
+    const { target } = e
+    const targetValue = target.value.trim()
+
+    if (targetValue.length > 0) {
+      setCodeInput(updateCodeInput(targetValue, idx, codeInput))
+    } else {
+      setCodeInput(
+        codeInput.map((code, index) => {
+          return index === idx ? null : code
+        }),
+      )
+    }
+  }
+
+  const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { target } = e
+    target.setSelectionRange(0, target.value.length)
+  }
+
+  return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange }
 }
