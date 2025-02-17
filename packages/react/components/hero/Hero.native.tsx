@@ -46,6 +46,7 @@ const Hero = React.forwardRef(
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : getColorStyle(TrilogyColor.BACKGROUND),
       },
       overlap: {
+        width: '100%',
         position: 'absolute',
         top: isSecondOverlapNotEmpty ? -40 : backgroundHeight ? backgroundHeight * (-1 / 2) : -60,
       },
