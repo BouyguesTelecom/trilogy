@@ -1,6 +1,5 @@
 import { Accessibility } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import React from 'react'
 
 type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
@@ -12,24 +11,12 @@ type CheckboxChangeEventHandler = (event: {
 /**
  * Checkbox Interface
  */
-export type CheckboxProps = Pick<CheckboxPropsPossibilities, keyof CheckboxPropsPossibilities>
-type CheckboxPropsPossibilities = CheckboxWithLabel | CheckboxWithChildren;
-
-interface CheckboxCommonProps extends Accessibility, CommonProps {
+export interface CheckboxProps extends Accessibility, CommonProps {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
+  label?: string
   onChange?: CheckboxChangeEventHandler
   name?: string
   value?: string
-}
-
-interface CheckboxWithLabel extends CheckboxCommonProps {
-  label: string
-  children?: never
-}
-
-interface CheckboxWithChildren extends CheckboxCommonProps {
-  children: React.ReactNode
-  label?: never
 }

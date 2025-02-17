@@ -11,10 +11,9 @@ import { useTrilogyContext } from '@/context'
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly Checkbox
  * @param id {string} Id for button, by default id is generate
- * @param label {string} Label for Checkbox // Incompatible with children
+ * @param label {string} Label for Checkbox
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
- * @param children {React.ReactNode} Children for Checkbox, should be only [phrasing content](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#technical_summary)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
@@ -29,7 +28,6 @@ const Checkbox = ({
   onChange,
   name,
   value,
-  children,
   ...others
 }: CheckboxProps): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -66,7 +64,7 @@ const Checkbox = ({
         {...others}
       />
       <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
-        {label ?? children}
+        {label}
       </label>
     </div>
   )
