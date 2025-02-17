@@ -28,10 +28,8 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
+import { InputNativeProps ,InputNativeRef} from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
-
-export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
@@ -53,7 +51,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
  * @param autoCorrect {boolean} Auto correct sentence
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
+ * @param autoCompleteType {string} Auto complete input type
  * @param textContentType {InputTextContentType} Give the keyboard and the system information
  * @param keyboardType {InputKeyboardType} Keybaord type
  * @param keyType {KeyType} Keyboard key return type

@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Accessibility, Dev } from '../../objects/facets'
-import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
+import { NativeSyntheticEvent, type TextInput, TextInputProps, TextInputSubmitEditingEventData } from 'react-native'
 
-import { type ChangeEvent, FocusEventHandler} from 'react'
+import { type ChangeEvent, FocusEventHandler, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
-  InputAutoCompleteType,
-  InputAutoCompleteTypeValues,
   InputKeyboardAppearance,
   InputKeyboardAppearanceValues,
   InputKeyboardType,
@@ -80,7 +78,7 @@ export type KeyType = 'done' | 'go' | 'next' | 'search' | 'send' | 'none' | 'def
 /**
  * Input Interface
  */
-export interface InputProps extends Accessibility, Dev, CommonProps {
+export interface Input extends Accessibility, Dev, CommonProps {
   type?: InputType | InputTypeValues
   label?: string
   sample?: string
@@ -101,14 +99,12 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
   autoCorrect?: any
-  autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
   forceControl?: boolean
   onMouseEnter?: (event: React.MouseEvent) => void
   onMouseLeave?: (event: React.MouseEvent) => void
   keyType?: KeyType
-  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData> | React.FormEvent<HTMLInputElement>) => void
   minLength?: number
   maxLength?: number
   securityGauge?: boolean
@@ -118,6 +114,16 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   min?: number
   max?: number
   step?: number
+}
+
+export interface InputProps extends Input {
+  autoCompleteType?: HTMLInputAutoCompleteAttribute
+  onSubmit?: (event: React.FormEvent<HTMLInputElement>) => void
+}
+
+export interface InputNativeProps extends Input, InputNativeEvents {
+  autoCompleteType?: TextInputProps['autoComplete']
+  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void
 }
 
 export interface ILengthVerify {

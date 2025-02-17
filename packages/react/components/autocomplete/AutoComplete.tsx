@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import React, { FocusEvent, useEffect, useState } from 'react'
 
 import { Input } from '@/components/input'
-import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
@@ -162,7 +161,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         className='autocomplete-input'
         type='text'
         status={status}
-        autoCompleteType={InputAutoCompleteType.OFF}
+        autoCompleteType='off'
         disabled={disabled}
         // Add delay for selection of suggestion
         onBlur={(e: FocusEvent<HTMLInputElement, Element>) => {

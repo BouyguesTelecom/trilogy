@@ -62,8 +62,7 @@ interface IconWrapper {
  * @param minLength {number} Textarea min length
  * @param accessibilityLabel {string} Accessibility label
  * @param required {boolean} Required input
- * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
+ * @param autoCompleteType {string} Auto complete input type
  */
 const Input = React.forwardRef<InputRef, InputProp>(
   (

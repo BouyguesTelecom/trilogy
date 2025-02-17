@@ -48,7 +48,6 @@ export enum ComponentName {
   InputStatus = 'InputStatus',
   InputKeyboardAppearance = 'InputKeyboardAppearance',
   InputAutoCapitalize = 'InputAutoCapitalize',
-  InputAutoCompleteType = 'InputAutoCompleteType',
   InputTextContentType = 'InputTextContentType',
   InputKeyboardType = 'InputKeyboardType',
   Link = 'Link',
