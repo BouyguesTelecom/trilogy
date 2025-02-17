@@ -17,6 +17,7 @@ import {
   View,
 } from '@trilogy-ds/react/components'
 import { TableBorderEnum } from '@trilogy-ds/react/lib/components/table/TableProps'
+import { TrilogyColor } from '@trilogy-ds/react'
 
 export const TableScreen = (): JSX.Element => {
   const [expendable, setExpendable] = useState(false)
@@ -24,7 +25,7 @@ export const TableScreen = (): JSX.Element => {
     <Section>
       <ScrollView>
         <Table border={TableBorderEnum.ALL} fullwidth>
-          <TableHead>
+          <TableHead backgroundColor={TrilogyColor.ERROR}>
             <TableTr>
               <TableTh>Paramètre</TableTh>
               <TableTh>Description</TableTh>
@@ -41,7 +42,7 @@ export const TableScreen = (): JSX.Element => {
             </TableTr>
           </TableHead>
           <TableBody>
-            <TableTr>
+            <TableTr color={TrilogyColor.WARNING}>
               <TableTd>
                 <Text>gateway.introspection.filter.enabled</Text>
               </TableTd>
