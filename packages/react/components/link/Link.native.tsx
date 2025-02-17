@@ -5,7 +5,6 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { LinkPropsNative } from './LinkProps'
-import { setTypographyAlign, TypographyAlign } from '@/objects'
 
 /**
  * Link Component
@@ -20,24 +19,19 @@ import { setTypographyAlign, TypographyAlign } from '@/objects'
  * @param inverted {boolean} Inverted link
  */
 const Link = ({
-  children,
-  to,
-  onClick,
-  testId,
-  accessibilityLabel,
-  inline,
-  iconName,
-  inverted,
-  typo,
-  ...others
-}: LinkPropsNative): JSX.Element => {
+                children,
+                to,
+                onClick,
+                testId,
+                accessibilityLabel,
+                inline,
+                iconName,
+                inverted,
+                ...others
+              }: LinkPropsNative): JSX.Element => {
   const styles = StyleSheet.create({
     linkAlignement: {
-      alignSelf:
-        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
-        (setTypographyAlign(typo) === 'center' && 'center') ||
-        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
-        'flex-start',
+      alignSelf: 'baseline',
     },
     container: {
       padding: inline ? 4 : 8,
@@ -78,8 +72,8 @@ const Link = ({
   const linkAccessibilityLabel = accessibilityLabel
     ? accessibilityLabel
     : typeof children === 'string'
-    ? children
-    : 'NotSpecified'
+      ? children
+      : 'NotSpecified'
 
   return (
     <View
