@@ -3,6 +3,7 @@ import { IconSize } from '@/components/icon/IconEnum'
 import { IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
+import { isAndroid, isIOS } from '@/helpers'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
@@ -89,7 +90,7 @@ const Icon = ({
       alignItems: 'center',
     },
     icon: {
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: isIOS ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
     },
     stretched: {
       justifyContent: 'center',
@@ -98,7 +99,7 @@ const Icon = ({
       height: circledWidth,
       backgroundColor: iconColor,
       borderTopRightRadius: 10,
-      transform: Platform.OS === 'ios' ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
+      transform: isIOS ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
     },
     skeleton: {
       width: circledWidth,
@@ -120,7 +121,7 @@ const Icon = ({
   const IconSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
       <View style={{ opacity: 0 }} />
-      {Platform.OS === 'android' && (
+      {isAndroid && (
         <View>
           {(size === IconSize.HUGE && <Circle cx='50' cy='50' r='50' />) ||
             (size === IconSize.LARGE && <Circle cx='33' cy='33' r='33' />) ||

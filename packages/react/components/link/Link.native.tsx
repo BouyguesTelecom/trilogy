@@ -5,7 +5,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { LinkPropsNative } from './LinkProps'
-import { setTypographyAlign, TypographyAlign } from '@/objects'
+import { isAndroid } from '@/helpers'
 
 /**
  * Link Component
@@ -28,16 +28,11 @@ const Link = ({
   inline,
   iconName,
   inverted,
-  typo,
   ...others
 }: LinkPropsNative): JSX.Element => {
   const styles = StyleSheet.create({
     linkAlignement: {
-      alignSelf:
-        (setTypographyAlign(typo) === 'left' && 'flex-start') ||
-        (setTypographyAlign(typo) === 'center' && 'center') ||
-        (setTypographyAlign(typo) === 'right' && 'flex-end') ||
-        'flex-start',
+      alignSelf: 'baseline',
     },
     container: {
       padding: inline ? 4 : 8,
@@ -83,11 +78,7 @@ const Link = ({
 
   return (
     <View
-      style={
-        Platform.OS === 'android'
-          ? [styles.linkAlignement, styles.androidContainer]
-          : [styles.linkAlignement, styles.container]
-      }
+      style={isAndroid ? [styles.linkAlignement, styles.androidContainer] : [styles.linkAlignement, styles.container]}
       accessible={!!linkAccessibilityLabel}
       accessibilityLabel={linkAccessibilityLabel}
       testID={linkTestId}
@@ -116,7 +107,7 @@ const Link = ({
           ) : (
             <Text
               accessibilityLabel={accessibilityLabel}
-              style={Platform.OS === 'android' ? [styles.androidLink] : [styles.link]}
+              style={isAndroid ? [styles.androidLink] : [styles.link]}
               {...others}
             >
               {children}

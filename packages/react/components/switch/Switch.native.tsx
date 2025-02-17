@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react"
-import { Platform, StyleSheet, Switch as SwitchNative } from "react-native"
-import { SwitchProps } from "./SwitchProps"
-import shortid from "shortid"
-import { getStatusStyle } from "@/objects"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
+import React, { useEffect, useState } from 'react'
+import { Platform, StyleSheet, Switch as SwitchNative } from 'react-native'
+import { SwitchProps } from './SwitchProps'
+import shortid from 'shortid'
+import { getStatusStyle } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { isIOS } from '@/helpers'
 
 /**
  * Switch Component
@@ -47,20 +48,16 @@ const Switch = ({
   return (
     <SwitchNative
       testID='switch-id'
-      style={Platform.OS === "ios" ? styles.switchIos : {}}
+      style={isIOS ? styles.switchIos : {}}
       trackColor={{
         false: disabled ? backgroundColorDisabled : backgroundColorOff,
-        true: disabled
-          ? backgroundColorDisabled
-          : getStatusStyle(status).color,
+        true: disabled ? backgroundColorDisabled : getStatusStyle(status).color,
       }}
       thumbColor={thumbColor}
-      ios_backgroundColor={
-        disabled ? backgroundColorDisabled : backgroundColorOff
-      }
+      ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
       onValueChange={(state) => {
         if (onChange) {
-          onChange({ switchState: state, switchName: name || "" })
+          onChange({ switchState: state, switchName: name || '' })
         }
       }}
       nativeID={name ? `${name}_${id}` : id}

@@ -5,6 +5,7 @@ import * as React from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 import { ModalContext } from '../context'
 import { ModalFooterProps } from './ModalFooterProps'
+import { isIOS } from '@/helpers'
 
 /**
  * Modal Footer Component
@@ -41,7 +42,7 @@ export default ModalFooter
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: Platform.OS === 'ios' ? 40 : 10,
+    paddingBottom: isIOS ? 40 : 18,
     paddingTop: 16,
   },
   title: { width: '100%', textAlign: 'center' },

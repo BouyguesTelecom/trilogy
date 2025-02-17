@@ -29,6 +29,7 @@ import {
 } from './InputEnum'
 import { InputNativeEvents, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
+import { isIOS } from '@/helpers'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -288,8 +289,8 @@ const Input = ({
       position: 'absolute',
       fontSize: 14,
       color: getColorStyle(TrilogyColor.BACKGROUND),
-      bottom: Platform.OS === 'ios' ? 9 : 5,
-      left: iconNameLeft ? (Platform.OS === 'ios' ? 38 : 37.5) : Platform.OS === 'ios' ? 8 : 7.5,
+      bottom: isIOS ? 9 : 5,
+      left: iconNameLeft ? (isIOS ? 38 : 37.5) : isIOS ? 8 : 7.5,
     },
     domain: {
       zIndex: 1,
@@ -297,7 +298,7 @@ const Input = ({
       fontSize: 13,
       height: '100%',
       marginTop: 3,
-      marginBottom: Platform.OS === 'ios' ? 0 : -3,
+      marginBottom: isIOS ? 0 : -3,
     },
   })
 
