@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
+import React, { useEffect, useState, useId } from 'react'
 import { CheckboxProps } from './CheckboxProps'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { generateStableId } from '@/helpers/generateStableId'
 
 /**
  * Checkbox Component
@@ -24,7 +24,7 @@ const Checkbox = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id,
   label,
   onChange,
   name,
@@ -33,6 +33,8 @@ const Checkbox = ({
   ...others
 }: CheckboxProps): JSX.Element => {
   const { styled } = useTrilogyContext()
+
+  const computedId = id || (label ? generateStableId('checkbox', label) : `checkbox-default-${useId()}`)
 
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
@@ -57,7 +59,7 @@ const Checkbox = ({
       <input
         type='checkbox'
         readOnly={readonly}
-        id={id}
+        id={computedId}
         disabled={disabled}
         name={name}
         value={value}
@@ -65,7 +67,7 @@ const Checkbox = ({
         onChange={handleOnChange}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+      <label htmlFor={computedId} className={hashClass(styled, clsx('checkbox-label'))}>
         {label ?? children}
       </label>
     </div>

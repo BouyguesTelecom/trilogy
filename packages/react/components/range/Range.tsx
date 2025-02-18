@@ -4,8 +4,8 @@ import { RangeProps } from './RangeProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
-import shortid from 'shortid'
-
+import { generateStableId } from '@/helpers/generateStableId'
+import { useId } from 'react'
 /**
  * Range Component
  * - -------------------------- MOBILE PROPERTIES -------------------------------
@@ -20,7 +20,7 @@ import shortid from 'shortid'
  */
 const Range = ({
   className,
-  id = shortid.generate(),
+  id,
   min,
   max,
   label,
@@ -34,6 +34,8 @@ const Range = ({
 }: RangeProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
+  const computedId = id || (label ? generateStableId('range', label) : `range-default-${useId}`)
+
   const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
   const [cursorMax, setCursorMax] = React.useState<number>(valueMax ?? max)
   const refTrack = React.useRef(null)
@@ -41,11 +43,10 @@ const Range = ({
   React.useEffect(() => {
     if (refTrack.current) {
       const track = refTrack.current as HTMLElement
-      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
-        (cursorMin / max) * 100
-      }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(
-        TrilogyColor.MAIN,
-      )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
+      track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMin / max) * 100
+        }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(
+          TrilogyColor.MAIN,
+        )} ${(cursorMax / max) * 100}%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
     }
   }, [cursorMin, cursorMax])
 
@@ -90,7 +91,7 @@ const Range = ({
   }, [onChangeMax, name, cursorMax])
 
   return (
-    <div id={id} className={hashClass(styled, clsx('range-container', className))}>
+    <div id={computedId} className={hashClass(styled, clsx('range-container', className))}>
       <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
       <div className={hashClass(styled, clsx('range'))}>
         <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
@@ -103,7 +104,7 @@ const Range = ({
           min={min}
           max={max}
           name={name}
-          id={`${id}-min`}
+          id={`${computedId}-min`}
           aria-label={label}
         />
         <input
@@ -115,7 +116,7 @@ const Range = ({
           min={min}
           max={max}
           name={name}
-          id={`${id}-max`}
+          id={`${computedId}-max`}
           aria-label={label}
         />
       </div>
