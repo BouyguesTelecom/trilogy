@@ -1,11 +1,10 @@
-import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
-import { TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import {ComponentName} from '@/components/enumsComponentsName'
+import {Icon} from '@/components/icon'
+import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
 import * as React from 'react'
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { LinkPropsNative } from './LinkProps'
-import { isAndroid } from '@/helpers'
+import {useState} from 'react'
+import {Linking, StyleSheet, Text, View,} from 'react-native'
+import {LinkPropsNative} from './LinkProps'
 
 /**
  * Link Component
@@ -15,7 +14,6 @@ import { isAndroid } from '@/helpers'
  * @param children {React.ReactNode}
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
- * @param inline {boolean} If link is inside paragraphe
  * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
  */
@@ -25,38 +23,19 @@ const Link = ({
   onClick,
   testId,
   accessibilityLabel,
-  inline,
   iconName,
   inverted,
   ...others
 }: LinkPropsNative): JSX.Element => {
+  const [pressedLink, setPressedLink] = useState(false)
+
   const styles = StyleSheet.create({
     linkAlignement: {
       alignSelf: 'baseline',
     },
-    container: {
-      padding: inline ? 4 : 8,
-      marginTop: inline ? -4 : 0,
-      marginBottom: inline ? -3 : -10,
-      paddingLeft: inline ? 4 : 0,
-      paddingRight: inline ? 4 : 0,
-    },
-    androidContainer: {
-      paddingLeft: inline ? 2 : 0,
-      paddingRight: inline ? 2 : 0,
-    },
     link: {
-      color: (inverted && getColorStyle(TrilogyColor.BACKGROUND)) || getColorStyle(TrilogyColor.MAIN),
+      color: getColorStyle(pressedLink && TrilogyColor.MAIN_FADE || inverted && TrilogyColor.BACKGROUND || TrilogyColor.MAIN),
       fontSize: 14,
-      lineHeight: 14,
-      textDecorationStyle: 'solid',
-      textDecorationLine: 'underline',
-    },
-    androidLink: {
-      color: (inverted && getColorStyle(TrilogyColor.BACKGROUND)) || getColorStyle(TrilogyColor.MAIN),
-      fontSize: 14,
-      lineHeight: 14,
-      height: 'auto',
       textDecorationStyle: 'solid',
       textDecorationLine: 'underline',
     },
@@ -69,23 +48,14 @@ const Link = ({
     },
   })
 
-  const linkTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
-  const linkAccessibilityLabel = accessibilityLabel
-    ? accessibilityLabel
-    : typeof children === 'string'
-    ? children
-    : 'NotSpecified'
-
   return (
-    <View
-      style={isAndroid ? [styles.linkAlignement, styles.androidContainer] : [styles.linkAlignement, styles.container]}
-      accessible={!!linkAccessibilityLabel}
-      accessibilityLabel={linkAccessibilityLabel}
-      testID={linkTestId}
-    >
+    <>
       {children && typeof children.valueOf() === 'string' ? (
-        <TouchableOpacity
-          activeOpacity={0.8}
+        <Text
+          testID={testId}
+          suppressHighlighting={true}
+          onPressIn={() => setPressedLink(true)}
+          onPressOut={() => setPressedLink(false)}
           onPress={(e) => {
             if (to) {
               Linking.openURL(to || '')
@@ -107,16 +77,19 @@ const Link = ({
           ) : (
             <Text
               accessibilityLabel={accessibilityLabel}
-              style={isAndroid ? [styles.androidLink] : [styles.link]}
+              style={[styles.link]}
               {...others}
             >
               {children}
             </Text>
           )}
-        </TouchableOpacity>
+        </Text>
       ) : (
-        <TouchableOpacity
-          activeOpacity={0.8}
+        <Text
+          testID={testId}
+          suppressHighlighting={true}
+          onPressIn={() => setPressedLink(true)}
+          onPressOut={() => setPressedLink(false)}
           onPress={(e) => {
             if (to) {
               Linking.openURL(to || '')
@@ -127,9 +100,9 @@ const Link = ({
           }}
         >
           {children}
-        </TouchableOpacity>
+        </Text>
       )}
-    </View>
+    </>
   )
 }
 
