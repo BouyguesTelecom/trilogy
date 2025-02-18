@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
+import { isIOS } from '@/helpers/device.native'
 import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -29,7 +30,6 @@ import {
 } from './InputEnum'
 import { InputNativeEvents, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
-import { isIOS } from '@/helpers'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 

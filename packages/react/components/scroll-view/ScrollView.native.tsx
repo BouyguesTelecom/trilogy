@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { StyleSheet, Platform, ScrollView as ScrollViewNative, View, RefreshControl } from 'react-native'
-import { getColorStyle, ScrollDirectionEnum } from '@/objects'
-import { ScrollViewProps } from './ScrollViewProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { isAndroid, isIOS } from '@/helpers'
+import { isAndroid, isIOS } from '@/helpers/device.native'
+import { getColorStyle, ScrollDirectionEnum } from '@/objects'
+import * as React from 'react'
+import { RefreshControl, ScrollView as ScrollViewNative, StyleSheet, View } from 'react-native'
+import { ScrollViewProps } from './ScrollViewProps'
 
 /**
  * Scroll View Component

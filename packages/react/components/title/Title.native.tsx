@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
+import { isAndroid } from '@/helpers/device.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useContext } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
-import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
 import { TitleLevels } from './TitleEnum'
 import { TitleProps } from './TitleProps'
-import { isAndroid } from '@/helpers'
 
 /**
  * Title component
