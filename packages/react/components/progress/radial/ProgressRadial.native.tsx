@@ -7,6 +7,7 @@ import { getAlignStyle, TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import ContentLoader, { Circle } from 'react-content-loader/native'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { isAndroid } from '@/helpers'
 
 /**
  * Progress Radial component
@@ -89,7 +90,7 @@ const ProgressRadial = ({
   const ProgressRadialSkeleton = (): JSX.Element => (
     <ContentLoader style={styles.skeleton} {...others}>
       <View style={{ opacity: 0 }} />
-      {Platform.OS === 'android' && (
+      {isAndroid && (
         <View>
           <Circle cx='50' cy='50' r='50' />
         </View>

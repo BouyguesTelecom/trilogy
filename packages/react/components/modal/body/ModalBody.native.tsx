@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Platform, ScrollView, View } from 'react-native'
 import { ModalContext } from '../context/ModalContext'
 import { ModalBodyProps } from './ModalBodyProps'
+import { isIOS } from '@/helpers'
 
 /**
  * Modal Footer Component
@@ -25,7 +26,7 @@ const ModalBody = ({ children, ...others }: ModalBodyProps): JSX.Element => {
           {
             backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
             paddingTop: 8,
-            paddingBottom: isFooter ? 8 : Platform.OS === 'ios' ? 40 : 16,
+            paddingBottom: isFooter ? 8 : isIOS ? 40 : 16,
           },
         ]}
         {...others}

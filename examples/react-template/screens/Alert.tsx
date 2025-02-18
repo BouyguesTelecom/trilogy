@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   Alert,
   Container,
@@ -10,12 +10,14 @@ import {
   AutoLayout,
   IconName,
   Button,
-  Section
-} from "@trilogy-ds/react/components";
-import {StatusState} from "@trilogy-ds/react/objects";
-import {useContext, useState} from "react";
-import ToasterContext from "@trilogy-ds/react/lib/components/alert/context/ToasterContext";
-import {ToasterAlertProvider} from "@trilogy-ds/react/lib/components/alert";
+  Section,
+  SpacerSize,
+  Text,
+} from '@trilogy-ds/react/components'
+import { StatusState } from '@trilogy-ds/react/objects'
+import { useContext, useState } from 'react'
+import ToasterContext from '@trilogy-ds/react/lib/components/alert/context/ToasterContext'
+import { ToasterAlertProvider } from '@trilogy-ds/react/lib/components/alert'
 import { ToasterAlertFloat, ToasterAlertPosition } from '@trilogy-ds/react/lib/components/alert/AlertProps'
 
 export const AlertScreen = (): JSX.Element => {
@@ -61,33 +63,44 @@ export const AlertScreen = (): JSX.Element => {
   return (
     <Section>
       <Alert
-        banner
         status={StatusState.INFO}
-        title="Banner Alert"
+        title='Banner Alert'
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
       />
+      <Spacer size={SpacerSize.EIGHT} />
+      <Alert
+        status={StatusState.INFO}
+        title='Banner Alert'
+        description={
+          <>
+            <Text>Test React.NODE</Text>
+            <Text>Test React.NODE</Text>
+            <Text>Test React.NODE</Text>
+          </>
+        }
+      />
 
-    <ToasterAlertProvider>
-      <ToasterAlertView />
-      <Container>
-        <View>
-          {Object.values(StatusState).map((status, index) => {
-            return (
-              <AutoLayout key={index}>
-                <Title level={TitleLevels.TWO}>StatusState : {status}</Title>
-                <Spacer size={10}/>
-                <Alert
-                  status={status}
-                  title={status}
-                  description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
-                />
-                <Divider/>
-              </AutoLayout>
-            );
-          })}
-        </View>
-      </Container>
-    </ToasterAlertProvider>
+      <ToasterAlertProvider>
+        <ToasterAlertView />
+        <Container>
+          <View>
+            {Object.values(StatusState).map((status, index) => {
+              return (
+                <AutoLayout key={index}>
+                  <Title level={TitleLevels.TWO}>StatusState : {status}</Title>
+                  <Spacer size={10} />
+                  <Alert
+                    status={status}
+                    title={status}
+                    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
+                  />
+                  <Divider />
+                </AutoLayout>
+              )
+            })}
+          </View>
+        </Container>
+      </ToasterAlertProvider>
     </Section>
-  );
-};
+  )
+}
