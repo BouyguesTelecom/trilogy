@@ -1,3 +1,5 @@
+import { Platform } from 'react-native'
+
 interface SSRReturn {
   isBrowser: boolean
   isServer: boolean
@@ -38,10 +40,10 @@ const toArrayObject = (): SSRReturn => assign((values(SSRObjectDefined), SSRObje
 
 const SSRObject = toArrayObject()
 
-export const isAndroid = false
+export const isAndroid = Platform.OS === 'android'
 
-export const isIOS = false
+export const isIOS = Platform.OS === 'ios'
 
-export const isMobile = false
+export const isMobile = isAndroid || isIOS
 
 export const ssrDevice = (): SSRReturn => SSRObject
