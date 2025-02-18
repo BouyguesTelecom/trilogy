@@ -67,6 +67,7 @@ const Modal = ({
       {trigger}
       <ModalRN
         isVisible={visible}
+        onBackdropPress={() => handleClose({} as GestureResponderEvent)}
         onSwipeComplete={handleClose}
         swipeDirection={unClosable ? undefined : ['down']}
         scrollTo={handleScrollTo}
