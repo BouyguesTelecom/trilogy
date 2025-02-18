@@ -19,6 +19,9 @@ import {
 import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 import * as Screens from './screens'
+import { SafeAreaView } from 'react-native'
+import { isMobile } from '@trilogy-ds/react/helpers'
+import { Spacer, SpacerSize } from '@trilogy-ds/react'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {
@@ -39,12 +42,22 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
       <AutoLayout>
         <ScrollView>
           <Section inverted>
-            <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
-              You need to test components in other screens
-            </Title>
+            {isMobile ? (
+              <SafeAreaView>
+                <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
+                  You need to test components in other screens
+                </Title>
+              </SafeAreaView>
+            ) : (
+              <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
+                You need to test components in other screens
+              </Title>
+            )}
+            {isMobile && <Spacer size={SpacerSize.THREE} />}
             <Text level={TextLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
               This home screen is only for navigation
             </Text>
+            {isMobile && <Spacer size={SpacerSize.THREE} />}
             <Input placeholder='Rechercher un composant' onChange={(e) => handleSearch(e.inputValue)} />
             <Divider />
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
@@ -64,10 +77,10 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                   >
                     <BoxContent>
                       <Columns verticalAlign='ALIGNED_CENTER' gap={0}>
-                        <Column size={11}>
+                        <Column>
                           <Title level={TitleLevels.THREE}>{pathName}</Title>
                         </Column>
-                        <Column size={1}>
+                        <Column narrow>
                           <Icon name={IconName.ARROW_RIGHT} />
                         </Column>
                       </Columns>

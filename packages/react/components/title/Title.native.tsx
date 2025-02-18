@@ -8,6 +8,7 @@ import ContentLoader, { Rect } from 'react-content-loader/native'
 import { Platform, StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
 import { TitleLevels } from './TitleEnum'
 import { TitleProps } from './TitleProps'
+import { isAndroid } from '@/helpers'
 
 /**
  * Title component
@@ -119,7 +120,7 @@ const Title = ({
     titleView = (
       <ContentLoader style={styles.skeleton}>
         {titleView}
-        {Platform.OS === 'android' && (
+        {isAndroid && (
           <View>
             <Rect rx='15' ry='15' width='100%' height='100%' />
           </View>

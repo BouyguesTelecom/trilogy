@@ -17,6 +17,7 @@ import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
 import { ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
+import { isAndroid } from '@/helpers'
 
 /**
  * Modal Component
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   },
   body: {
     paddingHorizontal: 16,
-    maxHeight: Dimensions.get('screen').height / 1.1,
+    maxHeight: isAndroid ? Dimensions.get('screen').height / 1.15 : Dimensions.get('screen').height / 1.1,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

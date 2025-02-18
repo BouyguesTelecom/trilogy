@@ -5,6 +5,7 @@ import React, { createContext, PropsWithChildren } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { CardProps } from './CardProps'
+import { isAndroid } from '@/helpers'
 
 export const CardContext = createContext({
   floating: false,
@@ -82,7 +83,7 @@ const Card = ({
   const CardSkeleton = () => (
     <ContentLoader style={styles.skeleton} {...others} testID='skeleton-id'>
       <View style={{ opacity: 0 }}>{children}</View>
-      {Platform.OS === 'android' && (
+      {isAndroid && (
         <View>
           <Rect rx='10' ry='10' width='100%' height='100%' />
         </View>
