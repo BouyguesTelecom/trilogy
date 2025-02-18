@@ -56,9 +56,9 @@ const Modal = ({
     [refBtnModal.current],
   )
 
-  const classes = React.useMemo(
-    () => hashClass(styled, clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
-    [display, panel, className, styled],
+  const classes = hashClass(
+    styled,
+    clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className),
   )
 
   const onKeyDown = useCallback(
