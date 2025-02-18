@@ -1,10 +1,10 @@
-import {ComponentName} from '@/components/enumsComponentsName'
-import {Icon} from '@/components/icon'
-import {getColorStyle, TrilogyColor} from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import {useState} from 'react'
-import {Linking, StyleSheet, Text, View,} from 'react-native'
-import {LinkPropsNative} from './LinkProps'
+import { useState } from 'react'
+import { Linking, StyleSheet, Text, View } from 'react-native'
+import { LinkPropsNative } from './LinkProps'
 
 /**
  * Link Component
@@ -30,9 +30,6 @@ const Link = ({
   const [pressedLink, setPressedLink] = useState(false)
 
   const styles = StyleSheet.create({
-    linkAlignement: {
-      alignSelf: 'baseline',
-    },
     link: {
       color: getColorStyle(pressedLink && TrilogyColor.MAIN_FADE || inverted && TrilogyColor.BACKGROUND || TrilogyColor.MAIN),
       fontSize: 14,

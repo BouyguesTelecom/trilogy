@@ -78,7 +78,6 @@ const Alert = ({
     },
     description: {
       justifyContent: 'center',
-      alignItems: 'center',
       textAlignVertical: 'center',
       paddingLeft: 8,
     },
