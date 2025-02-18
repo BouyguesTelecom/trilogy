@@ -1,3 +1,4 @@
+import { Spacer, SpacerSize } from '@trilogy-ds/react'
 import {
   AutoLayout,
   Box,
@@ -16,12 +17,11 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers/device.native'
 import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
-import * as Screens from './screens'
 import { SafeAreaView } from 'react-native'
-import { isMobile } from '@trilogy-ds/react/helpers'
-import { Spacer, SpacerSize } from '@trilogy-ds/react'
+import * as Screens from './screens'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {

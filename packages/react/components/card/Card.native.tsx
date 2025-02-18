@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
+import { isAndroid } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { CardProps } from './CardProps'
-import { isAndroid } from '@/helpers'
 
 export const CardContext = createContext({
   floating: false,

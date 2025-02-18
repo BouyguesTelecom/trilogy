@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
-import { ProgressRadialProps } from './ProgressRadialProps'
-import { AnimatedCircularProgress } from './react-native-circular-progress'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
+import { isAndroid } from '@/helpers/device.native'
 import { getAlignStyle, TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import * as React from 'react'
 import ContentLoader, { Circle } from 'react-content-loader/native'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { isAndroid } from '@/helpers'
+import { StyleSheet, View } from 'react-native'
+import { ProgressRadialProps } from './ProgressRadialProps'
+import { AnimatedCircularProgress } from './react-native-circular-progress'
 
 /**
  * Progress Radial component
