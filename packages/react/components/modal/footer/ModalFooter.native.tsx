@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
+import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ModalContext } from '../context'
 import { ModalFooterProps } from './ModalFooterProps'
-import { isIOS } from '@/helpers'
 
 /**
  * Modal Footer Component

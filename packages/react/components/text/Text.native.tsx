@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
+import { isAndroid } from '@/helpers/device.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
-import { Platform, StyleSheet, Text as TextNative, View } from 'react-native'
+import { StyleSheet, Text as TextNative, View } from 'react-native'
 import { TextLevels, TextLevelValues } from './TextEnum'
 import { TextProps } from './TextProps'
-import { isAndroid } from '@/helpers'
 
 /**
  * Text Native Component

@@ -1,4 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { isAndroid } from '@/helpers/device.native'
 import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef, useState } from 'react'
 import {
@@ -17,7 +18,6 @@ import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
 import { ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
-import { isAndroid } from '@/helpers'
 
 /**
  * Modal Component
