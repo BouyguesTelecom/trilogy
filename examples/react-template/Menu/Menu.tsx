@@ -1,4 +1,3 @@
-import { Spacer, SpacerSize } from '@trilogy-ds/react'
 import {
   AutoLayout,
   Box,
@@ -17,11 +16,9 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
-import { isMobile } from '@trilogy-ds/react/helpers/device.native'
 import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
-import { SafeAreaView } from 'react-native'
-import * as Screens from './screens'
+import * as Screens from '../screens'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {
@@ -41,23 +38,13 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
     <View markup='main' className='main-content'>
       <AutoLayout>
         <ScrollView>
-          <Section inverted>
-            {isMobile ? (
-              <SafeAreaView>
-                <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
-                  You need to test components in other screens
-                </Title>
-              </SafeAreaView>
-            ) : (
-              <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
-                You need to test components in other screens
-              </Title>
-            )}
-            {isMobile && <Spacer size={SpacerSize.THREE} />}
+          <Section>
+            <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
+              You need to test components in other screens
+            </Title>
             <Text level={TextLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
               This home screen is only for navigation
             </Text>
-            {isMobile && <Spacer size={SpacerSize.THREE} />}
             <Input placeholder='Rechercher un composant' onChange={(e) => handleSearch(e.inputValue)} />
             <Divider />
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
