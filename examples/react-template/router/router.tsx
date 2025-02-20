@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 /* eslint import/namespace: ['error', { allowComputed: true }] */
 import { AutoLayout, Section, View } from '@trilogy-ds/react'
-import { MenuScreen } from '../Menu/Menu'
-import { Wrapper } from '../Wrapper'
+import { MenuScreen } from '../menu/Menu'
 import * as Screens from '../screens'
+import { Wrapper } from '../Wrapper'
 
 export const Router = (): JSX.Element => {
   const navigate = useNavigate()

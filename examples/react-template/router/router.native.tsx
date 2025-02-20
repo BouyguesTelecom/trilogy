@@ -4,9 +4,9 @@ import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
 import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/context/providerTheme'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native'
-import { MenuScreen } from '../Menu/Menu.native'
-import { Wrapper } from '../Wrapper'
+import { MenuScreen } from '../menu/Menu.native'
 import * as Screens from '../screens'
+import { Wrapper } from '../Wrapper'
 
 const Stack = createNativeStackNavigator()
 
