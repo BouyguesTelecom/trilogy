@@ -1,4 +1,4 @@
-import { Spacer, SpacerSize } from '@trilogy-ds/react'
+import { getColorStyle, Section, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -15,7 +15,7 @@ import {
 } from '@trilogy-ds/react/components'
 import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
-import { FlatList, SafeAreaView } from 'react-native'
+import { FlatList, SafeAreaView, View } from 'react-native'
 import * as Screens from '../screens'
 
 const initialList = Object.keys(Screens)
@@ -24,25 +24,19 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
   const [list, setList] = React.useState(initialList)
 
   const handleSearch = React.useCallback((e: string) => {
-    Object.keys(initialList).forEach((composant: any) => {
-      if (!initialList[composant].toLocaleLowerCase().includes(e.toLocaleLowerCase())) {
-        delete initialList[composant]
-      }
-    })
-    setList(initialList)
+    const newList = [...initialList].filter((screen) => screen.toLocaleLowerCase().includes(e.toLocaleLowerCase()))
+    setList(newList)
   }, [])
 
   const renderItem = React.useCallback(
     ({ item }) => {
-      const pathName = item.split('Screen')
+      const [pathName] = item.split('Screen')
 
       return (
-        <>
+        <View style={{ paddingHorizontal: SpacerSize.FOUR }}>
           <Box
             onClick={() => {
-              if (navigation) {
-                navigation.navigate(pathName)
-              }
+              if (navigation) navigation.navigate(pathName)
             }}
           >
             <BoxContent>
@@ -57,18 +51,18 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
             </BoxContent>
           </Box>
           <Spacer size={SpacerSize.THREE} />
-        </>
+        </View>
       )
     },
     [list],
   )
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }}>
       <FlatList
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <>
+          <Section>
             <Title level={TitleLevels.ONE} typo={[TypographyAlign.TEXT_CENTERED]}>
               You need to test components in other screens
             </Title>
@@ -82,7 +76,7 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
               Screens
             </Title>
-          </>
+          </Section>
         }
         renderItem={renderItem}
         data={list}
