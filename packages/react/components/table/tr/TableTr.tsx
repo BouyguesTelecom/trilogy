@@ -36,7 +36,7 @@ const TableTr = ({
       expandable && is("expandable"),
       expanded && is("expanded"),
       expansion && is("expansion"),
-      color && getColorClassName(color)
+      color && is(getColorClassName(color))
     )
   )
 
