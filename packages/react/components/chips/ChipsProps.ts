@@ -6,7 +6,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
  * Chips Interface
  */
 export interface ChipsProps extends Clickable, Accessibility, Dev, CommonProps {
-  children: string | React.ReactNode
+  children: React.ReactNode
   onClick?: ClickEvent
   active?: boolean
   disabled?: boolean
