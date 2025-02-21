@@ -11,7 +11,7 @@ import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'r
  * Box Component
  * @param children {React.ReactNode} Childrens
  * @param onClick {Function} onClick Event
- * @param skeleton {boolean} Box skeleton
+ * @param loading {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param testId {string} Test id
@@ -28,7 +28,7 @@ import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'r
 const Box = ({
   children,
   onClick,
-  skeleton,
+  loading,
   highlighted,
   shadowless,
   backgroundColor,
@@ -108,7 +108,7 @@ const Box = ({
     </ContentLoader>
   )
 
-  if (skeleton) {
+  if (loading) {
     return <BoxSkeleton />
   }
 
