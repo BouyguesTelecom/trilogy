@@ -13,8 +13,6 @@ import { has, is } from '@/services'
  * @param name IconName
  * @param status SUCCESS|ERROR If CircleIcon or not
  * @param circled true-false if CircleIcon
- * @param content If TextIcon use it for text
- * @param badgeContent {string} Icon with bage content
  * @param stretched {boolean} Stretched icon
  * @param color {IconColor} Custom Icon Color
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
@@ -26,18 +24,18 @@ import { has, is } from '@/services'
  */
 
 const Icon = ({
-                className,
-                id,
-                size,
-                name,
-                circled,
-                stretched,
-                color,
-                backgroundColor,
-                onClick,
-                skeleton,
-                ...others
-              }: IconProps): JSX.Element => {
+  className,
+  id,
+  size,
+  name,
+  circled,
+  stretched,
+  color,
+  backgroundColor,
+  onClick,
+  skeleton,
+  ...others
+}: IconProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const background =

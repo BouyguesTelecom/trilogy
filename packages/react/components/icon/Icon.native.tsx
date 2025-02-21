@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon/IconEnum'
-import { IconProps } from '@/components/icon/IconProps'
+import { IconNativeProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isAndroid, isIOS } from '@/helpers/device.native'
@@ -15,14 +15,10 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * Icon Component
  * @param size Size of Icon
  * @param name IconName
- * @param badgeContent {string} Display badge with icon
  * @param status SUCCESS|ERROR|WARNING|PRIMARY|TERTIARY|WHITE|GREY If CircleIcon or not
  * @param circled true-false if CircleIcon
- * @param content If TextIcon use it for text
- * @param stacked {boolean} Stacked icon
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param color {IconColor} Custom Icon Color
- * @param statusPosition {IconStatusPosition} Position for icon with status (TOP|BOTTOM)
  * @param stretched {boolean} Stretched icon
  * @param onClick {Function} onClick Event Icon
  * @param align { Alignable | AlignableValues} align content
@@ -40,7 +36,7 @@ const Icon = ({
   skeleton,
   testId,
   ...others
-}: IconProps): JSX.Element => {
+}: IconNativeProps): JSX.Element => {
   const {
     theme: { icons },
   } = useContext(TrilogyThemeContext)
