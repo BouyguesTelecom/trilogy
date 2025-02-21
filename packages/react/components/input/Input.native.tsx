@@ -432,9 +432,9 @@ const Input = ({
               />
             </TouchableOpacity>
           )}
-        {hasIcon && type === InputType.PASSWORD && (
+        {type === InputType.PASSWORD && (
           <>
-            {hasIcon && iconNameLeft && (
+            {iconNameLeft && (
               <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
                 <Icon name={iconNameLeft} />
               </View>
