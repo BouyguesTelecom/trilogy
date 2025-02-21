@@ -187,27 +187,23 @@ export const InputScreen = (): JSX.Element => {
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
         <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input iconNameLeft='tri-alert' type={InputType.PASSWORD} placeholder='Input type password' />
+        <Input type={InputType.PASSWORD} placeholder='Input type password' />
         <Input type={InputType.DATE} placeholder='Input type date' />
         <Input type={InputType.EMAIL} placeholder='Input type mail' />
         <Input iconNameLeft='tri-alert' type={InputType.SEARCH} placeholder='Input type mail' />
-
         <Input
           help='This password does not meet the security requirements.'
           type={InputType.TEXT}
           status={InputStatus.ERROR}
           placeholder='This is an error message'
         />
-
         <Input help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder' />
-
         <Input
           help='this is my help message'
           type={InputType.TEXT}
           placeholder='This is my placeholder'
           iconNameLeft={IconName.INFOS_CIRCLE}
         />
-
         <Input
           type='password'
           securityGauge
