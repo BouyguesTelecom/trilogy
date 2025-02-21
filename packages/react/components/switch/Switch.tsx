@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
+import React, { useEffect, useId, useState } from 'react'
 import clsx from 'clsx'
 import { SwitchProps } from './SwitchProps'
 import { is } from '@/services/classify'
 import { getStatusClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { generateStableId } from '@/helpers/generateStableId'
 
 /**
  * Switch Component
@@ -26,7 +26,7 @@ import { useTrilogyContext } from '@/context'
 
 const Switch = ({
   className,
-  id = shortid.generate(),
+  id,
   label,
   value,
   checked,
@@ -42,6 +42,8 @@ const Switch = ({
 }: SwitchProps): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
   const { styled } = useTrilogyContext()
+
+  const computedId = id || (label ? generateStableId('switch', label) : `switch-default-${useId()}`)
 
   React.useEffect(() => {
     setChecked(checked || false)
@@ -85,13 +87,13 @@ const Switch = ({
         value={value}
         checked={readonly ? checked : _checked}
         readOnly={readonly}
-        id={`switch-${id}`}
+        id={`switch-${computedId}`}
         type='checkbox'
         disabled={disabled}
         className={hashClass(styled, clsx(status && is(getStatusClassName(status))))}
         {...others}
       />
-      <label htmlFor={`switch-${id}`}>{label}</label>
+      <label htmlFor={`switch-${computedId}`}>{label}</label>
     </div>
   )
 }

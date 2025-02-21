@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import shortid from 'shortid'
 import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
@@ -18,13 +17,14 @@ const AccordionItem = ({
   open,
   className,
   children,
-  id = shortid.generate(),
+  id,
   onClick,
   disabled,
   ...others
 }: AccordionItemProps): JSX.Element => {
   const ref = useRef<HTMLDetailsElement>(null)
   const { styled } = useTrilogyContext()
+
 
   const classes = hashClass(styled, clsx('accordion-item', className))
 
