@@ -1,8 +1,9 @@
-import * as React from 'react'
-import { AccordionBodyProps } from './AccordionBodyProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
 
 /**
  * Accordion Body Component
@@ -11,21 +12,25 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * @param dataId {string} data attribute
  */
-const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProps): React.JSX.Element => {
-  const { styled } = useTrilogyContext()
+const AccordionBody = React.forwardRef<AccordionBodyRef, AccordionBodyProps>(
+  ({ children, className, id, ...others }, ref): React.JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  return (
-    <div
-      id={id}
-      className={hashClass(styled, clsx('accordion-body', className))}
-      onClick={(e) => {
-        e.stopPropagation()
-      }}
-      {...others}
-    >
-      {children}
-    </div>
-  )
-}
+    return (
+      <div
+        ref={ref}
+        id={id}
+        className={hashClass(styled, clsx('accordion-body', className))}
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+        {...others}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
+AccordionBody.displayName = ComponentName.AccordionBody
 export default AccordionBody
