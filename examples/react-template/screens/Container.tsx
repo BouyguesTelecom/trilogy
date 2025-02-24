@@ -1,19 +1,10 @@
-import * as React from "react";
-import {
-  Box,
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
-  Container,
-  Text,
-  BoxContent,
-} from "@trilogy-ds/react/components";
+import { Box, BoxContent, Container, Divider, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const ContainerScreen = (): JSX.Element => {
   return (
     <>
-      <Section verticalPaddingless>
+      <Section>
         <Container>
           <Box>
             <BoxContent>
@@ -49,7 +40,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>fullwidth</Title>
         <Divider />
-        <Container >
+        <Container>
           <Box>
             <BoxContent>
               <Text>Fullwidth content</Text>
@@ -60,7 +51,7 @@ export const ContainerScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>centré</Title>
         <Divider />
-        <Container >
+        <Container>
           <Box>
             <BoxContent>
               <Text>content centered</Text>
@@ -69,5 +60,5 @@ export const ContainerScreen = (): JSX.Element => {
         </Container>
       </Section>
     </>
-  );
-};
+  )
+}

@@ -27,7 +27,8 @@ const SelectDynamic = ({
   const [selectedValues, setSelectedValues] = React.useState<SelectedValue>(selected)
   const [selectedName, setSelectedName] = React.useState<string[]>([])
   const reactId = React.useId()
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
+  const selectClasses = hashClass(styled, clsx('select', className))
+  const optionsClasses = hashClass(styled, clsx('select-options'))
 
   const onClickInput = React.useCallback(() => {
     setIsFocused((prev) => !prev)
@@ -48,9 +49,9 @@ const SelectDynamic = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value),
+        : selectedValues === value,
     [multiple, selectedValues],
   )
 
@@ -174,7 +175,11 @@ const SelectDynamic = ({
         }}
         {...{ readOnly: true, id, role: 'combobox' }}
       />
-      {focused && <ul role='listbox'  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
+      {focused && (
+        <ul role='listbox' className={optionsClasses}>
+          {options}
+        </ul>
+      )}
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )
