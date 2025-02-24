@@ -1,9 +1,9 @@
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import clsx from 'clsx'
 import React, { useRef } from 'react'
 import shortid from 'shortid'
 import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 
 /**
  * Accordion Item Component
