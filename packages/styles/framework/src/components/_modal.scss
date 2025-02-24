@@ -115,7 +115,7 @@ body:has(.modal.is-active) {
       font-weight: $weight-semibold;
       line-height: 1.1;
       background-color: getColor('background');
-      z-index: zindex('small');
+      z-index: zindex('medium');
       position: sticky;
       top: 0;
       width: 100%;
@@ -139,7 +139,7 @@ body:has(.modal.is-active) {
         display: block;
         height: $modal-close-dimensions;
         width: $modal-close-dimensions;
-        z-index: zindex('medium');
+        z-index: zindex('large');
 
         #{$hoverSelector} {
           background-color: getColor('neutral-fade');
