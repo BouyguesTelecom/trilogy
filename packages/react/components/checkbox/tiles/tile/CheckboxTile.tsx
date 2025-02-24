@@ -1,12 +1,11 @@
-import * as React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useId } from 'react'
 import clsx from 'clsx'
 import { CheckboxTileProps } from './CheckboxTileProps'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { Icon, IconSize } from '@/components/icon'
-import shortid from 'shortid'
+import { generateStableId } from '@/helpers/generateStableId'
 
 /**
  * CheckboxTile
@@ -29,7 +28,7 @@ const CheckboxTile = ({
   className,
   disabled,
   readonly,
-  id = shortid.generate(),
+  id,
   label,
   onChange,
   name,
@@ -41,6 +40,8 @@ const CheckboxTile = ({
 }: CheckboxTileProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
+
+  const computedId = id || (label ? generateStableId('checkbox', label) : `checkbox-default-${useId()}`)
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const CheckboxTile = ({
       <input
         type='checkbox'
         readOnly={readonly}
-        id={id}
+        id={computedId}
         disabled={disabled}
         name={name}
         value={value}
@@ -62,7 +63,7 @@ const CheckboxTile = ({
         onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
         {...others}
       />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+      <label htmlFor={computedId} className={hashClass(styled, clsx('checkbox-label'))}>
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
         {horizontal ? (
           <span>

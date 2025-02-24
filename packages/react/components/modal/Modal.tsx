@@ -5,11 +5,9 @@ import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import shortid from 'shortid'
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ModalProps } from './ModalProps'
-
-const modalGeneratedId = shortid.generate()
+import { generateStableId } from '@/helpers/generateStableId'
 
 /**
  * Modal Component
@@ -38,6 +36,9 @@ const Modal = ({
   title,
   ...others
 }: ModalProps): JSX.Element => {
+  const modalId = id || (title ? generateStableId('modal', title) : `modal-default-${useId()}`)
+  const modalTitleId = title ? generateStableId('modal-title', title) : `modal-title-default-${useId()}`
+
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -112,10 +113,10 @@ const Modal = ({
     <div onKeyDown={onKeyDown} ref={refModal}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
       <div
-        id={id}
+        id={modalId}
         className={classes}
         role='dialog'
-        aria-labelledby={modalGeneratedId}
+        aria-labelledby={modalTitleId}
         aria-modal={true}
         onClick={(e) => {
           if (!modal?.current?.contains(e.target as Node)) {
@@ -138,7 +139,7 @@ const Modal = ({
                 {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
               </button>
             )}
-            <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
+            <Title id={modalTitleId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
               {title}
             </Title>
           </div>
