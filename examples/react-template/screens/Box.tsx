@@ -21,14 +21,6 @@ import {
 import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
-const TestComp = ({ style }) => {
-  return (
-    <Column>
-      <Text>Test column in other component</Text>
-    </Column>
-  )
-}
-
 export const BoxScreen = (): JSX.Element => {
   const [active, setActive] = React.useState(false)
   const data = [1, 2, 3, 4, 5]
@@ -40,7 +32,7 @@ export const BoxScreen = (): JSX.Element => {
           <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
             <Column narrow>
               <View id='homeNotificationIcon'>
-                <Icon name='tri-eye' size={IconSize.SMALL} testId='homeNotificationIcon' />
+                <Icon name='tri-eye' size={IconSize.SMALL} />
               </View>
             </Column>
             <Column>
@@ -61,7 +53,7 @@ export const BoxScreen = (): JSX.Element => {
         <BoxContent>
           <Columns>
             {data.map((item, index) => (
-              <Column>
+              <Column key={index}>
                 <Text>Test column in other component</Text>
               </Column>
             ))}
@@ -215,7 +207,7 @@ export const BoxScreen = (): JSX.Element => {
       <Columns mobile>
         <Column size={6}>
           <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
-            <BoxHeader align={Alignable.ALIGNED_START}>Test</BoxHeader>
+            <BoxHeader>Test</BoxHeader>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
