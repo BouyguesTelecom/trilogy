@@ -1,4 +1,4 @@
-import {RadioList, StatusState, TrilogyColor} from '@trilogy-ds/react'
+import { RadioList, StatusState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -12,15 +12,17 @@ import {
   BoxHeader,
   Button,
   Card,
-  CardContent, CheckboxTile, CheckboxTiles,
+  CardContent,
+  CheckboxTile,
+  CheckboxTiles,
   Icon,
   IconName,
-  IconSize, Radio, RadioTile, RadioTiles,
+  IconSize,
+  Radio,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-  View
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
@@ -77,15 +79,15 @@ export const AutolayoutScreen = (): JSX.Element => {
       <Button variant={'PRIMARY'}>Click</Button>
 
       <Accordion>
-        <AccordionItem id='ONE' active={true}>
+        <AccordionItem id='ONE'>
           <AccordionHeader>
             <Text>Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody dataId='totooooo-test-id' testId='totooooo'>
+          <AccordionBody>
             <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id='TWO'>
+        <AccordionItem id='TWO'>
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -118,15 +120,10 @@ export const AutolayoutScreen = (): JSX.Element => {
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
 
-      <AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
+      <AutoComplete iconNameRight={IconName.ALERT} displayMenu={true} data={['1', '2']} />
 
       <CheckboxTiles>
-        <CheckboxTile
-          id='tile-1'
-          label='label'
-          value='value'
-          description='Je suis une description simple'
-        />
+        <CheckboxTile id='tile-1' label='label' value='value' description='Je suis une description simple' />
         <CheckboxTile
           id='tile-2'
           label='label'
@@ -144,25 +141,9 @@ export const AutolayoutScreen = (): JSX.Element => {
       </CheckboxTiles>
 
       <RadioList>
-        <Radio
-          name='name-1'
-          label='Label'
-          value='one'
-          id='checkbox1'
-        />
-        <Radio
-          name='name-1'
-          label='Label'
-          value='two'
-          id='checkbox2'
-        />
-        <Radio
-          name='name-1'
-          label='Label'
-          value='three'
-          disabled
-          id='checkbox3'
-        />
+        <Radio name='name-1' label='Label' value='one' id='checkbox1' />
+        <Radio name='name-1' label='Label' value='two' id='checkbox2' />
+        <Radio name='name-1' label='Label' value='three' disabled id='checkbox3' />
       </RadioList>
 
       <Alert
@@ -170,7 +151,7 @@ export const AutolayoutScreen = (): JSX.Element => {
         status={StatusState.SUCCESS}
         title={'Test alert'}
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-        />
+      />
     </AutoLayout>
   )
 }
