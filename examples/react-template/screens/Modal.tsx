@@ -5,6 +5,7 @@ import {
   Icon,
   IconName,
   IconSize,
+  Input,
   Modal,
   ModalBody,
   ModalFooter,
@@ -16,6 +17,7 @@ import {
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useState } from 'react'
+
 function Buttons() {
   return null
 }
@@ -43,6 +45,7 @@ export const ModalScreen = (): JSX.Element => {
         >
           <ModalBody>
             <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
+            <Input placeholder='je suis un input' iconNameRight={IconName.SEARCH}/>
             <Text>Modal content</Text>
             <Text>Modal content</Text>
             <Text>Modal content</Text>
