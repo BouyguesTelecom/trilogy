@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { Divider, Pagination, Section, Title, TitleLevels } from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const PaginationScreen = (): JSX.Element => {
   return (
@@ -16,7 +16,7 @@ export const PaginationScreen = (): JSX.Element => {
         <Pagination onClick={(e) => console.log('event', e)} length={7} defaultPage={2} />
 
         <Divider />
-        <Pagination onClick={(e) => console.log('event', e)} length={3} pageSize={2} defaultPage={2} />
+        <Pagination onClick={(e) => console.log('event', e)} length={3} defaultPage={2} />
       </Section>
     </>
   )

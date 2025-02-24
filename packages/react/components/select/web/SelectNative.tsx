@@ -29,13 +29,8 @@ const SelectNative = ({
 
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState(selected)
-
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
-
-  const controlClass = React.useMemo(
-    () => hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left')),
-    [styled, iconName],
-  )
+  const selectClasses = hashClass(styled, clsx('select', className))
+  const controlClass = hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left'))
 
   const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
     setIsFocused(true)
