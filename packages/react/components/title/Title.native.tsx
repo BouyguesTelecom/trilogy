@@ -17,7 +17,7 @@ import { TitleProps } from './TitleProps'
  * @param inverted {Boolean} Title white color
  * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
  * @param onClick {Function} onClick Event
- * @param skeleton {Boolean} Title Skeleton
+ * @param loading {Boolean} Title Skeleton
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param style {object} Additional styles
@@ -31,14 +31,14 @@ const Title = ({
   inverted,
   typo,
   onClick,
-  skeleton,
+  loading,
   accessibilityLabel,
   subtitle,
   overline,
   ...others
 }: TitleProps): JSX.Element => {
   const statesContext = useContext(StatesContext)
-  const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
+  const color = setTypographyColor(typo, inverted || statesContext.inverted, loading)
   const colorOverline = getColorStyle(TrilogyColor.MAIN)
 
   const fontFamily =
@@ -116,7 +116,7 @@ const Title = ({
     </TextNative>
   )
 
-  if (skeleton) {
+  if (loading) {
     titleView = (
       <ContentLoader style={styles.skeleton}>
         {titleView}

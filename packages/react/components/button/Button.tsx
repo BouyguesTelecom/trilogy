@@ -2,7 +2,6 @@ import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getButtonVariantClassName } from '@/objects/facets/Color'
-import { Loading, LoadingValues } from '@/objects/facets/Loadable'
 import { is } from '@/services/index'
 import clsx from 'clsx'
 import React from 'react'
@@ -65,7 +64,7 @@ const Button = React.forwardRef(
     }
 
     const getClassNames = (
-      loading?: Loading | LoadingValues | boolean,
+      loading?: boolean,
       variant?: ButtonVariant | ButtonVariantValues,
       fullwidth?: boolean,
       className?: string,

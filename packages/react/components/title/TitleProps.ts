@@ -3,6 +3,7 @@ import {
   Clickable,
   Dev,
   Invertable,
+  Loadable,
   Marginless,
   TypographyAlign,
   TypographyAlignValues,
@@ -21,7 +22,7 @@ type Styles = { [key: string]: unknown }
 /**
  * Title Interface
  */
-export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
+export interface TitleProps extends Invertable, Loadable, Accessibility, Clickable, Marginless, Dev, CommonProps {
   children?: React.ReactNode
   level?: TitleLevelValues | TitleLevels
   typo?:
@@ -35,7 +36,6 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
     | TypographyAlignValues
     | Array<string>
     | string
-  skeleton?: boolean
   markup?: TitleMarkup | TitleMarkupValues
   style?: Styles
   subtitle?: boolean

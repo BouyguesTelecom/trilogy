@@ -14,10 +14,10 @@ import { useTrilogyContext } from '@/context'
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  * @param inverted {boolean} Inverted Section Color
- * @param skeleton {boolean} Skeleton before loaded
+ * @param loading {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
  **/
-const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }: SectionProps) => {
+const Section = ({ className, id, loading, backgroundColor, backgroundSrc, inverted, ...others }: SectionProps) => {
   const { styled } = useTrilogyContext()
 
   const _className = hashClass(
@@ -28,7 +28,7 @@ const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inve
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      skeleton && is('loading'),
+      loading && is('loading'),
     ),
   )
 
