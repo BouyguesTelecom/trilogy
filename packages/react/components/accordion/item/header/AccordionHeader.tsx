@@ -1,8 +1,9 @@
-import * as React from 'react'
-import { AccordionHeaderProps } from './AccordionHeaderProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import * as React from 'react'
+import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps'
 
 /**
  * Accordion Header
@@ -11,14 +12,23 @@ import { useTrilogyContext } from '@/context'
  * @param testId
  * @param others
  */
-const AccordionHeader = ({ children, className, id, ...others }: AccordionHeaderProps): React.JSX.Element => {
-  const { styled } = useTrilogyContext()
+const AccordionHeader = React.forwardRef<AccordionHeaderRef, AccordionHeaderProps>(
+  ({ children, className, id, ...others }, ref): React.JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  return (
-    <summary id={id} className={hashClass(styled, clsx('accordion-header', className))} role='button' {...others}>
-      {children}
-    </summary>
-  )
-}
+    return (
+      <summary
+        ref={ref}
+        id={id}
+        className={hashClass(styled, clsx('accordion-header', className))}
+        role='button'
+        {...others}
+      >
+        {children}
+      </summary>
+    )
+  },
+)
 
+AccordionHeader.displayName = ComponentName.AccordionHeader
 export default AccordionHeader
