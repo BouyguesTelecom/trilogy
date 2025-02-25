@@ -1,3 +1,4 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -26,7 +27,7 @@ const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWe
     if (routerLink && to) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
-        <li id={id} data-testid={testId} onClick={onClick} aria-current={active ? 'page' : undefined}>
+        <li ref={ref} id={id} data-testid={testId} onClick={onClick} aria-current={active ? 'page' : undefined}>
           <RouterLink className={hashClass(styled, clsx('link'))} to={to} {...others}>
             {children}
           </RouterLink>
@@ -47,5 +48,5 @@ const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWe
     )
   },
 )
-
+BreadcrumbItem.displayName = ComponentName.BreadcrumbItem
 export default BreadcrumbItem
