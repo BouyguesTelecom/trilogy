@@ -1,10 +1,11 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { LinkProps } from './LinkProps'
-import { has, is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { LinkProps, LinkRef } from './LinkProps'
 
 /**
  * Link Component
@@ -26,76 +27,84 @@ import { useTrilogyContext } from '@/context'
  * -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
-const Link = ({
-                children,
-                className,
-                id,
-                to,
-                href,
-                onClick,
-                accessibilityLabel,
-                routerLink,
-                iconName,
-                inverted,
-                blank,
-                title,
-                ...others
-              }: LinkProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Link = React.forwardRef<LinkRef, LinkProps>(
+  (
+    {
+      children,
+      className,
+      id,
+      to,
+      href,
+      onClick,
+      accessibilityLabel,
+      routerLink,
+      iconName,
+      inverted,
+      blank,
+      title,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
+    const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
 
-  if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    if (routerLink && to) {
+      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
 
-    const RouterLinkTrilogy = (): JSX.Element => {
+      const RouterLinkTrilogy = (): JSX.Element => {
+        return (
+          <RouterLink
+            ref={ref}
+            id={id}
+            aria-label={accessibilityLabel}
+            onClick={onClick && onClick}
+            className={hashClass(styled, clsx(classes))}
+            to={to || ''}
+            {...(blank && {
+              target: '_blank',
+            })}
+            {...others}
+          >
+            {children}
+          </RouterLink>
+        )
+      }
+
+      return <RouterLinkTrilogy />
+    }
+
+    const LinkTrilogy = (): JSX.Element => {
       return (
-        <RouterLink
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           aria-label={accessibilityLabel}
           onClick={onClick && onClick}
-          className={hashClass(styled, clsx(classes))}
-          to={to || ''}
+          className={classes}
+          title={title}
+          href={href}
           {...(blank && {
             target: '_blank',
           })}
           {...others}
         >
-          {children}
-        </RouterLink>
+          {iconName ? (
+            <>
+              <span>{children}</span>
+              <Icon name={iconName} size={IconSize.SMALL} />
+            </>
+          ) : (
+            children
+          )}
+        </a>
       )
     }
 
-    return <RouterLinkTrilogy />
-  }
+    return <LinkTrilogy />
+  },
+)
 
-  const LinkTrilogy = (): JSX.Element => {
-    return (
-      <a
-        id={id}
-        aria-label={accessibilityLabel}
-        onClick={onClick && onClick}
-        className={classes}
-        title={title}
-        href={href}
-        {...(blank && {
-          target: '_blank',
-        })}
-        {...others}
-      >
-        {iconName ? (
-          <>
-            <span>{children}</span>
-            <Icon name={iconName} size={IconSize.SMALL} />
-          </>
-        ) : (
-          children
-        )}
-      </a>
-    )
-  }
-
-  return <LinkTrilogy />
-}
-
+Link.displayName = ComponentName.Link
 export default Link
