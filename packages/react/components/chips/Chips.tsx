@@ -1,9 +1,10 @@
-import React from "react"
-import { is } from "@/services"
-import { ChipsProps } from "./ChipsProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services'
+import clsx from 'clsx'
+import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { ChipsProps, ChipsRef } from './ChipsProps'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -17,41 +18,29 @@ import { useTrilogyContext } from "@/context"
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
-const Chips = ({
-  className,
-  onClick,
-  children,
-  active,
-  disabled,
-  id,
-  ...others
-}: ChipsProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Chips = React.forwardRef<ChipsRef, ChipsProps>(
+  ({ className, onClick, children, active, disabled, id, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('chips', active && is('active'), className))
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      "chips",
-      active && is("active"),
-      className
+    return (
+      <button
+        ref={ref}
+        {...{ disabled: disabled }}
+        aria-disabled={disabled}
+        id={id}
+        aria-pressed={!!active}
+        className={classes}
+        onClick={(e) => {
+          onClick?.(e)
+        }}
+        {...others}
+      >
+        {children}
+      </button>
     )
-  )
+  },
+)
 
-  return (
-    <button
-      {...{ disabled: disabled }}
-      aria-disabled={disabled}
-      id={id}
-      aria-pressed={!!active}
-      className={classes}
-      onClick={(e) => {
-        onClick?.(e)
-      }}
-      {...others}
-    >
-      {children}
-    </button>
-  )
-}
-
+Chips.displayName = ComponentName.Chips
 export default Chips
