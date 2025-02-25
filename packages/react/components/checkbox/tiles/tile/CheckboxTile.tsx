@@ -1,12 +1,12 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { CheckboxTileProps } from './CheckboxTileProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { Icon, IconSize } from '@/components/icon'
-import shortid from 'shortid'
+import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
 
 /**
  * CheckboxTile
@@ -24,60 +24,65 @@ import shortid from 'shortid'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const CheckboxTile = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = shortid.generate(),
-  label,
-  onChange,
-  name,
-  value,
-  description,
-  icon,
-  horizontal,
-  ...others
-}: CheckboxTileProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
+  (
+    {
+      checked,
+      className,
+      disabled,
+      readonly,
+      id = React.useId(),
+      label,
+      onChange,
+      name,
+      value,
+      description,
+      icon,
+      horizontal,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const [_checked, setChecked] = useState<boolean>(checked || false)
 
-  const [_checked, setChecked] = useState<boolean>(checked || false)
+    useEffect(() => {
+      if (!readonly) {
+        setChecked(checked || false)
+      }
+    }, [checked, readonly])
 
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
+    return (
+      <div ref={ref} className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
+        <input
+          type='checkbox'
+          readOnly={readonly}
+          id={id}
+          disabled={disabled}
+          name={name}
+          value={value}
+          checked={readonly ? checked : _checked}
+          onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+          {...others}
+        />
+        <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+          {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
+          {horizontal ? (
+            <span>
+              <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
+              {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
+            </span>
+          ) : (
+            <>
+              <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
+              {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
+            </>
+          )}
+        </label>
+      </div>
+    )
+  },
+)
 
-  return (
-    <div className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
-      <input
-        type='checkbox'
-        readOnly={readonly}
-        id={id}
-        disabled={disabled}
-        name={name}
-        value={value}
-        checked={readonly ? checked : _checked}
-        onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
-        {...others}
-      />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
-        {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
-        {horizontal ? (
-          <span>
-            <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
-          </span>
-        ) : (
-          <>
-            <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
-            {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
-          </>
-        )}
-      </label>
-    </div>
-  )
-}
-
+CheckboxTile.displayName = ComponentName.CheckboxTiles
 export default CheckboxTile
