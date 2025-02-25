@@ -36,121 +36,52 @@ import { ButtonProps } from './ButtonProps'
 const Button = React.forwardRef(
   (
     {
-      markup,
+      markup: ButtonComponent = 'button',
       loading,
       variant,
-      href,
-      id,
       fullwidth,
       children,
       className,
-      to,
       accessibilityLabel,
       onClick,
-      name,
-      routerLink,
-      type,
       iconName,
+      disabled = false,
       ...others
     }: ButtonProps,
-    ref: React.Ref<HTMLButtonElement>,
+    ref: React.Ref<HTMLButtonElement | HTMLAnchorElement | HTMLInputElement>,
   ): JSX.Element => {
-    const isDisabled = others.disabled || false
     const { styled } = useTrilogyContext()
 
-    /** Check if specified markup is valid */
-    const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
-      if (stringMarkup in ButtonMarkup || Object.values(ButtonMarkup).includes(stringMarkup as ButtonMarkup))
-        return true
-    }
-
-    const getClassNames = (
-      loading?: Loading | LoadingValues | boolean,
-      variant?: ButtonVariant | ButtonVariantValues,
-      fullwidth?: boolean,
-      className?: string,
-    ) => {
-      return clsx(
+    const classes = hashClass(
+      styled,
+      clsx(
         'button',
         loading && is('loading'),
         variant && is(getButtonVariantClassName(variant)),
         fullwidth && is('fullwidth'),
         className,
-      )
-    }
+      ),
+    )
 
-    const classes = hashClass(styled, getClassNames(loading, variant, fullwidth, className))
-    const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
-
-    if (Tag === 'button' && !href && !to) {
-      return (
-        <button
-          ref={ref}
-          id={id}
-          aria-label={accessibilityLabel}
-          className={classes}
-          disabled={isDisabled}
-          name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
-          type={type ?? 'button'}
-          {...others}
-        >
-          {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
-          {children}
-        </button>
-      )
-    }
-
-    if (Tag === 'input') {
-      return (
-        <input
-          id={id}
-          className={classes}
-          aria-label={accessibilityLabel}
-          name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
-          disabled={isDisabled}
-          type={type ?? 'submit'}
-          value={`${children}`}
-          {...others}
-        />
-      )
-    }
-
-    if (routerLink && to && !isDisabled) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-      return (
-        <RouterLink aria-label={accessibilityLabel} to={to} className={classes} {...others}>
-          {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
-          {children}
-        </RouterLink>
-      )
+    if (ButtonComponent === 'button' && (others.href || others.to)) {
+      ButtonComponent = 'a'
     }
 
     return (
-      <a
-        id={id}
+      <ButtonComponent
+        ref={ref}
         aria-label={accessibilityLabel}
         className={classes}
-        href={href}
+        disabled={disabled}
         onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
+          !disabled && onClick?.(e)
           e.stopPropagation()
         }}
         {...others}
       >
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
-      </a>
+      </ButtonComponent>
     )
   },
 )
