@@ -1,9 +1,10 @@
-import React, { createContext } from 'react'
-import clsx from 'clsx'
-import { CardProps } from './CardProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React, { createContext } from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { CardProps, CardRef } from './CardProps'
 
 export const CardContext = createContext({ horizontal: false })
 
@@ -20,66 +21,61 @@ export const CardContext = createContext({ horizontal: false })
  * @param className {string} Additionnal CSS Classes
  * @param fullheight
  */
-const Card = ({
-                className,
-                id,
-                flat,
-                horizontal,
-                floating,
-                skeleton,
-                onClick,
-                reversed,
-                href,
-                fullheight,
-                active,
-                ...others
-              }: CardProps) => {
+const Card = React.forwardRef<CardRef, CardProps>(
+  (
+    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
+    ref,
+  ) => {
+    const { styled } = useTrilogyContext()
 
-  const { styled } = useTrilogyContext()
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
 
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
+    const classes = hashClass(
+      styled,
+      clsx(
+        'card',
+        flat && !floating && is('flat'),
+        horizontal && [is('horizontal'), is('vcentered')],
+        floating && !flat && is('floating'),
+        skeleton && is('loading'),
+        reversed && is('reversed'),
+        className,
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'card',
-      flat && !floating && is('flat'),
-      horizontal && [is('horizontal'), is('vcentered')],
-      floating && !flat && is('floating'),
-      skeleton && is('loading'),
-      reversed && is('reversed'),
-      className,
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+    if (href) {
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          id={id}
+          href={href}
+          onClick={(e) => {
+            // eslint-disable-next-line no-unused-expressions
+            onClick?.(e)
+            e.stopPropagation()
+          }}
+          {...others}
+          className={classes}
+        />
+      )
+    }
 
-  if (href) {
     return (
-      <a
+      <div
+        ref={ref as React.Ref<HTMLDivElement>}
         id={id}
-        href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        {...others}
+        onClick={onClick && onClick}
         className={classes}
+        style={onClick && { ...hoverStyle }}
+        {...others}
       />
     )
-  }
+  },
+)
 
-  return (
-    <div
-      id={id}
-      onClick={onClick && onClick}
-      className={classes}
-      style={onClick && { ...hoverStyle }}
-      {...others}
-    />
-  )
-}
+Card.displayName = ComponentName.Card
 export default Card
