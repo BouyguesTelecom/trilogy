@@ -8,7 +8,8 @@ import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { AlertProps, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
+import { ComponentName } from '../enumsComponentsName'
+import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 
 /**
@@ -68,7 +69,7 @@ const ToasterAlert = ({
   const positionStyles: CSSProperties = {
     position: 'fixed',
     ...(position === ToasterAlertPosition.BOTTOM ? { bottom: offset || 0 } : { top: offset || 0 }),
-    ...(float === ToasterAlertFloat.RIGHT ? { right: offset || 0 } : { left: offset || 0 })
+    ...(float === ToasterAlertFloat.RIGHT ? { right: offset || 0 } : { left: offset || 0 }),
   }
 
   const classes = hashClass(
@@ -89,17 +90,21 @@ const ToasterAlert = ({
       data-testid={testId}
       {...others}
     >
-      {children ? children :
-        (<>
+      {children ? (
+        children
+      ) : (
+        <>
           {iconName && <Icon name={iconName} size={IconSize.SMALL} />}
           <div className={hashClass(styled, clsx('body'))}>
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && <Text>{description}</Text>}
             {toasterChildren && toasterChildren}
           </div>
-          {closable && <Icon onClick={closable} className={'toaster-close'} name={IconName.TIMES} size={IconSize.SMALL} />}
-        </>)
-      }
+          {closable && (
+            <Icon onClick={closable} className={'toaster-close'} name={IconName.TIMES} size={IconSize.SMALL} />
+          )}
+        </>
+      )}
     </div>
   ) : null
 }
@@ -116,57 +121,52 @@ const ToasterAlert = ({
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const Alert = ({
-  banner,
-  status,
-  className,
-  id,
-  iconName,
-  title,
-  description,
-  onClick,
-  display = true,
-  ...others
-}: AlertProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Alert = React.forwardRef<AlertRef, AlertProps>(
+  (
+    { banner, status, className, id, iconName, title, description, onClick, display = true, ...others },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
-  )
-
-  const iconAlert = React.useMemo(() => {
-    if (iconName != null) return iconName
-    else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
-    else return IconName.INFOS_CIRCLE
-  }, [iconName, status])
-
-  if (display) {
-    return (
-      <div
-        id={id}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        className={classes}
-        {...others}
-      >
-        <Icon name={iconAlert} />
-        <div className={hashClass(styled, clsx('body'))}>
-          {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
-          {description && typeof description.valueOf() === 'string' ? (
-            <Text level={TextLevels.TWO}>{description}</Text>
-          ) : (
-            description
-          )}
-        </div>
-      </div>
+    const classes = hashClass(
+      styled,
+      clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
     )
-  }
-  return <div />
-}
+
+    const iconAlert = React.useMemo(() => {
+      if (iconName != null) return iconName
+      else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
+      else return IconName.INFOS_CIRCLE
+    }, [iconName, status])
+
+    if (display) {
+      return (
+        <div
+          ref={ref}
+          id={id}
+          onClick={(e) => {
+            // eslint-disable-next-line no-unused-expressions
+            onClick?.(e)
+            e.stopPropagation()
+          }}
+          className={classes}
+          {...others}
+        >
+          <Icon name={iconAlert} />
+          <div className={hashClass(styled, clsx('body'))}>
+            {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
+            {description && typeof description.valueOf() === 'string' ? (
+              <Text level={TextLevels.TWO}>{description}</Text>
+            ) : (
+              description
+            )}
+          </div>
+        </div>
+      )
+    }
+    return <div />
+  },
+)
 
 /**
  * Toaster Alert Provider
@@ -202,7 +202,8 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   return (
     <ToasterContext.Provider value={{ show: showToast, hide: () => null }}>
       {children}
-      {toasterState && <ToasterAlert
+      {toasterState && (
+        <ToasterAlert
           title={toasterState.title}
           id={toasterState.id}
           testId={toasterState.testId}
@@ -217,9 +218,11 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
           className={toasterState.className}
           toasterChildren={toasterState.toasterChildren}
           display={toasterState.display}
-      />}
+        />
+      )}
     </ToasterContext.Provider>
   )
 }
 
+Alert.displayName = ComponentName.Alert
 export default Alert
