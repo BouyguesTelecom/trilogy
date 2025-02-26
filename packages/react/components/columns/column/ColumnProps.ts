@@ -1,6 +1,7 @@
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { type View } from 'react-native'
 
 /**
  * Columns Item Interface
@@ -23,3 +24,6 @@ export interface ColumnProps extends AlignableProps, CommonProps {
   fullhdOffset?: ColumnsSize
   narrow?: boolean
 }
+
+export type ColumnRef = HTMLDivElement
+export type ColumnNativeRef = View

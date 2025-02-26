@@ -1,6 +1,7 @@
 import { GapSize } from '@/components/columns/ColumnsTypes'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { type View } from 'react-native'
 
 /**
  * Columns Interface
@@ -14,3 +15,6 @@ export interface ColumnsProps extends AlignableProps, CommonProps {
   mobile?: boolean
   marginless?: boolean
 }
+
+export type ColumnsRef = HTMLDivElement
+export type ColumnsNativeRef = View
