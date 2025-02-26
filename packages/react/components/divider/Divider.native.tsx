@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor } from '@/components/icon'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { DividerProps } from './DividerProps'
+import { DividerNativeRef, DividerProps } from './DividerProps'
 
 /**
  * Divider Native Component
@@ -15,7 +15,7 @@ import { DividerProps } from './DividerProps'
  * @param color {TrilogyColor} Border color of Divider
  * @param others
  */
-const Divider = ({ content, unboxed, marginless, iconName, ...others }: DividerProps): JSX.Element => {
+const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unboxed, marginless, iconName, ...others }, ref): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
   const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
@@ -62,6 +62,7 @@ const Divider = ({ content, unboxed, marginless, iconName, ...others }: DividerP
   if (content || iconName) {
     return (
       <View
+      ref={ref}
         style={styles.container}
         onLayout={(event) => {
           setContainerWidth(event.nativeEvent.layout.width)
@@ -82,7 +83,7 @@ const Divider = ({ content, unboxed, marginless, iconName, ...others }: DividerP
   }
 
   return <View style={styles.divider} {...others} />
-}
+})
 
 Divider.displayName = ComponentName.Divider
 

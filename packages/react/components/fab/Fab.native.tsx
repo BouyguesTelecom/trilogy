@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StyleSheet, TouchableOpacity } from "react-native"
-import { FabProps } from "./FabProps"
+import { FabNativeRef, FabProps } from "./FabProps"
 import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "@/objects"
 import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -19,7 +19,7 @@ import { Text } from "@/components/text"
  * @param right {number} position right
  * @param disabled {boolean} disabled button
  */
-const Fab = ({
+const Fab =  React.forwardRef<FabNativeRef, FabProps>(({
                children,
                accessibilityLabel,
                iconName,
@@ -31,7 +31,7 @@ const Fab = ({
                right,
                disabled,
                testId
-             }: FabProps): JSX.Element => {
+             }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     button: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
@@ -71,6 +71,7 @@ const Fab = ({
 
   return (
     <TouchableOpacity
+      ref={ref}
       style={[styles.button, extended && styles.extended]}
       accessibilityLabel={accessibilityLabel}
       onPress={(e?: unknown) => onClick?.(e)}
@@ -98,7 +99,7 @@ const Fab = ({
       )}
     </TouchableOpacity>
   )
-}
+})
 
 Fab.displayName = ComponentName.Fab
 

@@ -5,13 +5,13 @@ import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ModalContext } from '../context'
-import { ModalFooterProps } from './ModalFooterProps'
+import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
 
 /**
  * Modal Footer Component
  * @param children {React.ReactNode}
  */
-const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => {
+const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(({ children, ...others }, ref): JSX.Element => {
   const { setIsFooter } = React.useContext(ModalContext)
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => 
   }, [])
 
   return (
-    <View style={[styles.container]} {...others}>
+    <View ref={ref} style={[styles.container]} {...others}>
       <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
         {(typeof children === 'string' && (
           <Title level={TitleLevels.THREE} style={styles.title}>
@@ -34,7 +34,7 @@ const ModalFooter = ({ children, ...others }: ModalFooterProps): JSX.Element => 
       </View>
     </View>
   )
-}
+})
 
 ModalFooter.displayName = ComponentName.ModalFooter
 

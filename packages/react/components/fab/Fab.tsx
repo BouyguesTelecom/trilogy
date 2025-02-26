@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTrilogyContext } from '@/context'
-import { FabProps } from './FabProps'
+import { FabProps, FabRef } from './FabProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { Icon, IconName } from '@/components/icon'
 import { is } from '@/services'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Fab Component - Floating Button Action
@@ -22,8 +23,7 @@ import { is } from '@/services'
  * @param disabled {boolean} disabled button
  * @param testId {string} Test Id for Test Integration
  **/
-
-const Fab = ({
+const Fab = React.forwardRef<FabRef, FabProps>(({
   children,
   extended,
   iconName,
@@ -38,7 +38,7 @@ const Fab = ({
   right,
   disabled,
   ...others
-}: FabProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const [isExtended, setIsExtended] = useState<boolean>(extended || false)
 
@@ -64,6 +64,7 @@ const Fab = ({
 
   return (
     <button
+      ref={ref}
       id={id}
       disabled={disabled}
       aria-label={accessibilityLabel}
@@ -79,6 +80,7 @@ const Fab = ({
       {children}
     </button>
   )
-}
+})
 
+Fab.displayName = ComponentName.Fab
 export default Fab

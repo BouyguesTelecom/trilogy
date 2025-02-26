@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { ListProps } from '@/components/list/ListProps'
+import { ListNativeRef, ListProps } from '@/components/list/ListProps'
 import { ListContext } from '@/components/list/context'
 import * as React from 'react'
 import { View } from 'react-native'
@@ -9,17 +9,17 @@ import { View } from 'react-native'
  * @param children {React.ReactNode}
  * @param ordered {boolean} Display ordered list
  */
-const List = ({ children, ordered = false, divider = false, testId, ...others }: ListProps): JSX.Element => {
+const List = React.forwardRef<ListNativeRef, ListProps>(({ children, ordered = false, divider = false, testId, ...others }, ref): JSX.Element => {
   const [chilIndexes, setChildIndexes] = React.useState<string[]>([])
 
   return (
     <ListContext.Provider value={{ ordered, divider, chilIndexes, setChildIndexes }}>
-      <View testID={testId} {...others}>
+      <View ref={ref} testID={testId} {...others}>
         {children}
       </View>
     </ListContext.Provider>
   )
-}
+})
 
 List.displayName = ComponentName.List
 

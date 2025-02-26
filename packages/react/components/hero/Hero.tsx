@@ -1,9 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
-import type { View } from 'react-native'
-
 import { ComponentName } from '@/components/enumsComponentsName'
-import { HeroProps } from '@/components/hero/HeroProps'
+import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
@@ -23,10 +21,10 @@ import { has, is } from '@/services/classify'
  * @param className {string} Additionnal CSS Classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Hero = React.forwardRef(
+const Hero = React.forwardRef<HeroRef, HeroProps>(
   (
-    { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others }: HeroProps,
-    ref: React.Ref<HTMLDivElement | View>,
+    { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others },
+    ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
@@ -44,7 +42,7 @@ const Hero = React.forwardRef(
 
     return (
       <section
-        ref={ref as React.RefObject<HTMLDivElement>}
+        ref={ref}
         id={id}
         onClick={onClick && onClick}
         className={classes}

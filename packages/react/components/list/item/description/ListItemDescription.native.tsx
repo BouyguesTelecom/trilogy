@@ -1,22 +1,22 @@
 import * as React from "react"
 import { Text } from "@/components/text"
 import { View } from "@/components/view"
-import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
+import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from "./ListItemDescriptionProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * ListItemDescription Component
  * @param children {React.ReactNode}
  */
-const ListItemDescription = ({
+const ListItemDescription = React.forwardRef<ListItemDescriptionNativeRef, ListItemDescriptionProps>(({
   children,
-}: ListItemDescriptionProps): JSX.Element => {
+}, ref): JSX.Element => {
   if (["string", "number"].includes(typeof children)) {
     return <Text>{children}</Text>
   }
 
-  return <View>{children}</View>
-}
+  return <View ref={ref}>{children}</View>
+})
 
 ListItemDescription.displayName = ComponentName.ListItemDescription
 

@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ImageProps } from './ImageProps'
+import { ImageNativeRef, ImageProps } from './ImageProps'
 
 /**
  * Image Component
@@ -12,7 +12,7 @@ import { ImageProps } from './ImageProps'
  * @param height {number|string} Image height (Number if not percent else string)
  * @param onClick {Function} onClick Event
  */
-const Image = ({ src, alt = '', circled, width, height, onClick, ...others }: ImageProps): JSX.Element => {
+const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
       width: width ? width : '100%',
@@ -25,6 +25,7 @@ const Image = ({ src, alt = '', circled, width, height, onClick, ...others }: Im
 
   const image = (
     <ImageNative
+      ref={ref}
       style={styles.image}
       accessibilityLabel={alt}
       source={typeof src === 'number' ? src : { uri: src }}
@@ -42,7 +43,7 @@ const Image = ({ src, alt = '', circled, width, height, onClick, ...others }: Im
   ) : (
     image
   )
-}
+})
 
 Image.displayName = ComponentName.Image
 

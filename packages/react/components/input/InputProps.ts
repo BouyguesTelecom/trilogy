@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Accessibility, Dev } from '../../objects/facets'
-import { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
+import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 
 import { FocusEventHandler } from 'react'
 import { IconName, IconNameValues } from '../icon'
@@ -127,3 +127,6 @@ export interface IValidationRules {
   lowercase?: boolean
   specialChars?: boolean
 }
+
+export type InputRef = HTMLInputElement
+export type InputNativeRef = TextInput

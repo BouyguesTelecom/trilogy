@@ -8,7 +8,7 @@ import { has, is } from '../../services'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
-import { InputProps, InputWebEvents } from './InputProps'
+import { InputProps, InputRef, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
@@ -63,7 +63,7 @@ interface IconWrapper {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = (
+const Input = React.forwardRef<InputRef, InputProp>((
   {
     forceControl,
     label,
@@ -103,8 +103,8 @@ const Input = (
     validationRules,
     required,
     ...others
-  }: InputProp,
-  ref: LegacyRef<HTMLInputElement>,
+  },
+  ref,
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
   const idHelp = useId()
@@ -334,6 +334,7 @@ const Input = (
       )}
     </div>
   )
-}
+})
+
 Input.displayName = ComponentName.Input
-export default forwardRef(Input)
+export default Input

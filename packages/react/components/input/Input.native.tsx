@@ -28,7 +28,7 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { InputNativeEvents, InputProps } from './InputProps'
+import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
@@ -64,7 +64,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param required {boolean} Required input
  * @param accessibilityActivate {boolean}
  */
-const Input = ({
+const Input = React.forwardRef<InputNativeRef, InputNativeProps>(({
   defaultValue,
   name,
   label,
@@ -95,7 +95,7 @@ const Input = ({
   onIconClick,
   required,
   ...others
-}: InputNativeProps): JSX.Element => {
+}, ref): JSX.Element => {
   const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
   const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
   const animationDuration = 200
@@ -335,6 +335,7 @@ const Input = ({
         )}
 
         <TextInput
+          ref={ref}
           testID='input-id'
           clearTextOnFocus={false}
           secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
@@ -518,7 +519,7 @@ const Input = ({
       )}
     </View>
   )
-}
+})
 
 Input.displayName = ComponentName.Input
 

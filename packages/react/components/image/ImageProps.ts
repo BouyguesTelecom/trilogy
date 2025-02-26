@@ -1,5 +1,5 @@
 import { AlignableProps, Clickable } from '../../objects'
-import { DimensionValue } from 'react-native'
+import { DimensionValue, type Image } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 export enum RadiusValues {
@@ -16,3 +16,6 @@ export interface ImageProps extends AlignableProps, Clickable, CommonProps {
   height?: DimensionValue | number | undefined
   radius?: RadiusValues
 }
+
+export type ImageRef = HTMLElement
+export type ImageNativeRef = Image
