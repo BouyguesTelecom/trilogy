@@ -1,4 +1,4 @@
-import { Alignable, AlignableValues } from '../../../objects'
+import { Alignable, AlignableProps, AlignableValues } from '../../../objects'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import type { RadioProps } from '../../../components/radio/RadioProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -15,8 +15,7 @@ export interface RadioListProps {
 /**
  * Radio List Web Interface
  */
-export interface RadioListWebProps extends RadioListProps, CommonProps {
-  align?: Alignable | AlignableValues
+export interface RadioListWebProps extends Omit<AlignableProps, 'verticalAlign'>, RadioListProps, CommonProps {
   className?: string
   horizontalMobile?: boolean
   verticalDesktop?: boolean
