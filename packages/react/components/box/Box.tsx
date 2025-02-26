@@ -32,10 +32,8 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       inverted,
       children,
       className,
-      id,
-      onClick,
       skeleton,
-      href,
+      markup: BoxComponent = 'div',
       backgroundColor,
       highlighted,
       shadowless,
@@ -64,39 +62,17 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         headerOffset && is('offset-header'),
         fullheight && is('fullheight'),
         active && is('active'),
+        others.onClick && is('cursor-pointer'),
       ),
     )
 
-    if (href) {
-      return (
-        <a
-          id={id}
-          href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-          }}
-          className={classes}
-          {...others}
-        >
-          {children}
-        </a>
-      )
-    }
-
-    const hoverStyle: React.CSSProperties = {
-      cursor: 'pointer',
+    if (BoxComponent === 'div' && (others.href || others.to)) {
+      BoxComponent = 'a'
     }
 
     return (
-      <div
+      <BoxComponent
         ref={ref}
-        id={id}
-        style={onClick && { ...hoverStyle }}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
         className={classes}
         {...others}
         {...(backgroundSrc && {
@@ -108,7 +84,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         })}
       >
         {children}
-      </div>
+      </BoxComponent>
     )
   },
 )
