@@ -1,8 +1,9 @@
 import * as React from "react"
-import { ListItemDescriptionProps } from "./ListItemDescriptionProps"
+import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * ListItemDescription Component
@@ -10,13 +11,14 @@ import { useTrilogyContext } from "@/context"
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const ListItemDescription = ({
+const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
   children,
   className,
-}: ListItemDescriptionProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  return <dd className={hashClass(styled, clsx(className))}>{children}</dd>
-}
+  return <dd ref={ref} className={hashClass(styled, clsx(className))}>{children}</dd>
+})
 
+ListItemDescription.displayName = ComponentName.ListItemDescription
 export default ListItemDescription
