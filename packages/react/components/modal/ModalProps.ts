@@ -3,6 +3,7 @@ import { ModalSize } from '../../components/modal/ModalEnum'
 import { ClickEvent } from '../../events/OnClickEvent'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { type View } from 'react-native'
 
 /**
  * Modal Interface
@@ -20,3 +21,6 @@ export interface ModalProps extends Accessibility, Dev, CommonProps {
   size?: ModalSize
   title?: string
 }
+
+export type ModalRef = HTMLDivElement
+export type ModalNativeRef = View

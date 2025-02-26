@@ -2,7 +2,8 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ModalFooterProps } from './ModalFooterProps'
+import { ModalFooterProps, ModalFooterRef } from './ModalFooterProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Modal Footer Component
@@ -11,13 +12,14 @@ import { ModalFooterProps } from './ModalFooterProps'
  * @param className {string} Additionnal css classes
  * @param id
  */
-const ModalFooter = ({ children, className, id }: ModalFooterProps): JSX.Element => {
+const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   return (
-    <div data-modal-footer='' id={id} className={hashClass(styled, clsx('modal-footer', className))}>
+    <div ref={ref} data-modal-footer='' id={id} className={hashClass(styled, clsx('modal-footer', className))}>
       {children}
     </div>
   )
-}
+})
 
+ModalFooter.displayName = ComponentName.ModalFooter
 export default ModalFooter
