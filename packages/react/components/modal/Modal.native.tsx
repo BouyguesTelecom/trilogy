@@ -16,7 +16,7 @@ import ModalRN, { OnSwipeCompleteParams } from 'react-native-modal'
 import { Column, Columns } from '../columns'
 import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
-import { ModalProps } from './ModalProps'
+import { ModalNativeRef, ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
 
 /**
@@ -29,7 +29,7 @@ import { ModalContext } from './context/ModalContext'
  * @param onModalHide {Function} Callback on Hide
  * @param unClosable {boolean} unClosable Native Modal
  */
-const Modal = ({
+const Modal = React.forwardRef<ModalNativeRef, ModalProps>(({
   children,
   active = false,
   onClose,
@@ -39,7 +39,7 @@ const Modal = ({
   trigger,
   title,
   ...others
-}: ModalProps): JSX.Element => {
+}, ref): JSX.Element => {
   const scrollViewRef = useRef<ScrollView>(null)
   const [scrollOffset, setScrollOffset] = useState(0)
   const [visible, setVisible] = useState(active || false)
@@ -78,7 +78,7 @@ const Modal = ({
         onModalHide={onModalHide}
         {...others}
       >
-        <View style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
+        <View ref={ref} style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
           <View style={{ paddingVertical: !title && hideCloseButton ? 8 : 16 }}>
             <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
               <Column>
@@ -99,7 +99,7 @@ const Modal = ({
       </ModalRN>
     </ModalContext.Provider>
   )
-}
+})
 
 Modal.displayName = ComponentName.Modal
 
