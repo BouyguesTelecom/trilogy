@@ -1,4 +1,4 @@
-import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ColumnsNativeRef, ColumnsProps } from '@/components/columns/ColumnsProps'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -15,11 +15,8 @@ import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'rea
  * @param gap {GapSize} Gap between columns
  */
 
-const Columns = React.forwardRef(
-  (
-    { children, align, gap, verticalAlign, fullBleed, scrollable, multiline, ...others }: ColumnsProps,
-    ref: React.Ref<View>,
-  ): JSX.Element => {
+const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
+  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, ...others }, ref): JSX.Element => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
