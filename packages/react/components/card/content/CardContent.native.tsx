@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { CardContentProps } from './CardContentProps'
-import { Title, TitleLevels } from '@/components/title'
 import { Button } from '@/components/button'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { Title, TitleLevels } from '@/components/title'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React, { useContext } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { CardContentNativeRef, CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
@@ -19,94 +19,96 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param onClick {Function} onClick Event for all content
  * @param others
  */
-const CardContent = ({ children, ...others }: CardContentProps): JSX.Element => {
-  const cardContextValues = useContext(CardContext)
+const CardContent = React.forwardRef<CardContentNativeRef, CardContentProps>(
+  ({ children, ...others }, ref): JSX.Element => {
+    const cardContextValues = useContext(CardContext)
 
-  const titleSup = 'titleSup'
-  const title = 'title'
-  const buttonText = 'buttonText'
-  const buttonVariant = 'CONVERSION'
-  const buttonClick = () => null
-  const text = 'text'
-  const onClick = () => null
+    const titleSup = 'titleSup'
+    const title = 'title'
+    const buttonText = 'buttonText'
+    const buttonVariant = 'CONVERSION'
+    const buttonClick = () => null
+    const text = 'text'
+    const onClick = () => null
 
-  const styles = StyleSheet.create({
-    card: {
-      paddingTop: 16,
-      paddingLeft: 16,
-      paddingRight: 16,
-      paddingBottom: 16,
-      minHeight: 10,
-      flex: cardContextValues.horizontal ? 1 : 0,
-    },
-    view: {
-      width: '100%',
-    },
-    text: {
-      color: getColorStyle(TrilogyColor.MAIN),
-      fontSize: 12,
-    },
-    padding: {
-      marginBottom: 16,
-    },
-  })
+    const styles = StyleSheet.create({
+      card: {
+        paddingTop: 16,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingBottom: 16,
+        minHeight: 10,
+        flex: cardContextValues.horizontal ? 1 : 0,
+      },
+      view: {
+        width: '100%',
+      },
+      text: {
+        color: getColorStyle(TrilogyColor.MAIN),
+        fontSize: 12,
+      },
+      padding: {
+        marginBottom: 16,
+      },
+    })
 
-  if (children) {
-    if (onClick) {
+    if (children) {
+      if (onClick) {
+        return (
+          <View ref={ref} style={styles.card}>
+            <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
+              {children}
+            </TouchableOpacity>
+          </View>
+        )
+      }
       return (
-        <View style={styles.card}>
-          <TouchableOpacity style={{ width: '100%', paddingBottom: 16 }} onPress={onClick}>
-            {children}
-          </TouchableOpacity>
+        <View ref={ref} style={styles.card} {...others}>
+          {children}
         </View>
       )
     }
-    return (
-      <View style={styles.card} {...others}>
-        {children}
+
+    const cardContent = (
+      <View ref={ref} style={styles.card} {...others}>
+        {titleSup && (
+          <Title overline testId='titleSup-id'>
+            {titleSup}
+          </Title>
+        )}
+        {title && (
+          <Title level={TitleLevels.ONE} testId='title-id'>
+            {title}
+          </Title>
+        )}
+        {text && (
+          <>
+            <View style={{ marginBottom: 16 }} />
+            <Text style={styles.text}>{text}</Text>
+          </>
+        )}
+        {buttonText && (
+          <>
+            <View style={{ marginBottom: 16 }} />
+            <Button variant={buttonVariant} onClick={buttonClick} testId='button-id'>
+              {buttonText}
+            </Button>
+          </>
+        )}
       </View>
     )
-  }
 
-  const cardContent = (
-    <View style={styles.card} {...others}>
-      {titleSup && (
-        <Title overline testId='titleSup-id'>
-          {titleSup}
-        </Title>
-      )}
-      {title && (
-        <Title level={TitleLevels.ONE} testId='title-id'>
-          {title}
-        </Title>
-      )}
-      {text && (
-        <>
-          <View style={{ marginBottom: 16 }} />
-          <Text style={styles.text}>{text}</Text>
-        </>
-      )}
-      {buttonText && (
-        <>
-          <View style={{ marginBottom: 16 }} />
-          <Button variant={buttonVariant} onClick={buttonClick} testId='button-id'>
-            {buttonText}
-          </Button>
-        </>
-      )}
-    </View>
-  )
-
-  return onClick ? (
-    <View style={styles.view}>
-      <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
-        {cardContent}
-      </TouchableOpacity>
-    </View>
-  ) : (
-    cardContent
-  )
-}
+    return onClick ? (
+      <View style={styles.view}>
+        <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
+          {cardContent}
+        </TouchableOpacity>
+      </View>
+    ) : (
+      cardContent
+    )
+  },
+)
 
 CardContent.displayName = ComponentName.CardContent
 
