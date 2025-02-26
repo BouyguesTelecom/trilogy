@@ -1,11 +1,12 @@
-import React from 'react'
-import { BoxProps } from './BoxProps'
-import { has, is } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getColorClassName } from '@/objects'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { BoxProps, BoxRef } from './BoxProps'
 
 /**
  * Box Component
@@ -25,85 +26,91 @@ import { useTrilogyContext } from '@/context'
  * @param fullheight
  * @param others
  */
-const Box = ({
-  inverted,
-  children,
-  className,
-  id,
-  onClick,
-  skeleton,
-  href,
-  backgroundColor,
-  highlighted,
-  shadowless,
-  backgroundSrc,
-  flat,
-  headerOffset,
-  fullheight,
-  active,
-  ...others
-}: BoxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx(
-      'box',
-      shadowless && is('shadowless'),
+const Box = React.forwardRef<BoxRef, BoxProps>(
+  (
+    {
+      inverted,
+      children,
       className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton && is('loading'),
-      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
-      flat && is('flat'),
-      headerOffset && is('offset-header'),
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+      id,
+      onClick,
+      skeleton,
+      href,
+      backgroundColor,
+      highlighted,
+      shadowless,
+      backgroundSrc,
+      flat,
+      headerOffset,
+      fullheight,
+      active,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(
+      styled,
+      clsx(
+        'box',
+        shadowless && is('shadowless'),
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton && is('loading'),
+        highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+        flat && is('flat'),
+        headerOffset && is('offset-header'),
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
 
-  if (href) {
+    if (href) {
+      return (
+        <a
+          id={id}
+          href={href}
+          onClick={(e) => {
+            // eslint-disable-next-line no-unused-expressions
+            onClick?.(e)
+          }}
+          className={classes}
+          {...others}
+        >
+          {children}
+        </a>
+      )
+    }
+
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
+
     return (
-      <a
+      <div
+        ref={ref}
         id={id}
-        href={href}
+        style={onClick && { ...hoverStyle }}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
         }}
         className={classes}
         {...others}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+            backgroundSize: 'cover',
+            backgroundPosition: '50%',
+          },
+        })}
       >
         {children}
-      </a>
+      </div>
     )
-  }
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
-
-  return (
-    <div
-      id={id}
-      style={onClick && { ...hoverStyle }}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-      }}
-      className={classes}
-      {...others}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-        },
-      })}
-    >
-      {children}
-    </div>
-  )
-}
-
+  },
+)
+Box.displayName = ComponentName.Box
 export default Box
