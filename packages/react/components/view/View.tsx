@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ViewMarkup, ViewMarkupValues, ViewProps } from "./ViewProps"
+import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from "./ViewProps"
 import clsx from "clsx"
 import { has, is } from "@/services"
 import {
@@ -30,7 +30,7 @@ import { useTrilogyContext } from "@/context"
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
  */
-const View = ({
+const View = React.forwardRef<ViewRef, ViewProps>(({
   children,
   style,
   className,
@@ -45,7 +45,7 @@ const View = ({
   justify,
   align,
   ...others
-}: ViewProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
@@ -56,7 +56,7 @@ const View = ({
       return true
   }
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : "div"
+  const Tag: any = markup && isCorrectMarkup(markup) ? markup : "div"
 
   const classes = hashClass(
     styled,
@@ -76,6 +76,7 @@ const View = ({
 
   return (
     <Tag
+      ref={ref}
       onClick={onClick}
       style={style}
       className={classes}
@@ -91,6 +92,6 @@ const View = ({
       {children}
     </Tag>
   )
-}
+})
 
 export default View
