@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
-import { CheckboxProps } from './CheckboxProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { CheckboxProps, CheckboxRef } from './CheckboxProps'
 
 /**
  * Checkbox Component
@@ -19,58 +19,52 @@ import { useTrilogyContext } from '@/context'
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
-const Checkbox = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = shortid.generate(),
-  label,
-  onChange,
-  name,
-  value,
-  children,
-  ...others
-}: CheckboxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
+  (
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, ...others },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const [_checked, setChecked] = useState<boolean>(checked || false)
 
-  const [_checked, setChecked] = useState<boolean>(checked || false)
+    useEffect(() => {
+      if (!readonly) {
+        setChecked(checked || false)
+      }
+    }, [checked, readonly])
 
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      const { target } = e
+      onChange
+        ? onChange({
+            checkboxId: target.id,
+            checkboxValue: target.value,
+            checkboxName: target.name,
+            checkboxChecked: target.checked,
+          })
+        : setChecked(target.checked)
     }
-  }, [checked, readonly])
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { target } = e
-    onChange ? onChange({
-      checkboxId: target.id,
-      checkboxValue: target.value,
-      checkboxName: target.name,
-      checkboxChecked: target.checked,
-    }) : setChecked(target.checked)
-  }
+    return (
+      <div ref={ref} className={hashClass(styled, clsx('checkbox', className))}>
+        <input
+          type='checkbox'
+          readOnly={readonly}
+          id={id}
+          disabled={disabled}
+          name={name}
+          value={value}
+          checked={readonly ? checked : _checked}
+          onChange={handleOnChange}
+          {...others}
+        />
+        <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+          {label ?? children}
+        </label>
+      </div>
+    )
+  },
+)
 
-  return (
-    <div className={hashClass(styled, clsx('checkbox', className))}>
-      <input
-        type='checkbox'
-        readOnly={readonly}
-        id={id}
-        disabled={disabled}
-        name={name}
-        value={value}
-        checked={readonly ? checked : _checked}
-        onChange={handleOnChange}
-        {...others}
-      />
-      <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
-        {label ?? children}
-      </label>
-    </div>
-  )
-}
-
+Checkbox.displayName = ComponentName.Checkbox
 export default Checkbox
-
