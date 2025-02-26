@@ -1,8 +1,9 @@
-import { Alignable, AlignableValues } from '../../../objects'
-import type { DividerProps } from '../../../components/divider/DividerProps'
-import type { ButtonProps } from '../../../components/button/ButtonProps'
-import { CommonProps } from '../../../objects/facets/CommonProps'
 import { ButtonListDirectionEnum, ButtonListDirectionEnumValues } from '@/components/button/list/ButtonListEnum'
+import { type View } from 'react-native'
+import type { ButtonProps } from '../../../components/button/ButtonProps'
+import type { DividerProps } from '../../../components/divider/DividerProps'
+import { Alignable, AlignableValues } from '../../../objects'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 type ButtonListChildrenTypes = React.ReactElement<ButtonProps | DividerProps> | undefined
 
@@ -20,3 +21,6 @@ export interface ButtonListWebProps extends ButtonListProps, CommonProps {
   direction?: ButtonListDirectionEnum | ButtonListDirectionEnumValues
   align?: Alignable | AlignableValues
 }
+
+export type ButtonListRef = HTMLDivElement
+export type ButtonListNativeRef = View
