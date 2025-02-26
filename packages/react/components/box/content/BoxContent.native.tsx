@@ -1,4 +1,4 @@
-import { BoxContentProps } from '@/components/box/content/BoxContentProps'
+import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
@@ -10,25 +10,27 @@ import { StyleSheet, Text, View } from 'react-native'
  * @param children {React.ReactNode} Childrens
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  */
-const BoxContent = ({ children, backgroundColor, ...others }: BoxContentProps): JSX.Element => {
-  const { fullHeight } = React.useContext(BoxContext)
+const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
+  ({ children, backgroundColor, ...others }, ref): JSX.Element => {
+    const { fullHeight } = React.useContext(BoxContext)
 
-  const styles = StyleSheet.create({
-    boxContent: {
-      padding: 16,
-      justifyContent: 'center',
-      backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-      borderRadius: 6,
-      flex: fullHeight ? 1 : undefined,
-    },
-  })
+    const styles = StyleSheet.create({
+      boxContent: {
+        padding: 16,
+        justifyContent: 'center',
+        backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
+        borderRadius: 6,
+        flex: fullHeight ? 1 : undefined,
+      },
+    })
 
-  return (
-    <View style={[styles.boxContent]} {...others}>
-      {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
-    </View>
-  )
-}
+    return (
+      <View ref={ref} style={[styles.boxContent]} {...others}>
+        {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
+      </View>
+    )
+  },
+)
 
 BoxContent.displayName = ComponentName.BoxContent
 
