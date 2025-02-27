@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Icon, IconName } from '@/components/icon'
-import { PaginationProps } from './PaginationProps'
+import { PaginationProps, PaginationRef } from './PaginationProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { Pager } from './PaginationEnum'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Pagination Component
@@ -17,7 +18,7 @@ import { Pager } from './PaginationEnum'
  * @param href {Function} Function that generates a link for seo bots
  * @param testId {string} Test Id for Test Integration
  */
-const Pagination = ({
+const Pagination = React.forwardRef<PaginationRef, PaginationProps>(({
   className,
   id,
   length,
@@ -25,7 +26,7 @@ const Pagination = ({
   onClick,
   href,
   ...others
-}: PaginationProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('pagination', className))
@@ -76,7 +77,7 @@ const Pagination = ({
   }, [pager.currentPage])
 
   return (
-    <nav id={id} className={classes} {...others}>
+    <nav ref={ref} id={id} className={classes} {...others}>
       <a
         className={hashClass(styled, clsx('pagination-previous'))}
         {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
@@ -130,6 +131,7 @@ const Pagination = ({
       </a>
     </nav>
   )
-}
+})
 
+Pagination.displayName = ComponentName.Pagination
 export default Pagination
