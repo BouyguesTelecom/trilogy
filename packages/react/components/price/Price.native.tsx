@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
 import { PriceLevel } from './PriceEnum'
 import { checkCents } from './PriceHelpers'
-import { PriceProps } from './PriceProps'
+import { PriceNativeRef, PriceProps } from './PriceProps'
 
 /**
  * Price Component
@@ -24,7 +24,7 @@ import { PriceProps } from './PriceProps'
  * @param oldAmount {boolean} Striked Amount Price
  * @param overline {string} Price overline
  */
-const Price = ({
+const Price = React.forwardRef<PriceNativeRef, PriceProps>(({
   amount,
   mention,
   period,
@@ -37,7 +37,7 @@ const Price = ({
   oldAmount,
   overline,
   ...others
-}: PriceProps): JSX.Element => {
+}, ref): JSX.Element => {
   const statesContext = useContext(StatesContext)
 
   const isNegative = amount ? amount < 0 : false
@@ -255,7 +255,7 @@ const Price = ({
   const priceAccessibilityLabel = accessibilityLabel ? accessibilityLabel : priceText ? priceText : 'NotSpecified'
 
   return (
-    <View>
+    <View ref={ref}>
       {overline && <Text style={[styles.suptitle]}>{overline}</Text>}
 
       <View>
@@ -310,7 +310,7 @@ const Price = ({
       </View>
     </View>
   )
-}
+})
 
 Price.displayName = ComponentName.Price
 
