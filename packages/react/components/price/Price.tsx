@@ -6,7 +6,8 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { Text, TextMarkup } from '../text'
 import { checkCents } from './PriceHelpers'
-import { PriceProps } from './PriceProps'
+import { PriceProps, PriceRef } from './PriceProps'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Price Component
@@ -26,7 +27,7 @@ import { PriceProps } from './PriceProps'
  * @param className {string} Additionnal CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */
-const Price = ({
+const Price = React.forwardRef<PriceRef, PriceProps>(({
   className,
   id,
   amount,
@@ -40,7 +41,7 @@ const Price = ({
   oldAmount,
   overline,
   ...others
-}: PriceProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
@@ -104,6 +105,7 @@ const Price = ({
 
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         styled,
@@ -124,6 +126,7 @@ const Price = ({
       {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
     </div>
   )
-}
+})
 
+Price.displayName = ComponentName.Price
 export default Price
