@@ -50,7 +50,7 @@ export const BoxScreen = (): JSX.Element => {
       </Box>
 
       <Box>
-        <BoxContent>
+        <BoxContent backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'>
           <Columns>
             {data.map((item, index) => (
               <Column key={index}>

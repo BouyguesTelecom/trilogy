@@ -102,8 +102,6 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         {...(backgroundSrc && {
           style: {
             backgroundImage: `url(${backgroundSrc})`,
-            backgroundSize: 'cover',
-            backgroundPosition: '50%',
           },
         })}
       >

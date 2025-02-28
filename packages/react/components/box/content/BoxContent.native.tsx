@@ -3,15 +3,16 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 
 /**
  * Box Content Component
  * @param children {React.ReactNode} Childrens
  * @param backgroundColor {TrilogyColor} Box Content Background Color
+ * @param backgroundSrc {string} Source of background Image
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
-  ({ children, backgroundColor, ...others }, ref): JSX.Element => {
+  ({ children, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
     const { fullHeight } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
@@ -24,11 +25,21 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
       },
     })
 
-    return (
+    const content = (
       <View ref={ref} style={[styles.boxContent]} {...others}>
         {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
       </View>
     )
+
+    if (backgroundSrc) {
+      return (
+        <ImageBackground source={{ uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
+          {content}
+        </ImageBackground>
+      )
+    } else {
+      return content
+    }
   },
 )
 
