@@ -134,7 +134,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
               <ImageBackground
                 imageStyle={{ borderRadius: boxRadius }}
                 style={styles.boxImage}
-                source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+                source={{ uri: backgroundSrc }}
               >
                 {Boolean(highlighted) && <View style={styles.highlighted} />}
                 <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
@@ -170,7 +170,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             <ImageBackground
               imageStyle={{ borderRadius: boxRadius }}
               style={styles.boxImage}
-              source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+              source={{ uri: backgroundSrc }}
             >
               {Boolean(highlighted) && <View style={styles.highlighted} />}
               <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
