@@ -11,19 +11,14 @@ import {
   IconName,
   Button,
   Section,
-  Link,
-  TextLevels,
   SpacerSize,
   Text,
-  Column,
-  Columns,
 } from '@trilogy-ds/react/components'
-import { StatusState } from '@trilogy-ds/react/objects'
+import { StatusState, TypographyBold } from '@trilogy-ds/react/objects'
 import { useContext, useState } from 'react'
 import ToasterContext from '@trilogy-ds/react/lib/components/alert/context/ToasterContext'
 import { ToasterAlertProvider } from '@trilogy-ds/react/lib/components/alert'
 import { ToasterAlertFloat, ToasterAlertPosition } from '@trilogy-ds/react/lib/components/alert/AlertProps'
-import { Alignable } from '@trilogy-ds/react'
 
 export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
@@ -81,30 +76,13 @@ export const AlertScreen = (): JSX.Element => {
             <Text>Test React.NODE</Text>
             <Text>Test React.NODE</Text>
             <Text>Test React.NODE</Text>
-            <Columns align={Alignable.ALIGNED_CENTER}>
-              <Column narrow>
-                <Spacer size={SpacerSize.TWO} />
-                <Link>Link should be ALIGNED_CENTER</Link>
-              </Column>
-            </Columns>
           </>
         }
       />
-      <Spacer size={SpacerSize.EIGHT} />
 
-      <Alert
-        description={
-          <>
-            <Text level={TextLevels.TWO}>{'Text description'}</Text>
-            <Spacer size={SpacerSize.TWO} />
-            <Link>Link should be ALIGNED_START</Link>
-          </>
-        }
-        display={true}
-        iconName={IconName.ALERT}
-        status={StatusState.WARNING}
-        title='Test title'
-      />
+      <Spacer size={SpacerSize.EIGHT} />
+      <Alert status={StatusState.INFO} title='Banner Alert' />
+      <Spacer size={SpacerSize.EIGHT} />
 
       <ToasterAlertProvider>
         <ToasterAlertView />
