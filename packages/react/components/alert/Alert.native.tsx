@@ -15,7 +15,6 @@ import { Row, Rows } from '../rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 import { ToasterShowContext } from './context/ToasterContextProps'
-import { isNotNullNorUndefined } from '@/helpers'
 
 /**
  * Function call by context for showing toast
@@ -84,18 +83,15 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
     alertView = (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       <View style={[styles.container, (others as any).style]} ref={ref}>
-        <Columns
-          gap={2}
-          verticalAlign={isNotNullNorUndefined(description) ? Alignable.ALIGNED_START : Alignable.ALIGNED_CENTER}
-        >
+        <Columns gap={2} verticalAlign={description ? Alignable.ALIGNED_START : Alignable.ALIGNED_CENTER}>
           <Column narrow>
             <Icon name={iconName ? iconName : getStatusIconName(status)} />
           </Column>
           <Column>
-            <Rows gap={isNotNullNorUndefined(description) ? 2 : 0}>
+            <Rows gap={description ? 2 : 0}>
               <Row>
                 <Text
-                  style={[styles.containerTitle, !isNotNullNorUndefined(description) && { lineHeight: 0 }]}
+                  style={[styles.containerTitle, !description && { lineHeight: 0 }]}
                   level={TextLevels.ONE}
                   typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
                 >
