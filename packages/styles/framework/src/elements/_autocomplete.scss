@@ -6,11 +6,11 @@
     &.is-active {
         .autocomplete-menu {
             display: block;
-            border: 1px solid rgba(0,38,60,.4);
+            border: var(--border);
             padding: calc($spacing-1 + 1px) calc($spacing-2 + 2px);
             border-radius: 4px;
             max-height: 220px;
-            overflow-y: auto;
+             overflow-y: auto;
             background-color: getColor('background');
             z-index: 10000;
         }
