@@ -1,4 +1,4 @@
-import { type TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { CommonProps } from '../../../../objects/facets/CommonProps'

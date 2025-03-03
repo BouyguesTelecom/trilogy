@@ -1,4 +1,4 @@
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { IconName, IconNameValues } from '../../components/icon/IconNameEnum'
 import { ClickEvent } from '../../events/OnClickEvent'
 import { Accessibility } from '../../objects/facets/Accessibility'

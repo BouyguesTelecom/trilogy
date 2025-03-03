@@ -1,5 +1,5 @@
 import React from 'react'
-import { type TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { CommonProps } from '../../objects/facets/CommonProps'
 

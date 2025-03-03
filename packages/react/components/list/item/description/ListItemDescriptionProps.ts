@@ -2,7 +2,7 @@
  * ListItem Interface
  */
 import { ReactNode } from 'react'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 export interface ListItemDescriptionProps {
   children?: ReactNode

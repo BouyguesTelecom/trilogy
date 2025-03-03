@@ -3,7 +3,7 @@ import { ModalSize } from '../../components/modal/ModalEnum'
 import { ClickEvent } from '../../events/OnClickEvent'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 /**
  * Modal Interface

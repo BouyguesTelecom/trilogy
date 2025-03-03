@@ -1,4 +1,4 @@
-import { type SafeAreaView } from 'react-native'
+import { SafeAreaView } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**

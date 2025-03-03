@@ -1,6 +1,6 @@
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { GapSize } from '../../components/columns/ColumnsTypes'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 /**
  * Rows Interface
