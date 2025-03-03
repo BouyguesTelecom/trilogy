@@ -18,24 +18,20 @@ import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
 const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
   const { checked } = others as { checked: string }
 
-  const styles = React.useMemo(
-    () =>
-      StyleSheet.create({
+  const styles = StyleSheet.create({
         container: {
-          backgroundColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || undefined,
+          backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
           width: '100%',
           paddingVertical: checked && !iconName ? 8.5 : 10,
         },
-      }),
-    [disabled, checked],
-  )
+      })
 
   const textColor = React.useMemo(() => {
     switch (true) {
       case disabled === true:
-        return getColorStyle(TrilogyColor.DISABLED)
+        return TrilogyColor.DISABLED
       default:
-        return getColorStyle(TrilogyColor.MAIN)
+        return TrilogyColor.MAIN
     }
   }, [disabled])
 
@@ -63,7 +59,7 @@ const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(
         <Column size={columnLabelSize}>
           <Text
             typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
-            {...{ style: { paddingLeft: 8, color: textColor } }}
+            {...{ style: { paddingLeft: 8, color: getColorStyle(textColor) } }}
           >
             {children || label}
           </Text>
