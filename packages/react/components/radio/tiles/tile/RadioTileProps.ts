@@ -1,3 +1,4 @@
+import { type TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { RadioProps } from '../../../../components/radio/RadioProps'
 
@@ -9,3 +10,6 @@ export interface RadioTileProps extends RadioProps {
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
 }
+
+export type RadioTileRef = HTMLDivElement
+export type RadioTileNativeRef = TouchableOpacity

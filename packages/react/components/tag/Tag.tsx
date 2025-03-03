@@ -5,7 +5,8 @@ import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
 import { Icon } from '../icon'
-import { TagProps } from './TagProps'
+import { TagProps, TagRef } from './TagProps'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Tag Component
@@ -18,7 +19,7 @@ import { TagProps } from './TagProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  **/
-const Tag = ({ label, className, id, variant, inverted, small, iconName, ...others }: TagProps): JSX.Element => {
+const Tag = React.forwardRef<TagRef, TagProps>(({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const tagClassNames = hashClass(
@@ -38,11 +39,12 @@ const Tag = ({ label, className, id, variant, inverted, small, iconName, ...othe
   )
 
   return (
-    <span id={id} className={tagClassNames} {...others}>
+    <span ref={ref} id={id} className={tagClassNames} {...others}>
       {iconName && <Icon className={tagIconClassNames} name={iconName} />}
       {label}
     </span>
   )
-}
+})
 
+Tag.displayName = ComponentName.Tag
 export default Tag

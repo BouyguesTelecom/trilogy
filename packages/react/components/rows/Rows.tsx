@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { RowsProps } from './RowsProps'
+import { RowsProps, RowsRef } from './RowsProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { has, is } from '@/services'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Rows Component
@@ -11,11 +12,12 @@ import { has, is } from '@/services'
  * - ------------------- WEB PROPERTIES -------------------------
  * @param className {string} additionnal CSS Classes
  */
-const Rows = ({ className, id, gap, ...others }: RowsProps) => {
+const Rows = React.forwardRef<RowsRef, RowsProps>(({ className, id, gap, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         styled,
@@ -24,6 +26,7 @@ const Rows = ({ className, id, gap, ...others }: RowsProps) => {
       {...others}
     />
   )
-}
+})
 
+Rows.displayName = ComponentName.Rows
 export default Rows

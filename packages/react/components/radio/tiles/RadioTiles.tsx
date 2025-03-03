@@ -1,4 +1,5 @@
-import { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { RadioTilesProps, RadioTilesRef } from '@/components/radio/tiles/RadioTilesProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getAlignClassName } from '@/objects'
@@ -15,7 +16,7 @@ import * as React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const RadioTiles = ({ id, className, children, align, verticalAlign, ...others }: RadioTilesProps): JSX.Element => {
+const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, className, children, align, verticalAlign, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
@@ -36,6 +37,7 @@ const RadioTiles = ({ id, className, children, align, verticalAlign, ...others }
 
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         styled,
@@ -46,6 +48,7 @@ const RadioTiles = ({ id, className, children, align, verticalAlign, ...others }
       {children}
     </div>
   )
-}
+})
 
+RadioTiles.displayName = ComponentName.RadioTiles
 export default RadioTiles

@@ -7,7 +7,7 @@ import { TypographyBold } from '@/objects/Typography'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { SelectOptionProps } from './SelectOptionProps'
+import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
 
 /**
  * Select Option Component
@@ -15,7 +15,7 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param label {string} Label value
  * @param children {React.ReactNode}
  */
-const SelectOption = ({ disabled, children, onClick, label, iconName, ...others }: SelectOptionProps): JSX.Element => {
+const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
   const { checked } = others as { checked: string }
 
   const styles = React.useMemo(
@@ -53,7 +53,7 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
   }, [iconName, checked])
 
   return (
-    <TouchableOpacity style={[styles.container]} {...others} onPress={onClick}>
+    <TouchableOpacity ref={ref} style={[styles.container]} {...others} onPress={onClick}>
       <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
         {iconName && (
           <Column size={1}>
@@ -76,7 +76,7 @@ const SelectOption = ({ disabled, children, onClick, label, iconName, ...others 
       </Columns>
     </TouchableOpacity>
   )
-}
+})
 
 SelectOption.displayName = ComponentName.SelectOption
 

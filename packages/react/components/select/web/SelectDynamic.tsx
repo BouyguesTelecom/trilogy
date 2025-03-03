@@ -3,12 +3,13 @@ import React, { PropsWithChildren, useCallback, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 
 import { Input } from '@/components/input'
-import { SelectedValue, SelectProps } from '@/components/select/SelectProps'
+import { SelectedValue, SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { SelectOption } from '../'
+import { ComponentName } from '@/components/enumsComponentsName'
 
-const SelectDynamic = ({
+const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(({
   onChange,
   disabled,
   onFocus,
@@ -21,7 +22,7 @@ const SelectDynamic = ({
   iconName,
   multiple,
   className,
-}: PropsWithChildren<SelectProps>): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const [focused, setIsFocused] = React.useState<boolean>(false)
   const [selectedValues, setSelectedValues] = React.useState<SelectedValue>(selected)
@@ -157,6 +158,7 @@ const SelectDynamic = ({
   return (
     <div className={selectClasses}>
       <Input
+        ref={ref as React.RefObject<HTMLInputElement>}
         value={selectedName.join(', ')}
         name={name}
         disabled={disabled}
@@ -183,5 +185,7 @@ const SelectDynamic = ({
       {focused && ReactDOM.createPortal(modal, document.body)}
     </div>
   )
-}
+})
+
+SelectDynamic.displayName = ComponentName.Select
 export default SelectDynamic

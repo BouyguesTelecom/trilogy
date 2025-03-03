@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
-import { TabProps } from '@/components/tabs/tab-list/tab/TabProps'
+import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
@@ -18,7 +18,7 @@ import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } fr
  * @param to {string} Link
  * @param href {string} Link
  */
-const Tab = ({ active, onClick, to, href, iconName, label, disabled, ...others }: TabProps) => {
+const Tab = React.forwardRef<TabNativeRef, TabProps>(({ active, onClick, to, href, iconName, label, disabled, ...others }, ref) => {
   const { index, ...props } = others as any
   const { activeIndex, setActiveIndex, inverted } = React.useContext(TabsContext)
   const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
@@ -60,7 +60,7 @@ const Tab = ({ active, onClick, to, href, iconName, label, disabled, ...others }
   }, [active, setActiveIndex, index])
 
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.tab} onPress={handleClick} {...props}>
+    <TouchableOpacity ref={ref} activeOpacity={1} style={styles.tab} onPress={handleClick} {...props}>
       {iconName && (
         <View style={{ alignSelf: 'center' }}>
           <Icon
@@ -73,7 +73,7 @@ const Tab = ({ active, onClick, to, href, iconName, label, disabled, ...others }
       <Text style={styles.text}>{label && label}</Text>
     </TouchableOpacity>
   )
-}
+})
 
 Tab.displayName = ComponentName.Tab
 export default Tab

@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
+import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import { SpacerSize } from '@/components/spacer'
 import { Alignable } from '@/objects/facets/Alignable'
 import React from 'react'
@@ -12,7 +12,7 @@ import { StyleSheet, View } from 'react-native'
  * @param align { Alignable | AlignableValues} align content
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
  */
-const RadioTiles = ({ id, children, align, verticalAlign, ...others }: RadioTilesProps): JSX.Element => {
+const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(({ id, children, align, verticalAlign, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       alignItems:
@@ -32,11 +32,11 @@ const RadioTiles = ({ id, children, align, verticalAlign, ...others }: RadioTile
   })
 
   return (
-    <View id={id} style={[styles.container]} {...others}>
+    <View ref={ref} id={id} style={[styles.container]} {...others}>
       {children}
     </View>
   )
-}
+})
 
 RadioTiles.displayName = ComponentName.RadioTiles
 

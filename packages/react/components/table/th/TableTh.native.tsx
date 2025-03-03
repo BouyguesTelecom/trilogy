@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StyleSheet } from "react-native"
-import { TableThProps } from "./TableThProps"
+import { TableThNativeRef, TableThProps } from "./TableThProps"
 import { View } from "@/components/view"
 import { Text } from "@/components/text"
 import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
@@ -10,7 +10,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = ({ children, ...others }: TableThProps): JSX.Element => {
+const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     tableTh: {
       flexDirection: "column",
@@ -27,13 +27,13 @@ const TableTh = ({ children, ...others }: TableThProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.tableTh} {...others}>
+    <View ref={ref} style={styles.tableTh} {...others}>
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]} style={styles.title}>
         {String(children)}
       </Text>
     </View>
   )
-}
+})
 
 TableTh.displayName = ComponentName.TableTh
 

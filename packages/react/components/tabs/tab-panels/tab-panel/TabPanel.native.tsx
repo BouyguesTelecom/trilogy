@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
-import { TabPanelProps } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
+import { TabPanelNativeRef, TabPanelProps } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
 import React from 'react'
 import { Animated, StyleSheet } from 'react-native'
 
@@ -11,7 +11,7 @@ import { Animated, StyleSheet } from 'react-native'
  * @param testId
  * @param others
  */
-const TabPanel = ({ children, testId, ...others }: TabPanelProps) => {
+const TabPanel = React.forwardRef<TabPanelNativeRef, TabPanelProps>(({ children, testId, ...others }, ref) => {
   const { index, ...props } = others as any
   const { activeIndex } = React.useContext(TabsContext)
   const opacity = React.useRef(new Animated.Value(0)).current
@@ -40,11 +40,11 @@ const TabPanel = ({ children, testId, ...others }: TabPanelProps) => {
   }, [activeIndex, index, opacity])
 
   return (
-    <Animated.View style={styles.tabPanel} {...props} testID={testId}>
+    <Animated.View ref={ref} style={styles.tabPanel} {...props} testID={testId}>
       {children}
     </Animated.View>
   )
-}
+})
 
 TabPanel.displayName = ComponentName.TabPanel
 export default TabPanel

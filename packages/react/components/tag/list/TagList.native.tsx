@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TagListProps } from './TagListProps'
+import { TagListNativeRef, TagListProps } from './TagListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -8,7 +8,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {ReactNode} Children Tag List
  * @param centered {boolean} Center tags
  */
-const TagList = ({ children, ...others }: TagListProps): JSX.Element => {
+const TagList = React.forwardRef<TagListNativeRef, TagListProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     tagList: {
       width: '100%',
@@ -25,11 +25,11 @@ const TagList = ({ children, ...others }: TagListProps): JSX.Element => {
   })
 
   return (
-    <View style={[styles.tagList]} {...others}>
+    <View ref={ref} style={[styles.tagList]} {...others}>
       {children}
     </View>
   )
-}
+})
 
 TagList.displayName = ComponentName.TagList
 

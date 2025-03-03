@@ -1,10 +1,11 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TagListProps } from './TagListProps'
+import { TagListProps, TagListRef } from './TagListProps'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { is } from '@/services'
 import { getJustifiedClassName } from '@/objects'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Tag List Component
@@ -13,11 +14,12 @@ import { getJustifiedClassName } from '@/objects'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = ({ className, id, align, marginless, ...others }: TagListProps) => {
+const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         styled,
@@ -26,5 +28,7 @@ const TagList = ({ className, id, align, marginless, ...others }: TagListProps) 
       {...others}
     />
   )
-}
+})
+
+TagList.displayName = ComponentName.TagList
 export default TagList

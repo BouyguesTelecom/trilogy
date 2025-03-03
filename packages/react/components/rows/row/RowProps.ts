@@ -1,3 +1,4 @@
+import { type View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
@@ -7,3 +8,7 @@ export interface RowProps extends CommonProps {
   children?: React.ReactNode
   narrow?: boolean
 }
+
+export type RowRef = HTMLDivElement
+export type RowNativeRef = View
+

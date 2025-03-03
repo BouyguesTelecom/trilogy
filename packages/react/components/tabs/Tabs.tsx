@@ -1,10 +1,11 @@
-import { TabsProps } from '@/components/tabs/TabsProps'
+import { TabsProps, TabsRef } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Tabs Component
@@ -16,7 +17,7 @@ import React, { useEffect, useState } from 'react'
  * @param fullwidth {boolean} Fullwidth tabs
  * @param id
  */
-const Tabs = ({ children, className, id, activeIndex, fullwidth, inverted }: TabsProps) => {
+const Tabs = React.forwardRef<TabsRef, TabsProps>(({ children, className, id, activeIndex, fullwidth, inverted }, ref) => {
   const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
   const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
@@ -36,11 +37,12 @@ const Tabs = ({ children, className, id, activeIndex, fullwidth, inverted }: Tab
         setActiveIndex: setCurrentIndex,
       }}
     >
-      <div id={id} className={classes} data-tabs-context=''>
+      <div ref={ref} id={id} className={classes} data-tabs-context=''>
         {children}
       </div>
     </TabsContext.Provider>
   )
-}
+})
 
+Tabs.displayName = ComponentName.Tabs
 export default Tabs

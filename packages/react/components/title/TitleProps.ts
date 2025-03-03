@@ -15,6 +15,7 @@ import {
 } from '../../objects'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { Text } from 'react-native'
 
 type Styles = { [key: string]: unknown }
 
@@ -41,3 +42,6 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
   subtitle?: boolean
   overline?: boolean
 }
+
+export type TitleRef = HTMLParagraphElement | HTMLHeadingElement | HTMLDivElement
+export type TitleNativeRef = Text
