@@ -7,7 +7,7 @@ import {
 } from './PopoverEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { ReactNode } from 'react'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 /**
  * Popover Interface

@@ -1,7 +1,7 @@
 /**
  * ChipsList Interface
  */
-import { type ScrollView, type View } from 'react-native'
+import { ScrollView, type View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface ChipsListProps extends CommonProps {

@@ -1,7 +1,7 @@
 /**
  * range Interface
  */
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 

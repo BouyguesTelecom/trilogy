@@ -4,7 +4,7 @@
 import { ReactNode } from 'react'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 export interface ListProps extends Accessibility, Dev, CommonProps {
   children?: ReactNode

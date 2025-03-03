@@ -1,5 +1,5 @@
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 export interface ContainerProps extends CommonProps {
   children?: React.ReactNode

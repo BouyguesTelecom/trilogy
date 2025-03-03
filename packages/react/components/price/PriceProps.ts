@@ -2,7 +2,7 @@ import { Accessibility, AlignableProps, Dev } from '../../objects'
 import { Invertable } from '../../objects/facets/Invertable'
 import { PriceLevel, PriceLevelValues } from './PriceEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 /**
  * Price Interface

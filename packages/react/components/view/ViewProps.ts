@@ -1,4 +1,3 @@
-import { type View } from 'react-native'
 import {
   Accessibility,
   AlignableProps,
