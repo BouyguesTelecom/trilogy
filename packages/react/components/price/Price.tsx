@@ -110,9 +110,9 @@ const Price = ({
         clsx(
           'price-container',
           is(`level-${level || '1'}`),
-          (align == Alignable.ALIGNED_START && is('justified-left')) ||
+          (align == Alignable.ALIGNED_START && is('justified-start')) ||
             (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
-            (align == Alignable.ALIGNED_END && is('justified-right')) ||
+            (align == Alignable.ALIGNED_END && is('justified-end')) ||
             '',
         ),
       )}
