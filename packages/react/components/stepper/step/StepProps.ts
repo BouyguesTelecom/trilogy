@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { IconName, IconNameValues } from '../../../components/icon'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
@@ -12,3 +13,6 @@ export interface StepProps extends CommonProps {
   iconName?: IconName | IconNameValues
   error?: boolean
 }
+
+export type StepRef = HTMLDivElement
+export type StepNativeRef = View

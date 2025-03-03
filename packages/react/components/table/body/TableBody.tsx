@@ -1,11 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TableBodyProps } from './TableBodyProps'
+import { TableBodyProps, TableBodyRef } from './TableBodyProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import { useTrilogyContext } from '@/context/index'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Table Body Component
@@ -15,7 +16,7 @@ import { getColorClassName } from '@/objects/facets/Color'
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */
-const TableBody = ({ className, id, color, backgroundColor, ...others }: TableBodyProps): JSX.Element => {
+const TableBody = React.forwardRef<TableBodyRef, TableBodyProps>(({ className, id, color, backgroundColor, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
@@ -25,7 +26,8 @@ const TableBody = ({ className, id, color, backgroundColor, ...others }: TableBo
       color && is(getColorClassName(color)),
     ),
   )
-  return <tbody id={id} className={classes} {...others} />
-}
+  return <tbody ref={ref} id={id} className={classes} {...others} />
+})
 
+TableBody.displayName = ComponentName.TableBody
 export default TableBody

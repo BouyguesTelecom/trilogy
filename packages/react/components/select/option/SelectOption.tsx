@@ -4,7 +4,8 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
+import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Select Option Component
@@ -20,7 +21,7 @@ import { SelectOptionProps } from './SelectOptionProps'
  * @param id {string} Select option custom id
  * @param others
  */
-const SelectOption = ({
+const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(({
   id,
   className,
   value,
@@ -31,7 +32,7 @@ const SelectOption = ({
   iconName,
   testId,
   ...others
-}: SelectOptionProps) => {
+}, ref) => {
   const { styled } = useTrilogyContext()
   const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
   const selectClasses = hashClass(styled, clsx('option', focused && 'focus', disabled && is('disabled'), className))
@@ -39,6 +40,7 @@ const SelectOption = ({
   if (native) {
     return (
       <option
+        ref={ref as React.RefObject<HTMLOptionElement>}
         role='option'
         id={id}
         value={value}
@@ -69,6 +71,7 @@ const SelectOption = ({
 
   return (
     <li
+      ref={ref as React.RefObject<HTMLLIElement>}
       id={id}
       className={selectClasses}
       data-selected={checked}
@@ -82,6 +85,7 @@ const SelectOption = ({
       {label || children}
     </li>
   )
-}
+})
 
+SelectOption.displayName = ComponentName.SelectOption
 export default SelectOption

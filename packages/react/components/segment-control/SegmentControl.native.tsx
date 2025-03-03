@@ -5,7 +5,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControlItem from './item'
-import { SegmentControlProps } from './SegmentControlProps'
+import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
 
 /**
  * SegmentControl Component
@@ -14,7 +14,7 @@ import { SegmentControlProps } from './SegmentControlProps'
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
  */
-const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentControlProps): JSX.Element => {
+const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
@@ -51,7 +51,7 @@ const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentCo
   })
 
   return (
-    <View style={styles.padding}>
+    <View ref={ref} style={styles.padding}>
       <View style={styles.segmentedControl} {...others}>
         {children &&
           Array.isArray(children) &&
@@ -88,7 +88,7 @@ const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentCo
       </View>
     </View>
   )
-}
+})
 
 SegmentControl.displayName = ComponentName.SegmentControl
 

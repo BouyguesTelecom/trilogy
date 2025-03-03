@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
@@ -18,3 +19,6 @@ export interface TimelineItemWebProps extends TimelineItemProps, CommonProps {
   active?: boolean
   cancel?: boolean
 }
+
+export type TimelineItemRef = HTMLDivElement
+export type TimelineItemNativeRef = View

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
+import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
 
 /**
  * SegmentControlItem Item Component
@@ -12,13 +12,13 @@ import { SegmentControlItemProps } from './SegmentControlItemProps'
  * @param disabled {boolean} disable onClick on item
  * @param inverted {boolean} invert color of active item
  */
-const SegmentControlItem = ({
+const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(({
   active,
   children,
   onClick,
   disabled,
   ...others
-}: SegmentControlItemProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
 
   const styles = StyleSheet.create({
@@ -53,6 +53,7 @@ const SegmentControlItem = ({
 
   return (
     <TouchableOpacity
+      ref={ref}
       disabled={disabled}
       style={[styles.tabsItem]}
       onPress={(e?: unknown) => {
@@ -72,7 +73,7 @@ const SegmentControlItem = ({
       )}
     </TouchableOpacity>
   )
-}
+})
 
 SegmentControlItem.displayName = ComponentName.SegmentControlItem
 

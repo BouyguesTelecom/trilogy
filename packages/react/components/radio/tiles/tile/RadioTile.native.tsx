@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
-import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { RadioTileNativeRef, RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -23,7 +23,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
  */
-const RadioTile = ({
+const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(({
   checked,
   disabled,
   id = React.useId(),
@@ -36,7 +36,7 @@ const RadioTile = ({
   horizontal,
   readonly,
   ...others
-}: RadioTileProps): JSX.Element => {
+}, ref): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: horizontal ? 'row' : 'column',
@@ -85,7 +85,7 @@ const RadioTile = ({
   }, [value, name, id, disabled, readonly, onChange])
 
   return (
-    <TouchableOpacity disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
+    <TouchableOpacity ref={ref} disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
       {!horizontal && <InputRadio checked={checked} disabled={disabled} />}
 
       {icon && (
@@ -112,7 +112,7 @@ const RadioTile = ({
       {horizontal && <InputRadio checked={checked} disabled={disabled} />}
     </TouchableOpacity>
   )
-}
+})
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
   const styles = StyleSheet.create({

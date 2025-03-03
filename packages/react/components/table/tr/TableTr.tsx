@@ -1,10 +1,11 @@
 import * as React from "react"
 import clsx from "clsx"
-import { TableTrProps } from "./TableTrProps"
+import { TableTrProps, TableTrRef } from "./TableTrProps"
 import { hashClass } from "@/helpers/hashClassesHelpers"
 import { is } from "@/services/classify"
 import { useTrilogyContext } from "@/context/index"
 import { getColorClassName } from "@/objects/facets/Color"
+import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table TR Component
@@ -18,7 +19,7 @@ import { getColorClassName } from "@/objects/facets/Color"
  * @param color {TrilogyColor} Higlight color
  * @param ref {React.RefObject<HTMLTableRowElement>} Ref of the row
  */
-const TableTr = ({
+const TableTr = React.forwardRef<TableTrRef, TableTrProps>(({
   className,
   id,
   expandable,
@@ -26,7 +27,7 @@ const TableTr = ({
   expansion,
   color,
   ...others
-}: TableTrProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -40,7 +41,8 @@ const TableTr = ({
     )
   )
 
-  return <tr id={id} className={classes} {...others} />
-}
+  return <tr ref={ref} id={id} className={classes} {...others} />
+})
 
+TableTr.displayName = ComponentName.TableTr
 export default TableTr

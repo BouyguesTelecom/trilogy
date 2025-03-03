@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { RadioProps } from '@/components/radio/RadioProps'
+import { RadioNativeRef, RadioProps } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
@@ -16,7 +16,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param name {string} Name for radio
  * @param value {string} Value for radio
  */
-const Radio = ({
+const Radio = React.forwardRef<RadioNativeRef, RadioProps>(({
   id = React.useId(),
   checked,
   name,
@@ -25,7 +25,7 @@ const Radio = ({
   readonly,
   label,
   value,
-}: RadioProps): JSX.Element => {
+}, ref): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
@@ -70,14 +70,14 @@ const Radio = ({
   }
 
   return (
-    <TouchableOpacity disabled={disabled} style={styles.container} onPress={() => handleClick(value ?? '')}>
+    <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick(value ?? '')}>
       <View style={styles.radio} testID={id}>
         {checked && <View style={styles.icon} />}
       </View>
       {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
     </TouchableOpacity>
   )
-}
+})
 
 Radio.displayName = ComponentName.Radio
 

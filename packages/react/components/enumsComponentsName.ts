@@ -115,6 +115,7 @@ export enum ComponentName {
   StatusIcon = 'StatusIcon',
   Stepper = 'Stepper',
   StepperStep = 'StepperStep',
+  Step = 'Step',
   StepperStepMarkup = 'StepperStepMarkup',
   Sticker = 'Sticker',
   StickerVariant = 'StickerVariant',

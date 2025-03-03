@@ -3,7 +3,7 @@ import { isAndroid, isIOS } from '@/helpers/device.native'
 import { getColorStyle, ScrollDirectionEnum } from '@/objects'
 import * as React from 'react'
 import { RefreshControl, ScrollView as ScrollViewNative, StyleSheet, View } from 'react-native'
-import { ScrollViewProps } from './ScrollViewProps'
+import { ScrollViewNativeRef, ScrollViewProps } from './ScrollViewProps'
 
 /**
  * Scroll View Component
@@ -24,7 +24,7 @@ type ScrollviewRef =
   | null
   | undefined
 
-const ScrollView = React.forwardRef(
+const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
   (
     {
       children,
@@ -37,8 +37,8 @@ const ScrollView = React.forwardRef(
       id,
       scrollDirection,
       ...others
-    }: ScrollViewProps,
-    ref: ScrollviewRef,
+    },
+    ref,
   ): JSX.Element => {
     const [refreshing, setRefreshing] = React.useState(false)
 

@@ -1,3 +1,4 @@
+import { type View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
@@ -64,3 +65,6 @@ export interface ProductTourProps {
  * Product Tour Web Interface
  */
 export interface ProductTourWebProps extends ProductTourProps, CommonProps {}
+
+export type ProductTourRef = HTMLDivElement
+export type ProductTourNativeRef = View

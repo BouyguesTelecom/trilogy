@@ -2,6 +2,7 @@ import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '.
 import React from 'react'
 import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { type View } from 'react-native'
 
 /**
  * Progress Radial Interface
@@ -20,3 +21,6 @@ export interface ProgressRadialProps extends StatusProps, AlignableProps, Common
   skeleton?: boolean
   small?: boolean
 }
+
+export type ProgressRadialRef = HTMLDivElement
+export type ProgressRadialNativeRef = View

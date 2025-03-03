@@ -1,9 +1,10 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TableBorderEnum, TableProps } from './TableProps'
+import { TableBorderEnum, TableProps, TableRef } from './TableProps'
 import { has, is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Table Component
@@ -16,7 +17,7 @@ import { useTrilogyContext } from '@/context/index'
  * @param comparative {boolean} If specific design add this
  * @param striped {boolean} striped lines
  */
-const Table = ({
+const Table = React.forwardRef<TableRef, TableProps>(({
   className,
   id,
   fullwidth,
@@ -24,7 +25,7 @@ const Table = ({
   striped,
   compact,
   ...others
-}: TableProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -39,7 +40,8 @@ const Table = ({
     ),
   )
 
-  return <table id={id} className={classes} {...others} />
-}
+  return <table ref={ref} id={id} className={classes} {...others} />
+})
 
+Table.displayName = ComponentName.Table
 export default Table

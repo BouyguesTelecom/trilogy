@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { Animated, StyleSheet } from "react-native"
-import { ProgressProps } from "./ProgressProps"
+import { ProgressNativeRef, ProgressProps } from "./ProgressProps"
 import { View } from "@/components/view"
 import { Text, TextLevels } from "@/components/text"
 import { getStatusStyle, getColorStyle, TrilogyColor } from "@/objects"
@@ -15,7 +15,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param legendStart {string} First extremity legend, only with legendEnd property
  * @param legendEnd {string} Second extremity legend, only with legendStart property
  */
-const Progress = ({
+const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
                     value,
                     max = 100,
                     status,
@@ -23,7 +23,7 @@ const Progress = ({
                     legendStart,
                     legendEnd,
                     ...others
-                  }: ProgressProps): JSX.Element => {
+                  }, ref): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const Progress = ({
 
   return (
     <>
-      <View style={styles.progress} {...others}>
+      <View ref={ref} style={styles.progress} {...others}>
         <Animated.View style={[styles.percent, { width }]} />
       </View>
       {legendCenter && (
@@ -103,7 +103,7 @@ const Progress = ({
       )}
     </>
   )
-}
+})
 
 Progress.displayName = ComponentName.Progress
 

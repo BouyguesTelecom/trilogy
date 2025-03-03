@@ -1,10 +1,11 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TimelineContentWebProps } from './TimelineContentProps'
+import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentProps'
 import { Text, TextMarkup } from '@/components/text'
 import { Link } from '@/components/link'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Timeline Content Component
@@ -15,7 +16,7 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TimelineContent = ({
+const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(({
   children,
   className,
   id,
@@ -24,20 +25,20 @@ const TimelineContent = ({
   linkLabel,
   linkTo,
   ...others
-}: TimelineContentWebProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('timeline-content', className))
 
   if (children) {
     return (
-      <div id={id} className={classes} {...others}>
+      <div ref={ref} id={id} className={classes} {...others}>
         {children}
       </div>
     )
   }
 
   return (
-    <div id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} {...others}>
       {heading && <Text markup={TextMarkup.P}>{heading}</Text>}
       {content && (
         <Text className='main-content' markup={TextMarkup.P}>
@@ -47,6 +48,7 @@ const TimelineContent = ({
       {linkTo && linkLabel && <Link href={linkTo}>{linkLabel}</Link>}
     </div>
   )
-}
+})
 
+TimelineContent.displayName = ComponentName.TimelineContent
 export default TimelineContent

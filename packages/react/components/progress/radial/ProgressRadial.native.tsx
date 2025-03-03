@@ -6,7 +6,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import ContentLoader, { Circle } from 'react-content-loader/native'
 import { StyleSheet, View } from 'react-native'
-import { ProgressRadialProps } from './ProgressRadialProps'
+import { ProgressRadialNativeRef, ProgressRadialProps } from './ProgressRadialProps'
 import { AnimatedCircularProgress } from './react-native-circular-progress'
 
 /**
@@ -21,7 +21,7 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
  * @param align {Alignable} Progress Radial Alignement
  * @param skeleton {boolean} Skeleton Progress Radial
  */
-const ProgressRadial = ({
+const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(({
   children,
   value,
   label,
@@ -34,7 +34,7 @@ const ProgressRadial = ({
   align,
   skeleton,
   ...others
-}: ProgressRadialProps): JSX.Element => {
+}, ref): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.MAIN)
   const backgroundColor = getColorStyle(TrilogyColor.MAIN_FADE)
   const percentWidth = value || 0
@@ -104,7 +104,7 @@ const ProgressRadial = ({
 
   if (disk) {
     return (
-      <View style={styles.container}>
+      <View ref={ref} style={styles.container}>
         <View style={[styles.disk, styles.alignCenter]} {...others}>
           {label && typeof label.valueOf() === 'string' ? (
             <Text style={styles.labelDisk} level={TextLevels.TWO}>
@@ -127,7 +127,7 @@ const ProgressRadial = ({
   }
 
   return (
-    <View style={styles.container} {...others}>
+    <View ref={ref} style={styles.container} {...others}>
       <AnimatedCircularProgress
         size={90}
         width={7}
@@ -160,7 +160,7 @@ const ProgressRadial = ({
       </AnimatedCircularProgress>
     </View>
   )
-}
+})
 
 ProgressRadial.displayName = ComponentName.ProgressRadial
 

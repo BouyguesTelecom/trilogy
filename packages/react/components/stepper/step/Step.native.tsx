@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
-import { StepProps } from './StepProps'
+import { StepNativeRef, StepProps } from './StepProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
 
@@ -12,7 +12,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param error {boolean} display error step
  * @param children {ReactNode} Stepper Step Children
  */
-const StepperStep = ({ active, current, done, error, ...others }: StepProps): JSX.Element => {
+const Step = React.forwardRef<StepNativeRef, StepProps>(({ active, current, done, error, ...others }, ref): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.NEUTRAL)
   const activeColor = getColorStyle(TrilogyColor.MAIN)
   const errorColor = getColorStyle(TrilogyColor.ERROR)
@@ -52,9 +52,9 @@ const StepperStep = ({ active, current, done, error, ...others }: StepProps): JS
     },
   })
 
-  return <Animated.View style={styles.step} {...others}></Animated.View>
-}
+  return <Animated.View ref={ref} style={styles.step} {...others}></Animated.View>
+})
 
-StepperStep.displayName = ComponentName.StepperStep
+Step.displayName = ComponentName.Step
 
-export default StepperStep
+export default Step
