@@ -5,7 +5,7 @@ import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { StickerProps } from './StickerProps'
+import { StickerNativeRef, StickerProps } from './StickerProps'
 
 /**
  * Sticker component
@@ -17,7 +17,7 @@ import { StickerProps } from './StickerProps'
  * @param iconName {IconName} Icon
  * @param others
  */
-const Sticker = ({
+const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(({
   variant,
   small,
   outlined,
@@ -25,7 +25,7 @@ const Sticker = ({
   iconName,
   accessibilityLabel,
   ...others
-}: StickerProps): JSX.Element => {
+}, ref): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
@@ -64,14 +64,14 @@ const Sticker = ({
   })
 
   return (
-    <View style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
+    <View ref={ref} style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
       {iconName && (
         <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
       )}
       {label && <Text style={styles.text}>{label}</Text>}
     </View>
   )
-}
+})
 
 Sticker.displayName = ComponentName.Sticker
 

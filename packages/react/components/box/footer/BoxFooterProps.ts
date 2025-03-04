@@ -1,7 +1,7 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { Dev } from '@/objects/facets/Dev'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**

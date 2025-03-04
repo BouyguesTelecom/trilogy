@@ -1,4 +1,4 @@
-import { type TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '../../components/icon'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { Clickable } from '../../objects/facets/Clickable'

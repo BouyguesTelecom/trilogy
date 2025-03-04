@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
-import { ProgressRadialProps } from './ProgressRadialProps'
+import { ProgressRadialProps, ProgressRadialRef } from './ProgressRadialProps'
 import { is } from '../../../services/index'
 import { hashClass } from '../../../helpers'
 import { useTrilogyContext } from '../../../context'
 import { Title, TitleLevels } from '../../title'
 import { Text, TextLevels } from '../../text'
 import { getColorStyle } from '@/objects/facets/Color'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Progress Radial component
@@ -20,7 +21,7 @@ import { getColorStyle } from '@/objects/facets/Color'
  * @param className {string} Additionnal CSS Classes
  * @param small {boolean} Display small progress radial
  */
-const ProgressRadial = ({
+const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(({
   children,
   value = 0,
   secondValue = 0,
@@ -31,7 +32,7 @@ const ProgressRadial = ({
   id,
   small,
   ...others
-}: ProgressRadialProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const [firstProgressCurrentValue, setFirstProgressCurrentValue] = useState(0)
   const [secondProgressCurrentValue, setSecondProgressCurrentValue] = useState(0)
@@ -94,7 +95,7 @@ const ProgressRadial = ({
 
   return (
     <div id={id} {...others} className={classes} ref={progressRadialRef}>
-      <div className={classesContent}>
+      <div ref={ref} className={classesContent}>
         {label && (
           <Title level={TitleLevels.TWO} marginless>
             {label}
@@ -109,6 +110,7 @@ const ProgressRadial = ({
       </div>
     </div>
   )
-}
+})
 
+ProgressRadial.displayName = ComponentName.ProgressRadial
 export default ProgressRadial

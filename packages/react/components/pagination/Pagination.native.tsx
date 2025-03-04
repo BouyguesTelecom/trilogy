@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { PaginationProps } from './PaginationProps'
+import { PaginationNativeRef, PaginationProps } from './PaginationProps'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -14,7 +14,7 @@ import { Text } from '@/components/text'
  * @param pageSize {number} Element per page (default is 10)
  * @param onClick {Function} Return pagination object
  */
-const Pagination = ({ length, defaultPage = 1, onClick, ...others }: PaginationProps): JSX.Element => {
+const Pagination = React.forwardRef<PaginationNativeRef, PaginationProps>(({ length, defaultPage = 1, onClick, ...others }, ref): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(defaultPage)
   const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
   const prevCurrentPage = useRef<number>(currentPage)
@@ -112,7 +112,7 @@ const Pagination = ({ length, defaultPage = 1, onClick, ...others }: PaginationP
   })
 
   return (
-    <View style={styles.container} {...others}>
+    <View ref={ref} style={styles.container} {...others}>
       <TouchableOpacity
         onPress={() => {
           if (currentPage !== 1) {
@@ -161,7 +161,7 @@ const Pagination = ({ length, defaultPage = 1, onClick, ...others }: PaginationP
       </TouchableOpacity>
     </View>
   )
-}
+})
 
 Pagination.displayName = ComponentName.Pagination
 

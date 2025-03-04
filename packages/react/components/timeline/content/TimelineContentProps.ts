@@ -1,6 +1,7 @@
 /**
  * Timeline Content Interface
  */
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface TimelineContentProps {
@@ -15,3 +16,6 @@ export interface TimelineContentProps {
  * Timeline Content Web Interface
  */
 export interface TimelineContentWebProps extends TimelineContentProps, CommonProps {}
+
+export type TimelineContentRef = HTMLDivElement
+export type TimelineContentNativeRef = View

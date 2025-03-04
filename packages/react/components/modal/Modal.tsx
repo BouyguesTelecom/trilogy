@@ -7,7 +7,8 @@ import { is } from '@/services'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import shortid from 'shortid'
-import { ModalProps } from './ModalProps'
+import { ModalProps, ModalRef } from './ModalProps'
+import { ComponentName } from '../enumsComponentsName'
 
 const modalGeneratedId = shortid.generate()
 
@@ -24,7 +25,7 @@ const modalGeneratedId = shortid.generate()
  * @param accessibilityLabel {string} Accessibility label
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Modal = ({
+const Modal = React.forwardRef<ModalRef, ModalProps>(({
   children,
   className,
   id,
@@ -37,7 +38,7 @@ const Modal = ({
   trigger,
   title,
   ...others
-}: ModalProps): JSX.Element => {
+}, ref): JSX.Element => {
   const modal = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
@@ -112,6 +113,7 @@ const Modal = ({
     <div onKeyDown={onKeyDown} ref={refModal}>
       {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
       <div
+        ref={ref}
         id={id}
         className={classes}
         role='dialog'
@@ -147,6 +149,8 @@ const Modal = ({
       </div>
     </div>
   )
-}
+})
+
+Modal.displayName = ComponentName.Modal
 
 export default Modal

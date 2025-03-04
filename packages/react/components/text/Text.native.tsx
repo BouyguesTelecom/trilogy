@@ -7,7 +7,7 @@ import React, { useContext } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import { StyleSheet, Text as TextNative, View } from 'react-native'
 import { TextLevels, TextLevelValues } from './TextEnum'
-import { TextProps } from './TextProps'
+import { TextNativeRef, TextProps } from './TextProps'
 
 /**
  * Text Native Component
@@ -21,7 +21,7 @@ import { TextProps } from './TextProps'
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
-const Text = ({
+const Text = React.forwardRef<TextNativeRef, TextProps>(({
   children,
   level,
   style,
@@ -31,7 +31,7 @@ const Text = ({
   accessibilityLabel,
   numberOfLines = 0,
   ...others
-}: TextProps): JSX.Element => {
+}, ref): JSX.Element => {
   const statesContext = useContext(StatesContext)
   const textLevels = (level: TextLevels | TextLevelValues) => {
     return (
@@ -84,6 +84,7 @@ const Text = ({
 
   let textView: JSX.Element = (
     <TextNative
+      ref={ref}
       numberOfLines={numberOfLines}
       ellipsizeMode='tail'
       maxFontSizeMultiplier={1.3}
@@ -109,7 +110,7 @@ const Text = ({
     )
   }
   return textView
-}
+})
 
 Text.displayName = ComponentName.Text
 

@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { IconName, IconNameValues } from '../../../components/icon'
 import { Accessibility, Dev } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
@@ -15,3 +16,6 @@ export interface TimelineMarkerProps extends Accessibility, Dev {
 export interface TimelineMarkerWebProps extends TimelineMarkerProps, Accessibility, CommonProps {
   iconClassname?: string
 }
+
+export type TimelineMarkerRef = HTMLDivElement
+export type TimelineMarkerNativeRef = View

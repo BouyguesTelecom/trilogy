@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { SpacerSize } from '@/components/spacer'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
-import { TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
+import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React, { useContext } from 'react'
@@ -14,7 +14,7 @@ import { StyleSheet, View } from 'react-native'
  * @param iconColor {IconColor} Icon Color
  * @param testId {string} Test Id for Test Integration
  */
-const TimelineMarker = ({ iconName }: TimelineMarkerProps): JSX.Element => {
+const TimelineMarker = React.forwardRef<TimelineMarkerNativeRef, TimelineMarkerProps>(({ iconName }, ref): JSX.Element => {
   const { active, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
 
@@ -43,7 +43,7 @@ const TimelineMarker = ({ iconName }: TimelineMarkerProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.marker}>
+    <View ref={ref} style={styles.marker}>
       <View style={styles.icon}>
         <Icon
           name={iconName}
@@ -67,7 +67,7 @@ const TimelineMarker = ({ iconName }: TimelineMarkerProps): JSX.Element => {
       <View style={styles.divider}></View>
     </View>
   )
-}
+})
 
 TimelineMarker.displayName = ComponentName.TimelineMarker
 

@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { Clickable } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
@@ -6,3 +7,6 @@ export interface TableThProps extends Clickable, CommonProps {
   rowSpan?: number
   colSpan?: number
 }
+
+export type TableThRef = HTMLTableCellElement
+export type TableThNativeRef = View

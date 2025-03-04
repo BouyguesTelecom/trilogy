@@ -1,6 +1,7 @@
 /**
  * range Interface
  */
+import { View } from 'react-native'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
@@ -20,3 +21,6 @@ export interface RangeProps extends Accessibility, Dev, CommonProps {
   gap?: number
   onChange?: InputChangeEventHandlerNative
 }
+
+export type RangeRef = HTMLDivElement
+export type RangeNativeRef = View

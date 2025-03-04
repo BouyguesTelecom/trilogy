@@ -1,10 +1,11 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TextProps } from './TextProps'
+import { TextProps, TextRef } from './TextProps'
 import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Text component
@@ -21,7 +22,7 @@ import { useTrilogyContext } from '@/context/index'
  * @param markup {TextMarkup} Text markup
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */
-const Text = ({
+const Text = React.forwardRef<TextRef, TextProps>(({
   level,
   markup,
   children,
@@ -34,7 +35,7 @@ const Text = ({
   marginless,
   numberOfLines,
   ...others
-}: TextProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const levelText = () => {
@@ -79,6 +80,7 @@ const Text = ({
 
   return (
     <Tag
+      ref={ref}
       id={id}
       style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}
       aria-label={accessibilityLabel}
@@ -88,6 +90,7 @@ const Text = ({
       {children}
     </Tag>
   )
-}
+})
 
+Text.displayName = ComponentName.Text
 export default Text

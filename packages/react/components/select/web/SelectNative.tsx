@@ -3,12 +3,13 @@ import * as React from 'react'
 
 import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
-import { ParamEventSelectFocus, SelectProps } from '@/components/select/SelectProps'
+import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
+import { ComponentName } from '@/components/enumsComponentsName'
 
-const SelectNative = ({
+const SelectNative = React.forwardRef<SelectRef, SelectProps>(({
   onChange,
   disabled,
   onFocus,
@@ -24,7 +25,7 @@ const SelectNative = ({
   className,
   accessibilityLabel,
   ...others
-}: SelectProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const [focused, setIsFocused] = React.useState<boolean>(false)
@@ -51,6 +52,7 @@ const SelectNative = ({
       <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
         <div className={controlClass}>
           <select
+            ref={ref as React.RefObject<HTMLSelectElement>}
             className={hashClass(styled, clsx(!label && 'no-label'))}
             value={selectedValues}
             aria-label={accessibilityLabel}
@@ -91,6 +93,7 @@ const SelectNative = ({
       </div>
     </div>
   )
-}
+})
 
+SelectNative.displayName = ComponentName.Select
 export default SelectNative

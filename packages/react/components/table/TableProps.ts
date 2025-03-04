@@ -1,5 +1,6 @@
 import { Fullwidth } from '../../objects/facets/Fullwidth'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { View } from 'react-native'
 
 export enum TableBorderEnum {
   ALL = 'all',
@@ -13,3 +14,6 @@ export interface TableProps extends Fullwidth, CommonProps {
   striped?: boolean
   compact?: boolean
 }
+
+export type TableRef = HTMLTableElement
+export type TableNativeRef = View
