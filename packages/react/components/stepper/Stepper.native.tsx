@@ -2,7 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { TypographyBold, TypographyColor } from '@/objects'
 import { Text, TextLevels } from '@/components/text'
-import { StepperProps } from './StepperProps'
+import { StepperNativeRef, StepperProps } from './StepperProps'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
 
@@ -17,7 +17,7 @@ interface ICurrentStep {
  * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
+const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ...others }, ref): JSX.Element => {
   const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({
     step: 0,
     name: '',
@@ -88,7 +88,7 @@ const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
   }, [children])
 
   return (
-    <View>
+    <View ref={ref}>
       <View style={styles.steppers} {...others}>
         {children}
       </View>
@@ -113,7 +113,7 @@ const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
       </View>
     </View>
   )
-}
+})
 
 Stepper.displayName = ComponentName.Stepper
 

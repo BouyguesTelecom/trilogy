@@ -1,4 +1,4 @@
-import { type TouchableOpacity, type View } from 'react-native'
+import { TouchableOpacity, type View } from 'react-native'
 import { BackgroundProps } from '../../objects/atoms/Background'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { Clickable } from '../../objects/facets/Clickable'

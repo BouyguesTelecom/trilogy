@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
-
 import { Box } from '@/components/box'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { HeroProps } from '@/components/hero/HeroProps'
+import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 /**
@@ -17,10 +16,10 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
  * @param backgroundHeight {BackgroundHeight} Background heigth
  */
-const Hero = React.forwardRef(
+const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
   (
-    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, ...others }: HeroProps,
-    ref: React.Ref<View>,
+    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, ...others },
+    ref,
   ): JSX.Element => {
     const [overlapHeight, setOverlapHeight] = useState<number>(0)
     const [secondOverlapHeight, setSecondOverlapHeight] = useState<number>(0)

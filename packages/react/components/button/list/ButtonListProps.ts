@@ -1,5 +1,5 @@
 import { ButtonListDirectionEnum, ButtonListDirectionEnumValues } from '@/components/button/list/ButtonListEnum'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import type { ButtonProps } from '../../../components/button/ButtonProps'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import { Alignable, AlignableValues } from '../../../objects'

@@ -1,7 +1,7 @@
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 
 /**
  * Columns Item Interface

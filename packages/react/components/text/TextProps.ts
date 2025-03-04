@@ -5,6 +5,7 @@ import { TypographyTransform, TypographyTransformValues } from '../../objects/Ty
 import { Accessibility, Dev, Invertable } from '../../objects/facets'
 import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { Text } from 'react-native'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -32,3 +33,7 @@ export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
   marginless?: boolean
   numberOfLines?: number
 }
+
+export type TextRef = HTMLParagraphElement
+export type TextNativeRef = Text
+

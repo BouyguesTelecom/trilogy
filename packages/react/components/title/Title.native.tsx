@@ -8,7 +8,7 @@ import { useContext } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
 import { StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
 import { TitleLevels } from './TitleEnum'
-import { TitleProps } from './TitleProps'
+import { TitleNativeRef, TitleProps } from './TitleProps'
 
 /**
  * Title component
@@ -24,7 +24,7 @@ import { TitleProps } from './TitleProps'
  * @param subtitle {boolean} Subtitle below title
  * @param overline {boolean} Overline above title
  */
-const Title = ({
+const Title = React.forwardRef<TitleNativeRef, TitleProps>(({
   children,
   level,
   style,
@@ -36,7 +36,7 @@ const Title = ({
   subtitle,
   overline,
   ...others
-}: TitleProps): JSX.Element => {
+}, ref): JSX.Element => {
   const statesContext = useContext(StatesContext)
   const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
   const colorOverline = getColorStyle(TrilogyColor.MAIN)
@@ -106,6 +106,7 @@ const Title = ({
 
   let titleView = (
     <TextNative
+      ref={ref}
       maxFontSizeMultiplier={1.3}
       accessible={!!titleAccessibilityLabel}
       accessibilityLabel={titleAccessibilityLabel}
@@ -136,7 +137,7 @@ const Title = ({
   ) : (
     titleView
   )
-}
+})
 
 Title.displayName = ComponentName.Title
 

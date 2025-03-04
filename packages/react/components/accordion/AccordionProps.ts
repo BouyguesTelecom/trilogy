@@ -1,7 +1,7 @@
 /**
  * Accordion Interface
  */
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 export interface AccordionProps extends CommonProps {

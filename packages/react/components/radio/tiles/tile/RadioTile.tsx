@@ -1,5 +1,6 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
-import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { RadioTileProps, RadioTileRef } from '@/components/radio/tiles/tile/RadioTileProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
@@ -22,7 +23,7 @@ import React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
-const RadioTile = ({
+const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   checked,
   className,
   disabled,
@@ -36,11 +37,11 @@ const RadioTile = ({
   icon,
   horizontal,
   ...others
-}: RadioTileProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
-    <div className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
+    <div ref={ref} className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
       <input
         type='radio'
         readOnly={readonly}
@@ -77,6 +78,7 @@ const RadioTile = ({
       </label>
     </div>
   )
-}
+})
 
+RadioTile.displayName = ComponentName.RadioTile
 export default RadioTile

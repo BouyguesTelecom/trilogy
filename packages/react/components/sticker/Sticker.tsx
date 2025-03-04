@@ -1,11 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import { StickerProps } from './StickerProps'
+import { StickerProps, StickerRef } from './StickerProps'
 import { is } from '@/services/classify'
 import { getVariantClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { Icon, IconSize } from '@/components/icon'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Sticker component
@@ -19,7 +20,7 @@ import { Icon, IconSize } from '@/components/icon'
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({
+const Sticker = React.forwardRef<StickerRef, StickerProps>(({
   className,
   id,
   variant,
@@ -29,7 +30,7 @@ const Sticker = ({
   iconName,
   accessibilityLabel,
   ...others
-}: StickerProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -45,11 +46,12 @@ const Sticker = ({
   )
 
   return (
-    <p id={id} className={classes} aria-label={accessibilityLabel} {...others}>
+    <p ref={ref} id={id} className={classes} aria-label={accessibilityLabel} {...others}>
       {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>
   )
-}
+})
 
+Sticker.displayName = ComponentName.Sticker
 export default Sticker

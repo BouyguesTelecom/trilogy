@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
@@ -6,3 +7,6 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
 export interface ModalBodyProps extends CommonProps {
   children: React.ReactNode
 }
+
+export type ModalBodyRef = HTMLDivElement
+export type ModalBodyNativeRef = View

@@ -5,7 +5,8 @@ import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { OtpProps } from './OtpProps'
+import { OtpProps, OtpRef } from './OtpProps'
+import { ComponentName } from '../enumsComponentsName'
 
 type NumberOrNull = number | null
 
@@ -86,7 +87,7 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const Otp = ({
+const Otp = React.forwardRef<OtpRef, OtpProps>(({
   className,
   id,
   value,
@@ -100,7 +101,7 @@ const Otp = ({
   help,
   autoFocus,
   ...others
-}: OtpProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
     stringToCode(value, length) || new Array(length).fill(null),
   )
@@ -157,6 +158,7 @@ const Otp = ({
         </Text>
       )}
       <div
+        ref={ref}
         id={id}
         className={classes}
         onClick={() => {
@@ -197,6 +199,7 @@ const Otp = ({
       )}
     </>
   )
-}
+})
 
+Otp.displayName = ComponentName.Otp
 export default Otp

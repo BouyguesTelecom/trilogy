@@ -1,5 +1,5 @@
 import { Dev } from '@/objects'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
 
 /**

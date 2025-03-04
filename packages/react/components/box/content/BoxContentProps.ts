@@ -1,4 +1,4 @@
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { BackgroundProps } from '../../../objects/atoms/Background'
 import { Accessibility } from '../../../objects/facets/Accessibility'
 import { CommonProps } from '../../../objects/facets/CommonProps'

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { getColorStyle, TrilogyColor } from '@/objects'
-import { RangeProps } from './RangeProps'
+import { RangeProps, RangeRef } from './RangeProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
-import shortid from 'shortid'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Range Component
@@ -18,9 +18,9 @@ import shortid from 'shortid'
  * @param onChangeMin {function} on change min cursor
  * @param onChangeMax {function} on change max cursor
  */
-const Range = ({
+const Range = React.forwardRef<RangeRef, RangeProps>(({
   className,
-  id = shortid.generate(),
+  id = React.useId(),
   min,
   max,
   label,
@@ -31,7 +31,7 @@ const Range = ({
   onChangeMax,
   name,
   gap = 0,
-}: RangeProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
@@ -90,7 +90,7 @@ const Range = ({
   }, [onChangeMax, name, cursorMax])
 
   return (
-    <div id={id} className={hashClass(styled, clsx('range-container', className))}>
+    <div ref={ref} id={id} className={hashClass(styled, clsx('range-container', className))}>
       <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
       <div className={hashClass(styled, clsx('range'))}>
         <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
@@ -131,6 +131,7 @@ const Range = ({
       </div>
     </div>
   )
-}
+})
 
+Range.displayName = ComponentName.Range
 export default Range

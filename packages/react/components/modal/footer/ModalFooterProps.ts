@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
@@ -6,3 +7,6 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
 export interface ModalFooterProps extends CommonProps {
   children: React.ReactNode
 }
+
+export type ModalFooterRef = HTMLDivElement
+export type ModalFooterNativeRef = View

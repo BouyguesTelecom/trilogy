@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SegmentControlItemProps } from './SegmentControlItemProps'
+import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControlItemProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
@@ -14,14 +14,14 @@ import { useTrilogyContext } from '@/context'
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  */
-const SegmentControlItem = ({
+const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(({
   active,
   onClick,
   disabled,
   className,
   id,
   children,
-}: SegmentControlItemProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
 
@@ -31,6 +31,7 @@ const SegmentControlItem = ({
 
   return (
     <button
+      ref={ref}
       id={id}
       disabled={disabled}
       className={hashClass(styled, clsx('segmented-control-item', className, { 'is-active': activeItem }))}
@@ -46,6 +47,6 @@ const SegmentControlItem = ({
       {children}
     </button>
   )
-}
+})
 
 export default SegmentControlItem

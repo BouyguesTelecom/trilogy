@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PopoverProps } from './PopoverProps'
+import { PopoverNativeRef, PopoverProps } from './PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StyleSheet, View } from 'react-native'
 import { getColorStyle, TrilogyColor } from '@/objects'
@@ -12,7 +12,7 @@ import { PopoverDirection } from './PopoverEnum'
  * @param content {ReactNode} Content of the popover (hidden popover if null|undefined)
  * @param active {boolean} Is the popover active
  */
-const Popover = ({ children, active = false, direction }: PopoverProps): JSX.Element => {
+const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(({ children, active = false, direction }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
@@ -70,6 +70,7 @@ const Popover = ({ children, active = false, direction }: PopoverProps): JSX.Ele
   if (active && (direction === PopoverDirection.LEFT || direction === PopoverDirection.RIGHT)) {
     return (
       <View
+        ref={ref}
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
@@ -94,7 +95,7 @@ const Popover = ({ children, active = false, direction }: PopoverProps): JSX.Ele
 
   if (active && (direction === PopoverDirection.BOTTOM || !direction)) {
     return (
-      <View>
+      <View ref={ref}>
         {direction === PopoverDirection.BOTTOM && <View>{children}</View>}
         <View style={styles.container}>
           {direction === PopoverDirection.BOTTOM && <View style={active ? [styles.arrow, styles.arrowTop] : {}} />}
@@ -105,8 +106,8 @@ const Popover = ({ children, active = false, direction }: PopoverProps): JSX.Ele
     )
   }
 
-  return <View>{children}</View>
-}
+  return <View ref={ref}>{children}</View>
+})
 
 Popover.displayName = ComponentName.Popover
 

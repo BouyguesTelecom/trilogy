@@ -1,4 +1,4 @@
-import { type Image } from 'react-native'
+import { Image } from 'react-native'
 import { Clickable } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 import { CardImageSize, CardImageSizeValues } from './CardImageEnum'

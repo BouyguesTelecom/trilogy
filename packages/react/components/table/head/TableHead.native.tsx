@@ -1,13 +1,13 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { TableHeadProps } from "./TableHeadProps"
+import { TableHeadNativeRef, TableHeadProps } from "./TableHeadProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table Head Component
  * @param children {ReactNode} children of Table Head
  */
-const TableHead = ({ children, ...others }: TableHeadProps): JSX.Element => {
+const TableHead = React.forwardRef<TableHeadNativeRef, TableHeadProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     head: {
       width: "100%",
@@ -16,7 +16,7 @@ const TableHead = ({ children, ...others }: TableHeadProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.head} {...others}>
+    <View ref={ref} style={styles.head} {...others}>
       {children && typeof children.valueOf() === "string" ? (
         <Text>{String(children)}</Text>
       ) : (
@@ -24,7 +24,7 @@ const TableHead = ({ children, ...others }: TableHeadProps): JSX.Element => {
       )}
     </View>
   )
-}
+})
 
 TableHead.displayName = ComponentName.TableHead
 

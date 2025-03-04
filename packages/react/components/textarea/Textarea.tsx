@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { TextareaProps } from './TextareaProps'
+import { TextareaProps, TextareaRef } from './TextareaProps'
 import { has, is } from '@/services'
 import { Icon } from '@/components/icon'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { TypographyColor } from '@/objects'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Textarea Component
@@ -33,7 +34,7 @@ import { TypographyColor } from '@/objects'
  * @param typo {TypographyColor | TypographyColorValues} change help typo
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Textarea = ({
+const Textarea = React.forwardRef<TextareaRef, TextareaProps>(({
   className,
   id,
   sample,
@@ -46,14 +47,13 @@ const Textarea = ({
   status,
   dynamicPlaceholder = true,
   rows,
-  ref,
   label,
   maxLength,
   minLength,
   iconNameLeft,
   iconNameRight,
   ...others
-}: TextareaProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [value, setValue] = useState(defaultValue || '')
   const { styled } = useTrilogyContext()
 
@@ -89,9 +89,9 @@ const Textarea = ({
       )}
 
       <textarea
+        ref={ref}
         minLength={minLength}
         disabled={disabled}
-        ref={ref}
         {...others}
         className={classes}
         value={value}
@@ -120,6 +120,7 @@ const Textarea = ({
       {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
     </div>
   )
-}
+})
 
+Textarea.displayName = ComponentName.Textarea
 export default Textarea

@@ -4,8 +4,7 @@ import { getStatusStyle } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Switch as SwitchNative } from 'react-native'
-import shortid from 'shortid'
-import { SwitchProps } from './SwitchProps'
+import { SwitchNativeRef, SwitchProps } from './SwitchProps'
 
 /**
  * Switch Component
@@ -18,15 +17,15 @@ import { SwitchProps } from './SwitchProps'
  * @param name {string} Switch name
  */
 
-const Switch = ({
-  id = shortid.generate(),
+const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(({
+  id = React.useId(),
   checked,
   onChange,
   status,
   disabled,
   readonly,
   name,
-}: SwitchProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -47,6 +46,7 @@ const Switch = ({
 
   return (
     <SwitchNative
+      ref={ref}
       testID='switch-id'
       style={isIOS ? styles.switchIos : {}}
       trackColor={{
@@ -65,7 +65,7 @@ const Switch = ({
       value={_checked}
     />
   )
-}
+})
 
 Switch.displayName = ComponentName.Switch
 

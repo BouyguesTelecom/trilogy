@@ -4,7 +4,7 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { type View } from 'react-native'
+import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export interface BoxHeaderProps extends AlignableProps, Accessibility, CommonProps {
