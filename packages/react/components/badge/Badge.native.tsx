@@ -100,7 +100,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
 
     if (status) {
       return (
-        <View {...others}>
+        <View {...others} ref={ref}>
           {iconName && iconColor && (
             <View>
               <View
