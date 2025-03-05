@@ -18,20 +18,23 @@ import { RangeProps, RangeRef } from './RangeProps'
  * @param onChangeMax {function} on change max cursor
  */
 const Range = React.forwardRef<RangeRef, RangeProps>(
-  ({
-    className,
-    id = React.useId(),
-    min,
-    max,
-    label,
-    valueMin,
-    valueMax,
-    unit,
-    onChangeMin,
-    onChangeMax,
-    name,
-    gap = 0,
-  }: RangeProps): JSX.Element => {
+  (
+    {
+      className,
+      id = React.useId(),
+      min,
+      max,
+      label,
+      valueMin,
+      valueMax,
+      unit,
+      onChangeMin,
+      onChangeMax,
+      name,
+      gap = 0,
+    },
+    ref,
+  ): JSX.Element => {
     const {
       cursorMax,
       cursorMin,
@@ -43,7 +46,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     } = useRange({ min, max, valueMin, valueMax, onChangeMin, onChangeMax, gap, name })
 
     return (
-      <div id={id} className={hashClass(clsx('range-container', className))}>
+      <div id={id} className={hashClass(clsx('range-container', className))} ref={ref}>
         <label className={hashClass(clsx('range-label'))}>{label}</label>
         <div className={hashClass(clsx('range'))}>
           <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>

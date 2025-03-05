@@ -25,26 +25,32 @@ import { ComponentName } from '../enumsComponentsName'
  */
 
 const Switch = React.forwardRef<SwitchRef, SwitchProps>(
-  ({
-    className,
-    id = React.useId(),
-    label,
-    value,
-    checked,
-    onChange,
-    onClick,
-    status,
-    disabled,
-    readonly,
-    name,
-    reversed,
-    fullWidth,
-    ...others
-  }: SwitchProps): JSX.Element => {
+  (
+    {
+      className,
+      id = React.useId(),
+      label,
+      value,
+      checked,
+      onChange,
+      onClick,
+      status,
+      disabled,
+      readonly,
+      name,
+      reversed,
+      fullWidth,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
     const { handleChange, handleClick, _checked } = useSwitch({ checked, readonly, onChange, onClick })
 
     return (
-      <div className={hashClass(clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}>
+      <div
+        className={hashClass(clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}
+        ref={ref}
+      >
         <input
           onChange={handleChange}
           onClick={handleClick}

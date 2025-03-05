@@ -9,23 +9,26 @@ import clsx from 'clsx'
 import React from 'react'
 
 const SelectNative = React.forwardRef<SelectRef, SelectProps>(
-  ({
-    onChange,
-    disabled,
-    onFocus,
-    onBlur,
-    children,
-    selected,
-    name,
-    id,
-    testId,
-    label,
-    iconName,
-    multiple,
-    className,
-    accessibilityLabel,
-    ...others
-  }: SelectProps): JSX.Element => {
+  (
+    {
+      onChange,
+      disabled,
+      onFocus,
+      onBlur,
+      children,
+      selected,
+      name,
+      id,
+      testId,
+      label,
+      iconName,
+      multiple,
+      className,
+      accessibilityLabel,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
     const selectClasses = hashClass(clsx('select', className))
     const controlClass = hashClass(clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left'))
 
@@ -41,6 +44,7 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
         <div className={hashClass(clsx('field', focused && 'focus'))}>
           <div className={controlClass}>
             <select
+              ref={ref as React.RefObject<HTMLSelectElement>}
               className={hashClass(clsx(!label && 'no-label'))}
               value={selectedValues}
               aria-label={accessibilityLabel}

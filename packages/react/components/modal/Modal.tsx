@@ -46,10 +46,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
         onClose,
       })
 
-    const classes = React.useMemo(
-      () => hashClass(clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className)),
-      [display, panel, className],
-    )
+    const classes = hashClass(clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className))
 
     return (
       <div onKeyDown={onKeyDown} ref={refModal}>
