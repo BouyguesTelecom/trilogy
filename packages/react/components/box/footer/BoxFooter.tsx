@@ -1,9 +1,10 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import { getBackgroundClassName } from '@/objects'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BoxFooterProps } from './BoxFooterProps'
+import { BoxFooterProps, BoxFooterRef } from './BoxFooterProps'
 
 /**
  * Box Footer Component
@@ -12,20 +13,23 @@ import { BoxFooterProps } from './BoxFooterProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param id
- * @param others
  */
-const BoxFooter = ({ className, children, backgroundColor, id, ...others }: BoxFooterProps): JSX.Element => {
-  return (
-    <div
-      id={id}
-      className={hashClass(
-        clsx('box-footer', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
-      )}
-      {...others}
-    >
-      {children}
-    </div>
-  )
-}
+const BoxFooter = React.forwardRef<BoxFooterRef, BoxFooterProps>(
+  ({ className, children, backgroundColor, id, ...others }, ref): JSX.Element => {
+    return (
+      <div
+        ref={ref}
+        id={id}
+        className={hashClass(
+          clsx('box-footer', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
+        )}
+        {...others}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
+BoxFooter.displayName = ComponentName.BoxFooter
 export default BoxFooter

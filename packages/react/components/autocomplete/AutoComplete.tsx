@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import { AutoCompletePropsWeb, Item } from '@/components/autocomplete/AutoCompleteProps'
 import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import { useAutocomplete } from '@/components/autocomplete/hooks/useAutocomplete'
 import AutoCompleteItem from '@/components/autocomplete/item'
@@ -11,7 +10,7 @@ import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
-import type { View } from 'react-native'
+import { AutoCompletePropsWeb, AutocompleteRef, Item } from './AutoCompleteProps'
 
 const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   {
@@ -149,7 +148,7 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param loading {boolean} Loading input
  */
 const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
-  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<HTMLInputElement | View> },
+  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
 ) => JSX.Element
 
 export default AutoComplete

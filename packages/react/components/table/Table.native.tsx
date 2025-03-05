@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { getColorStyle, TrilogyColor } from '@/objects'
-import { TableBorderEnum, TableProps } from './TableProps'
+import { TableBorderEnum, TableNativeRef, TableProps } from './TableProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {ReactNode}
  * @param bordered {boolean} bordered table
  */
-const Table = ({ children, border, ...others }: TableProps): JSX.Element => {
+const Table = React.forwardRef<TableNativeRef, TableProps>(({ children, border, ...others }, ref): JSX.Element => {
   const borderColor = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
@@ -29,13 +29,14 @@ const Table = ({ children, border, ...others }: TableProps): JSX.Element => {
 
   return (
     <View
+      ref={ref}
       style={[border === TableBorderEnum.ALL && styles.bordered, !border && styles.noBorder, styles.table]}
       {...others}
     >
       {children}
     </View>
   )
-}
+})
 
 Table.displayName = ComponentName.Table
 

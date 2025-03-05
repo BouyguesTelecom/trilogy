@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { TimelineProps } from "./TimelineProps"
+import { TimelineNativeRef, TimelineProps } from "./TimelineProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 interface IContext {
@@ -18,7 +18,7 @@ export const TimelineHeightContext = React.createContext<IContext>({
  * @param children {ReactNode} Text child
 
  */
-const Timeline = ({ children }: TimelineProps): JSX.Element => {
+const Timeline = React.forwardRef<TimelineNativeRef, TimelineProps>(({ children }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "column",
@@ -34,10 +34,10 @@ const Timeline = ({ children }: TimelineProps): JSX.Element => {
         setHeight,
       }}
     >
-      <View style={styles.container}>{children}</View>
+      <View ref={ref} style={styles.container}>{children}</View>
     </TimelineHeightContext.Provider>
   )
-}
+})
 
 Timeline.displayName = ComponentName.Timeline
 

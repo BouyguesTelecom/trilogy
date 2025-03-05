@@ -1,10 +1,11 @@
 import { hashClass } from '@/helpers'
-import { getColorClassName } from '@/objects'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { BoxProps } from './BoxProps'
+import { ComponentName } from '../enumsComponentsName'
+import { BoxProps, BoxRef } from './BoxProps'
 
 /**
  * Box Component
@@ -24,77 +25,75 @@ import { BoxProps } from './BoxProps'
  * @param fullheight
  * @param others
  */
-const Box = ({
-  inverted,
-  children,
-  className,
-  id,
-  onClick,
-  skeleton,
-  href,
-  backgroundColor,
-  highlighted,
-  shadowless,
-  backgroundSrc,
-  flat,
-  headerOffset,
-  fullheight,
-  active,
-  ...others
-}: BoxProps): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'box',
-      shadowless && is('shadowless'),
+const Box = React.forwardRef<BoxRef, BoxProps>(
+  (
+    {
+      inverted,
+      children,
       className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton && is('loading'),
-      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
-      flat && is('flat'),
-      headerOffset && is('offset-header'),
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+      id,
+      onClick,
+      skeleton,
+      href,
+      backgroundColor,
+      highlighted,
+      shadowless,
+      backgroundSrc,
+      flat,
+      headerOffset,
+      fullheight,
+      active,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'box',
+        shadowless && is('shadowless'),
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton && is('loading'),
+        highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+        flat && is('flat'),
+        headerOffset && is('offset-header'),
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
 
-  if (href) {
+    if (href) {
+      return (
+        <a id={id} href={href} onClick={onClick && onClick} className={classes} {...others}>
+          {children}
+        </a>
+      )
+    }
+
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
+
     return (
-      <a
+      <div
+        ref={ref}
         id={id}
-        href={href}
+        style={onClick && { ...hoverStyle }}
         onClick={onClick && onClick}
         className={classes}
         {...others}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+          },
+        })}
       >
         {children}
-      </a>
+      </div>
     )
-  }
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
-
-  return (
-    <div
-      id={id}
-      style={onClick && { ...hoverStyle }}
-      onClick={onClick && onClick}
-      className={classes}
-      {...others}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-        },
-      })}
-    >
-      {children}
-    </div>
-  )
-}
-
+  },
+)
+Box.displayName = ComponentName.Box
 export default Box

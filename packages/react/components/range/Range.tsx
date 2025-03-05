@@ -1,8 +1,9 @@
-import { RangeProps } from '@/components/range/RangeProps'
 import { useRange } from '@/components/range/hooks/useRange'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { RangeProps, RangeRef } from './RangeProps'
 
 /**
  * Range Component
@@ -16,72 +17,75 @@ import React from 'react'
  * @param onChangeMin {function} on change min cursor
  * @param onChangeMax {function} on change max cursor
  */
-const Range = ({
-  className,
-  id = React.useId(),
-  min,
-  max,
-  label,
-  valueMin,
-  valueMax,
-  unit,
-  onChangeMin,
-  onChangeMax,
-  name,
-  gap = 0,
-}: RangeProps): JSX.Element => {
-  const {
-    cursorMax,
-    cursorMin,
-    refTrack,
-    handleMouseUpMin,
-    handleChangeCursorMin,
-    handleMouseUpMax,
-    handleChangeCursorMax,
-  } = useRange({ min, max, valueMin, valueMax, onChangeMin, onChangeMax, gap, name })
+const Range = React.forwardRef<RangeRef, RangeProps>(
+  ({
+    className,
+    id = React.useId(),
+    min,
+    max,
+    label,
+    valueMin,
+    valueMax,
+    unit,
+    onChangeMin,
+    onChangeMax,
+    name,
+    gap = 0,
+  }: RangeProps): JSX.Element => {
+    const {
+      cursorMax,
+      cursorMin,
+      refTrack,
+      handleMouseUpMin,
+      handleChangeCursorMin,
+      handleMouseUpMax,
+      handleChangeCursorMax,
+    } = useRange({ min, max, valueMin, valueMax, onChangeMin, onChangeMax, gap, name })
 
-  return (
-    <div id={id} className={hashClass(clsx('range-container', className))}>
-      <label className={hashClass(clsx('range-label'))}>{label}</label>
-      <div className={hashClass(clsx('range'))}>
-        <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>
-        <input
-          className={hashClass(clsx('range-cursor range-cursor-min'))}
-          onMouseUp={handleMouseUpMin}
-          onChange={handleChangeCursorMin}
-          value={cursorMin}
-          type='range'
-          min={min}
-          max={max}
-          name={name}
-          id={`${id}-min`}
-          aria-label={label}
-        />
-        <input
-          className={hashClass(clsx('range-cursor range-cursor-max'))}
-          onMouseUp={handleMouseUpMax}
-          onChange={handleChangeCursorMax}
-          value={cursorMax}
-          type='range'
-          min={min}
-          max={max}
-          name={name}
-          id={`${id}-max`}
-          aria-label={label}
-        />
-      </div>
-      <div className={hashClass(clsx('range-values'))}>
-        <div>
-          <span className={hashClass(clsx('range-value-min'))}>{cursorMin}</span>
-          {unit && <span> {unit}</span>}
+    return (
+      <div id={id} className={hashClass(clsx('range-container', className))}>
+        <label className={hashClass(clsx('range-label'))}>{label}</label>
+        <div className={hashClass(clsx('range'))}>
+          <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>
+          <input
+            className={hashClass(clsx('range-cursor range-cursor-min'))}
+            onMouseUp={handleMouseUpMin}
+            onChange={handleChangeCursorMin}
+            value={cursorMin}
+            type='range'
+            min={min}
+            max={max}
+            name={name}
+            id={`${id}-min`}
+            aria-label={label}
+          />
+          <input
+            className={hashClass(clsx('range-cursor range-cursor-max'))}
+            onMouseUp={handleMouseUpMax}
+            onChange={handleChangeCursorMax}
+            value={cursorMax}
+            type='range'
+            min={min}
+            max={max}
+            name={name}
+            id={`${id}-max`}
+            aria-label={label}
+          />
         </div>
-        <div>
-          <span className={hashClass(clsx('range-value-max'))}>{cursorMax}</span>
-          {unit && <span> {unit}</span>}
+        <div className={hashClass(clsx('range-values'))}>
+          <div>
+            <span className={hashClass(clsx('range-value-min'))}>{cursorMin}</span>
+            {unit && <span> {unit}</span>}
+          </div>
+          <div>
+            <span className={hashClass(clsx('range-value-max'))}>{cursorMax}</span>
+            {unit && <span> {unit}</span>}
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  },
+)
 
+Range.displayName = ComponentName.Range
 export default Range

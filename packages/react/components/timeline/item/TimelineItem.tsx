@@ -1,6 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
+import { TimelineMarkerRef } from '../marker/TimelineMarkerProps'
 import { TimelineItemWebProps } from './TimelineItemProps'
 
 /**
@@ -12,9 +14,12 @@ import { TimelineItemWebProps } from './TimelineItemProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TimelineItem = ({ className, id, done, active, cancel, ...others }: TimelineItemWebProps) => {
-  const classes = hashClass(clsx('timeline-item', done && 'done', active && 'active', cancel && 'cancel', className))
-  return <div id={id} className={classes} {...others} />
-}
+const TimelineItem = React.forwardRef<TimelineMarkerRef, TimelineItemWebProps>(
+  ({ className, id, done, active, cancel, ...others }, ref) => {
+    const classes = hashClass(clsx('timeline-item', done && 'done', active && 'active', cancel && 'cancel', className))
+    return <div ref={ref} id={id} className={classes} {...others} />
+  },
+)
 
+TimelineItem.displayName = ComponentName.TimelineItem
 export default TimelineItem

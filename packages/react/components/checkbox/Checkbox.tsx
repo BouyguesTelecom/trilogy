@@ -1,7 +1,8 @@
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import React from 'react'
-import { CheckboxProps } from './CheckboxProps'
+import { ComponentName } from '../enumsComponentsName'
+import { CheckboxProps, CheckboxRef } from './CheckboxProps'
 
 /**
  * Checkbox Component
@@ -17,47 +18,41 @@ import { CheckboxProps } from './CheckboxProps'
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
  */
-const Checkbox = ({
-  checked,
-  className,
-  disabled,
-  readonly,
-  id = React.useId(),
-  label,
-  onChange,
-  name,
-  value,
-  children,
-  ...others
-}: CheckboxProps): JSX.Element => {
-  return (
-    <div className={hashClass(clsx('checkbox', className))}>
-      <input
-        type='checkbox'
-        readOnly={readonly}
-        id={id}
-        disabled={disabled}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={
-          onChange && !disabled && !readonly
-            ? (e) =>
-                onChange({
-                  checkboxId: e.target.id,
-                  checkboxValue: e.target.value,
-                  checkboxName: e.target.name,
-                  checkboxChecked: e.target.checked,
-                })
-            : undefined
-        }
-        {...others}
-      />
-      <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
-        {label ?? children}
-      </label>
-    </div>
-  )
-}
+const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
+  (
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, ...others },
+    ref,
+  ): JSX.Element => {
+    return (
+      <div className={hashClass(clsx('checkbox', className))} ref={ref}>
+        <input
+          type='checkbox'
+          readOnly={readonly}
+          id={id}
+          disabled={disabled}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={
+            onChange && !disabled && !readonly
+              ? (e) =>
+                  onChange({
+                    checkboxId: e.target.id,
+                    checkboxValue: e.target.value,
+                    checkboxName: e.target.name,
+                    checkboxChecked: e.target.checked,
+                  })
+              : undefined
+          }
+          {...others}
+        />
+        <label htmlFor={id} className={hashClass(clsx('checkbox-label'))}>
+          {label ?? children}
+        </label>
+      </div>
+    )
+  },
+)
 
+Checkbox.displayName = ComponentName.Checkbox
 export default Checkbox

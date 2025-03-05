@@ -1,7 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ListItemDescriptionProps } from './ListItemDescriptionProps'
+import { ListItemDescriptionProps, ListItemDescriptionRef } from './ListItemDescriptionProps'
 
 /**
  * ListItemDescription Component
@@ -9,8 +10,15 @@ import { ListItemDescriptionProps } from './ListItemDescriptionProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const ListItemDescription = ({ children, className }: ListItemDescriptionProps): JSX.Element => {
-  return <dd className={hashClass(clsx(className))}>{children}</dd>
-}
+const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(
+  ({ children, className }, ref): JSX.Element => {
+    return (
+      <dd ref={ref} className={hashClass(clsx(className))}>
+        {children}
+      </dd>
+    )
+  },
+)
 
+ListItemDescription.displayName = ComponentName.ListItemDescription
 export default ListItemDescription

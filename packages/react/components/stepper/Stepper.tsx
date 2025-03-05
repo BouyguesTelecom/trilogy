@@ -1,9 +1,10 @@
-import { StepperProps } from '@/components/stepper/StepperProps'
-import { useStepper } from '@/components/stepper/hooks/useStepper'
 import { Text } from '@/components/text'
-import { hashClass } from '@/helpers/hashClassesHelpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { StepperProps, StepperRef } from './StepperProps'
+import { useStepper } from './hooks/useStepper'
 
 /**
  * Stepper Component
@@ -12,12 +13,12 @@ import React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additionnal CSS Classes
  */
-const Stepper = ({ className, id, children, ...others }: StepperProps) => {
+const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, ...others }, ref) => {
   const classes = hashClass(clsx('stepper-wrapper', className))
   const { currentStep, nbChild } = useStepper({ children })
 
   return (
-    <div id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} {...others}>
       {children}
       <div className='step-count'>
         <Text>
@@ -26,5 +27,7 @@ const Stepper = ({ className, id, children, ...others }: StepperProps) => {
       </div>
     </div>
   )
-}
+})
+
+Stepper.displayName = ComponentName.Stepper
 export default Stepper

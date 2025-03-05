@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
 
-import { AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteProps'
 import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
 import { debounce } from '@/components/autocomplete/utils'
 import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
+import { AutocompleteNativeRef, AutoCompletePropsNative } from './AutoCompleteProps'
 
 /**
  * AutoComplete Component
@@ -31,7 +31,7 @@ import { InputChangeEventNative } from '@/components/input/InputProps'
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param getSuggestions {Function} getSuggestions event
  */
-const AutoComplete = React.forwardRef(
+const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
   (
     {
       value,
@@ -51,8 +51,8 @@ const AutoComplete = React.forwardRef(
       onBlur,
       disabled,
       onIconClick,
-    }: AutoCompletePropsNative,
-    ref: React.Ref<View>,
+    },
+    ref,
   ): JSX.Element => {
     const [valueInput, setValueInput] = useState<string>(value ?? '')
     const [suggestions, setSuggestions] = useState(data ?? [])

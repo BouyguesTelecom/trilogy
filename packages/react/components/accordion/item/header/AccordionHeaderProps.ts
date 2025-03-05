@@ -1,4 +1,5 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { View } from 'react-native'
+import { CommonProps } from '../../../../objects/facets/CommonProps'
 
 /**
  * AccordionHeader Interface
@@ -6,3 +7,6 @@ import { CommonProps } from '@/objects/facets/CommonProps'
 export interface AccordionHeaderProps extends CommonProps {
   children?: React.ReactNode
 }
+
+export type AccordionHeaderRef = HTMLSourceElement
+export type AccordionHeaderNativeRef = View

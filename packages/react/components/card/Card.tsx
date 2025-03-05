@@ -1,8 +1,11 @@
-import { CardProps } from '@/components/card/CardProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import React, { createContext } from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { CardProps, CardRef } from './CardProps'
+
+export const CardContext = createContext({ horizontal: false })
 
 /**
  * Card Component
@@ -17,42 +20,54 @@ import React from 'react'
  * @param className {string} Additionnal CSS Classes
  * @param fullheight
  */
-const Card = ({
-  className,
-  id,
-  flat,
-  horizontal,
-  floating,
-  skeleton,
-  onClick,
-  reversed,
-  href,
-  fullheight,
-  active,
-  ...others
-}: CardProps) => {
-  const hoverStyle: React.CSSProperties = {
-    cursor: onClick ? 'pointer' : 'default',
-  }
+const Card = React.forwardRef<CardRef, CardProps>(
+  (
+    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
+    ref,
+  ) => {
+    const hoverStyle: React.CSSProperties = {
+      cursor: onClick ? 'pointer' : 'default',
+    }
 
-  const classes = hashClass(
-    clsx(
-      'card',
-      flat && !floating && is('flat'),
-      horizontal && [is('horizontal'), is('vcentered')],
-      floating && !flat && is('floating'),
-      skeleton && is('loading'),
-      reversed && is('reversed'),
-      className,
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+    const classes = hashClass(
+      clsx(
+        'card',
+        flat && !floating && is('flat'),
+        horizontal && [is('horizontal'), is('vcentered')],
+        floating && !flat && is('floating'),
+        skeleton && is('loading'),
+        reversed && is('reversed'),
+        className,
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
 
-  if (href) {
-    return <a id={id} href={href} onClick={onClick} {...others} className={classes} />
-  }
+    if (href) {
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          id={id}
+          href={href}
+          onClick={onClick}
+          {...others}
+          className={classes}
+        />
+      )
+    }
 
-  return <div id={id} onClick={onClick} className={classes} style={hoverStyle} {...others} />
-}
+    return (
+      <div
+        ref={ref as React.Ref<HTMLDivElement>}
+        id={id}
+        onClick={onClick && onClick}
+        className={classes}
+        style={onClick && { ...hoverStyle }}
+        {...others}
+      />
+    )
+  },
+)
+
+Card.displayName = ComponentName.Card
 export default Card

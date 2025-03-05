@@ -2,7 +2,8 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { PopoverWebProps } from './PopoverProps'
+import { ComponentName } from '../enumsComponentsName'
+import { PopoverRef, PopoverWebProps } from './PopoverProps'
 
 /**
  * Popover Component
@@ -15,32 +16,26 @@ import { PopoverWebProps } from './PopoverProps'
  * @param testId {string} Test Id for Test Integration
  * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
  */
-const Popover = ({
-  className,
-  id,
-  direction,
-  children,
-  active,
-  arrowPosition,
-  trigger,
-  ...others
-}: PopoverWebProps): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'popover',
-      direction && is(`popover-${direction}`),
-      active && is('popover-active'),
-      arrowPosition && is(`arrow-${arrowPosition}`),
-      className,
-    ),
-  )
+const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
+  ({ className, id, direction, children, active, arrowPosition, trigger, ...others }, ref): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'popover',
+        direction && is(`popover-${direction}`),
+        active && is('popover-active'),
+        arrowPosition && is(`arrow-${arrowPosition}`),
+        className,
+      ),
+    )
 
-  return (
-    <div id={id} className={classes} {...others}>
-      <div className={hashClass('popover-content')}>{children}</div>
-      {trigger && trigger}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} id={id} className={classes} {...others}>
+        <div className={hashClass('popover-content')}>{children}</div>
+        {trigger && trigger}
+      </div>
+    )
+  },
+)
 
+Popover.displayName = ComponentName.Popover
 export default Popover

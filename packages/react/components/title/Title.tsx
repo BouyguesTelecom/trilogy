@@ -2,8 +2,9 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { TitleProps } from './TitleProps'
+import { TitleProps, TitleRef } from './TitleProps'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {
@@ -56,50 +57,56 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = ({
-  level = TitleLevels.ONE,
-  markup,
-  children,
-  className,
-  id,
-  typo,
-  skeleton,
-  inverted,
-  onClick,
-  accessibilityLabel,
-  subtitle,
-  overline,
-  marginless,
-  ...others
-}: TitleProps): JSX.Element => {
-  const classes = hashClass(
-    clsx(
-      'title',
-      level && getTitleLevel(level),
-      typo,
-      skeleton && is('loading'),
-      inverted && is('inverted'),
-      marginless && is('marginless'),
+const Title = React.forwardRef<TitleRef, TitleProps>(
+  (
+    {
+      level = TitleLevels.ONE,
+      markup,
+      children,
       className,
-    ),
-  )
+      id,
+      typo,
+      skeleton,
+      inverted,
+      onClick,
+      accessibilityLabel,
+      subtitle,
+      overline,
+      marginless,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const classes = hashClass(
+      clsx(
+        'title',
+        level && getTitleLevel(level),
+        typo,
+        skeleton && is('loading'),
+        inverted && is('inverted'),
+        marginless && is('marginless'),
+        className,
+      ),
+    )
 
-  const subtitleClasses = hashClass(clsx('subtitle', typo, className))
-  const overlineClasses = hashClass(clsx('overline', typo, className))
+    const subtitleClasses = hashClass(clsx('subtitle', typo, className))
+    const overlineClasses = hashClass(clsx('overline', typo, className))
 
-  const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
+    const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 
-  const getClassname = () => {
-    if (subtitle) return subtitleClasses
-    if (overline) return overlineClasses
-    return classes
-  }
+    const getClassname = () => {
+      if (subtitle) return subtitleClasses
+      if (overline) return overlineClasses
+      return classes
+    }
 
-  return (
-    <Tag id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
-      {children}
-    </Tag>
-  )
-}
+    return (
+      <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
+        {children}
+      </Tag>
+    )
+  },
+)
 
+Title.displayName = ComponentName.Title
 export default Title

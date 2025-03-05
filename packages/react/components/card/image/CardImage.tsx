@@ -1,8 +1,9 @@
-import { CardImageProps } from '@/components/card/image/CardImageProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { CardImageProps, CardImageRef } from './CardImageProps'
 
 /**
  * Card Image Component
@@ -15,16 +16,32 @@ import React from 'react'
  * - -------------------------- WEB PROPERTIES ----------------------------------
  * @param className Additionnal CSS Classes
  */
-const CardImage = ({ src, alt, className, id, size, onClick, ...others }: CardImageProps): JSX.Element => {
-  const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
+const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
+  ({ src, alt, className, id, size, onClick, ...others }, ref): JSX.Element => {
+    const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
-  return (
-    <div id={id} onClick={onClick} className={classes}>
-      <figure className={hashClass(clsx('image'))} {...others}>
-        <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
-      </figure>
-    </div>
-  )
-}
+    return (
+      <div
+        ref={ref}
+        id={id}
+        onClick={
+          onClick
+            ? (e) => {
+                // eslint-disable-next-line no-unused-expressions
+                onClick?.(e)
+                e.stopPropagation()
+              }
+            : undefined
+        }
+        className={classes}
+      >
+        <figure className={hashClass(clsx('image'))} {...others}>
+          <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
+        </figure>
+      </div>
+    )
+  },
+)
 
+CardImage.displayName = ComponentName.CardImage
 export default CardImage

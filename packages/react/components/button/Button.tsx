@@ -1,5 +1,5 @@
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
 import { is } from '@/services/index'
@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
-import { ButtonProps } from './ButtonProps'
+import { ButtonProps, ButtonRef } from './ButtonProps'
 import { useButton } from './hooks/useButton'
 
 /**
@@ -32,8 +32,7 @@ import { useButton } from './hooks/useButton'
  * @param styled {boolean} Component Wearing Styles - Hashed Trilogy Css
  * @param type {ButtonType} button type (button|reset|submit)
  */
-
-const Button = React.forwardRef(
+const Button = React.forwardRef<ButtonRef, ButtonProps>(
   (
     {
       markup,
@@ -52,8 +51,8 @@ const Button = React.forwardRef(
       type,
       iconName,
       ...others
-    }: ButtonProps,
-    ref: React.Ref<HTMLButtonElement>,
+    },
+    ref,
   ): JSX.Element => {
     const isDisabled = others.disabled || false
     const { handleClick } = useButton({ isDisabled, onClick })
@@ -85,7 +84,7 @@ const Button = React.forwardRef(
     if (Tag === 'button' && !href && !to) {
       return (
         <button
-          ref={ref}
+          ref={ref as React.Ref<HTMLButtonElement>}
           id={id}
           aria-label={accessibilityLabel}
           className={classes}
@@ -104,6 +103,7 @@ const Button = React.forwardRef(
     if (Tag === 'input') {
       return (
         <input
+          ref={ref as React.Ref<HTMLInputElement>}
           id={id}
           className={classes}
           aria-label={accessibilityLabel}
@@ -120,7 +120,7 @@ const Button = React.forwardRef(
     if (routerLink && to && !isDisabled) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
-        <RouterLink aria-label={accessibilityLabel} to={to} className={classes} {...others}>
+        <RouterLink ref={ref} aria-label={accessibilityLabel} to={to} className={classes} {...others}>
           {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
           {children}
         </RouterLink>

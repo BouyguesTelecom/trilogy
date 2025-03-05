@@ -18,7 +18,7 @@ import {
 } from '@trilogy-ds/react/components'
 import { TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
-import * as Screens from './screens'
+import * as Screens from '../screens'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const MenuScreen = ({ navigation }: any): JSX.Element => {
@@ -64,10 +64,10 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
                   >
                     <BoxContent>
                       <Columns verticalAlign='ALIGNED_CENTER' gap={0}>
-                        <Column size={11}>
+                        <Column>
                           <Title level={TitleLevels.THREE}>{pathName}</Title>
                         </Column>
-                        <Column size={1}>
+                        <Column narrow>
                           <Icon name={IconName.ARROW_RIGHT} />
                         </Column>
                       </Columns>

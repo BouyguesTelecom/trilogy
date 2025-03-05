@@ -9,12 +9,12 @@ import {
 import { grayscale, TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Spacer, SpacerSize } from '../spacer'
 import { Text as TrilogyText } from '../text'
 import { TextLevels } from '../text/TextEnum'
-import { TextareaNativeProps } from './TextareaProps'
+import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
 
 /**
  * Textarea Component
@@ -44,7 +44,7 @@ import { TextareaNativeProps } from './TextareaProps'
  * @param customHeight {number} custom textarea height
  * @param required {boolean} Required
  */
-const Textarea = (
+const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>((
   {
     defaultValue,
     name,
@@ -68,9 +68,8 @@ const Textarea = (
     value,
     required,
     ...others
-  }: TextareaNativeProps,
-  // eslint-disable-next-line
-  ref: any,
+  },
+  ref,
 ): JSX.Element => {
   const [_value, setValue] = useState<string>(value || '')
 
@@ -182,6 +181,7 @@ const Textarea = (
       )}
 
       <TextInput
+        ref={ref}
         maxLength={maxLength}
         value={_value}
         defaultValue={defaultValue}
@@ -207,7 +207,6 @@ const Textarea = (
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         {...others}
-        ref={ref}
         placeholderTextColor={
           disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
         }
@@ -226,8 +225,8 @@ const Textarea = (
       {help && <Text style={styles.help}>{help}</Text>}
     </View>
   )
-}
+})
 
 Textarea.displayName = ComponentName.Textarea
 
-export default forwardRef(Textarea)
+export default Textarea

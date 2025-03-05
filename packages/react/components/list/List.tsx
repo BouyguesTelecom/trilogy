@@ -1,8 +1,9 @@
-import { ListProps } from '@/components/list/ListProps'
+import { ListProps, ListRef } from '@/components/list/ListProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * ListItem Component
@@ -12,15 +13,18 @@ import * as React from 'react'
  * @param ordered {boolean} Display ordered list
  */
 
-const List = ({ className, id, children, testId, divider, ordered, ...others }: ListProps) => {
-  const classes = hashClass(clsx('list', divider && has('divider'), className))
-  const Tag = ordered ? 'ol' : 'ul'
+const List = React.forwardRef<ListRef, ListProps>(
+  ({ className, id, children, testId, divider, ordered, ...others }, ref) => {
+    const classes = hashClass(clsx('list', divider && has('divider'), className))
+    const Tag = ordered ? 'ol' : 'ul'
 
-  return (
-    <Tag id={id} data-testid={testId} className={classes} {...others}>
-      {children}
-    </Tag>
-  )
-}
+    return (
+      <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
+        {children}
+      </Tag>
+    )
+  },
+)
 
+List.displayName = ComponentName.List
 export default List

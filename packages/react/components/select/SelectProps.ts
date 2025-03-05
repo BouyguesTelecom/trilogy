@@ -2,6 +2,7 @@ import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
+import { TextInput } from 'react-native'
 
 export interface ISelectOption {
   value: string | undefined
@@ -35,3 +36,6 @@ export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, 
   placeholder?: string
   custom?: boolean
 }
+
+export type SelectRef = HTMLSelectElement | HTMLInputElement
+export type SelectNativeRef = TextInput

@@ -4,7 +4,8 @@ import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/f
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { IconProps } from './IconProps'
+import { ComponentName } from '../enumsComponentsName'
+import { IconProps, IconRef } from './IconProps'
 
 /**
  * Icon Component
@@ -24,43 +25,37 @@ import { IconProps } from './IconProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
-const Icon = ({
-  className,
-  id,
-  size,
-  name,
-  circled,
-  stretched,
-  color,
-  backgroundColor,
-  onClick,
-  skeleton,
-  ...others
-}: IconProps): JSX.Element => {
-  const background =
-    (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-    (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
-    ''
+const Icon = React.forwardRef<IconRef, IconProps>(
+  (
+    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, ...others },
+    ref,
+  ): JSX.Element => {
+    const background =
+      (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
+      (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
+      ''
 
-  const classes = hashClass(
-    clsx(
-      'icon',
-      stretched && is('stretched'),
-      size && is(size),
-      circled && is('circled'),
-      circled && !color && has('text-white'),
-      color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-      skeleton && is('loading'),
-      background,
-      className,
-    ),
-  )
+    const classes = hashClass(
+      clsx(
+        'icon',
+        stretched && is('stretched'),
+        size && is(size),
+        circled && is('circled'),
+        circled && !color && has('text-white'),
+        color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
+        skeleton && is('loading'),
+        background,
+        className,
+      ),
+    )
 
-  return (
-    <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      <i className={hashClass(clsx(name))} aria-hidden='true' />
-    </span>
-  )
-}
+    return (
+      <span id={id} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
+        <i className={hashClass(clsx(name))} aria-hidden='true' />
+      </span>
+    )
+  },
+)
 
+Icon.displayName = ComponentName.Icon
 export default Icon

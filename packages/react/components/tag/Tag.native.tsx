@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { TagProps } from './TagProps'
+import { TagNativeRef, TagProps } from './TagProps'
 
 /**
  * Tag Component
@@ -15,7 +15,7 @@ import { TagProps } from './TagProps'
  * @param iconName {IconName} display icon
  * @param testId {string} Test Id for Test Integration
  **/
-const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: TagProps): JSX.Element => {
+const Tag = React.forwardRef<TagNativeRef, TagProps>(({ label, variant, inverted, iconName, small, testId, ...others }, ref): JSX.Element => {
   const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
 
   const backgroundColor = variant && getStatusStyle(variant).backgroundColor
@@ -51,7 +51,7 @@ const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: T
   })
 
   return (
-    <View style={styles.tag} {...others}>
+    <View ref={ref} style={styles.tag} {...others}>
       {iconName && (
         <View style={styles.icon}>
           <Icon
@@ -64,7 +64,7 @@ const Tag = ({ label, variant, inverted, iconName, small, testId, ...others }: T
       <Text style={styles.text}>{label}</Text>
     </View>
   )
-}
+})
 
 Tag.displayName = ComponentName.Tag
 

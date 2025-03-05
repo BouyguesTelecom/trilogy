@@ -1,4 +1,5 @@
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxItemProps } from './BoxItemProps'
@@ -18,4 +19,5 @@ const BoxItem = ({ className, id, children, ...others }: BoxItemProps): JSX.Elem
   )
 }
 
+BoxItem.displayName = ComponentName.BoxItem
 export default BoxItem

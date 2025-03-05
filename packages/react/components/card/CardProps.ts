@@ -3,6 +3,7 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Fullheight } from '@/objects/facets/Fullheight'
+import { View } from 'react-native'
 
 /**
  * Card Interface
@@ -19,3 +20,6 @@ export interface CardProps extends Fullheight, Clickable, Accessibility, CommonP
   href?: string
   active?: boolean
 }
+
+export type CardRef = HTMLDivElement | HTMLAnchorElement
+export type CardNativeRef = View

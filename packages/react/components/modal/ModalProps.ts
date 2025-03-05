@@ -4,6 +4,7 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'
+import { View } from 'react-native'
 
 /**
  * Modal Interface
@@ -21,3 +22,6 @@ export interface ModalProps extends Accessibility, Dev, CommonProps {
   size?: ModalSize
   title?: string
 }
+
+export type ModalRef = HTMLDivElement
+export type ModalNativeRef = View

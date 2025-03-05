@@ -1,26 +1,6 @@
 import { ToasterStatusProps } from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
-import { ClickEvent } from '@/events/OnClickEvent'
 import React from 'react'
-
-interface IParams {
-  onClick?: ClickEvent
-}
-
-export const useAlert = ({ onClick }: IParams) => {
-  try {
-    const _ = React.useState()
-
-    const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      onClick?.(e)
-      e.stopPropagation()
-    }, [])
-
-    return { handleClick }
-  } catch {
-    return {}
-  }
-}
 
 export const useToasterAlertProvider = () => {
   try {

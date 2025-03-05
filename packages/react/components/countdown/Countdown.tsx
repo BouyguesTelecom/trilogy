@@ -1,10 +1,11 @@
 import { CountdownUnite } from '@/components/countdown/CountdownEnum'
-import { CountdownProps } from '@/components/countdown/CountdownProps'
+import { CountdownProps, CountdownRef } from '@/components/countdown/CountdownProps'
 import { useCountdown } from '@/components/countdown/hooks/useCountdown'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Countdown Component
@@ -19,71 +20,64 @@ import React from 'react'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param centered
  */
-const Countdown = ({
-  deadline,
-  className,
-  id,
-  format,
-  event,
-  small,
-  inverted,
-  ...others
-}: CountdownProps): JSX.Element => {
-  const { timer } = useCountdown({ event, format, deadline })
-  const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
-  const parsedFormat = format?.split('-')
-  const classes = hashClass(clsx('countdown', inverted && is('inverted'), small && is('small'), className))
+const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
+  ({ deadline, className, id, format, event, small, inverted, ...others }, ref): JSX.Element => {
+    const { timer } = useCountdown({ event, format, deadline })
+    const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
+    const parsedFormat = format?.split('-')
+    const classes = hashClass(clsx('countdown', inverted && is('inverted'), small && is('small'), className))
 
-  if (parsedFormat) {
-    parsedFormat.forEach((item) => {
-      switch (item) {
-        case 'dd':
-          show[CountdownUnite.DAY] = true
-          break
-        case 'hh':
-          show[CountdownUnite.HOUR] = true
-          break
-        case 'mm':
-          show[CountdownUnite.MIN] = true
-          break
-        case 'ss':
-          show[CountdownUnite.SEC] = true
-          break
-        default:
-          break
-      }
-    })
-  } else {
-    show[CountdownUnite.DAY] = true
-    show[CountdownUnite.HOUR] = true
-    show[CountdownUnite.MIN] = true
-    show[CountdownUnite.SEC] = true
-  }
+    if (parsedFormat) {
+      parsedFormat.forEach((item) => {
+        switch (item) {
+          case 'dd':
+            show[CountdownUnite.DAY] = true
+            break
+          case 'hh':
+            show[CountdownUnite.HOUR] = true
+            break
+          case 'mm':
+            show[CountdownUnite.MIN] = true
+            break
+          case 'ss':
+            show[CountdownUnite.SEC] = true
+            break
+          default:
+            break
+        }
+      })
+    } else {
+      show[CountdownUnite.DAY] = true
+      show[CountdownUnite.HOUR] = true
+      show[CountdownUnite.MIN] = true
+      show[CountdownUnite.SEC] = true
+    }
 
-  return (
-    <ul id={id} className={classes} {...others}>
-      {(show[CountdownUnite.DAY] || timer.days != 0) && (
-        <li className={hashClass(clsx('count'))}>
-          <span className={hashClass(clsx('value'))}>{timer.days ? timer.days : 0}</span>j
-        </li>
-      )}
-      {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
-        <li className={hashClass(clsx('count'))}>
-          <span className={hashClass(clsx('value'))}>{timer.hours ? timer.hours : 0}</span>h
-        </li>
-      )}
-      {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
-        <li className={hashClass(clsx('count'))}>
-          <span className={hashClass(clsx('value'))}>{timer.minutes ? timer.minutes : 0}</span>m
-        </li>
-      )}
-      {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
-        <li className={hashClass(clsx('count'))}>
-          <span className={hashClass(clsx('value'))}>{timer.seconds ? timer.seconds : 0}</span>s
-        </li>
-      )}
-    </ul>
-  )
-}
-
+    return (
+      <ul id={id} className={classes} ref={ref} {...others}>
+        {(show[CountdownUnite.DAY] || timer.days != 0) && (
+          <li className={hashClass(clsx('count'))}>
+            <span className={hashClass(clsx('value'))}>{timer.days ? timer.days : 0}</span>j
+          </li>
+        )}
+        {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
+          <li className={hashClass(clsx('count'))}>
+            <span className={hashClass(clsx('value'))}>{timer.hours ? timer.hours : 0}</span>h
+          </li>
+        )}
+        {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
+          <li className={hashClass(clsx('count'))}>
+            <span className={hashClass(clsx('value'))}>{timer.minutes ? timer.minutes : 0}</span>m
+          </li>
+        )}
+        {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
+          <li className={hashClass(clsx('count'))}>
+            <span className={hashClass(clsx('value'))}>{timer.seconds ? timer.seconds : 0}</span>s
+          </li>
+        )}
+      </ul>
+    )
+  },
+)
+Countdown.displayName = ComponentName.Countdown
 export default Countdown

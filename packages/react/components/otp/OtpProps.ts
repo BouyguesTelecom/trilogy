@@ -1,4 +1,5 @@
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { SafeAreaView } from 'react-native'
 
 /**
  * Otp Interface
@@ -16,3 +17,6 @@ export interface OtpProps extends CommonProps {
   label?: string
   autoFocus?: boolean
 }
+
+export type OtpRef = HTMLDivElement
+export type OtpNativeRef = SafeAreaView

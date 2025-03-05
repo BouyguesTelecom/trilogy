@@ -158,7 +158,7 @@ export const CardScreen = (): JSX.Element => {
         <BoxHeader>Floating (inside component)</BoxHeader>
         <BoxContent>
           <Accordion className='is-marginless'>
-            <AccordionItem active>
+            <AccordionItem>
               <AccordionHeader>
                 <Text level={1}>Card floating (inside component)</Text>
               </AccordionHeader>

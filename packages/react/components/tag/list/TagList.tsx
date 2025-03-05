@@ -1,9 +1,10 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { TagListProps } from './TagListProps'
+import { TagListProps, TagListRef } from './TagListProps'
 
 /**
  * Tag List Component
@@ -12,9 +13,10 @@ import { TagListProps } from './TagListProps'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  */
-const TagList = ({ className, id, align, marginless, ...others }: TagListProps) => {
+const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, ...others }, ref) => {
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         clsx('tags', align && is(getJustifiedClassName(align)), marginless && is('marginless'), className),
@@ -22,5 +24,7 @@ const TagList = ({ className, id, align, marginless, ...others }: TagListProps) 
       {...others}
     />
   )
-}
+})
+
+TagList.displayName = ComponentName.TagList
 export default TagList

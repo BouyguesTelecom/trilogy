@@ -1,5 +1,6 @@
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { StatusProps } from '@/objects/facets/Status'
+import { Switch } from 'react-native'
 
 export interface SwitchChangeEvent {
   switchState: boolean
@@ -20,3 +21,6 @@ export interface SwitchProps extends StatusProps, CommonProps {
   reversed?: boolean
   fullWidth?: boolean
 }
+
+export type SwitchRef = HTMLDivElement
+export type SwitchNativeRef = Switch

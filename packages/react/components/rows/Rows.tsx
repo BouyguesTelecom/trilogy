@@ -2,7 +2,8 @@ import { hashClass } from '@/helpers'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { RowsProps } from './RowsProps'
+import { ComponentName } from '../enumsComponentsName'
+import { RowsProps, RowsRef } from './RowsProps'
 
 /**
  * Rows Component
@@ -10,9 +11,10 @@ import { RowsProps } from './RowsProps'
  * - ------------------- WEB PROPERTIES -------------------------
  * @param className {string} additionnal CSS Classes
  */
-const Rows = ({ className, id, gap, ...others }: RowsProps) => {
+const Rows = React.forwardRef<RowsRef, RowsProps>(({ className, id, gap, ...others }, ref) => {
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         clsx('rows', gap && has(`gap-${gap}`), typeof gap !== 'undefined' && gap === 0 && is('gapless'), className),
@@ -20,6 +22,7 @@ const Rows = ({ className, id, gap, ...others }: RowsProps) => {
       {...others}
     />
   )
-}
+})
 
+Rows.displayName = ComponentName.Rows
 export default Rows

@@ -4,6 +4,7 @@ import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { StatusProps } from '@/objects/facets/Status'
 import React from 'react'
+import { View } from 'react-native'
 
 /**
  * Progress Radial Interface
@@ -22,3 +23,6 @@ export interface ProgressRadialProps extends StatusProps, AlignableProps, Common
   skeleton?: boolean
   small?: boolean
 }
+
+export type ProgressRadialRef = HTMLDivElement
+export type ProgressRadialNativeRef = View

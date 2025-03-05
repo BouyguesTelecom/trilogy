@@ -1,12 +1,11 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconSize } from '@/components/icon'
+import { IconName } from '@/components/icon/IconNameEnum'
+import { Text } from '@/components/text'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { IconName } from '@/components/icon/IconNameEnum'
-import { CheckboxProps } from './CheckboxProps'
-import shortid from 'shortid'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { Text } from '@/components/text'
-import { Icon, IconSize } from '@/components/icon'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
 
 /**
  * Checkbox Native Component
@@ -19,73 +18,63 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
  */
-const Checkbox = ({
-  id = shortid.generate(),
-  checked,
-  name,
-  onChange,
-  disabled,
-  readonly,
-  label,
-}: CheckboxProps): JSX.Element => {
-  const [_checked, setChecked] = useState(checked || false)
+const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
+  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label }, ref): JSX.Element => {
+    const [_checked, setChecked] = useState(checked || false)
 
-  useEffect(() => {
-    setChecked(checked || false)
-  }, [checked])
+    useEffect(() => {
+      setChecked(checked || false)
+    }, [checked])
 
-  const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      justifyContent: 'flex-start'
-    },
-    checkBox: {
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      borderColor: getColorStyle(TrilogyColor.FONT),
-      borderWidth: 0.6,
-      width: 19,
-      height: 19,
-      borderRadius: 4,
-      marginRight: 10,
-      marginLeft: 0,
-      backgroundColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        'transparent',
-    },
-    label: {
-      marginTop: 2,
-      color:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        (_checked && getColorStyle(TrilogyColor.MAIN)) ||
-        getColorStyle(TrilogyColor.MAIN),
-    }
-  })
+    const styles = StyleSheet.create({
+      container: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+      },
+      checkBox: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        borderColor: getColorStyle(TrilogyColor.FONT),
+        borderWidth: 0.6,
+        width: 19,
+        height: 19,
+        borderRadius: 4,
+        marginRight: 10,
+        marginLeft: 0,
+        backgroundColor: getColorStyle(
+          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : 'transparent',
+        ),
+      },
+      label: {
+        marginTop: 2,
+        color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
+      },
+    })
 
-  const handleClick = () => {
-    if (!readonly) {
-      setChecked(!_checked)
-      if (onChange) {
-        onChange({
-          checkboxId: id,
-          checkboxValue: '',
-          checkboxName: name || '',
-          checkboxChecked: !_checked,
-        })
+    const handleClick = () => {
+      if (!readonly) {
+        setChecked(!_checked)
+        if (onChange) {
+          onChange({
+            checkboxId: id,
+            checkboxValue: '',
+            checkboxName: name || '',
+            checkboxChecked: !_checked,
+          })
+        }
       }
     }
-  }
 
-  return (
-    <TouchableOpacity disabled={disabled} style={styles.container} onPress={() => handleClick()}>
-      <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-        {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+    return (
+      <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick()}>
+        <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
+          {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+        </TouchableOpacity>
+        {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
       </TouchableOpacity>
-      {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
-    </TouchableOpacity>
-  )
-}
+    )
+  },
+)
 
 Checkbox.displayName = ComponentName.Checkbox
 

@@ -1,9 +1,9 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
+import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from './BreadcrumbItemProps'
 
 /**
  * Breadcrumb Item Component
@@ -19,38 +19,31 @@ import { BreadcrumbItemPropsWeb } from './BreadcrumbItemProps'
  * @param className {string} Additionnal CSS Classes
  * @param others
  */
-const BreadcrumbItem = ({
-  children,
-  active,
-  className,
-  id,
-  href,
-  to,
-  routerLink,
-  testId,
-  onClick,
-  ...others
-}: BreadcrumbItemPropsWeb): JSX.Element => {
-  const classes = hashClass(clsx(active && is('active'), className))
+const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWeb>(
+  ({ children, active, id, href, to, routerLink, testId, onClick, ...others }, ref): JSX.Element => {
+    if (routerLink && to) {
+      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+      return (
+        <li ref={ref} id={id} data-testid={testId} onClick={onClick} aria-current={active ? 'page' : undefined}>
+          <RouterLink className={hashClass(clsx('link'))} to={to} {...others}>
+            {children}
+          </RouterLink>
+        </li>
+      )
+    }
 
-  if (routerLink && to) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
-      <li id={id} data-testid={testId} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
-        <RouterLink className={hashClass(clsx('link'))} to={to} {...others}>
-          {children}
-        </RouterLink>
+      <li ref={ref} id={id} onClick={onClick} aria-current={active ? 'page' : undefined}>
+        {active ? (
+          children
+        ) : (
+          <Link href={href} {...others}>
+            {children}
+          </Link>
+        )}
       </li>
     )
-  }
-
-  return (
-    <li id={id} className={classes} onClick={onClick} aria-current={active ? 'page' : undefined}>
-      <Link href={active ? undefined : href} {...others}>
-        {children}
-      </Link>
-    </li>
-  )
-}
-
+  },
+)
+BreadcrumbItem.displayName = ComponentName.BreadcrumbItem
 export default BreadcrumbItem

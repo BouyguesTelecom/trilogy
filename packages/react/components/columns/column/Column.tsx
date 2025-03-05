@@ -1,4 +1,4 @@
-import { ColumnProps } from '@/components/columns/column/ColumnProps'
+import { ColumnProps, ColumnRef } from '@/components/columns/column/ColumnProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
@@ -31,7 +31,7 @@ import React from 'react'
  * @param align { Alignable | AlignableValues} align content
  */
 
-const Column = React.forwardRef(
+const Column = React.forwardRef<ColumnRef, ColumnProps>(
   (
     {
       className,
@@ -53,8 +53,8 @@ const Column = React.forwardRef(
       narrow,
       verticalAlign,
       ...others
-    }: ColumnProps,
-    ref: React.Ref<HTMLDivElement>,
+    },
+    ref,
   ) => {
     const classes = hashClass(
       clsx(

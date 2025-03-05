@@ -1,6 +1,7 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTab } from '@/components/tabs/tab-list/tab/hooks/useTab'
-import { TabProps } from '@/components/tabs/tab-list/tab/TabProps'
+import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -20,60 +21,55 @@ import React from 'react'
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */
-const Tab = ({
-  active,
-  className,
-  onClick,
-  to,
-  href,
-  routerLink,
-  iconName,
-  label,
-  disabled,
-  testId,
-  ariaControls,
-  ...others
-}: TabProps) => {
-  const { index, ...props } = others as any
-  const { handleClick, isActive } = useTab({ index, disabled, routerLink, onClick, active })
-  const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
+const Tab = React.forwardRef<TabRef, TabProps>(
+  (
+    { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ariaControls, ...others },
+    ref,
+  ) => {
+    const { index, ...props } = others as any
+    const { handleClick, isActive } = useTab({ index, disabled, routerLink, onClick, active })
+    const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
 
-  if (routerLink && (to || href)) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+    if (routerLink && (to || href)) {
+      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+      return (
+        <RouterLink
+          ref={ref}
+          data-testid={testId}
+          to={to}
+          href={href}
+          className={classes}
+          onClick={handleClick}
+          data-index={index}
+          {...others}
+        >
+          <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+          {label && label}
+        </RouterLink>
+      )
+    }
+
     return (
-      <RouterLink
-        data-testid={testId}
-        to={to}
-        href={href}
+      <button
+        ref={ref}
+        aria-controls={ariaControls}
+        aria-disabled={disabled}
+        aria-selected={isActive}
+        data-tab-navigation=''
+        disabled={disabled}
         className={classes}
-        onClick={handleClick}
+        role='tab'
+        data-testid={testId}
         data-index={index}
-        {...others}
+        onClick={handleClick}
+        {...props}
       >
         <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
         {label && label}
-      </RouterLink>
+      </button>
     )
-  }
+  },
+)
 
-  return (
-    <button
-      aria-controls={ariaControls}
-      aria-disabled={disabled}
-      aria-selected={isActive}
-      data-tab-navigation=''
-      disabled={disabled}
-      className={classes}
-      role='tab'
-      data-testid={testId}
-      data-index={index}
-      onClick={handleClick}
-      {...props}
-    >
-      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
-      {label && label}
-    </button>
-  )
-}
-
+Tab.displayName = ComponentName.Tab
 export default Tab

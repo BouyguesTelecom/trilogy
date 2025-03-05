@@ -1,7 +1,8 @@
-import { CardContentProps } from '@/components/card/content/CardContentProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
+import { CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
@@ -18,4 +19,5 @@ const CardContent = ({ children, className, id, ...others }: CardContentProps): 
   )
 }
 
+CardContent.displayName = ComponentName.CardContent
 export default CardContent

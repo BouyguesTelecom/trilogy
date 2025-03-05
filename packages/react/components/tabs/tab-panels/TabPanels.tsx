@@ -1,5 +1,6 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
-import { TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
+import { TabPanelsProps, TabPanelsRef } from '@/components/tabs/tab-panels/TabPanelsProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -12,17 +13,20 @@ import React from 'react'
  * @param testId
  * @param others
  */
-const TabPanels = ({ children, className, id, testId, ...others }: TabPanelsProps) => {
-  const classes = hashClass(clsx('tab-panels', className))
+const TabPanels = React.forwardRef<TabPanelsRef, TabPanelsProps>(
+  ({ children, className, id, testId, ...others }, ref) => {
+    const classes = hashClass(clsx('tab-panels', className))
 
-  return (
-    <div id={id} data-testid={testId} className={classes} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
-        return <TabPanel {...child.props} index={index} />
-      })}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) return false
+          return <TabPanel {...child.props} index={index} />
+        })}
+      </div>
+    )
+  },
+)
 
+TabPanels.displayName = ComponentName.TabPanels
 export default TabPanels

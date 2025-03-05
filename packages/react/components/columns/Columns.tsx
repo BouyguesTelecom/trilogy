@@ -1,4 +1,4 @@
-import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ColumnsProps, ColumnsRef } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
@@ -20,22 +20,10 @@ import React from 'react'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef(
+const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
   (
-    {
-      className,
-      id,
-      multiline,
-      scrollable,
-      mobile,
-      gap,
-      fullBleed,
-      marginless,
-      align,
-      verticalAlign,
-      ...others
-    }: ColumnsProps,
-    ref: React.Ref<HTMLDivElement>,
+    { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, ...others },
+    ref,
   ) => {
     const classes = hashClass(
       clsx(

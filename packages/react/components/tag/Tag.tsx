@@ -3,8 +3,9 @@ import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/f
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
-import { TagProps } from './TagProps'
+import { TagProps, TagRef } from './TagProps'
 
 /**
  * Tag Component
@@ -17,27 +18,30 @@ import { TagProps } from './TagProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  **/
-const Tag = ({ label, className, id, variant, inverted, small, iconName, ...others }: TagProps): JSX.Element => {
-  const tagClassNames = hashClass(
-    clsx(
-      'tag',
-      variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
-      inverted && is('inverted'),
-      small && is('small'),
-      className,
-    ),
-  )
+const Tag = React.forwardRef<TagRef, TagProps>(
+  ({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
+    const tagClassNames = hashClass(
+      clsx(
+        'tag',
+        variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+        inverted && is('inverted'),
+        small && is('small'),
+        className,
+      ),
+    )
 
-  const tagIconClassNames = hashClass(
-    clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
-  )
+    const tagIconClassNames = hashClass(
+      clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
+    )
 
-  return (
-    <span id={id} className={tagClassNames} {...others}>
-      {iconName && <Icon className={tagIconClassNames} name={iconName} />}
-      {label}
-    </span>
-  )
-}
+    return (
+      <span ref={ref} id={id} className={tagClassNames} {...others}>
+        {iconName && <Icon className={tagIconClassNames} name={iconName} />}
+        {label}
+      </span>
+    )
+  },
+)
 
+Tag.displayName = ComponentName.Tag
 export default Tag

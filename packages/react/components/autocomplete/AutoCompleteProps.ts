@@ -1,6 +1,7 @@
 import { InputChangeEventNative, InputChangeEventWeb, InputClickEvent, InputProps } from '@/components/input/InputProps'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { FocusEventHandler } from 'react'
+import { View } from 'react-native'
 
 /**
  * AutoComplete Interface
@@ -52,3 +53,6 @@ export interface ItemSelectedEvent<T> {
   value: T
   index: number
 }
+
+export type AutocompleteRef = HTMLInputElement
+export type AutocompleteNativeRef = View

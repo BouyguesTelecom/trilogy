@@ -1,4 +1,5 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { View } from 'react-native'
+import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export type TargetElement = HTMLElement & {
   active?: boolean
@@ -23,3 +24,6 @@ export interface AccordionItemProps extends CommonProps {
   onClick?: OnClickCallback
   disabled?: boolean
 }
+
+export type AccordionItemRef = HTMLDetailsElement
+export type AccordionItemNativeRef = View

@@ -63,3 +63,6 @@ export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInp
  * Textarea Interface
  */
 export type TextareaProps = TextareaPropsWeb & Referenceable<HTMLTextAreaElement> & CommonProps
+
+export type TextareaRef = HTMLTextAreaElement
+export type TextareaNativeRef = TextInput

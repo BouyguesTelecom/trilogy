@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useSegmentControlItem } from '@/components/segment-control/item/hooks/useSegmentControlItem'
-import { SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
+import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControlItemProps'
 
 /**
  * SegmentControl Item Component
@@ -15,27 +15,23 @@ import React from 'react'
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  */
-const SegmentControlItem = ({
-  active,
-  onClick,
-  disabled,
-  className,
-  id,
-  children,
-}: SegmentControlItemProps): JSX.Element => {
-  const { activeItem, handleClick } = useSegmentControlItem({ active, onClick })
+const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
+  ({ active, onClick, disabled, className, id, children }, ref): JSX.Element => {
+    const { activeItem, handleClick } = useSegmentControlItem({ active, onClick })
 
-  return (
-    <button
-      id={id}
-      disabled={disabled}
-      className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
-      onClick={handleClick}
-    >
-      {children}
-    </button>
-  )
-}
+    return (
+      <button
+        ref={ref}
+        id={id}
+        disabled={disabled}
+        className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
+        onClick={handleClick}
+      >
+        {children}
+      </button>
+    )
+  },
+)
 
 SegmentControlItem.displayName = ComponentName.SegmentControlItem
 export default SegmentControlItem

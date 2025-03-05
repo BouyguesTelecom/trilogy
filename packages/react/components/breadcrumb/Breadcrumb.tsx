@@ -1,7 +1,8 @@
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BreadcrumbWebProps } from './BreadcrumbProps'
+import { ComponentName } from '../enumsComponentsName'
+import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
 
 /**
  * Breadcrumb Component
@@ -11,18 +12,21 @@ import { BreadcrumbWebProps } from './BreadcrumbProps'
  * @param className {string} Additionnal CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }: BreadcrumbWebProps) => {
-  return (
-    <nav
-      id={id}
-      role='navigation'
-      className={hashClass(clsx('breadcrumb', className))}
-      aria-label={accessibilityLabel}
-      {...others}
-    >
-      <ul>{children}</ul>
-    </nav>
-  )
-}
-
+const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
+  ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }, ref) => {
+    return (
+      <nav
+        ref={ref}
+        id={id}
+        role='navigation'
+        className={hashClass(clsx('breadcrumb', className))}
+        aria-label={accessibilityLabel}
+        {...others}
+      >
+        <ul>{children}</ul>
+      </nav>
+    )
+  },
+)
+Breadcrumb.displayName = ComponentName.Breadcrumb
 export default Breadcrumb

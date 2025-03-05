@@ -79,15 +79,15 @@ export const AutolayoutScreen = (): JSX.Element => {
       <Button variant={'PRIMARY'}>Click</Button>
 
       <Accordion>
-        <AccordionItem id='ONE' active={true}>
+        <AccordionItem id='ONE'>
           <AccordionHeader>
             <Text>Hello World 1</Text>
           </AccordionHeader>
-          <AccordionBody dataId='totooooo-test-id' testId='totooooo'>
+          <AccordionBody>
             <Text>Lorem ipsum dolor sit amet lorem</Text>
           </AccordionBody>
         </AccordionItem>
-        <AccordionItem active={true} id='TWO'>
+        <AccordionItem id='TWO'>
           <AccordionHeader>
             <Text>Hello World 2</Text>
           </AccordionHeader>
@@ -120,7 +120,7 @@ export const AutolayoutScreen = (): JSX.Element => {
         description='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
 
-      <AutoComplete customIcon={IconName.ALERT} displayMenu={true} data={['1', '2']} />
+      <AutoComplete iconNameRight={IconName.ALERT} displayMenu={true} data={['1', '2']} />
 
       <CheckboxTiles>
         <CheckboxTile id='tile-1' label='label' value='value' description='Je suis une description simple' />

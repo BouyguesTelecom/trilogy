@@ -1,5 +1,6 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { TouchableOpacity } from 'react-native'
 
 type RadioChangeEventHandler = (event: {
   radioValue: string
@@ -20,3 +21,6 @@ export interface RadioProps extends Accessibility, CommonProps {
   name?: string
   value?: string
 }
+
+export type RadioRef = HTMLDivElement
+export type RadioNativeRef = TouchableOpacity

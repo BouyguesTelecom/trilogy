@@ -1,4 +1,5 @@
-import { ProgressRadialProps } from '@/components/progress/radial/ProgressRadialProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressRadialProps, ProgressRadialRef } from '@/components/progress/radial/ProgressRadialProps'
 import { useProgressRadial } from '@/components/progress/radial/hooks/useProgressRadial'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
@@ -19,39 +20,34 @@ import React from 'react'
  * @param className {string} Additionnal CSS Classes
  * @param small {boolean} Display small progress radial
  */
-const ProgressRadial = ({
-  children,
-  value = 0,
-  secondValue = 0,
-  label,
-  description,
-  skeleton,
-  className,
-  id,
-  small,
-  ...others
-}: ProgressRadialProps): JSX.Element => {
-  const { progressRadialRef } = useProgressRadial({ value, secondValue })
-  const classes = hashClass(clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
-  const classesContent = hashClass(clsx('progress-radial-content'))
+const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
+  (
+    { children, value = 0, secondValue = 0, label, description, skeleton, className, id, small, ...others },
+    ref,
+  ): JSX.Element => {
+    const { progressRadialRef } = useProgressRadial({ value, secondValue })
+    const classes = hashClass(clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
+    const classesContent = hashClass(clsx('progress-radial-content'))
 
-  return (
-    <div id={id} {...others} className={classes} ref={progressRadialRef}>
-      <div className={classesContent}>
-        {label && (
-          <Title level={TitleLevels.TWO} marginless>
-            {label}
-          </Title>
-        )}
-        {description && (
-          <Text level={TextLevels.ONE} marginless>
-            {description}
-          </Text>
-        )}
-        {!label && !description && children}
+    return (
+      <div id={id} {...others} className={classes} ref={progressRadialRef}>
+        <div ref={ref} className={classesContent}>
+          {label && (
+            <Title level={TitleLevels.TWO} marginless>
+              {label}
+            </Title>
+          )}
+          {description && (
+            <Text level={TextLevels.ONE} marginless>
+              {description}
+            </Text>
+          )}
+          {!label && !description && children}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  },
+)
 
+ProgressRadial.displayName = ComponentName.ProgressRadial
 export default ProgressRadial

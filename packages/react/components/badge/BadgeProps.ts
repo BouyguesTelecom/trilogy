@@ -3,6 +3,7 @@ import { Accessibility, Dev, StatusState, StatusStateValues, VariantProps } from
 import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Invertable } from '@/objects/facets/Invertable'
+import { View } from 'react-native'
 
 /**
  * Badge Interface
@@ -13,3 +14,6 @@ export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, C
   position?: BadgePositionEnum | BadgePositionValues
   status?: StatusState | StatusStateValues
 }
+
+export type BadgeRef = HTMLSpanElement
+export type BadgeNativeRef = View

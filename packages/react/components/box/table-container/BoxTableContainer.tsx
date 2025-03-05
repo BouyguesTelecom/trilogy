@@ -1,7 +1,8 @@
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BoxTableContainerProps } from './BoxTableContainerProps'
+import { BoxTableContainerProps, BoxTableContainerRef } from './BoxTableContainerProps'
 
 /**
  * Box Table Component
@@ -10,8 +11,12 @@ import { BoxTableContainerProps } from './BoxTableContainerProps'
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const BoxTableContainer = ({ className, testId, ...others }: BoxTableContainerProps): JSX.Element => {
-  return <div data-testid={testId} className={hashClass(clsx('box table-container', className))} {...others} />
-}
-
+const BoxTableContainer = React.forwardRef<BoxTableContainerRef, BoxTableContainerProps>(
+  ({ className, testId, ...others }, ref): JSX.Element => {
+    return (
+      <div ref={ref} data-testid={testId} className={hashClass(clsx('box table-container', className))} {...others} />
+    )
+  },
+)
+BoxTableContainer.displayName = ComponentName.BoxTableContainer
 export default BoxTableContainer

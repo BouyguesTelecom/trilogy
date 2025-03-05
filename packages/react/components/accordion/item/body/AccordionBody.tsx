@@ -1,8 +1,9 @@
-import { AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
-import { useAccordionBody } from '@/components/accordion/item/body/hooks/useAccordionBoy'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
+import { useAccordionBody } from './hooks/useAccordionBoy'
 
 /**
  * Accordion Body Component
@@ -11,13 +12,17 @@ import React from 'react'
  * @param className {string} Additionnal CSS Classes
  * @param dataId {string} data attribute
  */
-const AccordionBody = ({ children, className, id, ...others }: AccordionBodyProps): React.JSX.Element => {
-  const { onClick } = useAccordionBody()
-  return (
-    <div id={id} className={hashClass(clsx('accordion-body', className))} onClick={onClick} {...others}>
-      {children}
-    </div>
-  )
-}
+const AccordionBody = React.forwardRef<AccordionBodyRef, AccordionBodyProps>(
+  ({ children, className, id, ...others }, ref): React.JSX.Element => {
+    const { onClick } = useAccordionBody()
 
+    return (
+      <div ref={ref} id={id} className={hashClass(clsx('accordion-body', className))} onClick={onClick} {...others}>
+        {children}
+      </div>
+    )
+  },
+)
+
+AccordionBody.displayName = ComponentName.AccordionBody
 export default AccordionBody

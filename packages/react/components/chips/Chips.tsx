@@ -1,8 +1,9 @@
-import { ChipsProps } from '@/components/chips/ChipsProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { ChipsProps, ChipsRef } from './ChipsProps'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -16,22 +17,26 @@ import React from 'react'
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
-const Chips = ({ className, onClick, children, active, disabled, id, ...others }: ChipsProps): JSX.Element => {
-  const classes = hashClass(clsx('chips', active && is('active'), className))
+const Chips = React.forwardRef<ChipsRef, ChipsProps>(
+  ({ className, onClick, children, active, disabled, id, ...others }, ref): JSX.Element => {
+    const classes = hashClass(clsx('chips', active && is('active'), className))
 
-  return (
-    <button
-      {...{ disabled: disabled }}
-      aria-disabled={disabled}
-      id={id}
-      aria-pressed={!!active}
-      className={classes}
-      onClick={onClick}
-      {...others}
-    >
-      {children}
-    </button>
-  )
-}
+    return (
+      <button
+        ref={ref}
+        {...{ disabled: disabled }}
+        aria-disabled={disabled}
+        id={id}
+        aria-pressed={!!active}
+        className={classes}
+        onClick={onClick}
+        {...others}
+      >
+        {children}
+      </button>
+    )
+  },
+)
 
+Chips.displayName = ComponentName.Chips
 export default Chips

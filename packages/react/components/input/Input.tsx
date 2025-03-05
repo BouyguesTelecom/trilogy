@@ -1,6 +1,6 @@
 import { IconName } from '@/components/icon'
 import { InputStatus, InputType } from '@/components/input/InputEnum'
-import { InputProps, InputWebEvents } from '@/components/input/InputProps'
+import { InputProps, InputRef, InputWebEvents } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge'
 import { useInput } from '@/components/input/hook/useInput'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
@@ -9,7 +9,7 @@ import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { forwardRef, LegacyRef, useId } from 'react'
+import React, { useId } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
@@ -56,183 +56,185 @@ export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = (
-  {
-    forceControl,
-    label,
-    sample,
-    className,
-    id = React.useId(),
-    disabled,
-    onChange,
-    onKeyPress,
-    onKeyUp,
-    onIconClick,
-    onClick,
-    onFocus,
-    onBlur,
-    patternValidator,
-    onMouseEnter,
-    onMouseLeave,
-    name,
-    placeholder,
-    type = InputType.TEXT,
-    defaultValue,
-    value,
-    loading,
-    focused,
-    status,
-    help,
-    onStatusChange,
-    customValidator,
-    onSubmit,
-    minLength,
-    maxLength,
-    accessibilityLabel,
-    autoCompleteType,
-    iconNameLeft,
-    iconNameRight,
-    textContentType,
-    securityGauge,
-    validationRules,
-    required,
-    ...others
-  }: InputProp,
-  ref: LegacyRef<HTMLInputElement>,
-): JSX.Element => {
-  const validator =
-    !customValidator && patternValidator
-      ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-      : customValidator
+const Input = React.forwardRef<InputRef, InputProp>(
+  (
+    {
+      forceControl,
+      label,
+      sample,
+      className,
+      id = React.useId(),
+      disabled,
+      onChange,
+      onKeyPress,
+      onKeyUp,
+      onIconClick,
+      onClick,
+      onFocus,
+      onBlur,
+      patternValidator,
+      onMouseEnter,
+      onMouseLeave,
+      name,
+      placeholder,
+      type = InputType.TEXT,
+      defaultValue,
+      value,
+      loading,
+      focused,
+      status,
+      help,
+      onStatusChange,
+      customValidator,
+      onSubmit,
+      minLength,
+      maxLength,
+      accessibilityLabel,
+      autoCompleteType,
+      iconNameLeft,
+      iconNameRight,
+      securityGauge,
+      validationRules,
+      required,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const validator =
+      !customValidator && patternValidator
+        ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
+        : customValidator
 
-  const {
-    localStatus,
-    inputType,
-    _value,
-    handleBlur,
-    handleChange,
-    handleClick,
-    handleFocus,
-    handleKeyPress,
-    handleKeyUp,
-    handleMouseEnter,
-    handleMouseLeave,
-    IconWrapper,
-    isShowPwd,
-    handlePressIconPwd,
-  } = useInput({
-    defaultValue,
-    focused,
-    status,
-    type,
-    value,
-    validator,
-    onStatusChange,
-    onKeyUp,
-    onKeyPress,
-    onMouseEnter,
-    onMouseLeave,
-    onClick,
-    forceControl,
-    onChange,
-    onFocus,
-    onBlur,
-    onIconClick,
-  })
-  const idHelp = useId()
-  const idSample = useId()
+    const {
+      localStatus,
+      inputType,
+      _value,
+      handleBlur,
+      handleChange,
+      handleClick,
+      handleFocus,
+      handleKeyPress,
+      handleKeyUp,
+      handleMouseEnter,
+      handleMouseLeave,
+      IconWrapper,
+      isShowPwd,
+      handlePressIconPwd,
+    } = useInput({
+      defaultValue,
+      focused,
+      status,
+      type,
+      value,
+      validator,
+      onStatusChange,
+      onKeyUp,
+      onKeyPress,
+      onMouseEnter,
+      onMouseLeave,
+      onClick,
+      forceControl,
+      onChange,
+      onFocus,
+      onBlur,
+      onIconClick,
+    })
+    const idHelp = useId()
+    const idSample = useId()
 
-  const inputIcon = new Map()
-  inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
-  inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
-  inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
+    const inputIcon = new Map()
+    inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
+    inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
+    inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const helpClasses = clsx('help', localStatus && is(localStatus))
-  const classes = hashClass(clsx('input', localStatus && is(localStatus)))
-  const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
-  const hasIcon = iconNameLeft || iconNameRight
+    const helpClasses = clsx('help', localStatus && is(localStatus))
+    const classes = hashClass(clsx('input', localStatus && is(localStatus)))
+    const wrapperClasses = hashClass(clsx('field', className, type === 'password' && securityGauge && 'has-gauge'))
+    const hasIcon = iconNameLeft || iconNameRight
 
-  const controlClasses = hashClass(
-    clsx('control', {
-      [has('icons-right')]: hasIcon ?? (iconNameRight || type === 'password'),
-      ['has-icons-left']: iconNameLeft || type === InputType.SEARCH,
-    }),
-  )
+    const controlClasses = hashClass(
+      clsx('control', {
+        [has('icons-right')]: hasIcon ?? (iconNameRight || type === InputType.PASSWORD),
+        [has('icons-left')]: iconNameLeft || type === InputType.SEARCH,
+      }),
+    )
 
-  return (
-    <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
-      {label && (
-        <label className='input-label' htmlFor={id}>
-          {label}{' '}
-          {required && (
-            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
-              *
-            </Text>
-          )}
-        </label>
-      )}
-      {sample && (
-        <Text className='input-sample' level={TextLevels.TWO} id={idSample}>
-          {sample}
-        </Text>
-      )}
-      <div className={controlClasses}>
-        <input
-          aria-describedby={`${idHelp} ${idSample}`}
-          id={id}
-          required={required}
-          role={'textbox'}
-          {...others}
-          aria-label={accessibilityLabel}
-          type={inputType}
-          className={classes}
-          value={_value}
-          defaultValue={defaultValue}
-          name={name}
-          onSubmit={onSubmit}
-          ref={ref}
-          disabled={disabled}
-          minLength={minLength}
-          maxLength={maxLength}
-          autoComplete={autoCompleteType}
-          onKeyUp={handleKeyUp}
-          onKeyPress={handleKeyPress}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          placeholder={placeholder}
-          onClick={handleClick}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
-
-        {(iconNameLeft || type === 'search') && (
-          <IconWrapper className={'icon-left'} name={iconNameLeft || IconName.SEARCH} />
+    return (
+      <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
+        {label && (
+          <label className='input-label' htmlFor={id}>
+            {label}{' '}
+            {required && (
+              <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                *
+              </Text>
+            )}
+          </label>
         )}
-
-        {iconNameRight && !loading && type !== 'password' && (
-          <IconWrapper className={'icon-right'} name={iconNameRight} />
+        {sample && (
+          <Text className='input-sample' level={TextLevels.TWO} id={idSample}>
+            {sample}
+          </Text>
         )}
-
-        {!loading && type === 'password' && (
-          <IconWrapper
-            className={'icon-right'}
-            name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
-            onPress={handlePressIconPwd}
+        <div className={controlClasses}>
+          <input
+            aria-describedby={`${idHelp} ${idSample}`}
+            id={id}
+            required={required}
+            role='textbox'
+            {...others}
+            aria-label={accessibilityLabel}
+            type={inputType}
+            className={classes}
+            value={_value}
+            defaultValue={defaultValue}
+            name={name}
+            onSubmit={onSubmit}
+            ref={ref}
+            disabled={disabled}
+            minLength={minLength}
+            maxLength={maxLength}
+            autoComplete={autoCompleteType}
+            onKeyUp={handleKeyUp}
+            onKeyPress={handleKeyPress}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            placeholder={placeholder}
+            onClick={handleClick}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
-        )}
-        {loading && <span className={hashClass(clsx(is('searching')))} />}
-      </div>
-      {help && (
-        <Text className={helpClasses} id={idHelp}>
-          {help}
-        </Text>
-      )}
+          {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
 
-      {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
-    </div>
-  )
-}
+          {(iconNameLeft || type === InputType.SEARCH) && (
+            <IconWrapper className='icon-left' name={iconNameLeft || IconName.SEARCH} />
+          )}
+
+          {iconNameRight && !loading && type !== InputType.PASSWORD && (
+            <IconWrapper className='icon-right' name={iconNameRight} />
+          )}
+
+          {!loading && type === InputType.PASSWORD && (
+            <IconWrapper
+              className='icon-right'
+              name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
+              onPress={handlePressIconPwd}
+            />
+          )}
+          {loading && <span className={hashClass(clsx(is('searching')))} />}
+        </div>
+        {help && (
+          <Text className={helpClasses} id={idHelp}>
+            {help}
+          </Text>
+        )}
+
+        {securityGauge && type === 'password' && <InputGauge validationRules={validationRules} inputValue={_value} />}
+      </div>
+    )
+  },
+)
+
 Input.displayName = ComponentName.Input
-export default forwardRef(Input)
+export default Input

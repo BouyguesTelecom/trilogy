@@ -1,8 +1,9 @@
-import { ChipsListProps } from '@/components/chips/list/ChipsListProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { ChipsListProps } from './ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
@@ -23,4 +24,5 @@ const ChipsList = ({ className, id, children, multiple, scrollable, ...others }:
   )
 }
 
+ChipsList.displayName = ComponentName.ChipsList
 export default ChipsList

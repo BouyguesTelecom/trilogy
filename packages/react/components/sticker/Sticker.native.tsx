@@ -1,10 +1,11 @@
-import * as React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
-import { StickerProps } from './StickerProps'
-import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Text } from '@/components/text'
 import { Icon, IconSize } from '@/components/icon'
+import { Text } from '@/components/text'
+import { isIOS } from '@/helpers/device.native'
+import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { StickerNativeRef, StickerProps } from './StickerProps'
 
 /**
  * Sticker component
@@ -16,7 +17,7 @@ import { Icon, IconSize } from '@/components/icon'
  * @param iconName {IconName} Icon
  * @param others
  */
-const Sticker = ({
+const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(({
   variant,
   small,
   outlined,
@@ -24,7 +25,7 @@ const Sticker = ({
   iconName,
   accessibilityLabel,
   ...others
-}: StickerProps): JSX.Element => {
+}, ref): JSX.Element => {
   const defaultColor = getColorStyle(TrilogyColor.MAIN)
   const styles = StyleSheet.create({
     sticker: {
@@ -56,21 +57,21 @@ const Sticker = ({
       alignSelf: 'center',
       fontWeight: 'bold',
       fontSize: (!small && 16) || 12,
-      transform: Platform.OS === 'ios' ? [{ skewX: '0deg' }] : [],
+      transform: isIOS ? [{ skewX: '0deg' }] : [],
       marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
       marginTop: 1,
     },
   })
 
   return (
-    <View style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
+    <View ref={ref} style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
       {iconName && (
         <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
       )}
       {label && <Text style={styles.text}>{label}</Text>}
     </View>
   )
-}
+})
 
 Sticker.displayName = ComponentName.Sticker
 

@@ -13,10 +13,6 @@ export const useSwitch = ({ checked, readonly, onChange, onClick }: IParams) => 
     const [_checked, setChecked] = React.useState<boolean>(checked || false)
 
     React.useEffect(() => {
-      setChecked(checked || false)
-    }, [checked])
-
-    React.useEffect(() => {
       if (!readonly) {
         setChecked(checked || false)
       }
@@ -40,7 +36,7 @@ export const useSwitch = ({ checked, readonly, onChange, onClick }: IParams) => 
       (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
         const event = e.target as HTMLInputElement
 
-        if (onClick) {
+        if (onClick && !readonly) {
           onClick({
             switchState: event.checked,
             switchName: event.name,

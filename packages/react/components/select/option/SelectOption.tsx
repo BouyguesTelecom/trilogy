@@ -1,9 +1,10 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
+import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
  * Select Option Component
@@ -19,67 +20,61 @@ import React from 'react'
  * @param id {string} Select option custom id
  * @param others
  */
-const SelectOption = ({
-  id,
-  className,
-  value,
-  disabled,
-  children,
-  onClick,
-  label,
-  iconName,
-  testId,
-  ...others
-}: SelectOptionProps) => {
-  const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
-  const selectClasses = hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className))
+const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
+  ({ id, className, value, disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
+    const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
+    const selectClasses = hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className))
 
-  if (native) {
+    if (native) {
+      return (
+        <option
+          ref={ref as React.RefObject<HTMLOptionElement>}
+          role='option'
+          id={id}
+          value={value}
+          disabled={disabled}
+          aria-label={label}
+          data-testid={testId}
+          onClick={onClick}
+          {...props}
+        >
+          {children || label}
+        </option>
+      )
+    }
+
+    // return (
+    //   <RadioTile
+    //     checked={checked}
+    //     horizontal
+    //     className={selectClasses}
+    //     value={value}
+    //     disabled={disabled}
+    //     onChange={onClick}
+    //     icon={iconName}
+    //     description={label || children}
+    //     {...others}
+    //   />
+    // )
+
     return (
-      <option
-        role='option'
+      <li
+        ref={ref as React.RefObject<HTMLLIElement>}
         id={id}
-        value={value}
-        disabled={disabled}
-        aria-label={label}
-        data-testid={testId}
-        onClick={onClick}
-        {...props}
+        className={selectClasses}
+        data-selected={checked}
+        role='option'
+        aria-selected={checked}
+        data-value={value}
+        onClick={!disabled && onClick ? onClick : undefined}
+        {...others}
       >
-        {children || label}
-      </option>
+        {iconName && <Icon name={iconName} />}
+        {label || children}
+      </li>
     )
-  }
+  },
+)
 
-  // return (
-  //   <RadioTile
-  //     checked={checked}
-  //     horizontal
-  //     className={selectClasses}
-  //     value={value}
-  //     disabled={disabled}
-  //     onChange={onClick}
-  //     icon={iconName}
-  //     description={label || children}
-  //     {...others}
-  //   />
-  // )
-
-  return (
-    <li
-      id={id}
-      className={selectClasses}
-      data-selected={checked}
-      role='option'
-      aria-selected={checked}
-      data-value={value}
-      onClick={!disabled && onClick ? onClick : undefined}
-      {...props}
-    >
-      {iconName && <Icon name={iconName} />}
-      {label || children}
-    </li>
-  )
-}
-
+SelectOption.displayName = ComponentName.SelectOption
 export default SelectOption

@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Input } from '@/components/input'
+import Input from '@/components/input/Input.native'
 import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
-import { SelectProps, SelectedValue } from './SelectProps'
+import { SelectNativeRef, SelectProps, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 
 /**
@@ -19,7 +19,7 @@ import SelectOption from './option'
  * @param multiple {boolean} select multiple options
  * @param nullable {boolean} Unselect Select Option Item
  */
-const Select = ({
+const Select = React.forwardRef<SelectNativeRef, SelectProps>(({
   children,
   id,
   selected,
@@ -29,7 +29,7 @@ const Select = ({
   disabled,
   multiple,
   ...others
-}: SelectProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
   const [selectedNames, setSelectedNames] = React.useState<string[]>([])
   const [display, setDisplay] = useState<boolean>(false)
@@ -57,9 +57,9 @@ const Select = ({
 
   const isChecked = useCallback(
     (value: string) =>
-      multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
         ? selectedValues?.includes(value)
-        : selectedValues === value,
+        : selectedValues === value),
     [multiple, selectedValues],
   )
 
@@ -150,6 +150,7 @@ const Select = ({
       trigger={
         <TouchableOpacity onPress={handleOpenCloseModal}>
           <Input
+            ref={ref}
             onIconClick={handleOpenCloseModal}
             disabled={disabled}
             placeholder={label}
@@ -168,7 +169,7 @@ const Select = ({
       </ModalBody>
     </Modal>
   )
-}
+})
 
 Select.displayName = ComponentName.Select
 export default Select

@@ -3,7 +3,8 @@ import { ScrollDirectionEnum } from '@/objects'
 import { is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ScrollViewProps } from './ScrollViewProps'
+import { ComponentName } from '../enumsComponentsName'
+import { ScrollViewProps, ScrollViewRef } from './ScrollViewProps'
 
 /**
  * Scroll View Component
@@ -21,7 +22,7 @@ import { ScrollViewProps } from './ScrollViewProps'
  * @param scrollDirection {Direction} Scroll vertically in default
  * @param onRefresh {void} On Refreshing ScrollView
  */
-const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
+const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
   ({ id, scrollDirection, children }, ref): JSX.Element => {
     const scrollDirectionClassName = () => {
       switch (scrollDirection) {
@@ -43,6 +44,5 @@ const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
   },
 )
 
-ScrollView.displayName = 'ScrollView'
-
+ScrollView.displayName = ComponentName.ScrollView
 export default ScrollView
