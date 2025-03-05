@@ -18,7 +18,6 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
     const styles = StyleSheet.create({
       boxContent: {
         padding: 16,
-        justifyContent: 'center',
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         borderRadius: 6,
         flex: fullHeight ? 1 : undefined,
