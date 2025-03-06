@@ -10,11 +10,12 @@ export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, C
   label?: string | number
   position?: BadgePositionEnum | BadgePositionValues
   status?: StatusState | StatusStateValues
-  variant?: keyof typeof BadgeVariant
+  variant?: BadgeVariantType
 }
 
 export type BadgeRef = HTMLSpanElement
 export type BadgeNativeRef = View
+export type BadgeVariantType = keyof typeof BadgeVariant
 
 export const BadgeVariant = {
   ...StatusState,
