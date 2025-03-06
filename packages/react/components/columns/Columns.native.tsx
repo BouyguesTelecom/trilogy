@@ -16,7 +16,7 @@ import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'rea
  */
 
 const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
-  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, ...others }, ref): JSX.Element => {
+  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, ...others }, ref): JSX.Element => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
@@ -42,6 +42,7 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
         paddingHorizontal: enlarge,
         flexDirection: 'row',
         gap: realGap,
+        height: fullheight ? '100%' : 'auto'
       },
       centered: {
         justifyContent: 'center',
