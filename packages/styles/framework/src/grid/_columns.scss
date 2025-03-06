@@ -421,10 +421,6 @@ $gap: 4px,
     align-items: center;
   }
 
-  &.is-fullheight {
-    height: calc(100% + #{$column-gap-tablet-desktop * 2});
-  }
-
   &.is-inverted-mobile {
     @include mobile {
       flex-direction: column-reverse;
