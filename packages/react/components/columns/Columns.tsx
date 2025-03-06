@@ -23,7 +23,7 @@ import React from 'react'
  */
 const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
   (
-    { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, ...others },
+    { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, fullheight, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
@@ -41,6 +41,7 @@ const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
         align && is(getJustifiedClassName(align)),
         verticalAlign && is(getAlignClassName(verticalAlign)),
         marginless && is(`marginless`),
+        fullheight && is('fullheight'),
         className,
       ),
     )

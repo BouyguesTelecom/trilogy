@@ -1,14 +1,35 @@
-import { Alignable, IconName, IconSize, Spacer, SpacerSize, Text, Title } from '@trilogy-ds/react'
-import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
+import {Alignable, IconName, IconSize, Spacer, SpacerSize, Text, Title} from '@trilogy-ds/react'
+import {Box, BoxContent, Column, Columns, GapSize, Icon, Section} from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { View } from 'react-native'
+import {View} from 'react-native'
 
 export const ColumnScreen = (): JSX.Element => {
   const refColumn = React.useRef<any>([])
 
   return (
     <Section>
-      <Columns gap={GapSize.THREE}>
+      <Columns>
+        <Column>
+          <Box fullheight>
+            <Columns verticalAlign={"ALIGNED_CENTER"} fullheight>
+              <Column>
+                <Text>Box 1</Text>
+              </Column>
+            </Columns>
+          </Box>
+        </Column>
+        <Column>
+          <Box fullheight>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+          </Box>
+        </Column>
+      </Columns>
+
+  <Columns gap={GapSize.THREE}>
         <Column narrow>
           <Box flat>
             <BoxContent>Column </BoxContent>
