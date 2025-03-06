@@ -1,5 +1,4 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
-import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
@@ -13,14 +12,11 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native'
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
-    const { fullHeight } = React.useContext(BoxContext)
-
     const styles = StyleSheet.create({
       boxContent: {
         padding: 16,
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         borderRadius: 6,
-        flex: fullHeight ? 1 : undefined,
       },
     })
 
