@@ -1,7 +1,18 @@
-import {Alignable, IconName, IconSize, Spacer, SpacerSize, Text, Title} from '@trilogy-ds/react'
-import {Box, BoxContent, Column, Columns, GapSize, Icon, Section} from '@trilogy-ds/react/components'
+import {
+  Alignable,
+  IconName,
+  IconSize,
+  Price,
+  Spacer,
+  SpacerSize,
+  Sticker,
+  Text,
+  Title,
+  TypographyAlign,
+} from '@trilogy-ds/react'
+import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import {View} from 'react-native'
+import { View } from 'react-native'
 
 export const ColumnScreen = (): JSX.Element => {
   const refColumn = React.useRef<any>([])
@@ -11,7 +22,7 @@ export const ColumnScreen = (): JSX.Element => {
       <Columns>
         <Column>
           <Box fullheight>
-            <Columns verticalAlign={"ALIGNED_CENTER"} fullheight>
+            <Columns verticalAlign={'ALIGNED_CENTER'} fullheight>
               <Column>
                 <Text>Box 1</Text>
               </Column>
@@ -29,7 +40,7 @@ export const ColumnScreen = (): JSX.Element => {
         </Column>
       </Columns>
 
-  <Columns gap={GapSize.THREE}>
+      <Columns gap={GapSize.THREE}>
         <Column narrow>
           <Box flat>
             <BoxContent>Column </BoxContent>
@@ -146,6 +157,65 @@ export const ColumnScreen = (): JSX.Element => {
             </Column>
           )
         })}
+      </Columns>
+
+      <Columns scrollable fullBleed>
+        <Column size={8}>
+          <Box fullheight>
+            <BoxContent>
+              <Columns fullheight>
+                <Column verticalAlign='ALIGNED_END'>
+                  <Spacer size={12} />
+                  <Columns align={Alignable.ALIGNED_CENTER}>
+                    <Sticker label='BONUS REPRISE 200€' />
+                  </Columns>
+                  <Spacer size={12} />
+
+                  <Title typo={[TypographyAlign.TEXT_CENTERED]}>Galaxy S25</Title>
+                  <Spacer size={12} />
+                  <View style={{ height: 200, width: 100, backgroundColor: 'red', alignSelf: 'center' }} />
+                  <Spacer size={12} />
+                  <Price align='ALIGNED_CENTER' amount={859.99} />
+                  <Text typo={[TypographyAlign.TEXT_CENTERED]}>Après remboursement</Text>
+                </Column>
+              </Columns>
+            </BoxContent>
+          </Box>
+        </Column>
+
+        <Column size={8}>
+          <Box fullheight>
+            <BoxContent>
+              <Columns fullheight>
+                <Column verticalAlign='ALIGNED_END'>
+                  <Title typo={[TypographyAlign.TEXT_CENTERED]}>Galaxy S25</Title>
+                  <Spacer size={12} />
+                  <View style={{ height: 200, width: 100, backgroundColor: 'red', alignSelf: 'center' }} />
+                  <Spacer size={12} />
+                  <Price align='ALIGNED_CENTER' amount={859.99} />
+                  <Text typo={[TypographyAlign.TEXT_CENTERED]}>Après remboursement</Text>
+                </Column>
+              </Columns>
+            </BoxContent>
+          </Box>
+        </Column>
+
+        <Column size={8}>
+          <Box fullheight>
+            <BoxContent>
+              <Columns fullheight>
+                <Column verticalAlign='ALIGNED_END'>
+                  <Title typo={[TypographyAlign.TEXT_CENTERED]}>Galaxy S25</Title>
+                  <Spacer size={12} />
+                  <View style={{ height: 200, width: 100, backgroundColor: 'red', alignSelf: 'center' }} />
+                  <Spacer size={12} />
+                  <Price align='ALIGNED_CENTER' amount={859.99} />
+                  <Text typo={[TypographyAlign.TEXT_CENTERED]}></Text>
+                </Column>
+              </Columns>
+            </BoxContent>
+          </Box>
+        </Column>
       </Columns>
     </Section>
   )
