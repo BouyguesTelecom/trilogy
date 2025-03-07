@@ -1,4 +1,13 @@
-import { Alignable, RadioList, Section, TypographyAlign } from '@trilogy-ds/react'
+import {
+  Alignable,
+  Icon,
+  Popover,
+  RadioList,
+  Section,
+  TypographyAlign,
+  TypographyBold,
+  TypographyColor,
+} from '@trilogy-ds/react'
 import { Column, Columns, Container, IconName, Radio, RadioTile, RadioTiles, Text } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
@@ -73,6 +82,23 @@ export const RadioScreen = (): JSX.Element => {
                 description='Je suis une'
                 icon={IconName.ALERT}
                 name={'name-tile-1'}
+              />
+              <RadioTile
+                description={
+                  <>
+                    <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
+                      Relais express
+                    </Text>
+                    <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>GRATUIT</Text>
+                    <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
+                      Entre le 20/02 et le 20/02
+                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}> Popover active</Popover>
+                    </Text>
+                  </>
+                }
+                icon={IconName.ALERT}
+                name='name-tile-1'
+                value='value'
               />
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
