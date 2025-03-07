@@ -32,7 +32,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
 
     if (backgroundSrc) {
       return (
-        <ImageBackground source={{ uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
+        <ImageBackground source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
           {content}
         </ImageBackground>
       )
