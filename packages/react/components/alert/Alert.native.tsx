@@ -83,18 +83,16 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
     alertView = (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       <View style={[styles.container, (others as any).style]} ref={ref}>
-        <Columns gap={2} verticalAlign={description ? Alignable.ALIGNED_START : Alignable.ALIGNED_CENTER}>
+        <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
-            <Icon name={iconName ? iconName : getStatusIconName(status)} />
+            <View style={{ marginTop: -2 }}>
+              <Icon name={iconName ? iconName : getStatusIconName(status)} />
+            </View>
           </Column>
           <Column>
             <Rows gap={description ? 2 : 0}>
               <Row>
-                <Text
-                  style={[styles.containerTitle, !description && { lineHeight: 0 }]}
-                  level={TextLevels.ONE}
-                  typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
-                >
+                <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                   {title}
                 </Text>
               </Row>
