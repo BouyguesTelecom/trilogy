@@ -1,6 +1,6 @@
+import { IconName, IconNameValues } from '@/components/icon'
+import { RadioProps } from '@/components/radio/RadioProps'
 import { TouchableOpacity } from 'react-native'
-import { IconName, IconNameValues } from '../../../../components/icon'
-import { RadioProps } from '../../../../components/radio/RadioProps'
 
 /**
  * Columns Item Interface

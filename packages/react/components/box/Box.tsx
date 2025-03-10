@@ -1,5 +1,4 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers/hashClassesHelpers'
+import { hashClass } from '@/helpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
@@ -48,9 +47,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
     },
     ref,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
     const classes = hashClass(
-      styled,
       clsx(
         'box',
         shadowless && is('shadowless'),
@@ -69,16 +66,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
 
     if (href) {
       return (
-        <a
-          id={id}
-          href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-          }}
-          className={classes}
-          {...others}
-        >
+        <a id={id} href={href} onClick={onClick && onClick} className={classes} {...others}>
           {children}
         </a>
       )
@@ -93,10 +81,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         ref={ref}
         id={id}
         style={onClick && { ...hoverStyle }}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
+        onClick={onClick && onClick}
         className={classes}
         {...others}
         {...(backgroundSrc && {

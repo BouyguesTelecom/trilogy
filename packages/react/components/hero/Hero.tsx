@@ -1,11 +1,10 @@
-import clsx from 'clsx'
-import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Hero Component
@@ -26,10 +25,7 @@ const Hero = React.forwardRef<HeroRef, HeroProps>(
     { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others },
     ref,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'hero',
         backgroundColor && has(getBackgroundClassName(backgroundColor)),
@@ -51,7 +47,7 @@ const Hero = React.forwardRef<HeroRef, HeroProps>(
         })}
         {...others}
       >
-        <div className={hashClass(styled, clsx('hero-body'))}>{children}</div>
+        <div className={hashClass(clsx('hero-body'))}>{children}</div>
       </section>
     )
   },

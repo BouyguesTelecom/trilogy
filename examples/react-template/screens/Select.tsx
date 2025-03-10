@@ -13,9 +13,9 @@ export const SelectView = (): JSX.Element => {
       <Section>
         <Title>Custom select</Title>
         <Divider />
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
         <Title level={TitleLevels.TWO}>Unique option</Title>
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
           custom
@@ -37,7 +37,7 @@ export const SelectView = (): JSX.Element => {
         <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
           Set value 3
         </Button>
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
@@ -61,10 +61,10 @@ export const SelectView = (): JSX.Element => {
         <Button onClick={() => setOptionNullable('opt_one')} variant='PRIMARY'>
           Set One
         </Button>
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
 
         <Title level={TitleLevels.TWO}>Multiple options</Title>
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
           multiple
@@ -86,7 +86,7 @@ export const SelectView = (): JSX.Element => {
           Set Venus
         </Button>
 
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
           multiple
@@ -115,10 +115,10 @@ export const SelectView = (): JSX.Element => {
       <Section>
         <Title>Native select {'(web)'}</Title>
         <Divider />
-        <Spacer size={SpacerSize.FOUR} />
+        <Spacer size={SpacerSize.SIX} />
         <Title level={TitleLevels.FOUR}>Not icon</Title>
         <Select
-          custom
+          native
           name='option'
           label='label'
           id='select-native-id'
@@ -141,7 +141,7 @@ export const SelectView = (): JSX.Element => {
         <Title level={TitleLevels.FOUR}>With icon</Title>
         <Select
           iconName='tri-alert'
-          custom
+          native
           name='option'
           label='label'
           id='select-native-id'

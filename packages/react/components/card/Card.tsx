@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -26,14 +25,11 @@ const Card = React.forwardRef<CardRef, CardProps>(
     { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
     ref,
   ) => {
-    const { styled } = useTrilogyContext()
-
     const hoverStyle: React.CSSProperties = {
-      cursor: 'pointer',
+      cursor: onClick ? 'pointer' : 'default',
     }
 
     const classes = hashClass(
-      styled,
       clsx(
         'card',
         flat && !floating && is('flat'),
@@ -53,11 +49,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
           ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={onClick}
           {...others}
           className={classes}
         />
