@@ -69,3 +69,8 @@ $body-line-height: 1.5 !default;
 .header {
     z-index: zindex('large');
 }
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
