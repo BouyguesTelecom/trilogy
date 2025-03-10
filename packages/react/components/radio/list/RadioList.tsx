@@ -1,3 +1,4 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getJustifiedClassName } from '@/objects'
@@ -39,4 +40,5 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
   },
 )
 
+RadioList.displayName = ComponentName.RadioList
 export default RadioList
