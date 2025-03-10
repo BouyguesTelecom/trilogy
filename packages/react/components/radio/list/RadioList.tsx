@@ -1,10 +1,11 @@
-import * as React from 'react'
-import { RadioListWebProps } from './RadioListProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
+import * as React from 'react'
+import { RadioListRef, RadioListWebProps } from './RadioListProps'
 
 /**
  * Radio List Component
@@ -15,32 +16,29 @@ import { getJustifiedClassName } from '@/objects'
  * @param verticalDesktop {boolean} Verical radios
  * @param horizontalMobile {boolean} espect mobile screen
  */
-const RadioList = ({
-  className,
-  id,
-  align,
-  horizontalMobile,
-  verticalDesktop,
-  ...others
-}: RadioListWebProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
+  ({ className, id, align, horizontalMobile, verticalDesktop, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  return (
-    <div
-      id={id}
-      className={hashClass(
-        styled,
-        clsx(
-          'radios',
-          className,
-          align && is(getJustifiedClassName(align)),
-          horizontalMobile && is('horizontal-mobile'),
-          verticalDesktop && is('vertical-desktop'),
-        ),
-      )}
-      {...others}
-    />
-  )
-}
+    return (
+      <div
+        ref={ref}
+        id={id}
+        className={hashClass(
+          styled,
+          clsx(
+            'radios',
+            className,
+            align && is(getJustifiedClassName(align)),
+            horizontalMobile && is('horizontal-mobile'),
+            verticalDesktop && is('vertical-desktop'),
+          ),
+        )}
+        {...others}
+      />
+    )
+  },
+)
 
+RadioList.displayName = ComponentName.RadioList
 export default RadioList
