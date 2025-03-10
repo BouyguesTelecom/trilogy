@@ -18,7 +18,6 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
     const styles = StyleSheet.create({
       boxContent: {
         padding: 16,
-        justifyContent: 'center',
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         borderRadius: 6,
         flex: fullHeight ? 1 : undefined,
@@ -33,7 +32,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
 
     if (backgroundSrc) {
       return (
-        <ImageBackground source={{ uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
+        <ImageBackground source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
           {content}
         </ImageBackground>
       )

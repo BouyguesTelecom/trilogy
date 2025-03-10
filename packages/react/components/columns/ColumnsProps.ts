@@ -14,6 +14,7 @@ export interface ColumnsProps extends AlignableProps, CommonProps {
   fullBleed?: boolean
   mobile?: boolean
   marginless?: boolean
+  fullheight?: boolean
 }
 
 export type ColumnsRef = HTMLDivElement
