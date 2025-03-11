@@ -184,8 +184,8 @@ const Input = React.forwardRef<InputRef, InputProp>((
       : customValidator
 
   useEffect(() => {
-    setValue(value || '')
-  }, [value])
+    setValue(value ?? defaultValue ?? '')
+  }, [value, defaultValue])
 
   useEffect(() => {
     setIsFocused(focused ?? false)

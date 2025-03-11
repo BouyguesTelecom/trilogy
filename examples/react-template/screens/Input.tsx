@@ -65,6 +65,8 @@ export const InputScreen = (): JSX.Element => {
         onChange={(e) => setInputSearch(e.inputValue)}
       />
 
+      <Button onClick={() => setInputSearch('Toto')}>Set Input Value to Toto</Button>
+
       <Input
         label='Input label not dynamic with sample'
         sample='Input sample'
