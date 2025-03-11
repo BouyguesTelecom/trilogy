@@ -20,7 +20,10 @@ import SelectOption from './option'
  * @param nullable {boolean} Unselect Select Option Item
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
-  ({ children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, ...others }, ref): JSX.Element => {
+  (
+    { children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, status, ...others },
+    ref,
+  ): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
     const [selectedNames, setSelectedNames] = React.useState<string[]>([])
     const [display, setDisplay] = useState<boolean>(false)
@@ -151,6 +154,7 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
         trigger={
           <TouchableOpacity onPress={handleOpenCloseModal}>
             <Input
+              status={status}
               ref={ref}
               onBlur={onBlur as (event: unknown) => void}
               onIconClick={handleOpenCloseModal}
