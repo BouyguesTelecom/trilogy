@@ -7,7 +7,7 @@ import { SelectOption } from '@/components/select'
 import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has } from '@/services/classify'
+import { has, is } from '@/services/classify'
 
 const SelectNative = React.forwardRef<SelectRef, SelectProps>(
   (
@@ -26,6 +26,7 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
       multiple,
       className,
       accessibilityLabel,
+      status,
       ...others
     },
     ref,
@@ -57,7 +58,7 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
           <div className={controlClass}>
             <select
               ref={ref as React.RefObject<HTMLSelectElement>}
-              className={hashClass(styled, clsx(!label && 'no-label'))}
+              className={hashClass(styled, clsx(!label && 'no-label', status && is(status)))}
               value={selectedValues}
               aria-label={accessibilityLabel}
               data-testid={testId}
