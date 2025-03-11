@@ -1,27 +1,28 @@
-import * as React from 'react'
 import {
   Alert,
-  Container,
-  Spacer,
-  TitleLevels,
-  View,
-  Title,
-  Divider,
   AutoLayout,
-  IconName,
   Button,
+  Container,
+  Divider,
+  IconName,
   Section,
+  Spacer,
   SpacerSize,
   Text,
+  Title,
+  TitleLevels,
+  View,
 } from '@trilogy-ds/react/components'
-import { StatusState, TypographyBold } from '@trilogy-ds/react/objects'
-import { useContext, useState } from 'react'
-import ToasterContext from '@trilogy-ds/react/lib/components/alert/context/ToasterContext'
 import { ToasterAlertProvider } from '@trilogy-ds/react/lib/components/alert'
 import { ToasterAlertFloat, ToasterAlertPosition } from '@trilogy-ds/react/lib/components/alert/AlertProps'
+import ToasterContext from '@trilogy-ds/react/lib/components/alert/context/ToasterContext'
+import { StatusState } from '@trilogy-ds/react/objects'
+import * as React from 'react'
+import { useContext, useState } from 'react'
 
 export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
+    const [error, setError] = useState(true)
     const [offset] = useState(50)
     const [duration] = useState(1000)
     const [testId] = useState('toasterId')
@@ -31,6 +32,13 @@ export const AlertScreen = (): JSX.Element => {
     )
 
     const { show } = useContext(ToasterContext)
+
+    React.useEffect(() => {
+      if (error) {
+        show({ title: 'Erreur', description: 'Erreur...', status: StatusState.ERROR })
+        console.log('error')
+      }
+    }, [error, show])
 
     const onClickToaster = () => {
       show({
