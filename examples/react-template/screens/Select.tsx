@@ -1,4 +1,4 @@
-import { Button, Divider, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react'
+import { Button, Divider, isMobile, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react'
 import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
@@ -25,18 +25,20 @@ export const SelectView = (): JSX.Element => {
     <>
       <Section>
         <Title>Custom select</Title>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Select label={'label'} {...register('gender')}>
-            {POSTALCODE.map((postalcode) => (
-              <SelectOption
-                key={postalcode.code}
-                value={postalcode.code}
-                label={postalcode.code + ' - ' + postalcode.name}
-              />
-            ))}
-          </Select>
-          <input type='submit' />
-        </form>
+        {!isMobile && (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Select label={'label'} {...register('gender')}>
+              {POSTALCODE.map((postalcode) => (
+                <SelectOption
+                  key={postalcode.code}
+                  value={postalcode.code}
+                  label={postalcode.code + ' - ' + postalcode.name}
+                />
+              ))}
+            </Select>
+            <input type='submit' />
+          </form>
+        )}
 
         <Divider />
         <Spacer size={SpacerSize.FOUR} />
