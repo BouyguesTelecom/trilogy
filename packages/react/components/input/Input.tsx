@@ -115,7 +115,7 @@ const Input = React.forwardRef<InputRef, InputProp>((
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const [_value, setValue] = useState<string>(defaultValue ?? '')
+  const [_value, setValue] = useState(defaultValue ?? '')
   const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
   const [isDirty, setIsDirty] = useState<boolean>(false)
   const [isTouched, setIsTouched] = useState<boolean>(false)
@@ -184,8 +184,8 @@ const Input = React.forwardRef<InputRef, InputProp>((
       : customValidator
 
   useEffect(() => {
-    setValue(value ?? defaultValue ?? '')
-  }, [value, defaultValue])
+    setValue(value || '')
+  }, [value])
 
   useEffect(() => {
     setIsFocused(focused ?? false)
@@ -236,8 +236,8 @@ const Input = React.forwardRef<InputRef, InputProp>((
           aria-label={accessibilityLabel}
           type={inputType}
           className={classes}
-          value={_value}
-          defaultValue={_value}
+          value={value}
+          defaultValue={defaultValue}
           name={name}
           onSubmit={onSubmit}
           ref={ref}

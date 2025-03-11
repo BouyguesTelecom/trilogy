@@ -44,14 +44,14 @@ export const InputScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
 
-      <form onSubmit={form.handleSubmit(() => alert("Submitted"))}>
+      <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
         <Input
           {...form.register("toto", {required: true})}
         />
         <Button type="submit">Submit</Button>
       </form>
 
-      <Spacer size={SpacerSize.FIVE}/>
+      {/*<Spacer size={SpacerSize.FIVE}/>*/}
 
       <Input
         value={inputSearch}
