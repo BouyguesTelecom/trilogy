@@ -1,6 +1,7 @@
 import { Button, Divider, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react'
 import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
+import {useForm} from "react-hook-form";
 
 export const SelectView = (): JSX.Element => {
   const [options, setOptions] = React.useState<string[]>(['opt_one', 'Venus'])
@@ -8,10 +9,28 @@ export const SelectView = (): JSX.Element => {
   const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
 
+  const form = useForm<{
+    toto: string
+  }>({
+    defaultValues: {
+      toto: "test value"
+    }
+  });
+
+  const POSTALCODE = [{code : '92300', name: 'haut de cuisse'}, {code: '91800', name: 'haut de france'}, {code: '92800', name: 'tome de savoie'}]
+
   return (
     <>
       <Section>
         <Title>Custom select</Title>
+        <Select
+          label={'label'}
+          name={'test'}
+          {...form.register('firstName', { required: true })} >
+            {POSTALCODE.map((postalcode) => <SelectOption key={postalcode.code} value={postalcode.code} label={postalcode.code+' - '+postalcode.name}
+          />)}
+        </Select>
+
         <Divider />
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.TWO}>Unique option</Title>
