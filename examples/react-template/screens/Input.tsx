@@ -1,4 +1,4 @@
-import { TrilogyColor } from '@trilogy-ds/react'
+import {Spacer, SpacerSize, TrilogyColor} from '@trilogy-ds/react'
 import {
   AutoLayout,
   Divider,
@@ -9,14 +9,24 @@ import {
   Section,
   Title,
   TitleLevels,
+  Button
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { useEffect } from 'react'
+import {useEffect} from 'react'
+import { useForm } from "react-hook-form";
 
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
   const [inputSearch, setInputSearch] = React.useState('')
+
+  const form = useForm<{
+    toto: string
+  }>({
+    defaultValues: {
+      toto: "test value"
+    }
+  });
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -33,6 +43,16 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+
+      <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
+        <Input
+          {...form.register("toto", {required: true})}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+
+      {/*<Spacer size={SpacerSize.FIVE}/>*/}
+
       <Input
         value={inputSearch}
         label='Input label not dynamic with sample'
@@ -44,6 +64,8 @@ export const InputScreen = (): JSX.Element => {
         type='search'
         onChange={(e) => setInputSearch(e.inputValue)}
       />
+
+      <Button onClick={() => setInputSearch('Toto')}>Set Input Value to Toto</Button>
 
       <Input
         label='Input label not dynamic with sample'
@@ -70,7 +92,7 @@ export const InputScreen = (): JSX.Element => {
         onChange={(e) => setLeavingDate(e.inputValue)}
       />
 
-      <Input accessibilityLabel={'input base'} placeholder={'Label input'} />
+      <Input accessibilityLabel={'input base'} placeholder={'Label input'}/>
 
       <Input
         minLength={10}
@@ -168,7 +190,7 @@ export const InputScreen = (): JSX.Element => {
 
       <AutoLayout>
         <Title level={TitleLevels.THREE}>Champs</Title>
-        <Divider />
+        <Divider/>
 
         <Input
           forceControl
@@ -185,19 +207,19 @@ export const InputScreen = (): JSX.Element => {
           }}
         />
 
-        <Input type={InputType.TEXT} placeholder='Input type texte' />
-        <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input type={InputType.PASSWORD} placeholder='Input type password' />
-        <Input type={InputType.DATE} placeholder='Input type date' />
-        <Input type={InputType.EMAIL} placeholder='Input type mail' />
-        <Input iconNameLeft='tri-alert' type={InputType.SEARCH} placeholder='Input type mail' />
+        <Input type={InputType.TEXT} placeholder='Input type texte'/>
+        <Input type={InputType.NUMBER} placeholder='Input type number'/>
+        <Input type={InputType.PASSWORD} placeholder='Input type password'/>
+        <Input type={InputType.DATE} placeholder='Input type date'/>
+        <Input type={InputType.EMAIL} placeholder='Input type mail'/>
+        <Input iconNameLeft='tri-alert' type={InputType.SEARCH} placeholder='Input type mail'/>
         <Input
           help='This password does not meet the security requirements.'
           type={InputType.TEXT}
           status={InputStatus.ERROR}
           placeholder='This is an error message'
         />
-        <Input help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder' />
+        <Input help='this is my help message' type={InputType.TEXT} placeholder='This is my placeholder'/>
         <Input
           help='this is my help message'
           type={InputType.TEXT}
@@ -215,11 +237,11 @@ export const InputScreen = (): JSX.Element => {
             uppercase: true,
             number: true,
             specialChars: true,
-            length: { max: 4, min: 2 },
+            length: {max: 4, min: 2},
           }}
         />
 
-        <Input type='password' help='test' placeholder='this is my placeholder' />
+        <Input type='password' help='test' placeholder='this is my placeholder'/>
         <Input
           defaultValue='My 2nd default input value'
           help='this is my help message'
