@@ -182,12 +182,15 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   const [duration, setDuration] = useState(5000)
   const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const showToast = (params: ToasterStatusProps) => {
-    setToasterState(params)
-    params.onShow?.()
-    params.duration && params.duration > 0 && setDuration(params.duration)
-    timeRef.current && clearTimeout(timeRef.current)
-  }
+  const showToast = React.useCallback(
+    (params: ToasterStatusProps) => {
+      setToasterState(params)
+      params.onShow?.()
+      params.duration && params.duration > 0 && setDuration(params.duration)
+      timeRef.current && clearTimeout(timeRef.current)
+    },
+    [timeRef],
+  )
 
   useEffect(() => {
     timeRef.current = setTimeout(() => {
