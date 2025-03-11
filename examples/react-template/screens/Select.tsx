@@ -26,7 +26,7 @@ export const SelectView = (): JSX.Element => {
       <Section>
         <Title>Custom select</Title>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Select label={'label'} {...register('gender')} ref={ref}>
+          <Select label={'label'} {...register('gender')}>
             {POSTALCODE.map((postalcode) => (
               <SelectOption
                 key={postalcode.code}
