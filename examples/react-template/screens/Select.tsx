@@ -1,17 +1,43 @@
 import { Button, Divider, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react'
 import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
 import * as React from 'react'
+import { useForm } from 'react-hook-form'
 
 export const SelectView = (): JSX.Element => {
   const [options, setOptions] = React.useState<string[]>(['opt_one', 'Venus'])
   const [optionsNullable, setOptionsNullable] = React.useState<string[]>(['opt_one', 'opt_two'])
   const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
+  const ref = React.useRef(null)
 
+  React.useEffect(() => {
+    console.log(ref.current)
+  }, [ref])
+
+  const POSTALCODE = [
+    { code: '92300', name: 'City 1' },
+    { code: '91800', name: 'City 2' },
+    { code: '92800', name: 'City 3' },
+  ]
+  const { register, handleSubmit } = useForm()
+  const onSubmit = (data) => console.log(data)
   return (
     <>
       <Section>
         <Title>Custom select</Title>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Select label={'label'} {...register('gender')}>
+            {POSTALCODE.map((postalcode) => (
+              <SelectOption
+                key={postalcode.code}
+                value={postalcode.code}
+                label={postalcode.code + ' - ' + postalcode.name}
+              />
+            ))}
+          </Select>
+          <input type='submit' />
+        </form>
+
         <Divider />
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.TWO}>Unique option</Title>
@@ -118,7 +144,7 @@ export const SelectView = (): JSX.Element => {
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.FOUR}>Not icon</Title>
         <Select
-          custom
+          status='error'
           name='option'
           label='label'
           id='select-native-id'
@@ -140,8 +166,8 @@ export const SelectView = (): JSX.Element => {
 
         <Title level={TitleLevels.FOUR}>With icon</Title>
         <Select
+          status='success'
           iconName='tri-alert'
-          custom
           name='option'
           label='label'
           id='select-native-id'
