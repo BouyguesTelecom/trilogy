@@ -115,7 +115,7 @@ const Input = React.forwardRef<InputRef, InputProp>((
   inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
   inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
-  const [_value, setValue] = useState(defaultValue ?? '')
+  const [_value, setValue] = useState<string>(defaultValue ?? '')
   const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
   const [isDirty, setIsDirty] = useState<boolean>(false)
   const [isTouched, setIsTouched] = useState<boolean>(false)
