@@ -15,9 +15,9 @@ export const SelectView = (): JSX.Element => {
   }, [ref])
 
   const POSTALCODE = [
-    { code: '92300', name: 'haut de cuisse' },
-    { code: '91800', name: 'haut de france' },
-    { code: '92800', name: 'tome de savoie' },
+    { code: '92300', name: 'City 1' },
+    { code: '91800', name: 'City 2' },
+    { code: '92800', name: 'City 3' },
   ]
   const { register, handleSubmit } = useForm()
   const onSubmit = (data) => console.log(data)
