@@ -2,6 +2,7 @@ import { TextInput } from 'react-native'
 import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { IconName, IconNameValues } from '../icon'
+import { SelectStatus, SelectStatusValues } from './SelectEnum'
 
 export interface ISelectOption {
   value: string | undefined
@@ -41,6 +42,7 @@ interface Props {
   multiple?: boolean
   placeholder?: string
   custom?: boolean
+  status?: SelectStatus | SelectStatusValues
 }
 
 export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, CommonProps, Props {
