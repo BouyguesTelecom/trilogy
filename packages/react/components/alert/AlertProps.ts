@@ -6,6 +6,7 @@ import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Dev } from '../../objects/facets/Dev'
 import { StatusProps } from '../../objects/facets/Status'
+import { AlertMarkup, AlertMarkupValues } from './AlertEnum'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
@@ -32,6 +33,7 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
   display?: boolean
   onShow?: () => void
   onHide?: () => void
+  markup?: AlertMarkup | AlertMarkupValues
 }
 
 /**
@@ -44,6 +46,7 @@ export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev, 
   display?: boolean
   toaster?: boolean
   banner?: boolean
+  markup?: AlertMarkup | AlertMarkupValues
 }
 
 export type AlertRef = HTMLDivElement
