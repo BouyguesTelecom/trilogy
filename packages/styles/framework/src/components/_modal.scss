@@ -149,6 +149,15 @@ body:has(.modal.is-active) {
         &::before {
           background-color: getColor('font');
         }
+
+        &:focus-visible,
+        &:focus:focus-visible {
+          outline: 2px solid getColor('font') !important;
+          outline-offset: 2px;
+        }
+        &:focus{
+          background-color: transparent !important;
+        }
       }
     }
 
