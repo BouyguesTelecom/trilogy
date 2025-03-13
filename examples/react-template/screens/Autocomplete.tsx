@@ -29,7 +29,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
   const [value, setValue] = useState<string>('')
   const [autoCompleteInputValue, setAutoCompleteInputValue] = useState<string>('')
   const [status, setStatus] = useState<boolean>(false)
-  const [data] = [['name', 'age', 'car', 'test', 'trilogy']]
+  const [data] = [['name the song', 'age', 'car', 'test', 'trilogy']]
 
   const onChange = (e) => {
     console.log('OnChange Autocomplete : ', e)
