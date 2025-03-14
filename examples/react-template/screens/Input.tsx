@@ -45,7 +45,7 @@ export const InputScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       {!isMobile && (
         <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
-          <Input {...form.register('toto', { required: true })} />
+          <Input {...form.register('toto', { required: true })} accessibilityLabel='label' label='label' />
           <Button type='submit'>Submit</Button>
         </form>
       )}
