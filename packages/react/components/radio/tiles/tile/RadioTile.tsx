@@ -22,6 +22,7 @@ import React from 'react'
  * @param horizontal Horizontal radio
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required radio
  */
 const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   checked,
@@ -36,6 +37,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   description,
   icon,
   horizontal,
+  required,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -50,6 +52,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
         name={name}
         value={value}
         checked={checked}
+        required={required}
         onChange={(e) => {
           if (onChange && !disabled && !readonly) {
             onChange({

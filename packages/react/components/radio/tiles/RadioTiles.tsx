@@ -15,10 +15,13 @@ import * as React from 'react'
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, className, children, align, verticalAlign, ...others }, ref): JSX.Element => {
+const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, className, children, align, verticalAlign, accessibilityLabelledBy, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
+
   let alignClass = null
+
   if (align) {
     alignClass =
       (getAlignClassName(align) === 'aligned-start' && is('justified-start')) ||
@@ -26,7 +29,9 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, class
       (getAlignClassName(align) === 'aligned-end' && is('justified-end')) ||
       null
   }
+
   let verticalAlignClass = null
+
   if (verticalAlign) {
     verticalAlignClass =
       (getAlignClassName(verticalAlign) === 'aligned-start' && is('aligned-start')) ||
@@ -35,10 +40,18 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, class
       null
   }
 
+  const isRequired = React.Children.toArray(children).some(
+    (child) =>
+      React.isValidElement(child) && child.props.required,
+  )
+
   return (
     <div
       ref={ref}
       id={id}
+      role={"radiogroup"}
+      aria-labelledby={accessibilityLabelledBy}
+      aria-required={isRequired ? 'true' : undefined}
       className={hashClass(
         styled,
         clsx('radio-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),

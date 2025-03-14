@@ -13,17 +13,26 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param align {boolean} align radios
- * @param verticalDesktop {boolean} Verical radios
- * @param horizontalMobile {boolean} espect mobile screen
+ * @param verticalDesktop {boolean} Vertical radios
+ * @param horizontalMobile {boolean} Expect mobile screen
+ * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+
+    const isRequired = React.Children.toArray(children).some(
+      (child) =>
+        React.isValidElement(child) && child.props.required,
+    )
 
     return (
       <div
         ref={ref}
         id={id}
+        role="radiogroup"
+        aria-labelledby={accessibilityLabelledBy}
+        aria-required={isRequired ? 'true' : undefined}
         className={hashClass(
           styled,
           clsx(
@@ -35,7 +44,9 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
           ),
         )}
         {...others}
-      />
+      >
+        {children}
+      </div>
     )
   },
 )
