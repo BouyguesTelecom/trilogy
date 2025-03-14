@@ -1,4 +1,4 @@
-import { AccordionItemProps, AccordionItemRef, OnClickEvent } from '@/components/accordion/item/AccordionItemProps'
+import { AccordionItemProps, AccordionItemRef } from '@/components/accordion/item/AccordionItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -34,7 +34,21 @@ const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
         ref={ref}
         id={id}
         {...others}
-        onClick={(e: OnClickEvent) => (onClick ? onClick(e) : null)}
+        onClick={(e) => {
+          if (disabled) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+          if (onClick && !disabled) {
+            onClick(e)
+          }
+        }}
+        onKeyDown={(e) => {
+          if (disabled) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        }}
       >
         {children}
       </details>
