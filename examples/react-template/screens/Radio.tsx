@@ -27,6 +27,7 @@ export const RadioScreen = (): JSX.Element => {
             <RadioList>
               <Radio
                 checked={radio === 'one'}
+                required={true}
                 name='name-1'
                 label='Label'
                 value='one'
