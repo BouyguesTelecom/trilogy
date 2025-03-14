@@ -21,6 +21,7 @@ export interface RadioListWebProps extends RadioListProps, CommonProps {
   className?: string
   horizontalMobile?: boolean
   verticalDesktop?: boolean
+  accessibilityLabelledBy?: string;
 }
 
 export type RadioListRef = HTMLDivElement

@@ -15,8 +15,9 @@ import * as React from 'react'
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
+ * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, className, children, align, verticalAlign, ...others }, ref): JSX.Element => {
+const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, className, children, align, verticalAlign, accessibilityLabelledBy, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   let alignClass = null
   if (align) {
@@ -39,6 +40,8 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, class
     <div
       ref={ref}
       id={id}
+      role={"radiogroup"}
+      aria-labelledby={accessibilityLabelledBy}
       className={hashClass(
         styled,
         clsx('radio-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
