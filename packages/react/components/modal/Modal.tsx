@@ -5,12 +5,9 @@ import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import shortid from 'shortid'
-import { ModalProps, ModalRef } from './ModalProps'
+import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
-
-const modalGeneratedId = shortid.generate()
+import { ModalProps, ModalRef } from './ModalProps'
 
 /**
  * Modal Component
@@ -25,131 +22,134 @@ const modalGeneratedId = shortid.generate()
  * @param accessibilityLabel {string} Accessibility label
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Modal = React.forwardRef<ModalRef, ModalProps>(({
-  children,
-  className,
-  id,
-  accessibilityLabel = 'Close',
-  active,
-  onClose,
-  panel,
-  size,
-  hideCloseButton = false,
-  trigger,
-  title,
-  ...others
-}, ref): JSX.Element => {
-  const modal = useRef<HTMLDivElement>(null)
-  const [display, setDisplay] = useState<boolean>(active || false)
-  const { styled } = useTrilogyContext()
-  const refsActions = useRef<Array<HTMLButtonElement | null>>([])
-  const refBtnModal = useRef<any>(null)
-  const refModal = useRef<HTMLDivElement>(null)
-  const [, setIndexFocusable] = useState(0)
-
-  const handleClose = React.useCallback(
-    (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
-      setDisplay(false)
-      refBtnModal.current && refBtnModal.current.focus()
-      setIndexFocusable(0)
-      if (onCloseFunc) onCloseFunc(e)
+const Modal = React.forwardRef<ModalRef, ModalProps>(
+  (
+    {
+      children,
+      className,
+      id,
+      accessibilityLabel = 'Close',
+      active,
+      onClose,
+      panel,
+      size,
+      hideCloseButton = false,
+      trigger,
+      title,
+      ...others
     },
-    [refBtnModal.current],
-  )
+    ref,
+  ): JSX.Element => {
+    const modalContentRef = useRef<HTMLDivElement>(null)
+    const [display, setDisplay] = useState<boolean>(active || false)
+    const { styled } = useTrilogyContext()
+    const refBtnModal = useRef<any>(null)
+    const refModal = useRef<HTMLDivElement>(null)
+    const modalGeneratedId = useId()
+    const focusableElementsRef = useRef<NodeListOf<HTMLElement> | null>(null)
+    const currentFocusIndexRef = useRef<number>(0)
 
-  const classes = hashClass(
-    styled,
-    clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className),
-  )
+    const handleClose = React.useCallback(
+      (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
+        setDisplay(false)
+        refBtnModal.current && refBtnModal.current.focus()
+        if (onCloseFunc) onCloseFunc(e)
+      },
+      [refBtnModal.current],
+    )
 
-  const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (display && refsActions.current) {
-        const refs = refsActions.current.filter((ref) => ref)
-        const { key } = event
-        if (key === 'Tab') {
-          event.preventDefault()
-          setIndexFocusable((prev) => {
-            const nextIndex = (prev + 1) % refs.length
-            refs[nextIndex] && refs[nextIndex]?.focus()
-            return nextIndex
-          })
+    const classes = hashClass(
+      styled,
+      clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className),
+    )
+
+    const onKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLDivElement>) => {
+        if (display && e.key === 'Tab') {
+          e.preventDefault()
+          if (focusableElementsRef.current) {
+            currentFocusIndexRef.current = e.shiftKey
+              ? (currentFocusIndexRef.current - 1) % focusableElementsRef.current.length
+              : (currentFocusIndexRef.current + 1) % focusableElementsRef.current.length
+
+            focusableElementsRef.current[currentFocusIndexRef.current].focus()
+          }
         }
-        if (key === 'Escape') {
-          event.preventDefault()
+
+        if (display && e.key === 'Escape') {
+          e.preventDefault()
           setDisplay(false)
           refBtnModal.current && refBtnModal.current.focus()
-          setIndexFocusable(0)
+          currentFocusIndexRef.current = 0
           onClose && onClose()
         }
+      },
+      [display, focusableElementsRef, currentFocusIndexRef, refBtnModal, onClose],
+    )
+
+    useEffect(() => {
+      setDisplay((prev) => {
+        if (prev) {
+          refBtnModal.current && refBtnModal.current.focus()
+          currentFocusIndexRef.current = 0
+        }
+        return active || false
+      })
+    }, [active, currentFocusIndexRef, refBtnModal])
+
+    useEffect(() => {
+      display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
+    }, [display, focusableElementsRef])
+
+    useEffect(() => {
+      if (modalContentRef.current) {
+        focusableElementsRef.current = modalContentRef.current.querySelectorAll(
+          'button, input, a, select, textarea, details',
+        )
       }
-    },
-    [refsActions.current.length, display],
-  )
+    }, [modalContentRef, focusableElementsRef])
 
-  useEffect(() => {
-    display && refsActions.current[0] && refsActions.current[0].focus()
-  }, [display, refsActions?.current.length])
-
-  useEffect(() => {
-    setDisplay((prev) => {
-      if (prev) {
-        refBtnModal.current && refBtnModal.current.focus()
-        setIndexFocusable(0)
-      }
-      return active || false
-    })
-  }, [active])
-
-  useEffect(() => {
-    if (refModal.current) {
-      const footer = refModal.current.querySelector('[data-modal-footer]')
-      const getCTA = footer?.querySelectorAll('button')
-      if (getCTA) getCTA.forEach((el, i) => (refsActions.current[i + 1] = el))
-    }
-  }, [refModal.current])
-
-  return (
-    <div onKeyDown={onKeyDown} ref={refModal}>
-      {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
-      <div
-        ref={ref}
-        id={id}
-        className={classes}
-        role='dialog'
-        aria-labelledby={modalGeneratedId}
-        aria-modal={true}
-        onClick={(e) => {
-          if (!modal?.current?.contains(e.target as Node)) {
-            handleClose(onClose, e)
-          }
-        }}
-        {...others}
-      >
-        <div ref={modal} className={hashClass(styled, clsx('modal-content'))}>
-          <div className={hashClass(styled, clsx('modal-header'))}>
-            {hideCloseButton !== true && (
-              <button
-                onClick={(e: React.MouseEvent) => {
-                  handleClose(onClose, e)
-                }}
-                className={hashClass(styled, clsx('modal-close', is('large')))}
-                type={ButtonType.BUTTON}
-                ref={(el) => el && (refsActions.current[0] = el)}
-              >
-                {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
-              </button>
-            )}
-            <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
-              {title}
-            </Title>
+    return (
+      <div onKeyDown={onKeyDown} ref={refModal}>
+        {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
+        <div
+          ref={ref}
+          id={id}
+          className={classes}
+          role='dialog'
+          aria-labelledby={modalGeneratedId}
+          aria-modal={true}
+          onClick={(e) => {
+            if (!modalContentRef?.current?.contains(e.target as Node)) {
+              handleClose(onClose, e)
+            }
+          }}
+          {...others}
+        >
+          <div ref={modalContentRef} className={hashClass(styled, clsx('modal-content'))}>
+            <div className={hashClass(styled, clsx('modal-header'))}>
+              {hideCloseButton !== true && (
+                <button
+                  onClick={(e: React.MouseEvent) => {
+                    handleClose(onClose, e)
+                  }}
+                  className={hashClass(styled, clsx('modal-close', is('large')))}
+                  type={ButtonType.BUTTON}
+                >
+                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
+                </button>
+              )}
+              <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
+                {title}
+              </Title>
+            </div>
+            {children && children}
           </div>
-          {children && children}
         </div>
       </div>
-    </div>
-  )
-})
+    )
+  },
+)
 
 Modal.displayName = ComponentName.Modal
 
