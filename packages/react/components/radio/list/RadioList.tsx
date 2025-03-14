@@ -15,15 +15,18 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param align {boolean} align radios
  * @param verticalDesktop {boolean} Verical radios
  * @param horizontalMobile {boolean} espect mobile screen
+ * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
       <div
         ref={ref}
         id={id}
+        role={"radiogroup"}
+        aria-labelledby={accessibilityLabelledBy}
         className={hashClass(
           styled,
           clsx(

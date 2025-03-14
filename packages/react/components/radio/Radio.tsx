@@ -17,6 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param value {string} Value for radio
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required radio
  */
 const Radio = React.forwardRef<RadioRef, RadioProps>(({
   checked,
@@ -28,6 +29,7 @@ const Radio = React.forwardRef<RadioRef, RadioProps>(({
   onChange,
   name,
   value,
+  required,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -42,6 +44,7 @@ const Radio = React.forwardRef<RadioRef, RadioProps>(({
         name={name}
         value={value}
         checked={checked}
+        required={required}
         onChange={(e) => {
           if (onChange && !disabled && !readonly) {
             onChange({
