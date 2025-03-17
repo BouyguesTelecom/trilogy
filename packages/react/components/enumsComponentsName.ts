@@ -30,7 +30,7 @@ export enum ComponentName {
   CardContent = 'CardContent',
   CircleIcon = 'CircleIcon',
   Checkbox = 'Checkbox',
-  CheckboxesList = 'CheckboxesList',
+  CheckboxList = 'CheckboxList',
   CheckboxTiles = 'CheckboxTitles',
   CheckboxTile = 'CheckboxTitle',
   Columns = 'Columns',
