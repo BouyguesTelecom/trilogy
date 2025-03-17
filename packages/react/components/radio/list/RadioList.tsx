@@ -22,11 +22,6 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
   ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
-    const isRequired = React.Children.toArray(children).some(
-      (child) =>
-        React.isValidElement(child) && child.props.required,
-    )
-
     return (
       <div
         ref={ref}
