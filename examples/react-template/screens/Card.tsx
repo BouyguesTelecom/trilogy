@@ -63,7 +63,6 @@ export const CardScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
       <Spacer size={SpacerSize.FOUR} />
       <Card active>
-        <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
         <CardContent>
           <Title overline>Desktop Card Vertical Markup A</Title>
           <Title level={TitleLevels.ONE}>Card Title</Title>
@@ -74,6 +73,7 @@ export const CardScreen = (): JSX.Element => {
             Skeleton toogle click
           </Button>
         </CardContent>
+        <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
       </Card>
 
       <Title level={TitleLevels.TWO}>CardImage & markup </Title>
