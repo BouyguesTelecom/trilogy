@@ -9,7 +9,7 @@ import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
 
 /**
- * Radio List Component
+ * RadioList Component
  * @param children {ReactNode} CheckboxList children
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes

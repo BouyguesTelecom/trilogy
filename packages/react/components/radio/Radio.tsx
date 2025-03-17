@@ -6,7 +6,7 @@ import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * radio Component
+ * Radio
  * @param checked {boolean} Checked radio
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly radio
