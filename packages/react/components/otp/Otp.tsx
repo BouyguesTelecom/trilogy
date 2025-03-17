@@ -170,7 +170,6 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
         {codeInput.map((digit, idx) => (
           <input
             aria-disabled={disabled}
-            tabIndex={0}
             key={idx}
             type='text'
             inputMode='numeric'
@@ -184,6 +183,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
             disabled={disabled}
+            title={`Number ${idx + 1} of ${length} of the one-time code`}
             {...others}
           />
         ))}
