@@ -6,7 +6,7 @@ import {
   SpacerSize,
   Title,
   TitleLevels,
-} from "@trilogy-ds/react/components";
+} from "@trilogy-ds/react/lib/components";
 
 export const OtpScreen = (): JSX.Element => {
   return (
