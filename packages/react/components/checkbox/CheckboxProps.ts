@@ -23,6 +23,7 @@ interface CheckboxCommonProps extends Accessibility, CommonProps {
   onChange?: CheckboxChangeEventHandler
   name?: string
   value?: string
+  required?: boolean
 }
 
 interface CheckboxWithLabel extends CheckboxCommonProps {
