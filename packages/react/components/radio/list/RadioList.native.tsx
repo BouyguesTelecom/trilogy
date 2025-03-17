@@ -15,8 +15,8 @@ const SPACING_MATRIX: SpacingMatrix = [
 ]
 
 /**
- * CheckboxList Native Component
- * @param children {ReactNode} CheckboxList children
+ * RadioList Native Component
+ * @param children {ReactNode} RadioList children
  * @param autolayout {boolean} Apply auto-layout rules
  */
 const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children }, ref): JSX.Element => {

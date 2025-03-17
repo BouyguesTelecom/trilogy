@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 
 /**
- * Columns Item Component - Columns Child
+ * RadioTiles
  * @param id {string}
  * @param children {ReactNode}
  * @param align { Alignable | AlignableValues} align content
