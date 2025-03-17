@@ -5,9 +5,8 @@ import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { OtpProps, OtpRef } from './OtpProps'
+import { OtpProps, OtpPropsAccessibility, OtpRef } from './OtpProps'
 import { ComponentName } from '../enumsComponentsName'
-import { title } from './Otp.traductions.json'
 
 type NumberOrNull = number | null
 
@@ -114,6 +113,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
+  const titleAttr = (others as OtpPropsAccessibility)?.title || 'Number :x of :y of the one-time code'
 
   useEffect(() => {
     if (!disabled) {
@@ -188,7 +188,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
             disabled={disabled}
-            title={formatTranslation(title, String(idx + 1), String(length))}
+            title={formatTranslation(titleAttr, String(idx + 1), String(length))}
             {...others}
           />
         ))}
