@@ -16,9 +16,11 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  * @param className {string} Additionnal CSS Classes
  */
 const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
-  ({ id, className, children, align, verticalAlign, ...others }, ref): JSX.Element => {
+  ({ id, className, children, align, verticalAlign, accessibilityLabelledBy, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+
     let alignClass = null
+
     if (align) {
       alignClass =
         (getAlignClassName(align) === 'aligned-start' && is('justified-start')) ||
@@ -26,7 +28,9 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
         (getAlignClassName(align) === 'aligned-end' && is('justified-end')) ||
         null
     }
+
     let verticalAlignClass = null
+
     if (verticalAlign) {
       verticalAlignClass =
         (getAlignClassName(verticalAlign) === 'aligned-start' && is('aligned-start')) ||
@@ -35,10 +39,18 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
         null
     }
 
+    const isRequired = React.Children.toArray(children).some(
+      (child) =>
+        React.isValidElement(child) && child.props.required,
+    )
+
     return (
       <div
         ref={ref}
         id={id}
+        role={"group"}
+        aria-labelledby={accessibilityLabelledBy}
+        aria-required={isRequired ? 'true' : undefined}
         className={hashClass(
           styled,
           clsx('checkbox-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
