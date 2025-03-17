@@ -101,7 +101,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
                   style: [
                     index === 0 && styles.progressItemFirst,
                     index === children.length - 1 && styles.progressItemSecond,
-                    { backgroundColor: getAlertStyle(child.props.alert), height: height },
+                    { backgroundColor: getStatusStyle(child.props.alert), height: height },
                   ],
                 })) ||
               child,

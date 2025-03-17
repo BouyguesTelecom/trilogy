@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Divider, Progress, ProgressRadial, Section, Text, TextLevels, Title, TitleLevels, View } from '@trilogy-ds/react/components'
+import { Divider, Progress, ProgressRadial, Section, Text, TextLevels, Title, TitleLevels, View, ProgressItem } from '@trilogy-ds/react/components'
 import { StatusState, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
 
 export const ProgressScreen = (): JSX.Element => {
@@ -9,10 +9,9 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progress Bar Stacked</Title>
 
         <Progress stacked>
-          <ProgressItem percent={15} alert={StatusState.SUCCESS} />
-          <ProgressItem percent={15} alert={StatusState.INFO} />
-          <ProgressItem percent={15} alert={StatusState.WARNING} />
-          <ProgressItem percent={15} alert={StatusState.ERROR} />
+          <ProgressItem percent={15} status={StatusState.INFO} />
+          <ProgressItem percent={15} status={StatusState.SUCCESS} />
+          <ProgressItem percent={15} status={StatusState.WARNING} />
         </Progress>
 
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
