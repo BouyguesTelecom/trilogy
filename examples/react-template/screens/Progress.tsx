@@ -6,6 +6,15 @@ export const ProgressScreen = (): JSX.Element => {
   return (
     <>
       <Section>
+        <Title level={TitleLevels.THREE}>Progress Bar Stacked</Title>
+
+        <Progress stacked>
+          <ProgressItem percent={15} alert={StatusState.SUCCESS} />
+          <ProgressItem percent={15} alert={StatusState.INFO} />
+          <ProgressItem percent={15} alert={StatusState.WARNING} />
+          <ProgressItem percent={15} alert={StatusState.ERROR} />
+        </Progress>
+
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
         <ProgressRadial value={30} secondValue={30}>

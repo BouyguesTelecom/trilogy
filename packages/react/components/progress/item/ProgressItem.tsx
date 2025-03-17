@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProgressItemProps } from './ProgressItemProps'
 import { is } from '../../../services/index'
-import { getAlertClassName } from '../../../objects'
+import { getStatusClassName } from '../../../objects'
 import { hashClass } from '../../../helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '../../../context'
@@ -11,7 +11,7 @@ import { useTrilogyContext } from '../../../context'
  * @param percent {number} Progress percent
  * @param minPercent {number} Default min percent is 100
  * @param maxPercent {number} Default max percent is 100
- * @param alert {AlertState} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
+ * @param status {StatusProps} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
  * @param children {React.ReactNode}
  * @param accessibilityLabel {string} Accessibility label
  * -------------------------- WEB PROPERTIES -------------------------------
@@ -22,7 +22,7 @@ const ProgressItem = ({
   percent,
   maxPercent = 100,
   minPercent = 0,
-  alert,
+  status,
   accessibilityLabel,
   ...others
 }: ProgressItemProps): JSX.Element => {
@@ -30,7 +30,7 @@ const ProgressItem = ({
 
   const classes = hashClass(
     styled,
-    clsx('progress-bar', alert && is(getAlertClassName(alert)), !alert && is('primary'), className),
+    clsx('progress-bar', status && is(getStatusClassName(status)), !status && is('primary'), className),
   )
 
   return (
