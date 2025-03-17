@@ -39,6 +39,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
       description,
       icon,
       horizontal,
+      required,
       ...others
     },
     ref,
@@ -57,6 +58,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
         <input
           type='checkbox'
           readOnly={readonly}
+          required={required}
           id={id}
           disabled={disabled}
           name={name}

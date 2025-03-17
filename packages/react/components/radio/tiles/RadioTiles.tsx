@@ -4,6 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getAlignClassName } from '@/objects'
 import { is } from '@/services'
+import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 
@@ -40,18 +41,13 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, class
       null
   }
 
-  const isRequired = React.Children.toArray(children).some(
-    (child) =>
-      React.isValidElement(child) && child.props.required,
-  )
-
   return (
     <div
       ref={ref}
       id={id}
       role={"radiogroup"}
       aria-labelledby={accessibilityLabelledBy}
-      aria-required={isRequired ? 'true' : undefined}
+      aria-required={isRequiredChild(children) ? 'true' : undefined}
       className={hashClass(
         styled,
         clsx('radio-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
