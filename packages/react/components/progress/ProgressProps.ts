@@ -6,6 +6,7 @@ import { View } from 'react-native'
  * Progress Interface
  */
 export interface ProgressProps extends StatusProps, CommonProps {
+  children?: React.ReactNode
   value?: number
   max?: number
   small?: boolean
