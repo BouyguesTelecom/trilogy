@@ -3,6 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
+import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
@@ -32,7 +33,7 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
         id={id}
         role="radiogroup"
         aria-labelledby={accessibilityLabelledBy}
-        aria-required={isRequired ? 'true' : undefined}
+        aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(
           styled,
           clsx(

@@ -3,6 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
+import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
@@ -39,18 +40,13 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
         null
     }
 
-    const isRequired = React.Children.toArray(children).some(
-      (child) =>
-        React.isValidElement(child) && child.props.required,
-    )
-
     return (
       <div
         ref={ref}
         id={id}
         role={"group"}
         aria-labelledby={accessibilityLabelledBy}
-        aria-required={isRequired ? 'true' : undefined}
+        aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(
           styled,
           clsx('checkbox-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
