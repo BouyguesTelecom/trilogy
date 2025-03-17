@@ -5,8 +5,8 @@ import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { OtpProps, OtpPropsAccessibility, OtpRef } from './OtpProps'
 import { ComponentName } from '../enumsComponentsName'
+import { OtpProps, OtpPropsAccessibility, OtpRef } from './OtpProps'
 
 type NumberOrNull = number | null
 
@@ -72,7 +72,7 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
   }
 }
 
-const formatTranslation = (translation:string, x:string, y:string) => {
+const formatTranslation = (translation: string, x: string, y: string) => {
   return translation.replace(/:x/g, x).replace(/:y/g, y)
 }
 
@@ -91,21 +91,24 @@ const formatTranslation = (translation:string, x:string, y:string) => {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const Otp = React.forwardRef<OtpRef, OtpProps>(({
-  className,
-  id,
-  value,
-  length = 6,
-  disabled,
-  error,
-  onCompleted,
-  onChange,
-  onFocus,
-  label,
-  help,
-  autoFocus,
-  ...others
-}, ref): JSX.Element => {
+const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
+  const {
+    className,
+    id,
+    value,
+    length = 6,
+    disabled,
+    error,
+    onCompleted,
+    onChange,
+    onFocus,
+    label,
+    help,
+    autoFocus,
+    title,
+    ...others
+  } = props as OtpPropsAccessibility
+
   const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
     stringToCode(value, length) || new Array(length).fill(null),
   )
@@ -113,7 +116,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
-  const titleAttr = (others as OtpPropsAccessibility)?.title || 'Number :x of :y of the one-time code'
+  const titleAttr = title || 'Number :x of :y of the one-time code'
 
   useEffect(() => {
     if (!disabled) {
