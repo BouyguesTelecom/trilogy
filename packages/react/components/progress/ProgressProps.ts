@@ -12,6 +12,7 @@ export interface ProgressProps extends StatusProps, CommonProps {
   legendStart?: string
   legendCenter?: string
   legendEnd?: string
+  stacked?: boolean
 }
 
 export type ProgressRef = HTMLDivElement

@@ -16,12 +16,14 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param legendEnd {string} Second extremity legend, only with legendStart property
  */
 const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
+                    children,
                     value,
                     max = 100,
                     status,
                     legendCenter,
                     legendStart,
                     legendEnd,
+                    stacked,
                     ...others
                   }, ref): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
@@ -84,6 +86,29 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
       fontWeight: "500",
     },
   })
+
+  if (stacked) {
+    return (
+      <View style={styles.progress} {...others}>
+        {Array.isArray(children) &&
+          children.map(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (child: any, index: number) =>
+              (child &&
+                child.type.name === 'ProgressItem' &&
+                React.cloneElement(child, {
+                  key: index,
+                  style: [
+                    index === 0 && styles.progressItemFirst,
+                    index === children.length - 1 && styles.progressItemSecond,
+                    { backgroundColor: getAlertStyle(child.props.alert), height: height },
+                  ],
+                })) ||
+              child,
+          )}
+      </View>
+    )
+  }
 
   return (
     <>
