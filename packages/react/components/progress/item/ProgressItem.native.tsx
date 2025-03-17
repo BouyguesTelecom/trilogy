@@ -1,17 +1,22 @@
 import React, { useEffect, useRef } from 'react'
 import { Animated } from 'react-native'
-import { ProgressItemProps } from './ProgressItemProps'
+import {ProgressItemNativeRef, ProgressItemProps} from './ProgressItemProps'
 import { ComponentName } from '../../enumsComponentsName'
 
 /**
- * Progress Item component - Only if stacked
+ * ProgressItem component - Only if stacked
  * @param percent {number} Progress percent
  * @param minPercent {number} Default min percent is 100
  * @param status {StatusProps} Progress status state
  * @param children {React.ReactNode}
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProps): JSX.Element => {
+const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>((
+    {
+     children,
+     percent,
+     ...others
+   }, ref): JSX.Element => {
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const givenProps = others as any
   const givenstyle = givenProps.style
@@ -35,12 +40,11 @@ const ProgressItem = ({ children, percent, status, ...others }: ProgressItemProp
   })
 
   return (
-    <Animated.View {...others} style={[{ width }, ...givenstyle]}>
+    <Animated.View ref={ref} style={[{ width }, ...givenstyle]} {...others}>
       {children}
     </Animated.View>
   )
 }
 
-ProgressItem.dispmayName = ComponentName.ProgressItem
-
+ProgressItem.displayName = ComponentName.ProgressItem
 export default ProgressItem

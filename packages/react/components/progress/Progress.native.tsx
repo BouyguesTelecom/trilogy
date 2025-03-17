@@ -11,7 +11,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {ReactNode} Use Children it only if stacked progress
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param stacked {boolean} Stacked progress
- * @param legendCenter {stringabsolute} Unique legend
+ * @param legendCenter {string} Unique legend
  * @param legendStart {string} First extremity legend, only with legendEnd property
  * @param legendEnd {string} Second extremity legend, only with legendStart property
  */
