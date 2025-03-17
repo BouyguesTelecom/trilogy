@@ -6,7 +6,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 /**
- * Columns Item Component - Columns Child
+ * RadioTiles
  * @param id {string}
  * @param children {ReactNode}
  * @param align { Alignable | AlignableValues} align content
