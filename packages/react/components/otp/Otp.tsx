@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { OtpProps, OtpRef } from './OtpProps'
 import { ComponentName } from '../enumsComponentsName'
+import { title } from './Otp.traductions.json'
 
 type NumberOrNull = number | null
 
@@ -70,6 +71,10 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
   if (key >= '0' && key <= '9') {
     focusToNextInput(target)
   }
+}
+
+const formatTranslation = (translation:string, x:string, y:string) => {
+  return translation.replace(/:x/g, x).replace(/:y/g, y)
 }
 
 /**
@@ -183,7 +188,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(({
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
             disabled={disabled}
-            title={`Number ${idx + 1} of ${length} of the one-time code`}
+            title={formatTranslation(title, String(idx + 1), String(length))}
             {...others}
           />
         ))}
