@@ -44,7 +44,8 @@ const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
       {children}
     </Animated.View>
   )
-}
+
+})
 
 ProgressItem.displayName = ComponentName.ProgressItem
 export default ProgressItem
