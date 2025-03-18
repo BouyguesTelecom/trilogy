@@ -1,14 +1,19 @@
 @use "sass:math";
-@import "./derived-variables";
+@use "sass:color";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "derived-variables";
+@use "initial-variables";
 
 @function encodecolor($string) {
-  @if type-of($string) == 'string' and str-index($string, '#') == 1 {
-    @return '%23' + str-slice( $string, 2);
+  @if meta.type-of($string) == 'string' and string.index($string, '#') == 1 {
+    @return '%23' + string.slice( $string, 2);
   }
 
-  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1 {
-    $hex: str-slice(ie-hex-str($string), 4);
-    $string: unquote('#{$hex}');
+  @if meta.type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote('#{$hex}');
     @return '%23' + $string;
   }
 
@@ -34,7 +39,7 @@
 }
 
 @function colorLuminance($color) {
-    $color-rgb: ("red": red($color), "green": green($color), "blue": blue($color));
+    $color-rgb: ("red": color.red($color), "green": color.green($color), "blue": color.blue($color));
 
     @each $name, $value in $color-rgb {
         $adjusted: 0;
@@ -49,17 +54,17 @@
             $value: powernumber($value, 2);
         }
 
-        $color-rgb: map-merge($color-rgb, ($name: $value));
+        $color-rgb: map.merge($color-rgb, ($name: $value));
     }
 
-    @return map-get($color-rgb, "red") * 0.2126 + map-get($color-rgb, "green") * 0.7152 + map-get($color-rgb, "blue") * 0.0722;
+    @return map.get($color-rgb, "red") * 0.2126 + map.get($color-rgb, "green") * 0.7152 + map.get($color-rgb, "blue") * 0.0722;
 }
 
 /// Remove the unit of a length
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
+    @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
         @return math.div($number, $number * 0 + 1);
     }
 
@@ -67,7 +72,7 @@
 }
 
 @function num($input) {
-    @if type-of($input) != number {
+    @if meta.type-of($input) != number {
         @return null;
     }
 
@@ -75,20 +80,20 @@
 }
 
 @function size($size) {
-    @if $font-convert-to-px {
+    @if initial-variables.$font-convert-to-px {
         /* stylelint-disable */
-        $pxSize: num($size * $font-ratio * 10) + 0px;
+        $pxSize: num($size * initial-variables.$font-ratio * 10) + 0px;
 
         @return $pxSize;
     }
 
     @else {
-        $remSize: $size * $font-ratio;
+        $remSize: $size * initial-variables.$font-ratio;
 
         @return $remSize;
     }
 }
 
 @function zindex($key) {
-    @return map-get($zindex, $key);
+    @return map.get(derived-variables.$zindex, $key);
 }

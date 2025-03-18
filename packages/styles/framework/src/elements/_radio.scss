@@ -1,14 +1,18 @@
-@include checkbox-and-radio('radio');
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
+@include mixins.checkbox-and-radio('radio');
 
 .radios {
   width: 100%;
-  column-gap: $spacing-5;
-  row-gap: $spacing-3;
+  column-gap: spacing.$spacing-5;
+  row-gap: spacing.$spacing-3;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 
-  @include tablet {
+  @include mixins.tablet {
     flex-direction: row;
 
     &.is-vertical-desktop {
@@ -16,7 +20,7 @@
     }
   }
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-horizontal-mobile {
       flex-direction: row;
     }
@@ -58,7 +62,7 @@
 
   input:not(:disabled):not(:checked) ~ label.radio-label:hover {
     &:before {
-      @include hoverRules()
+      @include mixins.hoverRules()
     }
   }
 
@@ -74,7 +78,7 @@
 
   input:checked:disabled ~ label.radio-label {
     &:after {
-      background-color: getColor('neutral');
+      background-color: color.getColor('neutral');
       top: 19px;
       right: 19px;
     }

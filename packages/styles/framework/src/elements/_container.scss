@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 .container {
   margin: 0 auto;
   position: relative;
@@ -8,7 +12,7 @@
 
   &.is-sticky-top,
   &.is-sticky-bottom {
-    background-color: getColor('background');
+    background-color: color.getColor('background');
   }
 
   &.is-sticky-top {
@@ -19,34 +23,34 @@
     z-index: 999;
   }
 
-  @include desktop {
-    max-width: $desktop - 2 * $gap;
+  @include mixins.desktop {
+    max-width: initial-variables.$desktop - 2 * initial-variables.$gap;
     width: auto;
   }
 
-  @include until-widescreen {
+  @include mixins.until-widescreen {
     &.is-widescreen {
-      max-width: $widescreen - 2 * $gap;
+      max-width: initial-variables.$widescreen - 2 * initial-variables.$gap;
       width: auto;
     }
   }
 
-  @include until-fullhd {
+  @include mixins.until-fullhd {
     &.is-fullhd {
-      max-width: $fullhd - 2 * $gap;
+      max-width: initial-variables.$fullhd - 2 * initial-variables.$gap;
       width: auto;
     }
   }
 
-  @include widescreen {
-    max-width: $widescreen - 2 * $gap;
-    width: $widescreen - 2 * $gap;
+  @include mixins.widescreen {
+    max-width: initial-variables.$widescreen - 2 * initial-variables.$gap;
+    width: initial-variables.$widescreen - 2 * initial-variables.$gap;
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     margin: 0 auto;
-    max-width: $fullhd - 2 * $gap;
-    width: $fullhd - 2 * $gap;
+    max-width: initial-variables.$fullhd - 2 * initial-variables.$gap;
+    width: initial-variables.$fullhd - 2 * initial-variables.$gap;
   }
 
   &.is-medium {
@@ -65,11 +69,11 @@ header .navbar,
 header,
 footer {
   > .container {
-    @include desktop {
+    @include mixins.desktop {
       margin: 0 auto;
     }
 
-    @include fullhd {
+    @include mixins.fullhd {
       max-width: 100%;
     }
   }

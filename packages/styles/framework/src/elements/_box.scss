@@ -1,10 +1,14 @@
 @use 'sass:math';
-@import "../utilities/spacing";
+@use "../utilities/spacing";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
 
 :root {
-  --padding-box: #{$spacing-5};
-  @include mobile {
-    --padding-box: #{$spacing-4};
+  --padding-box: #{spacing.$spacing-5};
+  @include mixins.mobile {
+    --padding-box: #{spacing.$spacing-4};
   }
 }
 
@@ -13,17 +17,17 @@ $highlighted-border-width: 4px;
 
 a.box {
   cursor: pointer;
-  transition: box-shadow $animation-duration;
+  transition: box-shadow initial-variables.$animation-duration;
 
-  #{$hoverSelector},
+  #{initial-variables.$hoverSelector},
   &:active,
   &:focus {
-    box-shadow: $focus-shadow;
+    box-shadow: derived-variables.$focus-shadow;
   }
 }
 
 .box {
-  background-color: getColor('background');
+  background-color: color.getColor('background');
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: var(--radius);
   display: flex;
@@ -41,7 +45,7 @@ a.box {
   }
 
   &.is-offset-header {
-    @include tablet {
+    @include mixins.tablet {
       margin-top: 40px;
 
       &.is-fullheight {
@@ -71,9 +75,9 @@ a.box {
     border-left: $highlighted-border-width solid transparent;
     border-top-left-radius: calc(var(--radius) + $highlighted-border-width);
     border-bottom-left-radius: calc(var(--radius) + $highlighted-border-width);
-    @each $name, $pair in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name, $pair in derived-variables.$colors-brand-functionnal {
+      $color: color.getColor($name);
+      $brandName: color.getColorBrandName($name);
 
       &.is-#{$brandName} {
         border-left-color: $color;
@@ -88,8 +92,8 @@ a.box {
 
   .box-header {
     z-index: inherit;
-    background-color: getColor('font');
-    color: getColor('background');
+    background-color: color.getColor('font');
+    color: color.getColor('background');
     margin-top: calc(var(--padding-box) * -1);
     margin-left: calc(var(--padding-box) * -1);
     margin-right: calc(var(--padding-box) * -1);
@@ -101,11 +105,11 @@ a.box {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    font-weight: $weight-semibold;
+    font-weight: initial-variables.$weight-semibold;
     border-radius: var(--radius) var(--radius) 0 0;
     height: 40px;
 
-    @include tablet {
+    @include mixins.tablet {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
@@ -115,7 +119,7 @@ a.box {
     > .paragraph:not(:last-child) {
       margin: 0 0 0.3em;
 
-      @include tablet {
+      @include mixins.tablet {
         align-self: center;
         margin: 0 3em 0 0;
       }
@@ -143,7 +147,7 @@ a.box {
       border-bottom-right-radius: var(--radius);
     }
 
-    @include mobile {
+    @include mixins.mobile {
       text-align: left;
     }
 

@@ -1,3 +1,8 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .card {
   max-width: 100%;
   display: flex;
@@ -6,7 +11,7 @@
   flex-direction: column;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  background-color: getColor('background');
+  background-color: color.getColor('background');
 
   &:not(:last-child) {
     margin-bottom: 15px;
@@ -22,16 +27,16 @@
 
   .card-content {
     order: 2;
-    padding: $spacing-5;
+    padding: spacing.$spacing-5;
     flex-grow: 1;
 
-    @include mobile {
-      padding: $spacing-4;
+    @include mixins.mobile {
+      padding: spacing.$spacing-4;
     }
   }
 
   .card-footer {
-    border-top: 1px solid getColor('neutral');
+    border-top: 1px solid color.getColor('neutral');
   }
 
   .mention {
@@ -49,7 +54,7 @@
 
   &.is-strong {
     .title {
-      font-family: $family-serif;
+      font-family: initial-variables.$family-serif;
       font-size: 24px !important;
     }
   }
@@ -62,9 +67,9 @@
       padding-left: 20px;
       padding-right: 20px;
 
-      @include desktop {
-        padding-left: $spacing-5;
-        padding-right: $spacing-5;
+      @include mixins.desktop {
+        padding-left: spacing.$spacing-5;
+        padding-right: spacing.$spacing-5;
       }
     }
   }
@@ -75,7 +80,7 @@
     .card-content {
 
       padding: 22px;
-      @include mobile {
+      @include mixins.mobile {
         padding: 14px;
       }
     }
@@ -87,7 +92,7 @@
     align-items: stretch;
     text-align: left;
 
-    @include tablet {
+    @include mixins.tablet {
       flex-direction: row;
       flex-wrap: wrap;
 
@@ -99,7 +104,7 @@
     .card-image {
       max-width: 100%;
 
-      @include tablet {
+      @include mixins.tablet {
         img {
           object-fit: cover;
           height: 100%;
@@ -154,7 +159,7 @@
       .image {
         height: 100%;
 
-        @include desktop {
+        @include mixins.desktop {
           img {
             height: auto;
             min-height: 100%;
@@ -171,9 +176,9 @@
       padding-left: 20px;
       padding-right: 20px;
 
-      @include desktop {
-        padding-left: $spacing-5;
-        padding-right: $spacing-5;
+      @include mixins.desktop {
+        padding-left: spacing.$spacing-5;
+        padding-right: spacing.$spacing-5;
       }
     }
 
@@ -201,14 +206,14 @@
         padding-left: 0;
         padding-right: 0;
 
-        @include tablet {
+        @include mixins.tablet {
           padding-left: 20px;
           padding-right: 20px;
         }
 
-        @include desktop {
-          padding-left: $spacing-5;
-          padding-right: $spacing-5;
+        @include mixins.desktop {
+          padding-left: spacing.$spacing-5;
+          padding-right: spacing.$spacing-5;
         }
       }
     }

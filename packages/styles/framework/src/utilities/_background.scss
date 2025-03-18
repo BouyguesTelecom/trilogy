@@ -1,11 +1,13 @@
+@use "../base/color";
+
 .is-inverted {
-  color: getColor('background');
+  color: color.getColor('background');
 }
 
 .is-inverted {
   .box, .section, .view, .hero {
     &:not(.is-inverted) {
-      color: getColor('font');
+      color: color.getColor('font');
     }
   }
 }

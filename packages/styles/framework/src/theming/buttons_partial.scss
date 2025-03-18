@@ -1,3 +1,6 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+
 $noDisabled: ":not(:disabled):not([aria-disabled=true]):not(.is-loading)";
 
 /*
@@ -14,7 +17,7 @@ $button-colors: (
 ) !default;
 
 %buttons-states {
-  #{$hoverSelector} {
+  #{initial-variables.$hoverSelector} {
     filter: brightness(0.8);
     &.is-primary {
       filter: brightness(1.2);
@@ -26,7 +29,7 @@ $button-colors: (
 
   &:focus-visible,
   &:focus:focus-visible {
-    outline: 2px solid getColor('font') !important;
+    outline: 2px solid color.getColor('font') !important;
     outline-offset: 2px;
   }
 }

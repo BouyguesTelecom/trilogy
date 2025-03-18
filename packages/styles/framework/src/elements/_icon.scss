@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/mixins";
+
 @use "sass:map";
 
 $icon-stretching-level: 16deg !default;
@@ -25,360 +29,361 @@ $size: (
 );
 
 .icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    font-size: inherit;
-    width: 1.5em;
-    height: 1.5em;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  font-size: inherit;
+  width: 1.5em;
+  height: 1.5em;
 
-    [class^="tri-"],
-    [class*=" tri-"] {
-      &::before {
-        width: 1em;
-        height: 1em;
-        content: "\00a0";
-        margin: 0;
-      }
-      display: flex;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-position: center;
-      mask-position: center;
-      -webkit-mask-size: cover;
-      mask-size: cover;
-      background-color: currentColor;
+  [class^="tri-"],
+  [class*=" tri-"] {
+    &::before {
+      width: 1em;
+      height: 1em;
+      content: "\00a0";
+      margin: 0;
     }
+
+    display: flex;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: currentColor;
+  }
 
   @each $name, $sizeConfig in $size {
     &.is-#{$name} {
       font-size: map.get($sizeConfig, 'icon');
+
       [class^="tri-picto-"],
       [class*=" tri-picto-"] {
         min-height: 1.5em !important;
         min-width: 1.5em !important;
       }
+
       &.is-stretched {
-        height: map.get($sizeConfig,'icon');
+        height: map.get($sizeConfig, 'icon');
       }
     }
   }
 
-    svg {
-        min-height: 20px;
-        min-width: 20px;
-        max-height: 100%;
-        max-width: 100%;
+  svg {
+    min-height: 20px;
+    min-width: 20px;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  @each $name, $pair in derived-variables.$colors-brand-functionnal {
+    $color: color.getColor($name);
+    $brandName: color.getColorBrandName($name);
+
+    &.is-circled-#{$brandName} {
+      background-color: $color;
     }
 
-    @each $name, $pair in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+    &.is-#{$brandName} {
+      color: $color;
+    }
+  }
 
-        &.is-circled-#{$brandName} {
-            background-color: $color;
-        }
+  &.is-circled {
+    border-radius: 9999px;
+    text-align: center;
+  }
 
-        &.is-#{$brandName} {
-            color: $color;
-        }
+  &.is-stretched {
+    transform: skewX(-#{$icon-stretching-level});
+    border-top-right-radius: 9px;
+    background-color: color.getColor('font');
+
+    [class^="tri-"],
+    [class*=" tri-"] {
+      transform: skewX($icon-stretching-level);
+      background-color: color.getColor('background');
+    }
+  }
+
+  &.is-stacked {
+    flex-direction: column;
+    line-height: 5px !important;
+    position: relative;
+
+    .tri-notification_top {
+      font-size: 85%;
     }
 
-    &.is-circled {
-        border-radius: 9999px;
-        text-align: center;
+    .tri-notification_bottom {
+      font-size: 0.125em;
+      width: 100%;
+      margin-top: 1px;
+
+      & {
+        width: auto;
+      }
+    }
+  }
+
+  &.is-animated {
+    .tri-notification_top {
+      animation-name: bellring;
+      animation-duration: 6s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-delay: -2s;
+      animation-direction: initial;
+      transform-origin: center top;
+      -moz-animation: none;
+      -moz-transform-origin: center top;
+      @keyframes bellring {
+        0% {
+          transform: rotate(-5deg);
+        }
+
+        10% {
+          transform: rotate(-5deg);
+        }
+
+        25% {
+          transform: rotate(10deg);
+        }
+
+        35% {
+          transform: rotate(-25deg);
+        }
+
+        45% {
+          transform: rotate(20deg);
+        }
+
+        55% {
+          transform: rotate(-15deg);
+        }
+
+        60% {
+          transform: rotate(10deg);
+        }
+
+        70% {
+          transform: rotate(-5deg);
+        }
+
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
     }
 
-    &.is-stretched {
-        transform: skewX(-#{$icon-stretching-level});
-        border-top-right-radius: 9px;
-        background-color: getColor('font');
-
-      [class^="tri-"],
-      [class*=" tri-"]  {
-            transform: skewX($icon-stretching-level);
-            background-color: getColor('background');
+    .tri-notification_bottom {
+      animation-name: bellbounce !important;
+      animation-duration: 6s;
+      animation-iteration-count: infinite;
+      animation-timing-function: initial;
+      animation-delay: -2s;
+      animation-direction: normal;
+      transform-origin: center top;
+      -moz-animation: none;
+      @keyframes bellbounce {
+        0% {
+          transform: translateX(-1px) rotate(-5deg);
         }
+
+        10% {
+          transform: translateX(-1px) rotate(-5deg);
+        }
+
+        17% {
+          transform: translateX(1px) rotate(8deg);
+        }
+
+        25% {
+          transform: translateX(2px) rotate(10deg);
+        }
+
+        36% {
+          transform: translateX(6px) rotate(-25deg);
+        }
+
+        47% {
+          transform: translateX(-5px) rotate(15deg);
+        }
+
+        58% {
+          transform: translateX(6px) rotate(-10deg);
+        }
+
+        62% {
+          transform: translateX(-6px) rotate(5deg);
+        }
+
+        71% {
+          transform: translateX(6px) rotate(-10deg);
+        }
+
+        76% {
+          transform: translateX(-1px) rotate(-5deg);
+        }
+
+        100% {
+          transform: translateX(-1px) rotate(-5deg);
+        }
+      }
+    }
+  }
+
+  &.has-status {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $icon-dimensions-default;
+      height: $icon-dimensions-default;
+      border-radius: 9999px;
+      background-color: color.getColor('main');
     }
 
-    &.is-stacked {
-        flex-direction: column;
-        line-height: 5px !important;
-        position: relative;
+    &.is-bordered {
+      border-radius: 50%;
+      border-color: currentColor;
 
-        .tri-notification_top {
-            font-size: 85%;
-        }
-
-        .tri-notification_bottom {
-            font-size: 0.125em;
-            width: 100%;
-            margin-top: 1px;
-
-            & {
-                width: auto;
-            }
-        }
-    }
-
-    &.is-animated {
-        .tri-notification_top {
-            @keyframes bellring {
-                0% {
-                    transform: rotate(-5deg);
-                }
-
-                10% {
-                    transform: rotate(-5deg);
-                }
-
-                25% {
-                    transform: rotate(10deg);
-                }
-
-                35% {
-                    transform: rotate(-25deg);
-                }
-
-                45% {
-                    transform: rotate(20deg);
-                }
-
-                55% {
-                    transform: rotate(-15deg);
-                }
-
-                60% {
-                    transform: rotate(10deg);
-                }
-
-                70% {
-                    transform: rotate(-5deg);
-                }
-
-                100% {
-                    transform: rotate(-5deg);
-                }
-            }
-
-            animation-name: bellring;
-            animation-duration: 6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            animation-delay: -2s;
-            animation-direction: initial;
-            transform-origin: center top;
-            -moz-animation: none;
-            -moz-transform-origin: center top;
-        }
-
-        .tri-notification_bottom {
-            @keyframes bellbounce {
-                0% {
-                    transform: translateX(-1px) rotate(-5deg);
-                }
-
-                10% {
-                    transform: translateX(-1px) rotate(-5deg);
-                }
-
-                17% {
-                    transform: translateX(1px) rotate(8deg);
-                }
-
-                25% {
-                    transform: translateX(2px) rotate(10deg);
-                }
-
-                36% {
-                    transform: translateX(6px) rotate(-25deg);
-                }
-
-                47% {
-                    transform: translateX(-5px) rotate(15deg);
-                }
-
-                58% {
-                    transform: translateX(6px) rotate(-10deg);
-                }
-
-                62% {
-                    transform: translateX(-6px) rotate(5deg);
-                }
-
-                71% {
-                    transform: translateX(6px) rotate(-10deg);
-                }
-
-                76% {
-                    transform: translateX(-1px) rotate(-5deg);
-                }
-
-                100% {
-                    transform: translateX(-1px) rotate(-5deg);
-                }
-            }
-
-            animation-name: bellbounce !important;
-            animation-duration: 6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: initial;
-            animation-delay: -2s;
-            animation-direction: normal;
-            transform-origin: center top;
-            -moz-animation: none;
-        }
+      &::after {
+        top: -2px;
+        right: -2px;
+      }
     }
 
     &.has-status {
-        position: relative;
+      .icon.is-descendant {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: $icon-dimensions-default;
+        height: $icon-dimensions-default;
+        background: #fff;
 
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: $icon-dimensions-default;
-            height: $icon-dimensions-default;
-            border-radius: 9999px;
-            background-color: getColor('main');
+        > [class^="tri-"],
+        > [class*=" tri-"] {
+          min-width: $icon-dimensions-default;
+          height: $icon-dimensions-default;
         }
 
-        &.is-bordered {
-            border-radius: 50%;
-            border-color: currentColor;
-
-            &::after {
-                top: -2px;
-                right: -2px;
-            }
+        &.is-bottom,
+        &.is-bottom-right {
+          top: auto;
+          bottom: 0;
+          right: 0;
         }
+      }
 
-        &.has-status {
-                .icon.is-descendant {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    width: $icon-dimensions-default;
-                    height: $icon-dimensions-default;
-                    background: #fff;
-
-                    > [class^="tri-"],
-                    > [class*=" tri-"] {
-                        min-width: $icon-dimensions-default;
-                        height: $icon-dimensions-default;
-                    }
-
-                    &.is-bottom,
-                    &.is-bottom-right {
-                        top: auto;
-                        bottom: 0;
-                        right: 0;
-                    }
-                }
-
-            &::after {
-                content: none;
-            }
-        }
+      &::after {
+        content: none;
+      }
     }
+  }
 }
 
 .icon-and-text {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
+
+  > .icon {
+    line-height: 0;
+    margin-right: 0.5em;
+  }
+
+  > span + .icon {
+    margin: 0 0 0 0.5em;
+  }
+
+  &.is-alternate {
+    align-items: flex-start;
 
     > .icon {
-        line-height: 0;
-        margin-right: 0.5em;
+      flex: none;
+
+      > i {
+        margin-bottom: 7px;
+      }
+    }
+  }
+
+  &.is-stacked {
+    flex-direction: column;
+    padding: 5px;
+
+    > .icon {
+      margin: 0 0 0.5em 0;
     }
 
     > span + .icon {
-        margin: 0 0 0 0.5em;
+      margin: 0.5em 0 0 0;
     }
+  }
 
-    &.is-alternate {
-        align-items: flex-start;
+  @include mixins.mobile {
+    &.is-stacked-mobile {
+      flex-direction: column;
+      padding: 5px;
 
-        > .icon {
-            flex: none;
+      > .icon {
+        margin: 0 0 0.5em 0;
+      }
 
-            > i {
-                margin-bottom: 7px;
-            }
-        }
+      > span + .icon {
+        margin: 0.5em 0 0 0;
+      }
     }
+  }
 
-    &.is-stacked {
-        flex-direction: column;
-        padding: 5px;
+  @include mixins.tablet {
+    &.is-stacked-tablet {
+      flex-direction: column;
+      padding: 5px;
 
-        > .icon {
-            margin: 0 0 0.5em 0;
-        }
+      > .icon {
+        margin: 0 0 0.5em 0;
+      }
 
-        > span + .icon {
-            margin: 0.5em 0 0 0;
-        }
+      > span + .icon {
+        margin: 0.5em 0 0 0;
+      }
     }
+  }
 
-    @include mobile {
-        &.is-stacked-mobile {
-            flex-direction: column;
-            padding: 5px;
+  @include mixins.desktop {
+    &.is-stacked-desktop {
+      flex-direction: column;
+      padding: 5px;
 
-            > .icon {
-                margin: 0 0 0.5em 0;
-            }
+      > .icon {
+        margin: 0 0 0.5em 0;
+      }
 
-            > span + .icon {
-                margin: 0.5em 0 0 0;
-            }
-        }
+      > span + .icon {
+        margin: 0.5em 0 0 0;
+      }
     }
+  }
 
-    @include tablet {
-        &.is-stacked-tablet {
-            flex-direction: column;
-            padding: 5px;
+  @include mixins.widescreen {
+    &.is-stacked-widescreen {
+      flex-direction: column;
+      padding: 5px;
 
-            > .icon {
-                margin: 0 0 0.5em 0;
-            }
+      > .icon {
+        margin: 0 0 0.5em 0;
+      }
 
-            > span + .icon {
-                margin: 0.5em 0 0 0;
-            }
-        }
+      > span + .icon {
+        margin: 0.5em 0 0 0;
+      }
     }
-
-    @include desktop {
-        &.is-stacked-desktop {
-            flex-direction: column;
-            padding: 5px;
-
-            > .icon {
-                margin: 0 0 0.5em 0;
-            }
-
-            > span + .icon {
-                margin: 0.5em 0 0 0;
-            }
-        }
-    }
-
-    @include widescreen {
-        &.is-stacked-widescreen {
-            flex-direction: column;
-            padding: 5px;
-
-            > .icon {
-                margin: 0 0 0.5em 0;
-            }
-
-            > span + .icon {
-                margin: 0.5em 0 0 0;
-            }
-        }
-    }
+  }
 }

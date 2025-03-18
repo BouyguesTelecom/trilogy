@@ -1,6 +1,9 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+
 $plus-symbol-size: 40px;
 
-@mixin plus-symbol($color: getColor('neutral-fade'), $text-color: getColor('neutral')) {
+@mixin plus-symbol($color: color.getColor('neutral-fade'), $text-color: color.getColor('neutral')) {
     &::after {
         content: "+";
         display: inline-block;
@@ -20,10 +23,10 @@ $plus-symbol-size: 40px;
 
     display: inline-block;
 
-    @each $name in $colors-brand {
-      $brandName: getColorBrandName($name);
-      $color: getColor($name);
-      $color-invert: invertColor($name);
+    @each $name in derived-variables.$colors-brand {
+      $brandName: color.getColorBrandName($name);
+      $color: color.getColor($name);
+      $color-invert: color.invertColor($name);
 
         &.is-#{$brandName} {
             @include plus-symbol($color, $color-invert);

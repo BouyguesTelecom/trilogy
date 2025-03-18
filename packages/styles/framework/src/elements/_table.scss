@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/mixins";
+
 @use "sass:math";
 
 /**
@@ -8,10 +12,10 @@
 }
 
 .table {
-  @include block;
+  @include mixins.block;
 
   background-color: transparent;
-  color: getColor('neutral');
+  color: color.getColor('neutral');
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -21,7 +25,7 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getColor('neutral-fade');
+    background-color: color.getColor('neutral-fade');
   }
 
   td,
@@ -39,8 +43,8 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
-      color: getColor('background');
+      background-color: color.getColor('main');
+      color: color.getColor('background');
 
       a,
       strong {
@@ -50,23 +54,23 @@
   }
 
   th {
-    color: getColor('font');
+    color: color.getColor('font');
   }
 
   tr {
-    @each $name in $colors-feedback {
+    @each $name in derived-variables.$colors-feedback {
       &.is-#{$name} {
-        background-color: fadeColor($name);
+        background-color: color.fadeColor($name);
       }
     }
 
     th {
-      background-color: getColor('background');
+      background-color: color.getColor('background');
     }
 
     th,
     td {
-      color: getColor('font');
+      color: color.getColor('font');
       vertical-align: middle;
     }
 
@@ -79,8 +83,8 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
-      color: getColor('background');
+      background-color: color.getColor('main');
+      color: color.getColor('background');
 
       a,
       strong {
@@ -96,7 +100,7 @@
     &.is-expanded,
     &.is-expandable:hover {
       td {
-        color: getColor('accent');
+        color: color.getColor('accent');
         cursor: pointer;
       }
     }
@@ -129,7 +133,7 @@
     td,
     th {
       border-width: 0 0 1px;
-      color: getColor('font');
+      color: color.getColor('font');
     }
   }
 
@@ -137,7 +141,7 @@
     td,
     th {
       border-width: 2px 0 0;
-      color: getColor('font');
+      color: color.getColor('font');
     }
   }
 
@@ -195,18 +199,18 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getColor('neutral-fade');
+          background-color: color.getColor('neutral-fade');
         }
       }
     }
   }
 
   .subtable {
-    background-color: getColor('neutral-fade');
+    background-color: color.getColor('neutral-fade');
     border-radius: var(--radius);
-    padding: $box-padding * 2;
+    padding: derived-variables.$box-padding * 2;
 
-    @include mobile() {
+    @include mixins.mobile() {
       padding: 15px;
     }
 
@@ -235,8 +239,8 @@
 }
 
 .table-container {
-  @include block;
-  @include overflow-touch;
+  @include mixins.block;
+  @include mixins.overflow-touch;
 
   overflow: auto;
   overflow-y: hidden;

@@ -1,7 +1,9 @@
+@use "../utilities/mixins";
+
 .block {
-    @include block;
+    @include mixins.block;
 }
 
 .delete {
-    @include delete;
+    @include mixins.delete;
 }

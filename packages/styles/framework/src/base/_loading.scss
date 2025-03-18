@@ -1,3 +1,7 @@
+@use "../utilities/animations";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 @use "sass:math";
 
 @keyframes loading-pulse {
@@ -21,13 +25,13 @@
 
 p.is-loading,
 .is-loading p {
-    @include text-tags {
+    @include mixins.text-tags {
         visibility: hidden;
     }
 }
 
 .is-loading {
-    @include unselectable;
+    @include mixins.unselectable;
 
     &.is-checkradio[type="checkbox"] + label::before,
     .is-checkradio[type="checkbox"] + label::before,
@@ -36,8 +40,8 @@ p.is-loading,
         visibility: hidden;
     }
   &::after {
-    @include spinner;
-    @include center(1em);
+    @include mixins.spinner;
+    @include mixins.center(1em);
     position: absolute !important;
   }
 
@@ -63,7 +67,7 @@ p.is-loading,
     pointer-events: none;
 
     // make the text elements like subtle animated lines
-    @include text-tags {
+    @include mixins.text-tags {
         display: inline;
         border-radius: 9999px;
         background: currentColor !important;
@@ -80,12 +84,12 @@ p.is-loading,
     }
 
     // we need the headings to have margins AND be inline
-    @include heading-tags {
+    @include mixins.heading-tags {
         display: table; // FIXME: well... `@include clearfix;` didn't do the trick
     }
 
     & & {
-        @include disable-animation;
+        @include animations.disable-animation;
     }
 }
 
@@ -96,9 +100,9 @@ p.is-loading,
     The shape of the animation are designed so that the final state appears
     as quick as possible. This should enhance the speed index
     */
-    @include text-tags {
-        transition-duration: math.div($animation-duration, 2);
-        transition-timing-function: $animation-timing-function;
+    @include mixins.text-tags {
+        transition-duration: math.div(initial-variables.$animation-duration, 2);
+        transition-timing-function: initial-variables.$animation-timing-function;
         transition-property: font-size, letter-spacing;
 
         /**

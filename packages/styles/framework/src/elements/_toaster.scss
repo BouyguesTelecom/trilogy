@@ -1,40 +1,46 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 a.toaster {
     cursor: pointer;
-    transition: box-shadow $animation-duration;
+    transition: box-shadow initial-variables.$animation-duration;
 
     &:hover,
     &:active,
     &:focus {
-        box-shadow: $shadow;
+        box-shadow: derived-variables.$shadow;
     }
 }
 
 .toaster {
-    @include apply-shadow-box();
 
-
-  background-color: getColor('info-fade');
+  background-color: color.getColor('info-fade');
   border-radius: var(--radius);
   margin-bottom: 16px;
   position: relative;
-    margin-left: 24px;
-    margin-right: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
+  padding: spacing.$spacing-4;
+  display: flex;
 
-    .toaster-close {
+  .toaster-close {
         padding-right: 0 !important ;
-        color: getColor('font') !important;
+        color: color.getColor('font') !important;
     }
 
     .text:first-child,
     .title:first-child {
-        font-size: $text-16 !important;
+        font-size: initial-variables.$text-16 !important;
         line-height: normal;
     }
 
     .title,
     .text {
         margin-bottom: 0 !important ;
-        padding-bottom: $spacing-1;
+        padding-bottom: spacing.$spacing-1;
     }
 
     .text:last-child {
@@ -45,7 +51,7 @@ a.toaster {
         padding: 0;
     }
 
-    @include mobile {
+    @include mixins.mobile {
         flex-wrap: wrap;
     }
 
@@ -55,20 +61,20 @@ a.toaster {
 
     code,
     pre {
-        background: getColor('background');
+        background: color.getColor('background');
     }
 
     pre code {
         background: transparent;
     }
 
-  @each $name in $colors-feedback {
+  @each $name in derived-variables.$colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 2px solid getColor($name);
+      background-color: color.fadeColor($name);
+      border: 2px solid color.getColor($name);
 
       .icon {
-        color: getColor($name);
+        color: color.getColor($name);
       }
     }
   }
@@ -78,7 +84,7 @@ a.toaster {
     }
 
     &.has-description {
-        @include mobile {
+        @include mixins.mobile {
             justify-content: center;
             text-align: center;
 
@@ -93,8 +99,6 @@ a.toaster {
         }
     }
 
-    display: flex;
-
     > .icon {
         flex: none;
         align-self: flex-start;
@@ -104,23 +108,20 @@ a.toaster {
 
     > .body {
         align-self: center;
-        color: getColor('font');
+        color: color.getColor('font');
         margin-bottom: 0;
         flex-grow: 1;
-        padding: 1px $spacing-2; /* Fixes flex behavior on Safari mobile */
+        padding: 1px spacing.$spacing-2; /* Fixes flex behavior on Safari mobile */
 
-        @include mobile {
+        @include mixins.mobile {
             flex: 1;
         }
     }
 
-    box-shadow: none;
-    padding: $spacing-4;
-
     .title,
     .text,
     .paragraph {
-        font-size: $text-14;
+        font-size: initial-variables.$text-14;
         text-align: left;
     }
 

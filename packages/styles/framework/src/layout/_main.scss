@@ -1,3 +1,6 @@
+@use "../utilities/functions";
+@use "../utilities/mixins";
+
 body > header,
 body > footer,
 .main-content {
@@ -8,7 +11,7 @@ body > footer,
     position: relative;
 
     &.is-fullwidth {
-        @include fullhd {
+        @include mixins.fullhd {
             max-width: 100%;
         }
     }
@@ -26,11 +29,11 @@ body > footer,
 
     &.has-overlay {
         &::before {
-            @include overlay;
+            @include mixins.overlay;
 
             position: fixed;
             background-color: rgba(#000, 0.86);
-            z-index: zindex('small');
+            z-index: functions.zindex('small');
         }
     }
 }

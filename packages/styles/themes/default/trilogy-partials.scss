@@ -2,61 +2,53 @@
 
 // You must build fonts before
 // Base tools (functions)
-@import "./framework/src/utilities/tools";
+@use "./../../framework/src/utilities/tools" as *;
 
 // Base framework
-@import "./themes/default/src/utilities/pre";
-@import "./framework/src/utilities/pre";
+@use "../default/src/utilities/pre" as *;
+@use "./../../framework/src/utilities/pre" as *;
 
-@import "./framework/src/utilities/post";
-@import "./themes/default/src/utilities/post";
+@use "./../../framework/src/utilities/post" as *;
+@use "../default/src/utilities/post" as *;
 
-/* All Base Without reset */
-$body-background-color: #f6f6f6;
-$body-size: 10px;
-$body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
-$body-line-height: 1.5 !default;
+@use "./../../framework/src/base/reset" as *;
+@use "./../../framework/src/base/generic" as *;
+@use "./../../framework/src/base/color" as *;
+@use "./../../framework/src/base/fonts" as *;
+@use "./../../framework/src/base/helpers" as *;
+@use "./../../framework/src/base/loading" as *;
+@use "./../../framework/src/elements/all" as *;
+@use './../../framework/src/components/divider' as *;
+@use './../../framework/src/components/breadcrumb' as *;
+@use './../../framework/src/components/card' as *;
+@use './../../framework/src/components/modal' as *;
+@use './../../framework/src/components/pagination' as *;
+@use './../../framework/src/components/popover' as *;
+@use './../../framework/src/components/product-tour' as *;
+@use './../../framework/src/components/price' as *;
+@use './../../framework/src/components/tabs' as *;
+@use './../../framework/src/components/accordion' as *;
+@use './../../framework/src/components/countdown' as *;
+@use './../../framework/src/components/timeline' as *;
+@use './../../framework/src/components/stepper' as *;
+@use './../../framework/src/components/plus-symbol' as *;
+@use './../../framework/src/components/otp' as *;
+@use './../../framework/src/components/segmented-control' as *;
+@use './../../framework/src/components/progress-radial' as *;
+@use './../../framework/src/components/range' as *;
+@use './../../framework/src/components/scroll-view' as *;
+@use './../../framework/src/components/fab' as *;
 
-@import "./framework/src/base/reset";
-@import "./framework/src/base/generic";
-@import "./framework/src/base/color";
-@import "./framework/src/base/fonts";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
-
-@import "./framework/src/elements/all";
-
-@import './framework/src/components/divider';
-@import './framework/src/components/breadcrumb';
-@import './framework/src/components/card';
-@import './framework/src/components/modal';
-@import './framework/src/components/pagination';
-@import './framework/src/components/popover';
-@import './framework/src/components/product-tour';
-@import './framework/src/components/price';
-@import './framework/src/components/tabs';
-@import './framework/src/components/accordion';
-@import './framework/src/components/countdown';
-@import './framework/src/components/timeline';
-@import './framework/src/components/stepper';
-@import './framework/src/components/plus-symbol';
-@import './framework/src/components/otp';
-@import './framework/src/components/segmented-control';
-@import './framework/src/components/progress-radial';
-@import './framework/src/components/range';
-@import './framework/src/components/scroll-view';
-@import './framework/src/components/fab';
-
-@import "./framework/src/grid/all";
-@import "./framework/src/layout/all";
+@use "./../../framework/src/grid/all" as *;
+@use "./../../framework/src/layout/all" as *;
 
 // Icons
-@import "../../assets/icons/all";
+@use "../../assets/icons/all" as icons;
 
 // Assets and theme (common + default)
-@import "./themes/default/src/_all";
+@use "../default/src/_all" as defaultAll;
+
+@use "./../../framework/src/base/reset";
 
 .partial {
   @extend .main-wrap;

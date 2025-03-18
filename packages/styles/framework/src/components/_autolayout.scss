@@ -1,4 +1,4 @@
-body:not(.is-tight) {
+@use "../utilities/mixins";body:not(.is-tight) {
   .accordion:not(:last-child) {
     margin-bottom: 24px;
   }
@@ -160,7 +160,7 @@ body:not(.is-tight) {
   }
 }
 
-@include mobile() {
+@include mixins.mobile {
   body:not(.is-tight) {
     .accordion:not(:last-child) {
       margin-bottom: 16px;

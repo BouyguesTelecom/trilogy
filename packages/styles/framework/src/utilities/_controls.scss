@@ -1,3 +1,6 @@
+@use "derived-variables";
+@use "initial-variables";
+
 $control-border-width: 1px !default;
 
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
@@ -10,7 +13,7 @@ $control-padding-horizontal: 16px;
   border: $control-border-width solid transparent;
   border-radius: var(--radius-small);
   display: inline-flex;
-  font-size: $size-normal;
+  font-size: derived-variables.$size-normal;
   height: 46px;
   justify-content: flex-start;
   line-height: 1.4;
@@ -23,7 +26,7 @@ $control-padding-horizontal: 16px;
 
   // bug fix pour iOS qui zoom sur le champ si la police ne fait pas 16px
   @supports (-webkit-overflow-scrolling: touch) {
-    font-size: $text-16;
+    font-size: initial-variables.$text-16;
   }
 
   &:focus,
@@ -32,7 +35,7 @@ $control-padding-horizontal: 16px;
 
     // répétition nécessaire : bug fix pour iOS qui zoom sur le champ si la police ne fait pas 16px
     @supports (-webkit-overflow-scrolling: touch) {
-      font-size: $text-16;
+      font-size: initial-variables.$text-16;
     }
   }
 
@@ -44,13 +47,13 @@ $control-padding-horizontal: 16px;
 
 @mixin control-small {
   border-radius: var(--radius-small);
-  font-size: $size-small;
+  font-size: derived-variables.$size-small;
 }
 
 @mixin control-medium {
-  font-size: $size-medium;
+  font-size: derived-variables.$size-medium;
 }
 
 @mixin control-large {
-  font-size: $size-large;
+  font-size: derived-variables.$size-large;
 }

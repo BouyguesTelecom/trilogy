@@ -1,5 +1,11 @@
+@use "../base/color";
+@use "../utilities/controls";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 .pagination {
-  font-size: $size-normal;
+  font-size: derived-variables.$size-normal;
   margin: -2.5px;
   align-items: center;
   display: flex;
@@ -10,22 +16,10 @@
   .pagination-next,
   .pagination-link,
   .pagination-ellipsis {
-    @include control;
-    @include unselectable;
-    font-size: 1em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
     justify-content: center;
     margin: 2.5px;
     text-align: center;
-  }
-
-  .pagination-previous,
-  .pagination-next,
-  .pagination-link,
-  .pagination-ellipsis {
-    @include hover();
-    color: getColor('font');
+    color: color.getColor('font');
     min-width: 2.25em;
     height: 35px;
     width: 35px;
@@ -33,6 +27,11 @@
     padding-left: 0.75em;
     padding-right: 0.75em;
     white-space: nowrap;
+
+    @include controls.control;
+    @include mixins.unselectable;
+    @include mixins.hover();
+
 
     &[aria-disabled=true]{
       border-color: transparent !important;
@@ -62,14 +61,14 @@
 
   .pagination-link {
     &[aria-current] {
-      background-color: getColor('font');
-      color: getColor('background');
-      #{$hoverSelector}, &:focus, &:focus-within {
+      background-color: color.getColor('font');
+      color: color.getColor('background');
+      #{initial-variables.$hoverSelector}, &:focus, &:focus-within {
         background: linear-gradient(
             to top,
             rgba(0, 0, 0, 0.25),
             rgba(0, 0, 0, 0.25)
-        ) getColor('font') !important;
+        ) color.getColor('font') !important;
       }
     }
   }

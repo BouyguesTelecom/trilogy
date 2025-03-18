@@ -3,19 +3,19 @@
 // You must build fonts before
 
 // Base tools (functions)
-@import "./framework/src/utilities/tools";
+@use "../../framework/src/utilities/tools" as *;
 
 // Base framework
-@import "./themes/default/src/utilities/pre";
-@import "./framework/src/utilities/pre";
+@use "../default/src/utilities/pre" as defaultPre;
+@use "../../framework/src/utilities/pre" as *;
 
-@import "./framework/src/utilities/post";
-@import "./themes/default/src/utilities/post";
+@use "../../framework/src/utilities/post" as *;
+@use "../default/src/utilities/post" as defaultPost;
 
-@import "./framework/src/all";
+@use "../../framework/src/all" as *;
 
 // Icons
-@import "../../assets/icons/all";
+@use "../../assets/icons/all" as icons;
 
 // Assets and theme (default)
-@import "./themes/default/src/_all";
+@use "../default/src/_all" as defaultAll;

@@ -1,3 +1,9 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 @mixin position-top {
   top: auto;
   bottom: 100%;
@@ -72,20 +78,20 @@
   .popover-content {
     @include position-top();
 
-    background-color: getColor('font');
+    background-color: color.getColor('font');
     border-radius: var(--radius-small);
-    box-shadow: $shadow;
-    color: getColor('background');
+    box-shadow: derived-variables.$shadow;
+    color: color.getColor('background');
     display: inline-block;
     font-size: 12px;
     visibility: hidden;
-    padding: $spacing-2;
+    padding: spacing.$spacing-2;
     font-weight: 500;
     position: absolute;
     text-align: center;
     max-width: 210px;
     width: max-content;
-    z-index: zindex('popover');
+    z-index: functions.zindex('popover');
 
     ul {
       padding-left: 14px;
@@ -95,8 +101,8 @@
     &::before {
       content: '';
       border-color: transparent;
-      border-bottom-color: getColor('font');
-      border-left-color: getColor('font');
+      border-bottom-color: color.getColor('font');
+      border-left-color: color.getColor('font');
       border-style: solid;
       border-width: 4px;
       pointer-events: none;
@@ -113,7 +119,7 @@
     .paragraph,
     .text,
     p {
-      color: getColor('background');
+      color: color.getColor('background');
     }
   }
 
@@ -133,7 +139,7 @@
     @include position-left();
   }
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-popover-top-mobile .popover-content {
       @include position-top();
     }
@@ -151,7 +157,7 @@
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     &.is-popover-top-tablet .popover-content {
       @include position-top();
     }
@@ -169,7 +175,7 @@
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     &.is-popover-top-tablet-only .popover-content {
       @include position-top();
     }
@@ -187,7 +193,7 @@
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     &.is-popover-top-touch .popover-content {
       @include position-top();
     }
@@ -205,7 +211,7 @@
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     &.is-popover-top-desktop .popover-content {
       @include position-top();
     }
@@ -223,7 +229,7 @@
     }
   }
 
-  @include desktop-only {
+  @include mixins.desktop-only {
     &.is-popover-top-desktop-only .popover-content {
       @include position-top();
     }
@@ -241,7 +247,7 @@
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     &.is-popover-top-widescreen .popover-content {
       @include position-top();
     }
@@ -259,7 +265,7 @@
     }
   }
 
-  @include widescreen-only {
+  @include mixins.widescreen-only {
     &.is-popover-top-widescreen-only .popover-content {
       @include position-top();
     }
@@ -277,7 +283,7 @@
     }
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     &.is-popover-top-fullhd .popover-content {
       @include position-top();
     }

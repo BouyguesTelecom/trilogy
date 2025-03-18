@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/spacing";
+
 .textarea-wrapper {
   position: relative;
   margin: 16px 0;
@@ -12,7 +16,7 @@
   }
 
   textarea.textarea {
-    padding: $spacing-4;
+    padding: spacing.$spacing-4;
     border-radius: var(--radius-small);
     outline: none;
 
@@ -27,7 +31,7 @@
 
     &.has-dynamic-label {
       &.has-icon ~ label {
-        left: $spacing-9;
+        left: spacing.$spacing-9;
         margin-right: 2px;
         width: calc(100% - 98px);
       }
@@ -36,11 +40,11 @@
         visibility: visible;
         position: absolute;
         top: 2px;
-        left: $spacing-4;
-        padding-top: $spacing-2;
+        left: spacing.$spacing-4;
+        padding-top: spacing.$spacing-2;
         width: calc(100% - 28px - 2px);
         font-size: 12px;
-        color: getColor('font');
+        color: color.getColor('font');
         filter: grayscale(100%);
         transition: top 0.2s ease-out;
       }
@@ -48,20 +52,20 @@
       &:placeholder-shown {
         ~ label {
           visibility: hidden;
-          top: $spacing-4;
-          background-color: getColor('background');
+          top: spacing.$spacing-4;
+          background-color: color.getColor('background');
           transition: none;
         }
       }
 
       &:not(:placeholder-shown) {
-        padding-top: $spacing-5;
+        padding-top: spacing.$spacing-5;
       }
     }
 
     &.has-icon {
-      padding-left: $spacing-9;
-      padding-right: $spacing-9;
+      padding-left: spacing.$spacing-9;
+      padding-right: spacing.$spacing-9;
 
       &:focus,
       &:focus-visible {
@@ -85,22 +89,22 @@
 
   span.icon {
     position: absolute;
-    top: $spacing-4;
+    top: spacing.$spacing-4;
 
     &:first-of-type {
-      left: $spacing-4;
+      left: spacing.$spacing-4;
     }
 
     &:nth-of-type(2) {
-      right: $spacing-4;
+      right: spacing.$spacing-4;
     }
   }
 
   // Colors
-  @each $name, $pair in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
+  @each $name, $pair in derived-variables.$colors-brand-functionnal {
+    $color: color.getColor($name);
+    $color-invert: color.invertColor($name);
+    $brandName: color.getColorBrandName($name);
     &.is-#{$brandName} {
       textarea.textarea {
         border-color: $color;
@@ -122,12 +126,12 @@
 
   .counter {
     position: absolute;
-    bottom: $spacing-2;
-    right: $spacing-4;
+    bottom: spacing.$spacing-2;
+    right: spacing.$spacing-4;
     font-size: 10px;
   }
 
   .help ~ .counter {
-    bottom: $spacing-6;
+    bottom: spacing.$spacing-6;
   }
 }

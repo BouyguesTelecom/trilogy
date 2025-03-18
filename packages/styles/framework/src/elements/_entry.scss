@@ -1,18 +1,25 @@
+@use "../base/color";
+@use "../utilities/controls";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .input,
 .textarea {
-  @include input;
-
-  padding-left: $spacing-4;
-  padding-right: $spacing-4;
-  font-size: $size-medium;
+  padding-left: spacing.$spacing-4;
+  padding-right: spacing.$spacing-4;
+  font-size: derived-variables.$size-medium;
   max-width: 100%;
   width: 100%;
 
+  @include mixins.input;
+
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
+  @each $name in derived-variables.$colors-brand-functionnal {
+    $color: color.getColor($name);
+    $color-invert: color.invertColor($name);
+    $brandName: color.getColorBrandName($name);
 
     &.is-#{$brandName} {
       border: 1px solid $color;
@@ -27,11 +34,11 @@
 
   // Sizes
   &.is-small {
-    @include control-small;
+    @include controls.control-small;
   }
 
   &.is-large {
-    @include control-large;
+    @include controls.control-large;
   }
 
   &.is-fullwidth {
@@ -74,7 +81,7 @@
   }
 
   &::-webkit-search-cancel-button{
-    $colorSvg: encodecolor(getColorValue('main'));
+    $colorSvg: functions.encodecolor(color.getColorValue('main'));
     position:absolute;
     right: 0px;
     bottom : 0px;
@@ -86,15 +93,15 @@
     background-size : 20px;
     -webkit-appearance: none;
     background-repeat: no-repeat;
-    background-color: getColor('background') ;
-    background-position: center;    
+    background-color: color.getColor('background') ;
+    background-position: center;
   }
 
   &[type="search"] {
     padding-right: 45px;
     &:hover:not(:focus){
       &::-webkit-search-cancel-button {
-        background-color: getColor('main-fade');
+        background-color: color.getColor('main-fade');
       }
     }
     &:focus{
@@ -113,7 +120,6 @@
   min-width: 100%;
   resize: vertical;
   padding-top: 15px;
-
 
   &:not([rows]) {
     max-height: 600px;

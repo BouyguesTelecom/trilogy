@@ -1,11 +1,16 @@
+@use "sass:list";
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/spacing";
+
 $price-levels: (
-  [$text-64, $text-44, $text-28, $text-16],
-  [$text-56, $text-32, $text-22, $text-16],
-  [$text-48, $text-28, $text-16, $text-16],
-  [$text-40, $text-24, $text-10, $text-10],
-  [$text-36, $text-20, $text-10, $text-10],
-  [$text-24, $text-20, $text-10, $text-10],
-  [$text-20, $text-20, $text-10, $text-10],
+  [initial-variables.$text-64, initial-variables.$text-44, initial-variables.$text-28, initial-variables.$text-16],
+  [initial-variables.$text-56, initial-variables.$text-32, initial-variables.$text-22, initial-variables.$text-16],
+  [initial-variables.$text-48, initial-variables.$text-28, initial-variables.$text-16, initial-variables.$text-16],
+  [initial-variables.$text-40, initial-variables.$text-24, initial-variables.$text-10, initial-variables.$text-10],
+  [initial-variables.$text-36, initial-variables.$text-20, initial-variables.$text-10, initial-variables.$text-10],
+  [initial-variables.$text-24, initial-variables.$text-20, initial-variables.$text-10, initial-variables.$text-10],
+  [initial-variables.$text-20, initial-variables.$text-20, initial-variables.$text-10, initial-variables.$text-10],
 );
 
 .price-container {
@@ -13,12 +18,12 @@ $price-levels: (
   align-items: baseline;
   column-gap: 12px;
   flex-wrap: wrap;
-  --font-size: #{$text-64};
+  --font-size: #{initial-variables.$text-64};
 
   @each $price-level in $price-levels {
-    $i: index($price-levels, $price-level);
-    $font-size: nth($price-level, 1);
-    $strike-font-size: nth($price-level, 2);
+    $i: list.index($price-levels, $price-level);
+    $font-size: list.nth($price-level, 1);
+    $strike-font-size: list.nth($price-level, 2);
 
     &.is-level-#{$i} {
       --font-size: #{$font-size};
@@ -52,7 +57,7 @@ $price-levels: (
 
 .price {
   display: inline-flex;
-  font-weight: $weight-semibold;
+  font-weight: initial-variables.$weight-semibold;
   line-height: 0.8;
   margin-bottom: 0;
   font-size: var(--font-size);
@@ -63,9 +68,9 @@ $price-levels: (
 
 
   @each $price-level in $price-levels {
-    $i: index($price-levels, $price-level);
-    $font-size: nth($price-level, 1);
-    $strike-font-size: nth($price-level, 2);
+    $i: list.index($price-levels, $price-level);
+    $font-size: list.nth($price-level, 1);
+    $strike-font-size: list.nth($price-level, 2);
 
     &.is-level-#{$i} {
       --font-size: #{$font-size};
@@ -83,7 +88,7 @@ $price-levels: (
   // the details : cents + period
 
   .price-details {
-    padding-left: $spacing-1;
+    padding-left: spacing.$spacing-1;
 
     .cents,
     .centimes,
@@ -101,7 +106,7 @@ $price-levels: (
       text-align: left;
 
       sup {
-        font-weight: $weight-medium;
+        font-weight: initial-variables.$weight-medium;
         padding-left: 2px;
         top: -0.3em;
       }
@@ -117,7 +122,7 @@ $price-levels: (
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: color.getColor('background');
   }
 
   &.has-description {
@@ -158,7 +163,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: getColor('neutral');
+    color: color.getColor('neutral');
 
     &::before {
       position: absolute;
@@ -167,16 +172,16 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('neutral');
+      border-color: color.getColor('neutral');
       border-radius: 5px;
       transform: rotate(-20deg);
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: color.getColor('background');
 
       &::before {
-        border-color: getColor('background');
+        border-color: color.getColor('background');
       }
     }
   }

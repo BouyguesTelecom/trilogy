@@ -1,3 +1,9 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 $tag-delete-margin: 1px !default;
 
 // container pour multi-tags ou tags avec actions
@@ -6,7 +12,7 @@ $tag-delete-margin: 1px !default;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: $spacing-3;
+  gap: spacing.$spacing-3;
   // multi-tags : ajout d'une marge à droite de chaque tag
 
   // centrage des tags
@@ -69,7 +75,7 @@ $tag-delete-margin: 1px !default;
 
     &.is-inverted {
       .tag {
-        background-color: getColor('background');
+        background-color: color.getColor('background');
       }
     }
 
@@ -78,37 +84,37 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getColor('neutral-fade');
+  background-color: color.getColor('neutral-fade');
   border-radius: 9999px;
-  color: getColor('font');
+  color: color.getColor('font');
   display: inline-flex;
-  font-size: $size-medium;
-  font-weight: $weight-medium;
+  font-size: derived-variables.$size-medium;
+  font-weight: initial-variables.$weight-medium;
   height: 28px;
   justify-content: center;
   line-height: 20px;
-  padding: $spacing-1 $spacing-2;
+  padding: spacing.$spacing-1 spacing.$spacing-2;
   white-space: nowrap;
 
   &.is-small {
-    font-size: $text-12;
+    font-size: initial-variables.$text-12;
     line-height: 15px;
     height: 23px;
   }
 
 
-  @include mobile {
+  @include mixins.mobile {
     font-size: 12px;
     line-height: 15px;
   }
 
-  @each $name in $colors-feedback {
+  @each $name in derived-variables.$colors-feedback {
     &.is-#{$name}:not(.is-inverted) {
-      background-color: fadeColor($name);
+      background-color: color.fadeColor($name);
     }
     &.is-inverted.is-#{$name} {
-      color: getColor($name);
-      background-color: invertColor($name);
+      color: color.getColor($name);
+      background-color: color.invertColor($name);
     }
   }
 }

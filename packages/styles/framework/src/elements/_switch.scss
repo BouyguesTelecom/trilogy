@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/functions";
+@use "../utilities/spacing";
+
 .switch {
   position: relative;
   margin: 8px;
@@ -20,20 +24,20 @@
       cursor: not-allowed;
 
       &:before {
-        background-color: getColor('disabled');
+        background-color: color.getColor('disabled');
       }
     }
 
     &:disabled ~ label {
       &:after {
-        $colorSvg: encodecolor(getColorValue('disabled'));
+        $colorSvg: functions.encodecolor(color.getColorValue('disabled'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
       }
     }
 
     &:disabled:checked ~ label {
       &:after {
-        $colorSvg: encodecolor(getColorValue('disabled'));
+        $colorSvg: functions.encodecolor(color.getColorValue('disabled'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
       }
     }
@@ -44,7 +48,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: $spacing-1;
+    padding: spacing.$spacing-1;
     padding-right: 60px;
 
     &:before {
@@ -56,11 +60,11 @@
       border-radius: 9999px;
       width: 44px;
       height: 22px;
-      background-color: getColor('neutral');
+      background-color: color.getColor('neutral');
     }
 
     &:after {
-      $colorSvg: encodecolor(getColorValue('neutral'));
+      $colorSvg: functions.encodecolor(color.getColorValue('neutral'));
       content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
       position: absolute;
       top: 50%;
@@ -69,7 +73,7 @@
       border-radius: 9999px;
       width: 18px;
       height: 18px;
-      background-color: getColorValue('background');
+      background-color: color.getColorValue('background');
       transition: 0.3s;
     }
   }
@@ -79,14 +83,14 @@
       font-weight: bold;
 
       &:before {
-        background-color: getColorValue('main');
+        background-color: color.getColorValue('main');
       }
 
       &:after {
         right: 2px;
-        $colorSvg: encodecolor(getColorValue('main'));
+        $colorSvg: functions.encodecolor(color.getColorValue('main'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
-        background-color: getColorValue('background');
+        background-color: color.getColorValue('background');
       }
     }
   }

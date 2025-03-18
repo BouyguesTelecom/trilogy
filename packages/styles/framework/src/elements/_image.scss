@@ -1,3 +1,5 @@
+@use "../utilities/functions";
+
 .image {
   display: block;
   position: relative;
@@ -50,7 +52,7 @@
     height: 100%;
 
     &.has-bg-gradient {
-      z-index: zindex('void');
+      z-index: functions.zindex('void');
       opacity: 1;
 
       &::before {
@@ -61,7 +63,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: zindex('tiny');
+        z-index: functions.zindex('tiny');
         transition: opacity 750ms ease-in-out;
       }
     }

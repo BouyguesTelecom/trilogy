@@ -1,3 +1,5 @@
+@use "../utilities/initial-variables";
+
 $link-colors: 'info' !default;
 
 %link-over {
@@ -14,7 +16,7 @@ $link-colors: 'info' !default;
   &:focus-visible,
   &:focus:focus-visible {
     outline: 2px solid currentColor;
-    border-radius: $radius-small;
+    border-radius: initial-variables.$radius-small;
     padding: 0 4px;
   }
 }

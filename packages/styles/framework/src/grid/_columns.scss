@@ -1,3 +1,8 @@
+@use "sass:list";
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 @use 'sass:math';
 
 $columnWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction)) - 1) / (var(--ColumnFraction))) * var(--ColumnGap)));
@@ -26,7 +31,7 @@ $columnNumber: 12;
 }
 
 
-$gap: 4px,
+initial-variables.$gap: 4px,
 8px,
 12px,
 16px,
@@ -56,8 +61,8 @@ $gap: 4px,
     }
   }
 
-  @for $i from 1 through length($gap) {
-    $item: nth($gap, $i);
+  @for $i from 1 through list.length(initial-variables.$gap) {
+    $item: list.nth(initial-variables.$gap, $i);
     &.is-mobile.has-gap-#{$i} {
       gap: $item;
 
@@ -66,7 +71,7 @@ $gap: 4px,
       }
     }
 
-    @include tablet {
+    @include mixins.tablet {
       &.has-gap-#{$i}:not(.is-desktop) {
         gap: $item;
 
@@ -76,7 +81,7 @@ $gap: 4px,
       }
     }
 
-    @include desktop {
+    @include mixins.desktop {
       &.has-gap-#{$i},
       &.has-gap-#{$i}-desktop {
         gap: $item;
@@ -87,7 +92,7 @@ $gap: 4px,
       }
     }
 
-    @include widescreen {
+    @include mixins.widescreen {
       &.has-gap-#{$i}-widescreen {
         gap: $item;
 
@@ -97,7 +102,7 @@ $gap: 4px,
       }
     }
 
-    @include fullhd {
+    @include mixins.fullhd {
       &.has-gap-#{$i}-fullhd {
         gap: $item;
 
@@ -110,7 +115,7 @@ $gap: 4px,
   }
 
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-peek {
       padding-right: 15%;
     }
@@ -128,7 +133,7 @@ $gap: 4px,
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-tablet {
         flex: none;
@@ -159,7 +164,7 @@ $gap: 4px,
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-touch {
         flex: none;
@@ -174,7 +179,7 @@ $gap: 4px,
 
   }
 
-  @include desktop {
+  @include mixins.desktop {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-desktop {
         flex: none;
@@ -189,7 +194,7 @@ $gap: 4px,
 
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-widescreen {
         flex: none;
@@ -204,7 +209,7 @@ $gap: 4px,
 
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-fullhd {
         flex: none;
@@ -219,7 +224,7 @@ $gap: 4px,
 
   }
 
-  @include mobile {
+  @include mixins.mobile {
     --ColumnGap: 16px;
     &:not(.is-mobile) {
       flex-direction: column;
@@ -243,7 +248,7 @@ $gap: 4px,
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     &.is-desktop {
       flex-direction: column;
 
@@ -261,13 +266,13 @@ $gap: 4px,
   flex-grow: 1;
   flex-shrink: 1;
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-narrow-mobile {
       flex: none;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     &.is-narrow,
     &.is-narrow-tablet {
       flex: none;
@@ -286,26 +291,26 @@ $gap: 4px,
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     &.is-narrow-touch {
       flex: none;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     &.is-narrow-desktop {
       flex: none;
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     &.is-narrow-widescreen {
       flex: none;
     }
 
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     &.is-narrow-fullhd {
       flex: none;
     }
@@ -347,19 +352,19 @@ $gap: 4px,
       }
 
       &::-webkit-scrollbar-track {
-        background-color: getColor('neutral');
+        background-color: color.getColor('neutral');
         border-radius: 8px;
         margin: 0 8px;
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: getColor('main-fade');
+        background-color: color.getColor('main-fade');
         border-radius: var(--radius);
       }
     }
   }
 
-  @include mobile {
+  @include mixins.mobile {
     gap: 16px;
   }
 
@@ -422,7 +427,7 @@ $gap: 4px,
   }
 
   &.is-inverted-mobile {
-    @include mobile {
+    @include mixins.mobile {
       flex-direction: column-reverse;
       display: flex;
       align-items: stretch;
@@ -430,19 +435,19 @@ $gap: 4px,
   }
 
   // Responsiveness
-  @include tablet {
+  @include mixins.tablet {
     &:not(.is-desktop) {
       flex-direction: row;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     // Modifiers
     &.is-desktop {
       flex-direction: row;
     }
   }
-  @include mobile {
+  @include mixins.mobile {
     &.is-fullbleed {
       width: 100vw !important;
       margin-left: 50%;

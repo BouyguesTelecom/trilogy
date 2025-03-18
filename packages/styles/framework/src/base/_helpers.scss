@@ -1,3 +1,11 @@
+@use "sass:list";
+@use "../elements/icon";
+@use "../utilities/colors";
+@use "../utilities/mixins";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "color";
+
 .is-sticky-top {
   position: sticky !important;
   top: 0;
@@ -12,7 +20,7 @@
 
 // Float
 .is-clearfix {
-  @include clearfix;
+  @include mixins.clearfix
 }
 
 .is-pulled-left {
@@ -30,7 +38,7 @@
 
 // Overlay
 .is-overlay {
-  @include overlay;
+  @include mixins.overlay;
 }
 
 // Nowrap
@@ -52,55 +60,55 @@ $alignments: (
 }
 
 @each $alignment, $text-align in $alignments {
-  @include mobile {
+  @include mixins.mobile {
     .has-text-#{$alignment}-mobile {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     .has-text-#{$alignment}-tablet {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     .has-text-#{$alignment}-tablet-only {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     .has-text-#{$alignment}-touch {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     .has-text-#{$alignment}-desktop {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include desktop-only {
+  @include mixins.desktop-only {
     .has-text-#{$alignment}-desktop-only {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     .has-text-#{$alignment}-widescreen {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include widescreen-only {
+  @include mixins.widescreen-only {
     .has-text-#{$alignment}-widescreen-only {
       text-align: #{$text-align} !important;
     }
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     .has-text-#{$alignment}-fullhd {
       text-align: #{$text-align} !important;
     }
@@ -109,8 +117,8 @@ $alignments: (
 
 // Typography
 @mixin typography-size($target: '') {
-  @each $size in $sizes {
-    $i: index($sizes, $size);
+  @each $size in derived-variables.$sizes {
+    $i: list.index(derived-variables.$sizes, icon.$size);
 
     .is-size-#{$i}#{if($target == '', '', '-' + $target)} {
       font-size: $size !important;
@@ -120,27 +128,27 @@ $alignments: (
 
 @include typography-size;
 
-@include mobile {
+@include mixins.mobile {
   @include typography-size('mobile');
 }
 
-@include tablet {
+@include mixins.tablet {
   @include typography-size('tablet');
 }
 
-@include touch {
+@include mixins.touch {
   @include typography-size('touch');
 }
 
-@include desktop {
+@include mixins.desktop {
   @include typography-size('desktop');
 }
 
-@include widescreen {
+@include mixins.widescreen {
   @include typography-size('widescreen');
 }
 
-@include fullhd {
+@include mixins.fullhd {
   @include typography-size('fullhd');
 }
 
@@ -170,36 +178,36 @@ $alignments: (
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-light {
-  font-weight: $weight-normal !important;
+  font-weight: initial-variables.$weight-normal !important;
 }
 
 .has-text-weight-normal {
-  font-weight: $weight-normal !important;
+  font-weight: initial-variables.$weight-normal !important;
 }
 
 .has-text-weight-medium {
-  font-weight: $weight-medium !important;
+  font-weight: initial-variables.$weight-medium !important;
 }
 
 .has-text-weight-semibold {
-  font-weight: $weight-semibold !important;
+  font-weight: initial-variables.$weight-semibold !important;
 }
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-bold {
-  font-weight: $weight-semibold !important;
+  font-weight: initial-variables.$weight-semibold !important;
 }
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-extrabold {
-  font-weight: $weight-semibold !important;
+  font-weight: initial-variables.$weight-semibold !important;
 }
 
 @mixin typography-colors() {
-  @each $name, $color in $colors {
-    $brandName: nth($color, 2);
-    $color: nth($color, 1);
-    $color-invert: invertColor($name);
+  @each $name, $color in colors.$colors {
+    $brandName: list.nth($color, 2);
+    $color: list.nth($color, 1);
+    $color-invert: color.invertColor($name);
 
     .has-text-#{$brandName} {
       color: $color !important;
@@ -208,7 +216,7 @@ $alignments: (
       color: $color-invert !important;
     }
     .has-background-#{$brandName} {
-      background-color: getColor($name) !important;
+      background-color: color.getColor($name) !important;
     }
   }
 }
@@ -223,55 +231,55 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
     display: #{$display} !important;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     .is-#{$display}-mobile {
       display: #{$display} !important;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     .is-#{$display}-tablet {
       display: #{$display} !important;
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     .is-#{$display}-tablet-only {
       display: #{$display} !important;
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     .is-#{$display}-touch {
       display: #{$display} !important;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     .is-#{$display}-desktop {
       display: #{$display} !important;
     }
   }
 
-  @include desktop-only {
+  @include mixins.desktop-only {
     .is-#{$display}-desktop-only {
       display: #{$display} !important;
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     .is-#{$display}-widescreen {
       display: #{$display} !important;
     }
   }
 
-  @include widescreen-only {
+  @include mixins.widescreen-only {
     .is-#{$display}-widescreen-only {
       display: #{$display} !important;
     }
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     .is-#{$display}-fullhd {
       display: #{$display} !important;
     }
@@ -282,55 +290,55 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
   display: none !important;
 }
 
-@include mobile {
+@include mixins.mobile {
   .is-hidden-mobile {
     display: none !important;
   }
 }
 
-@include tablet {
+@include mixins.tablet {
   .is-hidden-tablet {
     display: none !important;
   }
 }
 
-@include tablet-only {
+@include mixins.tablet-only {
   .is-hidden-tablet-only {
     display: none !important;
   }
 }
 
-@include touch {
+@include mixins.touch {
   .is-hidden-touch {
     display: none !important;
   }
 }
 
-@include desktop {
+@include mixins.desktop {
   .is-hidden-desktop {
     display: none !important;
   }
 }
 
-@include desktop-only {
+@include mixins.desktop-only {
   .is-hidden-desktop-only {
     display: none !important;
   }
 }
 
-@include widescreen {
+@include mixins.widescreen {
   .is-hidden-widescreen {
     display: none !important;
   }
 }
 
-@include widescreen-only {
+@include mixins.widescreen-only {
   .is-hidden-widescreen-only {
     display: none !important;
   }
 }
 
-@include fullhd {
+@include mixins.fullhd {
   .is-hidden-fullhd {
     display: none !important;
   }
@@ -340,55 +348,55 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
   visibility: hidden !important;
 }
 
-@include mobile {
+@include mixins.mobile {
   .is-invisible-mobile {
     visibility: hidden !important;
   }
 }
 
-@include tablet {
+@include mixins.tablet {
   .is-invisible-tablet {
     visibility: hidden !important;
   }
 }
 
-@include tablet-only {
+@include mixins.tablet-only {
   .is-invisible-tablet-only {
     visibility: hidden !important;
   }
 }
 
-@include touch {
+@include mixins.touch {
   .is-invisible-touch {
     visibility: hidden !important;
   }
 }
 
-@include desktop {
+@include mixins.desktop {
   .is-invisible-desktop {
     visibility: hidden !important;
   }
 }
 
-@include desktop-only {
+@include mixins.desktop-only {
   .is-invisible-desktop-only {
     visibility: hidden !important;
   }
 }
 
-@include widescreen {
+@include mixins.widescreen {
   .is-invisible-widescreen {
     visibility: hidden !important;
   }
 }
 
-@include widescreen-only {
+@include mixins.widescreen-only {
   .is-invisible-widescreen-only {
     visibility: hidden !important;
   }
 }
 
-@include fullhd {
+@include mixins.fullhd {
   .is-invisible-fullhd {
     visibility: hidden !important;
   }
@@ -412,7 +420,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-unselectable {
-  @include unselectable;
+  @include mixins.unselectable;
 }
 
 .is-multiline {
@@ -454,7 +462,7 @@ $radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
   border: none !important;
 }
 
-@include mobile {
+@include mixins.mobile {
   .is-fullwidth-mobile {
     width: 100%;
   }
@@ -507,7 +515,7 @@ $radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
 }
 
 // FIXME : n'a pas sa place dans un design system
-@include mobile {
+@include mixins.mobile {
   .is-vertical-mobile {
     flex-direction: column !important;
 
@@ -551,63 +559,63 @@ $radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include mobile {
+@include mixins.mobile {
   .is-centered-mobile {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include tablet {
+@include mixins.tablet {
   .is-centered-tablet {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include tablet-only {
+@include mixins.tablet-only {
   .is-centered-tablet-only {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include touch {
+@include mixins.touch {
   .is-centered-touch {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include desktop {
+@include mixins.desktop {
   .is-centered-desktop {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include desktop-only {
+@include mixins.desktop-only {
   .is-centered-desktop-only {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include widescreen {
+@include mixins.widescreen {
   .is-centered-widescreen {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include widescreen-only {
+@include mixins.widescreen-only {
   .is-centered-widescreen-only {
     justify-content: center !important;
   }
 }
 
 // FIXME : à supprimer car double-emploi avec is-justified-center(-xxx)
-@include fullhd {
+@include mixins.fullhd {
   .is-centered-fullhd {
     justify-content: center !important;
   }
@@ -629,55 +637,55 @@ $positions: (
     justify-content: #{$justify-content} !important;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     .is-justified-#{$justification}-mobile {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     .is-justified-#{$justification}-tablet {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     .is-justified-#{$justification}-tablet-only {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     .is-justified-#{$justification}-touch {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     .is-justified-#{$justification}-desktop {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include desktop-only {
+  @include mixins.desktop-only {
     .is-justified-#{$justification}-desktop-only {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     .is-justified-#{$justification}-widescreen {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include widescreen-only {
+  @include mixins.widescreen-only {
     .is-justified-#{$justification}-widescreen-only {
       justify-content: #{$justify-content} !important;
     }
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     .is-justified-#{$justification}-fullhd {
       justify-content: #{$justify-content} !important;
     }
@@ -709,62 +717,62 @@ $positions: (
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include mobile {
+@include mixins.mobile {
   .is-vcentered-mobile {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include tablet {
+@include mixins.tablet {
   .is-vcentered-tablet {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include tablet-only {
+@include mixins.tablet-only {
   .is-vcentered-tablet-only {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include touch {
+@include mixins.touch {
   .is-vcentered-touch {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include desktop {
+@include mixins.desktop {
   .is-vcentered-desktop {
     align-items: center !important;
   }
 }
 
-@include desktop-only {
+@include mixins.desktop-only {
   .is-vcentered-desktop-only {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include widescreen {
+@include mixins.widescreen {
   .is-vcentered-widescreen {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include widescreen-only {
+@include mixins.widescreen-only {
   .is-vcentered-widescreen-only {
     align-items: center !important;
   }
 }
 
 // FIXME : le nom n'est pas cohérent avec l'effet (align-items peut être horizontal selon l'axe principal)
-@include fullhd {
+@include mixins.fullhd {
   .is-vcentered-fullhd {
     align-items: center !important;
   }
@@ -775,55 +783,55 @@ $positions: (
     align-items: #{$align-items} !important;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     .is-aligned-#{$alignment}-mobile {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     .is-aligned-#{$alignment}-tablet {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include tablet-only {
+  @include mixins.tablet-only {
     .is-aligned-#{$alignment}-tablet-only {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     .is-aligned-#{$alignment}-touch {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     .is-aligned-#{$alignment}-desktop {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include desktop-only {
+  @include mixins.desktop-only {
     .is-aligned-#{$alignment}-desktop-only {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include widescreen {
+  @include mixins.widescreen {
     .is-aligned-#{$alignment}-widescreen {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include widescreen-only {
+  @include mixins.widescreen-only {
     .is-aligned-#{$alignment}-widescreen-only {
       align-items: #{$align-items} !important;
     }
   }
 
-  @include fullhd {
+  @include mixins.fullhd {
     .is-aligned-#{$alignment}-fullhd {
       align-items: #{$align-items} !important;
     }

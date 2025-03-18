@@ -1,10 +1,12 @@
+@use "../base/color";
+
 
 .field .security-gauge-container {
   width: 100%;
 
   .security-gauge {
     height: 4px;
-    background: getColor('disabled');
+    background: color.getColor('disabled');
     border-radius: var(--radius-small);
     margin: 8px 0;
 

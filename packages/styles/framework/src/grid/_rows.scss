@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 $gap: 4px,
 8px,
 12px,
@@ -18,12 +22,12 @@ $gap: 4px,
   height: 100%;
   gap: 24px;
 
-  @include mobile {
+  @include mixins.mobile {
     gap: 16px;
   }
 
-  @for $i from 1 through length($gap) {
-    $item: nth($gap, $i);
+  @for $i from 1 through list.length(initial-variables.$gap) {
+    $item: list.nth(initial-variables.$gap, $i);
     &.has-gap-#{$i} {
       gap: $item;
     }

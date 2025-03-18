@@ -70,7 +70,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
 ]
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
-  let scssContent = 'body:not(.is-tight) {\n'
+  let scssContent = '@use "../utilities/mixins";body:not(.is-tight) {\n'
   let mobileContent = ''
 
   for (const entry of spacingMatrix) {
@@ -107,7 +107,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
 
   if (mobileContent) {
     scssContent += `
-@include mobile() {
+@include mixins.mobile {
   body:not(.is-tight) {
   ${mobileContent}
   }
