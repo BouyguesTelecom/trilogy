@@ -1,10 +1,11 @@
-import React from 'react'
-import { ProgressItemProps } from './ProgressItemProps'
-import { is } from '../../../services/index'
-import { getStatusClassName } from '../../../objects'
-import { hashClass } from '../../../helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
 import clsx from 'clsx'
+import React from 'react'
 import { useTrilogyContext } from '../../../context'
+import { hashClass } from '../../../helpers'
+import { getStatusClassName } from '../../../objects'
+import { is } from '../../../services/index'
+import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
 
 /**
  * Progress Item component - Only if stacked
@@ -17,34 +18,33 @@ import { useTrilogyContext } from '../../../context'
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const ProgressItem = ({
-  className,
-  percent,
-  maxPercent = 100,
-  minPercent = 0,
-  status,
-  accessibilityLabel,
-  ...others
-}: ProgressItemProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
+  (
+    { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, ...others },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx('progress-bar', status && is(getStatusClassName(status)), !status && is('primary'), className),
-  )
+    const classes = hashClass(
+      styled,
+      clsx('progress-bar', status && is(getStatusClassName(status)), !status && is('primary'), className),
+    )
 
-  return (
-    <div
-      {...(percent && { style: { width: `${percent}%` } })}
-      className={classes}
-      role='progressbar'
-      aria-valuenow={percent}
-      aria-valuemin={minPercent}
-      aria-valuemax={maxPercent}
-      aria-label={accessibilityLabel}
-      {...others}
-    />
-  )
-}
+    return (
+      <div
+        ref={ref}
+        {...(percent && { style: { width: `${percent}%` } })}
+        className={classes}
+        role='progressbar'
+        aria-valuenow={percent}
+        aria-valuemin={minPercent}
+        aria-valuemax={maxPercent}
+        aria-label={accessibilityLabel}
+        {...others}
+      />
+    )
+  },
+)
 
+ProgressItem.displayName = ComponentName.ProgressItem
 export default ProgressItem
