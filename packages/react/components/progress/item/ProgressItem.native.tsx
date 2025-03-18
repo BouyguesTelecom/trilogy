@@ -1,8 +1,7 @@
-import React, {useEffect, useRef} from 'react'
-import {Animated, StyleSheet} from 'react-native'
-import {ProgressItemNativeRef, ProgressItemProps} from './ProgressItemProps'
-import {ComponentName} from '../../enumsComponentsName'
-import {getColorStyle, getStatusStyle, TrilogyColor} from "../../../objects/facets";
+import React, { useEffect, useRef } from 'react'
+import { Animated } from 'react-native'
+import { ComponentName } from '../../enumsComponentsName'
+import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
 
 /**
  * ProgressItem component - Only if stacked
@@ -12,44 +11,34 @@ import {getColorStyle, getStatusStyle, TrilogyColor} from "../../../objects/face
  * @param style {ViewStyle[]} Styles passed from parent
  * @param children {React.ReactNode}
  */
-const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(({
-                                                                                   children,
-                                                                                   percent,
-                                                                                   minPercent = 100,
-                                                                                   status,
-                                                                                   style,
-                                                                                   ...others
-                                                                                 }, ref): JSX.Element => {
+const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
+  ({ children, percent, minPercent = 100, status, style, ...others }, ref): JSX.Element => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const givenProps = others as any
-  const givenstyle = givenProps.style
+    const animation = useRef(new Animated.Value(0)).current
 
-  const animation = useRef(new Animated.Value(0)).current
+    useEffect(() => {
+      percent &&
+        Animated.timing(animation, {
+          toValue: percent,
+          duration: 1000,
+          useNativeDriver: false,
+        }).start()
+    }, [animation, percent, style])
 
-  useEffect(() => {
-    percent &&
-    Animated.timing(animation, {
-      toValue: percent,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start()
-    console.log('style : ', style)
-  }, [animation, percent, style])
+    const width = animation.interpolate({
+      inputRange: [0, 100],
+      outputRange: ['0%', '100%'],
+      extrapolate: 'clamp',
+    })
 
-  const width = animation.interpolate({
-    inputRange: [0, 100],
-    outputRange: ['0%', '100%'],
-    extrapolate: 'clamp',
-  })
-
-  return (
-    <Animated.View {...others} style={[{ width }, ...givenstyle]}>
-      {children}
-    </Animated.View>
-  )
-
-})
+    return (
+      <Animated.View {...others} style={[{ width }, ...style]}>
+        {children}
+      </Animated.View>
+    )
+  },
+)
 
 ProgressItem.displayName = ComponentName.ProgressItem
 export default ProgressItem
