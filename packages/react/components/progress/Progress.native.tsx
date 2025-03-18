@@ -16,26 +16,26 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param legendEnd {string} Second extremity legend, only with legendStart property
  */
 const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
-                    children,
-                    value,
-                    max = 100,
-                    status,
-                    legendCenter,
-                    legendStart,
-                    legendEnd,
-                    stacked,
-                    ...others
-                  }, ref): JSX.Element => {
+                                                                       children,
+                                                                       value,
+                                                                       max = 100,
+                                                                       status,
+                                                                       legendCenter,
+                                                                       legendStart,
+                                                                       legendEnd,
+                                                                       stacked,
+                                                                       ...others
+                                                                     }, ref): JSX.Element => {
   const animation = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    typeof value === "number" &&
-    Animated.timing(animation, {
-      toValue: value,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start()
+    if (typeof value === "number") {
+      Animated.timing(animation, {
+        toValue: value,
+        duration: 1000,
+        useNativeDriver: false,
+      }).start()
+    }
   }, [animation, value])
 
   const height = 6
@@ -63,20 +63,15 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
       borderTopStartRadius: 6,
       borderBottomLeftRadius: 6,
     },
-    progressItemSecond: {
+    progressItemLast: {
       borderTopEndRadius: 6,
       borderBottomRightRadius: 6,
-    },
-    test: {
-      width: 20,
-      backgroundColor: "#333",
-      height: 6,
     },
     legendCenter: {
       textAlign: "center",
       paddingTop: 5,
       fontWeight: "500",
-      alignSelf: "center"
+      alignSelf: "center",
     },
     extremLegend: {
       width: "100%",
@@ -100,8 +95,8 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(({
                   key: index,
                   style: [
                     index === 0 && styles.progressItemFirst,
-                    index === children.length - 1 && styles.progressItemSecond,
-                    { backgroundColor: getStatusStyle(child.props.alert), height: height },
+                    index === children.length - 1 && styles.progressItemLast,
+                    { backgroundColor: getStatusStyle(child.props.status), height: height },
                   ],
                 })) ||
               child,
