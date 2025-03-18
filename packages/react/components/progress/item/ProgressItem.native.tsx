@@ -13,8 +13,6 @@ import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
  */
 const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
   ({ children, percent, minPercent = 100, status, style, ...others }, ref): JSX.Element => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
     const animation = useRef(new Animated.Value(0)).current
 
     useEffect(() => {
@@ -33,7 +31,7 @@ const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
     })
 
     return (
-      <Animated.View {...others} style={[{ width }, ...style]}>
+      <Animated.View {...others} style={[{ width }, style]}>
         {children}
       </Animated.View>
     )
