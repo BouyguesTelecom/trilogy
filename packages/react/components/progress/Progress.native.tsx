@@ -90,7 +90,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
                     style: [
                       index === 0 ? styles.progressItemFirst : undefined,
                       index === children.length - 1 ? styles.progressItemLast : undefined,
-                      { backgroundColor: getStatusStyle(child.props.status).backgroundColor, height: height },
+                      { backgroundColor: getStatusStyle(child.props.status).color, height: height },
                     ],
                   })) ||
                 child,
