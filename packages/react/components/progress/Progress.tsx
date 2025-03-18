@@ -17,6 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param className {string} Additionnal CSS classes
  */
 const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
+                    children,
                     className,
                     id,
                     value,
@@ -26,9 +27,11 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
                     legendStart,
                     legendCenter,
                     legendEnd,
+                    stacked,
                     ...others
                   }, ref) => {
   const { styled } = useTrilogyContext()
+
   const classes = hashClass(
     styled,
     clsx(
@@ -39,6 +42,16 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
       className,
     ),
   )
+
+  const stackedClasses = hashClass(styled, clsx('progress', stacked && is('stacked'), className))
+
+  if (children && stacked) {
+    return (
+      <div className={stackedClasses} {...others} >
+        {children}
+      </div>
+    )
+  }
 
   return (
     <div ref={ref} className='progress-container'>
