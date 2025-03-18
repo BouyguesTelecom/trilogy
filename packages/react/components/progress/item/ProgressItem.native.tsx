@@ -8,7 +8,7 @@ import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
  * @param percent {number} Progress percent
  * @param minPercent {number} Default min percent is 100
  * @param status {StatusProps} Progress status state
- * @param style {ViewStyle[]} Styles passed from parent
+ * @param style {Style} Styles passed from parent
  * @param children {React.ReactNode}
  */
 const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
