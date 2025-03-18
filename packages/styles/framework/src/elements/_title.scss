@@ -1,6 +1,7 @@
 @use 'sass:math';
 
 $title-weight: $weight-semibold;
+$title-high-weight: 550;
 $title-line-height: 1.1;
 $title-strong-color: inherit;
 $title-strong-weight: inherit;
@@ -61,6 +62,15 @@ $title-levels-mobile: (
     $font-size: nth($title-level, 1);
     $line-height: nth($title-level, 2);
     $font-family: nth($title-level, 3);
+
+    // Avoid Safari font weight issues
+    &.is-level-1 {
+      font-weight: $title-high-weight;
+    }
+
+    &.is-level-2 {
+      font-weight: $title-high-weight;
+    }
 
     &.is-level-#{$i} {
       font-size: $font-size;
