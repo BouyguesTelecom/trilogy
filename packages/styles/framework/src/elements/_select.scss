@@ -1,3 +1,8 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 $status-select: (
   'success', 'error'
 );
@@ -8,19 +13,20 @@ $status-select: (
 
   select {
     width: 100%;
-    @include input;
     padding-right: 40px;
     text-overflow: ellipsis;
+
+    @include mixins.input;
 
     &:focus {
       padding-left: 15px !important;
     }
 
     @each $name in $status-select {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
-  
+      $color: color.getColor($name);
+      $color-invert: color.invertColor($name);
+      $brandName: color.getColorBrandName($name);
+
       &.is-#{$brandName} {
         border: 1px solid $color;
       }
@@ -52,7 +58,7 @@ $status-select: (
     margin-bottom: 0 !important;
     &.focus {
       &:after {
-        @include arrow('up');
+        @include mixins.arrow('up');
         right: 12px;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -61,7 +67,7 @@ $status-select: (
 
     &:not(.focus) {
       &:after {
-        @include arrow();
+        @include mixins.arrow();
         right: 12px;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -80,28 +86,28 @@ $status-select: (
   }
 
   .select-options {
-    background-color: getColor('background');
+    background-color: color.getColor('background');
 
     li.option {
-      padding: $spacing-3 $spacing-4;
+      padding: spacing.$spacing-3 spacing.$spacing-4;
       cursor: pointer;
       display: flex;
-      gap: $spacing-2;
-      @include hover;
+      gap: spacing.$spacing-2;
+      @include mixins.hover;
 
       &.is-disabled {
-        color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        color: color.getColor('disabled');
+        background-color: color.getColor('disabled-fade');
         cursor: not-allowed;
       }
 
       &[data-selected="true"] {
-        font-weight: $weight-black;
+        font-weight: initial-variables.$weight-black;
 
         &:after {
           content: "" !important;
           mask-image: url('./assets/icons/all/check.svg') !important;
-          background-color: getColor('main') !important;
+          background-color: color.getColor('main') !important;
           mask-size: 18px !important;
           right: 18px !important;
           height: 18px !important;

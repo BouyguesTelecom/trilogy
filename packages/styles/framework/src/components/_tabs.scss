@@ -1,10 +1,15 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .tabs {
-  @include overflow-touch;
-  @include unselectable;
+  @include mixins.overflow-touch;
+  @include mixins.unselectable;
 
   align-items: stretch;
   justify-content: space-between;
-  font-weight: $weight-normal;
+  font-weight: initial-variables.$weight-normal;
   width: 100%;
   text-align: center;
   overflow: scroll;
@@ -12,7 +17,7 @@
   -ms-overflow-style: none !important;
   scrollbar-width: none;
 
-  @include mobile {
+  @include mixins.mobile {
     text-align: left;
   }
 
@@ -22,22 +27,22 @@
   }
 
   &.is-inverted {
-    background-color: getColor('font');
+    background-color: color.getColor('font');
 
     .tab-list > .tab {
-      color: getColor('background') !important;
+      color: color.getColor('background') !important;
 
       &.is-active {
         border-bottom-color: currentColor;
       }
 
-      #{$hoverSelector} {
-        color: getColor('background') !important;
+      #{initial-variables.$hoverSelector} {
+        color: color.getColor('background') !important;
         cursor: pointer;
       }
 
       &:focus-visible {
-        border-color: getColor('background');
+        border-color: color.getColor('background');
       }
 
     }
@@ -59,7 +64,7 @@
     display: inline-flex;
 
     &.is-fullwidth {
-      @include desktop {
+      @include mixins.desktop {
         > * {
           flex-grow: 1;
           flex-shrink: 0;
@@ -71,7 +76,7 @@
       box-shadow: none;
     }
 
-    @include mobile {
+    @include mixins.mobile {
       justify-content: flex-start;
       > .tab:first-child {
         margin-left: 24px;
@@ -85,16 +90,17 @@
     > .tab {
       height: calc(100% - 4px);
       background-color: transparent;
-      color: getColor('font');
+      color: color.getColor('font');
       text-decoration: none;
       outline: none;
       padding: 6px 14px;
-      font-size: $text-14;
-      @include desktop {
-        font-size: $text-16;
-      }
-      border: 0px solid transparent;
+      font-size: initial-variables.$text-14;
+      border: 0 solid transparent;
       border-bottom: 2px solid transparent;
+
+      @include mixins.desktop {
+        font-size: initial-variables.$text-16;
+      }
 
       .tab-icon {
         margin-top: 2px;
@@ -106,19 +112,19 @@
         }
       }
 
-      @include mobile {
-        font-size: $text-14;
+      @include mixins.mobile {
+        font-size: initial-variables.$text-14;
       }
 
       &.is-active {
-        color: getColor('main');
+        color: color.getColor('main');
         position: relative;
-        border-bottom-color: getColor('main');
-        font-weight: $weight-medium;
+        border-bottom-color: color.getColor('main');
+        font-weight: initial-variables.$weight-medium;
       }
 
       &:hover:not(.is-disabled) {
-        color: getColor('main');
+        color: color.getColor('main');
         border-bottom-color: currentColor;
         cursor: pointer;
 
@@ -130,7 +136,7 @@
 
       &:focus-visible {
         border-color: currentColor;
-        color: getColor('main');
+        color: color.getColor('main');
       }
 
       .icon {
@@ -153,8 +159,8 @@
   }
 
   .tab-panels {
-    padding-top: $spacing-3;
-    padding-bottom: $spacing-3;
+    padding-top: spacing.$spacing-3;
+    padding-bottom: spacing.$spacing-3;
 
     .tab-panel {
       transition: opacity 2s ease-in-out;

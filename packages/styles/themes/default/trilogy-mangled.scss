@@ -2,36 +2,29 @@
 
 // You must build fonts before
 // Base tools (functions)
-@import "./framework/src/utilities/tools";
+@use "./../../framework/src/utilities/tools" as *;
 
 // Base framework
-@import "./themes/default/src/utilities/pre";
-@import "./framework/src/utilities/pre";
+@use "./../default/src/utilities/pre" as *;
+@use "./../../framework/src/utilities/pre" as *;
 
-@import "./framework/src/utilities/post";
-@import "./themes/default/src/utilities/post";
+@use "./../../framework/src/utilities/post" as *;
+@use "./../default/src/utilities/post" as *;
 
 /* All Base Without reset */
-$body-background-color: #f6f6f6;
-$body-size: 10px;
-$body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
-$body-line-height: 1.5 !default;
+@use "./../../framework/src/base/generic" as *;
+@use "./../../framework/src/base/color" as *;
+@use "./../../framework/src/base/helpers" as *;
+@use "./../../framework/src/base/loading" as *;
 
-@import "./framework/src/base/generic";
-@import "./framework/src/base/color";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
-
-@import "./framework/src/elements/all";
-@import "./framework/src/components/all";
-@import "./framework/src/grid/all";
-@import "./framework/src/layout/all";
+@use "./../../framework/src/elements/all" as *;
+@use "./../../framework/src/components/all" as *;
+@use "./../../framework/src/grid/all" as *;
+@use "./../../framework/src/layout/all" as *;
 
 // Icons
-@import "../../assets/icons/all";
+@use "../../assets/icons/all" as icons;
 
 // Assets and theme (common + default)
-@import "./themes/default/src/_all";
+@use "./../default/src/_all"  as defaultAll;
 

@@ -1,8 +1,13 @@
-.section {
-  padding: $spacing-6 $spacing-4;
+@use "../base/color";
+@use "../utilities/functions";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
 
-  @include desktop {
-    padding: $spacing-8 $spacing-5;
+.section {
+  padding: spacing.$spacing-6 spacing.$spacing-4;
+
+  @include mixins.desktop {
+    padding: spacing.$spacing-8 spacing.$spacing-5;
   }
 
   &.has-background {
@@ -11,36 +16,36 @@
   }
 
   &.has-overlap > .container {
-    margin-top: -$spacing-6 - $spacing-4;
+    margin-top: -(spacing.$spacing-6) - spacing.$spacing-4;
 
-    @include desktop {
-      margin-top: -$spacing-8 - $spacing-4;
+    @include mixins.desktop {
+      margin-top: -(spacing.$spacing-8) - spacing.$spacing-4;
     }
   }
 
   &.is-info {
-    background-color: getColor('info');
-    color: getColor('background');
+    background-color: color.getColor('info');
+    color: color.getColor('background');
   }
 
   &.has-overlay {
     position: relative;
-    z-index: zindex('void');
-    color: getColor('background');
+    z-index: functions.zindex('void');
+    color: color.getColor('background');
 
     &::before {
-      @include overlay;
+      @include mixins.overlay;
       content: '';
-      z-index: zindex('subzero');
+      z-index: functions.zindex('subzero');
       background-color: rgba(0, 0, 0, 0.6);
     }
   }
 
   &.has-pattern-light {
-    @include pattern-light(70%, 180px, -30px);
+    @include mixins.pattern-light(70%, 180px, -30px);
   }
 
   &.has-pattern-dark {
-    @include pattern-dark(120%, 260px, -30%);
+    @include mixins.pattern-dark(120%, 260px, -30%);
   }
 }

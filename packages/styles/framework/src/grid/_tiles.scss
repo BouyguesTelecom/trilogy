@@ -1,3 +1,5 @@
+@use "../utilities/mixins";
+
 @use "sass:math";
 
 .tile {
@@ -50,7 +52,7 @@
         display: flex;
     }
 
-    @include mobile {
+    @include mixins.mobile {
         @for $i from 1 through 12 {
             &.is-#{$i}-mobile {
                 flex: none;
@@ -63,7 +65,7 @@
         }
     }
 
-    @include tablet {
+    @include mixins.tablet {
         &:not(.is-child) {
             display: flex;
         }

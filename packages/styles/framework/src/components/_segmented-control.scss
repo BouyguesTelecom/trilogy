@@ -1,12 +1,16 @@
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .segmented-control {
   border-radius: 6px;
-  padding: $spacing-1;
-  background-color: getColor('background');
+  padding: spacing.$spacing-1;
+  background-color: color.getColor('background');
   display: flex;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
-  border: 1px solid getColor('neutral');
+  border: 1px solid color.getColor('neutral');
 
 
   &.justified-start {
@@ -19,28 +23,28 @@
     margin-left: auto;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     display: flex;
     margin: 24px auto;
     width: 100%;
   }
 
   .segmented-control-item {
-    padding: 0 $spacing-5;
+    padding: 0 spacing.$spacing-5;
     border-radius: var(--radius-small);
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
     height: 42px;
-    color: getColor('font');
-    background-color: getColor('background');
+    color: color.getColor('font');
+    background-color: color.getColor('background');
 
     &:not(:last-child) {
       margin-right: 4px;
     }
 
-    @include mobile {
-      padding: 0 $spacing-4;
+    @include mixins.mobile {
+      padding: 0 spacing.$spacing-4;
       flex: 1 1 0;
       width: 0;
       text-overflow: ellipsis;
@@ -49,12 +53,12 @@
 
     &:hover:not([disabled], [aria-disabled=true], .is-active) {
       cursor: pointer;
-      @include hoverRules()
+      @include mixins.hoverRules()
     }
 
     &.is-active {
-      background-color: getColor('main');
-      color: invertColor('main');
+      background-color: color.getColor('main');
+      color: color.invertColor('main');
     }
 
     &:disabled{

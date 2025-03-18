@@ -1,13 +1,19 @@
-$body-size: 10px;
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "color";
+
+$body-size: 10px !default;
 $body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
+$body-family: derived-variables.$family-primary !default;
+$body-weight: initial-variables.$weight-normal !default;
 $body-line-height: 1.5 !default;
 
 .html-wrap {
     margin: 0;
     padding: 0;
-    background-color: getColor('background');
+    background-color: color.getColor('background');
     font-size: $body-size;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -22,7 +28,7 @@ $body-line-height: 1.5 !default;
 .main-wrap {
     margin: 0;
     padding: 0;
-    color: getColor('font');
+    color: color.getColor('font');
     font-weight: $body-weight;
     line-height: $body-line-height;
     font-size: 16px;
@@ -48,15 +54,15 @@ $body-line-height: 1.5 !default;
 
     &.has-overlay {
         &::before {
-            @include overlay;
+            @include mixins.overlay;
 
             position: fixed;
             background-color: rgba(#000, 0.86);
-            z-index: zindex('small');
+            z-index: functions.zindex('small');
         }
     }
   [disabled], [aria-disabled="true"] {
-    @include disabledRules;
+    @include mixins.disabledRules;
   }
 }
 
@@ -67,7 +73,7 @@ $body-line-height: 1.5 !default;
 }
 
 .header {
-    z-index: zindex('large');
+    z-index: functions.zindex('large');
 }
 
 *::before,

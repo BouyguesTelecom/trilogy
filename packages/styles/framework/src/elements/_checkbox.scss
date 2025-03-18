@@ -1,14 +1,18 @@
-@include checkbox-and-radio('checkbox');
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
+@include mixins.checkbox-and-radio('checkbox');
 
 .checkboxes {
   width: 100%;
-  column-gap: $spacing-5;
-  row-gap: $spacing-3;
+  column-gap: spacing.$spacing-5;
+  row-gap: spacing.$spacing-3;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 
-  @include tablet {
+  @include mixins.tablet {
     flex-direction: row;
 
     &.is-vertical-desktop {
@@ -16,7 +20,7 @@
     }
   }
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-horizontal-mobile {
       flex-direction: row;
     }
@@ -33,13 +37,13 @@
 .checkbox-tile {
   input:checked ~ label.checkbox-label {
     &:before {
-      background-color: getColor('main');
+      background-color: color.getColor('main');
     }
 
     &:after {
       content: "";
       mask-image: url('./assets/icons/all/check.svg');
-      background-color: getColor('background');
+      background-color: color.getColor('background');
       mask-size: 18px;
     }
   }
@@ -64,7 +68,7 @@
 .checkbox {
   input:not(:disabled):not(:checked) ~ label.checkbox-label:hover {
     &:before {
-      @include hoverRules()
+      @include mixins.hoverRules()
     }
   }
 }

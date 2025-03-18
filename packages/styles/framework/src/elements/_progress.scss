@@ -1,12 +1,16 @@
 @use "sass:math";
 
-@import "../base/color";
+@use "sass:list";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
 
 $progressbar-height: 10px;
 $progressbar-small: 5px;
 
 .progress {
-  @include block;
+  @include mixins.block;
 
   border: none;
   border-radius: 9999px;
@@ -18,20 +22,20 @@ $progressbar-small: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
 
-  background-color: getColor('main-fade');
+  background-color: color.getColor('main-fade');
 
   &::-webkit-progress-bar {
-    background-color: getColor('main-fade');
+    background-color: color.getColor('main-fade');
     border-radius: $progressbar-height;
   }
 
   &::-webkit-progress-value {
-    background-color: getColor('font');
+    background-color: color.getColor('font');
     border-radius: $progressbar-height;
   }
 
   &::-moz-progress-bar {
-    background-color: getColor('font');
+    background-color: color.getColor('font');
     border-radius: $progressbar-height;
   }
 
@@ -40,9 +44,9 @@ $progressbar-small: 5px;
   }
 
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $brandName: getColorBrandName($name);
-    $color: getColor($name);
+  @each $name in derived-variables.$colors-brand-functionnal {
+    $brandName: color.getColorBrandName($name);
+    $color: color.getColor($name);
 
     &.is-#{$brandName} {
       &::-webkit-progress-value {
@@ -71,7 +75,7 @@ $progressbar-small: 5px;
 
   .progress-bar {
     height: $progressbar-height;
-    background-color: getColor('font');
+    background-color: color.getColor('font');
 
     &:first-child {
       border-radius: $progressbar-height 0 0 $progressbar-height;
@@ -81,10 +85,10 @@ $progressbar-small: 5px;
       border-radius: 0 $progressbar-height $progressbar-height 0;
     }
 
-    @each $name in $colors-brand-functionnal {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name in derived-variables.$colors-brand-functionnal {
+      $color: color.getColor($name);
+      $color-invert: color.invertColor($name);
+      $brandName: color.getColorBrandName($name);
 
       &.is-#{$brandName} {
         background-color: $color;
@@ -95,10 +99,10 @@ $progressbar-small: 5px;
 
 // Progress Bar circle
 $progress-circle-slices: (
-  secondary: getColor('info'),
-  tertiary: getColor('font'),
-  warning: getColor('warning'),
-  empty: getColor('main-fade')
+  secondary: color.getColor('info'),
+  tertiary: color.getColor('font'),
+  warning: color.getColor('warning'),
+  empty: color.getColor('main-fade')
 );
 
 .progress-circle {
@@ -126,15 +130,15 @@ $progress-circle-slices: (
 }
 
 .progress-circle-title {
-  color: rgba(getColor('font'), 0.7);
+  color: rgba(color.getColor('font'), 0.7);
   font-size: 28px;
-  font-weight: $weight-semibold;
+  font-weight: initial-variables.$weight-semibold;
 }
 
 .progress-circle-sub {
-  color: getColor('font');
+  color: color.getColor('font');
   font-size: 15px;
-  font-weight: $weight-semibold;
+  font-weight: initial-variables.$weight-semibold;
   letter-spacing: 0.05em;
 }
 
@@ -165,9 +169,9 @@ $progress-circle-slices: (
 $slides-concat: '';
 
 @each $slice in $progress-circle-slices {
-  $name: nth($slice, 1);
-  $color: nth($slice, 2);
-  $i: index($progress-circle-slices, $slice);
+  $name: list.nth($slice, 1);
+  $color: list.nth($slice, 2);
+  $i: list.index($progress-circle-slices, $slice);
 
   @if $i > 1 {
     .progress-circle-background-#{$name} {

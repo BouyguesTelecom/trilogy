@@ -1,9 +1,13 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/spacing";
+
 .fab {
-  background-color: getColor('font');
+  background-color: color.getColor('font');
   border-radius: 16px;
   cursor: pointer;
   height: 56px;
-  padding: $spacing-4;
+  padding: spacing.$spacing-4;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
@@ -19,12 +23,12 @@
   max-width: 54px;
   white-space: nowrap;
 
-  #{$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
+  #{initial-variables.$hoverSelector}, &.is-extended, &:focus, &:focus-visible, &:focus-within {
     background: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
-    ) getColor('font');
+    ) color.getColor('font');
     max-width: 300px;
   }
 
@@ -33,7 +37,7 @@
         to top,
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
-    ) getColor('font');
+    ) color.getColor('font');
   }
 
   .icon {

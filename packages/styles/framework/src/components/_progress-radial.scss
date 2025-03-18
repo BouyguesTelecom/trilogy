@@ -1,6 +1,8 @@
+@use "../base/color";
+
 .progress-radial {
   background: radial-gradient(white 58%, transparent 51%),
-  conic-gradient(getColor('main-fade') 0deg 360deg, getColor('main-fade') 0deg 360deg);
+  conic-gradient(color.getColor('main-fade') 0deg 360deg, color.getColor('main-fade') 0deg 360deg);
   border-radius: 50%;
   width: 124px;
   height: 124px;

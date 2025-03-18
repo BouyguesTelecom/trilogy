@@ -1,15 +1,15 @@
-@import './initial-variables';
+@use 'initial-variables';
 
 // Typography
-$family-primary: $family-sans-serif !default;
-$family-secondary: $family-serif !default;
-$family-code: $family-monospace !default;
+$family-primary: initial-variables.$family-sans-serif !default;
+$family-secondary: initial-variables.$family-serif !default;
+$family-code: initial-variables.$family-monospace !default;
 
-$size-xsmall: $text-10 !default;
-$size-small: $text-13 !default;
-$size-normal: $text-16 !default;
-$size-medium: $text-16 !default;
-$size-large: $text-24 !default;
+$size-xsmall: initial-variables.$text-10 !default;
+$size-small: initial-variables.$text-13 !default;
+$size-normal: initial-variables.$text-16 !default;
+$size-medium: initial-variables.$text-16 !default;
+$size-large: initial-variables.$text-24 !default;
 
 
 // Brand Color
@@ -43,27 +43,27 @@ $zindex: (
 );
 
 // Gestion des tailles de police
-$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 $size-8;
-$sizes-desktop: $size-1-desktop $size-2-desktop $size-3-desktop $size-4-desktop $size-5-desktop $size-6-desktop $size-7-desktop $size-8-desktop;
+$sizes: initial-variables.$size-1 initial-variables.$size-2 initial-variables.$size-3 initial-variables.$size-4 initial-variables.$size-5 initial-variables.$size-6 initial-variables.$size-7 initial-variables.$size-8;
+$sizes-desktop: initial-variables.$size-1-desktop initial-variables.$size-2-desktop initial-variables.$size-3-desktop initial-variables.$size-4-desktop initial-variables.$size-5-desktop initial-variables.$size-6-desktop initial-variables.$size-7-desktop initial-variables.$size-8-desktop;
 $sizes-fluid: (
-    ($size-1, $size-1-desktop),
-    ($size-2, $size-2-desktop),
-    ($size-3, $size-3-desktop),
-    ($size-4, $size-4-desktop),
-    ($size-5, $size-5-desktop),
-    ($size-6, $size-6-desktop),
-    ($size-7, $size-7-desktop),
-    ($size-8, $size-8-desktop)
+    (initial-variables.$size-1, initial-variables.$size-1-desktop),
+    (initial-variables.$size-2, initial-variables.$size-2-desktop),
+    (initial-variables.$size-3, initial-variables.$size-3-desktop),
+    (initial-variables.$size-4, initial-variables.$size-4-desktop),
+    (initial-variables.$size-5, initial-variables.$size-5-desktop),
+    (initial-variables.$size-6, initial-variables.$size-6-desktop),
+    (initial-variables.$size-7, initial-variables.$size-7-desktop),
+    (initial-variables.$size-8, initial-variables.$size-8-desktop)
 );
-$sizes-desktop-interim: $size-7-desktop $size-6-desktop $size-5-desktop $size-4-desktop $size-3-desktop $size-2-desktop $size-1-desktop;
+$sizes-desktop-interim: initial-variables.$size-7-desktop initial-variables.$size-6-desktop initial-variables.$size-5-desktop initial-variables.$size-4-desktop initial-variables.$size-3-desktop initial-variables.$size-2-desktop initial-variables.$size-1-desktop;
 $sizes-fluid-interim: (
-    ($size-7, $size-7-desktop),
-    ($size-6, $size-6-desktop),
-    ($size-5, $size-5-desktop),
-    ($size-4, $size-4-desktop),
-    ($size-3, $size-3-desktop),
-    ($size-2, $size-2-desktop),
-    ($size-1, $size-1-desktop)
+    (initial-variables.$size-7, initial-variables.$size-7-desktop),
+    (initial-variables.$size-6, initial-variables.$size-6-desktop),
+    (initial-variables.$size-5, initial-variables.$size-5-desktop),
+    (initial-variables.$size-4, initial-variables.$size-4-desktop),
+    (initial-variables.$size-3, initial-variables.$size-3-desktop),
+    (initial-variables.$size-2, initial-variables.$size-2-desktop),
+    (initial-variables.$size-1, initial-variables.$size-1-desktop)
 );
 
 // Gestion des déclinaisons de tailles utilisables par les composants (préfixées par is-)

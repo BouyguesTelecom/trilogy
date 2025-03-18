@@ -1,3 +1,7 @@
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .is-autocomplete {
     .autocomplete-menu {
         display: none;
@@ -7,25 +11,25 @@
         .autocomplete-menu {
             display: block;
             border: var(--border);
-            padding: calc($spacing-1 + 1px) calc($spacing-2 + 2px);
+            padding: calc(spacing.$spacing-1 + 1px) calc(spacing.$spacing-2 + 2px);
             border-radius: 4px;
             max-height: 220px;
              overflow-y: auto;
-            background-color: getColor('background');
+            background-color: color.getColor('background');
             z-index: 10000;
         }
 
         .autocomplete-item {
             cursor: pointer;
-            padding: calc($spacing-1 - 0.25px) calc($spacing-1 + 1px);
+            padding: calc(spacing.$spacing-1 - 0.25px) calc(spacing.$spacing-1 + 1px);
 
             &.is-active, &[data-autocomplete-item-hover] {
-                @include hoverRules();
-                margin-left: calc(2px - $spacing-3 );
-                margin-right: calc(2px - $spacing-3 );
-                border-top: 1px solid getColor('neutral-fade');
-                border-bottom: 1px solid getColor('neutral-fade');
-                padding: calc($spacing-1 - 1.25px) calc($spacing-4 - 1px);
+                @include mixins.hoverRules();
+                margin-left: calc(2px - spacing.$spacing-3 );
+                margin-right: calc(2px - spacing.$spacing-3 );
+                border-top: 1px solid color.getColor('neutral-fade');
+                border-bottom: 1px solid color.getColor('neutral-fade');
+                padding: calc(spacing.$spacing-1 - 1.25px) calc(spacing.$spacing-4 - 1px);
             }
         }
     }

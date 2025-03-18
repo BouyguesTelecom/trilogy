@@ -1,3 +1,7 @@
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/spacing";
+
 // Bullet list classiques
 ol.list {
   counter-reset: customCounter;
@@ -7,10 +11,10 @@ ol.list {
     &:not(:has(.icon)) {
       &::before{
         content: counter(customCounter) ". ";
-        margin-right:$spacing-4;
-        font-weight: $weight-bold;
-        font-size: $text-14 !important;
-        font-family: $family-secondary;
+        margin-right:spacing.$spacing-4;
+        font-weight: initial-variables.$weight-bold;
+        font-size: initial-variables.$text-14 !important;
+        font-family: derived-variables.$family-secondary;
         line-height: 1.5 !important;
 
       }
@@ -23,9 +27,9 @@ ul.list {
     &:not(:has(.icon)) {
       &::before{
         content:'.';
-        margin-right:$spacing-4;
+        margin-right:spacing.$spacing-4;
         font-weight: 900;
-        font-size: $text-24;
+        font-size: initial-variables.$text-24;
         line-height: 8px;
       }
     }
@@ -35,7 +39,7 @@ ul.list {
 ul.list,
 ol.list {
   display: grid;
-  row-gap: $spacing-3;
+  row-gap: spacing.$spacing-3;
 
   li.list-item {
     display: flex;
@@ -44,7 +48,7 @@ ol.list {
       display: flex;
     }
     .icon {
-      margin-right: $spacing-2;
+      margin-right: spacing.$spacing-2;
       justify-content: flex-start;
       align-items: flex-start;
     }
@@ -53,7 +57,7 @@ ol.list {
   &.has-divider {
     li {
       border-bottom: var(--border);
-      padding-bottom: $spacing-3;
+      padding-bottom: spacing.$spacing-3;
       &:last-child {
         border-bottom: none;
         padding-bottom: 0;

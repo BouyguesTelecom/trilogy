@@ -1,9 +1,13 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 .otp-list {
   display: flex;
   flex-wrap: nowrap;
 
   .otp {
-    @include hover();
+    @include mixins.hover();
     outline: none;
     border: var(--border);
     border-radius: var(--radius-small);
@@ -12,7 +16,7 @@
     height: 40px;
     margin: 4px 4px 0 4px;
     text-align: center;
-    color: getColor('main');
+    color: color.getColor('main');
 
     &:first-child {
       margin: 4px 4px 0 0;
@@ -26,28 +30,28 @@
 
   &.is-danger {
     .otp {
-      border: 1px solid getColor('error');
+      border: 1px solid color.getColor('error');
     }
   }
 
   &.is-filled {
     .otp {
-      color: getColor('font')
+      color: color.getColor('font')
     }
   }
 
   &.is-focus {
     .otp {
-      border: 1px solid getColor('font');;
-      color: getColor('font')
+      border: 1px solid color.getColor('font');;
+      color: color.getColor('font')
     }
   }
 
 
   &.is-error {
     .otp {
-      border: 1px solid getColor('error');
-      color: getColor('font')
+      border: 1px solid color.getColor('error');
+      color: color.getColor('font')
     }
   }
 
@@ -55,19 +59,19 @@
 
 .otp-list:focus-within {
   .otp {
-    border: 1px solid getColor('font');;
-    color: getColor('font');
+    border: 1px solid color.getColor('font');;
+    color: color.getColor('font');
   }
 }
 
 .otp-list.is-error:focus-within {
   .otp {
-    border: 1px solid getColor('error');
-    color: getColor('font');
+    border: 1px solid color.getColor('error');
+    color: color.getColor('font');
   }
 }
 
 .help {
-  font-size: $text-12;
+  font-size: initial-variables.$text-12;
   margin-top: 4px;
 }

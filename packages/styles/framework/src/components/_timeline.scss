@@ -1,9 +1,14 @@
 @use 'sass:math';
-@import "../utilities/spacing";
+@use "../utilities/spacing";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
 
-$timeline-marker-color: getColor('neutral-fade') !default;
+$timeline-marker-color: color.getColor('neutral-fade') !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getColor('neutral-fade') !default;
+$timeline-line-color: color.getColor('neutral-fade') !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -12,7 +17,7 @@ $timeline-line-style: solid !default;
 $timeline-line: $timeline-line-width $timeline-line-style $timeline-line-color !default;
 $timeline-content-padding: 1em 0 0 16px !default;
 $timeline-rtl-content-padding: 1em 2em 0 0 !default;
-$timeline-icon-size: $size-small !default;
+$timeline-icon-size: derived-variables.$size-small !default;
 $timeline-header-width: 4em !default;
 $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
@@ -32,14 +37,14 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
   }
 
   .timeline-item {
-    --font-color: #{getColor('neutral')};
-    --bg-color: #{getColor('background')};
+    --font-color: #{color.getColor('neutral')};
+    --bg-color: #{color.getColor('background')};
     display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
     position: relative;
     margin-left: 0;
-    padding-bottom: $spacing-2;
+    padding-bottom: spacing.$spacing-2;
 
     &::before {
       content: '';
@@ -60,8 +65,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.active, &.done {
-      --font-color: #{getColor('main')};
-      --bg-color: #{getColor('background')};
+      --font-color: #{color.getColor('main')};
+      --bg-color: #{color.getColor('background')};
     }
 
     &.active {
@@ -73,8 +78,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.cancel {
-      --font-color: #{getColor('neutral')};
-      --bg-color: #{getColor('neutral-fade')};
+      --font-color: #{color.getColor('neutral')};
+      --bg-color: #{color.getColor('neutral-fade')};
     }
 
     .timeline-marker {
@@ -113,18 +118,18 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         width: $timeline-marker-icon-size;
         left: -($timeline-marker-icon-size * 0.5 -
                             $timeline-marker-border-size * 0.5);
-        line-height: size(0.75rem);
+        line-height: functions.size(0.75rem);
         padding: math.div($timeline-icon-size, 3);
         border-radius: 9999px;
       }
 
       &.is-outlined {
         .image {
-          background: getColor('background');
+          background: color.getColor('background');
         }
 
         &.is-icon {
-          background: getColor('background');
+          background: color.getColor('background');
 
           > i {
             color: $timeline-marker-color;
@@ -135,12 +140,12 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     .timeline-content {
       margin-left: 3.7em;
-      padding: $spacing-3 0 $spacing-4 $spacing-4;
+      padding: spacing.$spacing-3 0 spacing.$spacing-4 spacing.$spacing-4;
 
       .heading {
-        font-size: $text-12;
-        color: getColor('font');
-        font-family: $family-sans-serif;
+        font-size: initial-variables.$text-12;
+        color: color.getColor('font');
+        font-family: initial-variables.$family-sans-serif;
         text-transform: none;
         letter-spacing: 0;
         line-height: 15px;
@@ -152,9 +157,9 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       }
     }
 
-    @each $name in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name in derived-variables.$colors-brand-functionnal {
+      $color: color.getColor($name);
+      $brandName: color.getColorBrandName($name);
 
       &.is-#{$brandName} {
         &::before {
@@ -232,9 +237,9 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
       }
 
-      @each $name, $pair in $colors-brand-functionnal {
-        $color: getColor($name);
-        $brandName: getColorBrandName($name);
+      @each $name, $pair in derived-variables.$colors-brand-functionnal {
+        $color: color.getColor($name);
+        $brandName: color.getColorBrandName($name);
 
         &.is-#{$brandName} {
           &::before {
@@ -245,7 +250,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
   }
 
-  @include desktop {
+  @include mixins.desktop {
     &.is-horizontal {
       flex-direction: row;
       justify-content: space-between;

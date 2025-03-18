@@ -1,15 +1,22 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .product-tour {
     position: absolute;
-    z-index: zindex('modal');
+    z-index: functions.zindex('modal');
     visibility: hidden;
     opacity: 0;
-    background-color: getColor('background');
-    border-radius: $radius;
-    box-shadow: $shadow;
+    background-color: color.getColor('background');
+    border-radius: initial-variables.$radius;
+    box-shadow: derived-variables.$shadow;
     width: 350px;
-    padding: $spacing-3 * 2;
+    padding: spacing.$spacing-3 * 2;
 
-    @include mobile {
+    @include mixins.mobile {
         max-width: inherit;
     }
 
@@ -31,7 +38,7 @@
         transform-origin: center;
         pointer-events: none;
 
-        @include mobile {
+        @include mixins.mobile {
             display: none;
         }
 
@@ -93,10 +100,10 @@
             left: 0;
             background: white;
             border-radius: 9999px;
-            box-shadow: $shadow;
+            box-shadow: derived-variables.$shadow;
             transform: translate(-50%, -50%);
 
-            @include mobile {
+            @include mixins.mobile {
                 display: none;
             }
 
@@ -122,8 +129,8 @@
 
 .product-tour-target {
     &-active {
-        outline: 999em solid getColor('main') !important;
+        outline: 999em solid color.getColor('main') !important;
         outline-offset: 10px !important;
-        z-index: zindex('modal');
+        z-index: functions.zindex('modal');
     }
 }

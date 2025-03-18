@@ -1,5 +1,7 @@
+@use "initial-variables";
+
 [class*="animate"] {
-    animation: $animation-duration $animation-timing-function;
+    animation: initial-variables.$animation-duration initial-variables.$animation-timing-function;
 }
 
 @keyframes spinAround {

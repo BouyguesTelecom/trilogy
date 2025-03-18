@@ -1,5 +1,9 @@
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .divider {
-  background-color: getColor('neutral');
+  background-color: color.getColor('neutral');
   height: 1px;
   display: flex;
   justify-content: center;
@@ -7,17 +11,17 @@
 
   p.divider-content {
     white-space: nowrap;
-    padding: 0 $spacing-4;
-    background-color: invertColor('neutral');
+    padding: 0 spacing.$spacing-4;
+    background-color: color.invertColor('neutral');
   }
 
   &:not(.is-marginless) {
-    margin: $spacing-5 0;
+    margin: spacing.$spacing-5 0;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     &:not(.is-marginless) {
-      margin: $spacing-4 0;
+      margin: spacing.$spacing-4 0;
     }
   }
 }

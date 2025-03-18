@@ -1,12 +1,16 @@
+@use "../base/color";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 .breadcrumb {
-  @include block;
-  @include unselectable;
+  @include mixins.block;
+  @include mixins.unselectable;
 
   ul,
   ol {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-2;
+    gap: spacing.$spacing-2;
   }
 
   li {
@@ -24,12 +28,12 @@
       mask-repeat: no-repeat;
       mask-size: cover;
       background-color: #1b3650;
-      margin-right: $spacing-2;
+      margin-right: spacing.$spacing-2;
     }
   }
 
   a {
-    color: getColor('main');
+    color: color.getColor('main');
     text-decoration: underline 2px solid;
     text-underline-offset: 4px;
   }

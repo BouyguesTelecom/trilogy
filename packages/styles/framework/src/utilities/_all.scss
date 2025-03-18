@@ -1,13 +1,13 @@
 @charset "utf-8";
 
-@import "initial-variables";
-@import "functions";
-@import "derived-variables";
-@import '../theming/links_partial';
-@import '../theming/buttons_partial';
-@import "mixins";
-@import "controls";
-@import "background";
-@import "animations";
-@import "spacing";
-@import "a11y";
+@use "initial-variables";
+@use "functions";
+@use "derived-variables";
+@use '../theming/links_partial';
+@use '../theming/buttons_partial';
+@use "mixins";
+@use "controls";
+@use "background";
+@use "animations";
+@use "spacing";
+@use "a11y";

@@ -1,17 +1,21 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+@use "../utilities/spacing";
+
 .countdown {
   border: 1px solid currentcolor;
   border-radius: var(--radius);
   display: inline-flex;
-  padding: $spacing-2;
-  color: getColor('font');
+  padding: spacing.$spacing-2;
+  color: color.getColor('font');
 
   .count {
-    font-family: $family-sans-serif;
-    font-size: $text-14;
+    font-family: initial-variables.$family-sans-serif;
+    font-size: initial-variables.$text-14;
     font-weight: 400;
     list-style-type: none;
     text-align: center;
-    padding: 0 $spacing-2;
+    padding: 0 spacing.$spacing-2;
     position: relative;
 
     &:not(:last-child)::before {
@@ -25,29 +29,29 @@
     }
 
     .value {
-      font-size: $text-24;
+      font-size: initial-variables.$text-24;
       font-weight: 600;
     }
   }
 
   &.is-small {
-    padding: $spacing-2 0;
+    padding: spacing.$spacing-2 0;
     border-radius: var(--radius-small);
 
     .count {
-      font-size: $text-12;
-      padding: 0 $spacing-2;
+      font-size: initial-variables.$text-12;
+      padding: 0 spacing.$spacing-2;
       font-weight: 500;
 
       .value {
-        font-size: $text-16;
+        font-size: initial-variables.$text-16;
         font-weight: 600;
       }
     }
   }
 
   &.is-inverted {
-    color: invertColor('font');
+    color: color.invertColor('font');
 
     .count {
       &:not(:last-child)::before {

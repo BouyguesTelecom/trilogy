@@ -1,3 +1,8 @@
+@use "../utilities/initial-variables";
+@use "color";
+@use "generic";
+@use "reset";
+
 html {
     @extend .html-wrap;
 }
@@ -6,7 +11,7 @@ body {
     @extend .main-wrap;
     @extend .body-wrap;
     @extend .reset-wrap;
-    font-family: $family-sans-serif;
+    font-family: initial-variables.$family-sans-serif;
 }
 
 header {
@@ -18,17 +23,17 @@ To be used when standalone namespaced builds are used
 */
 .trilogy-root {
     text-size-adjust: 100%;
-    font-family: $body-family;
+    font-family: generic.$body-family;
     box-sizing: border-box;
-    color: getColor('font');
+    color: color.getColor('font');
     font-size: 10px;
-    font-weight: $body-weight;
-    line-height: $body-line-height;
+    font-weight: generic.$body-weight;
+    line-height: generic.$body-line-height;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    text-rendering: $body-rendering;
+    text-rendering: generic.$body-rendering;
 
     > * {
-        font-size: $text-16;
+        font-size: initial-variables.$text-16;
     }
 }

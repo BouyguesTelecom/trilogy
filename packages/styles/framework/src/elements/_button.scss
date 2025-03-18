@@ -1,3 +1,11 @@
+@use "sass:list";
+@use "../base/color";
+@use "../theming/buttons_partial";
+@use "../utilities/controls";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 $button-border-width: 2px !default;
 
 .buttons {
@@ -8,7 +16,7 @@ $button-border-width: 2px !default;
     row-gap: 16px;
   }
 
-  @include tablet {
+  @include mixins.tablet {
     display: flex;
     align-items: center;
     width: auto;
@@ -22,10 +30,6 @@ $button-border-width: 2px !default;
 }
 
 .button {
-  @include control;
-  @include unselectable;
-  @extend %buttons-states;
-
   background-color: white;
   border-width: $button-border-width;
   border-radius: var(--radius-small);
@@ -33,19 +37,23 @@ $button-border-width: 2px !default;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
-  padding: 0 $spacing-4;
+  padding: 0 spacing.$spacing-4;
   text-decoration: inherit;
-  font-weight: $weight-semibold;
+  font-weight: initial-variables.$weight-semibold;
 
-  @include mobile {
+  @include controls.control;
+  @include mixins.unselectable;
+  @extend %buttons-states;
+
+  @include mixins.mobile {
     width: 100%;
     margin: 8px 0 !important;
   }
 
-  @each $name, $pair in $button-colors {
-    $variantName: nth($pair, 1);
-    $colorBG: getColor(#{nth($pair, 2)});
-    $colorText: getColor(nth($pair, 3));
+  @each $name, $pair in buttons_partial.$button-colors {
+    $variantName: list.nth($pair, 1);
+    $colorBG: color.getColor(#{list.nth($pair, 2)});
+    $colorText: color.getColor(list.nth($pair, 3));
 
     &.is-#{$variantName} {
       background-color: $colorBG;
@@ -61,12 +69,12 @@ $button-border-width: 2px !default;
   &[disabled],
   &[aria-disabled=true] {
     border-color: transparent !important;
-    background-color: getColorValue('main-fade') !important;
-    color: getColorValue('disabled') !important
+    background-color: color.getColorValue('main-fade') !important;
+    color: color.getColorValue('disabled') !important
   }
 
   &.is-loading {
-    background-color: getColorValue('neutral');
+    background-color: color.getColorValue('neutral');
   }
 
 }

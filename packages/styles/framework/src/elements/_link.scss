@@ -1,6 +1,11 @@
+@use "../base/color";
+@use "../theming/links_partial";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 .link {
   [disabled] {
-    @include disabledRulesWithoutBG;
+    @include mixins.disabledRulesWithoutBG;
   }
 }
 
@@ -8,8 +13,8 @@
   @extend %link-states;
 
   position: relative;
-  font-weight: $weight-normal;
-  color: getColor($link-colors);
+  font-weight: initial-variables.$weight-normal;
+  color: color.getColor(links_partial.$link-colors);
   box-decoration-break: clone;
   text-decoration: underline;
   text-decoration-thickness : 2px;
@@ -31,16 +36,16 @@
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: color.getColor('background');
 
     &.has-icon {
       > .icon {
-        color: getColor('background');
+        color: color.getColor('background');
       }
     }
   }
 
-  @include touch {
+  @include mixins.touch {
     white-space: normal !important;
     box-decoration-break: clone;
     display: inline;
@@ -52,7 +57,7 @@
   text-decoration: underline;
   text-decoration-thickness : 1px;
   &:hover {
-    font-weight: $weight-normal;
+    font-weight: initial-variables.$weight-normal;
     filter: brightness(0.8);
   }
 }

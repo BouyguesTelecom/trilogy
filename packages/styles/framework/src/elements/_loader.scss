@@ -1,3 +1,6 @@
+@use "../base/color";
+@use "../utilities/functions";
+
 $loader-item-width: 60px;
 $loader-item-height: 30px;
 $loader-items-lateral-offset: -25px;
@@ -21,7 +24,7 @@ $loader-items-bottom-offset: -40px;
 
     .loader-body {
         visibility: hidden;
-        background-color: getColor('accent');
+        background-color: color.getColor('accent');
         animation: 2.5s linear 0s forwards infinite top_item;
     }
 
@@ -35,8 +38,8 @@ $loader-items-bottom-offset: -40px;
         width: 20px;
         height: 20px;
         left: calc(50% - 10px);
-        z-index: zindex('small');
-        background-color: getColor('font');
+        z-index: functions.zindex('small');
+        background-color: color.getColor('font');
         animation: 2.5s linear 0s forwards infinite left_item;
     }
 
@@ -44,7 +47,7 @@ $loader-items-bottom-offset: -40px;
         width: 20px;
         height: 20px;
         right: calc(50% - 20px);
-        background-color: getColor('main');
+        background-color: color.getColor('main');
         animation: 2.5s linear 0s forwards infinite right_item;
     }
 

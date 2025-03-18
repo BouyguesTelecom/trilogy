@@ -1,3 +1,5 @@
+@use "../utilities/mixins";
+
 .range-container {
   @mixin appearence {
     appearance: none;
@@ -30,7 +32,7 @@
       margin: auto;
       top: 0;
       bottom: 0;
-      @include mobile {
+      @include mixins.mobile {
         height: 4px;
         border-radius: var(--radius-small);
       }

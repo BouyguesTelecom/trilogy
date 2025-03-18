@@ -1,11 +1,14 @@
-@import "../utilities/spacing";
+@use "../utilities/spacing";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
 
 .chips-list {
   align-items: center;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: $spacing-2;
+  gap: spacing.$spacing-2;
 
   // centrage des chips
   &.is-centered {
@@ -41,43 +44,43 @@
     align-items: center;
     background-color: white;
     border-radius: 9999px;
-    color: getColor('font');
+    color: color.getColor('font');
     display: inline-flex;
-    font-size: $size-normal;
+    font-size: derived-variables.$size-normal;
     height: 32px;
     justify-content: center;
     line-height: 2;
-    padding: 6px $spacing-4;
+    padding: 6px spacing.$spacing-4;
     white-space: nowrap;
     cursor: pointer;
     border: var(--border);
     &:not(.is-disabled) {
       &.is-active {
-        background-color: getColor('main');
+        background-color: color.getColor('main');
         color: white;
         border: var(--border-active);
-        padding: 5px ($spacing-4 - 1px);
-        #{$hoverSelector} {
-          background-color: getColor('main');
+        padding: 5px (spacing.$spacing-4 - 1px);
+        #{initial-variables.$hoverSelector} {
+          background-color: color.getColor('main');
           color: white;
         }
       }
-      #{$hoverSelector} {
-        background-color: getColor('neutral-fade');
+      #{initial-variables.$hoverSelector} {
+        background-color: color.getColor('neutral-fade');
       }
     }
 
     &.is-inverted {
       background-color: white;
-      color: getColor('accent');
+      color: color.getColor('accent');
 
       &:active,
       &:hover,
       &:focus,
       &:focus-visible,
       &.is-active {
-        background-color: getColor('accent') !important;
-        color: getColor('background') !important;
+        background-color: color.getColor('accent') !important;
+        color: color.getColor('background') !important;
       }
     }
   }

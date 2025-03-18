@@ -1,3 +1,11 @@
+@use "sass:map";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 $modal-content-width: 640px !default;
 $modal-content-margin-mobile: 20px !default;
 $modal-close-dimensions: 40px !default;
@@ -15,10 +23,10 @@ body:has(.modal.is-active) {
 }
 
 .modal {
-  @include overlay;
+  @include mixins.overlay;
 
   position: fixed;
-  z-index: zindex('modal');
+  z-index: functions.zindex('modal');
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -31,7 +39,7 @@ body:has(.modal.is-active) {
 
   // overlay
   &::after {
-    @include overlay;
+    @include mixins.overlay;
 
     content: '';
     background-color: rgba(#000, 0.86);
@@ -49,12 +57,12 @@ body:has(.modal.is-active) {
   }
 
   // gestion des tailles
-  @include tablet {
+  @include mixins.tablet {
     justify-content: center;
-    @each $dimension in $dimensions-extended {
+    @each $dimension in derived-variables.$dimensions-extended {
       &.is-#{$dimension} {
         .modal-content {
-          width: map-get($modal-dimensions, $dimension);
+          width: map.get($modal-dimensions, $dimension);
         }
       }
     }
@@ -66,22 +74,22 @@ body:has(.modal.is-active) {
   }
 
   .modal-content {
-    background-color: getColor('background');
+    background-color: color.getColor('background');
     border-radius: var(--radius) var(--radius) 0 0;
-    color: getColor('font');
+    color: color.getColor('font');
     overflow: auto;
     position: relative;
     margin: 0 $modal-content-margin-mobile;
     max-height: calc(100vh - 40px);
     width: 100%;
-    z-index: zindex('tiny');
+    z-index: functions.zindex('tiny');
     transition: transform ease-in-out 250ms;
     transform: translateY(100%);
 
-    @include tablet {
+    @include mixins.tablet {
       max-height: calc(100vh - 120px);
       width: $modal-content-width;
-      border-radius: $radius;
+      border-radius: initial-variables.$radius;
     }
 
     // Annulation des propriétés du composant box, se trouvant dans une modal
@@ -108,14 +116,14 @@ body:has(.modal.is-active) {
     }
 
     .modal-header {
-      padding: $spacing-5;
-      color: getColor('font');
-      font-family: $family-sans-serif;
-      font-size: $size-3;
-      font-weight: $weight-semibold;
+      padding: spacing.$spacing-5;
+      color: color.getColor('font');
+      font-family: initial-variables.$family-sans-serif;
+      font-size: initial-variables.$size-3;
+      font-weight: initial-variables.$weight-semibold;
       line-height: 1.1;
-      background-color: getColor('background');
-      z-index: zindex('medium');
+      background-color: color.getColor('background');
+      z-index: functions.zindex('medium');
       position: sticky;
       top: 0;
       width: 100%;
@@ -128,31 +136,31 @@ body:has(.modal.is-active) {
         text-align: center;
       }
 
-      @include desktop {
-        font-size: $size-3-desktop;
+      @include mixins.desktop {
+        font-size: initial-variables.$size-3-desktop;
       }
 
       .modal-close {
-        @include delete;
+        @include mixins.delete;
 
-        background-color: getColor('background');
+        background-color: color.getColor('background');
         display: block;
         height: $modal-close-dimensions;
         width: $modal-close-dimensions;
-        z-index: zindex('large');
+        z-index: functions.zindex('large');
 
-        #{$hoverSelector} {
-          background-color: getColor('neutral-fade');
+        #{initial-variables.$hoverSelector} {
+          background-color: color.getColor('neutral-fade');
         }
 
         &::after,
         &::before {
-          background-color: getColor('font');
+          background-color: color.getColor('font');
         }
 
         &:focus-visible,
         &:focus:focus-visible {
-          outline: 2px solid getColor('font') !important;
+          outline: 2px solid color.getColor('font') !important;
           outline-offset: 2px;
         }
         &:focus{
@@ -162,20 +170,20 @@ body:has(.modal.is-active) {
     }
 
     .modal-body {
-      padding: 0 $spacing-5 $spacing-5 ;
+      padding: 0 spacing.$spacing-5 spacing.$spacing-5 ;
     }
     &:has(>.modal-footer) > .modal-body {
       padding-bottom: 0;
     }
 
     .modal-footer {
-      padding: $spacing-5;
+      padding: spacing.$spacing-5;
       position: sticky;
       width: 100%;
-      background: getColor('background');
+      background: color.getColor('background');
       bottom: 0;
 
-      @include tablet {
+      @include mixins.tablet {
         display: flex;
         justify-content: flex-end;
       }
@@ -203,7 +211,7 @@ body:has(.modal.is-active) {
       align-items: flex-start;
       transform: translateX(100%);
 
-      @include tablet {
+      @include mixins.tablet {
         max-width: 375px;
       }
 

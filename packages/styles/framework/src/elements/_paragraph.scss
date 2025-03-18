@@ -1,37 +1,43 @@
+@use "sass:list";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 $text-levels: (
-    ($text-16, $text-20, $text-16),
-    ($text-14, $text-18, $text-16),
-    ($text-12, $text-15, $text-16),
-    ($text-10, $text-12, $text-16)
+    (initial-variables.$text-16, initial-variables.$text-20, initial-variables.$text-16),
+    (initial-variables.$text-14, initial-variables.$text-18, initial-variables.$text-16),
+    (initial-variables.$text-12, initial-variables.$text-15, initial-variables.$text-16),
+    (initial-variables.$text-10, initial-variables.$text-12, initial-variables.$text-16)
 );
 $text-levels-mobile: (
-    ($text-16, $text-20, $text-8),
-    ($text-14, $text-18, $text-8),
-    ($text-12, $text-15, $text-8),
-    ($text-10, $text-12, $text-8)
+    (initial-variables.$text-16, initial-variables.$text-20, initial-variables.$text-8),
+    (initial-variables.$text-14, initial-variables.$text-18, initial-variables.$text-8),
+    (initial-variables.$text-12, initial-variables.$text-15, initial-variables.$text-8),
+    (initial-variables.$text-10, initial-variables.$text-12, initial-variables.$text-8)
 );
 
 
 .text {
   @each $text-level in $text-levels {
-    $i: index($text-levels, $text-level);
-    $font-size: nth($text-level, 1);
-    $line-height: nth($text-level, 2);
+    $i: list.index($text-levels, $text-level);
+    $font-size: list.nth($text-level, 1);
+    $line-height: list.nth($text-level, 2);
 
     &.is-level-#{$i} {
       font-size: $font-size;
       line-height: $line-height;
-      font-family: $family-primary;
+      font-family: derived-variables.$family-primary;
     }
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: color.getColor('background');
   }
 
-  @include mobile {
+  @include mixins.mobile {
     @each $text-level-mobile in $text-levels-mobile {
-      $i: index($text-levels-mobile, $text-level-mobile);
+      $i: list.index($text-levels-mobile, $text-level-mobile);
     }
   }
 
@@ -40,7 +46,7 @@ $text-levels-mobile: (
   }
 
   &.bold {
-    font-weight: $weight-bold;
+    font-weight: initial-variables.$weight-bold;
   }
 }
 
@@ -51,7 +57,7 @@ $text-levels-mobile: (
 
 .strong {
   color: inherit;
-  font-weight: $weight-bold;
+  font-weight: initial-variables.$weight-bold;
 }
 
 .sup {

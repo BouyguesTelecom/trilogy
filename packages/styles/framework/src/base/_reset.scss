@@ -1,3 +1,8 @@
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "color";
+
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 // Blocks
 .reset-wrap {
@@ -42,7 +47,7 @@
     }
 
   a {
-    color: getColor('font');
+    color: color.getColor('font');
     cursor: pointer;
     text-decoration: none;
 
@@ -100,7 +105,7 @@
 
     strong {
         color: inherit;
-        font-weight: $weight-bold;
+        font-weight: initial-variables.$weight-bold;
     }
 
     sup {
@@ -116,7 +121,7 @@
     }
 
     code {
-        font-size: $size-7;
+        font-size: initial-variables.$size-7;
         padding: 4px 8px;
     }
 
@@ -124,11 +129,11 @@
     pre {
         -moz-osx-font-smoothing: auto;
         -webkit-font-smoothing: auto;
-        font-family: $family-code;
+        font-family: derived-variables.$family-code;
     }
 
     pre {
-        @include overflow-touch;
+        @include mixins.overflow-touch;
         font-size: 0.875em;
         overflow-x: auto;
         padding: 12.5px 15px;

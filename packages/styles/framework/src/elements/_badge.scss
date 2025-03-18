@@ -1,3 +1,6 @@
+@use "../base/color";
+@use "../utilities/initial-variables";
+
 .title .badge {
   margin-left: 0.6em;
   margin-right: 0.6em;
@@ -38,30 +41,30 @@
   }
 
   .badge-icon {
-    width: $text-20;
-    height: $text-20;
+    width: initial-variables.$text-20;
+    height: initial-variables.$text-20;
   }
 }
 
 .badge {
   display: inline-flex;
   border-radius: 9999px;
-  color: getColor('background');
-  background: getColor('main');
-  font-size: $text-10;
-  min-height: $text-20;
-  min-width: $text-20;
+  color: color.getColor('background');
+  background: color.getColor('main');
+  font-size: initial-variables.$text-10;
+  min-height: initial-variables.$text-20;
+  min-width: initial-variables.$text-20;
   justify-content: center;
   align-items: center;
 
   &:empty {
-    min-width: $text-10;
-    min-height: $text-10;
+    min-width: initial-variables.$text-10;
+    min-height: initial-variables.$text-10;
   }
 
   &.is-inverted {
-    color: getColor('main') !important;
-    background: getColor('background') !important;
+    color: color.getColor('main') !important;
+    background: color.getColor('background') !important;
   }
 }
 
@@ -73,12 +76,12 @@
     position: absolute;
     margin-left: -15px;
     top: -7px;
-    color: getColor('background');
+    color: color.getColor('background');
     left: 100%;
-    background: getColor('main');
-    font-size: $text-10;
-    min-height: $text-20;
-    min-width: $text-20;
+    background: color.getColor('main');
+    font-size: initial-variables.$text-10;
+    min-height: initial-variables.$text-20;
+    min-width: initial-variables.$text-20;
     display: flex;
     align-items: center;
     justify-content: center;

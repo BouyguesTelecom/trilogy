@@ -1,38 +1,44 @@
+@use "sass:list";
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+
 @use 'sass:math';
 
-$title-weight: $weight-semibold;
+$title-weight: initial-variables.$weight-semibold;
 $title-line-height: 1.1;
 $title-strong-color: inherit;
 $title-strong-weight: inherit;
 $title-sub-size: 0.5em;
 $title-sup-size: 0.5em;
 
-$subtitle-size: $text-16;
-$subtitle-weight: $weight-medium;
-$subtitle-size-tablet: $text-15;
+$subtitle-size: initial-variables.$text-16;
+$subtitle-weight: initial-variables.$weight-medium;
+$subtitle-size-tablet: initial-variables.$text-15;
 $subtitle-line-height: 1.2;
-$subtitle-strong-weight: $weight-semibold;
+$subtitle-strong-weight: initial-variables.$weight-semibold;
 
-$overline-size: $text-14;
-$overline-weight: $weight-semibold;
+$overline-size: initial-variables.$text-14;
+$overline-weight: initial-variables.$weight-semibold;
 $overline-line-height: 1.2;
-$overline-size-tablet: $text-15;
+$overline-size-tablet: initial-variables.$text-15;
 
 $title-levels: (
-    ($text-48, $text-58, $family-secondary),
-    ($text-36, $text-44, $family-secondary),
-    ($text-28, $text-32, $family-primary),
-    ($text-24, $text-28, $family-primary),
-    ($text-20, $text-24, $family-primary),
-    ($text-16, $text-20, $family-primary)
+    (initial-variables.$text-48, initial-variables.$text-58, derived-variables.$family-secondary),
+    (initial-variables.$text-36, initial-variables.$text-44, derived-variables.$family-secondary),
+    (initial-variables.$text-28, initial-variables.$text-32, derived-variables.$family-primary),
+    (initial-variables.$text-24, initial-variables.$text-28, derived-variables.$family-primary),
+    (initial-variables.$text-20, initial-variables.$text-24, derived-variables.$family-primary),
+    (initial-variables.$text-16, initial-variables.$text-20, derived-variables.$family-primary)
 );
 $title-levels-mobile: (
-    ($text-32, $text-38),
-    ($text-28, $text-34),
-    ($text-22, $text-26),
-    ($text-20, $text-24),
-    ($text-18, $text-22),
-    ($text-16, $text-20)
+    (initial-variables.$text-32, initial-variables.$text-38),
+    (initial-variables.$text-28, initial-variables.$text-34),
+    (initial-variables.$text-22, initial-variables.$text-26),
+    (initial-variables.$text-20, initial-variables.$text-24),
+    (initial-variables.$text-18, initial-variables.$text-22),
+    (initial-variables.$text-16, initial-variables.$text-20)
 );
 
 .title,
@@ -51,16 +57,16 @@ $title-levels-mobile: (
 }
 
 .title {
-  font-size: $text-32;
+  font-size: initial-variables.$text-32;
   font-weight: $title-weight;
   line-height: $title-line-height;
 
   // new typography
   @each $title-level in $title-levels {
-    $i: index($title-levels, $title-level);
-    $font-size: nth($title-level, 1);
-    $line-height: nth($title-level, 2);
-    $font-family: nth($title-level, 3);
+    $i: list.index($title-levels, $title-level);
+    $font-size: list.nth($title-level, 1);
+    $line-height: list.nth($title-level, 2);
+    $font-family: list.nth($title-level, 3);
 
     &.is-level-#{$i} {
       font-size: $font-size;
@@ -69,25 +75,25 @@ $title-levels-mobile: (
     }
 
     &.is-medium {
-      font-weight: $weight-medium;
+      font-weight: initial-variables.$weight-medium;
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: color.getColor('background');
     }
 
     .details {
       font-size: 80%;
-      color: getColor('neutral');
-      font-weight: $weight-normal;
+      color: color.getColor('neutral');
+      font-weight: initial-variables.$weight-normal;
     }
 
     &.is-section-title {
       text-align: center;
     }
 
-    @include tablet {
-      font-size: $text-40;
+    @include mixins.tablet {
+      font-size: initial-variables.$text-40;
     }
 
     sup {
@@ -105,11 +111,11 @@ $title-levels-mobile: (
     }
   }
 
-  @include mobile {
+  @include mixins.mobile {
     @each $title-level-mobile in $title-levels-mobile {
-      $i: index($title-levels-mobile, $title-level-mobile);
-      $font-size-mobile: nth($title-level-mobile, 1);
-      $line-height-mobile: nth($title-level-mobile, 2);
+      $i: list.index($title-levels-mobile, $title-level-mobile);
+      $font-size-mobile: list.nth($title-level-mobile, 1);
+      $line-height-mobile: list.nth($title-level-mobile, 2);
       &.is-level-#{$i} {
         font-size: $font-size-mobile;
         line-height: $line-height-mobile;
@@ -119,23 +125,23 @@ $title-levels-mobile: (
 }
 
 .subtitle {
-  color: getColor('font');
+  color: color.getColor('font');
   font-size: $subtitle-size;
   font-weight: $subtitle-weight;
   line-height: $subtitle-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: color.getColor('background');
   }
 }
 
 .overline {
-  color: getColor('font');
+  color: color.getColor('font');
   font-size: $overline-size;
   font-weight: $overline-weight;
   line-height: $overline-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: color.getColor('background');
   }
 }

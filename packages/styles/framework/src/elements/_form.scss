@@ -1,8 +1,15 @@
-$file-radius: $radius;
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/functions";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
+$file-radius: initial-variables.$radius;
 $file-name-max-width: 16em;
 $field-margin: 20px;
-$help-size: $size-small;
-$label-weight: $weight-bold;
+$help-size: derived-variables.$size-small;
+$label-weight: initial-variables.$weight-bold;
 
 .field {
   &.is-fullwidth {
@@ -21,7 +28,7 @@ $label-weight: $weight-bold;
     margin-bottom: 10px !important;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     &.is-very-short,
     &.is-short {
       width: 50%;
@@ -33,7 +40,7 @@ $label-weight: $weight-bold;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     &.is-very-short {
       width: 130px;
     }
@@ -95,15 +102,15 @@ $label-weight: $weight-bold;
       .textarea,
       .select select {
         &:hover {
-          z-index: zindex('tiny');
+          z-index: functions.zindex('tiny');
         }
 
         &:focus,
         &:active {
-          z-index: zindex('small');
+          z-index: functions.zindex('small');
 
           &:hover {
-            z-index: zindex('medium');
+            z-index: functions.zindex('medium');
           }
         }
       }
@@ -176,14 +183,14 @@ $label-weight: $weight-bold;
   }
 
   &.is-horizontal {
-    @include tablet {
+    @include mixins.tablet {
       display: flex;
     }
   }
 }
 
 .control {
-  font-size: $size-normal;
+  font-size: derived-variables.$size-normal;
   position: relative;
   text-align: left;
 
@@ -194,7 +201,7 @@ $label-weight: $weight-bold;
     .select {
       &:focus {
         & ~ .icon {
-          color: getColor('font');
+          color: color.getColor('font');
         }
       }
 
@@ -207,41 +214,41 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: color.getColor('font');
       position: absolute;
       top: 0;
       height: 100%;
       width: 40px;
       pointer-events: auto;
-      z-index: zindex('void');
+      z-index: functions.zindex('void');
       padding: 10px;
     }
 
     .input {
-      @each $name, $pair in $colors-feedback {
+      @each $name, $pair in derived-variables.$colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: color.fadeColor($name);
           }
         }
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: color.getColor('error');
       }
     }
 
     .textarea {
-      @each $name, $pair in $colors-feedback {
+      @each $name, $pair in derived-variables.$colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: color.fadeColor($name);
           }
         }
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: color.getColor('error');
       }
     }
   }
@@ -254,16 +261,16 @@ $label-weight: $weight-bold;
 
     .icon {
       left: 0;
-      border-top-left-radius: $radius;
-      border-bottom-left-radius: $radius;
+      border-top-left-radius: initial-variables.$radius;
+      border-bottom-left-radius: initial-variables.$radius;
       padding: 0 24px;
     }
 
     .textarea {
       padding-left: 50px;
-      padding-right: $spacing-4;
-      padding-bottom: $spacing-4 !important;
-      padding-top: $spacing-4;
+      padding-right: spacing.$spacing-4;
+      padding-bottom: spacing.$spacing-4 !important;
+      padding-top: spacing.$spacing-4;
     }
 
     & .textarea + label {
@@ -272,7 +279,7 @@ $label-weight: $weight-bold;
 
     & .textarea + label + .icon {
       display: inherit;
-      padding-top: $spacing-4;
+      padding-top: spacing.$spacing-4;
       margin: 0 16px;
       width: auto;
     }
@@ -281,7 +288,7 @@ $label-weight: $weight-bold;
       position: absolute;
       bottom: 5px;
       right: 16px;
-      font-size: $size-xsmall;
+      font-size: derived-variables.$size-xsmall;
     }
 
     .is-error ~ .textarea-counter {
@@ -297,8 +304,8 @@ $label-weight: $weight-bold;
 
     .icon {
       right: 0;
-      border-top-right-radius: $radius;
-      border-bottom-right-radius: $radius;
+      border-top-right-radius: initial-variables.$radius;
+      border-bottom-right-radius: initial-variables.$radius;
       padding: 0 24px;
     }
   }
@@ -312,7 +319,7 @@ $label-weight: $weight-bold;
 
 
     textarea:not(:placeholder-shown) {
-      padding-top: $spacing-5;
+      padding-top: spacing.$spacing-5;
     }
 
 
@@ -321,7 +328,7 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: color.getColor('font');
     }
 
     label {
@@ -329,12 +336,12 @@ $label-weight: $weight-bold;
       top: 10px;
       left: 16px;
       border-left: transparent 1px solid;
-      font-size: $text-12;
-      color: getColor('font');
+      font-size: initial-variables.$text-12;
+      color: color.getColor('font');
       filter: grayscale(1);
       transform: translateY(0);
       transition: all 0.2s ease-out;
-      z-index: zindex('small');
+      z-index: functions.zindex('small');
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: calc(100% - 4em);
@@ -365,22 +372,22 @@ $label-weight: $weight-bold;
     }
 
     textarea {
-      padding-top: $spacing-4;
-      padding-bottom: $spacing-2 !important;
+      padding-top: spacing.$spacing-4;
+      padding-bottom: spacing.$spacing-2 !important;
     }
 
     input:placeholder-shown ~ label,
     textarea:placeholder-shown ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: derived-variables.$size-normal;
       transform: translateY(10px);
     }
 
     input:-ms-input-placeholder ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: derived-variables.$size-normal;
       transform: translateY(10px);
     }
   }
@@ -392,28 +399,28 @@ $label-weight: $weight-bold;
   &.has-password-discover {
     .input {
       ~ .icon:not(:last-child) {
-        color: getColor('neutral');
+        color: color.getColor('neutral');
         background-color: transparent;
         right: 45px;
         cursor: pointer;
 
         &:hover,
         &:focus {
-          color: getColor('neutral');
+          color: color.getColor('neutral');
         }
       }
     }
   }
 
   + .help {
-    font-size: $text-12;
-    font-weight: $weight-medium;
+    font-size: initial-variables.$text-12;
+    font-weight: initial-variables.$weight-medium;
   }
 
   .is-searching {
     background-color: transparent;
-    border-top-right-radius: $radius;
-    border-bottom-right-radius: $radius;
+    border-top-right-radius: initial-variables.$radius;
+    border-bottom-right-radius: initial-variables.$radius;
     height: 100%;
     position: absolute;
     right: 0;
@@ -421,32 +428,32 @@ $label-weight: $weight-bold;
     width: 45px;
 
     &::after {
-      @include spinner;
-      @include center(1em);
+      @include mixins.spinner;
+      @include mixins.center(1em);
     }
   }
 
   &.is-loading {
     &::after {
-      @include spinner;
+      @include mixins.spinner;
 
       position: absolute !important;
       right: 0.625em;
       top: 0.625em;
-      z-index: zindex('small');
+      z-index: functions.zindex('small');
     }
 
     &.is-small::after {
-      font-size: $size-small;
+      font-size: derived-variables.$size-small;
     }
 
     &.is-large::after {
-      font-size: $size-large;
+      font-size: derived-variables.$size-large;
     }
   }
 
   &:has(input[disabled]) {
-    @include disabledRulesWithoutBG;
+    @include mixins.disabledRulesWithoutBG;
   }
 }
 
@@ -455,11 +462,11 @@ $label-weight: $weight-bold;
     font-size: inherit;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     margin-bottom: 5px;
   }
 
-  @include tablet {
+  @include mixins.tablet {
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 0;
@@ -467,7 +474,7 @@ $label-weight: $weight-bold;
     text-align: right;
 
     &.is-small {
-      font-size: $size-small;
+      font-size: derived-variables.$size-small;
       padding-top: 0.375em;
     }
 
@@ -476,7 +483,7 @@ $label-weight: $weight-bold;
     }
 
     &.is-large {
-      font-size: $size-large;
+      font-size: derived-variables.$size-large;
       padding-top: 0.375em;
     }
   }
@@ -487,7 +494,7 @@ $label-weight: $weight-bold;
     margin-bottom: 0;
   }
 
-  @include tablet {
+  @include mixins.tablet {
     display: flex;
     flex-basis: 0;
     flex-grow: 5;
@@ -512,7 +519,7 @@ $label-weight: $weight-bold;
 }
 
 .file {
-  @include unselectable;
+  @include mixins.unselectable;
 
   align-items: stretch;
   display: flex;
@@ -521,11 +528,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: derived-variables.$size-small;
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: derived-variables.$size-large;
   }
 
   &.is-centered {
@@ -543,7 +550,7 @@ $label-weight: $weight-bold;
   }
 
   &.is-mobile {
-    @include mobile {
+    @include mixins.mobile {
       .field-body {
         display: flex;
 
@@ -562,9 +569,9 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('neutral');
+  color: color.getColor('neutral');
   display: block;
-  font-size: $size-normal;
+  font-size: derived-variables.$size-normal;
   font-weight: $label-weight;
 
   &:not(:last-child) {
@@ -573,11 +580,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: derived-variables.$size-small;
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: derived-variables.$size-large;
   }
 }
 
@@ -586,9 +593,9 @@ $label-weight: $weight-bold;
   font-size: $help-size;
   margin-top: 2.5px;
 
-  @each $name, $pair in $colors-brand-functionnal {
-    $color: getColor($name);
-    $brandName: getColorBrandName($name);
+  @each $name, $pair in derived-variables.$colors-brand-functionnal {
+    $color: color.getColor($name);
+    $brandName: color.getColorBrandName($name);
 
     &.is-#{$brandName} {
       color: $color;

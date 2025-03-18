@@ -1,3 +1,6 @@
+@use "../base/color";
+@use "../utilities/mixins";
+
 $hero-padding-y: 20px;
 $hero-padding-x: $hero-padding-y;
 $hero-padding-small-y: $hero-padding-y;
@@ -21,7 +24,7 @@ $overlap-desktop: 30px;
 
 .hero {
   align-items: stretch;
-  background-color: getColor('background');
+  background-color: color.getColor('background');
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,7 +39,7 @@ $overlap-desktop: 30px;
     align-items: center;
     padding: 20px;
 
-    @include desktop {
+    @include mixins.desktop {
       padding: 30px 20px;
     }
 
@@ -48,7 +51,7 @@ $overlap-desktop: 30px;
     .title {
       font-size: 24px;
 
-      @include desktop {
+      @include mixins.desktop {
         font-size: 36px;
       }
     }
@@ -60,7 +63,7 @@ $overlap-desktop: 30px;
     }
 
     + .section {
-      @include mobile {
+      @include mixins.mobile {
         margin-left: -$hero-padding-y;
         margin-right: -$hero-padding-y;
 
@@ -75,7 +78,7 @@ $overlap-desktop: 30px;
       > .container {
         margin-top: -$hero-padding-y - $overlap;
 
-        @include desktop {
+        @include mixins.desktop {
           margin-top: -$hero-padding-desktop-y - $overlap-desktop;
         }
       }
@@ -84,7 +87,7 @@ $overlap-desktop: 30px;
         > .container {
           margin-top: -$hero-padding-small-y - $overlap;
 
-          @include desktop {
+          @include mixins.desktop {
             margin-top: -$hero-padding-desktop-small-y  - $overlap-desktop;
           }
         }
@@ -94,7 +97,7 @@ $overlap-desktop: 30px;
         > .container {
           margin-top: -$hero-padding-medium-y - $overlap;
 
-          @include desktop {
+          @include mixins.desktop {
             margin-top: -$hero-padding-desktop-medium-y  - $overlap-desktop;
           }
         }
@@ -104,7 +107,7 @@ $overlap-desktop: 30px;
         > .container {
           margin-top: -$hero-padding-large-y - $overlap;
 
-          @include desktop {
+          @include mixins.desktop {
             margin-top: -$hero-padding-desktop-large-y - $overlap-desktop;
           }
         }
@@ -122,7 +125,7 @@ $overlap-desktop: 30px;
       text-align: center;
       padding: 100px 20px;
 
-      @include desktop {
+      @include mixins.desktop {
         text-align: left;
         padding-top: 80px;
         padding-bottom: 80px;
@@ -133,7 +136,7 @@ $overlap-desktop: 30px;
       .hero-body {
         padding: 30px 20px 60px;
 
-        @include desktop {
+        @include mixins.desktop {
           padding: 60px 20px;
         }
       }

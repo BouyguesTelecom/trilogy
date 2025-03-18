@@ -1,12 +1,18 @@
+@use "../base/color";
+@use "../utilities/derived-variables";
+@use "../utilities/initial-variables";
+@use "../utilities/mixins";
+@use "../utilities/spacing";
+
 /* @todo validate a.alert exist */
 a.alert {
   cursor: pointer;
-  transition: box-shadow $animation-duration;
+  transition: box-shadow initial-variables.$animation-duration;
 
   &:hover,
   &:active,
   &:focus {
-    box-shadow: $shadow;
+    box-shadow: derived-variables.$shadow;
   }
 }
 
@@ -16,7 +22,7 @@ a.alert {
   display: flex;
   align-self: flex-start;
   box-shadow: none;
-  padding: $spacing-4;
+  padding: spacing.$spacing-4;
 
   &.is-banner {
 
@@ -34,7 +40,7 @@ a.alert {
   .title,
   .text {
     margin-bottom: 0 !important;
-    padding-bottom: $spacing-1;
+    padding-bottom: spacing.$spacing-1;
   }
 
   .text:last-child {
@@ -45,7 +51,7 @@ a.alert {
     padding: 0;
   }
 
-  @include mobile {
+  @include mixins.mobile {
     flex-wrap: wrap;
   }
 
@@ -53,13 +59,13 @@ a.alert {
     color: currentColor;
   }
 
-  @each $name in $colors-feedback {
+  @each $name in derived-variables.$colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 1px solid getColor($name);
+      background-color: color.fadeColor($name);
+      border: 1px solid color.getColor($name);
 
       .icon {
-        color: getColor($name);
+        color: color.getColor($name);
       }
     }
   }
@@ -78,16 +84,16 @@ a.alert {
     align-self: center;
     margin-bottom: 0;
     flex-grow: 1;
-    padding: 1px $spacing-2; /* Fixes flex behavior on Safari mobile */
+    padding: 1px spacing.$spacing-2; /* Fixes flex behavior on Safari mobile */
 
-    @include mobile {
+    @include mixins.mobile {
       flex: 1;
     }
   }
 
   .text,
   .paragraph {
-    font-size: $text-14;
+    font-size: initial-variables.$text-14;
     text-align: left;
   }
 
