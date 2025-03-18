@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Animated } from 'react-native'
+import { Animated, ViewStyle } from 'react-native'
 import { ComponentName } from '../../enumsComponentsName'
 import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
 
@@ -12,8 +12,9 @@ import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
  * @param children {React.ReactNode}
  */
 const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
-  ({ children, percent, minPercent = 100, status, style, ...others }, ref): JSX.Element => {
+  ({ children, percent, style, ...others }, ref): JSX.Element => {
     const animation = useRef(new Animated.Value(0)).current
+    const styles = style as ViewStyle[]
 
     useEffect(() => {
       percent &&
@@ -31,7 +32,7 @@ const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
     })
 
     return (
-      <Animated.View {...others} style={[{ width }, style]}>
+      <Animated.View {...others} style={[{ width }, ...styles]} ref={ref}>
         {children}
       </Animated.View>
     )
