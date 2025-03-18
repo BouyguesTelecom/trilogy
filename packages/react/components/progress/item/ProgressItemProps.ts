@@ -1,5 +1,5 @@
 import { Accessibility, StatusProps } from '@/objects/facets'
-import {View} from "react-native";
+import { View } from 'react-native'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -17,4 +17,4 @@ export interface ProgressItemProps extends StatusProps, Accessibility {
 }
 
 export type ProgressItemNativeRef = View
-
+export type ProgressItemWebRef = HTMLDivElement
