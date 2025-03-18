@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import type { DividerProps } from '../../../components/divider/DividerProps'
-import type { CheckboxProps } from '../../../components/Checkbox/CheckboxProps'
+import type { CheckboxProps } from '../../../components/checkbox/CheckboxProps'
 import { Alignable, AlignableValues } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
