@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@use "utilities/all";
-@use "base/all" as all2;
-@use "elements/all" as all3;
-@use "components/all" as all4;
-@use "grid/all" as all5;
-@use "layout/all" as all6;
+@use "utilities/all" as utilities;
+@use "base/all" as base;
+@use "elements/all" as elements;
+@use "components/all" as components;
+@use "grid/all" as grid;
+@use "layout/all" as layout;
