@@ -92,6 +92,22 @@ export const ListScreen = (): JSX.Element => {
             <Text level={TextLevels.ONE}>Ceci est la description</Text>
           </ListItem>
         </List>
+
+        <List>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>
+              Ceci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci
+              est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est
+              un titre eci est un titre eci est un titre eci est un titre
+            </Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>Ceci est un titre </Text>
+          </ListItem>
+          <ListItem iconName={IconName.ALERT}>
+            <Text level={TextLevels.ONE}>Ceci est un titre </Text>
+          </ListItem>
+        </List>
       </AutoLayout>
     </Section>
   )
