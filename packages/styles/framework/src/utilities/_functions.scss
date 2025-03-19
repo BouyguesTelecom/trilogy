@@ -1,13 +1,17 @@
 @use "sass:math";
+@use 'sass:map';
+@use 'sass:string';
+@use 'sass:meta';
+
 @import "./derived-variables";
 
 @function encodecolor($string) {
-  @if type-of($string) == 'string' and str-index($string, '#') == 1 {
-    @return '%23' + str-slice( $string, 2);
+  @if meta.type-of($string) == 'string' and string.index($string, '#') == 1 {
+    @return '%23' + string.slice( $string, 2);
   }
 
-  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1 {
-    $hex: str-slice(ie-hex-str($string), 4);
+  @if meta.type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(ie-hex-str($string), 4);
     $string: unquote('#{$hex}');
     @return '%23' + $string;
   }
@@ -52,14 +56,14 @@
         $color-rgb: map-merge($color-rgb, ($name: $value));
     }
 
-    @return map-get($color-rgb, "red") * 0.2126 + map-get($color-rgb, "green") * 0.7152 + map-get($color-rgb, "blue") * 0.0722;
+    @return map.get($color-rgb, "red") * 0.2126 + map.get($color-rgb, "green") * 0.7152 + map.get($color-rgb, "blue") * 0.0722;
 }
 
 /// Remove the unit of a length
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
+    @if meta.type-of($number) == 'number' and not unitless($number) {
         @return math.div($number, $number * 0 + 1);
     }
 
@@ -67,7 +71,7 @@
 }
 
 @function num($input) {
-    @if type-of($input) != number {
+    @if meta.type-of($input) != number {
         @return null;
     }
 
@@ -90,5 +94,5 @@
 }
 
 @function zindex($key) {
-    @return map-get($zindex, $key);
+    @return map.get($zindex, $key);
 }

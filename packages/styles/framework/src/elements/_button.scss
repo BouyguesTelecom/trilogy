@@ -1,4 +1,7 @@
+@use 'sass:list';
+
 $button-border-width: 2px !default;
+$button-colors: () !default;
 
 .buttons {
   width: 100%;
@@ -22,10 +25,6 @@ $button-border-width: 2px !default;
 }
 
 .button {
-  @include control;
-  @include unselectable;
-  @extend %buttons-states;
-
   background-color: white;
   border-width: $button-border-width;
   border-radius: var(--radius-small);
@@ -36,6 +35,9 @@ $button-border-width: 2px !default;
   padding: 0 $spacing-4;
   text-decoration: inherit;
   font-weight: $weight-semibold;
+  @include control;
+  @include unselectable;
+  @extend %buttons-states;
 
   @include mobile {
     width: 100%;
@@ -43,9 +45,9 @@ $button-border-width: 2px !default;
   }
 
   @each $name, $pair in $button-colors {
-    $variantName: nth($pair, 1);
-    $colorBG: getColor(#{nth($pair, 2)});
-    $colorText: getColor(nth($pair, 3));
+    $variantName: list.nth($pair, 1);
+    $colorBG: getColor(#{list.nth($pair, 2)});
+    $colorText: getColor(list.nth($pair, 3));
 
     &.is-#{$variantName} {
       background-color: $colorBG;

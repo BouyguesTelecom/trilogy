@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 $gap: 4px,
 8px,
 12px,
@@ -22,8 +24,8 @@ $gap: 4px,
     gap: 16px;
   }
 
-  @for $i from 1 through length($gap) {
-    $item: nth($gap, $i);
+  @for $i from 1 through list.length($gap) {
+    $item: list.nth($gap, $i);
     &.has-gap-#{$i} {
       gap: $item;
     }

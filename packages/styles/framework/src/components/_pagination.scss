@@ -10,14 +10,14 @@
   .pagination-next,
   .pagination-link,
   .pagination-ellipsis {
-    @include control;
-    @include unselectable;
     font-size: 1em;
     padding-left: 0.5em;
     padding-right: 0.5em;
     justify-content: center;
     margin: 2.5px;
     text-align: center;
+    @include control;
+    @include unselectable;
   }
 
   .pagination-previous,
