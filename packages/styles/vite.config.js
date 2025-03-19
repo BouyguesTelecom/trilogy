@@ -22,7 +22,7 @@ export default defineConfig({
     postcss: {},
     preprocessorOptions: {
       scss: {
-        additionalData: `@use './framework/src/all' as *;`,
+        additionalData: ``,
         sassOptions: {
           includePaths: ['./themes'],
         },

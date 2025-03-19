@@ -1,21 +1,30 @@
-
-
 // You must build fonts before
 
-// Base tools (functions)
-@import "./framework/src/utilities/tools";
+// @todo @import "../../themes/default/utilities";
+
+// A nettoyer une fois que tout sera rangé...
+@use '../../framework/utilities';
+
+$hoverSelector: "&:hover:not([disabled]):not([aria-disabled=true])" !default;
+@use "../../framework/theming";
+
+
+@forward '../../framework/utilities';
 
 // Base framework
-@import "./themes/default/src/utilities/pre";
-@import "./framework/src/utilities/pre";
+@import "../../themes/default/theming";
+@import "../../framework/theming";
 
-@import "./framework/src/utilities/post";
-@import "./themes/default/src/utilities/post";
+// Base tools (functions)
+@import "../../framework/utilities";
 
-@import "./framework/src/all";
+@import "../../framework/elements";
+@import "../../themes/default/elements";
+
+@import "../../framework/trilogy";
 
 // Icons
 @import "../../assets/icons/all";
 
 // Assets and theme (default)
-@import "./themes/default/src/_all";
+@import "../../themes/default/src/_all";

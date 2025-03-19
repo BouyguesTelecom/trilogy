@@ -1,0 +1,16 @@
+@mixin input {
+  @include control;
+  height: 56px;
+  background-color: getColor('background');
+  border-color: getColor('neutral');
+  color: getColor('font');
+
+  @include placeholder {
+    color: getColor('font') !important;
+    filter: grayscale(100%);
+    opacity: 1 !important;
+    transition: all 0.2s ease-out;
+  }
+
+  @include hover();
+}

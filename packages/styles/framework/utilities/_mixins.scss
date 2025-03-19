@@ -1,0 +1,79 @@
+@use "sass:string";
+@import "./initial-variables";
+
+/* A ranger / Supprimer ? */
+
+@mixin block {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: ' ';
+    display: table;
+  }
+}
+
+/* Others */
+
+@mixin center($width, $height: 0) {
+  position: absolute;
+  @if $height != 0 {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$height} / 2));
+  } @else {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$width} / 2));
+  }
+}
+
+@mixin overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin label-states {
+  &:focus,
+  &:active,
+  &:hover {
+    @include hover();
+  }
+}
+
+@mixin overlay($offset: 0) {
+  position: absolute;
+  top: $offset;
+  bottom: $offset;
+  left: $offset;
+  right: $offset;
+}
+
+@mixin placeholder {
+  $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
+
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
+    }
+  }
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin pattern-light($size, $x-pos: top, $y-pos: center) {
+  background-size: $size;
+  background-position: $x-pos $y-pos;
+}
+
+@mixin pattern-dark($size, $x-pos: top, $y-pos: center) {
+  background: linear-gradient(#1b3650, getColor('accent'));
+  background-size: auto, $size, auto;
+  background-position: top left, $x-pos $y-pos, top left;
+}
+
+/* Others */
