@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.2] - 2025-03-19
+- Add Translation
+- Add Stacked ProgressBar
+- Add accessibility + required Radios
+- Add accessibility for Checkboxes
+- Add markup for title for Alert
+- Add default alt CardImage
+- Add ref to Radiolist
+- Add type button to prevent submit in form
+- Update background color and fix ts error
+- Update font weight for title high levels (Safari titles issues)
+- Delete tab index and add title OTP
+- Update accessibility label when label is display
+- Update color close for Modal
+- Update rules generic box sizing
+- Fix Box background src
+- Fix popover
+- Clean jsdoc for few components
+- Fix mobile tabs
+- Fix keyboard navigation (MODAL)
+- Fix order for accessibility (CARD)
+- Fix preventDefault and stop propagation when Accordion is disable
+- Fix autocomplete search helper
+- Fix toaster (warnings & cycles)
+- Fix Select with react hook form
+- Fix Input default value
+- Fix spacing between icon and content
+
 ## [4.0.5] - 2025-01-30
 - Fix Native Columns
 - Fix Scrollable Columns
