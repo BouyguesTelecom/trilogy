@@ -1,28 +1,29 @@
 @use "sass:map";
+@use 'sass:list';
 
 @function getColor( $name ) {
-  @return var(--color-#{nth(map-get($colors,$name),2)});
+  @return var(--color-#{list.nth(map.get($colors,$name),2)});
 }
 
 @function getColorValue( $name ) {
-  @return #{nth(map-get($colors,$name),1)}
+  @return #{list.nth(map.get($colors,$name),1)}
 }
 
 @function getColorBrandName( $name ) {
-  @return #{nth(map-get($colors,$name),2)}
+  @return #{list.nth(map.get($colors,$name),2)}
 }
 
 :root {
   @each $name, $color in $colors {
-    --color-#{nth($color,2)}: #{nth($color,1)};
+    --color-#{list.nth($color,2)}: #{list.nth($color,1)};
   }
 }
 
 @function invertColor ($colorName) {
-  @return var(--color-#{nth(map-get($colors,$colorName),3)})
+  @return var(--color-#{list.nth(map.get($colors,$colorName),3)})
 }
 
 @function fadeColor ($colorName) {
-  $name: map-get($fade-colors,$colorName);
+  $name: map.get($fade-colors,$colorName);
   @return getColor($name);
 }
