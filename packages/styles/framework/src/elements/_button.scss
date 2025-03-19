@@ -29,7 +29,7 @@ $button-colors: () !default;
   border-width: $button-border-width;
   border-radius: var(--radius-small);
   cursor: pointer;
-  justify-content: center;
+  justify-content: center !important;
   text-align: center;
   white-space: nowrap;
   padding: 0 $spacing-4;
