@@ -1,4 +1,5 @@
 @use "sass:math";
+@use 'sass:list';
 
 @import "../base/color";
 
@@ -165,9 +166,9 @@ $progress-circle-slices: (
 $slides-concat: '';
 
 @each $slice in $progress-circle-slices {
-  $name: nth($slice, 1);
-  $color: nth($slice, 2);
-  $i: index($progress-circle-slices, $slice);
+  $name: list.nth($slice, 1);
+  $color: list.nth($slice, 2);
+  $i: list.index($progress-circle-slices, $slice);
 
   @if $i > 1 {
     .progress-circle-background-#{$name} {

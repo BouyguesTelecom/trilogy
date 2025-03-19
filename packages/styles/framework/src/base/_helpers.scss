@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 .is-sticky-top {
   position: sticky !important;
   top: 0;
@@ -110,7 +112,14 @@ $alignments: (
 // Typography
 @mixin typography-size($target: '') {
   @each $size in $sizes {
-    $i: index($sizes, $size);
+
+          $i: list.index($sizes, $size);
+
+          .is-size-#{$i}#{if($target == '', '', '-' + $target)} {
+            font-size: $size !important;
+          }
+
+    $i: list.index($sizes, $size);
 
     .is-size-#{$i}#{if($target == '', '', '-' + $target)} {
       font-size: $size !important;
@@ -197,8 +206,8 @@ $alignments: (
 
 @mixin typography-colors() {
   @each $name, $color in $colors {
-    $brandName: nth($color, 2);
-    $color: nth($color, 1);
+    $brandName: list.nth($color, 2);
+    $color: list.nth($color, 1);
     $color-invert: invertColor($name);
 
     .has-text-#{$brandName} {

@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $modal-content-width: 640px !default;
 $modal-content-margin-mobile: 20px !default;
 $modal-close-dimensions: 40px !default;
@@ -54,7 +56,7 @@ body:has(.modal.is-active) {
     @each $dimension in $dimensions-extended {
       &.is-#{$dimension} {
         .modal-content {
-          width: map-get($modal-dimensions, $dimension);
+          width: map.get($modal-dimensions, $dimension);
         }
       }
     }

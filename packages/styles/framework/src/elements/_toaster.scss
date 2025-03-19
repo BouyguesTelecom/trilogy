@@ -11,14 +11,15 @@ a.toaster {
 
 .toaster {
     @include apply-shadow-box();
-
-
   background-color: getColor('info-fade');
   border-radius: var(--radius);
   margin-bottom: 16px;
   position: relative;
     margin-left: 24px;
     margin-right: 24px;
+  box-shadow: none;
+  padding: $spacing-4;
+  display: flex;
 
     .toaster-close {
         padding-right: 0 !important ;
@@ -93,7 +94,6 @@ a.toaster {
         }
     }
 
-    display: flex;
 
     > .icon {
         flex: none;
@@ -113,9 +113,6 @@ a.toaster {
             flex: 1;
         }
     }
-
-    box-shadow: none;
-    padding: $spacing-4;
 
     .title,
     .text,
