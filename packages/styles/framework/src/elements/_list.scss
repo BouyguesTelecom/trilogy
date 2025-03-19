@@ -48,6 +48,9 @@ ol.list {
       justify-content: flex-start;
       align-items: flex-start;
     }
+    .list-item-content {
+      flex: 1; 
+    }
   }
 
   &.has-divider {
