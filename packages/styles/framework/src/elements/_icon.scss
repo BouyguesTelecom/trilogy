@@ -34,6 +34,12 @@ $size: (
 
     [class^="tri-"],
     [class*=" tri-"] {
+      &::before {
+        width: 1em;
+        height: 1em;
+        content: "\00a0";
+        margin: 0;
+      }
       display: flex;
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
@@ -42,13 +48,6 @@ $size: (
       -webkit-mask-size: cover;
       mask-size: cover;
       background-color: currentColor;
-
-      &::before {
-        width: 1em;
-        height: 1em;
-        content: "\00a0";
-        margin: 0;
-      }
     }
 
   @each $name, $sizeConfig in $size {
@@ -124,16 +123,6 @@ $size: (
 
     &.is-animated {
         .tri-notification_top {
-          animation-name: bellring;
-          animation-duration: 6s;
-          animation-iteration-count: infinite;
-          animation-timing-function: ease-in-out;
-          animation-delay: -2s;
-          animation-direction: initial;
-          transform-origin: center top;
-          -moz-animation: none;
-          -moz-transform-origin: center top;
-
             @keyframes bellring {
                 0% {
                     transform: rotate(-5deg);
@@ -172,18 +161,18 @@ $size: (
                 }
             }
 
+            animation-name: bellring;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-delay: -2s;
+            animation-direction: initial;
+            transform-origin: center top;
+            -moz-animation: none;
+            -moz-transform-origin: center top;
         }
 
         .tri-notification_bottom {
-          animation-name: bellbounce !important;
-          animation-duration: 6s;
-          animation-iteration-count: infinite;
-          animation-timing-function: initial;
-          animation-delay: -2s;
-          animation-direction: normal;
-          transform-origin: center top;
-          -moz-animation: none;
-
             @keyframes bellbounce {
                 0% {
                     transform: translateX(-1px) rotate(-5deg);
@@ -230,6 +219,14 @@ $size: (
                 }
             }
 
+            animation-name: bellbounce !important;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: initial;
+            animation-delay: -2s;
+            animation-direction: normal;
+            transform-origin: center top;
+            -moz-animation: none;
         }
     }
 
