@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix toaster (warnings & cycles)
 - Fix Select with react hook form
 - Fix Input default value
+- Fix spacing between icon and content
 
 ## [4.0.5] - 2025-01-30
 - Fix Native Columns
