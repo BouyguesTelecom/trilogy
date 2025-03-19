@@ -1,12 +1,12 @@
 .input,
 .textarea {
-  @include input;
-
   padding-left: $spacing-4;
   padding-right: $spacing-4;
   font-size: $size-medium;
   max-width: 100%;
   width: 100%;
+
+  @include input;
 
   // Colors
   @each $name in $colors-brand-functionnal {
@@ -87,7 +87,7 @@
     -webkit-appearance: none;
     background-repeat: no-repeat;
     background-color: getColor('background') ;
-    background-position: center;    
+    background-position: center;
   }
 
   &[type="search"] {

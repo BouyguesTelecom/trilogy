@@ -86,11 +86,12 @@
       outline: none;
       padding: 6px 14px;
       font-size: $text-14;
+      border: 0 solid transparent;
+      border-bottom: 2px solid transparent;
+
       @include desktop {
         font-size: $text-16;
       }
-      border: 0px solid transparent;
-      border-bottom: 2px solid transparent;
 
       .tab-icon {
         margin-top: 2px;

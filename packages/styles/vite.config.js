@@ -21,7 +21,9 @@ export default defineConfig({
     modules: false,
     postcss: {},
     preprocessorOptions: {
+      api: 'modern',
       scss: {
+        silenceDeprecations: ['import', 'legacy-js-api'],
         additionalData: `@use './framework/src/all' as *;`,
         sassOptions: {
           includePaths: ['./themes'],
