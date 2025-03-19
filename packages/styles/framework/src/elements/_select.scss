@@ -8,10 +8,9 @@ $status-select: (
 
   select {
     width: 100%;
+    @include input;
     padding-right: 40px;
     text-overflow: ellipsis;
-
-    @include input;
 
     &:focus {
       padding-left: 15px !important;
@@ -21,7 +20,7 @@ $status-select: (
       $color: getColor($name);
       $color-invert: invertColor($name);
       $brandName: getColorBrandName($name);
-
+  
       &.is-#{$brandName} {
         border: 1px solid $color;
       }

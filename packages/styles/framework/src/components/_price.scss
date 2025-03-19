@@ -1,5 +1,3 @@
-@use 'sass:list';
-
 $price-levels: (
   [$text-64, $text-44, $text-28, $text-16],
   [$text-56, $text-32, $text-22, $text-16],
@@ -18,9 +16,9 @@ $price-levels: (
   --font-size: #{$text-64};
 
   @each $price-level in $price-levels {
-    $i: list.index($price-levels, $price-level);
-    $font-size: list.nth($price-level, 1);
-    $strike-font-size: list.nth($price-level, 2);
+    $i: index($price-levels, $price-level);
+    $font-size: nth($price-level, 1);
+    $strike-font-size: nth($price-level, 2);
 
     &.is-level-#{$i} {
       --font-size: #{$font-size};
@@ -65,9 +63,9 @@ $price-levels: (
 
 
   @each $price-level in $price-levels {
-    $i: list.index($price-levels, $price-level);
-    $font-size: list.nth($price-level, 1);
-    $strike-font-size: list.nth($price-level, 2);
+    $i: index($price-levels, $price-level);
+    $font-size: nth($price-level, 1);
+    $strike-font-size: nth($price-level, 2);
 
     &.is-level-#{$i} {
       --font-size: #{$font-size};
