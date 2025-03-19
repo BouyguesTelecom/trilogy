@@ -364,7 +364,7 @@
 @mixin input {
   height: 56px;
   background-color: getColor('background');
-  border-color: getColor('neutral');
+  border-color: getColor('neutral') !important;
   color: getColor('font');
 
   @include control;
