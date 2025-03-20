@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.1.2] - 2025-03-19
+## [4.2.0] - 2025-03-20
 - Add Translation
 - Add Stacked ProgressBar
 - Add accessibility + required Radios
@@ -28,8 +28,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix autocomplete search helper
 - Fix toaster (warnings & cycles)
 - Fix Select with react hook form
+
+## [4.1.2] - 2025-03-14
 - Fix Input default value
 - Fix spacing between icon and content
+
+## [4.1.1] - 2025-03-01
+- Fix Column fullHeight
+
+## [4.1.0] - 2025-02-25
+- Add device platform helpers and update occurrences (Native)
+- Add Typography center props on Link (Native)
+- Add prop onModalHide on Modal (Native)
 
 ## [4.0.5] - 2025-01-30
 - Fix Native Columns
