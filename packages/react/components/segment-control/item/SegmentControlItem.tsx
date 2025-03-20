@@ -1,3 +1,4 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
@@ -45,4 +46,5 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
   },
 )
 
+SegmentControlItem.displayName = ComponentName.SegmentControlItem
 export default SegmentControlItem
