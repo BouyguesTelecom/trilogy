@@ -6,32 +6,23 @@
   justify-content: center;
   text-align: center;
 
-  .pagination-previous,
-  .pagination-next,
-  .pagination-link,
-  .pagination-ellipsis {
-    font-size: 1em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    justify-content: center;
-    margin: 2.5px;
-    text-align: center;
-    @include control;
-    @include unselectable;
+  li {
+    display: flex;
   }
 
   .pagination-previous,
   .pagination-next,
   .pagination-link,
   .pagination-ellipsis {
-    @include hover();
-    color: getColor('font');
-    min-width: 2.25em;
+    margin: 2.5px;
     height: 35px;
     width: 35px;
+    align-content: center;
+
+    @include unselectable;
+    @include hover();
+    color: getColor('font');
     border-radius: 9999px;
-    padding-left: 0.75em;
-    padding-right: 0.75em;
     white-space: nowrap;
 
     &[aria-disabled=true]{

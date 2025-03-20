@@ -8,7 +8,7 @@ $status-select: (
 
   select {
     width: 100%;
-    padding-right: 40px;
+    padding: 0 16px;
     text-overflow: ellipsis;
 
     @include input;

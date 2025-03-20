@@ -362,10 +362,12 @@
 
 // import sass bulma
 @mixin input {
-  height: 56px;
+  //height: 56px;
   background-color: getColor('background');
   border-color: getColor('neutral') !important;
   color: getColor('font');
+  justify-content: flex-start;
+  height: 56px;
 
   @include control;
 
