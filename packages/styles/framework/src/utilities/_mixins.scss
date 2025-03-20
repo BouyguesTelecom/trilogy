@@ -362,7 +362,6 @@
 
 // import sass bulma
 @mixin input {
-  //height: 56px;
   background-color: getColor('background');
   border-color: getColor('neutral') !important;
   color: getColor('font');
