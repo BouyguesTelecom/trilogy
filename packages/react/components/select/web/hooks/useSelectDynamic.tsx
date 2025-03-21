@@ -123,6 +123,7 @@ export const useSelectDynamic = ({ selected, multiple, children, onChange }: IPr
                 selectId: clickEventValue(child.props.id),
                 name: clickEventValue(child.props.children || child.props.label),
                 selectedOptions: opts,
+                target: undefined as unknown as EventTarget & HTMLSelectElement,
               })
             if (child.props.onClick) child.props.onClick()
             if (!multiple) setIsFocused(false)

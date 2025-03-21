@@ -2,6 +2,7 @@ import type { DividerProps } from '@/components/divider/DividerProps'
 import type { RadioProps } from '@/components/radio/RadioProps'
 import { Alignable, AlignableValues } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { View } from 'react-native'
 
 type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | undefined
 
@@ -20,4 +21,8 @@ export interface RadioListWebProps extends RadioListProps, CommonProps {
   className?: string
   horizontalMobile?: boolean
   verticalDesktop?: boolean
+  accessibilityLabelledBy?: string
 }
+
+export type RadioListRef = HTMLDivElement
+export type RadioListNativeRef = View

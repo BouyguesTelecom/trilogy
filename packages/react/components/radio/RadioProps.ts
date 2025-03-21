@@ -20,6 +20,7 @@ export interface RadioProps extends Accessibility, CommonProps {
   onChange?: RadioChangeEventHandler
   name?: string
   value?: string
+  required?: boolean
 }
 
 export type RadioRef = HTMLDivElement

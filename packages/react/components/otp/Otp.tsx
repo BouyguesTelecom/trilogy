@@ -1,5 +1,4 @@
 import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
-import { useOtp } from '@/components/otp/hooks/useOtp'
 import { Text, TextMarkup } from '@/components/text'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
@@ -7,6 +6,10 @@ import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { OtpPropsAccessibility } from './OtpProps'
+import { useOtp } from './hooks/useOtp'
+
+type NumberOrNull = number | null
 
 /**
  * OTP Code Component
@@ -23,96 +26,92 @@ import { ComponentName } from '../enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const Otp = React.forwardRef<OtpRef, OtpProps>(
-  (
-    {
-      className,
-      id,
-      value,
-      length = 6,
-      disabled,
-      error,
-      onCompleted,
-      onChange,
-      onFocus,
-      label,
-      help,
-      autoFocus,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
-    const classes = hashClass(clsx('otp-list', error && is('error'), className))
-    const { codeInput, inputOnChange, inputOnFocus, inputOnKeyUp } = useOtp({
-      value,
-      disabled,
-      onChange,
-      onCompleted,
-      length,
-    })
+const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
+  const {
+    className,
+    id,
+    value,
+    length = 6,
+    disabled,
+    error,
+    onCompleted,
+    onChange,
+    onFocus,
+    label,
+    help,
+    autoFocus,
+    title,
+    ...others
+  } = props as OtpPropsAccessibility
 
-    return (
-      <>
-        {label && (
-          <Text
-            markup={TextMarkup.P}
-            typo={
-              (disabled && TypographyColor.TEXT_NEUTRAL) ||
-              (error && TypographyColor.TEXT_ERROR) ||
-              TypographyColor.TEXT_MAIN
-            }
-          >
-            {label}
-          </Text>
-        )}
-        <div
-          ref={ref}
-          id={id}
-          className={classes}
-          onClick={
-            onFocus
-              ? () => {
-                  if (!disabled) {
-                    onFocus?.(true)
-                  }
-                }
-              : undefined
+  const { codeInput, inputOnChange, inputOnFocus, inputOnKeyUp, formatTranslation } = useOtp({
+    value,
+    disabled,
+    onChange,
+    onCompleted,
+    length,
+  })
+
+  const classes = hashClass(clsx('otp-list', error && is('error'), className))
+  const titleAttr = title || 'Number :x of :y of the one-time code'
+
+  return (
+    <>
+      {label && (
+        <Text
+          markup={TextMarkup.P}
+          typo={
+            (disabled && TypographyColor.TEXT_NEUTRAL) ||
+            (error && TypographyColor.TEXT_ERROR) ||
+            TypographyColor.TEXT_MAIN
           }
         >
-          {[...Array(length).keys()].map((_, index) => (
-            <input
-              aria-disabled={disabled}
-              tabIndex={0}
-              key={index}
-              type='text'
-              inputMode='numeric'
-              autoComplete='one-time-code'
-              autoFocus={index === 0 && autoFocus}
-              pattern='\d{1}'
-              maxLength={length}
-              className={hashClass(clsx('otp'))}
-              value={value ? `${codeInput[index] ?? ''}` : undefined}
-              onKeyUp={inputOnKeyUp}
-              onFocus={inputOnFocus}
-              onChange={inputOnChange ? (e) => inputOnChange(e, index) : undefined}
-              disabled={disabled}
-              {...others}
-            />
-          ))}
-        </div>
-        {help && (
-          <Text
-            className={hashClass(clsx('help'))}
-            markup={TextMarkup.P}
-            typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
-          >
-            {help}
-          </Text>
-        )}
-      </>
-    )
-  },
-)
+          {label}
+        </Text>
+      )}
+      <div
+        ref={ref}
+        id={id}
+        className={classes}
+        onClick={() => {
+          if (!disabled) {
+            onFocus?.(true)
+          }
+        }}
+      >
+        {codeInput.map((digit, idx) => (
+          <input
+            aria-disabled={disabled}
+            key={idx}
+            type='text'
+            inputMode='numeric'
+            autoComplete='one-time-code'
+            autoFocus={idx === 0 && autoFocus}
+            pattern='\d{1}'
+            maxLength={length}
+            className={hashClass(clsx('otp'))}
+            value={`${digit ?? ''}`}
+            onKeyUp={inputOnKeyUp}
+            onFocus={inputOnFocus}
+            onChange={inputOnChange ? (e) => inputOnChange(e, idx) : undefined}
+            disabled={disabled}
+            title={formatTranslation(titleAttr, String(idx + 1), String(length))}
+            {...others}
+          />
+        ))}
+      </div>
+      {help && (
+        <Text
+          className={hashClass(clsx('help'))}
+          markup={TextMarkup.P}
+          typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
+        >
+          {help}
+        </Text>
+      )}
+    </>
+  )
+})
 
 Otp.displayName = ComponentName.Otp
 export default Otp

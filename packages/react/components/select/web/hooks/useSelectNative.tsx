@@ -4,7 +4,7 @@ import React from 'react'
 interface IParams {
   selected?: SelectedValue
   onFocus?: (event: ParamEventSelectFocus) => void
-  onBlur?: (event: unknown) => void
+  onBlur?: React.FocusEventHandler<HTMLSelectElement | HTMLInputElement>
   onChange?: SelectChangeEventHandler
 }
 
@@ -18,7 +18,7 @@ export const useSelectNative = ({ onBlur, onFocus, onChange, selected }: IParams
       onFocus && onFocus(e)
     }, [])
 
-    const handleBlur = React.useCallback((e: ParamEventSelectFocus) => {
+    const handleBlur: React.FocusEventHandler<HTMLSelectElement | HTMLInputElement> = React.useCallback((e) => {
       setIsFocused(false)
       onBlur && onBlur(e)
     }, [])
@@ -34,6 +34,7 @@ export const useSelectNative = ({ onBlur, onFocus, onChange, selected }: IParams
             selectId: e.target.id,
             name: e.target.name,
             selectedOptions: selectedV,
+            target: e.target,
           })
         }
       },

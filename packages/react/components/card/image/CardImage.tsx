@@ -17,7 +17,7 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  * @param className Additionnal CSS Classes
  */
 const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
-  ({ src, alt, className, id, size, onClick, ...others }, ref): JSX.Element => {
+  ({ src, alt = '', className, id, size, onClick, ...others }, ref): JSX.Element => {
     const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
     return (

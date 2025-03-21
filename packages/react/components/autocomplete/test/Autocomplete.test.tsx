@@ -26,7 +26,7 @@ describe('AutoComplete', () => {
     fireEvent.focus(input)
     fireEvent.change(input, { target: { value: 'a' } })
     const items = screen.getAllByRole('listitem')
-    expect(items.length).toBe(1)
+    expect(items.length).toBe(3)
     expect(items[0]).toHaveTextContent('Apple')
   })
 

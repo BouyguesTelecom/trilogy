@@ -16,7 +16,23 @@ import { ProgressProps, ProgressRef } from './ProgressProps'
  * @param className {string} Additionnal CSS classes
  */
 const Progress = React.forwardRef<ProgressRef, ProgressProps>(
-  ({ className, id, value, max = 100, status, small, legendStart, legendCenter, legendEnd, ...others }, ref) => {
+  (
+    {
+      children,
+      className,
+      id,
+      value,
+      max = 100,
+      status,
+      small,
+      legendStart,
+      legendCenter,
+      legendEnd,
+      stacked,
+      ...others
+    },
+    ref,
+  ) => {
     const classes = hashClass(
       clsx(
         'progress',
@@ -26,6 +42,16 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(
         className,
       ),
     )
+
+    const stackedClasses = hashClass(clsx('progress', stacked && is('stacked'), className))
+
+    if (children && stacked) {
+      return (
+        <div className={stackedClasses} {...others}>
+          {children}
+        </div>
+      )
+    }
 
     return (
       <div ref={ref} className='progress-container'>

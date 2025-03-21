@@ -21,6 +21,7 @@ import React from 'react'
  * @param horizontal Horizontal radio
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required radio
  */
 const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
   (
@@ -37,6 +38,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
       description,
       icon,
       horizontal,
+      required,
       ...others
     },
     ref,
@@ -51,15 +53,18 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
           name={name}
           value={value}
           checked={checked}
+          required={required}
           onChange={
-            onChange && !disabled && !readonly
+            onChange
               ? (e) => {
-                  onChange({
-                    radioId: e.target.id,
-                    radioValue: e.target.value,
-                    radioName: e.target.name,
-                    radioChecked: e.target.checked,
-                  })
+                  if (onChange && !disabled && !readonly) {
+                    onChange({
+                      radioId: e.target.id,
+                      radioValue: e.target.value,
+                      radioName: e.target.name,
+                      radioChecked: e.target.checked,
+                    })
+                  }
                 }
               : undefined
           }

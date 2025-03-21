@@ -3,27 +3,26 @@ import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/Spacin
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import * as React from 'react'
-import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
+import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 
 const SPACING_MATRIX: SpacingMatrix = [
-  [INSERT_SPACE_BETWEEN, 'Radio', 'Divider', TWO],
-  [INSERT_SPACE_BETWEEN, 'Divider', 'Radio', TWO],
-  [INSERT_SPACE_BETWEEN, 'Radio', 'Radio', THREE],
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'Divider', TWO],
+  [INSERT_SPACE_BETWEEN, 'Divider', 'Checkbox', TWO],
+  [INSERT_SPACE_BETWEEN, 'Checkbox', 'Checkbox', THREE],
 ]
 
 /**
- * RadioList Native Component
- * @param children {ReactNode} RadioList children
+ * CheckboxList Native Component
+ * @param children {ReactNode} CheckboxList children
  * @param autolayout {boolean} Apply auto-layout rules
  */
-const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children }, ref): JSX.Element => {
-  const refList = React.useRef(ref)
+const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children }, ref): JSX.Element => {
   return <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX, children }} />
 })
 
-RadioList.displayName = ComponentName.RadioList
+CheckboxList.displayName = ComponentName.CheckboxList
 
-export default RadioList
+export default CheckboxList

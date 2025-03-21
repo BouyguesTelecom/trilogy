@@ -183,10 +183,10 @@ const Input = React.forwardRef<InputRef, InputProp>(
             required={required}
             role='textbox'
             {...others}
-            aria-label={accessibilityLabel}
+            aria-label={!label ? accessibilityLabel : undefined}
             type={inputType}
             className={classes}
-            value={_value}
+            value={value}
             defaultValue={defaultValue}
             name={name}
             onSubmit={onSubmit}

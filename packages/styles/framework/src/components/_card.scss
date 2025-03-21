@@ -13,6 +13,7 @@
   }
 
   .card-image {
+    order: 1;
     display: block;
     position: relative;
     flex-shrink: 0;
@@ -20,6 +21,7 @@
   }
 
   .card-content {
+    order: 2;
     padding: $spacing-5;
     flex-grow: 1;
 

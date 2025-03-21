@@ -1,12 +1,12 @@
 import { ButtonType } from '@/components/button'
 import { ModalProps, ModalRef } from '@/components/modal/ModalProps'
-import { useModal } from '@/components/modal/hooks/useModal'
 import { Title, TitleLevels, TitleMarkup } from '@/components/title'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { useModal } from './hooks/useModal'
 
 /**
  * Modal Component
@@ -39,13 +39,12 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     },
     ref,
   ): JSX.Element => {
-    const modalGeneratedId = React.useId()
-    const { display, refModal, onKeyDown, handleClickModal, modal, refBtnModal, buttonRef, handleCloseModal } =
-      useModal({
-        active,
-        onClose,
-      })
+    const { display, refModal, onKeyDown, refBtnModal, modalContentRef, handleClose } = useModal({
+      active,
+      onClose,
+    })
 
+    const modalGeneratedId = React.useId()
     const classes = hashClass(clsx('modal', display && is('active'), size && is(size), panel && is('panel'), className))
 
     return (
@@ -58,17 +57,30 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
           role='dialog'
           aria-labelledby={modalGeneratedId}
           aria-modal={true}
-          onClick={handleClickModal}
+          onClick={
+            handleClose
+              ? (e) => {
+                  if (!modalContentRef?.current?.contains(e.target as Node)) {
+                    handleClose(onClose, e)
+                  }
+                }
+              : undefined
+          }
           {...others}
         >
-          <div ref={modal} className={hashClass(clsx('modal-content'))}>
+          <div ref={modalContentRef} className={hashClass(clsx('modal-content'))}>
             <div className={hashClass(clsx('modal-header'))}>
               {hideCloseButton !== true && (
                 <button
-                  onClick={handleCloseModal}
+                  onClick={
+                    handleClose
+                      ? (e: React.MouseEvent) => {
+                          handleClose(onClose, e)
+                        }
+                      : undefined
+                  }
                   className={hashClass(clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
-                  ref={buttonRef}
                 >
                   {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
                 </button>

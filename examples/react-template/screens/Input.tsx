@@ -1,6 +1,7 @@
-import { TrilogyColor } from '@trilogy-ds/react'
+import { isMobile, TrilogyColor } from '@trilogy-ds/react'
 import {
   AutoLayout,
+  Button,
   Divider,
   IconName,
   Input,
@@ -12,11 +13,20 @@ import {
 } from '@trilogy-ds/react/lib/components'
 import * as React from 'react'
 import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
 export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
   const [inputSearch, setInputSearch] = React.useState('')
+
+  const form = useForm<{
+    toto: string
+  }>({
+    defaultValues: {
+      toto: 'test value',
+    },
+  })
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -33,6 +43,15 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      {!isMobile && (
+        <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
+          <Input {...form.register('toto', { required: true })} accessibilityLabel='label' label='label' />
+          <Button type='submit'>Submit</Button>
+        </form>
+      )}
+
+      {/*<Spacer size={SpacerSize.FIVE}/>*/}
+
       <Input
         value={inputSearch}
         label='Input label not dynamic with sample'
@@ -44,6 +63,8 @@ export const InputScreen = (): JSX.Element => {
         type='search'
         onChange={(e) => setInputSearch(e.inputValue)}
       />
+
+      <Button onClick={() => setInputSearch('Toto')}>Set Input Value to Toto</Button>
 
       <Input
         label='Input label not dynamic with sample'

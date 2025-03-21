@@ -5,19 +5,19 @@ import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { RadioListRef, RadioListWebProps } from './RadioListProps'
+import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
 
 /**
- * RadioList Component
+ * Checkbox List Component
  * @param children {ReactNode} CheckboxList children
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
- * @param align {boolean} align radios
- * @param verticalDesktop {boolean} Vertical radios
+ * @param align {boolean} align Checkboxes
+ * @param verticalDesktop {boolean} Vertical Checkboxes
  * @param horizontalMobile {boolean} Expect mobile screen
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
+const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
   (
     { className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others },
     ref,
@@ -26,12 +26,12 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
       <div
         ref={ref}
         id={id}
-        role='radiogroup'
+        role='group'
         aria-labelledby={accessibilityLabelledBy}
         aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(
           clsx(
-            'radios',
+            'checkboxes',
             className,
             align && is(getJustifiedClassName(align)),
             horizontalMobile && is('horizontal-mobile'),
@@ -46,5 +46,5 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
   },
 )
 
-RadioList.displayName = ComponentName.RadioList
-export default RadioList
+CheckboxList.displayName = ComponentName.CheckboxList
+export default CheckboxList

@@ -17,10 +17,11 @@ import { CheckboxProps, CheckboxRef } from './CheckboxProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for checkbox
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required input checkboxes
  */
 const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
   (
-    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, ...others },
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, required, ...others },
     ref,
   ): JSX.Element => {
     return (
@@ -29,6 +30,7 @@ const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
           type='checkbox'
           readOnly={readonly}
           id={id}
+          required={required}
           disabled={disabled}
           name={name}
           value={value}

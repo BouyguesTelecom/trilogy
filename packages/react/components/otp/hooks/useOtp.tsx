@@ -73,6 +73,10 @@ export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProp
     }
   }
 
+  const formatTranslation = (translation: string, x: string, y: string) => {
+    return translation.replace(/:x/g, x).replace(/:y/g, y)
+  }
+
   try {
     const [codeInput, setCodeInput] = React.useState<NumberOrNull[]>(
       stringToCode(value, length) || new Array(length).fill(null),
@@ -113,10 +117,11 @@ export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProp
       target.setSelectionRange(0, target.value.length)
     }
 
-    return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange }
+    return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange, formatTranslation }
   } catch {
     return {
       codeInput: stringToCode(value, length) || new Array(length).fill(null),
+      formatTranslation,
     }
   }
 }

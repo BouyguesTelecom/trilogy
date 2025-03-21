@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useSegmentControlItem } from '@/components/segment-control/item/hooks/useSegmentControlItem'
-import { hashClass } from '@/helpers/hashClassesHelpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import React from 'react'
 import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControlItemProps'
+import { useSegmentControlItem } from './hooks/useSegmentControlItem'
 
 /**
  * SegmentControl Item Component
@@ -21,6 +21,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
 
     return (
       <button
+        type='button'
         ref={ref}
         id={id}
         disabled={disabled}

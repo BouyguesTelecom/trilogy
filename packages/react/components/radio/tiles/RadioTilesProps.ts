@@ -6,7 +6,8 @@ import { View } from 'react-native'
  * Columns Item Interface
  */
 export interface RadioTilesProps extends AlignableProps, CommonProps {
-  children: React.ReactNode
+  children: React.ReactNode;
+  accessibilityLabelledBy?: string;
 }
 
 export type RadioTilesRef = HTMLDivElement

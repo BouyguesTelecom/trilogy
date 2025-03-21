@@ -1,5 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -15,8 +16,9 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  * @param className {string} Additionnal CSS Classes
  */
 const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
-  ({ id, className, children, align, verticalAlign, ...others }, ref): JSX.Element => {
+  ({ id, className, children, align, verticalAlign, accessibilityLabelledBy, ...others }, ref): JSX.Element => {
     let alignClass = null
+
     if (align) {
       alignClass =
         (getAlignClassName(align) === 'aligned-start' && is('justified-start')) ||
@@ -24,7 +26,9 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
         (getAlignClassName(align) === 'aligned-end' && is('justified-end')) ||
         null
     }
+
     let verticalAlignClass = null
+
     if (verticalAlign) {
       verticalAlignClass =
         (getAlignClassName(verticalAlign) === 'aligned-start' && is('aligned-start')) ||
@@ -37,6 +41,9 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
       <div
         ref={ref}
         id={id}
+        role={'group'}
+        aria-labelledby={accessibilityLabelledBy}
+        aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(
           clsx('checkbox-tiles', className, align && alignClass, verticalAlign && verticalAlignClass),
         )}

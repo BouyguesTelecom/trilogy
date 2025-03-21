@@ -5,7 +5,7 @@ import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * radio Component
+ * Radio
  * @param checked {boolean} Checked radio
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly radio
@@ -16,10 +16,11 @@ import { ComponentName } from '../enumsComponentsName'
  * @param value {string} Value for radio
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required radio
  */
 const Radio = React.forwardRef<RadioRef, RadioProps>(
   (
-    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, ...others },
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, required, ...others },
     ref,
   ): JSX.Element => {
     return (
@@ -32,20 +33,24 @@ const Radio = React.forwardRef<RadioRef, RadioProps>(
           name={name}
           value={value}
           checked={checked}
+          required={required}
           onChange={
-            onChange && !disabled && !readonly
+            onChange
               ? (e) => {
-                  onChange({
-                    radioId: e.target.id,
-                    radioValue: e.target.value,
-                    radioName: e.target.name,
-                    radioChecked: e.target.checked,
-                  })
+                  if (onChange && !disabled && !readonly) {
+                    onChange({
+                      radioId: e.target.id,
+                      radioValue: e.target.value,
+                      radioName: e.target.name,
+                      radioChecked: e.target.checked,
+                    })
+                  }
                 }
               : undefined
           }
           {...others}
         />
+
         <label htmlFor={id} className={hashClass(clsx('radio-label'))}>
           {label}
         </label>
