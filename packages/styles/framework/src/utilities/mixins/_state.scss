@@ -1,0 +1,25 @@
+@mixin hoverRules {
+  background-color: getColor('main-fade');
+}
+
+@mixin hover {
+  &:hover:not(.is-disabled):not(:focus) {
+    @include hoverRules();
+  }
+  &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {
+    border: 2px solid currentColor;
+  }
+}
+
+@mixin disabledRulesWithoutBG {
+  border-color: getColor('disabled') !important;
+  box-shadow: none !important;
+  color: getColor('disabled') !important;
+  cursor: not-allowed !important;
+  filter: grayscale(1);
+}
+
+@mixin disabledRules {
+  background-color: getColor('disabled-fade') !important;
+  @include disabledRulesWithoutBG;
+}
