@@ -12,7 +12,11 @@
 
 // Float
 .is-clearfix {
-  @include clearfix;
+  &::after {
+    clear: both;
+    content: ' ';
+    display: table;
+  }
 }
 
 .is-pulled-left {

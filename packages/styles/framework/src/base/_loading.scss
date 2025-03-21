@@ -81,7 +81,7 @@ p.is-loading,
 
     // we need the headings to have margins AND be inline
     @include heading-tags {
-        display: table; // FIXME: well... `@include clearfix;` didn't do the trick
+        display: table;
     }
 
     & & {

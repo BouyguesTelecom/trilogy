@@ -1,0 +1,24 @@
+@mixin block {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+@mixin overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin placeholder {
+  $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
+    }
+  }
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
