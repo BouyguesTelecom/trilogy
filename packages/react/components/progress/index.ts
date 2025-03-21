@@ -1,7 +1,6 @@
-import Progress from './Progress'
+import Progress from '@/components/progress/Progress'
+import ProgressRadial from '@/components/progress/radial'
+import ProgressRadialItem from '@/components/progress/radial/item/ProgressRadialtem'
 import ProgressItem from './item'
-import ProgressRadial from './radial'
-import ProgressRadialItem from './radial/item/ProgressRadialtem'
-
 
 export { Progress, ProgressItem, ProgressRadial, ProgressRadialItem }

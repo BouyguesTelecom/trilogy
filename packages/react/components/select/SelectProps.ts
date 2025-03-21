@@ -1,7 +1,8 @@
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { TextInput } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
 import { SelectStatus, SelectStatusValues } from './SelectEnum'
 
 export interface ISelectOption {
@@ -32,7 +33,7 @@ export type SelectNativeRef = TextInput
 
 interface Props {
   onFocus?: (event: ParamEventSelectFocus) => void
-  onBlur?: React.FocusEventHandler<HTMLSelectElement> | ((event: unknown) => void)
+  onBlur?: React.FocusEventHandler<HTMLSelectElement | HTMLInputElement> | ((event: unknown) => void)
   label?: string
   children?: React.ReactNode
   disabled?: boolean

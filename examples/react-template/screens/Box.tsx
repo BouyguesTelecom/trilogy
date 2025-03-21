@@ -17,7 +17,7 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react/lib/components'
 import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 

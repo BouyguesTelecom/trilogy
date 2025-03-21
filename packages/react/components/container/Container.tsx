@@ -3,7 +3,6 @@ import React from 'react'
 
 import { ContainerProps, ContainerRef } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 
@@ -17,8 +16,7 @@ import { is } from '@/services/classify'
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
   ({ className, id, medium, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
+    const classes = hashClass(clsx('container', medium && is('medium'), className))
 
     return <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} {...others} />
   },

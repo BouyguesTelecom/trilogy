@@ -1,5 +1,4 @@
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
@@ -46,9 +45,7 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
     },
     ref,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
-    const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
+    const classes = hashClass(clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
 
     if (routerLink && to) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
@@ -60,7 +57,7 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
             id={id}
             aria-label={accessibilityLabel}
             onClick={onClick && onClick}
-            className={hashClass(styled, clsx(classes))}
+            className={hashClass(clsx(classes))}
             to={to || ''}
             {...(blank && {
               target: '_blank',
