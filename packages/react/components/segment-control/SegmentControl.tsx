@@ -52,7 +52,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
                 disabled={props.disabled}
                 active={props.active}
                 key={props.key}
-                onClick={(e: unknown) => onClick?.(e)}
+                onClick={onClick ? (e: unknown) => onClick?.(e) : undefined}
               >
                 {child}
               </SegmentControlItem>

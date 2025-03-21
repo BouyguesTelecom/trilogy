@@ -6,9 +6,10 @@ interface IProps {
   onChange?: (code?: string) => void
   onCompleted?: (code?: string) => void
   length: number
+  onFocus?: (focused: boolean) => void
 }
 
-export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProps) => {
+export const useOtp = ({ value, disabled, length, onChange, onCompleted, onFocus }: IProps) => {
   type NumberOrNull = number | null
 
   const stringToCode = (str: string | undefined, codeSize: number): Array<NumberOrNull> => {
@@ -84,6 +85,12 @@ export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProp
 
     const hasChanged = React.useRef(false)
 
+    const handleClick = () => {
+      if (!disabled) {
+        onFocus?.(true)
+      }
+    }
+
     React.useEffect(() => {
       if (!disabled) {
         isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
@@ -117,7 +124,7 @@ export const useOtp = ({ value, disabled, length, onChange, onCompleted }: IProp
       target.setSelectionRange(0, target.value.length)
     }
 
-    return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange, formatTranslation }
+    return { codeInput, inputOnKeyUp, inputOnFocus, inputOnChange, formatTranslation, handleClick }
   } catch {
     return {
       codeInput: stringToCode(value, length) || new Array(length).fill(null),

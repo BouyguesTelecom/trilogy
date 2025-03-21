@@ -66,7 +66,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
 
     if (href) {
       return (
-        <a id={id} href={href} onClick={onClick && onClick} className={classes} {...others}>
+        <a id={id} href={href} onClick={onClick ? onClick : undefined} className={classes} {...others}>
           {children}
         </a>
       )
@@ -80,8 +80,8 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       <div
         ref={ref}
         id={id}
-        style={onClick && { ...hoverStyle }}
-        onClick={onClick && onClick}
+        style={onClick ? { ...hoverStyle } : undefined}
+        onClick={onClick ? onClick : undefined}
         className={classes}
         {...others}
         {...(backgroundSrc && {

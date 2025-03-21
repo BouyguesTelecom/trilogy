@@ -9,8 +9,6 @@ import { ComponentName } from '../enumsComponentsName'
 import { OtpPropsAccessibility } from './OtpProps'
 import { useOtp } from './hooks/useOtp'
 
-type NumberOrNull = number | null
-
 /**
  * OTP Code Component
  * @param value {string} Code Text Input
@@ -44,7 +42,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
     ...others
   } = props as OtpPropsAccessibility
 
-  const { codeInput, inputOnChange, inputOnFocus, inputOnKeyUp, formatTranslation } = useOtp({
+  const { codeInput, inputOnChange, inputOnFocus, inputOnKeyUp, formatTranslation, handleClick } = useOtp({
     value,
     disabled,
     onChange,
@@ -69,16 +67,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
           {label}
         </Text>
       )}
-      <div
-        ref={ref}
-        id={id}
-        className={classes}
-        onClick={() => {
-          if (!disabled) {
-            onFocus?.(true)
-          }
-        }}
-      >
+      <div ref={ref} id={id} className={classes} onClick={handleClick}>
         {codeInput.map((digit, idx) => (
           <input
             aria-disabled={disabled}

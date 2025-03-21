@@ -1,11 +1,12 @@
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { createContext } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { CardProps, CardRef } from './CardProps'
+import { useCard } from './hooks/cardContext'
 
-export const CardContext = createContext({ horizontal: false })
+export const CardContext = useCard()
 
 /**
  * Card Component
@@ -60,9 +61,9 @@ const Card = React.forwardRef<CardRef, CardProps>(
       <div
         ref={ref as React.Ref<HTMLDivElement>}
         id={id}
-        onClick={onClick && onClick}
+        onClick={onClick ? onClick : undefined}
         className={classes}
-        style={onClick && { ...hoverStyle }}
+        style={onClick ? { ...hoverStyle } : undefined}
         {...others}
       />
     )
