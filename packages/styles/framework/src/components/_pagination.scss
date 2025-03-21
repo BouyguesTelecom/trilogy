@@ -6,32 +6,48 @@
   justify-content: center;
   text-align: center;
 
-  .pagination-previous,
-  .pagination-next,
-  .pagination-link,
-  .pagination-ellipsis {
-    @include control;
-    @include unselectable;
-    font-size: 1em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    justify-content: center;
-    margin: 2.5px;
-    text-align: center;
+  li {
+    display: flex;
   }
 
   .pagination-previous,
   .pagination-next,
   .pagination-link,
   .pagination-ellipsis {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid transparent;
+    display: inline-flex;
+
+    // bug fix pour iOS qui zoom sur le champ si la police ne fait pas 16px
+    @supports (-webkit-overflow-scrolling: touch) {
+      font-size: $text-16;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+
+      // répétition nécessaire : bug fix pour iOS qui zoom sur le champ si la police ne fait pas 16px
+      @supports (-webkit-overflow-scrolling: touch) {
+        font-size: $text-16;
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
+
+    @include unselectable;
+    justify-content: center;
+    margin: 2.5px;
+
     @include hover();
     color: getColor('font');
-    min-width: 2.25em;
     height: 35px;
     width: 35px;
     border-radius: 9999px;
-    padding-left: 0.75em;
-    padding-right: 0.75em;
     white-space: nowrap;
 
     &[aria-disabled=true]{
