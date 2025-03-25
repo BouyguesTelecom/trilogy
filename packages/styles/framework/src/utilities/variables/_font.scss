@@ -19,6 +19,7 @@ $weight-bold: 600 !default;
 $weight-extrabold: 600 !default;
 $weight-black: 600 !default;
 
+
 $text-8: 8px !default;
 $text-9: 9px !default;
 $text-10: 10px !default;
@@ -56,6 +57,27 @@ $text-58: 58px !default;
 $text-60: 60px !default;
 $text-64: 64px !default;
 $text-80: 80px !default;
+
+$size-1: $text-32;
+$size-2: $text-28;
+$size-3: $text-24;
+$size-4: $text-20;
+$size-5: $text-18;
+$size-6: $text-14;
+$size-7: $text-12;
+$size-8: $text-11;
+$size-1-desktop: $text-48;
+$size-2-desktop: $text-38;
+$size-3-desktop: $text-28;
+$size-4-desktop: $text-24;
+$size-5-desktop: $text-18;
+$size-6-desktop: $text-14;
+$size-7-desktop: $text-12;
+$size-8-desktop: $text-11;
+
+
+// Gestion des tailles de police
+$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 $size-8;
 
 $size-small: $text-13 !default;
 $size-normal: $text-16 !default;

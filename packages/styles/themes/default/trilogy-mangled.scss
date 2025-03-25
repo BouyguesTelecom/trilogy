@@ -24,8 +24,8 @@ $body-line-height: 1.5 !default;
 @import "./framework/src/base/helpers";
 @import "./framework/src/base/loading";
 
-@import "./framework/src/elements/all";
-@import "./framework/src/components/all";
+@import "./framework/src/elements";
+@import "./framework/src/components";
 @import "./framework/src/grid/all";
 @import "./framework/src/layout/all";
 
