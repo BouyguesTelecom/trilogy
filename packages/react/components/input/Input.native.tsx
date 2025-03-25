@@ -94,6 +94,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(({
   validationRules,
   onIconClick,
   required,
+  readOnly,
   ...others
 }, ref): JSX.Element => {
   const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
@@ -337,6 +338,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(({
         <TextInput
           ref={ref}
           testID='input-id'
+          readOnly={readOnly}
           clearTextOnFocus={false}
           secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
           value={value}
