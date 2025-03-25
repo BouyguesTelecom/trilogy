@@ -51,10 +51,10 @@ body:has(.modal.is-active) {
   // gestion des tailles
   @include tablet {
     justify-content: center;
-    @each $dimension in $dimensions-extended {
-      &.is-#{$dimension} {
+    @each $name, $dimension in $modal-dimensions {
+      &.is-#{$name} {
         .modal-content {
-          width: map-get($modal-dimensions, $dimension);
+          width: $dimension;
         }
       }
     }
@@ -110,7 +110,7 @@ body:has(.modal.is-active) {
     .modal-header {
       padding: $spacing-5;
       color: getColor('font');
-      font-family: $family-sans-serif;
+      font-family: $family-primary;
       font-size: $size-3;
       font-weight: $weight-semibold;
       line-height: 1.1;
