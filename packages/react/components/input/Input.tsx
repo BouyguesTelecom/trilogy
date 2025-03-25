@@ -103,6 +103,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityGauge,
       validationRules,
       required,
+      readOnly,
       ...others
     },
     ref,
@@ -233,6 +234,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             id={id}
             required={required}
             role='textbox'
+            readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
             type={inputType}
