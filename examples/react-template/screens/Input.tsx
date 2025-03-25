@@ -1,4 +1,4 @@
-import { isMobile, Spacer, TrilogyColor } from '@trilogy-ds/react'
+import { isMobile, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
 import {
   AutoLayout,
   Button,
@@ -10,8 +10,6 @@ import {
   Section,
   Title,
   TitleLevels,
-  SpacerSize,
-  Spacer
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useEffect } from 'react'
@@ -55,7 +53,6 @@ export const InputScreen = (): JSX.Element => {
       />
 
       <Title level={4}>Input react-hook-form control</Title>
-
       {!isMobile && (
         <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
           <Input {...form.register('toto', { required: true })} accessibilityLabel='label' label='label' />
@@ -65,8 +62,6 @@ export const InputScreen = (): JSX.Element => {
           <Spacer size={SpacerSize.FIVE} />
         </form>
       )}
-
-      <Spacer size={SpacerSize.FIVE}/>
 
       <Title level={4}>Input with label and without accessibilityLabel</Title>
       <Input
@@ -78,7 +73,6 @@ export const InputScreen = (): JSX.Element => {
         iconNameLeft={IconName.ARROW_LEFT}
         accessibilityLabel='Input label not dynamic with sample'
       />
-
       <Spacer size={SpacerSize.FIVE} />
 
       <Title level={4}>Input without label and with accessibilityLabel</Title>
