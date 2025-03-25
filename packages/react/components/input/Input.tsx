@@ -44,7 +44,7 @@ interface IconWrapper {
  * @param maxLength {number} Textarea max length
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
-
+ * @param readOnly {boolean} Read only input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -103,6 +103,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityGauge,
       validationRules,
       required,
+      readOnly,
       ...others
     },
     ref,
@@ -233,6 +234,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             id={id}
             required={required}
             role='textbox'
+            readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
             type={inputType}
