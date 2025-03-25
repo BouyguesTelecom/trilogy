@@ -24,7 +24,7 @@ export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
     const [error, setError] = useState(true)
     const [offset] = useState(50)
-    const [duration] = useState(1000)
+    const [duration] = useState(4000)
     const [testId] = useState('toasterId')
     const [title] = useState('Why do we use it?')
     const [description] = useState(
@@ -54,6 +54,7 @@ export const AlertScreen = (): JSX.Element => {
         onClick: () => console.log('onClick'),
         closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
+        markup: 'h2',
       })
     }
 
