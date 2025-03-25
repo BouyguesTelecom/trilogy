@@ -1,16 +1,4 @@
-$text-levels: (
-    ($text-16, $text-20, $text-16),
-    ($text-14, $text-18, $text-16),
-    ($text-12, $text-15, $text-16),
-    ($text-10, $text-12, $text-16)
-);
-$text-levels-mobile: (
-    ($text-16, $text-20, $text-8),
-    ($text-14, $text-18, $text-8),
-    ($text-12, $text-15, $text-8),
-    ($text-10, $text-12, $text-8)
-);
-
+@import "../utilities/variables/_font.scss";
 
 .text {
   @each $text-level in $text-levels {
