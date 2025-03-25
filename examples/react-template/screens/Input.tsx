@@ -10,6 +10,8 @@ import {
   Section,
   Title,
   TitleLevels,
+  SpacerSize,
+  Spacer
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useEffect } from 'react'
@@ -43,6 +45,14 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      <Input
+        value={'ReadOnly Input value'}
+        label='ReadOnly input'
+        help='ReadOnly input'
+        placeholder="ReadOnly input"
+        readOnly
+      />
+
       {!isMobile && (
         <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
           <Input {...form.register('toto', { required: true })} accessibilityLabel='label' label='label' />
@@ -50,7 +60,7 @@ export const InputScreen = (): JSX.Element => {
         </form>
       )}
 
-      {/*<Spacer size={SpacerSize.FIVE}/>*/}
+      <Spacer size={SpacerSize.FIVE}/>
 
       <Input
         value={inputSearch}
