@@ -1,3 +1,4 @@
+import { IconColor, isMobile } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -14,6 +15,7 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  ButtonList,
   ModalSize,
   Section,
   Text,
@@ -23,8 +25,9 @@ import {
 import * as React from 'react'
 import { useState } from 'react'
 
-function Buttons() {
-  return null
+function AccessibilityElm() {
+  if (isMobile) return <></>
+  return <span className='sr-only'>Menu</span>
 }
 
 export const ModalScreen = (): JSX.Element => {
@@ -92,16 +95,26 @@ export const ModalScreen = (): JSX.Element => {
             </Accordion>
           </ModalBody>
           <ModalFooter>
-            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
-              Close
-            </Button>
+            <ButtonList>
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpenModal1(false)}>
+                Fermer
+              </Button>
+              <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
+                Ajouter
+              </Button>
+            </ButtonList>
           </ModalFooter>
         </Modal>
         <Divider />
 
         <Modal
           title='Hello'
-          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal2(true)} />}
+          trigger={
+            <Button onClick={() => setOpenModal2(true)}>
+              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
+              <AccessibilityElm />
+            </Button>
+          }
           active={openModal2}
           onClose={() => setOpenModal2(false)}
         >
@@ -118,7 +131,12 @@ export const ModalScreen = (): JSX.Element => {
 
         <Modal
           title='Hello'
-          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal3(true)} />}
+          trigger={
+            <Button onClick={() => setOpenModal3(true)}>
+              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
+              <AccessibilityElm />
+            </Button>
+          }
           active={openModal3}
           onClose={() => setOpenModal3(false)}
           panel
