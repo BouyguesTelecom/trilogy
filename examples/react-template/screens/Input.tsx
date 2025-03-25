@@ -45,6 +45,7 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      <Title level={4}>Readonly input</Title>
       <Input
         value={'ReadOnly Input value'}
         label='ReadOnly input'
