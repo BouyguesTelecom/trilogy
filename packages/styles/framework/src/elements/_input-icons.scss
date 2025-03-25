@@ -27,7 +27,7 @@
     }
   }
   .has-icons-right {
-    .icon-right {
+    .icon-right, button[data-show-pwd]{
       position: absolute;
       height: 100%;
       width: 45px;
@@ -37,6 +37,17 @@
 
       i {
         font-size: 20px;
+      }
+    }
+
+    button[data-show-pwd]{
+      background-color: transparent;
+      border:none;
+      border-top-right-radius: $radius-small ;
+      border-bottom-right-radius: $radius-small ;
+      &:focus-visible{
+        outline: var(--border-active);
+        outline-offset: -2px;
       }
     }
   }
