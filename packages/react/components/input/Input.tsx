@@ -44,7 +44,7 @@ interface IconWrapper {
  * @param maxLength {number} Textarea max length
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
-
+ * @param readOnly {boolean} Read only input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
