@@ -104,7 +104,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     useEffect(() => {
       if (modalContentRef.current) {
         focusableElementsRef.current = modalContentRef.current.querySelectorAll(
-          'button, input, a, select, textarea, details',
+          'button:not(:disabled), input:not(:disabled), a, select:not(:disabled), textarea:not(:disabled), details:not([aria-disabled="true"]) > summary',
         )
       }
     }, [modalContentRef, focusableElementsRef])
