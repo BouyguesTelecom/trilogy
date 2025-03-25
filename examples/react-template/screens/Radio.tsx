@@ -86,7 +86,7 @@ export const RadioScreen = (): JSX.Element => {
                     <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
                       Description
                     </Text>
-                    <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>GRATUIT</Text>
+                    <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
                     <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
                       Between the 20/02 and 23/02
                       <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
