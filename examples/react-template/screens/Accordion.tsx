@@ -24,7 +24,9 @@ export const AccordionScreen = (): JSX.Element => {
       <Accordion id='accordion-1'>
         <AccordionItem id='ONE' open>
           <AccordionHeader>
-            <Title level={6}>Hello World 1</Title>
+            <Title level={6} markup='h2'>
+              Markup h2 - level 6
+            </Title>
           </AccordionHeader>
           <AccordionBody data-id='totooooo-test-id'>
             <Columns>
@@ -36,7 +38,9 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem id='TWO'>
           <AccordionHeader>
-            <Title level={6}>Hello World 2</Title>
+            <Title level={6} markup='h3'>
+              Markup h3 - level 6
+            </Title>
           </AccordionHeader>
           <AccordionBody>
             <Text>Accordion Body 2</Text>
@@ -44,7 +48,9 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem id='THREE'>
           <AccordionHeader>
-            <Title level={6}>Hello World 3</Title>
+            <Title level={6} markup='h4'>
+              Markup h4 - level 6
+            </Title>
           </AccordionHeader>
           <AccordionBody>
             <Text>Accordion Body 3</Text>
@@ -52,7 +58,9 @@ export const AccordionScreen = (): JSX.Element => {
         </AccordionItem>
         <AccordionItem disabled id='FOUR'>
           <AccordionHeader>
-            <Title level={6}>Hello World 4</Title>
+            <Title level={6} markup='h5'>
+              Markup h5 - level 6
+            </Title>
           </AccordionHeader>
           <AccordionBody>
             <Text>Accordion Body 4</Text>
