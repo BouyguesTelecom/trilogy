@@ -4,7 +4,6 @@ import {
   Popover,
   RadioList,
   Section,
-  TypographyAlign,
   TypographyBold,
   TypographyColor,
 } from '@trilogy-ds/react'
@@ -19,17 +18,15 @@ export const RadioScreen = (): JSX.Element => {
   return (
     <Section>
       <Container>
-        <Text typo={TypographyAlign.TEXT_CENTERED}>
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Text>Simple Radio's :</Text>
             <RadioList>
               <Radio
                 checked={radio === 'one'}
                 required={true}
                 name='name-1'
-                label='Label'
+                label='Label 1'
                 value='one'
                 id='checkbox1'
                 onChange={(e) => setRadio(e.radioValue)}
@@ -37,7 +34,7 @@ export const RadioScreen = (): JSX.Element => {
               <Radio
                 checked={radio === 'two'}
                 name='name-1'
-                label='Label'
+                label='Label 2'
                 value='two'
                 id='checkbox2'
                 onChange={(e) => setRadio(e.radioValue)}
@@ -45,42 +42,41 @@ export const RadioScreen = (): JSX.Element => {
               <Radio
                 checked={radio === 'three'}
                 name='name-1'
-                label='Label'
+                label='Label 3'
                 value='three'
-                disabled
                 id='checkbox3'
                 onChange={(e) => setRadio(e.radioValue)}
               />
               <Radio
                 checked={radio === 'four'}
                 name='name-1'
-                label='read only'
+                label='Label 4'
                 value='four'
-                readonly
                 id='checkbox4'
                 onChange={(e) => setRadio(e.radioValue)}
               />
             </RadioList>
           </Column>
+
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Text>Tiles Radio's :</Text>
             <RadioTiles>
               <RadioTile
+                onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'one'}
-                disabled
                 id='tile-1'
-                label='label'
+                label='Label 1'
                 value='one'
-                description='Je suis'
-                className='is-fullheight'
+                description='Description'
                 name={'name-tile-1'}
               />
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'two'}
                 id='tile-2'
-                label='label'
+                label='Label 2'
                 value='two'
-                description='Je suis une'
+                description='Description'
                 icon={IconName.ALERT}
                 name={'name-tile-1'}
               />
@@ -88,65 +84,70 @@ export const RadioScreen = (): JSX.Element => {
                 description={
                   <>
                     <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
-                      Relais express
+                      Description
                     </Text>
                     <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>GRATUIT</Text>
                     <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
-                      Entre le 20/02 et le 20/02
-                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}> Popover active</Popover>
+                      Between the 20/02 and 23/02
+                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
                     </Text>
                   </>
                 }
+                onChange={(e) => setRadioTile(e.radioValue)}
+                checked={radioTile === 'three'}
                 icon={IconName.ALERT}
                 name='name-tile-1'
-                value='value'
+                label={'Label 3'}
+                value='three'
               />
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
-                checked={radioTile === 'three'}
-                id='tile-3'
-                label='label'
-                value='three'
-                description='Je suis une description simple'
+                checked={radioTile === 'four'}
+                id='tile-4'
+                label='Label 4'
+                value='four'
+                description='Description'
                 icon={IconName.ALERT}
                 name={'name-tile-1'}
               />
             </RadioTiles>
           </Column>
+
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Text>Horizontal Tiles Radio's :</Text>
             <RadioTiles align={Alignable.ALIGNED_CENTER}>
               <RadioTile
                 checked={radioTileHorizontal === 'one'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
                 id='tile-horizontal-1'
-                label='label'
+                label='Label 1'
                 value='one'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
                 horizontal
-                name={'name-tile-2'}
+                name={'name-tile-horizontal-1'}
               />
               <RadioTile
                 checked={radioTileHorizontal === 'two'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
                 id='tile-horizontal-2'
-                label='label'
+                label='Label 2'
                 value='two'
-                description='Je suis une description simple'
+                description='A simple description'
                 icon={IconName.ALERT}
                 horizontal
-                name={'name-tile-2'}
+                name={'name-tile-horizontal-1'}
               />
               <RadioTile
                 checked={radioTileHorizontal === 'three'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
                 id='tile-horizontal-3'
-                label='label'
+                label='Label 3'
                 value='three'
-                description='Je suis une description simple'
+                description='A simple description'
                 icon={IconName.ALERT}
                 horizontal
-                name={'name-tile-2'}
+                name={'name-tile-horizontal-1'}
               />
             </RadioTiles>
           </Column>
