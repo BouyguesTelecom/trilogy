@@ -19,6 +19,7 @@ interface IconWrapper {
   color?: IconColor
   onPress?: () => void
   closeIconSearch?: boolean
+  srOnly?: string
 }
 
 /**
@@ -153,7 +154,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     }, [])
 
     const IconWrapper = useCallback(
-      ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+      ({ className, name, color, closeIconSearch, onPress, srOnly }: IconWrapper) => {
         const Markup = type === InputType.PASSWORD ? 'button' : 'div'
         return (
           <Markup
@@ -174,9 +175,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 size={IconSize.SMALL}
               />
             )}
-            {type === InputType.PASSWORD && (
-              <span className='sr-only'>{isShowPwd ? 'Show password' : 'Hide password'}</span>
-            )}
+            {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
           </Markup>
         )
       },
@@ -313,6 +312,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
+              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={() => {
