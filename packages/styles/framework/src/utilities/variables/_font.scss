@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Typography OS-regular
+$family-primary: 'Poppins Read', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif !default;
+$family-secondary: 'Poppins Speak', 'Poppins', 'Arial Black', 'Arial Bold', serif !default;
+$family-code: monospace !default;
+$render-mode: optimizeLegibility !default;
+
+$font-ratio: 1 !default;
+$font-convert-to-px: false !default;
+
+$weight-extrathin: 400 !default;
+$weight-thin: 400 !default;
+$weight-light: 400 !default;
+$weight-normal: 400 !default;
+$weight-medium: 500 !default;
+$weight-semibold: 600 !default;
+$weight-bold: 600 !default;
+$weight-extrabold: 600 !default;
+$weight-black: 600 !default;
+
+$text-8: 8px !default;
+$text-9: 9px !default;
+$text-10: 10px !default;
+$text-11: 11px !default;
+$text-12: 12px !default;
+$text-13: 13px !default;
+$text-14: 14px !default;
+$text-15: 15px !default;
+$text-16: 16px !default;
+$text-17: 17px !default;
+$text-18: 18px !default;
+$text-19: 19px !default;
+$text-20: 20px !default;
+$text-22: 22px !default;
+$text-24: 24px !default;
+$text-26: 26px !default;
+$text-27: 27px !default;
+$text-28: 28px !default;
+$text-29: 29px !default;
+$text-32: 32px !default;
+$text-34: 34px !default;
+$text-35: 35px !default;
+$text-36: 36px !default;
+$text-38: 38px !default;
+$text-39: 39px !default;
+$text-40: 40px !default;
+$text-42: 42px !default;
+$text-44: 44px !default;
+$text-46: 46px !default;
+$text-48: 48px !default;
+$text-50: 50px !default;
+$text-54: 54px !default;
+$text-56: 56px !default;
+$text-58: 58px !default;
+$text-60: 60px !default;
+$text-64: 64px !default;
+$text-80: 80px !default;
+
+$size-small: $text-13 !default;
+$size-normal: $text-16 !default;
+$size-medium: $text-16 !default;
+$size-large: $text-24 !default;
