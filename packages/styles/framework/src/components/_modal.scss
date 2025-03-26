@@ -48,7 +48,6 @@ body:has(.modal.is-active) {
     }
   }
 
-  // gestion des tailles
   @include tablet {
     justify-content: center;
     @each $name, $dimension in $modal-dimensions {
