@@ -1,4 +1,3 @@
-import lngFile from '@/locale.json'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
@@ -11,9 +10,6 @@ import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputRef, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
-import trads from './inputLocale.json'
-
-const lng = lngFile.lng as 'fr' | 'en'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 
@@ -318,7 +314,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
-              srOnly={!isShowPwd ? trads[lng].buttonShowPwd : trads[lng].buttonHidePwd}
+              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={() => {
