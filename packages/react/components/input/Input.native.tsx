@@ -63,6 +63,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param testId {string} Test Id for Test Integration
  * @param required {boolean} Required input
  * @param accessibilityActivate {boolean}
+ * @param readOnly {boolean} Read only input
  */
 const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
   (
@@ -96,6 +97,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       validationRules,
       onIconClick,
       required,
+      readOnly,
       ...others
     },
     ref,
@@ -341,6 +343,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           <TextInput
             ref={ref}
             testID='input-id'
+            readOnly={readOnly}
             clearTextOnFocus={false}
             secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
             value={value}

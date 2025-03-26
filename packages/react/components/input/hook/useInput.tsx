@@ -17,12 +17,13 @@ interface IconWrapper {
   className?: string
   name: IconName | IconNameValues
   color?: IconColor
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
   closeIconSearch?: boolean
   type?: InputType | InputTypeValues
   _value?: string
   onClickCloseIconSearch?: () => void
   onPress?: () => void
+  srOnly?: string
 }
 
 interface IParams {
@@ -85,9 +86,10 @@ export const useInput = ({
     }, [])
 
     const IconWrapper = React.useCallback(
-      ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+      ({ className, name, color, closeIconSearch, onPress, srOnly }: IconWrapper) => {
         return (
           <CreateIconWrapper
+            srOnly={srOnly}
             className={className}
             name={name}
             color={color}
@@ -255,9 +257,12 @@ const CreateIconWrapper = ({
   type,
   _value,
   onClickCloseIconSearch,
+  srOnly,
 }: IconWrapper) => {
+  const Markup = type === InputType.PASSWORD ? 'button' : 'div'
+
   return (
-    <div {...(type === 'password' && { 'data-show-pwd': true })} onClick={onClick}>
+    <Markup {...(type === 'password' && { 'data-show-pwd': true })} onClick={onClick}>
       <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
       {_value && _value.length > 0 && closeIconSearch && (
         <Icon
@@ -267,6 +272,7 @@ const CreateIconWrapper = ({
           size={IconSize.SMALL}
         />
       )}
-    </div>
+      {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
+    </Markup>
   )
 }

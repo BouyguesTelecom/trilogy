@@ -15,6 +15,7 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  ButtonList,
   ModalSize,
   Section,
   Text,
@@ -94,9 +95,14 @@ export const ModalScreen = (): JSX.Element => {
             </Accordion>
           </ModalBody>
           <ModalFooter>
-            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
-              Close
-            </Button>
+            <ButtonList>
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpenModal1(false)}>
+                Fermer
+              </Button>
+              <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
+                Ajouter
+              </Button>
+            </ButtonList>
           </ModalFooter>
         </Modal>
         <Divider />

@@ -43,6 +43,15 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      <Title level={4}>Readonly input</Title>
+      <Input
+        value={'ReadOnly Input value'}
+        label='ReadOnly input'
+        help='ReadOnly input'
+        placeholder="ReadOnly input"
+        readOnly
+      />
+
       <Title level={4}>Input react-hook-form control</Title>
       {!isMobile && (
         <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>

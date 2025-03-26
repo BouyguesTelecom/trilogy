@@ -112,6 +112,7 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   securityGauge?: boolean
   validationRules?: IValidationRules
   required?: boolean
+  readOnly?: boolean
 }
 
 export interface ILengthVerify {

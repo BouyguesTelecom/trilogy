@@ -175,9 +175,18 @@ body:has(.modal.is-active) {
       background: getColor('background');
       bottom: 0;
 
+      .buttons {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
       @include tablet {
         display: flex;
         justify-content: flex-end;
+
+        .buttons {
+          flex-direction: row;
+        }
       }
     }
   }

@@ -37,7 +37,7 @@ export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
  * @param maxLength {number} Textarea max length
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
-
+ * @param readOnly {boolean} Read only input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -96,6 +96,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityGauge,
       validationRules,
       required,
+      readOnly,
       ...others
     },
     ref,
@@ -182,6 +183,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             id={id}
             required={required}
             role='textbox'
+            readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
             type={inputType}
@@ -217,6 +219,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
+              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={handlePressIconPwd}
