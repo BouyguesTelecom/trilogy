@@ -5,7 +5,7 @@
   "main": "lib/trilogy-ds-vanilla.js",
   "scripts": {
     "start": "webpack --watch",
-    "build": "vite --config vite.config.js build",
+    "build": "rimraf ./lib && vite --config vite.config.js build",
     "serve": "npx http-server -p 8090 ./lib"
   },
   "repository": {

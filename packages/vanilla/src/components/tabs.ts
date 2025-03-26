@@ -9,85 +9,85 @@ export const initTabs = () => {
     'background-attachment: local, local, scroll, scroll;'
 
   const styledTabs = `
-    .tabs { 
+    .tabs {
         padding-right: 2rem;
     }
-`
+  `
 
   const styleTabAttr = document.createElement('style')
   styleTabAttr.innerText = styledTabs
 
   tabContexts.forEach((tabContext) => {
     const tabContextWidth = tabContext.clientWidth
-    let tabs = tabContext.querySelector('.tabs')
-    if(!tabs) {
-      tabs = tabContext.querySelector('[data-real-class*="tabs"]')
+    const tabs = tabContext.querySelector('.tab-list')
+
+    if (!tabs) {
+      console.error('Tabs element not found in tab context', tabContext)
+      return
     }
+
     const tabsWidth = tabs.scrollWidth
 
     if (tabsWidth > tabContextWidth) {
       if (!tabs.innerHTML.includes('icon is-small is-absolute')) {
-        const arrowIcon = `<span class="icon is-small is-absolute" style="${styleCusto}"><i class="tri-arrow-right" aria-hidden=\'true\'></i></span>`
+        const arrowIcon = `<span class="icon is-small is-absolute" style="${styleCusto}"><i class="tri-arrow-right" aria-hidden='true'></i></span>`
         tabs.innerHTML += arrowIcon
         tabs.appendChild(styleTabAttr)
       }
     }
   })
 
-  let tabsContext = document.querySelectorAll('[data-tabs-context]')
-  for (let i = 0; i < tabsContext.length; i++) {
-    let tabContext = tabsContext[i]
-    let tabs: NodeListOf<HTMLElement> = tabContext.querySelectorAll('[data-tab-navigation]')
-    let tabsContent: NodeListOf<HTMLElement> = tabContext.querySelectorAll('[data-tab-content]')
-    for (let j = 0; j < tabs.length; j++) {
-      let tabElement: HTMLElement = tabs[j]
-      let tabContent: HTMLElement = tabsContent[j]
-      tabElement.addEventListener('click', function () {
+  tabContexts.forEach((tabContext) => {
+    const tabs = tabContext.querySelectorAll('[data-tab-navigation]')
+    const tabsContent = tabContext.querySelectorAll('.tab-panel')
+
+    if (!tabs.length || !tabsContent.length) {
+      console.error('Tab elements or content panels not found in tab context', tabContext)
+      return
+    }
+
+    tabs.forEach((tabElement, j) => {
+      const tabContent = tabsContent[j]
+
+      tabElement.addEventListener('click', () => {
         makeTabActive(tabElement, tabContent)
       })
-      tabElement.addEventListener('keyup', (e: KeyboardEvent) => {
+
+      tabElement.addEventListener('keyup', (e) => {
         e.preventDefault()
-        switch (e.keyCode) {
-          case 35: // end key
+        switch (e.key) {
+          case 'End':
             makeTabActive(tabs[tabs.length - 1], tabsContent[tabs.length - 1])
             break
-          case 36: // home key
+          case 'Home':
             makeTabActive(tabs[0], tabsContent[0])
             break
-          case 37: // left arrow
-            let previous = (j - 1) % tabs.length
+          case 'ArrowLeft':
+            const previous = (j - 1 + tabs.length) % tabs.length
             makeTabActive(tabs[previous], tabsContent[previous])
             break
-          case 39: // right arrow
-            let next = (j + 1) % tabs.length
+          case 'ArrowRight':
+            const next = (j + 1) % tabs.length
             makeTabActive(tabs[next], tabsContent[next])
             break
         }
       })
-    }
+    })
 
-    /**
-     * Make an element inactive
-     */
     const makeAllTabsInactive = () => {
-      for (let i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove('is-active')
-        tabs[i].setAttribute('aria-selected', 'false')
-        tabs[i].setAttribute('tabindex', '-1')
-      }
+      tabs.forEach(tab => {
+        tab.classList.remove('is-active')
+        tab.setAttribute('aria-selected', 'false')
+        tab.setAttribute('tabindex', '-1')
+      })
 
-      for (let j = 0; j < tabsContent.length; j++) {
-        tabsContent[j].classList.remove('is-active')
-        tabsContent[j].setAttribute('aria-expanded', 'false')
-      }
+      tabsContent.forEach(content => {
+        content.classList.remove('is-active')
+        content.setAttribute('aria-expanded', 'false')
+      })
     }
 
-    /**
-     * Make an element active
-     * @param { Element } tabElementToMakeActive element to be made active
-     * @param tabContentToMakeActive
-     */
-    const makeTabActive = (tabElementToMakeActive: HTMLElement, tabContentToMakeActive: HTMLElement) => {
+    const makeTabActive = (tabElementToMakeActive, tabContentToMakeActive) => {
       makeAllTabsInactive()
       tabElementToMakeActive.classList.add('is-active')
       tabElementToMakeActive.setAttribute('aria-selected', 'true')
@@ -96,7 +96,7 @@ export const initTabs = () => {
       tabContentToMakeActive.classList.add('is-active')
       tabContentToMakeActive.setAttribute('aria-expanded', 'true')
     }
-    
-    tabContext.setAttribute(`data-tab-initialized`, 'true')
-  }
+
+    tabContext.setAttribute('data-tab-initialized', 'true')
+  })
 }
