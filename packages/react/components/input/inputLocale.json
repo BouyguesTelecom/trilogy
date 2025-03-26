@@ -1,0 +1,10 @@
+{
+    "en": {
+        "buttonShowPwd":"Show password",
+        "buttonHidePwd":"Hide password"
+    },
+    "fr": {
+        "buttonShowPwd":"Afficher le mot de passe",
+        "buttonHidePwd":"Cacher le mot de passe"
+    }
+}
