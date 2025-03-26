@@ -45,10 +45,10 @@ export const InputScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Title level={4}>Readonly input</Title>
       <Input
-        value={'ReadOnly Input value'}
+        value={'ReadOnly Input value with a long value to testing if is possible to navigate into the readOnly input'}
         label='ReadOnly input'
         help='ReadOnly input'
-        placeholder="ReadOnly input"
+        placeholder='ReadOnly input'
         readOnly
       />
 
@@ -185,7 +185,7 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         {Object.values(InputStatus).map((status, key) => {
-          if (status === 'danger') return <></>
+          if (status === 'danger') return <React.Fragment key={key} />
           return (
             <React.Fragment key={key}>
               <Input
