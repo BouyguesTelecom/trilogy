@@ -12,8 +12,16 @@
     margin-bottom: 15px;
   }
 
-  .card-image {
+  &:not(.is-reversed) .card-image {
     order: 1;
+  }
+
+
+  &:not(.is-reversed) .card-content {
+    order: 2;
+  }
+
+  .card-image {
     display: block;
     position: relative;
     flex-shrink: 0;
@@ -21,7 +29,6 @@
   }
 
   .card-content {
-    order: 2;
     padding: $spacing-5;
     flex-grow: 1;
 

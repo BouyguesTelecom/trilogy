@@ -2,7 +2,7 @@
 import { Accessibility, Dev } from '../../objects/facets'
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 
-import { FocusEventHandler } from 'react'
+import { type ChangeEvent, FocusEventHandler} from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -27,6 +27,7 @@ export interface InputChangeEventWeb {
   inputValue: string
   inputSelectionStart: number | null
   target: EventTarget
+  event: ChangeEvent<HTMLInputElement> | InputChangeEventWeb
 }
 
 export interface InputChangeEventNative {
@@ -113,6 +114,7 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   securityGauge?: boolean
   validationRules?: IValidationRules
   required?: boolean
+  readOnly?: boolean
 }
 
 export interface ILengthVerify {

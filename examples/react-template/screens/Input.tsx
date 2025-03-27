@@ -43,6 +43,15 @@ export const InputScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
+      <Title level={4}>Readonly input</Title>
+      <Input
+        value={'ReadOnly Input value with a long value to testing if is possible to navigate into the readOnly input'}
+        label='ReadOnly input'
+        help='ReadOnly input'
+        placeholder='ReadOnly input'
+        readOnly
+      />
+
       <Title level={4}>Input react-hook-form control</Title>
       {!isMobile && (
         <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
@@ -176,7 +185,7 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         {Object.values(InputStatus).map((status, key) => {
-          if (status === 'danger') return <></>
+          if (status === 'danger') return <React.Fragment key={key} />
           return (
             <React.Fragment key={key}>
               <Input
