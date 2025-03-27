@@ -1,6 +1,6 @@
-import type { TouchableOpacity } from 'react-native'
-import { Clickable } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { TouchableOpacity } from 'react-native'
 
 /**
  * SegmentedControl Item Interface

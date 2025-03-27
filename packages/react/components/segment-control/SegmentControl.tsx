@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import SegmentControlItem from './item'
-import { SegmentControlProps, SegmentControlRef } from './SegmentControlProps'
-import { hashClass } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useSegmentControl } from '@/components/segment-control/hooks/useSegmentControl'
+import SegmentControlItem from '@/components/segment-control/item'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
-import { ComponentName } from '../enumsComponentsName'
+import React from 'react'
+import { SegmentControlProps, SegmentControlRef } from './SegmentControlProps'
 
 /**
  * SegmentControl Component
@@ -13,70 +13,57 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onClick onClick event
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
+ * @param marginless {boolean} delete margin
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
+ * @param inverted {boolean} invert color SegmentControl
  */
-const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(({ className, id, onClick, children, activeIndex, align }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
+  ({ className, id, onClick, children, activeIndex, align }, ref): JSX.Element => {
+    const { activateIndex, handleClick } = useSegmentControl({ activeIndex, onClick })
+    const classes = hashClass(clsx('segmented-control', align && getJustifiedClassName(align), className))
 
-  const classes = hashClass(styled, clsx('segmented-control', align && getJustifiedClassName(align), className))
-  const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
-
-  const isActive = (index: number, childPropsActive: React.ReactNode) => {
-    if (typeof childPropsActive !== 'undefined' && !activateIndex) {
-      return childPropsActive
+    const isActive = (index: number, childPropsActive: React.ReactNode) => {
+      if (typeof childPropsActive !== 'undefined' && !activateIndex) {
+        return childPropsActive
+      }
+      if (index === activateIndex) {
+        return true
+      }
     }
-    if (index === activateIndex) {
-      return true
-    }
-  }
 
-  const toggleActive = (e: React.MouseEvent, index: number) => {
-    setActivateIndex(index)
-    if (onClick) onClick(e)
-  }
+    return (
+      <div ref={ref} id={id} className={classes}>
+        {children &&
+          Array.isArray(children) &&
+          children.map((child, index) => {
+            const props = {
+              active: Boolean(isActive(index, child.props.active)) || false,
+              disabled: child.props.disabled,
+              key: index,
+              onClick: handleClick
+                ? (e: React.MouseEvent<Element, MouseEvent>) => handleClick(e, index, child)
+                : undefined,
+            }
 
-  React.useEffect(() => {
-    setActivateIndex(activateIndex)
-  }, [activateIndex])
-
-  return (
-    <div ref={ref} id={id} className={classes}>
-      {children &&
-        Array.isArray(children) &&
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        children.map((child: any, index: number) => {
-          const props = {
-            active: Boolean(isActive(index, child.props.active)) || false,
-            disabled: child.props.disabled,
-            key: index,
-            onClick: (event: React.MouseEvent) => {
-              toggleActive(event, index)
-              if (child) {
-                if (child.props.onClick) {
-                  child.props.onClick(event)
-                }
-              }
-            },
-          }
-
-          return child && typeof child.valueOf() === 'string' ? (
-            <SegmentControlItem
-              disabled={props.disabled}
-              active={props.active}
-              key={props.key}
-              onClick={(e: unknown) => onClick?.(e)}
-            >
-              {child}
-            </SegmentControlItem>
-          ) : (
-            React.cloneElement(child, props)
-          )
-        })}
-    </div>
-  )
-})
+            return child && typeof child.valueOf() === 'string' ? (
+              <SegmentControlItem
+                disabled={props.disabled}
+                active={props.active}
+                key={props.key}
+                onClick={onClick ? (e: unknown) => onClick?.(e) : undefined}
+              >
+                {child}
+              </SegmentControlItem>
+            ) : (
+              React.cloneElement(child, props)
+            )
+          })}
+      </div>
+    )
+  },
+)
 
 SegmentControl.displayName = ComponentName.SegmentControl
 export default SegmentControl

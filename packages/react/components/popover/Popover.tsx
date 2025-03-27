@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -19,10 +18,7 @@ import { PopoverRef, PopoverWebProps } from './PopoverProps'
  */
 const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
   ({ className, id, direction, children, active, arrowPosition, trigger, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'popover',
         direction && is(`popover-${direction}`),
@@ -34,7 +30,7 @@ const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
 
     return (
       <span ref={ref} id={id} className={classes} {...others}>
-        <span className={hashClass(styled, 'popover-content')}>{children}</span>
+        <span className={hashClass('popover-content')}>{children}</span>
         {trigger && trigger}
       </span>
     )

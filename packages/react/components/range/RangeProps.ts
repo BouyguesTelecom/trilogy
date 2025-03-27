@@ -1,9 +1,10 @@
 /**
  * range Interface
  */
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
 
 export type InputChangeEventHandlerNative = (event: { inputValue: number[]; inputName: string }) => void
 export type InputChangeEventHandlerWeb = (event: { inputValue: number; inputName: string | undefined }) => void

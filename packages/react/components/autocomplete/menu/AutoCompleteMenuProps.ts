@@ -1,4 +1,4 @@
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 export interface AutoCompleteMenuProps extends CommonProps {
   children?: React.ReactNode

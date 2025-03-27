@@ -1,5 +1,4 @@
 import { Icon, IconColor, IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TrilogyColor } from '@/objects/facets/Color'
 import { StatusState, getStatusClassName } from '@/objects/facets/Status'
@@ -25,10 +24,7 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
  */
 const Badge = React.forwardRef<BadgeRef, BadgeProps>(
   ({ className, children, id, label, inverted, onClick, variant, position, status, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'badge',
         inverted && is('inverted'),
@@ -79,10 +75,14 @@ const Badge = React.forwardRef<BadgeRef, BadgeProps>(
           ref={ref}
           id={id}
           className={classes}
-          onClick={(e) => {
-            onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={
+            onClick
+              ? (e) => {
+                  onClick?.(e)
+                  e.stopPropagation()
+                }
+              : undefined
+          }
           {...others}
         >
           {label}

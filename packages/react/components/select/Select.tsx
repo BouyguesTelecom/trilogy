@@ -1,8 +1,7 @@
-import * as React from 'react'
-
-import { SelectProps, SelectRef } from './SelectProps'
-import { SelectDynamic, SelectNative } from './web'
+import { SelectDynamic, SelectNative } from '@/components/select/web'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { SelectProps, SelectRef } from './SelectProps'
 
 /**
  * Select Component

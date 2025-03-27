@@ -1,5 +1,4 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { is } from '@/services/classify'
@@ -18,14 +17,11 @@ import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
  */
 const ButtonList = React.forwardRef<ButtonListRef, ButtonListWebProps>(
   ({ className, id, align, direction, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     return (
       <div
         ref={ref}
         id={id}
         className={hashClass(
-          styled,
           clsx(
             'buttons',
             className,
