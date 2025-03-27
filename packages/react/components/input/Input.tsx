@@ -150,6 +150,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
         inputValue: target.value,
         inputKeyCode: e.keyCode,
         target,
+        event: e,
         preventDefault: () => e.preventDefault(),
       }
     }, [])
@@ -290,6 +291,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
                   inputValue: e.target.value,
                   inputSelectionStart: e.target.selectionStart,
                   target: e.target,
+                  event:e
                 })
               }
             }}
