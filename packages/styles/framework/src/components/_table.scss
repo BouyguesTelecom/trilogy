@@ -204,7 +204,7 @@
   .subtable {
     background-color: getColor('neutral-fade');
     border-radius: var(--radius);
-    padding: $box-padding * 2;
+    padding: 25px;
 
     @include mobile() {
       padding: 15px;
