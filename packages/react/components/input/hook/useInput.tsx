@@ -163,6 +163,7 @@ export const useInput = ({
             inputValue: e.target.value,
             inputSelectionStart: e.target.selectionStart,
             target: e.target,
+            event: e,
           })
         }
       },

@@ -26,6 +26,7 @@ export interface InputChangeEventWeb {
   inputValue: string
   inputSelectionStart: number | null
   target: EventTarget
+  event: React.ChangeEvent<HTMLInputElement> | InputChangeEventWeb
 }
 
 export interface InputChangeEventNative {

@@ -39,3 +39,17 @@ $fade-colors: (
   'disabled': 'disabled-fade',
   'neutral': 'neutral-fade',
 ) !default;
+
+// Brand Color
+$colors-brand: (
+  'background', 'main', 'accent'
+);
+
+// Brand Color Functionnal
+$colors-brand-functionnal: (
+  'background', 'main', 'accent', 'info', 'success', 'error', 'warning', 'neutral'
+);
+
+$colors-feedback: (
+  'success', 'error', 'warning', 'info'
+);
