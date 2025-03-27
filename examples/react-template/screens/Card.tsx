@@ -98,6 +98,23 @@ export const CardScreen = (): JSX.Element => {
         </CardContent>
       </Card>
 
+      <Title level={TitleLevels.TWO}>Reversed </Title>
+      <Spacer size={SpacerSize.FOUR} />
+      <Card>
+        <CardImage src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg' />
+        <CardContent>
+          <Title overline level={TitleLevels.FIVE}>
+            Markup {'<p>'} - level FIVE
+          </Title>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.
+          </Text>
+          <Button variant={ButtonVariant.PRIMARY} onClick={() => setSkeleton(skeleton)}>
+            Skeleton toogle click
+          </Button>
+        </CardContent>
+      </Card>
+
       <Title level={TitleLevels.TWO}>Flat </Title>
       <Spacer size={SpacerSize.THREE} />
       <Card flat>

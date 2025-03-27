@@ -19,6 +19,7 @@ interface IconWrapper {
   color?: IconColor
   onPress?: () => void
   closeIconSearch?: boolean
+  srOnly?: string
 }
 
 /**
@@ -44,7 +45,7 @@ interface IconWrapper {
  * @param maxLength {number} Textarea max length
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
-
+ * @param readOnly {boolean} Read only input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -103,6 +104,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityGauge,
       validationRules,
       required,
+      readOnly,
       ...others
     },
     ref,
@@ -148,14 +150,16 @@ const Input = React.forwardRef<InputRef, InputProp>(
         inputValue: target.value,
         inputKeyCode: e.keyCode,
         target,
+        event: e,
         preventDefault: () => e.preventDefault(),
       }
     }, [])
 
     const IconWrapper = useCallback(
-      ({ className, name, color, closeIconSearch, onPress }: IconWrapper) => {
+      ({ className, name, color, closeIconSearch, onPress, srOnly }: IconWrapper) => {
+        const Markup = type === InputType.PASSWORD ? 'button' : 'div'
         return (
-          <div
+          <Markup
             {...(type === InputType.PASSWORD && { 'data-show-pwd': true })}
             onClick={(e) => {
               onPress && onPress()
@@ -173,7 +177,8 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 size={IconSize.SMALL}
               />
             )}
-          </div>
+            {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
+          </Markup>
         )
       },
       [_value, styled],
@@ -233,6 +238,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             id={id}
             required={required}
             role='textbox'
+            readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
             type={inputType}
@@ -285,6 +291,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
                   inputValue: e.target.value,
                   inputSelectionStart: e.target.selectionStart,
                   target: e.target,
+                  event:e
                 })
               }
             }}
@@ -309,6 +316,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
+              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={() => {

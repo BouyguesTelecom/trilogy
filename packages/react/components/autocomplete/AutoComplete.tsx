@@ -83,6 +83,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         inputValue: e.inputValue,
         inputSelectionStart: null,
         target: e.target,
+        event: e
       })
     }
 
