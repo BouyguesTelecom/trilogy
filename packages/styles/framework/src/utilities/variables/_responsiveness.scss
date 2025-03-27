@@ -1,0 +1,7 @@
+// The container horizontal gap, which acts as the offset for breakpoints
+$gap: 20px !default;
+
+$tablet: 768px !default;
+$desktop: 984px + 2 * $gap !default;
+$widescreen: 1200px + 2 * $gap !default;
+$fullhd: 1348px + 2 * $gap !default;

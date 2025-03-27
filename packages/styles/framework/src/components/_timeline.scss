@@ -140,7 +140,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       .heading {
         font-size: $text-12;
         color: getColor('font');
-        font-family: $family-sans-serif;
+        font-family: $family-primary;
         text-transform: none;
         letter-spacing: 0;
         line-height: 15px;
