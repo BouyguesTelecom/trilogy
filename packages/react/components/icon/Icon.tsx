@@ -1,11 +1,12 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { IconProps } from './IconProps'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { has, is } from '@/services'
+import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { IconProps, IconRef } from './IconProps'
 
 /**
  * Icon Component
@@ -25,46 +26,40 @@ import { has, is } from '@/services'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
-const Icon = ({
-                className,
-                id,
-                size,
-                name,
-                circled,
-                stretched,
-                color,
-                backgroundColor,
-                onClick,
-                skeleton,
-                ...others
-              }: IconProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Icon = React.forwardRef<IconRef, IconProps>(
+  (
+    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, ...others },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const background =
-    (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-    (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
-    ''
+    const background =
+      (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
+      (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
+      ''
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'icon',
-      stretched && is('stretched'),
-      size && is(size),
-      circled && is('circled'),
-      circled && !color && has('text-white'),
-      color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-      skeleton && is('loading'),
-      background,
-      className,
-    ),
-  )
+    const classes = hashClass(
+      styled,
+      clsx(
+        'icon',
+        stretched && is('stretched'),
+        size && is(size),
+        circled && is('circled'),
+        circled && !color && has('text-white'),
+        color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
+        skeleton && is('loading'),
+        background,
+        className,
+      ),
+    )
 
-  return (
-    <span id={id} onClick={onClick && onClick} className={classes} {...others}>
-      <i className={hashClass(styled, clsx(name))} aria-hidden="true" />
-    </span>
-  )
-}
+    return (
+      <span id={id} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
+        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+      </span>
+    )
+  },
+)
 
+Icon.displayName = ComponentName.Icon
 export default Icon

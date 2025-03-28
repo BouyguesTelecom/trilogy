@@ -1,3 +1,4 @@
+import { TouchableOpacity } from 'react-native'
 import { Accessibility } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
@@ -19,4 +20,9 @@ export interface RadioProps extends Accessibility, CommonProps {
   onChange?: RadioChangeEventHandler
   name?: string
   value?: string
+  required?: boolean
 }
+
+export type RadioRef = HTMLDivElement
+export type RadioNativeRef = TouchableOpacity
+

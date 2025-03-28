@@ -1,0 +1,55 @@
+@import "../utilities/variables/_font.scss";
+
+.text {
+  @each $text-level in $text-levels {
+    $i: index($text-levels, $text-level);
+    $font-size: nth($text-level, 1);
+    $line-height: nth($text-level, 2);
+
+    &.is-level-#{$i} {
+      font-size: $font-size;
+      line-height: $line-height;
+      font-family: $family-primary;
+    }
+  }
+
+  &.is-inverted {
+    color: getColor('background');
+  }
+
+  @include mobile {
+    @each $text-level-mobile in $text-levels-mobile {
+      $i: index($text-levels-mobile, $text-level-mobile);
+    }
+  }
+
+  &.is-wrapped {
+    word-break: break-word;
+  }
+
+  &.bold {
+    font-weight: $weight-bold;
+  }
+}
+
+.span {
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+.strong {
+  color: inherit;
+  font-weight: $weight-bold;
+}
+
+.sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.4em;
+  font-size: 0.7em;
+}
+
+.small {
+  font-size: 0.875em;
+}

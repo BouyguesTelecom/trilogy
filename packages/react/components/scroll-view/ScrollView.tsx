@@ -1,10 +1,11 @@
 import * as React from "react"
-import { ScrollViewProps } from "./ScrollViewProps"
+import { ScrollViewProps, ScrollViewRef } from "./ScrollViewProps"
 import { useTrilogyContext } from "@/context"
 import { hashClass } from "@/helpers"
 import clsx from "clsx"
 import { is } from "@/services"
 import { ScrollDirectionEnum } from "@/objects"
+import { ComponentName } from "../enumsComponentsName"
 
 /**
  * Scroll View Component
@@ -22,7 +23,7 @@ import { ScrollDirectionEnum } from "@/objects"
  * @param scrollDirection {Direction} Scroll vertically in default
  * @param onRefresh {void} On Refreshing ScrollView
  */
-const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
+const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
   ({ id, scrollDirection, children }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
@@ -49,6 +50,5 @@ const ScrollView = React.forwardRef<HTMLDivElement, ScrollViewProps>(
   }
 )
 
-ScrollView.displayName = "ScrollView"
-
+ScrollView.displayName = ComponentName.ScrollView
 export default ScrollView

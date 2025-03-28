@@ -4,9 +4,9 @@ import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
 import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/context/providerTheme'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native'
-import { MenuScreen } from '../Menu'
-import { Wrapper } from '../Wrapper'
+import { MenuScreen } from '../Menu/Menu.native'
 import * as Screens from '../screens'
+import { Wrapper } from '../Wrapper'
 
 const Stack = createNativeStackNavigator()
 
@@ -14,7 +14,7 @@ export const Router: React.FC = () => {
   const theme = {
     ...defaultTheme,
     icons: SVGicons,
-    fontFamily: { 'regular': 'poppins-regular', 'medium': 'poppins-medium', 'bold': 'poppins-semibold' }
+    fontFamily: { regular: 'poppins-regular', medium: 'poppins-medium', bold: 'poppins-semibold' },
   }
 
   return (

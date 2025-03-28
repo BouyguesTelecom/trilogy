@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
-import shortid from 'shortid'
-import { AccordionItemProps, OnClickEvent } from './AccordionItemProps'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
+import { AccordionItemProps, AccordionItemRef } from '@/components/accordion/item/AccordionItemProps'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
+import React from 'react'
 
 /**
  * Accordion Item Component
@@ -14,41 +14,47 @@ import { useTrilogyContext } from '@/context'
  * @param disabled {boolean} Disabled AccordionItem
  * @param children {ReactNode}
  */
-const AccordionItem = ({
-  open,
-  className,
-  children,
-  id = shortid.generate(),
-  onClick,
-  disabled,
-  ...others
-}: AccordionItemProps): JSX.Element => {
-  const ref = useRef<HTMLDetailsElement>(null)
-  const { styled } = useTrilogyContext()
+const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
+  ({ open, className, children, id = React.useId(), onClick, disabled, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('accordion-item', className))
+    const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
-  const classes = hashClass(styled, clsx('accordion-item', className))
+    if (disabled) {
+      ariaProps['tabIndex'] = -1
+      ariaProps['aria-disabled'] = true
+    }
 
-  const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
+    return (
+      <details
+        open={open}
+        {...ariaProps}
+        data-testid={id}
+        className={classes}
+        ref={ref}
+        id={id}
+        {...others}
+        onClick={(e) => {
+          if (disabled) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+          if (onClick && !disabled) {
+            onClick(e)
+          }
+        }}
+        onKeyDown={(e) => {
+          if (disabled) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        }}
+      >
+        {children}
+      </details>
+    )
+  },
+)
 
-  if (disabled) {
-    ariaProps['tabIndex'] = -1
-    ariaProps['aria-disabled'] = true
-  }
-
-  return (
-    <details
-      open={open}
-      {...ariaProps}
-      data-testid={id}
-      className={classes}
-      ref={ref}
-      id={id}
-      {...others}
-      onClick={(e: OnClickEvent) => (onClick ? onClick(e) : null)}
-    >
-      {children}
-    </details>
-  )
-}
-
+AccordionItem.displayName = ComponentName.AccordionItem
 export default AccordionItem

@@ -1,0 +1,10 @@
+@mixin pattern-light($size, $x-pos: top, $y-pos: center) {
+  background-size: $size;
+  background-position: $x-pos $y-pos;
+}
+
+@mixin pattern-dark($size, $x-pos: top, $y-pos: center) {
+  background: linear-gradient(#1b3650, getColor('accent'));
+  background-size: auto, $size, auto;
+  background-position: top left, $x-pos $y-pos, top left;
+}

@@ -1,3 +1,4 @@
+import type { View } from 'react-native'
 import type { BackgroundProps, ChildrenWithNoText } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
@@ -11,3 +12,6 @@ export interface SectionProps extends BackgroundProps, ChildrenWithNoText, Commo
   skeleton?: boolean
   style?: Styles
 }
+
+export type SectionRef = HTMLElement
+export type SectionNativeRef = View

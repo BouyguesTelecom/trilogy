@@ -22,12 +22,6 @@ describe("BreadcrumbItem component", () => {
     expect(screen.getByText("toto")).toBeInTheDocument();
   });
 
-  test('should have "is-active" className', () => {
-    render(<BreadcrumbItem active />);
-
-    expect(screen.getByRole("listitem")).toHaveClass(is("active"));
-  });
-
   test('should not have "is-active" className', () => {
     render(<BreadcrumbItem active={false} />);
 

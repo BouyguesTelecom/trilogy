@@ -1,27 +1,26 @@
-import * as React from "react"
-import { StyleSheet, View } from "react-native"
-import { BoxTableContainerProps } from "./BoxTableContainerProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableContainerProps'
 
 /**
  * Box Table Component
  * @param children {React.ReactNode} Childrens
  */
-const boxTableContainer = ({
-  children,
-  ...others
-}: BoxTableContainerProps): JSX.Element => {
-  const styles = StyleSheet.create({
-    boxTableContainer: {},
-  })
+const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
+  ({ children, ...others }, ref): JSX.Element => {
+    const styles = StyleSheet.create({
+      boxTableContainer: {},
+    })
 
-  return (
-    <View style={[styles.boxTableContainer]} {...others}>
-      {children}
-    </View>
-  )
-}
+    return (
+      <View ref={ref} style={[styles.boxTableContainer]} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
-boxTableContainer.displayName = ComponentName.BoxFooter
+boxTableContainer.displayName = ComponentName.BoxTableContainer
 
 export default boxTableContainer

@@ -4,47 +4,33 @@
 
   ul,
   ol {
-    @include desktop {
-      display: flex;
-      flex-wrap: wrap;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
   }
 
   li {
-    display: inline;
     position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
 
-    @include desktop {
-      display: flex;
-      align-items: center;
-    }
-
-    &:first-child a {
-      margin-left: 0;
-    }
-
-    &.is-active {
-      a {
-        color: getColor('font');
-        cursor: default;
-        pointer-events: none;
-        text-decoration: none;
-      }
-    }
-
-    + li a::before {
-      content: ">";
-      text-align: center;
-      padding-right: 0.5em;
-      text-decoration: none;
-      display: inline-block;
+    + li::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      mask-image: url('./assets/icons/all/arrow-right.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      background-color: #1b3650;
+      margin-right: $spacing-2;
     }
   }
 
   a {
     color: getColor('main');
-    margin: 0 0.5em;
-    text-decoration: underline;
+    text-decoration: underline 2px solid;
     text-underline-offset: 4px;
   }
 }

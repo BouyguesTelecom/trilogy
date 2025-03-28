@@ -1,9 +1,10 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { StepperProps } from './StepperProps'
+import { StepperProps, StepperRef } from './StepperProps'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
 import { Text } from '@/components/text'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Stepper Component
@@ -12,7 +13,7 @@ import { Text } from '@/components/text'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additionnal CSS Classes
  */
-const Stepper = ({ className, id, children, ...others }: StepperProps) => {
+const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-wrapper', className))
   const [currentStep, setCurrentStep] = React.useState<number>(1)
@@ -41,14 +42,16 @@ const Stepper = ({ className, id, children, ...others }: StepperProps) => {
   }, [children])
 
   return (
-    <div id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} {...others}>
       {children}
-      <div className="step-count">
+      <div className='step-count'>
         <Text>
           {currentStep}/{nbChild}
         </Text>
       </div>
     </div>
   )
-}
+})
+
+Stepper.displayName = ComponentName.Stepper
 export default Stepper

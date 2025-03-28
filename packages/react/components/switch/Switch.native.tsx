@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { Platform, StyleSheet, Switch as SwitchNative } from "react-native"
-import { SwitchProps } from "./SwitchProps"
-import shortid from "shortid"
-import { getStatusStyle } from "@/objects"
-import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { isIOS } from '@/helpers/device.native'
+import { getStatusStyle } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Switch as SwitchNative } from 'react-native'
+import { SwitchNativeRef, SwitchProps } from './SwitchProps'
 
 /**
  * Switch Component
@@ -17,15 +17,15 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param name {string} Switch name
  */
 
-const Switch = ({
-  id = shortid.generate(),
+const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(({
+  id = React.useId(),
   checked,
   onChange,
   status,
   disabled,
   readonly,
   name,
-}: SwitchProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
 
   useEffect(() => {
@@ -46,21 +46,18 @@ const Switch = ({
 
   return (
     <SwitchNative
+      ref={ref}
       testID='switch-id'
-      style={Platform.OS === "ios" ? styles.switchIos : {}}
+      style={isIOS ? styles.switchIos : {}}
       trackColor={{
         false: disabled ? backgroundColorDisabled : backgroundColorOff,
-        true: disabled
-          ? backgroundColorDisabled
-          : getStatusStyle(status).color,
+        true: disabled ? backgroundColorDisabled : getStatusStyle(status).color,
       }}
       thumbColor={thumbColor}
-      ios_backgroundColor={
-        disabled ? backgroundColorDisabled : backgroundColorOff
-      }
+      ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
       onValueChange={(state) => {
         if (onChange) {
-          onChange({ switchState: state, switchName: name || "" })
+          onChange({ switchState: state, switchName: name || '' })
         }
       }}
       nativeID={name ? `${name}_${id}` : id}
@@ -68,7 +65,7 @@ const Switch = ({
       value={_checked}
     />
   )
-}
+})
 
 Switch.displayName = ComponentName.Switch
 

@@ -48,13 +48,12 @@ body:has(.modal.is-active) {
     }
   }
 
-  // gestion des tailles
   @include tablet {
     justify-content: center;
-    @each $dimension in $dimensions-extended {
-      &.is-#{$dimension} {
+    @each $name, $dimension in $modal-dimensions {
+      &.is-#{$name} {
         .modal-content {
-          width: map-get($modal-dimensions, $dimension);
+          width: $dimension;
         }
       }
     }
@@ -110,12 +109,12 @@ body:has(.modal.is-active) {
     .modal-header {
       padding: $spacing-5;
       color: getColor('font');
-      font-family: $family-sans-serif;
+      font-family: $family-primary;
       font-size: $size-3;
       font-weight: $weight-semibold;
       line-height: 1.1;
       background-color: getColor('background');
-      z-index: zindex('small');
+      z-index: zindex('medium');
       position: sticky;
       top: 0;
       width: 100%;
@@ -139,7 +138,7 @@ body:has(.modal.is-active) {
         display: block;
         height: $modal-close-dimensions;
         width: $modal-close-dimensions;
-        z-index: zindex('medium');
+        z-index: zindex('large');
 
         #{$hoverSelector} {
           background-color: getColor('neutral-fade');
@@ -149,12 +148,22 @@ body:has(.modal.is-active) {
         &::before {
           background-color: getColor('font');
         }
+
+        &:focus-visible,
+        &:focus:focus-visible {
+          outline: 2px solid getColor('font') !important;
+          outline-offset: 2px;
+        }
+        &:focus{
+          background-color: transparent !important;
+        }
       }
     }
 
     .modal-body {
-      padding: $spacing-5;
-      padding-top: 0;
+      padding: 0 $spacing-5 $spacing-5 ;
+    }
+    &:has(>.modal-footer) > .modal-body {
       padding-bottom: 0;
     }
 
@@ -165,9 +174,18 @@ body:has(.modal.is-active) {
       background: getColor('background');
       bottom: 0;
 
+      .buttons {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
       @include tablet {
         display: flex;
         justify-content: flex-end;
+
+        .buttons {
+          flex-direction: row;
+        }
       }
     }
   }

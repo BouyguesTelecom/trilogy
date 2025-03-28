@@ -1,27 +1,30 @@
-import * as React from "react";
 import {
   Alert,
+  AutoLayout,
+  Button,
   Container,
+  Divider,
+  IconName,
+  Section,
   Spacer,
+  SpacerSize,
+  Text,
+  Title,
   TitleLevels,
   View,
-  Title,
-  Divider,
-  AutoLayout,
-  IconName,
-  Button,
-  Section
-} from "@trilogy-ds/react/components";
-import {StatusState} from "@trilogy-ds/react/objects";
-import {useContext, useState} from "react";
-import ToasterContext from "@trilogy-ds/react/lib/components/alert/context/ToasterContext";
-import {ToasterAlertProvider} from "@trilogy-ds/react/lib/components/alert";
-import {ToasterAlertPosition} from "@trilogy-ds/react/lib/components/alert/AlertProps";
+} from '@trilogy-ds/react/components'
+import { ToasterAlertProvider } from '@trilogy-ds/react/lib/components/alert'
+import { ToasterAlertFloat, ToasterAlertPosition } from '@trilogy-ds/react/lib/components/alert/AlertProps'
+import ToasterContext from '@trilogy-ds/react/lib/components/alert/context/ToasterContext'
+import { StatusState } from '@trilogy-ds/react/objects'
+import * as React from 'react'
+import { useContext, useState } from 'react'
 
 export const AlertScreen = (): JSX.Element => {
   const ToasterAlertView: React.FC = () => {
+    const [error, setError] = useState(true)
     const [offset] = useState(50)
-    const [duration] = useState(1000)
+    const [duration] = useState(4000)
     const [testId] = useState('toasterId')
     const [title] = useState('Why do we use it?')
     const [description] = useState(
@@ -29,6 +32,13 @@ export const AlertScreen = (): JSX.Element => {
     )
 
     const { show } = useContext(ToasterContext)
+
+    React.useEffect(() => {
+      if (error) {
+        show({ title: 'Erreur', description: 'Erreur...', status: StatusState.ERROR })
+        console.log('error')
+      }
+    }, [error, show])
 
     const onClickToaster = () => {
       show({
@@ -40,9 +50,11 @@ export const AlertScreen = (): JSX.Element => {
         description,
         iconName: IconName.ALERT,
         status: StatusState.WARNING,
+        float: ToasterAlertFloat.RIGHT,
         onClick: () => console.log('onClick'),
         closable: () => alert('closable'),
         onHide: () => console.log('onHide'),
+        markup: 'h2',
       })
     }
 
@@ -60,33 +72,49 @@ export const AlertScreen = (): JSX.Element => {
   return (
     <Section>
       <Alert
-        banner
+        markup='h3'
         status={StatusState.INFO}
-        title="Banner Alert"
+        title='Banner Alert'
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
       />
+      <Spacer size={SpacerSize.EIGHT} />
+      <Alert
+        status={StatusState.INFO}
+        title='Banner Alert'
+        description={
+          <>
+            <Text>Test React.NODE</Text>
+            <Text>Test React.NODE</Text>
+            <Text>Test React.NODE</Text>
+          </>
+        }
+      />
 
-    <ToasterAlertProvider>
-      <ToasterAlertView />
-      <Container>
-        <View>
-          {Object.values(StatusState).map((status, index) => {
-            return (
-              <AutoLayout key={index}>
-                <Title level={TitleLevels.TWO}>StatusState : {status}</Title>
-                <Spacer size={10}/>
-                <Alert
-                  status={status}
-                  title={status}
-                  description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
-                />
-                <Divider/>
-              </AutoLayout>
-            );
-          })}
-        </View>
-      </Container>
-    </ToasterAlertProvider>
+      <Spacer size={SpacerSize.EIGHT} />
+      <Alert status={StatusState.INFO} title='Banner Alert' />
+      <Spacer size={SpacerSize.EIGHT} />
+
+      <ToasterAlertProvider>
+        <ToasterAlertView />
+        <Container>
+          <View>
+            {Object.values(StatusState).map((status, index) => {
+              return (
+                <AutoLayout key={index}>
+                  <Title level={TitleLevels.TWO}>StatusState : {status}</Title>
+                  <Spacer size={10} />
+                  <Alert
+                    status={status}
+                    title={status}
+                    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
+                  />
+                  <Divider />
+                </AutoLayout>
+              )
+            })}
+          </View>
+        </Container>
+      </ToasterAlertProvider>
     </Section>
-  );
-};
+  )
+}

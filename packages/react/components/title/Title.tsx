@@ -1,10 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import { TitleProps } from './TitleProps'
+import { TitleProps, TitleRef } from './TitleProps'
 import { is } from '@/services'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
+import { ComponentName } from '../enumsComponentsName'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {
@@ -57,7 +58,7 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = ({
+const Title = React.forwardRef<TitleRef, TitleProps>(({
   level = TitleLevels.ONE,
   markup,
   children,
@@ -72,7 +73,7 @@ const Title = ({
   overline,
   marginless,
   ...others
-}: TitleProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -100,10 +101,11 @@ const Title = ({
   }
 
   return (
-    <Tag id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
+    <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
       {children}
     </Tag>
   )
-}
+})
 
+Title.displayName = ComponentName.Title
 export default Title

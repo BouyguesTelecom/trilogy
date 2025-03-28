@@ -1,6 +1,7 @@
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
-import { TabProps } from '@/components/tabs/tab-list/tab/TabProps'
+import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -21,7 +22,7 @@ import React from 'react'
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */
-const Tab = ({
+const Tab = React.forwardRef<TabRef, TabProps>(({
   active,
   className,
   onClick,
@@ -34,7 +35,7 @@ const Tab = ({
   testId,
   ariaControls,
   ...others
-}: TabProps) => {
+}, ref) => {
   const { styled } = useTrilogyContext()
   const { index, ...props } = others as any
   const { activeIndex, setActiveIndex } = React.useContext(TabsContext)
@@ -60,6 +61,7 @@ const Tab = ({
     const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
     return (
       <RouterLink
+        ref={ref}
         data-testid={testId}
         to={to}
         href={href}
@@ -76,6 +78,7 @@ const Tab = ({
 
   return (
     <button
+      ref={ref}
       aria-controls={ariaControls}
       aria-disabled={disabled}
       aria-selected={isActive}
@@ -92,6 +95,7 @@ const Tab = ({
       {label && label}
     </button>
   )
-}
+})
 
+Tab.displayName = ComponentName.Tab
 export default Tab

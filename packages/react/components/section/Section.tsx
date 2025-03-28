@@ -1,10 +1,11 @@
 import React from 'react'
-import { SectionProps } from './SectionProps'
+import { SectionProps, SectionRef } from './SectionProps'
 import { has, is } from '@/services'
 import { getBackgroundClassName } from '@/objects'
 import clsx from 'clsx'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -17,7 +18,7 @@ import { useTrilogyContext } from '@/context'
  * @param skeleton {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
  **/
-const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }: SectionProps) => {
+const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   const _className = hashClass(
@@ -34,6 +35,7 @@ const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inve
 
   return (
     <section
+      ref={ref}
       id={id}
       {...(backgroundSrc && {
         style: { backgroundImage: `url(${backgroundSrc})` },
@@ -42,6 +44,7 @@ const Section = ({ className, id, skeleton, backgroundColor, backgroundSrc, inve
       {...others}
     />
   )
-}
+})
 
+Section.displayName = ComponentName.Section
 export default Section

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { has, is } from '@/services'
-import { ProductTourWebProps } from './ProductTourProps'
+import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
 import { Icon, IconName, IconSize } from '../icon'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Product Tour Component
@@ -18,7 +19,7 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const ProductTour = ({
+const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(({
   children,
   className,
   id,
@@ -29,7 +30,7 @@ const ProductTour = ({
   avatarSrc,
   avatarDirection,
   ...others
-}: ProductTourWebProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [display, setDisplay] = useState<boolean>(active || false)
   const { styled } = useTrilogyContext()
 
@@ -43,7 +44,7 @@ const ProductTour = ({
   )
 
   return (
-    <div id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} {...others}>
       {arrowDirection && (
         <div className={hashClass(styled, clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />
       )}
@@ -60,6 +61,7 @@ const ProductTour = ({
       <div className={hashClass(styled, clsx('product-tour-content'))}>{children}</div>
     </div>
   )
-}
+})
 
+ProductTour.displayName = ComponentName.ProductTour
 export default ProductTour

@@ -1,0 +1,71 @@
+@include checkbox-and-radio('checkbox');
+
+.checkboxes {
+  width: 100%;
+  column-gap: $spacing-5;
+  row-gap: $spacing-3;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  @include tablet {
+    flex-direction: row;
+
+    &.is-vertical-desktop {
+      flex-direction: column;
+    }
+  }
+
+  @include mobile {
+    &.is-horizontal-mobile {
+      flex-direction: row;
+    }
+  }
+
+  &.is-centered,
+  &.has-text-centered,
+  .has-text-centered & {
+    justify-content: center;
+  }
+}
+
+.checkbox,
+.checkbox-tile {
+  input:checked ~ label.checkbox-label {
+    &:before {
+      background-color: getColor('main');
+    }
+
+    &:after {
+      content: "";
+      mask-image: url('./assets/icons/all/check.svg');
+      background-color: getColor('background');
+      mask-size: 18px;
+    }
+  }
+
+  label.checkbox-label {
+    &:before,
+    &:after {
+      border-radius: var(--radius-small);
+    }
+  }
+}
+
+.checkbox-tile {
+  input:checked ~ label.checkbox-label {
+    &:after {
+      top: 15px;
+      right: 15px;
+    }
+  }
+}
+
+.checkbox {
+  input:not(:disabled):not(:checked) ~ label.checkbox-label:hover {
+    &:before {
+      @include hoverRules()
+    }
+  }
+}
+

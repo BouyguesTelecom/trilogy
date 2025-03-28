@@ -1,13 +1,13 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { TableBodyProps } from "./TableBodyProps"
+import { TableBodyNativeRef, TableBodyProps } from "./TableBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TableBody Component
  * @param children {ReactNode} Children of Table Body
  */
-const TableBody = ({ children, ...others }: TableBodyProps): JSX.Element => {
+const TableBody = React.forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     body: {
       display: "flex",
@@ -17,7 +17,7 @@ const TableBody = ({ children, ...others }: TableBodyProps): JSX.Element => {
   })
 
   return (
-    <View style={styles.body} {...others}>
+    <View ref={ref} style={styles.body} {...others}>
       {children && typeof children.valueOf() === "string" ? (
         <Text>{String(children)}</Text>
       ) : (
@@ -25,7 +25,7 @@ const TableBody = ({ children, ...others }: TableBodyProps): JSX.Element => {
       )}
     </View>
   )
-}
+})
 
 TableBody.displayName = ComponentName.TableBody
 

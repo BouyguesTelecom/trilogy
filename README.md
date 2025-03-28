@@ -31,6 +31,32 @@ Trilogy DS, developed by Bouygues Telecom, is a multiplatform design system ( We
 
 See how to setup your environment for [Android](https://reactnative.dev/docs/environment-setup) and [IOS](https://reactnative.dev/docs/environment-setup)
 
+### 👷 Mobile Usage with Expo
+If you haven't already installed Expo CLI, you can install it globally:
+```sh
+npm install -g expo-cli
+```
+
+Setup Expo for Native Development:
+```sh
+npm run setup:native:expo
+```
+
+Build the Project:
+```sh
+npm run build
+```
+
+Start the Expo Project:
+```sh
+npm run start:native:expo
+```
+
+Install the Test Application:
+
+- [ANDROID] - Press "a" to install the test application on Android.
+- [iOS] - Press "i" to install the test application on iOS.
+
 ---
 
 ## Usage
