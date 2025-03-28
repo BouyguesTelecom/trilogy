@@ -25,6 +25,9 @@ export const CheckboxScreen = (): JSX.Element => {
             <Checkbox name='name-1' label='Label' value='value' id='checkbox2' />
             <Checkbox name='name-1' label='Label' value='value' disabled id='checkbox3' />
             <Checkbox name='name-1' label='Label' value='value' readonly id='checkbox4' />
+            <Checkbox name='name-1' value='value' id='checkbox5'>
+              Multi line <br/> label with <strong>HTML</strong>.
+            </Checkbox>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>

@@ -5,7 +5,8 @@ import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { OtpProps } from './OtpProps'
+import { ComponentName } from '../enumsComponentsName'
+import { OtpProps, OtpPropsAccessibility, OtpRef } from './OtpProps'
 
 type NumberOrNull = number | null
 
@@ -71,6 +72,10 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
   }
 }
 
+const formatTranslation = (translation: string, x: string, y: string) => {
+  return translation.replace(/:x/g, x).replace(/:y/g, y)
+}
+
 /**
  * OTP Code Component
  * @param value {string} Code Text Input
@@ -86,21 +91,24 @@ const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const Otp = ({
-  className,
-  id,
-  value,
-  length = 6,
-  disabled,
-  error,
-  onCompleted,
-  onChange,
-  onFocus,
-  label,
-  help,
-  autoFocus,
-  ...others
-}: OtpProps): JSX.Element => {
+const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
+  const {
+    className,
+    id,
+    value,
+    length = 6,
+    disabled,
+    error,
+    onCompleted,
+    onChange,
+    onFocus,
+    label,
+    help,
+    autoFocus,
+    title,
+    ...others
+  } = props as OtpPropsAccessibility
+
   const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
     stringToCode(value, length) || new Array(length).fill(null),
   )
@@ -108,6 +116,7 @@ const Otp = ({
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
+  const titleAttr = title || 'Number :x of :y of the one-time code'
 
   useEffect(() => {
     if (!disabled) {
@@ -157,6 +166,7 @@ const Otp = ({
         </Text>
       )}
       <div
+        ref={ref}
         id={id}
         className={classes}
         onClick={() => {
@@ -168,7 +178,6 @@ const Otp = ({
         {codeInput.map((digit, idx) => (
           <input
             aria-disabled={disabled}
-            tabIndex={0}
             key={idx}
             type='text'
             inputMode='numeric'
@@ -182,6 +191,7 @@ const Otp = ({
             onFocus={inputOnFocus}
             onChange={(e) => inputOnChange(e, idx)}
             disabled={disabled}
+            title={formatTranslation(titleAttr, String(idx + 1), String(length))}
             {...others}
           />
         ))}
@@ -197,6 +207,7 @@ const Otp = ({
       )}
     </>
   )
-}
+})
 
+Otp.displayName = ComponentName.Otp
 export default Otp

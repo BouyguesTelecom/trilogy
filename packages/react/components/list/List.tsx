@@ -1,26 +1,30 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { ListProps } from './ListProps'
-import { hashClass } from '@/helpers'
+import { ListProps, ListRef } from '@/components/list/ListProps'
 import { useTrilogyContext } from '@/context'
-import { has } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * ListItem Component
  * @param className {string} Additionnal CSS Classes
  * @param children {React.ReactNode}
  * @param hasIcon {boolean} If Have icon
+ * @param ordered {boolean} Display ordered list
  */
 
-const List = ({ className, id, children, testId, divider, ...others }: ListProps) => {
+const List = React.forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
+  const Tag = ordered ? 'ol' : 'ul'
 
   return (
-    <ul id={id} data-testid={testId} className={classes} {...others}>
+    <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
       {children}
-    </ul>
+    </Tag>
   )
-}
+})
 
+List.displayName = ComponentName.List
 export default List

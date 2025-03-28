@@ -6,7 +6,7 @@ jest.useFakeTimers()
 
 describe('List component', () => {
   test('renders without errors', () => {
-    const props = { id: 'list' } as any
+    const props = { testId: 'list' } as any
     render(<List {...props} />)
     expect(screen.getByTestId('list')).toBeOnTheScreen()
   })

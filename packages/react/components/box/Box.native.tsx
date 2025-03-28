@@ -1,4 +1,4 @@
-import { BoxProps } from '@/components/box/BoxProps'
+import { BoxNativeRef, BoxProps } from '@/components/box/BoxProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
@@ -25,160 +25,169 @@ import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'r
  * @param active {boolean} Activated box
  * @param others
  */
-const Box = ({
-  children,
-  onClick,
-  skeleton,
-  highlighted,
-  shadowless,
-  backgroundColor,
-  backgroundSrc,
-  inverted,
-  flat,
-  headerOffset,
-  fullheight,
-  active,
-  ...others
-}: BoxProps): JSX.Element => {
-  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
-  const [boxHeight, setBoxHeight] = useState(0)
-  const boxRadius = 6
-  const styles = StyleSheet.create({
-    box: {
-      width: '100%',
-      backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-      borderRadius: boxRadius,
-      justifyContent: 'flex-start',
-      position: 'relative',
-      borderStyle: flat ? 'solid' : undefined,
-      borderWidth: (flat && 1) || (active && 2) || 0,
-      borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
-      marginTop: headerOffset ? 35 : 0,
-      flex: fullheight ? 1 : 0,
+const Box = React.forwardRef<BoxNativeRef, BoxProps>(
+  (
+    {
+      children,
+      onClick,
+      skeleton,
+      highlighted,
+      shadowless,
+      backgroundColor,
+      backgroundSrc,
+      inverted,
+      flat,
+      headerOffset,
+      fullheight,
+      active,
+      ...others
     },
-    shadow: shadowless
-      ? {}
-      : {
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 1,
+    ref,
+  ): JSX.Element => {
+    const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
+    const [boxHeight, setBoxHeight] = useState(0)
+    const boxRadius = 6
+    const styles = StyleSheet.create({
+      box: {
+        width: '100%',
+        backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
+        borderRadius: boxRadius,
+        justifyContent: 'flex-start',
+        position: 'relative',
+        borderStyle: flat ? 'solid' : undefined,
+        borderWidth: (flat && 1) || (active && 2) || 0,
+        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
+        marginTop: headerOffset ? 35 : 0,
+        flex: fullheight ? 1 : 0,
+      },
+      shadow: shadowless
+        ? {}
+        : {
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.22,
+            shadowRadius: 2.22,
+            elevation: 1,
           },
-          shadowOpacity: 0.22,
-          shadowRadius: 2.22,
-          elevation: 1,
-        },
-    skeleton: {
-      width: '100%',
-      minHeight: 50,
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: 'hidden',
-      borderRadius: boxRadius,
-    },
-    highlighted: {
-      position: 'absolute',
-      width: 8,
-      borderTopStartRadius: boxRadius,
-      borderBottomStartRadius: boxRadius,
-      height: boxHeight,
-      backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
-    },
-    boxImage: {
-      width: '100%',
-      minHeight: 100,
-      maxHeight: 300,
-      height: 'auto',
-    },
-    content: {
-      padding: 16,
-    },
-  })
+      skeleton: {
+        width: '100%',
+        minHeight: 50,
+        backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        overflow: 'hidden',
+        borderRadius: boxRadius,
+      },
+      highlighted: {
+        position: 'absolute',
+        width: 8,
+        borderTopStartRadius: boxRadius,
+        borderBottomStartRadius: boxRadius,
+        height: boxHeight,
+        backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
+      },
+      boxImage: {
+        width: '100%',
+        minHeight: 100,
+        maxHeight: 300,
+        height: 'auto',
+      },
+      content: {
+        padding: 16,
+      },
+    })
 
-  const boxTestId = 'NotSpecified'
+    const boxTestId = 'NotSpecified'
 
-  const BoxSkeleton = () => (
-    <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
-      <View style={{ opacity: 0 }}>{children}</View>
+    const BoxSkeleton = () => (
+      <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
+        <View style={{ opacity: 0 }}>{children}</View>
 
-      {Platform.OS === 'android' && (
-        <View>
-          <Rect rx='10' ry='10' width='100%' height='100%' />
-        </View>
-      )}
-    </ContentLoader>
-  )
-
-  if (skeleton) {
-    return <BoxSkeleton />
-  }
-
-  if (onClick) {
-    return (
-      <TouchableOpacity
-        onPress={(e?: unknown) => onClick?.(e)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout
-          setBoxHeight(height)
-        }}
-        testID={boxTestId}
-      >
-        {backgroundSrc ? (
-          <ImageBackground
-            imageStyle={{ borderRadius: boxRadius }}
-            style={styles.boxImage}
-            source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-          >
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
-            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              {children}
-            </StatesContext.Provider>
-          </ImageBackground>
-        ) : (
-          <>
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
-            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              {children}
-            </StatesContext.Provider>
-          </>
+        {Platform.OS === 'android' && (
+          <View>
+            <Rect rx='10' ry='10' width='100%' height='100%' />
+          </View>
         )}
-      </TouchableOpacity>
+      </ContentLoader>
     )
-  }
 
-  return (
-    <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
-      <View
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout
-          setBoxHeight(height)
-        }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-        testID={boxTestId}
-      >
-        {backgroundSrc ? (
-          <ImageBackground
-            imageStyle={{ borderRadius: boxRadius }}
-            style={styles.boxImage}
-            source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+    if (skeleton) {
+      return <BoxSkeleton />
+    }
+
+    if (onClick) {
+      return (
+        <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+          <TouchableOpacity
+            ref={ref as React.Ref<TouchableOpacity>}
+            onPress={(e?: unknown) => onClick?.(e)}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+            onLayout={(event) => {
+              const { height } = event.nativeEvent.layout
+              setBoxHeight(height)
+            }}
+            testID={boxTestId}
           >
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
+            {backgroundSrc ? (
+              <ImageBackground
+                imageStyle={{ borderRadius: boxRadius }}
+                style={styles.boxImage}
+                source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+              >
+                {Boolean(highlighted) && <View style={styles.highlighted} />}
+                <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                  {children}
+                </StatesContext.Provider>
+              </ImageBackground>
+            ) : (
+              <>
+                {Boolean(highlighted) && <View style={styles.highlighted} />}
+                <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                  {children}
+                </StatesContext.Provider>
+              </>
+            )}
+          </TouchableOpacity>
+        </BoxContext.Provider>
+      )
+    }
+
+    return (
+      <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+        <View
+          ref={ref as React.Ref<View>}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout
+            setBoxHeight(height)
+          }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+          testID={boxTestId}
+        >
+          {backgroundSrc ? (
+            <ImageBackground
+              imageStyle={{ borderRadius: boxRadius }}
+              style={styles.boxImage}
+              source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+            >
+              {Boolean(highlighted) && <View style={styles.highlighted} />}
+              <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                {children}
+              </StatesContext.Provider>
+            </ImageBackground>
+          ) : (
             <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+              {Boolean(highlighted) && <View style={styles.highlighted} />}
               {children}
             </StatesContext.Provider>
-          </ImageBackground>
-        ) : (
-          <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-            {Boolean(highlighted) && <View style={styles.highlighted} />}
-            {children}
-          </StatesContext.Provider>
-        )}
-      </View>
-    </BoxContext.Provider>
-  )
-}
+          )}
+        </View>
+      </BoxContext.Provider>
+    )
+  },
+)
 
 Box.displayName = ComponentName.Box
 

@@ -2,7 +2,7 @@ import * as React from "react"
 import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative, } from "react-native"
 import { getAlignStyle, getJustifyStyle, TrilogyColor } from "@/objects"
 import { getColorStyle } from "@/objects/facets/Color"
-import { ViewProps } from "./ViewProps"
+import { ViewNativeRef, ViewProps } from "./ViewProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
@@ -19,7 +19,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * @param bottom {boolean} Bottom position
  */
-const View = ({
+const View = React.forwardRef<ViewNativeRef, ViewProps>(({
   children,
   style,
   onClick,
@@ -32,7 +32,7 @@ const View = ({
   fullwidth = true,
   align,
   ...others
-}: ViewProps): JSX.Element => {
+}, ref): JSX.Element => {
   const viewColor =
     (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || "transparent"
 
@@ -58,6 +58,7 @@ const View = ({
 
   let returnView = (
     <ViewNative
+      ref={ref}
       testID={id}
       nativeID={id}
       style={[styles.view, bottom && styles.bottom, style]}
@@ -69,6 +70,7 @@ const View = ({
   if (!children) {
     returnView = (
       <ViewNative
+        ref={ref}
         testID={id}
         nativeID={id}
         style={[styles.view, bottom && styles.bottom, style]}
@@ -80,6 +82,7 @@ const View = ({
   if (onClick) {
     returnView = (
       <ViewNative
+        ref={ref}
         testID={id}
         nativeID={id}
         style={[styles.view, bottom && styles.bottom, style]}
@@ -106,7 +109,7 @@ const View = ({
   ) : (
     returnView
   )
-}
+})
 
 View.displayName = ComponentName.View
 

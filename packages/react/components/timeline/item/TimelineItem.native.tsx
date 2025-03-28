@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
+import { TimelineItemNativeRef, TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import React, { createContext, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
@@ -14,7 +14,7 @@ export const TimelineItemContext = createContext({ done: false, active: false, c
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = ({ children, done, active, cancel }: TimelineItemProps): JSX.Element => {
+const TimelineItem = React.forwardRef<TimelineItemNativeRef, TimelineItemProps>(({ children, done, active, cancel }, ref): JSX.Element => {
   const { height, setHeight } = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({
@@ -30,6 +30,7 @@ const TimelineItem = ({ children, done, active, cancel }: TimelineItemProps): JS
   return (
     <TimelineItemContext.Provider value={{ done: done || false, active: active || false, cancel: cancel || false }}>
       <View
+        ref={ref}
         onLayout={(event) => {
           const { height: heightView } = event.nativeEvent.layout
           setHeight((prev) => {
@@ -43,7 +44,7 @@ const TimelineItem = ({ children, done, active, cancel }: TimelineItemProps): JS
       </View>
     </TimelineItemContext.Provider>
   )
-}
+})
 
 TimelineItem.displayName = ComponentName.TimelineItem
 

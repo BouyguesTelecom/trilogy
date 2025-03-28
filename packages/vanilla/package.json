@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/vanilla",
-  "version": "0.0.1-beta.23",
+  "version": "4.2.0",
   "author": "Bouygues Telecom",
   "main": "lib/trilogy-ds-vanilla.js",
   "scripts": {

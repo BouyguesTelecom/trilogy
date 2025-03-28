@@ -1,11 +1,9 @@
-import * as React from 'react'
 import { AutoLayoutWrapper } from '@/components/autolayout'
-import { SpacerSize } from '@/components/spacer'
-// eslint-disable-next-line no-duplicate-imports
-import type { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
-import { SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
-import type { RadioListProps } from './RadioListProps'
+import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { SpacerSize } from '@/components/spacer'
+import * as React from 'react'
+import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -21,9 +19,10 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param children {ReactNode} RadioList children
  * @param autolayout {boolean} Apply auto-layout rules
  */
-const RadioList = ({ children }: RadioListProps): JSX.Element => {
+const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children }, ref): JSX.Element => {
+  const refList = React.useRef(ref)
   return <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX, children }} />
-}
+})
 
 RadioList.displayName = ComponentName.RadioList
 

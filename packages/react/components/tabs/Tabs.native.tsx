@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { TabsProps } from '@/components/tabs/TabsProps'
+import { TabsNativeRef, TabsProps } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
 import React from 'react'
 import { View } from 'react-native'
@@ -10,7 +10,7 @@ import { View } from 'react-native'
  * @param activeIndex {number} default active tab index
  * @param inverted {boolean} Inverted style
  */
-const Tabs = ({ children, activeIndex, inverted }: TabsProps) => {
+const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted }, ref) => {
   const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
   const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
@@ -31,10 +31,10 @@ const Tabs = ({ children, activeIndex, inverted }: TabsProps) => {
         setActiveIndex: setCurrentIndex,
       }}
     >
-      <View>{children}</View>
+      <View ref={ref}>{children}</View>
     </TabsContext.Provider>
   )
-}
+})
 
 Tabs.displayName = ComponentName.Tabs
 export default Tabs

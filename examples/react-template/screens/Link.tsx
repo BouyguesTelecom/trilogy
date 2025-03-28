@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { IconName, Link, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
-import { Divider } from '@trilogy-ds/react'
+import { Alignable, Column, Columns, Divider } from '@trilogy-ds/react'
 
 export const LinkScreen = (): JSX.Element => {
   return (
     <Section>
       <Title level={TitleLevels.THREE}>Links inline</Title>
+      <Link iconName={IconName.ARROW_DOWN}>Link with arrow</Link>
+
       <Text>
         I'm in a paragraph and this is a <Link>standard link</Link> while this is a{' '}
         <Link>standard ununderlined link.</Link> If I want atertiary colored link, I can also use this
@@ -25,6 +27,14 @@ export const LinkScreen = (): JSX.Element => {
       <Link href='https://example.com' iconName={IconName.SEARCH} data-testid={'test-icon'}>
         Example
       </Link>
+
+      <Columns align={Alignable.ALIGNED_CENTER}>
+        <Column narrow>
+          <Link href='https://example.com' iconName={IconName.SEARCH} data-testid={'test-icon'}>
+            Example
+          </Link>
+        </Column>
+      </Columns>
     </Section>
   )
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
 import clsx from 'clsx'
-import { SwitchProps } from './SwitchProps'
+import { SwitchProps, SwitchRef } from './SwitchProps'
 import { is } from '@/services/classify'
 import { getStatusClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Switch Component
@@ -24,9 +24,9 @@ import { useTrilogyContext } from '@/context'
  * @param reversed {boolean} change switch position
  */
 
-const Switch = ({
+const Switch = React.forwardRef<SwitchRef, SwitchProps>(({
   className,
-  id = shortid.generate(),
+  id = React.useId(),
   label,
   value,
   checked,
@@ -39,7 +39,7 @@ const Switch = ({
   reversed,
   fullWidth,
   ...others
-}: SwitchProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
   const { styled } = useTrilogyContext()
 
@@ -55,6 +55,7 @@ const Switch = ({
 
   return (
     <div
+      ref={ref}
       className={hashClass(styled, clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}
     >
       <input
@@ -94,6 +95,7 @@ const Switch = ({
       <label htmlFor={`switch-${id}`}>{label}</label>
     </div>
   )
-}
+})
 
+Switch.displayName = ComponentName.Switch
 export default Switch

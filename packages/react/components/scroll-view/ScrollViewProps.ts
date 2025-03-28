@@ -1,4 +1,5 @@
 import { ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
+import { ScrollView } from 'react-native'
 
 /**
  * ScroView Interface
@@ -15,3 +16,6 @@ export interface ScrollViewProps {
   id?: string
   scrollDirection?: ScrollDirectionEnum | ScrollDirectionEnumValues
 }
+
+export type ScrollViewRef = HTMLDivElement
+export type ScrollViewNativeRef = ScrollView

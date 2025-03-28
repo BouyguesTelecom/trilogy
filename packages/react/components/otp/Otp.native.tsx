@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View, } from "react-native"
-import { OtpProps } from "./OtpProps"
+import { OtpNativeRef, OtpProps } from "./OtpProps"
 import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
 import { Title, TitleLevels } from "@/components/title"
@@ -20,7 +20,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param onChange {Function} onChange Input return current code
  * @param label {string} Label for OTP
  */
-const Otp = ({
+const Otp = React.forwardRef<OtpNativeRef, OtpProps>(({
   value,
   length = 6,
   disabled,
@@ -31,18 +31,13 @@ const Otp = ({
   onChange,
   label,
   ...others
-}: OtpProps): JSX.Element => {
+}, ref): JSX.Element => {
   const [codeInput, setCodeInput] = useState<string>(value || "")
   // eslint-disable-next-line prefer-spread
   const [codeDigitsArray] = useState([...Array(length).keys()])
 
   const [focused, setFocused] = useState(false)
-  const color =
-    (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-    (activated && getColorStyle(TrilogyColor.MAIN)) ||
-    (error && getColorStyle(TrilogyColor.ERROR)) ||
-    (focused && getColorStyle(TrilogyColor.MAIN)) ||
-    getColorStyle(TrilogyColor.MAIN)
+  const color = getColorStyle( disabled ? TrilogyColor.DISABLED: error ? TrilogyColor.ERROR : TrilogyColor.MAIN)
 
   useEffect(() => {
     if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
@@ -56,10 +51,10 @@ const Otp = ({
     }
   }, [value, length, codeInput])
 
-  const ref = useRef<TextInput>(null)
+  const refInput = useRef<TextInput>(null)
 
   const handleOnPress = () => {
-    ref?.current?.focus()
+    refInput?.current?.focus()
   }
 
   const style = StyleSheet.create({
@@ -76,10 +71,7 @@ const Otp = ({
     },
     inputContainer: {
       borderColor:
-        (disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        (activated && getColorStyle(TrilogyColor.MAIN)) ||
-        (error && getColorStyle(TrilogyColor.ERROR)) ||
-        getColorStyle(TrilogyColor.NEUTRAL),
+        getColorStyle(disabled ? TrilogyColor.DISABLED : activated ? TrilogyColor.MAIN : error ? TrilogyColor.ERROR : TrilogyColor.NEUTRAL),
       borderWidth: 1,
       borderRadius: 4,
       marginHorizontal: 5,
@@ -113,8 +105,7 @@ const Otp = ({
     currentInput: {
       width: 15,
       height: 1,
-      backgroundColor:
-        (focused && getColorStyle(TrilogyColor.MAIN)) || "transparent",
+      backgroundColor: getColorStyle(focused ? TrilogyColor.MAIN : 'transparent'),
     },
     text: {
       paddingLeft: 5,
@@ -147,7 +138,7 @@ const Otp = ({
   }
 
   return (
-    <SafeAreaView style={style.container} {...others}>
+    <SafeAreaView ref={ref} style={style.container} {...others}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {Boolean(label) && (
           <Text style={style.text} level={TextLevels.FOUR}>
@@ -168,7 +159,7 @@ const Otp = ({
         ))}
       </Pressable>
       <TextInput
-        ref={ref}
+        ref={refInput}
         value={codeInput}
         onChangeText={(code) => {
           if (/^-?\d*\.?\d*$/.test(code) && !disabled) {
@@ -198,7 +189,7 @@ const Otp = ({
       />
     </SafeAreaView>
   )
-}
+})
 
 Otp.displayName = ComponentName.Otp
 

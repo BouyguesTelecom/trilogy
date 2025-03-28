@@ -1,0 +1,176 @@
+@use 'sass:math';
+@import "../utilities/spacing";
+
+:root {
+  --padding-box: #{$spacing-5};
+  @include mobile {
+    --padding-box: #{$spacing-4};
+  }
+}
+
+$highlighted-border-width: 4px;
+
+
+a.box {
+  cursor: pointer;
+  transition: box-shadow $animation-duration;
+
+  #{$hoverSelector},
+  &:active,
+  &:focus {
+    box-shadow: $focus-shadow;
+  }
+}
+
+.box {
+  background-color: getColor('background');
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: var(--padding-box);
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &.is-active {
+    outline: var(--border-active);
+  }
+
+  &.is-offset-header {
+    @include tablet {
+      margin-top: 40px;
+
+      &.is-fullheight {
+        height: calc(100% - 40px);
+      }
+    }
+  }
+
+  &.is-fullheight {
+    .box-content {
+      flex-grow: 1;
+    }
+  }
+
+  &.is-flat {
+    box-shadow: none;
+    border: var(--border);
+
+    .box-header {
+      margin-top: calc(var(--padding-box) * -1 - 1px);
+      margin-left: calc(var(--padding-box) * -1 - 1px);
+      margin-right: calc(var(--padding-box) * -1 - 1px);
+    }
+  }
+
+  &.is-highlighted {
+    border-left: $highlighted-border-width solid transparent;
+    border-top-left-radius: calc(var(--radius) + $highlighted-border-width);
+    border-bottom-left-radius: calc(var(--radius) + $highlighted-border-width);
+    @each $name, $pair in $colors-brand-functionnal {
+      $color: getColor($name);
+      $brandName: getColorBrandName($name);
+
+      &.is-#{$brandName} {
+        border-left-color: $color;
+        border-left-width: $highlighted-border-width;
+      }
+    }
+
+    .box-header {
+      margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
+    }
+  }
+
+  .box-header {
+    z-index: inherit;
+    background-color: getColor('font');
+    color: getColor('background');
+    margin-top: calc(var(--padding-box) * -1);
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
+    padding: 8px;
+    padding-left: var(--padding-box);
+    padding-right: var(--padding-box);
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-weight: $weight-semibold;
+    border-radius: var(--radius) var(--radius) 0 0;
+    height: 40px;
+
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    > p:not(:last-child),
+    > .paragraph:not(:last-child) {
+      margin: 0 0 0.3em;
+
+      @include tablet {
+        align-self: center;
+        margin: 0 3em 0 0;
+      }
+    }
+
+    ~ .box-content {
+      margin-top: 0;
+    }
+  }
+
+  .box-content {
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
+    padding: var(--padding-box);
+
+    &:first-child {
+      margin-top: calc(var(--padding-box) * -1);
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+
+    &:last-child {
+      margin-bottom: calc(var(--padding-box) * -1);
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+
+    @include mobile {
+      text-align: left;
+    }
+
+    > .is-unboxed {
+      margin-left: calc(var(--padding-box) * -1);
+      margin-right: calc(var(--padding-box) * -1);
+    }
+
+    &.is-transparent {
+      background-color: transparent;
+    }
+  }
+
+  .box-footer {
+    margin-left: calc(var(--padding-box) * -1);
+    margin-right: calc(var(--padding-box) * -1);
+    margin-bottom: calc(var(--padding-box) * -1);
+    padding: var(--padding-box);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+
+  .box-footer:not(.is-borderless):not([class*="has-background"])::before {
+    content: '';
+    display: block;
+    border-top: var(--border);
+    position: relative;
+    top: calc(var(--padding-box) * -1);
+  }
+}

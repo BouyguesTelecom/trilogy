@@ -1,11 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import {StickerProps} from './StickerProps'
-import {is} from '@/services/classify'
-import {getVariantClassName} from '@/objects'
-import {hashClass} from '@/helpers'
-import {useTrilogyContext} from '@/context'
-import {Icon, IconSize} from "@/components/icon";
+import { StickerProps, StickerRef } from './StickerProps'
+import { is } from '@/services/classify'
+import { getVariantClassName } from '@/objects'
+import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context'
+import { Icon, IconSize } from '@/components/icon'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Sticker component
@@ -19,7 +20,17 @@ import {Icon, IconSize} from "@/components/icon";
  * @param className {string} Additionnal css classes
  * @param others
  */
-const Sticker = ({ className, id, variant, small, label, outlined, iconName, ...others }: StickerProps): JSX.Element => {
+const Sticker = React.forwardRef<StickerRef, StickerProps>(({
+  className,
+  id,
+  variant,
+  small,
+  label,
+  outlined,
+  iconName,
+  accessibilityLabel,
+  ...others
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(
@@ -30,16 +41,17 @@ const Sticker = ({ className, id, variant, small, label, outlined, iconName, ...
       small && is('small'),
       className,
       outlined && is('outlined'),
-      is('vcentered')
+      is('vcentered'),
     ),
   )
 
   return (
-    <p id={id} className={classes} {...others}>
+    <p ref={ref} id={id} className={classes} aria-label={accessibilityLabel} {...others}>
       {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>
   )
-}
+})
 
+Sticker.displayName = ComponentName.Sticker
 export default Sticker

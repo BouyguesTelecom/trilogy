@@ -1,12 +1,13 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { PriceProps } from './PriceProps'
-import { has, is } from '@/services/classify'
-import { Text, TextMarkup } from '../text'
-import { Alignable, TypographyBold, TypographyColor } from '@/objects'
-import { checkCents } from './PriceHelpers'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { Alignable } from '@/objects'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { Text, TextMarkup } from '../text'
+import { checkCents } from './PriceHelpers'
+import { PriceProps, PriceRef } from './PriceProps'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Price Component
@@ -26,7 +27,7 @@ import { useTrilogyContext } from '@/context'
  * @param className {string} Additionnal CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */
-const Price = ({
+const Price = React.forwardRef<PriceRef, PriceProps>(({
   className,
   id,
   amount,
@@ -40,7 +41,7 @@ const Price = ({
   oldAmount,
   overline,
   ...others
-}: PriceProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
@@ -54,7 +55,7 @@ const Price = ({
   let oldAmountComponent = null
   const tagAmountComponent = null
 
-  if (oldAmount) {
+  if (oldAmount !== undefined) {
     const isNegativeStrike = oldAmount && oldAmount < 0
     const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
@@ -78,7 +79,7 @@ const Price = ({
     )
   }
 
-  if (amount) {
+  if (amount !== undefined) {
     const isNegative = amount < 0
     const absoluteAmount = Math.abs(amount)
     const absoluteWhole = Math.floor(absoluteAmount)
@@ -104,15 +105,16 @@ const Price = ({
 
   return (
     <div
+      ref={ref}
       id={id}
       className={hashClass(
         styled,
         clsx(
           'price-container',
           is(`level-${level || '1'}`),
-          (align == Alignable.ALIGNED_START && is('justified-left')) ||
+          (align == Alignable.ALIGNED_START && is('justified-start')) ||
             (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
-            (align == Alignable.ALIGNED_END && is('justified-right')) ||
+            (align == Alignable.ALIGNED_END && is('justified-end')) ||
             '',
         ),
       )}
@@ -124,6 +126,7 @@ const Price = ({
       {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
     </div>
   )
-}
+})
 
+Price.displayName = ComponentName.Price
 export default Price

@@ -1,4 +1,5 @@
-import { Accessibility } from '../../../objects'
+import { View } from 'react-native'
+import { Accessibility } from '../../../objects/facets/Accessibility'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
@@ -7,3 +8,6 @@ import { CommonProps } from '../../../objects/facets/CommonProps'
 export interface CardContentProps extends Accessibility, CommonProps {
   children?: React.ReactNode
 }
+
+export type CardContentRef = HTMLDivElement
+export type CardContentNativeRef = View

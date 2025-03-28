@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
-import { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { RadioTileNativeRef, RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -23,7 +23,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
  */
-const RadioTile = ({
+const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(({
   checked,
   disabled,
   id = React.useId(),
@@ -36,36 +36,30 @@ const RadioTile = ({
   horizontal,
   readonly,
   ...others
-}: RadioTileProps): JSX.Element => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        container: {
-          flexDirection: horizontal ? 'row' : 'column',
-          width: horizontal ? '100%' : undefined,
-          borderWidth: checked ? 2 : 1,
-          alignItems: 'center',
-          gap: SpacerSize.TWO,
-          borderRadius: 6,
-          padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
-          maxWidth: horizontal ? undefined : '50%',
-          backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
-          borderColor: getColorStyle(
-            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
-          ),
-        },
-        icon: {
-          width: 'auto',
-        },
-        content: {
-          width: 'auto',
-          gap: SpacerSize.ONE,
-          maxWidth: horizontal ? '80%' : undefined,
-        },
-      }),
+}, ref): JSX.Element => {
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: horizontal ? 'row' : 'column',
+      width: horizontal ? '100%' : undefined,
+      borderWidth: checked ? 2 : 1,
+      alignItems: 'center',
+      gap: SpacerSize.TWO,
+      borderRadius: 6,
+      padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
+      maxWidth: horizontal ? undefined : '50%',
+      backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
+      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL),
+    },
+    icon: {
+      width: 'auto',
+    },
+    content: {
+      width: 'auto',
+      gap: SpacerSize.ONE,
+      maxWidth: horizontal ? '80%' : undefined,
+    },
+  })
 
-    [horizontal, checked, disabled],
-  )
   const typoTitle = useMemo(() => {
     const typos: string[] = [TypographyBold.TEXT_WEIGHT_SEMIBOLD]
     if (!horizontal) typos.push(TypographyAlign.TEXT_CENTERED)
@@ -91,7 +85,7 @@ const RadioTile = ({
   }, [value, name, id, disabled, readonly, onChange])
 
   return (
-    <TouchableOpacity disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
+    <TouchableOpacity ref={ref} disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
       {!horizontal && <InputRadio checked={checked} disabled={disabled} />}
 
       {icon && (
@@ -118,41 +112,35 @@ const RadioTile = ({
       {horizontal && <InputRadio checked={checked} disabled={disabled} />}
     </TouchableOpacity>
   )
-}
+})
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        input: {
-          marginLeft: 'auto',
-          width: 18,
-          height: 18,
-          borderWidth: 1,
-          borderRadius: 18,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderColor: getColorStyle(
-            disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
-          ),
-        },
-        inputRadio: {
-          width: 12,
-          height: 12,
-          borderRadius: 12,
-          backgroundColor: getColorStyle(
-            disabled && checked
-              ? TrilogyColor.DISABLED
-              : disabled && !checked
-              ? TrilogyColor.DISABLED_FADE
-              : checked
-              ? TrilogyColor.MAIN
-              : TrilogyColor.BACKGROUND,
-          ),
-        },
-      }),
-    [checked, disabled],
-  )
+  const styles = StyleSheet.create({
+    input: {
+      marginLeft: 'auto',
+      width: 18,
+      height: 18,
+      borderWidth: 1,
+      borderRadius: 18,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL),
+    },
+    inputRadio: {
+      width: 12,
+      height: 12,
+      borderRadius: 12,
+      backgroundColor: getColorStyle(
+        disabled && checked
+          ? TrilogyColor.DISABLED
+          : disabled && !checked
+          ? TrilogyColor.DISABLED_FADE
+          : checked
+          ? TrilogyColor.MAIN
+          : TrilogyColor.BACKGROUND,
+      ),
+    },
+  })
   return (
     <View style={[styles.input]}>
       <View style={[styles.inputRadio]} />

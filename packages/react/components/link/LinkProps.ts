@@ -1,5 +1,5 @@
 import { AriaRole } from 'react'
-import { Role } from 'react-native'
+import { Role, type Text } from 'react-native'
 import { IconName, IconNameValues } from '../../components/icon'
 import { Accessibility, Clickable, Dev } from '../../objects/facets'
 import { CommonProps } from '../../objects/facets/CommonProps'
@@ -27,3 +27,6 @@ export interface LinkProps extends Link {
 export interface LinkPropsNative extends Link {
   role?: Role
 }
+
+export type LinkRef = HTMLElement | HTMLAnchorElement
+export type LinkNativeRef = Text

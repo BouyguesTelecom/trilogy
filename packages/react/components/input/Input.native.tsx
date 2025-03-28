@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
+import { isIOS } from '@/helpers/device.native'
 import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -27,7 +28,7 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { InputNativeEvents, InputProps } from './InputProps'
+import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
@@ -62,8 +63,9 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param testId {string} Test Id for Test Integration
  * @param required {boolean} Required input
  * @param accessibilityActivate {boolean}
+ * @param readOnly {boolean} Read only input
  */
-const Input = ({
+const Input = React.forwardRef<InputNativeRef, InputNativeProps>(({
   defaultValue,
   name,
   label,
@@ -93,8 +95,9 @@ const Input = ({
   validationRules,
   onIconClick,
   required,
+  readOnly,
   ...others
-}: InputNativeProps): JSX.Element => {
+}, ref): JSX.Element => {
   const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
   const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
   const animationDuration = 200
@@ -288,8 +291,8 @@ const Input = ({
       position: 'absolute',
       fontSize: 14,
       color: getColorStyle(TrilogyColor.BACKGROUND),
-      bottom: Platform.OS === 'ios' ? 9 : 5,
-      left: iconNameLeft ? (Platform.OS === 'ios' ? 38 : 37.5) : Platform.OS === 'ios' ? 8 : 7.5,
+      bottom: isIOS ? 9 : 5,
+      left: iconNameLeft ? (isIOS ? 38 : 37.5) : isIOS ? 8 : 7.5,
     },
     domain: {
       zIndex: 1,
@@ -297,7 +300,7 @@ const Input = ({
       fontSize: 13,
       height: '100%',
       marginTop: 3,
-      marginBottom: Platform.OS === 'ios' ? 0 : -3,
+      marginBottom: isIOS ? 0 : -3,
     },
   })
 
@@ -334,7 +337,9 @@ const Input = ({
         )}
 
         <TextInput
+          ref={ref}
           testID='input-id'
+          readOnly={readOnly}
           clearTextOnFocus={false}
           secureTextEntry={!!(type && type === InputType.PASSWORD && iconPassword === IconName.EYE)}
           value={value}
@@ -431,9 +436,9 @@ const Input = ({
               />
             </TouchableOpacity>
           )}
-        {hasIcon && type === InputType.PASSWORD && (
+        {type === InputType.PASSWORD && (
           <>
-            {hasIcon && iconNameLeft && (
+            {iconNameLeft && (
               <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
                 <Icon name={iconNameLeft} />
               </View>
@@ -517,7 +522,7 @@ const Input = ({
       )}
     </View>
   )
-}
+})
 
 Input.displayName = ComponentName.Input
 

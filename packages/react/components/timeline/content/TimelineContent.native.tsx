@@ -2,7 +2,7 @@ import { AutoLayout } from '@/components/autolayout'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
 import { Text, TextLevels } from '@/components/text'
-import { TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
+import { TimelineContentNativeRef, TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import { TypographyColor } from '@/objects'
 import React, { useContext } from 'react'
@@ -17,7 +17,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param link {string} Url link
  * @param Onclick {string} Provide event onCLick
  */
-const TimelineContent = ({ content, heading, linkLabel, linkTo, children }: TimelineContentProps): JSX.Element => {
+const TimelineContent = React.forwardRef<TimelineContentNativeRef, TimelineContentProps>(({ content, heading, linkLabel, linkTo, children }, ref): JSX.Element => {
   const timelineContextValues = useContext(TimelineItemContext)
 
   const styles = StyleSheet.create({
@@ -40,11 +40,11 @@ const TimelineContent = ({ content, heading, linkLabel, linkTo, children }: Time
   })
 
   return children ? (
-    <View style={styles.container}>
+    <View ref={ref} style={styles.container}>
       <AutoLayout>{children}</AutoLayout>
     </View>
   ) : (
-    <View style={styles.container}>
+    <View ref={ref} style={styles.container}>
       {!!heading && (
         <Text level={TextLevels.THREE} style={styles.heading} typo={TypographyColor.TEXT_MAIN}>
           {heading}
@@ -64,7 +64,7 @@ const TimelineContent = ({ content, heading, linkLabel, linkTo, children }: Time
       )}
     </View>
   )
-}
+})
 
 TimelineContent.displayName = ComponentName.TimelineContent
 

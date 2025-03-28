@@ -1,0 +1,58 @@
+.link {
+  [disabled] {
+    @include disabledRulesWithoutBG;
+  }
+}
+
+.link:not([disabled]) {
+  @extend %link-states;
+
+  position: relative;
+  font-weight: $weight-normal;
+  color: getColor($link-colors);
+  box-decoration-break: clone;
+  text-decoration: underline;
+  text-decoration-thickness : 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+
+  &.has-icon {
+    display: block;
+    align-items: center;
+
+    &::after {
+      width: calc(100% - 48px);
+      bottom: 5.5px;
+    }
+
+    .icon {
+      vertical-align: middle;
+    }
+  }
+
+  &.is-inverted {
+    color: getColor('background');
+
+    &.has-icon {
+      > .icon {
+        color: getColor('background');
+      }
+    }
+  }
+
+  @include touch {
+    white-space: normal !important;
+    box-decoration-break: clone;
+    display: inline;
+  }
+}
+
+.text .link:not([disabled]) {
+  text-underline-offset: 2px;
+  text-decoration: underline;
+  text-decoration-thickness : 1px;
+  &:hover {
+    font-weight: $weight-normal;
+    filter: brightness(0.8);
+  }
+}

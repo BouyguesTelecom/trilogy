@@ -4,7 +4,7 @@
 import { IconName, IconNameValues } from '../../../components/icon'
 import { Accessibility, Dev } from '../../../objects'
 import { ReactNode } from 'react'
-import { Animated } from 'react-native'
+import { Animated, type View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 export enum ListIconStatus {
@@ -21,3 +21,6 @@ export interface ListItemProps extends Accessibility, Dev, CommonProps {
 }
 
 export type AnimatedInterpolationProps = Animated.AnimatedInterpolation<number | string>
+
+export type ListItemRef = HTMLLIElement
+export type ListItemNativeRef = View

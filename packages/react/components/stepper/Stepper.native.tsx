@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TypographyBold, TypographyColor } from '@/objects';
-import { Text, TextLevels } from '@/components/text';
-import { StepperProps } from './StepperProps';
-import { Icon, IconName, IconSize } from '@/components/icon';
-import { ComponentName } from '@/components/enumsComponentsName';
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { TypographyBold, TypographyColor } from '@/objects'
+import { Text, TextLevels } from '@/components/text'
+import { StepperNativeRef, StepperProps } from './StepperProps'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 interface ICurrentStep {
-  step: number;
-  name: string;
-  iconName?: string | IconName;
+  step: number
+  name: string
+  iconName?: string | IconName
 }
 
 /**
@@ -17,12 +17,12 @@ interface ICurrentStep {
  * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
-const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
+const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ...others }, ref): JSX.Element => {
   const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({
     step: 0,
     name: '',
     iconName: '',
-  });
+  })
 
   const styles = StyleSheet.create({
     steppers: {
@@ -45,50 +45,50 @@ const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
     counter: {
       marginRight: 10,
     },
-  });
+  })
 
   const nbChild = React.useMemo<number>(() => {
-    if (children && Array.isArray(children)) return children.length;
-    if (children && !Array.isArray(children)) return 1;
-    return 0;
-  }, [children]);
+    if (children && Array.isArray(children)) return children.length
+    if (children && !Array.isArray(children)) return 1
+    return 0
+  }, [children])
 
   React.useEffect(() => {
     if (children) {
       if (Array.isArray(children)) {
-        let haveCurrentStep = false;
+        let haveCurrentStep = false
 
-        children.forEach((child) => {
+        children.forEach((child, index) => {
           if (child.props.current) {
-            haveCurrentStep = true;
+            haveCurrentStep = true
             setCurrentStep({
-              step: child.props.step,
+              step: index + 1,
               name: child.props.label,
               iconName: child.props.iconName,
-            });
+            })
           }
-        });
+        })
 
         if (!haveCurrentStep && children.length > 0) {
           setCurrentStep({
             step: 1,
             name: children[0].props.label,
             iconName: children[0].props.iconName,
-          });
+          })
         }
       } else {
-        const child = children as React.ReactElement;
+        const child = children as React.ReactElement
         setCurrentStep({
           step: 1,
           name: child.props.label,
           iconName: child.props.iconName,
-        });
+        })
       }
     }
-  }, [children]);
+  }, [children])
 
   return (
-    <View>
+    <View ref={ref}>
       <View style={styles.steppers} {...others}>
         {children}
       </View>
@@ -112,9 +112,9 @@ const Stepper = ({ children, ...others }: StepperProps): JSX.Element => {
         </Text>
       </View>
     </View>
-  );
-};
+  )
+})
 
-Stepper.displayName = ComponentName.Stepper;
+Stepper.displayName = ComponentName.Stepper
 
-export default Stepper;
+export default Stepper

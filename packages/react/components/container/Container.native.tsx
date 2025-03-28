@@ -1,15 +1,14 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-
-import { ContainerProps } from '@/components/container/ContainerProps'
+import { ContainerNativeRef, ContainerProps } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer/SpacerEnum'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
 /**
  * Container Component
  * @param children {React.ReactNode}
  */
-const Container = React.forwardRef(({ children, ...others }: ContainerProps, ref: React.Ref<View>): JSX.Element => {
+const Container = React.forwardRef<ContainerNativeRef, ContainerProps>(({ children, ...others }, ref): JSX.Element => {
   return (
     <View ref={ref} style={styles.container} {...others}>
       {children}
@@ -18,7 +17,6 @@ const Container = React.forwardRef(({ children, ...others }: ContainerProps, ref
 })
 
 Container.displayName = ComponentName.Container
-
 export default Container
 
 const styles = StyleSheet.create({

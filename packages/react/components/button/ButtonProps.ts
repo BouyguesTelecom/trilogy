@@ -1,3 +1,10 @@
+import { TouchableOpacity } from 'react-native'
+import { IconName, IconNameValues } from '../../components/icon'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
+import { CommonProps } from '../../objects/facets/CommonProps'
+import { Dev } from '../../objects/facets/Dev'
+import { Fullwidth } from '../../objects/facets/Fullwidth'
 import {
   ButtonMarkup,
   ButtonMarkupValues,
@@ -6,10 +13,6 @@ import {
   ButtonVariant,
   ButtonVariantValues,
 } from './ButtonEnum'
-import { Fullwidth } from '../../objects/facets/Fullwidth'
-import { Accessibility, Clickable, Dev } from '../../objects/facets'
-import { IconName, IconNameValues } from '../../components/icon'
-import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Button Interface
@@ -27,3 +30,6 @@ export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, C
   iconName?: IconName | IconNameValues
   variant?: ButtonVariant | ButtonVariantValues
 }
+
+export type ButtonRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
+export type ButtonNativeRef = TouchableOpacity

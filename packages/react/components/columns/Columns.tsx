@@ -1,4 +1,4 @@
-import { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ColumnsProps, ColumnsRef } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -21,22 +21,10 @@ import React from 'react'
  * @param className {string} Additionnal CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef(
+const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
   (
-    {
-      className,
-      id,
-      multiline,
-      scrollable,
-      mobile,
-      gap,
-      fullBleed,
-      marginless,
-      align,
-      verticalAlign,
-      ...others
-    }: ColumnsProps,
-    ref: React.Ref<HTMLDivElement>,
+    { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, fullheight, ...others },
+    ref,
   ) => {
     const { styled } = useTrilogyContext()
 
@@ -53,6 +41,7 @@ const Columns = React.forwardRef(
         align && is(getJustifiedClassName(align)),
         verticalAlign && is(getAlignClassName(verticalAlign)),
         marginless && is(`marginless`),
+        fullheight && is('fullheight'),
         className,
       ),
     )

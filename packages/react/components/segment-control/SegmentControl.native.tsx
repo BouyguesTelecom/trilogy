@@ -1,11 +1,11 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text, TextLevels } from '@/components/text'
+import { View } from '@/components/view'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { SegmentControlProps } from './SegmentControlProps'
-import { View } from '@/components/view'
-import { Text, TextLevels } from '@/components/text'
 import SegmentedControlItem from './item'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
 
 /**
  * SegmentControl Component
@@ -14,7 +14,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
  */
-const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentControlProps): JSX.Element => {
+const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
   const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
   const isActive = (index: number, childPropsActive: React.ReactNode) => {
@@ -41,15 +41,17 @@ const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentCo
     segmentedControl: {
       flexDirection: 'row',
       width: '100%',
-      backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderRadius: 4,
       padding: 4,
       paddingRight: -4,
+      borderWidth: 1,
+      borderColor: getColorStyle(TrilogyColor.NEUTRAL),
     },
   })
 
   return (
-    <View style={styles.padding}>
+    <View ref={ref} style={styles.padding}>
       <View style={styles.segmentedControl} {...others}>
         {children &&
           Array.isArray(children) &&
@@ -86,7 +88,7 @@ const SegmentControl = ({ children, onClick, activeIndex, ...others }: SegmentCo
       </View>
     </View>
   )
-}
+})
 
 SegmentControl.displayName = ComponentName.SegmentControl
 
