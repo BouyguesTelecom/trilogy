@@ -22,7 +22,7 @@ const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
     const styles = StyleSheet.create({
       cardImage: {
         width: size ? `${size}0%` : maxSize,
-        aspectRatio: ratio,
+        aspectRatio: horizontal ? undefined : ratio,
         resizeMode: contain ? 'contain' : 'cover',
         alignSelf: contain ? 'flex-end' : 'auto',
         marginBottom: 0,
