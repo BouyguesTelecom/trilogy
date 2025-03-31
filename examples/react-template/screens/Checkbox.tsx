@@ -21,11 +21,11 @@ export const CheckboxScreen = (): JSX.Element => {
     <Section>
       <Container>
         <Title level={4}>Accessibility example</Title>
-        <Text id='xx'>Comment souhaitez-vous être contacté ? *</Text>
+        <Text id='xx'>How would you like to be contacted ? *</Text>
         <CheckboxList accessibilityLabelledBy='xx'>
           <Checkbox name='Email' label='Email' value='Email' checked id='checkbox1' required />
-          <Checkbox name='Téléphone' label='Téléphone' value='Téléphone' id='checkbox2' />
-          <Checkbox name='Courrier' label='Courrier' value='Courrier' disabled id='checkbox3' />
+          <Checkbox name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
+          <Checkbox name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </CheckboxList>
         <Spacer size={SpacerSize.FIVE} />
 
