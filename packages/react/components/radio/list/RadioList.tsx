@@ -1,9 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { isRequiredChild } from '@/helpers/require'
 import { getJustifiedClassName } from '@/objects'
 import { is } from '@/services'
-import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
@@ -19,18 +18,18 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
+  (
+    { className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others },
+    ref,
+  ): JSX.Element => {
     return (
       <div
         ref={ref}
         id={id}
-        role="radiogroup"
+        role='radiogroup'
         aria-labelledby={accessibilityLabelledBy}
         aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(
-          styled,
           clsx(
             'radios',
             className,

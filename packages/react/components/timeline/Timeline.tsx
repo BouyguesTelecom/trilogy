@@ -1,10 +1,9 @@
-import * as React from 'react'
-import { TimelineProps, TimelineRef } from './TimelineProps'
 import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
 import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { TimelineProps, TimelineRef } from './TimelineProps'
 
 /**
  * Timeline Component
@@ -14,8 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param className {string} Additionnal CSS Classes
  */
 const Timeline = React.forwardRef<TimelineRef, TimelineProps>(({ className, id, horizontal, ...others }, ref) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('timeline', horizontal && is('horizontal'), className))
+  const classes = hashClass(clsx('timeline', horizontal && is('horizontal'), className))
 
   return <div ref={ref} id={id} className={classes} {...others} />
 })

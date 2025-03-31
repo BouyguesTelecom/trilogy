@@ -1,4 +1,3 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
@@ -20,8 +19,7 @@ import { ChipsProps, ChipsRef } from './ChipsProps'
  */
 const Chips = React.forwardRef<ChipsRef, ChipsProps>(
   ({ className, onClick, children, active, disabled, id, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('chips', active && is('active'), className))
+    const classes = hashClass(clsx('chips', active && is('active'), className))
 
     return (
       <button
@@ -31,9 +29,7 @@ const Chips = React.forwardRef<ChipsRef, ChipsProps>(
         id={id}
         aria-pressed={!!active}
         className={classes}
-        onClick={(e) => {
-          onClick?.(e)
-        }}
+        onClick={onClick}
         {...others}
       >
         {children}
