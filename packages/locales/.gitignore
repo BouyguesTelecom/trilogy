@@ -1,1 +1,4 @@
-lib/
+lib
+node_modules
+.idea
+.vscode
