@@ -4,6 +4,9 @@ import {
   Popover,
   RadioList,
   Section,
+  Spacer,
+  SpacerSize,
+  Title,
   TypographyBold,
   TypographyColor,
 } from '@trilogy-ds/react'
@@ -18,9 +21,18 @@ export const RadioScreen = (): JSX.Element => {
   return (
     <Section>
       <Container>
+        <Title level={4}>Accessibility example</Title>
+        <Text id='xx'>How would you like to be contacted ? *</Text>
+        <RadioList accessibilityLabelledBy='xx'>
+          <Radio name='Email' label='Email' value='Email' checked id='checkbox1' required />
+          <Radio name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
+          <Radio name='letter' label='letter' value='letter' disabled id='checkbox3' />
+        </RadioList>
+        <Spacer size={SpacerSize.FIVE} />
+
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Text>Simple Radio's :</Text>
+            <Title level={4}>Simple Radio's</Title>
             <RadioList>
               <Radio
                 checked={radio === 'one'}
@@ -59,7 +71,7 @@ export const RadioScreen = (): JSX.Element => {
           </Column>
 
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Text>Tiles Radio's :</Text>
+            <Title level={4}>Simple Radio's</Title>
             <RadioTiles>
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
@@ -114,7 +126,7 @@ export const RadioScreen = (): JSX.Element => {
           </Column>
 
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Text>Horizontal Tiles Radio's :</Text>
+            <Title level={4}>Horizontal Tiles Radio's :</Title>
             <RadioTiles align={Alignable.ALIGNED_CENTER}>
               <RadioTile
                 checked={radioTileHorizontal === 'one'}
