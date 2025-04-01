@@ -1,4 +1,3 @@
-import inputLocale from '@trilogy-ds/locales/lib/input.json'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
@@ -317,7 +316,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
-              srOnly={!isShowPwd ? inputLocale.showPassword : inputLocale.hidePassword}
+              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={() => {
