@@ -1,7 +1,7 @@
 {
     "name": "@trilogy-ds/locales",
     "version": "4.2.0",
-    "description": "Trilogy assets include traductions for accessibility",
+    "description": "Trilogy assets include traductions (en) for accessibility",
     "author": "Bouygues Telecom",
     "license": "UNLICENSED",
     "main": "lib/index.js",
