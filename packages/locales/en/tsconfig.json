@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "declaration": true,
+    "outDir": "./lib",
+    "allowJs": true,
+    "noEmit": false,
+    "skipLibCheck": true,
+    "target": "ES6",
+    "strict": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+  },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": ["node_modules"]
+}
