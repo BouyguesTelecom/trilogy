@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import hashJSON from '../hash.json'
+import versionJSON from '../version.json'
 import { TrilogyContext } from './index'
 
 interface TrilogyProviderStyledProps {
@@ -19,18 +19,18 @@ interface TrilogyProviderStyledProps {
 const TrilogyProviderStyled = ({
   children,
   theme = 'default',
-  hash: HASH = hashJSON.HASH,
+  hash: HASH = versionJSON.VERSION,
 }: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
   const [hash, setHash] = React.useState<string>(HASH)
 
   const StyleComponent = React.useMemo(() => {
     switch (true) {
-      case theme === 'mangled' && hash === hashJSON.HASH:
+      case theme === 'mangled' && hash === versionJSON.VERSION:
         setStyled(true)
         return React.lazy(() => import('@/components/styleComponent/mangled/styleComponentMangled'))
 
-      case theme === 'mangled' && hash !== hashJSON.HASH:
+      case theme === 'mangled' && hash !== versionJSON.VERSION:
         setStyled(true)
         return undefined
 
