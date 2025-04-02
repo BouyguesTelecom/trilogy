@@ -1,3 +1,5 @@
+@import "./../initial-variables";
+
 @mixin arrow( $direction: 'down') {
   background-color: currentColor;
   content: "";
@@ -11,9 +13,9 @@
     rotate: 270deg;
   }
 
-  min-width: 15px;
-  min-height: 15px;
-  mask-size: 15px;
+  min-width: $arrow-size;
+  min-height: $arrow-size;
+  mask-size: $arrow-size;
   position: absolute;
   display: inline-block;
 }
