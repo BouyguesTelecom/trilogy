@@ -23,6 +23,7 @@
     "@react-native-picker/picker": "^2.6.1",
     "@trilogy-ds/assets": "*",
     "@trilogy-ds/styles": "*",
+    "@trilogy-ds/locales": "en",
     "clsx": "^2.1.0",
     "color": "^4.2.3",
     "react-content-loader": "^6.2.1",
