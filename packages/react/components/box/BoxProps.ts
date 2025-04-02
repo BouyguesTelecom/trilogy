@@ -23,5 +23,5 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   inverted?: boolean
 }
 
-export type BoxRef = HTMLDivElement
+export type BoxRef = HTMLElement
 export type BoxNativeRef = View | TouchableOpacity
