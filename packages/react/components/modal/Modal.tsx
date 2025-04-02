@@ -4,6 +4,7 @@ import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
+import { accessibilityLabelButtonClose } from '@trilogy-ds/locales/lib/modal.json'
 import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -139,7 +140,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   className={hashClass(styled, clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                 >
-                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
+                  <span className='sr-only'>{accessibilityLabelButtonClose}</span>
                 </button>
               )}
               <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
