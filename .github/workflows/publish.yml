@@ -58,4 +58,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
+      - name: Publish Locale package (en) on NPM 📦
+        run: npm version --prefix=packages/locales/en --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-en && npm publish packages/locales/en --access public --tag en
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
+      - name: Publish Locale package (fr) on NPM 📦
+        run: npm version --prefix=packages/locales/fr --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-fr && npm publish packages/locales/fr --access public --tag fr
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
