@@ -12,7 +12,7 @@ export const hashClass = (styled = false, classes: string): string => {
   if (styled) {
     return classes
       .split(' ')
-      .map((classe: string) => (classe = `${classe}__${hash}`))
+      .map((classe: string) => (classe = `${classe}_${hash}`))
       .join(' ')
   }
   return classes
