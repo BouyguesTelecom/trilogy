@@ -48,12 +48,12 @@ const TrilogyProvider = ({
   assetUrl?: string
 }): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(mangled)
-  const [hash, setHash] = React.useState<string>(HASH)
+  const [hash, setHash] = React.useState<string|undefined>( HASH )
 
   useLayoutEffect(() => {
     injectTrilogyAssets && injectTrilogy(mangled, id, theme, assetUrl)
   }, [])
-  return <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash}}>{children}</TrilogyContext.Provider>
+  return <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>{children}</TrilogyContext.Provider>
 }
 
 export { TrilogyProvider }
