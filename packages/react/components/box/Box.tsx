@@ -7,7 +7,6 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { BoxProps, BoxRef } from './BoxProps'
-import {TitleMarkup, TitleMarkupValues} from "@/components/title";
 
 /**
  * Box Component
