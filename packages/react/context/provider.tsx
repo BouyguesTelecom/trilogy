@@ -3,6 +3,7 @@
 import React, { useLayoutEffect } from 'react'
 import { TrilogyContext } from './index'
 import { version } from '../version'
+import versionJSON from '../version.json'
 
 const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) =>  {
   return (assetUrl)
@@ -35,6 +36,7 @@ const TrilogyProvider = ({
                            injectTrilogyAssets = false,
                            id = 'trilogy',
                            theme = '',
+                           hash: HASH=versionJSON.VERSION,
                            assetUrl = ''
                          }: {
   children: React.ReactNode
@@ -42,13 +44,16 @@ const TrilogyProvider = ({
   injectTrilogyAssets?: boolean
   id?: string
   theme?: string,
+  hash?: string,
   assetUrl?: string
 }): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(mangled)
+  const [hash, setHash] = React.useState<string>(HASH)
+
   useLayoutEffect(() => {
     injectTrilogyAssets && injectTrilogy(mangled, id, theme, assetUrl)
   }, [])
-  return <TrilogyContext.Provider value={{ styled, setStyled }}>{children}</TrilogyContext.Provider>
+  return <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash}}>{children}</TrilogyContext.Provider>
 }
 
 export { TrilogyProvider }
