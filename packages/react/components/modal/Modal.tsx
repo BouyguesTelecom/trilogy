@@ -4,7 +4,6 @@ import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
-// import { accessibilityLabelButtonClose } from '@trilogy-ds/locales/lib/modal.json'
 import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -25,7 +24,20 @@ import { ModalProps, ModalRef } from './ModalProps'
  */
 const Modal = React.forwardRef<ModalRef, ModalProps>(
   (
-    { children, className, id, active, onClose, panel, size, hideCloseButton = false, trigger, title, ...others },
+    {
+      children,
+      className,
+      id,
+      accessibilityLabel = 'Close',
+      active,
+      onClose,
+      panel,
+      size,
+      hideCloseButton = false,
+      trigger,
+      title,
+      ...others
+    },
     ref,
   ): JSX.Element => {
     const modalContentRef = useRef<HTMLDivElement>(null)
@@ -127,7 +139,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   className={hashClass(styled, clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                 >
-                  {/* <span className='sr-only'>{accessibilityLabelButtonClose}</span> */}
+                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
                 </button>
               )}
               <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
