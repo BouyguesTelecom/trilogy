@@ -1,4 +1,4 @@
-import { HASH } from '../../../react/hash.json'
+import { VERSION } from '../../../react/version.json'
 
 export const cssPlugin = () => {
   return {
@@ -7,9 +7,9 @@ export const cssPlugin = () => {
       if (/mangled\.(scss)$/.test(id)) {
         return src
           .replace(/(\.[a-z][_\-0-9a-z]*)(?=[^\{]*{)/gi, (match) => {
-            return `${match}__${HASH}`
+            return `${match}_${VERSION}`
           })
-          .replace(/(url\(["']?.*?)(__[\w]+)(.*?["']?\))/g, '$1$3')
+          .replace(/(url\(["']?.*?)(_[\w]+)(.*?["']?\))/g, '$1$3')
       }
     },
   }

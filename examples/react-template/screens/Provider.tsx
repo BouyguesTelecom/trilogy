@@ -4,6 +4,7 @@ import { TrilogyProvider } from '@trilogy-ds/react/context/provider'
 import { TrilogyProviderStyled } from '@trilogy-ds/react/context/providerStyled'
 import { Alignable, Justifiable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
+import '@trilogy-ds/styles/dist/default/trilogy-mangled.css'
 
 export const ProviderScreen = (): JSX.Element => {
   return (
