@@ -7,7 +7,7 @@
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
     "prebuild": "npm run build:version",
-    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
+    "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
@@ -15,6 +15,8 @@
     "build:cssMangled": "npm --workspace=@trilogy-ds/styles run build:cssMangled",
     "build:framework": "npm run optimise:svg && npm run build:version && npm run build:css",
     "build:version": "node scripts/create-version.cjs",
+    "build:locale-fr":"cd packages/locales/fr && npm run build",
+    "build:locale-en":"cd packages/locales/en && npm run build",
     "create:autolayout": "npm --workspace=@trilogy-ds/styles run build:autolayout && npm run create:autolayout",
     "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/styles run optimise:svg",
@@ -159,6 +161,7 @@
     "packages/styles",
     "packages/assets",
     "packages/vanilla",
+    "packages/locales/en",
     "examples/react-template"
   ],
   "engineStrict": true,

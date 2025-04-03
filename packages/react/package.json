@@ -22,6 +22,7 @@
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-picker/picker": "^2.6.1",
     "@trilogy-ds/assets": "*",
+    "@trilogy-ds/locales": "en",
     "@trilogy-ds/styles": "*",
     "clsx": "^2.1.0",
     "color": "^4.2.3",
