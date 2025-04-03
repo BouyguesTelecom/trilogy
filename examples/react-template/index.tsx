@@ -1,4 +1,4 @@
-import '@trilogy-ds/styles/dist/default/trilogy.css'
+import '@trilogy-ds/styles/dist/default/trilogy-mangled.css'
 import { TrilogyProvider } from '@trilogy-ds/react/context/provider'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
