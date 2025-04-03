@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
  * @param styled Apply only if styled props
  * @param classes String classes
  */
-export const hashClass = (addHash:boolean, classes: string): string => {
+export const hashClass = (addHash = false, classes: string): string => {
   const { hash, styled } = useTrilogyContext()
 
   if (classes.trim().length < 1) return ''

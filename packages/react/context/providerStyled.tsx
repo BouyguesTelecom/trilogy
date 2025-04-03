@@ -22,7 +22,7 @@ const TrilogyProviderStyled = ({
   hash: HASH = versionJSON.VERSION,
 }: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
-  const [hash, setHash] = React.useState<string>(HASH)
+  const [hash, setHash] = React.useState<string|undefined>(HASH)
 
   const StyleComponent = React.useMemo(() => {
     switch (true) {
