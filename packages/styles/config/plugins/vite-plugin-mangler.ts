@@ -9,7 +9,7 @@ export const cssPlugin = () => {
           .replace(/(\.[a-z][_\-0-9a-z]*)(?=[^\{]*{)/gi, (match) => {
             return `${match}_${VERSION}`
           })
-          .replace(/(url\(["']?.*?)(_[\w]+)(.*?["']?\))/g, '$1$3')
+          .replace(/(url\(["']?.*?)(_[\w-]+)(.*?["']?\))/g, '$1$3')
       }
     },
   }
