@@ -1,0 +1,13 @@
+{
+    "name": "@trilogy-ds/locales",
+    "version": "4.2.0",
+    "description": "Trilogy assets include traductions (fr) for accessibility",
+    "author": "Bouygues Telecom",
+    "license": "UNLICENSED",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "scripts": {
+      "build": "rimraf ./lib && tsc"
+    }
+}
+  

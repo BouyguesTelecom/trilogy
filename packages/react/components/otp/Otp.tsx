@@ -3,10 +3,11 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
+import { inputTitle } from '@trilogy-ds/locales/lib/otp.json'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { OtpProps, OtpPropsAccessibility, OtpRef } from './OtpProps'
+import { OtpProps, OtpRef } from './OtpProps'
 
 type NumberOrNull = number | null
 
@@ -91,123 +92,124 @@ const formatTranslation = (translation: string, x: string, y: string) => {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  */
-const Otp = React.forwardRef<OtpRef, OtpProps>((props, ref): JSX.Element => {
-  const {
-    className,
-    id,
-    value,
-    length = 6,
-    disabled,
-    error,
-    onCompleted,
-    onChange,
-    onFocus,
-    label,
-    help,
-    autoFocus,
-    title,
-    ...others
-  } = props as OtpPropsAccessibility
+const Otp = React.forwardRef<OtpRef, OtpProps>(
+  (
+    {
+      className,
+      id,
+      value,
+      length = 6,
+      disabled,
+      error,
+      onCompleted,
+      onChange,
+      onFocus,
+      label,
+      help,
+      autoFocus,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
+      stringToCode(value, length) || new Array(length).fill(null),
+    )
+    const hasChanged = useRef(false)
+    const { styled } = useTrilogyContext()
 
-  const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
-    stringToCode(value, length) || new Array(length).fill(null),
-  )
-  const hasChanged = useRef(false)
-  const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
 
-  const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
-  const titleAttr = title || 'Number :x of :y of the one-time code'
+    useEffect(() => {
+      if (!disabled) {
+        isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
+      }
+    }, [length, codeInput, onCompleted, disabled])
 
-  useEffect(() => {
-    if (!disabled) {
-      isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
+    useEffect(() => {
+      hasChanged.current = codeInput.find((code) => code !== null) !== undefined
+      if (hasChanged.current) {
+        onChange?.(codeToString(codeInput))
+      }
+    }, [codeInput])
+
+    const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
+      const { target } = e
+      const targetValue = target.value.trim()
+
+      if (targetValue.length > 0) {
+        setCodeInput(updateCodeInput(targetValue, idx, codeInput))
+      } else {
+        setCodeInput(
+          codeInput.map((code, index) => {
+            return index === idx ? null : code
+          }),
+        )
+      }
     }
-  }, [length, codeInput, onCompleted, disabled])
 
-  useEffect(() => {
-    hasChanged.current = codeInput.find((code) => code !== null) !== undefined
-    if (hasChanged.current) {
-      onChange?.(codeToString(codeInput))
+    const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      const { target } = e
+      target.setSelectionRange(0, target.value.length)
     }
-  }, [codeInput])
 
-  const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
-    const { target } = e
-    const targetValue = target.value.trim()
-
-    if (targetValue.length > 0) {
-      setCodeInput(updateCodeInput(targetValue, idx, codeInput))
-    } else {
-      setCodeInput(
-        codeInput.map((code, index) => {
-          return index === idx ? null : code
-        }),
-      )
-    }
-  }
-
-  const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { target } = e
-    target.setSelectionRange(0, target.value.length)
-  }
-
-  return (
-    <>
-      {label && (
-        <Text
-          markup={TextMarkup.P}
-          typo={
-            (disabled && TypographyColor.TEXT_NEUTRAL) ||
-            (error && TypographyColor.TEXT_ERROR) ||
-            TypographyColor.TEXT_MAIN
-          }
+    return (
+      <>
+        {label && (
+          <Text
+            markup={TextMarkup.P}
+            typo={
+              (disabled && TypographyColor.TEXT_NEUTRAL) ||
+              (error && TypographyColor.TEXT_ERROR) ||
+              TypographyColor.TEXT_MAIN
+            }
+          >
+            {label}
+          </Text>
+        )}
+        <div
+          ref={ref}
+          id={id}
+          className={classes}
+          onClick={() => {
+            if (!disabled) {
+              onFocus?.(true)
+            }
+          }}
         >
-          {label}
-        </Text>
-      )}
-      <div
-        ref={ref}
-        id={id}
-        className={classes}
-        onClick={() => {
-          if (!disabled) {
-            onFocus?.(true)
-          }
-        }}
-      >
-        {codeInput.map((digit, idx) => (
-          <input
-            aria-disabled={disabled}
-            key={idx}
-            type='text'
-            inputMode='numeric'
-            autoComplete='one-time-code'
-            autoFocus={idx === 0 && autoFocus}
-            pattern='\d{1}'
-            maxLength={length}
-            className={hashClass(styled, clsx('otp'))}
-            value={`${digit ?? ''}`}
-            onKeyUp={inputOnKeyUp}
-            onFocus={inputOnFocus}
-            onChange={(e) => inputOnChange(e, idx)}
-            disabled={disabled}
-            title={formatTranslation(titleAttr, String(idx + 1), String(length))}
-            {...others}
-          />
-        ))}
-      </div>
-      {help && (
-        <Text
-          className={hashClass(styled, clsx('help'))}
-          markup={TextMarkup.P}
-          typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
-        >
-          {help}
-        </Text>
-      )}
-    </>
-  )
-})
+          {codeInput.map((digit, idx) => (
+            <input
+              aria-disabled={disabled}
+              key={idx}
+              type='text'
+              inputMode='numeric'
+              autoComplete='one-time-code'
+              autoFocus={idx === 0 && autoFocus}
+              pattern='\d{1}'
+              maxLength={length}
+              className={hashClass(styled, clsx('otp'))}
+              value={`${digit ?? ''}`}
+              onKeyUp={inputOnKeyUp}
+              onFocus={inputOnFocus}
+              onChange={(e) => inputOnChange(e, idx)}
+              disabled={disabled}
+              title={formatTranslation(inputTitle, String(idx + 1), String(length))}
+              {...others}
+            />
+          ))}
+        </div>
+        {help && (
+          <Text
+            className={hashClass(styled, clsx('help'))}
+            markup={TextMarkup.P}
+            typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
+          >
+            {help}
+          </Text>
+        )}
+      </>
+    )
+  },
+)
 
 Otp.displayName = ComponentName.Otp
 export default Otp

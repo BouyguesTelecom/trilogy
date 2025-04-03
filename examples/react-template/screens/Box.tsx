@@ -49,7 +49,7 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box>
+      <Box backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp' href={'toto'}>
         <BoxContent backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'>
           <Columns>
             {data.map((item, index) => (
