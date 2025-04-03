@@ -45,8 +45,8 @@
     }
 
     .accordion-header:after {
-      max-width: 15px;
-      max-height: 15px;
+      max-width: $arrow-size;
+      max-height: $arrow-size;
       position: absolute;
       margin-top: 0;
       right: 20px;
@@ -93,7 +93,7 @@
       position: relative;
       height: auto;
       cursor: pointer;
-      padding: $spacing-4;
+      padding: $spacing-4 calc($spacing-4 * 2 + $arrow-size) $spacing-4 $spacing-4;
 
       &.is-grouped {
         > *:first-child {
