@@ -115,6 +115,9 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   validationRules?: IValidationRules
   required?: boolean
   readOnly?: boolean
+  min?: number
+  max?: number
+  step?: number
 }
 
 export interface ILengthVerify {
