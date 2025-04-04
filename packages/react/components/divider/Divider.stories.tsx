@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Box, Column, Columns, Row, Rows, Spacer, SpacerSize, Title } from '../../lib'
+import { Box, Row, Rows, Title } from '../../lib'
 import Divider from './Divider'
 import { BoxContent } from '../box'
 
@@ -27,7 +27,7 @@ export const Example: Story = {
           </Row>
           <Row>
             <Title level={6}> Divider sans marges </Title>
-            <Divider marginlessa/>
+            <Divider marginless/>
           </Row>
         </Rows>
       </BoxContent>
