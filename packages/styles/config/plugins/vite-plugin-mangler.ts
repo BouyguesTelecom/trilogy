@@ -6,7 +6,7 @@ export const cssPlugin = () => {
     transform(src: string, id: string) {
       if (/mangled\.(scss)$/.test(id)) {
         return src
-          .replace(/(\.[a-z][_\-0-9a-z]*)(?=[^\{'")]*{)/gi, (match) => {
+          .replace(/(\.[a-z][a-z0-9_-]*)(?=[^/@;]*[{:])/gi, (match) => {
             return `${match}_${VERSION}`
           })
       }
