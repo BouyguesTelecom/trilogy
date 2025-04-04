@@ -25,7 +25,7 @@ const config: StorybookConfig = {
     options: {},
   },
   webpackFinal: async (config) => {
-    config.output.publicPath = '/storybook'
+    //config.output.publicPath = '/storybook'
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../packages/react'),

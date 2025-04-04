@@ -1,0 +1,25 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs';
+import { Button, ButtonProps } from './Button';
+import { StorybookArgs } from './Button.stories';
+
+<Meta title="Components/Button" component={Button} />
+
+# Button
+
+Les boutons permettent aux utilisateurs de déclencher des actions.
+
+<Preview>
+  <Story name="Default" args={StorybookArgs.Default} />
+</Preview>
+
+<Preview>
+  <Story name="Primary" args={StorybookArgs.Primary} />
+</Preview>
+
+## Props
+
+### Variants
+
+```ts
+<Button variant="primary" />
+<Button variant="secondary" />

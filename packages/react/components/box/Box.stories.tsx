@@ -1,0 +1,58 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { Columns } from '../columns'
+import { Alignable, BoxContent, Column, Link, Title } from '../../lib'
+import Box from './Box'
+import { Text } from '../text'
+import { BoxFooter } from './index'
+
+const meta: Meta<typeof Box> = {
+  component: Box,
+  subcomponents: { BoxContent, BoxFooter },
+}
+
+export default meta
+
+type Story = StoryObj<typeof Box>
+
+
+export const Variants: Story = {
+  render: () => (
+    <Columns multiline>
+      <Column size={4}>
+        <Box>
+          <BoxContent>
+            <Title level={1}> Classic Box </Title>
+            <Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. </Text>
+          </BoxContent>
+        </Box>
+      </Column>
+      <Column size={4}>
+        <Box flat>
+          <BoxContent>
+            <Title level={1}> Flat Box </Title>
+            <Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. </Text>
+          </BoxContent>
+        </Box>
+      </Column>
+      <Column size={4}>
+        <Box highlighted="WARNING">
+          <BoxContent>
+            <Title level={1}> Warning Box </Title>
+            <Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. </Text>
+          </BoxContent>
+        </Box>
+      </Column>
+      <Column size={12}>
+        <Box>
+          <BoxContent>
+            <Title level={1}> Classic Box with link</Title>
+            <Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. </Text>
+          </BoxContent>
+          <BoxFooter>
+            <Link> Link </Link>
+          </BoxFooter>
+        </Box>
+      </Column>
+    </Columns>
+  ),
+}
