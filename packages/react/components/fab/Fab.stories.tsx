@@ -4,6 +4,31 @@ import Fab from './Fab'
 
 const meta: Meta<typeof Fab> = {
   component: Fab,
+  argTypes:{
+    iconName: {
+      options: [
+        'tri-check',
+        'tri-bell',
+        'tri-times',
+        'tri-search',
+        'tri-plus',
+        'tri-minus',
+      ],
+      control: { type: 'inline-radio'},
+    },
+    extended: {
+      control: { type: 'boolean' },
+    },
+    bottom: {
+      control: { type: 'number' },
+    },
+    left: {
+      control: { type: 'number' },
+    },
+    right: {
+      control: { type: 'number' },
+    },
+  }
 }
 
 export default meta
@@ -27,4 +52,28 @@ export const Example: Story = {
       <Fab right={1} iconName="tri-bell" > Fab - right</Fab>
     </Container>
   ),
+}
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Container>
+      <Fab {...args}/>
+    </Container>
+  ),
+  args:{
+    iconName: 'tri-check',
+    extended: false,
+    bottom: undefined,
+    left: undefined,
+    right: undefined,
+    className: undefined,
+    testId: 'testId',
+    id: 'id',
+    accessibilityLabel: "accessibilityLabel",
+    top: undefined,
+    fixed: false,
+    disabled: false,
+    children: undefined,
+    onClick: () => {},
+  }
 }

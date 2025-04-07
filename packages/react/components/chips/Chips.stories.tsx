@@ -28,3 +28,27 @@ export const Example: Story = {
     </Columns>
   ),
 }
+
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column align="ALIGNED_CENTER" narrow>
+        <ChipsList>
+          <Chips {...args}>{args.children}</Chips>
+        </ChipsList>
+      </Column>
+    </Columns>
+  ),
+  args: {
+    active: true,
+    disabled: false,
+    iconName: 'tri-search',
+    children: 'Chips',
+    onClick: () => {},
+    testId: 'testId',
+    id: 'id',
+    className: undefined,
+    accessibilityLabel: "accessibilityLabel",
+  }
+}

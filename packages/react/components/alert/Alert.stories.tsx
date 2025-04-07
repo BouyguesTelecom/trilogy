@@ -7,54 +7,35 @@ import { Column } from '../../lib'
 
 const meta: Meta<typeof Alert> = {
   component: Alert,
+  argTypes: {
+    status: {
+      options:[StatusState.INFO, StatusState.WARNING, StatusState.ERROR, StatusState.SUCCESS],
+      control: { type: 'inline-radio' },
+    },
+  },
 }
 
 export default meta;
 
 type Story = StoryObj<typeof Alert>;
 
-export const Status: Story = {
-  render: () => (
+export const Default: Story = {
+  render: (args) => (
     <Columns>
-      <Column><Alert title={"Alert : information"} status={StatusState.INFO} /></Column>
-      <Column><Alert title={"Alert : success"} status={StatusState.SUCCESS} /></Column>
-      <Column><Alert title={"Alert : information"} status={StatusState.WARNING} /></Column>
-      <Column><Alert title={"Alert : information"} status={StatusState.ERROR} /></Column>
-    </Columns>
-  ),
-};
-
-export const Descriptions: Story = {
-  render: () => (
-    <Columns>
-      <Column><Alert
-        markup={AlertMarkup.H2}
-        title={"Alert 1 ligne"}
-        status={StatusState.INFO}
-        description={"Description : courte 1 ligne"}
-      />
-      </Column>
-      <Column><Alert
-        markup={AlertMarkup.H3}
-        title={"Alert 2 lignes"}
-        status={StatusState.INFO}
-        description={"Description : Un peu plus longue, mais pas trop non plus, 2 lignes"}
-      />
-      </Column>
-      <Column><Alert
-        markup={AlertMarkup.H4}
-        title={"Alert 3 lignes"}
-        status={StatusState.INFO}
-        description={"Description : Cette description est un peu plus longue, mais pas trop non plus, pour ne pas trop abuser, 3 lignes"}
-      />
-      </Column>
-      <Column><Alert
-        markup={AlertMarkup.H5}
-        title={"Alert 4 lignes !"}
-        status={StatusState.INFO}
-        description={"Description : Cette description est bien plus longue, pour un peu abuser. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 4 lignes !"}
-      />
+      <Column size={4}>
+        <Alert {...args}/>
       </Column>
     </Columns>
   ),
+  args:{
+    markup: AlertMarkup.H2,
+    title: "Alerte !",
+    description: "Je suis dans une colonne de taille 4",
+    id: "id",
+    accessibilityLabel: "accessibilityLabel",
+    testId: "testId",
+    iconName: "tri-search",
+    toaster: false,
+    banner: false,
+  }
 };

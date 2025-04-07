@@ -6,26 +6,41 @@ const meta: Meta<typeof Accordion> = {
   component: Accordion,
   subcomponents: { AccordionItem, AccordionHeader, AccordionBody },
 }
-
 export default meta;
 
 type Story = StoryObj<typeof Accordion>;
 
-export const Accordions: Story = {
-  render: () => (
-    <Accordion>
-      <AccordionItem>
-        <AccordionHeader>Header 1</AccordionHeader>
-        <AccordionBody>Body 1</AccordionBody>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionHeader>Header 2</AccordionHeader>
-        <AccordionBody>Body 2</AccordionBody>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionHeader>Header 3</AccordionHeader>
-        <AccordionBody>Body 3</AccordionBody>
-      </AccordionItem>
-    </Accordion>
-  ),
+const AccordionTemplate: Story = {
+  render: ({ items, ...args }) => {
+    return (
+      <Accordion>
+        {items.map((item) => (
+          <AccordionItem {...item}>
+            <AccordionHeader>{item.header}</AccordionHeader>
+            <AccordionBody>{item.body}</AccordionBody>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    );
+  },
+};
+
+export const Default: Story = {
+  ...AccordionTemplate,
+  args: {
+    items: [
+      {
+        header: 'Header 1',
+        body: 'Body 1',
+      },
+      {
+        header: 'Header 2',
+        body: 'Body 2',
+      },
+      {
+        header: 'Header 3',
+        body: 'Body 3',
+      },
+    ],
+  },
 };

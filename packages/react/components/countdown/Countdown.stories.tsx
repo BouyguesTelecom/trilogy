@@ -25,3 +25,22 @@ export const Example: Story = {
     </Columns>
   ),
 }
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns align="ALIGNED_CENTER">
+      <Column narrow>
+        <Title level={6}> Countdown </Title>
+        <Countdown {...args}/>
+      </Column>
+    </Columns>
+  ),
+  args:{
+    deadline: new Date("2025-12-24T17:00:00.000Z"),
+    small: false,
+    className: undefined,
+    testId: 'testId',
+    id: 'id',
+    accessibilityLabel: "accessibilityLabel",
+  }
+}

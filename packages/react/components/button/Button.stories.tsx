@@ -8,13 +8,31 @@ import { Spacer, SpacerSize } from '../../lib'
 const meta: Meta<typeof Button> = {
   component: ButtonList,
   subcomponents: { Button },
+  argTypes:{
+    variant: {
+      control: { type: 'inline-radio' },
+      options: [
+        ButtonVariant.PRIMARY,
+        ButtonVariant.SECONDARY,
+        ButtonVariant.CONVERSION,
+        ButtonVariant.GHOST,
+      ],
+    },
+    iconName: {
+      control: { type: 'text' },
+    },
+    markup: {
+      control: { type: 'select' },
+      options: ['a', 'button', 'input'],
+    },
+  }
 }
 
 export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Variants: Story = {
+export const ExampleVariants: Story = {
   render: () => (
     <ButtonList>
       <Button variant={ButtonVariant.PRIMARY} children={"Button primary"}/>
@@ -27,7 +45,7 @@ export const Variants: Story = {
   ),
 };
 
-export const Icons: Story = {
+export const ExampleIcons: Story = {
   render: () => (
     <ButtonList>
       <Button variant={ButtonVariant.PRIMARY}  iconName={"tri-search"} children={"Button primary"}/>
@@ -37,7 +55,7 @@ export const Icons: Story = {
   ),
 };
 
-export const Sizes: Story = {
+export const ExampleSizes: Story = {
   render: () => (
     <ButtonList direction={ButtonListDirectionEnum.COLUMN}>
       <Button variant={ButtonVariant.PRIMARY} fullwidth children={"Classic button fullzise"}/>
@@ -54,7 +72,7 @@ export const Sizes: Story = {
   ),
 };
 
-export const Markup: Story = {
+export const ExampleMarkup: Story = {
   render: () => (
     <ButtonList direction={ButtonListDirectionEnum.COLUMN}>
       <Button variant={ButtonVariant.PRIMARY} markup={"a"} href={"https://design.bouyguestelecom.fr/components/Button"} children={"Markup a"}/>
@@ -62,4 +80,23 @@ export const Markup: Story = {
       <Button variant={ButtonVariant.PRIMARY} markup={"input"} href={"https://design.bouyguestelecom.fr/components/Button"} children={"Markup input"}/>
     </ButtonList>
   ),
+};
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <ButtonList direction={ButtonListDirectionEnum.COLUMN}>
+      <Button {...args}/>
+    </ButtonList>
+  ),
+  args:{
+    iconName: "tri-search",
+    children: "Button",
+    markup: "button",
+    disabled: false,
+    loading: false,
+    fullwidth: false,
+    variant: ButtonVariant.PRIMARY,
+    id: "button",
+    className: "button-class",
+  }
 };

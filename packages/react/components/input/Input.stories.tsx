@@ -7,6 +7,24 @@ import { Text } from '../text'
 
 const meta: Meta<typeof Input> = {
   component: Input,
+  argTypes:{
+    type: {
+      options: ['text', 'password'],
+      control: { type: 'select' },
+    },
+    iconNameLeft: {
+      options: Object.values(IconName),
+      control: { type: 'select' },
+    },
+    iconNameRight: {
+      options: Object.values(IconName),
+      control: { type: 'select' },
+    },
+    status:{
+      options: ['success', 'error'],
+      control: { type: 'select' },
+    }
+  }
 }
 
 export default meta
@@ -35,4 +53,23 @@ export const Example: Story = {
       </Column>
     </Columns>
   ),
+}
+
+// @ts-ignore
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column size={6}>
+        <Input {...args} />
+      </Column>
+    </Columns>
+  ),
+  args:{
+    help: "this is my help message",
+    iconNameLeft: IconName.SEARCH,
+    iconNameRight: IconName.SEARCH,
+    placeholder: "This is my placeholder",
+    type: "text",
+    status: "success",
+  }
 }

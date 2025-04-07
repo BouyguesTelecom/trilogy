@@ -34,3 +34,30 @@ export const Example: Story = {
     </Box>
   ),
 }
+
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Box>
+      <BoxContent>
+        <Rows>
+          <Row>
+            <Title level={6}> Divider avec icon </Title>
+            <Divider {...args} />
+          </Row>
+          <Row>
+            <Title level={6}> Divider simple </Title>
+          </Row>
+        </Rows>
+      </BoxContent>
+    </Box>
+  ),
+  args:{
+    iconName: 'tri-times',
+    marginless: false,
+    className: undefined,
+    testId: 'testId',
+    id: 'id',
+    accessibilityLabel: "accessibilityLabel",
+  }
+}

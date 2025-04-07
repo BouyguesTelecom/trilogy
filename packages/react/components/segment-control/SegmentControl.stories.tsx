@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { SegmentControl } from '@trilogy-ds/react'
-import SegmentControlItem from './item'
+import { SegmentControl, SegmentControlItem } from '../../lib'
 
 const meta: Meta<typeof SegmentControl> = {
   component: SegmentControl,
+  subcomponents: { SegmentControlItem }
 }
 
 export default meta

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Columns } from '../columns'
-import { Column } from '../../lib'
+import { Column, IconName } from '../../lib'
 import AutoComplete from './AutoComplete'
 
 const meta: Meta<typeof AutoComplete> = {
@@ -52,4 +52,21 @@ export const Example: Story = {
       </Column>
     </Columns>
   ),
+}
+
+export const SandBox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column size={6}>
+        <AutoComplete {...args}/>
+      </Column>
+    </Columns>
+  ),
+  args:{
+    data: ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
+    iconNameLeft: IconName.BELL,
+    name: 'autocomplete-fruits',
+    placeholder: 'Autocomplete',
+    value: '',
+  }
 }

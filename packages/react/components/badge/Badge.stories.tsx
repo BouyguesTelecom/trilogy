@@ -1,11 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Columns } from '../columns'
-import { Alignable, Column } from '../../lib'
+import { Alignable, Column, Spacer, SpacerSize } from '../../lib'
 import Badge from './Badge'
 import { Text } from '../text'
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
+  argTypes: {
+    variant: {
+      options: ['MAIN', 'ACCENT', 'INFO', 'ERROR', 'SUCCESS'],
+      control: { type: 'inline-radio' },
+    },
+  }
 }
 
 export default meta
@@ -38,4 +44,21 @@ export const Variants: Story = {
       </Column>
     </Columns>
   ),
+}
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns align="ALIGNED_CENTER">
+      <Column narrow align={Alignable.ALIGNED_CENTER}>
+        <Badge {...args}/>
+        <Spacer size={SpacerSize.FIVE}/>
+        <Text>Variant : {args.variant}</Text>
+      </Column>
+    </Columns>
+  ),
+  args:{
+    label: "1",
+    testId: "testId",
+    accessibilityLabel: "accessibilityLabel",
+  }
 }

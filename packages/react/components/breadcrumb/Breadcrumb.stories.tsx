@@ -5,6 +5,8 @@ import Breadcrumb from './Breadcrumb'
 import { Text } from '../text'
 import BreadcrumbItem from './item'
 import { Box } from '../box'
+import { Accordion, AccordionBody, AccordionHeader } from '../accordion'
+import AccordionItem from '../accordion/item'
 
 const meta: Meta<typeof Breadcrumb> = {
   component: Breadcrumb,
@@ -29,4 +31,41 @@ export const Example: Story = {
       </Column>
     </Columns>
   ),
+}
+
+
+const BreadcrumbTemplate: Story = {
+  render: ({ items, ...args }) => {
+    return (
+      <Breadcrumb>
+        {items.map((item) => (
+          <BreadcrumbItem {...item}/>
+        ))}
+      </Breadcrumb>
+    );
+  },
+};
+
+
+export const Sandbox: Story = {
+  ...BreadcrumbTemplate,
+  args: {
+    items: [
+      {
+        href: 'https://google.fr',
+        children: 'Google',
+      },
+      {
+        to: '#anchor',
+        children: 'Parent avec ancre',
+      },
+      {
+        children: 'Parent simple',
+      },
+      {
+        active: true,
+        children: 'Page en cours',
+      },
+    ],
+  }
 }

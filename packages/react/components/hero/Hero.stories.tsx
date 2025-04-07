@@ -5,6 +5,18 @@ import { TrilogyColor } from '../../objects'
 
 const meta: Meta<typeof Hero> = {
   component: Hero,
+  argTypes:{
+    backgroundColor: {
+      options: Object.values(TrilogyColor),
+      control: { type: 'select' },
+    },
+    overlap: {
+      control: { type: 'boolean' },
+    },
+    backgroundHeight: {
+      control: { type: 'number' },
+    }
+  }
 }
 
 export default meta
@@ -12,7 +24,7 @@ export default meta
 type Story = StoryObj<typeof Hero>
 
 
-export const Variants: Story = {
+export const Example: Story = {
   render: () => (
     <Columns multiline>
       <Column>
@@ -232,4 +244,38 @@ export const Size: Story = {
       </Column>
     </Columns>
   ),
+}
+
+
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column>
+        <Hero {...args}>
+          <Container>
+            <Title inverted level={2} markup="h1"> Hero - Background MAIN </Title>
+            <Text className="is-inverted has-text-weight-bold" inverted> Profitez dInternet dès l'abonnement et même en cas de
+              coupure grâce à une clé 4G dans les nouvelles offres Bbox. </Text>
+          </Container>
+        </Hero>
+        <Section>
+          <Container>
+            <Box>
+              <BoxContent>
+                <Title level={2}> Internet garanti </Title>
+              </BoxContent>
+            </Box>
+          </Container>
+        </Section>
+      </Column>
+    </Columns>
+  ),
+  args:{
+    backgroundColor: TrilogyColor.MAIN,
+    backgroundSrc: 'https://www.trilogy.fr/wp-content/uploads/2023/10/hero.jpg',
+    overlap: false,
+    backgroundHeight: 100,
+    className: undefined,
+  }
 }

@@ -6,6 +6,21 @@ import { IconName } from '../icon'
 
 const meta: Meta<typeof Link> = {
   component: Link,
+  argTypes:{
+    href: {
+      control: { type: 'text' },
+    },
+    blank: {
+      control: { type: 'boolean' },
+    },
+    iconName: {
+      options: Object.values(IconName),
+      control: { type: 'select' },
+    },
+    inline:{
+      control: { type: 'boolean' },
+    }
+  }
 }
 
 export default meta
@@ -29,4 +44,22 @@ export const Example: Story = {
       </Row>
     </Rows>
   ),
+}
+
+// @ts-ignore
+export const Sandbox: Story = {
+  render: (args) => (
+    <Rows>
+      <Row>
+        <Link {...args}/>
+      </Row>
+    </Rows>
+  ),
+  args:{
+    href: 'https://www.bouyguestelecom.fr',
+    blank: false,
+    iconName: IconName.ALERT,
+    inline: false,
+    children: 'Je suis un lien',
+  }
 }

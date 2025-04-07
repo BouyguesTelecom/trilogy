@@ -7,6 +7,35 @@ import { Text } from '../text'
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
+  argTypes:{
+    name: {
+      options: Object.values(IconName),
+      control: { type: 'select' },
+    },
+    size: {
+      options: ['smaller', 'small', 'medium', 'large', 'huge'],
+      control: { type: 'select' },
+    },
+    circled: {
+      control: { type: 'boolean' },
+    },
+    color: {
+      options: Object.values(TrilogyColor),
+      control: { type: 'select' },
+    },
+    align:{
+      options: Object.values(Alignable),
+      control: { type: 'select' },
+    },
+    verticalAlign:{
+      options: Object.values(Alignable),
+      control: { type: 'select' },
+    },
+    backgroundColor: {
+      options: Object.values(TrilogyColor),
+      control: { type: 'select' },
+    }
+  }
 }
 
 export default meta
@@ -70,6 +99,7 @@ export const Example: Story = {
     </Container>
   ),
 }
+
 export const Variants: Story = {
   render: () => (
     <Container>
@@ -150,4 +180,32 @@ export const Variants: Story = {
       </Columns>
     </Container>
   ),
+}
+
+
+// @ts-ignore
+export const Sandbox: Story = {
+  render: (args) => (
+    <Container>
+      <Columns multiline align={Alignable.ALIGNED_CENTER}>
+        <Column className={'has-text-centered'}>
+          <Icon {...args} />
+        </Column>
+      </Columns>
+    </Container>
+  ),
+  args:{
+    name: IconName.SEARCH,
+    size: 'medium',
+    circled: false,
+    color: TrilogyColor.MAIN,
+    stacked: false,
+    stretched: false,
+    skeleton: false,
+    backgroundColor: TrilogyColor.BACKGROUND,
+    testId: 'icon',
+    id: 'icon',
+    onClick: () => {},
+    accessibilityLabel: 'icon',
+  }
 }

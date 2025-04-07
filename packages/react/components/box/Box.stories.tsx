@@ -1,13 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Columns } from '../columns'
-import { Alignable, BoxContent, Column, Link, Title } from '../../lib'
+import { BoxContent, Column, Link, Title } from '../../lib'
 import Box from './Box'
 import { Text } from '../text'
 import { BoxFooter } from './index'
+import { TrilogyColor } from '../../objects'
 
 const meta: Meta<typeof Box> = {
   component: Box,
   subcomponents: { BoxContent, BoxFooter },
+  argTypes:{
+    highlighted:{
+      options: ['INFO', 'WARNING', 'ERROR', 'SUCCESS', 'MAIN', 'ACCENT'],
+      control: { type: 'inline-radio' },
+    }
+  }
 }
 
 export default meta
@@ -15,7 +22,7 @@ export default meta
 type Story = StoryObj<typeof Box>
 
 
-export const Variants: Story = {
+export const Example: Story = {
   render: () => (
     <Columns multiline>
       <Column size={4}>
@@ -55,4 +62,32 @@ export const Variants: Story = {
       </Column>
     </Columns>
   ),
+}
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column size={4}>
+        <Box {...args}>
+          <BoxContent {...args}>
+            <Title level={1}>{args.title}</Title>
+            <Text>{args.text}</Text>
+          </BoxContent>
+        </Box>
+      </Column>
+    </Columns>
+  ),args:{
+    title: "Classic Box",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
+    flat: false,
+    backgroundColor: TrilogyColor.BACKGROUND,
+    backgroundSrc: "",
+    onClick: () => {},
+    fullheight: false,
+    skeleton: false,
+    headerOffset: false,
+    active: false,
+    inverted: false,
+    shadowless: false,
+  }
 }
