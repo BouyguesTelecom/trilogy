@@ -21,18 +21,20 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
+import { useTrilogyContext } from '@trilogy-ds/react/context'
 import * as React from 'react'
 import { useState } from 'react'
 
-function AccessibilityElm() {
-  if (isMobile) return <></>
-  return <span className='sr-only'>Menu</span>
-}
-
 export const ModalScreen = (): JSX.Element => {
+  const { hash } = useTrilogyContext()
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
   const [openModal3, setOpenModal3] = useState(false)
+
+  function AccessibilityElm() {
+    if (isMobile) return <></>
+    return <span className={`sr-only${hash ? '_' + hash : ''}`}>Menu</span>
+  }
   return (
     <>
       <Section>

@@ -122,7 +122,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
         {oldAmountComponent}
         {amountComponent}
         {tagAmountComponent}
-        {accessibilityLabel && <p className='sr-only'>{accessibilityLabel}</p>}
+        {accessibilityLabel && <p className={hashClass(clsx('sr-only'))}>{accessibilityLabel}</p>}
       </div>
     )
   },

@@ -273,7 +273,7 @@ const CreateIconWrapper = ({
           size={IconSize.SMALL}
         />
       )}
-      {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
+      {type === InputType.PASSWORD && srOnly && <span className={hashClass(clsx('sr-only'))}>{srOnly}</span>}
     </Markup>
   )
 }

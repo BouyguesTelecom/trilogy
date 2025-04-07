@@ -70,7 +70,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   className={hashClass(clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                 >
-                  <span className='sr-only'>{accessibilityLabelButtonClose}</span>
+                  <span className={hashClass(styled, clsx('sr-only'))}>{accessibilityLabelButtonClose}</span>
                 </button>
               )}
               <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
