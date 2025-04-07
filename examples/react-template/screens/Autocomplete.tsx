@@ -1,11 +1,12 @@
-import { ButtonList, Section } from '@trilogy-ds/react'
 import {
   Button,
+  ButtonList,
   ButtonVariant,
   Column,
   Columns,
   Divider,
   IconName,
+  Section,
   Text,
   Title,
   TitleLevels,

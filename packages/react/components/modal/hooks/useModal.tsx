@@ -29,11 +29,14 @@ export const useModal = ({ active, onClose }: IProps) => {
         if (display && e.key === 'Tab') {
           e.preventDefault()
           if (focusableElementsRef.current) {
-            currentFocusIndexRef.current = e.shiftKey
-              ? (currentFocusIndexRef.current - 1) % focusableElementsRef.current.length
-              : (currentFocusIndexRef.current + 1) % focusableElementsRef.current.length
+            const currentIndex = currentFocusIndexRef.current
+            const offset = e.shiftKey ? -1 : 1
 
-            focusableElementsRef.current[currentFocusIndexRef.current].focus()
+            const nextIndex =
+              (currentIndex + offset + focusableElementsRef.current.length) % focusableElementsRef.current.length
+
+            currentFocusIndexRef.current = nextIndex
+            focusableElementsRef.current[nextIndex].focus()
           }
         }
 
@@ -47,7 +50,6 @@ export const useModal = ({ active, onClose }: IProps) => {
       },
       [display, focusableElementsRef, currentFocusIndexRef, refBtnModal, onClose],
     )
-
     React.useEffect(() => {
       setDisplay((prev) => {
         if (prev) {

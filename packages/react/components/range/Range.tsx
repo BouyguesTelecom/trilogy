@@ -52,6 +52,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
           <div ref={refTrack} className={hashClass(clsx('range-track'))}></div>
           <input
             className={hashClass(clsx('range-cursor range-cursor-min'))}
+            onTouchEnd={handleMouseUpMin}
             onMouseUp={handleMouseUpMin}
             onChange={handleChangeCursorMin}
             value={cursorMin}
@@ -64,6 +65,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
           />
           <input
             className={hashClass(clsx('range-cursor range-cursor-max'))}
+            onTouchEnd={handleMouseUpMax}
             onMouseUp={handleMouseUpMax}
             onChange={handleChangeCursorMax}
             value={cursorMax}

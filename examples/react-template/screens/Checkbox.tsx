@@ -1,5 +1,7 @@
+import { SpacerSize } from '@trilogy-ds/react'
 import {
   Checkbox,
+  CheckboxList,
   CheckboxTile,
   CheckboxTiles,
   Column,
@@ -7,9 +9,11 @@ import {
   Container,
   IconName,
   Section,
+  Spacer,
   Text,
+  Title,
 } from '@trilogy-ds/react/components'
-import { Alignable, TypographyAlign } from '@trilogy-ds/react/objects'
+import { Alignable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const CheckboxScreen = (): JSX.Element => {
@@ -32,71 +36,46 @@ export const CheckboxScreen = (): JSX.Element => {
   return (
     <Section>
       <Container>
-        <Text typo={TypographyAlign.TEXT_CENTERED}>
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Text>
+        <Title level={4}>Accessibility example</Title>
+        <Text id='xx'>How would you like to be contacted ? *</Text>
+        <CheckboxList accessibilityLabelledBy='xx'>
+          <Checkbox name='Email' label='Email' value='Email' checked id='checkbox1' required />
+          <Checkbox name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
+          <Checkbox name='letter' label='letter' value='letter' disabled id='checkbox3' />
+        </CheckboxList>
+        <Spacer size={SpacerSize.FIVE} />
+
+        <Title level={4}>Vertical checkbox with columns</Title>
+        <Text id='yy'>How would you like to be contacted ? *</Text>
         <Columns multiline>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <Checkbox
-              name='name-1'
-              label='Label 1'
-              value='value'
-              checked={checked === 'checkbox1'}
-              id='checkbox1'
-              onChange={setId}
-            />
-            <Checkbox
-              name='name-1'
-              label='Label 2'
-              value='value'
-              id='checkbox2'
-              onChange={setId}
-              checked={checked === 'checkbox2'}
-            />
-            <Checkbox
-              name='name-1'
-              label='Disable'
-              value='value'
-              disabled
-              id='checkbox3'
-              onChange={setId}
-              checked={checked === 'checkbox3'}
-            />
-            <Checkbox
-              name='name-1'
-              label='Read only'
-              value='value'
-              readonly
-              id='checkbox4'
-              onChange={setId}
-              checked={checked === 'checkbox4'}
-            />
-            <Checkbox
-              label='Label 5'
-              name='name-1'
-              value='value'
-              id='checkbox5'
-              onChange={setId}
-              checked={checked === 'checkbox5'}
-            >
-              Multi line <br /> label with <strong>HTML</strong>.
-            </Checkbox>
+            <CheckboxList accessibilityLabelledBy='yy' verticalDesktop>
+              <Checkbox name='name-1' label='Label1' value='value1' checked id='checkbox4' />
+              <Checkbox name='name-2' label='Label2' value='value2' id='checkbox5' />
+              <Checkbox name='name-3' label='Label3' value='value3' disabled id='checkbox6' />
+              <Checkbox name='name-4' label='Label4' value='value4' readonly id='checkbox7' />
+            </CheckboxList>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <CheckboxTiles align={Alignable.ALIGNED_CENTER} verticalAlign={Alignable.ALIGNED_CENTER}>
+            <Title level={4}>CheckboxTiles centered</Title>
+            <Spacer size={SpacerSize.FIVE} />
+            <Text id='zz'>CheckboxTiles centered</Text>
+            <CheckboxTiles
+              accessibilityLabelledBy='zz'
+              align={Alignable.ALIGNED_CENTER}
+              verticalAlign={Alignable.ALIGNED_CENTER}
+            >
               <CheckboxTile
                 id='tile-1'
-                label='label'
-                value='value'
+                label='label1'
+                value='value1'
                 description='Je suis une description simple'
-                className='is-fullheight'
-                onChange={setIdTile}
-                checked={checkedTile === 'tile-1'}
+                icon={IconName.ALERT}
               />
               <CheckboxTile
                 id='tile-2'
-                label='label'
-                value='value'
+                label='label2'
+                value='value2'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
                 onChange={setIdTile}
@@ -104,8 +83,8 @@ export const CheckboxScreen = (): JSX.Element => {
               />
               <CheckboxTile
                 id='tile-3'
-                label='label'
-                value='value'
+                label='label3'
+                value='value3'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
                 onChange={setIdTile}
@@ -114,26 +93,30 @@ export const CheckboxScreen = (): JSX.Element => {
             </CheckboxTiles>
           </Column>
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
-            <CheckboxTiles align={Alignable.ALIGNED_CENTER}>
+            <Title level={4}>CheckboxTiles horizontal</Title>
+            <Text id='ww'>CheckboxTiles horizontal</Text>
+            <Spacer size={SpacerSize.FIVE} />
+            <CheckboxTiles accessibilityLabelledBy='ww' align={Alignable.ALIGNED_CENTER}>
               <CheckboxTile
                 id='tile-horizontal-1'
-                label='label'
-                value='value'
+                label='label-t-1'
+                value='value-t-1'
                 description='Je suis une description simple'
+                icon={IconName.ALERT}
                 horizontal
               />
               <CheckboxTile
                 id='tile-horizontal-2'
-                label='label'
-                value='value'
+                label='label-t-2'
+                value='value-t-2'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
                 horizontal
               />
               <CheckboxTile
                 id='tile-horizontal-3'
-                label='label'
-                value='value'
+                label='label-t-3'
+                value='value-t-3'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
                 horizontal

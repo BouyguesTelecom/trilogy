@@ -64,24 +64,22 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       ),
     )
 
-    if (href) {
-      return (
-        <a id={id} href={href} onClick={onClick ? onClick : undefined} className={classes} {...others}>
-          {children}
-        </a>
-      )
-    }
+    const Tag = href ? 'a' : 'div'
 
     const hoverStyle: React.CSSProperties = {
       cursor: 'pointer',
     }
 
     return (
-      <div
-        ref={ref}
+      <Tag
+        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
         id={id}
-        style={onClick ? { ...hoverStyle } : undefined}
-        onClick={onClick ? onClick : undefined}
+        style={onClick && { ...hoverStyle }}
+        href={href}
+        onClick={(e) => {
+          // eslint-disable-next-line no-unused-expressions
+          onClick?.(e)
+        }}
         className={classes}
         {...others}
         {...(backgroundSrc && {
@@ -91,7 +89,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         })}
       >
         {children}
-      </div>
+      </Tag>
     )
   },
 )

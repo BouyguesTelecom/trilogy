@@ -4,6 +4,8 @@ import {
   BoxContent,
   Column,
   Columns,
+  Rows,
+  Row,
   Divider,
   Icon,
   IconName,
@@ -46,35 +48,37 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
               This home screen is only for navigation
             </Text>
             <Input placeholder='Rechercher un composant' onChange={(e) => handleSearch(e.inputValue)} />
-            <Divider />
             <Title level={TitleLevels.THREE} typo={[TypographyAlign.TEXT_CENTERED]}>
               Screens
             </Title>
             <AutoLayout>
-              {Object.keys(list).map((name, index) => {
-                const [pathName] = list[name].split('Screen')
-                return (
-                  <Box
-                    key={index}
-                    onClick={() => {
-                      if (navigation) {
-                        navigation.navigate(pathName)
-                      }
-                    }}
-                  >
-                    <BoxContent>
-                      <Columns verticalAlign='ALIGNED_CENTER' gap={0}>
-                        <Column>
-                          <Title level={TitleLevels.THREE}>{pathName}</Title>
-                        </Column>
-                        <Column narrow>
-                          <Icon name={IconName.ARROW_RIGHT} />
-                        </Column>
-                      </Columns>
-                    </BoxContent>
-                  </Box>
-                )
-              })}
+              <Rows gap={2}>
+                {Object.keys(list).map((name, index) => {
+                  const [pathName] = list[name].split('Screen')
+                  return (
+                    <Row key={index}>
+                      <Box
+                        onClick={() => {
+                          if (navigation) {
+                            navigation.navigate(pathName)
+                          }
+                        }}
+                      >
+                        <BoxContent>
+                          <Columns verticalAlign='ALIGNED_CENTER' gap={0}>
+                            <Column>
+                              <Title level={TitleLevels.THREE}>{pathName}</Title>
+                            </Column>
+                            <Column narrow>
+                              <Icon name={IconName.ARROW_RIGHT} />
+                            </Column>
+                          </Columns>
+                        </BoxContent>
+                      </Box>
+                    </Row>
+                  )
+                })}
+              </Rows>
             </AutoLayout>
           </Section>
         </ScrollView>

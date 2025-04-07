@@ -1,16 +1,5 @@
-import { isMobile, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
-import {
-  AutoLayout,
-  Button,
-  Divider,
-  IconName,
-  Input,
-  InputStatus,
-  InputType,
-  Section,
-  Title,
-  TitleLevels,
-} from '@trilogy-ds/react/lib/components'
+import { InputStatus, InputType, isMobile, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
+import { AutoLayout, Button, Divider, IconName, Input, Section, Title, TitleLevels } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'

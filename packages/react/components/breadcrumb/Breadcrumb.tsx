@@ -1,4 +1,5 @@
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { accessibilityLabel } from '@trilogy-ds/locales/lib/breadcrumb.json'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -13,7 +14,7 @@ import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
-  ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }, ref) => {
+  ({ children, className, id, ...others }, ref) => {
     return (
       <nav
         ref={ref}

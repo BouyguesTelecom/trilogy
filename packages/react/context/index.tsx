@@ -6,7 +6,7 @@ interface ITrilogyContext {
   styled: boolean
   setStyled: (e: boolean) => void
   hash?: string
-  setHash?: React.Dispatch<React.SetStateAction<string>>
+  setHash?: React.Dispatch<React.SetStateAction<string|undefined>>
 }
 
 const TrilogyContext = React.createContext<ITrilogyContext>({

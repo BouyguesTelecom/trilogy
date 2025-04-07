@@ -2,7 +2,7 @@ import { AccordionProps, AccordionRef } from '@/components/accordion/AccordionPr
 import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
 
 /**
  * Accordion Component

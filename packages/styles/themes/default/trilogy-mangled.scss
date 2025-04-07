@@ -1,6 +1,5 @@
-@charset "utf-8";
-
 // You must build fonts before
+
 // Base tools (functions)
 @import "./framework/src/utilities/tools";
 
@@ -11,27 +10,10 @@
 @import "./framework/src/utilities/post";
 @import "./themes/default/src/utilities/post";
 
-/* All Base Without reset */
-$body-background-color: #f6f6f6;
-$body-size: 10px;
-$body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
-$body-line-height: 1.5 !default;
-
-@import "./framework/src/base/generic";
-@import "./framework/src/base/color";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
-
-@import "./framework/src/elements";
-@import "./framework/src/components";
-@import "./framework/src/grid/all";
-@import "./framework/src/layout/all";
+@import "./framework/src/all";
 
 // Icons
 @import "../../assets/icons/all";
 
-// Assets and theme (common + default)
+// Assets and theme (default)
 @import "./themes/default/src/_all";
-

@@ -1,4 +1,4 @@
-import { IconSize, Spacer, SpacerSize, TextLevels, TypographyBold, View } from '@trilogy-ds/react'
+import { TypographyBold } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -11,13 +11,18 @@ import {
   Divider,
   Icon,
   IconName,
+  IconSize,
   Link,
   Price,
   Section,
+  Spacer,
+  SpacerSize,
   Text,
+  TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/lib/components'
+  View,
+} from '@trilogy-ds/react/components'
 import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
@@ -49,7 +54,10 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box>
+      <Box
+        backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'
+        href={'toto'}
+      >
         <BoxContent backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'>
           <Columns>
             {data.map((item, index) => (

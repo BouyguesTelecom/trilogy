@@ -1,10 +1,11 @@
-import { IconColor, isMobile } from '@trilogy-ds/react'
+import { IconColor, isMobile, ModalSize } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
   Button,
+  ButtonList,
   ButtonVariant,
   Column,
   Columns,
@@ -15,13 +16,11 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
-  ButtonList,
-  ModalSize,
   Section,
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/lib/components'
+} from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useState } from 'react'
 

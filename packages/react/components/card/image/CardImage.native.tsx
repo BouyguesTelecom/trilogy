@@ -26,6 +26,7 @@ const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
         resizeMode: contain ? 'contain' : 'cover',
         alignSelf: contain ? 'flex-end' : 'auto',
         marginBottom: 0,
+        height: horizontal ? 'auto' : undefined,
       },
     })
 

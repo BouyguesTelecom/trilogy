@@ -8,6 +8,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { has, is } from '@/services'
+import inputLocale from '@trilogy-ds/locales/lib/input.json'
 import clsx from 'clsx'
 import React, { useId } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -182,7 +183,6 @@ const Input = React.forwardRef<InputRef, InputProp>(
             aria-describedby={`${idHelp} ${idSample}`}
             id={id}
             required={required}
-            role='textbox'
             readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
@@ -219,7 +219,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
-              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
+              srOnly={!isShowPwd ? inputLocale.showPassword : inputLocale.hidePassword}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={handlePressIconPwd}
