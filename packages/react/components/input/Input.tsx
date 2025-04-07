@@ -238,7 +238,6 @@ const Input = React.forwardRef<InputRef, InputProp>(
             aria-describedby={`${idHelp} ${idSample}`}
             id={id}
             required={required}
-            role='textbox'
             readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
