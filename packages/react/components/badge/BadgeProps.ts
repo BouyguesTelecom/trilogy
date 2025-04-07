@@ -1,9 +1,9 @@
 import { BadgePositionEnum, BadgePositionValues } from '@/components/badge/BadgeEnum'
+import { Accessibility, Dev, StatusState, StatusStateValues } from '@/objects'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Invertable } from '@/objects/facets/Invertable'
 import { View } from 'react-native'
-import { Accessibility, Dev, StatusState, StatusStateValues } from '../../objects'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Invertable } from '../../objects/facets/Invertable'
 
 export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, CommonProps {
   children?: React.ReactNode

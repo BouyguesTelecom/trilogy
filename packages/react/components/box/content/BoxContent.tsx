@@ -1,5 +1,4 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
@@ -18,10 +17,7 @@ import { BoxContentProps, BoxContentRef } from './BoxContentProps'
  */
 const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(
   ({ children, className, id, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'box-content',
         backgroundColor && has(getBackgroundClassName(backgroundColor)),

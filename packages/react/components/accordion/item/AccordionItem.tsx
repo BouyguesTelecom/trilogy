@@ -1,9 +1,9 @@
 import { AccordionItemProps, AccordionItemRef } from '@/components/accordion/item/AccordionItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
+import { useAccordionBody } from './hooks/useAccordionItem'
 
 /**
  * Accordion Item Component
@@ -16,9 +16,9 @@ import React from 'react'
  */
 const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
   ({ open, className, children, id = React.useId(), onClick, disabled, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('accordion-item', className))
+    const classes = hashClass(clsx('accordion-item', className))
     const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
+    const { handleClick, onKeyDown } = useAccordionBody({ disabled, onClick })
 
     if (disabled) {
       ariaProps['tabIndex'] = -1
@@ -34,21 +34,8 @@ const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
         ref={ref}
         id={id}
         {...others}
-        onClick={(e) => {
-          if (disabled) {
-            e.preventDefault()
-            e.stopPropagation()
-          }
-          if (onClick && !disabled) {
-            onClick(e)
-          }
-        }}
-        onKeyDown={(e) => {
-          if (disabled) {
-            e.preventDefault()
-            e.stopPropagation()
-          }
-        }}
+        onClick={handleClick}
+        onKeyDown={onKeyDown}
       >
         {children}
       </details>

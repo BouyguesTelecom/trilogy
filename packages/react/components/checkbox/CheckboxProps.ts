@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
-type CheckboxChangeEventHandler = (event: {
+export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
   checkboxName: string
   checkboxChecked: boolean
