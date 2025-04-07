@@ -178,7 +178,9 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 size={IconSize.SMALL}
               />
             )}
-            {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
+            {type === InputType.PASSWORD && srOnly && (
+              <span className={hashClass(styled, clsx('sr-only'))}>{srOnly}</span>
+            )}
           </Markup>
         )
       },
