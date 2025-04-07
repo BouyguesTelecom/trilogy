@@ -76,10 +76,14 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         id={id}
         style={onClick && { ...hoverStyle }}
         href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-        }}
+        onClick={
+          onClick
+            ? (e) => {
+                // eslint-disable-next-line no-unused-expressions
+                onClick?.(e)
+              }
+            : undefined
+        }
         className={classes}
         {...others}
         {...(backgroundSrc && {
