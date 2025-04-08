@@ -11,7 +11,7 @@ import { SelectOption } from '../'
 
 const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
-    { onChange, disabled, onFocus, onBlur, children, selected, name, id, label, iconName, multiple, className, status },
+    { onChange, disabled, onFocus, onBlur, children, selected, name, id, label, iconName, multiple, className, status, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -158,7 +158,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }, [multiple, selectedValues, children])
 
     return (
-      <div className={selectClasses}>
+      <div className={selectClasses} {...others}>
         <Input
           status={status}
           ref={ref as React.RefObject<HTMLInputElement>}
