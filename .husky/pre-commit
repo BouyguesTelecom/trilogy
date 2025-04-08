@@ -1,0 +1,5 @@
+if npx -v && npx list -g lint-staged; then
+  npx lint-staged
+else
+  echo "lint-staged package doesn't exist. You can install it by running: npm install"
+fi
