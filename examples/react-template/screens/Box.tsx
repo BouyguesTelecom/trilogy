@@ -49,7 +49,10 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp' href={'toto'}>
+      <Box
+        backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'
+        href={'toto'}
+      >
         <BoxContent backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'>
           <Columns>
             {data.map((item, index) => (
@@ -127,7 +130,7 @@ export const BoxScreen = (): JSX.Element => {
       <Box active={active} backgroundColor={TrilogyColor.MAIN} inverted>
         <BoxHeader>Box active</BoxHeader>
         <BoxContent>
-          <Text>Background : Main Color.</Text>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>Background : Main Color.</Text>
           <Price amount={100} />
         </BoxContent>
       </Box>
