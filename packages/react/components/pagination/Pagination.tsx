@@ -9,9 +9,8 @@ import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Pagination Component
- * @param count {number} Number elements
+ * @param length {number} Number of pages
  * @param defaultPage {number} Current default active page (default is 1)
- * @param pageSize {number} Element per page (default is 10)
  * @param onClick {Function} Return pagination object
  * * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
