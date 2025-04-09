@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "build": "rimraf ./lib && vite --config vite.config.js build",
-    "serve": "npx http-server -p 8090 ./lib"
+    "serve": "npm run build && npx http-server -p 8090 ./lib"
   },
   "repository": {
     "type": "git"
