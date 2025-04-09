@@ -1,22 +1,40 @@
 import {
   Button,
+  Icon,
   IconName,
   Section,
+  Spacer,
+  SpacerSize,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   Title,
-  TitleLevels,
+  TitleLevels
 } from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
+import {Alignable} from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {
   const [index, setIndex] = React.useState(0)
   return (
     <Section>
+      <Title level={TitleLevels.THREE}>Srollable Tabs with arrow</Title>
+
+      <Tabs className={'is-flex is-aligned-center is-justified-center'}>
+        <TabList>
+          <Tab label='Tab 1' iconName={IconName.ALERT} />
+          <Tab label='Tab 2' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 4' iconName={IconName.ALERT} />
+          <Tab label='Tab 5' iconName={IconName.ALERT} />
+          <Tab label='Tab 6' iconName={IconName.ALERT} />
+        </TabList>
+        <Spacer size={SpacerSize.THREE} horizontal />
+        <Icon name={IconName.ARROW_RIGHT} />
+      </Tabs>
+
       <Title level={TitleLevels.THREE}>Simple</Title>
 
       <Tabs>
