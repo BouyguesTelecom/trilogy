@@ -28,7 +28,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     onChange,
     name,
     matching = defaultMatching,
-    displayMenu = true,
+    displayMenu,
     onItemSelected,
     iconNameLeft,
     iconNameRight,
@@ -41,6 +41,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     onFocus,
     id,
     loading,
+    ...others
   }: AutoCompletePropsWeb<T>,
   ref: React.Ref<HTMLInputElement>,
 ): JSX.Element => {
@@ -83,7 +84,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         inputValue: e.inputValue,
         inputSelectionStart: null,
         target: e.target,
-        event: e
+        event: e,
       })
     }
 
@@ -176,6 +177,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         }}
         onIconClick={onIconClick}
         loading={loading}
+        {...others}
       />
 
       {isAutocompleteMenuVisible && (
@@ -196,7 +198,6 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
           )}
         </div>
       )}
-      <div />
     </div>
   )
 }
