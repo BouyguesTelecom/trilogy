@@ -28,6 +28,8 @@ export default meta
 
 type Story = StoryObj<typeof Modal>
 
+//TODO: Modal does not open
+
 // @ts-ignore
 export const Simples: Story = {
   render: () => (

@@ -5,6 +5,26 @@ import { SpacerSize } from './SpacerEnum'
 
 const meta: Meta<typeof Spacer> = {
   component: Spacer,
+  argTypes:{
+    size: {
+      options: [
+        SpacerSize.ONE,
+        SpacerSize.TWO,
+        SpacerSize.THREE,
+        SpacerSize.FOUR,
+        SpacerSize.FIVE,
+        SpacerSize.SIX,
+        SpacerSize.SEVEN,
+        SpacerSize.EIGHT,
+        SpacerSize.NINE,
+        SpacerSize.TEN
+      ],
+      control: { type: 'inline-radio' },
+    },
+    className: {
+      control: { type: 'text' },
+    },
+  }
 }
 
 export default meta
@@ -37,4 +57,25 @@ export const Example: Story = {
       <Spacer size={SpacerSize.TEN}/>
     </Section>
   ),
+}
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Section>
+      <Section backgroundColor={TrilogyColor.MAIN}>
+        <Title level={TitleLevels.THREE} inverted>Spacer TWO</Title>
+      </Section>
+      <Spacer size={SpacerSize.TWO} />
+      <Section backgroundColor={TrilogyColor.MAIN}>
+        <Title level={TitleLevels.THREE} inverted>Spacer Sandbox</Title>
+      </Section>
+      <Spacer {...args} />
+      <Section backgroundColor={TrilogyColor.MAIN}>
+        <Title level={TitleLevels.THREE} inverted>Spacer TWO</Title>
+      </Section>
+    </Section>
+  ),
+  args:{
+    className: "",
+  }
 }

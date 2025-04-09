@@ -6,17 +6,66 @@ import TableTh from './th'
 import TableBody from './body'
 import TableTd from './td'
 
+// Interface pour les propriétés de la story Example
+interface ExampleProps {
+  columns: string[];
+  lines: string[][];
+}
+
 const meta: Meta<typeof Table> = {
   component: Table,
   subcomponents: { TableHead, TableTr, TableTh, TableBody, TableTd },
-}
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+    },
+    border: {
+      options: [TableBorderEnum.INNER, TableBorderEnum.ALL, TableBorderEnum.LINES],
+      control: { type: 'inline-radio' },
+    },
+    children: {
+      control: { type: 'text' },
+    }
+  },
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof Table>
+type Story = StoryObj<typeof Table>;
 
+export const Sandbox: Story = {
+  render: ({...args}) => (
+    <Section>
+      <Table {...args}>
+        <TableHead>
+          <TableTr>
+            {args.columns.map((column, index) => (
+              <TableTh key={index}>{column}</TableTh>
+            ))}
+          </TableTr>
+        </TableHead>
+        <TableBody>
+          {args.lines.map((line, lineIndex) => (
+            <TableTr key={lineIndex}>
+              {line.map((data, dataIndex) => (
+                <TableTd key={dataIndex}>{data}</TableTd>
+              ))}
+            </TableTr>
+          ))}
+        </TableBody>
+      </Table>
+    </Section>
+  ),
+  args: {
+    columns: ['Title 1', 'Title 2', 'Title 3'],
+    lines: [
+      ['Donnée 1-1', 'Donnée 1-2', 'Donnée 1-3'],
+      ['Donnée 2-1', 'Donnée 2-2', 'Donnée 2-3'],
+      ['Donnée 3-1', 'Donnée 3-2', 'Donnée 3-3'],
+    ],
+  }
+};
 
-// @ts-ignore
 export const Example: Story = {
   render: () => (
     <Section>
@@ -42,5 +91,5 @@ export const Example: Story = {
         </TableBody>
       </Table>
     </Section>
-  ),
-}
+  )
+};

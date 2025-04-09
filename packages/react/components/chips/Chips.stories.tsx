@@ -35,7 +35,7 @@ export const Sandbox: Story = {
     <Columns multiline>
       <Column align="ALIGNED_CENTER" narrow>
         <ChipsList>
-          <Chips {...args}>{args.children}</Chips>
+          <Chips {...args}/>
         </ChipsList>
       </Column>
     </Columns>

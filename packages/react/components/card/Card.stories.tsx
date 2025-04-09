@@ -116,43 +116,43 @@ export const Example: Story = {
   ),
 }
 
-export const Sandbox: Story = {
-  render: (args) => (
-    <Columns multiline align={Alignable.ALIGNED_CENTER}>
-      <Column size={6}>
-        <Card>
-          <CardImage src={args.imageSrc} />
-          <CardContent>
-            <Title level={4}>{args.title}</Title>
-            <Title level={5}>{args.subtitle}</Title>
-            <Text level={1}>{args.text}</Text>
-            <Button variant={args.buttonVariant}>{args.textButton}</Button>
-          </CardContent>
-        </Card>
-      </Column>
-    </Columns>
-  ),
-  args: {
-    imageSrc: 'https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png',
-    title: 'Titre de la carte',
-    subtitle: 'Sous-titre de la carte',
-    text: 'Texte de la carte',
-    buttonVariant: 'PRIMARY',
-    textButton: 'Voir plus...',
-    fullheight: false,
-    horizontal: false,
-    reversed: false,
-    multiline: false,
-    onClick: () => {},
-    className: '',
-    id: 'id',
-    accessibilityLabel: 'accessibilityLabel',
-    testId: 'testId',
-    children: undefined,
-    skeleton: false,
-    href: undefined,
-    active: false,
-    floating: false,
-    flat: false,
-  }
-}
+// export const Sandbox: Story = {
+//   render: (...args) => (
+//     <Columns multiline align={Alignable.ALIGNED_CENTER}>
+//       <Column size={6}>
+//         <Card>
+//           <CardImage src={args.imagesrc} />
+//           <CardContent>
+//             <Title level={4}>{args.title}</Title>
+//             <Title level={5}>{args.subtitle}</Title>
+//             <Text level={1}>{args.text}</Text>
+//             <Button variant={args.buttonVariant}>{args.textButton}</Button>
+//           </CardContent>
+//         </Card>
+//       </Column>
+//     </Columns>
+//   ),
+//   args: {
+//     imageSrc: 'https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png',
+//     title: 'Titre de la carte',
+//     subtitle: 'Sous-titre de la carte',
+//     text: 'Texte de la carte',
+//     buttonVariant: 'PRIMARY',
+//     textButton: 'Voir plus...',
+//     fullheight: false,
+//     horizontal: false,
+//     reversed: false,
+//     multiline: false,
+//     onClick: () => {},
+//     className: '',
+//     id: 'id',
+//     accessibilityLabel: 'accessibilityLabel',
+//     testId: 'testId',
+//     children: undefined,
+//     skeleton: false,
+//     href: undefined,
+//     active: false,
+//     floating: false,
+//     flat: false,
+//   }
+// }

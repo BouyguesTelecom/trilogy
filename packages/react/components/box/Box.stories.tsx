@@ -64,30 +64,30 @@ export const Example: Story = {
   ),
 }
 
-export const Sandbox: Story = {
-  render: (args) => (
-    <Columns multiline>
-      <Column size={4}>
-        <Box {...args}>
-          <BoxContent {...args}>
-            <Title level={1}>{args.title}</Title>
-            <Text>{args.text}</Text>
-          </BoxContent>
-        </Box>
-      </Column>
-    </Columns>
-  ),args:{
-    title: "Classic Box",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
-    flat: false,
-    backgroundColor: TrilogyColor.BACKGROUND,
-    backgroundSrc: "",
-    onClick: () => {},
-    fullheight: false,
-    skeleton: false,
-    headerOffset: false,
-    active: false,
-    inverted: false,
-    shadowless: false,
-  }
-}
+// export const Sandbox: Story = {
+//   render: (args) => (
+//     <Columns multiline>
+//       <Column size={4}>
+//         <Box {...args}>
+//           <BoxContent {...args}>
+//             <Title level={1}>{args.title}</Title>
+//             <Text>{args.text}</Text>
+//           </BoxContent>
+//         </Box>
+//       </Column>
+//     </Columns>
+//   ),args:{
+//     title: "Classic Box",
+//     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
+//     flat: false,
+//     backgroundColor: TrilogyColor.BACKGROUND,
+//     backgroundSrc: "",
+//     onClick: () => {},
+//     fullheight: false,
+//     skeleton: false,
+//     headerOffset: false,
+//     active: false,
+//     inverted: false,
+//     shadowless: false,
+//   }
+// }

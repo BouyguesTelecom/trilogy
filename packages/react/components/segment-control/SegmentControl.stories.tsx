@@ -3,7 +3,15 @@ import { SegmentControl, SegmentControlItem } from '../../lib'
 
 const meta: Meta<typeof SegmentControl> = {
   component: SegmentControl,
-  subcomponents: { SegmentControlItem }
+  subcomponents: { SegmentControlItem },
+  argTypes:{
+    className: {
+      control: { type: 'text' },
+    },
+    children: {
+      control: { type: 'text' },
+    },
+  }
 }
 
 export default meta
@@ -11,7 +19,6 @@ export default meta
 type Story = StoryObj<typeof SegmentControl>
 
 
-// @ts-ignore
 export const Example: Story = {
   render: () => (
     <SegmentControl>
@@ -21,4 +28,23 @@ export const Example: Story = {
       <SegmentControlItem>4</SegmentControlItem>
     </SegmentControl>
   ),
+}
+
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <SegmentControl>
+      <SegmentControlItem {...args}/>
+      <SegmentControlItem>2</SegmentControlItem>
+      <SegmentControlItem>3</SegmentControlItem>
+      <SegmentControlItem>4</SegmentControlItem>
+    </SegmentControl>
+  ),
+  args:{
+    active: false,
+    disabled: false,
+    selected: false,
+    value: "1",
+    children: "Sandbox"
+  }
 }

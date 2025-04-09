@@ -27,12 +27,12 @@ export const Example: Story = {
   ),
 }
 
-const CheckboxTemplate: Story = {
-  render: ({ items, ...args }) => {
+export const Sandbox: Story = {
+  render: (...args ) => {
     return (
       <>
-        {items.map((item) => (
-          <Checkbox {...item}/>
+        {args.map((arg) => (
+          <Checkbox {...arg}/>
         ))}
         <Divider/>
         <Columns>
@@ -43,10 +43,6 @@ const CheckboxTemplate: Story = {
       </>
     );
   },
-};
-
-export const Sandbox: Story = {
-  ...CheckboxTemplate,
   args: {
     items: [
       {

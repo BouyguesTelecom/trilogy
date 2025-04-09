@@ -11,13 +11,13 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 const AccordionTemplate: Story = {
-  render: ({ items, ...args }) => {
+  render: ({ ...args }) => {
     return (
       <Accordion>
-        {items.map((item) => (
-          <AccordionItem {...item}>
-            <AccordionHeader>{item.header}</AccordionHeader>
-            <AccordionBody>{item.body}</AccordionBody>
+        {args.map((arg) => (
+          <AccordionItem {...arg}>
+            <AccordionHeader>{arg.header}</AccordionHeader>
+            <AccordionBody>{arg.body}</AccordionBody>
           </AccordionItem>
         ))}
       </Accordion>

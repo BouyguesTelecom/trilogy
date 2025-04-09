@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Radio from './Radio'
-import { Column, Columns, RadioList, RadioTile, RadioTiles, Section } from '@trilogy-ds/react'
+import { Column, Columns, RadioList, RadioTile, RadioTiles, Section, TrilogyColor } from '@trilogy-ds/react'
 import { Divider } from '../../lib'
 
 const meta: Meta<typeof Radio> = {
   component: Radio,
+  subcomponents: { RadioList, RadioTile, RadioTiles },
 }
 
 export default meta
@@ -80,4 +81,40 @@ export const Example: Story = {
       </Columns>
     </Section>
   ),
+}
+
+const RadioListTemplate: Story = {
+  render: (...args) => (
+    <Section>
+      <Columns multiline>
+        <Column align='ALIGNED_CENTER' size={12}>
+          <RadioList verticalDesktop>{<Radio {...args} />}</RadioList>
+          <Divider />
+        </Column>
+      </Columns>
+    </Section>
+  ),
+}
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Section>
+      <Columns multiline>
+        <Column align='ALIGNED_CENTER' size={12}>
+          <RadioList verticalDesktop>
+            <Radio {...args} />
+          </RadioList>
+        </Column>
+      </Columns>
+    </Section>
+  ),
+  args:{
+    checked: false,
+    disabled: false,
+    id: 'checkbox1',
+    label: 'Label',
+    name: 'name-1',
+    readonly: false,
+    value: 'value',
+  }
 }

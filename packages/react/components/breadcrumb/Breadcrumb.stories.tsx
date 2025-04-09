@@ -34,38 +34,38 @@ export const Example: Story = {
 }
 
 
-const BreadcrumbTemplate: Story = {
-  render: ({ items, ...args }) => {
-    return (
-      <Breadcrumb>
-        {items.map((item) => (
-          <BreadcrumbItem {...item}/>
-        ))}
-      </Breadcrumb>
-    );
-  },
-};
-
-
-export const Sandbox: Story = {
-  ...BreadcrumbTemplate,
-  args: {
-    items: [
-      {
-        href: 'https://google.fr',
-        children: 'Google',
-      },
-      {
-        to: '#anchor',
-        children: 'Parent avec ancre',
-      },
-      {
-        children: 'Parent simple',
-      },
-      {
-        active: true,
-        children: 'Page en cours',
-      },
-    ],
-  }
-}
+// const BreadcrumbTemplate: Story = {
+//   render: ({ items, ...args }) => {
+//     return (
+//       <Breadcrumb>
+//         {items.map((item) => (
+//           <BreadcrumbItem {...item}/>
+//         ))}
+//       </Breadcrumb>
+//     );
+//   },
+// };
+//
+//
+// export const Sandbox: Story = {
+//   ...BreadcrumbTemplate,
+//   args: {
+//     items: [
+//       {
+//         href: 'https://google.fr',
+//         children: 'Google',
+//       },
+//       {
+//         to: '#anchor',
+//         children: 'Parent avec ancre',
+//       },
+//       {
+//         children: 'Parent simple',
+//       },
+//       {
+//         active: true,
+//         children: 'Page en cours',
+//       },
+//     ],
+//   }
+// }
