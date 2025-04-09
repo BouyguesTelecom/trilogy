@@ -1,5 +1,5 @@
-import { Button, Divider, isMobile, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react'
-import { IconName, Section, Select, SelectOption } from '@trilogy-ds/react/components'
+import { isMobile, Spacer, SpacerSize, TitleLevels } from '@trilogy-ds/react'
+import { Button, Divider, IconName, Section, Select, SelectOption, Title } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -46,6 +46,7 @@ export const SelectView = (): JSX.Element => {
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
         <Select
+          required
           custom
           disabled
           name='option'
@@ -69,6 +70,7 @@ export const SelectView = (): JSX.Element => {
 
         <Title level={TitleLevels.FOUR}>nullable</Title>
         <Select
+          required
           custom
           name='option'
           label='label'
@@ -119,7 +121,6 @@ export const SelectView = (): JSX.Element => {
         <Select
           multiple
           name='option'
-          label='label'
           id='id'
           iconName={IconName.ALERT}
           selected={optionsNullable}
@@ -168,6 +169,7 @@ export const SelectView = (): JSX.Element => {
 
         <Title level={TitleLevels.FOUR}>With icon</Title>
         <Select
+          required
           status='success'
           iconName='tri-alert'
           name='option'

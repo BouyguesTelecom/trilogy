@@ -221,7 +221,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
         {label && (
-          <label className='input-label' htmlFor={id}>
+          <label className={hashClass(styled, 'input-label')} htmlFor={id}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
