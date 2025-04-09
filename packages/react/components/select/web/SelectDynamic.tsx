@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useCallback, useMemo } from 'react'
+import React, { PropsWithChildren, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -129,15 +129,12 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       setSelectedValues(selected)
     }, [selected])
 
-    const modal = useMemo(
-      () => (
-        <div
-          role='presentation'
-          className={hashClass(styled, 'select-trilogy_modal_open')}
-          onClick={() => setIsFocused(false)}
-        />
-      ),
-      [],
+    const modal = (
+      <div
+        role='presentation'
+        className={hashClass(styled, 'select-trilogy_modal_open')}
+        onClick={() => setIsFocused(false)}
+      />
     )
 
     const options = React.useMemo(() => {
