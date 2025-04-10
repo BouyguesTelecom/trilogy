@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add step, min & max Input props
 - Clean css
 - Fix Autocomplete with Input props
-- Fix label on Select and Autocomplete component (⚠️ no more dynamic placeholder for select. )
+- Fix label on Select and Autocomplete component (⚠️ no more dynamic placeholder for select)
 - Fix setTypographyColor function
 - Fix CardImage style native
 - Fix Box href with background src
