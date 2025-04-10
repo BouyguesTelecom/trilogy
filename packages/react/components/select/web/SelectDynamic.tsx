@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useCallback, useMemo } from 'react'
+import React, { PropsWithChildren, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -11,7 +11,24 @@ import { SelectOption } from '../'
 
 const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
-    { onChange, disabled, onFocus, onBlur, children, selected, name, id, label, iconName, multiple, className, status, ...others },
+    {
+      onChange,
+      disabled,
+      onFocus,
+      onBlur,
+      children,
+      selected,
+      name,
+      id,
+      label,
+      iconName,
+      multiple,
+      className,
+      status,
+      placeholder,
+      required,
+      ...others
+    },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -112,9 +129,12 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       setSelectedValues(selected)
     }, [selected])
 
-    const modal = useMemo(
-      () => <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)} />,
-      [],
+    const modal = (
+      <div
+        role='presentation'
+        className={hashClass(styled, 'select-trilogy_modal_open')}
+        onClick={() => setIsFocused(false)}
+      />
     )
 
     const options = React.useMemo(() => {
@@ -160,17 +180,19 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     return (
       <div className={selectClasses} {...others}>
         <Input
+          required={required}
           status={status}
           ref={ref as React.RefObject<HTMLInputElement>}
           value={selectedName.join(', ')}
           name={name}
           disabled={disabled}
-          placeholder={label}
+          label={label}
+          placeholder={placeholder}
           onFocus={onFocus}
           iconNameLeft={iconName}
           onBlur={onBlur as (event: unknown) => void}
           onClick={onClickInput}
-          className={hashClass(styled, clsx(focused && 'focus'))}
+          className={focused ? 'focus' : undefined}
           onKeyPress={(e) => {
             e.preventDefault()
           }}
