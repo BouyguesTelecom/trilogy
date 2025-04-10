@@ -5,11 +5,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.2.2] - 2025-04-XX
 - Fix textarea wrapper display
-- Fix navigation in modal
-- Fix input for accessibility
+- Fix navigation in Modal
+- Fix Input for accessibility
 - Fix order in Card component
-- Add step, min & max input props
+- Add step, min & max Input props
 - Clean css
+- Fix Autocomplete with Input props
+- Fix label on Select and Autocomplete component (⚠️ no more dynamic placeholder for select)
+- Fix setTypographyColor function
+- Fix CardImage style native
+- Fix Box href with background src
+- Fix Range on web-mobile
+- Add traductions ay11
+- Fix hash class in some component
+- Fix SegmentControlItem and SegmentControl props
+- Fix Pagination props
+- Fix AccordionHeader arrow
 
 ## [4.2.1] - 2025-03-20
 - Fix Select with react hook form
