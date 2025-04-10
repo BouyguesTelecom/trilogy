@@ -141,6 +141,6 @@ $overlap-desktop: 30px;
   }
 
   &.has-pattern-dark {
-    @include pattern-dark(120%, 260px, -30%);
+    @include pattern-dark(105%, 50%, 35%);
   }
 }
