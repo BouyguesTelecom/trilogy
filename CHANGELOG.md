@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix SegmentControlItem and SegmentControl props
 - Fix Pagination props
 - Fix AccordionHeader arrow
+- Add pattern dark on Hero
+- Update hashClassHelper for css (versionned)
 
 ## [4.2.1] - 2025-03-20
 - Fix Select with react hook form
