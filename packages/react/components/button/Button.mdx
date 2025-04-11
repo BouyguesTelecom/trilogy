@@ -1,33 +1,65 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs';
-import { Button, ButtonProps } from './Button';
-import { StorybookArgs } from './Button.stories';
+import { Meta } from '@storybook/react';
+import { ButtonList } from './list';
+import { ButtonVariant } from './ButtonEnum';
+import { Button } from './index'
+import { IconName } from '../icon';
+import { ArgsTable, Canvas, Description, Heading, Stories, Subheading } from '@storybook/addon-docs'
 
-<Meta title="Components/Button" component={Button} />
+<Meta
+  title="Components/Button"
+  component={ButtonList}
+  subcomponents={{ Button }}
+  argTypes={{
+    variant: {
+      control: { type: 'inline-radio' },
+      options: [ButtonVariant.PRIMARY, ButtonVariant.SECONDARY, ButtonVariant.CONVERSION, ButtonVariant.GHOST],
+    },
+    iconName: {
+      options: [IconName.ALERT, IconName.CHECK, IconName.BELL, IconName.EYE, IconName.INFOS_CIRCLE, IconName.SEARCH, IconName.TRASH],
+      control: { type: 'select' },
+    },
+    markup: {
+      control: { type: 'select' },
+      options: ['a', 'button', 'input'],
+    },
+  }}
+/>
 
-# Button
+<Heading>Button Documentation</Heading>
 
-Les boutons permettent aux utilisateurs de déclencher des actions.
+<Description>
+  Buttons are used to trigger actions when clicked. This component provides multiple variants, sizes, icon options, and markup options to suit different use cases.
+</Description>
 
-<Preview>
-  <Story name="Variants" args={StorybookArgs.Variants} />
-</Preview>
+<Subheading>Variants</Subheading>
+<Canvas of="ExampleVariants"/>
 
-<Preview>
-  <Story name="Icons" args={StorybookArgs.Icons} />
-</Preview>
+### Usage
+Provide different variants for buttons such as `PRIMARY`, `SECONDARY`, `CONVERSION`, and `GHOST`. You can also disable or set a loading state on buttons.
 
-<Preview>
-  <Story name="Sizes" args={StorybookArgs.Sizes} />
-</Preview>
+<Subheading>Icons</Subheading>
+<Canvas of="ExampleIcons"/>
 
-<Preview>
-  <Story name="Markup" args={StorybookArgs.Markup} />
-</Preview>
+### Usage
+Buttons can include icons. Choose an appropriate icon to represent the button action.
 
-## Props
+<Subheading>Sizes</Subheading>
+<Canvas of="ExampleSizes"/>
 
-### Variants
+### Usage
+You can change the size and direction of button lists. The above example shows a column layout with buttons of different sizes and title levels.
 
-```ts
-<Button variant="primary" />
-<Button variant="secondary" />
+<Subheading>Markup</Subheading>
+<Canvas of="ExampleMarkup"/>
+
+### Usage
+Buttons can be created as different HTML elements such as `a`, `button`, or `input`. Set the `markup` prop to define the type of element.
+
+<Subheading>Sandbox</Subheading>
+<Canvas of="Sandbox"/>
+
+### Configuration
+You can customize the button with various props like `iconName`, `children`, `markup`, `disabled`, `loading`, `fullwidth`, `variant`, `id`, and `className`.
+
+<ArgsTable story={Sandbox.story} />
+<Stories />

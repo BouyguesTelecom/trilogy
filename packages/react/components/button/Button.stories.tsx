@@ -4,22 +4,32 @@ import { ButtonVariant } from './ButtonEnum'
 import { Button } from './index'
 import { Title, TitleLevels } from '../title'
 import { Spacer, SpacerSize } from '../../lib'
+import { IconName } from '../icon'
 
 const meta: Meta<typeof Button> = {
   component: ButtonList,
   subcomponents: { Button },
-  argTypes:{
-    variant: {
-      control: { type: 'inline-radio' },
-      options: [
-        ButtonVariant.PRIMARY,
+    argTypes: {
+      variant: {
+        control: { type: 'inline-radio' },
+        options: [
+          ButtonVariant.PRIMARY,
         ButtonVariant.SECONDARY,
         ButtonVariant.CONVERSION,
         ButtonVariant.GHOST,
       ],
     },
     iconName: {
-      control: { type: 'text' },
+      options:[
+        IconName.ALERT,
+        IconName.CHECK,
+        IconName.BELL,
+        IconName.EYE,
+        IconName.INFOS_CIRCLE,
+        IconName.SEARCH,
+        IconName.TRASH,
+      ],
+      control: { type: 'select' },
     },
     markup: {
       control: { type: 'select' },
@@ -89,13 +99,13 @@ export const Sandbox: Story = {
     </ButtonList>
   ),
   args:{
-    iconName: "tri-search",
+    iconName: "tri-bell",
     children: "Button",
     markup: "button",
     disabled: false,
     loading: false,
     fullwidth: false,
-    variant: ButtonVariant.PRIMARY,
+    variant: "SECONDARY",
     id: "button",
     className: "button-class",
   }
