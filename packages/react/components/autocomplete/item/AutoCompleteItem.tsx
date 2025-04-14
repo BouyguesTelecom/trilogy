@@ -1,10 +1,10 @@
-import clsx from 'clsx'
-import * as React from 'react'
-import { useTrilogyContext } from '@/context'
+import { Item } from '@/components/autocomplete/AutoCompleteProps'
+import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import { Item } from '../AutoCompleteProps'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
+import clsx from 'clsx'
+import React from 'react'
+import { useAutocompleteItem } from './hooks/useAutocompleteItem'
 
 /**
  * AutoCompleteItem Component
@@ -21,18 +21,17 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
   active,
   id,
 }: AutoCompleteItemProps<T>): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [isActive, setIsActive] = React.useState(false)
+  const { isActive, onMouseOut, onMouseOver } = useAutocompleteItem()
 
   return (
     <div
       id={id}
-      onMouseOver={() => setIsActive(true)}
-      onMouseOut={() => setIsActive(false)}
       role='listitem'
       data-testid={testId}
-      className={hashClass(styled, clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
-      onClick={() => (suggestionSelected ? suggestionSelected(item) : '')}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      className={hashClass(clsx('autocomplete-item', active && is('active'), isActive && is('active')))}
+      onClick={suggestionSelected ? () => suggestionSelected(item) : undefined}
     >
       {children}
     </div>

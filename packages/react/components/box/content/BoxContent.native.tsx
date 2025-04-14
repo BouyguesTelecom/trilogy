@@ -3,7 +3,7 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 
 /**
  * Box Content Component

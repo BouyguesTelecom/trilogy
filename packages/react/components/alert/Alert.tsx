@@ -1,16 +1,15 @@
+import { useToasterAlertProvider } from '@/components/alert/hooks/useAlert'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
-import ToasterContext from './context'
 
 /**
  * Toaster Component
@@ -66,28 +65,27 @@ const ToasterAlert = ({
   markup,
   ...others
 }: ToasterStatusProps) => {
-  const { styled } = useTrilogyContext()
-
   const positionStyles: CSSProperties = {
     position: 'fixed',
     ...(position === ToasterAlertPosition.BOTTOM ? { bottom: offset || 0 } : { top: offset || 0 }),
     ...(float === ToasterAlertFloat.RIGHT ? { right: offset || 0 } : { left: offset || 0 }),
   }
 
-  const classes = hashClass(
-    styled,
-    clsx('toaster', status && is(getStatusClassName(status)), !status && is('info'), className),
-  )
+  const classes = hashClass(clsx('toaster', status && is(getStatusClassName(status)), !status && is('info'), className))
 
   return title && display !== false ? (
     <div
       id={id}
       style={positionStyles}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-        e.stopPropagation()
-      }}
+      onClick={
+        onClick
+          ? (e) => {
+              // eslint-disable-next-line no-unused-expressions
+              onClick?.(e)
+              e.stopPropagation()
+            }
+          : undefined
+      }
       className={classes}
       data-testid={testId}
       {...others}
@@ -97,7 +95,7 @@ const ToasterAlert = ({
       ) : (
         <>
           {iconName && <Icon name={iconName} size={IconSize.SMALL} />}
-          <div className={hashClass(styled, clsx('body'))}>
+          <div className={hashClass(clsx('body'))}>
             {title && (
               <Title markup={markup} level={TitleLevels.SIX}>
                 {title}
@@ -134,10 +132,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
     { banner, status, className, id, iconName, title, description, onClick, display = true, markup, ...others },
     ref,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
     )
 
@@ -152,16 +147,20 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
         <div
           ref={ref}
           id={id}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={
+            onClick
+              ? (e) => {
+                  // eslint-disable-next-line no-unused-expressions
+                  onClick?.(e)
+                  e.stopPropagation()
+                }
+              : undefined
+          }
           className={classes}
           {...others}
         >
           <Icon name={iconAlert} />
-          <div className={hashClass(styled, clsx('body'))}>
+          <div className={hashClass(clsx('body'))}>
             {title && typeof title.valueOf() === 'string' ? (
               <Title markup={markup} level={TitleLevels.SIX}>
                 {title}
@@ -192,32 +191,10 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
  * @param others
  */
 export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
-  const [toasterState, setToasterState] = useState<ToasterStatusProps | null>(null)
-  const [duration, setDuration] = useState(5000)
-  const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const showToast = React.useCallback(
-    (params: ToasterStatusProps) => {
-      setToasterState(params)
-      params.onShow?.()
-      params.duration && params.duration > 0 && setDuration(params.duration)
-      timeRef.current && clearTimeout(timeRef.current)
-    },
-    [timeRef],
-  )
-
-  useEffect(() => {
-    timeRef.current = setTimeout(() => {
-      toasterState?.onHide?.()
-      setToasterState(null)
-    }, duration)
-    return () => {
-      timeRef.current && clearTimeout(timeRef.current)
-    }
-  }, [toasterState, toasterState?.title])
+  const { ToasterProvider, toasterState } = useToasterAlertProvider()
 
   return (
-    <ToasterContext.Provider value={{ show: showToast, hide: () => null }}>
+    <ToasterProvider>
       {children}
       {toasterState && (
         <ToasterAlert
@@ -238,7 +215,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
           markup={toasterState.markup}
         />
       )}
-    </ToasterContext.Provider>
+    </ToasterProvider>
   )
 }
 

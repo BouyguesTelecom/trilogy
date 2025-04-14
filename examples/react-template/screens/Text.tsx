@@ -30,7 +30,7 @@ export const TextScreen = (): JSX.Element => {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur at deleniti doloremque ea, earum explicabo
         illo inventore minima optio pariatur ratione similique suscipit vero. Accusamus dicta impedit laudantium neque
         nulla!
-        <Text link onClick={(e) => console.log(e)}>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur consequuntur dicta esse eum
           inventore, ipsum magnam minima modi nobis nulla placeat quas qui saepe voluptate voluptates voluptatibus.
           Doloribus, unde?

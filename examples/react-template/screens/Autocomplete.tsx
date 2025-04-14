@@ -7,7 +7,6 @@ import {
   Columns,
   Divider,
   IconName,
-  InputClickEvent,
   Item,
   Section,
   Text,
@@ -35,10 +34,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
   const onChange = (e) => {
     console.log('OnChange Autocomplete : ', e)
     setValue(e.inputValue)
-  }
-
-  const onIconClick = (e: InputClickEvent) => {
-    console.log('onIconClick Autocomplete : ', e)
   }
 
   return (
@@ -138,7 +133,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
           console.log('onItemSelected : ', e.value)
         }}
         onChange={onChange}
-        onIconClick={onIconClick}
         onFocus={(e) => console.log('FOCUS : ', e)}
         onBlur={(e) => console.log('BLUR : ', e)}
       />

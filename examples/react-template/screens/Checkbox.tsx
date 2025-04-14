@@ -17,6 +17,22 @@ import { Alignable } from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const CheckboxScreen = (): JSX.Element => {
+  const [checked, setChecked] = React.useState<string>()
+  const [checkedTile, setCheckedTile] = React.useState<string>()
+
+  const setId = (e: { checkboxValue: string; checkboxName: string; checkboxChecked: boolean; checkboxId: string }) => {
+    setChecked(e.checkboxId)
+  }
+
+  const setIdTile = (e: {
+    checkboxValue: string
+    checkboxName: string
+    checkboxChecked: boolean
+    checkboxId: string
+  }) => {
+    setCheckedTile(e.checkboxId)
+  }
+
   return (
     <Section>
       <Container>
@@ -62,6 +78,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 value='value2'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
+                onChange={setIdTile}
+                checked={checkedTile === 'tile-2'}
               />
               <CheckboxTile
                 id='tile-3'
@@ -69,6 +87,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 value='value3'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}
+                onChange={setIdTile}
+                checked={checkedTile === 'tile-3'}
               />
             </CheckboxTiles>
           </Column>
