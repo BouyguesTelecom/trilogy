@@ -224,13 +224,11 @@
   &.is-inverted,
   &.is-reversed {
     .card-image {
-      order: 1;
+      order: 2;
     }
-
-    &.is-horizontal {
-      .card-image {
-        order: 1;
-      }
+    
+    .card-content {
+      order: 1;
     }
   }
 }

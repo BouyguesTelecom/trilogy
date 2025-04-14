@@ -135,7 +135,7 @@ export const BoxScreen = (): JSX.Element => {
       <Box active={active} backgroundColor={TrilogyColor.MAIN} inverted>
         <BoxHeader>Box active</BoxHeader>
         <BoxContent>
-          <Text>Background : Main Color.</Text>
+          <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>Background : Main Color.</Text>
           <Price amount={100} />
         </BoxContent>
       </Box>

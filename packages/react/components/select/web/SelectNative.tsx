@@ -3,8 +3,9 @@ import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
 import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useSelectNative } from '@/components/select/web/hooks/useSelectNative'
+import { Text, TextMarkup } from '@/components/text'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has } from '@/services/classify'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -22,15 +23,15 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
       testId,
       label,
       iconName,
-      multiple,
       className,
       accessibilityLabel,
+      required,
       ...others
     },
     ref,
   ): JSX.Element => {
     const selectClasses = hashClass(clsx('select', className))
-    const controlClass = hashClass(clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left'))
+    const controlClass = hashClass(clsx('control', iconName && 'has-icons-left'))
 
     const { focused, selectedValues, handleFocus, handleBlur, handleChange } = useSelectNative({
       onBlur,
@@ -42,6 +43,16 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
     return (
       <div className={selectClasses}>
         <div className={hashClass(clsx('field', focused && 'focus'))}>
+          {label && (
+            <label className={hashClass('input-label')} htmlFor={id}>
+              {label}{' '}
+              {required && (
+                <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                  *
+                </Text>
+              )}
+            </label>
+          )}
           <div className={controlClass}>
             <select
               ref={ref as React.RefObject<HTMLSelectElement>}
@@ -67,7 +78,6 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
                 return <SelectOption {...props} />
               })}
             </select>
-            {label && !multiple && <label htmlFor={id}>{label}</label>}
             {iconName && <Icon name={iconName} size='small' />}
           </div>
         </div>

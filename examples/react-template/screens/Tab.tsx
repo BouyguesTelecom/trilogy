@@ -1,7 +1,10 @@
 import {
   Button,
+  Icon,
   IconName,
   Section,
+  Spacer,
+  SpacerSize,
   Tab,
   TabList,
   TabPanel,
@@ -9,8 +12,9 @@ import {
   Tabs,
   Title,
   TitleLevels,
+  View
 } from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
+import {Alignable} from '@trilogy-ds/react/objects'
 import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {
@@ -21,9 +25,9 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs>
         <TabList>
-          <Tab active={index === 0} label='Tab 1' iconName={IconName.ALERT} href='/hello' onClick={() => setIndex(0)} />
-          <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)} />
-          <Tab active={index === 2} label='Tab 3' iconName={IconName.ALERT} onClick={() => setIndex(2)} disabled />
+          <Tab active={index === 0} label='Tab 1' iconName={IconName.ALERT} href='/hello' onClick={() => setIndex(0)}/>
+          <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)}/>
+          <Tab active={index === 2} label='Tab 3' iconName={IconName.ALERT} onClick={() => setIndex(2)} disabled/>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -48,9 +52,9 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs>
         <TabList align={Alignable.ALIGNED_START}>
-          <Tab label='Tab 1' iconName={IconName.ALERT} />
-          <Tab label='Tab 2' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 1' iconName={IconName.ALERT}/>
+          <Tab label='Tab 2' iconName={IconName.ALERT}/>
+          <Tab label='Tab 3' iconName={IconName.ALERT}/>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -67,9 +71,9 @@ export const TabScreen = (): JSX.Element => {
 
       <Tabs>
         <TabList align={Alignable.ALIGNED_END}>
-          <Tab label='Tab 1' iconName={IconName.ALERT} />
-          <Tab label='Tab 2' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 1' iconName={IconName.ALERT}/>
+          <Tab label='Tab 2' iconName={IconName.ALERT}/>
+          <Tab label='Tab 3' iconName={IconName.ALERT}/>
         </TabList>
         <TabPanels>
           <TabPanel>

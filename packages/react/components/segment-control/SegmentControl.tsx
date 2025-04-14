@@ -15,12 +15,12 @@ import { SegmentControlProps, SegmentControlRef } from './SegmentControlProps'
  * @param disabled {boolean} disabled SegmentControl
  * @param marginless {boolean} delete margin
  * - -------------- WEB PROPERTIES ---------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
  * @param inverted {boolean} invert color SegmentControl
  */
 const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
-  ({ className, id, onClick, children, activeIndex, align }, ref): JSX.Element => {
+  ({ className, id, onClick, children, activeIndex, align, ...others }, ref): JSX.Element => {
     const { activateIndex, handleClick } = useSegmentControl({ activeIndex, onClick })
     const classes = hashClass(clsx('segmented-control', align && getJustifiedClassName(align), className))
 
@@ -34,7 +34,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
     }
 
     return (
-      <div ref={ref} id={id} className={classes}>
+      <div ref={ref} id={id} className={classes} {...others}>
         {children &&
           Array.isArray(children) &&
           children.map((child, index) => {

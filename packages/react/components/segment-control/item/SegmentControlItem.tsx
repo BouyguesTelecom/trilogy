@@ -13,10 +13,10 @@ import { useSegmentControlItem } from './hooks/useSegmentControlItem'
  * @param disabled {boolean} disable onClick on item
  * @param inverted {boolean} invert color of active item
  * - -------------- WEB PROPERTIES ---------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
-  ({ active, onClick, disabled, className, id, children }, ref): JSX.Element => {
+  ({ active, onClick, disabled, className, id, children, ...others }, ref): JSX.Element => {
     const { activeItem, handleClick } = useSegmentControlItem({ active, onClick })
 
     return (
@@ -27,6 +27,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
         disabled={disabled}
         className={hashClass(clsx('segmented-control-item', className, { 'is-active': activeItem }))}
         onClick={handleClick}
+        {...others}
       >
         {children}
       </button>

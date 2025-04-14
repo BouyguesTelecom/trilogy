@@ -9,7 +9,7 @@ export const initTabs = () => {
     'background-attachment: local, local, scroll, scroll;'
 
   const styledTabs = `
-    .tabs { 
+    .tabs {
         padding-right: 2rem;
     }
 `
@@ -96,7 +96,7 @@ export const initTabs = () => {
       tabContentToMakeActive.classList.add('is-active')
       tabContentToMakeActive.setAttribute('aria-expanded', 'true')
     }
-    
+
     tabContext.setAttribute(`data-tab-initialized`, 'true')
   }
 }

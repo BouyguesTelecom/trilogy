@@ -10,7 +10,24 @@ import { useSelectDynamic } from './hooks/useSelectDynamic'
 
 const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
-    { onChange, disabled, onFocus, onBlur, children, selected, name, id, label, iconName, multiple, className },
+    {
+      onChange,
+      disabled,
+      onFocus,
+      onBlur,
+      children,
+      selected,
+      name,
+      id,
+      label,
+      iconName,
+      multiple,
+      className,
+      required,
+      status,
+      placeholder,
+      ...others
+    },
     ref,
   ): JSX.Element => {
     const { selectedName, onClickInput, focused, modal, options, onKeyUp, onKeyPress } = useSelectDynamic({
@@ -24,19 +41,22 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     const optionsClasses = hashClass(clsx('select-options'))
 
     return (
-      <div className={selectClasses}>
+      <div className={selectClasses} {...others}>
         <Input
+          required={required}
+          status={status}
           ref={ref as React.RefObject<HTMLInputElement>}
           defaultValue={selectedName && selectedName.join(', ')}
           value={selectedName && selectedName.join(', ')}
           name={name}
           disabled={disabled}
-          placeholder={label}
+          label={label}
+          placeholder={placeholder}
           onFocus={onFocus}
           iconNameLeft={iconName}
           onBlur={onBlur}
           onClick={onClickInput}
-          className={hashClass(clsx(focused && 'focus'))}
+          className={hashClass(clsx('focus'))}
           {...{ readOnly: true, id, role: 'combobox' }}
           onKeyPress={onKeyPress}
           onKeyUp={onKeyUp}
