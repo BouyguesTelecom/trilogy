@@ -51,6 +51,7 @@ export interface ViewProps
   bottom?: boolean
   id?: string
   markup?: ViewMarkup | ViewMarkupValues
+  centerContent?: boolean
 }
 
 export type ViewRef = any
