@@ -24,6 +24,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param fullheight
+ * @param blank If href && blank : target Blank
  * @param others
  */
 const Box = React.forwardRef<BoxRef, BoxProps>(
@@ -36,6 +37,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       onClick,
       skeleton,
       href,
+      blank,
       backgroundColor,
       highlighted,
       shadowless,
@@ -80,6 +82,9 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         id={id}
         style={onClick && { ...hoverStyle }}
         href={href}
+        {...(href && blank && {
+          target: '_blank',
+        })}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
