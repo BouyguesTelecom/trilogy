@@ -51,6 +51,7 @@ const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNa
       onBlur,
       disabled,
       onIconClick,
+      ...others
     },
     ref,
   ): JSX.Element => {
@@ -136,6 +137,7 @@ const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNa
             onBlur={onBlur}
             disabled={disabled}
             onClick={onIconClick}
+            {...others}
           />
         </View>
         {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}
