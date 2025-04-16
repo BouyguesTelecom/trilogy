@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Accordion, AccordionBody, AccordionHeader } from './index'
 import AccordionItem from './item'
+import DefaultItem from './item/AccordionItem.stories'
+import DefaultBody from './item/body/AccordionBody.stories'
+import DefaultHeader from './item/header/AccordionHeader.stories'
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
@@ -10,37 +13,30 @@ export default meta;
 
 type Story = StoryObj<typeof Accordion>;
 
-const AccordionTemplate: Story = {
+export const Default: Story = {
   render: ({ ...args }) => {
     return (
-      <Accordion>
-        {args.map((arg) => (
-          <AccordionItem {...arg}>
-            <AccordionHeader>{arg.header}</AccordionHeader>
-            <AccordionBody>{arg.body}</AccordionBody>
-          </AccordionItem>
-        ))}
+      <Accordion {...args}>
+        <AccordionItem {...DefaultItem}>
+          <AccordionHeader {...DefaultHeader}/>
+          <AccordionBody {...DefaultBody}/>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionHeader>Header 2</AccordionHeader>
+          <AccordionBody>Body 2</AccordionBody>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionHeader>Header 3</AccordionHeader>
+          <AccordionBody>Body 3</AccordionBody>
+        </AccordionItem>
       </Accordion>
     );
   },
-};
-
-export const Default: Story = {
-  ...AccordionTemplate,
   args: {
-    items: [
-      {
-        header: 'Header 1',
-        body: 'Body 1',
-      },
-      {
-        header: 'Header 2',
-        body: 'Body 2',
-      },
-      {
-        header: 'Header 3',
-        body: 'Body 3',
-      },
-    ],
+    children: "Accordion",
+    className: undefined,
+    DefaultItem: DefaultItem.args,
+    DefaultBody: DefaultBody.args,
+    DefaultHeader: DefaultHeader.args
   },
 };
