@@ -149,7 +149,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <div className={hashClass(styled, clsx('control'))}>
+    <>
       <Input
         id={id}
         ref={ref}
@@ -198,7 +198,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
           )}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

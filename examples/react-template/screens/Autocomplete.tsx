@@ -50,6 +50,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
           <AutoComplete
             label='Label'
             sample='sample'
+            disabled
             required
             getSuggestions={async (search) => {
               const res = await fetch(`https://v3.sg.media-imdb.com/suggestion/x/${search}.json`)
