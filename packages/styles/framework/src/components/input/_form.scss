@@ -447,6 +447,9 @@ $label-weight: $weight-bold;
 
   &:has(input[disabled]), &:has(select[disabled]) {
     @include disabledRulesWithoutBG;
+    .icon {
+      color: getColor('disabled');    
+    }
   }
 }
 
