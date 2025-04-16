@@ -16,6 +16,10 @@ $status-select: (
       padding-left: 15px !important;
     }
 
+    &:disabled {
+      opacity: 1;
+    }
+
     @each $name in $status-select {
       $color: getColor($name);
       $color-invert: invertColor($name);
