@@ -16,8 +16,9 @@ $status-select: (
       padding-left: 15px !important;
     }
 
+    // to prevent user agent style
     &:disabled {
-      opacity: 1;
+      opacity: 1 !important;
     }
 
     @each $name in $status-select {
