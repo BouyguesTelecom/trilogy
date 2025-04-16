@@ -91,9 +91,14 @@
 
       &:disabled,
       &:disabled:checked {
-        & ~ label.#{$type}-label {
+        & ~ label.checkbox-label {
           &:after {
             background-color: getColor('disabled-fade');
+          }
+        }
+        & ~ label.radio-label {
+          &:after {
+            background-color: getColor('disabled');
           }
         }
       }
