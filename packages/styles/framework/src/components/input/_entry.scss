@@ -1,3 +1,13 @@
+.input, .textarea {
+  &:not(:disabled) {
+    &:active,
+    &:focus,
+    &:focus-visible:not(.icon) {
+      padding-left: 15px !important;
+    }
+  }
+}
+
 .input,
 .textarea {
   @include input;
@@ -17,12 +27,6 @@
     &.is-#{$brandName} {
       border: 1px solid $color;
     }
-  }
-
-  &:active,
-  &:focus,
-  &:focus-visible:not(.icon) {
-    padding-left: 15px !important;
   }
 
   // Sizes
@@ -87,7 +91,7 @@
     -webkit-appearance: none;
     background-repeat: no-repeat;
     background-color: getColor('background') ;
-    background-position: center;    
+    background-position: center;
   }
 
   &[type="search"] {

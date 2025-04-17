@@ -45,6 +45,7 @@ export const InputScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Title level={4}>Readonly input</Title>
       <Input
+        disabled
         value={'ReadOnly Input value with a long value to testing if is possible to navigate into the readOnly input'}
         label='ReadOnly input'
         help='ReadOnly input'
