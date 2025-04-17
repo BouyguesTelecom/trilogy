@@ -9,6 +9,7 @@ export const SelectView = (): JSX.Element => {
   const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
   const ref = React.useRef(null)
+  const [tags, setTags] = React.useState<string[] | []>([])
 
   React.useEffect(() => {
     console.log(ref.current)
@@ -23,6 +24,19 @@ export const SelectView = (): JSX.Element => {
   const onSubmit = (data) => console.log(data)
   return (
     <>
+      <Select
+        label={'Tags'}
+        multiple
+        selected={tags}
+        onChange={(e) => {
+          setTags(e.selectedOptions)
+        }}
+      >
+        <SelectOption value='Toto'>Toto label</SelectOption>
+        <SelectOption value='Tata'>Tata label</SelectOption>
+      </Select>
+      <pre>{JSON.stringify(tags, null, 2)}</pre>
+
       <Section>
         <Title>Custom select</Title>
         {!isMobile && (
@@ -96,16 +110,7 @@ export const SelectView = (): JSX.Element => {
         <Title level={TitleLevels.TWO}>Multiple options</Title>
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.FOUR}>Not nullable</Title>
-        <Select
-          multiple
-          name='option'
-          label='label'
-          id='id'
-          selected={options}
-          onChange={(e) => {
-            e?.selectedOptions && setOptions(e.selectedOptions)
-          }}
-        >
+        <Select multiple name='option' label='label' id='id'>
           <SelectOption id='id_one' value='opt_one' label='Virgile' />
           <SelectOption id='id_two' value='opt_two' label='Toto' />
           <SelectOption id='id_four' value='disabled' label='disabled' disabled />
