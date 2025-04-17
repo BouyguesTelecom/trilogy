@@ -14,7 +14,7 @@ import { SelectDynamic, SelectNative } from './web'
  */
 const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
   const [isVisibleOptions, setIsVisibleOptions] = React.useState<boolean>(false)
-  const [selectedOptions, setSelectedOptions] = React.useState<string[] | []>([])
+  const [selectedOptionValues, setSelectedOptionValues] = React.useState<string[] | []>([])
 
   React.useEffect(() => {
     const value = ['string', 'number'].includes(typeof selected)
@@ -23,7 +23,7 @@ const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props },
       ? []
       : selected
 
-    setSelectedOptions(value)
+    setSelectedOptionValues(value)
   }, [selected])
 
   if (props.custom || props.multiple)
@@ -32,9 +32,9 @@ const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props },
         value={{
           custom: props.custom || false,
           multiple: props.multiple || false,
-          selectedOptions,
+          selectedOptionValues,
           isVisibleOptions,
-          setSelectedOptions,
+          setSelectedOptionValues,
           setIsVisibleOptions,
           onChange: props.onChange,
         }}

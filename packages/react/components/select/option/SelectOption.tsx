@@ -26,14 +26,14 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
   ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
-    const { custom, selectedOptions, setSelectedOptions, multiple, setIsVisibleOptions, onChange } =
+    const { custom, selectedOptionValues, setSelectedOptionValues, multiple, setIsVisibleOptions, onChange } =
       React.useContext(SelectContext)
 
-    const isChecked = selectedOptions.includes(value)
+    const isChecked = selectedOptionValues.includes(value)
     const selectClasses = hashClass(styled, clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
 
     const handleClickOption = () => {
-      setSelectedOptions((prev: string[]) => {
+      setSelectedOptionValues((prev: string[]) => {
         const isInclude = prev.includes(value)
 
         const newOptionsSelected =
