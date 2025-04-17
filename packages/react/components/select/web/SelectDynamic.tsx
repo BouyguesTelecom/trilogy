@@ -37,7 +37,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     const optionsClasses = hashClass(styled, clsx('select-options'))
     const portalClasses = hashClass(styled, 'select-trilogy_modal_open')
 
-    const { setIsVisibleOptions, isVisibleOptions, selectedOptions } = useContext(SelectContext)
+    const { setIsVisibleOptions, isVisibleOptions, selectedOptionValues } = useContext(SelectContext)
 
     const onClickInput = () => {
       setIsVisibleOptions((prev) => !prev)
@@ -66,11 +66,11 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }, [])
 
     const labelsSelected = useMemo(() => {
-      return selectedOptions.map((selectedOption) => {
+      return selectedOptionValues.map((selectedOption) => {
         const elm = options?.find((opt) => opt.value === selectedOption)
         return elm?.label
       })
-    }, [selectedOptions, options])
+    }, [selectedOptionValues, options])
 
     return (
       <div className={selectClasses} {...others}>
