@@ -64,6 +64,9 @@ $status-select: (
           top: 50%;
           transform: translate(-50%, -50%);
           transition: transform 0.3s;
+          min-width: 20px;
+          min-height: 20px;
+          mask-size: 20px;
         }
       }
 
