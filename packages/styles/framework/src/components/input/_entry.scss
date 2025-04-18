@@ -1,9 +1,20 @@
-.input, .textarea {
+.input {
   &:not(:disabled) {
     &:active,
     &:focus,
     &:focus-visible:not(.icon) {
       padding-left: 15px !important;
+    }
+  }
+}
+
+.textarea {
+  &:not(:disabled) {
+    &:active,
+    &:focus,
+    &:focus-visible:not(.icon) {
+      padding-left: 49px !important;
+      padding-top: 15px;
     }
   }
 }
