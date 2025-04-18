@@ -6,6 +6,7 @@ import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { SelectContext } from '../context'
+import { SelectedValue } from '../SelectProps'
 import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
@@ -30,10 +31,11 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
       React.useContext(SelectContext)
 
     const isChecked = selectedOptionValues.includes(value)
+
     const selectClasses = hashClass(styled, clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
 
     const handleClickOption = () => {
-      setSelectedOptionValues((prev: string[]) => {
+      setSelectedOptionValues((prev: SelectedValue[]) => {
         const isInclude = prev.includes(value)
 
         const newOptionsSelected =
@@ -51,7 +53,7 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
             selectName: isInclude ? undefined : children || label,
             selectId: isInclude ? undefined : id,
             name: isInclude ? undefined : children || label,
-            selectedOptions: newOptionsSelected,
+            selectedOptions: newOptionsSelected as string[],
             target: undefined as unknown as EventTarget & HTMLSelectElement,
           })
         }

@@ -1,19 +1,23 @@
 import { isMobile, Spacer, SpacerSize, TitleLevels } from '@trilogy-ds/react'
-import { Button, Divider, IconName, Section, Select, SelectOption, Title } from '@trilogy-ds/react/components'
+import {
+  Box,
+  BoxContent,
+  Button,
+  IconName,
+  Section,
+  Select,
+  SelectOption,
+  Text,
+  Title,
+} from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 
 export const SelectView = (): JSX.Element => {
-  const [options, setOptions] = React.useState<string[]>(['opt_one', 'Venus'])
-  const [optionsNullable, setOptionsNullable] = React.useState<string[]>(['opt_one', 'opt_two'])
+  const [option4, setOption4] = React.useState<string>('opt_one')
+  const [options3, setOptions3] = React.useState<string[]>(['opt_one', 'opt_two'])
   const [option, setOption] = React.useState<string | undefined>('opt_two')
-  const [optionNullable, setOptionNullable] = React.useState<string | undefined>('opt_one')
-  const ref = React.useRef(null)
-  const [tags, setTags] = React.useState<string[] | []>([])
-
-  React.useEffect(() => {
-    console.log(ref.current)
-  }, [ref])
+  const [option2, setOption2] = React.useState<string | undefined>('opt_one')
 
   const POSTALCODE = [
     { code: '92300', name: 'City 1' },
@@ -24,177 +28,174 @@ export const SelectView = (): JSX.Element => {
   const onSubmit = (data) => console.log(data)
   return (
     <>
-      <Select
-        label={'Tags'}
-        multiple
-        selected={tags}
-        onChange={(e) => {
-          setTags(e.selectedOptions)
-        }}
-      >
-        <SelectOption value='Toto'>Toto label</SelectOption>
-        <SelectOption value='Tata'>Tata label</SelectOption>
-      </Select>
-      <pre>{JSON.stringify(tags, null, 2)}</pre>
-
       <Section>
-        <Title>Custom select</Title>
-        {!isMobile && (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Select label={'label'} {...register('gender')}>
-              {POSTALCODE.map((postalcode) => (
-                <SelectOption
-                  key={postalcode.code}
-                  value={postalcode.code}
-                  label={postalcode.code + ' - ' + postalcode.name}
-                />
-              ))}
+        <Title level={TitleLevels.THREE}>Select for react-hook-form</Title>
+        <Box flat>
+          <BoxContent>
+            {!isMobile && (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Select label={'label'} {...register('gender')}>
+                  {POSTALCODE.map((postalcode) => (
+                    <SelectOption
+                      key={postalcode.code}
+                      value={postalcode.code}
+                      label={postalcode.code + ' - ' + postalcode.name}
+                    />
+                  ))}
+                </Select>
+                <input type='submit' />
+              </form>
+            )}
+          </BoxContent>
+        </Box>
+
+        <Spacer size={SpacerSize.FOUR} />
+        <Title level={TitleLevels.THREE}>Select custom disabled</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              required
+              custom
+              disabled
+              name='option'
+              label='label'
+              id='id'
+              iconName={IconName.ALERT}
+              selected={'opt_two'}
+              onChange={(e) => {
+                setOption(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
+              <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
+              <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
+              <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
             </Select>
-            <input type='submit' />
-          </form>
-        )}
-
-        <Divider />
-        <Spacer size={SpacerSize.FOUR} />
-        <Title level={TitleLevels.TWO}>Unique option</Title>
-        <Spacer size={SpacerSize.FOUR} />
-        <Title level={TitleLevels.FOUR}>Not nullable</Title>
-        <Select
-          required
-          custom
-          disabled
-          name='option'
-          label='label'
-          id='id'
-          iconName={IconName.ALERT}
-          selected={option}
-          onChange={(e) => {
-            setOption(e.selectValue)
-          }}
-        >
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled iconName='tri-bell' />
-          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName='tri-bell' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' iconName='tri-bell' />
-          <SelectOption id='id_three' value='Venus' label='Venus' iconName='tri-bell' />
-        </Select>
-        <Button onClick={() => setOption('Venus')} variant='PRIMARY'>
-          Set value 3
-        </Button>
+          </BoxContent>
+        </Box>
         <Spacer size={SpacerSize.FOUR} />
 
-        <Title level={TitleLevels.FOUR}>nullable</Title>
-        <Select
-          required
-          custom
-          name='option'
-          label='label'
-          id='id'
-          selected={optionNullable}
-          onChange={(e) => {
-            setOptionNullable(e.selectValue)
-          }}
-        >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-        </Select>
-        <Button onClick={() => setOptionNullable(undefined)} variant='PRIMARY'>
-          Set Null
-        </Button>
-        <Button onClick={() => setOptionNullable('opt_one')} variant='PRIMARY'>
-          Set One
-        </Button>
+        <Title level={TitleLevels.THREE}>Select custom</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              placeholder='Select option'
+              required
+              custom
+              name='option'
+              label='label'
+              id='id'
+              selected={option2}
+              onChange={(e) => {
+                setOption2(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Virgile' />
+              <SelectOption id='id_four' value='opt_two' label='disabled' disabled />
+              <SelectOption id='id_two' value='opt_three' label='Toto' />
+              <SelectOption id='id_three' value='opt_four' label='Venus' />
+            </Select>
+            <Button onClick={() => setOption2(undefined)} variant='PRIMARY'>
+              Set Null
+            </Button>
+            <Button onClick={() => setOption2('opt_one')} variant='PRIMARY'>
+              Set One
+            </Button>
+            <Text>Selected value : {JSON.stringify(option2, null, 2)}</Text>
+          </BoxContent>
+        </Box>
         <Spacer size={SpacerSize.FOUR} />
 
-        <Title level={TitleLevels.TWO}>Multiple options</Title>
-        <Spacer size={SpacerSize.FOUR} />
-        <Title level={TitleLevels.FOUR}>Not nullable</Title>
-        <Select multiple name='option' label='label' id='id'>
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='Solar saint clair' label='SolarSaintClair' />
-        </Select>
-        <Button onClick={() => setOptions((prev) => [...prev, 'Venus'])} variant='PRIMARY'>
-          Set Venus
-        </Button>
+        <Title level={TitleLevels.THREE}>Multiple options not controled</Title>
+        <Box flat>
+          <BoxContent>
+            <Select multiple name='option' label='label' id='id' placeholder='Select value'>
+              <SelectOption id='id_one' value='opt_one' label='Virgile' />
+              <SelectOption id='id_two' value='opt_two' label='Toto' />
+              <SelectOption id='id_three' value='opt_three' label='disabled' disabled />
+              <SelectOption id='id_four' value='opt_four' label='Venus' />
+              <SelectOption id='id_five' value='opt_five' label='Solar' />
+            </Select>
+          </BoxContent>
+        </Box>
 
         <Spacer size={SpacerSize.FOUR} />
-        <Title level={TitleLevels.FOUR}>nullable</Title>
-        <Select
-          multiple
-          name='option'
-          id='id'
-          iconName={IconName.ALERT}
-          selected={optionsNullable}
-          onChange={(e) => {
-            e?.selectedOptions && setOptionsNullable(e.selectedOptions)
-          }}
-        >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' iconName={IconName.EYE_SLASH} />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-        </Select>
-        <Button onClick={() => setOptionsNullable([])} variant='PRIMARY'>
-          Set Null
-        </Button>
-        <Button onClick={() => setOptionsNullable(['opt_one', 'opt_two'])} variant='PRIMARY'>
-          Set one & two
-        </Button>
-      </Section>
 
-      <Section>
-        <Title>Native select {'(web)'}</Title>
-        <Divider />
-        <Spacer size={SpacerSize.FOUR} />
-        <Title level={TitleLevels.FOUR}>Not icon</Title>
-        <Select
-          status='error'
-          name='option'
-          label='label'
-          id='select-native-id'
-          selected={option}
-          onChange={(e) => {
-            e?.selectValue && setOption(e.selectValue)
-          }}
-        >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption
-            id='id_five'
-            value='Solar saint clair plutonium enigmus'
-            label='Solar saint clair plutonium enigmus'
-          />
-        </Select>
+        <Title level={TitleLevels.THREE}>Multiple options controled</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              multiple
+              name='option'
+              id='id'
+              iconName={IconName.ALERT}
+              selected={options3}
+              onChange={(e) => {
+                setOptions3(e?.selectedOptions || [])
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Virgile' iconName={IconName.EYE_SLASH} />
+              <SelectOption id='id_two' value='opt_two' label='Toto' />
+              <SelectOption id='id_three' value='opt_three' label='Venus' />
+              <SelectOption id='id_four' value='opt_four' label='disabled' disabled />
+            </Select>
+            <Button onClick={() => setOptions3([])} variant='PRIMARY'>
+              Set empty
+            </Button>
+            <Button onClick={() => setOptions3(['opt_one', 'opt_two'])} variant='PRIMARY'>
+              Set one & two
+            </Button>
+            <Text>Selected value : {JSON.stringify(options3, null, 2)}</Text>
+          </BoxContent>
+        </Box>
 
-        <Title level={TitleLevels.FOUR}>With icon</Title>
-        <Select
-          required
-          status='success'
-          iconName='tri-alert'
-          name='option'
-          label='label'
-          id='select-native-id'
-          selected={option}
-          onChange={(e) => {
-            e?.selectValue && setOption(e.selectValue)
-          }}
-        >
-          <SelectOption id='id_one' value='opt_one' label='Virgile' />
-          <SelectOption id='id_two' value='opt_two' label='Toto' />
-          <SelectOption id='id_three' value='Venus' label='Venus' />
-          <SelectOption id='id_four' value='disabled' label='disabled' disabled />
-          <SelectOption
-            id='id_five'
-            value='Solar saint clair plutonium enigmus'
-            label='Solar saint clair plutonium enigmus'
-          />
-        </Select>
+        <Title level={TitleLevels.THREE}>Select native without icon</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              status='error'
+              name='option'
+              label='label'
+              id='select-native-id'
+              selected={option}
+              onChange={(e) => {
+                e?.selectValue && setOption(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Virgile' />
+              <SelectOption id='id_two' value='opt_two' label='Toto' />
+              <SelectOption id='id_three' value='opt_three' label='Venus' />
+              <SelectOption id='id_four' value='opt_four' label='disabled' disabled />
+              <SelectOption id='id_five' value='opt_five' label='Solar saint' />
+            </Select>
+            <Text>Selected value : {JSON.stringify(option, null, 2)}</Text>
+          </BoxContent>
+        </Box>
+
+        <Title level={TitleLevels.THREE}>Select native with icon</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              required
+              status='success'
+              iconName='tri-alert'
+              name='option'
+              label='label'
+              id='select-native-id'
+              selected={option4}
+              onChange={(e) => {
+                e?.selectValue && setOption4(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Virgile' />
+              <SelectOption id='id_two' value='opt_two' label='Toto' />
+              <SelectOption id='id_three' value='opt_three' label='Venus' />
+              <SelectOption id='id_four' value='opt_four' label='disabled' disabled />
+              <SelectOption id='id_five' value='opt_five' label='Solar saint' />
+            </Select>
+            <Text>Selected value : {JSON.stringify(option4, null, 2)}</Text>
+          </BoxContent>
+        </Box>
       </Section>
     </>
   )

@@ -33,19 +33,14 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const { setIsVisibleOptions, isVisibleOptions, selectedOptionValues } = useContext(SelectContext)
+
     const selectClasses = hashClass(styled, clsx('select', className))
     const optionsClasses = hashClass(styled, clsx('select-options'))
     const portalClasses = hashClass(styled, 'select-trilogy_modal_open')
 
-    const { setIsVisibleOptions, isVisibleOptions, selectedOptionValues } = useContext(SelectContext)
-
-    const onClickInput = () => {
-      setIsVisibleOptions((prev) => !prev)
-    }
-
-    const onCloseOptions = () => {
-      setIsVisibleOptions(false)
-    }
+    const onClickInput = () => setIsVisibleOptions((prev) => !prev)
+    const onCloseOptions = () => setIsVisibleOptions(false)
 
     const onKeyPressInput = (keyCode: number) => {
       setIsVisibleOptions((prev) => {
