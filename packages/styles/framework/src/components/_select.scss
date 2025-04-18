@@ -16,6 +16,11 @@ $status-select: (
       padding-left: 15px !important;
     }
 
+    // to prevent user agent style
+    &:disabled {
+      opacity: 1 !important;
+    }
+
     @each $name in $status-select {
       $color: getColor($name);
       $color-invert: invertColor($name);
@@ -59,6 +64,9 @@ $status-select: (
           top: 50%;
           transform: translate(-50%, -50%);
           transition: transform 0.3s;
+          min-width: 20px;
+          min-height: 20px;
+          mask-size: 20px;
         }
       }
 
