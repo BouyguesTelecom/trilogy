@@ -92,6 +92,7 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
         disabled={disabled}
         aria-label={label}
         data-testid={testId}
+        onClick={onClick}
         {...others}
       >
         {children || label}
