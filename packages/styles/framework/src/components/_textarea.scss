@@ -1,7 +1,4 @@
-.textarea-wrapper {
-  display: inline;
-  position: relative;
-  margin: 16px 0;
+.field {
 
   .textarea-label {
     display: inline-block;
@@ -17,84 +14,14 @@
     border-radius: var(--radius-small);
     outline: none;
 
-    &:focus,
-    &:focus-visible {
-      padding: 15px;
-    }
-
-    &::placeholder {
+    &::placeholder, label {
       font-size: 16px;
     }
-
-    &.has-dynamic-label {
-      &.has-icon ~ label {
-        left: $spacing-9;
-        margin-right: 2px;
-        width: calc(100% - 98px);
-      }
-
-      ~ label {
-        visibility: visible;
-        position: absolute;
-        top: 2px;
-        left: $spacing-4;
-        padding-top: $spacing-2;
-        width: calc(100% - 28px - 2px);
-        font-size: 12px;
-        color: getColor('font');
-        filter: grayscale(100%);
-        transition: top 0.2s ease-out;
-      }
-
-      &:placeholder-shown {
-        ~ label {
-          visibility: hidden;
-          top: $spacing-4;
-          background-color: getColor('background');
-          transition: none;
-        }
-      }
-
-      &:not(:placeholder-shown) {
-        padding-top: $spacing-5;
-      }
-    }
-
-    &.has-icon {
-      padding-left: $spacing-9;
-      padding-right: $spacing-9;
-
-      &:focus,
-      &:focus-visible {
-        padding-left: 55px !important;
-        padding-right: 55px;
-      }
-    }
   }
 
-  label {
-    font-size: 16px;
-  }
-
-   .textarea-label + .textarea-sample ~ span.icon {
-    top: 72px !important;
-  }
-
-  .textarea-label ~ span.icon {
-    top: 45px !important;
-  }
-
-  span.icon {
-    position: absolute;
-    top: $spacing-4;
-
-    &:first-of-type {
-      left: $spacing-4;
-    }
-
-    &:nth-of-type(2) {
-      right: $spacing-4;
-    }
+  .icon {
+    align-items: flex-start !important;
+    padding-top: 18px !important;
   }
 
   // Colors
@@ -105,14 +32,6 @@
     &.is-#{$brandName} {
       textarea.textarea {
         border-color: $color;
-
-        &:active,
-        &:focus,
-        &:focus-visible {
-          &:not(:placeholder-shown) {
-            padding-top: 29px;
-          }
-        }
       }
 
       span.icon:nth-of-type(2) {

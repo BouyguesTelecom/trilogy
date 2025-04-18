@@ -291,6 +291,7 @@ $label-weight: $weight-bold;
 
   &.has-icons-right {
     .input,
+    .textarea,
     .select select {
       padding-right: 45px;
     }
@@ -445,7 +446,7 @@ $label-weight: $weight-bold;
     }
   }
 
-  &:has(input[disabled]), &:has(select[disabled]) {
+  &:has(input[disabled]), &:has(select[disabled]), &:has(textarea[disabled]) {
     @include disabledRulesWithoutBG;
     .icon {
       color: getColor('disabled');    
