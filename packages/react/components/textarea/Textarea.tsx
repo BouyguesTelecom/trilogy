@@ -65,7 +65,7 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
       setValue(defaultValue || '')
     }, [defaultValue])
 
-    const wrapperClasses = hashClass(styled, clsx('field', className, status && is(status)))
+    const wrapperClasses = hashClass(styled, clsx('field textarea-wrapper', className, status && is(status)))
     const classes = hashClass(styled, clsx('textarea'))
     const helpClasses = clsx('help', status && is(status))
     const counterClasses = hashClass(styled, clsx('counter', maxLength))
