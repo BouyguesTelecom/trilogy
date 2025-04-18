@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { ComponentName } from '../enumsComponentsName'
 import { SelectContext } from './context'
-import { SelectProps, SelectRef } from './SelectProps'
+import { SelectedValue, SelectProps, SelectRef } from './SelectProps'
 import { SelectDynamic, SelectNative } from './web'
 
 /**
@@ -14,14 +14,15 @@ import { SelectDynamic, SelectNative } from './web'
  */
 const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
   const [isVisibleOptions, setIsVisibleOptions] = React.useState<boolean>(false)
-  const [selectedOptionValues, setSelectedOptionValues] = React.useState<string[] | []>([])
+  const [selectedOptionValues, setSelectedOptionValues] = React.useState<SelectedValue[] | []>([])
 
   React.useEffect(() => {
-    const value = ['string', 'number'].includes(typeof selected)
-      ? [selected]
-      : !selected || selected === null
-      ? []
-      : selected
+    const value =
+      typeof selected === 'string' || typeof selected === 'number'
+        ? [selected]
+        : !selected || selected === null
+        ? []
+        : selected
 
     setSelectedOptionValues(value)
   }, [selected])
