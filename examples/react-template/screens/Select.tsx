@@ -168,6 +168,9 @@ export const SelectView = (): JSX.Element => {
               <SelectOption id='id_four' value='opt_four' label='disabled' disabled />
               <SelectOption id='id_five' value='opt_five' label='Solar saint' />
             </Select>
+            <Button onClick={() => setOption('opt_five')} variant='PRIMARY'>
+              Set Five
+            </Button>
             <Text>Selected value : {JSON.stringify(option, null, 2)}</Text>
           </BoxContent>
         </Box>
