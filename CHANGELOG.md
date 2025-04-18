@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix autocomplete native
 - Update stroke color in components
 - Add blank props for Box with markup type link
+- Fix Select multiple
+- Fix Input disabled style 
+- Fix Radio disabled style
+- Fix Select disabled style
+- Fix Autocomplete style
 
 
 ## [4.3.0] - 2025-04-14
