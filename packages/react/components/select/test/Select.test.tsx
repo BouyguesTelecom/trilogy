@@ -110,6 +110,6 @@ describe('SELECT NATIVE WEB', () => {
       </Select>,
     )
     const select = getByTestId('testId')
-    expect(select.parentElement?.firstChild?.nextSibling?.nextSibling?.firstChild).toHaveClass('tri-advisor')
+    expect(select.parentElement?.firstChild?.nextSibling?.firstChild).toHaveClass('tri-advisor')
   })
 })

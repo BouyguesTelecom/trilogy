@@ -22,6 +22,7 @@ export default defineConfig({
     postcss: {},
     preprocessorOptions: {
       scss: {
+        silenceDeprecations: ['import', 'legacy-js-api', 'mixed-decls', 'global-builtin' ],
         additionalData: `@use './framework/src/all' as *;`,
         sassOptions: {
           includePaths: ['./themes'],

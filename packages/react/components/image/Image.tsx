@@ -4,7 +4,8 @@ import { getJustifiedClassName } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ImageProps } from './ImageProps'
+import { ImageProps, ImageRef } from './ImageProps'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Image Component
@@ -17,7 +18,7 @@ import { ImageProps } from './ImageProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */
-const Image = ({
+const Image = React.forwardRef<ImageRef, ImageProps>(({
   src,
   alt = '',
   className,
@@ -29,7 +30,7 @@ const Image = ({
   radius,
   align,
   ...others
-}: ImageProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
 
@@ -43,6 +44,7 @@ const Image = ({
 
   return (
     <figure
+      ref={ref}
       id={id}
       onClick={(e) => {
         onClick?.(e)
@@ -59,6 +61,7 @@ const Image = ({
       />
     </figure>
   )
-}
+})
 
+Image.displayName = ComponentName.Image
 export default Image

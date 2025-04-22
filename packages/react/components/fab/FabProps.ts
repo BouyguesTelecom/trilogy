@@ -1,6 +1,6 @@
 import { IconName, IconNameValues } from "../../components/icon"
 import { Accessibility, Clickable, Dev } from "../../objects"
-import { DimensionValue } from "react-native"
+import { DimensionValue, type TouchableOpacity } from "react-native"
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
@@ -17,3 +17,6 @@ export interface FabProps extends Accessibility, Clickable, Dev, CommonProps {
   right?: DimensionValue | number | undefined;
   disabled?: boolean;
 }
+
+export type FabRef = HTMLButtonElement
+export type FabNativeRef = TouchableOpacity

@@ -7,9 +7,8 @@ import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/Inpu
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import type { View } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
-import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
+import { AutoCompletePropsWeb, AutocompleteRef, Item } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteItem from './item'
 import AutoCompleteMenu from './menu'
@@ -29,7 +28,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     onChange,
     name,
     matching = defaultMatching,
-    displayMenu = true,
+    displayMenu,
     onItemSelected,
     iconNameLeft,
     iconNameRight,
@@ -42,6 +41,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     onFocus,
     id,
     loading,
+    ...others
   }: AutoCompletePropsWeb<T>,
   ref: React.Ref<HTMLInputElement>,
 ): JSX.Element => {
@@ -84,6 +84,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         inputValue: e.inputValue,
         inputSelectionStart: null,
         target: e.target,
+        event: e,
       })
     }
 
@@ -148,7 +149,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <div className={hashClass(styled, clsx('control'))}>
+    <>
       <Input
         id={id}
         ref={ref}
@@ -176,6 +177,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         }}
         onIconClick={onIconClick}
         loading={loading}
+        {...others}
       />
 
       {isAutocompleteMenuVisible && (
@@ -196,8 +198,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
           )}
         </div>
       )}
-      <div />
-    </div>
+    </>
   )
 }
 
@@ -233,7 +234,7 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param loading {boolean} Loading input
  */
 const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
-  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<HTMLInputElement | View> },
+  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
 ) => JSX.Element
 
 export default AutoComplete

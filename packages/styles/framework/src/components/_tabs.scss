@@ -11,14 +11,12 @@
   overflow: -moz-scrollbars-none !important;
   -ms-overflow-style: none !important;
   scrollbar-width: none;
-
-  @include mobile {
-    text-align: left;
-  }
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     width: 0 !important;
     height: 0 !important;
+    scrollbar-width: none !important;
   }
 
   &.is-inverted {
@@ -52,11 +50,18 @@
   }
 
   .tab-list {
+    &::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      scrollbar-width: none !important;
+    }
+
     background-color: transparent;
     height: 48px;
     overflow-x: auto;
     white-space: nowrap;
     display: inline-flex;
+    overflow-y: hidden;
 
     &.is-fullwidth {
       @include desktop {

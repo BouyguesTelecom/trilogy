@@ -1,0 +1,54 @@
+.field {
+
+  .has-icons-left {
+    input {
+      padding-left: 45px;
+
+      &:active,
+      &:focus,
+      &:focus-visible:not(.has-icons-left):not(disabled) {
+        padding-left: 44px !important;
+      }
+
+      label {
+        left: 45px;
+      }
+      .icon-left {
+        position: absolute;
+        height: 100%;
+        width: 45px;
+        left: 0;
+        i {
+          font-size: 20px;
+        }
+      }
+
+
+    }
+  }
+  .has-icons-right {
+    .icon-right, button[data-show-pwd]{
+      position: absolute;
+      height: 100%;
+      width: 45px;
+      z-index: 10;
+      right: 0;
+      left: auto;
+
+      i {
+        font-size: 20px;
+      }
+    }
+
+    button[data-show-pwd]{
+      background-color: transparent;
+      border:none;
+      border-top-right-radius: $radius-small ;
+      border-bottom-right-radius: $radius-small ;
+      &:focus-visible{
+        outline: var(--border-active);
+        outline-offset: -2px;
+      }
+    }
+  }
+}

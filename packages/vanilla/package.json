@@ -1,24 +1,26 @@
 {
   "name": "@trilogy-ds/vanilla",
-  "version": "0.0.1-beta.23",
+  "version": "4.2.0",
   "author": "Bouygues Telecom",
   "main": "lib/trilogy-ds-vanilla.js",
   "scripts": {
     "start": "webpack --watch",
-    "build": "vite --config vite.config.js build"
+    "build": "rimraf ./lib && vite --config vite.config.js build",
+    "serve": "npm run build && npx http-server -p 8090 ./lib"
   },
   "repository": {
     "type": "git"
   },
   "license": "ISC",
-  "dependencies": {
-    "@storybook/builder-webpack5": "8.1.10",
-    "eslint": "^9.5.0",
-    "fork-ts-checker-webpack-plugin": "^6.1.0",
-    "rimraf": "^3.0.2",
+  "devDependencies": {
+    "http-server": "^14.1.1",
     "ts-loader": "^8.0.17",
     "typescript": "^4.1.5",
     "vite": "^4.5.2",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite-tsconfig-paths": "^4.3.1",
+    "@storybook/builder-webpack5": "8.1.10",
+    "eslint": "^9.5.0",
+    "fork-ts-checker-webpack-plugin": "^6.1.0",
+    "rimraf": "^3.0.2"
   }
 }

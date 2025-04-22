@@ -1,8 +1,9 @@
-import { Accessibility } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
 import React from 'react'
+import { TouchableOpacity } from 'react-native'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { CommonProps } from '../../objects/facets/CommonProps'
 
-type CheckboxChangeEventHandler = (event: {
+export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
   checkboxName: string
   checkboxChecked: boolean
@@ -13,7 +14,7 @@ type CheckboxChangeEventHandler = (event: {
  * Checkbox Interface
  */
 export type CheckboxProps = Pick<CheckboxPropsPossibilities, keyof CheckboxPropsPossibilities>
-type CheckboxPropsPossibilities = CheckboxWithLabel | CheckboxWithChildren;
+type CheckboxPropsPossibilities = CheckboxWithLabel | CheckboxWithChildren
 
 interface CheckboxCommonProps extends Accessibility, CommonProps {
   checked?: boolean
@@ -22,6 +23,7 @@ interface CheckboxCommonProps extends Accessibility, CommonProps {
   onChange?: CheckboxChangeEventHandler
   name?: string
   value?: string
+  required?: boolean
 }
 
 interface CheckboxWithLabel extends CheckboxCommonProps {
@@ -33,3 +35,6 @@ interface CheckboxWithChildren extends CheckboxCommonProps {
   children: React.ReactNode
   label?: never
 }
+
+export type CheckboxRef = HTMLDivElement
+export type CheckboxNativeRef = TouchableOpacity

@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-import { SelectProps } from './SelectProps'
+import { ComponentName } from '../enumsComponentsName'
+import { SelectContext } from './context'
+import { SelectedValue, SelectProps, SelectRef } from './SelectProps'
 import { SelectDynamic, SelectNative } from './web'
 
 /**
@@ -10,9 +12,39 @@ import { SelectDynamic, SelectNative } from './web'
  * @param custom {boolean} Display native-old select web
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Select = ({ custom, multiple, ...props }: SelectProps): JSX.Element => {
-  if (custom || multiple) return <SelectDynamic {...props} multiple={multiple} />
-  return <SelectNative {...props} />
-}
+const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
+  const [isVisibleOptions, setIsVisibleOptions] = React.useState<boolean>(false)
+  const [selectedOptionValues, setSelectedOptionValues] = React.useState<SelectedValue[] | []>([])
 
+  React.useEffect(() => {
+    const value =
+      typeof selected === 'string' || typeof selected === 'number'
+        ? [selected]
+        : !selected || selected === null
+        ? []
+        : selected
+
+    setSelectedOptionValues(value)
+  }, [selected])
+
+  if (props.custom || props.multiple)
+    return (
+      <SelectContext.Provider
+        value={{
+          custom: props.custom || false,
+          multiple: props.multiple || false,
+          selectedOptionValues,
+          isVisibleOptions,
+          setSelectedOptionValues,
+          setIsVisibleOptions,
+          onChange: props.onChange,
+        }}
+      >
+        <SelectDynamic ref={ref} selected={selected} {...props} />
+      </SelectContext.Provider>
+    )
+  return <SelectNative ref={ref} selected={selected} {...props} />
+})
+
+Select.displayName = ComponentName.Select
 export default Select

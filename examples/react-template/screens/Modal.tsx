@@ -1,6 +1,15 @@
+import { IconColor, isMobile } from '@trilogy-ds/react'
+
 import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
   Button,
+  ButtonList,
   ButtonVariant,
+  Column,
+  Columns,
   Divider,
   Icon,
   IconName,
@@ -14,16 +23,20 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
+import { useTrilogyContext } from '@trilogy-ds/react/context'
 import * as React from 'react'
 import { useState } from 'react'
-function Buttons() {
-  return null
-}
 
 export const ModalScreen = (): JSX.Element => {
+  const { hash } = useTrilogyContext()
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
   const [openModal3, setOpenModal3] = useState(false)
+
+  function AccessibilityElm() {
+    if (isMobile) return <></>
+    return <span className={`sr-only${hash ? '_' + hash : ''}`}>Menu</span>
+  }
   return (
     <>
       <Section>
@@ -43,67 +56,68 @@ export const ModalScreen = (): JSX.Element => {
         >
           <ModalBody>
             <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
+
             <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
-            <Text>Modal content</Text>
+            <Accordion id='accordion-1'>
+              <AccordionItem id='ONE' open>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 1</Title>
+                </AccordionHeader>
+                <AccordionBody data-id='totooooo-test-id'>
+                  <Columns>
+                    <Column>
+                      <Text>Accordion Body 1</Text>
+                    </Column>
+                  </Columns>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem id='TWO'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 2</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 2</Text>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem id='THREE'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 3</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 3</Text>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem disabled id='FOUR'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 4</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 4</Text>
+                </AccordionBody>
+              </AccordionItem>
+            </Accordion>
           </ModalBody>
           <ModalFooter>
-            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
-              Close
-            </Button>
+            <ButtonList>
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpenModal1(false)}>
+                Fermer
+              </Button>
+              <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
+                Ajouter
+              </Button>
+            </ButtonList>
           </ModalFooter>
         </Modal>
         <Divider />
 
         <Modal
           title='Hello'
-          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal2(true)} />}
+          trigger={
+            <Button onClick={() => setOpenModal2(true)}>
+              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
+              <AccessibilityElm />
+            </Button>
+          }
           active={openModal2}
           onClose={() => setOpenModal2(false)}
         >
@@ -120,7 +134,12 @@ export const ModalScreen = (): JSX.Element => {
 
         <Modal
           title='Hello'
-          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal3(true)} />}
+          trigger={
+            <Button onClick={() => setOpenModal3(true)}>
+              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
+              <AccessibilityElm />
+            </Button>
+          }
           active={openModal3}
           onClose={() => setOpenModal3(false)}
           panel

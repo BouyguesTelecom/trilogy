@@ -1,0 +1,281 @@
+@use "sass:string";
+@import "../initial-variables";
+
+@mixin center($width, $height: 0) {
+  position: absolute;
+
+  @if $height != 0 {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$height} / 2));
+  } @else {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$width} / 2));
+  }
+}
+
+@mixin label-states {
+  &:focus,
+  &:active,
+  &:hover {
+    @include hover();
+  }
+}
+
+// import sass bulma
+@mixin input {
+  @include control;
+  height: 56px;
+  background-color: getColor('background');
+  border: var(--border);
+  color: getColor('font');
+
+  @include placeholder {
+    color: getColor('font') !important;
+    filter: grayscale(100%);
+    opacity: 1 !important;
+    transition: all 0.2s ease-out;
+  }
+
+  @include hover();
+}
+
+@mixin checkbox-and-radio($type) {
+  //TILES WRAPPER
+  .#{$type}-tiles {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  //BOTH
+  .#{$type},
+  .#{$type}-tile {
+    position: relative;
+
+    label.#{$type}-label {
+      cursor: pointer;
+      font-size: 14px;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+      }
+
+      &:before {
+        border: var(--border);
+      }
+    }
+
+    input {
+      opacity: 0;
+      position: absolute;
+      outline: none;
+
+      &:checked ~ label.#{$type}-label {
+        border-color: getColor('main');
+
+        &:before {
+          border-color: getColor('main');
+        }
+
+        &:after {
+          background-color: getColor('main');
+        }
+      }
+      &:focus-visible ~ label.#{$type}-label:before {
+        outline: 1px solid;
+      }
+
+      &:disabled,
+      &:disabled:checked {
+        & ~ label.checkbox-label {
+          &:after {
+            background-color: getColor('disabled-fade');
+          }
+        }
+        & ~ label.radio-label {
+          &:after {
+            background-color: getColor('disabled');
+          }
+        }
+      }
+
+      &:disabled {
+        & ~ label.#{$type}-label {
+          &:after {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  // SIMPLE WITH LABEL ONLY
+  .#{$type} {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRulesWithoutBG;
+      }
+    }
+
+    label.#{$type}-label {
+      padding-left: 30px;
+
+      &:before,
+      &:after {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+      }
+    }
+
+    &:hover &:not(disabled) {
+      label.#{$type}-label {
+        &:before {
+          @include hoverRules();
+        }
+      }
+    }
+
+    &:focus {
+      border: 2px;
+      border-color: getColor('main');
+    }
+  }
+
+  //TILE ONLY
+  .#{$type}-tile {
+    position: relative;
+    max-width: 160px;
+    display: inline-block;
+    text-align: center;
+
+    input:disabled,
+    input:disabled:checked {
+      & ~ label.#{$type}-label {
+        @include disabledRules;
+      }
+    }
+    &:has(input:focus-visible) label.#{$type}-label{
+      outline:  1px solid;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    label.#{$type}-label {
+      display: block;
+      position: relative;
+      padding: 40px 16px 16px;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-sizing: border-box;
+      background-color: getColor('background');
+
+      &:before {
+        top: 16px;
+        right: 16px;
+      }
+
+      span.#{$type}-title {
+        font-weight: bold;
+        width: 100%;
+        display: block;
+        font-size: 16px;
+      }
+    }
+
+    input {
+      &:not(:disabled):not(:checked) ~ label.radio-label {
+        @include label-states;
+      }
+
+      &:not(:disabled) ~ label.checkbox-label {
+        @include label-states;
+      }
+
+      &:checked:not(:disabled) ~ label.#{$type}-label {
+        border-color: getColor('main');
+        border-width: 2px;
+        padding: 15px;
+        padding-top: 39px;
+
+        &:before {
+          top: 15px;
+          right: 15px;
+        }
+
+        span.#{$type}-title {
+          color: getColor('main');
+        }
+      }
+
+      &:disabled {
+        & ~ label.#{$type}-label {
+          &:before {
+            border-color: getColor('disabled') !important;
+          }
+        }
+      }
+
+      &:disabled:checked ~ label.#{$type}-label {
+        .checkbox-title {
+          color: getColor('disabled');
+        }
+      }
+    }
+
+    &.is-horizontal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: unset;
+      width: 100%;
+      position: relative;
+
+      &.is-narrow {
+        width: fit-content;
+      }
+
+      input {
+        &:checked:not(:disabled) ~ label.#{$type}-label {
+          padding: 15px;
+          padding-right: 47px;
+        }
+
+      }
+
+      label.#{$type}-label {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 16px 48px 16px 16px;
+
+        &:before,
+        &:after {
+          top: 50% !important;
+          transform: translateY(-50%);
+        }
+      }
+
+      .icon {
+        margin-right: 16px;
+      }
+    }
+  }
+}

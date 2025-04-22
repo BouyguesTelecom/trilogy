@@ -1,6 +1,7 @@
-import { Accessibility, StatusProps } from '@/objects'
-import { IconName, IconNameValues } from '@/components/icon'
 import { ToasterAlertPosition } from '@/components/alert/AlertProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility, StatusProps } from '@/objects'
+import { AlertMarkup, AlertMarkupValues } from '../AlertEnum'
 
 /**
  * @param title {string} Notification title content
@@ -19,6 +20,7 @@ export interface ToastProps extends StatusProps, Accessibility {
   onClick?: () => void
   closable?: () => void
   onHide?: () => void
+  markup?: AlertMarkup | AlertMarkupValues
 }
 
 interface ToastConfig {

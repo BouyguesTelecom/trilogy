@@ -1,19 +1,22 @@
 {
   "name": "trilogy-ds",
-  "version": "0.0.1-beta.78",
+  "version": "4.2.0",
   "private": true,
   "license": "UNLICENSED",
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "build": "npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
+    "prebuild": "npm run build:version",
+    "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
     "build:css": "npm --workspace=@trilogy-ds/styles run build",
     "build:cssMangled": "npm --workspace=@trilogy-ds/styles run build:cssMangled",
-    "build:framework": "npm run optimise:svg && npm run build:hash && npm run build:css",
-    "build:hash": "node scripts/hash.cjs",
+    "build:framework": "npm run optimise:svg && npm run build:version && npm run build:css",
+    "build:version": "node scripts/create-version.cjs",
+    "build:locale-fr":"cd packages/locales/fr && npm run build",
+    "build:locale-en":"cd packages/locales/en && npm run build",
     "create:autolayout": "npm --workspace=@trilogy-ds/styles run build:autolayout && npm run create:autolayout",
     "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/styles run optimise:svg",
@@ -30,7 +33,8 @@
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=@trilogy-ds/styles run watch:css",
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
-    "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates"
+    "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
+    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
@@ -125,6 +129,7 @@
     "react-native": "^0.73.5",
     "react-native-web": "^0.19.13",
     "react-router-dom": "^6.22.2",
+    "react-hook-form": "^7.54.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-test-renderer": "~18.2.0",
     "resolve-url-loader": "^5.0.0",
@@ -157,6 +162,7 @@
     "packages/styles",
     "packages/assets",
     "packages/vanilla",
+    "packages/locales/en",
     "examples/react-template"
   ],
   "engineStrict": true,

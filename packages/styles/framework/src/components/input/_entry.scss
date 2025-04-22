@@ -1,0 +1,134 @@
+.input, .textarea {
+  &:not(:disabled) {
+    &:active,
+    &:focus,
+    &:focus-visible:not(.icon) {
+      padding-left: 15px !important;
+    }
+  }
+}
+
+.input,
+.textarea {
+  @include input;
+
+  padding-left: $spacing-4;
+  padding-right: $spacing-4;
+  font-size: $size-medium;
+  max-width: 100%;
+  width: 100%;
+
+  // Colors
+  @each $name in $colors-brand-functionnal {
+    $color: getColor($name);
+    $color-invert: invertColor($name);
+    $brandName: getColorBrandName($name);
+
+    &.is-#{$brandName} {
+      border: 1px solid $color;
+    }
+  }
+
+  // Sizes
+  &.is-small {
+    @include control-small;
+  }
+
+  &.is-large {
+    @include control-large;
+  }
+
+  &.is-fullwidth {
+    display: block;
+    width: 100%;
+  }
+
+  &.is-inline {
+    display: inline;
+  }
+
+  .icon-status {
+    color: aqua !important;
+  }
+
+  & label {
+    margin-top: 10px;
+  }
+}
+
+.input {
+  &::-ms-clear {
+    display: none;
+  }
+
+  &.is-small {
+    height: 24px;
+  }
+
+  &.is-rounded {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  &.is-static {
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &::-webkit-search-cancel-button{
+    $colorSvg: encodecolor(getColorValue('main'));
+    position:absolute;
+    right: 0px;
+    bottom : 0px;
+    top:0px;
+    padding: 0 24px;
+    opacity: 1;
+    display: block;
+    background-image: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-width="3.2" fill="none"><path d="M12.6 12.6L31.4 31.4M12.6 31.4L31.4 12.6"/></svg>');
+    background-size : 20px;
+    -webkit-appearance: none;
+    background-repeat: no-repeat;
+    background-color: getColor('background') ;
+    background-position: center;
+  }
+
+  &[type="search"] {
+    padding-right: 45px;
+    &:hover:not(:focus){
+      &::-webkit-search-cancel-button {
+        background-color: getColor('main-fade');
+      }
+    }
+    &:focus{
+      &::-webkit-search-cancel-button {
+        padding: 0 23px;
+      }
+    }
+  }
+
+
+}
+
+.textarea {
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  resize: vertical;
+  padding-top: 15px;
+
+
+  &:not([rows]) {
+    max-height: 600px;
+    min-height: 120px;
+  }
+
+  &[rows] {
+    height: initial;
+  }
+
+  &.has-fixed-size {
+    resize: none;
+  }
+}

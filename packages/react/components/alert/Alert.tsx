@@ -8,33 +8,35 @@ import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { AlertProps, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
+import { ComponentName } from '../enumsComponentsName'
+import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 
 /**
  * Toaster Component
  *
- * Ce composant affiche un toast avec différentes options de personnalisation.
+ * This component displays a toast with various customization options.
  *
- * @param {Object} props - Propriétés du composant
- * @param {React.ReactNode} [props.children] - Contenu personnalisé du toast
- * @param {React.ReactNode} [props.toasterChildren] - Contenu facultatif du toast
- * @param {string} [props.className] - Classes CSS supplémentaires
- * @param {IconName | IconNameValues} [props.iconName] - Nom de l'icône à afficher
- * @param {string | React.ReactNode} [props.title] - Titre du toast
- * @param {string | React.ReactNode} [props.description] - Description du toast
- * @param {ClickEvent} [props.closable] - Fonction pour la fermeture
- * @param {ToasterAlertPosition} [props.position] - Position du toast
- * @param {ToasterAlertFloat} [props.float] - Floating du toast
- * @param {number} [props.offset] - Offset par rapport à la position
- * @param {boolean} [props.display] - Indique si le toast doit être affiché
- * @param {string} [props.id] - Identifiant unique pour le toast
- * @param {string} [props.testId] - Identifiant de test pour l'intégration des tests
- * @param {string} [props.status] - Statut actuel du toast (INFO | SUCCESS | WARNING | ERROR)
- * @param {ClickEvent} [props.onClick] - Fonction appelée lors du clic sur le toast
- * @param {Object} [props.others] - Autres propriétés supplémentaires
+ * @param {Object} props - Component properties
+ * @param {React.ReactNode} [props.children] - Custom content of the toast
+ * @param {React.ReactNode} [props.toasterChildren] - Optional content of the toast
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {IconName | IconNameValues} [props.iconName] - Name of the icon to display
+ * @param {string | React.ReactNode} [props.title] - Title of the toast
+ * @param {string | React.ReactNode} [props.description] - Description of the toast
+ * @param {ClickEvent} [props.closable] - Function for closing the toast
+ * @param {ToasterAlertPosition} [props.position] - Position of the toast
+ * @param {ToasterAlertFloat} [props.float] - Floating of the toast
+ * @param {number} [props.offset] - Offset from the position
+ * @param {boolean} [props.display] - Indicates whether the toast should be displayed
+ * @param {string} [props.id] - Unique identifier for the toast
+ * @param {string} [props.testId] - Test identifier for test integration
+ * @param {string} [props.status] - Current status of the toast (INFO | SUCCESS | WARNING | ERROR)
+ * @param {string} [props.markup] - Title markup (h2 | h3 | h4 | h5 | h6 | p)
+ * @param {ClickEvent} [props.onClick] - Function called when clicking on the toast
+ * @param {Object} [props.others] - Other additional properties
  *
- * @returns {JSX.Element | null} Le composant toast à afficher
+ * @returns {JSX.Element | null} The toast component to display
  *
  * @example
  * <ToasterAlert
@@ -61,6 +63,7 @@ const ToasterAlert = ({
   display,
   children,
   toasterChildren,
+  markup,
   ...others
 }: ToasterStatusProps) => {
   const { styled } = useTrilogyContext()
@@ -68,7 +71,7 @@ const ToasterAlert = ({
   const positionStyles: CSSProperties = {
     position: 'fixed',
     ...(position === ToasterAlertPosition.BOTTOM ? { bottom: offset || 0 } : { top: offset || 0 }),
-    ...(float === ToasterAlertFloat.RIGHT ? { right: offset || 0 } : { left: offset || 0 })
+    ...(float === ToasterAlertFloat.RIGHT ? { right: offset || 0 } : { left: offset || 0 }),
   }
 
   const classes = hashClass(
@@ -89,17 +92,25 @@ const ToasterAlert = ({
       data-testid={testId}
       {...others}
     >
-      {children ? children :
-        (<>
+      {children ? (
+        children
+      ) : (
+        <>
           {iconName && <Icon name={iconName} size={IconSize.SMALL} />}
           <div className={hashClass(styled, clsx('body'))}>
-            {title && <Title level={TitleLevels.SIX}>{title}</Title>}
+            {title && (
+              <Title markup={markup} level={TitleLevels.SIX}>
+                {title}
+              </Title>
+            )}
             {description && <Text>{description}</Text>}
             {toasterChildren && toasterChildren}
           </div>
-          {closable && <Icon onClick={closable} className={'toaster-close'} name={IconName.TIMES} size={IconSize.SMALL} />}
-        </>)
-      }
+          {closable && (
+            <Icon onClick={closable} className={'toaster-close'} name={IconName.TIMES} size={IconSize.SMALL} />
+          )}
+        </>
+      )}
     </div>
   ) : null
 }
@@ -115,58 +126,61 @@ const ToasterAlert = ({
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additionnal CSS Classes
  * @param testId {string} Test Id for Test Integration
+ * @param markup {string} Title markup (h2 | h3 | h4 | h5 | h6 | p)
+
  */
-const Alert = ({
-  banner,
-  status,
-  className,
-  id,
-  iconName,
-  title,
-  description,
-  onClick,
-  display = true,
-  ...others
-}: AlertProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Alert = React.forwardRef<AlertRef, AlertProps>(
+  (
+    { banner, status, className, id, iconName, title, description, onClick, display = true, markup, ...others },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
-  )
-
-  const iconAlert = React.useMemo(() => {
-    if (iconName != null) return iconName
-    else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
-    else return IconName.INFOS_CIRCLE
-  }, [iconName, status])
-
-  if (display) {
-    return (
-      <div
-        id={id}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        className={classes}
-        {...others}
-      >
-        <Icon name={iconAlert} />
-        <div className={hashClass(styled, clsx('body'))}>
-          {title && typeof title.valueOf() === 'string' ? <Title level={TitleLevels.SIX}>{title}</Title> : title}
-          {description && typeof description.valueOf() === 'string' ? (
-            <Text level={TextLevels.TWO}>{description}</Text>
-          ) : (
-            description
-          )}
-        </div>
-      </div>
+    const classes = hashClass(
+      styled,
+      clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
     )
-  }
-  return <div />
-}
+
+    const iconAlert = React.useMemo(() => {
+      if (iconName != null) return iconName
+      else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
+      else return IconName.INFOS_CIRCLE
+    }, [iconName, status])
+
+    if (display) {
+      return (
+        <div
+          ref={ref}
+          id={id}
+          onClick={(e) => {
+            // eslint-disable-next-line no-unused-expressions
+            onClick?.(e)
+            e.stopPropagation()
+          }}
+          className={classes}
+          {...others}
+        >
+          <Icon name={iconAlert} />
+          <div className={hashClass(styled, clsx('body'))}>
+            {title && typeof title.valueOf() === 'string' ? (
+              <Title markup={markup} level={TitleLevels.SIX}>
+                {title}
+              </Title>
+            ) : (
+              title
+            )}
+            {description && typeof description.valueOf() === 'string' ? (
+              <Text level={TextLevels.TWO}>{description}</Text>
+            ) : (
+              description
+            )}
+          </div>
+        </div>
+      )
+    }
+    return <div />
+  },
+)
 
 /**
  * Toaster Alert Provider
@@ -182,12 +196,15 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   const [duration, setDuration] = useState(5000)
   const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const showToast = (params: ToasterStatusProps) => {
-    setToasterState(params)
-    params.onShow?.()
-    params.duration && params.duration > 0 && setDuration(params.duration)
-    timeRef.current && clearTimeout(timeRef.current)
-  }
+  const showToast = React.useCallback(
+    (params: ToasterStatusProps) => {
+      setToasterState(params)
+      params.onShow?.()
+      params.duration && params.duration > 0 && setDuration(params.duration)
+      timeRef.current && clearTimeout(timeRef.current)
+    },
+    [timeRef],
+  )
 
   useEffect(() => {
     timeRef.current = setTimeout(() => {
@@ -202,7 +219,8 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   return (
     <ToasterContext.Provider value={{ show: showToast, hide: () => null }}>
       {children}
-      {toasterState && <ToasterAlert
+      {toasterState && (
+        <ToasterAlert
           title={toasterState.title}
           id={toasterState.id}
           testId={toasterState.testId}
@@ -217,9 +235,12 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
           className={toasterState.className}
           toasterChildren={toasterState.toasterChildren}
           display={toasterState.display}
-      />}
+          markup={toasterState.markup}
+        />
+      )}
     </ToasterContext.Provider>
   )
 }
 
+Alert.displayName = ComponentName.Alert
 export default Alert

@@ -4,7 +4,7 @@ import { Keyboard, StyleSheet, View } from 'react-native'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
 import { ComponentName } from '../enumsComponentsName'
-import { AutoCompletePropsNative } from './AutoCompleteProps'
+import { AutocompleteNativeRef, AutoCompletePropsNative } from './AutoCompleteProps'
 import { defaultMatching, getLabel } from './Autocomplete.helpers'
 import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
 import { debounce } from './utils'
@@ -31,7 +31,7 @@ import { debounce } from './utils'
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param getSuggestions {Function} getSuggestions event
  */
-const AutoComplete = React.forwardRef(
+const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
   (
     {
       value,
@@ -51,8 +51,9 @@ const AutoComplete = React.forwardRef(
       onBlur,
       disabled,
       onIconClick,
-    }: AutoCompletePropsNative,
-    ref: React.Ref<View>,
+      ...others
+    },
+    ref,
   ): JSX.Element => {
     const [valueInput, setValueInput] = useState<string>(value ?? '')
     const [suggestions, setSuggestions] = useState(data ?? [])
@@ -136,6 +137,7 @@ const AutoComplete = React.forwardRef(
             onBlur={onBlur}
             disabled={disabled}
             onClick={onIconClick}
+            {...others}
           />
         </View>
         {isOpenMenu && <AutoCompleteMenuNative suggestions={suggestions} handleSelectItem={handleSelectItem} />}

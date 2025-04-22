@@ -1,0 +1,124 @@
+$status-select: (
+  'success', 'error'
+);
+
+.select {
+  position: relative;
+  input { cursor: pointer }
+
+  select {
+    width: 100%;
+    @include input;
+    padding-right: 40px;
+    text-overflow: ellipsis;
+
+    &:focus {
+      padding-left: 15px !important;
+    }
+
+    // to prevent user agent style
+    &:disabled {
+      opacity: 1 !important;
+    }
+
+    @each $name in $status-select {
+      $color: getColor($name);
+      $color-invert: invertColor($name);
+      $brandName: getColorBrandName($name);
+  
+      &.is-#{$brandName} {
+        border: 1px solid $color;
+      }
+    }
+  }
+
+  .has-icons-left {
+    select {
+      padding-left: 45px;
+
+      &:focus {
+        padding-left: 44px !important;
+      }
+    }
+  }
+
+  &-options {
+    box-shadow: 0 0 8px #0000001a;
+    border-radius: 4px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1001;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+  }
+
+
+  .field {
+    margin-bottom: 0 !important;
+      .control {
+        position: relative;
+        &:after {
+          @include arrow();
+          right: 12px;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: transform 0.3s;
+          min-width: 20px;
+          min-height: 20px;
+          mask-size: 20px;
+        }
+      }
+
+      &.focus .control {
+          &:after {
+            transform:  rotate(180deg) translate(50%, 50%);
+          }
+      }
+  }
+
+
+  &-trilogy_modal_open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+  .select-options {
+    background-color: getColor('background');
+
+    li.option {
+      padding: $spacing-3 $spacing-4;
+      cursor: pointer;
+      display: flex;
+      gap: $spacing-2;
+      @include hover;
+
+      &.is-disabled {
+        color: getColor('disabled');
+        background-color: getColor('disabled-fade');
+        cursor: not-allowed;
+      }
+
+      &[data-selected="true"] {
+        font-weight: $weight-black;
+
+        &:after {
+          content: "" !important;
+          mask-image: url('./assets/icons/all/check.svg') !important;
+          background-color: getColor('main') !important;
+          mask-size: 18px !important;
+          right: 18px !important;
+          height: 18px !important;
+          width: 18px !important;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+

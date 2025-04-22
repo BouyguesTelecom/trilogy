@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import SegmentControlItem from './item'
-import { SegmentControlProps } from './SegmentControlProps'
+import { SegmentControlProps, SegmentControlRef } from './SegmentControlProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { getJustifiedClassName } from '@/objects'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * SegmentControl Component
@@ -13,10 +14,10 @@ import { getJustifiedClassName } from '@/objects'
  * @param activeIndex {number} default active SegmentControl index
  * @param disabled {boolean} disabled SegmentControl
  * - -------------- WEB PROPERTIES ---------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
  */
-const SegmentControl = ({ className, id, onClick, children, activeIndex, align }: SegmentControlProps): JSX.Element => {
+const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(({ className, id, onClick, children, activeIndex, align, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('segmented-control', align && getJustifiedClassName(align), className))
@@ -41,7 +42,7 @@ const SegmentControl = ({ className, id, onClick, children, activeIndex, align }
   }, [activateIndex])
 
   return (
-    <div id={id} className={classes}>
+    <div ref={ref} id={id} className={classes} {...others}>
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,6 +76,7 @@ const SegmentControl = ({ className, id, onClick, children, activeIndex, align }
         })}
     </div>
   )
-}
+})
 
+SegmentControl.displayName = ComponentName.SegmentControl
 export default SegmentControl

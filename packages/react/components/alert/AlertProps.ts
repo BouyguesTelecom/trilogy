@@ -1,16 +1,20 @@
-import { Clickable } from '../../objects/facets/Clickable'
-import { Accessibility, Dev, StatusProps } from '../../objects/facets'
+import { View } from 'react-native'
 import { IconName, IconNameValues } from '../../components/icon/IconNameEnum'
 import { ClickEvent } from '../../events/OnClickEvent'
+import { Accessibility } from '../../objects/facets/Accessibility'
+import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { Dev } from '../../objects/facets/Dev'
+import { StatusProps } from '../../objects/facets/Status'
+import { AlertMarkup, AlertMarkupValues } from './AlertEnum'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
-  BOTTOM = 'bottom'
+  BOTTOM = 'bottom',
 }
 export enum ToasterAlertFloat {
   RIGHT = 'right',
-  LEFT = 'left'
+  LEFT = 'left',
 }
 
 export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility, Dev {
@@ -29,6 +33,7 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
   display?: boolean
   onShow?: () => void
   onHide?: () => void
+  markup?: AlertMarkup | AlertMarkupValues
 }
 
 /**
@@ -41,4 +46,8 @@ export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev, 
   display?: boolean
   toaster?: boolean
   banner?: boolean
+  markup?: AlertMarkup | AlertMarkupValues
 }
+
+export type AlertRef = HTMLDivElement
+export type AlertNativeRef = View

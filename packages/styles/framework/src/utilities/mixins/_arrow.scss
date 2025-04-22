@@ -1,0 +1,21 @@
+@import "./../initial-variables";
+
+@mixin arrow( $direction: 'down') {
+  background-color: currentColor;
+  content: "";
+  mask-image: url('./assets/icons/all/arrow-down.svg');
+
+  @if $direction == 'up' {
+    rotate: 180deg;
+  } @else if $direction == 'left' {
+    rotate: 90deg;
+  } @else if $direction == 'right' {
+    rotate: 270deg;
+  }
+
+  min-width: $arrow-size;
+  min-height: $arrow-size;
+  mask-size: $arrow-size;
+  position: absolute;
+  display: inline-block;
+}

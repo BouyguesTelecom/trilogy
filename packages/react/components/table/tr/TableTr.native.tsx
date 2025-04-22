@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { TableTrPropsNative } from './TableTrProps'
+import { TableTrNativeRef, TableTrPropsNative } from './TableTrProps'
 import { View } from '@/components/view'
 import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -12,12 +12,12 @@ import { getColorStyle, TrilogyColor } from '@/components/../objects'
  * @param expandable {boolean} Lines can display additional information
  * @param expanded {ReactNode|string} Expended Table TR content
  */
-const TableTr = ({
+const TableTr = React.forwardRef<TableTrNativeRef, TableTrPropsNative>(({
   children,
   expandable,
   expanded,
   ...others
-}: TableTrPropsNative): JSX.Element => {
+}, ref): JSX.Element => {
   const [isExpanded, setIsExpended] = useState<boolean>(false)
 
   const styles = StyleSheet.create({
@@ -38,7 +38,7 @@ const TableTr = ({
 
   if (expandable) {
     return (
-      <View>
+      <View ref={ref}>
         <TouchableOpacity
           onPress={() => handleExpendedContent()}
           style={styles.tableTr}
@@ -59,11 +59,11 @@ const TableTr = ({
   }
 
   return (
-    <View style={styles.tableTr} {...others}>
+    <View ref={ref} style={styles.tableTr} {...others}>
       {children}
     </View>
   )
-}
+})
 
 TableTr.displayName = ComponentName.TableTr
 

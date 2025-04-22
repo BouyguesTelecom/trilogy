@@ -1,5 +1,8 @@
 import Checkbox from './Checkbox'
-import CheckboxTile from './tiles/tile/CheckboxTile'
+import CheckboxList from './list/CheckboxList'
 import CheckboxTiles from './tiles/CheckboxTiles'
+import CheckboxTile from './tiles/tile/CheckboxTile'
 
-export { Checkbox, CheckboxTiles, CheckboxTile }
+export * from './CheckboxProps'
+
+export { Checkbox, CheckboxList, CheckboxTile, CheckboxTiles }

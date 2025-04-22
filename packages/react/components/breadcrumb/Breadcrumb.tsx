@@ -1,8 +1,10 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { accessibilityLabel } from '@trilogy-ds/locales/lib/breadcrumb.json'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BreadcrumbWebProps } from './BreadcrumbProps'
+import { ComponentName } from '../enumsComponentsName'
+import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
 
 /**
  * Breadcrumb Component
@@ -12,20 +14,23 @@ import { BreadcrumbWebProps } from './BreadcrumbProps'
  * @param className {string} Additionnal CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = ({ children, className, id, accessibilityLabel = 'Breadcrumb', ...others }: BreadcrumbWebProps) => {
-  const { styled } = useTrilogyContext()
+const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
+  ({ children, className, id, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
 
-  return (
-    <nav
-      id={id}
-      role='navigation'
-      className={hashClass(styled, clsx('breadcrumb', className))}
-      aria-label={accessibilityLabel}
-      {...others}
-    >
-      <ul>{children}</ul>
-    </nav>
-  )
-}
-
+    return (
+      <nav
+        ref={ref}
+        id={id}
+        role='navigation'
+        className={hashClass(styled, clsx('breadcrumb', className))}
+        aria-label={accessibilityLabel}
+        {...others}
+      >
+        <ul>{children}</ul>
+      </nav>
+    )
+  },
+)
+Breadcrumb.displayName = ComponentName.Breadcrumb
 export default Breadcrumb

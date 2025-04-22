@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { ProgressProps } from './ProgressProps'
+import { ProgressProps, ProgressRef } from './ProgressProps'
 import { is } from '@/services/index'
 import { getStatusClassName } from '@/objects'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { Text } from '@/components/text'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Progress component
@@ -15,7 +16,8 @@ import { Text } from '@/components/text'
  * -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS classes
  */
-const Progress = ({
+const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
+                    children,
                     className,
                     id,
                     value,
@@ -25,9 +27,11 @@ const Progress = ({
                     legendStart,
                     legendCenter,
                     legendEnd,
+                    stacked,
                     ...others
-                  }: ProgressProps) => {
+                  }, ref) => {
   const { styled } = useTrilogyContext()
+
   const classes = hashClass(
     styled,
     clsx(
@@ -39,8 +43,18 @@ const Progress = ({
     ),
   )
 
+  const stackedClasses = hashClass(styled, clsx('progress', stacked && is('stacked'), className))
+
+  if (children && stacked) {
+    return (
+      <div className={stackedClasses} {...others} >
+        {children}
+      </div>
+    )
+  }
+
   return (
-    <div className='progress-container'>
+    <div ref={ref} className='progress-container'>
       <progress id={id} className={classes} value={value} max={max} {...others}>
         {value}
       </progress>
@@ -65,6 +79,7 @@ const Progress = ({
       )}
     </div>
   )
-}
+})
 
+Progress.displayName = ComponentName.Progress
 export default Progress

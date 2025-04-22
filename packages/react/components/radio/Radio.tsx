@@ -1,11 +1,12 @@
-import { RadioProps } from '@/components/radio/RadioProps'
+import { RadioProps, RadioRef } from '@/components/radio/RadioProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 
 /**
- * radio Component
+ * Radio
  * @param checked {boolean} Checked radio
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly radio
@@ -16,8 +17,9 @@ import React from 'react'
  * @param value {string} Value for radio
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param required {boolean} Required radio
  */
-const Radio = ({
+const Radio = React.forwardRef<RadioRef, RadioProps>(({
   checked,
   className,
   disabled,
@@ -27,12 +29,13 @@ const Radio = ({
   onChange,
   name,
   value,
+  required,
   ...others
-}: RadioProps): JSX.Element => {
+}, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (
-    <div className={hashClass(styled, clsx('radio', className))}>
+    <div ref={ref} className={hashClass(styled, clsx('radio', className))}>
       <input
         type='radio'
         readOnly={readonly}
@@ -41,6 +44,7 @@ const Radio = ({
         name={name}
         value={value}
         checked={checked}
+        required={required}
         onChange={(e) => {
           if (onChange && !disabled && !readonly) {
             onChange({
@@ -58,6 +62,7 @@ const Radio = ({
       </label>
     </div>
   )
-}
+})
 
+Radio.displayName = ComponentName.Radio
 export default Radio

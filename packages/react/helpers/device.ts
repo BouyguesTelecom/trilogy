@@ -16,11 +16,7 @@ export enum Device {
 
 const { Browser, Server, Native } = Device
 
-const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-)
+const canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement)
 
 const canUseNative: boolean = typeof navigator != 'undefined' && navigator.product == 'ReactNative'
 
@@ -41,5 +37,11 @@ const values = <T extends object, K extends keyof T>(obj: T): T[K][] => Object.v
 const toArrayObject = (): SSRReturn => assign((values(SSRObjectDefined), SSRObjectDefined))
 
 const SSRObject = toArrayObject()
+
+export const isAndroid = false
+
+export const isIOS = false
+
+export const isMobile = false
 
 export const ssrDevice = (): SSRReturn => SSRObject

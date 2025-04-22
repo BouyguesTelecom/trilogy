@@ -1,5 +1,5 @@
 import { Clickable, Referenceable, ReferenceableNative, TrilogyColor, TrilogyColorValues } from '../../../objects'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 interface TableTrPropsWeb extends Clickable {
@@ -14,3 +14,6 @@ interface TableTrPropsWeb extends Clickable {
 export type TableTrPropsNative = TableTrPropsWeb & ReferenceableNative<TouchableOpacity>
 
 export type TableTrProps = TableTrPropsWeb & Referenceable<HTMLTableRowElement> & CommonProps
+
+export type TableTrRef = HTMLTableRowElement
+export type TableTrNativeRef = View

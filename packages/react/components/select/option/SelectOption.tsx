@@ -1,10 +1,13 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { SelectOptionProps } from './SelectOptionProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { Icon } from '@/components/icon'
-import { is } from '@/services/classify'
+import { SelectContext } from '../context'
+import { SelectedValue } from '../SelectProps'
+import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
  * Select Option Component
@@ -20,26 +23,69 @@ import { is } from '@/services/classify'
  * @param id {string} Select option custom id
  * @param others
  */
-const SelectOption = ({
-                        id,
-                        className,
-                        value,
-                        disabled,
-                        children,
-                        onClick,
-                        label,
-                        iconName,
-                        testId,
-                        ...others
-                      }: SelectOptionProps) => {
+const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
+  ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
 
-  const { styled } = useTrilogyContext()
-  const { checked, native, focused, ...props } = others as { checked: boolean, native: boolean, focused: boolean }
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('option', focused && 'focus', disabled && is('disabled'), className)), [focused, className])
+    const { custom, selectedOptionValues, setSelectedOptionValues, multiple, setIsVisibleOptions, onChange } =
+      React.useContext(SelectContext)
 
-  if (native) {
+    const isChecked = selectedOptionValues.includes(value)
+
+    const selectClasses = hashClass(styled, clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
+
+    const handleClickOption = () => {
+      setSelectedOptionValues((prev: SelectedValue[]) => {
+        const isInclude = prev.includes(value)
+
+        const newOptionsSelected =
+          !multiple && isInclude
+            ? []
+            : !multiple && !isInclude
+            ? [value]
+            : isInclude
+            ? prev.filter((opt) => opt !== value)
+            : [...prev, value]
+
+        if (onChange) {
+          onChange({
+            selectValue: isInclude ? undefined : value,
+            selectName: isInclude ? undefined : children || label,
+            selectId: isInclude ? undefined : id,
+            name: isInclude ? undefined : children || label,
+            selectedOptions: newOptionsSelected as string[],
+            target: undefined as unknown as EventTarget & HTMLSelectElement,
+          })
+        }
+
+        return newOptionsSelected
+      })
+
+      if (!multiple) setIsVisibleOptions(false)
+    }
+
+    if (custom || multiple) {
+      return (
+        <li
+          ref={ref as React.RefObject<HTMLLIElement>}
+          id={id}
+          className={selectClasses}
+          data-selected={isChecked}
+          role='option'
+          aria-selected={isChecked}
+          data-value={value}
+          onClick={!disabled ? handleClickOption : undefined}
+          {...others}
+        >
+          {iconName && <Icon name={iconName} />}
+          {label || children}
+        </li>
+      )
+    }
+
     return (
       <option
+        ref={ref as React.RefObject<HTMLOptionElement>}
         role='option'
         id={id}
         value={value}
@@ -47,42 +93,13 @@ const SelectOption = ({
         aria-label={label}
         data-testid={testId}
         onClick={onClick}
-        {...props}
+        {...others}
       >
         {children || label}
       </option>
     )
-  }
+  },
+)
 
-  // return (
-  //   <RadioTile
-  //     checked={checked}
-  //     horizontal
-  //     className={selectClasses}
-  //     value={value}
-  //     disabled={disabled}
-  //     onChange={onClick}
-  //     icon={iconName}
-  //     description={label || children}
-  //     {...others}
-  //   />
-  // )
-
-  return (
-    <li
-      id={id}
-      className={selectClasses}
-      data-selected={checked}
-      role='option'
-      aria-selected={checked}
-      data-value={value}
-      onClick={(!disabled && onClick) ? onClick : undefined}
-      {...others}
-    >
-      {iconName && <Icon name={iconName} />}
-      {label || children}
-    </li>
-  )
-}
-
+SelectOption.displayName = ComponentName.SelectOption
 export default SelectOption

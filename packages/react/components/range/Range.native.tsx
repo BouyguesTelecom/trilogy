@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { RangeProps } from './RangeProps'
+import { RangeNativeRef, RangeProps } from './RangeProps'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import { Text, TextLevels } from '../text'
 import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
@@ -16,7 +16,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param onChange {function}
  * - -------------------------- WEB PROPERTIES -------------------------------
  */
-const Range = ({ min, max, label, unit, onChange }: RangeProps): JSX.Element => {
+const Range = React.forwardRef<RangeNativeRef, RangeProps>(({ min, max, label, unit, onChange }, ref): JSX.Element => {
   const [values, setValues] = React.useState<number[]>([0, 100])
   const [width, setWidth] = React.useState<number>(0)
 
@@ -46,6 +46,7 @@ const Range = ({ min, max, label, unit, onChange }: RangeProps): JSX.Element => 
 
   return (
     <View
+      ref={ref}
       onLayout={(event) => {
         const { width } = event.nativeEvent.layout
         setWidth(width)
@@ -102,7 +103,7 @@ const Range = ({ min, max, label, unit, onChange }: RangeProps): JSX.Element => 
       </View>
     </View>
   )
-}
+})
 
 Range.displayName = ComponentName.Range
 

@@ -1,182 +1,109 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useCallback, useMemo } from 'react'
+import React, { PropsWithChildren, useContext, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
-import { SelectedValue, SelectProps } from '@/components/select/SelectProps'
+import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { SelectOption } from '../'
+import { SelectContext } from '../context'
 
-const SelectDynamic = ({
-  onChange,
-  disabled,
-  onFocus,
-  onBlur,
-  children,
-  selected,
-  name,
-  id,
-  label,
-  iconName,
-  multiple,
-  className,
-}: PropsWithChildren<SelectProps>): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const [focused, setIsFocused] = React.useState<boolean>(false)
-  const [selectedValues, setSelectedValues] = React.useState<SelectedValue>(selected)
-  const [selectedName, setSelectedName] = React.useState<string[]>([])
-  const reactId = React.useId()
-  const selectClasses = React.useMemo(() => hashClass(styled, clsx('select', className)), [styled, className])
-
-  const onClickInput = React.useCallback(() => {
-    setIsFocused((prev) => !prev)
-  }, [])
-
-  const onKeyPressInput = React.useCallback(
-    (keyCode: number) => {
-      if (keyCode === 13) {
-        setIsFocused((prev) => {
-          if (multiple && !prev) return true
-          if (multiple && prev) return prev
-          return !prev
-        })
-      }
+const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
+  (
+    {
+      onChange,
+      disabled,
+      onFocus,
+      onBlur,
+      children,
+      selected,
+      name,
+      id,
+      label,
+      iconName,
+      multiple,
+      className,
+      status,
+      placeholder,
+      required,
+      custom,
+      ...others
     },
-    [multiple],
-  )
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const { setIsVisibleOptions, isVisibleOptions, selectedOptionValues } = useContext(SelectContext)
 
-  const isChecked = useCallback(
-    (value: string) =>
-      (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
-        ? selectedValues?.includes(value)
-        : selectedValues === value),
-    [multiple, selectedValues],
-  )
+    const selectClasses = hashClass(styled, clsx('select', className))
+    const optionsClasses = hashClass(styled, clsx('select-options'))
+    const portalClasses = hashClass(styled, 'select-trilogy_modal_open')
 
-  const setNewSelectedValues = useCallback(
-    ({ isChecked, children, label, value }: { isChecked: boolean; children: string; label: string; value: string }) => {
-      const selectedOptions: string[] = []
-      if (isChecked) {
-        setSelectedValues((prev) => {
-          switch (true) {
-            case Array.isArray(prev):
-              setSelectedName((prev) => prev.filter((txt) => ![children, label].includes(txt)))
-              const opts = (prev as string[]).filter((item: string | number) => item !== value)
-              selectedOptions.push(...opts)
-              return opts
-            case !Array.isArray(prev):
-              setSelectedName([])
-              return undefined
-            default:
-              return value
-          }
-        })
-      }
-      if (!isChecked) {
-        setSelectedValues((prev) => {
-          if (Array.isArray(prev)) {
-            const opts = [...prev, value]
-            selectedOptions.push(...opts)
-            return opts
-          }
-          selectedOptions.push(value)
-          return value
-        })
-        setSelectedName((prev) => {
-          if (multiple) return [...prev, children || label]
-          return [children || label]
-        })
-      }
-      return selectedOptions
-    },
-    [multiple],
-  )
+    const onClickInput = () => setIsVisibleOptions((prev) => !prev)
+    const onCloseOptions = () => setIsVisibleOptions(false)
 
-  React.useEffect(() => {
-    const labelSelected = React.Children.map(children, (child) => {
-      if (!React.isValidElement(child)) return false
-      const label = child.props.children || child.props.label
-      switch (true) {
-        case (Array.isArray(selected) && (selected as (number | string)[]).includes(child.props.value)) ||
-          (!Array.isArray(selected) && child.props.value === selected):
-          return label
-        default:
-          return false
-      }
-    })?.filter((item) => item)
-    labelSelected && setSelectedName(labelSelected)
-    setSelectedValues(selected)
-  }, [selected])
+    const onKeyPressInput = (keyCode: number) => {
+      setIsVisibleOptions((prev) => {
+        if (keyCode === 27) return false
+        if (keyCode === 13) return !prev
+        return prev
+      })
+    }
 
-  const modal = useMemo(
-    () => <div role='presentation' className='select-trilogy_modal_open' onClick={() => setIsFocused(false)} />,
-    [],
-  )
-
-  const options = React.useMemo(() => {
-    return React.Children.map(children, (child, index) => {
-      if (!React.isValidElement(child)) return null
-      const clickEventValue = (v: string) => {
-        switch (true) {
-          case (multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||
-            (!multiple && selectedValues === child.props.value):
-            return undefined
-          default:
-            return v
+    const options = useMemo(() => {
+      return React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) return false
+        return {
+          label: child.props.children || child.props.label,
+          value: child.props.value,
         }
-      }
+      })?.filter((option) => option)
+    }, [])
 
-      const props = {
-        ...child.props,
-        checked: isChecked(child.props.value),
-        onClick: () => {
-          const opts = setNewSelectedValues({
-            children: child.props.children,
-            label: child.props.label,
-            value: child.props.value,
-            isChecked: isChecked(child.props.value),
-          })
-          onChange &&
-            onChange({
-              selectValue: clickEventValue(child.props.value),
-              selectName: clickEventValue(child.props.children || child.props.label),
-              selectId: clickEventValue(child.props.id),
-              name: clickEventValue(child.props.children || child.props.label),
-              selectedOptions: opts,
-            })
-          if (child.props.onClick) child.props.onClick()
-          if (!multiple) setIsFocused(false)
-        },
-      }
-      return <SelectOption {...props} key={`${reactId}_${index}`} />
-    })
-  }, [multiple, selectedValues, children])
+    const labelsSelected = useMemo(() => {
+      return selectedOptionValues.map((selectedOption) => {
+        const elm = options?.find((opt) => opt.value === selectedOption)
+        return elm?.label
+      })
+    }, [selectedOptionValues, options])
 
-  return (
-    <div className={selectClasses}>
-      <Input
-        value={selectedName.join(', ')}
-        name={name}
-        disabled={disabled}
-        placeholder={label}
-        onFocus={onFocus}
-        iconNameLeft={iconName}
-        onBlur={onBlur}
-        onClick={onClickInput}
-        className={hashClass(styled, clsx(focused && 'focus'))}
-        onKeyPress={(e) => {
-          e.preventDefault()
-        }}
-        onKeyUp={(e) => {
-          e.preventDefault()
-          onKeyPressInput(e.inputKeyCode)
-        }}
-        {...{ readOnly: true, id, role: 'combobox' }}
-      />
-      {focused && <ul role='listbox'  className={hashClass(styled, clsx('select-options'))}>{options}</ul>}
-      {focused && ReactDOM.createPortal(modal, document.body)}
-    </div>
-  )
-}
+    return (
+      <div className={selectClasses} {...others}>
+        <Input
+          required={required}
+          status={status}
+          ref={ref as React.RefObject<HTMLInputElement>}
+          value={labelsSelected?.join(', ')}
+          name={name}
+          disabled={disabled}
+          label={label}
+          placeholder={placeholder}
+          onFocus={onFocus}
+          iconNameLeft={iconName}
+          onBlur={onBlur as (event: unknown) => void}
+          onClick={onClickInput}
+          className={isVisibleOptions ? 'focus' : undefined}
+          onKeyPress={(e) => {
+            e.preventDefault()
+          }}
+          onKeyUp={(e) => {
+            e.preventDefault()
+            onKeyPressInput(e.inputKeyCode)
+          }}
+          {...{ readOnly: true, id, role: 'combobox' }}
+        />
+        <ul role='listbox' className={optionsClasses} style={{ display: isVisibleOptions ? 'block' : 'none' }}>
+          {children}
+        </ul>
+        {isVisibleOptions &&
+          ReactDOM.createPortal(
+            <div role='presentation' className={portalClasses} onClick={onCloseOptions} />,
+            document.body,
+          )}
+      </div>
+    )
+  },
+)
+
+SelectDynamic.displayName = ComponentName.Select
 export default SelectDynamic

@@ -1,11 +1,12 @@
-import React from 'react'
-import { BoxProps } from './BoxProps'
-import { has, is } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getColorClassName } from '@/objects'
-import clsx from 'clsx'
-import { hashClass } from '@/helpers'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getColorClassName } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { BoxProps, BoxRef } from './BoxProps'
 
 /**
  * Box Component
@@ -23,87 +24,83 @@ import { useTrilogyContext } from '@/context'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param fullheight
+ * @param blank If href && blank : target Blank
  * @param others
  */
-const Box = ({
-  inverted,
-  children,
-  className,
-  id,
-  onClick,
-  skeleton,
-  href,
-  backgroundColor,
-  highlighted,
-  shadowless,
-  backgroundSrc,
-  flat,
-  headerOffset,
-  fullheight,
-  active,
-  ...others
-}: BoxProps): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx(
-      'box',
-      shadowless && is('shadowless'),
+const Box = React.forwardRef<BoxRef, BoxProps>(
+  (
+    {
+      inverted,
+      children,
       className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton && is('loading'),
-      highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
-      flat && is('flat'),
-      headerOffset && is('offset-header'),
-      fullheight && is('fullheight'),
-      active && is('active'),
-    ),
-  )
+      id,
+      onClick,
+      skeleton,
+      href,
+      blank,
+      backgroundColor,
+      highlighted,
+      shadowless,
+      backgroundSrc,
+      flat,
+      headerOffset,
+      fullheight,
+      active,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  if (href) {
+    const classes = hashClass(
+      styled,
+      clsx(
+        'box',
+        shadowless && is('shadowless'),
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton && is('loading'),
+        highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+        flat && is('flat'),
+        headerOffset && is('offset-header'),
+        fullheight && is('fullheight'),
+        active && is('active'),
+      ),
+    )
+
+    const Tag = href ? 'a' : 'div'
+
+    const hoverStyle: React.CSSProperties = {
+      cursor: 'pointer',
+    }
+
     return (
-      <a
+      <Tag
+        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
         id={id}
+        style={onClick && { ...hoverStyle }}
         href={href}
+        {...(href && blank && {
+          target: '_blank',
+        })}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
         }}
         className={classes}
         {...others}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+          },
+        })}
       >
         {children}
-      </a>
+      </Tag>
     )
-  }
-
-  const hoverStyle: React.CSSProperties = {
-    cursor: 'pointer',
-  }
-
-  return (
-    <div
-      id={id}
-      style={onClick && { ...hoverStyle }}
-      onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick?.(e)
-      }}
-      className={classes}
-      {...others}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-        },
-      })}
-    >
-      {children}
-    </div>
-  )
-}
-
+  },
+)
+Box.displayName = ComponentName.Box
 export default Box

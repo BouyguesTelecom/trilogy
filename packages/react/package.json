@@ -1,6 +1,6 @@
 {
   "name": "@trilogy-ds/react",
-  "version": "4.0.3",
+  "version": "4.2.0",
   "author": "Bouygues Telecom",
   "files": [
     "lib"
@@ -22,6 +22,7 @@
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-picker/picker": "^2.6.1",
     "@trilogy-ds/assets": "*",
+    "@trilogy-ds/locales": "en",
     "@trilogy-ds/styles": "*",
     "clsx": "^2.1.0",
     "color": "^4.2.3",
@@ -32,6 +33,16 @@
     "react-native-toast-message": "^2.2.0",
     "rollup-plugin-copy": "^3.5.0",
     "shortid": "^2.2.16"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "keywords": [
     "react",

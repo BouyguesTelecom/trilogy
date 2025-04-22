@@ -1,5 +1,6 @@
-import { IconName, IconNameValues } from '../../../../components/icon'
+import { TouchableOpacity } from 'react-native'
 import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
+import { IconName, IconNameValues } from '../../../../components/icon'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
 
 /**
@@ -10,3 +11,6 @@ export interface CheckboxTileProps extends CheckboxProps, CommonProps {
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
 }
+
+export type CheckboxTileRef = HTMLDivElement
+export type CheckboxTileNativeRef = TouchableOpacity
