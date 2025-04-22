@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix Select disabled style
 - Fix Autocomplete style
 - Update Autolayout Rules
+- Fix Textarea
 
 
 ## [4.3.0] - 2025-04-14
