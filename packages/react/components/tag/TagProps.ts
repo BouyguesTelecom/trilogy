@@ -4,12 +4,6 @@ import { TagVariant, TagVariantValues } from './TagEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { View } from 'react-native'
 
-type TagClickEventHandler = React.MouseEvent<Element> | unknown
-
-export interface TagClickEvent {
-  (e: TagClickEventHandler): void
-}
-
 /**
  * Tag Interface
  */
