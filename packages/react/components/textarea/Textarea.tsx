@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
-import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { TextareaProps, TextareaRef } from './TextareaProps'
-import { has, is } from '@/services'
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
 import { TypographyColor } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { TextareaProps, TextareaRef } from './TextareaProps'
 
 /**
  * Textarea Component
@@ -34,93 +34,97 @@ import { ComponentName } from '../enumsComponentsName'
  * @param typo {TypographyColor | TypographyColorValues} change help typo
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Textarea = React.forwardRef<TextareaRef, TextareaProps>(({
-  className,
-  id,
-  sample,
-  required,
-  disabled,
-  onChange,
-  placeholder,
-  defaultValue,
-  help,
-  status,
-  dynamicPlaceholder = true,
-  rows,
-  label,
-  maxLength,
-  minLength,
-  iconNameLeft,
-  iconNameRight,
-  ...others
-}, ref): JSX.Element => {
-  const [value, setValue] = useState(defaultValue || '')
-  const { styled } = useTrilogyContext()
+const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
+  (
+    {
+      className,
+      id,
+      sample,
+      required,
+      disabled,
+      onChange,
+      placeholder,
+      defaultValue,
+      help,
+      status,
+      dynamicPlaceholder = true,
+      rows,
+      label,
+      maxLength,
+      minLength,
+      iconNameLeft,
+      iconNameRight,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const [value, setValue] = useState(defaultValue || '')
+    const { styled } = useTrilogyContext()
 
-  useEffect(() => {
-    setValue(defaultValue || '')
-  }, [defaultValue])
+    useEffect(() => {
+      setValue(defaultValue || '')
+    }, [defaultValue])
 
-  const wrapperClasses = hashClass(styled, clsx('textarea-wrapper', className, status && is(status)))
-  const classes = hashClass(
-    styled,
-    clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')),
-  )
+    const wrapperClasses = hashClass(styled, clsx('field textarea-wrapper', className, status && is(status)))
+    const classes = hashClass(styled, clsx('textarea'))
+    const helpClasses = clsx('help', status && is(status))
+    const counterClasses = hashClass(styled, clsx('counter', maxLength))
 
-  const helpClasses = clsx('help', status && is(status))
-  const counterClasses = hashClass(styled, clsx('counter', maxLength))
+    const controlClasses = hashClass(
+      styled,
+      clsx('control', iconNameLeft && has('icons-left'), iconNameRight && has('icons-right')),
+    )
 
-  return (
-    <div id={id} className={wrapperClasses}>
-      {!dynamicPlaceholder && (
-        <label className='textarea-label'>
-          {label}{' '}
-          {label && required && (
-            <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
-              *
-            </Text>
-          )}
-        </label>
-      )}
-      {!dynamicPlaceholder && label && sample && (
-        <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
-          {sample}
-        </Text>
-      )}
+    return (
+      <div id={id} className={wrapperClasses}>
+        {label && (
+          <label className={hashClass(styled, 'textarea-label')} htmlFor={id}>
+            {label}{' '}
+            {required && (
+              <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                *
+              </Text>
+            )}
+          </label>
+        )}
+        {sample && (
+          <Text className='input-sample' level={TextLevels.TWO} id={id}>
+            {sample}
+          </Text>
+        )}
 
-      <textarea
-        ref={ref}
-        minLength={minLength}
-        disabled={disabled}
-        {...others}
-        className={classes}
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          if (onChange) {
-            onChange({
-              textareaName: e.target.name,
-              textareaValue: e.target.value,
-            })
-          }
-        }}
-        placeholder={placeholder}
-        rows={rows}
-        maxLength={maxLength}
-        required={required}
-      />
-      {dynamicPlaceholder && <label>{label}</label>}
-      {iconNameLeft && <Icon name={iconNameLeft} size='small' />}
-      {iconNameRight && <Icon name={iconNameRight} size='small' />}
-      {help && (
-        <Text className={helpClasses}>
-          {help}
-        </Text>
-      )}
-      {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
-    </div>
-  )
-})
+        <div className={controlClasses}>
+          <textarea
+            ref={ref}
+            minLength={minLength}
+            disabled={disabled}
+            className={classes}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value)
+              if (onChange) {
+                onChange({
+                  textareaName: e.target.name,
+                  textareaValue: e.target.value,
+                })
+              }
+            }}
+            placeholder={placeholder}
+            rows={rows}
+            maxLength={maxLength}
+            required={required}
+            {...others}
+          />
+          {iconNameLeft && <Icon name={iconNameLeft} size='small' className='icon-left' />}
+          {iconNameRight && <Icon name={iconNameRight} size='small' className='icon-right' />}
+          {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
+        </div>
+
+        {help && <Text className={helpClasses}>{help}</Text>}
+      </div>
+    )
+  },
+)
 
 Textarea.displayName = ComponentName.Textarea
 export default Textarea

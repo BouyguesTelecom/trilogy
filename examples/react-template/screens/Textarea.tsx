@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Divider, InputStatus, Section, Textarea } from '@trilogy-ds/react/components'
 import { IconName } from '@trilogy-ds/react'
+import { Divider, InputStatus, Section, Textarea } from '@trilogy-ds/react/components'
+import * as React from 'react'
 
 export const TextareaScreen = (): JSX.Element => {
   return (
@@ -9,12 +9,10 @@ export const TextareaScreen = (): JSX.Element => {
         label='Textarea label not dynamic with sample'
         sample='Textarea sample'
         help='Search helper textarea'
-        onKeyUp={(e) => console.log(e)}
         required
         rows={10}
         iconNameLeft={IconName.CHECK}
         iconNameRight='tri-exclamation-circle'
-        dynamicPlaceholder={false}
         status={InputStatus.ERROR}
       />
 
@@ -22,24 +20,29 @@ export const TextareaScreen = (): JSX.Element => {
 
       <Textarea
         label='Textarea label not dynamic without sample'
+        sample='Textarea sample'
         help='Search helper textarea'
-        onKeyUp={(e) => console.log(e)}
         required
         iconNameLeft={IconName.CHECK}
-        dynamicPlaceholder={false}
       />
 
       <Divider />
 
-      <Textarea disabled placeholder='placeholder' label='Dynamic label' />
+      <Textarea
+        disabled
+        placeholder='placeholder'
+        label='Dynamic label'
+        iconNameLeft='tri-alert'
+        iconNameRight='tri-alert'
+      />
 
       <Divider />
 
-      <Textarea placeholder='placeholder' label='No Dynamic label' dynamicPlaceholder={false} />
+      <Textarea placeholder='placeholder' label='No Dynamic label' />
 
       <Divider />
 
-      <Textarea placeholder='placeholder' label='With Max Lenght ' dynamicPlaceholder={false} maxLength={150} />
+      <Textarea placeholder='placeholder' label='With Max Lenght ' maxLength={150} />
       <Divider />
       <Textarea placeholder='Disabled' label='Label' disabled />
 
@@ -63,7 +66,6 @@ export const TextareaScreen = (): JSX.Element => {
         iconNameRight='tri-exclamation-circle'
         status='error'
         help='This is a help message'
-        typo='has-text-error'
       />
     </Section>
   )
