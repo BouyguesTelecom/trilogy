@@ -117,10 +117,10 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
           />
           {iconNameLeft && <Icon name={iconNameLeft} size='small' className='icon-left' />}
           {iconNameRight && <Icon name={iconNameRight} size='small' className='icon-right' />}
+          {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
         </div>
 
         {help && <Text className={helpClasses}>{help}</Text>}
-        {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
       </div>
     )
   },
