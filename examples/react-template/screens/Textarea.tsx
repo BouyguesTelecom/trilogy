@@ -9,7 +9,6 @@ export const TextareaScreen = (): JSX.Element => {
         label='Textarea label not dynamic with sample'
         sample='Textarea sample'
         help='Search helper textarea'
-        onKeyUp={(e) => console.log(e)}
         required
         rows={10}
         iconNameLeft={IconName.CHECK}
@@ -23,7 +22,6 @@ export const TextareaScreen = (): JSX.Element => {
         label='Textarea label not dynamic without sample'
         sample='Textarea sample'
         help='Search helper textarea'
-        onKeyUp={(e) => console.log(e)}
         required
         iconNameLeft={IconName.CHECK}
       />
@@ -68,7 +66,6 @@ export const TextareaScreen = (): JSX.Element => {
         iconNameRight='tri-exclamation-circle'
         status='error'
         help='This is a help message'
-        typo='has-text-error'
       />
     </Section>
   )
