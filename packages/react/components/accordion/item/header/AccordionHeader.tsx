@@ -7,7 +7,7 @@ import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps
 
 /**
  * Accordion Header
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param children {React.ReactNode}
  * @param testId
  * @param others

@@ -15,7 +15,7 @@ import React from 'react'
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param narrow {boolean} Narrow column item
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param mobileSize {ColumnsSize} Apply => is-size-mobile
  * @param tabletSize {ColumnsSize} Apply => is-size-tablet
  * @param touchSize {ColumnsSize} Apply => is-size-touch

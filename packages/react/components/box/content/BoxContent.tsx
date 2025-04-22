@@ -13,7 +13,7 @@ import { BoxContentProps, BoxContentRef } from './BoxContentProps'
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId test id
  */
 const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(

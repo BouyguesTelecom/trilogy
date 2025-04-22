@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Modal Footer Component
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param id
  */
 const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id }, ref): JSX.Element => {

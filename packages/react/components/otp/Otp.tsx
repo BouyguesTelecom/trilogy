@@ -90,7 +90,7 @@ const formatTranslation = (translation: string, x: string, y: string) => {
  * @param label {string} Label for OTP
  * @param help {string} error message to display
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  */
 const Otp = React.forwardRef<OtpRef, OtpProps>(
   (

@@ -51,7 +51,7 @@ interface IconWrapper {
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
  * @param focused {boolean} Fucus mode
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
  * @param onMouseLeave {Function} onMouseLeave Input Event
  * @param onKeyPress {Function} onKeyPress Input Event

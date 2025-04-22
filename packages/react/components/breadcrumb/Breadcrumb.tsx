@@ -11,7 +11,7 @@ import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
  * @param children {React.ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(

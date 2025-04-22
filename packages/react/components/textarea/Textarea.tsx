@@ -29,7 +29,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param minLength {number} Textarea min length
  * @param typo {TypographyColor | TypographyColorValues} change help typo
  * - -------------------------- NATIVE PROPERTIES -------------------------------

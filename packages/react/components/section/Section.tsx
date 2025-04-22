@@ -13,7 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background Image
  * - -------------- WEB PROPERTIES ---------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param inverted {boolean} Inverted Section Color
  * @param skeleton {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
