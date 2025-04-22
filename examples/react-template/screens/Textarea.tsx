@@ -22,6 +22,7 @@ export const TextareaScreen = (): JSX.Element => {
 
       <Textarea
         label='Textarea label not dynamic without sample'
+        sample='Textarea sample'
         help='Search helper textarea'
         onKeyUp={(e) => console.log(e)}
         required
