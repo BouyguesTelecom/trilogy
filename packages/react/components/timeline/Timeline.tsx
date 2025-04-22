@@ -11,7 +11,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param notifications {boolean} Timeline notification rendering
  * - --------------- WEB PROPERTIES ----------------------------------
  * @param horizontal {boolean} timeline horizontal
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const Timeline = React.forwardRef<TimelineRef, TimelineProps>(({ className, id, horizontal, ...others }, ref) => {
   const { styled } = useTrilogyContext()

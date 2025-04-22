@@ -13,7 +13,7 @@ import { TimelineMarkerRef } from '../marker/TimelineMarkerProps'
  * @param active {boolean} Active Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const TimelineItem = React.forwardRef<TimelineMarkerRef, TimelineItemWebProps>(({ className, id, done, active, cancel, ...others }, ref) => {
   const { styled } = useTrilogyContext()

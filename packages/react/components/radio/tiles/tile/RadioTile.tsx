@@ -21,7 +21,7 @@ import React from 'react'
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
  */
 const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({

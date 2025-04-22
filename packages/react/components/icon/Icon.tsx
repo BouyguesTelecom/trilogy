@@ -22,7 +22,7 @@ import { IconProps, IconRef } from './IconProps'
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className Additionnal css classes
+ * @param className Additional css classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 

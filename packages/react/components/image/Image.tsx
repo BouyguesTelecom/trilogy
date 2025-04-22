@@ -16,7 +16,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param height {number|string} Image height (Number if not percent else string)
  * @param onClick {Function} onClick Event
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
 const Image = React.forwardRef<ImageRef, ImageProps>(({
   src,

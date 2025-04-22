@@ -14,7 +14,7 @@ import { ChipsProps, ChipsRef } from './ChipsProps'
  * @param active {boolean} active Render Chips Active
  * @param disabled {boolean} Disabled chips
  *  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  * @param others
  */
