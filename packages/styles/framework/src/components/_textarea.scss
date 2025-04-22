@@ -10,10 +10,6 @@
   }
 
   textarea.textarea {
-    padding: $spacing-4;
-    border-radius: var(--radius-small);
-    outline: none;
-
     &::placeholder, label {
       font-size: 16px;
     }
