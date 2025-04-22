@@ -3,7 +3,7 @@
     &:active,
     &:focus,
     &:focus-visible:not(.icon) {
-      padding-left: 15px !important;
+      padding-left: 15px ;
     }
   }
 }
@@ -45,10 +45,6 @@
 
   &.is-inline {
     display: inline;
-  }
-
-  .icon-status {
-    color: aqua !important;
   }
 
   & label {
@@ -130,5 +126,10 @@
 
   &.has-fixed-size {
     resize: none;
+  }
+
+  &:focus-visible{
+    padding-top: 14px;
+    padding-bottom: 4px;
   }
 }
