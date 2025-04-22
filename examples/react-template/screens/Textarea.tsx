@@ -14,7 +14,6 @@ export const TextareaScreen = (): JSX.Element => {
         rows={10}
         iconNameLeft={IconName.CHECK}
         iconNameRight='tri-exclamation-circle'
-        dynamicPlaceholder={false}
         status={InputStatus.ERROR}
       />
 
@@ -27,7 +26,6 @@ export const TextareaScreen = (): JSX.Element => {
         onKeyUp={(e) => console.log(e)}
         required
         iconNameLeft={IconName.CHECK}
-        dynamicPlaceholder={false}
       />
 
       <Divider />
@@ -42,11 +40,11 @@ export const TextareaScreen = (): JSX.Element => {
 
       <Divider />
 
-      <Textarea placeholder='placeholder' label='No Dynamic label' dynamicPlaceholder={false} />
+      <Textarea placeholder='placeholder' label='No Dynamic label' />
 
       <Divider />
 
-      <Textarea placeholder='placeholder' label='With Max Lenght ' dynamicPlaceholder={false} maxLength={150} />
+      <Textarea placeholder='placeholder' label='With Max Lenght ' maxLength={150} />
       <Divider />
       <Textarea placeholder='Disabled' label='Label' disabled />
 
