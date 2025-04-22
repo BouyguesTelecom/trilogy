@@ -1,20 +1,9 @@
-.input {
+.input, .textarea {
   &:not(:disabled) {
     &:active,
     &:focus,
     &:focus-visible:not(.icon) {
-      padding-left: 15px !important;
-    }
-  }
-}
-
-.textarea {
-  &:not(:disabled) {
-    &:active,
-    &:focus,
-    &:focus-visible:not(.icon) {
-      padding-left: 49px !important;
-      padding-top: 15px;
+      padding-left: 15px ;
     }
   }
 }
@@ -56,10 +45,6 @@
 
   &.is-inline {
     display: inline;
-  }
-
-  .icon-status {
-    color: aqua !important;
   }
 
   & label {
@@ -141,5 +126,9 @@
 
   &.has-fixed-size {
     resize: none;
+  }
+
+  &:focus-visible{
+    padding-top: 14px;
   }
 }

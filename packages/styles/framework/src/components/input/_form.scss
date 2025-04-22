@@ -248,6 +248,7 @@ $label-weight: $weight-bold;
 
   &.has-icons-left {
     .input,
+    .textarea,
     .select select {
       padding-left: 45px;
     }
@@ -257,13 +258,6 @@ $label-weight: $weight-bold;
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
       padding: 0 24px;
-    }
-
-    .textarea {
-      padding-left: 50px;
-      padding-right: $spacing-4;
-      padding-bottom: $spacing-4 !important;
-      padding-top: $spacing-4;
     }
 
     & .textarea + label {
