@@ -43,7 +43,6 @@ export const ModalScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Modal</Title>
 
         <Modal
-          // unClosable
           hideCloseButton
           unClosable
           title='Détail du panier'
@@ -51,7 +50,6 @@ export const ModalScreen = (): JSX.Element => {
           active
           // onClose={onClose}
           data-cy='cart-modal'
-          className={'has-text-left'}
         >
           <ModalBody>
               <Text data-cy='text-customer-fullName'>Acheteur : </Text>

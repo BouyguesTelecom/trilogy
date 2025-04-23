@@ -105,8 +105,8 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     }, [active, currentFocusIndexRef, refBtnModal])
 
     useEffect(() => {
-      display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
-    }, [display, focusableElementsRef])
+      !hideCloseButton && display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
+    }, [hideCloseButton, display, focusableElementsRef])
 
     useEffect(() => {
       if (modalContentRef.current) {
@@ -146,7 +146,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   <span className={hashClass(styled, clsx('sr-only'))}>{accessibilityLabelButtonClose}</span>
                 </button>
               )}
-              <Title className={'has-text-left'} id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
+              <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>
                 {title}
               </Title>
             </div>
