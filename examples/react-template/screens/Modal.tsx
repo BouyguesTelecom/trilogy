@@ -42,29 +42,6 @@ export const ModalScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Modal</Title>
 
-        <Modal
-          hideCloseButton
-          unClosable
-          title='Détail du panier'
-          size={ModalSize.SMALL}
-          active
-          // onClose={onClose}
-          data-cy='cart-modal'
-        >
-          <ModalBody>
-              <Text data-cy='text-customer-fullName'>Acheteur : </Text>
-              <Text data-cy='text-cart-createdAt'>Date de création</Text>
-            <Text data-cy='text-cart-title'>Contenu du panier :</Text>
-              <Columns multiline marginless>
-                <Column size={1}></Column>
-                <Column>
-                  <Text data-cy='text-product-label'>- product label</Text>
-                </Column>
-              </Columns>
-          </ModalBody>
-          {<ModalFooter>footer</ModalFooter>}
-        </Modal>
-
         <Divider />
 
         <Modal
