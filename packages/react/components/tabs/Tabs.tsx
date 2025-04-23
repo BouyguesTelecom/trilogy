@@ -15,34 +15,41 @@ import { ComponentName } from '../enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs
+ * @param small {boolean} small tabs
  * @param id
  */
-const Tabs = React.forwardRef<TabsRef, TabsProps>(({ children, className, id, activeIndex, fullwidth, inverted }, ref) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
-  const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
+const Tabs = React.forwardRef<TabsRef, TabsProps>(
+  ({ children, className, id, activeIndex, fullwidth, inverted, small }, ref) => {
+    const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
+    const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), className))
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(
+      styled,
+      clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), small && is('small'), className),
+    )
 
-  useEffect(() => {
-    activeIndex !== undefined && setCurrentIndex(activeIndex)
-  }, [activeIndex])
+    useEffect(() => {
+      activeIndex !== undefined && setCurrentIndex(activeIndex)
+    }, [activeIndex])
 
-  return (
-    <TabsContext.Provider
-      value={{
-        activeIndex: currentIndex,
-        inverted: isInverted,
-        setInverted: setIsInverted,
-        setActiveIndex: setCurrentIndex,
-      }}
-    >
-      <div ref={ref} id={id} className={classes} data-tabs-context=''>
-        {children}
-      </div>
-    </TabsContext.Provider>
-  )
-})
+    return (
+      <TabsContext.Provider
+        value={{
+          small,
+          activeIndex: currentIndex,
+          inverted: isInverted,
+          setInverted: setIsInverted,
+          setActiveIndex: setCurrentIndex,
+        }}
+      >
+        <div ref={ref} id={id} className={classes} data-tabs-context=''>
+          {children}
+        </div>
+      </TabsContext.Provider>
+    )
+  },
+)
 
 Tabs.displayName = ComponentName.Tabs
 export default Tabs

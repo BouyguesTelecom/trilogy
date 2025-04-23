@@ -93,13 +93,13 @@
       color: getColor('font');
       text-decoration: none;
       outline: none;
-      padding: 6px 14px;
+      padding: 12px 24px;
       font-size: $text-14;
       @include desktop {
         font-size: $text-16;
       }
       border: 0px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-bottom: 1px solid getColor('neutral');
 
       .tab-icon {
         margin-top: 2px;
@@ -119,13 +119,17 @@
         color: getColor('main');
         position: relative;
         border-bottom-color: getColor('main');
-        font-weight: $weight-medium;
+        font-weight: $weight-bold;
+        border-bottom-width: 2px;
+        height: calc(100% - 3.5px);
       }
 
-      &:hover:not(.is-disabled) {
+      &:hover:not([disabled]) {
         color: getColor('main');
         border-bottom-color: currentColor;
         cursor: pointer;
+        border-bottom-width: 2px;
+        height: calc(100% - 3.5px);
 
         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
           font-size: 22px !important;
@@ -148,13 +152,17 @@
 
       &[disabled], &[aria-disabled=true] {
         background-color: transparent !important;
-        border-bottom-color: transparent !important;
+        border-bottom-color: getColor('neutral') !important;
         &.is-active{
           border-bottom-color: currentColor !important;
         }
       }
-
     }
+  }
+  
+  &.is-small .tab-list > .tab {
+    font-size: $text-14;
+    padding: 12px 16px;
   }
 
   .tab-panels {
