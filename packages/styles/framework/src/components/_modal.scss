@@ -121,7 +121,6 @@ body:has(.modal.is-active) {
       word-wrap: break-word;
       display: flex;
       justify-content: space-between;
-      text-align: left;
 
       &:has(.modal-close) {
         flex-direction: row-reverse;
