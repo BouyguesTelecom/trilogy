@@ -120,8 +120,12 @@ body:has(.modal.is-active) {
       width: 100%;
       word-wrap: break-word;
       display: flex;
-      flex-direction: row-reverse;
       justify-content: space-between;
+      text-align: left;
+
+      &:has(.modal-close) {
+        flex-direction: row-reverse;
+      }
 
       &:has(.icon) {
         text-align: center;
