@@ -7,8 +7,8 @@ import { has, is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { useTextarea } from './hooks/useTextarea'
 import { TextareaProps, TextareaRef } from './TextareaProps'
+import { useTextarea } from './hooks/useTextarea'
 
 /**
  * Textarea Component
@@ -58,49 +58,55 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
     },
     ref,
   ): JSX.Element => {
-    const { handleChange, value } = useTextarea({ onChange, defaultValue })
+    const { value, handleChange } = useTextarea({ onChange, defaultValue })
 
-    const wrapperClasses = hashClass(clsx('textarea-wrapper', className, status && is(status)))
-    const classes = hashClass(clsx('textarea', dynamicPlaceholder && has('dynamic-label'), iconNameLeft && has('icon')))
+    const wrapperClasses = hashClass(clsx('field textarea-wrapper', className, status && is(status)))
+    const classes = hashClass(clsx('textarea'))
     const helpClasses = clsx('help', status && is(status))
     const counterClasses = hashClass(clsx('counter', maxLength))
 
+    const controlClasses = hashClass(
+      clsx('control', iconNameLeft && has('icons-left'), iconNameRight && has('icons-right')),
+    )
+
     return (
       <div id={id} className={wrapperClasses}>
-        {!dynamicPlaceholder && (
-          <label className='textarea-label'>
+        {label && (
+          <label className={hashClass('textarea-label')} htmlFor={id}>
             {label}{' '}
-            {label && required && (
+            {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
                 *
               </Text>
             )}
           </label>
         )}
-        {!dynamicPlaceholder && label && sample && (
-          <Text className='textarea-sample' level={TextLevels.TWO} typo={TypographyColor.TEXT_DISABLED}>
+        {sample && (
+          <Text className='input-sample' level={TextLevels.TWO} id={id}>
             {sample}
           </Text>
         )}
 
-        <textarea
-          ref={ref}
-          minLength={minLength}
-          disabled={disabled}
-          {...others}
-          className={classes}
-          value={value}
-          onChange={handleChange}
-          placeholder={placeholder}
-          rows={rows}
-          maxLength={maxLength}
-          required={required}
-        />
-        {dynamicPlaceholder && <label>{label}</label>}
-        {iconNameLeft && <Icon name={iconNameLeft} size='small' />}
-        {iconNameRight && <Icon name={iconNameRight} size='small' />}
+        <div className={controlClasses}>
+          <textarea
+            ref={ref}
+            minLength={minLength}
+            disabled={disabled}
+            className={classes}
+            value={value}
+            onChange={handleChange}
+            placeholder={placeholder}
+            rows={rows}
+            maxLength={maxLength}
+            required={required}
+            {...others}
+          />
+          {iconNameLeft && <Icon name={iconNameLeft} size='small' className='icon-left' />}
+          {iconNameRight && <Icon name={iconNameRight} size='small' className='icon-right' />}
+          {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
+        </div>
+
         {help && <Text className={helpClasses}>{help}</Text>}
-        {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
       </div>
     )
   },

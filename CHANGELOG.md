@@ -3,7 +3,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.3.0] - 2025-04-XX
+## [4.4.0] - 2025-xx-xx
+- Fix autocomplete native
+- Update stroke color in components
+- Add blank props for Box with markup type link
+- Fix Select multiple
+- Fix Input disabled style
+- Fix Radio disabled style
+- Fix Select disabled style
+- Fix Autocomplete style
+- Update Autolayout Rules
+- Fix Textarea
+
+
+## [4.3.0] - 2025-04-14
 - Fix textarea wrapper display
 - Fix navigation in Modal
 - Fix Input for accessibility

@@ -1,9 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { hashClass } from '@/helpers/hashClassesHelpers'
+import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import * as React from 'react'
+import { useSelectOption } from './hook/useSelectOption'
 import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
@@ -21,57 +22,43 @@ import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
  * @param others
  */
 const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
-  ({ id, className, value, disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
-    const { checked, native, focused, ...props } = others as { checked: boolean; native: boolean; focused: boolean }
-    const selectClasses = hashClass(clsx('option', focused && 'focus', disabled && is('disabled'), className))
+  ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
+    const { isChecked, handleClickOption, custom, multiple } = useSelectOption({ value, children, label, id })
+    const selectClasses = hashClass(clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
 
-    if (native) {
+    if (custom || multiple) {
       return (
-        <option
-          ref={ref as React.RefObject<HTMLOptionElement>}
-          role='option'
+        <li
+          ref={ref as React.RefObject<HTMLLIElement>}
           id={id}
-          value={value}
-          disabled={disabled}
-          aria-label={label}
-          data-testid={testId}
-          onClick={onClick}
-          {...props}
+          className={selectClasses}
+          data-selected={isChecked}
+          role='option'
+          aria-selected={isChecked}
+          data-value={value}
+          onClick={!disabled ? handleClickOption : undefined}
+          {...others}
         >
-          {children || label}
-        </option>
+          {iconName && <Icon name={iconName} />}
+          {label || children}
+        </li>
       )
     }
 
-    // return (
-    //   <RadioTile
-    //     checked={checked}
-    //     horizontal
-    //     className={selectClasses}
-    //     value={value}
-    //     disabled={disabled}
-    //     onChange={onClick}
-    //     icon={iconName}
-    //     description={label || children}
-    //     {...others}
-    //   />
-    // )
-
     return (
-      <li
-        ref={ref as React.RefObject<HTMLLIElement>}
-        id={id}
-        className={selectClasses}
-        data-selected={checked}
+      <option
+        ref={ref as React.RefObject<HTMLOptionElement>}
         role='option'
-        aria-selected={checked}
-        data-value={value}
-        onClick={!disabled && onClick ? onClick : undefined}
+        id={id}
+        value={value}
+        disabled={disabled}
+        aria-label={label}
+        data-testid={testId}
+        onClick={onClick}
         {...others}
       >
-        {iconName && <Icon name={iconName} />}
-        {label || children}
-      </li>
+        {children || label}
+      </option>
     )
   },
 )

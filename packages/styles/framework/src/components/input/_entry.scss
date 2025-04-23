@@ -1,3 +1,13 @@
+.input, .textarea {
+  &:not(:disabled) {
+    &:active,
+    &:focus,
+    &:focus-visible:not(.icon) {
+      padding-left: 15px ;
+    }
+  }
+}
+
 .input,
 .textarea {
   @include input;
@@ -19,12 +29,6 @@
     }
   }
 
-  &:active,
-  &:focus,
-  &:focus-visible:not(.icon) {
-    padding-left: 15px !important;
-  }
-
   // Sizes
   &.is-small {
     @include control-small;
@@ -41,10 +45,6 @@
 
   &.is-inline {
     display: inline;
-  }
-
-  .icon-status {
-    color: aqua !important;
   }
 
   & label {
@@ -87,7 +87,7 @@
     -webkit-appearance: none;
     background-repeat: no-repeat;
     background-color: getColor('background') ;
-    background-position: center;    
+    background-position: center;
   }
 
   &[type="search"] {
@@ -126,5 +126,10 @@
 
   &.has-fixed-size {
     resize: none;
+  }
+
+  &:focus-visible{
+    padding-top: 14px;
+    padding-bottom: 4px;
   }
 }

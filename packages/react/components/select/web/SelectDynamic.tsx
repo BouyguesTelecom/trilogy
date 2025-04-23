@@ -23,22 +23,22 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       iconName,
       multiple,
       className,
-      required,
       status,
       placeholder,
+      required,
+      custom,
       ...others
     },
     ref,
   ): JSX.Element => {
-    const { selectedName, onClickInput, focused, modal, options, onKeyUp, onKeyPress } = useSelectDynamic({
-      onChange,
+    const { onKeyUp, labelsSelected, onClickInput, onCloseOptions, isVisibleOptions } = useSelectDynamic({
       children,
       selected,
-      multiple,
     })
 
     const selectClasses = hashClass(clsx('select', className))
     const optionsClasses = hashClass(clsx('select-options'))
+    const portalClasses = hashClass('select-trilogy_modal_open')
 
     return (
       <div className={selectClasses} {...others}>
@@ -46,27 +46,30 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
           required={required}
           status={status}
           ref={ref as React.RefObject<HTMLInputElement>}
-          defaultValue={selectedName && selectedName.join(', ')}
-          value={selectedName && selectedName.join(', ')}
+          value={labelsSelected?.join(', ')}
           name={name}
           disabled={disabled}
           label={label}
           placeholder={placeholder}
           onFocus={onFocus}
           iconNameLeft={iconName}
-          onBlur={onBlur}
+          onBlur={onBlur as (event: unknown) => void}
           onClick={onClickInput}
-          className={hashClass(clsx('focus'))}
-          {...{ readOnly: true, id, role: 'combobox' }}
-          onKeyPress={onKeyPress}
+          className={isVisibleOptions ? 'focus' : undefined}
+          onKeyPress={(e) => {
+            e.preventDefault()
+          }}
           onKeyUp={onKeyUp}
+          {...{ readOnly: true, id, role: 'combobox' }}
         />
-        {focused && (
-          <ul role='listbox' className={optionsClasses}>
-            {options}
-          </ul>
-        )}
-        {focused && ReactDOM.createPortal(modal, document.body)}
+        <ul role='listbox' className={optionsClasses} style={{ display: isVisibleOptions ? 'block' : 'none' }}>
+          {children}
+        </ul>
+        {isVisibleOptions &&
+          ReactDOM.createPortal(
+            <div role='presentation' className={portalClasses} onClick={onCloseOptions} />,
+            document.body,
+          )}
       </div>
     )
   },

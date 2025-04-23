@@ -23,6 +23,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param fullheight
+ * @param blank If href && blank : target Blank
  * @param others
  */
 const Box = React.forwardRef<BoxRef, BoxProps>(
@@ -35,6 +36,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       onClick,
       skeleton,
       href,
+      blank,
       backgroundColor,
       highlighted,
       shadowless,
@@ -90,6 +92,10 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
           style: {
             backgroundImage: `url(${backgroundSrc})`,
           },
+          ...(href &&
+            blank && {
+              target: '_blank',
+            }),
         })}
       >
         {children}

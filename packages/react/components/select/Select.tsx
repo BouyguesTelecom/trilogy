@@ -1,7 +1,9 @@
-import { SelectDynamic, SelectNative } from '@/components/select/web'
-import React from 'react'
+import * as React from 'react'
+
 import { ComponentName } from '../enumsComponentsName'
+import { useSelect } from './hook/useSelect'
 import { SelectProps, SelectRef } from './SelectProps'
+import { SelectDynamic, SelectNative } from './web'
 
 /**
  * Select Component
@@ -10,9 +12,16 @@ import { SelectProps, SelectRef } from './SelectProps'
  * @param custom {boolean} Display native-old select web
  *  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Select = React.forwardRef<SelectRef, SelectProps>(({ custom, multiple, ...props }, ref): JSX.Element => {
-  if (custom || multiple) return <SelectDynamic ref={ref} {...props} multiple={multiple} />
-  return <SelectNative ref={ref} {...props} />
+const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
+  const { SelectProvider, isClient } = useSelect({ selected, ...props })
+
+  if ((props.custom || props.multiple) && isClient)
+    return (
+      <SelectProvider>
+        <SelectDynamic ref={ref} selected={selected} {...props} />
+      </SelectProvider>
+    )
+  return <SelectNative ref={ref} selected={selected} {...props} />
 })
 
 Select.displayName = ComponentName.Select

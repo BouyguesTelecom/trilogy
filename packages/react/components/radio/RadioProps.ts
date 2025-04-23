@@ -2,7 +2,7 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { TouchableOpacity } from 'react-native'
 
-type RadioChangeEventHandler = (event: {
+export type RadioChangeEventHandler = (event: {
   radioValue: string
   radioName: string
   radioChecked: boolean
