@@ -44,7 +44,7 @@ export const ModalScreen = (): JSX.Element => {
 
         <Modal
           // unClosable
-          // hideCloseButton={false}
+          hideCloseButton
           unClosable
           title='Détail du panier'
           size={ModalSize.SMALL}
