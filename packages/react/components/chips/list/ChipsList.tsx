@@ -16,7 +16,7 @@ import { ChipsListProps, ChipsListRef } from './ChipsListProps'
  * @param others
  */
 const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
-  ({ className, id, children, multiple, scrollable, ...others }, ref) => {
+  ({ className, id, children, multiple, scrollable, accessibilityLabelledBy, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -25,7 +25,7 @@ const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
     )
 
     return (
-      <div ref={ref} id={id} role='group' className={classes} {...others}>
+      <div ref={ref} id={id} role='group' aria-labelledby={accessibilityLabelledBy} className={classes} {...others}>
         {children}
       </div>
     )
