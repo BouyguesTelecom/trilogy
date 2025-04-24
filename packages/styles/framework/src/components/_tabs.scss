@@ -1,3 +1,6 @@
+$height-tab-default: 64px;
+$height-arrow-default:22px;
+
 .tabs {
   @include overflow-touch;
   @include unselectable;
@@ -7,11 +10,28 @@
   font-weight: $weight-normal;
   width: 100%;
   text-align: center;
-  overflow: scroll;
-  overflow: -moz-scrollbars-none !important;
-  -ms-overflow-style: none !important;
-  scrollbar-width: none;
-  overflow-y: hidden;
+  overflow: hidden;
+  position: relative;
+
+
+  .arrow-prev, .arrow-next {
+    position: absolute;
+    top: calc(($height-tab-default / 2) - calc($height-arrow-default / 2) - 4px);
+    transition: opacity 0.3s ease; 
+    opacity: 1;
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
+  .arrow-prev {
+    left: 0px;
+  }
+
+  .arrow-next {
+    right: 0px;
+  }
+
 
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -50,6 +70,7 @@
   }
 
   .tab-list {
+
     &::-webkit-scrollbar {
       width: 0 !important;
       height: 0 !important;
@@ -60,8 +81,8 @@
     height: 48px;
     overflow-x: auto;
     white-space: nowrap;
-    display: inline-flex;
     overflow-y: hidden;
+    border:1px solid black;
 
     &.is-fullwidth {
       @include desktop {
