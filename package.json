@@ -34,7 +34,8 @@
     "watch:css": "npm --workspace=@trilogy-ds/styles run watch:css",
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
     "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
-    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve"
+    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
+    "prepare": "husky"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
@@ -110,9 +111,11 @@
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "http-server": "^14.1.1",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.11",
     "markdownlint": "^0.31.1",
     "metro-react-native-babel-preset": "^0.77.0",
     "mini-css-extract-plugin": "^2.8.1",
@@ -165,6 +168,11 @@
     "packages/locales/en",
     "examples/react-template"
   ],
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
   "engineStrict": true,
   "engines": {
     "npm": ">=8.0.0",
