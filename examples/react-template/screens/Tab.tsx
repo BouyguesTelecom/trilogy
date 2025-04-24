@@ -21,6 +21,7 @@ import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {
   const [index, setIndex] = React.useState(0)
+
   return (
     <Section>
       <Columns fullheight>
@@ -150,6 +151,81 @@ export const TabScreen = (): JSX.Element => {
           </Box>
         </Column>
       </Columns>
+
+      <Box flat>
+        <BoxContent>
+          <Title className='is-centered'>ARROWS</Title>
+          <Tabs>
+            <TabList align={Alignable.ALIGNED_END}>
+              <Tab label='Tab 1' iconName={IconName.ALERT} />
+              <Tab label='Tab 2' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+              <Tab label='Tab 3' iconName={IconName.ALERT} />
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Title>Tab 1</Title>
+              </TabPanel>
+              <TabPanel>
+                <Title>Tab 2</Title>
+              </TabPanel>
+              <TabPanel>
+                <Title>Tab 3</Title>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </BoxContent>
+      </Box>
+
+      <Tabs>
+        <TabList align={Alignable.ALIGNED_END}>
+          <Tab label='Tab 1' iconName={IconName.ALERT} />
+          <Tab label='Tab 2' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+          <Tab label='Tab 3' iconName={IconName.ALERT} />
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Title>Tab 1</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 2</Title>
+          </TabPanel>
+          <TabPanel>
+            <Title>Tab 3</Title>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Section>
   )
 }
