@@ -8,6 +8,7 @@ import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
+import { TabsContext } from '../context'
 
 /**
  * Tabs Nav Component
@@ -22,23 +23,68 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
   ({ children, className, id, testId, align, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const innerRef = React.useRef<HTMLDivElement>(null)
-
-    const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
+    const tabRefs = React.useRef<DOMRect[]>([])
+    const { small } = React.useContext(TabsContext)
 
     const [tabsWidth, setTabsWidth] = React.useState<number>(0)
     const [tabListWidth, setTabListWidth] = React.useState<number>(0)
     const [scrollLeft, setScrollLeft] = React.useState<number>(0)
+    const [tabFocused, setTabFocused] = React.useState<number>(0)
+
+    const classes = hashClass(
+      styled,
+      clsx('tab-list', align && is(getAlignClassName(align)), tabListWidth > tabsWidth && is('arrows'), className),
+    )
+
+    const isVisibleArrowLeft = useMemo(() => scrollLeft > 32, [scrollLeft])
 
     const isVisibleArrowRight = useMemo(
       () => tabListWidth - tabsWidth - scrollLeft > 0,
       [tabListWidth, tabListWidth, scrollLeft],
     )
 
-    const isVisibleArrowLeft = useMemo(() => scrollLeft > 0, [scrollLeft])
+    const TabElms = React.useMemo(() => {
+      return React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return false
+        return (
+          <Tab ref={(el) => (tabRefs.current[index] = el?.getBoundingClientRect())} {...child.props} index={index} />
+        )
+      })
+    }, [children])
 
-    const handleScrollList = React.useCallback((e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-      setScrollLeft((e.target as HTMLDivElement).scrollLeft)
-    }, [])
+    const scrollToTab = React.useCallback(
+      (direction: number) => {
+        if (tabRefs.current) {
+          const firstGap = tabRefs.current[0].x
+          const { x } = tabRefs.current[tabFocused + direction]
+          innerRef.current?.scrollTo({ left: x - firstGap, behavior: 'smooth' })
+        }
+      },
+      [tabRefs.current, tabFocused],
+    )
+
+    const handleScrollList = React.useCallback(
+      (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+        const target = e.target as HTMLDivElement
+        const firstGap = tabRefs.current[0].x + 2
+
+        const scrollPosition = tabRefs.current.findIndex((tab) => {
+          return target.scrollLeft >= tab.left - firstGap && target.scrollLeft <= tab.right - firstGap
+        })
+
+        setTabFocused(scrollPosition)
+        setScrollLeft(target.scrollLeft)
+      },
+      [tabRefs],
+    )
+
+    const onClickPrev = React.useCallback(() => {
+      scrollToTab(-1)
+    }, [scrollToTab])
+
+    const onClickNext = React.useCallback(() => {
+      scrollToTab(1)
+    }, [scrollToTab])
 
     React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
 
@@ -51,14 +97,21 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
 
     return (
       <>
-        <Icon name='tri-arrow-left' className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')} />
+        <Icon
+          name='tri-arrow-left'
+          className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
+          size={small ? 'small' : 'medium'}
+          onClick={onClickPrev}
+        />
         <div ref={innerRef} id={id} data-testid={testId} className={classes} {...others} onScroll={handleScrollList}>
-          {React.Children.map(children, (child, index) => {
-            if (!React.isValidElement(child)) return false
-            return <Tab {...child.props} index={index} />
-          })}
+          {TabElms}
         </div>
-        <Icon name='tri-arrow-right' className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')} />
+        <Icon
+          name='tri-arrow-right'
+          className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
+          size={small ? 'small' : 'medium'}
+          onClick={onClickNext}
+        />
       </>
     )
   },
