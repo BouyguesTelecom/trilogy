@@ -1,5 +1,6 @@
 $height-tab-default: 64px;
-$height-arrow-default:22px;
+$height-arrow-default:32px;
+$height-arrow-small:22px;
 
 .tabs {
   @include overflow-touch;
@@ -22,6 +23,10 @@ $height-arrow-default:22px;
     &.hidden {
       opacity: 0;
     }
+  }
+
+  &.small .arrow-prev, .arrow-next {
+    top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) - 4px);
   }
 
   .arrow-prev {
@@ -70,19 +75,23 @@ $height-arrow-default:22px;
   }
 
   .tab-list {
+    background-color: transparent;
+    height: 48px;
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+
+    &.is-arrows{
+      margin-left: 64px;
+      margin-right: 64px;
+
+    }
 
     &::-webkit-scrollbar {
       width: 0 !important;
       height: 0 !important;
       scrollbar-width: none !important;
     }
-
-    background-color: transparent;
-    height: 48px;
-    overflow-x: auto;
-    white-space: nowrap;
-    overflow-y: hidden;
-    border:1px solid black;
 
     &.is-fullwidth {
       @include desktop {
@@ -116,6 +125,7 @@ $height-arrow-default:22px;
       outline: none;
       padding: 12px 24px;
       font-size: $text-14;
+      border:1px solid red !important;
       @include desktop {
         font-size: $text-16;
       }
@@ -142,7 +152,6 @@ $height-arrow-default:22px;
         border-bottom-color: getColor('main');
         font-weight: $weight-bold;
         border-bottom-width: 2px;
-        height: calc(100% - 3.5px);
       }
 
       &:hover:not([disabled]) {
@@ -150,7 +159,6 @@ $height-arrow-default:22px;
         border-bottom-color: currentColor;
         cursor: pointer;
         border-bottom-width: 2px;
-        height: calc(100% - 3.5px);
 
         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
           font-size: 22px !important;

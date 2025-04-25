@@ -1,19 +1,13 @@
 import {
   Box,
   BoxContent,
-  Button,
-  Column,
-  Columns,
   IconName,
   Section,
-  Spacer,
-  SpacerSize,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
   Title,
 } from '@trilogy-ds/react/components'
 import { Alignable } from '@trilogy-ds/react/objects'
@@ -24,7 +18,7 @@ export const TabScreen = (): JSX.Element => {
 
   return (
     <Section>
-      <Columns fullheight>
+      {/* <Columns fullheight>
         <Column>
           <Box flat>
             <BoxContent>
@@ -150,7 +144,7 @@ export const TabScreen = (): JSX.Element => {
             </BoxContent>
           </Box>
         </Column>
-      </Columns>
+      </Columns> */}
 
       <Box flat>
         <BoxContent>
@@ -192,7 +186,7 @@ export const TabScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Tabs>
+      {/* <Tabs small>
         <TabList align={Alignable.ALIGNED_END}>
           <Tab label='Tab 1' iconName={IconName.ALERT} />
           <Tab label='Tab 2' iconName={IconName.ALERT} />
@@ -225,7 +219,7 @@ export const TabScreen = (): JSX.Element => {
             <Title>Tab 3</Title>
           </TabPanel>
         </TabPanels>
-      </Tabs>
+      </Tabs> */}
     </Section>
   )
 }
