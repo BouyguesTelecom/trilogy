@@ -25,6 +25,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     const innerRef = React.useRef<HTMLDivElement>(null)
     const tabRefs = React.useRef<DOMRect[]>([])
     const { small } = React.useContext(TabsContext)
+    React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
 
     const [tabsWidth, setTabsWidth] = React.useState<number>(0)
     const [tabListWidth, setTabListWidth] = React.useState<number>(0)
@@ -93,8 +94,6 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       isVisibleArrowRight && scrollWithArrow(1)
     }, [scrollWithArrow, isVisibleArrowRight])
 
-    React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
-
     React.useEffect(() => {
       if (innerRef.current) {
         setTabsWidth(innerRef.current.clientWidth)
@@ -102,24 +101,33 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       }
     }, [innerRef, isVisibleArrowLeft, isVisibleArrowRight])
 
+    React.useEffect(() => {
+      const handleResize = () => {
+        if (!innerRef.current) return
+        setTabsWidth(innerRef.current.clientWidth)
+        setTabListWidth(innerRef.current.scrollWidth)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }, [innerRef])
+
     return (
-      <>
+      <div ref={innerRef} id={id} data-testid={testId} className={classes} onScroll={handleScrollList} {...others}>
         <Icon
           name='tri-arrow-left'
           className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
           size={small ? 'small' : 'medium'}
           onClick={onClickPrev}
         />
-        <div ref={innerRef} id={id} data-testid={testId} className={classes} {...others} onScroll={handleScrollList}>
-          {TabElms}
-        </div>
+        {TabElms}
         <Icon
           name='tri-arrow-right'
           className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
           size={small ? 'small' : 'medium'}
           onClick={onClickNext}
         />
-      </>
+      </div>
     )
   },
 )
