@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
+import { Icon, IconSize } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
 import { useTrilogyContext } from '@/context/index'
@@ -70,7 +70,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(({
         data-index={index}
         {...others}
       >
-        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+        <div className='tab-icon'>{iconName && <Icon size={IconSize.SMALL} name={iconName} />}</div>
         {label && label}
       </RouterLink>
     )
@@ -91,7 +91,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(({
       onClick={handleClick}
       {...props}
     >
-      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+      <div className='tab-icon'>{iconName && <Icon size={IconSize.SMALL} name={iconName} />}</div>
       {label && label}
     </button>
   )
