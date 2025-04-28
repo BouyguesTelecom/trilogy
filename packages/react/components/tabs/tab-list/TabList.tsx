@@ -73,7 +73,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     const handleScrollList = React.useCallback(
       (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
         const target = e.target as HTMLDivElement
-        const firstGap = tabRefs.current[0].x + 24
+        const firstGap = tabRefs.current[0].x + (small ? 16 : 24)
 
         const scrollPosition = tabRefs.current.findIndex((tab) => {
           return target.scrollLeft >= tab.left - firstGap && target.scrollLeft <= tab.right - firstGap
@@ -82,7 +82,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
         setTabFocused(scrollPosition)
         setScrollLeft(target.scrollLeft)
       },
-      [tabRefs],
+      [tabRefs, small],
     )
 
     const onClickPrev = React.useCallback(() => {
