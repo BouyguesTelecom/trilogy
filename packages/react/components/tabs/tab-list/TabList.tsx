@@ -64,8 +64,8 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
-          const rect = tabRefs.current[tabFocused + direction]
-          rect && TabListRef.current?.scrollTo({ left: rect.x - firstGap, behavior: 'smooth' })
+          const nextPosition = tabRefs.current[tabFocused + direction]
+          nextPosition && TabListRef.current?.scrollTo({ left: nextPosition.x - firstGap, behavior: 'smooth' })
         }
       },
       [tabRefs.current, tabFocused, TabListRef],
