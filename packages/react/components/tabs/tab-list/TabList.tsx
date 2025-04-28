@@ -79,8 +79,6 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
           return target.scrollLeft >= tab.left - firstGap && target.scrollLeft <= tab.right - firstGap
         })
 
-        console.log(scrollPosition)
-
         setTabFocused(scrollPosition)
         setScrollLeft(target.scrollLeft)
       },
