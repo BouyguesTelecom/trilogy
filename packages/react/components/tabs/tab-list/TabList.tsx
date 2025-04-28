@@ -22,10 +22,10 @@ import { TabsContext } from '../context'
 const TabList = React.forwardRef<TabListRef, TabListProps>(
   ({ children, className, id, testId, align, ...others }, ref) => {
     const { styled } = useTrilogyContext()
-    const innerRef = React.useRef<HTMLDivElement>(null)
+    const TabListRef = React.useRef<HTMLDivElement>(null)
     const tabRefs = React.useRef<DOMRect[]>([])
     const { small } = React.useContext(TabsContext)
-    React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
+    React.useImperativeHandle(ref, () => TabListRef.current as HTMLDivElement)
 
     const [tabsWidth, setTabsWidth] = React.useState<number>(0)
     const [tabListWidth, setTabListWidth] = React.useState<number>(0)
@@ -64,11 +64,11 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
-          const { x } = tabRefs.current[tabFocused + direction]
-          innerRef.current?.scrollTo({ left: x - firstGap, behavior: 'smooth' })
+          const rect = tabRefs.current[tabFocused + direction]
+          rect && TabListRef.current?.scrollTo({ left: rect.x - firstGap, behavior: 'smooth' })
         }
       },
-      [tabRefs.current, tabFocused, innerRef],
+      [tabRefs.current, tabFocused, TabListRef],
     )
 
     const handleScrollList = React.useCallback(
@@ -95,11 +95,11 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     }, [scrollWithArrow, isVisibleArrowRight])
 
     const setWidths = React.useCallback(() => {
-      if (innerRef.current) {
-        setTabsWidth(innerRef.current.clientWidth)
-        setTabListWidth(innerRef.current.scrollWidth)
+      if (TabListRef.current) {
+        setTabsWidth(TabListRef.current.clientWidth)
+        setTabListWidth(TabListRef.current.scrollWidth)
       }
-    }, [innerRef])
+    }, [TabListRef])
 
     React.useEffect(() => {
       setWidths()
@@ -108,10 +108,10 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     React.useEffect(() => {
       window.addEventListener('resize', setWidths)
       return () => window.removeEventListener('resize', setWidths)
-    }, [innerRef, setWidths])
+    }, [TabListRef, setWidths])
 
     return (
-      <div ref={innerRef} id={id} data-testid={testId} className={classes} onScroll={handleScrollList} {...others}>
+      <div ref={TabListRef} id={id} data-testid={testId} className={classes} onScroll={handleScrollList} {...others}>
         <Icon
           name='tri-arrow-left'
           className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
