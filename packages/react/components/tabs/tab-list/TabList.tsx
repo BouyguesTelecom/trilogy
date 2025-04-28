@@ -36,23 +36,30 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       clsx('tab-list', align && is(getAlignClassName(align)), tabListWidth > tabsWidth && is('arrows'), className),
     )
 
-    const isVisibleArrowLeft = useMemo(() => scrollLeft > 32, [scrollLeft])
+    const isVisibleArrowLeft = useMemo(() => {
+      if (!tabRefs.current.length) return false
+      return scrollLeft > tabRefs.current[0].width / 2
+    }, [tabRefs, scrollLeft])
 
     const isVisibleArrowRight = useMemo(
       () => tabListWidth - tabsWidth - scrollLeft > 0,
-      [tabListWidth, tabListWidth, scrollLeft],
+      [tabListWidth, tabsWidth, scrollLeft],
     )
 
     const TabElms = React.useMemo(() => {
       return React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return false
         return (
-          <Tab ref={(el) => (tabRefs.current[index] = el?.getBoundingClientRect())} {...child.props} index={index} />
+          <Tab
+            ref={(el) => (tabRefs.current[index] = el?.getBoundingClientRect() as DOMRect)}
+            index={index}
+            {...child.props}
+          />
         )
       })
-    }, [children])
+    }, [children, tabRefs])
 
-    const scrollToTab = React.useCallback(
+    const scrollWithArrow = React.useCallback(
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
@@ -60,7 +67,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
           innerRef.current?.scrollTo({ left: x - firstGap, behavior: 'smooth' })
         }
       },
-      [tabRefs.current, tabFocused],
+      [tabRefs.current, tabFocused, innerRef],
     )
 
     const handleScrollList = React.useCallback(
@@ -79,12 +86,12 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     )
 
     const onClickPrev = React.useCallback(() => {
-      scrollToTab(-1)
-    }, [scrollToTab])
+      isVisibleArrowLeft && scrollWithArrow(-1)
+    }, [scrollWithArrow, isVisibleArrowLeft])
 
     const onClickNext = React.useCallback(() => {
-      scrollToTab(1)
-    }, [scrollToTab])
+      isVisibleArrowRight && scrollWithArrow(1)
+    }, [scrollWithArrow, isVisibleArrowRight])
 
     React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
 
@@ -93,7 +100,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
         setTabsWidth(innerRef.current.clientWidth)
         setTabListWidth(innerRef.current.scrollWidth)
       }
-    }, [innerRef])
+    }, [innerRef, isVisibleArrowLeft, isVisibleArrowRight])
 
     return (
       <>

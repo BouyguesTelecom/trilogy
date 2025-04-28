@@ -1,13 +1,19 @@
 import {
   Box,
   BoxContent,
+  Button,
+  Column,
+  Columns,
   IconName,
   Section,
+  Spacer,
+  SpacerSize,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
   Title,
 } from '@trilogy-ds/react/components'
 import { Alignable } from '@trilogy-ds/react/objects'
@@ -18,7 +24,7 @@ export const TabScreen = (): JSX.Element => {
 
   return (
     <Section>
-      {/* <Columns fullheight>
+      <Columns fullheight>
         <Column>
           <Box flat>
             <BoxContent>
@@ -144,82 +150,58 @@ export const TabScreen = (): JSX.Element => {
             </BoxContent>
           </Box>
         </Column>
-      </Columns> */}
+      </Columns>
 
-      <Box flat>
-        <BoxContent>
-          <Title className='is-centered'>ARROWS</Title>
-          <Tabs>
-            <TabList align={Alignable.ALIGNED_END}>
-              <Tab label='Tab 1' iconName={IconName.ALERT} />
-              <Tab label='Tab 2' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-              <Tab label='Tab 3' iconName={IconName.ALERT} />
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Title>Tab 1</Title>
-              </TabPanel>
-              <TabPanel>
-                <Title>Tab 2</Title>
-              </TabPanel>
-              <TabPanel>
-                <Title>Tab 3</Title>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </BoxContent>
-      </Box>
+      <Spacer size={SpacerSize.EIGHT} />
 
-      {/* <Tabs small>
-        <TabList align={Alignable.ALIGNED_END}>
-          <Tab label='Tab 1' iconName={IconName.ALERT} />
-          <Tab label='Tab 2' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-          <Tab label='Tab 3' iconName={IconName.ALERT} />
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <Title>Tab 1</Title>
-          </TabPanel>
-          <TabPanel>
-            <Title>Tab 2</Title>
-          </TabPanel>
-          <TabPanel>
-            <Title>Tab 3</Title>
-          </TabPanel>
-        </TabPanels>
-      </Tabs> */}
+      <Columns>
+        <Column size={6}>
+          <Box flat>
+            <BoxContent>
+              <Title className='is-centered'>Scrollable</Title>
+              <Tabs>
+                <TabList align={Alignable.ALIGNED_START}>
+                  {...Array.from({ length: 10 }).map((_, i) => {
+                    return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
+                  })}
+                </TabList>
+                <TabPanels>
+                  {...Array.from({ length: 10 }).map((_, i) => {
+                    return (
+                      <TabPanel key={i}>
+                        <Title>Tab {i + 1}</Title>
+                      </TabPanel>
+                    )
+                  })}
+                </TabPanels>
+              </Tabs>
+            </BoxContent>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box flat>
+            <BoxContent>
+              <Title className='is-centered'>Small tabs scrollable (web)</Title>
+              <Tabs small>
+                <TabList align={Alignable.ALIGNED_START}>
+                  {...Array.from({ length: 16 }).map((_, i) => {
+                    return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
+                  })}
+                </TabList>
+                <TabPanels>
+                  {...Array.from({ length: 16 }).map((_, i) => {
+                    return (
+                      <TabPanel key={i}>
+                        <Title>Tab {i + 1}</Title>
+                      </TabPanel>
+                    )
+                  })}
+                </TabPanels>
+              </Tabs>
+            </BoxContent>
+          </Box>
+        </Column>
+      </Columns>
     </Section>
   )
 }
