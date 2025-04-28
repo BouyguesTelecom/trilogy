@@ -42,7 +42,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     }, [tabRefs, scrollLeft])
 
     const isVisibleArrowRight = useMemo(
-      () => tabListWidth - tabsWidth - scrollLeft > 0,
+      () => tabListWidth - tabsWidth - scrollLeft > 5,
       [tabListWidth, tabsWidth, scrollLeft],
     )
 
