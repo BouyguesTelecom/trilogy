@@ -94,23 +94,21 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       isVisibleArrowRight && scrollWithArrow(1)
     }, [scrollWithArrow, isVisibleArrowRight])
 
-    React.useEffect(() => {
+    const setWidths = React.useCallback(() => {
       if (innerRef.current) {
         setTabsWidth(innerRef.current.clientWidth)
         setTabListWidth(innerRef.current.scrollWidth)
       }
-    }, [innerRef, isVisibleArrowLeft, isVisibleArrowRight])
+    }, [innerRef])
 
     React.useEffect(() => {
-      const handleResize = () => {
-        if (!innerRef.current) return
-        setTabsWidth(innerRef.current.clientWidth)
-        setTabListWidth(innerRef.current.scrollWidth)
-      }
+      setWidths()
+    }, [setWidths, isVisibleArrowLeft, isVisibleArrowRight])
 
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }, [innerRef])
+    React.useEffect(() => {
+      window.addEventListener('resize', setWidths)
+      return () => window.removeEventListener('resize', setWidths)
+    }, [innerRef, setWidths])
 
     return (
       <div ref={innerRef} id={id} data-testid={testId} className={classes} onScroll={handleScrollList} {...others}>
