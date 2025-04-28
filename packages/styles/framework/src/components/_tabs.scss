@@ -79,8 +79,8 @@ $height-arrow-small:30px;
     max-width: 100%;
     
     &.is-arrows{
-      margin-left: 42px;
-      margin-right: 42px;
+      margin-left: 40px;
+      margin-right: 40px;
     }
 
     &::-webkit-scrollbar {
@@ -120,10 +120,7 @@ $height-arrow-small:30px;
       text-decoration: none;
       outline: none;
       padding: 12px 24px;
-      font-size: $text-14;
-      @include desktop {
-        font-size: $text-16;
-      }
+      font-size: $text-16;
       border: 0px solid transparent;
       border-bottom: 1px solid getColor('neutral');
 
@@ -135,10 +132,6 @@ $height-arrow-small:30px;
         .tab-icon {
           margin-top: 4px;
         }
-      }
-
-      @include mobile {
-        font-size: $text-14;
       }
 
       &.is-active {
@@ -190,10 +183,17 @@ $height-arrow-small:30px;
       top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) - 4px) !important;
     }
     
-    .tab-list > .tab {
-      font-size: $text-14;
-      padding: 12px 16px;
-    }
+    .tab-list {
+      & > .tab {
+        font-size: $text-14 ;
+        padding: 12px 16px;
+      }
+
+      &.is-arrows{
+        margin-left: 26px;
+        margin-right: 26px;
+      }
+    } 
   } 
 
 
