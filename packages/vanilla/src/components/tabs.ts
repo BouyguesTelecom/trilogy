@@ -1,8 +1,9 @@
 export const initTabs = (): void => {
-  const tabList = document.getElementById('tablist') as HTMLDivElement;
-  const tabs = tabList.querySelectorAll<HTMLButtonElement>('.tab');
-  const arrowPrev = tabList.querySelector<HTMLSpanElement>('.arrow-prev');
-  const arrowNext = tabList.querySelector<HTMLSpanElement>('.arrow-next');
+  console.log("iniiiiiiiit tabs")
+  const tabList = document.querySelector('[data-tablist]') as HTMLDivElement;
+  const tabs = tabList.querySelectorAll<HTMLButtonElement>('[data-tab-navigation]');
+  const arrowPrev = tabList.querySelector<HTMLSpanElement>('[data-arrow-prev]');
+  const arrowNext = tabList.querySelector<HTMLSpanElement>('[data-arrow-next]');
   const scrollAmount = 100;
 
   const updateArrows = (): void => {
@@ -38,9 +39,9 @@ export const initTabs = (): void => {
       tabs.forEach(t => t.classList.remove('is-active'));
       tab.classList.add('is-active');
 
-      const panels = document.querySelectorAll<HTMLDivElement>('.tab-panel');
+      const panels = document.querySelectorAll<HTMLDivElement>('[data-tab-panel]');
       panels.forEach(panel => panel.classList.remove('is-active'));
-      const activePanel = document.querySelector<HTMLDivElement>(`.tab-panel[data-index="${index}"]`);
+      const activePanel = document.querySelector<HTMLDivElement>(`[data-tab-panel][data-index="${index}"]`);
       if (activePanel) activePanel.classList.add('is-active');
     });
   });
