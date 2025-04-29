@@ -1,5 +1,4 @@
 export const initTabs = (): void => {
-  console.log("iniiiiiiiit tabs")
   const tabList = document.querySelector('[data-tablist]') as HTMLDivElement;
   const tabs = tabList.querySelectorAll<HTMLButtonElement>('[data-tab-navigation]');
   const arrowPrev = tabList.querySelector<HTMLSpanElement>('[data-arrow-prev]');
