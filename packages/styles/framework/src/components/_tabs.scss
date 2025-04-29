@@ -17,7 +17,7 @@ $height-arrow-small:30px;
 
   .arrow-prev, .arrow-next {
     position: absolute;
-    top: calc(($height-tab-default / 2) - calc($height-arrow-default / 2) - 2px) !important ;
+    top: calc(($height-tab-default / 2) - calc($height-arrow-default / 2) ) !important ;
     transition: opacity 0.3s ease; 
     opacity: 1;
     &.hidden {
@@ -180,7 +180,7 @@ $height-arrow-small:30px;
 
   &.is-small{
     .arrow-prev, .arrow-next {
-      top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) - 4px) !important;
+      top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) ) !important;
     }
     
     .tab-list {
