@@ -79,8 +79,8 @@ $height-arrow-small:30px;
     max-width: 100%;
     
     &.is-arrows{
-      margin-left: 40px;
-      margin-right: 40px;
+      margin-left: $spacing-7;
+      margin-right: $spacing-7;
     }
 
     &::-webkit-scrollbar {
@@ -190,8 +190,8 @@ $height-arrow-small:30px;
       }
 
       &.is-arrows{
-        margin-left: 26px;
-        margin-right: 26px;
+        margin-left: $spacing-6;
+        margin-right: $spacing-6;
       }
     } 
   } 
