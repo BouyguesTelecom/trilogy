@@ -161,12 +161,12 @@ export const TabScreen = (): JSX.Element => {
               <Title className='is-centered'>Scrollable</Title>
               <Tabs>
                 <TabList align={Alignable.ALIGNED_START}>
-                  {...Array.from({ length: 10 }).map((_, i) => {
+                  {[...Array(10).keys()].map((_, i) => {
                     return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
                   })}
                 </TabList>
                 <TabPanels>
-                  {...Array.from({ length: 10 }).map((_, i) => {
+                  {[...Array(10).keys()].map((_, i) => {
                     return (
                       <TabPanel key={i}>
                         <Title>Tab {i + 1}</Title>
@@ -184,12 +184,12 @@ export const TabScreen = (): JSX.Element => {
               <Title className='is-centered'>Small tabs scrollable (web)</Title>
               <Tabs small>
                 <TabList align={Alignable.ALIGNED_START}>
-                  {...Array.from({ length: 16 }).map((_, i) => {
+                  {[...Array(10).keys()].map((_, i) => {
                     return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
                   })}
                 </TabList>
                 <TabPanels>
-                  {...Array.from({ length: 16 }).map((_, i) => {
+                  {[...Array(10).keys()].map((_, i) => {
                     return (
                       <TabPanel key={i}>
                         <Title>Tab {i + 1}</Title>

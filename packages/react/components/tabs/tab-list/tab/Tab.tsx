@@ -61,9 +61,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
           data-index={index}
           {...others}
         >
-          <div className='tab-icon'>
-            {iconName && <Icon align='ALIGNED_END' size={small ? 'small' : 'medium'} name={iconName} />}
-          </div>
+          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
           {label && label}
         </RouterLink>
       )
@@ -84,8 +82,8 @@ const Tab = React.forwardRef<TabRef, TabProps>(
         onClick={handleClick}
         {...props}
       >
-        <div className='tab-icon'>
-          {iconName && <Icon align='ALIGNED_CENTER' size={small ? 'small' : 'medium'} name={iconName} />}
+        <div className={hashClass(styled, 'tab-icon')}>
+          {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
         {label && <div>{label}</div>}
       </button>
