@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tab List with Arrows</title>
+  <link rel="stylesheet" href="../styles/dist/default/trilogy.css" />
+</head>
+<body>
+
+<div class="tabs">
+  <div class="tab-list is-aligned-start is-arrows" id="tablist">
+    <span class="icon is-medium arrow-prev hidden">&larr;</span>
+    <button aria-selected="true" data-tab-navigation="" class="tab is-active" role="tab" data-index="0"><div>Tab 1</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="1"><div>Tab 2</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="2"><div>Tab 3</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="3"><div>Tab 4</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="4"><div>Tab 5</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="5"><div>Tab 6</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="6"><div>Tab 7</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="7"><div>Tab 8</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="8"><div>Tab 9</div></button>
+    <button aria-selected="false" data-tab-navigation="" class="tab" role="tab" data-index="9"><div>Tab 10</div></button>
+    <span class="icon is-medium arrow-next">&rarr;</span>
+  </div>
+
+  <div class="tab-panels">
+    <div class="tab-panel is-active" data-index="0"><p>Tab 1 content</p></div>
+    <div class="tab-panel" data-index="1"><p>Tab 2 content</p></div>
+    <div class="tab-panel" data-index="2"><p>Tab 3 content</p></div>
+    <div class="tab-panel" data-index="3"><p>Tab 4 content</p></div>
+    <div class="tab-panel" data-index="4"><p>Tab 5 content</p></div>
+    <div class="tab-panel" data-index="5"><p>Tab 6 content</p></div>
+    <div class="tab-panel" data-index="6"><p>Tab 7 content</p></div>
+    <div class="tab-panel" data-index="7"><p>Tab 8 content</p></div>
+    <div class="tab-panel" data-index="8"><p>Tab 9 content</p></div>
+    <div class="tab-panel" data-index="9"><p>Tab 10 content</p></div>
+  </div>
+</div>
+
+<script>
+  const tabList = document.getElementById('tablist');
+  const tabs = tabList.querySelectorAll('.tab');
+  const arrowPrev = tabList.querySelector('.arrow-prev');
+  const arrowNext = tabList.querySelector('.arrow-next');
+  const scrollAmount = 100;  // Define the amount to scroll when clicking on arrows
+
+  const updateArrows =() => {
+    const scrollLeft = tabList.scrollLeft;
+    const scrollWidth = tabList.scrollWidth;
+    const clientWidth = tabList.clientWidth;
+    arrowPrev.classList.toggle('hidden', scrollLeft <= 0);
+    arrowNext.classList.toggle('hidden', scrollWidth <= scrollLeft + clientWidth);
+  }
+
+  function scrollTabs(direction) {
+    tabList.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    updateArrows();
+  }
+
+  arrowPrev.addEventListener('click', () => {
+    scrollTabs(-1);
+  });
+
+  arrowNext.addEventListener('click', () => {
+    scrollTabs(1);
+  });
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(panel => panel.classList.remove('is-active'));
+      const activePanel = document.querySelector(`.tab-panel[data-index="${index}"]`);
+      if (activePanel) activePanel.classList.add('is-active');
+    });
+  });
+
+  tabList.addEventListener('scroll', updateArrows);
+
+  window.addEventListener('resize', updateArrows);
+
+  updateArrows();
+</script>
+
+</body>
+</html>
