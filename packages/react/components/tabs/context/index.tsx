@@ -5,6 +5,7 @@ interface IContext {
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>
   inverted: boolean
   setInverted: React.Dispatch<React.SetStateAction<boolean>>
+  small?: boolean
 }
 
 export const TabsContext = React.createContext<IContext>({
@@ -12,4 +13,5 @@ export const TabsContext = React.createContext<IContext>({
   inverted: false,
   setActiveIndex: () => 0,
   setInverted: () => false,
+  small: false,
 })
