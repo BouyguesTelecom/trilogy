@@ -184,12 +184,12 @@ export const TabScreen = (): JSX.Element => {
               <Title className='is-centered'>Small tabs scrollable (web)</Title>
               <Tabs small>
                 <TabList align={Alignable.ALIGNED_START}>
-                  {[...Array(10).keys()].map((_, i) => {
+                  {[...Array(16).keys()].map((_, i) => {
                     return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
                   })}
                 </TabList>
                 <TabPanels>
-                  {[...Array(10).keys()].map((_, i) => {
+                  {[...Array(16).keys()].map((_, i) => {
                     return (
                       <TabPanel key={i}>
                         <Title>Tab {i + 1}</Title>
