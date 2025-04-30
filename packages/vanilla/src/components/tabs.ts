@@ -3,7 +3,6 @@ export const initTabs = (): void => {
   const tabs = tabList.querySelectorAll<HTMLButtonElement>('[data-tab-navigation]');
   const arrowPrev = tabList.querySelector<HTMLSpanElement>('[data-arrow-prev]');
   const arrowNext = tabList.querySelector<HTMLSpanElement>('[data-arrow-next]');
-  const scrollAmount = 100;
 
   const updateArrows = (): void => {
     if (!arrowPrev || !arrowNext) return;
@@ -16,20 +15,36 @@ export const initTabs = (): void => {
     arrowNext.classList.toggle('hidden', scrollWidth <= scrollLeft + clientWidth);
   }
 
-  const scrollTabs = (direction: number): void => {
-    tabList.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  const scrollTabsToNext = (direction: 1 | -1): void => {
+    const tabsArray = Array.from(tabs);
+    const currentScrollLeft = tabList.scrollLeft;
+    let targetTab: HTMLButtonElement | undefined;
+
+    if (direction === 1) {
+      targetTab = tabsArray.find(tab => tab.offsetLeft > currentScrollLeft);
+    } else {
+      targetTab = tabsArray.slice().reverse().find(tab => tab.offsetLeft < currentScrollLeft);
+    }
+
+    if (targetTab) {
+      tabList.scrollTo({ left: targetTab.offsetLeft, behavior: 'smooth' });
+    } else if (direction === -1) {
+      // If we're scrolling left and no targetTab found, scroll to the very start
+      tabList.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+
     updateArrows();
   }
 
   if (arrowPrev) {
     arrowPrev.addEventListener('click', () => {
-      scrollTabs(-1);
+      scrollTabsToNext(-1);
     });
   }
 
   if (arrowNext) {
     arrowNext.addEventListener('click', () => {
-      scrollTabs(1);
+      scrollTabsToNext(1);
     });
   }
 
