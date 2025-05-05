@@ -5,8 +5,7 @@ import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListNativeRef, TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import { TabRef } from './tab/TabProps'
+import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native'
 
 /**
  * Tabs Nav Component
@@ -19,15 +18,12 @@ import { TabRef } from './tab/TabProps'
  */
 const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
   const { inverted } = React.useContext(TabsContext)
-  const TabListRef = React.useRef<ScrollView>(null)
-  const tabRefs = React.useRef<TabRef[]>([])
 
-  const TabElms = React.useMemo(() => {
-    return React.Children.map(children, (child, index) => {
-      if (!React.isValidElement(child)) return false
-      return <Tab ref={(el) => (tabRefs.current[index] = el as TabRef)} index={index} {...child.props} />
-    })
-  }, [children, tabRefs])
+  const [tabsWidth, setTabsWidth] = React.useState<number>(0)
+  const [tabListWidth, setTabListWidth] = React.useState<number>(0)
+  const [scrollLeft, setScrollLeft] = React.useState<number>(0)
+  const [tabFocused, setTabFocused] = React.useState<number>(0)
+  const [tabElms, setTabElms] = React.useState<[]>([])
 
   const styles = StyleSheet.create({
     tabList: {
@@ -36,27 +32,65 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
     },
   })
 
+  const handleScrollList = React.useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const scrollLeft = e.nativeEvent.contentOffset.x
+      const scrollPosition = tabElms.findIndex((tab) => scrollLeft >= tab.x && scrollLeft <= tab.x + tab.width)
+      setTabFocused(scrollPosition)
+      setScrollLeft(scrollLeft)
+    },
+    [tabElms],
+  )
+
+  const isVisibleArrowLeft = React.useMemo(() => {
+    if (!tabElms.length) return false
+    return scrollLeft > tabElms[0].width / 2
+  }, [tabElms, scrollLeft])
+
+  const isVisibleArrowRight = React.useMemo(
+    () => tabListWidth - tabsWidth - scrollLeft > 5,
+    [tabListWidth, tabsWidth, scrollLeft],
+  )
+
   return (
-    <View
-      style={{ flexDirection: 'row', alignItems: 'center' }}
-      onLayout={(e) => {
-        console.log('container', e.nativeEvent.layout.width)
-      }}
-    >
-      <Icon name='tri-arrow-left' align='ALIGNED_CENTER' />
+    <View style={{ position: 'relative' }} onLayout={(e) => setTabsWidth(e.nativeEvent.layout.width)}>
+      {isVisibleArrowLeft && (
+        <View style={{ position: 'absolute', left: 0, top: 0 }}>
+          <Icon name='tri-arrow-left' align='ALIGNED_CENTER' />
+        </View>
+      )}
       <ScrollView
-        onLayout={(e) => {
-          console.log('scroll', e.nativeEvent.layout.width)
-        }}
-        ref={TabListRef}
+        scrollEventThrottle={16}
+        onContentSizeChange={(w) => setTabListWidth(w)}
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.tabList}
+        onScroll={handleScrollList}
         {...others}
       >
-        {TabElms}
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) return false
+          return (
+            <Tab
+              onLayout={(e) => {
+                e.persist()
+                setTabElms((prev) => {
+                  const updatedArray = [...prev]
+                  updatedArray[index] = e.nativeEvent.layout
+                  return updatedArray
+                })
+              }}
+              index={index}
+              {...child.props}
+            />
+          )
+        })}
       </ScrollView>
-      <Icon name='tri-arrow-right' align='ALIGNED_CENTER' />
+      {isVisibleArrowRight && (
+        <View style={{ position: 'absolute', right: 0, top: 0 }}>
+          <Icon name='tri-arrow-right' align='ALIGNED_CENTER' />
+        </View>
+      )}
     </View>
   )
 })
