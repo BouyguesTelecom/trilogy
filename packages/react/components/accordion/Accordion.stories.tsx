@@ -1,42 +1,56 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Accordion, AccordionBody, AccordionHeader } from './index'
-import AccordionItem from './item'
-import DefaultItem from './item/AccordionItem.stories'
-import DefaultBody from './item/body/AccordionBody.stories'
-import DefaultHeader from './item/header/AccordionHeader.stories'
+import React from 'react';
+import type { Meta, StoryObj, StoryContext } from '@storybook/react';
 
-const meta: Meta<typeof Accordion> = {
+import {Accordion, AccordionItem, AccordionBody, AccordionHeader, } from './index';
+import { DefaultHeader } from './item/header/AccordionHeader.stories';
+import { DefaultBody } from './item/body/AccordionBody.stories';
+import {AccordionScreen} from '../../../../examples/react-template/screens/Accordion'
+import {Text} from '../text'
+import { renderBefore } from '../../../storybook/preview';
+
+const meta = {
+  title: 'Accordion/React',
   component: Accordion,
-  subcomponents: { AccordionItem, AccordionHeader, AccordionBody },
-}
-export default meta;
+  canvas: 'toto',
+} as Meta<typeof Accordion>;
 
-type Story = StoryObj<typeof Accordion>;
+renderBefore(meta)
 
-export const Default: Story = {
+export const Template: StoryObj = {
   render: ({ ...args }) => {
     return (
-      <Accordion {...args}>
-        <AccordionItem {...DefaultItem}>
-          <AccordionHeader {...DefaultHeader}/>
-          <AccordionBody {...DefaultBody}/>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionHeader>Header 2</AccordionHeader>
-          <AccordionBody>Body 2</AccordionBody>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionHeader>Header 3</AccordionHeader>
-          <AccordionBody>Body 3</AccordionBody>
+      <Accordion>
+        <AccordionItem {...args}>
+          <AccordionHeader {...DefaultHeader}>AccordionHeader</AccordionHeader>
+          <AccordionBody {...DefaultBody}>AccordionBody</AccordionBody>
         </AccordionItem>
       </Accordion>
-    );
+    )
   },
   args: {
-    children: "Accordion",
+    children: 'Accordion Item',
     className: undefined,
-    DefaultItem: DefaultItem.args,
-    DefaultBody: DefaultBody.args,
-    DefaultHeader: DefaultHeader.args
+    disabled: false,
+    open: false,
+    onClick: undefined,
+    DefaultBody: DefaultBody,
+    DefaultHeader: DefaultHeader.args,
+    Body: {
+      backgroundColor: 'white',
+      children: (
+          <Text>Accordion Body 1</Text>
+        )
+    }
+  },
+}
+
+//export const Default = Template;
+export const Open = {
+  ...Template,
+  args: {
+    ...Template.args,
+    open: true,
   },
 };
+
+export default meta;

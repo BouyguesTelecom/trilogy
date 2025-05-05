@@ -13,10 +13,10 @@ import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControl
  * @param disabled {boolean} disable onClick on item
  * @param inverted {boolean} invert color of active item
  * - -------------- WEB PROPERTIES ---------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
-  ({ active, onClick, disabled, className, id, children }, ref): JSX.Element => {
+  ({ active, onClick, disabled, className, id, children, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const { styled } = useTrilogyContext()
 
@@ -39,6 +39,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
             onClick(e)
           }
         }}
+        {...others}
       >
         {children}
       </button>

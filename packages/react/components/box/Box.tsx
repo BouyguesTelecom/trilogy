@@ -24,6 +24,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal css classes
  * @param fullheight
+ * @param blank If href && blank : target Blank
  * @param others
  */
 const Box = React.forwardRef<BoxRef, BoxProps>(
@@ -36,6 +37,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       onClick,
       skeleton,
       href,
+      blank,
       backgroundColor,
       highlighted,
       shadowless,
@@ -49,6 +51,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+
     const classes = hashClass(
       styled,
       clsx(
@@ -67,32 +70,21 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       ),
     )
 
-    if (href) {
-      return (
-        <a
-          id={id}
-          href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-          }}
-          className={classes}
-          {...others}
-        >
-          {children}
-        </a>
-      )
-    }
+    const Tag = href ? 'a' : 'div'
 
     const hoverStyle: React.CSSProperties = {
       cursor: 'pointer',
     }
 
     return (
-      <div
-        ref={ref}
+      <Tag
+        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
         id={id}
         style={onClick && { ...hoverStyle }}
+        href={href}
+        {...(href && blank && {
+          target: '_blank',
+        })}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)
@@ -106,7 +98,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         })}
       >
         {children}
-      </div>
+      </Tag>
     )
   },
 )

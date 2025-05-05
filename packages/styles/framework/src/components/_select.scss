@@ -16,6 +16,11 @@ $status-select: (
       padding-left: 15px !important;
     }
 
+    // to prevent user agent style
+    &:disabled {
+      opacity: 1 !important;
+    }
+
     @each $name in $status-select {
       $color: getColor($name);
       $color-invert: invertColor($name);
@@ -42,31 +47,34 @@ $status-select: (
     border-radius: 4px;
     overflow: hidden;
     position: absolute;
-    top: 64px;
     z-index: 1001;
     left: 0;
     right: 0;
+    margin-top: 8px;
   }
+
 
   .field {
     margin-bottom: 0 !important;
-    &.focus {
-      &:after {
-        @include arrow('up');
-        right: 12px;
-        top: 50%;
-        transform: translate(-50%, -50%);
+      .control {
+        position: relative;
+        &:after {
+          @include arrow();
+          right: 12px;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: transform 0.3s;
+          min-width: 20px;
+          min-height: 20px;
+          mask-size: 20px;
+        }
       }
-    }
 
-    &:not(.focus) {
-      &:after {
-        @include arrow();
-        right: 12px;
-        top: 50%;
-        transform: translate(-50%, -50%);
+      &.focus .control {
+          &:after {
+            transform:  rotate(180deg) translate(50%, 50%);
+          }
       }
-    }
   }
 
 

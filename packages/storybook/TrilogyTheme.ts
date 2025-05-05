@@ -4,7 +4,7 @@ export default create({
   base: 'light',
   brandTitle: 'Trilogy',
   brandUrl: '',
-  brandImage: './assets/logo_trilogy.svg',
+  brandImage: '/logo.svg',
   brandTarget: '_self',
   fontBase: 'Bouygues Read, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif',
   fontCode: 'monospace',

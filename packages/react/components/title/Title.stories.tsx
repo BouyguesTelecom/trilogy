@@ -74,8 +74,6 @@ export const Sandbox: Story = {
     inverted: false,
     typo: 'has-text-weight-semibold',
     skeleton: false,
-    markup: 'h1',
-    inverted: false,
     overline: false
   }
 }

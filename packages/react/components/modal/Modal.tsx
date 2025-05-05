@@ -4,6 +4,7 @@ import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
+import { accessibilityLabelButtonClose } from '@trilogy-ds/locales/lib/modal.json'
 import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -31,6 +32,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
       accessibilityLabel = 'Close',
       active,
       onClose,
+      unClosable,
       panel,
       size,
       hideCloseButton = false,
@@ -51,9 +53,11 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
 
     const handleClose = React.useCallback(
       (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
-        setDisplay(false)
-        refBtnModal.current && refBtnModal.current.focus()
-        if (onCloseFunc) onCloseFunc(e)
+        if (!unClosable) {
+          setDisplay(false)
+          refBtnModal.current && refBtnModal.current.focus()
+          if (onCloseFunc) onCloseFunc(e)
+        }
       },
       [refBtnModal.current],
     )
@@ -79,7 +83,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
           }
         }
 
-        if (display && e.key === 'Escape') {
+        if (!unClosable && display && e.key === 'Escape') {
           e.preventDefault()
           setDisplay(false)
           refBtnModal.current && refBtnModal.current.focus()
@@ -101,8 +105,8 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     }, [active, currentFocusIndexRef, refBtnModal])
 
     useEffect(() => {
-      display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
-    }, [display, focusableElementsRef])
+      !hideCloseButton && display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
+    }, [hideCloseButton, display, focusableElementsRef])
 
     useEffect(() => {
       if (modalContentRef.current) {
@@ -131,7 +135,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
         >
           <div ref={modalContentRef} className={hashClass(styled, clsx('modal-content'))}>
             <div className={hashClass(styled, clsx('modal-header'))}>
-              {hideCloseButton !== true && (
+              {!hideCloseButton && (
                 <button
                   onClick={(e: React.MouseEvent) => {
                     handleClose(onClose, e)
@@ -139,7 +143,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   className={hashClass(styled, clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                 >
-                  {accessibilityLabel && <span className='sr-only'>{accessibilityLabel}</span>}
+                  <span className={hashClass(styled, clsx('sr-only'))}>{accessibilityLabelButtonClose}</span>
                 </button>
               )}
               <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>

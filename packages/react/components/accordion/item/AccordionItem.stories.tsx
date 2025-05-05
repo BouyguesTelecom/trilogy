@@ -6,6 +6,7 @@ import DefaultHeader from './header/AccordionHeader.stories'
 
 const meta: Meta<typeof AccordionItem> = {
   component: AccordionItem,
+  title: 'Accordion',
   subcomponents: { AccordionBody, AccordionHeader },
 }
 export default meta

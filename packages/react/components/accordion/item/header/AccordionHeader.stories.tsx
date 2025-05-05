@@ -3,6 +3,7 @@ import { AccordionHeader } from '../../index'
 
 const meta: Meta<typeof AccordionHeader> = {
   component: AccordionHeader,
+  title: 'Accordion',
 }
 export default meta
 

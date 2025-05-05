@@ -21,6 +21,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   flat?: boolean
   active?: boolean
   inverted?: boolean
+  blank?: boolean
 }
 
 export type BoxRef = HTMLDivElement

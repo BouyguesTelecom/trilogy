@@ -1,3 +1,4 @@
+import inputLocale from '@trilogy-ds/locales/lib/input.json'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
@@ -177,7 +178,9 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 size={IconSize.SMALL}
               />
             )}
-            {type === InputType.PASSWORD && srOnly && <span className='sr-only'>{srOnly}</span>}
+            {type === InputType.PASSWORD && srOnly && (
+              <span className={hashClass(styled, clsx('sr-only'))}>{srOnly}</span>
+            )}
           </Markup>
         )
       },
@@ -218,7 +221,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
         {label && (
-          <label className='input-label' htmlFor={id}>
+          <label className={hashClass(styled, 'input-label')} htmlFor={id}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -237,7 +240,6 @@ const Input = React.forwardRef<InputRef, InputProp>(
             aria-describedby={`${idHelp} ${idSample}`}
             id={id}
             required={required}
-            role='textbox'
             readOnly={readOnly}
             {...others}
             aria-label={!label ? accessibilityLabel : undefined}
@@ -291,7 +293,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
                   inputValue: e.target.value,
                   inputSelectionStart: e.target.selectionStart,
                   target: e.target,
-                  event:e
+                  event: e,
                 })
               }
             }}
@@ -316,7 +318,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
-              srOnly={!isShowPwd ? 'Show password' : 'Hide password'}
+              srOnly={!isShowPwd ? inputLocale.showPassword : inputLocale.hidePassword}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={() => {

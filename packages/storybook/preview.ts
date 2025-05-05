@@ -3,20 +3,32 @@ import type { Preview } from '@storybook/react'
 const addStylesheetDecorator = () => {
   const linkElement = document.createElement('link');
   linkElement.rel = 'stylesheet';
-  linkElement.href = 'https://assets.bouyguestelecom.fr/TRILOGY/trilogy-styles@4.1.2/default/trilogy.css';
+  /* @todo : can not be in OpenSource */
+  linkElement.href = 'https://cdn.jsdelivr.net/npm/@trilogy-ds/styles';
   document.head.appendChild(linkElement);
 };
 addStylesheetDecorator();
 
+export const renderBefore = (meta)=> {
+  console.log('SUPER PREVIEW !', document)
+  document.body.insertAdjacentHTML( 'afterbegin', `Composant Incroyable  PREVIEW ${meta.title}`)
+}
+
+
 const preview: Preview = {
   parameters: {
+    actions: {
+      disable:true,
+    },
     controls: {
       matchers: {
        color: /(background|color)$/i,
        date: /Date$/i,
       },
-    },
+    }
   },
+//  beforeAll: () => { console.log('TOTO', document) }
+  
 };
 
 

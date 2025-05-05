@@ -11,7 +11,7 @@ export const Router = (): JSX.Element => {
   return (
     <View markup='main' className='main-content'>
       <AutoLayout>
-        <Section inverted>
+        <Section>
           <Routes>
             {Object.keys(Screens).map((screen, index) => {
               const [pathName] = screen.split('Screen')

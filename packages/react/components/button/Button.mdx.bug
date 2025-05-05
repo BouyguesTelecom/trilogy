@@ -1,9 +1,11 @@
+---
 import { Meta } from '@storybook/react';
 import { ButtonList } from './list';
 import { ButtonVariant } from './ButtonEnum';
 import { Button } from './index'
 import { IconName } from '../icon';
 import { ArgsTable, Canvas, Description, Heading, Stories, Subheading } from '@storybook/addon-docs'
+---
 
 <Meta
   title="Components/Button"
@@ -32,34 +34,27 @@ import { ArgsTable, Canvas, Description, Heading, Stories, Subheading } from '@s
 </Description>
 
 <Subheading>Variants</Subheading>
-<Canvas of="ExampleVariants"/>
 
 ### Usage
 Provide different variants for buttons such as `PRIMARY`, `SECONDARY`, `CONVERSION`, and `GHOST`. You can also disable or set a loading state on buttons.
 
 <Subheading>Icons</Subheading>
-<Canvas of="ExampleIcons"/>
 
 ### Usage
 Buttons can include icons. Choose an appropriate icon to represent the button action.
 
 <Subheading>Sizes</Subheading>
-<Canvas of="ExampleSizes"/>
 
 ### Usage
 You can change the size and direction of button lists. The above example shows a column layout with buttons of different sizes and title levels.
 
 <Subheading>Markup</Subheading>
-<Canvas of="ExampleMarkup"/>
 
 ### Usage
 Buttons can be created as different HTML elements such as `a`, `button`, or `input`. Set the `markup` prop to define the type of element.
 
-<Subheading>Sandbox</Subheading>
-<Canvas of="Sandbox"/>
 
 ### Configuration
 You can customize the button with various props like `iconName`, `children`, `markup`, `disabled`, `loading`, `fullwidth`, `variant`, `id`, and `className`.
 
-<ArgsTable story={Sandbox.story} />
 <Stories />

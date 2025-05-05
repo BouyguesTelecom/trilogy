@@ -5,9 +5,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
 import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/select/SelectProps'
+import { Text, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has, is } from '@/services/classify'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { is } from '@/services/classify'
 
 const SelectNative = React.forwardRef<SelectRef, SelectProps>(
   (
@@ -23,10 +25,10 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
       testId,
       label,
       iconName,
-      multiple,
       className,
       accessibilityLabel,
       status,
+      required,
       ...others
     },
     ref,
@@ -36,7 +38,7 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
     const [focused, setIsFocused] = React.useState<boolean>(false)
     const [selectedValues, setSelectedValues] = React.useState(selected)
     const selectClasses = hashClass(styled, clsx('select', className))
-    const controlClass = hashClass(styled, clsx('control', has('dynamic-placeholder'), iconName && 'has-icons-left'))
+    const controlClass = hashClass(styled, clsx('control', iconName && 'has-icons-left'))
 
     const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
       setIsFocused(true)
@@ -55,6 +57,16 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
     return (
       <div className={selectClasses}>
         <div className={hashClass(styled, clsx('field', focused && 'focus'))}>
+          {label && (
+            <label className={hashClass(styled, 'input-label')} htmlFor={id}>
+              {label}{' '}
+              {required && (
+                <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                  *
+                </Text>
+              )}
+            </label>
+          )}
           <div className={controlClass}>
             <select
               ref={ref as React.RefObject<HTMLSelectElement>}
@@ -93,7 +105,6 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
                 return <SelectOption {...props} />
               })}
             </select>
-            {label && !multiple && <label htmlFor={id}>{label}</label>}
             {iconName && <Icon name={iconName} size='small' />}
           </div>
         </div>
