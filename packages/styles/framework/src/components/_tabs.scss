@@ -1,3 +1,7 @@
+$height-tab-default: 64px;
+$height-arrow-default:48px;
+$height-arrow-small:30px;
+
 .tabs {
   @include overflow-touch;
   @include unselectable;
@@ -7,11 +11,28 @@
   font-weight: $weight-normal;
   width: 100%;
   text-align: center;
-  overflow: scroll;
-  overflow: -moz-scrollbars-none !important;
-  -ms-overflow-style: none !important;
-  scrollbar-width: none;
-  overflow-y: hidden;
+  overflow: hidden;
+  position: relative;
+
+
+  .arrow-prev, .arrow-next {
+    position: absolute;
+    top: calc(($height-tab-default / 2) - calc($height-arrow-default / 2) ) !important ;
+    transition: opacity 0.3s ease; 
+    opacity: 1;
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
+  .arrow-prev {
+    left: 0px;
+  }
+
+  .arrow-next {
+    right: 0px;
+  }
+
 
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -50,18 +71,23 @@
   }
 
   .tab-list {
+    background-color: transparent;
+    height: 48px;
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+    max-width: 100%;
+    
+    &.is-arrows{
+      margin-left: $spacing-7;
+      margin-right: $spacing-7;
+    }
+
     &::-webkit-scrollbar {
       width: 0 !important;
       height: 0 !important;
       scrollbar-width: none !important;
     }
-
-    background-color: transparent;
-    height: 48px;
-    overflow-x: auto;
-    white-space: nowrap;
-    display: inline-flex;
-    overflow-y: hidden;
 
     &.is-fullwidth {
       @include desktop {
@@ -93,13 +119,10 @@
       color: getColor('font');
       text-decoration: none;
       outline: none;
-      padding: 6px 14px;
-      font-size: $text-14;
-      @include desktop {
-        font-size: $text-16;
-      }
+      padding: 12px 24px;
+      font-size: $text-16;
       border: 0px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-bottom: 1px solid getColor('neutral');
 
       .tab-icon {
         margin-top: 2px;
@@ -111,21 +134,19 @@
         }
       }
 
-      @include mobile {
-        font-size: $text-14;
-      }
-
       &.is-active {
         color: getColor('main');
         position: relative;
         border-bottom-color: getColor('main');
-        font-weight: $weight-medium;
+        font-weight: $weight-bold;
+        border-bottom-width: 2px;
       }
 
-      &:hover:not(.is-disabled) {
+      &:hover:not([disabled]) {
         color: getColor('main');
         border-bottom-color: currentColor;
         cursor: pointer;
+        border-bottom-width: 2px;
 
         .icon.is-small [class^=tri-]::before, .icon.is-small [class*=" tri-"]::before {
           font-size: 22px !important;
@@ -148,14 +169,33 @@
 
       &[disabled], &[aria-disabled=true] {
         background-color: transparent !important;
-        border-bottom-color: transparent !important;
+        border-bottom-color: getColor('neutral') !important;
         &.is-active{
           border-bottom-color: currentColor !important;
         }
       }
-
     }
   }
+  
+
+  &.is-small{
+    .arrow-prev, .arrow-next {
+      top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) ) !important;
+    }
+    
+    .tab-list {
+      & > .tab {
+        font-size: $text-14 ;
+        padding: 12px 16px;
+      }
+
+      &.is-arrows{
+        margin-left: $spacing-6;
+        margin-right: $spacing-6;
+      }
+    } 
+  } 
+
 
   .tab-panels {
     padding-top: $spacing-3;

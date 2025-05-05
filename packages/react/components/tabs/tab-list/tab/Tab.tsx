@@ -22,80 +22,74 @@ import React from 'react'
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */
-const Tab = React.forwardRef<TabRef, TabProps>(({
-  active,
-  className,
-  onClick,
-  to,
-  href,
-  routerLink,
-  iconName,
-  label,
-  disabled,
-  testId,
-  ariaControls,
-  ...others
-}, ref) => {
-  const { styled } = useTrilogyContext()
-  const { index, ...props } = others as any
-  const { activeIndex, setActiveIndex } = React.useContext(TabsContext)
+const Tab = React.forwardRef<TabRef, TabProps>(
+  (
+    { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ariaControls, ...others },
+    ref,
+  ) => {
+    const { styled } = useTrilogyContext()
+    const { index, ...props } = others as any
+    const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
 
-  const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
-  const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
+    const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
+    const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
 
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent) => {
-      if (!disabled) {
-        if (!routerLink) setActiveIndex(index)
-        if (onClick) onClick(e)
-      }
-    },
-    [disabled, onClick, index, setActiveIndex, routerLink],
-  )
-
-  React.useEffect(() => {
-    if (active) setActiveIndex(index)
-  }, [active, setActiveIndex, index])
-
-  if (routerLink && (to || href)) {
-    const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-    return (
-      <RouterLink
-        ref={ref}
-        data-testid={testId}
-        to={to}
-        href={href}
-        className={classes}
-        onClick={handleClick}
-        data-index={index}
-        {...others}
-      >
-        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
-        {label && label}
-      </RouterLink>
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent) => {
+        if (!disabled) {
+          if (!routerLink) setActiveIndex(index)
+          if (onClick) onClick(e)
+        }
+      },
+      [disabled, onClick, index, setActiveIndex, routerLink],
     )
-  }
 
-  return (
-    <button
-      ref={ref}
-      aria-controls={ariaControls}
-      aria-disabled={disabled}
-      aria-selected={isActive}
-      data-tab-navigation=''
-      disabled={disabled}
-      className={classes}
-      role='tab'
-      data-testid={testId}
-      data-index={index}
-      onClick={handleClick}
-      {...props}
-    >
-      <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
-      {label && label}
-    </button>
-  )
-})
+    React.useEffect(() => {
+      if (active) setActiveIndex(index)
+    }, [active, setActiveIndex, index])
+
+    if (routerLink && (to || href)) {
+      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+      return (
+        <RouterLink
+          ref={ref}
+          data-testid={testId}
+          to={to}
+          href={href}
+          className={classes}
+          onClick={handleClick}
+          data-index={index}
+          {...others}
+        >
+          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
+          {label && label}
+        </RouterLink>
+      )
+    }
+
+    return (
+      <button
+        ref={ref}
+        aria-controls={ariaControls}
+        aria-disabled={disabled}
+        aria-selected={isActive}
+        data-tab-navigation=''
+        disabled={disabled}
+        className={classes}
+        role='tab'
+        data-testid={testId}
+        data-index={index}
+        onClick={handleClick}
+        {...props}
+      >
+        <div className={hashClass(styled, 'tab-icon')}>
+          {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
+        </div>
+        {label && <div>{label}</div>}
+      </button>
+    )
+  },
+)
 
 Tab.displayName = ComponentName.Tab
 export default Tab

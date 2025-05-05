@@ -35,7 +35,8 @@
     "storybook": "storybook dev -p 6006 --config-dir packages/storybook",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build-storybook": "storybook build",
-    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve"
+    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
+    "setup": "npm i && npm run build && npm i && npm start"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",

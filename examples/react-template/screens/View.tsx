@@ -1,20 +1,12 @@
 import * as React from "react";
-import {
-  Button,
-  ButtonVariant,
-  Section,
-  Text,
-  Title,
-  TitleLevels,
-  View,
-} from "@trilogy-ds/react/components";
-import { ViewMarkup } from "@trilogy-ds/react/components/view/ViewProps";
-import { Alignable, Justifiable } from "@trilogy-ds/react/objects";
+import {Button, ButtonVariant, Section, Text, Title, TitleLevels, View,} from "@trilogy-ds/react/components";
+import {ViewMarkup} from "@trilogy-ds/react/components/view/ViewProps";
+import {Alignable, Justifiable} from "@trilogy-ds/react/objects";
 
 export const ViewScreen = (): JSX.Element => {
   return (
     <Section>
-      <View markup={ViewMarkup.LABEL}>
+      <View justify={"JUSTIFIED_END"} markup={ViewMarkup.LABEL}>
         <Text>Click here to check the checkbox.</Text>
       </View>
       <View markup={ViewMarkup.SPAN}></View>
