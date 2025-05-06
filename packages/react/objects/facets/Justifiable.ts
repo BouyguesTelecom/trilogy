@@ -2,10 +2,10 @@
  * Typo align
  */
 export enum Justifiable {
-  JUSTIFIED_CENTER = 'justified-center',
-  JUSTIFIED_START = 'justified-start',
-  JUSTIFIED_END = 'justified-end',
-  SPACE_BETWEEN = 'space-between',
+  JUSTIFIED_CENTER = 'JUSTIFIED_CENTER',
+  JUSTIFIED_START = 'JUSTIFIED_START',
+  JUSTIFIED_END = 'JUSTIFIED_END',
+  SPACE_BETWEEN = 'SPACE_BETWEEN',
 }
 
 export type JustifiableValues = keyof typeof Justifiable
@@ -22,13 +22,13 @@ export interface JustifiableProps {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getJustifyStyle = (justifyContent?: string) => {
   switch (justifyContent) {
-    case 'justified-center':
+    case 'JUSTIFIED_CENTER':
       return 'center'
-    case 'justified-start':
+    case 'JUSTIFIED_START':
       return 'flex-start'
-    case 'justified-end':
+    case 'JUSTIFIED_END':
       return 'flex-end'
-    case 'space-between':
+    case 'SPACE_BETWEEN':
       return 'space-between'
     default:
       return 'flex-start'
@@ -37,13 +37,13 @@ export const getJustifyStyle = (justifyContent?: string) => {
 
 export const getJustifyClassName = (justifyContent?: string) => {
   switch (justifyContent) {
-    case 'justified-center':
+    case 'JUSTIFIED_CENTER':
       return 'centered'
-    case 'justified-start':
+    case 'JUSTIFIED_START':
       return 'justified-start'
-    case 'justified-end':
+    case 'JUSTIFIED_END':
       return 'justified-end'
-    case 'space-between':
+    case 'SPACE_BETWEEN':
       return 'spaced-between'
     default:
       return 'justified-start'

@@ -111,8 +111,9 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     }, [TabListRef, setWidths])
 
     return (
-      <div ref={TabListRef} id={id} data-testid={testId} className={classes} onScroll={handleScrollList} {...others}>
+      <div ref={TabListRef} id={id} data-testid={testId} data-tablist='' className={classes} onScroll={handleScrollList} {...others}>
         <Icon
+          data-arrow-prev=''
           name='tri-arrow-left'
           className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
           size={small ? 'small' : 'medium'}
@@ -120,6 +121,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
         />
         {TabElms}
         <Icon
+          data-arrow-next=''
           name='tri-arrow-right'
           className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
           size={small ? 'small' : 'medium'}
