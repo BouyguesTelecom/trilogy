@@ -36,6 +36,8 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
   const [tabFocused, setTabFocused] = React.useState<number>(0)
   const [tabElms, setTabElms] = React.useState<LayoutRectangle[]>([])
 
+  React.useImperativeHandle(ref, () => TabListRef.current as ScrollView)
+
   const styles = StyleSheet.create({
     tabList: {
       flexDirection: 'row',
