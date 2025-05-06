@@ -1,13 +1,17 @@
 import {
   Box,
   BoxContent,
+  Button,
   IconName,
   Section,
+  Spacer,
+  SpacerSize,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
   Title,
 } from '@trilogy-ds/react/components'
 import { isMobile } from '@trilogy-ds/react/helpers'
@@ -19,7 +23,7 @@ export const TabScreen = (): JSX.Element => {
 
   return (
     <Section>
-      {/* <Box flat>
+      <Box flat>
         <BoxContent>
           <Title className='is-centered'>Default size</Title>
           <Tabs>
@@ -148,7 +152,7 @@ export const TabScreen = (): JSX.Element => {
             </TabPanels>
           </Tabs>
         </BoxContent>
-      </Box> */}
+      </Box>
 
       <Box flat>
         <BoxContent>
@@ -156,7 +160,7 @@ export const TabScreen = (): JSX.Element => {
           <Tabs small>
             <TabList align={Alignable.ALIGNED_START}>
               {[...Array(isMobile ? 6 : 20).keys()].map((_, i) => {
-                return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
+                return <Tab key={i} label={`Tab${i + 1}`} iconName={IconName.ALERT} />
               })}
             </TabList>
             <TabPanels>
