@@ -1,102 +1,68 @@
-export const initTabs = () => {
-  const tabContexts = document.querySelectorAll('[data-tabs-context]')
+export const initTabs = (): void => {
+  const tabList = document.querySelector('[data-tablist]') as HTMLDivElement;
+  const tabs = tabList.querySelectorAll<HTMLButtonElement>('[data-tab-navigation]');
+  const arrowPrev = tabList.querySelector<HTMLSpanElement>('[data-arrow-prev]');
+  const arrowNext = tabList.querySelector<HTMLSpanElement>('[data-arrow-next]');
 
-  const styleCusto =
-    'right: 0;' +
-    'padding-left: 16px;' +
-    'width: 4.5rem !important;' +
-    'background: linear-gradient(90deg, rgba(256,256,256, 0) -25%, white 30%);\n' +
-    'background-attachment: local, local, scroll, scroll;'
+  const updateArrows = (): void => {
+    if (!arrowPrev || !arrowNext) return;
 
-  const styledTabs = `
-    .tabs {
-        padding-right: 2rem;
-    }
-`
+    const scrollLeft = tabList.scrollLeft;
+    const scrollWidth = tabList.scrollWidth;
+    const clientWidth = tabList.clientWidth;
 
-  const styleTabAttr = document.createElement('style')
-  styleTabAttr.innerText = styledTabs
-
-  tabContexts.forEach((tabContext) => {
-    const tabContextWidth = tabContext.clientWidth
-    let tabs = tabContext.querySelector('.tabs')
-    if(!tabs) {
-      tabs = tabContext.querySelector('[data-real-class*="tabs"]')
-    }
-    const tabsWidth = tabs.scrollWidth
-
-    if (tabsWidth > tabContextWidth) {
-      if (!tabs.innerHTML.includes('icon is-small is-absolute')) {
-        const arrowIcon = `<span class="icon is-small is-absolute" style="${styleCusto}"><i class="tri-arrow-right" aria-hidden=\'true\'></i></span>`
-        tabs.innerHTML += arrowIcon
-        tabs.appendChild(styleTabAttr)
-      }
-    }
-  })
-
-  let tabsContext = document.querySelectorAll('[data-tabs-context]')
-  for (let i = 0; i < tabsContext.length; i++) {
-    let tabContext = tabsContext[i]
-    let tabs: NodeListOf<HTMLElement> = tabContext.querySelectorAll('[data-tab-navigation]')
-    let tabsContent: NodeListOf<HTMLElement> = tabContext.querySelectorAll('[data-tab-content]')
-    for (let j = 0; j < tabs.length; j++) {
-      let tabElement: HTMLElement = tabs[j]
-      let tabContent: HTMLElement = tabsContent[j]
-      tabElement.addEventListener('click', function () {
-        makeTabActive(tabElement, tabContent)
-      })
-      tabElement.addEventListener('keyup', (e: KeyboardEvent) => {
-        e.preventDefault()
-        switch (e.keyCode) {
-          case 35: // end key
-            makeTabActive(tabs[tabs.length - 1], tabsContent[tabs.length - 1])
-            break
-          case 36: // home key
-            makeTabActive(tabs[0], tabsContent[0])
-            break
-          case 37: // left arrow
-            let previous = (j - 1) % tabs.length
-            makeTabActive(tabs[previous], tabsContent[previous])
-            break
-          case 39: // right arrow
-            let next = (j + 1) % tabs.length
-            makeTabActive(tabs[next], tabsContent[next])
-            break
-        }
-      })
-    }
-
-    /**
-     * Make an element inactive
-     */
-    const makeAllTabsInactive = () => {
-      for (let i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove('is-active')
-        tabs[i].setAttribute('aria-selected', 'false')
-        tabs[i].setAttribute('tabindex', '-1')
-      }
-
-      for (let j = 0; j < tabsContent.length; j++) {
-        tabsContent[j].classList.remove('is-active')
-        tabsContent[j].setAttribute('aria-expanded', 'false')
-      }
-    }
-
-    /**
-     * Make an element active
-     * @param { Element } tabElementToMakeActive element to be made active
-     * @param tabContentToMakeActive
-     */
-    const makeTabActive = (tabElementToMakeActive: HTMLElement, tabContentToMakeActive: HTMLElement) => {
-      makeAllTabsInactive()
-      tabElementToMakeActive.classList.add('is-active')
-      tabElementToMakeActive.setAttribute('aria-selected', 'true')
-      tabElementToMakeActive.setAttribute('tabindex', '0')
-      tabElementToMakeActive.focus()
-      tabContentToMakeActive.classList.add('is-active')
-      tabContentToMakeActive.setAttribute('aria-expanded', 'true')
-    }
-
-    tabContext.setAttribute(`data-tab-initialized`, 'true')
+    arrowPrev.classList.toggle('hidden', scrollLeft <= 0);
+    arrowNext.classList.toggle('hidden', scrollWidth <= scrollLeft + clientWidth);
   }
+
+  const scrollTabsToNext = (direction: 1 | -1): void => {
+    const tabsArray = Array.from(tabs);
+    const currentScrollLeft = tabList.scrollLeft;
+    let targetTab: HTMLButtonElement | undefined;
+
+    if (direction === 1) {
+      targetTab = tabsArray.find(tab => tab.offsetLeft > currentScrollLeft);
+    } else {
+      targetTab = tabsArray.slice().reverse().find(tab => tab.offsetLeft < currentScrollLeft);
+    }
+
+    if (targetTab) {
+      tabList.scrollTo({ left: targetTab.offsetLeft, behavior: 'smooth' });
+    } else if (direction === -1) {
+      // If we're scrolling left and no targetTab found, scroll to the very start
+      tabList.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+
+    updateArrows();
+  }
+
+  if (arrowPrev) {
+    arrowPrev.addEventListener('click', () => {
+      scrollTabsToNext(-1);
+    });
+  }
+
+  if (arrowNext) {
+    arrowNext.addEventListener('click', () => {
+      scrollTabsToNext(1);
+    });
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+
+      const panels = document.querySelectorAll<HTMLDivElement>('[data-tab-panel]');
+      panels.forEach(panel => panel.classList.remove('is-active'));
+      const activePanel = document.querySelector<HTMLDivElement>(`[data-tab-panel][data-index="${index}"]`);
+      if (activePanel) activePanel.classList.add('is-active');
+    });
+  });
+
+  tabList.addEventListener('scroll', updateArrows);
+
+  window.addEventListener('resize', updateArrows);
+
+  updateArrows();
 }
