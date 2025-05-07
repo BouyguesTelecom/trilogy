@@ -1,6 +1,6 @@
-import { Otp, Section, Spacer, SpacerSize, Title, TitleLevels } from '@trilogy-ds/react/components'
-import * as React from 'react'
-
+import { SpacerSize } from '@trilogy-ds/react'
+import { Otp, Section, Spacer, Title, TitleLevels } from '@trilogy-ds/react/components'
+import React from 'react'
 export const OtpScreen = (): JSX.Element => {
   return (
     <Section>

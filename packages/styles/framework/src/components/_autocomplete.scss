@@ -19,7 +19,7 @@
             cursor: pointer;
             padding: calc($spacing-1 - 0.25px) calc($spacing-1 + 1px);
 
-            &.is-active, &[data-autocomplete-item-hover] {
+            &.is-active, &[data-autocomplete-item-hover], &:hover {
                 @include hoverRules();
                 margin-left: calc(2px - $spacing-3 );
                 margin-right: calc(2px - $spacing-3 );

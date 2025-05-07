@@ -1,81 +1,13 @@
+import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
 import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import { inputTitle } from '@trilogy-ds/locales/lib/otp.json'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { OtpProps, OtpRef } from './OtpProps'
-
-type NumberOrNull = number | null
-
-const stringToCode = (str: string | undefined, codeSize: number): Array<NumberOrNull> => {
-  if (!str) return new Array(codeSize).fill(null)
-  return str.split('').map((char) => (char === '' ? null : Number(char)))
-}
-
-const codeToString = (code: NumberOrNull[]): string => {
-  return code.map((char) => (char === null ? '_' : char)).join('')
-}
-
-const isCompleted = (myCode: NumberOrNull[]) => {
-  return myCode.every((code) => code !== null)
-}
-
-const focusToNextInput = (target: HTMLInputElement, value?: string) => {
-  const nextElementSibling = target.nextElementSibling as HTMLInputElement | null
-
-  if (nextElementSibling) {
-    if (value) nextElementSibling.value = value
-
-    if (target.value.length) nextElementSibling.focus()
-  } else {
-    target.focus()
-  }
-}
-const focusToPrevInput = (target: HTMLElement) => {
-  const previousElementSibling = target.previousElementSibling as HTMLInputElement | null
-  if (previousElementSibling) {
-    previousElementSibling.focus()
-  } else {
-    target.focus()
-  }
-}
-
-const updateCodeInput = (value: string, index: number, code: NumberOrNull[]): NumberOrNull[] => {
-  const numberValue = Number(value)
-  if (isNaN(numberValue) || value.length < 1) {
-    return code
-  }
-  const newCodeInput = code.map((code, idx) => {
-    return idx === index ? Number(value.slice(0, 1)) : code
-  })
-  return updateCodeInput(value.slice(1), index + 1, newCodeInput)
-}
-
-const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  const { key } = e
-  const target = e.target as HTMLInputElement
-
-  if (key === 'ArrowRight' || key === 'ArrowDown') {
-    return focusToNextInput(target)
-  }
-  if (key === 'ArrowLeft' || key === 'ArrowUp') {
-    return focusToPrevInput(target)
-  }
-  if (key === 'Backspace') {
-    return target.value === '' && focusToPrevInput(target)
-  }
-  if (key >= '0' && key <= '9') {
-    focusToNextInput(target)
-  }
-}
-
-const formatTranslation = (translation: string, x: string, y: string) => {
-  return translation.replace(/:x/g, x).replace(/:y/g, y)
-}
+import { useOtp } from './hooks/useOtp'
 
 /**
  * OTP Code Component
@@ -111,46 +43,15 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
     },
     ref,
   ): JSX.Element => {
-    const [codeInput, setCodeInput] = useState<NumberOrNull[]>(
-      stringToCode(value, length) || new Array(length).fill(null),
-    )
-    const hasChanged = useRef(false)
-    const { styled } = useTrilogyContext()
+    const { codeInput, inputOnChange, inputOnFocus, inputOnKeyUp, formatTranslation, handleClick } = useOtp({
+      value,
+      disabled,
+      onChange,
+      onCompleted,
+      length,
+    })
 
-    const classes = hashClass(styled, clsx('otp-list', error && is('error'), className))
-
-    useEffect(() => {
-      if (!disabled) {
-        isCompleted(codeInput) && onCompleted?.(codeToString(codeInput))
-      }
-    }, [length, codeInput, onCompleted, disabled])
-
-    useEffect(() => {
-      hasChanged.current = codeInput.find((code) => code !== null) !== undefined
-      if (hasChanged.current) {
-        onChange?.(codeToString(codeInput))
-      }
-    }, [codeInput])
-
-    const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
-      const { target } = e
-      const targetValue = target.value.trim()
-
-      if (targetValue.length > 0) {
-        setCodeInput(updateCodeInput(targetValue, idx, codeInput))
-      } else {
-        setCodeInput(
-          codeInput.map((code, index) => {
-            return index === idx ? null : code
-          }),
-        )
-      }
-    }
-
-    const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      const { target } = e
-      target.setSelectionRange(0, target.value.length)
-    }
+    const classes = hashClass(clsx('otp-list', error && is('error'), className))
 
     return (
       <>
@@ -166,16 +67,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
             {label}
           </Text>
         )}
-        <div
-          ref={ref}
-          id={id}
-          className={classes}
-          onClick={() => {
-            if (!disabled) {
-              onFocus?.(true)
-            }
-          }}
-        >
+        <div ref={ref} id={id} className={classes} onClick={handleClick}>
           {codeInput.map((digit, idx) => (
             <input
               aria-disabled={disabled}
@@ -186,11 +78,11 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
               autoFocus={idx === 0 && autoFocus}
               pattern='\d{1}'
               maxLength={length}
-              className={hashClass(styled, clsx('otp'))}
+              className={hashClass(clsx('otp'))}
               value={`${digit ?? ''}`}
               onKeyUp={inputOnKeyUp}
               onFocus={inputOnFocus}
-              onChange={(e) => inputOnChange(e, idx)}
+              onChange={inputOnChange ? (e) => inputOnChange(e, idx) : undefined}
               disabled={disabled}
               title={formatTranslation(inputTitle, String(idx + 1), String(length))}
               {...others}
@@ -199,7 +91,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
         </div>
         {help && (
           <Text
-            className={hashClass(styled, clsx('help'))}
+            className={hashClass(clsx('help'))}
             markup={TextMarkup.P}
             typo={(error && TypographyColor.TEXT_ERROR) || TypographyColor.TEXT_MAIN}
           >

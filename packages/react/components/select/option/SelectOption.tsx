@@ -1,12 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { SelectContext } from '../context'
-import { SelectedValue } from '../SelectProps'
+import { useSelectOption } from '../hook/useSelectOption'
 import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
@@ -25,44 +23,8 @@ import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
  */
 const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
   ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-
-    const { custom, selectedOptionValues, setSelectedOptionValues, multiple, setIsVisibleOptions, onChange } =
-      React.useContext(SelectContext)
-
-    const isChecked = selectedOptionValues.includes(value)
-
-    const selectClasses = hashClass(styled, clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
-
-    const handleClickOption = () => {
-      setSelectedOptionValues((prev: SelectedValue[]) => {
-        const isInclude = prev.includes(value)
-
-        const newOptionsSelected =
-          !multiple && isInclude
-            ? []
-            : !multiple && !isInclude
-            ? [value]
-            : isInclude
-            ? prev.filter((opt) => opt !== value)
-            : [...prev, value]
-
-        if (onChange) {
-          onChange({
-            selectValue: isInclude ? undefined : value,
-            selectName: isInclude ? undefined : children || label,
-            selectId: isInclude ? undefined : id,
-            name: isInclude ? undefined : children || label,
-            selectedOptions: newOptionsSelected as string[],
-            target: undefined as unknown as EventTarget & HTMLSelectElement,
-          })
-        }
-
-        return newOptionsSelected
-      })
-
-      if (!multiple) setIsVisibleOptions(false)
-    }
+    const { isChecked, handleClickOption, custom, multiple } = useSelectOption({ value, children, label, id })
+    const selectClasses = hashClass(clsx('option', isChecked && 'focus', disabled && is('disabled'), className))
 
     if (custom || multiple) {
       return (

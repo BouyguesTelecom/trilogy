@@ -1,9 +1,8 @@
-import * as React from 'react'
-import { SpacerProps, SpacerRef } from './SpacerProps'
-import { hashClass } from '@/helpers/hashClassesHelpers'
+import { hashClass } from '@/helpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { SpacerProps, SpacerRef } from './SpacerProps'
 
 /**
  * Spacer Component
@@ -11,14 +10,13 @@ import { ComponentName } from '../enumsComponentsName'
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
   const styles = {
     spacer: {
       marginLeft: horizontal ? `${size}px` : '0px',
       marginTop: !horizontal ? `${size}px` : '0px',
     },
   }
-  const classes = hashClass(styled, clsx(className))
+  const classes = hashClass(clsx(className))
 
   return <div ref={ref} id={id} style={styles.spacer} className={classes} />
 })

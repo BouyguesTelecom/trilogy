@@ -1,4 +1,5 @@
-import { createContext } from "react"
+'use client'
+import { createContext } from 'react'
 
 export const StatesContext = createContext({
   inverted: false,
