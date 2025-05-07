@@ -5,8 +5,7 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
-import { Alignable, TypographyBold } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { Alignable, TrilogyColor, TypographyBold } from '@/objects'
 import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
@@ -21,7 +20,7 @@ import { ToasterShowContext } from './context/ToasterContextProps'
  * @param params {ToasterShowContext}
  */
 const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
-  const { position, duration, offset, title, description, onClick, closable, onHide, iconName } = params
+  const { position, duration, offset, title, description, onClick, closable, onHide, iconName, status } = params
 
   LibToast.show({
     type: 'tomatoToast',
@@ -30,7 +29,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
     topOffset: offset || 10,
     visibilityTime: duration || 5000,
     onHide,
-    props: { title, description, closable, iconName, alert, onClick },
+    props: { title, description, closable, iconName, alert, onClick, status },
   })
 }
 
@@ -63,11 +62,6 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
         paddingLeft: 12,
         paddingRight: 12,
       },
-      icon: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: status !== undefined ? color : getColorStyle(TrilogyColor.MAIN),
-      },
       description: {
         justifyContent: 'center',
         textAlignVertical: 'center',
@@ -86,7 +80,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
             <View style={{ marginTop: -2 }}>
-              <Icon name={iconName ? iconName : getStatusIconName(status)} />
+              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
             </View>
           </Column>
           <Column>
@@ -150,18 +144,13 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
       padding: 14,
       borderRadius: 6,
     },
-    icon: {
-      fontSize: 16,
-      color: color,
-      marginTop: 1.5,
-    },
   })
 
   return (
     <View style={styles.toaster}>
       <TouchableOpacity style={styles.toasterContainer} onPress={onClick}>
         <Columns>
-          <Column size={1}>{iconName && <Icon name={iconName} />}</Column>
+          <Column size={1}>{iconName && <Icon name={iconName} color={status || TrilogyColor.MAIN} />}</Column>
           <Column>
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (
