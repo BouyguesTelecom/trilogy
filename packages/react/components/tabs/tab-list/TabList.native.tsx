@@ -71,7 +71,8 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
   const scrollWithArrow = React.useCallback(
     (direction: number) => {
       if (tabElms.length) {
-        const nextPosition = tabElms[tabFocused + direction]
+        const nextTab = tabFocused + direction
+        const nextPosition = tabElms[nextTab === -1 ? 0 : nextTab]
         nextPosition && TabListRef.current?.scrollTo({ x: nextPosition.x + 1, animated: true })
       }
     },

@@ -22,6 +22,7 @@ export enum TrilogyColor {
   DISABLED_FADE = 'DISABLED_FADE',
   NEUTRAL = 'NEUTRAL',
   NEUTRAL_FADE = 'NEUTRAL_FADE',
+  STROKE = 'STROKE',
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`
@@ -54,6 +55,8 @@ export const colors: Record<TrilogyColor, string[]> = {
 
   [TrilogyColor.NEUTRAL]: ['#707070', 'grey', 'white'],
   [TrilogyColor.NEUTRAL_FADE]: ['#F4F4F4', 'grey-fade', 'white'],
+
+  [TrilogyColor.STROKE]: ['#BBC1CE', 'stroke', 'white'],
 }
 
 /**
