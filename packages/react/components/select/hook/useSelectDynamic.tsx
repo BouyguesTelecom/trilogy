@@ -1,7 +1,7 @@
 import { InputKeyboardEvent } from '@/components/input'
 import { SelectChangeEvent, SelectedValue } from '@/components/select/SelectProps'
 import React from 'react'
-import { SelectContext } from '../../context'
+import { SelectContext } from '../context'
 
 interface IProps<T = SelectChangeEvent> {
   children?: React.ReactNode

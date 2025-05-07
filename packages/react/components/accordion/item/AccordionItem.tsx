@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
-import { useAccordionBody } from './hooks/useAccordionItem'
+import { useAccordionBody } from '../hooks/useAccordionItem'
 
 /**
  * Accordion Item Component

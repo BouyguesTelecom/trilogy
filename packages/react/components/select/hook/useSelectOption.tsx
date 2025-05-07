@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { SelectContext } from '../../context'
-import { SelectedValue } from '../../SelectProps'
+import { SelectContext } from '../context'
+import { SelectedValue } from '../SelectProps'
 
 interface UseSelectOptionProps {
   children?: string

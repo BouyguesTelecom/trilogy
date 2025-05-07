@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { useAutocompleteItem } from './hooks/useAutocompleteItem'
+import { useAutocompleteItem } from '../hooks/useAutocompleteItem'
 
 /**
  * AutoCompleteItem Component

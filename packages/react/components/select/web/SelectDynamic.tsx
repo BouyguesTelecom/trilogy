@@ -6,7 +6,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { hashClass } from '@/helpers'
-import { useSelectDynamic } from './hooks/useSelectDynamic'
+import { useSelectDynamic } from '../hook/useSelectDynamic'
 
 const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (

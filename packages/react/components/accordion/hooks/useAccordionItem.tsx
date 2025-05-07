@@ -1,5 +1,5 @@
 import React from 'react'
-import { OnClickCallback } from '../AccordionItemProps'
+import { OnClickCallback } from '../item/AccordionItemProps'
 
 interface IProps {
   disabled?: boolean

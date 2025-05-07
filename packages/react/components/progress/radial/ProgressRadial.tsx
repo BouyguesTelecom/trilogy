@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { useProgressRadial } from '@/components/progress/hooks/useProgressRadial'
 import { ProgressRadialProps, ProgressRadialRef } from '@/components/progress/radial/ProgressRadialProps'
-import { useProgressRadial } from '@/components/progress/radial/hooks/useProgressRadial'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { hashClass } from '@/helpers/hashClassesHelpers'

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { useGauge } from '@/components/input/gauge/hook/useGauge'
+import { useGauge } from '@/components/input/hook/useGauge'
 import { IValidationRules } from '@/components/input/InputProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 

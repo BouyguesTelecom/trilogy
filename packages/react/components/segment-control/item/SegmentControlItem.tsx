@@ -2,8 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import React from 'react'
+import { useSegmentControlItem } from '../hooks/useSegmentControlItem'
 import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControlItemProps'
-import { useSegmentControlItem } from './hooks/useSegmentControlItem'
 
 /**
  * SegmentControl Item Component

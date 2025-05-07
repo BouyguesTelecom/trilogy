@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { useSelectOption } from './hook/useSelectOption'
+import { useSelectOption } from '../hook/useSelectOption'
 import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
 
 /**
