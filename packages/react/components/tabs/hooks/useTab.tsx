@@ -12,7 +12,7 @@ interface IParams {
 
 export const useTab = ({ index, disabled, routerLink, onClick, active }: IParams) => {
   try {
-    const { activeIndex, setActiveIndex } = React.useContext(TabsContext)
+    const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
     const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
 
     const handleClick = React.useCallback(
@@ -29,10 +29,11 @@ export const useTab = ({ index, disabled, routerLink, onClick, active }: IParams
       if (active) setActiveIndex(index)
     }, [active, setActiveIndex, index])
 
-    return { handleClick, isActive }
+    return { handleClick, isActive, small }
   } catch {
     return {
       isActive: 0 === index,
+      small: false,
     }
   }
 }

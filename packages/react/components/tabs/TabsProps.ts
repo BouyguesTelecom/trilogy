@@ -13,6 +13,7 @@ export interface TabsProps extends AlignableProps, Clickable, Accessibility, Dev
   activeIndex?: number
   fullwidth?: boolean
   inverted?: boolean
+  small?: boolean
 }
 
 export type TabsRef = HTMLDivElement

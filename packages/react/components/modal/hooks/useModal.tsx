@@ -4,9 +4,11 @@ import React from 'react'
 interface IProps {
   active?: boolean
   onClose?: ClickEvent
+  hideCloseButton?: boolean
+  unClosable?: boolean
 }
 
-export const useModal = ({ active, onClose }: IProps) => {
+export const useModal = ({ active, onClose, hideCloseButton, unClosable }: IProps) => {
   try {
     const modalContentRef = React.useRef<HTMLDivElement>(null)
     const [display, setDisplay] = React.useState<boolean>(active || false)
@@ -17,9 +19,11 @@ export const useModal = ({ active, onClose }: IProps) => {
 
     const handleClose = React.useCallback(
       (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
-        setDisplay(false)
-        refBtnModal.current && refBtnModal.current.focus()
-        if (onCloseFunc) onCloseFunc(e)
+        if (!unClosable) {
+          setDisplay(false)
+          refBtnModal.current && refBtnModal.current.focus()
+          if (onCloseFunc) onCloseFunc(e)
+        }
       },
       [refBtnModal.current],
     )
@@ -40,7 +44,7 @@ export const useModal = ({ active, onClose }: IProps) => {
           }
         }
 
-        if (display && e.key === 'Escape') {
+        if (!unClosable && display && e.key === 'Escape') {
           e.preventDefault()
           setDisplay(false)
           refBtnModal.current && refBtnModal.current.focus()
@@ -61,8 +65,8 @@ export const useModal = ({ active, onClose }: IProps) => {
     }, [active, currentFocusIndexRef, refBtnModal])
 
     React.useEffect(() => {
-      display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
-    }, [display, focusableElementsRef])
+      !hideCloseButton && display && focusableElementsRef.current && focusableElementsRef.current[0].focus()
+    }, [hideCloseButton, display, focusableElementsRef])
 
     React.useEffect(() => {
       if (modalContentRef.current) {

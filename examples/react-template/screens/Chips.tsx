@@ -21,7 +21,7 @@ export const ChipsScreen = (): JSX.Element => {
     <Section>
       <Title level={TitleLevels.TWO}>Chips selection multiple </Title>
 
-      <ChipsList scrollable multiple>
+      <ChipsList accessibilityLabelledBy='xxx' scrollable multiple>
         <Chips
           id="1"
           onClick={() => {

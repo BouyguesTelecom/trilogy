@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import Tab from '@/components/tabs/tab-list/tab/Tab'
+import { Icon } from '@/components/icon'
 import { TabListProps, TabListRef } from '@/components/tabs/tab-list/TabListProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
+import { useTabList } from '../hooks/useTabList'
 
 /**
  * Tabs Nav Component
@@ -18,14 +19,48 @@ import React from 'react'
  */
 const TabList = React.forwardRef<TabListRef, TabListProps>(
   ({ children, className, id, testId, align, ...others }, ref) => {
-    const classes = hashClass(clsx('tab-list', align && is(getAlignClassName(align)), className))
+    const {
+      small,
+      TabListRef,
+      isVisibleArrowLeft,
+      isVisibleArrowRight,
+      TabElms,
+      tabListWidth,
+      tabsWidth,
+      onClickPrev,
+      onClickNext,
+      handleScrollList,
+    } = useTabList({ ref, children })
+
+    const classes = hashClass(
+      clsx('tab-list', align && is(getAlignClassName(align)), tabListWidth > tabsWidth && is('arrows'), className),
+    )
 
     return (
-      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) return false
-          return <Tab {...child.props} index={index} />
-        })}
+      <div
+        ref={TabListRef}
+        id={id}
+        data-testid={testId}
+        data-tablist=''
+        className={classes}
+        onScroll={handleScrollList}
+        {...others}
+      >
+        <Icon
+          data-arrow-prev=''
+          name='tri-arrow-left'
+          className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
+          size={small ? 'small' : 'medium'}
+          onClick={onClickPrev}
+        />
+        {TabElms}
+        <Icon
+          data-arrow-next=''
+          name='tri-arrow-right'
+          className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
+          size={small ? 'small' : 'medium'}
+          onClick={onClickNext}
+        />
       </div>
     )
   },

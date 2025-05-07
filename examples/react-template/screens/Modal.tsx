@@ -39,6 +39,7 @@ export const ModalScreen = (): JSX.Element => {
     <>
       <Section>
         <Title level={TitleLevels.THREE}>Modal</Title>
+
         <Divider />
 
         <Modal

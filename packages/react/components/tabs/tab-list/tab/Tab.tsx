@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { useTab } from '@/components/tabs/tab-list/tab/hooks/useTab'
+import { useTab } from '@/components/tabs/hooks/useTab'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -27,7 +27,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
     ref,
   ) => {
     const { index, ...props } = others as any
-    const { handleClick, isActive } = useTab({ index, disabled, routerLink, onClick, active })
+    const { handleClick, isActive, small } = useTab({ index, disabled, routerLink, onClick, active })
     const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
 
     if (routerLink && (to || href)) {
@@ -43,7 +43,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
           data-index={index}
           {...others}
         >
-          <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
           {label && label}
         </RouterLink>
       )
@@ -64,7 +64,9 @@ const Tab = React.forwardRef<TabRef, TabProps>(
         onClick={handleClick}
         {...props}
       >
-        <div className='tab-icon'>{iconName && <Icon align='ALIGNED_CENTER' size='small' name={iconName} />}</div>
+        <div className={hashClass('tab-icon')}>
+          {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
+        </div>
         {label && label}
       </button>
     )

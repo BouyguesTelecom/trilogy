@@ -8,6 +8,7 @@ export interface ChipsListProps extends CommonProps {
   children?: React.ReactNode | React.ReactElement
   multiple?: boolean
   scrollable?: boolean
+  accessibilityLabelledBy?: string
 }
 
 export type ChipsListRef = HTMLDivElement

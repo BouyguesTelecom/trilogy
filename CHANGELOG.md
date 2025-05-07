@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.4.0] - 2025-xx-xx
+## [4.5.0] - 2025-xx-xx
+- Add props small into Tabs
+- Scroll into Tab list with arrows
+- Fix modal
+
+
+## [4.4.0] - 2025-04-24
 - Fix autocomplete native
 - Update stroke color in components
 - Add blank props for Box with markup type link
@@ -14,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix Autocomplete style
 - Update Autolayout Rules
 - Fix Textarea
+- Fix Modal unClosable
 
 
 ## [4.3.0] - 2025-04-14

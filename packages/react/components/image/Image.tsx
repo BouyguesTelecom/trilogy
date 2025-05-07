@@ -10,10 +10,12 @@ import { ImageProps, ImageRef } from './ImageProps'
  * Image Component
  * @param src {string} Image source
  * @param alt {string} Image alt
- * @param rounded {boolean} Image rounded
+ * @param radius {RadiusValues} Image border radius size
  * @param width {number|string} Image width (Number if not percent else string)
  * @param height {number|string} Image height (Number if not percent else string)
  * @param onClick {Function} onClick Event
+ * @param align {Alignable} Align Image
+ * @param circled {boolean} Circled Image
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
  */

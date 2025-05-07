@@ -34,7 +34,8 @@
     "watch:css": "npm --workspace=@trilogy-ds/styles run watch:css",
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
     "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
-    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve"
+    "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
+    "setup": "npm i && npm run build && npm i && npm start"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",

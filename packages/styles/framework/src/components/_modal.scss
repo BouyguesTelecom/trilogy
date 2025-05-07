@@ -75,7 +75,7 @@ body:has(.modal.is-active) {
     width: 100%;
     z-index: zindex('tiny');
     transition: transform ease-in-out 250ms;
-    transform: translateY(100%);
+    transform: translateY(50%);
 
     @include tablet {
       max-height: calc(100vh - 120px);
@@ -120,8 +120,11 @@ body:has(.modal.is-active) {
       width: 100%;
       word-wrap: break-word;
       display: flex;
-      flex-direction: row-reverse;
       justify-content: space-between;
+
+      &:has(.modal-close) {
+        flex-direction: row-reverse;
+      }
 
       &:has(.icon) {
         text-align: center;

@@ -14,11 +14,12 @@ import { useTabs } from './hooks/useTabs'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additionnal CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs
+ * @param small {boolean} small tabs
  * @param id
  */
 const Tabs = React.forwardRef<TabsRef, TabsProps>(
-  ({ children, className, id, activeIndex, fullwidth, inverted }, ref) => {
-    const { ContextProvider, isInverted } = useTabs({ activeIndex, inverted })
+  ({ children, className, id, activeIndex, fullwidth, inverted, small }, ref) => {
+    const { ContextProvider, isInverted } = useTabs({ activeIndex, inverted, small })
 
     const classes = hashClass(clsx('tabs', fullwidth && is('fullwidth'), isInverted && is('inverted'), className))
 

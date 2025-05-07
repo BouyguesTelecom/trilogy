@@ -24,12 +24,27 @@ import { useModal } from './hooks/useModal'
  */
 const Modal = React.forwardRef<ModalRef, ModalProps>(
   (
-    { children, className, id, active, onClose, panel, size, hideCloseButton = false, trigger, title, ...others },
+    {
+      children,
+      className,
+      id,
+      active,
+      onClose,
+      panel,
+      size,
+      hideCloseButton = false,
+      trigger,
+      title,
+      unClosable,
+      ...others
+    },
     ref,
   ): JSX.Element => {
     const { display, refModal, onKeyDown, refBtnModal, modalContentRef, handleClose } = useModal({
       active,
       onClose,
+      hideCloseButton,
+      unClosable,
     })
 
     const modalGeneratedId = React.useId()
