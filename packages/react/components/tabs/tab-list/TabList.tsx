@@ -64,7 +64,8 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
-          const nextPosition = tabRefs.current[tabFocused + direction]
+          const nextTab = tabFocused + direction
+          const nextPosition = tabRefs.current[nextTab === -1 ? 0 : nextTab]
           nextPosition && TabListRef.current?.scrollTo({ left: nextPosition.x - firstGap, behavior: 'smooth' })
         }
       },
@@ -111,7 +112,15 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     }, [TabListRef, setWidths])
 
     return (
-      <div ref={TabListRef} id={id} data-testid={testId} data-tablist='' className={classes} onScroll={handleScrollList} {...others}>
+      <div
+        ref={TabListRef}
+        id={id}
+        data-testid={testId}
+        data-tablist=''
+        className={classes}
+        onScroll={handleScrollList}
+        {...others}
+      >
         <Icon
           data-arrow-prev=''
           name='tri-arrow-left'
