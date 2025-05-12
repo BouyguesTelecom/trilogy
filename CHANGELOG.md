@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.5.0] - 2025-xx-xx
 - Add props small into Tabs
+- Add arrows to scroll in TabList component
 - Scroll into Tab list with arrows
 - Fix modal
 - Change placeholder color in form components
