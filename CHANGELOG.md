@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add props small into Tabs
 - Scroll into Tab list with arrows
 - Fix modal
+- Change placeholder color in form components
 
 
 ## [4.4.0] - 2025-04-24
