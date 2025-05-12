@@ -75,6 +75,10 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(({
     prevCurrentPage.current = pager.currentPage
   }, [pager.currentPage])
 
+  useEffect(() => {
+    setCurrentPage(defaultPage)
+  }, [defaultPage])
+
   return (
     <nav ref={ref} id={id} className={classes} {...others}>
       <a
