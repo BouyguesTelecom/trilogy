@@ -54,6 +54,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   const [search, setSearch] = useState<T[]>([])
 
   const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
+  const autocompleteContainerClasses = hashClass(styled,  clsx(is('autocomplete-container')))
 
   useEffect(() => {
     setInputValue(value || '')
@@ -149,7 +150,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <>
+    <div className={autocompleteContainerClasses}>
       <Input
         id={id}
         ref={ref}
@@ -159,7 +160,6 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         iconNameRight={iconNameRight}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
-        className='autocomplete-input'
         type='text'
         status={status}
         autoCompleteType={InputAutoCompleteType.OFF}
@@ -198,7 +198,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
           )}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
