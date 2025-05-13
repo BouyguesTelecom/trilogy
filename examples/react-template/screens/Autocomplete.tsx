@@ -125,6 +125,24 @@ export const AutoCompleteScreen = (): JSX.Element => {
           </ButtonList>
         </Column>
       </Columns>
+      <AutoComplete
+        iconNameLeft={IconName.INFOS_CIRCLE}
+        displayMenu={false}
+        value={value}
+        data={data}
+        absoluteMenu
+        fullwidthMenu
+        disabled={status}
+        placeholder='Autocomplete'
+        onItemSelected={(e) => {
+          setValue(e.value || '')
+          console.log('onItemSelected : ', e.value)
+        }}
+        onChange={onChange}
+        onIconClick={onIconClick}
+        onFocus={(e) => console.log('FOCUS : ', e)}
+        onBlur={(e) => console.log('BLUR : ', e)}
+      />
     </Section>
   )
 }
