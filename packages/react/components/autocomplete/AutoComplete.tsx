@@ -177,7 +177,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         }}
         onIconClick={onIconClick}
         loading={loading}
-        {...others}
+        {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
 
       {isAutocompleteMenuVisible && (
