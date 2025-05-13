@@ -9,7 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Update size of Tabs component
 - Fix modal
 - Change placeholder color in form components
-- Fix set current page in Pagination component 
+- Fix set current page in Pagination component
+- Fix absolute Autocomplete list width
 
 
 ## [4.4.0] - 2025-04-24
