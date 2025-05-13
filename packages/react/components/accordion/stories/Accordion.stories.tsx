@@ -1,17 +1,20 @@
 import React from 'react';
 import type { Meta, StoryObj, StoryContext } from '@storybook/react';
 
-import {Accordion, AccordionItem, AccordionBody, AccordionHeader, } from './index';
-import { DefaultHeader } from './item/header/AccordionHeader.stories';
-import { DefaultBody } from './item/body/AccordionBody.stories';
-import {AccordionScreen} from '../../../../examples/react-template/screens/Accordion'
-import {Text} from '../text'
-import { renderBefore } from '../../../storybook/preview';
+import {Accordion, AccordionItem, AccordionBody, AccordionHeader, } from '../index';
+import { DefaultHeader } from '../item/header/AccordionHeader.stories';
+import { DefaultBody, defaultBodyChildren } from '../stories/StoriesObjects';
+import {Text} from '../../text'
+import { renderBefore } from '../../../../storybook/preview';
 
 const meta = {
-  title: 'Accordion/React',
+  title: 'Accordion',
   component: Accordion,
-  canvas: 'toto',
+  subcomponents: {
+    AccordionItem,
+    AccordionBody,
+    AccordionHeader,
+  },
 } as Meta<typeof Accordion>;
 
 renderBefore(meta)
@@ -22,7 +25,7 @@ export const Template: StoryObj = {
       <Accordion>
         <AccordionItem {...args}>
           <AccordionHeader {...DefaultHeader}>AccordionHeader</AccordionHeader>
-          <AccordionBody {...DefaultBody}>AccordionBody</AccordionBody>
+          <AccordionBody {...args.body?.args}>{args.body?.children}</AccordionBody>
         </AccordionItem>
       </Accordion>
     )
@@ -33,14 +36,8 @@ export const Template: StoryObj = {
     disabled: false,
     open: false,
     onClick: undefined,
-    DefaultBody: DefaultBody,
+    body: { args: {}, children:defaultBodyChildren},
     DefaultHeader: DefaultHeader.args,
-    Body: {
-      backgroundColor: 'white',
-      children: (
-          <Text>Accordion Body 1</Text>
-        )
-    }
   },
 }
 

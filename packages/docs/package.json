@@ -1,0 +1,20 @@
+{
+    "name": "@trilogy-ds/docs",
+    "version": "4.2.0",
+    "description": "Trilogy docscreated by React Cosmos",
+    "author": "Bouygues Telecom",
+    "type": "module",
+    "module": "lib/index.js",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "cosmos": "cosmos",
+        "cosmos-export": "cosmos-export"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "react-cosmos": "^6.2.3",
+        "react-cosmos-plugin-vite": "^6.2.0"
+    }
+}

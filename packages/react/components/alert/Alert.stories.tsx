@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Alert from './Alert'
 import { AlertMarkup } from './AlertEnum'
 import { StatusState } from '../../objects'
-import { Columns } from '../columns'
-import { Column } from '../../lib'
+import { Columns, Column } from '../columns'
 
 const meta: Meta<typeof Alert> = {
   component: Alert,
