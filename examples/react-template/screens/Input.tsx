@@ -141,7 +141,6 @@ export const InputScreen = (): JSX.Element => {
         defaultValue='My default input value'
         help='this is my help message'
         type={InputType.TEXT}
-        patternValidator={new RegExp(/^hello/, 'i')}
         iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')
@@ -155,7 +154,6 @@ export const InputScreen = (): JSX.Element => {
         defaultValue='My default input value'
         help='this is my help message'
         type={InputType.TEXT}
-        customValidator={(value) => (value === 'machin' ? InputStatus.SUCCESS : InputStatus.WARNING)}
         iconNameRight={IconName.ALERT}
         onIconClick={() => {
           window.alert('lol')

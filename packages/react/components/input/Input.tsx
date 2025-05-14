@@ -8,7 +8,7 @@ import { Accessibility, TypographyColor } from '../../objects'
 import { has, is } from '../../services'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
+import { InputStatus, InputType, InputTypeValues } from './InputEnum'
 import { InputProps, InputRef, InputWebEvents } from './InputProps'
 import InputGauge from './gauge/InputGauge'
 
@@ -37,9 +37,6 @@ interface IconWrapper {
  * @param defaultValue {string} Default Value for Input
  * @param hasIcon {boolean} Adding if you want icon - Default icon is defined by status
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
- * @param patternValidator {RegExp} regex validator
- * @param customValidator {Function} custom function validator
- * @param onStatusChange {Function} status change event
  * @param help {string} Help for input
  * @param ref Pass a ref for input
  * @param onSubmit {Function} onSubmit Event
@@ -50,7 +47,6 @@ interface IconWrapper {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
- * @param focused {boolean} Fucus mode
  * @param className {string} Additionnal CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
  * @param onMouseLeave {Function} onMouseLeave Input Event
@@ -79,9 +75,6 @@ const Input = React.forwardRef<InputRef, InputProp>(
       onKeyUp,
       onIconClick,
       onClick,
-      onFocus,
-      onBlur,
-      patternValidator,
       onMouseEnter,
       onMouseLeave,
       name,
@@ -90,11 +83,8 @@ const Input = React.forwardRef<InputRef, InputProp>(
       defaultValue,
       value,
       loading,
-      focused,
       status,
       help,
-      onStatusChange,
-      customValidator,
       onSubmit,
       minLength,
       maxLength,
@@ -120,15 +110,11 @@ const Input = React.forwardRef<InputRef, InputProp>(
     inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
     const [_value, setValue] = useState<string>(defaultValue ?? '')
-    const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
-    const [isDirty, setIsDirty] = useState<boolean>(false)
-    const [isTouched, setIsTouched] = useState<boolean>(false)
-    const [localStatus, setLocalStatus] = useState<InputStatus | InputStatusValues>(status || InputStatus.DEFAULT)
     const [inputType, setInputType] = useState<InputType | InputTypeValues>(type)
     const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
-    const helpClasses = clsx('help', localStatus && is(localStatus))
-    const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
+    const helpClasses = clsx('help', status && is(status))
+    const classes = hashClass(styled, clsx('input', status && is(status)))
     const wrapperClasses = hashClass(
       styled,
       clsx('field', className, type === InputType.PASSWORD && securityGauge && has('gauge')),
@@ -187,36 +173,9 @@ const Input = React.forwardRef<InputRef, InputProp>(
       [_value, styled],
     )
 
-    const validator =
-      !customValidator && patternValidator
-        ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-        : customValidator
-
     useEffect(() => {
       setValue(value ?? defaultValue ?? '')
     }, [value, defaultValue])
-
-    useEffect(() => {
-      setIsFocused(focused ?? false)
-    }, [focused])
-
-    useEffect(() => {
-      if (isFocused) setIsDirty(true)
-      else if (isDirty) setIsTouched(true)
-    }, [isFocused, isDirty])
-
-    useEffect(() => {
-      if (!validator || !isTouched) return
-      setLocalStatus(validator(_value))
-    }, [isFocused, isTouched])
-
-    useEffect(() => {
-      setLocalStatus(status || InputStatus.DEFAULT)
-    }, [status])
-
-    useEffect(() => {
-      if (onStatusChange) onStatusChange(localStatus)
-    }, [localStatus])
 
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
@@ -297,16 +256,8 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 })
               }
             }}
-            onFocus={(e) => {
-              onFocus?.(e)
-              setIsFocused(true)
-            }}
-            onBlur={(e) => {
-              onBlur?.(e)
-              setIsFocused(false)
-            }}
           />
-          {hasIcon && !localStatus && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
+          {hasIcon && !status && !loading && iconNameLeft && <IconWrapper name={iconNameLeft} />}
 
           {(iconNameLeft || type === InputType.SEARCH) && (
             <IconWrapper className='icon-left' name={iconNameLeft || IconName.SEARCH} />

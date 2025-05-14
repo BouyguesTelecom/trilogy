@@ -92,12 +92,8 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   iconNameLeft?: IconName | IconNameValues
   iconNameRight?: IconName | IconNameValues
   status?: InputStatus | InputStatusValues
-  onStatusChange?: (status: InputStatus | InputStatusValues) => void
-  customValidator?: (value: string) => InputStatus | InputStatusValues
-  patternValidator?: RegExp
   help?: string
   name?: string
-  focused?: boolean
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
   autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
   autoCorrect?: any
