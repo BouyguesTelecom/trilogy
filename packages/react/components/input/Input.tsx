@@ -158,10 +158,10 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
     const IconWrapper = useCallback(
       ({ className, name, color, closeIconSearch, onPress, srOnly }: IconWrapper) => {
-        const Markup = type === InputType.PASSWORD ? 'span' : 'div'
+        const Markup = type === InputType.PASSWORD ? 'button' : 'div'
         return (
           <Markup
-            {...(type === InputType.PASSWORD && { 'data-show-pwd': true })}
+            {...(type === InputType.PASSWORD && { 'data-show-pwd': true, type: 'button' })}
             onClick={(e) => {
               onPress && onPress()
               if (onIconClick) {
