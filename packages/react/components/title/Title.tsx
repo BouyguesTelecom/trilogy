@@ -45,7 +45,7 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * @param inverted {Boolean} Title white color
  * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
  * @param onClick {Function} onClick Event
- * @param skeleton {Boolean} Title Skeleton
+ * @param loading {Boolean} Title Skeleton
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param subtitle {boolean} Subtitle below title
@@ -65,7 +65,7 @@ const Title = React.forwardRef<TitleRef, TitleProps>(({
   className,
   id,
   typo,
-  skeleton,
+  loading,
   inverted,
   onClick,
   accessibilityLabel,
@@ -82,7 +82,7 @@ const Title = React.forwardRef<TitleRef, TitleProps>(({
       'title',
       level && getTitleLevel(level),
       typo,
-      skeleton && is('loading'),
+      loading && is('loading'),
       inverted && is('inverted'),
       marginless && is('marginless'),
       className,

@@ -3,7 +3,6 @@ import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from "./ViewProps"
 import clsx from "clsx"
 import { has, is } from "@/services"
 import {
-  getLoadingClassName,
   getJustifyClassName,
   getAlignClassName, getBackgroundClassName,
 } from "@/objects"
@@ -24,7 +23,7 @@ import { useTrilogyContext } from "@/context"
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * - ------------------ WEB PROPERTIES ---------------
  * @param className {string} Additionnal css classes
- * @param loading {Loading} Loading View
+ * @param loading {boolean} Loading View
  * @param markup {ViewMarkup} Markup for View
  * @param inverted {boolean} Inverted View Color
  * - ------------------ NATIVE PROPERTIES ------------
@@ -61,8 +60,7 @@ const View = React.forwardRef<ViewRef, ViewProps>(({
   const classes = hashClass(
     styled,
     clsx(
-      typeof loading === "string" && is(getLoadingClassName(loading)),
-      typeof loading === "boolean" ? is("loading") : is("loaded"),
+      loading && is("loading"),
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted') || is('base'),

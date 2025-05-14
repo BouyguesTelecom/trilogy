@@ -12,7 +12,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * Box Component
  * @param children {React.ReactNode} Box child
  * @param onClick {Function} onClick Event
- * @param skeleton {boolean} Box skeleton
+ * @param loading {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param inverted {boolean} Inverted Box Color
  * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
@@ -35,7 +35,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       className,
       id,
       onClick,
-      skeleton,
+      loading,
       href,
       blank,
       backgroundColor,
@@ -61,7 +61,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         backgroundColor && has(getBackgroundClassName(backgroundColor)),
         backgroundSrc && has('background'),
         inverted && is('inverted'),
-        skeleton && is('loading'),
+        loading && is('loading'),
         highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
         flat && is('flat'),
         headerOffset && is('offset-header'),

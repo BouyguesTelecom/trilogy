@@ -16,7 +16,7 @@ import { TextNativeRef, TextProps } from './TextProps'
  * @param inverted {Boolean} Text white color
  * @param style {Object} Additional style
  * @param typo {string} Text typo
- * @param skeleton {Boolean} Text Skeleton
+ * @param loading {Boolean} Text Skeleton
  * @param accessibilityLabel {string}
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
@@ -27,7 +27,7 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(({
   style,
   inverted,
   typo,
-  skeleton,
+  loading,
   accessibilityLabel,
   numberOfLines = 0,
   ...others
@@ -47,7 +47,7 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(({
     text: {
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),
-      color: setTypographyColor(typo, inverted || statesContext.inverted, skeleton),
+      color: setTypographyColor(typo, inverted || statesContext.inverted, loading),
       textAlign: setTypographyAlign(typo),
       lineHeight: textLevels(level as TextLevels | TextLevelValues) * 1.2,
       textDecorationLine: 'none',
@@ -97,7 +97,7 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(({
     </TextNative>
   )
 
-  if (skeleton) {
+  if (loading) {
     textView = (
       <ContentLoader style={styles.skeleton}>
         {textView}

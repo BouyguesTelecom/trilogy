@@ -15,10 +15,10 @@ import { ComponentName } from '../enumsComponentsName'
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additionnal CSS Classes
  * @param inverted {boolean} Inverted Section Color
- * @param skeleton {boolean} Skeleton before loaded
+ * @param loading {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
  **/
-const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
+const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, loading, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   const _className = hashClass(
@@ -29,7 +29,7 @@ const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, ske
       backgroundColor && has(getBackgroundClassName(backgroundColor)),
       backgroundSrc && has('background'),
       inverted && is('inverted'),
-      skeleton && is('loading'),
+      loading && is('loading'),
     ),
   )
 

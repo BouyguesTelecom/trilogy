@@ -15,7 +15,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param label {string} Custom label
  * @param description {string} Custom description
  * @param children {React.ReactNode}
- * @param skeleton {boolean} Skeleton Progress Radial
+ * @param loading {boolean} Skeleton Progress Radial
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * - --------------- WEB PROPERTIES -------------------------------------
  * @param className {string} Additionnal CSS Classes
@@ -27,7 +27,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
   secondValue = 0,
   label,
   description,
-  skeleton,
+  loading,
   className,
   id,
   small,
@@ -37,7 +37,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
   const [firstProgressCurrentValue, setFirstProgressCurrentValue] = useState(0)
   const [secondProgressCurrentValue, setSecondProgressCurrentValue] = useState(0)
 
-  const classes = hashClass(styled, clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
+  const classes = hashClass(styled, clsx('progress-radial', loading && is('loading'), small && is('small'), className))
   const classesContent = hashClass(styled, clsx('progress-radial-content'))
 
   const progressRadialRef = useRef<HTMLDivElement>(null)

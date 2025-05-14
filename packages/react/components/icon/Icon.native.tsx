@@ -26,11 +26,11 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * @param stretched {boolean} Stretched icon
  * @param onClick {Function} onClick Event Icon
  * @param align { Alignable | AlignableValues} align content
- * @param skeleton {boolean} Icon Skeleton
+ * @param loading {boolean} Icon Skeleton
  */
 const Icon = React.forwardRef<IconNativeRef, IconProps>(
   (
-    { size, name, circled, stretched, color, backgroundColor, onClick, align, skeleton, testId, ...others },
+    { size, name, circled, stretched, color, backgroundColor, onClick, align, loading, testId, ...others },
     ref,
   ): JSX.Element => {
     const {
@@ -124,7 +124,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
       </ContentLoader>
     )
 
-    if (skeleton) {
+    if (loading) {
       return <IconSkeleton />
     }
 

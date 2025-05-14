@@ -20,7 +20,7 @@ import { IconProps, IconRef } from './IconProps'
  * @param color {IconColor} Custom Icon Color
  * @param backgroundColor {TrilogyColor} Custom Background color only if circled
  * @param onClick {Function} onClick Event Icon
- * @param skeleton {boolean} Icon Skeleton
+ * @param loading {boolean} Icon Skeleton
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additionnal css classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
@@ -28,7 +28,7 @@ import { IconProps, IconRef } from './IconProps'
 
 const Icon = React.forwardRef<IconRef, IconProps>(
   (
-    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, ...others },
+    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, loading, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -47,7 +47,7 @@ const Icon = React.forwardRef<IconRef, IconProps>(
         circled && is('circled'),
         circled && !color && has('text-white'),
         color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
-        skeleton && is('loading'),
+        loading && is('loading'),
         background,
         className,
       ),

@@ -22,7 +22,7 @@ export const CardContext = createContext({
  * @param floating Floating card
  * @param children {ReactNode}
  * @param onClick {Function} onClick Event
- * @param skeleton {boolean} Loading card
+ * @param loading {boolean} Loading card
  * @param reversed {boolean} Reversed card
  * @param fullheight {boolean}
  * @param active {boolean} Activated box
@@ -30,7 +30,7 @@ export const CardContext = createContext({
  */
 const Card = React.forwardRef<CardNativeRef, CardProps>(
   (
-    { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, ...others },
+    { children, flat, horizontal, floating, onClick, loading, reversed, fullheight, active, ...others },
     ref,
   ): JSX.Element => {
     const borderColor = '#ccc'
@@ -90,7 +90,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
 
     let cardView: JSX.Element
 
-    if (skeleton) {
+    if (loading) {
       return <CardSkeleton />
     }
 

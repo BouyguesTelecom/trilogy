@@ -7,7 +7,7 @@ describe('Section', () => {
   it('renders with all props', () => {
     const props = {
       className: 'test-class',
-      skeleton: true,
+      loading: true,
       backgroundColor: TrilogyColor.MAIN,
       backgroundSrc: 'https://example.com/image.jpg',
       onClick: jest.fn(),
