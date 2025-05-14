@@ -377,7 +377,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
             }}
             placeholder={placeholder}
             placeholderTextColor={
-              disabled ? getColorStyle(TrilogyColor.DISABLED) : grayscale(getColorStyle(TrilogyColor.FONT))
+              disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
             }
             style={styles.input}
             {...others}

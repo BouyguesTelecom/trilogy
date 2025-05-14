@@ -46,7 +46,8 @@ export const useTabList = ({ ref, children }: IParams) => {
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
-          const nextPosition = tabRefs.current[tabFocused + direction]
+          const nextTab = tabFocused + direction
+          const nextPosition = tabRefs.current[nextTab === -1 ? 0 : nextTab]
           nextPosition && TabListRef.current?.scrollTo({ left: nextPosition.x - firstGap, behavior: 'smooth' })
         }
       },

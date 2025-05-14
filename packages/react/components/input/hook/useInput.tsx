@@ -263,7 +263,7 @@ const CreateIconWrapper = ({
   const Markup = type === InputType.PASSWORD ? 'button' : 'div'
 
   return (
-    <Markup {...(type === 'password' && { 'data-show-pwd': true })} onClick={onClick}>
+    <Markup {...(type === 'password' && { 'data-show-pwd': true, type: 'button' })} onClick={onClick}>
       <Icon className={className} name={name} size={IconSize.SMALL} color={color} />
       {_value && _value.length > 0 && closeIconSearch && (
         <Icon

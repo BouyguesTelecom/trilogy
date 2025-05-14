@@ -68,9 +68,10 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   })
 
   const autocompleteClasses = hashClass(clsx(is('autocomplete'), is('active')))
+  const autocompleteContainerClasses = hashClass(clsx(is('autocomplete-container')))
 
   return (
-    <div className={hashClass(clsx('control'))}>
+    <div className={autocompleteContainerClasses}>
       <Input
         id={id}
         ref={ref}
@@ -80,7 +81,6 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         iconNameRight={iconNameRight}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
-        className='autocomplete-input'
         type='text'
         status={status}
         autoCompleteType={InputAutoCompleteType.OFF}
@@ -92,9 +92,8 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         onChange={handleChange}
         onIconClick={onIconClick}
         loading={loading}
-        {...others}
+        {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
-
       {isAutocompleteMenuVisible && (
         <div className={autocompleteClasses}>
           {search.length > 0 && (

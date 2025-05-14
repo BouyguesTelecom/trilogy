@@ -36,6 +36,10 @@ export const usePagination = ({ defaultPage, onClick, length }: IProps) => {
       prevCurrentPage.current = pager.currentPage
     }, [pager.currentPage])
 
+    React.useEffect(() => {
+      setCurrentPage(defaultPage)
+    }, [defaultPage])
+
     return {
       currentPage,
       handleClickNext,

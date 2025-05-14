@@ -30,8 +30,7 @@
   color: getColor('font');
 
   @include placeholder {
-    color: getColor('font') !important;
-    filter: grayscale(100%);
+    color: getColor('font-placeholder') !important;
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
