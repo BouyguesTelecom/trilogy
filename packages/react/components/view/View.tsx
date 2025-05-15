@@ -23,7 +23,7 @@ import { useTrilogyContext } from "@/context"
  * @param justify {JustifiableProps.justify?} Justifiable | "JUSTIFIED_CENTER" | "JUSTIFIED_START" | "JUSTIFIED_END" | "SPACE_BETWEEN" | undefined
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * - ------------------ WEB PROPERTIES ---------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param loading {Loading} Loading View
  * @param markup {ViewMarkup} Markup for View
  * @param inverted {boolean} Inverted View Color

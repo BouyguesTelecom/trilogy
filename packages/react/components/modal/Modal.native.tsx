@@ -23,8 +23,8 @@ import { ModalContext } from './context/ModalContext'
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Title Modal
- * @param onClose {Function} Additionnal close custom function
- * @param onOpen {Function} Additionnal open custom function
+ * @param onClose {Function} Additional close custom function
+ * @param onOpen {Function} Additional open custom function
  * @param children {React.ReactNode}
  * @param onModalHide {Function} Callback on Hide
  * @param unClosable {boolean} unClosable Native Modal

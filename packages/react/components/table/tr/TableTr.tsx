@@ -13,7 +13,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param expandable {boolean} Lines can display additional information
  * @param expanded {boolean} An unfolded line will also receive class
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param expansion {boolean} Is expansion
  * @param onClick {ClickEvent} On click event
  * @param color {TrilogyColor} Higlight color

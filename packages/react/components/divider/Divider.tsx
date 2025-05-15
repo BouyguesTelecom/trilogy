@@ -13,7 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param unboxed {boolean} Full-width separator in another component
  * @param marginless {boolean} delete margin
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  * @param iconName {IconName} Custom icon for Divider
  * @param color {TrilogyColor} Border color of Divider
  * @param others

@@ -14,7 +14,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param contentLink {string} Text for content link
  * @param heading {string} Text heading
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(({
   children,

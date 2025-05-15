@@ -10,7 +10,7 @@ import { ComponentName } from '../enumsComponentsName'
  * Rows Component
  * @param children {React.ReactNode} Rows children
  * - ------------------- WEB PROPERTIES -------------------------
- * @param className {string} additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const Rows = React.forwardRef<RowsRef, RowsProps>(({ className, id, gap, ...others }, ref) => {
   const { styled } = useTrilogyContext()

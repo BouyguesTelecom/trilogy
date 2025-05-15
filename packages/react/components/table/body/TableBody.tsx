@@ -12,7 +12,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Table Body Component
  * @param children {ReactNode} children of Table Body
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */

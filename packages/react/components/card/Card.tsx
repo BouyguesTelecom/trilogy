@@ -18,7 +18,7 @@ export const CardContext = createContext({ horizontal: false })
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param fullheight
  */
 const Card = React.forwardRef<CardRef, CardProps>(
