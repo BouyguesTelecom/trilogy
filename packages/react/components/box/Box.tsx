@@ -22,7 +22,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param testId {string} Test id
  * @param active {boolean} Activated box
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param fullheight
  * @param blank If href && blank : target Blank
  * @param others

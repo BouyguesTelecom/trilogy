@@ -18,7 +18,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param skeleton {boolean} Skeleton Progress Radial
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * - --------------- WEB PROPERTIES -------------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param small {boolean} Display small progress radial
  */
 const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(({

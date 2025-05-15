@@ -17,7 +17,7 @@ import { CheckboxProps, CheckboxRef } from './CheckboxProps'
  * @param children {React.ReactNode} Children for Checkbox, should be only [phrasing content](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#technical_summary)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for checkbox
- * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required input checkboxes
  */
 const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(

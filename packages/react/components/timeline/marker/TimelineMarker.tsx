@@ -13,8 +13,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param iconColor {IconColor} Icon Color
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
- * @param iconClassname {string} Additionnal CSS Classes for icon
+ * @param className {string} Additional CSS Classes
+ * @param iconClassname {string} Additional CSS Classes for icon
  */
 const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(({
   className,

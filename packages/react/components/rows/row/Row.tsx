@@ -11,7 +11,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param narrow {boolean} Align same elements horizontaly
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------
- *  @param className {string} additionnal CSS Classes
+ *  @param className {string} Additional CSS Classes
  */
 const Row = React.forwardRef<RowRef, RowProps>(({ className, id, narrow, ...others }, ref) => {
   const { styled } = useTrilogyContext()

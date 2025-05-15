@@ -18,7 +18,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
  * @param position
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
 const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
