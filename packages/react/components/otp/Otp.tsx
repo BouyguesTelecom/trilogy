@@ -5,7 +5,7 @@ import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
 import { inputTitle } from '@trilogy-ds/locales/lib/otp.json'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { OtpProps, OtpRef } from './OtpProps'
 
@@ -180,7 +180,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
             <input
               aria-disabled={disabled}
               key={idx}
-              type='text'
+              type={'tel'} // To display the numeric keypad and avoid showing the plus/minus arrows.
               inputMode='numeric'
               autoComplete='one-time-code'
               autoFocus={idx === 0 && autoFocus}
