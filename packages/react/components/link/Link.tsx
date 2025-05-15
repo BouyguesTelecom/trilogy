@@ -20,7 +20,7 @@ import { LinkProps, LinkRef } from './LinkProps'
  * @param inverted {boolean} Inverted link
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param href {string} Href link
  * @param routerLink Custom Router Link as props
  * @param blank Link Target Blank

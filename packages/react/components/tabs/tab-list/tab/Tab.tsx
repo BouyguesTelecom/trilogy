@@ -18,7 +18,7 @@ import React from 'react'
  * @param to {string} Link
  * @param href {string} <a />
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */

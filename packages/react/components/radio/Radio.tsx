@@ -16,7 +16,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param name {string} Name for radio
  * @param value {string} Value for radio
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
  */
 const Radio = React.forwardRef<RadioRef, RadioProps>(({
