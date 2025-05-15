@@ -3,21 +3,37 @@ import type { Meta, StoryObj, StoryContext } from '@storybook/react';
 
 import {Accordion, AccordionItem, AccordionBody, AccordionHeader, } from '../index';
 import { DefaultHeader } from '../item/header/AccordionHeader.stories';
-import { DefaultBody, defaultBodyChildren } from '../stories/StoriesObjects';
+import { defaultBodyChildren } from './StoriesObjects';
 import {Text} from '../../text'
 import { renderBefore } from '../../../../storybook/preview';
+
+import {AccordionScreen} from '../../../../../examples/react-template/screens/Accordion'
+
 
 const meta = {
   title: 'Accordion',
   component: Accordion,
   subcomponents: {
-    AccordionItem,
-    AccordionBody,
-    AccordionHeader,
+    AccordionItem
   },
 } as Meta<typeof Accordion>;
 
 renderBefore(meta)
+
+export const AA: StoryObj = {
+
+render: (args) => {
+    return (
+      <Accordion {...args}>
+        <AccordionItem>
+          <AccordionHeader >AccordionHeader</AccordionHeader>
+          <AccordionBody >Accordion Body</AccordionBody>
+        </AccordionItem>
+      </Accordion>
+    )
+  }
+}
+
 
 export const Template: StoryObj = {
   render: ({ ...args }) => {
@@ -27,21 +43,36 @@ export const Template: StoryObj = {
           <AccordionHeader {...DefaultHeader}>AccordionHeader</AccordionHeader>
           <AccordionBody {...args.body?.args}>{args.body?.children}</AccordionBody>
         </AccordionItem>
+         <AccordionItem open>
+          <AccordionHeader {...DefaultHeader}>Sample Open by default</AccordionHeader>
+          <AccordionBody>Sample Open by default</AccordionBody>
+        </AccordionItem>
+        <AccordionItem disabled>
+          <AccordionHeader {...DefaultHeader}>Sample Disabled by default</AccordionHeader>
+          <AccordionBody {...args.body?.args}>{args.body?.children}</AccordionBody>
+        </AccordionItem>
       </Accordion>
     )
   },
   args: {
-    children: 'Accordion Item',
-    className: undefined,
     disabled: false,
     open: false,
-    onClick: undefined,
+    header: { args: {}, children:defaultBodyChildren},
     body: { args: {}, children:defaultBodyChildren},
     DefaultHeader: DefaultHeader.args,
   },
 }
 
-//export const Default = Template;
+
+export const Documentation: StoryObj = {
+  render: ({ ...args }) => {
+    return (
+      <AccordionScreen/>
+    )
+  }
+}
+
+
 export const Open = {
   ...Template,
   args: {

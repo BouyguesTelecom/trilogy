@@ -1,0 +1,26 @@
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Accordion } from '../index';
+
+import { Template } from './Index.stories';
+export default {
+  title: 'Accordion/Variants',
+  component: Accordion,
+} as Meta<typeof Accordion>;
+
+
+export const Open: StoryObj = {
+  ...Template,
+  args: {
+    ...Template.args,
+    open: true,
+  },
+};
+
+export const Disabled: StoryObj = {
+  ...Template,
+  args: {
+    ...Template.args,
+    disabled: true,
+  },
+};

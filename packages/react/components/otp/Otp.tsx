@@ -180,12 +180,12 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
             <input
               aria-disabled={disabled}
               key={idx}
-              type='text'
-              inputMode='numeric'
-              autoComplete='one-time-code'
+              type="text"
+              inputMode="numeric"
+              name="otp"
+              autoComplete={idx === 0 ? "one-time-code" : undefined}
               autoFocus={idx === 0 && autoFocus}
-              pattern='\d{1}'
-              maxLength={length}
+              maxLength={1}
               className={hashClass(styled, clsx('otp'))}
               value={`${digit ?? ''}`}
               onKeyUp={inputOnKeyUp}
