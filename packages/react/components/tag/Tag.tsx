@@ -17,7 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param iconName {IconName} display icon
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  **/
 const Tag = React.forwardRef<TagRef, TagProps>(({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()

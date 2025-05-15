@@ -8,7 +8,7 @@ import { ComponentName } from '../enumsComponentsName'
 
 /**
  * ListItem Component
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param children {React.ReactNode}
  * @param hasIcon {boolean} If Have icon
  * @param ordered {boolean} Display ordered list

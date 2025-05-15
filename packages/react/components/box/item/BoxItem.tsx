@@ -10,7 +10,7 @@ import { BoxItemProps, BoxItemRef } from './BoxItemProps'
  * @param children {React.ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const BoxItem = React.forwardRef<BoxItemRef, BoxItemProps>(
   ({ className, id, children, ...others }, ref): JSX.Element => {

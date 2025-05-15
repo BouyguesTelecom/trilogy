@@ -15,7 +15,7 @@ import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
  * @param children {React.ReactNode}
  * @param label {string} option name
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} id for testing
  * @param iconName {IconName | IconNameValues} icon
  * @param disabled {boolean} disable option

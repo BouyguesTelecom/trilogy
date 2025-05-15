@@ -9,7 +9,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * ListItemDescription Component
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
   children,

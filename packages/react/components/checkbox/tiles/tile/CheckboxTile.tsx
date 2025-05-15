@@ -22,7 +22,7 @@ import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
  * @param icon {IconName}
  * @param horizontal {boolean}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
   (

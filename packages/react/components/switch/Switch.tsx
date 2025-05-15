@@ -17,7 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
  * -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param onClick {Function} onClick event
  * @param label {string} Switch label
  * @param value {string} Switch value

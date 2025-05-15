@@ -11,7 +11,7 @@ import { is } from '@/services/classify'
  * Container Component
  * @param children {React.ReactNode}
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param medium {boolean} Set medium container
  * @param id {string} Set id attribute
  */

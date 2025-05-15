@@ -14,11 +14,11 @@ import { ModalProps, ModalRef } from './ModalProps'
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Title Modal
- * @param onClose {Function} Additionnal close custom function
- * @param onOpen {Function} Additionnal open custom function
+ * @param onClose {Function} Additional close custom function
+ * @param onOpen {Function} Additional open custom function
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param panel {boolean} Panel Side Modal
  * @param accessibilityLabel {string} Accessibility label
  * - -------------------------- NATIVE PROPERTIES -------------------------------

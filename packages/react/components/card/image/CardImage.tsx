@@ -15,7 +15,7 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param contain {boolean} Resize mode contain
  * - -------------------------- WEB PROPERTIES ----------------------------------
- * @param className Additionnal CSS Classes
+ * @param className Additional CSS Classes
  */
 const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
   ({ src, alt = '', className, id, size, onClick, ...others }, ref): JSX.Element => {
