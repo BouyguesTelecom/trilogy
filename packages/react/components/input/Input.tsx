@@ -128,6 +128,10 @@ const Input = React.forwardRef<InputRef, InputProp>(
     const [isShowPwd, setIsShowPwd] = useState<boolean>(false)
 
     const helpClasses = clsx('help', localStatus && is(localStatus))
+    const loader = hashClass(styled, clsx(is('searching')))
+    const inputLabelClasses = hashClass(styled, 'input-label')
+    const iconTimesClasses = hashClass(styled, clsx(is('justified-self')))
+    const srOnlyClasses = hashClass(styled, clsx('sr-only'))
     const classes = hashClass(styled, clsx('input', localStatus && is(localStatus)))
     const wrapperClasses = hashClass(
       styled,
@@ -173,14 +177,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
             {_value && _value.length > 0 && closeIconSearch && (
               <Icon
                 onClick={() => setValue('')}
-                className={hashClass(styled, clsx(is('justified-self')))}
+                className={iconTimesClasses}
                 name={IconName.TIMES_CIRCLE}
                 size={IconSize.SMALL}
               />
             )}
-            {type === InputType.PASSWORD && srOnly && (
-              <span className={hashClass(styled, clsx('sr-only'))}>{srOnly}</span>
-            )}
+            {type === InputType.PASSWORD && srOnly && <span className={srOnlyClasses}>{srOnly}</span>}
           </Markup>
         )
       },
@@ -221,7 +223,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
         {label && (
-          <label className={hashClass(styled, 'input-label')} htmlFor={id}>
+          <label className={inputLabelClasses} htmlFor={id}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -332,7 +334,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
               }}
             />
           )}
-          {loading && <span className={hashClass(styled, clsx(is('searching')))} />}
+          {loading && <span className={loader} />}
         </div>
         {help && (
           <Text className={helpClasses} id={idHelp}>
