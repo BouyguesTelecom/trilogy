@@ -7,13 +7,12 @@ import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * ListItem Component
+ * List Component
  * @param className {string} Additional CSS Classes
  * @param children {React.ReactNode}
- * @param hasIcon {boolean} If Have icon
+ * @param divider {boolean} Add divider between items
  * @param ordered {boolean} Display ordered list
  */
-
 const List = React.forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
