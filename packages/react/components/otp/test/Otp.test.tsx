@@ -5,13 +5,12 @@ import Otp from '../Otp'
 describe('Otp', () => {
   const defaultProps = {
     code: '',
-    codeSize: 6,
+    length: 6,
     disabled: false,
     error: false,
     onCompleted: jest.fn(),
     onChange: jest.fn(),
     onFocus: jest.fn(),
-    autoFocus: true,
   }
 
   it('renders without error', () => {
