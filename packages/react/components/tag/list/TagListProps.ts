@@ -1,12 +1,11 @@
 import { View } from 'react-native'
-import { Alignable, AlignableValues, Marginless } from '../../../objects'
+import { AlignableProps, Marginless } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 /**
  * Tag list Interface
  */
-export interface TagListProps extends Marginless, CommonProps {
-  align?: Alignable | AlignableValues
+export interface TagListProps extends Omit<AlignableProps, 'verticalAlign'>, Marginless, CommonProps {
   children?: React.ReactNode
 }
 

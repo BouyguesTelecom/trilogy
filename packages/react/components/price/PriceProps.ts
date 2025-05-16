@@ -7,7 +7,7 @@ import { View } from 'react-native'
 /**
  * Price Interface
  */
-export interface PriceProps extends Invertable, Accessibility, AlignableProps, Dev, CommonProps {
+export interface PriceProps extends Invertable, Accessibility, Omit<AlignableProps, 'verticalAlign'>, Dev, CommonProps {
   children?: React.ReactNode
   amount?: number
   mention?: string
