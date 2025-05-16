@@ -79,7 +79,7 @@ export const ListScreen = (): JSX.Element => {
             </Text>
             <Text level={TextLevels.ONE}>Ceci est la description</Text>
           </ListItem>
-          <ListItem iconName={IconName.ALERT} status={ListIconStatus.SUCCESS}>
+          <ListItem iconName={IconName.ALERT} status={ListIconStatus.WARNING}>
             <Text level={TextLevels.ONE}>
               <Text>Ceci est un titre</Text>
             </Text>
