@@ -1,15 +1,4 @@
-import {
-  AutoLayout,
-  IconName,
-  List,
-  ListIconStatus,
-  ListItem,
-  Section,
-  Text,
-  TextLevels,
-  Title,
-  TitleLevels,
-} from '@trilogy-ds/react/components'
+import { AutoLayout, IconName, List, ListIconStatus, Icon, ListItem, Section, Text, TextLevels, Title, IconSize, TitleLevels } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const ListScreen = (): JSX.Element => {
@@ -23,6 +12,7 @@ export const ListScreen = (): JSX.Element => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, architecto aliquam neque minima impedit,
               doloremque magni eveniet sapiente asperiores dolor aspernatur numquam voluptates vitae molestias porro
               suscipit praesentium totam odio.
+              <Icon name={IconName.INFOS_CIRCLE} size={IconSize.SMALL} />
             </Text>
           </ListItem>
           <ListItem>
