@@ -25,6 +25,7 @@ export enum ComponentName {
   ButtonVariant = 'ButtonVariant',
   ButtonMarkup = 'ButtonMarkup',
   ButtonType = 'ButtonType',
+  Calendar = 'Calendar',
   Card = 'Card',
   CardImage = 'CardImage',
   CardContent = 'CardContent',

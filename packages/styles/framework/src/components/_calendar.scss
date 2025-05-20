@@ -1,0 +1,43 @@
+.calendar {
+    border-collapse: collapse;
+
+    button {
+      all: unset;
+      &:focus-visible{
+        background-color: getColor('disabled-fade');
+      }
+    }
+
+    &-header {
+      background-color: getColor('main-fade');
+    }
+
+    &-week-day-label {
+      padding: 10px;
+      text-align: center;
+    }
+
+    &-week-day {
+      padding: 10px;
+      border: 1px solid getColor('main');
+      text-align: center !important;
+      vertical-align: middle;
+      button {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &-active-month {
+      text-align: center !important;
+      position: relative;
+      .icon {
+        vertical-align: bottom;
+      }
+    }
+
+    &-active-date button{
+      background-color: getColor('main-fade');
+    }
+
+  }
