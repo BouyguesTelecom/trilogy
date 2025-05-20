@@ -15,7 +15,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
   const { styled } = useTrilogyContext()
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
-  let globalDayIndex = 0 // Définissez l'index global ici
+  let globalDayIndex = 0
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
   const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
