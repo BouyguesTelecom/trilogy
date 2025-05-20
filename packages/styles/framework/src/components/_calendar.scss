@@ -3,13 +3,18 @@
 
     button {
       all: unset;
-      &:focus-visible{
+      &:focus-visible, &:hover{
+        cursor: pointer;
         background-color: getColor('disabled-fade');
       }
     }
 
     &-header {
       background-color: getColor('main-fade');
+    }
+
+    .calendar-next-month {
+      text-align: end;
     }
 
     &-week-day-label {
