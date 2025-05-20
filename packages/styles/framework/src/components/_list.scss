@@ -1,18 +1,10 @@
 // Bullet list classiques
 ol.list {
-  counter-reset: customCounter;
-
   li.list-item {
-    counter-increment: customCounter;
-    &:not(:has(.icon)) {
-      &::before{
-        content: counter(customCounter) ". ";
-        margin-right:$spacing-4;
-        font-weight: $weight-bold;
-        font-size: $text-14 !important;
-        font-family: $family-secondary;
-        line-height: 1.5 !important;
-
+    &:not(:has(> .icon)) {
+      margin-left: 19px;
+      &::marker{
+        font-weight: 600;
       }
     }
   }
@@ -20,14 +12,9 @@ ol.list {
 
 ul.list {
   li.list-item {
-    &:not(:has(.icon)) {
-      &::before{
-        content:'.';
-        margin-right:$spacing-4;
-        font-weight: 900;
-        font-size: $text-24;
-        line-height: 8px;
-      }
+    &:not(:has(> .icon)) {
+      margin-left: 18px;
+      list-style: disc;
     }
   }
 }
@@ -36,22 +23,18 @@ ul.list,
 ol.list {
   display: grid;
   row-gap: $spacing-3;
-
   li.list-item {
-    display: flex;
-    &:has(.icon) {
-      list-style: none;
+    &:has(>.icon) {
       display: flex;
     }
-    .icon {
+    > .icon {
       margin-right: $spacing-2;
       justify-content: flex-start;
       align-items: flex-start;
-    }
-    .list-item-content {
-      flex: 1; 
+      height: auto;
     }
   }
+
 
   &.has-divider {
     li {
