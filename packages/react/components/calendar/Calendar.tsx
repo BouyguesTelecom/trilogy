@@ -13,9 +13,9 @@ const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'S
 
 const Calendar = ({ value = new Date() }: CalendarProps) => {
   const { styled } = useTrilogyContext()
-  const [activeDate, setActiveDate] = React.useState<Date>(value)
+  const [focusedDate, setFocusedDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
-  let globalDayIndex = 0 // Définissez l'index global ici
+  let globalDayIndex = 0
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
   const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
@@ -41,20 +41,20 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
   }, [])
 
   const weeksInMonth = React.useMemo(() => {
-    const activeYear = activeDate.getFullYear()
-    const activeMonth = activeDate.getMonth()
+    const activeYear = focusedDate.getFullYear()
+    const activeMonth = focusedDate.getMonth()
     return getWeeksInMonth(activeYear, activeMonth)
-  }, [activeDate])
+  }, [focusedDate])
 
   const handleClickNextPrevMonth = React.useCallback((month: number) => {
-    setActiveDate((prev) => {
+    setFocusedDate((prev) => {
       const nextMonth = new Date(prev.getFullYear(), prev.getMonth() + month, prev.getDate())
       return nextMonth
     })
   }, [])
 
   const handleClickNextPrevDay = React.useCallback((day: number) => {
-    setActiveDate((prev) => {
+    setFocusedDate((prev) => {
       const nextMonth = new Date(prev.getFullYear(), prev.getMonth(), prev.getDate() + day)
       return nextMonth
     })
@@ -85,7 +85,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
             </button>
           </th>
           <th className={calendarActiveMonthClasses} colSpan={5}>
-            {activeDate.toLocaleDateString('fr-FR', {
+            {focusedDate.toLocaleDateString('fr-FR', {
               year: 'numeric',
               month: 'short',
             })}
@@ -114,9 +114,9 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                 const ind = day && globalDayIndex++
 
                 const isActive =
-                  day?.getFullYear() === activeDate.getFullYear() &&
-                  day.getMonth() === activeDate.getMonth() &&
-                  day.getDate() === activeDate.getDate()
+                  day?.getFullYear() === focusedDate.getFullYear() &&
+                  day.getMonth() === focusedDate.getMonth() &&
+                  day.getDate() === focusedDate.getDate()
 
                 return (
                   <td colSpan={1} key={dayIndex} className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}>
