@@ -9,6 +9,11 @@ interface CalendarProps {
   value?: Date
 }
 
+interface HandleFocusDayParams {
+  currentIndex?: number | null
+  nextIndex: number
+}
+
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
 
 const Calendar = ({ value = new Date() }: CalendarProps) => {
@@ -53,40 +58,40 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     })
   }, [])
 
-  const handleClickNextPrevDay = React.useCallback((day: number) => {
-    setActiveDate((prev) => {
-      const nextMonth = new Date(prev.getFullYear(), prev.getMonth(), prev.getDate() + day)
-      return nextMonth
-    })
-  }, [])
-
-  const onPressEnter = React.useCallback(
-    (index: number | null) => {
-      if (index) {
-        const nextRef = refsDays.current[index++]
-        if (nextRef) {
-        }
-      }
+  const handleFocusDay = React.useCallback(
+    ({ currentIndex, nextIndex }: HandleFocusDayParams) => {
+      if (!currentIndex) return
+      const nextRef = refsDays.current[currentIndex + nextIndex]
+      if (!nextRef) return
+      nextRef.focus()
     },
     [refsDays],
   )
 
-  const navWithKeyboard = React.useCallback((e: React.KeyboardEvent, index: number | null) => {
-    switch (e.key) {
-      case 'ArrowRight':
-        return handleClickNextPrevDay(1)
-      case 'ArrowLeft':
-        return handleClickNextPrevDay(-1)
-      case 'ArrowUp':
-        return handleClickNextPrevDay(-7)
-      case 'ArrowDown':
-        return handleClickNextPrevDay(7)
-      case 'Enter':
-        return onPressEnter(index)
-      default:
-        return
-    }
+  const handlePressEnter = React.useCallback((e: React.KeyboardEvent) => {
+    const elm = e.target as HTMLButtonElement
+    setActiveDate(new Date(Number(elm.dataset.timestamp)))
   }, [])
+
+  const navWithKeyboard = React.useCallback(
+    (e: React.KeyboardEvent, index: number | null) => {
+      switch (e.key) {
+        case 'ArrowRight':
+          return handleFocusDay({ currentIndex: index, nextIndex: 1 })
+        case 'ArrowLeft':
+          return handleFocusDay({ currentIndex: index, nextIndex: -1 })
+        case 'ArrowUp':
+          return handleFocusDay({ currentIndex: index, nextIndex: -7 })
+        case 'ArrowDown':
+          return handleFocusDay({ currentIndex: index, nextIndex: 7 })
+        case 'Enter':
+          return handlePressEnter(e)
+        default:
+          return
+      }
+    },
+    [handleFocusDay],
+  )
 
   return (
     <table className={calendarClasses}>
