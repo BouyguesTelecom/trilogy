@@ -9,18 +9,13 @@ interface CalendarProps {
   value?: Date
 }
 
-interface HandleFocusDayParams {
-  currentIndex?: number | null
-  nextIndex: number
-}
-
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
 
 const Calendar = ({ value = new Date() }: CalendarProps) => {
   const { styled } = useTrilogyContext()
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
-  let globalDayIndex = 0
+  let globalDayIndex = 0 // Définissez l'index global ici
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
   const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
@@ -58,40 +53,27 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     })
   }, [])
 
-  const handleFocusDay = React.useCallback(
-    ({ currentIndex, nextIndex }: HandleFocusDayParams) => {
-      if (!currentIndex) return
-      const nextRef = refsDays.current[currentIndex + nextIndex]
-      if (!nextRef) return
-      nextRef.focus()
-    },
-    [refsDays],
-  )
-
-  const handlePressEnter = React.useCallback((e: React.KeyboardEvent) => {
-    const elm = e.target as HTMLButtonElement
-    setActiveDate(new Date(Number(elm.dataset.timestamp)))
+  const handleClickNextPrevDay = React.useCallback((day: number) => {
+    setActiveDate((prev) => {
+      const nextMonth = new Date(prev.getFullYear(), prev.getMonth(), prev.getDate() + day)
+      return nextMonth
+    })
   }, [])
 
-  const navWithKeyboard = React.useCallback(
-    (e: React.KeyboardEvent, index: number | null) => {
-      switch (e.key) {
-        case 'ArrowRight':
-          return handleFocusDay({ currentIndex: index, nextIndex: 1 })
-        case 'ArrowLeft':
-          return handleFocusDay({ currentIndex: index, nextIndex: -1 })
-        case 'ArrowUp':
-          return handleFocusDay({ currentIndex: index, nextIndex: -7 })
-        case 'ArrowDown':
-          return handleFocusDay({ currentIndex: index, nextIndex: 7 })
-        case 'Enter':
-          return handlePressEnter(e)
-        default:
-          return
-      }
-    },
-    [handleFocusDay],
-  )
+  const navWithKeyboard = React.useCallback((e: React.KeyboardEvent, index: number | null) => {
+    switch (e.key) {
+      case 'ArrowRight':
+        return handleClickNextPrevDay(1)
+      case 'ArrowLeft':
+        return handleClickNextPrevDay(-1)
+      case 'ArrowUp':
+        return handleClickNextPrevDay(-7)
+      case 'ArrowDown':
+        return handleClickNextPrevDay(7)
+      default:
+        return
+    }
+  }, [])
 
   return (
     <table className={calendarClasses}>
@@ -145,7 +127,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
                         ref={(el) => {
-                          if (el && ind) refsDays.current[ind] = el
+                          if (el) refsDays.current[dayIndex] = el
                         }}
                       >
                         {day.getDate()}
