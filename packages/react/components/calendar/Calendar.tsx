@@ -127,7 +127,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
                         ref={(el) => {
-                          if (el) refsDays.current[dayIndex] = el
+                          if (el && ind) refsDays.current[ind] = el
                         }}
                       >
                         {day.getDate()}
