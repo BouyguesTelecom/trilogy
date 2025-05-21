@@ -78,6 +78,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
         const day = prevDayFocused.getDate() + nextIndex
         const nextDayFocused = new Date(year, month, day)
         refsDays.current[nextDayFocused.getDate() - 1].focus()
+        refDayFocused.current = refsDays.current[nextDayFocused.getDate() - 1]
       }, 10)
     },
     [refsDays, refDayFocused],
