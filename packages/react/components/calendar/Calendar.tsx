@@ -7,11 +7,12 @@ import { Icon } from '../icon'
 
 interface CalendarProps {
   value?: Date
+  onChange?: (e: Date) => void
 }
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
 
-const Calendar = ({ value = new Date() }: CalendarProps) => {
+const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value)
   const [activeDate, setActiveDate] = React.useState<Date>(value)
@@ -91,8 +92,9 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
       const lastTabIndex = refsDays.current.findIndex((day) => day.tabIndex === 0)
       if (lastTabIndex !== null) refsDays.current[lastTabIndex].tabIndex = -1
       setActiveDate(new Date(Number(elm.dataset.timestamp)))
+      if (onChange) onChange(new Date(Number(elm.dataset.timestamp)))
     },
-    [refsDays.current],
+    [refsDays.current, onChange],
   )
 
   const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
@@ -166,7 +168,10 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                   <td colSpan={1} key={dayIndex} className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}>
                     {day && ind !== false && (
                       <button
-                        onClick={() => setActiveDate(day)}
+                        onClick={() => {
+                          setActiveDate(day)
+                          onChange && onChange(day)
+                        }}
                         onKeyUp={(e) => onKeyUpDay(e, ind)}
                         tabIndex={isActive ? 0 : -1}
                         aria-selected={isActive ? 'true' : 'false'}
