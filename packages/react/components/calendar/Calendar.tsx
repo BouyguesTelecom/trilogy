@@ -14,6 +14,7 @@ const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'S
 const Calendar = ({ value = new Date() }: CalendarProps) => {
   const { styled } = useTrilogyContext()
   const [focusedDate, setFocusedDate] = React.useState<Date>(value)
+  const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   let globalDayIndex = 0
 
@@ -60,7 +61,13 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     })
   }, [])
 
-  const navWithKeyboard = React.useCallback((e: React.KeyboardEvent, index: number | null) => {
+  const handlePressEnter = React.useCallback((e: React.KeyboardEvent) => {
+    const elm = e.target as HTMLButtonElement
+    if (!elm) return
+    setActiveDate(new Date(Number(elm.dataset.timestamp)))
+  }, [])
+
+  const navWithKeyboard = React.useCallback((e: React.KeyboardEvent) => {
     switch (e.key) {
       case 'ArrowRight':
         return handleClickNextPrevDay(1)
@@ -70,10 +77,19 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
         return handleClickNextPrevDay(-7)
       case 'ArrowDown':
         return handleClickNextPrevDay(7)
+      case 'Enter':
+        return handlePressEnter(e)
       default:
         return
     }
   }, [])
+
+  React.useEffect(() => {
+    if (refsDays.current) {
+      const indx = refsDays.current.findIndex((el) => el?.dataset?.timestamp === String(focusedDate.getTime()))
+      if (indx !== -1) refsDays.current[indx].focus()
+    }
+  }, [focusedDate, refsDays])
 
   return (
     <table className={calendarClasses}>
@@ -114,15 +130,15 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                 const ind = day && globalDayIndex++
 
                 const isActive =
-                  day?.getFullYear() === focusedDate.getFullYear() &&
-                  day.getMonth() === focusedDate.getMonth() &&
-                  day.getDate() === focusedDate.getDate()
+                  day?.getFullYear() === activeDate.getFullYear() &&
+                  day.getMonth() === activeDate.getMonth() &&
+                  day.getDate() === activeDate.getDate()
 
                 return (
                   <td colSpan={1} key={dayIndex} className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}>
                     {day && (
                       <button
-                        onKeyUp={(e) => navWithKeyboard(e, ind)}
+                        onKeyUp={(e) => navWithKeyboard(e)}
                         tabIndex={isActive ? 0 : -1}
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
