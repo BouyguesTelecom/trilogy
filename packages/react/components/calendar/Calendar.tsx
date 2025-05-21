@@ -89,8 +89,8 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
     (e: React.KeyboardEvent) => {
       const elm = e.target as HTMLButtonElement
       if (!elm) return
-      const lastTabIndex = refsDays.current.findIndex((day) => day.tabIndex === 0)
-      if (lastTabIndex !== null) refsDays.current[lastTabIndex].tabIndex = -1
+      refsDays.current.forEach((day) => (day.tabIndex = -1))
+      elm.tabIndex = 0
       setActiveDate(new Date(Number(elm.dataset.timestamp)))
       if (onChange) onChange(new Date(Number(elm.dataset.timestamp)))
     },
