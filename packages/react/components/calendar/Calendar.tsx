@@ -13,9 +13,10 @@ const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'S
 
 const Calendar = ({ value = new Date() }: CalendarProps) => {
   const { styled } = useTrilogyContext()
-  const [focusedDate, setFocusedDate] = React.useState<Date>(value)
+  const [visibleMonth, setVisibleMonth] = React.useState<Date>(value)
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
+  const refDayFocused = React.useRef<HTMLButtonElement>()
   let globalDayIndex = 0
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
@@ -27,39 +28,60 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
   const calendarNextMonth = hashClass(styled, clsx('calendar-next-month'))
   const calendarPrevMonth = hashClass(styled, clsx('calendar-prev-month'))
 
-  const getWeeksInMonth = React.useCallback((year: number, month: number) => {
+  const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
     const days: Array<Date | null> = []
     const firstDayOfMonth = date.getDay()
     const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
-    const weeks: Array<(Date | null)[]> = []
-
+    const allDays: Array<(Date | null)[]> = []
     for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
     for (let day = 1; day <= lastDayOfMonth; day++) days.push(new Date(year, month, day))
-    for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7))
-
-    return weeks
+    for (let i = 0; i < days.length; i += 7) allDays.push(days.slice(i, i + 7))
+    return allDays
   }, [])
 
-  const weeksInMonth = React.useMemo(() => {
-    const activeYear = focusedDate.getFullYear()
-    const activeMonth = focusedDate.getMonth()
-    return getWeeksInMonth(activeYear, activeMonth)
-  }, [focusedDate])
+  const allDaysInMonth = React.useMemo(() => {
+    refsDays.current = []
+    const activeYear = visibleMonth.getFullYear()
+    const activeMonth = visibleMonth.getMonth()
+    return getAllDaysInMonth(activeYear, activeMonth)
+  }, [visibleMonth])
 
   const handleClickNextPrevMonth = React.useCallback((month: number) => {
-    setFocusedDate((prev) => {
+    setVisibleMonth((prev) => {
       const nextMonth = new Date(prev.getFullYear(), prev.getMonth() + month, prev.getDate())
       return nextMonth
     })
   }, [])
 
-  const handleClickNextPrevDay = React.useCallback((day: number) => {
-    setFocusedDate((prev) => {
-      const nextMonth = new Date(prev.getFullYear(), prev.getMonth(), prev.getDate() + day)
-      return nextMonth
-    })
-  }, [])
+  const navigateWithKeyboard = React.useCallback(
+    (currentIndex: number, nextIndex: number) => {
+      const nextRef = refsDays.current[currentIndex + nextIndex]
+
+      if (nextRef) {
+        refDayFocused.current = nextRef
+        return nextRef.focus()
+      }
+
+      setVisibleMonth((prev) => {
+        const currentYear = prev.getFullYear()
+        const currentMonth = prev.getMonth()
+        if ([1, 7].includes(nextIndex)) return new Date(currentYear, currentMonth + 1)
+        if ([-1, -7].includes(nextIndex)) return new Date(currentYear, currentMonth - 1)
+        return prev
+      })
+
+      const prevDayFocused = new Date(Number(refDayFocused.current?.dataset.timestamp))
+      setTimeout(() => {
+        const year = prevDayFocused.getFullYear()
+        const month = prevDayFocused.getMonth()
+        const day = prevDayFocused.getDate() + nextIndex
+        const nextDayFocused = new Date(year, month, day)
+        refsDays.current[nextDayFocused.getDate() - 1].focus()
+      }, 10)
+    },
+    [refsDays, refDayFocused],
+  )
 
   const handlePressEnter = React.useCallback((e: React.KeyboardEvent) => {
     const elm = e.target as HTMLButtonElement
@@ -67,29 +89,22 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     setActiveDate(new Date(Number(elm.dataset.timestamp)))
   }, [])
 
-  const navWithKeyboard = React.useCallback((e: React.KeyboardEvent) => {
+  const onKeyUp = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowRight':
-        return handleClickNextPrevDay(1)
+        return navigateWithKeyboard(index, 1)
       case 'ArrowLeft':
-        return handleClickNextPrevDay(-1)
+        return navigateWithKeyboard(index, -1)
       case 'ArrowUp':
-        return handleClickNextPrevDay(-7)
+        return navigateWithKeyboard(index, -7)
       case 'ArrowDown':
-        return handleClickNextPrevDay(7)
+        return navigateWithKeyboard(index, 7)
       case 'Enter':
         return handlePressEnter(e)
       default:
         return
     }
   }, [])
-
-  React.useEffect(() => {
-    if (refsDays.current) {
-      const indx = refsDays.current.findIndex((el) => el?.dataset?.timestamp === String(focusedDate.getTime()))
-      if (indx !== -1) refsDays.current[indx].focus()
-    }
-  }, [focusedDate, refsDays])
 
   return (
     <table className={calendarClasses}>
@@ -101,7 +116,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
             </button>
           </th>
           <th className={calendarActiveMonthClasses} colSpan={5}>
-            {focusedDate.toLocaleDateString('fr-FR', {
+            {visibleMonth.toLocaleDateString('fr-FR', {
               year: 'numeric',
               month: 'short',
             })}
@@ -123,11 +138,11 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
         </tr>
       </thead>
       <tbody>
-        {weeksInMonth.map((week, weekIndex) => {
+        {allDaysInMonth.map((week, weekIndex) => {
           return (
             <tr key={weekIndex}>
               {week.map((day, dayIndex) => {
-                const ind = day && globalDayIndex++
+                const ind = day !== null && globalDayIndex++
 
                 const isActive =
                   day?.getFullYear() === activeDate.getFullYear() &&
@@ -136,14 +151,15 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
 
                 return (
                   <td colSpan={1} key={dayIndex} className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}>
-                    {day && (
+                    {day && ind !== false && (
                       <button
-                        onKeyUp={(e) => navWithKeyboard(e)}
+                        onClick={() => setActiveDate(day)}
+                        onKeyUp={(e) => onKeyUp(e, ind)}
                         tabIndex={isActive ? 0 : -1}
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
                         ref={(el) => {
-                          if (el && ind) refsDays.current[ind] = el
+                          if (el) refsDays.current[ind] = el
                         }}
                       >
                         {day.getDate()}
