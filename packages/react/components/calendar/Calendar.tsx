@@ -84,11 +84,16 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     [refsDays, refDayFocused],
   )
 
-  const handlePressEnter = React.useCallback((e: React.KeyboardEvent) => {
-    const elm = e.target as HTMLButtonElement
-    if (!elm) return
-    setActiveDate(new Date(Number(elm.dataset.timestamp)))
-  }, [])
+  const handlePressEnter = React.useCallback(
+    (e: React.KeyboardEvent) => {
+      const elm = e.target as HTMLButtonElement
+      if (!elm) return
+      const lastTabIndex = refsDays.current.findIndex((day) => day.tabIndex === 0)
+      if (lastTabIndex !== null) refsDays.current[lastTabIndex].tabIndex = -1
+      setActiveDate(new Date(Number(elm.dataset.timestamp)))
+    },
+    [refsDays.current],
+  )
 
   const onKeyUp = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
@@ -106,6 +111,13 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
         return
     }
   }, [])
+
+  React.useEffect(() => {
+    if (refsDays.current) {
+      const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
+      if (!haveActiveDate) refsDays.current[0].tabIndex = 0
+    }
+  }, [refsDays.current])
 
   return (
     <table className={calendarClasses}>
