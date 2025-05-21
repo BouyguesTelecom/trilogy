@@ -95,7 +95,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
     [refsDays.current],
   )
 
-  const onKeyUp = React.useCallback((e: React.KeyboardEvent, index: number) => {
+  const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowRight':
         return navigateWithKeyboard(index, 1)
@@ -167,7 +167,7 @@ const Calendar = ({ value = new Date() }: CalendarProps) => {
                     {day && ind !== false && (
                       <button
                         onClick={() => setActiveDate(day)}
-                        onKeyUp={(e) => onKeyUp(e, ind)}
+                        onKeyUp={(e) => onKeyUpDay(e, ind)}
                         tabIndex={isActive ? 0 : -1}
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
