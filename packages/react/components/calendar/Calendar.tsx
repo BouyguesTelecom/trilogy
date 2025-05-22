@@ -18,6 +18,8 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
+  const weeksId = React.useId()
+  const daysId = React.useId()
   let globalDayIndex = 0
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
@@ -155,7 +157,7 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
       <tbody>
         {allDaysInMonth.map((week, weekIndex) => {
           return (
-            <tr key={weekIndex}>
+            <tr key={`${weeksId}_${weekIndex}`}>
               {week.map((day, dayIndex) => {
                 const ind = day !== null && globalDayIndex++
 
@@ -165,19 +167,23 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
                   day.getDate() === activeDate.getDate()
 
                 return (
-                  <td colSpan={1} key={dayIndex} className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}>
+                  <td
+                    colSpan={1}
+                    key={`${daysId}_${dayIndex}_${day?.getTime()}`}
+                    className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}
+                  >
                     {day && ind !== false && (
                       <button
-                        onClick={() => {
-                          setActiveDate(day)
-                          onChange && onChange(day)
-                        }}
                         onKeyUp={(e) => onKeyUpDay(e, ind)}
                         tabIndex={isActive ? 0 : -1}
                         aria-selected={isActive ? 'true' : 'false'}
                         data-timestamp={day?.getTime()}
                         ref={(el) => {
                           if (el) refsDays.current[ind] = el
+                        }}
+                        onClick={() => {
+                          setActiveDate(day)
+                          onChange && onChange(day)
                         }}
                       >
                         {day.getDate()}
