@@ -1,21 +1,14 @@
 import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
-import {
-  Container,
-  Divider,
-  Icon,
-  IconColor,
-  IconSize,
-  Section,
-  Text,
-  Title,
-  TitleLevels,
-  View,
-} from '@trilogy-ds/react/components'
+import { Container, Divider, Icon, IconColor, IconSize, Section, Text, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import * as React from 'react'
+import { Alignable, TrilogyColor } from '@trilogy-ds/react'
 
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
+
+      <Icon size={IconSize.LARGE} name={IconName.EYE} backgroundColor={TrilogyColor.INFO_FADE} />
+
       <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} />
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
@@ -69,7 +62,7 @@ export const IconScreen = (): JSX.Element => {
       <Container>
         <View>
           <Text>Icon UP</Text>
-          <Icon size={IconSize.LARGE} name={IconName.TIMES} />
+          <Icon size={IconSize.LARGE} name={IconName.TIMES} align={Alignable.ALIGNED_CENTER} />
         </View>
         <Divider />
         <View>

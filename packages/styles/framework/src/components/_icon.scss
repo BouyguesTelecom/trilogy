@@ -31,7 +31,7 @@ $size: (
     font-size: inherit;
     width: 1.5em;
     height: 1.5em;
-
+    border-radius: var(--radius-small);
     [class^="tri-"],
     [class*=" tri-"] {
       &::before {
@@ -91,7 +91,7 @@ $size: (
 
     &.is-stretched {
         transform: skewX(-#{$icon-stretching-level});
-        border-top-right-radius: 9px;
+        border-radius: 0 var(--radius-medium) 0 0;
         background-color: getColor('font');
 
       [class^="tri-"],
