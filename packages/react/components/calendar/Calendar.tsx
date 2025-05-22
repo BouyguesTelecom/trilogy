@@ -8,19 +8,33 @@ import { Icon } from '../icon'
 interface CalendarProps {
   value?: Date
   onChange?: (e: Date) => void
+  min?: Date
+  max?: Date
 }
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
+const currentDate = new Date()
 
-const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
+const Calendar = ({
+  value = currentDate,
+  min = new Date(currentDate.getFullYear() - 10, 0, 1),
+  max = new Date(currentDate.getFullYear() + 10, 12, 0),
+  onChange,
+}: CalendarProps) => {
+  let globalDayIndex = 0
+
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value)
+  const [isVisibleYears, setIsVisibleYears] = React.useState<boolean>(false)
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
+  const refTable = React.useRef<HTMLTableSectionElement>(null)
+
   const weeksId = React.useId()
   const daysId = React.useId()
-  let globalDayIndex = 0
+  const yearsId = React.useId()
+  const yearId = React.useId()
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
   const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
@@ -42,6 +56,17 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
     for (let i = 0; i < days.length; i += 7) allDays.push(days.slice(i, i + 7))
     return allDays
   }, [])
+
+  const yearsBetween = React.useMemo(() => {
+    const minYear = min.getFullYear()
+    const maxYear = max.getFullYear()
+    const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
+    return years.reduce((acc: number[][], year: number, index: number) => {
+      if (index % 3 === 0) acc.push([])
+      acc[acc.length - 1].push(year)
+      return acc
+    }, [])
+  }, [min, max])
 
   const allDaysInMonth = React.useMemo(() => {
     refsDays.current = []
@@ -116,6 +141,13 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
     }
   }, [])
 
+  const onPressTableHeader = React.useCallback(() => {
+    setIsVisibleYears((prev) => {
+      if (prev) refsDays.current = []
+      return !prev
+    })
+  }, [])
+
   React.useEffect(() => {
     if (refsDays.current) {
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
@@ -127,23 +159,26 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
     <table className={calendarClasses}>
       <thead className={calendarheaderClasses}>
         <tr>
-          <th colSpan={1} className={calendarPrevMonth}>
+          <th className={calendarPrevMonth}>
             <button onClick={() => handleClickNextPrevMonth(-1)}>
               <Icon name='tri-arrow-left' />
             </button>
           </th>
           <th className={calendarActiveMonthClasses} colSpan={5}>
-            {visibleMonth.toLocaleDateString('fr-FR', {
-              year: 'numeric',
-              month: 'short',
-            })}
+            <button onClick={onPressTableHeader}>
+              {visibleMonth.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'short',
+              })}
+            </button>
           </th>
-          <th colSpan={1} className={calendarNextMonth}>
+          <th className={calendarNextMonth}>
             <button onClick={() => handleClickNextPrevMonth(1)}>
               <Icon name='tri-arrow-right' />
             </button>
           </th>
         </tr>
+
         <tr>
           {days.map((day, index) => {
             return (
@@ -155,46 +190,60 @@ const Calendar = ({ value = new Date(), onChange }: CalendarProps) => {
         </tr>
       </thead>
       <tbody>
-        {allDaysInMonth.map((week, weekIndex) => {
-          return (
-            <tr key={`${weeksId}_${weekIndex}`}>
-              {week.map((day, dayIndex) => {
-                const ind = day !== null && globalDayIndex++
+        {!isVisibleYears &&
+          allDaysInMonth.map((week, weekIndex) => {
+            return (
+              <tr key={`${weeksId}_${weekIndex}`}>
+                {week.map((day, dayIndex) => {
+                  const ind = day !== null && globalDayIndex++
 
-                const isActive =
-                  day?.getFullYear() === activeDate.getFullYear() &&
-                  day.getMonth() === activeDate.getMonth() &&
-                  day.getDate() === activeDate.getDate()
+                  const isActive =
+                    day?.getFullYear() === activeDate.getFullYear() &&
+                    day.getMonth() === activeDate.getMonth() &&
+                    day.getDate() === activeDate.getDate()
 
-                return (
-                  <td
-                    colSpan={1}
-                    key={`${daysId}_${dayIndex}_${day?.getTime()}`}
-                    className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}
-                  >
-                    {day && ind !== false && (
-                      <button
-                        onKeyUp={(e) => onKeyUpDay(e, ind)}
-                        tabIndex={isActive ? 0 : -1}
-                        aria-selected={isActive ? 'true' : 'false'}
-                        data-timestamp={day?.getTime()}
-                        ref={(el) => {
-                          if (el) refsDays.current[ind] = el
-                        }}
-                        onClick={() => {
-                          setActiveDate(day)
-                          onChange && onChange(day)
-                        }}
-                      >
-                        {day.getDate()}
-                      </button>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          )
-        })}
+                  return (
+                    <td
+                      key={`${daysId}_${dayIndex}_${day?.getTime()}`}
+                      className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}
+                    >
+                      {day && ind !== false && (
+                        <button
+                          onKeyUp={(e) => onKeyUpDay(e, ind)}
+                          tabIndex={isActive ? 0 : -1}
+                          aria-selected={isActive ? 'true' : 'false'}
+                          data-timestamp={day?.getTime()}
+                          ref={(el) => {
+                            if (el) refsDays.current[ind] = el
+                          }}
+                          onClick={() => {
+                            setActiveDate(day)
+                            onChange && onChange(day)
+                          }}
+                        >
+                          {day.getDate()}
+                        </button>
+                      )}
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
+        {isVisibleYears &&
+          yearsBetween.map((years, yearsIndex) => {
+            return (
+              <tr key={`${yearsId}_${yearsIndex}`}>
+                {years.map((year, yearIndex) => {
+                  return (
+                    <td key={`${yearId}_${yearIndex}_${year}`} className={calendarWeekDay}>
+                      {year}
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
       </tbody>
     </table>
   )
