@@ -167,14 +167,20 @@ const Calendar = ({
         <tr>
           {!isVisibleYears && (
             <th colSpan={1} className={calendarPrevMonth}>
-              <button onClick={() => handleClickNextPrevMonth(-1)}>
+              <button onClick={() => handleClickNextPrevMonth(-1)} aria-label='Previous month' type='button'>
                 <Icon name='tri-arrow-left' />
               </button>
             </th>
           )}
 
           <th colSpan={isVisibleYears ? 12 : 5} className={calendarActiveMonthClasses}>
-            <button onClick={onPressTableHeader}>
+            <button
+              onClick={onPressTableHeader}
+              type='button'
+              aria-label={`${isVisibleYears ? 'Year' : 'Day'} view is open, switch to ${
+                isVisibleYears ? 'day' : 'year'
+              } view`}
+            >
               {visibleMonth.toLocaleDateString('fr-FR', {
                 year: 'numeric',
                 month: 'short',
@@ -183,7 +189,7 @@ const Calendar = ({
           </th>
           {!isVisibleYears && (
             <th colSpan={1} className={calendarNextMonth}>
-              <button onClick={() => handleClickNextPrevMonth(1)}>
+              <button onClick={() => handleClickNextPrevMonth(1)} aria-label='Next month' type='button'>
                 <Icon name='tri-arrow-right' />
               </button>
             </th>
@@ -222,6 +228,7 @@ const Calendar = ({
                     >
                       {day && ind !== false && (
                         <button
+                          type='button'
                           onKeyUp={(e) => onKeyUpDay(e, ind)}
                           tabIndex={isActive ? 0 : -1}
                           aria-selected={isActive ? 'true' : 'false'}
@@ -253,6 +260,7 @@ const Calendar = ({
                   return (
                     <td colSpan={3} key={`${yearId}_${yearIndex}_${year}`} className={calendarYear}>
                       <button
+                        type='button'
                         role='radio'
                         ref={(el) => {
                           if (el) refsYears.current[ind] = el
