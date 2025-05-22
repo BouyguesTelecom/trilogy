@@ -284,6 +284,10 @@ $size: (
     }
 }
 
+.text .icon:not([class*="has-background-"]) {
+  height: inherit; /* ou toute autre valeur que vous souhaitez */
+}
+
 .icon-and-text {
     display: inline-flex;
     align-items: center;

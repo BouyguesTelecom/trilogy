@@ -25,10 +25,36 @@ export const IconScreen = (): JSX.Element => {
 
       <Icon size={IconSize.MEDIUM} name={IconName.CHECK} />
 
-      <Text className={'has-text-primary'}>
+      <Text level={1}>
         Icon with text children
         <Icon name={IconName.ALERT} />
       </Text>
+
+      <Text level={1}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.SMALL} backgroundColor={TrilogyColor.INFO_FADE} circled />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
+      <Text level={1}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.MEDIUM}  />
+        Lorem ipsum dolor sit amet, consectetur adip iscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
+
+      <Text level={2}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.SMALL} backgroundColor={TrilogyColor.INFO_FADE} circled />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
 
       <Icon size={IconSize.MEDIUM} name={IconName.TIMES} />
 
