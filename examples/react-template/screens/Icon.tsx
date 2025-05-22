@@ -1,21 +1,14 @@
 import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
-import {
-  Container,
-  Divider,
-  Icon,
-  IconColor,
-  IconSize,
-  Section,
-  Text,
-  Title,
-  TitleLevels,
-  View,
-} from '@trilogy-ds/react/components'
+import { Container, Divider, Icon, IconColor, IconSize, Section, Text, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import * as React from 'react'
+import { Alignable, TrilogyColor } from '@trilogy-ds/react'
 
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
+
+      <Icon size={IconSize.LARGE} name={IconName.EYE} backgroundColor={TrilogyColor.INFO_FADE} />
+
       <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} />
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
@@ -32,10 +25,36 @@ export const IconScreen = (): JSX.Element => {
 
       <Icon size={IconSize.MEDIUM} name={IconName.CHECK} />
 
-      <Text className={'has-text-primary'}>
+      <Text level={1}>
         Icon with text children
         <Icon name={IconName.ALERT} />
       </Text>
+
+      <Text level={1}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.SMALL} backgroundColor={TrilogyColor.INFO_FADE} circled />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
+      <Text level={1}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.MEDIUM}  />
+        Lorem ipsum dolor sit amet, consectetur adip iscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
+
+      <Text level={2}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <Icon name={IconName.ALERT} size={IconSize.SMALL} backgroundColor={TrilogyColor.INFO_FADE} circled />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+
 
       <Icon size={IconSize.MEDIUM} name={IconName.TIMES} />
 
@@ -69,7 +88,7 @@ export const IconScreen = (): JSX.Element => {
       <Container>
         <View>
           <Text>Icon UP</Text>
-          <Icon size={IconSize.LARGE} name={IconName.TIMES} />
+          <Icon size={IconSize.LARGE} name={IconName.TIMES} align={Alignable.ALIGNED_CENTER} />
         </View>
         <Divider />
         <View>

@@ -55,7 +55,7 @@ export const ButtonScreen = (): JSX.Element => {
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
-            <Button variant={color} key={index} loading>
+            <Button variant={color} key={index} loading accessibilityLabel={"Test"}>
               {color}
             </Button>
           );
