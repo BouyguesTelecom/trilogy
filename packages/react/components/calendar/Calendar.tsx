@@ -22,6 +22,7 @@ const Calendar = ({
   onChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
+  let globalYearIndex = 0
 
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value)
@@ -29,7 +30,7 @@ const Calendar = ({
   const [activeDate, setActiveDate] = React.useState<Date>(value)
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
-  const refTable = React.useRef<HTMLTableSectionElement>(null)
+  const refsYears = React.useRef<HTMLButtonElement[]>([])
 
   const weeksId = React.useId()
   const daysId = React.useId()
@@ -44,6 +45,7 @@ const Calendar = ({
   const calendarActiveDate = hashClass(styled, clsx('calendar-active-date'))
   const calendarNextMonth = hashClass(styled, clsx('calendar-next-month'))
   const calendarPrevMonth = hashClass(styled, clsx('calendar-prev-month'))
+  const calendarYear = hashClass(styled, clsx('calendar-year'))
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -151,20 +153,27 @@ const Calendar = ({
   React.useEffect(() => {
     if (refsDays.current) {
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
-      if (!haveActiveDate) refsDays.current[0].tabIndex = 0
+      if (!haveActiveDate && refsDays?.current[0]?.tabIndex) refsDays.current[0].tabIndex = 0
     }
   }, [refsDays.current])
+
+  React.useEffect(() => {
+    console.log(refsYears)
+  }, [refsYears.current])
 
   return (
     <table className={calendarClasses}>
       <thead className={calendarheaderClasses}>
         <tr>
-          <th className={calendarPrevMonth}>
-            <button onClick={() => handleClickNextPrevMonth(-1)}>
-              <Icon name='tri-arrow-left' />
-            </button>
-          </th>
-          <th className={calendarActiveMonthClasses} colSpan={5}>
+          {!isVisibleYears && (
+            <th colSpan={1} className={calendarPrevMonth}>
+              <button onClick={() => handleClickNextPrevMonth(-1)}>
+                <Icon name='tri-arrow-left' />
+              </button>
+            </th>
+          )}
+
+          <th colSpan={isVisibleYears ? 12 : 5} className={calendarActiveMonthClasses}>
             <button onClick={onPressTableHeader}>
               {visibleMonth.toLocaleDateString('fr-FR', {
                 year: 'numeric',
@@ -172,22 +181,26 @@ const Calendar = ({
               })}
             </button>
           </th>
-          <th className={calendarNextMonth}>
-            <button onClick={() => handleClickNextPrevMonth(1)}>
-              <Icon name='tri-arrow-right' />
-            </button>
-          </th>
+          {!isVisibleYears && (
+            <th colSpan={1} className={calendarNextMonth}>
+              <button onClick={() => handleClickNextPrevMonth(1)}>
+                <Icon name='tri-arrow-right' />
+              </button>
+            </th>
+          )}
         </tr>
 
-        <tr>
-          {days.map((day, index) => {
-            return (
-              <th className={calendarDayLabelClasses} key={index}>
-                {day.slice(0, 3)}
-              </th>
-            )
-          })}
-        </tr>
+        {!isVisibleYears && (
+          <tr>
+            {days.map((day, index) => {
+              return (
+                <th className={calendarDayLabelClasses} key={index}>
+                  {day.slice(0, 3)}
+                </th>
+              )
+            })}
+          </tr>
+        )}
       </thead>
       <tbody>
         {!isVisibleYears &&
@@ -235,9 +248,18 @@ const Calendar = ({
             return (
               <tr key={`${yearsId}_${yearsIndex}`}>
                 {years.map((year, yearIndex) => {
+                  const ind = globalYearIndex++
+
                   return (
-                    <td key={`${yearId}_${yearIndex}_${year}`} className={calendarWeekDay}>
-                      {year}
+                    <td colSpan={3} key={`${yearId}_${yearIndex}_${year}`} className={calendarYear}>
+                      <button
+                        role='radio'
+                        ref={(el) => {
+                          if (el) refsYears.current[ind] = el
+                        }}
+                      >
+                        {year}
+                      </button>
                     </td>
                   )
                 })}

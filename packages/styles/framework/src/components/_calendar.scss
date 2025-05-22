@@ -1,5 +1,6 @@
 .calendar {
     border-collapse: collapse;
+    width: 400px;
 
     button {
       all: unset;
@@ -20,9 +21,10 @@
     &-week-day-label {
       padding: 10px;
       text-align: center;
+      width: 56px;
     }
 
-    &-week-day {
+    &-week-day, &-year {
       padding: 10px;
       border: 1px solid getColor('main');
       text-align: center !important;
