@@ -84,6 +84,7 @@
           background-color: getColor('main');
         }
       }
+
       &:focus-visible ~ label.#{$type}-label:before {
         outline: 1px solid;
       }
@@ -95,6 +96,7 @@
             background-color: getColor('disabled-fade');
           }
         }
+
         & ~ label.radio-label {
           &:after {
             background-color: getColor('disabled');
@@ -163,8 +165,9 @@
         @include disabledRules;
       }
     }
-    &:has(input:focus-visible) label.#{$type}-label{
-      outline:  1px solid;
+
+    &:has(input:focus-visible) label.#{$type}-label {
+      outline: 1px solid;
     }
 
     &:first-child {
@@ -245,8 +248,42 @@
       width: 100%;
       position: relative;
 
-      &.is-narrow {
-        width: fit-content;
+      @include mobile {
+        &.is-narrow-mobile {
+          width: fit-content;
+        }
+      }
+
+      @include tablet {
+        &.is-narrow,
+        &.is-narrow-tablet {
+          width: fit-content;
+        }
+      }
+
+      @include touch {
+        &.is-narrow-touch {
+          width: fit-content;
+        }
+      }
+
+      @include desktop {
+        &.is-narrow-desktop {
+          width: fit-content;
+        }
+      }
+
+      @include widescreen {
+        &.is-narrow-widescreen {
+          width: fit-content;
+        }
+
+      }
+
+      @include fullhd {
+        &.is-narrow-fullhd {
+          width: fit-content;
+        }
       }
 
       input {
@@ -277,4 +314,5 @@
       }
     }
   }
+
 }
