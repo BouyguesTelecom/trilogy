@@ -31,6 +31,7 @@ const Calendar = ({
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
   const refsYears = React.useRef<HTMLButtonElement[]>([])
+  const refYearFocused = React.useRef<number>()
 
   const weeksId = React.useId()
   const daysId = React.useId()
@@ -192,7 +193,24 @@ const Calendar = ({
       if (prev) refsDays.current = []
       return !prev
     })
-  }, [])
+  }, [refsDays.current])
+
+  React.useEffect(() => {
+    if (isVisibleYears && refsYears.current) {
+      const yearToFocus = refsYears.current.findIndex((year) => year.tabIndex === 0)
+      if (yearToFocus !== -1) {
+        refYearFocused.current = yearToFocus
+        refsYears.current[yearToFocus].focus()
+      }
+    }
+
+    if (!isVisibleYears && typeof refYearFocused.current === 'number' && refsDays.current) {
+      const dayToFocus = refsDays.current.findIndex((day) => day.tabIndex === 0)
+      if (dayToFocus !== -1) {
+        refsDays.current[dayToFocus].focus()
+      }
+    }
+  }, [isVisibleYears, refsYears.current, refYearFocused.current, refsDays.current])
 
   React.useEffect(() => {
     if (refsDays.current) {
@@ -310,7 +328,7 @@ const Calendar = ({
                         aria-selected={isActive ? 'true' : 'false'}
                         type='button'
                         role='radio'
-                        onKeyUp={(e) => onKeyUpYear(e, ind)}
+                        onKeyDown={(e) => onKeyUpYear(e, ind)}
                         ref={(el) => {
                           if (el) {
                             refsYears.current[ind] = el
