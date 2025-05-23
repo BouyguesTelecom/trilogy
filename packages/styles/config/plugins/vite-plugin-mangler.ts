@@ -10,6 +10,12 @@ export const cssPlugin = () => {
             return `${match}_${VERSION}`
           })
       }
+      if (/partials\.(scss)$/.test(id)) {
+        return src
+          .replace(/(\.[a-z][a-z0-9_-]*)(?=[^/@;]*[{:])/gi, (match) => {
+            return `${match}_${VERSION}`
+          })
+      }
     },
   }
 }
