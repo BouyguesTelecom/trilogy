@@ -10,6 +10,7 @@ interface CalendarProps {
   minDate?: Date
   maxDate?: Date
   disabled?: boolean
+  readOnly?: boolean
   onChange?: (e: Date) => void
 }
 
@@ -21,6 +22,7 @@ const Calendar = ({
   minDate = new Date(currentDate.getFullYear() - 10, 0, 1),
   maxDate = new Date(currentDate.getFullYear() + 10, 12, 0),
   disabled,
+  readOnly,
   onChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
@@ -136,6 +138,7 @@ const Calendar = ({
 
   const handlePressEnterInDays = React.useCallback(
     (e: React.KeyboardEvent) => {
+      if (readOnly) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
       refsDays.current.forEach((day) => (day.tabIndex = -1))
@@ -143,11 +146,12 @@ const Calendar = ({
       setActiveDate(new Date(Number(elm.dataset.timestamp)))
       if (onChange) onChange(new Date(Number(elm.dataset.timestamp)))
     },
-    [refsDays.current, onChange],
+    [refsDays.current, onChange, readOnly],
   )
 
   const handlePressEnterInYears = React.useCallback(
     (e: React.KeyboardEvent) => {
+      if (readOnly) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
       refsYears.current.forEach((day) => (day.tabIndex = -1))
@@ -160,7 +164,7 @@ const Calendar = ({
       setVisibleMonth(() => new Date(Number(elm.dataset.year), activeDate.getMonth(), activeDate.getDate()))
       setIsVisibleYears(false)
     },
-    [refsYears.current, onChange, activeDate],
+    [refsYears.current, onChange, activeDate, readOnly],
   )
 
   const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
@@ -327,6 +331,7 @@ const Calendar = ({
                             if (el) refsDays.current[ind] = el
                           }}
                           onClick={() => {
+                            if (readOnly) return
                             setActiveDate(day)
                             onChange && onChange(day)
                           }}
@@ -365,6 +370,7 @@ const Calendar = ({
                           if (el) refsYears.current[ind] = el
                         }}
                         onClick={() => {
+                          if (readOnly) return
                           setActiveDate((prev) => {
                             const newDate = new Date(Number(year), prev.getMonth(), prev.getDate())
                             onChange && onChange(newDate)

@@ -11,8 +11,6 @@ export const CalendarScreen = (): JSX.Element => {
       <Columns align='ALIGNED_CENTER'>
         <Column narrow>
           <Calendar
-            minDate={minDate}
-            maxDate={maxDate}
             value={value}
             onChange={(e) => {
               console.log(e)
