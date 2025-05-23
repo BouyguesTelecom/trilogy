@@ -193,7 +193,6 @@ const Calendar = ({
   }, [refsDays.current])
 
   React.useEffect(() => {
-    console.log(refsDays.current)
     if (isVisibleYears && refsYears.current) {
       const yearToFocus = refsYears.current.findIndex((year) => year.tabIndex === 0)
       if (yearToFocus !== -1) {
