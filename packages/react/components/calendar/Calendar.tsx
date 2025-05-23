@@ -88,7 +88,6 @@ const Calendar = ({
   const navigateInDaysWithKeyboard = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
       const nextRef = refsDays.current[currentIndex + nextIndex]
-
       if (nextRef) {
         refDayFocused.current = nextRef
         return nextRef.focus()
@@ -115,6 +114,14 @@ const Calendar = ({
     [refsDays, refDayFocused],
   )
 
+  const navigateWithKeyboardInYears = React.useCallback(
+    (currentIndex: number, nextIndex: number) => {
+      const nextRef = refsYears.current[currentIndex + nextIndex]
+      if (nextRef) return nextRef.focus()
+    },
+    [refsYears],
+  )
+
   const handlePressEnterInDays = React.useCallback(
     (e: React.KeyboardEvent) => {
       const elm = e.target as HTMLButtonElement
@@ -138,20 +145,10 @@ const Calendar = ({
         if (onChange) onChange(newDate)
         return newDate
       })
-      setVisibleMonth((prev) => {
-        return new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
-      })
+      setVisibleMonth(() => new Date(Number(elm.dataset.year), activeDate.getMonth(), activeDate.getDate()))
       setIsVisibleYears(false)
     },
-    [refsYears.current, onChange],
-  )
-
-  const navigateWithKeyboardInYears = React.useCallback(
-    (currentIndex: number, nextIndex: number) => {
-      const nextRef = refsYears.current[currentIndex + nextIndex]
-      if (nextRef) return nextRef.focus()
-    },
-    [refsYears],
+    [refsYears.current, onChange, activeDate],
   )
 
   const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
@@ -196,6 +193,7 @@ const Calendar = ({
   }, [refsDays.current])
 
   React.useEffect(() => {
+    console.log(refsDays.current)
     if (isVisibleYears && refsYears.current) {
       const yearToFocus = refsYears.current.findIndex((year) => year.tabIndex === 0)
       if (yearToFocus !== -1) {
@@ -330,9 +328,7 @@ const Calendar = ({
                         role='radio'
                         onKeyDown={(e) => onKeyUpYear(e, ind)}
                         ref={(el) => {
-                          if (el) {
-                            refsYears.current[ind] = el
-                          }
+                          if (el) refsYears.current[ind] = el
                         }}
                         onClick={() => {
                           setActiveDate((prev) => {
@@ -340,9 +336,7 @@ const Calendar = ({
                             onChange && onChange(newDate)
                             return newDate
                           })
-                          setVisibleMonth((prev) => {
-                            return new Date(Number(year), prev.getMonth(), prev.getDate())
-                          })
+                          setVisibleMonth(() => new Date(Number(year), activeDate.getMonth(), activeDate.getDate()))
                           setIsVisibleYears(false)
                         }}
                       >
