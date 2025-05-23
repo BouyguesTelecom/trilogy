@@ -201,13 +201,6 @@ const Calendar = ({
     }
   }, [refsDays.current])
 
-  React.useEffect(() => {
-    if (isVisibleYears && refsYears.current) {
-      const yearToFocus = refsYears.current.findIndex((year) => Number(year.dataset.year) === activeDate.getFullYear())
-      if (typeof yearToFocus === 'number') refsYears.current[yearToFocus].focus()
-    }
-  }, [isVisibleYears, refsYears.current, activeDate])
-
   return (
     <table className={calendarClasses}>
       <thead className={calendarheaderClasses}>
