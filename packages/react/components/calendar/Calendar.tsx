@@ -107,6 +107,7 @@ const Calendar = ({
   const navigateInDaysWithKeyboard = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
       const nextRef = refsDays.current[currentIndex + nextIndex]
+
       if (nextRef) {
         refDayFocused.current = nextRef
         return nextRef.focus()
@@ -233,10 +234,13 @@ const Calendar = ({
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
       if (!haveActiveDate && refsDays?.current[0]?.tabIndex) {
         const firstActiveDate = refsDays.current.findIndex((day) => !day.disabled)
-        if (firstActiveDate !== -1) refsDays.current[firstActiveDate].tabIndex = 0
+        if (firstActiveDate !== -1) {
+          refsDays.current[firstActiveDate].tabIndex = 0
+          refDayFocused.current = refsDays.current[firstActiveDate]
+        }
       }
     }
-  }, [refsDays.current])
+  }, [refsDays.current, refDayFocused.current])
 
   return (
     <table className={calendarClasses}>
