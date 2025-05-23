@@ -25,6 +25,9 @@ const preview: Preview = {
        color: /(background|color)$/i,
        date: /Date$/i,
       },
+    },
+    docs: {
+      page: null
     }
   },
 //  beforeAll: () => { console.log('TOTO', document) }

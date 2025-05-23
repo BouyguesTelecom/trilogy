@@ -1,28 +1,23 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-
-import { dirname, join, resolve } from 'path'
 import react from '@vitejs/plugin-react'
-import mdx from '@mdx-js/rollup';
+import { dirname, join,   } from 'path'
 
-/**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')))
 }
 
 const config: StorybookConfig = {
-  stories: ['../react/components'],
+  stories: ['../react/components/Accordion/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
 //    getAbsolutePath('@storybook/addon-onboarding'),
-    getAbsolutePath('@storybook/addon-storysource'),
-    getAbsolutePath('storybook-addon-code-editor'),
-    getAbsolutePath('storybook-addon-react-view'),
-    getAbsolutePath('storybook-addon-playground'),
-    getAbsolutePath('@whitespace/storybook-addon-html'),
-    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath('@storybook/addon-docs'),
+//    getAbsolutePath('@storybook/addon-storysource'),
+//    getAbsolutePath('storybook-addon-code-editor'),
+//    getAbsolutePath('storybook-addon-react-view'),
+//    getAbsolutePath('storybook-addon-playground'),
+//    getAbsolutePath('@whitespace/storybook-addon-html'),
+//    getAbsolutePath("@storybook/addon-a11y"),
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -30,7 +25,7 @@ const config: StorybookConfig = {
   },
   staticDirs: ['../assets/assets'],
   viteFinal: async (config) => {
-    config.plugins = [...(config.plugins || []), react(), mdx()];
+    config.plugins = [...(config.plugins || []), react()];
 
     config.resolve = config.resolve || { alias: {} };
     config.resolve.alias = {
@@ -49,5 +44,9 @@ const config: StorybookConfig = {
 
     return config;
   },
+  docs: {
+    autodocs: true,
+  }
 }
+
 export default config

@@ -15,7 +15,7 @@ import React from 'react'
  * @param children {ReactNode}
  */
 const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
-  ({ open, className, children, id = React.useId(), onClick, disabled, ...others }, ref): JSX.Element => {
+  ({ open, className, children, id = React.useId(), onClick, disabled, ...others }: AccordionItemProps, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('accordion-item', className))
     const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
@@ -56,5 +56,6 @@ const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
   },
 )
 
-AccordionItem.displayName = ComponentName.AccordionItem
+export type { AccordionItemProps }
 export default AccordionItem
+
