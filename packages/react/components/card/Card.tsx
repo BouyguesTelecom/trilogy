@@ -23,13 +23,24 @@ export const CardContext = createContext({ horizontal: false })
  */
 const Card = React.forwardRef<CardRef, CardProps>(
   (
-    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
+    {
+      className,
+      flat,
+      horizontal,
+      floating,
+      skeleton,
+      reversed,
+      markup: CardComponent = 'div',
+      fullheight,
+      active,
+      ...others
+    },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
 
-    const hoverStyle: React.CSSProperties = {
-      cursor: 'pointer',
+    if (CardComponent === 'div' && (others.href || others.to)) {
+      CardComponent = 'a'
     }
 
     const classes = hashClass(
@@ -44,35 +55,12 @@ const Card = React.forwardRef<CardRef, CardProps>(
         className,
         fullheight && is('fullheight'),
         active && is('active'),
+        others.onClick && is('cursor-pointer'),
       ),
     )
 
-    if (href) {
-      return (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          id={id}
-          href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-            e.stopPropagation()
-          }}
-          {...others}
-          className={classes}
-        />
-      )
-    }
-
     return (
-      <div
-        ref={ref as React.Ref<HTMLDivElement>}
-        id={id}
-        onClick={onClick && onClick}
-        className={classes}
-        style={onClick && { ...hoverStyle }}
-        {...others}
-      />
+      <CardComponent ref={ref as React.Ref<HTMLDivElement>} className={classes} {...others} />
     )
   },
 )
