@@ -224,9 +224,7 @@ const Calendar = ({
 
     if (!isVisibleYears && typeof refYearFocused.current === 'number' && refsDays.current) {
       const dayToFocus = refsDays.current.findIndex((day) => day.tabIndex === 0)
-      if (dayToFocus !== -1) {
-        refsDays.current[dayToFocus].focus()
-      }
+      if (dayToFocus !== -1) refsDays.current[dayToFocus].focus()
     }
   }, [isVisibleYears, refsYears.current, refYearFocused.current, refsDays.current])
 
@@ -235,7 +233,7 @@ const Calendar = ({
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
       if (!haveActiveDate && refsDays?.current[0]?.tabIndex) {
         const firstActiveDate = refsDays.current.findIndex((day) => !day.disabled)
-        if (firstActiveDate) refsDays.current[firstActiveDate].tabIndex = 0
+        if (firstActiveDate !== -1) refsDays.current[firstActiveDate].tabIndex = 0
       }
     }
   }, [refsDays.current])
@@ -320,9 +318,11 @@ const Calendar = ({
                   return (
                     <td
                       key={`${daysId}_${dayIndex}_${day?.getTime()}`}
-                      className={`${calendarWeekDay} ${isActive && calendarActiveDate} ${
-                        isDisabled && calendarWeekDayDisabled
-                      }`}
+                      className={clsx(
+                        calendarWeekDay,
+                        isActive && calendarActiveDate,
+                        isDisabled && calendarWeekDayDisabled,
+                      )}
                     >
                       {day && ind !== false && (
                         <button
@@ -362,7 +362,7 @@ const Calendar = ({
                     <td
                       colSpan={3}
                       key={`${yearId}_${yearIndex}_${year}`}
-                      className={`${calendarYear} ${isActive && calendarActiveDate}`}
+                      className={clsx(calendarYear, isActive && calendarActiveDate)}
                     >
                       <button
                         tabIndex={isActive ? 0 : -1}
