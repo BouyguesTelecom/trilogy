@@ -47,6 +47,10 @@ const Calendar = ({
   const calendarNextMonth = hashClass(styled, clsx('calendar-next-month'))
   const calendarPrevMonth = hashClass(styled, clsx('calendar-prev-month'))
   const calendarYear = hashClass(styled, clsx('calendar-year'))
+  const calendarWeekDayDisabled = hashClass(styled, clsx('calendar-week-day-disabled'))
+
+  const isNextDisabled = React.useMemo(() => maxDate?.getMonth() === visibleMonth.getMonth(), [maxDate, visibleMonth])
+  const isPrevDisabled = React.useMemo(() => minDate?.getMonth() === visibleMonth.getMonth(), [minDate, visibleMonth])
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -222,7 +226,12 @@ const Calendar = ({
         <tr>
           {!isVisibleYears && (
             <th colSpan={1} className={calendarPrevMonth}>
-              <button onClick={() => handleClickNextPrevMonth(-1)} aria-label='Previous month' type='button'>
+              <button
+                onClick={() => handleClickNextPrevMonth(-1)}
+                aria-label='Previous month'
+                type='button'
+                disabled={isPrevDisabled}
+              >
                 <Icon name='tri-arrow-left' />
               </button>
             </th>
@@ -244,7 +253,12 @@ const Calendar = ({
           </th>
           {!isVisibleYears && (
             <th colSpan={1} className={calendarNextMonth}>
-              <button onClick={() => handleClickNextPrevMonth(1)} aria-label='Next month' type='button'>
+              <button
+                onClick={() => handleClickNextPrevMonth(1)}
+                aria-label='Next month'
+                type='button'
+                disabled={isNextDisabled}
+              >
                 <Icon name='tri-arrow-right' />
               </button>
             </th>
@@ -276,13 +290,19 @@ const Calendar = ({
                     day.getMonth() === activeDate.getMonth() &&
                     day.getDate() === activeDate.getDate()
 
+                  const isDisabled =
+                    (day && day.getTime() > maxDate.getTime()) || (day && day.getTime() < minDate.getTime()) || false
+
                   return (
                     <td
                       key={`${daysId}_${dayIndex}_${day?.getTime()}`}
-                      className={`${calendarWeekDay} ${isActive && calendarActiveDate}`}
+                      className={`${calendarWeekDay} ${isActive && calendarActiveDate} ${
+                        isDisabled && calendarWeekDayDisabled
+                      }`}
                     >
                       {day && ind !== false && (
                         <button
+                          disabled={isDisabled}
                           type='button'
                           onKeyUp={(e) => onKeyUpDay(e, ind)}
                           tabIndex={isActive ? 0 : -1}
