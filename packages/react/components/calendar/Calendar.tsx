@@ -31,7 +31,6 @@ const Calendar = ({
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
   const refsYears = React.useRef<HTMLButtonElement[]>([])
-  const refYearFocused = React.useRef<HTMLButtonElement>()
 
   const weeksId = React.useId()
   const daysId = React.useId()
@@ -149,12 +148,9 @@ const Calendar = ({
   const navigateWithKeyboardInYears = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
       const nextRef = refsYears.current[currentIndex + nextIndex]
-      if (nextRef) {
-        refYearFocused.current = nextRef
-        return nextRef.focus()
-      }
+      if (nextRef) return nextRef.focus()
     },
-    [refsYears, refYearFocused],
+    [refsYears],
   )
 
   const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
@@ -204,6 +200,13 @@ const Calendar = ({
       if (!haveActiveDate && refsDays?.current[0]?.tabIndex) refsDays.current[0].tabIndex = 0
     }
   }, [refsDays.current])
+
+  React.useEffect(() => {
+    if (isVisibleYears && refsYears.current) {
+      const yearToFocus = refsYears.current.findIndex((year) => Number(year.dataset.year) === activeDate.getFullYear())
+      if (typeof yearToFocus === 'number') refsYears.current[yearToFocus].focus()
+    }
+  }, [isVisibleYears, refsYears.current, activeDate])
 
   return (
     <table className={calendarClasses}>
@@ -316,7 +319,20 @@ const Calendar = ({
                         role='radio'
                         onKeyUp={(e) => onKeyUpYear(e, ind)}
                         ref={(el) => {
-                          if (el) refsYears.current[ind] = el
+                          if (el) {
+                            refsYears.current[ind] = el
+                          }
+                        }}
+                        onClick={() => {
+                          setActiveDate((prev) => {
+                            const newDate = new Date(Number(year), prev.getMonth(), prev.getDate())
+                            onChange && onChange(newDate)
+                            return newDate
+                          })
+                          setVisibleMonth((prev) => {
+                            return new Date(Number(year), prev.getMonth(), prev.getDate())
+                          })
+                          setIsVisibleYears(false)
                         }}
                       >
                         {year}
