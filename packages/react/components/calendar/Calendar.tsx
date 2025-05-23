@@ -216,7 +216,10 @@ const Calendar = ({
   React.useEffect(() => {
     if (refsDays.current) {
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
-      if (!haveActiveDate && refsDays?.current[0]?.tabIndex) refsDays.current[0].tabIndex = 0
+      if (!haveActiveDate && refsDays?.current[0]?.tabIndex) {
+        const firstActiveDate = refsDays.current.findIndex((day) => !day.disabled)
+        if (firstActiveDate) refsDays.current[firstActiveDate].tabIndex = 0
+      }
     }
   }, [refsDays.current])
 
