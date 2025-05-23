@@ -131,7 +131,7 @@ const Calendar = ({
         refDayFocused.current = refsDays.current[nextDayFocused.getDate() - 1]
       }, 10)
     },
-    [refsDays, refDayFocused],
+    [refsDays.current, refDayFocused.current],
   )
 
   const navigateWithKeyboardInYears = React.useCallback(
@@ -143,37 +143,36 @@ const Calendar = ({
   )
 
   const handlePressEnterInDays = React.useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: React.KeyboardEvent | React.MouseEvent) => {
       if (readOnly) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
       refsDays.current.forEach((day) => (day.tabIndex = -1))
       elm.tabIndex = 0
-      setActiveDate(new Date(Number(elm.dataset.timestamp)))
-      if (onChange) onChange(new Date(Number(elm.dataset.timestamp)))
+      const newDate = new Date(Number(elm.dataset.timestamp))
+      setActiveDate(newDate)
+      if (onChange) onChange(newDate)
     },
     [refsDays.current, onChange, readOnly],
   )
 
   const handlePressEnterInYears = React.useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: React.KeyboardEvent | React.MouseEvent) => {
       if (readOnly) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
       refsYears.current.forEach((day) => (day.tabIndex = -1))
       elm.tabIndex = 0
-      setActiveDate((prev) => {
-        const newDate = new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
-        if (onChange) onChange(newDate)
-        return newDate
-      })
-      setVisibleMonth(() => new Date(Number(elm.dataset.year), activeDate.getMonth(), activeDate.getDate()))
+      const newDate = new Date(Number(elm.dataset.year), activeDate.getMonth(), activeDate.getDate())
+      setActiveDate(newDate)
+      setVisibleMonth(newDate)
       setIsVisibleYears(false)
+      if (onChange) onChange(newDate)
     },
     [refsYears.current, onChange, activeDate, readOnly],
   )
 
-  const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
+  const onKeyDownDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowRight':
         return navigateInDaysWithKeyboard(index, 1)
@@ -190,7 +189,7 @@ const Calendar = ({
     }
   }, [])
 
-  const onKeyUpYear = React.useCallback((e: React.KeyboardEvent, index: number) => {
+  const onKeyDownYear = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowRight':
         return navigateWithKeyboardInYears(index, 1)
@@ -225,7 +224,9 @@ const Calendar = ({
 
     if (!isVisibleYears && typeof refYearFocused.current === 'number' && refsDays.current) {
       const dayToFocus = refsDays.current.findIndex((day) => day.tabIndex === 0)
-      if (dayToFocus !== -1) refsDays.current[dayToFocus].focus()
+      if (dayToFocus !== -1) {
+        refsDays.current[dayToFocus].focus()
+      }
     }
   }, [isVisibleYears, refsYears.current, refYearFocused.current, refsDays.current])
 
@@ -332,18 +333,14 @@ const Calendar = ({
                         <button
                           disabled={isDisabled}
                           type='button'
-                          onKeyUp={(e) => onKeyUpDay(e, ind)}
+                          onKeyDown={(e) => onKeyDownDay(e, ind)}
                           tabIndex={isActive ? 0 : -1}
                           aria-selected={isActive ? 'true' : 'false'}
                           data-timestamp={day?.getTime()}
                           ref={(el) => {
                             if (el) refsDays.current[ind] = el
                           }}
-                          onClick={() => {
-                            if (readOnly) return
-                            setActiveDate(day)
-                            onChange && onChange(day)
-                          }}
+                          onMouseUp={handlePressEnterInDays}
                         >
                           {day.getDate()}
                         </button>
@@ -374,20 +371,11 @@ const Calendar = ({
                         aria-selected={isActive ? 'true' : 'false'}
                         type='button'
                         role='radio'
-                        onKeyDown={(e) => onKeyUpYear(e, ind)}
+                        onKeyDown={(e) => onKeyDownYear(e, ind)}
                         ref={(el) => {
                           if (el) refsYears.current[ind] = el
                         }}
-                        onClick={() => {
-                          if (readOnly) return
-                          setActiveDate((prev) => {
-                            const newDate = new Date(Number(year), prev.getMonth(), prev.getDate())
-                            onChange && onChange(newDate)
-                            return newDate
-                          })
-                          setVisibleMonth(() => new Date(Number(year), activeDate.getMonth(), activeDate.getDate()))
-                          setIsVisibleYears(false)
-                        }}
+                        onMouseUp={handlePressEnterInYears}
                       >
                         {year}
                       </button>
