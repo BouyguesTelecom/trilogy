@@ -9,6 +9,7 @@ interface CalendarProps {
   value?: Date
   minDate?: Date
   maxDate?: Date
+  disabled?: boolean
   onChange?: (e: Date) => void
 }
 
@@ -19,6 +20,7 @@ const Calendar = ({
   value = currentDate,
   minDate = new Date(currentDate.getFullYear() - 10, 0, 1),
   maxDate = new Date(currentDate.getFullYear() + 10, 12, 0),
+  disabled,
   onChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
@@ -49,8 +51,14 @@ const Calendar = ({
   const calendarYear = hashClass(styled, clsx('calendar-year'))
   const calendarWeekDayDisabled = hashClass(styled, clsx('calendar-week-day-disabled'))
 
-  const isNextDisabled = React.useMemo(() => maxDate?.getMonth() === visibleMonth.getMonth(), [maxDate, visibleMonth])
-  const isPrevDisabled = React.useMemo(() => minDate?.getMonth() === visibleMonth.getMonth(), [minDate, visibleMonth])
+  const isNextDisabled = React.useMemo(
+    () => disabled || maxDate?.getMonth() === visibleMonth.getMonth(),
+    [maxDate, visibleMonth],
+  )
+  const isPrevDisabled = React.useMemo(
+    () => disabled || minDate?.getMonth() === visibleMonth.getMonth(),
+    [minDate, visibleMonth],
+  )
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -242,6 +250,7 @@ const Calendar = ({
 
           <th colSpan={isVisibleYears ? 12 : 5} className={calendarActiveMonthClasses}>
             <button
+              disabled={disabled}
               onClick={onPressTableHeader}
               type='button'
               aria-label={`${isVisibleYears ? 'Year' : 'Day'} view is open, switch to ${
@@ -294,7 +303,10 @@ const Calendar = ({
                     day.getDate() === activeDate.getDate()
 
                   const isDisabled =
-                    (day && day.getTime() > maxDate.getTime()) || (day && day.getTime() < minDate.getTime()) || false
+                    disabled ||
+                    (day && day.getTime() > maxDate.getTime()) ||
+                    (day && day.getTime() < minDate.getTime()) ||
+                    false
 
                   return (
                     <td
