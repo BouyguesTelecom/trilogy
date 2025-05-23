@@ -54,11 +54,16 @@ const Calendar = ({
   const calendarWeekDayDisabled = hashClass(styled, clsx('calendar-week-day-disabled'))
 
   const isNextDisabled = React.useMemo(
-    () => disabled || maxDate?.getMonth() === visibleMonth.getMonth(),
+    () =>
+      disabled ||
+      (maxDate?.getMonth() === visibleMonth?.getMonth() && maxDate?.getFullYear() === visibleMonth?.getFullYear()),
     [maxDate, visibleMonth],
   )
+
   const isPrevDisabled = React.useMemo(
-    () => disabled || minDate?.getMonth() === visibleMonth.getMonth(),
+    () =>
+      disabled ||
+      (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getMonth() === visibleMonth?.getFullYear()),
     [minDate, visibleMonth],
   )
 
