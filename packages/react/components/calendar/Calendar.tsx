@@ -127,21 +127,24 @@ const Calendar = ({
     [refsDays.current, onChange],
   )
 
-  // const handlePressEnterInYears = React.useCallback(
-  //   (e: React.KeyboardEvent) => {
-  //     const elm = e.target as HTMLButtonElement
-  //     if (!elm) return
-  //     refsYears.current.forEach((day) => (day.tabIndex = -1))
-  //     elm.tabIndex = 0
-  //     setActiveDate((prev) => {
-  //       const newDate = new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
-  //       if (onChange) onChange(newDate)
-  //       return newDate
-  //     })
-  //     setIsVisibleYears(false)
-  //   },
-  //   [refsYears.current, onChange],
-  // )
+  const handlePressEnterInYears = React.useCallback(
+    (e: React.KeyboardEvent) => {
+      const elm = e.target as HTMLButtonElement
+      if (!elm) return
+      refsYears.current.forEach((day) => (day.tabIndex = -1))
+      elm.tabIndex = 0
+      setActiveDate((prev) => {
+        const newDate = new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
+        if (onChange) onChange(newDate)
+        return newDate
+      })
+      setVisibleMonth((prev) => {
+        return new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
+      })
+      setIsVisibleYears(false)
+    },
+    [refsYears.current, onChange],
+  )
 
   const navigateWithKeyboardInYears = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
@@ -181,8 +184,8 @@ const Calendar = ({
         return navigateWithKeyboardInYears(index, -3)
       case 'ArrowDown':
         return navigateWithKeyboardInYears(index, 3)
-      // case 'Enter':
-      //   return handlePressEnterInYears(e)
+      case 'Enter':
+        return handlePressEnterInYears(e)
       default:
         return
     }
