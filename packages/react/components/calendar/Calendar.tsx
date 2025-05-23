@@ -7,9 +7,9 @@ import { Icon } from '../icon'
 
 interface CalendarProps {
   value?: Date
+  minDate?: Date
+  maxDate?: Date
   onChange?: (e: Date) => void
-  min?: Date
-  max?: Date
 }
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
@@ -17,8 +17,8 @@ const currentDate = new Date()
 
 const Calendar = ({
   value = currentDate,
-  min = new Date(currentDate.getFullYear() - 10, 0, 1),
-  max = new Date(currentDate.getFullYear() + 10, 12, 0),
+  minDate = new Date(currentDate.getFullYear() - 10, 0, 1),
+  maxDate = new Date(currentDate.getFullYear() + 10, 12, 0),
   onChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
@@ -31,6 +31,7 @@ const Calendar = ({
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
   const refsYears = React.useRef<HTMLButtonElement[]>([])
+  const refYearFocused = React.useRef<HTMLButtonElement>()
 
   const weeksId = React.useId()
   const daysId = React.useId()
@@ -60,15 +61,15 @@ const Calendar = ({
   }, [])
 
   const yearsBetween = React.useMemo(() => {
-    const minYear = min.getFullYear()
-    const maxYear = max.getFullYear()
+    const minYear = minDate.getFullYear()
+    const maxYear = maxDate.getFullYear()
     const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
     return years.reduce((acc: number[][], year: number, index: number) => {
       if (index % 3 === 0) acc.push([])
       acc[acc.length - 1].push(year)
       return acc
     }, [])
-  }, [min, max])
+  }, [minDate, maxDate])
 
   const allDaysInMonth = React.useMemo(() => {
     refsDays.current = []
@@ -84,7 +85,7 @@ const Calendar = ({
     })
   }, [])
 
-  const navigateWithKeyboard = React.useCallback(
+  const navigateInDaysWithKeyboard = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
       const nextRef = refsDays.current[currentIndex + nextIndex]
 
@@ -114,7 +115,7 @@ const Calendar = ({
     [refsDays, refDayFocused],
   )
 
-  const handlePressEnter = React.useCallback(
+  const handlePressEnterInDays = React.useCallback(
     (e: React.KeyboardEvent) => {
       const elm = e.target as HTMLButtonElement
       if (!elm) return
@@ -126,18 +127,62 @@ const Calendar = ({
     [refsDays.current, onChange],
   )
 
+  // const handlePressEnterInYears = React.useCallback(
+  //   (e: React.KeyboardEvent) => {
+  //     const elm = e.target as HTMLButtonElement
+  //     if (!elm) return
+  //     refsYears.current.forEach((day) => (day.tabIndex = -1))
+  //     elm.tabIndex = 0
+  //     setActiveDate((prev) => {
+  //       const newDate = new Date(Number(elm.dataset.year), prev.getMonth(), prev.getDate())
+  //       if (onChange) onChange(newDate)
+  //       return newDate
+  //     })
+  //     setIsVisibleYears(false)
+  //   },
+  //   [refsYears.current, onChange],
+  // )
+
+  const navigateWithKeyboardInYears = React.useCallback(
+    (currentIndex: number, nextIndex: number) => {
+      const nextRef = refsYears.current[currentIndex + nextIndex]
+      if (nextRef) {
+        refYearFocused.current = nextRef
+        return nextRef.focus()
+      }
+    },
+    [refsYears, refYearFocused],
+  )
+
   const onKeyUpDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowRight':
-        return navigateWithKeyboard(index, 1)
+        return navigateInDaysWithKeyboard(index, 1)
       case 'ArrowLeft':
-        return navigateWithKeyboard(index, -1)
+        return navigateInDaysWithKeyboard(index, -1)
       case 'ArrowUp':
-        return navigateWithKeyboard(index, -7)
+        return navigateInDaysWithKeyboard(index, -7)
       case 'ArrowDown':
-        return navigateWithKeyboard(index, 7)
+        return navigateInDaysWithKeyboard(index, 7)
       case 'Enter':
-        return handlePressEnter(e)
+        return handlePressEnterInDays(e)
+      default:
+        return
+    }
+  }, [])
+
+  const onKeyUpYear = React.useCallback((e: React.KeyboardEvent, index: number) => {
+    switch (e.key) {
+      case 'ArrowRight':
+        return navigateWithKeyboardInYears(index, 1)
+      case 'ArrowLeft':
+        return navigateWithKeyboardInYears(index, -1)
+      case 'ArrowUp':
+        return navigateWithKeyboardInYears(index, -3)
+      case 'ArrowDown':
+        return navigateWithKeyboardInYears(index, 3)
+      // case 'Enter':
+      //   return handlePressEnterInYears(e)
       default:
         return
     }
@@ -156,10 +201,6 @@ const Calendar = ({
       if (!haveActiveDate && refsDays?.current[0]?.tabIndex) refsDays.current[0].tabIndex = 0
     }
   }, [refsDays.current])
-
-  React.useEffect(() => {
-    console.log(refsYears)
-  }, [refsYears.current])
 
   return (
     <table className={calendarClasses}>
@@ -256,12 +297,21 @@ const Calendar = ({
               <tr key={`${yearsId}_${yearsIndex}`}>
                 {years.map((year, yearIndex) => {
                   const ind = globalYearIndex++
+                  const isActive = activeDate.getFullYear() === year
 
                   return (
-                    <td colSpan={3} key={`${yearId}_${yearIndex}_${year}`} className={calendarYear}>
+                    <td
+                      colSpan={3}
+                      key={`${yearId}_${yearIndex}_${year}`}
+                      className={`${calendarYear} ${isActive && calendarActiveDate}`}
+                    >
                       <button
+                        tabIndex={isActive ? 0 : -1}
+                        data-year={year}
+                        aria-selected={isActive ? 'true' : 'false'}
                         type='button'
                         role='radio'
+                        onKeyUp={(e) => onKeyUpYear(e, ind)}
                         ref={(el) => {
                           if (el) refsYears.current[ind] = el
                         }}
