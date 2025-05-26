@@ -4,15 +4,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
-
-interface CalendarProps {
-  value?: Date
-  minDate?: Date
-  maxDate?: Date
-  disabled?: boolean
-  readOnly?: boolean
-  onChange?: (e: Date) => void
-}
+import { CalendarProps } from './CalendarProps'
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
 const currentDate = new Date()
