@@ -39,11 +39,11 @@ const Tab = React.forwardRef<TabRef, TabProps>(
     const handleClick = React.useCallback(
       (e: React.MouseEvent) => {
         if (!disabled) {
-          if (!routerLink) setActiveIndex(index)
+          if (!others.href && !others.to) setActiveIndex(index)
           if (onClick) onClick(e)
         }
       },
-      [disabled, onClick, index, setActiveIndex, routerLink],
+      [disabled, onClick, index, setActiveIndex],
     )
 
     React.useEffect(() => {
