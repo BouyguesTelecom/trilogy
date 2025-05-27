@@ -24,12 +24,14 @@ import React from 'react'
  */
 const Tab = React.forwardRef<TabRef, TabProps>(
   (
-    { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ariaControls, ...others },
+    { active, className, onClick, routerLink = 'a', iconName, label, disabled, testId, ariaControls, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
     const { index, ...props } = others as any
     const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
+
+    const Tag = others.href || others.to ? routerLink : 'button'
 
     const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
     const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
@@ -48,27 +50,8 @@ const Tab = React.forwardRef<TabRef, TabProps>(
       if (active) setActiveIndex(index)
     }, [active, setActiveIndex, index])
 
-    if (routerLink && (to || href)) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-      return (
-        <RouterLink
-          ref={ref}
-          data-testid={testId}
-          to={to}
-          href={href}
-          className={classes}
-          onClick={handleClick}
-          data-index={index}
-          {...others}
-        >
-          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
-          {label && label}
-        </RouterLink>
-      )
-    }
-
     return (
-      <button
+      <Tag
         ref={ref}
         aria-controls={ariaControls}
         aria-disabled={disabled}
@@ -86,7 +69,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
         {label && <div>{label}</div>}
-      </button>
+      </Tag>
     )
   },
 )
