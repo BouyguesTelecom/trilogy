@@ -16,17 +16,20 @@ $height-arrow-small:30px;
 
 
   .arrow-prev, .arrow-next {
+    z-index: 1;
+    height: 60px;
     position: absolute;
-    top: calc(($height-tab-default / 2) - calc($height-arrow-default / 2) ) !important ;
+    top: 0px;
     transition: opacity 0.3s ease;
     opacity: 1;
+    background-color: getColor('background');
     &.hidden {
       opacity: 0;
     }
   }
 
   .arrow-prev {
-    left: 0px;
+    left: -8px;
   }
 
   .arrow-next {
@@ -60,6 +63,11 @@ $height-arrow-small:30px;
       }
 
     }
+
+    .arrow-prev, .arrow-next {
+      background-color: getColor('font');
+    }
+    
   }
 
   &:has(.tab-list.is-aligned-start) {
@@ -77,11 +85,6 @@ $height-arrow-small:30px;
     white-space: nowrap;
     overflow-y: hidden;
     max-width: 100%;
-
-    &.is-arrows{
-      margin-left: $spacing-7;
-      margin-right: $spacing-7;
-    }
 
     &::-webkit-scrollbar {
       width: 0 !important;
@@ -104,9 +107,6 @@ $height-arrow-small:30px;
 
     @include mobile {
       justify-content: flex-start;
-      > .tab:first-child {
-        margin-left: 24px;
-      }
     }
 
     &:has(.tab .icon) {
@@ -176,19 +176,11 @@ $height-arrow-small:30px;
 
 
   &.is-small{
-    .arrow-prev, .arrow-next {
-      top: calc(($height-tab-default / 2) - calc($height-arrow-small / 2) ) !important;
-    }
 
     .tab-list {
       & > .tab {
         font-size: $text-14 ;
         padding: 12px 16px;
-      }
-
-      &.is-arrows{
-        margin-left: $spacing-6;
-        margin-right: $spacing-6;
       }
     }
   }
