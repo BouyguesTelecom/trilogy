@@ -116,7 +116,7 @@ $height-arrow-small:30px;
     > .tab {
       display: inline-block;
       line-height: normal;
-      font-family: $body-family;
+      font-family: $family-primary;
       height: calc(100% - 4px);
       background-color: transparent;
       color: getColor('font');
