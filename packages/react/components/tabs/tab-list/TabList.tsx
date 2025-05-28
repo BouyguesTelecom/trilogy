@@ -32,10 +32,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     const [scrollLeft, setScrollLeft] = React.useState<number>(0)
     const [tabFocused, setTabFocused] = React.useState<number>(0)
 
-    const classes = hashClass(
-      styled,
-      clsx('tab-list', align && is(getAlignClassName(align)), tabListWidth > tabsWidth && is('arrows'), className),
-    )
+    const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
 
     const isVisibleArrowLeft = useMemo(() => {
       if (!tabRefs.current.length) return false
@@ -121,21 +118,25 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
         onScroll={handleScrollList}
         {...others}
       >
-        <Icon
-          data-arrow-prev=''
-          name='tri-arrow-left'
-          className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
-          size={small ? 'small' : 'medium'}
-          onClick={onClickPrev}
-        />
+        {isVisibleArrowLeft && (
+          <Icon
+            data-arrow-prev=''
+            name='tri-arrow-left'
+            className={clsx('arrow-prev')}
+            size={small ? 'small' : 'medium'}
+            onClick={onClickPrev}
+          />
+        )}
         {TabElms}
-        <Icon
-          data-arrow-next=''
-          name='tri-arrow-right'
-          className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
-          size={small ? 'small' : 'medium'}
-          onClick={onClickNext}
-        />
+        {isVisibleArrowRight && (
+          <Icon
+            data-arrow-next=''
+            name='tri-arrow-right'
+            className={clsx('arrow-next')}
+            size={small ? 'small' : 'medium'}
+            onClick={onClickNext}
+          />
+        )}
       </div>
     )
   },
