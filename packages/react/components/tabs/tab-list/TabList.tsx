@@ -127,7 +127,6 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
             onClick={onClickPrev}
           />
         )}
-
         {TabElms}
         {isVisibleArrowRight && (
           <Icon
