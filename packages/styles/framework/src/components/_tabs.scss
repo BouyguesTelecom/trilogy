@@ -17,7 +17,7 @@ $height-arrow-small:30px;
 
   .arrow-prev, .arrow-next {
     z-index: 1;
-    height: 60px;
+    height: 44px;
     position: absolute;
     top: 0px;
     transition: opacity 0.3s ease;
@@ -108,6 +108,9 @@ $height-arrow-small:30px;
 
     &:has(.tab .icon) {
       height: 64px;
+      .arrow-prev, .arrow-next {
+      height: 60px;
+      }
     }
 
     > .tab {
