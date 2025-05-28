@@ -2,6 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
+import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -68,7 +69,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
         <div className={hashClass(styled, 'tab-icon')}>
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
-        {label && <div>{label}</div>}
+        {label && <Text>{label}</Text>}
       </Tag>
     )
   },
