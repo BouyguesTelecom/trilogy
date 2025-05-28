@@ -122,7 +122,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
           <Icon
             data-arrow-prev=''
             name='tri-arrow-left'
-            className={clsx('arrow-prev', !isVisibleArrowLeft && 'hidden')}
+            className={clsx('arrow-prev')}
             size={small ? 'small' : 'medium'}
             onClick={onClickPrev}
           />
@@ -133,7 +133,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
           <Icon
             data-arrow-next=''
             name='tri-arrow-right'
-            className={clsx('arrow-next', !isVisibleArrowRight && 'hidden')}
+            className={clsx('arrow-next')}
             size={small ? 'small' : 'medium'}
             onClick={onClickNext}
           />
