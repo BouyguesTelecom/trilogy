@@ -14,7 +14,6 @@ import {
   Title,
 } from '@trilogy-ds/react/components'
 import { Alignable } from '@trilogy-ds/react/objects'
-import * as React from 'react'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (
@@ -98,7 +97,6 @@ export const CheckboxScreen = (): JSX.Element => {
                 label='label-t-3'
                 value='value-t-3'
                 description='Je suis une description simple'
-                icon={IconName.ALERT}
                 horizontal
               />
             </CheckboxTiles>

@@ -186,7 +186,7 @@
 
       &:before {
         top: 16px;
-        right: 16px;
+        left: 16px;
       }
 
       span.#{$type}-title {
@@ -214,7 +214,7 @@
 
         &:before {
           top: 15px;
-          right: 15px;
+          left: 15px;
         }
 
         span.#{$type}-title {
@@ -270,10 +270,15 @@
           top: 50% !important;
           transform: translateY(-50%);
         }
+
+        & > span:not(.icon):first-of-type  {
+          margin-left: 34px;
+        }
       }
 
       .icon {
-        margin-right: 16px;
+        margin-left: 26px;
+        margin-right: 7px;
       }
     }
   }

@@ -68,7 +68,7 @@
   input:checked ~ label.radio-label {
     &:after {
       top: 18px;
-      right: 18px;
+      left: 18px;
     }
   }
 
@@ -76,7 +76,7 @@
     &:after {
       background-color: getColor('neutral');
       top: 19px;
-      right: 19px;
+      left: 19px;
     }
   }
 }
