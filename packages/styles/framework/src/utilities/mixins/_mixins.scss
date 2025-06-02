@@ -237,6 +237,13 @@
       }
     }
 
+    .#{$type}-sticker {
+      position: absolute;
+      top: 0px;
+      right: 16px;
+      transform: translateY(-50%);
+    }
+
     &.is-horizontal {
       display: flex;
       justify-content: space-between;
@@ -252,7 +259,6 @@
       input {
         &:checked:not(:disabled) ~ label.#{$type}-label {
           padding: 15px;
-          padding-right: 47px;
         }
 
       }
@@ -263,7 +269,7 @@
         align-items: center;
         justify-content: flex-start;
         text-align: left;
-        padding: 16px 48px 16px 16px;
+        padding: 16px;
 
         &:before,
         &:after {
@@ -277,9 +283,9 @@
       }
 
       .icon {
-        margin-left: 26px;
-        margin-right: 7px;
-      }
+        margin-left: 34px;
+        margin-right: 16px;
+      }      
     }
   }
 }

@@ -1,8 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { RadioTileProps, RadioTileRef } from '@/components/radio/tiles/tile/RadioTileProps'
+import { Sticker } from '@/components/sticker'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { VariantState } from '@/objects/facets/Variant'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
@@ -20,6 +22,7 @@ import React from 'react'
  * @param value {string} Value for radio
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
+ * @param sticker {string} sticker label
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
@@ -38,6 +41,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   icon,
   horizontal,
   required,
+  sticker,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -79,6 +83,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
           </>
         )}
       </label>
+      {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />}
     </div>
   )
 })
