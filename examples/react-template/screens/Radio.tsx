@@ -1,11 +1,10 @@
 import {
   Alignable,
-  Icon,
-  Popover,
   RadioList,
   Section,
   Spacer,
   SpacerSize,
+  TypographyAlign,
   TypographyBold,
   TypographyColor,
 } from '@trilogy-ds/react'
@@ -13,13 +12,16 @@ import {
   Column,
   Columns,
   Container,
+  Icon,
   IconName,
+  Popover,
   Radio,
   RadioTile,
   RadioTiles,
   Text,
   Title,
 } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {
@@ -104,16 +106,23 @@ export const RadioScreen = (): JSX.Element => {
                 name={'name-tile-1'}
               />
               <RadioTile
-                sticker='Avantages'
+                sticker='Avantage'
                 description={
                   <>
-                    <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
+                    <Text marginless typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyAlign.TEXT_CENTERED]}>
                       Description
                     </Text>
-                    <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
-                    <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
+                    <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyAlign.TEXT_CENTERED]}>FREE</Text>
+                    <Text
+                      typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO, TypographyAlign.TEXT_CENTERED]}
+                      level={4}
+                    >
                       Between the 20/02 and 23/02
-                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
+                      {!isMobile && (
+                        <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>
+                          <Text>Popover active</Text>
+                        </Popover>
+                      )}
                     </Text>
                   </>
                 }
@@ -125,7 +134,7 @@ export const RadioScreen = (): JSX.Element => {
                 value='three'
               />
               <RadioTile
-                sticker='Avantages'
+                sticker='Avantage'
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'four'}
                 id='tile-4'
@@ -159,7 +168,7 @@ export const RadioScreen = (): JSX.Element => {
                 id='tile-horizontal-2'
                 label='Label 2'
                 value='two'
-                description=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
                 aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
                 similique animi.s'
                 icon={IconName.ALERT}
