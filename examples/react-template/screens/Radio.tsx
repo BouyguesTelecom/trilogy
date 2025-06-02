@@ -169,7 +169,6 @@ export const RadioScreen = (): JSX.Element => {
                 label='Label 3'
                 value='three'
                 description='A simple description'
-                icon={IconName.ALERT}
                 horizontal
                 name={'name-tile-horizontal-1'}
               />
