@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { StickerNativeRef, StickerProps } from './StickerProps'
@@ -55,7 +55,6 @@ const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(({
       color: (outlined && defaultColor) || getColorStyle(TrilogyColor.BACKGROUND),
       justifyContent: 'center',
       alignSelf: 'center',
-      fontWeight: 'bold',
       fontSize: (!small && 16) || 12,
       transform: isIOS ? [{ skewX: '0deg' }] : [],
       marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
@@ -68,7 +67,7 @@ const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(({
       {iconName && (
         <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
       )}
-      {label && <Text style={styles.text}>{label}</Text>}
+      {label && <Text style={styles.text} typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>{label}</Text>}
     </View>
   )
 })
