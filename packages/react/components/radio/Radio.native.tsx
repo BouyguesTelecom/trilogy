@@ -34,7 +34,7 @@ const Radio = React.forwardRef<RadioNativeRef, RadioProps>(({
     radio: {
       alignItems: 'center',
       justifyContent: 'center',
-      borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT),
+        borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
       borderWidth: 1,
       width: 18,
       height: 18,
