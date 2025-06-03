@@ -20,6 +20,7 @@ import {
   Text,
   Title,
 } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {
@@ -113,7 +114,9 @@ export const RadioScreen = (): JSX.Element => {
                     <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
                     <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
                       Between the 20/02 and 23/02
-                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
+                      {!isMobile && (
+                        <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
+                      )}
                     </Text>
                   </>
                 }
@@ -125,7 +128,7 @@ export const RadioScreen = (): JSX.Element => {
                 value='three'
               />
               <RadioTile
-                sticker='Avantages'
+                sticker='Avantage'
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'four'}
                 id='tile-4'
