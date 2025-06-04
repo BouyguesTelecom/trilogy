@@ -13,7 +13,7 @@ import {
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 
-export const SelectView = (): JSX.Element => {
+export const SelectScreen = (): JSX.Element => {
   const [option4, setOption4] = React.useState<string>('opt_one')
   const [options3, setOptions3] = React.useState<string[]>(['opt_one', 'opt_two'])
   const [option, setOption] = React.useState<string | undefined>('opt_two')

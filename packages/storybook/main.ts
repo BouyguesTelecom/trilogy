@@ -7,7 +7,7 @@ function getAbsolutePath(value: string): any {
 }
 
 const config: StorybookConfig = {
-  stories: ['../react/components/Accordion/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: ['../react/components/**/*.stories.@(ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
 //    getAbsolutePath('@storybook/addon-onboarding'),
