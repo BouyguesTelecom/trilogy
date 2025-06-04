@@ -41,7 +41,7 @@ export interface ViewProps
     Clickable,
     JustifiableProps,
     Fullwidth,
-    AlignableProps,
+    Omit<AlignableProps, 'verticalAlign'>,
     BackgroundProps,
     Accessibility {
   children?: React.ReactNode
