@@ -1,13 +1,13 @@
-import * as React from 'react'
+import { Divider } from '@trilogy-ds/react'
 import {
   IconName,
   Section,
+  Text,
   Timeline,
   TimelineContent,
   TimelineItem,
   TimelineMarker,
 } from '@trilogy-ds/react/components'
-import { Divider } from '@trilogy-ds/react'
 
 export const TimelineScreen = (): JSX.Element => {
   return (
@@ -16,12 +16,10 @@ export const TimelineScreen = (): JSX.Element => {
       <Timeline horizontal>
         <TimelineItem cancel>
           <TimelineMarker iconName={IconName.CHECK} />
-          <TimelineContent
-            heading='20 September'
-            content='loremp ipsum dolor sit amet'
-            linkTo={'https://google.fr'}
-            linkLabel='Check the email'
-          />
+          <TimelineContent>
+            <Text>20 September</Text>
+            <Text>loremp ipsum dolor sit amet</Text>
+          </TimelineContent>
         </TimelineItem>
 
         <TimelineItem done>
