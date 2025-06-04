@@ -7,6 +7,7 @@ import { View } from 'react-native'
 /**
  * List Component
  * @param children {React.ReactNode}
+ * @param divider {boolean} Add divider between items
  * @param ordered {boolean} Display ordered list
  */
 const List = React.forwardRef<ListNativeRef, ListProps>(({ children, ordered = false, divider = false, testId, ...others }, ref): JSX.Element => {
@@ -24,3 +25,4 @@ const List = React.forwardRef<ListNativeRef, ListProps>(({ children, ordered = f
 List.displayName = ComponentName.List
 
 export default List
+

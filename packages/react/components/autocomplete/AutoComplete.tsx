@@ -54,6 +54,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   const [search, setSearch] = useState<T[]>([])
 
   const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
+  const autocompleteContainerClasses = hashClass(styled,  clsx(is('autocomplete-container')))
 
   useEffect(() => {
     setInputValue(value || '')
@@ -149,7 +150,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   }
 
   return (
-    <>
+    <div className={autocompleteContainerClasses}>
       <Input
         id={id}
         ref={ref}
@@ -159,7 +160,6 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         iconNameRight={iconNameRight}
         placeholder={placeholder}
         {...(name ? { name: name } : {})}
-        className='autocomplete-input'
         type='text'
         status={status}
         autoCompleteType={InputAutoCompleteType.OFF}
@@ -177,7 +177,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         }}
         onIconClick={onIconClick}
         loading={loading}
-        {...others}
+        {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
 
       {isAutocompleteMenuVisible && (
@@ -198,7 +198,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
           )}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
@@ -226,10 +226,10 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param getSuggestions {Function} getSuggestions event
  * - ------------------ WEB PROPERTIES -----------------------
  * @param name {string} Input name
- * @param classNameMenu {string} Additionnal CSS Classes for Menu
+ * @param classNameMenu {string} Additional CSS Classes for Menu
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  * @param loading {boolean} Loading input
  */

@@ -10,6 +10,7 @@ export interface CheckboxTileProps extends CheckboxProps, CommonProps {
   horizontal?: boolean
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
+  sticker?: string
 }
 
 export type CheckboxTileRef = HTMLDivElement

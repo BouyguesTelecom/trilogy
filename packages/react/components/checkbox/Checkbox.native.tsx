@@ -34,7 +34,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        borderColor: getColorStyle(TrilogyColor.FONT),
+        borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
         borderWidth: 0.6,
         width: 19,
         height: 19,

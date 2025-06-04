@@ -10,9 +10,9 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItem Component
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param children {React.ReactNode}
- * @param customIcon {IconName | React.ReactNode } Icon name | children
+ * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  */
 const ListItem = React.forwardRef<ListItemRef, ListItemProps>(({ className, id, children, iconName, status, testId }, ref): JSX.Element => {
@@ -24,7 +24,7 @@ const ListItem = React.forwardRef<ListItemRef, ListItemProps>(({ className, id, 
       {iconName && (
         <Icon
           className={status && clsx(is(getColorClassName(TrilogyColor[status])))}
-          name={iconName as IconName}
+          name={iconName}
           size={IconSize.SMALL}
         />
       )}

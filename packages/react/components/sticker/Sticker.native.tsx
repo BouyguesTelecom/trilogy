@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, getVariantStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { StickerNativeRef, StickerProps } from './StickerProps'
@@ -17,61 +17,58 @@ import { StickerNativeRef, StickerProps } from './StickerProps'
  * @param iconName {IconName} Icon
  * @param others
  */
-const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(({
-  variant,
-  small,
-  outlined,
-  label,
-  iconName,
-  accessibilityLabel,
-  ...others
-}, ref): JSX.Element => {
-  const defaultColor = getColorStyle(TrilogyColor.MAIN)
-  const styles = StyleSheet.create({
-    sticker: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      paddingTop: small ? 3 : 7,
-      paddingBottom: small ? 3 : 7,
-      paddingLeft: small ? 8 : 16,
-      paddingRight: small ? 8 : 16,
-      alignSelf: 'flex-start',
-      borderWidth: outlined ? 2 : 0,
-      borderColor: (outlined && defaultColor) || 'transparent',
-      backgroundColor: (outlined && 'white') || (variant && getVariantStyle(variant)) || defaultColor,
-      borderTopLeftRadius: (!small && 24) || (small && 16) || 0,
-      borderTopRightRadius: (small && 16) || 24,
-      borderBottomLeftRadius: (!small && 24) || (small && 16) || 0,
-      borderBottomRightRadius: (!small && 24) || (small && 16) || 0,
-      marginTop: 0,
-      fontSize: small ? 12 : 16,
-      top: 0,
-      alignItems: 'center',
-      textAlign: 'center',
-    },
-    text: {
-      lineHeight: (!small && 20) || 15,
-      textAlign: 'center',
-      color: (outlined && defaultColor) || getColorStyle(TrilogyColor.BACKGROUND),
-      justifyContent: 'center',
-      alignSelf: 'center',
-      fontWeight: 'bold',
-      fontSize: (!small && 16) || 12,
-      transform: isIOS ? [{ skewX: '0deg' }] : [],
-      marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
-      marginTop: 1,
-    },
-  })
+const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
+  ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {
+    const defaultColor = getColorStyle(TrilogyColor.MAIN)
+    const styles = StyleSheet.create({
+      sticker: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingTop: small ? 3 : 7,
+        paddingBottom: small ? 3 : 7,
+        paddingLeft: small ? 8 : 16,
+        paddingRight: small ? 8 : 16,
+        alignSelf: 'flex-start',
+        borderWidth: outlined ? 2 : 0,
+        borderColor: (outlined && defaultColor) || 'transparent',
+        backgroundColor: (outlined && 'white') || (variant && getVariantStyle(variant)) || defaultColor,
+        borderTopLeftRadius: (!small && 24) || (small && 16) || 0,
+        borderTopRightRadius: (small && 16) || 24,
+        borderBottomLeftRadius: (!small && 24) || (small && 16) || 0,
+        borderBottomRightRadius: (!small && 24) || (small && 16) || 0,
+        marginTop: 0,
+        fontSize: small ? 12 : 16,
+        top: 0,
+        alignItems: 'center',
+        textAlign: 'center',
+      },
+      text: {
+        lineHeight: (!small && 20) || 15,
+        textAlign: 'center',
+        color: (outlined && defaultColor) || getColorStyle(TrilogyColor.BACKGROUND),
+        justifyContent: 'center',
+        alignSelf: 'center',
+        fontSize: (!small && 16) || 12,
+        transform: isIOS ? [{ skewX: '0deg' }] : [],
+        marginLeft: (iconName && small && 4) || (iconName && !small && 5) || 0,
+        marginTop: 1,
+      },
+    })
 
-  return (
-    <View ref={ref} style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
-      {iconName && (
-        <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
-      )}
-      {label && <Text style={styles.text}>{label}</Text>}
-    </View>
-  )
-})
+    return (
+      <View ref={ref} style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
+        {iconName && (
+          <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
+        )}
+        {label && (
+          <Text style={styles.text} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>
+            {label}
+          </Text>
+        )}
+      </View>
+    )
+  },
+)
 
 Sticker.displayName = ComponentName.Sticker
 

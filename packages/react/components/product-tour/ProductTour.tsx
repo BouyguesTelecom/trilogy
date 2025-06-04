@@ -17,7 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param avatarSrc {string} Display avatar if source
  * @param avatarDirection {AvatarDirection} LEFT|RIGHT
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  */
 const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(({
   children,

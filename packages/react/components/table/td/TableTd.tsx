@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Table TD Component
  * @param children {ReactNode} Table TD children
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param rowSpan {number} Specifies the number of rows a cell should span
  * @param colSpan {number} Defines the number of columns a cell should span
  */

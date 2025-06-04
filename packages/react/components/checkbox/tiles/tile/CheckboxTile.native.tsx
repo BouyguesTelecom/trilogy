@@ -3,10 +3,11 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold } from '@/objects'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
+import { Sticker } from '@/components/sticker'
 
 const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
@@ -21,11 +22,13 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       description,
       icon,
       horizontal,
+      sticker,
       ...others
     },
     ref,
   ): JSX.Element => {
     const [_checked, setChecked] = useState<boolean>(checked || false)
+    const [stickerHeight, setStickerHeight] = useState<number>(0)
 
     const styles = StyleSheet.create({
       container: {
@@ -35,9 +38,11 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       },
       checkBox: {
         alignItems: 'center',
-        justifyContent: horizontal ? 'center' : 'flex-start',
-        borderColor: getColorStyle(TrilogyColor.FONT),
-        borderWidth: 0.6,
+        justifyContent: 'center',
+       borderColor: getColorStyle(
+          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
+        ),
+        borderWidth: 1,
         width: 19,
         height: 19,
         borderRadius: 4,
@@ -50,11 +55,11 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       },
       tile: {
         padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
-        maxWidth: 140,
+        maxWidth: '50%',
         borderWidth: (_checked && 2) || 1,
-        width: 126,
+        width: 'auto',
         borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL,
+          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
         borderRadius: 6,
         textAlign: 'center',
@@ -66,15 +71,23 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         alignSelf: horizontal ? 'flex-start' : 'center',
       },
       horizontal: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: SpacerSize.THREE,
         padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
         width: '100%',
         height: 'auto',
         borderWidth: (_checked && 2) || 1,
         borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.MAIN_FADE,
+          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
         borderRadius: 6,
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
+      },
+      sticker: {
+        position: 'absolute',
+        top: _checked ? -stickerHeight / 2 - 1 : -stickerHeight / 2,
+        right: _checked ? 15 : 16,
       },
     })
 
@@ -95,61 +108,44 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     if (horizontal) {
       return (
         <TouchableOpacity ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
-          <View style={{ flexDirection: 'row' }}>
-            {icon && (
-              <View
-                style={{
-                  width: '10%',
-                  height: 'auto',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <View>
-                  <Icon
-                    size={IconSize.SMALL}
-                    name={icon}
-                    color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-                  />
-                </View>
-              </View>
-            )}
+          {sticker && (
+            <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
+              <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+            </ViewRN>
+          )}
 
-            <View
+          <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
+            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+          </TouchableOpacity>
+
+          {icon && (
+            <ViewRN
               style={{
-                width: icon ? '78%' : '88%',
-                flexDirection: 'row',
-                alignSelf: 'stretch',
-                flexWrap: 'wrap',
-                height: 'auto',
-              }}
-            >
-              <View style={{ gap: SpacerSize.ONE }}>
-                {label && typeof label.valueOf() === 'string' && (
-                  <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
-                    {String(label)}
-                  </Text>
-                )}
-                {description && typeof description.valueOf() === 'string' ? (
-                  <Text level={TextLevels.TWO} style={styles.tileDescription}>
-                    {String(description)}
-                  </Text>
-                ) : (
-                  description
-                )}
-              </View>
-            </View>
-            <View
-              style={{
-                width: '12%',
                 justifyContent: 'center',
-                alignItems: 'flex-end',
+                alignItems: 'center',
               }}
             >
-              <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-                {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
-              </TouchableOpacity>
-            </View>
+                <Icon
+                  size={IconSize.SMALL}
+                  name={icon}
+                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+                />
+            </ViewRN>
+          )}
+
+          <View style={{ gap: SpacerSize.ONE, flex: 1 }}>
+            {label && typeof label.valueOf() === 'string' && (
+              <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                {String(label)}
+              </Text>
+            )}
+            {description && typeof description.valueOf() === 'string' ? (
+              <Text level={TextLevels.TWO} style={styles.tileDescription}>
+                {String(description)}
+              </Text>
+            ) : (
+              description
+            )}
           </View>
         </TouchableOpacity>
       )
@@ -159,13 +155,18 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       <TouchableOpacity
         ref={ref}
         disabled={disabled}
-        style={horizontal ? styles.horizontal : styles.tile}
+        style={styles.tile}
         onPress={handleClick}
         {...others}
       >
+        {sticker && (
+          <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
+            <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+          </ViewRN>
+        )}
         <View style={{ gap: SpacerSize.TWO }}>
           <TouchableOpacity
-            style={[{ alignSelf: 'flex-end' }, styles.checkBox]}
+            style={[styles.checkBox]}
             disabled={disabled}
             testID={id}
             onPressIn={handleClick}

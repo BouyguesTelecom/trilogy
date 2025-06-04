@@ -13,7 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param defaultPage {number} Current default active page (default is 1)
  * @param onClick {Function} Return pagination object
  * * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param href {Function} Function that generates a link for seo bots
  * @param testId {string} Test Id for Test Integration
  */
@@ -74,6 +74,10 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(({
     setCurrentPage(pager.currentPage)
     prevCurrentPage.current = pager.currentPage
   }, [pager.currentPage])
+
+  useEffect(() => {
+    setCurrentPage(defaultPage)
+  }, [defaultPage])
 
   return (
     <nav ref={ref} id={id} className={classes} {...others}>

@@ -18,7 +18,7 @@ import React from 'react'
  * @param marginless {boolean} delete margin
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param multiline {boolean} Multiline Columns
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param mobile {boolean} Responsive mode
  */
 const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(

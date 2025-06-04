@@ -24,7 +24,7 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param overline {string} Price overline
  * @param oldAmount {boolean} old Amount Price
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */
 const Price = React.forwardRef<PriceRef, PriceProps>(
@@ -92,9 +92,10 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents
       const centsDisplayed = (!hideCents && `€${cents}`) || '€'
+      const dataPrice = `${whole}${!hideCents && cents ? `.${cents}` : ''}`
 
       amountComponent = (
-        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} {...others}>
+        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} {...others}>
           <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
           <span className={hashClass(styled, clsx('price-details'))}>
             <span className={hashClass(styled, clsx('cents'))}>

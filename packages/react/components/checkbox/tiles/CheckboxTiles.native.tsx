@@ -10,7 +10,9 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
     const styles = StyleSheet.create({
       container: {
         justifyContent: getAlignStyle(align),
-        alignItems: (verticalAlign && getAlignStyle(verticalAlign)) || (align && getAlignStyle(align)) || 'stretch',
+        alignItems: (verticalAlign && getAlignStyle(verticalAlign)) || (align && getAlignStyle(align)),
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         gap: SpacerSize.TWO,
       },
     })
