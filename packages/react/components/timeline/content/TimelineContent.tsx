@@ -17,10 +17,9 @@ import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentPr
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id
- * @param linkBlank {boolean} add target blank on link
  */
 const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(
-  ({ children, className, id, heading, content, linkLabel, linkTo, linkBlank, ...others }, ref): JSX.Element => {
+  ({ children, className, id, heading, content, linkLabel, linkTo, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('timeline-content', className))
 
@@ -40,11 +39,7 @@ const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebP
             {content}
           </Text>
         )}
-        {linkTo && linkLabel && (
-          <Link href={linkTo} blank={linkBlank}>
-            {linkLabel}
-          </Link>
-        )}
+        {linkTo && linkLabel && <Link href={linkTo}>{linkLabel}</Link>}
       </div>
     )
   },

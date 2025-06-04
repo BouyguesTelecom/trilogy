@@ -15,9 +15,7 @@ export interface TimelineContentProps {
 /**
  * Timeline Content Web Interface
  */
-export interface TimelineContentWebProps extends TimelineContentProps, CommonProps {
-  linkBlank?: boolean
-}
+export interface TimelineContentWebProps extends TimelineContentProps, CommonProps {}
 
 export type TimelineContentRef = HTMLDivElement
 export type TimelineContentNativeRef = View
