@@ -23,7 +23,13 @@ const meta: Meta<typeof AccordionItem> = {
   argTypes: {
     children: {
       description: 'Content inside the AccordionItem',
-      control: 'text',
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'React.ReactNode',
+          detail: 'AccordionHeader and AccordionBody components'
+        }
+      }
     },
     open: {
       description: 'Whether the AccordionItem is open',

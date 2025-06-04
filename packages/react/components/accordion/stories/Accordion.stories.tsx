@@ -1,14 +1,14 @@
 import React from 'react';
 import { Meta, StoryObj, StoryContext } from '@storybook/react';
 
-import { Accordion } from './index';
-import AccordionItem from './item/AccordionItem';
-import AccordionHeader from './item/header/AccordionHeader';
-import AccordionBody from './item/body/AccordionBody';
+import { Accordion } from '../index';
+import AccordionItem from '../item/AccordionItem';
+import AccordionHeader from '../item/header/AccordionHeader';
+import AccordionBody from '../item/body/AccordionBody';
 
-import { renderBefore } from '../../../storybook/preview';
+import { renderBefore } from '../../../../storybook/preview';
 
-import {AccordionScreen} from '../../../../examples/react-template/screens/Accordion'
+import {AccordionScreen} from '../../../../../examples/react-template/screens/Accordion'
 
 
 const meta = {
@@ -32,30 +32,23 @@ const meta = {
       description: 'Props for AccordionItem',
       table: {
         type: {
-          summary: 'AccordionItemProps',
+          summary: 'React.ComponentType<AccordionItemProps>',
         },
-      },
-      children: {
-        description: 'Content inside the AccordionItem',
-        control: 'text',
-      },
-      open: {
-        description: 'Whether the AccordionItem is open',
-        control: 'boolean',
-      },
-      onClick: {
-        description: 'Callback when the AccordionItem is clicked',
-        action: 'clicked',
-      },
-      disabled: {
-        description: 'Whether the AccordionItem is disabled',
-        control: 'boolean',
       },
     },
   },
 } as Meta<typeof Accordion>;
 
 renderBefore(meta)
+
+
+export const Screen: StoryObj = {
+  render: ({ ...args }) => {
+    return (
+      <AccordionScreen/>
+    )
+  }
+}
 
 /*
 
@@ -103,14 +96,6 @@ export const Template: StoryObj = {
 }
 
 
-export const Documentation: StoryObj = {
-  render: ({ ...args }) => {
-    return (
-      <AccordionScreen/>
-    )
-  }
-}
-
 
 export const Open = {
   ...Template,
@@ -125,9 +110,17 @@ export const Open = {
 export const SubcomponentsExample = {
   render: () => (
     <Accordion>
+      <AccordionItem open>
+        <AccordionHeader>Header Example 1</AccordionHeader>
+        <AccordionBody>Body Example 1, openned by default</AccordionBody>
+      </AccordionItem>
       <AccordionItem>
-        <AccordionHeader>Header Example</AccordionHeader>
-        <AccordionBody>Body Example</AccordionBody>
+        <AccordionHeader>Header Example 2</AccordionHeader>
+        <AccordionBody>Body Example 2</AccordionBody>
+      </AccordionItem>
+      <AccordionItem disabled>
+        <AccordionHeader>Header Example Disabled</AccordionHeader>
+        <AccordionBody>Body Example Disabled</AccordionBody>
       </AccordionItem>
     </Accordion>
   ),

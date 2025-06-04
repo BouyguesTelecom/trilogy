@@ -4,7 +4,7 @@ import AccordionHeader from '../item/header/AccordionHeader';
 import {AccordionHeaderProps} from '../item/header/AccordionHeaderProps'
 
 const meta: Meta<typeof AccordionHeader> = {
-  title: 'Accordion/AccordionHeader',
+  title: 'Accordion/AccordionItem/AccordionHeader',
   component: AccordionHeader,
   argTypes: {
     children: { control: 'text' },

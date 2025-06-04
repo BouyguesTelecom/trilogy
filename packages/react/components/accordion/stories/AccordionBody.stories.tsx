@@ -4,7 +4,7 @@ import AccordionBody  from '../item/body/AccordionBody';
 import { AccordionItemProps } from '../item/AccordionItemProps'
 
 const meta: Meta<typeof AccordionBody> = {
-  title: 'Accordion/AccordionBody',
+  title: 'Accordion/AccordionItem/AccordionBody',
   component: AccordionBody,
   argTypes: {
     children: { control: 'text' },
