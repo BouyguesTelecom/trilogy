@@ -11,12 +11,13 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
-      <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} />
+      <View>
+        <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} align='ALIGNED_CENTER' />
+      </View>
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
 
