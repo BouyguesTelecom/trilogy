@@ -5,8 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.6.0] - 2025-xx-xx
 - Add prop "sticker" on RadioTile and CheckboxTile component
-- Fixe stroke color on RadioTile and CheckboxTile component
-- Fixe font weight of Sticker component
+- Fix stroke color on RadioTile and CheckboxTile component
+- Fix font weight of Sticker component
+- Fix Align prop on Icon web component
 
 ## [4.5.1] - 2025-04-28
 - Fix Tab component with markup a
