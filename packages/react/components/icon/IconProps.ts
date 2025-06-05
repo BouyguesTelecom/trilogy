@@ -7,7 +7,7 @@ import { IconName, IconNameValues } from './IconNameEnum'
 /**
  * Icon Interface
  */
-export interface IconProps extends Stacked, AlignableProps, Clickable, Accessibility, Dev, CommonProps {
+export interface IconProps extends Stacked, Omit<AlignableProps, 'verticalAlign'>, Clickable, Accessibility, Dev, CommonProps {
   name: IconName | IconNameValues
   size?: IconSize | IconSizeValues
   circled?: boolean
