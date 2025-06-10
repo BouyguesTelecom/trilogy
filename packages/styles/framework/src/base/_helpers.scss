@@ -625,7 +625,7 @@ $positions: (
 
 @each $justification, $justify-content in $positions {
 
-  .is-justified-self {
+  .is-justified-self-#{$justification} {
     justify-self: #{$justify-content} !important;
   }
 
