@@ -1,5 +1,6 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -15,6 +16,7 @@ const Calendar = ({
   maxDate = new Date(currentDate.getFullYear() + 10, 12, 0),
   disabled,
   readOnly,
+  disabledDates,
   onChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
@@ -44,6 +46,9 @@ const Calendar = ({
   const calendarPrevMonth = hashClass(styled, clsx('calendar-prev-month'))
   const calendarYear = hashClass(styled, clsx('calendar-year'))
   const calendarWeekDayDisabled = hashClass(styled, clsx('calendar-week-day-disabled'))
+  const isDisabledClass = hashClass(styled, clsx(is('disabled')))
+  const isActiveClass = hashClass(styled, clsx(is('active')))
+  const calendarWeek = hashClass(styled, clsx('calendar-week'))
 
   const isNextDisabled = React.useMemo(
     () =>
@@ -55,7 +60,7 @@ const Calendar = ({
   const isPrevDisabled = React.useMemo(
     () =>
       disabled ||
-      (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getMonth() === visibleMonth?.getFullYear()),
+      (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
     [minDate, visibleMonth],
   )
 
@@ -263,7 +268,7 @@ const Calendar = ({
             >
               {visibleMonth.toLocaleDateString('fr-FR', {
                 year: 'numeric',
-                month: 'short',
+                month: 'long',
               })}
             </button>
           </th>
@@ -286,7 +291,7 @@ const Calendar = ({
             {days.map((day, index) => {
               return (
                 <th className={calendarDayLabelClasses} key={index}>
-                  {day.slice(0, 3)}
+                  {day.slice(0, 1)}
                 </th>
               )
             })}
@@ -297,7 +302,7 @@ const Calendar = ({
         {!isVisibleYears &&
           allDaysInMonth.map((week, weekIndex) => {
             return (
-              <tr key={`${weeksId}_${weekIndex}`}>
+              <tr key={`${weeksId}_${weekIndex}`} className={calendarWeek}>
                 {week.map((day, dayIndex) => {
                   const ind = day !== null && globalDayIndex++
 
@@ -310,6 +315,13 @@ const Calendar = ({
                     disabled ||
                     (day && day.getTime() > maxDate.getTime()) ||
                     (day && day.getTime() < minDate.getTime()) ||
+                    (day &&
+                      disabledDates?.some(
+                        (date) =>
+                          date?.getFullYear() === day.getFullYear() &&
+                          date.getMonth() === day.getMonth() &&
+                          date.getDate() === day.getDate(),
+                      )) ||
                     false
 
                   return (
@@ -323,7 +335,6 @@ const Calendar = ({
                     >
                       {day && ind !== false && (
                         <button
-                          disabled={isDisabled}
                           type='button'
                           onKeyDown={(e) => onKeyDownDay(e, ind)}
                           tabIndex={isActive ? 0 : -1}
@@ -333,6 +344,7 @@ const Calendar = ({
                             if (el) refsDays.current[ind] = el
                           }}
                           onMouseUp={handlePressEnterInDays}
+                          className={clsx(isDisabled && isDisabledClass, isActive && isActiveClass)}
                         >
                           {day.getDate()}
                         </button>

@@ -1,55 +1,78 @@
 .calendar {
-    border-collapse: collapse;
-    width: 400px;
+  border-collapse: separate;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding:24px;
+  border-radius: 8px;
 
+  button {
+    all: unset;
+    &:focus-visible:not(.is-disabled, .is-active), &:hover:not(.is-disabled, .is-active){
+      cursor: pointer;
+      background-color: getColor('main-fade');
+    }
+    
+    &.is-active:hover, &.is-active:focus-visible,
+    &.is-disabled:hover, &.is-disabled:focus-visible {
+      filter: brightness(80%);
+    }
+  }
+
+
+  &-next-month, &-prev-month {
     button {
-      all: unset;
-      &:focus-visible, &:hover{
-        cursor: pointer;
+    text-align: center;
+    border-radius: 32px;
+    width: 32px;
+    height: 32px;
+    i {
+      height: 100%;
+    }
+    }
+  }
+
+  &-week:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &-week-day-label {
+    padding: 4px;
+    text-align: center !important;
+    width: 32px;
+  }
+
+  &-week-day, &-year {
+    padding: 4px;
+    text-align: center !important;
+    vertical-align: middle;
+    button {
+      display: block;
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    &-disabled {
+      button {
+        color: getColor('disabled');
         background-color: getColor('disabled-fade');
       }
+
     }
-
-    &-header {
-      background-color: getColor('main-fade');
-    }
-
-    &-next-month {
-      text-align: end !important;
-    }
-
-    &-week-day-label {
-      padding: 10px;
-      text-align: center;
-      width: 56px;
-    }
-
-    &-week-day, &-year {
-      padding: 10px;
-      border: 1px solid getColor('main');
-      text-align: center !important;
-      vertical-align: middle;
-      button {
-        display: block;
-        width: 100%;
-      }
-
-      &-disabled {
-        color: getColor('neutral');
-      }
-    }
-
-    &-active-month {
-      height: 28px;
-      text-align: center !important;
-      position: relative;
-      .icon {
-        vertical-align: bottom;
-      }
-    }
-
-    &-active-date button{
-      background-color: getColor('main-fade');
-    }
-
   }
+
+  &-active-month {
+    height: 28px;
+    text-align: center !important;
+    position: relative;
+    padding: 10px 0;
+    .icon {
+      vertical-align: bottom;
+    }
+  }
+
+  &-active-date button{
+    background-color: getColor('main');
+    color: getColor('background');
+  }
+
+}

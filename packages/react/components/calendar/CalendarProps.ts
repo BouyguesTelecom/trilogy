@@ -5,4 +5,5 @@ export interface CalendarProps {
   disabled?: boolean
   readOnly?: boolean
   onChange?: (e: Date) => void
+  disabledDates?: Date[]
 }
