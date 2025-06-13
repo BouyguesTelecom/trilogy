@@ -12,9 +12,8 @@ interface Link extends Accessibility, Clickable, Dev, CommonProps {
   children?: React.ReactNode
   to?: string
   href?: string
-  routerLink?: React.ElementType
+  markup?: React.ElementType
   iconName?: IconName | IconNameValues
-  inline?: boolean
   inverted?: boolean
   blank?: boolean
   title?: string
@@ -26,6 +25,7 @@ export interface LinkProps extends Link {
 
 export interface LinkPropsNative extends Link {
   role?: Role
+  inline?: boolean
 }
 
 export type LinkRef = HTMLElement | HTMLAnchorElement
