@@ -169,7 +169,7 @@ const Calendar = ({
     [refsYears.current, onChange, activeDate, readOnly],
   )
 
-  const onKeyDownDay = React.useCallback((e: React.KeyboardEvent, index: number) => {
+  const onKeyDownDay = React.useCallback((e: React.KeyboardEvent, index: number, isDisabled: boolean) => {
     switch (e.key) {
       case 'ArrowRight':
         return navigateInDaysWithKeyboard(index, 1)
@@ -180,7 +180,7 @@ const Calendar = ({
       case 'ArrowDown':
         return navigateInDaysWithKeyboard(index, 7)
       case 'Enter':
-        return handlePressEnterInDays(e)
+        return !isDisabled && handlePressEnterInDays(e)
       default:
         return
     }
@@ -336,14 +336,14 @@ const Calendar = ({
                       {day && ind !== false && (
                         <button
                           type='button'
-                          onKeyDown={(e) => onKeyDownDay(e, ind)}
+                          onKeyDown={(e) => onKeyDownDay(e, ind, isDisabled)}
                           tabIndex={isActive ? 0 : -1}
                           aria-selected={isActive ? 'true' : 'false'}
                           data-timestamp={day?.getTime()}
                           ref={(el) => {
                             if (el) refsDays.current[ind] = el
                           }}
-                          onMouseUp={handlePressEnterInDays}
+                          onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
                           className={clsx(isDisabled && isDisabledClass, isActive && isActiveClass)}
                         >
                           {day.getDate()}
