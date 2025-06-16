@@ -159,6 +159,7 @@ const Calendar = ({
       setActiveDate((prev) => {
         if (prev instanceof Date) return newDate
         if (prev.length === 1 && newDate.getTime() > prev[0].getTime()) return [...prev, newDate]
+        setDateEndHovered(undefined)
         return [newDate]
       })
 
