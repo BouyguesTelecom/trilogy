@@ -18,7 +18,7 @@
   }
 
   &-range {
-    .calendar-week-day {
+    .calendar-week-day:not(.calendar-date-in-range) {
       button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
         background-color: getColor('main');
         color: getColor('background');
@@ -26,11 +26,11 @@
     } 
   }
 
-    &-date-in-range {
-      button:not(.is-disabled, .is-active){
-        background-color: getColor('main-fade');
-        border-radius: 0px;
-      }
+  &-date-in-range {
+    button:not(.is-disabled, .is-active){
+      background-color: getColor('main-fade');
+      border-radius: 0px;
+    }
   }
 
 
