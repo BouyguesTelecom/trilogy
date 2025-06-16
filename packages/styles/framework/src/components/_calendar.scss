@@ -17,6 +17,22 @@
     }
   }
 
+  &-range {
+    .calendar-week-day {
+      button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
+        background-color: getColor('main');
+        color: getColor('background');
+      }
+    } 
+  }
+
+    &-date-in-range {
+      button:not(.is-disabled, .is-active){
+        background-color: getColor('main-fade');
+        border-radius: 0px;
+      }
+  }
+
 
   &-next-month, &-prev-month {
     button {
@@ -41,7 +57,7 @@
   }
 
   &-week-day, &-year {
-    padding: 4px;
+    padding: 4px 0px;
     text-align: center !important;
     vertical-align: middle;
     button {
@@ -70,9 +86,10 @@
     }
   }
 
-  &-active-date button{
+  &-active-date button {
     background-color: getColor('main');
     color: getColor('background');
   }
+
 
 }

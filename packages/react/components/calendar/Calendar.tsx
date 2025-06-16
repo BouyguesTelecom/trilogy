@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
-import { CalendarProps } from './CalendarProps'
+import { CalendarProps, DateValue } from './CalendarProps'
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
 const currentDate = new Date()
@@ -23,9 +23,11 @@ const Calendar = ({
   let globalYearIndex = 0
 
   const { styled } = useTrilogyContext()
-  const [visibleMonth, setVisibleMonth] = React.useState<Date>(value)
+  const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0])
   const [isVisibleYears, setIsVisibleYears] = React.useState<boolean>(false)
-  const [activeDate, setActiveDate] = React.useState<Date>(value)
+  const [activeDate, setActiveDate] = React.useState<DateValue>(value)
+  const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
+
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
   const refsYears = React.useRef<HTMLButtonElement[]>([])
@@ -49,6 +51,12 @@ const Calendar = ({
   const isDisabledClass = hashClass(styled, clsx(is('disabled')))
   const isActiveClass = hashClass(styled, clsx(is('active')))
   const calendarWeek = hashClass(styled, clsx('calendar-week'))
+  const dateStart = hashClass(styled, clsx('calendar-date-start'))
+  const dateEnd = hashClass(styled, clsx('calendar-date-end'))
+  const rangeClasse = hashClass(styled, clsx('calendar-range'))
+  const dateInRange = hashClass(styled, clsx('calendar-date-in-range'))
+
+  const isRange = React.useMemo(() => (activeDate instanceof Date ? undefined : true), [activeDate])
 
   const isNextDisabled = React.useMemo(
     () =>
@@ -147,7 +155,15 @@ const Calendar = ({
       refsDays.current.forEach((day) => (day.tabIndex = -1))
       elm.tabIndex = 0
       const newDate = new Date(Number(elm.dataset.timestamp))
-      setActiveDate(newDate)
+
+      setActiveDate((prev) => {
+        if (prev instanceof Date) return newDate
+        if (prev.length === 1) {
+          return [...prev, newDate]
+        }
+        return [newDate]
+      })
+
       if (onChange) onChange(newDate)
     },
     [refsDays.current, onChange, readOnly],
@@ -241,7 +257,7 @@ const Calendar = ({
   }, [refsDays.current, refDayFocused.current])
 
   return (
-    <table className={calendarClasses}>
+    <table className={clsx(calendarClasses, isRange && rangeClasse)}>
       <thead className={calendarheaderClasses}>
         <tr>
           {!isVisibleYears && (
@@ -307,9 +323,16 @@ const Calendar = ({
                   const ind = day !== null && globalDayIndex++
 
                   const isActive =
-                    day?.getFullYear() === activeDate.getFullYear() &&
-                    day.getMonth() === activeDate.getMonth() &&
-                    day.getDate() === activeDate.getDate()
+                    activeDate instanceof Date
+                      ? day?.getFullYear() === activeDate.getFullYear() &&
+                        day?.getMonth() === activeDate.getMonth() &&
+                        day?.getDate() === activeDate.getDate()
+                      : activeDate?.some(
+                          (date) =>
+                            date?.getFullYear() === day?.getFullYear() &&
+                            date?.getMonth() === day?.getMonth() &&
+                            date?.getDate() === day?.getDate(),
+                        )
 
                   const isDisabled =
                     disabled ||
@@ -324,6 +347,21 @@ const Calendar = ({
                       )) ||
                     false
 
+                  const isDateStart =
+                    activeDate instanceof Date ? undefined : activeDate[0] && day?.getTime() === activeDate[0].getTime()
+
+                  const isDateEnd =
+                    activeDate instanceof Date ? undefined : activeDate[1] && day?.getTime() === activeDate[1].getTime()
+
+                  const isInRange =
+                    activeDate instanceof Date
+                      ? undefined
+                      : activeDate[0] &&
+                        dateEndHovered &&
+                        day &&
+                        day.getTime() >= activeDate[0].getTime() &&
+                        day.getTime() < dateEndHovered.getTime()
+
                   return (
                     <td
                       key={`${daysId}_${dayIndex}_${day?.getTime()}`}
@@ -331,6 +369,9 @@ const Calendar = ({
                         calendarWeekDay,
                         isActive && calendarActiveDate,
                         isDisabled && calendarWeekDayDisabled,
+                        isDateStart && dateStart,
+                        isDateEnd && dateEnd,
+                        isInRange && dateInRange,
                       )}
                     >
                       {day && ind !== false && (
@@ -345,6 +386,10 @@ const Calendar = ({
                           }}
                           onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
                           className={clsx(isDisabled && isDisabledClass, isActive && isActiveClass)}
+                          onMouseOver={() => {
+                            if (activeDate instanceof Date) return
+                            if (activeDate[0] !== undefined && activeDate.length === 1) setDateEndHovered(day)
+                          }}
                         >
                           {day.getDate()}
                         </button>

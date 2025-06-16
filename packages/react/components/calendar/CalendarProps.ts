@@ -1,5 +1,7 @@
+export type DateValue = Date | [Date, Date] | [Date]
+
 export interface CalendarProps {
-  value?: Date
+  value?: DateValue
   minDate?: Date
   maxDate?: Date
   disabled?: boolean
