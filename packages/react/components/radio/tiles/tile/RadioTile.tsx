@@ -42,6 +42,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   horizontal,
   required,
   sticker,
+  stickerVariant = VariantState.ACCENT,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -83,7 +84,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
           </>
         )}
       </label>
-      {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />}
+      {sticker && <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />}
     </div>
   )
 })

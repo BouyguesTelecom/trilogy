@@ -44,6 +44,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
       horizontal,
       required,
       sticker,
+      stickerVariant = VariantState.ACCENT,
       ...others
     },
     ref,
@@ -85,7 +86,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
             </>
           )}
         </label>
-        {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='checkbox-sticker' small />}
+        {sticker && <Sticker label={sticker} variant={stickerVariant} className='checkbox-sticker' small />}
       </div>
     )
   },
