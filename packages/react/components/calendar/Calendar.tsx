@@ -23,7 +23,7 @@ const Calendar = ({
   let globalYearIndex = 0
 
   const { styled } = useTrilogyContext()
-  const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0])
+  const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0] || currentDate)
   const [isVisibleYears, setIsVisibleYears] = React.useState<boolean>(false)
   const [activeDate, setActiveDate] = React.useState<DateValue>(value)
   const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
@@ -348,14 +348,14 @@ const Calendar = ({
 
                   const isDisabled =
                     disabled ||
-                    (day && day.getTime() > maxDate.getTime()) ||
-                    (day && day.getTime() < minDate.getTime()) ||
+                    (day && day.getTime() > maxDate?.getTime()) ||
+                    (day && day.getTime() < minDate?.getTime()) ||
                     (day &&
                       disabledDates?.some(
                         (date) =>
-                          date?.getFullYear() === day.getFullYear() &&
-                          date.getMonth() === day.getMonth() &&
-                          date.getDate() === day.getDate(),
+                          date?.getFullYear() === day?.getFullYear() &&
+                          date?.getMonth() === day?.getMonth() &&
+                          date?.getDate() === day?.getDate(),
                       )) ||
                     false
 

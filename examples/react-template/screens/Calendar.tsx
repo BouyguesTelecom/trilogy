@@ -8,7 +8,7 @@ const disabledDates = [new Date(2025, 10, 4), new Date(2025, 10, 10)]
 
 export const CalendarScreen = (): JSX.Element => {
   const [value, setValue] = useState(new Date(2025, 10, 2))
-  const [values, setValues] = useState<DateValue>([new Date(2025, 10, 2)])
+  const [values, setValues] = useState<DateValue>([])
 
   return (
     <Section>

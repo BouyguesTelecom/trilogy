@@ -1,4 +1,4 @@
-export type DateValue = Date | [Date, Date] | [Date]
+export type DateValue = Date | [Date, Date] | [Date] | []
 
 export interface CalendarProps {
   value?: DateValue
