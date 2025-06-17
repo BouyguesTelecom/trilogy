@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { CalendarProps, DateValue } from './CalendarProps'
@@ -55,6 +55,7 @@ const Calendar = ({
   const dateEnd = hashClass(styled, clsx('calendar-date-end'))
   const rangeClasse = hashClass(styled, clsx('calendar-range'))
   const dateInRange = hashClass(styled, clsx('calendar-date-in-range'))
+  const rangeCompletedClasse = hashClass(styled, clsx('calendar-range-completed'))
 
   const isRange = React.useMemo(() => (activeDate instanceof Date ? undefined : true), [activeDate])
 
@@ -71,6 +72,11 @@ const Calendar = ({
       (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
     [minDate, visibleMonth],
   )
+
+  const MarkupMonth = useMemo(() => {
+    if (activeDate instanceof Date) return 'button'
+    return 'span'
+  }, [activeDate])
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -170,7 +176,7 @@ const Calendar = ({
 
   const handlePressEnterInYears = React.useCallback(
     (e: React.KeyboardEvent | React.MouseEvent) => {
-      if (readOnly) return
+      if (readOnly || !(activeDate instanceof Date)) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
       refsYears.current.forEach((day) => (day.tabIndex = -1))
@@ -219,11 +225,12 @@ const Calendar = ({
   }, [])
 
   const onPressTableHeader = React.useCallback(() => {
+    if (!(activeDate instanceof Date)) return
     setIsVisibleYears((prev) => {
       if (prev) refsDays.current = []
       return !prev
     })
-  }, [refsDays.current])
+  }, [refsDays.current, activeDate])
 
   React.useEffect(() => {
     if (isVisibleYears && refsYears.current) {
@@ -256,7 +263,13 @@ const Calendar = ({
   }, [refsDays.current, refDayFocused.current])
 
   return (
-    <table className={clsx(calendarClasses, isRange && rangeClasse)}>
+    <table
+      className={clsx(
+        calendarClasses,
+        isRange && rangeClasse,
+        isRange && (activeDate as Date[]).length === 2 && rangeCompletedClasse,
+      )}
+    >
       <thead className={calendarheaderClasses}>
         <tr>
           {!isVisibleYears && (
@@ -273,7 +286,7 @@ const Calendar = ({
           )}
 
           <th colSpan={isVisibleYears ? 12 : 5} className={calendarActiveMonthClasses}>
-            <button
+            <MarkupMonth
               disabled={disabled}
               onClick={onPressTableHeader}
               type='button'
@@ -285,7 +298,7 @@ const Calendar = ({
                 year: 'numeric',
                 month: 'long',
               })}
-            </button>
+            </MarkupMonth>
           </th>
           {!isVisibleYears && (
             <th colSpan={1} className={calendarNextMonth}>
@@ -400,6 +413,7 @@ const Calendar = ({
             )
           })}
         {isVisibleYears &&
+          activeDate instanceof Date &&
           yearsBetween.map((years, yearsIndex) => {
             return (
               <tr key={`${yearsId}_${yearsIndex}`}>
