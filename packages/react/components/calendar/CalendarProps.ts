@@ -6,6 +6,6 @@ export interface CalendarProps {
   maxDate?: Date
   disabled?: boolean
   readOnly?: boolean
-  onChange?: (e: Date) => void
+  onChange?: (e: DateValue) => void
   disabledDates?: Date[]
 }

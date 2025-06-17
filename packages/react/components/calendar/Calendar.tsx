@@ -162,14 +162,21 @@ const Calendar = ({
       elm.tabIndex = 0
       const newDate = new Date(Number(elm.dataset.timestamp))
 
-      setActiveDate((prev) => {
-        if (prev instanceof Date) return newDate
-        if (prev.length === 1 && newDate.getTime() > prev[0].getTime()) return [...prev, newDate]
+      return setActiveDate((prev) => {
+        if (prev instanceof Date) {
+          onChange && onChange(newDate)
+          return newDate
+        }
+
+        if (prev.length === 1 && newDate.getTime() > prev[0].getTime()) {
+          onChange && onChange([...prev, newDate])
+          return [...prev, newDate]
+        }
+
         setDateEndHovered(undefined)
+        onChange && onChange([newDate])
         return [newDate]
       })
-
-      if (onChange) onChange(newDate)
     },
     [refsDays.current, onChange, readOnly],
   )
