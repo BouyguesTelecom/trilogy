@@ -1,6 +1,6 @@
-import ts from 'typescript';
 import ReactDocgenTypescriptPlugin from 'react-docgen-typescript-plugin';
 import * as path from 'path'
+import { ts } from 'ts-morph'
 
 export {};
 

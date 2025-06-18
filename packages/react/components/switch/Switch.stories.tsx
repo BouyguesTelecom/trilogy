@@ -1,62 +1,71 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Switch, Section, Rows, Row } from '../../lib'
 
-import { Meta, Story } from "@storybook/react";
-
-import Switch from "./Switch";
-import { SwitchProps } from "./SwitchProps";
-
-export default {
-  title: "Components/Switch",
+const meta: Meta<typeof Switch> = {
   component: Switch,
-} as Meta;
+  argTypes:{
+    className: {
+      control: { type: 'text' },
+    },
+    label: {
+      control: { type: 'text' },
+    },
+    checked: {
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+    status: {
+      options: ['MAIN', 'ACCENT', 'INFO'],
+      control: { type: 'inline-radio' },
+    }
+  }
+}
 
-export const Base: Story<SwitchProps> = (args) => <Switch {...args} />;
-Base.args = {
-  disabled: false,
-  reversed: false,
-  checked: false,
-  label: "Switch one",
-  name: "switch one",
-  onChange: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-  onClick: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-};
+export default meta
 
-export const Disabled: Story<SwitchProps> = (args) => <Switch {...args} />;
-Disabled.args = {
-  disabled: true,
-  reversed: false,
-  checked: false,
-  label: "Switch disabled",
-  name: "switch disabled",
-  onChange: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-  onClick: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-};
+type Story = StoryObj<typeof Switch>
 
-export const Checked: Story<SwitchProps> = (args) => <Switch {...args} />;
-Checked.args = {
-  disabled: false,
-  reversed: false,
-  checked: true,
-  label: "Switch checked",
-  name: "switch checked",
-  onChange: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-  onClick: (e) => {
-    console.log("SwitchState =>", e.switchState);
-    console.log("SwitchSName =>", e.switchName);
-  },
-};
+
+export const Example: Story = {
+  render: () => (
+    <Section>
+      <Rows>
+        <Row>
+          <Switch label="Switch one" name="switch one" />
+        </Row>
+        <Row>
+          <Switch checked label="Switch checked" name="switch checked" />
+        </Row>
+        <Row>
+          <Switch disabled label="Switch disabled" name="switch disabled" />
+        </Row>
+      </Rows>
+    </Section>
+  ),
+}
+
+
+export const Sandbox: Story = {
+  render: (args) => (
+    <Section>
+      <Rows>
+        <Row>
+          <Switch label="Classic switch" name="Classic switch" />
+        </Row>
+        <Row>
+          <Switch {...args} />
+        </Row>
+      </Rows>
+    </Section>
+  ),
+  args:{
+    checked: false,
+    disabled: false,
+    label: "Sandbox",
+    name: "sandbox",
+    className: "sandbox",
+    status: undefined,
+  }
+}

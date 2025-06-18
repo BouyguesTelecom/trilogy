@@ -1,39 +1,72 @@
-import * as React from 'react'
-
-import { Meta, Story } from '@storybook/react'
-
-import { IconName } from '../../icon'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Columns } from '../columns'
+import { Column, IconName } from '../../lib'
 import AutoComplete from './AutoComplete'
-import { AutoCompleteProps, Item } from './AutoCompleteProps'
 
-export default {
-  title: 'Components/AutoComplete',
+const meta: Meta<typeof AutoComplete> = {
   component: AutoComplete,
-} as Meta
+}
 
-export const Base: Story<AutoCompleteProps> = (args) => (
-  /* L'utilisation de l'autocomplete nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-   <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-*/
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  <AutoComplete<Item<{ info: number }>>
-    {...args}
-    data={[
-      { label: 'name', data: { info: 1 } },
-      { label: 'age', data: { info: 2 } },
-      { label: 'car', data: { info: 3 } },
-      { label: 'test', data: { info: 4 } },
-      { label: 'trilogy', data: { info: 5 } },
-    ]}
-  >
-    {(item) => <label>La super info : {item.data.info}</label>}
-  </AutoComplete>
-)
-Base.args = {
-  customIcon: IconName.EYE,
-  displayMenu: false,
-  placeholder: 'Autocomplete',
-  onItemSelected: (e) => console.log('itemSelected => ', e),
-  onChange: (e) => console.log('OnChange Autocomplete : ', e),
+export default meta
+
+type Story = StoryObj<typeof AutoComplete>
+
+
+export const Example: Story = {
+  render: () => (
+    <Columns multiline>
+      <Column size={6}>
+        <AutoComplete
+          data={['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry']}
+          //@ts-ignore
+          iconNameLeft={'tri-beach'}
+          name='autocomplete-fruits'
+        />
+      </Column>
+      <Column size={6}>
+        <AutoComplete
+          absoluteMenu
+          data={['Alice', 'Charlie', 'David', 'Darwin', 'Eve']}
+          iconNameLeft='tri-search'
+          name='autocomplete-names'
+        />
+      </Column>
+      <Column size={6}>
+        <AutoComplete
+          data={['Alice', 'Charlie', 'David', 'Darwin', 'Eve']}
+          disabled
+          iconNameLeft='tri-search'
+          name='autocomplete-names'
+        />
+      </Column>
+      <Column size={6}>
+        <AutoComplete
+          absoluteMenu
+          data={['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry']}
+          displayMenu
+          fullwidthMenu
+          iconNameRight='tri-infos-circle'
+          placeholder='Autocomplete'
+          value='Apple'
+        />
+      </Column>
+    </Columns>
+  ),
+}
+
+export const SandBox: Story = {
+  render: (args) => (
+    <Columns multiline>
+      <Column size={6}>
+        <AutoComplete {...args}/>
+      </Column>
+    </Columns>
+  ),
+  args:{
+    data: ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
+    iconNameLeft: IconName.BELL,
+    name: 'autocomplete-fruits',
+    placeholder: 'Autocomplete',
+    value: '',
+  }
 }

@@ -184,8 +184,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
               inputMode='numeric'
               autoComplete='one-time-code'
               autoFocus={idx === 0 && autoFocus}
-              pattern='\d{1}'
-              maxLength={length}
+              maxLength={1}
               className={hashClass(styled, clsx('otp'))}
               value={`${digit ?? ''}`}
               onKeyUp={inputOnKeyUp}

@@ -22,5 +22,5 @@ const Accordion = React.forwardRef<AccordionRef, AccordionProps>(({ id, classNam
     </div>
   )
 })
-Accordion.displayName = ComponentName.Accordion
+
 export default Accordion

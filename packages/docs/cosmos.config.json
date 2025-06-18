@@ -1,0 +1,4 @@
+{
+    "plugins": ["react-cosmos-plugin-vite"],
+    "rootDir": "../react"
+}
