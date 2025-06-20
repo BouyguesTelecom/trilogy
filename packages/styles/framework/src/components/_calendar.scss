@@ -50,29 +50,41 @@
     margin-bottom: 8px;
   }
 
-  &-week-day-label {
-    padding: 4px;
-    text-align: center !important;
-    width: 32px;
-  }
-
-  &-week-day, &-year {
-    padding: 4px 0px;
-    text-align: center !important;
-    vertical-align: middle;
+  &-week-day {
+    &-label {
+      padding: 4px;
+      text-align: center !important;
+      width: 32px;
+    } 
     button {
       display: block;
       width: 32px;
       height: 32px;
       border-radius: 4px;
     }
+  }
+  
+ 
 
+  &-week-day, &-year {
+    padding: 4px 0px;
+    text-align: center !important;
+    vertical-align: middle;
     &-disabled {
       button {
         color: getColor('disabled');
         background-color: getColor('disabled-fade');
       }
+    }
+  }
 
+  &-year {
+    button {
+      display: block;
+      width: 64px;
+      height: 32px;
+      border-radius: 4px;
+      margin: 0 5.35px;
     }
   }
 

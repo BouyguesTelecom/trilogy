@@ -3,7 +3,7 @@ import { DateValue } from '@trilogy-ds/react/components/calendar/CalendarProps'
 import { useState } from 'react'
 
 const minDate = new Date(2025, 9, 10)
-const maxDate = new Date(2025, 11, 20)
+const maxDate = new Date(2032, 11, 20)
 const disabledDates = [new Date(2025, 10, 4), new Date(2025, 10, 10)]
 
 export const CalendarScreen = (): JSX.Element => {
