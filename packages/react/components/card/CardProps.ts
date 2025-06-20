@@ -18,6 +18,7 @@ export interface CardProps extends Fullheight, Clickable, Accessibility, CommonP
   onClick?: ClickEvent
   reversed?: boolean
   href?: string
+  to?: string
   active?: boolean
 }
 
