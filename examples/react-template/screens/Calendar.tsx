@@ -29,6 +29,12 @@ export const CalendarScreen = (): JSX.Element => {
         </Column>
         <Column narrow>
           <Text>Range Calendar</Text>
+          <Calendar
+            value={values}
+            onChange={(e) => {
+              console.log(e)
+            }}
+          />
         </Column>
       </Columns>
     </Section>

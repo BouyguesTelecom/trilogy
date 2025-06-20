@@ -115,13 +115,11 @@ const Calendar = ({
 
   const handleClickNextPrevMonth = React.useCallback(
     (month: number) => {
-      return setVisibleMonth((prev) => {
-        const nextMonth = new Date(prev.getFullYear(), prev.getMonth() + month, prev.getDate())
-        onMonthChange && onMonthChange(nextMonth)
-        return nextMonth
-      })
+      const nextMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + month, visibleMonth.getDate())
+      setVisibleMonth(nextMonth)
+      onMonthChange && onMonthChange(nextMonth)
     },
-    [onMonthChange],
+    [visibleMonth],
   )
 
   const navigateInDaysWithKeyboard = React.useCallback(
@@ -167,27 +165,22 @@ const Calendar = ({
       if (readOnly) return
       const elm = e.target as HTMLButtonElement
       if (!elm) return
+
       refsDays.current.forEach((day) => (day.tabIndex = -1))
       elm.tabIndex = 0
       const newDate = new Date(Number(elm.dataset.timestamp))
+      let newActiveDate: DateValue = [newDate]
+      if (!isRange) newActiveDate = newDate
 
-      return setActiveDate((prev) => {
-        if (prev instanceof Date) {
-          onChange && onChange(newDate)
-          return newDate
-        }
+      if (isRange && activeDate.length === 1 && newDate.getTime() > activeDate[0].getTime()) {
+        newActiveDate = [...activeDate, newDate]
+      }
 
-        if (prev.length === 1 && newDate.getTime() > prev[0].getTime()) {
-          onChange && onChange([...prev, newDate])
-          return [...prev, newDate]
-        }
-
-        setDateEndHovered(undefined)
-        onChange && onChange([newDate])
-        return [newDate]
-      })
+      setActiveDate(newActiveDate)
+      setDateEndHovered(undefined)
+      onChange && onChange(newActiveDate)
     },
-    [refsDays.current, onChange, readOnly],
+    [refsDays.current, onChange, readOnly, activeDate, isRange],
   )
 
   const handlePressEnterInYears = React.useCallback(
@@ -206,22 +199,25 @@ const Calendar = ({
     [refsYears.current, onChange, activeDate, readOnly],
   )
 
-  const onKeyDownDay = React.useCallback((e: React.KeyboardEvent, index: number, isDisabled: boolean) => {
-    switch (e.key) {
-      case 'ArrowRight':
-        return navigateInDaysWithKeyboard(index, 1)
-      case 'ArrowLeft':
-        return navigateInDaysWithKeyboard(index, -1)
-      case 'ArrowUp':
-        return navigateInDaysWithKeyboard(index, -7)
-      case 'ArrowDown':
-        return navigateInDaysWithKeyboard(index, 7)
-      case 'Enter':
-        return !isDisabled && handlePressEnterInDays(e)
-      default:
-        return
-    }
-  }, [])
+  const onKeyDownDay = React.useCallback(
+    (e: React.KeyboardEvent, index: number, isDisabled: boolean) => {
+      switch (e.key) {
+        case 'ArrowRight':
+          return navigateInDaysWithKeyboard(index, 1)
+        case 'ArrowLeft':
+          return navigateInDaysWithKeyboard(index, -1)
+        case 'ArrowUp':
+          return navigateInDaysWithKeyboard(index, -7)
+        case 'ArrowDown':
+          return navigateInDaysWithKeyboard(index, 7)
+        case 'Enter':
+          return !isDisabled && handlePressEnterInDays(e)
+        default:
+          return
+      }
+    },
+    [handlePressEnterInDays],
+  )
 
   const onKeyDownYear = React.useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
