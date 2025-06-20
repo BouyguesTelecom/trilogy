@@ -40,6 +40,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
       horizontal,
       readonly,
       sticker,
+      stickerVariant = VariantState.ACCENT,
       ...others
     },
     ref,
@@ -105,7 +106,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
         <InputRadio checked={checked} disabled={disabled} />
         {sticker && (
           <View style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
-            <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+            <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
           </View>
         )}
 
