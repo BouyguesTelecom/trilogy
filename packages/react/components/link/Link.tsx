@@ -16,7 +16,6 @@ import { LinkProps, LinkRef } from './LinkProps'
  * @param title {string} Title attribute
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label
- * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -29,80 +28,33 @@ import { LinkProps, LinkRef } from './LinkProps'
 
 const Link = React.forwardRef<LinkRef, LinkProps>(
   (
-    {
-      children,
-      className,
-      id,
-      to,
-      href,
-      onClick,
-      accessibilityLabel,
-      routerLink,
-      iconName,
-      inverted,
-      blank,
-      title,
-      ...others
-    },
+    { children, className, accessibilityLabel, markup: LinkComponent = 'a', iconName, inverted, blank, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
 
-    if (routerLink && to) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-
-      const RouterLinkTrilogy = (): JSX.Element => {
-        return (
-          <RouterLink
-            ref={ref}
-            id={id}
-            aria-label={accessibilityLabel}
-            onClick={onClick && onClick}
-            className={hashClass(styled, clsx(classes))}
-            to={to || ''}
-            {...(blank && {
-              target: '_blank',
-            })}
-            {...others}
-          >
-            {children}
-          </RouterLink>
-        )
-      }
-
-      return <RouterLinkTrilogy />
-    }
-
-    const LinkTrilogy = (): JSX.Element => {
-      return (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          id={id}
-          aria-label={accessibilityLabel}
-          onClick={onClick && onClick}
-          className={classes}
-          title={title}
-          href={href}
-          {...(blank && {
-            target: '_blank',
-          })}
-          {...others}
-        >
-          {iconName ? (
-            <>
-              <span>{children}</span>
-              <Icon name={iconName} size={IconSize.SMALL} />
-            </>
-          ) : (
-            children
-          )}
-        </a>
-      )
-    }
-
-    return <LinkTrilogy />
+    return (
+      <LinkComponent
+        ref={ref}
+        aria-label={accessibilityLabel}
+        className={classes}
+        {...(blank && {
+          target: '_blank',
+        })}
+        {...others}
+      >
+        {iconName ? (
+          <>
+            <span>{children}</span>
+            <Icon name={iconName} size={IconSize.SMALL} />
+          </>
+        ) : (
+          children
+        )}
+      </LinkComponent>
+    )
   },
 )
 
