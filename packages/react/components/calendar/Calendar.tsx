@@ -21,7 +21,9 @@ const Calendar = ({
   disabled,
   readOnly,
   disabledDates,
+  onViewChange,
   onChange,
+  onMonthChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
   let globalYearIndex = 0
@@ -79,7 +81,7 @@ const Calendar = ({
   const MarkupMonth = useMemo(() => {
     if (!isRange) return 'button'
     return 'span'
-  }, [activeDate])
+  }, [isRange])
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -111,12 +113,16 @@ const Calendar = ({
     return getAllDaysInMonth(activeYear, activeMonth)
   }, [visibleMonth])
 
-  const handleClickNextPrevMonth = React.useCallback((month: number) => {
-    setVisibleMonth((prev) => {
-      const nextMonth = new Date(prev.getFullYear(), prev.getMonth() + month, prev.getDate())
-      return nextMonth
-    })
-  }, [])
+  const handleClickNextPrevMonth = React.useCallback(
+    (month: number) => {
+      return setVisibleMonth((prev) => {
+        const nextMonth = new Date(prev.getFullYear(), prev.getMonth() + month, prev.getDate())
+        onMonthChange && onMonthChange(nextMonth)
+        return nextMonth
+      })
+    },
+    [onMonthChange],
+  )
 
   const navigateInDaysWithKeyboard = React.useCallback(
     (currentIndex: number, nextIndex: number) => {
@@ -240,7 +246,8 @@ const Calendar = ({
       if (prev) refsDays.current = []
       return !prev
     })
-  }, [refsDays.current, activeDate])
+    onViewChange && onViewChange(isVisibleYears ? 'month' : 'year')
+  }, [refsDays.current, onViewChange, isRange, isVisibleYears])
 
   React.useEffect(() => {
     if (isVisibleYears && refsYears.current) {

@@ -16,6 +16,8 @@ export const CalendarScreen = (): JSX.Element => {
         <Column narrow>
           <Text>Simple Calendar</Text>
           <Calendar
+            onMonthChange={(e) => console.log(e)}
+            onViewChange={(e) => console.log(e)}
             disabledDates={disabledDates}
             maxDate={maxDate}
             minDate={minDate}
@@ -27,12 +29,6 @@ export const CalendarScreen = (): JSX.Element => {
         </Column>
         <Column narrow>
           <Text>Range Calendar</Text>
-          <Calendar
-            value={values}
-            onChange={(e) => {
-              console.log(e)
-            }}
-          />
         </Column>
       </Columns>
     </Section>
