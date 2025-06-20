@@ -147,7 +147,8 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}
-        {...others}
+        {...{ others }}
+        {...(isDisabled && { 'aria-disabled': true })}
       >
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
