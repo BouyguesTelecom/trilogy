@@ -1,6 +1,6 @@
-import breadcrumbLocale from './breadcrumb.json'
-import inputLocale from './input.json'
-import modalLocale from './modal.json'
-import otpLocale from './otp.json'
+import breadcrumbLocale from './breadcrumb'
+import inputLocale from './input'
+import modalLocale from './modal'
+import otpLocale from './otp'
 
 export { breadcrumbLocale, inputLocale, modalLocale, otpLocale }
