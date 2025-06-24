@@ -8,6 +8,11 @@
     "types": "lib/index.d.ts",
     "scripts": {
       "build": "rimraf ./lib && tsc"
-    }
+    },
+    "files": [
+      "lib",
+      "package.json",
+      "README.md"
+    ]
 }
   

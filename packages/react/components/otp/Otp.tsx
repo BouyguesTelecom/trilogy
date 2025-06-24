@@ -3,9 +3,9 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
-import { inputTitle } from '@trilogy-ds/locales/lib/otp.json'
+import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState, useMemo } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { OtpProps, OtpRef } from './OtpProps'
 
@@ -192,7 +192,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
               onFocus={inputOnFocus}
               onChange={(e) => inputOnChange(e, idx)}
               disabled={disabled}
-              title={formatTranslation(inputTitle, String(idx + 1), String(length))}
+              title={formatTranslation(translation.inputTitle, String(idx + 1), String(length))}
               {...others}
             />
           ))}
