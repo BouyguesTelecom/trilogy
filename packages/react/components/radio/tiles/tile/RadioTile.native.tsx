@@ -24,6 +24,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param value {string} Value for radio
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
+ * @param stickerVariant {VariantState} Sticker variant
  */
 const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
   (
