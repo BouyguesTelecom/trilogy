@@ -23,6 +23,7 @@ import React from 'react'
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
  * @param sticker {string} sticker label
+ * @param stickerVariant {VariantState} Sticker variant
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
@@ -42,6 +43,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
   horizontal,
   required,
   sticker,
+  stickerVariant = VariantState.ACCENT,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -83,7 +85,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(({
           </>
         )}
       </label>
-      {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />}
+      {sticker && <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />}
     </div>
   )
 })

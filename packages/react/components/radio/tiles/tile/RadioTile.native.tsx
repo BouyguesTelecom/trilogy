@@ -24,6 +24,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param value {string} Value for radio
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
+ * @param stickerVariant {VariantState} Sticker variant
  */
 const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
   (
@@ -40,6 +41,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
       horizontal,
       readonly,
       sticker,
+      stickerVariant = VariantState.ACCENT,
       ...others
     },
     ref,
@@ -105,7 +107,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
         <InputRadio checked={checked} disabled={disabled} />
         {sticker && (
           <View style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
-            <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+            <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
           </View>
         )}
 
