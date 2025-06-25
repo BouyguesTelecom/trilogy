@@ -24,6 +24,7 @@ import { VariantState } from '@/objects'
  * @param icon {IconName}
  * @param horizontal {boolean}
  * @param sticker {string} sticker label
+ * @param stickerVariant {VariantState} Sticker variant
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */

@@ -23,6 +23,7 @@ import React from 'react'
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
  * @param sticker {string} sticker label
+ * @param stickerVariant {VariantState} Sticker variant
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
