@@ -24,6 +24,7 @@ import { VariantState } from '@/objects'
  * @param icon {IconName}
  * @param horizontal {boolean}
  * @param sticker {string} sticker label
+ * @param stickerVariant {VariantState} Sticker variant
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
@@ -44,6 +45,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
       horizontal,
       required,
       sticker,
+      stickerVariant = VariantState.ACCENT,
       ...others
     },
     ref,
@@ -85,7 +87,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
             </>
           )}
         </label>
-        {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='checkbox-sticker' small />}
+        {sticker && <Sticker label={sticker} variant={stickerVariant} className='checkbox-sticker' small />}
       </div>
     )
   },
