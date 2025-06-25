@@ -16,7 +16,7 @@ import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from './BreadcrumbItemProps
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param routerLink Custom Router Link as props
  * @param href {string} Url. Use native-old <a> tag (only when the `to` property is not filled)
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param others
  */
 const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWeb>(

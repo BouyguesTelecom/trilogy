@@ -11,7 +11,7 @@ import { TableHeadProps, TableHeadRef } from './TableHeadProps'
  * Table Head Component
  * @param children {ReactNode} children of Table Head
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */

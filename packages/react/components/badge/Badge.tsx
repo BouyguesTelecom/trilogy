@@ -20,7 +20,7 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
  * @param position
  * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
 const Badge = React.forwardRef<BadgeRef, BadgeProps>(
   ({ className, children, id, label, inverted, onClick, variant, position, status, ...others }, ref): JSX.Element => {

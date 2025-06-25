@@ -14,7 +14,7 @@ import React from 'react'
  * @param align { Alignable | AlignableValues} align content
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(

@@ -11,7 +11,7 @@ import { useStepper } from './hooks/useStepper'
  * @param centered Center the stepper
  * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className Additionnal CSS Classes
+ * @param className Additional CSS Classes
  */
 const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, ...others }, ref) => {
   const classes = hashClass(clsx('stepper-wrapper', className))

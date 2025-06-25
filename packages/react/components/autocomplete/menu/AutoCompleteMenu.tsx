@@ -8,7 +8,7 @@ import React from 'react'
  * AutoCompleteMenu Component
  * @param children {ReactNode} Children
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param absolute {boolean} Absolute position for Menu
  * @param fullwidth {boolean} Fullwidth size for Menu
  */

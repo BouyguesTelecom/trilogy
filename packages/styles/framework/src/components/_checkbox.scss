@@ -56,7 +56,7 @@
   input:checked ~ label.checkbox-label {
     &:after {
       top: 15px;
-      right: 15px;
+      left: 15px;
     }
   }
 }

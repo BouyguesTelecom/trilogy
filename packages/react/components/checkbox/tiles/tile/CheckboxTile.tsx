@@ -5,6 +5,8 @@ import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
+import { Sticker } from '@/components/sticker'
+import { VariantState } from '@/objects'
 
 /**
  * CheckboxTile
@@ -19,8 +21,9 @@ import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
  * @param description {string}
  * @param icon {IconName}
  * @param horizontal {boolean}
+ * @param sticker {string} sticker label
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
   (
@@ -38,6 +41,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
       icon,
       horizontal,
       required,
+      sticker,
       ...others
     },
     ref,
@@ -80,6 +84,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
             </>
           )}
         </label>
+        {sticker && <Sticker label={sticker} variant={VariantState.ACCENT} className='checkbox-sticker' small />}
       </div>
     )
   },

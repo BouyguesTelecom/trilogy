@@ -9,7 +9,7 @@ import { useAccordionBody } from './hooks/useAccordionBoy'
  * Accordion Body Component
  * @param children {React.ReactNode} Children for Accordion body
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param dataId {string} data attribute
  */
 const AccordionBody = React.forwardRef<AccordionBodyRef, AccordionBodyProps>(

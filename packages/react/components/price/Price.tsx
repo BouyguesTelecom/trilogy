@@ -23,7 +23,7 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param overline {string} Price overline
  * @param oldAmount {boolean} old Amount Price
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */
 const Price = React.forwardRef<PriceRef, PriceProps>(

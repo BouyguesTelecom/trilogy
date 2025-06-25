@@ -13,7 +13,7 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  * @param align {Alignable}
  * @param verticalAlign {Alignable}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
   ({ id, className, children, align, verticalAlign, accessibilityLabelledBy, ...others }, ref): JSX.Element => {

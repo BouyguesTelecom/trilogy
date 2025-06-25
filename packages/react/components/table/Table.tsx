@@ -11,7 +11,7 @@ import { TableBorderEnum, TableProps, TableRef } from './TableProps'
  * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param fullwidth {boolean} table fullwidth
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param fullwidth {boolean} Fullwidth table
  * @param comparative {boolean} If specific design add this
  * @param striped {boolean} striped lines

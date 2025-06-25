@@ -3,7 +3,7 @@ import { Text, TextMarkup } from '@/components/text'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services/classify'
-import { inputTitle } from '@trilogy-ds/locales/lib/otp.json'
+import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -22,7 +22,7 @@ import { useOtp } from './hooks/useOtp'
  * @param label {string} Label for OTP
  * @param help {string} error message to display
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  */
 const Otp = React.forwardRef<OtpRef, OtpProps>(
   (
@@ -72,7 +72,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
             <input
               aria-disabled={disabled}
               key={idx}
-              type='text'
+              type={'tel'} // To display the numeric keypad and avoid showing the plus/minus arrows.
               inputMode='numeric'
               autoComplete='one-time-code'
               autoFocus={idx === 0 && autoFocus}
@@ -84,7 +84,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
               onFocus={inputOnFocus}
               onChange={inputOnChange ? (e) => inputOnChange(e, idx) : undefined}
               disabled={disabled}
-              title={formatTranslation(inputTitle, String(idx + 1), String(length))}
+              title={formatTranslation(translation.inputTitle, String(idx + 1), String(length))}
               {...others}
             />
           ))}

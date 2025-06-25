@@ -9,7 +9,7 @@ import { BoxItemProps } from './BoxItemProps'
  * @param children {React.ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const BoxItem = ({ className, id, children, ...others }: BoxItemProps): JSX.Element => {
   return (

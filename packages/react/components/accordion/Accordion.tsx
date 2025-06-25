@@ -7,7 +7,7 @@ import * as React from 'react'
 /**
  * Accordion Component
  * @param id
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param children
  * @param others
  */

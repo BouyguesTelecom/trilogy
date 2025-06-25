@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { IconProps, IconRef } from './IconProps'
+import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 
 /**
  * Icon Component
@@ -21,13 +22,13 @@ import { IconProps, IconRef } from './IconProps'
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className Additionnal css classes
+ * @param className Additional css classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
 const Icon = React.forwardRef<IconRef, IconProps>(
   (
-    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, ...others },
+    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, ...others },
     ref,
   ): JSX.Element => {
     const background =
@@ -44,6 +45,7 @@ const Icon = React.forwardRef<IconRef, IconProps>(
         circled && !color && has('text-white'),
         color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
         skeleton && is('loading'),
+        align && clsx(is('flex'), is(getJustifySelfClassName(align))),
         background,
         className,
       ),

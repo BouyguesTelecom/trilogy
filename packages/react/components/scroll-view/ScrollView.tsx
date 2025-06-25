@@ -12,7 +12,7 @@ import { ScrollViewProps, ScrollViewRef } from './ScrollViewProps'
  * @param id {string} Id for Web / TestID for Native
  * @param scrollDirection {Direction} Scroll vertically or horizontally
  * - -------------- WEB PROPERTIES -----------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * - -------------- NATIVE PROPERTIES ---------------
  * @param footer {React.ReactNode} ScrollView footer
  * @param bounce {boolean} Bounce effect on scroll

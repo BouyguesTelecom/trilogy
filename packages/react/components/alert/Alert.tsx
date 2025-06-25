@@ -122,7 +122,7 @@ const ToasterAlert = ({
  * @param onClick {Function} onClick Event for all alert
  * @param display {Boolean} Display Alert component
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  * @param markup {string} Title markup (h2 | h3 | h4 | h5 | h6 | p)
 

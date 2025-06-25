@@ -2,11 +2,11 @@
 
 @import "utilities/all";
 
-/* All Base Without reset */
+/* All Base Without elements */
 @import "base/fonts";
 @import "base/helpers";
 @import "base/loading";
-@import "base/elements";
+@import "base/reset";
 
 @import "elements";
 @import "components";

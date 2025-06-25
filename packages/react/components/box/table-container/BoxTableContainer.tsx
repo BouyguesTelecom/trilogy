@@ -8,7 +8,7 @@ import { BoxTableContainerProps, BoxTableContainerRef } from './BoxTableContaine
  * Box Table Component
  * @param children {React.ReactNode} Children
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
 const BoxTableContainer = React.forwardRef<BoxTableContainerRef, BoxTableContainerProps>(

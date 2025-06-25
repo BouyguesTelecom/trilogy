@@ -17,7 +17,7 @@ import { TextProps, TextRef } from './TextProps'
  * @param marginless {boolean} Removes margin after Text
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * - --------------- WEB PROPERTIES ----------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param markup {TextMarkup} Text markup
  * - --------------- NATIVE PROPERTIES ----------------------------------
  */

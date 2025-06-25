@@ -8,7 +8,7 @@ import { useAccordionBody } from '../hooks/useAccordionItem'
 /**
  * Accordion Item Component
  * @param active {boolean} Active Accordion Item
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem

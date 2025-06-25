@@ -10,10 +10,12 @@ import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentPr
  * Timeline Content Component
  * @param children {ReactNode} Use it if you want custom children for content
  * @param content {string} Text content
- * @param contentLink {string} Text for content link
  * @param heading {string} Text heading
+ * @param linkLabel {string} Text for content link
+ * @param linkTo {string} href of link
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id
  */
 const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(
   ({ children, className, id, heading, content, linkLabel, linkTo, ...others }, ref): JSX.Element => {

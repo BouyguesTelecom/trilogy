@@ -13,7 +13,7 @@ import { ProgressProps, ProgressRef } from './ProgressProps'
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
  * @param small {boolean} Small progress
  * -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS classes
+ * @param className {string} Additional CSS classes
  */
 const Progress = React.forwardRef<ProgressRef, ProgressProps>(
   (

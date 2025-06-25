@@ -11,7 +11,7 @@ import { BoxFooterProps, BoxFooterRef } from './BoxFooterProps'
  * @param children {React.ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param id
  */
 const BoxFooter = React.forwardRef<BoxFooterRef, BoxFooterProps>(

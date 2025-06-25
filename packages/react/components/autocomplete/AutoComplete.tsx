@@ -140,10 +140,10 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param getSuggestions {Function} getSuggestions event
  * - ------------------ WEB PROPERTIES -----------------------
  * @param name {string} Input name
- * @param classNameMenu {string} Additionnal CSS Classes for Menu
+ * @param classNameMenu {string} Additional CSS Classes for Menu
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  * @param loading {boolean} Loading input
  */

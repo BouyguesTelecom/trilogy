@@ -14,7 +14,7 @@ import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
  * @param align
  * @param id
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
   ({ children, className, id, align, variant, ...others }, ref): JSX.Element => {

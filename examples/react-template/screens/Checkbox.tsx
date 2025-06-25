@@ -73,6 +73,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 icon={IconName.ALERT}
               />
               <CheckboxTile
+                sticker='Avantage'
                 id='tile-2'
                 label='label2'
                 value='value2'
@@ -82,6 +83,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 checked={checkedTile === 'tile-2'}
               />
               <CheckboxTile
+                sticker='Avantage'
                 id='tile-3'
                 label='label3'
                 value='value3'
@@ -106,19 +108,25 @@ export const CheckboxScreen = (): JSX.Element => {
                 horizontal
               />
               <CheckboxTile
+                sticker='Avantages'
                 id='tile-horizontal-2'
                 label='label-t-2'
                 value='value-t-2'
-                description='Je suis une description simple'
+                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.'
                 icon={IconName.ALERT}
                 horizontal
               />
+
               <CheckboxTile
+                sticker='Avantages'
                 id='tile-horizontal-3'
                 label='label-t-3'
                 value='value-t-3'
-                description='Je suis une description simple'
-                icon={IconName.ALERT}
+                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.s'
                 horizontal
               />
             </CheckboxTiles>

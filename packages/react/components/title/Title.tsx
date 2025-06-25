@@ -51,7 +51,7 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * @param overline {boolean} Overline above title
  * - --------------- WEB PROPERTIES ----------------------------------
  * @param markup {string} h1 | h2 | h3 | h4 | h5 | h6 | p | span | div
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param marginless {boolean} delete margin
  * @param htmlContent {string} Content Html In Title Component
  * - --------------- NATIVE PROPERTIES ----------------------------------

@@ -11,7 +11,7 @@ import { TagListProps, TagListRef } from './TagListProps'
  * @param children {ReactNode} Children Tag List
  * @param marginless {boolean} delete margin
  *  - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, ...others }, ref) => {
   return (

@@ -17,7 +17,7 @@ import { ImageProps, ImageRef } from './ImageProps'
  * @param align {Alignable} Align Image
  * @param circled {boolean} Circled Image
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
 const Image = React.forwardRef<ImageRef, ImageProps>(
   ({ src, alt = '', className, id, circled, width, height, onClick, radius, align, ...others }, ref): JSX.Element => {

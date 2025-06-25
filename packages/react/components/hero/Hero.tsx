@@ -17,7 +17,7 @@ import React from 'react'
  * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
  * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 const Hero = React.forwardRef<HeroRef, HeroProps>(

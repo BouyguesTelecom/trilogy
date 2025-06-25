@@ -2,6 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTab } from '@/components/tabs/hooks/useTab'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
+import { Text } from '@/components/text'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
@@ -17,40 +18,22 @@ import React from 'react'
  * @param to {string} Link
  * @param href {string} <a />
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */
 const Tab = React.forwardRef<TabRef, TabProps>(
   (
-    { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ariaControls, ...others },
+    { active, className, onClick, routerLink = 'a', iconName, label, disabled, testId, ariaControls, ...others },
     ref,
   ) => {
+    const Tag = others.href || others.to ? routerLink : 'button'
     const { index, ...props } = others as any
-    const { handleClick, isActive, small } = useTab({ index, disabled, routerLink, onClick, active })
+    const { handleClick, isActive, small } = useTab({ index, disabled, onClick, active })
     const classes = hashClass(clsx('tab', className, { 'is-active': isActive }))
 
-    if (routerLink && (to || href)) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-      return (
-        <RouterLink
-          ref={ref}
-          data-testid={testId}
-          to={to}
-          href={href}
-          className={classes}
-          onClick={handleClick}
-          data-index={index}
-          {...others}
-        >
-          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
-          {label && label}
-        </RouterLink>
-      )
-    }
-
     return (
-      <button
+      <Tag
         ref={ref}
         aria-controls={ariaControls}
         aria-disabled={disabled}
@@ -67,8 +50,8 @@ const Tab = React.forwardRef<TabRef, TabProps>(
         <div className={hashClass('tab-icon')}>
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
-        {label && label}
-      </button>
+        {label && <Text>{label}</Text>}
+      </Tag>
     )
   },
 )

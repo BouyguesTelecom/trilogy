@@ -16,7 +16,7 @@ import { StickerProps, StickerRef } from './StickerProps'
  * @param outlined {boolean} Outlined sticker
  * @param iconName {IconName} Icon
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal css classes
+ * @param className {string} Additional css classes
  * @param others
  */
 const Sticker = React.forwardRef<StickerRef, StickerProps>(

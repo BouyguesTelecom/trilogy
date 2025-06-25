@@ -13,7 +13,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param format {CountdownFormat} Format of countdown
  * @param inverted {Boolean} White countdown on darked background
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param event
  * @param small
  * @param others

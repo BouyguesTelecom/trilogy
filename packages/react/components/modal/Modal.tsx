@@ -3,7 +3,7 @@ import { ModalProps, ModalRef } from '@/components/modal/ModalProps'
 import { Title, TitleLevels, TitleMarkup } from '@/components/title'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
-import { accessibilityLabelButtonClose } from '@trilogy-ds/locales/lib/modal.json'
+import translation from '@trilogy-ds/locales/lib/modal'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -13,11 +13,11 @@ import { useModal } from './hooks/useModal'
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Title Modal
- * @param onClose {Function} Additionnal close custom function
- * @param onOpen {Function} Additionnal open custom function
+ * @param onClose {Function} Additional close custom function
+ * @param onOpen {Function} Additional open custom function
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param panel {boolean} Panel Side Modal
  * @param accessibilityLabel {string} Accessibility label
  * - -------------------------- NATIVE PROPERTIES -------------------------------
@@ -85,7 +85,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   className={hashClass(clsx('modal-close', is('large')))}
                   type={ButtonType.BUTTON}
                 >
-                  <span className={hashClass(clsx('sr-only'))}>{accessibilityLabelButtonClose}</span>
+                  <span className={hashClass(clsx('sr-only'))}>{translation.accessibilityLabelButtonClose}</span>
                 </button>
               )}
               <Title id={modalGeneratedId} level={TitleLevels.THREE} markup={TitleMarkup.H1}>

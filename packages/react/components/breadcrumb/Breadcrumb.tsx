@@ -1,5 +1,5 @@
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { accessibilityLabel } from '@trilogy-ds/locales/lib/breadcrumb.json'
+import translation from '@trilogy-ds/locales/lib/breadcrumb'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -10,7 +10,7 @@ import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
  * @param children {React.ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
@@ -21,7 +21,7 @@ const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
         id={id}
         role='navigation'
         className={hashClass(clsx('breadcrumb', className))}
-        aria-label={accessibilityLabel}
+        aria-label={translation.accessibilityLabel}
         {...others}
       >
         <ul>{children}</ul>

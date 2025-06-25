@@ -11,7 +11,7 @@ import { useAutocompleteItem } from '../hooks/useAutocompleteItem'
  * @param suggestionSelected {Function} select item
  * @param active {boolean} isActive
  * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const AutoCompleteItem = <T extends string | Item<unknown>>({
   children,

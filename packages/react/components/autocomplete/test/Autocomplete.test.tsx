@@ -87,7 +87,7 @@ describe('AutoComplete', () => {
   it('input should  have classname autocomplete', () => {
     render(<AutoComplete data={testItems} />)
     const input = screen.getByRole('textbox')
-    expect(input.parentNode?.parentNode).toHaveClass('autocomplete-input')
+    expect(input.parentNode?.parentNode).toHaveClass('field')
   })
 
   it('input should  default status class', () => {

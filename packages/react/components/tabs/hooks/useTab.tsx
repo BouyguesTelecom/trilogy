@@ -5,12 +5,13 @@ import React from 'react'
 interface IParams {
   index: number
   active?: boolean
-  routerLink?: React.ElementType
   disabled?: boolean
   onClick?: ClickEvent
+  href?: string
+  to?: string
 }
 
-export const useTab = ({ index, disabled, routerLink, onClick, active }: IParams) => {
+export const useTab = ({ index, disabled, onClick, active, href, to }: IParams) => {
   try {
     const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
     const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
@@ -18,11 +19,11 @@ export const useTab = ({ index, disabled, routerLink, onClick, active }: IParams
     const handleClick = React.useCallback(
       (e: React.MouseEvent) => {
         if (!disabled) {
-          if (!routerLink) setActiveIndex(index)
+          if (!href && !to) setActiveIndex(index)
           if (onClick) onClick(e)
         }
       },
-      [disabled, onClick, index, setActiveIndex, routerLink],
+      [disabled, onClick, index, setActiveIndex],
     )
 
     React.useEffect(() => {

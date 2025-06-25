@@ -10,7 +10,7 @@ import { StyleSheet, View } from 'react-native'
 /**
  * ListItem Component
  * @param children {React.ReactNode}
- * @param customIcon {IconName | React.ReactNode } Icon name | children
+ * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  */
 const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(({ children, status, iconName }, ref): JSX.Element => {
@@ -78,3 +78,4 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(({ children,
 ListItem.displayName = ComponentName.ListItem
 
 export default ListItem
+

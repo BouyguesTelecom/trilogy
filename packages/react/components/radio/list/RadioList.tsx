@@ -11,7 +11,7 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * RadioList Component
  * @param children {ReactNode} CheckboxList children
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param align {boolean} align radios
  * @param verticalDesktop {boolean} Vertical radios
  * @param horizontalMobile {boolean} Expect mobile screen

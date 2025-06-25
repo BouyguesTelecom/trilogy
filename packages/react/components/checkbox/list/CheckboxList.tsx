@@ -11,7 +11,7 @@ import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
  * Checkbox List Component
  * @param children {ReactNode} CheckboxList children
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param align {boolean} align Checkboxes
  * @param verticalDesktop {boolean} Vertical Checkboxes
  * @param horizontalMobile {boolean} Expect mobile screen

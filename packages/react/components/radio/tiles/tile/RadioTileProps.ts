@@ -9,6 +9,7 @@ export interface RadioTileProps extends RadioProps {
   horizontal?: boolean
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
+  sticker?: string
 }
 
 export type RadioTileRef = HTMLDivElement

@@ -30,10 +30,14 @@ export const AutoCompleteScreen = (): JSX.Element => {
   const [autoCompleteInputValue, setAutoCompleteInputValue] = useState<string>('')
   const [status, setStatus] = useState<boolean>(false)
   const [data] = [['name the song', 'age', 'car', 'test', 'trilogy']]
+  const [isLoading, setIsLoading] = useState(false)
 
   const onChange = (e) => {
-    console.log('OnChange Autocomplete : ', e)
+    setIsLoading(true)
     setValue(e.inputValue)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
   }
 
   return (
@@ -121,6 +125,7 @@ export const AutoCompleteScreen = (): JSX.Element => {
         </Column>
       </Columns>
       <AutoComplete
+        loading={isLoading}
         iconNameLeft={IconName.INFOS_CIRCLE}
         displayMenu={false}
         value={value}

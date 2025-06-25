@@ -23,7 +23,7 @@ import { useButton } from './hooks/useButton'
  * @param iconName {IconName} If Icon, Button + Icon && Button IconName
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {ButtonMarkup} HTML element : button|input|a (ONLY FOR WEB)
- * @param className {string} Additionnal css classes (ONLY FOR WEB)
+ * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param id {string} Custom id for button (ONLY FOR WEB)
  * @param to {string} Link
  * @param href {string} Href
@@ -128,7 +128,15 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     }
 
     return (
-      <a id={id} aria-label={accessibilityLabel} className={classes} href={href} onClick={handleClick} {...others}>
+      <a
+        id={id}
+        aria-label={accessibilityLabel}
+        className={classes}
+        href={href}
+        onClick={handleClick}
+        {...others}
+        {...(isDisabled && { 'aria-disabled': true })}
+      >
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
       </a>

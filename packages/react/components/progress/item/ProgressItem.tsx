@@ -15,7 +15,7 @@ import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
  * @param children {React.ReactNode}
  * @param accessibilityLabel {string} Accessibility label
  * -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS classes
+ * @param className {string} Additional CSS classes
  */
 const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
   (

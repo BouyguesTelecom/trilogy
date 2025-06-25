@@ -8,7 +8,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { has, is } from '@/services'
-import inputLocale from '@trilogy-ds/locales/lib/input.json'
+import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
 import React, { useId } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -43,7 +43,7 @@ export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
  * @param focused {boolean} Fucus mode
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param onMouseEnter {Function} onMouseEnter Input Event
  * @param onMouseLeave {Function} onMouseLeave Input Event
  * @param onKeyPress {Function} onKeyPress Input Event
@@ -219,7 +219,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
           {!loading && type === InputType.PASSWORD && (
             <IconWrapper
-              srOnly={!isShowPwd ? inputLocale.showPassword : inputLocale.hidePassword}
+              srOnly={!isShowPwd ? translation.showPassword : translation.hidePassword}
               className='icon-right'
               name={isShowPwd ? IconName.EYE_SLASH : IconName.EYE}
               onPress={handlePressIconPwd}

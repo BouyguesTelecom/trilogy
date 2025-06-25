@@ -12,7 +12,7 @@ import { useTabs } from './hooks/useTabs'
  * @param activeIndex {number} default active tab index
  * @param inverted {boolean} Inverted style
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  * @param fullwidth {boolean} Fullwidth tabs
  * @param small {boolean} small tabs
  * @param id

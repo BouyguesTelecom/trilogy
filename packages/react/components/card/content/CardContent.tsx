@@ -9,7 +9,7 @@ import { CardContentProps } from './CardContentProps'
  * @param children {React.ReactNode} Custom Card Content Children
  * @param titleSup {string} Add a sup title
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additionnal CSS Classes
+ * @param className {string} Additional CSS Classes
  */
 const CardContent = ({ children, className, id, ...others }: CardContentProps): JSX.Element => {
   return (
