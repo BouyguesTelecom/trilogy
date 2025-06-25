@@ -20,6 +20,7 @@ import {
   Text,
   Title,
 } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {
@@ -104,6 +105,7 @@ export const RadioScreen = (): JSX.Element => {
                 name={'name-tile-1'}
               />
               <RadioTile
+                sticker='Avantages'
                 description={
                   <>
                     <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
@@ -112,7 +114,9 @@ export const RadioScreen = (): JSX.Element => {
                     <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
                     <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
                       Between the 20/02 and 23/02
-                      <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
+                      {!isMobile && (
+                        <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
+                      )}
                     </Text>
                   </>
                 }
@@ -124,13 +128,13 @@ export const RadioScreen = (): JSX.Element => {
                 value='three'
               />
               <RadioTile
+                sticker='Avantage'
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'four'}
                 id='tile-4'
                 label='Label 4'
                 value='four'
-                description='Description'
-                icon={IconName.ALERT}
+                description='Je suis une description simple'
                 name={'name-tile-1'}
               />
             </RadioTiles>
@@ -152,24 +156,29 @@ export const RadioScreen = (): JSX.Element => {
                 name={'name-tile-horizontal-1'}
               />
               <RadioTile
+                sticker='Avantages'
                 checked={radioTileHorizontal === 'two'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
                 id='tile-horizontal-2'
                 label='Label 2'
                 value='two'
-                description='A simple description'
+                description=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.s'
                 icon={IconName.ALERT}
                 horizontal
                 name={'name-tile-horizontal-1'}
               />
               <RadioTile
+                sticker='Avantages'
                 checked={radioTileHorizontal === 'three'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
                 id='tile-horizontal-3'
                 label='Label 3'
                 value='three'
-                description='A simple description'
-                icon={IconName.ALERT}
+                description=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.s'
                 horizontal
                 name={'name-tile-horizontal-1'}
               />

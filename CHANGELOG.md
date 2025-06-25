@@ -3,7 +3,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.5.0] - 2025-xx-xx
+## [4.6.0] - 2025-xx-xx
+- Add prop "sticker" on RadioTile and CheckboxTile component
+- Fix stroke color on RadioTile and CheckboxTile component
+- Fix font weight of Sticker component
+- Fix Align prop on Icon web component
+- Fix Button markup A disabled
+
+## [4.5.1] - 2025-04-28
+- Fix Tab component with markup a
+- Fix arrows in TabList component
+- Fix font in Tab
+
+
+## [4.5.0] - 2025-05-26
 - Add props small into Tabs
 - Add arrows to scroll in TabList component
 - Update size of Tabs component
@@ -12,6 +25,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix set current page in Pagination component
 - Fix absolute Autocomplete list width
 - Fix listitem interface
+- Fix Alert native (color)
+- Update Price: add data-price attribute
+- Fix Autocomplete warning in console
+- Fix input type password icon
+- Fix JS doc
+- Fix some css
+- Fix otp
 
 
 ## [4.4.0] - 2025-04-24

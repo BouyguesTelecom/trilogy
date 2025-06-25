@@ -2,6 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
+import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -24,12 +25,14 @@ import React from 'react'
  */
 const Tab = React.forwardRef<TabRef, TabProps>(
   (
-    { active, className, onClick, to, href, routerLink, iconName, label, disabled, testId, ariaControls, ...others },
+    { active, className, onClick, routerLink = 'a', iconName, label, disabled, testId, ariaControls, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
     const { index, ...props } = others as any
     const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
+
+    const Tag = others.href || others.to ? routerLink : 'button'
 
     const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
     const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
@@ -37,38 +40,19 @@ const Tab = React.forwardRef<TabRef, TabProps>(
     const handleClick = React.useCallback(
       (e: React.MouseEvent) => {
         if (!disabled) {
-          if (!routerLink) setActiveIndex(index)
+          if (!others.href && !others.to) setActiveIndex(index)
           if (onClick) onClick(e)
         }
       },
-      [disabled, onClick, index, setActiveIndex, routerLink],
+      [disabled, onClick, index, setActiveIndex],
     )
 
     React.useEffect(() => {
       if (active) setActiveIndex(index)
     }, [active, setActiveIndex, index])
 
-    if (routerLink && (to || href)) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
-      return (
-        <RouterLink
-          ref={ref}
-          data-testid={testId}
-          to={to}
-          href={href}
-          className={classes}
-          onClick={handleClick}
-          data-index={index}
-          {...others}
-        >
-          <div className='tab-icon'>{iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}</div>
-          {label && label}
-        </RouterLink>
-      )
-    }
-
     return (
-      <button
+      <Tag
         ref={ref}
         aria-controls={ariaControls}
         aria-disabled={disabled}
@@ -85,8 +69,8 @@ const Tab = React.forwardRef<TabRef, TabProps>(
         <div className={hashClass(styled, 'tab-icon')}>
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
-        {label && <div>{label}</div>}
-      </button>
+        {label && <Text>{label}</Text>}
+      </Tag>
     )
   },
 )
