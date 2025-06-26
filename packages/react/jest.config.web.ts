@@ -4,6 +4,7 @@ export default {
   roots: ['<rootDir>'],
   moduleNameMapper: {
     '^@/(.*)': '<rootDir>/$1',
+    '^@trilogy-ds/locales/lib/(.*)$': '<rootDir>/../locales/en/src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   snapshotResolver: '<rootDir>/snapshotResolver.ts',
