@@ -23,6 +23,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       icon,
       horizontal,
       sticker,
+      stickerVariant = VariantState.ACCENT,
       ...others
     },
     ref,
@@ -110,7 +111,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         <TouchableOpacity ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
           {sticker && (
             <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
-              <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+              <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
             </ViewRN>
           )}
 
@@ -161,7 +162,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       >
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
-            <Sticker label={sticker} variant={VariantState.ACCENT} className='radio-sticker' small />
+            <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
           </ViewRN>
         )}
         <View style={{ gap: SpacerSize.TWO }}>

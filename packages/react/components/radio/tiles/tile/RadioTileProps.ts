@@ -1,5 +1,6 @@
 import { IconName, IconNameValues } from '@/components/icon'
 import { RadioProps } from '@/components/radio/RadioProps'
+import { VariantProps } from '@/objects/facets/Variant'
 import { TouchableOpacity } from 'react-native'
 
 /**
@@ -10,6 +11,7 @@ export interface RadioTileProps extends RadioProps {
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
   sticker?: string
+  stickerVariant?: VariantProps['variant']
 }
 
 export type RadioTileRef = HTMLDivElement
