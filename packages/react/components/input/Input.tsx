@@ -58,17 +58,16 @@ interface IconWrapper {
  * @param onKeyUp {Function} onKeyUp Input Event
  * @param onIconClick {Function} onIconClick Input Event
  * @param onClick {Function} onClick Input Event
- * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Textarea min length
  * @param accessibilityLabel {string} Accessibility label
  * @param required {boolean} Required input
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
+
 const Input = React.forwardRef<InputRef, InputProp>(
   (
     {
-      forceControl,
       label,
       sample,
       className,
@@ -113,12 +112,10 @@ const Input = React.forwardRef<InputRef, InputProp>(
     const { styled } = useTrilogyContext()
     const idHelp = useId()
     const idSample = useId()
-
     const inputIcon = new Map()
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
     inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
     inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
-
     const [_value, setValue] = useState<string>(defaultValue ?? '')
     const [isFocused, setIsFocused] = useState<boolean>(focused ?? false)
     const [isDirty, setIsDirty] = useState<boolean>(false)
@@ -286,9 +283,6 @@ const Input = React.forwardRef<InputRef, InputProp>(
                   element.selectionEnd = caret
                 })
               }
-              // ---------------------------------------
-              // eslint-disable-next-line no-console
-              if (!forceControl) setValue(e.target.value)
               if (onChange) {
                 onChange({
                   inputName: e.target.name,
