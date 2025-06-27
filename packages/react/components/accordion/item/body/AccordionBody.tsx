@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
 import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
+import { useAccordionBody } from './hooks/useAccordionBoy'
 
 /**
  * Accordion Body Component
@@ -14,18 +14,10 @@ import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
  */
 const AccordionBody = React.forwardRef<AccordionBodyRef, AccordionBodyProps>(
   ({ children, className, id, ...others }, ref): React.JSX.Element => {
-    const { styled } = useTrilogyContext()
+    const { onClick } = useAccordionBody()
 
     return (
-      <div
-        ref={ref}
-        id={id}
-        className={hashClass(styled, clsx('accordion-body', className))}
-        onClick={(e) => {
-          e.stopPropagation()
-        }}
-        {...others}
-      >
+      <div ref={ref} id={id} className={hashClass(clsx('accordion-body', className))} onClick={onClick} {...others}>
         {children}
       </div>
     )

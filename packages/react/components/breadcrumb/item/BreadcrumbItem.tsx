@@ -1,6 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
@@ -22,13 +21,11 @@ import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from './BreadcrumbItemProps
  */
 const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWeb>(
   ({ children, active, id, href, to, routerLink, testId, onClick, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     if (routerLink && to) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
         <li ref={ref} id={id} data-testid={testId} onClick={onClick} aria-current={active ? 'page' : undefined}>
-          <RouterLink className={hashClass(styled, clsx('link'))} to={to} {...others}>
+          <RouterLink className={hashClass(clsx('link'))} to={to} {...others}>
             {children}
           </RouterLink>
         </li>

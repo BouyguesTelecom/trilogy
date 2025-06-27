@@ -1,5 +1,4 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -19,21 +18,24 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  */
 const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
   ({ src, alt = '', className, id, size, onClick, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('card-image', size && is(`${size}`), className))
+    const classes = hashClass(clsx('card-image', size && is(`${size}`), className))
 
     return (
       <div
         ref={ref}
         id={id}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          onClick?.(e)
-          e.stopPropagation()
-        }}
+        onClick={
+          onClick
+            ? (e) => {
+                // eslint-disable-next-line no-unused-expressions
+                onClick?.(e)
+                e.stopPropagation()
+              }
+            : undefined
+        }
         className={classes}
       >
-        <figure className={hashClass(styled, clsx('image'))} {...others}>
+        <figure className={hashClass(clsx('image'))} {...others}>
           <img {...{ src: typeof src === 'string' ? src : '' }} alt={alt} />
         </figure>
       </div>

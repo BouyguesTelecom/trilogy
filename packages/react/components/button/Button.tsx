@@ -1,5 +1,4 @@
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
@@ -9,6 +8,7 @@ import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
 import { ButtonProps, ButtonRef } from './ButtonProps'
+import { useButton } from './hooks/useButton'
 
 /**
  * Button component
@@ -55,7 +55,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     ref,
   ): JSX.Element => {
     const isDisabled = others.disabled || false
-    const { styled } = useTrilogyContext()
+    const { handleClick } = useButton({ isDisabled, onClick })
 
     /** Check if specified markup is valid */
     const isCorrectMarkup = (stringMarkup: ButtonMarkup | ButtonMarkupValues) => {
@@ -78,7 +78,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       )
     }
 
-    const classes = hashClass(styled, getClassNames(loading, variant, fullwidth, className))
+    const classes = hashClass(getClassNames(loading, variant, fullwidth, className))
     const Tag = markup && isCorrectMarkup(markup) ? markup : 'button'
 
     if (Tag === 'button' && !href && !to) {
@@ -90,11 +90,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           className={classes}
           disabled={isDisabled}
           name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={handleClick}
           type={type ?? 'button'}
           {...others}
         >
@@ -112,11 +108,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           className={classes}
           aria-label={accessibilityLabel}
           name={name}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            !isDisabled && onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={handleClick}
           disabled={isDisabled}
           type={type ?? 'submit'}
           value={`${children}`}
@@ -137,16 +129,11 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
 
     return (
       <a
-        ref={ref as React.Ref<HTMLAnchorElement>}
         id={id}
         aria-label={accessibilityLabel}
         className={classes}
         href={href}
-        onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
-          !isDisabled && onClick?.(e)
-          e.stopPropagation()
-        }}
+        onClick={handleClick}
         {...others}
         {...(isDisabled && { 'aria-disabled': true })}
       >

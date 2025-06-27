@@ -1,11 +1,10 @@
 import { TabsProps, TabsRef } from '@/components/tabs/TabsProps'
-import { TabsContext } from '@/components/tabs/context'
-import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { useTabs } from './hooks/useTabs'
 
 /**
  * Tabs Component
@@ -20,33 +19,16 @@ import { ComponentName } from '../enumsComponentsName'
  */
 const Tabs = React.forwardRef<TabsRef, TabsProps>(
   ({ children, className, id, activeIndex, fullwidth, inverted, small }, ref) => {
-    const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
-    const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
+    const { ContextProvider, isInverted } = useTabs({ activeIndex, inverted, small })
 
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(
-      styled,
-      clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), small && is('small'), className),
-    )
-
-    React.useEffect(() => {
-      activeIndex !== undefined && setCurrentIndex(activeIndex)
-    }, [activeIndex])
+    const classes = hashClass(clsx('tabs', fullwidth && is('fullwidth'), isInverted && is('inverted'), className))
 
     return (
-      <TabsContext.Provider
-        value={{
-          small,
-          activeIndex: currentIndex,
-          inverted: isInverted,
-          setInverted: setIsInverted,
-          setActiveIndex: setCurrentIndex,
-        }}
-      >
+      <ContextProvider>
         <div ref={ref} id={id} className={classes} data-tabs-context=''>
           {children}
         </div>
-      </TabsContext.Provider>
+      </ContextProvider>
     )
   },
 )

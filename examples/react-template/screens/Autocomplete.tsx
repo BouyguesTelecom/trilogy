@@ -7,7 +7,6 @@ import {
   Columns,
   Divider,
   IconName,
-  InputClickEvent,
   Item,
   Section,
   Text,
@@ -39,10 +38,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
     setTimeout(() => {
       setIsLoading(false)
     }, 1000)
-  }
-
-  const onIconClick = (e: InputClickEvent) => {
-    console.log('onIconClick Autocomplete : ', e)
   }
 
   return (
@@ -144,7 +139,6 @@ export const AutoCompleteScreen = (): JSX.Element => {
           console.log('onItemSelected : ', e.value)
         }}
         onChange={onChange}
-        onIconClick={onIconClick}
         onFocus={(e) => console.log('FOCUS : ', e)}
         onBlur={(e) => console.log('BLUR : ', e)}
       />

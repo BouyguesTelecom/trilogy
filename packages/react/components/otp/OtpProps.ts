@@ -1,5 +1,5 @@
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { SafeAreaView } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
 
 /**
  * Otp Interface

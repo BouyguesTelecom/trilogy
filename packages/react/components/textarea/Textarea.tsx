@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Icon } from '@/components/icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { TextareaProps, TextareaRef } from './TextareaProps'
+import { useTextarea } from './hooks/useTextarea'
 
 /**
  * Textarea Component
@@ -58,27 +58,21 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
     },
     ref,
   ): JSX.Element => {
-    const [value, setValue] = useState(defaultValue || '')
-    const { styled } = useTrilogyContext()
+    const { value, handleChange } = useTextarea({ onChange, defaultValue })
 
-    useEffect(() => {
-      setValue(defaultValue || '')
-    }, [defaultValue])
-
-    const wrapperClasses = hashClass(styled, clsx('field textarea-wrapper', className, status && is(status)))
-    const classes = hashClass(styled, clsx('textarea'))
+    const wrapperClasses = hashClass(clsx('field textarea-wrapper', className, status && is(status)))
+    const classes = hashClass(clsx('textarea'))
     const helpClasses = clsx('help', status && is(status))
-    const counterClasses = hashClass(styled, clsx('counter', maxLength))
+    const counterClasses = hashClass(clsx('counter', maxLength))
 
     const controlClasses = hashClass(
-      styled,
       clsx('control', iconNameLeft && has('icons-left'), iconNameRight && has('icons-right')),
     )
 
     return (
       <div id={id} className={wrapperClasses}>
         {label && (
-          <label className={hashClass(styled, 'textarea-label')} htmlFor={id}>
+          <label className={hashClass('textarea-label')} htmlFor={id}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -100,15 +94,7 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
             disabled={disabled}
             className={classes}
             value={value}
-            onChange={(e) => {
-              setValue(e.target.value)
-              if (onChange) {
-                onChange({
-                  textareaName: e.target.name,
-                  textareaValue: e.target.value,
-                })
-              }
-            }}
+            onChange={handleChange}
             placeholder={placeholder}
             rows={rows}
             maxLength={maxLength}
@@ -117,7 +103,7 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
           />
           {iconNameLeft && <Icon name={iconNameLeft} size='small' className='icon-left' />}
           {iconNameRight && <Icon name={iconNameRight} size='small' className='icon-right' />}
-          {maxLength && <div className={counterClasses}>{`${value.length}/${maxLength?.toString()}`}</div>}
+          {maxLength && <div className={counterClasses}>{`${value?.length}/${maxLength?.toString()}`}</div>}
         </div>
 
         {help && <Text className={helpClasses}>{help}</Text>}

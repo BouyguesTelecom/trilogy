@@ -1,6 +1,5 @@
 import { ColumnsProps, ColumnsRef } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
@@ -26,10 +25,7 @@ const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
     { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, fullheight, ...others },
     ref,
   ) => {
-    const { styled } = useTrilogyContext()
-
     const classes = hashClass(
-      styled,
       clsx(
         'columns',
         multiline && is('multiline'),

@@ -1,9 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { CardContentProps, CardContentRef } from './CardContentProps'
+import React from 'react'
+import { CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
@@ -12,16 +11,13 @@ import { CardContentProps, CardContentRef } from './CardContentProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CardContent = React.forwardRef<CardContentRef, CardContentProps>(
-  ({ children, className, id, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    return (
-      <div ref={ref} id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
-        {children}
-      </div>
-    )
-  },
-)
+const CardContent = ({ children, className, id, ...others }: CardContentProps): JSX.Element => {
+  return (
+    <div id={id} className={hashClass(clsx('card-content', className))} {...others}>
+      {children}
+    </div>
+  )
+}
 
 CardContent.displayName = ComponentName.CardContent
 export default CardContent

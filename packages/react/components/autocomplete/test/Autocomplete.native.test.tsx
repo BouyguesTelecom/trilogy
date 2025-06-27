@@ -1,6 +1,6 @@
+import AutoComplete from '@/components/autocomplete/AutoComplete.native'
 import { fireEvent, render, screen, userEvent } from '@testing-library/react-native'
 import * as React from 'react'
-import AutoComplete from '../AutoComplete.native'
 jest.useFakeTimers()
 const testItems = ['Apple', 'Banana', 'Cherry', 'Grape']
 
@@ -41,8 +41,7 @@ describe('Autocomplete component', () => {
   })
 
   it('have default value', async () => {
-    render(<AutoComplete placeholder="placeholder" value='toto' data={testItems} />)
+    render(<AutoComplete placeholder='placeholder' value='toto' data={testItems} />)
     expect(screen.getByPlaceholderText('placeholder')).toBeOnTheScreen()
-
   })
 })

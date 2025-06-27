@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { createContext } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { CardProps, CardRef } from './CardProps'
+import { useCard } from './hooks/cardContext'
 
-export const CardContext = createContext({ horizontal: false })
+export const CardContext = useCard()
 
 /**
  * Card Component
@@ -26,14 +26,11 @@ const Card = React.forwardRef<CardRef, CardProps>(
     { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
     ref,
   ) => {
-    const { styled } = useTrilogyContext()
-
     const hoverStyle: React.CSSProperties = {
-      cursor: 'pointer',
+      cursor: onClick ? 'pointer' : 'default',
     }
 
     const classes = hashClass(
-      styled,
       clsx(
         'card',
         flat && !floating && is('flat'),
@@ -53,11 +50,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
           ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           href={href}
-          onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
-            onClick?.(e)
-            e.stopPropagation()
-          }}
+          onClick={onClick}
           {...others}
           className={classes}
         />
@@ -68,9 +61,9 @@ const Card = React.forwardRef<CardRef, CardProps>(
       <div
         ref={ref as React.Ref<HTMLDivElement>}
         id={id}
-        onClick={onClick && onClick}
+        onClick={onClick ? onClick : undefined}
         className={classes}
-        style={onClick && { ...hoverStyle }}
+        style={onClick ? { ...hoverStyle } : undefined}
         {...others}
       />
     )

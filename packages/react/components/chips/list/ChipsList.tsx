@@ -1,5 +1,4 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -17,12 +16,7 @@ import { ChipsListProps, ChipsListRef } from './ChipsListProps'
  */
 const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
   ({ className, id, children, multiple, scrollable, accessibilityLabelledBy, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-
-    const classes = hashClass(
-      styled,
-      clsx('chips-list', multiple && is('multiple'), scrollable && is('scrollable'), className),
-    )
+    const classes = hashClass(clsx('chips-list', multiple && is('multiple'), scrollable && is('scrollable'), className))
 
     return (
       <div ref={ref} id={id} role='group' aria-labelledby={accessibilityLabelledBy} className={classes} {...others}>

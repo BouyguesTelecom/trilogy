@@ -1,8 +1,7 @@
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { has, is } from '@/services/classify'
+import { has, is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -32,15 +31,12 @@ const Icon = React.forwardRef<IconRef, IconProps>(
     { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, ...others },
     ref,
   ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-
     const background =
       (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
       (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
       ''
 
     const classes = hashClass(
-      styled,
       clsx(
         'icon',
         stretched && is('stretched'),
@@ -57,7 +53,7 @@ const Icon = React.forwardRef<IconRef, IconProps>(
 
     return (
       <span id={id} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+        <i className={hashClass(clsx(name))} aria-hidden='true' />
       </span>
     )
   },

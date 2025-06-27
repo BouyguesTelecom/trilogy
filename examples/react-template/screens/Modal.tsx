@@ -1,5 +1,4 @@
-import { IconColor, isMobile } from '@trilogy-ds/react'
-
+import { IconColor, isMobile, ModalSize } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -17,7 +16,6 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
-  ModalSize,
   Section,
   Text,
   Title,

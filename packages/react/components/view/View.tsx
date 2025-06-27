@@ -1,14 +1,9 @@
-import * as React from "react"
-import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from "./ViewProps"
-import clsx from "clsx"
-import { has, is } from "@/services"
-import {
-  getLoadingClassName,
-  getJustifyClassName,
-  getAlignClassName, getBackgroundClassName,
-} from "@/objects"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { hashClass } from '@/helpers'
+import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
+import { has, is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -30,68 +25,66 @@ import { useTrilogyContext } from "@/context"
  * - ------------------ NATIVE PROPERTIES ------------
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewRef, ViewProps>(({
-  children,
-  style,
-  className,
-  loading,
-  onClick,
-  backgroundColor,
-  backgroundSrc,
-  inverted,
-  fullwidth = true,
-  markup,
-  flexable,
-  justify,
-  align,
-  ...others
-}, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const View = React.forwardRef<ViewRef, ViewProps>(
+  (
+    {
+      children,
+      style,
+      className,
+      loading,
+      onClick,
+      backgroundColor,
+      backgroundSrc,
+      inverted,
+      fullwidth = true,
+      markup,
+      flexable,
+      justify,
+      align,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
+    const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
+      if (stringMarkup in ViewMarkup || Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)) return true
+    }
 
-  const isCorrectMarkup = (stringMarkup: ViewMarkup | ViewMarkupValues) => {
-    if (
-      stringMarkup in ViewMarkup ||
-      Object.values(ViewMarkup).includes(stringMarkup as ViewMarkup)
+    const Tag: any = markup && isCorrectMarkup(markup) ? markup : 'div'
+
+    const classes = hashClass(
+      clsx(
+        typeof loading === 'string' && is(getLoadingClassName(loading)),
+        typeof loading === 'boolean' ? is('loading') : is('loaded'),
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        (inverted && is('inverted')) || is('base'),
+        fullwidth && is('fullwidth'),
+        flexable && is('flex'),
+        typeof justify === 'string' && is(getJustifyClassName(justify)),
+        typeof align === 'string' && is(getAlignClassName(align)),
+        className,
+      ),
     )
-      return true
-  }
 
-  const Tag: any = markup && isCorrectMarkup(markup) ? markup : "div"
-
-  const classes = hashClass(
-    styled,
-    clsx(
-      typeof loading === "string" && is(getLoadingClassName(loading)),
-      typeof loading === "boolean" ? is("loading") : is("loaded"),
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted') || is('base'),
-      fullwidth && is("fullwidth"),
-      flexable && is("flex"),
-      typeof justify === "string" && is(getJustifyClassName(justify)),
-      typeof align === "string" && is(getAlignClassName(align)),
-      className
+    return (
+      <Tag
+        ref={ref}
+        onClick={onClick}
+        style={style}
+        className={classes}
+        {...(backgroundSrc && {
+          style: {
+            backgroundImage: `url(${backgroundSrc})`,
+            backgroundSize: 'cover',
+            backgroundPosition: '50%',
+          },
+        })}
+        {...others}
+      >
+        {children}
+      </Tag>
     )
-  )
-
-  return (
-    <Tag
-      ref={ref}
-      onClick={onClick}
-      style={style}
-      className={classes}
-      {...(backgroundSrc && {
-        style: {
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
-        },
-      })}
-      {...others}
-    >
-      {children}
-    </Tag>
-  )
-})
+  },
+)
 
 export default View

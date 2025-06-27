@@ -1,9 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { has, is } from '@/services/classify'
+import { getAlignClassName, getBackgroundClassName } from '@/objects'
+import { has, is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
@@ -20,7 +18,6 @@ import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
  */
 const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
   ({ children, className, id, align, variant, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
     let alignClass = null
     if (align) {
       alignClass =
@@ -30,7 +27,6 @@ const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
         null
     }
     const classes = hashClass(
-      styled,
       clsx('box-header', className, variant && has(getBackgroundClassName(variant)), align && alignClass),
     )
 

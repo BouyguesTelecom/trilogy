@@ -1,3 +1,3 @@
-import AccordionItem from './AccordionItem'
+import AccordionItem from '@/components/accordion/item/AccordionItem'
 
 export default AccordionItem
