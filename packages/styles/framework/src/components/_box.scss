@@ -143,10 +143,6 @@ a.box {
       border-bottom-right-radius: var(--radius);
     }
 
-    @include mobile {
-      text-align: left;
-    }
-
     > .is-unboxed {
       margin-left: calc(var(--padding-box) * -1);
       margin-right: calc(var(--padding-box) * -1);
