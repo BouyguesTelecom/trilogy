@@ -9,6 +9,7 @@ import { RangeProps, RangeRef } from './RangeProps'
 /**
  * Range Component
  * @param single {boolean} display one cursor
+ * @param value {number} only for slider
  * - -------------------------- MOBILE PROPERTIES -------------------------------
  * @param min {number} min length
  * @param max {number} max length
@@ -36,14 +37,15 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
       name,
       gap = 0,
       single,
+      value,
     },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const refTrack = React.useRef(null)
 
     const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
-    const [cursorMax, setCursorMax] = React.useState<number>(valueMax ?? max)
-    const refTrack = React.useRef(null)
+    const [cursorMax, setCursorMax] = React.useState<number>(single ? value || 0 : valueMax ?? max)
 
     React.useEffect(() => {
       if (refTrack.current) {
@@ -61,8 +63,12 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     }, [valueMin])
 
     React.useEffect(() => {
-      setCursorMax(valueMax || max)
-    }, [valueMax])
+      if (!single) setCursorMax(valueMax || max)
+    }, [valueMax, single])
+
+    React.useEffect(() => {
+      if (single && value !== undefined) setCursorMax(value)
+    }, [value, single])
 
     const handleChangeCursorMin = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
