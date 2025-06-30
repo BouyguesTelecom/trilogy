@@ -79,13 +79,20 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     )
 
     const handleMouseUpMin = React.useCallback(() => {
-      if (onChangeMin) {
+      if (onChangeMin && !single) {
         onChangeMin({
           inputName: name,
           inputValue: cursorMin,
         })
+
+        if (onChange && single) {
+          onChange({
+            inputName: name,
+            inputValue: cursorMin,
+          })
+        }
       }
-    }, [onChangeMin, name, cursorMin])
+    }, [onChangeMin, name, cursorMin, onChange, single])
 
     const handleMouseUpMax = React.useCallback(() => {
       if (onChangeMax) {
@@ -117,7 +124,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
             />
           )}
           <input
-            className={hashClass(styled, clsx('range-cursor range-cursor-max'))}
+            className={hashClass(styled, clsx('range-cursor', !single && 'range-cursor-max'))}
             onTouchEnd={handleMouseUpMax}
             onMouseUp={handleMouseUpMax}
             onChange={handleChangeCursorMax}
@@ -138,7 +145,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
             </div>
           )}
           <div>
-            <span className={hashClass(styled, clsx('range-value-max'))}>{cursorMax}</span>
+            <span className={hashClass(styled, clsx(single ? 'range-value' : 'range-value-max'))}>{cursorMax}</span>
             {unit && <span> {unit}</span>}
           </div>
         </div>
