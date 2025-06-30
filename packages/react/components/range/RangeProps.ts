@@ -27,5 +27,9 @@ export interface RangeProps extends Accessibility, Dev, CommonProps {
   single?: boolean
 }
 
+export interface RangeNativeProps extends Omit<RangeProps, 'value'> {
+  value?: number[]
+}
+
 export type RangeRef = HTMLDivElement
 export type RangeNativeRef = View
