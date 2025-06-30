@@ -11,13 +11,23 @@
 @import "./framework/src/utilities/post";
 @import "./themes/default/src/utilities/post";
 
-/* All Base Without elements */
+/* All Base Without reset */
+$body-background-color: #f6f6f6;
+$body-size: 10px;
+$body-rendering: optimizeLegibility !default;
+$body-family: $family-primary !default;
+$body-weight: $weight-normal !default;
+$body-line-height: 1.5 !default;
+
 @import "./framework/src/base/reset";
 @import "./framework/src/base/generic";
 @import "./framework/src/base/color";
 @import "./framework/src/base/fonts";
 @import "./framework/src/base/helpers";
 @import "./framework/src/base/loading";
+
+@import "./framework/src/elements";
+
 
 @import './framework/src/components/autocomplete';
 @import './framework/src/components/badge';

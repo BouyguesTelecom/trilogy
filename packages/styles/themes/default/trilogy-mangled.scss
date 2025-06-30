@@ -1,6 +1,5 @@
-@charset "utf-8";
-
 // You must build fonts before
+
 // Base tools (functions)
 @import "./framework/src/utilities/tools";
 
@@ -11,26 +10,10 @@
 @import "./framework/src/utilities/post";
 @import "./themes/default/src/utilities/post";
 
-/* All Base Without elements */
-@import "./framework/src/base/reset";
-@import "./framework/src/base/generic";
-@import "./framework/src/base/color";
-@import "./framework/src/base/fonts";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
-
-@import './framework/src/components';
-
-@import "./framework/src/grid/all";
-@import "./framework/src/layout/all";
+@import "./framework/src/all";
 
 // Icons
 @import "../../assets/icons/all";
 
-// Assets and theme (common + default)
+// Assets and theme (default)
 @import "./themes/default/src/_all";
-
-.partial {
-  @extend .main-wrap;
-  @extend .reset-wrap;
-}
