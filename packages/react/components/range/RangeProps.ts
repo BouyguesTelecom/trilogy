@@ -15,6 +15,7 @@ export interface RangeProps extends Accessibility, Dev, CommonProps {
   min: number
   max: number
   label?: string
+  value?: number
   valueMin?: number
   valueMax?: number
   unit?: string
