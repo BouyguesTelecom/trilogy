@@ -17,7 +17,6 @@ export const RangeScreen = (): JSX.Element => {
         gap={2}
       />
       <Range
-        value={50}
         single
         min={0}
         max={100}
