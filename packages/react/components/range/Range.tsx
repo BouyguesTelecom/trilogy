@@ -79,29 +79,29 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     )
 
     const handleMouseUpMin = React.useCallback(() => {
-      if (onChangeMin && !single) {
+      if (onChangeMin) {
         onChangeMin({
           inputName: name,
           inputValue: cursorMin,
         })
-
-        if (onChange && single) {
-          onChange({
-            inputName: name,
-            inputValue: cursorMin,
-          })
-        }
       }
-    }, [onChangeMin, name, cursorMin, onChange, single])
+    }, [onChangeMin, name, cursorMin])
 
     const handleMouseUpMax = React.useCallback(() => {
-      if (onChangeMax) {
+      if (onChangeMax && !single) {
         onChangeMax({
           inputName: name,
           inputValue: cursorMax,
         })
       }
-    }, [onChangeMax, name, cursorMax])
+
+      if (onChange && single) {
+        onChange({
+          inputName: name,
+          inputValue: cursorMax,
+        })
+      }
+    }, [onChangeMax, name, cursorMax, onChange, single])
 
     return (
       <div ref={ref} id={id} className={hashClass(styled, clsx('range-container', className))}>
