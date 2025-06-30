@@ -3,14 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.6.0] - 2025-xx-xx
+## [4.6.0] - 2025-06-29
 - Add prop "sticker" on RadioTile and CheckboxTile component
+- Remove forced "text-align" on Box Content
 - Fix stroke color on RadioTile and CheckboxTile component
 - Fix font weight of Sticker component
 - Fix Align prop on Icon web component
 - Fix Button markup A disabled
 
-## [4.5.1] - 2025-04-28
+## [4.5.1] - 2025-05-28
 - Fix Tab component with markup a
 - Fix arrows in TabList component
 - Fix font in Tab
