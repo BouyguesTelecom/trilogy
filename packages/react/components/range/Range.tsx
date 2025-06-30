@@ -80,7 +80,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
 
     const handleChangeCursorMax = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value) > cursorMin + gap) setCursorMax(Number(e.target.value))
+        if (Number(e.target.value) >= cursorMin + gap) setCursorMax(Number(e.target.value))
       },
       [cursorMax, cursorMin],
     )

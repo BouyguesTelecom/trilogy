@@ -25,7 +25,6 @@ export const RangeScreen = (): JSX.Element => {
         id={'test'}
         name='name-range'
         onChange={(e) => console.log(e)}
-        gap={2}
       />
     </Section>
   )
