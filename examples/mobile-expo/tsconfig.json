@@ -17,5 +17,5 @@
     "../react/**/*.ts",
     "../react/**/*.tsx"
   ],
-  "extends": "node_modules/expo/tsconfig.base"
+  "extends": "expo/tsconfig.base"
 }
