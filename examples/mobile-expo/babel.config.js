@@ -1,5 +1,5 @@
-module.exports = function(api) {
-  api.cache(true);
+module.exports = function (api) {
+  api.cache(true)
   return {
     presets: [['module:metro-react-native-babel-preset', { useTransformReactJSXExperimental: true }]],
     plugins: [
@@ -9,6 +9,13 @@ module.exports = function(api) {
           runtime: 'automatic',
         },
       ],
-    ]
-  };
-};
+
+      [
+        '@babel/plugin-transform-private-methods',
+        {
+          loose: true,
+        },
+      ],
+    ],
+  }
+}
