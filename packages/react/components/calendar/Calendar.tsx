@@ -61,7 +61,7 @@ const Calendar = ({
   const dateEnd = hashClass(styled, clsx('calendar-date-end'))
   const rangeClasse = hashClass(styled, clsx('calendar-range'))
   const dateInRange = hashClass(styled, clsx('calendar-date-in-range'))
-  const rangeCompletedClasse = hashClass(styled, clsx('calendar-range-completed'))
+  const rangeInitClasse = hashClass(styled, clsx('calendar-range-init'))
   const isRange = checkIsRange(activeDate)
 
   const isNextDisabled = React.useMemo(
@@ -280,7 +280,7 @@ const Calendar = ({
       className={clsx(
         calendarClasses,
         isRange && rangeClasse,
-        isRange && (activeDate as Date[]).length === 2 && rangeCompletedClasse,
+        isRange && (activeDate as Date[]).length === 1 && rangeInitClasse,
       )}
     >
       <thead className={calendarheaderClasses}>

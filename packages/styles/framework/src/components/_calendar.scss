@@ -17,7 +17,7 @@
     }
   }
 
-  &-range:not(.calendar-range-completed) {
+  &-range.calendar-range-init {
     .calendar-week-day:not(.calendar-date-in-range) {
       button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
         background-color: getColor('main');
