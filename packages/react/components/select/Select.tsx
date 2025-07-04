@@ -21,11 +21,10 @@ import { SelectDynamic, SelectNative } from './web'
  * @param help {string} Help for select
  * @param sample {string} Sample for select (below label)
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param native {boolean} Display native-old select web
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
- * @param onFocus {Function} OnFocus Input Event
- * @param onBlur {Function} onBlur Input Event
+ * @param onFocus {Function} OnFocus Select Event
+ * @param onBlur {Function} onBlur Select Event
  * @param custom {boolean} Display native-old select web
  */
 const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
