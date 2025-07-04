@@ -5,8 +5,6 @@ import { IconStatus } from '../../components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
-  InputAutoCompleteType,
-  InputAutoCompleteTypeValues,
   InputKeyboardAppearance,
   InputKeyboardAppearanceValues,
   InputKeyboardType,
@@ -17,8 +15,9 @@ import {
   InputTextContentTypeValues,
 } from '../../components/input/InputEnum'
 import { Accessibility, Dev } from '../../objects'
-import { TextInput } from 'react-native'
+import { TextInput, TextInputProps } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { HTMLInputAutoCompleteAttribute } from 'react'
 
 export interface TextareaChangeEvent {
   textareaName: string
@@ -27,41 +26,43 @@ export interface TextareaChangeEvent {
 
 type TextareaChangeEventHandler = (event: TextareaChangeEvent) => void
 
-type TextareaPropsWeb = Accessibility &
-  Dev & {
-    placeholder?: string
-    defaultValue?: string
-    value?: string
-    disabled?: boolean
-    onChange?: TextareaChangeEventHandler
-    status?: InputStatus | InputStatusValues | IconStatus
-    help?: string
-    /** @deprecated */
-    name?: string
-    keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
-    autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
-    autoCorrect?: any
-    autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
-    textContentType?: InputTextContentType | InputTextContentTypeValues
-    keyboardType?: InputKeyboardType | InputKeyboardTypeValues
-    minLength?: number
-    maxLength?: number
-    dynamicPlaceholder?: boolean
-    rows?: number
-    label?: string
-    iconNameLeft?: IconName | IconNameValues
-    iconNameRight?: IconName | IconNameValues
-    customHeight?: number
-    required?: boolean
-    sample?: string
-  }
+interface Textarea extends Accessibility, Dev {
+  placeholder?: string
+  defaultValue?: string
+  value?: string
+  disabled?: boolean
+  onChange?: TextareaChangeEventHandler
+  status?: InputStatus | InputStatusValues | IconStatus
+  help?: string
+  /** @deprecated */
+  name?: string
+  keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues
+  autoCapitalize?: InputAutoCapitalize | InputAutoCapitalizeValues
+  autoCorrect?: any
+  textContentType?: InputTextContentType | InputTextContentTypeValues
+  keyboardType?: InputKeyboardType | InputKeyboardTypeValues
+  minLength?: number
+  maxLength?: number
+  dynamicPlaceholder?: boolean
+  rows?: number
+  label?: string
+  iconNameLeft?: IconName | IconNameValues
+  iconNameRight?: IconName | IconNameValues
+  customHeight?: number
+  required?: boolean
+  sample?: string
+}
 
-export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>
+export interface TextareaNativeProps extends Textarea, ReferenceableNative<TextInput> {
+  autoCompleteType?: TextInputProps['autoComplete']
+}
 
 /**
  * Textarea Interface
  */
-export type TextareaProps = TextareaPropsWeb & Referenceable<HTMLTextAreaElement> & CommonProps
+export interface TextareaProps extends Textarea, Referenceable<HTMLTextAreaElement>, CommonProps {
+  autoCompleteType?: HTMLInputAutoCompleteAttribute
+}
 
 export type TextareaRef = HTMLTextAreaElement
 export type TextareaNativeRef = TextInput
