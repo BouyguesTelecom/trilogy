@@ -28,6 +28,8 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       placeholder,
       required,
       custom,
+      help,
+      sample,
       ...others
     },
     ref,
@@ -70,6 +72,8 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     return (
       <div className={selectClasses} {...others}>
         <Input
+          sample={sample}
+          help={help}
           required={required}
           status={status}
           ref={ref as React.RefObject<HTMLInputElement>}

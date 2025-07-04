@@ -44,6 +44,8 @@ interface Props {
   custom?: boolean
   status?: SelectStatus | SelectStatusValues
   required?: boolean
+  sample?: string
+  help?: string
 }
 
 export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, CommonProps, Props {
