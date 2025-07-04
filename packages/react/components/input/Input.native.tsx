@@ -317,7 +317,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       >
         {!dynamicPlaceholder && label && (
           <>
-            <Text typo={TypographyColor.TEXT_DISABLED}>
+            <Text typo={TypographyColor.TEXT_MAIN}>
               {label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}
             </Text>
             <Spacer size={SpacerSize.THREE} />
@@ -326,7 +326,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
         {!dynamicPlaceholder && label && sample && (
           <>
-            <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>
+            <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_MAIN}>
               {sample}
             </Text>
             <Spacer size={SpacerSize.THREE} />

@@ -34,7 +34,7 @@ export const SelectView = (): JSX.Element => {
           <BoxContent>
             {!isMobile && (
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Select label={'label'} {...register('gender')}>
+                <Select label={'label'} {...register('gender')} sample='Select sample' help='Select helper'>
                   {POSTALCODE.map((postalcode) => (
                     <SelectOption
                       key={postalcode.code}
@@ -54,6 +54,8 @@ export const SelectView = (): JSX.Element => {
         <Box flat>
           <BoxContent>
             <Select
+              sample='Select sample'
+              help='Select helper'
               required
               custom
               disabled

@@ -5,7 +5,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
 import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/select/SelectProps'
-import { Text, TextMarkup } from '@/components/text'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
@@ -29,16 +29,21 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
       accessibilityLabel,
       status,
       required,
+      sample,
+      help,
       ...others
     },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const idHelp = React.useId()
+    const idSample = React.useId()
 
     const [focused, setIsFocused] = React.useState<boolean>(false)
     const [selectedValues, setSelectedValues] = React.useState(selected)
     const selectClasses = hashClass(styled, clsx('select', className))
     const controlClass = hashClass(styled, clsx('control', iconName && 'has-icons-left'))
+    const helpClasses = clsx('help', status && is(status))
 
     const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
       setIsFocused(true)
@@ -66,6 +71,11 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
                 </Text>
               )}
             </label>
+          )}
+          {sample && (
+            <Text className='input-sample' level={TextLevels.TWO} id={idSample}>
+              {sample}
+            </Text>
           )}
           <div className={controlClass}>
             <select
@@ -107,6 +117,11 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
             </select>
             {iconName && <Icon name={iconName} size='small' />}
           </div>
+          {help && (
+            <Text className={helpClasses} id={idHelp}>
+              {help}
+            </Text>
+          )}
         </div>
       </div>
     )
