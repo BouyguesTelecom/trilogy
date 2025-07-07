@@ -66,7 +66,7 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
           min={min}
           max={max}
           step={1}
-          allowOverlap={false}
+          allowOverlap={single}
           snapped
           customMarker={Marker}
           selectedStyle={{
