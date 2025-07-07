@@ -16,10 +16,10 @@
         "expo-font",
         {
           "fonts": [
-            "@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf",
-            "@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf",
-            "@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf",
-            "@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"
+            "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf",
+            "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf",
+            "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf",
+            "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"
           ]
         }
       ]
@@ -28,7 +28,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.mobile-expo"
     },
     "android": {
       "adaptiveIcon": {

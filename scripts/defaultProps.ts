@@ -82,7 +82,6 @@ function processFiles() {
       const defaultObject = generateDefaultObject(sourceFile, interfaceName)
       const outputFilePath = path.join(path.dirname(sourceFile.getFilePath()), `${interfaceName}Defaults.js`)
       writeObjectToFile(outputFilePath, defaultObject)
-      console.log(`Fichier généré avec succès: ${outputFilePath}`)
     })
   })
 }
