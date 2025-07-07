@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.7.0] - 2025-xx-xx
 - Add props "help" & "sample" into Select component
+- Fix icon left on input type password
 
 ## [4.6.0] - 2025-06-29
 - Add prop "sticker" on RadioTile and CheckboxTile component
