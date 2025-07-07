@@ -14,10 +14,11 @@ import { RangeNativeProps, RangeNativeRef } from './RangeProps'
  * @param labelValueCursorMin {string} label to display next to value display
  * @param onChange {function}
  * @param value {number[]} array of values
+ * @param simple {boolean} display one cursor
  */
 const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
-  ({ min, max, label, unit, onChange, value, single }, ref): JSX.Element => {
-    const [values, setValues] = React.useState<number[]>(value || single ? [0] : [0, 100])
+  ({ min, max, label, unit, onChange, value, simple }, ref): JSX.Element => {
+    const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
     const [width, setWidth] = React.useState<number>(0)
 
     const styles = StyleSheet.create({
@@ -66,7 +67,7 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
           min={min}
           max={max}
           step={1}
-          allowOverlap={single}
+          allowOverlap={simple}
           snapped
           customMarker={Marker}
           selectedStyle={{
@@ -90,7 +91,7 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
             )}
           </View>
 
-          {!single && (
+          {!simple && (
             <View style={{ flexDirection: 'row' }}>
               <Text level={TextLevels.THREE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                 {values[1]}
