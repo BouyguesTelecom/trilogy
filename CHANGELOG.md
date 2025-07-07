@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add props "help" & "sample" into Select component
 - Fix icon left on input type password
 
+## [4.6.1] - 2025-07-07
+- Fix modal z-index
+
 ## [4.6.0] - 2025-06-29
 - Add prop "sticker" on RadioTile and CheckboxTile component
 - Remove forced "text-align" on Box Content
