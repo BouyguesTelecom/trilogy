@@ -24,7 +24,7 @@ export interface RangeProps extends Accessibility, Dev, CommonProps {
   name?: string
   gap?: number
   onChange?: InputChangeEventHandlerNative
-  single?: boolean
+  simple?: boolean
 }
 
 export interface RangeNativeProps extends Omit<RangeProps, 'value'> {
