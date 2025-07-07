@@ -211,7 +211,7 @@ export const InputScreen = (): JSX.Element => {
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
         <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input type={InputType.PASSWORD} placeholder='Input type password' />
+        <Input type={InputType.PASSWORD} placeholder='Input type password' iconNameLeft='tri-alert' />
         <Input type={InputType.DATE} placeholder='Input type date' />
         <Input iconNameLeft='tri-alert' type={InputType.EMAIL} placeholder='Input type mail with custom icon left' />
       </AutoLayout>
@@ -219,6 +219,7 @@ export const InputScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.FIVE} />
       <Title level={4}>Input with security gauge</Title>
       <Input
+        iconNameLeft='tri-alert'
         type='password'
         securityGauge
         placeholder='this is my placeholder'
