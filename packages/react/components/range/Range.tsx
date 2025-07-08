@@ -9,17 +9,25 @@ import { RangeProps, RangeRef } from './RangeProps'
 /**
  * Range Component
  * @param simple {boolean} display one cursor
+ * @param unit {string} display unit of values
  * - -------------------------- MOBILE PROPERTIES -------------------------------
  * @param min {number} min length
  * @param max {number} max length
  * @param label {string} label of range
  * @param labelValueCursorMin {string} label to display next to value display
  * @param value {number[]} array of values
+ * @param onChange {function} on change cursors
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param gap {number} space max between min and max cursor
  * @param onChangeMin {function} on change min cursor
  * @param onChangeMax {function} on change max cursor
  * @param value {number} only for slider
+ * @param onChange {function} on change cursor (works with simple prop)
+ * @param className {string} Additional CSS Classes
+ * @param id {string} id for Range
+ * @param valueMin {number} value min cursor
+ * @param valueMax {number} value max cursor
+ * @param name {string} input name
  */
 const Range = React.forwardRef<RangeRef, RangeProps>(
   (
