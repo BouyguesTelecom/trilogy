@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Section, Range } from "@trilogy-ds/react/components";
+import { Range, Section } from '@trilogy-ds/react/components'
 
 export const RangeScreen = (): JSX.Element => {
   return (
@@ -7,16 +6,26 @@ export const RangeScreen = (): JSX.Element => {
       <Range
         min={0}
         max={100}
-        unit={"%"}
+        unit={'%'}
         valueMin={0}
         valueMax={100}
-        label="Ceci est un label"
-        id={"test"}
-        name="name-range"
+        label='Ceci est un label'
+        id={'test'}
+        name='name-range'
         onChangeMin={(e) => console.log(e)}
         onChangeMax={(e) => console.log(e)}
         gap={2}
       />
+      <Range
+        simple
+        min={0}
+        max={100}
+        unit={'%'}
+        label='Ceci est un label'
+        id={'test'}
+        name='name-range'
+        onChange={(e) => console.log(e)}
+      />
     </Section>
-  );
-};
+  )
+}
