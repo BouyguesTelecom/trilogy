@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add props "help" & "sample" into Select component
 - Fix icon left on input type password
 - Add prop "simple" on Range component to transform it into Slider component
+- Fix increment on ol List component
 
 ## [4.6.1] - 2025-07-07
 - Fix modal z-index
