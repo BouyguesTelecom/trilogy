@@ -10,7 +10,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const ListScreen = (): JSX.Element => {
   return (
@@ -107,6 +106,24 @@ export const ListScreen = (): JSX.Element => {
           <ListItem iconName={IconName.ALERT}>
             <Text level={TextLevels.ONE}>Ceci est un titre </Text>
           </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>List ul ol</Title>
+        <List ordered>
+          <ListItem>test</ListItem>
+          <ListItem>
+            test<List></List>
+          </ListItem>
+          <ListItem>test</ListItem>
+          <ListItem>
+            test
+            <List>
+              <ListItem>test</ListItem>
+              <ListItem>test</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>test</ListItem>
+          <ListItem>test</ListItem>
         </List>
       </AutoLayout>
     </Section>
