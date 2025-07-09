@@ -110,20 +110,34 @@ export const ListScreen = (): JSX.Element => {
 
         <Title level={TitleLevels.THREE}>List ul ol</Title>
         <List ordered>
-          <ListItem>test</ListItem>
           <ListItem>
-            test<List></List>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
           </ListItem>
-          <ListItem>test</ListItem>
           <ListItem>
-            test
             <List>
-              <ListItem>test</ListItem>
-              <ListItem>test</ListItem>
+              <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
             </List>
           </ListItem>
-          <ListItem>test</ListItem>
-          <ListItem>test</ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+            <List>
+              <ListItem>
+                <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+              </ListItem>
+              <ListItem>
+                <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
         </List>
       </AutoLayout>
     </Section>
