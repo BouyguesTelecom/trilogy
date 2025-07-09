@@ -2,7 +2,7 @@
 ol.list {
   counter-reset: customCounter;
 
-  li.list-item {
+  & > li.list-item {
     counter-increment: customCounter;
     &:not(:has(.icon)) {
       &::before{
