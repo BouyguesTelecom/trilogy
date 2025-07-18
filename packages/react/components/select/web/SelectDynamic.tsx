@@ -94,10 +94,12 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }, [selectedOptionValues, options])
 
     useEffect(() => {
-      if (children && Array.isArray(children)) {
-        optionsListSize.current = children.length * OPTION_SIZE
+      const childrenCount = React.Children.count(children)
+      console.log(childrenCount)
+      if (childrenCount > 0) {
+        optionsListSize.current = childrenCount * OPTION_SIZE
       }
-    }, [])
+    }, [children])
 
     return (
       <div className={selectClasses} ref={containerRef} {...others}>
