@@ -120,6 +120,12 @@ $status-select: (
       }
     }
   }
+
+  &-options-top {
+    top: auto;
+    bottom: 100%;
+    overflow-y: scroll;
+  }
 }
 
 
