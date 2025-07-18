@@ -104,7 +104,6 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   autoCompleteType?: InputAutoCompleteType | InputAutoCompleteTypeValues
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
-  forceControl?: boolean
   onMouseEnter?: (event: React.MouseEvent) => void
   onMouseLeave?: (event: React.MouseEvent) => void
   keyType?: KeyType
