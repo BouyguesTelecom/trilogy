@@ -95,7 +95,6 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
 
     useEffect(() => {
       const childrenCount = React.Children.count(children)
-      console.log(childrenCount)
       if (childrenCount > 0) {
         optionsListSize.current = childrenCount * OPTION_SIZE
       }
