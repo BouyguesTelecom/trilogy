@@ -47,7 +47,26 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     const optionsClasses = hashClass(styled, clsx('select-options', openUpward && 'select-options-top'))
     const portalClasses = hashClass(styled, 'select-trilogy_modal_open')
 
-    const onClickInput = () => setIsVisibleOptions((prev) => !prev)
+    const onClickInput = () => {
+      if (containerRef.current && optionsListSize.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        const spaceBelow = windowHeight - rect.bottom
+        const spaceAbove = rect.top
+        const padding = 10
+        const maxHeightBelow = spaceBelow - padding
+        const maxHeightAbove = spaceAbove - padding
+        const openUpward = maxHeightBelow < optionsListSize.current && maxHeightAbove > maxHeightBelow
+        setOpenUpward(openUpward)
+        setDropdownStyles({
+          maxHeight: openUpward ? `${maxHeightAbove}px` : `${maxHeightBelow}px`,
+          overflowY: 'auto',
+        })
+      }
+
+      setIsVisibleOptions((prev) => !prev)
+    }
+
     const onCloseOptions = () => setIsVisibleOptions(false)
 
     const onKeyPressInput = (keyCode: number) => {
@@ -74,24 +93,6 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
         return elm?.label
       })
     }, [selectedOptionValues, options])
-
-    useEffect(() => {
-      if (isVisibleOptions && containerRef.current && optionsListSize.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        const spaceBelow = windowHeight - rect.bottom
-        const spaceAbove = rect.top
-        const padding = 10
-        const maxHeightBelow = spaceBelow - padding
-        const maxHeightAbove = spaceAbove - padding
-        const openUpward = maxHeightBelow < 200 && maxHeightAbove > maxHeightBelow
-        setOpenUpward(openUpward)
-        setDropdownStyles({
-          maxHeight: openUpward ? `${maxHeightAbove}px` : `${maxHeightBelow}px`,
-          overflowY: 'auto',
-        })
-      }
-    }, [isVisibleOptions, optionsListSize])
 
     useEffect(() => {
       if (children && Array.isArray(children)) {
