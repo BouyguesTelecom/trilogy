@@ -49,13 +49,12 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
 
     const onClickInput = () => {
       if (containerRef.current && optionsListSize.current) {
-        const rect = containerRef.current.getBoundingClientRect()
+        const { top, bottom } = containerRef.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
-        const spaceBelow = windowHeight - rect.bottom
-        const spaceAbove = rect.top
+        const spaceBelow = windowHeight - bottom
         const padding = 10
         const maxHeightBelow = spaceBelow - padding
-        const maxHeightAbove = spaceAbove - padding
+        const maxHeightAbove = top - padding
         const openUpward = maxHeightBelow < optionsListSize.current && maxHeightAbove > maxHeightBelow
         setOpenUpward(openUpward)
         setDropdownStyles({
