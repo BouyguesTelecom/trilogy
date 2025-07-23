@@ -1,4 +1,4 @@
-import { Column, Columns, TrilogyColor } from '@trilogy-ds/react'
+import { TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -12,6 +12,8 @@ import {
   Card,
   CardContent,
   CardImage,
+  Column,
+  Columns,
   Section,
   Spacer,
   SpacerSize,
@@ -26,6 +28,55 @@ export const CardScreen = (): JSX.Element => {
 
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+      <Columns multiline>
+        <Column size={6}>
+          <Card horizontal href='https://google.com'>
+            <CardContent>
+              <Title level={TitleLevels.FIVE} markup='h5'>
+                Markup H5 - level FOUR
+              </Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Button
+                variant={ButtonVariant.PRIMARY}
+                onClick={() => window.open('https://fr.wikipedia.org/wiki/Shiba_(chien)', '_blank')}
+              >
+                Enabled
+              </Button>
+            </CardContent>
+            <CardImage
+              size={'3'}
+              src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
+            />
+          </Card>
+        </Column>
+        <Column size={6}>
+          <Card horizontal href='https://google.com'>
+            <CardImage
+              size={'3'}
+              src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
+            />
+            <CardContent>
+              <Title level={TitleLevels.FIVE} markup='h5'>
+                Markup H5 - level FOUR
+              </Title>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                vera.
+              </Text>
+              <Button
+                variant={ButtonVariant.PRIMARY}
+                onClick={() => window.open('https://fr.wikipedia.org/wiki/Shiba_(chien)', '_blank')}
+              >
+                Enabled
+              </Button>
+            </CardContent>
+          </Card>
+        </Column>
+      </Columns>
+
       <Columns>
         <Column size={6}>
           <Card>
@@ -133,6 +184,10 @@ export const CardScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.THREE} />
       <Spacer size={SpacerSize.THREE} />
       <Card horizontal>
+        <CardImage
+          size={'3'}
+          src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
+        />
         <CardContent>
           <Title level={TitleLevels.FIVE} markup='h5'>
             Markup H5 - level FOUR
@@ -147,10 +202,6 @@ export const CardScreen = (): JSX.Element => {
             Enabled
           </Button>
         </CardContent>
-        <CardImage
-          size={'3'}
-          src='https://i.etsystatic.com/10951167/r/il/df66c4/1860902191/il_570xN.1860902191_kuoj.jpg'
-        />
       </Card>
 
       <Title level={TitleLevels.TWO}>Horizontal reversed </Title>

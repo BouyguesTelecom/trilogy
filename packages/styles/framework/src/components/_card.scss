@@ -1,3 +1,11 @@
+$basis-values: (
+  'is-1': 70%,
+  'is-2': 60%,
+  'is-3': 50%,
+  'is-4': 40%
+);
+
+
 .card {
   max-width: 100%;
   display: flex;
@@ -103,6 +111,12 @@
       }
     }
 
+    @for $i from 1 through 4 {
+      &:has(.card-content + .card-image.is-#{$i}) .card-content {
+        flex-basis: map-get($basis-values, 'is-#{$i}');
+      }
+    }
+    
     .card-image {
       max-width: 100%;
 
