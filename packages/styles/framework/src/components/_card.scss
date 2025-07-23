@@ -103,6 +103,26 @@
       }
     }
 
+    &:has(.card-content + .card-image) .card-content {
+      flex-basis: 80%;
+    }
+
+    &:has(.card-content + .card-image.is-1) .card-content {
+      flex-basis: 70%;
+    }
+
+    &:has(.card-content + .card-image.is-2) .card-content {
+      flex-basis: 60%;
+    }
+
+    &:has(.card-content + .card-image.is-3) .card-content {
+      flex-basis: 50%;
+    }
+
+    &:has(.card-content + .card-image.is-4) .card-content {
+      flex-basis:40%;
+    }
+
     .card-image {
       max-width: 100%;
 
