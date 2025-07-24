@@ -1,25 +1,5 @@
-import {
-  Alignable,
-  Icon,
-  Popover,
-  RadioList,
-  Section,
-  Spacer,
-  SpacerSize,
-  TypographyBold,
-  TypographyColor,
-} from '@trilogy-ds/react'
-import {
-  Column,
-  Columns,
-  Container,
-  IconName,
-  Radio,
-  RadioTile,
-  RadioTiles,
-  Text,
-  Title,
-} from '@trilogy-ds/react/components'
+import { Alignable, Popover, RadioList, Section, Spacer, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
+import { Column, Columns, Container, Divider, Icon, IconName, IconSize, Radio, RadioTile, RadioTiles, Text, TextLevels, Title } from '@trilogy-ds/react/components'
 import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
 
@@ -150,7 +130,14 @@ export const RadioScreen = (): JSX.Element => {
                 id='tile-horizontal-1'
                 label='Label 1'
                 value='one'
-                description='Je suis une description simple'
+                description={
+                <>
+                  <Text level={TextLevels.THREE}><Icon name={IconName.CHECK} size={IconSize.SMALL} /> Téléphone échangeable dès 12 mois</Text>
+                  <Text level={TextLevels.THREE}><Icon name={IconName.CHECK} size={IconSize.SMALL} /> Paiement en 36 mois sans frais</Text>
+                  <Divider />
+                  <Text level={2}>À payer aujourd'hui : <strong>199,90 €</strong></Text>
+                </>
+                }
                 icon={IconName.ALERT}
                 horizontal
                 name={'name-tile-horizontal-1'}

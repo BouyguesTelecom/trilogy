@@ -258,7 +258,7 @@
 
       input {
         &:checked:not(:disabled) ~ label.#{$type}-label {
-          padding: 15px;
+          padding: ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-8 - 1px);
         }
 
       }
@@ -269,23 +269,20 @@
         align-items: center;
         justify-content: flex-start;
         text-align: left;
-        padding: 16px;
+        padding: $spacing-4 $spacing-4 $spacing-4 $spacing-8;
+
 
         &:before,
         &:after {
           top: 50% !important;
           transform: translateY(-50%);
         }
-
-        & > span:not(.icon):first-of-type  {
-          margin-left: 34px;
+        > .icon {
+          margin-right: $spacing-4;
         }
+
       }
 
-      .icon {
-        margin-left: 34px;
-        margin-right: 16px;
-      }      
     }
   }
 }
