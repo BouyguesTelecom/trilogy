@@ -21,9 +21,16 @@
     }
   }
 }
+.radio-tile {
+  .divider {
+    &:not(.is-marginless) {
+      margin: $spacing-3 0;
+    }
+  }
+}
 
 *:has(+ .divider) {
-  margin-top: 0 !important; 
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
