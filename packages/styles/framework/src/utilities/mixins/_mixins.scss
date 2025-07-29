@@ -110,6 +110,11 @@
         }
       }
     }
+    .divider {
+      &:not(.is-marginless) {
+        margin: $spacing-3 0;
+      }
+    }
   }
 
   // SIMPLE WITH LABEL ONLY
