@@ -127,7 +127,6 @@ export const InputScreen = (): JSX.Element => {
       <Title level={4}>Input, with search & customIcon</Title>
       <Input
         help='CustomIcon takes precedence over the display of the search to avoid displaying 2 icons, one above the other.'
-        // status={InputStatus.SUCCESS}
         type={InputType.TEXT}
         onIconClick={() => {
           window.alert('test')
