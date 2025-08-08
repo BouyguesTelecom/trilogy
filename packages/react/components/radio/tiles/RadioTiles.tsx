@@ -38,6 +38,7 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(({ id, class
       (getAlignClassName(verticalAlign) === 'aligned-start' && is('aligned-start')) ||
       (getAlignClassName(verticalAlign) === 'aligned-center' && is('aligned-center')) ||
       (getAlignClassName(verticalAlign) === 'aligned-end' && is('aligned-end')) ||
+      (getAlignClassName(verticalAlign) === 'aligned-stretch' && is('aligned-stretch')) ||
       null
   }
 
