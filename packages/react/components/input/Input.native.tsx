@@ -440,7 +440,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
                 />
               </TouchableOpacity>
             )}
-          {/* Bloc dédié pour iconNameRight sans status (correction du problème) */}
           {iconNameRight &&
             !iconNameLeft &&
             type !== InputType.SEARCH &&
