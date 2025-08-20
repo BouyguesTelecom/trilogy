@@ -440,6 +440,34 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
                 />
               </TouchableOpacity>
             )}
+          {iconNameRight &&
+            !iconNameLeft &&
+            type !== InputType.SEARCH &&
+            type !== InputType.PASSWORD &&
+            (!status || status === InputStatus.DEFAULT) && (
+              <TouchableOpacity
+                style={styles.inputContainerRight}
+                activeOpacity={onIconClick ? 0.2 : 1}
+                onPress={(e) => {
+                  onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: value,
+                    target: e,
+                  })
+                }}
+              >
+                <Icon
+                  testId='icon-right-id'
+                  align={Alignable.ALIGNED_CENTER}
+                  name={iconNameRight as unknown as IconName}
+                  size={IconSize.SMALL}
+                  color={
+                    (disabled && TrilogyColor.DISABLED) ||
+                    TrilogyColor.MAIN
+                  }
+                />
+              </TouchableOpacity>
+            )}
           {type === InputType.PASSWORD && (
             <>
               {iconNameLeft && (
