@@ -19,6 +19,7 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(({ id,
         (verticalAlign === Alignable.ALIGNED_CENTER && 'center') ||
         (verticalAlign === Alignable.ALIGNED_START && 'flex-start') ||
         (verticalAlign === Alignable.ALIGNED_END && 'flex-end') ||
+        (verticalAlign === Alignable.ALIGNED_STRETCH && 'stretch') ||
         undefined,
       justifyContent:
         (align === Alignable.ALIGNED_CENTER && 'center') ||

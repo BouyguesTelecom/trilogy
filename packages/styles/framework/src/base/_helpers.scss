@@ -47,6 +47,7 @@ $alignments: (
   'justified': 'justify',
   'left': 'left',
   'right': 'right',
+  'stretch': 'stretch'
 );
 
 @each $alignment, $text-align in $alignments {
