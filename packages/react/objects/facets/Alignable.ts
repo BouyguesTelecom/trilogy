@@ -28,8 +28,6 @@ export const getAlignClassName = (alignType?: string): string => {
       return 'aligned-start'
     case 'ALIGNED_END':
       return 'aligned-end'
-    case 'ALIGNED_STRETCH':
-      return 'aligned-stretch'
     default:
       return 'aligned-start'
   }
@@ -49,8 +47,6 @@ export const getAlignStyle = (alignType?: string) => {
       return 'flex-start'
     case 'ALIGNED_END':
       return 'flex-end'
-    case 'ALIGNED_STRETCH':
-      return 'stretch'
     default:
       return 'flex-start'
   }

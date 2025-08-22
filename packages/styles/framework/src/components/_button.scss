@@ -61,12 +61,12 @@ $button-border-width: 2px !default;
   &[disabled],
   &[aria-disabled=true] {
     border-color: transparent !important;
-    background-color: getColorValue('main-fade') !important;
-    color: getColorValue('disabled') !important
+    background-color: getColor('main-fade') !important;
+    color: getColor('disabled') !important
   }
 
   &.is-loading {
-    background-color: getColorValue('neutral');
+    background-color: getColor('neutral');
   }
 
 }
