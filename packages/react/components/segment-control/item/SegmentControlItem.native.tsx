@@ -34,12 +34,12 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, Segment
         getColorStyle(TrilogyColor.BACKGROUND),
     },
     text: {
-      paddingHorizontal: 16,
+      paddingHorizontal: 10,
       color:
         (activeItem && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (!activeItem && disabled && getColorStyle(TrilogyColor.DISABLED)) ||
         getColorStyle(TrilogyColor.MAIN),
-      marginVertical: 10,
+      marginVertical: 12,
       fontSize: 16,
       textAlign: 'center',
       textAlignVertical: 'center',
