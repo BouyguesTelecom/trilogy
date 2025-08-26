@@ -26,7 +26,7 @@ export interface StackProps extends CommonProps {
   direction?: DirectionEnum | DirectionEnumValues
 }
 
-export type StackRef = HTMLDivElement | HTMLSpanElement
+export type StackRef = HTMLDivElement
 export type DividerNativeRef = View
 
 export const StackSizeGapValue = ColumnsGapValue.slice(1, 6)

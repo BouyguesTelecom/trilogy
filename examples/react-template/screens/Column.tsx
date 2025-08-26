@@ -19,7 +19,7 @@ export const ColumnScreen = (): JSX.Element => {
 
   return (
     <Section>
-      <Columns>
+      <Columns gap={4}>
         <Column>
           <Box fullheight>
             <Columns verticalAlign={'ALIGNED_CENTER'} fullheight>
