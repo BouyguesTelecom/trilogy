@@ -158,4 +158,5 @@ export enum ComponentName {
   Chips = 'Chips',
   ChipsList = 'ChipsList',
   Range = 'Range',
+  Stack = 'Stack',
 }
