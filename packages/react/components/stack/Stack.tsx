@@ -11,9 +11,11 @@ const isCorrectMarkup = (stringMarkup: string) => {
   return stringMarkup in StackMarkup || Object.values(StackMarkup).includes(stringMarkup as StackMarkup)
 }
 
+const initialMarkup = 'div'
+
 const Stack = React.forwardRef<StackRef, StackProps>(
-  ({ className, id, gap, markup = 'div', direction, ...others }, ref) => {
-    const Tag = (markup && isCorrectMarkup(markup) ? markup : 'p') as React.ElementType
+  ({ className, id, gap, markup = initialMarkup, direction, ...others }, ref) => {
+    const Tag = (markup && isCorrectMarkup(markup) ? markup : initialMarkup) as React.ElementType
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
