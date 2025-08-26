@@ -91,7 +91,6 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       const spacingVal = spacingValue as SpacerSize
       const mobileSpacingVal = mobileSpacingValue as SpacerSize | undefined
 
-      // Règles pour les éléments hors Stack
       scssContent += `    ${selector}:not(:last-child) {\n`
       scssContent += `      margin-bottom: ${spacingVal}px;\n`
       scssContent += '    }\n'
