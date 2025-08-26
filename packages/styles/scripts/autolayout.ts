@@ -70,7 +70,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
 ]
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
-  let scssContent = 'body:not(.is-tight) {\n'
+  let scssContent = 'body:not(.is-tight) {\n  :not(.stack) {\n'
   let mobileContent = ''
 
   for (const entry of spacingMatrix) {
@@ -91,25 +91,27 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       const spacingVal = spacingValue as SpacerSize
       const mobileSpacingVal = mobileSpacingValue as SpacerSize | undefined
 
-      scssContent += `  ${selector}:not(:last-child) {\n`
-      scssContent += `    margin-bottom: ${spacingVal}px;\n`
-      scssContent += '  }\n'
+      scssContent += `    ${selector}:not(:last-child) {\n`
+      scssContent += `      margin-bottom: ${spacingVal}px;\n`
+      scssContent += '    }\n'
 
       if (mobileSpacingVal !== undefined) {
-        mobileContent += `  ${selector}:not(:last-child) {\n`
-        mobileContent += `      margin-bottom: ${mobileSpacingVal}px;\n`
-        mobileContent += '    }\n'
+        mobileContent += `    ${selector}:not(:last-child) {\n`
+        mobileContent += `        margin-bottom: ${mobileSpacingVal}px;\n`
+        mobileContent += '      }\n'
       }
     }
   }
 
-  scssContent += `}\n`
+  scssContent += `  }\n}`
 
   if (mobileContent) {
     scssContent += `
 @include mobile() {
   body:not(.is-tight) {
-  ${mobileContent}
+    :not(.stack) {
+    ${mobileContent}
+    }
   }
 }
 `

@@ -18,7 +18,13 @@ const Stack = React.forwardRef<StackRef, StackProps>(
 
     const classes = hashClass(
       styled,
-      clsx('stack', gap && has(`gap-${gap}`), direction === DirectionEnum.COLUMN && is('vertical'), className),
+      clsx(
+        'stack',
+        gap && has(`gap-${gap}`),
+        direction === DirectionEnum.COLUMN && is('vertical'),
+        direction === DirectionEnum.ROW && is('horizontal'),
+        className,
+      ),
     )
 
     return <Tag ref={ref} id={id} className={classes} {...others} />
