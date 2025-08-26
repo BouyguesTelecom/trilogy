@@ -1,5 +1,5 @@
 body:not(.is-tight) {
-  :not(.stack) {
+  .stack > * :not(.stack) {
     .accordion:not(:last-child) {
       margin-bottom: 24px;
     }
@@ -163,7 +163,7 @@ body:not(.is-tight) {
 }
 @include mobile() {
   body:not(.is-tight) {
-    :not(.stack) {
+    .stack > * :not(.stack) {
         .accordion:not(:last-child) {
         margin-bottom: 16px;
       }

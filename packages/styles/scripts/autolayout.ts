@@ -70,7 +70,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
 ]
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
-  let scssContent = 'body:not(.is-tight) {\n  :not(.stack) {\n'
+  let scssContent = 'body:not(.is-tight) {\n  .stack > * :not(.stack) {\n'
   let mobileContent = ''
 
   for (const entry of spacingMatrix) {
@@ -91,6 +91,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       const spacingVal = spacingValue as SpacerSize
       const mobileSpacingVal = mobileSpacingValue as SpacerSize | undefined
 
+      // Règles pour les éléments hors Stack
       scssContent += `    ${selector}:not(:last-child) {\n`
       scssContent += `      margin-bottom: ${spacingVal}px;\n`
       scssContent += '    }\n'
@@ -109,7 +110,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
     scssContent += `
 @include mobile() {
   body:not(.is-tight) {
-    :not(.stack) {
+    .stack > * :not(.stack) {
     ${mobileContent}
     }
   }
