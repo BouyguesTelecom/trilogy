@@ -3,22 +3,6 @@ import { View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { ColumnsGapValue } from '../columns'
 
-export interface StackProps extends CommonProps {
-  children?: React.ReactNode
-  gap?: StackSize
-  markup?: StackMarkup
-  direction?: DirectionEnum | DirectionEnumValues
-}
-
-export enum StackMarkup {
-  SPAN = 'span',
-  DIV = 'div',
-}
-
-export type StackMarkupValues = `${StackMarkup}`
-export type StackRef = HTMLDivElement | HTMLSpanElement
-export type DividerNativeRef = View
-
 export enum StackSize {
   ONE = 1,
   TWO = 2,
@@ -27,5 +11,22 @@ export enum StackSize {
   FIVE = 5,
   SIX = 6,
 }
+
+export enum StackMarkup {
+  SPAN = 'span',
+  DIV = 'div',
+}
+
+export type StackMarkupValues = `${StackMarkup}`
+
+export interface StackProps extends CommonProps {
+  children?: React.ReactNode
+  gap?: StackSize
+  markup?: StackMarkup
+  direction?: DirectionEnum | DirectionEnumValues
+}
+
+export type StackRef = HTMLDivElement | HTMLSpanElement
+export type DividerNativeRef = View
 
 export const StackSizeGapValue = ColumnsGapValue.slice(1, 6)

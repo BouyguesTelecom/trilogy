@@ -1,10 +1,11 @@
 import { TrilogyColor } from '@trilogy-ds/react'
 import { Card, CardContent, Section, Stack, Text } from '@trilogy-ds/react/components'
+import { DirectionEnum } from '@trilogy-ds/react/lib/objects/facets/Direction'
 
 export const StackScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
-      <Stack>
+      <Stack direction={DirectionEnum.ROW}>
         <Card>
           <CardContent>
             <Text>
