@@ -17,11 +17,24 @@ export const StackScreen = (): JSX.Element => {
 
         <Card>
           <CardContent>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dicta, unde cupiditate, ad sit
-              aliquid, similique necessitatibus perferendis quis nulla corporis voluptate atque praesentium assumenda.
-              Fuga est modi facere ducimus.
-            </Text>
+            <Card>
+              <CardContent>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dicta, unde cupiditate, ad sit
+                  aliquid, similique necessitatibus perferendis quis nulla corporis voluptate atque praesentium
+                  assumenda. Fuga est modi facere ducimus.
+                </Text>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dicta, unde cupiditate, ad sit
+                  aliquid, similique necessitatibus perferendis quis nulla corporis voluptate atque praesentium
+                  assumenda. Fuga est modi facere ducimus.
+                </Text>
+              </CardContent>
+            </Card>
           </CardContent>
         </Card>
       </Stack>
