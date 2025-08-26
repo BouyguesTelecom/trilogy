@@ -1,329 +1,326 @@
 body:not(.is-tight) {
-  .stack > * :not(.stack) {
-    .accordion:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .buttons:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .card:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .columns:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .box:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .table:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .list:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .timeline:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .stepper:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .pagination:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .segmented-control:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .tabs:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .range:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .stepper:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .price-container:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    :not(.buttons) > .button:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .countdown:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    .countdown.is-small:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .chips-list:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    p.text:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .progress:not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .progress-radial:not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .radios:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    :not(.radios) >.radios:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .checkbox:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .switch:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .radio-tiles:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    :not(.radio-tiles) > .radio-tile:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .checkbox-tiles:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    :not(.checkbox-tiles) > .checkbox-tile:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .field:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .control:not(:last-child) {
-      margin-bottom: 4px;
-    }
-    .help:not(:last-child) {
-      margin-bottom: 4px;
-    }
-    .textarea:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    .select:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    .link:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .sticker:not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .tags:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    :not(.tags) > .tag:not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .title.is-level-1:not(:last-child) {
-      margin-bottom: 40px;
-    }
-    .title.is-level-2:not(:last-child) {
-      margin-bottom: 40px;
-    }
-    .title.is-level-3:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .title.is-level-4:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .title.is-level-5:not(:last-child) {
-      margin-bottom: 16px;
-    }
-    .title.is-level-6:not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .overline:not(:last-child) {
-      margin-bottom: 0px;
-    }
-    .title:has(+.subtitle):not(:last-child) {
-      margin-bottom: 8px;
-    }
-    .title.is-level-1 + .subtitle:not(:last-child) {
-      margin-bottom: 32px;
-    }
-    .title.is-level-2 + .subtitle:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .title.is-level-3 + .subtitle:not(:last-child) {
-      margin-bottom: 24px;
-    }
-    .title.is-level-4 + .subtitle:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .title.is-level-5 + .subtitle:not(:last-child) {
-      margin-bottom: 12px;
-    }
-    .title.is-level-6 + .subtitle:not(:last-child) {
-      margin-bottom: 12px;
-    }
+  .accordion:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .buttons:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .card:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .columns:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .box:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .table:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .list:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .timeline:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .stepper:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .pagination:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .segmented-control:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .tabs:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .range:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .stepper:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .price-container:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  :not(.buttons) > .button:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .countdown:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  .countdown.is-small:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .chips-list:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  p.text:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .progress:not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .progress-radial:not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .radios:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  :not(.radios) >.radios:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .checkbox:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .switch:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .radio-tiles:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  :not(.radio-tiles) > .radio-tile:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .checkbox-tiles:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  :not(.checkbox-tiles) > .checkbox-tile:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .field:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .control:not(.stack > .card):not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .help:not(.stack > .card):not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .textarea:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  .select:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  .link:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .sticker:not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .tags:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  :not(.tags) > .tag:not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .title.is-level-1:not(.stack > .card):not(:last-child) {
+    margin-bottom: 40px;
+  }
+  .title.is-level-2:not(.stack > .card):not(:last-child) {
+    margin-bottom: 40px;
+  }
+  .title.is-level-3:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .title.is-level-4:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .title.is-level-5:not(.stack > .card):not(:last-child) {
+    margin-bottom: 16px;
+  }
+  .title.is-level-6:not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .overline:not(.stack > .card):not(:last-child) {
+    margin-bottom: 0px;
+  }
+  .title:has(+.subtitle):not(.stack > .card):not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .title.is-level-1 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 32px;
+  }
+  .title.is-level-2 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .title.is-level-3 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .title.is-level-4 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-5 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .title.is-level-6 + .subtitle:not(.stack > .card):not(:last-child) {
+    margin-bottom: 12px;
   }
 }
+
 @include mobile() {
   body:not(.is-tight) {
-    .stack > * :not(.stack) {
-        .accordion:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .buttons:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .card:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .columns:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .box:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .table:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .list:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .timeline:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .stepper:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .pagination:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .segmented-control:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .tabs:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .range:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .stepper:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .price-container:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    :not(.buttons) > .button:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .countdown:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .countdown.is-small:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .chips-list:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    p.text:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .progress:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .progress-radial:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .radios:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    :not(.radios) >.radios:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .checkbox:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .switch:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .radio-tiles:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    :not(.radio-tiles) > .radio-tile:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .checkbox-tiles:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    :not(.checkbox-tiles) > .checkbox-tile:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .field:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .control:not(:last-child) {
-        margin-bottom: 4px;
-      }
-    .help:not(:last-child) {
-        margin-bottom: 4px;
-      }
-    .textarea:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .select:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .link:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .sticker:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .tags:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    :not(.tags) > .tag:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .title.is-level-1:not(:last-child) {
-        margin-bottom: 32px;
-      }
-    .title.is-level-2:not(:last-child) {
-        margin-bottom: 32px;
-      }
-    .title.is-level-3:not(:last-child) {
-        margin-bottom: 24px;
-      }
-    .title.is-level-4:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    .title.is-level-5:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .title.is-level-6:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    .overline:not(:last-child) {
-        margin-bottom: 0px;
-      }
-    .title:has(+.subtitle):not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .title.is-level-1 + .subtitle:not(:last-child) {
-        margin-bottom: 40px;
-      }
-    .title.is-level-2 + .subtitle:not(:last-child) {
-        margin-bottom: 32px;
-      }
-    .title.is-level-3 + .subtitle:not(:last-child) {
-        margin-bottom: 32px;
-      }
-    .title.is-level-4 + .subtitle:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .title.is-level-5 + .subtitle:not(:last-child) {
-        margin-bottom: 8px;
-      }
-    .title.is-level-6 + .subtitle:not(:last-child) {
-        margin-bottom: 8px;
-      }
-
+    .accordion:not(:last-child) {
+      margin-bottom: 16px;
     }
+  .buttons:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .card:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .columns:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .box:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .table:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .list:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .timeline:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .stepper:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .pagination:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .segmented-control:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .tabs:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .range:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .stepper:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .price-container:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  :not(.buttons) > .button:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .countdown:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .countdown.is-small:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .chips-list:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  p.text:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .progress:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .progress-radial:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .radios:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  :not(.radios) >.radios:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .checkbox:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .switch:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .radio-tiles:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  :not(.radio-tiles) > .radio-tile:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .checkbox-tiles:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  :not(.checkbox-tiles) > .checkbox-tile:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .field:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .control:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  .help:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  .textarea:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .select:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .link:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .sticker:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .tags:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  :not(.tags) > .tag:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-1:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  .title.is-level-2:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  .title.is-level-3:not(:last-child) {
+      margin-bottom: 24px;
+    }
+  .title.is-level-4:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .title.is-level-5:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .title.is-level-6:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  .overline:not(:last-child) {
+      margin-bottom: 0px;
+    }
+  .title:has(+.subtitle):not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-1 + .subtitle:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  .title.is-level-2 + .subtitle:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  .title.is-level-3 + .subtitle:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  .title.is-level-4 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-5 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  .title.is-level-6 + .subtitle:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
   }
 }
