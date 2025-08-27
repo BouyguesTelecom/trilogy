@@ -12,17 +12,9 @@ export enum StackSize {
   SIX = 6,
 }
 
-export enum StackMarkup {
-  SPAN = 'span',
-  DIV = 'div',
-}
-
-export type StackMarkupValues = `${StackMarkup}`
-
 export interface StackProps extends CommonProps {
   children?: React.ReactNode
   gap?: StackSize
-  markup?: StackMarkup
   direction?: DirectionEnum | DirectionEnumValues
 }
 
