@@ -96,7 +96,7 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       scssContent += '  }\n'
 
       if (mobileSpacingVal !== undefined) {
-        mobileContent += `  ${selector}:not(:last-child) {\n`
+        mobileContent += `  ${selector}:not(.stack > ${selector}):not(:last-child) {\n`
         mobileContent += `      margin-bottom: ${mobileSpacingVal}px;\n`
         mobileContent += '    }\n'
       }

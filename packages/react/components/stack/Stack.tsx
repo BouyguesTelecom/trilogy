@@ -1,14 +1,26 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has, is } from '@/services/classify'
+import { has, is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
 import { StackProps, StackRef } from './StackProps'
 
 const Stack = React.forwardRef<StackRef, StackProps>(({ className, id, gap, direction = 'column', ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('stack', gap && has(`gap-${gap}`), direction && is(direction), className))
+  const isNumber = typeof gap === 'number'
+  const classes = hashClass(
+    styled,
+    clsx(
+      'stack',
+      direction && is(direction),
+      !isNumber && gap?.mobile && has(`gap-mobile-${gap.mobile}`),
+      !isNumber && gap?.tablet && has(`gap-tablet-${gap.tablet}`),
+      !isNumber && gap?.desktop && has(`gap-desktop-${gap.desktop}`),
+      isNumber && has(`gap-${gap}`),
+      className,
+    ),
+  )
 
   return <div ref={ref} id={id} className={classes} {...others} />
 })
