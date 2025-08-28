@@ -16,4 +16,4 @@ export interface StackProps extends CommonProps {
 }
 
 export type StackRef = HTMLDivElement
-export type DividerNativeRef = View
+export type StackNativeRef = View
