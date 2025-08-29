@@ -131,7 +131,7 @@
     }
 
     label.#{$type}-label {
-      padding-left: 30px;
+      padding-left: calc(18px + $spacing-3);
 
       &:before,
       &:after {
