@@ -43,7 +43,11 @@ $fade-colors: (
 ) !default;
 
 @function getColor( $name ) {
-  @return var(--color-#{nth(map-get($colors,$name),2)});
+   @if global-variable-exists(suffix-theme) {
+    @return var(--color-#{nth(map-get($colors, $name), 2)}-#{$suffix-theme});
+  } @else {
+    @return var(--color-#{nth(map-get($colors,$name),2)});
+  }
 }
 
 @function getColorValue( $name ) {
