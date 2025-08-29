@@ -1,1 +1,3 @@
-export { default as Stack } from './Stack'
+import Stack from './Stack'
+
+export { Stack }
