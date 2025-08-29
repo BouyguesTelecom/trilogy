@@ -1,7 +1,7 @@
-import { Alignable, Popover, RadioList, Section, Spacer, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
-import { Column, Columns, Container, Divider, Icon, IconName, IconSize, Radio, RadioTile, RadioTiles, Text, TextLevels, Title } from '@trilogy-ds/react/components'
-import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
+import { Alignable, Popover, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
+import { Section, Spacer, RadioList, Column, Columns, Container, Divider, Icon, IconName, IconSize, Radio, RadioTile, RadioTiles, Text, TextLevels, Title } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers'
 
 export const RadioScreen = (): JSX.Element => {
   const [radio, setRadio] = React.useState('one')
