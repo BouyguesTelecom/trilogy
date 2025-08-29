@@ -32,10 +32,6 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
   &.is-active {
     outline: var(--border-active);
   }
