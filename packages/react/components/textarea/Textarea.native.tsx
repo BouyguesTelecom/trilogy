@@ -37,7 +37,7 @@ import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
  * @param autoCorrect {boolean} Auto correct sentence
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
+ * @param autoCompleteType {string} Auto complete input type
  * @param textContentType {InputTextContentType} Give the keyboard and the system information
  * @param keyboardType {InputKeyboardType} Keybaord type
  * @param value {string} Value for textarea
