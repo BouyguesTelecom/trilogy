@@ -46,7 +46,7 @@ export const ButtonScreen = (): JSX.Element => {
       <Separator/>
 
       <Title level={TitleLevels.TWO}>Link</Title>
-      <Button variant={ButtonVariant.PRIMARY} href='/hello'>Hello !</Button>
+      <Button disabled variant={ButtonVariant.PRIMARY} href='/hello'>Hello !</Button>
 
 
       {/*  ======== loading & variant ======== */}
