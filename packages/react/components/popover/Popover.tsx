@@ -34,8 +34,8 @@ const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
 
     return (
       <span ref={ref} id={id} className={classes} {...others}>
-        <span className={hashClass(styled, 'popover-content')}>{children}</span>
         {trigger && trigger}
+        <span className={hashClass(styled, 'popover-content')}>{children}</span>
       </span>
     )
   },

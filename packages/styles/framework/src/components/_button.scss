@@ -65,6 +65,10 @@ $button-border-width: 2px !default;
     color: getColor('disabled') !important
   }
 
+  [aria-disabled=true] {
+    pointer-events: none;
+  }
+
   &.is-loading {
     background-color: getColor('neutral');
   }
