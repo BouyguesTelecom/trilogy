@@ -50,11 +50,12 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       routerLink,
       type,
       iconName,
+      disabled,
       ...others
     },
     ref,
   ): JSX.Element => {
-    const isDisabled = others.disabled || false
+    const isDisabled = disabled || false
     const { styled } = useTrilogyContext()
 
     /** Check if specified markup is valid */
@@ -148,7 +149,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           e.stopPropagation()
         }}
         {...others}
-        {...(isDisabled && { 'aria-disabled': true })}
+        {...(disabled && { 'aria-disabled': true })}
       >
         {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
         {children}
