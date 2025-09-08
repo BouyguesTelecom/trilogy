@@ -7,6 +7,14 @@ import clsx from 'clsx'
 import React from 'react'
 import { StackProps, StackRef } from './StackProps'
 
+/**
+ * Stack Component
+ * @param gap {StackSize} Gap between elements in Stack
+ * @param direction {DirectionEnum} flex direction
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string}
+ */
 const Stack = React.forwardRef<StackRef, StackProps>(
   ({ className, id, gap, direction = DirectionEnum.COLUMN, ...others }, ref) => {
     const { styled } = useTrilogyContext()
