@@ -5,6 +5,11 @@ import { View, ViewStyle } from 'react-native'
 import { ColumnsGapValue, GapSize } from '../columns'
 import { StackNativeRef, StackProps } from './StackProps'
 
+/**
+ * Stack Component
+ * @param gap {StackSize} Gap between elements in Stack
+ * @param direction {DirectionEnum} flex direction
+ */
 const Stack = React.forwardRef<StackNativeRef, StackProps>(
   ({ children, gap, direction = DirectionEnum.COLUMN, ...others }, ref) => {
     const getGapValue = (gapSize: GapSize): number => {
