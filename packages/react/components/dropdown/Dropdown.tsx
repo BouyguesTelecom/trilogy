@@ -7,7 +7,7 @@ import { ComponentName } from '../enumsComponentsName'
 import { DropdownProps, DropdownRef } from './DopdownProps'
 
 const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
-  ({ className, id, trigger, children, ...others }, ref): JSX.Element => {
+  ({ className, id = React.useId(), trigger, children, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const [visible, setVisible] = useState<boolean>(false)
     const classes = hashClass(styled, clsx('dropdown', className))
@@ -45,8 +45,8 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
               break
             case 'Tab':
             case 'Escape':
-              setVisible(false)
               dropdownRef.current?.focus()
+              setVisible(false)
               break
             default:
               break
@@ -65,23 +65,43 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
       if (!element) return []
       return Array.from(
         element.querySelectorAll(
-          'a:not(:disabled), button:not(:disabled), input:not(:disabled), [tabindex]:not([tabindex="-1"])',
+          'a:not([disabled]), button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
         ),
       ) as HTMLElement[]
     }
 
     return (
       <>
-        <div ref={ref} id={id} className={classes} {...others}>
+        <div
+          ref={ref}
+          id={id}
+          className={classes}
+          {...others}
+          role='menu'
+          aria-haspopup='true'
+          aria-expanded={visible}
+          aria-controls={`${id}-content`}
+        >
           {trigger &&
-            React.cloneElement(trigger as React.ReactElement, { onClick: () => setVisible(true), ref: dropdownRef })}
-          <div ref={contentRef} className={classesContent}>
+            React.cloneElement(trigger as React.ReactElement, {
+              onClick: () => setVisible(true),
+              ref: dropdownRef,
+              'aria-label': 'Toggle Dropdown',
+              'aria-controls': `${id}-content`,
+            })}
+          <div ref={contentRef} id={`${id}-content`} className={classesContent} role='menuitem'>
             {children}
           </div>
         </div>
         {visible &&
           ReactDOM.createPortal(
-            <div role='presentation' className={portalClasses} onClick={() => setVisible(false)} />,
+            <div
+              role='presentation'
+              className={portalClasses}
+              onClick={() => setVisible(false)}
+              tabIndex={-1}
+              aria-hidden='true'
+            />,
             document.body,
           )}
       </>
