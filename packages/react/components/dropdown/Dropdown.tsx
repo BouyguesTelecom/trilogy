@@ -15,6 +15,7 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
     const portalClasses = hashClass(styled, 'dropdown-portal')
 
     const contentRef = useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
       if (visible) {
@@ -45,6 +46,7 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
             case 'Tab':
             case 'Escape':
               setVisible(false)
+              dropdownRef.current?.focus()
               break
             default:
               break
@@ -71,7 +73,8 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
     return (
       <>
         <div ref={ref} id={id} className={classes} {...others}>
-          {trigger && React.cloneElement(trigger as React.ReactElement, { onClick: () => setVisible(true) })}
+          {trigger &&
+            React.cloneElement(trigger as React.ReactElement, { onClick: () => setVisible(true), ref: dropdownRef })}
           <div ref={contentRef} className={classesContent}>
             {children}
           </div>
