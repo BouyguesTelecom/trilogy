@@ -10,7 +10,6 @@ export enum TrilogyColor {
   MAIN_FADE = 'MAIN_FADE',
   ACCENT = 'ACCENT',
   FONT = 'FONT',
-  FONT_FADE = 'FONT_FADE',
   FONT_PLACEHOLDER = 'FONT_PLACEHOLDER',
   SUCCESS = 'SUCCESS',
   SUCCESS_FADE = 'SUCCESS_FADE',
@@ -39,7 +38,6 @@ export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
 
   [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
-  [TrilogyColor.FONT_FADE]: ['#5e788aff', 'font-fade', 'white'],
   [TrilogyColor.FONT_PLACEHOLDER]: ['#687a87', 'font-placeholder', 'white'],
 
   [TrilogyColor.SUCCESS]: ['#007B52', 'success', 'white'],
