@@ -62,7 +62,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const primaryColor = getColorStyle(TrilogyColor.MAIN)
     const secondaryColor = getColorStyle(TrilogyColor.MAIN)
     const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const neutralColor = getColorStyle(TrilogyColor.FONT_FADE)
+    const neutralColor = getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
 
     const priceLevel =
       (level == PriceLevel.ONE && 64) ||
