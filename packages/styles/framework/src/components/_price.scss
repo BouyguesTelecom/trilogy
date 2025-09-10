@@ -159,7 +159,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: getColor('neutral');
+    color: getColor('font-fade');
 
     &::before {
       position: absolute;
@@ -168,7 +168,7 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('neutral');
+      border-color: getColor('font-fade');
       border-radius: 5px;
       transform: rotate(-20deg);
     }
