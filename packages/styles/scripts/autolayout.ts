@@ -18,6 +18,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.buttons', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.card', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.columns', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, '.flex-box', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.box', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.table', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.list', 'default', FIVE, FOUR],
@@ -91,12 +92,12 @@ const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string =
       const spacingVal = spacingValue as SpacerSize
       const mobileSpacingVal = mobileSpacingValue as SpacerSize | undefined
 
-      scssContent += `  ${selector}:not(.stack > ${selector}):not(:last-child) {\n`
+      scssContent += `  ${selector}:not(.flex-box > ${selector}):not(:last-child) {\n`
       scssContent += `    margin-bottom: ${spacingVal}px;\n`
       scssContent += '  }\n'
 
       if (mobileSpacingVal !== undefined) {
-        mobileContent += `  ${selector}:not(.stack > ${selector}):not(:last-child) {\n`
+        mobileContent += `  ${selector}:not(.flex-box > ${selector}):not(:last-child) {\n`
         mobileContent += `      margin-bottom: ${mobileSpacingVal}px;\n`
         mobileContent += '    }\n'
       }
