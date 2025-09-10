@@ -59,9 +59,22 @@
     transform: translate(-50%);
     padding: 24px;
     scroll-padding: 24px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    @include mobile {
+      width: calc(100% + 32px) !important;
+      margin: -16px auto -16px 50% !important;
+      padding: 16px;
+      scroll-padding: 16px;
+    }
 
     &:not(:last-child) {
       margin-bottom: auto !important;
+    }
+
+    .flex-item {
+      scroll-snap-align: center;
     }
   }
 
