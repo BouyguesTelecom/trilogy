@@ -1,0 +1,35 @@
+
+
+.dropdown {
+  position: relative;
+
+  &-content {
+    background-color: getColor('background');
+    border-radius: var(--radius-small);
+    box-shadow: $shadow;
+    visibility: hidden;
+    padding: $spacing-2;
+    position: absolute;
+    z-index: zindex('popover');
+    opacity: 0;
+    transition: opacity .15s;
+  }
+
+    &-content.open {
+      visibility: visible ;
+      opacity: 1;
+    }
+
+  &-portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+}
+
+
+
+
