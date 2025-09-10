@@ -1,3 +1,5 @@
+import { FlexItemProps } from '@/components/flex-box/flex-item/FlexItemProps'
+
 export enum ComponentName {
   Accordion = 'Accordion',
   AccordionItem = 'AccordionItem',
@@ -40,6 +42,8 @@ export enum ComponentName {
   Countdown = 'Countdown',
   Divider = 'Divider',
   Fab = 'Fab',
+  FlexBox = 'FlexBox',
+  FlexItem = 'FlexItem',
   Hero = 'Hero',
   Icon = 'Icon',
   Image = 'Image',
@@ -157,6 +161,5 @@ export enum ComponentName {
   Alert = 'Alert',
   Chips = 'Chips',
   ChipsList = 'ChipsList',
-  Range = 'Range',
-  Stack = 'Stack',
+  Range = 'Range'
 }

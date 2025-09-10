@@ -8,6 +8,13 @@ export enum Alignable {
   ALIGNED_STRETCH = 'ALIGNED_STRETCH',
 }
 
+export enum Align {
+  CENTER = 'CENTER',
+  START = 'START',
+  END = 'END',
+  STRETCH = 'STRETCH'
+}
+
 export type AlignableValues = `${Alignable}`
 
 export interface AlignableProps {
@@ -24,10 +31,18 @@ export const getAlignClassName = (alignType?: string): string => {
   switch (alignType) {
     case 'ALIGNED_CENTER':
       return 'aligned-center'
+    case 'CENTER':
+      return 'aligned-center'
     case 'ALIGNED_START':
+      return 'aligned-start'
+    case 'START':
       return 'aligned-start'
     case 'ALIGNED_END':
       return 'aligned-end'
+    case 'END':
+      return 'aligned-end'
+    case 'STRETCH':
+      return 'aligned-stretch'
     default:
       return 'aligned-start'
   }
