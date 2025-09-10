@@ -65,14 +65,15 @@ export const FlexBoxScreen = (): JSX.Element => {
       </FlexBox>
 
       <Title level={TitleLevels.FIVE}>Slider</Title>
-      <FlexBox direction={DirectionEnum.ROW} slider gap={GapSize.FOUR}>
-        <FlexItem size={10}>
+
+      <FlexBox direction={DirectionEnum.ROW} gap={GapSize.FOUR}>
+        <FlexItem size={{ tablet: 4, mobile: 12 }}>
           <Box />
         </FlexItem>
-        <FlexItem size={10}>
+        <FlexItem size={{ tablet: 4, mobile: 12 }}>
           <Box />
         </FlexItem>
-        <FlexItem size={10}>
+        <FlexItem size={{ tablet: 4, mobile: 12 }}>
           <Box />
         </FlexItem>
       </FlexBox>
