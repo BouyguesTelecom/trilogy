@@ -26,6 +26,7 @@ export interface FlexBoxProps extends CommonProps {
   slider?: boolean
   wrap?: boolean
   fullBleed?: boolean
+  fullheight?: boolean
 }
 
 export type FlexBoxRef = HTMLDivElement

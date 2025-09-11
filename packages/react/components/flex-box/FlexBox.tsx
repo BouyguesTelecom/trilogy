@@ -9,7 +9,7 @@ import React from 'react'
 import { FlexBoxProps, FlexBoxRef } from './FlexBoxProps'
 
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, slider, wrap, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, slider, wrap, fullheight, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const isNumber = typeof gap === 'number'
     const isValueDirection = typeof direction === 'string'
@@ -29,6 +29,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         !isNumber && gap?.desktop && has(`gap-desktop-${gap.desktop}`),
         isNumber && has(`gap-${gap}`),
         wrap && is('wrap'),
+        fullheight && is('fullheight'),
         className,
       ),
     )

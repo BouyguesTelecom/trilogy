@@ -8,7 +8,7 @@ import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
 import { FlexBoxContext } from './context'
 
 const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
-  ({ id, gap, direction = 'row', align, justify, slider, wrap, fullBleed, children, ...others }, ref) => {
+  ({ id, gap, direction = 'row', align, justify, slider, wrap, fullBleed, children, fullheight, ...others }, ref) => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
     const isValueDirection = typeof direction === 'string'
@@ -37,6 +37,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
         width: fullBleed && width ? width + enlarge * 2 : '100%',
         marginHorizontal: -enlarge,
         paddingHorizontal: enlarge,
+        height: fullheight ? '100%' : 'auto',
       },
       columnsScrollable: {
         paddingHorizontal: enlarge,
@@ -54,13 +55,14 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
         }}
       >
         {!slider && (
-          <View ref={ref} onLayout={onLayoutHandler} style={[styles.columns]} {...others}>
+          <View id={id} ref={ref} onLayout={onLayoutHandler} style={[styles.columns]} {...others}>
             {children}
           </View>
         )}
 
         {slider && (
           <View
+            id={id}
             onLayout={onLayoutHandler}
             style={{
               marginHorizontal: -enlarge,

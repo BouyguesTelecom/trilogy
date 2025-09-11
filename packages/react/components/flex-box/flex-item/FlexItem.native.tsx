@@ -33,28 +33,27 @@ import { FlexBoxContext } from '../context'
 const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
   ({ id, size, narrow, verticalAlign, children, ...others }, ref) => {
     const { width, realGap, scrollable, childrenLength } = React.useContext(FlexBoxContext)
-
     const realSize = (size && typeof size === 'number' && size) || (size && size?.mobile) || 0
 
     const scrollableStyle: ViewStyle = React.useMemo(
       () => ({
-        width: size
+        width: realSize
           ? (realSize / 12) * width - realGap * ((childrenLength - 1) / childrenLength)
           : narrow
           ? 'auto'
           : width - 2 * realGap,
       }),
-      [size, narrow, width, realGap, childrenLength],
+      [realSize, narrow, width, realGap, childrenLength, realSize],
     )
 
     const noScrollableStyle: ViewStyle = React.useMemo(
       () => ({
         flex: narrow ? 0 : 1,
-        flexGrow: size || narrow ? 0 : 1,
+        flexGrow: realSize || narrow ? 0 : 1,
         flexShrink: narrow ? 1 : 0,
-        flexBasis: size ? (realSize / 12) * width - realGap * ((childrenLength - 1) / childrenLength) : 'auto',
+        flexBasis: realSize ? (realSize / 12) * width - realGap * ((childrenLength - 1) / childrenLength) : 'auto',
       }),
-      [size, narrow, width, realGap, childrenLength],
+      [realSize, narrow, width, realGap, childrenLength, realSize],
     )
 
     return (

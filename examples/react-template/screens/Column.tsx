@@ -193,7 +193,11 @@ export const ColumnScreen = (): JSX.Element => {
                   <View style={{ height: 200, width: 100, backgroundColor: 'red', alignSelf: 'center' }} />
                   <Spacer size={12} />
                   <Price align='ALIGNED_CENTER' amount={859.99} />
-                  <Text typo={[TypographyAlign.TEXT_CENTERED]}>Après remboursement</Text>
+                  <Text typo={[TypographyAlign.TEXT_CENTERED]}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, deleniti. Provident blanditiis magni
+                    recusandae natus nesciunt laboriosam, architecto fugiat quaerat harum itaque animi sed, labore ab.
+                    Excepturi accusantium accusamus ullam.
+                  </Text>
                 </Column>
               </Columns>
             </BoxContent>
