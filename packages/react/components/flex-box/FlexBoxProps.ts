@@ -24,6 +24,8 @@ export interface FlexBoxProps extends CommonProps {
   align?: Align
   justify?: Justify
   slider?: boolean
+  wrap?: boolean
+  fullBleed?: boolean
 }
 
 export type FlexBoxRef = HTMLDivElement

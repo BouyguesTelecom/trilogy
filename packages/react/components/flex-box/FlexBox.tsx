@@ -1,15 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getJustifyClassName } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
 import { FlexBoxProps, FlexBoxRef } from './FlexBoxProps'
-import { getJustifyClassName } from '@/objects/facets/Justifiable'
-import { getAlignClassName } from '@/objects/facets/Alignable'
 
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, slider, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, slider, wrap, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const isNumber = typeof gap === 'number'
     const isValueDirection = typeof direction === 'string'
@@ -28,6 +28,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         !isNumber && gap?.tablet && has(`gap-tablet-${gap.tablet}`),
         !isNumber && gap?.desktop && has(`gap-desktop-${gap.desktop}`),
         isNumber && has(`gap-${gap}`),
+        wrap && is('wrap'),
         className,
       ),
     )

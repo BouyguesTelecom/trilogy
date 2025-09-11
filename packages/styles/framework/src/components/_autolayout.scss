@@ -8,9 +8,6 @@ body:not(.is-tight) {
   .card:not(.flex-box > .card):not(:last-child) {
     margin-bottom: 24px;
   }
-  .flex-box:not(.flex-box > .flex-box):not(:last-child) {
-    margin-bottom: 24px;
-  }
   .columns:not(.flex-box > .columns):not(:last-child) {
     margin-bottom: 24px;
   }
