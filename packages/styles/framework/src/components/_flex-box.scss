@@ -5,8 +5,11 @@
   gap: 8px;
   --ColumnGap: 8px;
   flex-direction: row;
-  align-items: center;
   justify-content: flex-start;
+
+  &.is-wrap {
+    flex-wrap: wrap;
+  }
 
   // DIRECTION
   &.is-direction-column {
