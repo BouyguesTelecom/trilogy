@@ -11,6 +11,9 @@ body:not(.is-tight) {
   .columns:not(.flex-box > .columns):not(:last-child) {
     margin-bottom: 24px;
   }
+  .flex-box:not(.flex-box > .flex-box):not(:last-child) {
+    margin-bottom: 24px;
+  }
   .box:not(.flex-box > .box):not(:last-child) {
     margin-bottom: 24px;
   }
@@ -172,6 +175,9 @@ body:not(.is-tight) {
       margin-bottom: 16px;
     }
   .columns:not(.flex-box > .columns):not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .flex-box:not(.flex-box > .flex-box):not(:last-child) {
       margin-bottom: 16px;
     }
   .box:not(.flex-box > .box):not(:last-child) {
