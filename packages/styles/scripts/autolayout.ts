@@ -18,6 +18,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.buttons', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.card', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.columns', 'default', FIVE, FOUR],
+  [INSERT_SPACE_BETWEEN, '.flex-box', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.box', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.table', 'default', FIVE, FOUR],
   [INSERT_SPACE_BETWEEN, '.list', 'default', FIVE, FOUR],
