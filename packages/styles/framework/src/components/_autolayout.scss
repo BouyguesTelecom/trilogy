@@ -47,7 +47,7 @@ body:not(.is-tight) {
   .price-container:not(.flex-box > .price-container):not(:last-child) {
     margin-bottom: 12px;
   }
-  :not(.buttons) > .button:not(.flex-box > :not(.buttons) > .button):not(:last-child) {
+  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
     margin-bottom: 24px;
   }
   .countdown:not(.flex-box > .countdown):not(:last-child) {
@@ -71,7 +71,7 @@ body:not(.is-tight) {
   .radios:not(.flex-box > .radios):not(:last-child) {
     margin-bottom: 12px;
   }
-  :not(.radios) >.radios:not(.flex-box > :not(.radios) >.radios):not(:last-child) {
+  :not(.radios) >.radios:not(.flex-box > .radios):not(:last-child) {
     margin-bottom: 12px;
   }
   .checkbox:not(.flex-box > .checkbox):not(:last-child) {
@@ -83,13 +83,13 @@ body:not(.is-tight) {
   .radio-tiles:not(.flex-box > .radio-tiles):not(:last-child) {
     margin-bottom: 16px;
   }
-  :not(.radio-tiles) > .radio-tile:not(.flex-box > :not(.radio-tiles) > .radio-tile):not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(.flex-box > .radio-tile):not(:last-child) {
     margin-bottom: 24px;
   }
   .checkbox-tiles:not(.flex-box > .checkbox-tiles):not(:last-child) {
     margin-bottom: 24px;
   }
-  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > :not(.checkbox-tiles) > .checkbox-tile):not(:last-child) {
+  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > .checkbox-tile):not(:last-child) {
     margin-bottom: 24px;
   }
   .field:not(.flex-box > .field):not(:last-child) {
@@ -116,7 +116,7 @@ body:not(.is-tight) {
   .tags:not(.flex-box > .tags):not(:last-child) {
     margin-bottom: 16px;
   }
-  :not(.tags) > .tag:not(.flex-box > :not(.tags) > .tag):not(:last-child) {
+  :not(.tags) > .tag:not(.flex-box > .tag):not(:last-child) {
     margin-bottom: 8px;
   }
   .title.is-level-1:not(.flex-box > .title.is-level-1):not(:last-child) {
@@ -213,7 +213,7 @@ body:not(.is-tight) {
   .price-container:not(.flex-box > .price-container):not(:last-child) {
       margin-bottom: 8px;
     }
-  :not(.buttons) > .button:not(.flex-box > :not(.buttons) > .button):not(:last-child) {
+  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
       margin-bottom: 16px;
     }
   .countdown:not(.flex-box > .countdown):not(:last-child) {
@@ -237,7 +237,7 @@ body:not(.is-tight) {
   .radios:not(.flex-box > .radios):not(:last-child) {
       margin-bottom: 12px;
     }
-  :not(.radios) >.radios:not(.flex-box > :not(.radios) >.radios):not(:last-child) {
+  :not(.radios) >.radios:not(.flex-box > .radios):not(:last-child) {
       margin-bottom: 12px;
     }
   .checkbox:not(.flex-box > .checkbox):not(:last-child) {
@@ -249,13 +249,13 @@ body:not(.is-tight) {
   .radio-tiles:not(.flex-box > .radio-tiles):not(:last-child) {
       margin-bottom: 12px;
     }
-  :not(.radio-tiles) > .radio-tile:not(.flex-box > :not(.radio-tiles) > .radio-tile):not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(.flex-box > .radio-tile):not(:last-child) {
       margin-bottom: 16px;
     }
   .checkbox-tiles:not(.flex-box > .checkbox-tiles):not(:last-child) {
       margin-bottom: 16px;
     }
-  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > :not(.checkbox-tiles) > .checkbox-tile):not(:last-child) {
+  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > .checkbox-tile):not(:last-child) {
       margin-bottom: 16px;
     }
   .field:not(.flex-box > .field):not(:last-child) {
@@ -282,7 +282,7 @@ body:not(.is-tight) {
   .tags:not(.flex-box > .tags):not(:last-child) {
       margin-bottom: 16px;
     }
-  :not(.tags) > .tag:not(.flex-box > :not(.tags) > .tag):not(:last-child) {
+  :not(.tags) > .tag:not(.flex-box > .tag):not(:last-child) {
       margin-bottom: 8px;
     }
   .title.is-level-1:not(.flex-box > .title.is-level-1):not(:last-child) {
