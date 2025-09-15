@@ -18,12 +18,11 @@ import { FlexBoxProps, FlexBoxRef } from './FlexBoxProps'
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; tablet?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; desktop?: 'row' | 'column' | 'row-reverse' | 'column-reverse' } } Flex direction
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' } Align items
  * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' } Justify content
- * @param slider {boolean} Slider mode (overflow-x: auto)
- * @param wrap {boolean} Wrap mode (flex-wrap: wrap)
+ * @param scrollable {boolean} scrollable mode (overflow-x: auto)
  * @param fullheight {boolean} Full height (height: 100%)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, slider, wrap, fullheight, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, scrollable, fullheight, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const isNumber = typeof gap === 'number'
     const isValueDirection = typeof direction === 'string'
@@ -37,12 +36,11 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         !isValueDirection && direction?.tablet && is(`direction-${direction.tablet}-tablet`),
         align && is(getAlignClassName(align)),
         justify && is(getJustifyClassName(justify)),
-        slider && is('slider'),
+        scrollable && is('scrollable'),
         !isNumber && gap?.mobile && has(`gap-mobile-${gap.mobile}`),
         !isNumber && gap?.tablet && has(`gap-tablet-${gap.tablet}`),
         !isNumber && gap?.desktop && has(`gap-desktop-${gap.desktop}`),
         isNumber && has(`gap-${gap}`),
-        wrap && is('wrap'),
         fullheight && is('fullheight'),
         className,
       ),

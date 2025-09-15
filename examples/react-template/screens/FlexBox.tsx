@@ -74,7 +74,7 @@ export const FlexBoxScreen = (): JSX.Element => {
         </FlexBox>
 
         <Title level={TitleLevels.FIVE}>Align elements with size (used to be Columns)</Title>
-        <FlexBox wrap>
+        <FlexBox>
           <FlexItem size={{ tablet: 4, mobile: 4 }}>
             <Box>
               <BoxContent></BoxContent>
@@ -97,7 +97,7 @@ export const FlexBoxScreen = (): JSX.Element => {
           </FlexItem>
         </FlexBox>
 
-        <Title level={TitleLevels.FIVE}>Slider</Title>
+        <Title level={TitleLevels.FIVE}>Scollable</Title>
 
         <FlexBox direction={DirectionEnum.ROW} gap={GapSize.FOUR}>
           <FlexItem size={{ tablet: 4, mobile: 12 }}>
@@ -117,7 +117,7 @@ export const FlexBoxScreen = (): JSX.Element => {
           </FlexItem>
         </FlexBox>
         <Box>
-          <FlexBox direction={DirectionEnum.ROW} slider gap={GapSize.FOUR}>
+          <FlexBox direction={DirectionEnum.ROW} scrollable gap={GapSize.FOUR}>
             <FlexItem size={10}>
               <Box>
                 <BoxContent></BoxContent>

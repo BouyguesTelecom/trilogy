@@ -7,10 +7,6 @@
   flex-direction: row;
   justify-content: flex-start;
 
-  &.is-wrap {
-    flex-wrap: wrap;
-  }
-
   // DIRECTION
   &.is-direction-column {
     flex-direction: column;
@@ -54,8 +50,7 @@
     }
   }
 
-  // SLIDER
-  &.is-slider {
+  &.is-scrollable {
     overflow: auto;
     width: calc(100% + 48px) !important;
     margin: -24px auto -24px 50% !important;
