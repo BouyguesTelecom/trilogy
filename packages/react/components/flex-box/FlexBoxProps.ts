@@ -23,8 +23,7 @@ export interface FlexBoxProps extends CommonProps {
   direction?: Direction | DirectionEnum | DirectionEnumValues
   align?: Align
   justify?: Justify
-  slider?: boolean
-  wrap?: boolean
+  scrollable?: boolean
   fullBleed?: boolean
   fullheight?: boolean
 }
