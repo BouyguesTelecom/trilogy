@@ -1,324 +1,330 @@
 body:not(.is-tight) {
-  .accordion:not(.stack > .accordion):not(:last-child) {
+  .accordion:not(.flex-box > .accordion):not(:last-child) {
     margin-bottom: 24px;
   }
-  .buttons:not(.stack > .buttons):not(:last-child) {
+  .buttons:not(.flex-box > .buttons):not(:last-child) {
     margin-bottom: 24px;
   }
-  .card:not(.stack > .card):not(:last-child) {
+  .card:not(.flex-box > .card):not(:last-child) {
     margin-bottom: 24px;
   }
-  .columns:not(.stack > .columns):not(:last-child) {
+  .columns:not(.flex-box > .columns):not(:last-child) {
     margin-bottom: 24px;
   }
-  .box:not(.stack > .box):not(:last-child) {
+  .flex-box:not(.flex-box > .flex-box):not(:last-child) {
     margin-bottom: 24px;
   }
-  .table:not(.stack > .table):not(:last-child) {
+  .box:not(.flex-box > .box):not(:last-child) {
     margin-bottom: 24px;
   }
-  .list:not(.stack > .list):not(:last-child) {
+  .table:not(.flex-box > .table):not(:last-child) {
     margin-bottom: 24px;
   }
-  .timeline:not(.stack > .timeline):not(:last-child) {
+  .list:not(.flex-box > .list):not(:last-child) {
     margin-bottom: 24px;
   }
-  .stepper:not(.stack > .stepper):not(:last-child) {
+  .timeline:not(.flex-box > .timeline):not(:last-child) {
     margin-bottom: 24px;
   }
-  .pagination:not(.stack > .pagination):not(:last-child) {
+  .stepper:not(.flex-box > .stepper):not(:last-child) {
     margin-bottom: 24px;
   }
-  .segmented-control:not(.stack > .segmented-control):not(:last-child) {
+  .pagination:not(.flex-box > .pagination):not(:last-child) {
     margin-bottom: 24px;
   }
-  .tabs:not(.stack > .tabs):not(:last-child) {
+  .segmented-control:not(.flex-box > .segmented-control):not(:last-child) {
     margin-bottom: 24px;
   }
-  .range:not(.stack > .range):not(:last-child) {
+  .tabs:not(.flex-box > .tabs):not(:last-child) {
     margin-bottom: 24px;
   }
-  .stepper:not(.stack > .stepper):not(:last-child) {
+  .range:not(.flex-box > .range):not(:last-child) {
     margin-bottom: 24px;
   }
-  .price-container:not(.stack > .price-container):not(:last-child) {
+  .stepper:not(.flex-box > .stepper):not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .price-container:not(.flex-box > .price-container):not(:last-child) {
     margin-bottom: 12px;
   }
-  :not(.buttons) > .button:not(.stack > :not(.buttons) > .button):not(:last-child) {
+  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
     margin-bottom: 24px;
   }
-  .countdown:not(.stack > .countdown):not(:last-child) {
+  .countdown:not(.flex-box > .countdown):not(:last-child) {
     margin-bottom: 16px;
   }
-  .countdown.is-small:not(.stack > .countdown.is-small):not(:last-child) {
+  .countdown.is-small:not(.flex-box > .countdown.is-small):not(:last-child) {
     margin-bottom: 12px;
   }
-  .chips-list:not(.stack > .chips-list):not(:last-child) {
+  .chips-list:not(.flex-box > .chips-list):not(:last-child) {
     margin-bottom: 12px;
   }
-  p.text:not(.stack > p.text):not(:last-child) {
+  p.text:not(.flex-box > p.text):not(:last-child) {
     margin-bottom: 12px;
   }
-  .progress:not(.stack > .progress):not(:last-child) {
+  .progress:not(.flex-box > .progress):not(:last-child) {
     margin-bottom: 8px;
   }
-  .progress-radial:not(.stack > .progress-radial):not(:last-child) {
+  .progress-radial:not(.flex-box > .progress-radial):not(:last-child) {
     margin-bottom: 8px;
   }
-  .radios:not(.stack > .radios):not(:last-child) {
+  .radios:not(.flex-box > .radios):not(:last-child) {
     margin-bottom: 12px;
   }
-  :not(.radios) >.radios:not(.stack > :not(.radios) >.radios):not(:last-child) {
+  :not(.radios) >.radios:not(.flex-box > .radios):not(:last-child) {
     margin-bottom: 12px;
   }
-  .checkbox:not(.stack > .checkbox):not(:last-child) {
+  .checkbox:not(.flex-box > .checkbox):not(:last-child) {
     margin-bottom: 12px;
   }
-  .switch:not(.stack > .switch):not(:last-child) {
+  .switch:not(.flex-box > .switch):not(:last-child) {
     margin-bottom: 12px;
   }
-  .radio-tiles:not(.stack > .radio-tiles):not(:last-child) {
+  .radio-tiles:not(.flex-box > .radio-tiles):not(:last-child) {
     margin-bottom: 16px;
   }
-  :not(.radio-tiles) > .radio-tile:not(.stack > :not(.radio-tiles) > .radio-tile):not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(.flex-box > .radio-tile):not(:last-child) {
     margin-bottom: 24px;
   }
-  .checkbox-tiles:not(.stack > .checkbox-tiles):not(:last-child) {
+  .checkbox-tiles:not(.flex-box > .checkbox-tiles):not(:last-child) {
     margin-bottom: 24px;
   }
-  :not(.checkbox-tiles) > .checkbox-tile:not(.stack > :not(.checkbox-tiles) > .checkbox-tile):not(:last-child) {
+  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > .checkbox-tile):not(:last-child) {
     margin-bottom: 24px;
   }
-  .field:not(.stack > .field):not(:last-child) {
+  .field:not(.flex-box > .field):not(:last-child) {
     margin-bottom: 24px;
   }
-  .control:not(.stack > .control):not(:last-child) {
+  .control:not(.flex-box > .control):not(:last-child) {
     margin-bottom: 4px;
   }
-  .help:not(.stack > .help):not(:last-child) {
+  .help:not(.flex-box > .help):not(:last-child) {
     margin-bottom: 4px;
   }
-  .textarea:not(.stack > .textarea):not(:last-child) {
+  .textarea:not(.flex-box > .textarea):not(:last-child) {
     margin-bottom: 16px;
   }
-  .select:not(.stack > .select):not(:last-child) {
+  .select:not(.flex-box > .select):not(:last-child) {
     margin-bottom: 16px;
   }
-  .link:not(.stack > .link):not(:last-child) {
+  .link:not(.flex-box > .link):not(:last-child) {
     margin-bottom: 12px;
   }
-  .sticker:not(.stack > .sticker):not(:last-child) {
+  .sticker:not(.flex-box > .sticker):not(:last-child) {
     margin-bottom: 8px;
   }
-  .tags:not(.stack > .tags):not(:last-child) {
+  .tags:not(.flex-box > .tags):not(:last-child) {
     margin-bottom: 16px;
   }
-  :not(.tags) > .tag:not(.stack > :not(.tags) > .tag):not(:last-child) {
+  :not(.tags) > .tag:not(.flex-box > .tag):not(:last-child) {
     margin-bottom: 8px;
   }
-  .title.is-level-1:not(.stack > .title.is-level-1):not(:last-child) {
+  .title.is-level-1:not(.flex-box > .title.is-level-1):not(:last-child) {
     margin-bottom: 40px;
   }
-  .title.is-level-2:not(.stack > .title.is-level-2):not(:last-child) {
+  .title.is-level-2:not(.flex-box > .title.is-level-2):not(:last-child) {
     margin-bottom: 40px;
   }
-  .title.is-level-3:not(.stack > .title.is-level-3):not(:last-child) {
+  .title.is-level-3:not(.flex-box > .title.is-level-3):not(:last-child) {
     margin-bottom: 24px;
   }
-  .title.is-level-4:not(.stack > .title.is-level-4):not(:last-child) {
+  .title.is-level-4:not(.flex-box > .title.is-level-4):not(:last-child) {
     margin-bottom: 24px;
   }
-  .title.is-level-5:not(.stack > .title.is-level-5):not(:last-child) {
+  .title.is-level-5:not(.flex-box > .title.is-level-5):not(:last-child) {
     margin-bottom: 16px;
   }
-  .title.is-level-6:not(.stack > .title.is-level-6):not(:last-child) {
+  .title.is-level-6:not(.flex-box > .title.is-level-6):not(:last-child) {
     margin-bottom: 8px;
   }
-  .overline:not(.stack > .overline):not(:last-child) {
+  .overline:not(.flex-box > .overline):not(:last-child) {
     margin-bottom: 0px;
   }
-  .title:has(+.subtitle):not(.stack > .title:has(+.subtitle)):not(:last-child) {
+  .title:has(+.subtitle):not(.flex-box > .title:has(+.subtitle)):not(:last-child) {
     margin-bottom: 8px;
   }
-  .title.is-level-1 + .subtitle:not(.stack > .title.is-level-1 + .subtitle):not(:last-child) {
+  .title.is-level-1 + .subtitle:not(.flex-box > .title.is-level-1 + .subtitle):not(:last-child) {
     margin-bottom: 32px;
   }
-  .title.is-level-2 + .subtitle:not(.stack > .title.is-level-2 + .subtitle):not(:last-child) {
+  .title.is-level-2 + .subtitle:not(.flex-box > .title.is-level-2 + .subtitle):not(:last-child) {
     margin-bottom: 24px;
   }
-  .title.is-level-3 + .subtitle:not(.stack > .title.is-level-3 + .subtitle):not(:last-child) {
+  .title.is-level-3 + .subtitle:not(.flex-box > .title.is-level-3 + .subtitle):not(:last-child) {
     margin-bottom: 24px;
   }
-  .title.is-level-4 + .subtitle:not(.stack > .title.is-level-4 + .subtitle):not(:last-child) {
+  .title.is-level-4 + .subtitle:not(.flex-box > .title.is-level-4 + .subtitle):not(:last-child) {
     margin-bottom: 12px;
   }
-  .title.is-level-5 + .subtitle:not(.stack > .title.is-level-5 + .subtitle):not(:last-child) {
+  .title.is-level-5 + .subtitle:not(.flex-box > .title.is-level-5 + .subtitle):not(:last-child) {
     margin-bottom: 12px;
   }
-  .title.is-level-6 + .subtitle:not(.stack > .title.is-level-6 + .subtitle):not(:last-child) {
+  .title.is-level-6 + .subtitle:not(.flex-box > .title.is-level-6 + .subtitle):not(:last-child) {
     margin-bottom: 12px;
   }
 }
 
 @include mobile() {
   body:not(.is-tight) {
-    .accordion:not(.stack > .accordion):not(:last-child) {
+    .accordion:not(.flex-box > .accordion):not(:last-child) {
       margin-bottom: 16px;
     }
-  .buttons:not(.stack > .buttons):not(:last-child) {
+  .buttons:not(.flex-box > .buttons):not(:last-child) {
       margin-bottom: 16px;
     }
-  .card:not(.stack > .card):not(:last-child) {
+  .card:not(.flex-box > .card):not(:last-child) {
       margin-bottom: 16px;
     }
-  .columns:not(.stack > .columns):not(:last-child) {
+  .columns:not(.flex-box > .columns):not(:last-child) {
       margin-bottom: 16px;
     }
-  .box:not(.stack > .box):not(:last-child) {
+  .flex-box:not(.flex-box > .flex-box):not(:last-child) {
       margin-bottom: 16px;
     }
-  .table:not(.stack > .table):not(:last-child) {
+  .box:not(.flex-box > .box):not(:last-child) {
       margin-bottom: 16px;
     }
-  .list:not(.stack > .list):not(:last-child) {
+  .table:not(.flex-box > .table):not(:last-child) {
       margin-bottom: 16px;
     }
-  .timeline:not(.stack > .timeline):not(:last-child) {
+  .list:not(.flex-box > .list):not(:last-child) {
       margin-bottom: 16px;
     }
-  .stepper:not(.stack > .stepper):not(:last-child) {
+  .timeline:not(.flex-box > .timeline):not(:last-child) {
       margin-bottom: 16px;
     }
-  .pagination:not(.stack > .pagination):not(:last-child) {
+  .stepper:not(.flex-box > .stepper):not(:last-child) {
       margin-bottom: 16px;
     }
-  .segmented-control:not(.stack > .segmented-control):not(:last-child) {
+  .pagination:not(.flex-box > .pagination):not(:last-child) {
       margin-bottom: 16px;
     }
-  .tabs:not(.stack > .tabs):not(:last-child) {
+  .segmented-control:not(.flex-box > .segmented-control):not(:last-child) {
       margin-bottom: 16px;
     }
-  .range:not(.stack > .range):not(:last-child) {
+  .tabs:not(.flex-box > .tabs):not(:last-child) {
       margin-bottom: 16px;
     }
-  .stepper:not(.stack > .stepper):not(:last-child) {
+  .range:not(.flex-box > .range):not(:last-child) {
       margin-bottom: 16px;
     }
-  .price-container:not(.stack > .price-container):not(:last-child) {
+  .stepper:not(.flex-box > .stepper):not(:last-child) {
+      margin-bottom: 16px;
+    }
+  .price-container:not(.flex-box > .price-container):not(:last-child) {
       margin-bottom: 8px;
     }
-  :not(.buttons) > .button:not(.stack > :not(.buttons) > .button):not(:last-child) {
+  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
       margin-bottom: 16px;
     }
-  .countdown:not(.stack > .countdown):not(:last-child) {
+  .countdown:not(.flex-box > .countdown):not(:last-child) {
       margin-bottom: 12px;
     }
-  .countdown.is-small:not(.stack > .countdown.is-small):not(:last-child) {
+  .countdown.is-small:not(.flex-box > .countdown.is-small):not(:last-child) {
       margin-bottom: 12px;
     }
-  .chips-list:not(.stack > .chips-list):not(:last-child) {
+  .chips-list:not(.flex-box > .chips-list):not(:last-child) {
       margin-bottom: 12px;
     }
-  p.text:not(.stack > p.text):not(:last-child) {
+  p.text:not(.flex-box > p.text):not(:last-child) {
       margin-bottom: 12px;
     }
-  .progress:not(.stack > .progress):not(:last-child) {
+  .progress:not(.flex-box > .progress):not(:last-child) {
       margin-bottom: 8px;
     }
-  .progress-radial:not(.stack > .progress-radial):not(:last-child) {
+  .progress-radial:not(.flex-box > .progress-radial):not(:last-child) {
       margin-bottom: 8px;
     }
-  .radios:not(.stack > .radios):not(:last-child) {
+  .radios:not(.flex-box > .radios):not(:last-child) {
       margin-bottom: 12px;
     }
-  :not(.radios) >.radios:not(.stack > :not(.radios) >.radios):not(:last-child) {
+  :not(.radios) >.radios:not(.flex-box > .radios):not(:last-child) {
       margin-bottom: 12px;
     }
-  .checkbox:not(.stack > .checkbox):not(:last-child) {
+  .checkbox:not(.flex-box > .checkbox):not(:last-child) {
       margin-bottom: 12px;
     }
-  .switch:not(.stack > .switch):not(:last-child) {
+  .switch:not(.flex-box > .switch):not(:last-child) {
       margin-bottom: 12px;
     }
-  .radio-tiles:not(.stack > .radio-tiles):not(:last-child) {
+  .radio-tiles:not(.flex-box > .radio-tiles):not(:last-child) {
       margin-bottom: 12px;
     }
-  :not(.radio-tiles) > .radio-tile:not(.stack > :not(.radio-tiles) > .radio-tile):not(:last-child) {
+  :not(.radio-tiles) > .radio-tile:not(.flex-box > .radio-tile):not(:last-child) {
       margin-bottom: 16px;
     }
-  .checkbox-tiles:not(.stack > .checkbox-tiles):not(:last-child) {
+  .checkbox-tiles:not(.flex-box > .checkbox-tiles):not(:last-child) {
       margin-bottom: 16px;
     }
-  :not(.checkbox-tiles) > .checkbox-tile:not(.stack > :not(.checkbox-tiles) > .checkbox-tile):not(:last-child) {
+  :not(.checkbox-tiles) > .checkbox-tile:not(.flex-box > .checkbox-tile):not(:last-child) {
       margin-bottom: 16px;
     }
-  .field:not(.stack > .field):not(:last-child) {
+  .field:not(.flex-box > .field):not(:last-child) {
       margin-bottom: 16px;
     }
-  .control:not(.stack > .control):not(:last-child) {
+  .control:not(.flex-box > .control):not(:last-child) {
       margin-bottom: 4px;
     }
-  .help:not(.stack > .help):not(:last-child) {
+  .help:not(.flex-box > .help):not(:last-child) {
       margin-bottom: 4px;
     }
-  .textarea:not(.stack > .textarea):not(:last-child) {
+  .textarea:not(.flex-box > .textarea):not(:last-child) {
       margin-bottom: 16px;
     }
-  .select:not(.stack > .select):not(:last-child) {
+  .select:not(.flex-box > .select):not(:last-child) {
       margin-bottom: 16px;
     }
-  .link:not(.stack > .link):not(:last-child) {
+  .link:not(.flex-box > .link):not(:last-child) {
       margin-bottom: 8px;
     }
-  .sticker:not(.stack > .sticker):not(:last-child) {
+  .sticker:not(.flex-box > .sticker):not(:last-child) {
       margin-bottom: 8px;
     }
-  .tags:not(.stack > .tags):not(:last-child) {
+  .tags:not(.flex-box > .tags):not(:last-child) {
       margin-bottom: 16px;
     }
-  :not(.tags) > .tag:not(.stack > :not(.tags) > .tag):not(:last-child) {
+  :not(.tags) > .tag:not(.flex-box > .tag):not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-1:not(.stack > .title.is-level-1):not(:last-child) {
+  .title.is-level-1:not(.flex-box > .title.is-level-1):not(:last-child) {
       margin-bottom: 32px;
     }
-  .title.is-level-2:not(.stack > .title.is-level-2):not(:last-child) {
+  .title.is-level-2:not(.flex-box > .title.is-level-2):not(:last-child) {
       margin-bottom: 32px;
     }
-  .title.is-level-3:not(.stack > .title.is-level-3):not(:last-child) {
+  .title.is-level-3:not(.flex-box > .title.is-level-3):not(:last-child) {
       margin-bottom: 24px;
     }
-  .title.is-level-4:not(.stack > .title.is-level-4):not(:last-child) {
+  .title.is-level-4:not(.flex-box > .title.is-level-4):not(:last-child) {
       margin-bottom: 16px;
     }
-  .title.is-level-5:not(.stack > .title.is-level-5):not(:last-child) {
+  .title.is-level-5:not(.flex-box > .title.is-level-5):not(:last-child) {
       margin-bottom: 12px;
     }
-  .title.is-level-6:not(.stack > .title.is-level-6):not(:last-child) {
+  .title.is-level-6:not(.flex-box > .title.is-level-6):not(:last-child) {
       margin-bottom: 12px;
     }
-  .overline:not(.stack > .overline):not(:last-child) {
+  .overline:not(.flex-box > .overline):not(:last-child) {
       margin-bottom: 0px;
     }
-  .title:has(+.subtitle):not(.stack > .title:has(+.subtitle)):not(:last-child) {
+  .title:has(+.subtitle):not(.flex-box > .title:has(+.subtitle)):not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-1 + .subtitle:not(.stack > .title.is-level-1 + .subtitle):not(:last-child) {
+  .title.is-level-1 + .subtitle:not(.flex-box > .title.is-level-1 + .subtitle):not(:last-child) {
       margin-bottom: 40px;
     }
-  .title.is-level-2 + .subtitle:not(.stack > .title.is-level-2 + .subtitle):not(:last-child) {
+  .title.is-level-2 + .subtitle:not(.flex-box > .title.is-level-2 + .subtitle):not(:last-child) {
       margin-bottom: 32px;
     }
-  .title.is-level-3 + .subtitle:not(.stack > .title.is-level-3 + .subtitle):not(:last-child) {
+  .title.is-level-3 + .subtitle:not(.flex-box > .title.is-level-3 + .subtitle):not(:last-child) {
       margin-bottom: 32px;
     }
-  .title.is-level-4 + .subtitle:not(.stack > .title.is-level-4 + .subtitle):not(:last-child) {
+  .title.is-level-4 + .subtitle:not(.flex-box > .title.is-level-4 + .subtitle):not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-5 + .subtitle:not(.stack > .title.is-level-5 + .subtitle):not(:last-child) {
+  .title.is-level-5 + .subtitle:not(.flex-box > .title.is-level-5 + .subtitle):not(:last-child) {
       margin-bottom: 8px;
     }
-  .title.is-level-6 + .subtitle:not(.stack > .title.is-level-6 + .subtitle):not(:last-child) {
+  .title.is-level-6 + .subtitle:not(.flex-box > .title.is-level-6 + .subtitle):not(:last-child) {
       margin-bottom: 8px;
     }
 

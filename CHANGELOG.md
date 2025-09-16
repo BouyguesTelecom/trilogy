@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Update SegmentControl padding
 - Update radio's padding
 - Suffix colors variables for themes
-- Add Stack component
+- Add FlexBox component
 
 ## [4.7.4] - 2025-08-22
 - Fix iconNameRight Icon (native)
@@ -135,7 +135,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix spacing between icon and content
 
 ## [4.1.1] - 2025-03-01
-- Fix Column fullHeight
+- Fix FlexItem fullHeight
 
 ## [4.1.0] - 2025-02-25
 - Add device platform helpers and update occurrences (Native)

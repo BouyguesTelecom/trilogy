@@ -8,6 +8,15 @@ export enum Justifiable {
   SPACE_BETWEEN = 'SPACE_BETWEEN',
 }
 
+export enum Justify {
+  CENTER = 'CENTER',
+  START = 'START',
+  END = 'END',
+  SPACE_BETWEEN = 'SPACE_BETWEEN',
+  SPACE_AROUND = 'SPACE_AROUND',
+  SPACE_EVENLY = 'SPACE_EVENLY'
+}
+
 export type JustifiableValues = keyof typeof Justifiable
 
 export interface JustifiableProps {
@@ -39,12 +48,22 @@ export const getJustifyClassName = (justifyContent?: string) => {
   switch (justifyContent) {
     case 'JUSTIFIED_CENTER':
       return 'centered'
+    case 'CENTER':
+      return 'justified-center'
     case 'JUSTIFIED_START':
+      return 'justified-start'
+    case 'START':
       return 'justified-start'
     case 'JUSTIFIED_END':
       return 'justified-end'
+    case 'END':
+      return 'justified-end'
     case 'SPACE_BETWEEN':
       return 'spaced-between'
+    case 'SPACE_AROUND':
+      return 'spaced-around'
+    case 'SPACE_EVENLY':
+      return 'spaced-evenly'
     default:
       return 'justified-start'
   }

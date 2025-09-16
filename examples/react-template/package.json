@@ -6,6 +6,7 @@
   "author": "bouygues-telecom",
   "scripts": {
     "start": "vite serve",
+    "dev": "vite",
     "build": "vite build --base=/templates/ && rimraf dist/assets/icons"
   },
   "devDependencies": {
