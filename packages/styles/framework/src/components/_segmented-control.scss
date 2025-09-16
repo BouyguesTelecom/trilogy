@@ -39,7 +39,6 @@
     }
 
     @include mobile {
-      padding: 0 $spacing-4;
       flex: 1 1 0;
       width: 0;
       text-overflow: ellipsis;
