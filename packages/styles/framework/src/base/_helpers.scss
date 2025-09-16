@@ -618,13 +618,23 @@ $radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
   }
 }
 
-$positions: (
+$justify-values: (
   'center': 'center',
-  'start': 'flex-start',
   'end': 'flex-end',
+  'space-between': 'space-between',
+  'space-around': 'space-around',
+  'space-evenly': 'space-evenly',
+  'start': 'flex-start'
 );
 
-@each $justification, $justify-content in $positions {
+$align-values: (
+  'center': 'center',
+  'end': 'flex-end',
+  'start': 'flex-start',
+  'stretch': 'stretch'
+);
+
+@each $justification, $justify-content in $justify-values {
 
   .is-justified-self-#{$justification} {
     justify-self: #{$justify-content} !important;
@@ -775,7 +785,7 @@ $positions: (
   }
 }
 
-@each $alignment, $align-items in $positions {
+@each $alignment, $align-items in $align-values {
   .is-aligned-#{$alignment} {
     align-items: #{$align-items} !important;
   }
