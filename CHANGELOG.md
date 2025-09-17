@@ -10,8 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix spinner
 
 ## [4.8.1] - 2025-09-02
-- Exports enums from Stack
--
+- Exports enums from FlexBox
+
 ## [4.8.0] - 2025-09-01
 - Update SegmentControl padding
 - Update radio's padding
