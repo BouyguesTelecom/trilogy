@@ -416,14 +416,14 @@ $label-weight: $weight-bold;
     width: 45px;
 
     &::after {
-      @include spinner;
+      @include spinner();
       @include center(1em);
     }
   }
 
   &.is-loading {
     &::after {
-      @include spinner;
+      @include spinner();
 
       position: absolute !important;
       right: 0.625em;

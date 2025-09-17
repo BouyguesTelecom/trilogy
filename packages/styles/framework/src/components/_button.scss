@@ -71,6 +71,9 @@ $button-border-width: 2px !default;
 
   &.is-loading {
     background-color: getColor('neutral');
+    &::after {
+      @include spinner('neutral-fade');
+    }
   }
 
 }

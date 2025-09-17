@@ -36,7 +36,7 @@ p.is-loading,
         visibility: hidden;
     }
   &::after {
-    @include spinner;
+    @include spinner();
     @include center(1em);
     position: absolute !important;
   }
