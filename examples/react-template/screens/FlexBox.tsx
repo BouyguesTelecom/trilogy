@@ -19,9 +19,6 @@ export const FlexBoxScreen = (): JSX.Element => {
       <Title level={TitleLevels.FIVE}>Align elements</Title>
 
       <FlexBox direction={DirectionEnum.COLUMN} gap={{ mobile: GapSize.FIVE }}>
-        <Button variant='PRIMARY'>OK</Button>
-        <Button variant='PRIMARY'>OK</Button>
-
         <FlexBox>
           <Icon name={IconName.INFOS_CIRCLE} />
           <Icon name={IconName.INFOS_CIRCLE} />
@@ -144,6 +141,18 @@ export const FlexBoxScreen = (): JSX.Element => {
           </FlexBox>
           <FlexBox>
             <Button variant={ButtonVariant.GHOST}>Click</Button>
+            <Button variant={ButtonVariant.PRIMARY}>Right</Button>
+          </FlexBox>
+        </FlexBox>
+
+        <Title level={TitleLevels.FIVE}>Flex direction reverse</Title>
+        <FlexBox direction={DirectionEnum.ROW}>
+          <FlexBox direction={DirectionEnum.COLUMN_REVERSE}>
+            <Button variant={ButtonVariant.CONVERSION}>Top</Button>
+            <Button variant={ButtonVariant.PRIMARY}>Bottom</Button>
+          </FlexBox>
+          <FlexBox direction={{tablet: DirectionEnum.ROW_REVERSE, mobile: DirectionEnum.ROW}}>
+            <Button variant={ButtonVariant.GHOST}>Left</Button>
             <Button variant={ButtonVariant.PRIMARY}>Right</Button>
           </FlexBox>
         </FlexBox>
