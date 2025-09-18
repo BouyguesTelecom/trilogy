@@ -55,11 +55,21 @@
     "./package.json": "./package.json",
     ".": {
       "require": {
-        "types": "./lib/types/index.d.ts",
+        "types": "./lib/cjs/index.d.ts",
         "default": "./lib/cjs/index.js"
       },
       "default": {
-        "types": "./lib/types/index.d.ts",
+        "types": "./lib/esm/index.d.ts",
+        "default": "./lib/esm/index.js"
+      }
+    },
+    "./*": {
+      "require": {
+        "types": "./lib/cjs/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      },
+      "default": {
+        "types": "./lib/esm/index.d.ts",
         "default": "./lib/esm/index.js"
       }
     },
