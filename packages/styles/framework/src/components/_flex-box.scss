@@ -33,11 +33,11 @@
       flex-direction: column;
     }
 
-    &.is-direction-row-desktop-reverse {
+    &.is-direction-row-reverse-desktop {
       flex-direction: row-reverse;
     }
 
-    &.is-direction-column-desktop-reverse {
+    &.is-direction-column-reverse-desktop {
       flex-direction: column-reverse;
     }
   }
@@ -51,11 +51,11 @@
       flex-direction: column;
     }
 
-    &.is-direction-row-tablet-reverse {
+    &.is-direction-row-reverse-tablet {
       flex-direction: row-reverse;
     }
 
-    &.is-direction-column-tablet-reverse {
+    &.is-direction-column-reverse-tablet {
       flex-direction: column-reverse;
     }
   }
@@ -73,11 +73,11 @@
       flex-direction: column;
     }
 
-    &.is-direction-row-mobile-reverse {
+    &.is-direction-row-reverse-mobile {
       flex-direction: row-reverse;
     }
 
-    &.is-direction-column-mobile-reverse {
+    &.is-direction-column-reverse-mobile {
       flex-direction: column-reverse;
     }
   }
