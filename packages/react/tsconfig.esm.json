@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./lib/esm",
+  },
+  "exclude": [
+    "./components/**/*.stories.tsx",
+    "node_modules",
+    "./jest*",
+    "./snapshotResolver.ts",
+    "./fileTransformer.cjs",
+    "./package.json",
+    "./coverage",
+    "**/test/**",
+  ]
+}

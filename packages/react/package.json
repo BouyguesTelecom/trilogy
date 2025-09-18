@@ -5,9 +5,9 @@
   "files": [
     "lib"
   ],
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "lib/cjs/index.js",    
+  "module": "lib/esm/index.js",  
+  "types": "lib/cjs/index.d.ts", 
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
@@ -16,7 +16,9 @@
     "check-types": "tsc --noemit",
     "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
-    "build": "rimraf lib && npm run prebuild && tsc -p ./tsconfig.build.json && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib/"
+    "build:cjs": "rimraf lib && npm run prebuild && tsc -p ./tsconfig.build.json && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib/cjs",
+    "build:esm": "tsc -p ./tsconfig.esm.json && tsc-alias -p ./tsconfig.esm.json",
+    "build":"npm run build:cjs && npm run build:esm"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
@@ -47,5 +49,20 @@
   "keywords": [
     "react",
     "design system"
-  ]
+  ],
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": {
+        "types": "./lib/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      },
+      "default": {
+        "types": "./lib/types/index.d.ts",
+        "default": "./lib/esm/index.js"
+      }
+    },
+    "./esm": null
+  }
 }

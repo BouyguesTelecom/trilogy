@@ -22,7 +22,7 @@
     "strict": true,
     "downlevelIteration": true,
     "target": "ES5",
-    "outDir": "./lib",
+    "outDir": "./lib/cjs",
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": false,
     "experimentalDecorators": true,
