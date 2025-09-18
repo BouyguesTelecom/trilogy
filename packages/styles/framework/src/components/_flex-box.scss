@@ -16,6 +16,14 @@
     flex-direction: row;
   }
 
+  &.is-direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.is-direction-column-reverse {
+    flex-direction: column-reverse;
+  }
+
   @include desktop {
     &.is-direction-row-desktop {
       flex-direction: row;
@@ -23,6 +31,14 @@
 
     &.is-direction-column-desktop {
       flex-direction: column;
+    }
+
+    &.is-direction-row-desktop-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-desktop-reverse {
+      flex-direction: column-reverse;
     }
   }
 
@@ -33,6 +49,14 @@
 
     &.is-direction-column-tablet {
       flex-direction: column;
+    }
+
+    &.is-direction-row-tablet-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-tablet-reverse {
+      flex-direction: column-reverse;
     }
   }
 
@@ -47,6 +71,14 @@
 
     &.is-direction-column-mobile {
       flex-direction: column;
+    }
+
+    &.is-direction-row-mobile-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-mobile-reverse {
+      flex-direction: column-reverse;
     }
   }
 
