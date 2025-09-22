@@ -4,8 +4,9 @@
     "description": "Trilogy assets include traductions (fr) for accessibility",
     "author": "Bouygues Telecom",
     "license": "UNLICENSED",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "main": "lib/index.js",    
+    "module": "lib/index.mjs",  
+    "types": "lib/index.d.ts", 
     "scripts": {
       "build": "rimraf ./lib && tsup"
     },
@@ -13,5 +14,18 @@
       "lib",
       "package.json",
       "README.md"
-    ]
+    ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./*": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  }
 }
