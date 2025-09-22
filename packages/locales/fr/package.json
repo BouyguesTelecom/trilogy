@@ -7,7 +7,7 @@
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-      "build": "rimraf ./lib && tsc"
+      "build": "rimraf ./lib && tsup"
     },
     "files": [
       "lib",
