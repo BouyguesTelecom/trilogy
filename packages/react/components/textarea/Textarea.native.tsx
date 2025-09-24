@@ -6,9 +6,9 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import { grayscale, TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
+import { grayscale, TypographyColor } from '@/objects/index'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Spacer, SpacerSize } from '../spacer'

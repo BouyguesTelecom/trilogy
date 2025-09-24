@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { isRequiredChild } from '@/helpers/require'
+import { getJustifiedClassName } from '@/objects/index'
+import { is } from '@/services/index'
 import clsx from 'clsx'
 import * as React from 'react'
 import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
@@ -19,14 +19,17 @@ import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
+  (
+    { className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others },
+    ref,
+  ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
       <div
         ref={ref}
         id={id}
-        role="group"
+        role='group'
         aria-labelledby={accessibilityLabelledBy}
         aria-required={isRequiredChild(children) ? 'true' : undefined}
         className={hashClass(

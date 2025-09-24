@@ -1,5 +1,5 @@
 import { Icon, IconColor, IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TrilogyColor } from '@/objects/facets/Color'
 import { StatusState, getStatusClassName } from '@/objects/facets/Status'

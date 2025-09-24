@@ -1,4 +1,4 @@
-import type { TrilogyComponents } from '@/components/index.d'
+import type { TrilogyComponents } from '@/components/interface'
 import { SpacerSize } from '@/components/spacer'
 
 export enum SpacingMatrixMode {

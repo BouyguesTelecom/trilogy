@@ -1,8 +1,8 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/index'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import { TableBorderEnum, TableNativeRef, TableProps } from './TableProps'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Table Component

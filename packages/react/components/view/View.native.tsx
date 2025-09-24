@@ -1,9 +1,9 @@
-import * as React from "react"
-import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative, } from "react-native"
-import { getAlignStyle, getJustifyStyle, TrilogyColor } from "@/objects"
-import { getColorStyle } from "@/objects/facets/Color"
-import { ViewNativeRef, ViewProps } from "./ViewProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle } from '@/objects/facets/Color'
+import { getAlignStyle, getJustifyStyle, TrilogyColor } from '@/objects/index'
+import * as React from 'react'
+import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
+import { ViewNativeRef, ViewProps } from './ViewProps'
 
 /**
  * View Component (DIV EQUIVALENT)
@@ -19,97 +19,91 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewNativeRef, ViewProps>(({
-  children,
-  style,
-  onClick,
-  flexable,
-  bottom,
-  backgroundColor,
-  backgroundSrc,
-  id,
-  justify,
-  fullwidth = true,
-  align,
-  ...others
-}, ref): JSX.Element => {
-  const viewColor =
-    (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || "transparent"
-
-  const styles = StyleSheet.create({
-    view: {
-      flex: flexable ? 1 : 0,
-      backgroundColor: viewColor,
-      width: fullwidth ? "100%" : "auto",
-      ...(justify && { justifyContent: getJustifyStyle(justify) }),
-      ...(align && { alignItems: getAlignStyle(align) }),
+const View = React.forwardRef<ViewNativeRef, ViewProps>(
+  (
+    {
+      children,
+      style,
+      onClick,
+      flexable,
+      bottom,
+      backgroundColor,
+      backgroundSrc,
+      id,
+      justify,
+      fullwidth = true,
+      align,
+      ...others
     },
-    bottom: {
-      position: "absolute",
-      bottom: 0,
-      width: fullwidth ? "100%" : "auto",
-    },
-    sectionImage: {
-      flex: flexable ? 1 : 0,
-      width: "100%",
-      height: "auto",
-    },
-  })
+    ref,
+  ): JSX.Element => {
+    const viewColor = (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || 'transparent'
 
-  let returnView = (
-    <ViewNative
-      ref={ref}
-      testID={id}
-      nativeID={id}
-      style={[styles.view, bottom && styles.bottom, style]}
-      {...others}
-    >
-      {children}
-    </ViewNative>
-  )
-  if (!children) {
-    returnView = (
-      <ViewNative
-        ref={ref}
-        testID={id}
-        nativeID={id}
-        style={[styles.view, bottom && styles.bottom, style]}
-        {...others}
-      />
-    )
-  }
+    const styles = StyleSheet.create({
+      view: {
+        flex: flexable ? 1 : 0,
+        backgroundColor: viewColor,
+        width: fullwidth ? '100%' : 'auto',
+        ...(justify && { justifyContent: getJustifyStyle(justify) }),
+        ...(align && { alignItems: getAlignStyle(align) }),
+      },
+      bottom: {
+        position: 'absolute',
+        bottom: 0,
+        width: fullwidth ? '100%' : 'auto',
+      },
+      sectionImage: {
+        flex: flexable ? 1 : 0,
+        width: '100%',
+        height: 'auto',
+      },
+    })
 
-  if (onClick) {
-    returnView = (
-      <ViewNative
-        ref={ref}
-        testID={id}
-        nativeID={id}
-        style={[styles.view, bottom && styles.bottom, style]}
-        {...others}
-      >
-        <TouchableOpacity activeOpacity={1} onPress={onClick}>
-          {children}
-        </TouchableOpacity>
+    let returnView = (
+      <ViewNative ref={ref} testID={id} nativeID={id} style={[styles.view, bottom && styles.bottom, style]} {...others}>
+        {children}
       </ViewNative>
     )
-  }
+    if (!children) {
+      returnView = (
+        <ViewNative
+          ref={ref}
+          testID={id}
+          nativeID={id}
+          style={[styles.view, bottom && styles.bottom, style]}
+          {...others}
+        />
+      )
+    }
 
-  return backgroundSrc ? (
-    <ImageBackground
-      style={styles.sectionImage}
-      source={
-        typeof backgroundSrc === "number"
-          ? backgroundSrc
-          : { uri: backgroundSrc }
-      }
-    >
-      {returnView}
-    </ImageBackground>
-  ) : (
-    returnView
-  )
-})
+    if (onClick) {
+      returnView = (
+        <ViewNative
+          ref={ref}
+          testID={id}
+          nativeID={id}
+          style={[styles.view, bottom && styles.bottom, style]}
+          {...others}
+        >
+          <TouchableOpacity activeOpacity={1} onPress={onClick}>
+            {children}
+          </TouchableOpacity>
+        </ViewNative>
+      )
+    }
+
+    return backgroundSrc ? (
+      <ImageBackground
+        style={styles.sectionImage}
+        source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+      >
+        {returnView}
+      </ImageBackground>
+    ) : (
+      returnView
+    )
+  },
+)
 
 View.displayName = ComponentName.View
 

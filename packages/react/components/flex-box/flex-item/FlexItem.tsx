@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/FlexItemProps'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/FlexItemProps'
 
 /**
  * FlexItem Component - FlexBox Child

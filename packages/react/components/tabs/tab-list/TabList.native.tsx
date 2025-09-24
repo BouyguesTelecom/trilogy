@@ -3,7 +3,7 @@ import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListNativeRef, TabListProps } from '@/components/tabs/tab-list/TabListProps'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/index'
 import React from 'react'
 import {
   LayoutChangeEvent,

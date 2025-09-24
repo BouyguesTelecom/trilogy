@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects'
+import { getColorStyle } from '@/objects/index'
 import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'

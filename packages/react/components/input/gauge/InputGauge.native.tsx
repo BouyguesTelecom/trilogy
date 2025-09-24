@@ -3,7 +3,7 @@ import React from 'react'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
-import { TrilogyColor, getColorStyle } from '@/objects'
+import { TrilogyColor, getColorStyle } from '@/objects/index'
 import { DimensionValue, StyleSheet, View } from 'react-native'
 import { useGauge } from './hook/useGauge'
 

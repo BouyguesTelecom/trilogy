@@ -1,40 +1,42 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/index'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ModalContext } from '../context'
-import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
+import { ModalFooterNativeRef, ModalFooterProps } from './ModalFooterProps'
 
 /**
  * Modal Footer Component
  * @param children {React.ReactNode}
  */
-const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(({ children, ...others }, ref): JSX.Element => {
-  const { setIsFooter } = React.useContext(ModalContext)
+const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(
+  ({ children, ...others }, ref): JSX.Element => {
+    const { setIsFooter } = React.useContext(ModalContext)
 
-  React.useEffect(() => {
-    setIsFooter(true)
+    React.useEffect(() => {
+      setIsFooter(true)
 
-    return () => {
-      setIsFooter(false)
-    }
-  }, [])
+      return () => {
+        setIsFooter(false)
+      }
+    }, [])
 
-  return (
-    <View ref={ref} style={[styles.container]} {...others}>
-      <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
-        {(typeof children === 'string' && (
-          <Title level={TitleLevels.THREE} style={styles.title}>
-            {children}
-          </Title>
-        )) ||
-          children}
+    return (
+      <View ref={ref} style={[styles.container]} {...others}>
+        <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
+          {(typeof children === 'string' && (
+            <Title level={TitleLevels.THREE} style={styles.title}>
+              {children}
+            </Title>
+          )) ||
+            children}
+        </View>
       </View>
-    </View>
-  )
-})
+    )
+  },
+)
 
 ModalFooter.displayName = ComponentName.ModalFooter
 

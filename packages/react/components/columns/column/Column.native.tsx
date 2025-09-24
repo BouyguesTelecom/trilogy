@@ -1,7 +1,7 @@
 import { ColumnNativeRef, ColumnProps } from '@/components/columns/column/ColumnProps'
 import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getAlignStyle } from '@/objects'
+import { getAlignStyle } from '@/objects/index'
 import React from 'react'
 import { View, ViewStyle } from 'react-native'
 

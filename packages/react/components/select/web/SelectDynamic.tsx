@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { SelectProps, SelectRef } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { SelectContext } from '../context'
 
 const OPTION_SIZE = 48

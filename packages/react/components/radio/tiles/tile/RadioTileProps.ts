@@ -1,7 +1,7 @@
+import { VariantProps } from '@/objects/index'
 import { TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { RadioProps } from '../../../../components/radio/RadioProps'
-import { VariantProps } from '@/objects'
 
 /**
  * Columns Item Interface

@@ -2,10 +2,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { grayscale, TypographyColor } from '@/objects'
 import { Alignable } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
+import { grayscale, TypographyColor } from '@/objects/index'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Animated,
@@ -461,10 +461,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
                   align={Alignable.ALIGNED_CENTER}
                   name={iconNameRight as unknown as IconName}
                   size={IconSize.SMALL}
-                  color={
-                    (disabled && TrilogyColor.DISABLED) ||
-                    TrilogyColor.MAIN
-                  }
+                  color={(disabled && TrilogyColor.DISABLED) || TrilogyColor.MAIN}
                 />
               </TouchableOpacity>
             )}

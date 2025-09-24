@@ -1,8 +1,8 @@
+import { VariantProps } from '@/objects/index'
 import { TouchableOpacity } from 'react-native'
 import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
-import { VariantProps } from '@/objects'
 
 /**
  * Columns Item Interface

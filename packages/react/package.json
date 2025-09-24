@@ -21,7 +21,7 @@
     "build:temp-esm": "rimraf lib-esm && tsc -p ./tsconfig.esm.json && tsc-alias -p ./tsconfig.esm.json",
     "merge-esm-files": "node ./scripts/merge-esm-files.js",
     "build:esm": "npm run build:temp-esm && npm run merge-esm-files && rimraf lib-esm",
-    "tsup": "tsdown"
+    "tsup": "tsup"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",

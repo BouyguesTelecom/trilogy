@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControlItemProps'

@@ -1,7 +1,7 @@
-import { Accessibility, Dev } from '@/objects'
-import { Pager } from './PaginationEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility, Dev } from '@/objects/index'
 import { View } from 'react-native'
+import { CommonProps } from '../../objects/facets/CommonProps'
+import { Pager } from './PaginationEnum'
 
 /**
  * Pagination Interface

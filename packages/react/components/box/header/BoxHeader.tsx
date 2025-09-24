@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { has, is } from '@/services/classify'
