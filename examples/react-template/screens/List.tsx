@@ -1,5 +1,7 @@
 import {
   AutoLayout,
+  Column,
+  Columns,
   IconName,
   List,
   ListIconStatus,
@@ -137,6 +139,16 @@ export const ListScreen = (): JSX.Element => {
           </ListItem>
           <ListItem>
             <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+        </List>
+
+        <List>
+          <ListItem>
+            <Columns>
+              <Column>
+                <Text>Test</Text>
+              </Column>
+            </Columns>
           </ListItem>
         </List>
       </AutoLayout>
