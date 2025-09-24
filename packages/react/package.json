@@ -17,11 +17,7 @@
     "check-types": "tsc --noemit",
     "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
-    "build:cjs": "rimraf lib && npm run prebuild && tsc -p ./tsconfig.build.json && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib",
-    "build:temp-esm": "rimraf lib-esm && tsc -p ./tsconfig.esm.json && tsc-alias -p ./tsconfig.esm.json",
-    "merge-esm-files": "node ./scripts/merge-esm-files.js",
-    "build:esm": "npm run build:temp-esm && npm run merge-esm-files && rimraf lib-esm",
-    "tsup": "tsup"
+    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
