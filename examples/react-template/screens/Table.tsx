@@ -16,7 +16,7 @@ import {
   TextLevels,
   View,
 } from '@trilogy-ds/react/components'
-import { TableBorderEnum } from '@trilogy-ds/react/lib/components/table/TableProps'
+import { TableBorderEnum } from '@trilogy-ds/react/components/table'
 
 export const TableScreen = (): JSX.Element => {
   const [expendable, setExpendable] = useState(false)

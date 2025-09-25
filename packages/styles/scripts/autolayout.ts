@@ -1,7 +1,6 @@
 import fs from 'fs'
-import { INSERT_SPACE_BETWEEN } from '@trilogy-ds/react/components/autolayout/DefaultSpacingMatrix'
-import { SpacingMatrixMode } from '@trilogy-ds/react/components/autolayout/SpacingMatrix'
-import { SpacerSize } from '@trilogy-ds/react/components/spacer'
+import { INSERT_SPACE_BETWEEN, SpacingMatrixMode } from '../../react/components/autolayout'
+import { SpacerSize } from '../../react/components/spacer'
 
 type DefaultSpacingMatrix = Array<[SpacingMatrixMode, string, (string | SpacerSize | null)?, SpacerSize?, SpacerSize?]>
 

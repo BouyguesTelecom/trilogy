@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactNode, SetStateAction } from "react"
-import { ITrilogyTheme } from "./interfaces"
-import { colors } from "../objects/facets/Color"
+import { ITrilogyTheme } from "../interfaces"
+import { colors } from "../../objects/facets/Color"
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode;

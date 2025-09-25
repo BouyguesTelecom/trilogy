@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import versionJSON from '../version.json'
-import { TrilogyContext } from './index'
+import versionJSON from '../../version.json'
+import { TrilogyContext } from '../index'
 
 interface TrilogyProviderStyledProps {
   children: React.ReactNode

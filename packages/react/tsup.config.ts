@@ -27,8 +27,6 @@ export default defineConfig({
   ],
   external: ['react', 'react-native'],
   tsconfig: './tsconfig.build.json',
-  splitting: false,
-  bundle: false,
 
   async onSuccess() {
     try {
