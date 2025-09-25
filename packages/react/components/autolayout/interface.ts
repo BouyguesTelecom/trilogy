@@ -1,4 +1,4 @@
-import type { TrilogyComponents } from '../index.d'
+import type { TrilogyComponents } from '../interface'
 
 export type HandleBetweenChildren = {
   /**

@@ -1,8 +1,8 @@
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { is } from '@/services/index'
 import clsx from 'clsx'
 import * as React from 'react'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
 import { Item } from '../AutoCompleteProps'
 import { AutoCompleteItemProps } from './AutoCompleteItemProps'
 

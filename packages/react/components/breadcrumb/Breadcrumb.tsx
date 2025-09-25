@@ -1,4 +1,4 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import translation from '@trilogy-ds/locales/lib/breadcrumb'
 import clsx from 'clsx'

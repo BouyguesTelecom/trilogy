@@ -1,10 +1,10 @@
-import * as React from "react"
-import { StyleSheet } from "react-native"
-import { TableThNativeRef, TableThProps } from "./TableThProps"
-import { View } from "@/components/view"
-import { Text } from "@/components/text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text } from '@/components/text'
+import { View } from '@/components/view'
+import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects/index'
+import * as React from 'react'
+import { StyleSheet } from 'react-native'
+import { TableThNativeRef, TableThProps } from './TableThProps'
 
 /**
  * TableTh Component
@@ -13,7 +13,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     tableTh: {
-      flexDirection: "column",
+      flexDirection: 'column',
       flex: 1,
       backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
@@ -22,7 +22,7 @@ const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ..
     },
     title: {
       fontSize: 14,
-      fontWeight: "bold",
+      fontWeight: 'bold',
     },
   })
 

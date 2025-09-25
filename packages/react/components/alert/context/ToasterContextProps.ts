@@ -1,6 +1,6 @@
 import { ToasterAlertPosition } from '@/components/alert/AlertProps'
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, StatusProps } from '@/objects'
+import { Accessibility, StatusProps } from '@/objects/index'
 import { AlertMarkup, AlertMarkupValues } from '../AlertEnum'
 
 /**

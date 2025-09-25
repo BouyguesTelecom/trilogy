@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/index'
 import * as React from 'react'
 import { ScrollView, View } from 'react-native'
 import { ModalContext } from '../context/ModalContext'

@@ -1,4 +1,4 @@
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/objects/index'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
 
 export interface ProgressRadialItemProps extends CommonProps {

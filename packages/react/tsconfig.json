@@ -21,7 +21,7 @@
     "skipLibCheck": true,
     "strict": true,
     "downlevelIteration": true,
-    "target": "ES5",
+    "target": "esnext",
     "outDir": "./lib",
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": false,
@@ -33,7 +33,7 @@
   "include": [
     "./**/*.json",
     "./**/*.ts",
-    "./**/*.tsx"
+    "./**/*.tsx" 
   ],
   "exclude": [
     "./components/**/*.stories.tsx",
@@ -43,6 +43,7 @@
     "./fileTransformer.cjs",
     "./package.json",
     "./coverage",
+    "./tsup.config.ts"
   ],
   "ts-node": {
     "compilerOptions": {

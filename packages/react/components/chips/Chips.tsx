@@ -1,6 +1,6 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/services/index'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'

@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import React from 'react'
+import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { TagProps, TagRef } from './TagProps'
-import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Tag Component
@@ -19,32 +19,34 @@ import { ComponentName } from '../enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  **/
-const Tag = React.forwardRef<TagRef, TagProps>(({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Tag = React.forwardRef<TagRef, TagProps>(
+  ({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const tagClassNames = hashClass(
-    styled,
-    clsx(
-      'tag',
-      variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
-      inverted && is('inverted'),
-      small && is('small'),
-      className,
-    ),
-  )
+    const tagClassNames = hashClass(
+      styled,
+      clsx(
+        'tag',
+        variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+        inverted && is('inverted'),
+        small && is('small'),
+        className,
+      ),
+    )
 
-  const tagIconClassNames = hashClass(
-    styled,
-    clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
-  )
+    const tagIconClassNames = hashClass(
+      styled,
+      clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
+    )
 
-  return (
-    <span ref={ref} id={id} className={tagClassNames} {...others}>
-      {iconName && <Icon className={tagIconClassNames} name={iconName} />}
-      {label}
-    </span>
-  )
-})
+    return (
+      <span ref={ref} id={id} className={tagClassNames} {...others}>
+        {iconName && <Icon className={tagIconClassNames} name={iconName} />}
+        {label}
+      </span>
+    )
+  },
+)
 
 Tag.displayName = ComponentName.Tag
 export default Tag

@@ -1,11 +1,11 @@
-import React from 'react'
-import { SectionProps, SectionRef } from './SectionProps'
-import { has, is } from '@/services'
-import { getBackgroundClassName } from '@/objects'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getBackgroundClassName } from '@/objects/index'
+import { has, is } from '@/services/index'
 import clsx from 'clsx'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { SectionProps, SectionRef } from './SectionProps'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -18,33 +18,35 @@ import { ComponentName } from '../enumsComponentsName'
  * @param skeleton {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
  **/
-const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
-  const { styled } = useTrilogyContext()
+const Section = React.forwardRef<SectionRef, SectionProps>(
+  ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
 
-  const _className = hashClass(
-    styled,
-    clsx(
-      'section',
-      className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      backgroundSrc && has('background'),
-      inverted && is('inverted'),
-      skeleton && is('loading'),
-    ),
-  )
+    const _className = hashClass(
+      styled,
+      clsx(
+        'section',
+        className,
+        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundSrc && has('background'),
+        inverted && is('inverted'),
+        skeleton && is('loading'),
+      ),
+    )
 
-  return (
-    <section
-      ref={ref}
-      id={id}
-      {...(backgroundSrc && {
-        style: { backgroundImage: `url(${backgroundSrc})` },
-      })}
-      className={_className}
-      {...others}
-    />
-  )
-})
+    return (
+      <section
+        ref={ref}
+        id={id}
+        {...(backgroundSrc && {
+          style: { backgroundImage: `url(${backgroundSrc})` },
+        })}
+        className={_className}
+        {...others}
+      />
+    )
+  },
+)
 
 Section.displayName = ComponentName.Section
 export default Section

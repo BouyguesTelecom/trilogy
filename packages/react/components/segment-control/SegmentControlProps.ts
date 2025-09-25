@@ -1,7 +1,7 @@
+import { Alignable, AlignableValues } from '@/objects/index'
 import type { View } from 'react-native'
 import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { Alignable, AlignableValues } from '@/objects'
 
 /**
  * SegmentedControl Interface

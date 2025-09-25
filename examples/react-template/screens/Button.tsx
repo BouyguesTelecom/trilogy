@@ -10,8 +10,8 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
-import { ButtonListDirectionEnum } from '@trilogy-ds/react/lib/components/button/list/ButtonListEnum'
 import { Alignable } from '@trilogy-ds/react'
+import { ButtonListDirectionEnum } from '@trilogy-ds/react/components/button/list'
 
 const Separator = () => {
   return (

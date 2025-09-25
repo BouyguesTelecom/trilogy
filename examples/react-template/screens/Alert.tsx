@@ -16,8 +16,7 @@ import {
   ToasterContext,
   View,
 } from '@trilogy-ds/react/components'
-import { AlertMarkup } from '@trilogy-ds/react/components/alert/AlertEnum'
-import { ToasterAlertPosition } from '@trilogy-ds/react/components/alert/AlertProps'
+import { AlertMarkup, ToasterAlertPosition } from '@trilogy-ds/react/components/alert'
 import React, { useContext, useState } from 'react'
 
 const ToasterAlertView: React.FC = () => {

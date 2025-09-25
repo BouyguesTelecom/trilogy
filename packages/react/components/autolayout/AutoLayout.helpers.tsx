@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
-import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/AutoLayout.d'
+import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/interface'
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
-import type { TrilogyComponents } from '@/components/index.d'
+import type { TrilogyComponents } from '@/components/interface'
 import { Spacer, SpacerSize } from '@/components/spacer'
 
 /**
