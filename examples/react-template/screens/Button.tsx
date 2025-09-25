@@ -11,6 +11,7 @@ import {
 } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { Alignable } from '@trilogy-ds/react'
+import { ButtonListDirectionEnum } from '@trilogy-ds/react/components/button/list'
 
 const Separator = () => {
   return (
@@ -37,7 +38,7 @@ export const ButtonScreen = (): JSX.Element => {
       {/*  ======== list column ======== */}
       <Title level={TitleLevels.TWO}>List column</Title>
       <Spacer size={10}/>
-      <ButtonList direction={"column"} align={Alignable.ALIGNED_START}>
+      <ButtonList direction={ButtonListDirectionEnum.COLUMN} align={Alignable.ALIGNED_START}>
         {Object.values(ButtonVariant).map((variant, index) => {
           return <Button variant={variant} key={index}>{variant}</Button>;
         })}
