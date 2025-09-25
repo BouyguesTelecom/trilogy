@@ -1,5 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from './Color'
+import { getColorStyle, TrilogyColor } from '../Color'
 
 /**
  * Alert State

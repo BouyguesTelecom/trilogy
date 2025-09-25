@@ -79,35 +79,10 @@
       "import": "./lib/objects/index.mjs",
       "require": "./lib/objects/index.js"
     },
-    "./objects/atoms": {
-      "types": "./lib/objects/atoms/index.d.ts",
-      "import": "./lib/objects/atoms/index.mjs",
-      "require": "./lib/objects/atoms/index.js"
-    },
-    "./objects/atoms/*": {
-      "types": "./lib/objects/atoms/*/*.d.ts",
-      "import": "./lib/objects/atoms/*/*.mjs",
-      "require": "./lib/objects/atoms/*/*.js"
-    },
-    "./objects/facets": {
-      "types": "./lib/objects/facets/index.d.ts",
-      "import": "./lib/objects/facets/index.mjs",
-      "require": "./lib/objects/facets/index.js"
-    },
-    "./objects/facets/*": {
-      "types": "./lib/objects/facets/*/*.d.ts",
-      "import": "./lib/objects/facets/*/*.mjs",
-      "require": "./lib/objects/facets/*/*.js"
-    },
-    "./objects/Typography": {
-      "types": "./lib/objects/Typography/index.d.ts",
-      "import": "./lib/objects/Typography/index.mjs",
-      "require": "./lib/objects/Typography/index.js"
-    },
-    "./objects/Typography/*": {
-      "types": "./lib/objects/Typography/*/*.d.ts",
-      "import": "./lib/objects/Typography/*/*.mjs",
-      "require": "./lib/objects/Typography/*/*.js"
+    "./objects/*": {
+      "types": "./lib/objects/*/index.d.ts",
+      "import": "./lib/objects/*/index.mjs",
+      "require": "./lib/objects/*/index.js"
     },
     "./helpers": {
       "types": "./lib/helpers/index.d.ts",

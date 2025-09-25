@@ -12,7 +12,6 @@ import {
 import * as React from 'react'
 import { Alignable } from '@trilogy-ds/react'
 import { ButtonListDirectionEnum } from '@trilogy-ds/react/components/button/list'
-
 const Separator = () => {
   return (
     <>
