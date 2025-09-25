@@ -8,7 +8,6 @@
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
-  "type": "module",
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
@@ -17,7 +16,7 @@
     "check-types": "tsc --noemit",
     "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
-    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib"
+    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib && cp -R version.json ./lib"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",

@@ -1,6 +1,6 @@
 import { exec } from 'child_process'
 import fs from 'fs'
-import { glob } from 'glob'
+import glob from 'glob'
 import { defineConfig } from 'tsup'
 import { promisify } from 'util'
 
@@ -34,7 +34,7 @@ export default defineConfig({
     try {
       const execAsync = promisify(exec)
       await execAsync('tsc --emitDeclarationOnly --declaration --outDir lib')
-      const files = await glob('lib/**/*.d.ts')
+      const files = await glob.sync('lib/**/*.d.ts')
       await Promise.all(files.map((file) => fs.copyFileSync(file, file.replace('.d.ts', '.d.mts')))) // or to `.d.cjs` for `"type": "module"` projects
     } catch (err: any) {
       console.error()

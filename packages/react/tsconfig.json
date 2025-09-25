@@ -43,6 +43,7 @@
     "./fileTransformer.cjs",
     "./package.json",
     "./coverage",
+    "./tsup.config.ts"
   ],
   "ts-node": {
     "compilerOptions": {
