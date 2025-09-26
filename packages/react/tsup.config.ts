@@ -33,7 +33,7 @@ export default defineConfig({
       const execAsync = promisify(exec)
       await execAsync('tsc --emitDeclarationOnly --declaration --outDir lib')
       const files = await glob.sync('lib/**/*.d.ts')
-      await Promise.all(files.map((file) => fs.copyFileSync(file, file.replace('.d.ts', '.d.mts')))) // or to `.d.cjs` for `"type": "module"` projects
+      await Promise.all(files.map((file) => fs.copyFileSync(file, file.replace('.d.ts', '.d.mts'))))
     } catch (err: any) {
       console.error()
       console.error('Typescript compilation error:')
