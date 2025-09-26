@@ -14,25 +14,68 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
   ({ children, narrow, size, verticalAlign, ...others }, ref): JSX.Element => {
     const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
-    const scrollableStyle: ViewStyle = React.useMemo(
-      () => ({
-        width: size
-          ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength)
-          : narrow
-          ? 'auto'
-          : width - 2 * realGap,
-      }),
-      [size, narrow, width, realGap, childrensLength],
+    // Optimization: Separate width calculations to avoid unnecessary re-calculations
+    const calculatedWidth = React.useMemo(
+      () => size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : width - 2 * realGap,
+      [size, width, realGap, childrensLength],
     )
 
+    // Universal optimization: Specific styles for scrollable containers
+    const scrollableStyle: ViewStyle = React.useMemo(
+      () => {
+        if (size) {
+          return { width: calculatedWidth }
+        }
+
+        if (narrow) {
+          // Universal optimization: minWidth and flexShrink for better performance
+          return { minWidth: 0, flexShrink: 1 }
+        }
+
+        return { width: calculatedWidth }
+      },
+      [size, narrow, calculatedWidth],
+    )
+
+    // Universal optimization: Specific styles for non-scrollable containers
     const noScrollableStyle: ViewStyle = React.useMemo(
-      () => ({
-        flex: narrow ? 0 : 1,
-        flexGrow: size || narrow ? 0 : 1,
-        flexShrink: narrow ? 1 : 0,
-        flexBasis: size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : 'auto',
-      }),
-      [size, narrow, width, realGap, childrensLength],
+      () => {
+        const baseStyle: ViewStyle = {
+          flex: narrow ? 0 : 1,
+          flexGrow: size || narrow ? 0 : 1,
+          flexShrink: narrow ? 1 : 0,
+        }
+
+        // Universal optimization: Use minWidth for better performance
+        if (size) {
+          return {
+            ...baseStyle,
+            flexBasis: calculatedWidth,
+          }
+        }
+
+        if (narrow) {
+          return {
+            ...baseStyle,
+            flexBasis: 0,
+            minWidth: 0,
+          }
+        }
+
+        // For flexible columns, use minWidth instead of 'auto'
+        return {
+          ...baseStyle,
+          flexBasis: 0,
+          minWidth: 0,
+        }
+      },
+      [size, narrow, calculatedWidth],
+    )
+
+    // Optimization: Memoize vertical alignment style with correct typing
+    const alignmentStyle: ViewStyle = React.useMemo(
+      () => ({ justifyContent: getAlignStyle(verticalAlign) as 'flex-start' | 'flex-end' | 'center' }),
+      [verticalAlign],
     )
 
     return (
@@ -41,7 +84,7 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
         style={[
           scrollable && scrollableStyle,
           !scrollable && noScrollableStyle,
-          { justifyContent: getAlignStyle(verticalAlign) },
+          alignmentStyle,
         ]}
         {...others}
       >
