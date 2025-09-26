@@ -24,6 +24,7 @@ export default defineConfig({
     '!tsup.config.ts',
     '!package.json',
     '!snapshotResolver.ts',
+    '!coverage'
   ],
   external: ['react', 'react-native'],
   tsconfig: './tsconfig.build.json',
