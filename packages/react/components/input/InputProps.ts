@@ -2,7 +2,7 @@
 import { Accessibility, Dev } from '../../objects/facets'
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 
-import { type ChangeEvent, FocusEventHandler} from 'react'
+import { type ChangeEvent, FocusEventHandler } from 'react'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,

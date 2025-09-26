@@ -51,9 +51,9 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
 
     const isChecked = useCallback(
       (value: string) =>
-        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value,
+          : selectedValues === value),
       [multiple, selectedValues],
     )
 
