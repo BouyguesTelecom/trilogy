@@ -27,7 +27,6 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
 
     const noScrollableStyle: ViewStyle = React.useMemo(
       () => ({
-        flex: narrow ? 0 : 1,
         flexGrow: size || narrow ? 0 : 1,
         flexShrink: narrow ? 1 : 0,
         flexBasis: size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : 'auto',
