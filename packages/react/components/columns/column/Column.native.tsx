@@ -39,7 +39,6 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
       [size, narrow, calculatedWidth],
     )
 
-    // Performance optimization: Memoize alignment style separately
     const alignmentStyle = React.useMemo(
       () => ({ justifyContent: getAlignStyle(verticalAlign) as 'flex-start' | 'flex-end' | 'center' }),
       [verticalAlign],
