@@ -44,14 +44,19 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
       [verticalAlign],
     )
 
+    const combinedStyle = React.useMemo(
+      () => [
+        scrollable && scrollableStyle,
+        !scrollable && noScrollableStyle,
+        alignmentStyle,
+      ],
+      [scrollable, scrollableStyle, noScrollableStyle, alignmentStyle],
+    )
+
     return (
       <View
         ref={ref}
-        style={[
-          scrollable && scrollableStyle,
-          !scrollable && noScrollableStyle,
-          alignmentStyle,
-        ]}
+        style={combinedStyle}
         {...others}
       >
         {children}
