@@ -17,12 +17,24 @@ export interface Direction {
   desktop?: DirectionEnum | DirectionEnumValues
 }
 
+export interface ResponsiveAlign {
+  mobile?: Align
+  tablet?: Align
+  desktop?: Align
+}
+
+export interface ResponsiveJustify {
+  mobile?: Justify
+  tablet?: Justify
+  desktop?: Justify
+}
+
 export interface FlexBoxProps extends CommonProps {
   children?: React.ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues
-  align?: Align
-  justify?: Justify
+  align?: ResponsiveAlign | Align
+  justify?: ResponsiveJustify | Justify
   scrollable?: boolean
   fullBleed?: boolean
   fullheight?: boolean
