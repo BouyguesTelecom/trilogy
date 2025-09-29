@@ -1,34 +1,42 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { getJustifyClassName } from '@/objects/facets/Justifiable'
+import { Align, getAlignClassName } from '@/objects/facets/Alignable'
+import { getJustifyClassName, Justify } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { FlexBoxProps, FlexBoxRef } from './FlexBoxProps'
+import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps } from './FlexBoxProps'
+import { DirectionEnum, DirectionEnumValues } from '@/objects'
+import { GapSize } from '@/components/columns'
 
-const getResponsiveClasses = (
+interface GetResponsiveClassesProp {
   value:
-    | string
-    | number
-    | { mobile?: string | number; tablet?: string | number; desktop?: string | number }
-    | undefined,
-  getClassName: (val: string | number) => string,
-) => {
+    | Direction
+    | DirectionEnum
+    | DirectionEnumValues
+    | AlignProps
+    | Align
+    | JustifyProps
+    | Justify
+    | FlexBoxSize
+    | GapSize
+    | undefined
+  getClassName: (val: string | number) => string
+}
+
+const generateClassNames = ({ value, getClassName }: GetResponsiveClassesProp): string[] => {
   if (!value) return []
 
   if (typeof value === 'string' || typeof value === 'number') {
-    return getClassName(value)
+    return [getClassName(value)]
   }
 
   if (typeof value === 'object') {
-    const responsiveValue = value
-    return [
-      responsiveValue.desktop && `${getClassName(responsiveValue.desktop)}-desktop`,
-      responsiveValue.mobile && `${getClassName(responsiveValue.mobile)}-mobile`,
-      responsiveValue.tablet && `${getClassName(responsiveValue.tablet)}-tablet`,
-    ].filter(Boolean)
+    const breakpoints = ['tablet', 'mobile', 'desktop'] as const
+    return breakpoints
+      .filter((key) => key in value && (value as Record<typeof key, string | number>)[key] !== undefined)
+      .map((key) => `${getClassName((value as Record<typeof key, string | number>)[key])}-${key}`)
   }
 
   return []
@@ -53,16 +61,16 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
 
     const classes = hashClass(
       styled,
-      clsx(
+      clsx([
         'flex-box',
-        ...getResponsiveClasses(direction, (val) => is(`direction-${val}`)),
-        ...getResponsiveClasses(align, (val) => is(getAlignClassName(val as string))),
-        ...getResponsiveClasses(justify, (val) => is(getJustifyClassName(val as string))),
-        ...getResponsiveClasses(gap, (val) => has(`gap-${val}`)),
+        ...generateClassNames({ value: direction, getClassName: (val) => is(`direction-${val}`) }),
+        ...generateClassNames({ value: align, getClassName: (val) => is(getAlignClassName(val as string)) }),
+        ...generateClassNames({ value: justify, getClassName: (val) => is(getJustifyClassName(val as string)) }),
+        ...generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),
         className,
-      ),
+      ]),
     )
 
     return <div ref={ref} id={id} className={classes} {...others} />

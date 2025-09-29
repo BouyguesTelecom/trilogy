@@ -33,8 +33,8 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
       columns: {
         flexDirection: !isValueDirection ? direction?.mobile : direction,
         gap: realGap,
-        alignItems: isValueAlign ? getAlignStyle(align?.mobile) : getAlignStyle(align),
-        justifyContent: isValueJustify ? getJustifyStyle(justify?.mobile) : getJustifyStyle(justify),
+        alignItems: !isValueAlign ? getAlignStyle(align?.mobile) : getAlignStyle(align),
+        justifyContent: !isValueJustify ? getJustifyStyle(justify?.mobile) : getJustifyStyle(justify),
         width: fullBleed && width ? width + enlarge * 2 : '100%',
         marginHorizontal: -enlarge,
         paddingHorizontal: enlarge,
