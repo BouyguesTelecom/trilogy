@@ -1,4 +1,12 @@
-import { Align, BoxContent, ButtonVariant, DirectionEnum, Justify, TrilogyColor } from '@trilogy-ds/react'
+import {
+  Align,
+  BoxContent,
+  ButtonVariant,
+  DirectionEnum,
+  Justify,
+  TrilogyColor,
+  TypographyBold,
+} from '@trilogy-ds/react'
 import {
   Box,
   Button,
@@ -9,7 +17,10 @@ import {
   IconName,
   IconSize,
   Section,
+  Text,
+  TextLevels,
   Title,
+  Switch,
   TitleLevels,
 } from '@trilogy-ds/react/components'
 
@@ -184,6 +195,36 @@ export const FlexBoxScreen = (): JSX.Element => {
             {/*// @ts-ignore*/}
             <Box style={{ height: '300px' }} />
           </FlexBox>
+        </div>
+
+        <div>
+          <Title level={TitleLevels.FIVE}>Complex example</Title>
+          <Box>
+            <BoxContent backgroundColor={TrilogyColor.MAIN_FADE}>
+              <FlexBox justify={Justify.CENTER} align={{ tablet: Align.CENTER, mobile: Align.START }}>
+                <FlexBox
+                  direction={{ mobile: DirectionEnum.COLUMN_REVERSE, tablet: DirectionEnum.ROW }}
+                  align={Align.CENTER}
+                >
+                  <Text level={TextLevels.ONE} marginless typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+                    BIG
+                  </Text>
+                  <Switch />
+                </FlexBox>
+                <FlexBox justify={Justify.CENTER} align={Align.CENTER}>
+                  <FlexBox direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.ROW }}>
+                    <Text level={TextLevels.TWO} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD} marginless markup='span'>
+                      Voir les prix avec forfait mobile
+                    </Text>
+                    <Text level={TextLevels.TWO} marginless markup='span'>
+                      Si vous avez ou prenez un forfait Bouygues Telecom.
+                    </Text>
+                  </FlexBox>
+                  <Icon name={IconName.INFOS_CIRCLE} size='small' />
+                </FlexBox>
+              </FlexBox>
+            </BoxContent>
+          </Box>
         </div>
       </FlexBox>
     </Section>
