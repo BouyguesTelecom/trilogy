@@ -10,7 +10,9 @@
     "preserveSymlinks": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["../../packages/react/*"]
+      "@/*": [
+        "../../packages/react/*"
+      ]
     }
   },
   "include": [

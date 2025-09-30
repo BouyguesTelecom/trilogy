@@ -24,9 +24,9 @@ export default defineConfig({
     '!tsup.config.ts',
     '!package.json',
     '!snapshotResolver.ts',
-    '!coverage'
+    '!coverage',
   ],
-  external: ['react', 'react-native'],
+  external: ['react', 'react-native', 'react-dom'],
   tsconfig: './tsconfig.build.json',
 
   async onSuccess() {

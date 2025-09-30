@@ -11,6 +11,7 @@
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
+  "react-native":"lib/index.native.js",
   "scripts": {
     "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",
     "check-types": "tsc --noemit",
