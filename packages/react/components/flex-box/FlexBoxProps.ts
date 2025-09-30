@@ -5,24 +5,23 @@ import { View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { GapSize } from '../columns'
 
-export interface FlexBoxSize {
-  mobile?: GapSize
-  tablet?: GapSize
-  desktop?: GapSize
+interface ResponsiveValue<T> {
+  mobile?: T
+  tablet?: T
+  desktop?: T
 }
 
-export interface Direction {
-  mobile?: DirectionEnum | DirectionEnumValues
-  tablet?: DirectionEnum | DirectionEnumValues
-  desktop?: DirectionEnum | DirectionEnumValues
-}
+export type FlexBoxSize = ResponsiveValue<GapSize>
+export type Direction = ResponsiveValue<DirectionEnum | DirectionEnumValues>
+export type AlignProps = ResponsiveValue<Align>
+export type JustifyProps = ResponsiveValue<Justify>
 
 export interface FlexBoxProps extends CommonProps {
   children?: React.ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues
-  align?: Align
-  justify?: Justify
+  align?: AlignProps | Align
+  justify?: JustifyProps | Justify
   scrollable?: boolean
   fullBleed?: boolean
   fullheight?: boolean

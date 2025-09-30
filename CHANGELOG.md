@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [4.9.1] - 2025-0X-XX
 - Fix FlexBox component direction / gap
 - Improuve Column performance (native)
+- Fix FlexBox component direction / gap / justify / align
 
 ## [4.9.0] - 2025-09-17
 - Add FlexBox component
