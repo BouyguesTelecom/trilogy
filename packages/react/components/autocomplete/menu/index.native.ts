@@ -1,1 +1,5 @@
-export { default as AutoCompleteMenu } from '@/components/autocomplete/menu/AutoCompleteMenu.native'
+import AutoCompleteMenu from './AutoCompleteMenu.native'
+
+export * from './AutoCompleteMenuProps'
+export { AutoCompleteMenu }
+export default AutoCompleteMenu

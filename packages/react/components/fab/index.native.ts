@@ -1,1 +1,4 @@
-export { default as Fab } from '@/components/fab/Fab.native'
+import Fab from './Fab.native'
+
+export * from './FabProps'
+export { Fab }

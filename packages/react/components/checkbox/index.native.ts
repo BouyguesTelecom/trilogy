@@ -1,1 +1,4 @@
-export { default as Checkbox } from '@/components/checkbox/Checkbox.native'
+import Checkbox from './Checkbox.native'
+
+export * from './CheckboxProps'
+export { Checkbox }

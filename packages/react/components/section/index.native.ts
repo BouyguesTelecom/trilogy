@@ -1,1 +1,3 @@
-export { default as Section } from '@/components/section/Section.native'
+import Section from './Section.native'
+
+export { Section }

@@ -1,2 +1,5 @@
-export { default as Title } from '@/components/title/Title.native'
+import Title from './Title.native'
+
 export * from './TitleEnum'
+export * from './TitleProps'
+export { Title }

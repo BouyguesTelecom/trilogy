@@ -3,9 +3,9 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import { Alignable } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import { getColorStyle, grayscale, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { StatusState } from '@/objects/facets/Status'
-import { grayscale, TypographyColor } from '@/objects/index'
+import { TypographyColor } from '@/objects/index.native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Animated,

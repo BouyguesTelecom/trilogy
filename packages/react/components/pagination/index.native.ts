@@ -1,1 +1,5 @@
-export { default as Pagination } from '@/components/pagination/Pagination.native'
+import Pagination from './Pagination.native'
+
+export * from './PaginationEnum'
+export * from './PaginationProps'
+export { Pagination }

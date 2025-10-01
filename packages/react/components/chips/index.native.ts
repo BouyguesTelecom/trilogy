@@ -1,1 +1,4 @@
-export { default as Chips } from '@/components/chips/Chips.native'
+import Chips from './Chips.native'
+
+export * from './ChipsProps'
+export { Chips }

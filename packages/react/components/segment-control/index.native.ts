@@ -1,1 +1,4 @@
-export { default as SegmentControl } from '@/components/segment-control/SegmentControl.native'
+import SegmentControl from './SegmentControl.native'
+
+export * from './SegmentControlProps'
+export { SegmentControl }

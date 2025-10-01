@@ -1,1 +1,4 @@
-export { default as Radio } from '@/components/radio/Radio.native'
+import Radio from './Radio.native'
+
+export * from './RadioProps'
+export { Radio }

@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { isAndroid } from '@/helpers/device.native'
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
+import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { useContext } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'

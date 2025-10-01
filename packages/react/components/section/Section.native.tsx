@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor } from '@/objects/index'
+import { getColorStyle, TrilogyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionNativeRef, SectionProps } from './SectionProps'

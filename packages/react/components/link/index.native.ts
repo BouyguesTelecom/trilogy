@@ -1,1 +1,3 @@
-export { default as Link } from '@/components/link/Link.native'
+import Link from './Link.native'
+
+export { Link }

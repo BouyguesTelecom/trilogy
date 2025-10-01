@@ -1,1 +1,4 @@
-export { default as ScrollView } from '@/components/scroll-view/ScrollView.native'
+import ScrollView from './ScrollView.native'
+
+export * from './ScrollViewProps'
+export { ScrollView }

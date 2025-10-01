@@ -1,1 +1,4 @@
-export { default as Countdown } from '@/components/countdown/Countdown.native'
+import Countdown from './Countdown.native'
+
+export * from './CountdownProps'
+export { Countdown }

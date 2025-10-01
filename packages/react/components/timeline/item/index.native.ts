@@ -1,1 +1,5 @@
-export { default as TimelineItem } from '@/components/timeline/item/TimelineItem.native'
+import TimelineItem from './TimelineItem.native'
+
+export * from './TimelineItemProps'
+export { TimelineItem }
+export default TimelineItem

@@ -1,1 +1,6 @@
-export { default as Spacer } from '@/components/spacer/Spacer.native'
+import Spacer from './Spacer.native'
+
+export * from './SpacerEnum'
+export * from './SpacerProps'
+
+export { Spacer }

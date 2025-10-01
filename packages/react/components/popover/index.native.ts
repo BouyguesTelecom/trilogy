@@ -1,1 +1,5 @@
-export { default as Popover } from '@/components/popover/Popover.native'
+import Popover from './Popover.native'
+
+export * from './PopoverEnum'
+export * from './PopoverProps'
+export { Popover }

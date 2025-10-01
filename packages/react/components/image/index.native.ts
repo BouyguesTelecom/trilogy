@@ -1,1 +1,4 @@
-export { default as Image } from '@/components/image/Image.native'
+import Image from './Image.native'
+
+export * from './ImageProps'
+export { Image }

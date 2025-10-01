@@ -1,1 +1,3 @@
-export { default as Sticker } from '@/components/sticker/Sticker.native'
+import Sticker from './Sticker.native'
+
+export { Sticker }

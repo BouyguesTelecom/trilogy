@@ -1,1 +1,5 @@
-export { default as Divider } from '@/components/divider/Divider.native'
+import Divider from './Divider.native'
+
+export * from './DividerProps'
+
+export { Divider }

@@ -1,1 +1,5 @@
-export { default as Price } from '@/components/price/Price.native'
+import Price from './Price.native'
+
+export * from './PriceEnum'
+export * from './PriceProps'
+export { Price }

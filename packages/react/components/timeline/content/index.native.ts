@@ -1,1 +1,5 @@
-export { default as TimelineContent } from '@/components/timeline/content/TimelineContent.native'
+import TimelineContent from './TimelineContent.native'
+
+export * from './TimelineContentProps'
+export { TimelineContent }
+export default TimelineContent

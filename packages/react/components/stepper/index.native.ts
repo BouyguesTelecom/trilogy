@@ -1,1 +1,6 @@
-export { default as Stepper } from '@/components/stepper/Stepper.native'
+import Stepper from './Stepper.native'
+import Step from './step'
+
+export * from './StepperProps'
+export * from './step/StepEnum'
+export { Step, Stepper }

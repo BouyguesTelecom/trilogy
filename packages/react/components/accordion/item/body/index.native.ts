@@ -1,1 +1,5 @@
-export { default as AccordionBody } from '@/components/accordion/item/body/AccordionBody.native'
+import AccordionBody from './AccordionBody.native'
+
+export * from './AccordionBodyProps'
+export { AccordionBody }
+export default AccordionBody

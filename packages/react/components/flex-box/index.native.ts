@@ -1,1 +1,4 @@
-export { default as FlexBox } from '@/components/flex-box/FlexBox.native'
+import FlexBox from './FlexBox.native'
+import FlexItem from './flex-item/FlexItem.native'
+
+export { FlexBox, FlexItem }

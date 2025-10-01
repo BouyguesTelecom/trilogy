@@ -1,1 +1,5 @@
-export { default as AutoCompleteItem } from '@/components/autocomplete/item/AutoCompleteIem.native'
+import AutoCompleteItem from './AutoCompleteIem.native'
+
+export * from './AutoCompleteItemProps'
+export { AutoCompleteItem }
+export default AutoCompleteItem

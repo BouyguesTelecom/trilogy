@@ -1,1 +1,4 @@
-export { default as Otp } from '@/components/otp/Otp.native'
+import Otp from './Otp.native'
+
+export * from './OtpProps'
+export { Otp }

@@ -1,1 +1,5 @@
-export { default as TimelineMarker } from '@/components/timeline/marker/TimelineMarker.native'
+import TimelineMarker from './TimelineMarker.native'
+
+export * from './TimelineMarkerProps'
+export { TimelineMarker }
+export default TimelineMarker

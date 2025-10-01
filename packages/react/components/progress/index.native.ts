@@ -1,1 +1,4 @@
-export { default as Progress } from '@/components/progress/Progress.native'
+import Progress from './Progress.native'
+
+export * from './ProgressProps'
+export { Progress }
