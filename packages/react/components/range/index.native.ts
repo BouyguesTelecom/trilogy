@@ -1,1 +1,3 @@
-export { default as Range } from '@/components/range/Range.native'
+import Range from './Range.native'
+
+export { Range }

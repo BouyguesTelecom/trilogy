@@ -1,1 +1,3 @@
-export { default as TabList } from '@/components/tabs/tab-list/TabList.native'
+import TabList from './TabList.native'
+
+export default TabList

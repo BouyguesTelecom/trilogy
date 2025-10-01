@@ -1,1 +1,3 @@
-export { default as ModalFooter } from '@/components/modal/footer/ModalFooter.native'
+import ModalFooter from './ModalFooter.native'
+
+export default ModalFooter

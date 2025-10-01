@@ -1,1 +1,4 @@
-export { default as ProductTour } from '@/components/product-tour/ProductTour.native'
+import ProductTour from './ProductTour.native'
+
+export * from './ProductTourProps'
+export { ProductTour }

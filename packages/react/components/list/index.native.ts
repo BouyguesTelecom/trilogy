@@ -1,1 +1,6 @@
-export { default as List } from '@/components/list/List.native'
+import List from './List.native'
+
+export * from './item'
+export * from './ListProps'
+
+export { List }

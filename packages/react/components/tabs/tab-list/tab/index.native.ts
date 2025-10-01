@@ -1,1 +1,3 @@
-export { default as Tab } from '@/components/tabs/tab-list/tab/Tab.native'
+import Tab from './Tab.native'
+
+export default Tab

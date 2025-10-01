@@ -1,1 +1,3 @@
-export { default as Switch } from '@/components/switch/Switch.native'
+import Switch from './Switch.native'
+
+export { Switch }
