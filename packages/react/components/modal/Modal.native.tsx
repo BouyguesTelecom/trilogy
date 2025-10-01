@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { isAndroid } from '@/helpers/device.native'
-import { Alignable, getColorStyle, TrilogyColor } from '@/objects/index'
+import { isAndroid } from '@/helpers/device/index.native'
+import { Alignable, getColorStyle, TrilogyColor } from '@/objects/index.native'
 import React, { useEffect, useRef, useState } from 'react'
 import {
   Dimensions,
@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 import ModalRN, { OnSwipeCompleteParams } from 'react-native-modal'
 import { Column, Columns } from '../columns'
-import { Icon, IconName, IconSize } from '../icon'
+import { Icon, IconName, IconSize } from '../icon/index.native'
 import { Title } from '../title'
 import { ModalNativeRef, ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'

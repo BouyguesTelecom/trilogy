@@ -5,7 +5,6 @@ import {
   Price,
   Spacer,
   SpacerSize,
-  Sticker,
   Text,
   Title,
   TypographyAlign,
@@ -166,9 +165,7 @@ export const ColumnScreen = (): JSX.Element => {
               <Columns fullheight>
                 <Column verticalAlign='ALIGNED_END'>
                   <Spacer size={12} />
-                  <Columns align={Alignable.ALIGNED_CENTER}>
-                    <Sticker label='BONUS REPRISE 200€' />
-                  </Columns>
+                  <Columns align={Alignable.ALIGNED_CENTER}></Columns>
                   <Spacer size={12} />
 
                   <Title typo={[TypographyAlign.TEXT_CENTERED]}>Galaxy S25</Title>

@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color/index.native'
-import { getAlignStyle, getJustifyStyle, TrilogyColor } from '@/objects/index'
+import { getAlignStyle, getJustifyStyle, TrilogyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
 import { ViewNativeRef, ViewProps } from './ViewProps'

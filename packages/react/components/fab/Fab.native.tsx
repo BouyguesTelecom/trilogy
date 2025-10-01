@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from '@/objects/index'
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { FabNativeRef, FabProps } from './FabProps'

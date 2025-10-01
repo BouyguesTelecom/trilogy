@@ -1,5 +1,5 @@
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
-import { TrilogyColor, getColorStyle } from '@/objects/index'
+import { TrilogyColor, getColorStyle } from '@/objects/index.native'
 import * as React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'

@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects/index'
+import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects/index.native'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 import { ProgressNativeRef, ProgressProps } from './ProgressProps'

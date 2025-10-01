@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
+import { isAndroid } from '@/helpers/device/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects/index.native'
 import * as React from 'react'

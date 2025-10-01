@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor } from '@/objects/index'
+import { getColorStyle, TrilogyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
 import { StepNativeRef, StepProps } from './StepProps'

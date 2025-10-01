@@ -3,7 +3,7 @@ import { Icon, IconName } from '@/components/icon'
 import { ListContext } from '@/components/list/context'
 import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects/index'
+import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects/index.native'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 

@@ -1,4 +1,4 @@
-import { IconColor, isMobile } from '@trilogy-ds/react'
+import { IconColor } from '@trilogy-ds/react'
 
 import {
   Accordion,
@@ -22,21 +22,16 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 import { useTrilogyContext } from '@trilogy-ds/react/context'
-import * as React from 'react'
 import { useState } from 'react'
 
 export const ModalScreen = (): JSX.Element => {
-  const { hash } = useTrilogyContext()
+  const trilogy = useTrilogyContext()
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
   const [openModal3, setOpenModal3] = useState(false)
 
-  function AccessibilityElm() {
-    if (isMobile) return <></>
-    return <span className={`sr-only${hash ? '_' + hash : ''}`}>Menu</span>
-  }
   return (
     <>
       <Section>
@@ -116,7 +111,6 @@ export const ModalScreen = (): JSX.Element => {
           trigger={
             <Button onClick={() => setOpenModal2(true)}>
               <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
-              <AccessibilityElm />
             </Button>
           }
           active={openModal2}
@@ -138,7 +132,6 @@ export const ModalScreen = (): JSX.Element => {
           trigger={
             <Button onClick={() => setOpenModal3(true)}>
               <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
-              <AccessibilityElm />
             </Button>
           }
           active={openModal3}

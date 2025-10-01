@@ -1,4 +1,4 @@
-import { Section, Spacer, SpacerSize } from '@trilogy-ds/react'
+import { getColorStyle, Section, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
@@ -58,7 +58,7 @@ export const MenuScreen = ({ navigation }: any): JSX.Element => {
   )
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }}>
       <FlatList
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={

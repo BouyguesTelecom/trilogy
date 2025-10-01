@@ -8,7 +8,7 @@ import {
 } from '@/components/input/InputEnum'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { StatusState } from '@/objects/facets/Status'
-import { grayscale, TypographyColor } from '@/objects/index'
+import { grayscale, TypographyColor } from '@/objects/index.native'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Spacer, SpacerSize } from '../spacer'

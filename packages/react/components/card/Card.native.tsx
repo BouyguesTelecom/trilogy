@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
+import { isAndroid } from '@/helpers/device/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { createContext, PropsWithChildren } from 'react'
 import ContentLoader, { Rect } from 'react-content-loader/native'
