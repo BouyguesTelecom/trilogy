@@ -1,4 +1,5 @@
 import Countdown from './Countdown.native'
+import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 
 export * from './CountdownProps'
-export { Countdown }
+export { Countdown, CountdownFormat, CountdownUnite }
