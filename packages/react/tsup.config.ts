@@ -6,7 +6,7 @@ import { promisify } from 'util'
 
 export default defineConfig({
   clean: true,
-  target: 'es6',
+  target: 'es2019',
   format: ['cjs', 'esm'],
   outDir: 'lib',
   entry: [
@@ -25,6 +25,8 @@ export default defineConfig({
     '!package.json',
     '!snapshotResolver.ts',
     '!coverage',
+    '!./components/**/*.native.tsx',
+    '!./components/**/*.native.ts',
   ],
   external: ['react', 'react-native', 'react-dom'],
   tsconfig: './tsconfig.build.json',
@@ -32,7 +34,7 @@ export default defineConfig({
   async onSuccess() {
     try {
       const execAsync = promisify(exec)
-      await execAsync('tsc --emitDeclarationOnly --declaration --outDir lib')
+      await execAsync('tsc -p tsconfig.alias.json')
       const files = await glob.sync('lib/**/*.d.ts')
       await Promise.all(files.map((file) => fs.copyFileSync(file, file.replace('.d.ts', '.d.mts'))))
     } catch (err: any) {

@@ -8,16 +8,16 @@
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
+  "react-native":"lib/index.native.js",
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
-  "react-native":"lib/index.native.js",
   "scripts": {
     "test": "jest --config jest.config.web.ts --updateSnapshot --coverage",
     "check-types": "tsc --noemit",
     "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
-    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib && cp -R version.json ./lib"
+    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib && cp -R version.json ./lib && tsc -p ./tsconfig.native.json && tsc-alias"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
@@ -49,54 +49,7 @@
     "react",
     "design system"
   ],
-  "exports": {
-    ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.js"
-    },
-    "./context": {
-      "types": "./lib/context/index.d.ts",
-      "import": "./lib/context/index.mjs",
-      "require": "./lib/context/index.js"
-    },
-    "./context/*": {
-      "types": "./lib/context/*/index.d.ts",
-      "import": "./lib/context/*/index.mjs",
-      "require": "./lib/context/*/index.js"
-    },
-    "./components": {
-      "types": "./lib/components/index.d.ts",
-      "import": "./lib/components/index.mjs",
-      "require": "./lib/components/index.js"
-    },
-    "./components/*": {
-      "types": "./lib/components/*/index.d.ts",
-      "import": "./lib/components/*/index.mjs",
-      "require": "./lib/components/*/index.js"
-    },
-    "./objects": {
-      "types": "./lib/objects/index.d.ts",
-      "import": "./lib/objects/index.mjs",
-      "require": "./lib/objects/index.js"
-    },
-    "./objects/*": {
-      "types": "./lib/objects/*/index.d.ts",
-      "import": "./lib/objects/*/index.mjs",
-      "require": "./lib/objects/*/index.js"
-    },
-    "./helpers": {
-      "types": "./lib/helpers/index.d.ts",
-      "import": "./lib/helpers/index.mjs",
-      "require": "./lib/helpers/index.js"
-    },
-    "./helpers/*": {
-      "types": "./lib/helpers/*/index.d.ts",
-      "import": "./lib/helpers/*/index.mjs",
-      "require": "./lib/helpers/*/index.js"
-    },
-    "./package.json": "./package.json"
-  },
+ 
   "devDependencies": {
     "tsdown": "^0.15.4"
   }
