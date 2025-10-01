@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { isAndroid } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { getAlignStyle, TypographyAlign } from '@/objects/index'
 import * as React from 'react'
 import ContentLoader, { Circle } from 'react-content-loader/native'

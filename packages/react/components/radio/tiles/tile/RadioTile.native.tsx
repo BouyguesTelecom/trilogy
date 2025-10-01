@@ -4,7 +4,7 @@ import { RadioTileNativeRef, RadioTileProps } from '@/components/radio/tiles/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { VariantState } from '@/objects/index'
 import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'

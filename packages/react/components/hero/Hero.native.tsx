@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Box } from '@/components/box'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import React, { useState } from 'react'
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
 /**
  * Hero Component
  * @param children {ReactNode} Hero Children

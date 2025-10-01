@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import * as React from 'react'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'

@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { getStatusStyle } from '@/objects/index'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Switch as SwitchNative } from 'react-native'

@@ -1,9 +1,9 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects/facets/Color'
+import { getColorStyle } from '@/objects/facets/Color/index.native'
 import * as React from 'react'
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 
 /**
  * Box Content Component
@@ -32,7 +32,11 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
 
     if (backgroundSrc) {
       return (
-        <ImageBackground source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
+        <ImageBackground
+          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+          style={{ flex: 1 }}
+          imageStyle={{ borderRadius: 6 }}
+        >
           {content}
         </ImageBackground>
       )

@@ -1,4 +1,4 @@
-import { TrilogyThemeContext } from '@/context/providerTheme'
+import { TrilogyThemeContext } from '@/context/providerTheme/index.native'
 import { useContext } from 'react'
 
 /**

@@ -3,7 +3,7 @@ import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React from 'react'
 import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
 

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
@@ -34,7 +34,9 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
+        borderColor: getColorStyle(
+          disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
+        ),
         borderWidth: 0.6,
         width: 19,
         height: 19,
