@@ -25,10 +25,11 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(({ label, variant, inverted
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      alignSelf: 'baseline',
+      alignSelf: 'center',
       borderRadius: 15,
       paddingHorizontal: 8,
       paddingVertical: 4,
+      minHeight: small ? 24 : 32,
       backgroundColor:
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
