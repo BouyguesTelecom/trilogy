@@ -14,6 +14,7 @@ const TagList = React.forwardRef<TagListNativeRef, TagListProps>(({ children, ..
       width: '100%',
       flexDirection: 'row',
       flexWrap: 'wrap',
+      gap: 4
     },
     centered: {
       alignSelf: 'center',
