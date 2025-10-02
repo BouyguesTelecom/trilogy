@@ -25,10 +25,11 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(({ label, variant, inverted
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      alignSelf: 'baseline',
+      alignSelf: 'center', // FIX: Changed from 'baseline' to 'center' to align tags with/without icons
       borderRadius: 15,
       paddingHorizontal: 8,
       paddingVertical: 4,
+      minHeight: small ? 24 : 32, // FIX: Ensure consistent height for tags with/without icons
       backgroundColor:
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         (variant && (backgroundColor as TrilogyColor)) ||
