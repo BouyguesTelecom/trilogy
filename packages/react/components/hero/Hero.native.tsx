@@ -1,4 +1,4 @@
-import { Box } from '@/components/box'
+import { Box } from '@/components/box/index.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'

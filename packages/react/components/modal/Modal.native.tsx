@@ -13,9 +13,9 @@ import {
   View,
 } from 'react-native'
 import ModalRN, { OnSwipeCompleteParams } from 'react-native-modal'
-import { Column, Columns } from '../columns'
+import { Column, Columns } from '../columns/index.native'
 import { Icon, IconName, IconSize } from '../icon/index.native'
-import { Title } from '../title'
+import { Title } from '../title/index.native'
 import { ModalNativeRef, ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
 

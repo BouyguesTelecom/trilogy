@@ -4,7 +4,7 @@ import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from './SelectProps'
-import SelectOption from './option'
+import SelectOption from './option/index.native'
 
 /**
  * Select Component
@@ -51,9 +51,9 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
 
     const isChecked = useCallback(
       (value: string) =>
-        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value),
+          : selectedValues === value,
       [multiple, selectedValues],
     )
 

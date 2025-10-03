@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconSize } from '@/components/icon'
-import { SpacerSize } from '@/components/spacer'
+import { Icon, IconSize } from '@/components/icon/index.native'
+import { SpacerSize } from '@/components/spacer/index.native'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'

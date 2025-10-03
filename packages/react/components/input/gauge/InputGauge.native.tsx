@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconName, IconSize } from '@/components/icon/index.native'
 import { IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
 import { TrilogyColor, getColorStyle } from '@/objects/index.native'

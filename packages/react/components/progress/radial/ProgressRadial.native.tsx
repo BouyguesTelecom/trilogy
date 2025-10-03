@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Text, TextLevels } from '@/components/text'
+import { Text, TextLevels } from '@/components/text/index.native'
 import { isAndroid } from '@/helpers/device/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { getAlignStyle, TypographyAlign } from '@/objects/index.native'

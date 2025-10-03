@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Text, TextLevels } from '@/components/text'
+import { Text, TextLevels } from '@/components/text/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
+import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography/index.native'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from './CountdownProps'
 

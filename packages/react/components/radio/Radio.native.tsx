@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeRef, RadioProps } from '@/components/radio/RadioProps'
-import { Text } from '@/components/text'
+import { Text } from '@/components/text/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/index.native'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'

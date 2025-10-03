@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Text, TextLevels } from '@/components/text'
-import { View } from '@/components/view'
+import { Text, TextLevels } from '@/components/text/index.native'
+import { View } from '@/components/view/index.native'
 import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects/index.native'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'

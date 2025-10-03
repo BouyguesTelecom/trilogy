@@ -6,7 +6,6 @@ import {
   AccordionHeader,
   AccordionItem,
   Button,
-  ButtonList,
   ButtonVariant,
   Column,
   Columns,
@@ -93,16 +92,6 @@ export const ModalScreen = (): JSX.Element => {
               </AccordionItem>
             </Accordion>
           </ModalBody>
-          <ModalFooter>
-            <ButtonList>
-              <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpenModal1(false)}>
-                Fermer
-              </Button>
-              <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal1(false)}>
-                Ajouter
-              </Button>
-            </ButtonList>
-          </ModalFooter>
         </Modal>
         <Divider />
 

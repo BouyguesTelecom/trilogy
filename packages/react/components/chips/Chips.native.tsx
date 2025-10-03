@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Spacer, SpacerSize } from '@/components/spacer'
-import { Text, TextLevels } from '@/components/text'
+import { Spacer, SpacerSize } from '@/components/spacer/index.native'
+import { Text, TextLevels } from '@/components/text/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { useContext, useEffect, useState } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
+import { Icon, IconColor, IconName, IconSize } from '../icon/index.native'
 import { ChipsNativeRef, ChipsProps } from './ChipsProps'
 import { ChipsContext } from './list/ChipsList.native'
 

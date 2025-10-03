@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text, TextLevels } from '@/components/text'
+import { Icon, IconName, IconSize } from '@/components/icon/index.native'
+import { Text, TextLevels } from '@/components/text/index.native'
 import { TypographyBold, TypographyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'

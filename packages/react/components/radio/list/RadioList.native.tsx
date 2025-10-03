@@ -1,7 +1,7 @@
-import { AutoLayoutWrapper } from '@/components/autolayout'
+import { AutoLayoutWrapper } from '@/components/autolayout/index.native'
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { SpacerSize } from '@/components/spacer'
+import { SpacerSize } from '@/components/spacer/index.native'
 import * as React from 'react'
 import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
 
