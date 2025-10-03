@@ -9,6 +9,7 @@ export default defineConfig({
   target: 'es2019',
   format: ['cjs', 'esm'],
   outDir: 'lib',
+  banner: { js: '"use client";' },
   entry: [
     '.',
     '!./components/**/*.stories.tsx',

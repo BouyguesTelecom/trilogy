@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react'
 import versionJSON from '../../version.json'
 import { TrilogyContext } from '../index'
@@ -22,7 +20,7 @@ const TrilogyProviderStyled = ({
   hash: HASH = versionJSON.VERSION,
 }: TrilogyProviderStyledProps): JSX.Element => {
   const [styled, setStyled] = React.useState<boolean>(false)
-  const [hash, setHash] = React.useState<string|undefined>(HASH)
+  const [hash, setHash] = React.useState<string | undefined>(HASH)
 
   const StyleComponent = React.useMemo(() => {
     switch (true) {
