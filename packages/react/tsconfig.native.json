@@ -13,8 +13,5 @@
     "include": [
     "./**/*.native.ts",
     "./**/*.native.tsx" 
-  ],
-  "compilerOptions": {
-    "declaration": false
-  }
+  ]
 }
