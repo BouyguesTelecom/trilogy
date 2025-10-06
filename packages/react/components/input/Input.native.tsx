@@ -28,10 +28,8 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
+import { InputNativeProps, InputNativeRef } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
-
-export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
