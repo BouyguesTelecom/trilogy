@@ -1,17 +1,21 @@
-import { BoxContent, ButtonVariant, DirectionEnum, Justify, TrilogyColor } from '@trilogy-ds/react'
 import {
   Box,
+  BoxContent,
   Button,
+  ButtonVariant,
+  DirectionEnum,
   FlexBox,
   FlexItem,
   GapSize,
   Icon,
   IconName,
   IconSize,
+  Justify,
   Section,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+  TrilogyColor,
+} from '@trilogy-ds/react'
 
 export const FlexBoxScreen = (): JSX.Element => {
   return (

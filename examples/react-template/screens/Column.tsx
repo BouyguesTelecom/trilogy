@@ -1,15 +1,21 @@
 import {
   Alignable,
+  Box,
+  BoxContent,
+  Column,
+  Columns,
+  GapSize,
+  Icon,
   IconName,
   IconSize,
   Price,
+  Section,
   Spacer,
   SpacerSize,
   Text,
   Title,
   TypographyAlign,
 } from '@trilogy-ds/react'
-import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { View } from 'react-native'
 

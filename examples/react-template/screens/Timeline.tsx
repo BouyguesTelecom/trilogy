@@ -1,5 +1,5 @@
-import { Divider } from '@trilogy-ds/react'
 import {
+  Divider,
   IconName,
   Section,
   Text,
@@ -7,7 +7,7 @@ import {
   TimelineContent,
   TimelineItem,
   TimelineMarker,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 
 export const TimelineScreen = (): JSX.Element => {
   return (

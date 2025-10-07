@@ -8,7 +8,7 @@ import {
   Section,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const PaginationScreen = (): JSX.Element => {

@@ -1,15 +1,18 @@
-import { isMobile, Spacer, SpacerSize, TitleLevels } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
   Button,
   IconName,
+  isMobile,
   Section,
   Select,
   SelectOption,
+  Spacer,
+  SpacerSize,
   Text,
   Title,
-} from '@trilogy-ds/react/components'
+  TitleLevels,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 

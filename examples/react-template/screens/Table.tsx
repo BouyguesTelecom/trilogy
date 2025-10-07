@@ -1,5 +1,3 @@
-import * as React from 'react'
-import { useState } from 'react'
 import {
   Icon,
   IconName,
@@ -8,6 +6,7 @@ import {
   Section,
   Table,
   TableBody,
+  TableBorderEnum,
   TableHead,
   TableTd,
   TableTh,
@@ -15,8 +14,8 @@ import {
   Text,
   TextLevels,
   View,
-} from '@trilogy-ds/react/components'
-import { TableBorderEnum } from '@trilogy-ds/react/components/table'
+} from '@trilogy-ds/react'
+import { useState } from 'react'
 
 export const TableScreen = (): JSX.Element => {
   const [expendable, setExpendable] = useState(false)

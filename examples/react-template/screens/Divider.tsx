@@ -1,6 +1,16 @@
-import { Row, Rows, Spacer, SpacerSize } from '@trilogy-ds/react'
-import { Box, BoxContent, Divider, IconName, Section, Text } from '@trilogy-ds/react/components'
-import { GapSize } from '@trilogy-ds/react/components/columns'
+import {
+  Box,
+  BoxContent,
+  Divider,
+  GapSize,
+  IconName,
+  Row,
+  Rows,
+  Section,
+  Spacer,
+  SpacerSize,
+  Text,
+} from '@trilogy-ds/react'
 
 export const DividerScreen = (): JSX.Element => {
   return (

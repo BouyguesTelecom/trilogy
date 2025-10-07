@@ -1,6 +1,4 @@
-import { Title } from '@trilogy-ds/react'
-import { Section } from '@trilogy-ds/react/components'
-import * as React from 'react'
+import { Section, Title } from '@trilogy-ds/react'
 
 export const SectionView = (): JSX.Element => {
   return (

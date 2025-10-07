@@ -1,5 +1,3 @@
-import { IconColor } from '@trilogy-ds/react'
-
 import {
   Accordion,
   AccordionBody,
@@ -11,6 +9,7 @@ import {
   Columns,
   Divider,
   Icon,
+  IconColor,
   IconName,
   IconSize,
   Modal,
@@ -21,8 +20,8 @@ import {
   Text,
   Title,
   TitleLevels,
+  useTrilogyContext,
 } from '@trilogy-ds/react'
-import { useTrilogyContext } from '@trilogy-ds/react/context'
 import { useState } from 'react'
 
 export const ModalScreen = (): JSX.Element => {

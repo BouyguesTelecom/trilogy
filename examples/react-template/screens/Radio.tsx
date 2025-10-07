@@ -1,5 +1,5 @@
-import { Alignable, Popover, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
 import {
+  Alignable,
   Column,
   Columns,
   Container,
@@ -7,17 +7,21 @@ import {
   Icon,
   IconName,
   IconSize,
+  Popover,
   Radio,
   RadioList,
   RadioTile,
   RadioTiles,
   Section,
   Spacer,
+  SpacerSize,
   Text,
   TextLevels,
   Title,
-} from '@trilogy-ds/react/components'
-import { isMobile } from '@trilogy-ds/react/helpers'
+  TypographyBold,
+  TypographyColor,
+  isMobile,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {

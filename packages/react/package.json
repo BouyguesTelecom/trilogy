@@ -55,42 +55,47 @@
       "import": "./lib/index.mjs",
       "require": "./lib/index.js"
     },
-    "./context": {
+    "./lib": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./lib/context": {
       "types": "./lib/context/index.d.ts",
       "import": "./lib/context/index.mjs",
       "require": "./lib/context/index.js"
     },
-    "./context/*": {
+    "./lib/context/*": {
       "types": "./lib/context/*/index.d.ts",
       "import": "./lib/context/*/index.mjs",
       "require": "./lib/context/*/index.js"
     },
-    "./components": {
+    "./lib/components": {
       "types": "./lib/components/index.d.ts",
       "import": "./lib/components/index.mjs",
       "require": "./lib/components/index.js"
     },
-    "./components/*": {
+    "./lib/components/*": {
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.mjs",
       "require": "./lib/components/*/index.js"
     },
-    "./objects": {
+    "./lib/objects": {
       "types": "./lib/objects/index.d.ts",
       "import": "./lib/objects/index.mjs",
       "require": "./lib/objects/index.js"
     },
-    "./objects/*": {
+    "./lib/objects/*": {
       "types": "./lib/objects/*/index.d.ts",
       "import": "./lib/objects/*/index.mjs",
       "require": "./lib/objects/*/index.js"
     },
-    "./helpers": {
+    "./lib/helpers": {
       "types": "./lib/helpers/index.d.ts",
       "import": "./lib/helpers/index.mjs",
       "require": "./lib/helpers/index.js"
     },
-    "./helpers/*": {
+    "./lib/helpers/*": {
       "types": "./lib/helpers/*/index.d.ts",
       "import": "./lib/helpers/*/index.mjs",
       "require": "./lib/helpers/*/index.js"

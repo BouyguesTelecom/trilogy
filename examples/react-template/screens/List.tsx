@@ -9,7 +9,7 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 
 export const ListScreen = (): JSX.Element => {
   return (

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Container,
   Divider,
@@ -9,8 +8,8 @@ import {
   TagVariant,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import { TrilogyColor } from '@trilogy-ds/react'
+  TrilogyColor,
+} from '@trilogy-ds/react'
 
 export const TagScreen = (): JSX.Element => {
   return (

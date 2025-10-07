@@ -1,19 +1,23 @@
-import { getColorStyle, Section, Spacer, SpacerSize, TrilogyColor } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
   Column,
   Columns,
   Divider,
+  getColorStyle,
   Icon,
   IconName,
   Input,
+  Section,
+  Spacer,
+  SpacerSize,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import { TypographyAlign } from '@trilogy-ds/react/objects'
+  TrilogyColor,
+  TypographyAlign,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 import { FlatList, SafeAreaView, View } from 'react-native'
 import * as Screens from '../screens'

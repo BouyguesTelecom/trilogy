@@ -12,7 +12,7 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 
 export const AccordionScreen = (): JSX.Element => {
   return (

@@ -1,5 +1,5 @@
-import { SpacerSize } from '@trilogy-ds/react'
 import {
+  Alignable,
   Checkbox,
   CheckboxList,
   CheckboxTile,
@@ -10,10 +10,10 @@ import {
   IconName,
   Section,
   Spacer,
+  SpacerSize,
   Text,
   Title,
-} from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
+} from '@trilogy-ds/react'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (

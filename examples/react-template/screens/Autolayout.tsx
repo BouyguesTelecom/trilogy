@@ -1,4 +1,3 @@
-import { RadioList, StatusState, TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -19,12 +18,14 @@ import {
   IconName,
   IconSize,
   Radio,
+  RadioList,
+  StatusState,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import * as React from 'react'
+  TrilogyColor,
+} from '@trilogy-ds/react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (

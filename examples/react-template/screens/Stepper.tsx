@@ -1,15 +1,5 @@
+import { Button, Divider, IconName, Section, Spacer, Step, Stepper, Title, TitleLevels } from '@trilogy-ds/react'
 import * as React from 'react'
-import {
-  Button,
-  Divider,
-  IconName,
-  Section,
-  Spacer,
-  Stepper,
-  Step,
-  Title,
-  TitleLevels,
-} from '@trilogy-ds/react/components'
 
 export const StepperScreen = (): JSX.Element => {
   const [activeStep, setActiveStep] = React.useState<number>(1)
