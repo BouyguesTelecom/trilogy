@@ -47,7 +47,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
   })
 
   const isVisibleArrowLeft = React.useMemo(() => {
-    if (!tabElms.length) return false
+    if (!tabElms.length || !tabElms[0]) return false
     return scrollLeft > tabElms[0].width / 2
   }, [tabElms, scrollLeft])
 
