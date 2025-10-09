@@ -8,7 +8,7 @@
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
-  "react-native":"lib/index.native.js",
+  "react-native": "lib/index.native.mjs",
   "sideEffect": false,
   "description": "Trilogy react framework design system for Bouygues Telecom",
   "license": "UNLICENSED",
@@ -17,7 +17,7 @@
     "check-types": "tsc --noemit",
     "test:native": "jest --config jest.config.native.ts --updateSnapshot --coverage --silent=false",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version)\" > version.ts",
-    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib && cp -R version.json ./lib && tsc -p ./tsconfig.native.json && tsc-alias"
+    "build": "rimraf lib && npm run prebuild && tsup && tsc-alias && cp -R ../../config/native/react-native.config.js ./lib && cp -R version.json ./lib"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
@@ -51,51 +51,61 @@
   ],
   "exports": {
     ".": {
+      "react-native": "./lib/index.mjs",
       "types": "./lib/index.d.ts",
       "import": "./lib/index.mjs",
       "require": "./lib/index.js"
     },
     "./lib": {
+      "react-native": "./lib/index.mjs",
       "types": "./lib/index.d.ts",
       "import": "./lib/index.mjs",
       "require": "./lib/index.js"
     },
     "./lib/context": {
+      "react-native": "./lib/context/index.mjs",
       "types": "./lib/context/index.d.ts",
       "import": "./lib/context/index.mjs",
       "require": "./lib/context/index.js"
     },
     "./lib/context/*": {
+      "react-native": "./lib/context/*/index.mjs",
       "types": "./lib/context/*/index.d.ts",
       "import": "./lib/context/*/index.mjs",
       "require": "./lib/context/*/index.js"
     },
     "./lib/components": {
+      "react-native": "./lib/components/index.mjs",
       "types": "./lib/components/index.d.ts",
       "import": "./lib/components/index.mjs",
       "require": "./lib/components/index.js"
     },
     "./lib/components/*": {
+      "react-native": "./lib/components/*/index.mjs",
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.mjs",
       "require": "./lib/components/*/index.js"
     },
     "./lib/objects": {
+      "react-native": "./lib/objects/index.mjs",
       "types": "./lib/objects/index.d.ts",
       "import": "./lib/objects/index.mjs",
       "require": "./lib/objects/index.js"
     },
     "./lib/objects/*": {
+      "react-native": "./lib/objects/*/index.mjs",
       "types": "./lib/objects/*/index.d.ts",
       "import": "./lib/objects/*/index.mjs",
       "require": "./lib/objects/*/index.js"
     },
     "./lib/helpers": {
+      "react-native": "./lib/helpers/index.mjs",
       "types": "./lib/helpers/index.d.ts",
       "import": "./lib/helpers/index.mjs",
       "require": "./lib/helpers/index.js"
     },
     "./lib/helpers/*": {
+      "react-native": "./lib/helpers/*/index.mjs",
       "types": "./lib/helpers/*/index.d.ts",
       "import": "./lib/helpers/*/index.mjs",
       "require": "./lib/helpers/*/index.js"

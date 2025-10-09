@@ -2,10 +2,10 @@ import React from 'react'
 
 import { Icon, IconName, IconSize } from '@/components/icon/index.native'
 import { IValidationRules } from '@/components/input/InputProps'
-import { Text } from '@/components/text'
+import { Text } from '@/components/text/index.native'
 import { TrilogyColor, getColorStyle } from '@/objects/index.native'
 import { DimensionValue, StyleSheet, View } from 'react-native'
-import { useGauge } from './hook/useGauge'
+import { useGauge } from './hook/useGauge.native'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 
-import { IconColor } from '@/components/icon'
+import { IconColor } from '@/components/icon/IconEnum'
 import { IValidationRules } from '@/components/input/InputProps'
 import { TrilogyColor, getColorStyle } from '@/objects/index'
 

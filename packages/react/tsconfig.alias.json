@@ -2,8 +2,6 @@
   "extends": "./tsconfig.json",
   "exclude": [
     "./components/**/*.stories.tsx",
-    "**/*.native.tsx",
-    "**/*.native.ts",
     "node_modules",
     "./jest*",
     "./snapshotResolver.ts",

@@ -4,7 +4,7 @@ import { View } from '@/components/view/index.native'
 import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects/index.native'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { ProgressNativeRef, ProgressProps } from './ProgressProps'
+import { ProgressNativeRef, ProgressProps } from './ProgressProps/index.native'
 
 /**
  * Progress component

@@ -1,8 +1,8 @@
-import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '../../../objects'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { AlignableProps, StatusProps, TrilogyColor, TrilogyColorValues } from '@/objects/index.native'
 import React from 'react'
-import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
-import { CommonProps } from '../../../objects/facets/CommonProps'
 import { View } from 'react-native'
+import { ProgressRadialItemProps } from '../item/ProgressRadialItemProps'
 
 /**
  * Progress Radial Interface

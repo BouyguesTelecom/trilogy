@@ -1,7 +1,6 @@
 import {
   Alignable,
   Checkbox,
-  CheckboxList,
   CheckboxTile,
   CheckboxTiles,
   Column,
@@ -14,6 +13,8 @@ import {
   Text,
   Title,
 } from '@trilogy-ds/react'
+
+import { CheckboxList } from '@trilogy-ds/react/lib/components/checkbox/list'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (

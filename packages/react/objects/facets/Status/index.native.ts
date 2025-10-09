@@ -1,4 +1,4 @@
-import { IconName, IconNameValues } from '@/components/icon'
+import { IconName, IconNameValues } from '@/components/icon/index.native'
 import { getColorStyle, TrilogyColor } from '../Color/index.native'
 
 /**

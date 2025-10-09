@@ -1,5 +1,5 @@
 import { AutoLayoutWrapper } from '@/components/autolayout/index.native'
-import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
+import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix/index.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer/index.native'
 import * as React from 'react'

@@ -1,3 +1,3 @@
 import BreadcrumbItem from './BreadcrumbItem.native'
 
-export default BreadcrumbItem
+export { BreadcrumbItem }

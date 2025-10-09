@@ -1,7 +1,6 @@
-import * as React from 'react'
-
 import { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
 import { SpacerSize } from '@/components/spacer'
+import * as React from 'react'
 
 type EdgeType = 'bottom' | 'top'
 

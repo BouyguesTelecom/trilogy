@@ -3,7 +3,6 @@ import {
   Box,
   BoxContent,
   Breadcrumb,
-  BreadcrumbItem,
   Button,
   Card,
   CardContent,
@@ -13,6 +12,7 @@ import {
   Section,
   Text,
 } from '@trilogy-ds/react/lib/components'
+import { BreadcrumbItem } from '@trilogy-ds/react/lib/components/breadcrumb/item'
 import { TypographyBold } from '@trilogy-ds/react/lib/objects'
 import { useState } from 'react'
 

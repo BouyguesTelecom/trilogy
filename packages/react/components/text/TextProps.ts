@@ -1,11 +1,13 @@
+import { Text } from 'react-native'
 import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
 import { TypographyBold, TypographyBoldValues } from '../../objects/Typography/TypographyBold'
 import { TypographyColor, TypographyColorValues } from '../../objects/Typography/TypographyColor'
 import { TypographyTransform, TypographyTransformValues } from '../../objects/Typography/TypographyTransform'
-import { Accessibility, Dev, Invertable } from '../../objects/facets'
-import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
+import { Accessibility } from '../../objects/facets/Accessibility'
 import { CommonProps } from '../../objects/facets/CommonProps'
-import { Text } from 'react-native'
+import { Dev } from '../../objects/facets/Dev'
+import { Invertable } from '../../objects/facets/Invertable'
+import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -36,4 +38,3 @@ export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
 
 export type TextRef = HTMLParagraphElement
 export type TextNativeRef = Text
-

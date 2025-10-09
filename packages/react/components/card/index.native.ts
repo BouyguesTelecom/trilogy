@@ -1,6 +1,6 @@
 import Card from './Card.native'
-import CardContent from './content'
-import CardImage from './image'
+import CardContent from './content/CardContent.native'
+import CardImage from './image/CardImage.native'
 
 export * from './image/CardImageEnum'
 
