@@ -1,6 +1,3 @@
-export * from './components/index.native'
-export * from './context/index.native'
-export * from './context/provider'
-export * from './helpers/index.native'
-export * from './objects/index.native'
-export * from './services'
+import { Button } from './components/index.native'
+
+export { Button }

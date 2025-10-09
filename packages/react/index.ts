@@ -1,6 +1,3 @@
-export * from './components'
-export * from './context'
-export * from './context/provider'
-export * from './helpers'
-export * from './objects'
-export * from './services'
+import { Button } from './components'
+
+export { Button }

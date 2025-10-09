@@ -1,31 +1,22 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "importHelpers": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "jsx": "react",
+    "target": "esnext",
     "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "sourceMap": true,
     "moduleResolution": "node",
-    "noEmit": false,
-    "inlineSourceMap": true,
-    "resolveJsonModule": true,
-    "removeComments": false,
     "skipLibCheck": true,
     "strict": true,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "target": "esnext",
+    "noImplicitAny": false,
     "outDir": "./lib",
-    "preserveConstEnums": true,
-    "forceConsistentCasingInFileNames": false,
-    "experimentalDecorators": true,
     "paths": {
       "@/*": ["./*"]
     }
