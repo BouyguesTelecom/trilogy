@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context/index'
 import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/index'
-import translation from '@trilogy-ds/locales/lib/modal'
+import { modalLocale } from '@trilogy-ds/locales'
 import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -144,7 +144,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
                   type={ButtonType.BUTTON}
                 >
                   <span className={hashClass(styled, clsx('sr-only'))}>
-                    {translation.accessibilityLabelButtonClose}
+                    {modalLocale.accessibilityLabelButtonClose}
                   </span>
                 </button>
               )}

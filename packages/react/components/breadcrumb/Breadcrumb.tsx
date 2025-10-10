@@ -1,6 +1,6 @@
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import translation from '@trilogy-ds/locales/lib/breadcrumb'
+import { breadcrumbLocale } from '@trilogy-ds/locales'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -24,7 +24,7 @@ const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
         id={id}
         role='navigation'
         className={hashClass(styled, clsx('breadcrumb', className))}
-        aria-label={translation.accessibilityLabel}
+        aria-label={breadcrumbLocale.accessibilityLabel}
         {...others}
       >
         <ul>{children}</ul>
