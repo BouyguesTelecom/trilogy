@@ -1,7 +1,7 @@
 import { VariantProps } from '@/objects/index'
 import { TouchableOpacity } from 'react-native'
 import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
-import { IconName, IconNameValues } from '../../../../components/icon'
+import { IconName, IconNameValues } from '../../../../components/icon/IconNameEnum'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
 
 /**

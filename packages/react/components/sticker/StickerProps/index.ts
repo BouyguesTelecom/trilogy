@@ -1,7 +1,7 @@
-import { Small } from '../../objects/facets/Small'
-import { Accessibility, VariantProps } from '../../objects/facets'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../../components/icon'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility, VariantProps } from '@/objects/facets'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Small } from '@/objects/facets/Small'
 import { View } from 'react-native'
 
 export interface StickerProps extends Small, VariantProps, CommonProps, Accessibility {

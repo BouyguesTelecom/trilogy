@@ -3,4 +3,5 @@ import TimelineItem from './item'
 import TimelineMarker from './marker'
 import Timeline from './Timeline'
 
-export { Timeline, TimelineItem, TimelineContent, TimelineMarker }
+export * from './TimelineProps'
+export { Timeline, TimelineContent, TimelineItem, TimelineMarker }
