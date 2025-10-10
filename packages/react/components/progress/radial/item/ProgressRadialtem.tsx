@@ -1,5 +1,5 @@
 import { useTrilogyContext } from '@/context/index'
-import { hashClass } from '@/helpers/index.native'
+import { hashClass } from '@/helpers/index'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ProgressRadialItemProps } from './ProgressRadialItemProps'
