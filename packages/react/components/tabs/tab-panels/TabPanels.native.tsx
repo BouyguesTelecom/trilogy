@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
-import TabPanel from '@/components/tabs/tab-panels/tab-panel'
+import TabPanel from '@/components/tabs/tab-panels/tab-panel/TabPanel.native'
 import { TabPanelsNativeRef, TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import { getColorStyle, TrilogyColor } from '@/objects/index.native'
 import React from 'react'

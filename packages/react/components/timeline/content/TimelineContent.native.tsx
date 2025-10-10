@@ -1,4 +1,4 @@
-import { AutoLayout } from '@/components/autolayout'
+import { AutoLayout } from '@/components/autolayout/index.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link/index.native'
 import { Text, TextLevels } from '@/components/text/index.native'

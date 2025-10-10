@@ -1,4 +1,4 @@
-import { Column, Columns } from '@/components/columns'
+import { Column, Columns } from '@/components/columns/index.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon/index.native'
 import { Text } from '@/components/text/index.native'

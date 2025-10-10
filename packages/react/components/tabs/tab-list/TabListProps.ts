@@ -1,5 +1,6 @@
+import { Alignable, AlignableValues } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { Alignable, AlignableValues, Dev } from '@/objects/index'
+import { Dev } from '@/objects/facets/Dev'
 import { ScrollView } from 'react-native'
 
 /**

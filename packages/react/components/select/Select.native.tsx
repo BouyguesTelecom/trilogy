@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
-import { Modal, ModalBody } from '@/components/modal'
+import { Modal, ModalBody } from '@/components/modal/index.native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from './SelectProps'
