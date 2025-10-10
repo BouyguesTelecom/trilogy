@@ -110,6 +110,18 @@
       "import": "./lib/helpers/*/index.mjs",
       "require": "./lib/helpers/*/index.js"
     },
+    "./lib/services": {
+      "react-native": "./lib/services/index.mjs",
+      "types": "./lib/services/index.d.ts",
+      "import": "./lib/services/index.mjs",
+      "require": "./lib/services/index.js"
+    },
+    "./lib/services/*": {
+      "react-native": "./lib/services/*/index.mjs",
+      "types": "./lib/services/*/index.d.ts",
+      "import": "./lib/services/*/index.mjs",
+      "require": "./lib/services/*/index.js"
+    },
     "./package.json": "./package.json"
   },
   "devDependencies": {
