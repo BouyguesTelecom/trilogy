@@ -37,7 +37,7 @@ export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
   [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main-fade', 'white'],
   [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
-  [TrilogyColor.ACCENT_FADE]: ['#faede7', 'accent-fade', 'white'],
+  [TrilogyColor.ACCENT_FADE]: ['#faebe3', 'accent-fade', 'white'],
 
   [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
   [TrilogyColor.FONT_PLACEHOLDER]: ['#687a87', 'font-placeholder', 'white'],
