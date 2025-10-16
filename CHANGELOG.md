@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [4.10.1] - 2025-10-XX
 - Fix column native
 - Fix List native
+- Fix FlexBox gap
 
 ## [4.10.0] - 2025-10-10
 - Add accent fade color
