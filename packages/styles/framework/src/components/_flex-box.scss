@@ -296,8 +296,19 @@
       }
     }
 
+    @include mobile {
+      &.has-gap-#{$i}-mobile {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
     @include tablet {
-      &.has-gap-#{$i}:not(.is-desktop) {
+      &.has-gap-#{$i}:not(.is-desktop),
+      &.has-gap-#{$i}-tablet {
         gap: $item;
 
         > .flex-item {
