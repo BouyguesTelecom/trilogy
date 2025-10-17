@@ -1,88 +1,100 @@
 // Responsiveness
+// Container queries pour la responsivité basée sur la taille du conteneur
 
 .container {
   container-type: inline-size;
 }
+
 @mixin from($device) {
-  @container screen and (min-width: $device) {
+  @container (min-width: #{$device}) {
     @content;
   }
 }
 
 @mixin until($device) {
-  @container screen and (max-width: $device - 1px) {
+  @container (max-width: #{$device - 1px}) {
     @content;
   }
 }
 
 @mixin mobile {
-  @container screen and (max-width: $tablet - 1px) {
+  @container (max-width: #{$tablet - 1px}) {
     @content;
   }
 }
 
 @mixin tablet {
-  @container screen and (min-width: $tablet), print {
+  @container (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+// Mixin séparé pour le print (media query nécessaire)
+@mixin tablet-with-print {
+  @container (min-width: #{$tablet}) {
+    @content;
+  }
+  @media print {
     @content;
   }
 }
 
 @mixin tablet-only {
-  @container screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+  @container (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
     @content;
   }
 }
 
 @mixin touch {
-  @container screen and (max-width: $desktop - 1px) {
+  @container (max-width: #{$desktop - 1px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @container screen and (min-width: $desktop) {
+  @container (min-width: #{$desktop}) {
     @content;
   }
 }
 
 @mixin desktop-only {
-  @container screen and (min-width: $desktop) and (max-width: $widescreen - 1px) {
+  @container (min-width: #{$desktop}) and (max-width: #{$widescreen - 1px}) {
     @content;
   }
 }
 
 @mixin until-widescreen {
-  @container screen and (max-width: $widescreen - 1px) {
+  @container (max-width: #{$widescreen - 1px}) {
     @content;
   }
 }
 
 @mixin widescreen {
-  @container screen and (min-width: $widescreen) {
+  @container (min-width: #{$widescreen}) {
     @content;
   }
 }
 
 @mixin widescreen-only {
-  @container screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+  @container (min-width: #{$widescreen}) and (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
 
 @mixin until-fullhd {
-  @container screen and (max-width: $fullhd - 1px) {
+  @container (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
 
 @mixin fullhd {
-  @container screen and (min-width: $fullhd) {
+  @container (min-width: #{$fullhd}) {
     @content;
   }
 }
 
 @mixin all-desktop-only {
-  @container screen and (min-width: $desktop) and (max-width: $fullhd - 1px) {
+  @container (min-width: #{$desktop}) and (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
