@@ -90,7 +90,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
                   {title}
                 </Text>
               </Row>
-              <Spacer size={SpacerSize.ONE} />
+              {description && <Spacer size={SpacerSize.ONE} />}
               <Row>
                 {description && typeof description.valueOf() === 'string' ? (
                   <Text level={TextLevels.TWO} style={styles.description}>
