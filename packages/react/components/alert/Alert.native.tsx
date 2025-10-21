@@ -84,7 +84,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
             </View>
           </Column>
           <Column>
-            <Rows gap={description ? 2 : 0}>
+            <Rows {...{ style: { flexGrow: 1 } }} gap={description ? 2 : 0}>
               <Row>
                 <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                   {title}
