@@ -5,7 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.10.2] - 2025-10-XX
 - Fix Alert behavior out of ScrollView (native)
-- 
+- Fix Otp icon (native)
+
 ## [4.10.1] - 2025-10-20
 - Fix column native
 - Fix List native
