@@ -19,30 +19,38 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, groupLabel, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const groupLabelClasses = hashClass(styled, 'group-label')
 
     return (
-      <div
-        ref={ref}
-        id={id}
-        role="radiogroup"
-        aria-labelledby={accessibilityLabelledBy}
-        aria-required={isRequiredChild(children) ? 'true' : undefined}
-        className={hashClass(
-          styled,
-          clsx(
-            'radios',
-            className,
-            align && is(getJustifiedClassName(align)),
-            horizontalMobile && is('horizontal-mobile'),
-            verticalDesktop && is('vertical-desktop'),
-          ),
+      <>
+        {groupLabel && (
+          <label className={groupLabelClasses} htmlFor={id}>
+            {groupLabel}
+          </label>
         )}
-        {...others}
-      >
-        {children}
-      </div>
+        <div
+          ref={ref}
+          id={id}
+          role="radiogroup"
+          aria-labelledby={accessibilityLabelledBy}
+          aria-required={isRequiredChild(children) ? 'true' : undefined}
+          className={hashClass(
+            styled,
+            clsx(
+              'radios',
+              className,
+              align && is(getJustifiedClassName(align)),
+              horizontalMobile && is('horizontal-mobile'),
+              verticalDesktop && is('vertical-desktop'),
+            ),
+          )}
+          {...others}
+        >
+          {children}
+        </div>
+      </>
     )
   },
 )

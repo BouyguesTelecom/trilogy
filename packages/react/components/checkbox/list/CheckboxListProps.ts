@@ -22,6 +22,7 @@ export interface CheckboxListWebProps extends CheckboxListProps, CommonProps {
   horizontalMobile?: boolean
   verticalDesktop?: boolean
   accessibilityLabelledBy?: string;
+  groupLabel?: string;
 }
 
 export type CheckboxListRef = HTMLDivElement
