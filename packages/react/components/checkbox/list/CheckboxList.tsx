@@ -19,30 +19,38 @@ import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, groupLabel, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const groupLabelClasses = hashClass(styled, 'group-label')
 
     return (
-      <div
-        ref={ref}
-        id={id}
-        role="group"
-        aria-labelledby={accessibilityLabelledBy}
-        aria-required={isRequiredChild(children) ? 'true' : undefined}
-        className={hashClass(
-          styled,
-          clsx(
-            'checkboxes',
-            className,
-            align && is(getJustifiedClassName(align)),
-            horizontalMobile && is('horizontal-mobile'),
-            verticalDesktop && is('vertical-desktop'),
-          ),
+      <>
+        {groupLabel && (
+          <label className={groupLabelClasses} htmlFor={id}>
+            {groupLabel}
+          </label>
         )}
-        {...others}
-      >
-        {children}
-      </div>
+        <div
+          ref={ref}
+          id={id}
+          role="group"
+          aria-labelledby={accessibilityLabelledBy}
+          aria-required={isRequiredChild(children) ? 'true' : undefined}
+          className={hashClass(
+            styled,
+            clsx(
+              'checkboxes',
+              className,
+              align && is(getJustifiedClassName(align)),
+              horizontalMobile && is('horizontal-mobile'),
+              verticalDesktop && is('vertical-desktop'),
+            ),
+          )}
+          {...others}
+        >
+          {children}
+        </div>
+      </>
     )
   },
 )
