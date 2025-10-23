@@ -13,7 +13,7 @@ export const RadioScreen = (): JSX.Element => {
       <Container>
         <Title level={4}>Accessibility example</Title>
         <Text id='xx'>How would you like to be contacted ? *</Text>
-        <RadioList groupLabel='Contact Method !' accessibilityLabelledBy='xx'>
+        <RadioList groupLabel='Contact Method' accessibilityLabelledBy='xx'>
           <Radio name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Radio name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
           <Radio name='letter' label='letter' value='letter' disabled id='checkbox3' />
