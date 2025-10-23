@@ -596,7 +596,7 @@ $label-weight: $weight-bold;
 
 .group-label {
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 8px !important;
     font-weight: 500;
     line-height: 20px;
 }
