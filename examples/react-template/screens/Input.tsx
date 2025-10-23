@@ -166,7 +166,6 @@ export const InputScreen = (): JSX.Element => {
 
       <Title level={4}>Forced control formatted normal input</Title>
       <Input
-        forceControl
         defaultValue='12'
         value={valueTextInput}
         status={InputStatus.SUCCESS}
@@ -208,7 +207,6 @@ export const InputScreen = (): JSX.Element => {
       <AutoLayout>
         <Title level={TitleLevels.THREE}>Champs</Title>
         <Divider />
-
         <Input type={InputType.TEXT} placeholder='Input type texte' />
         <Input type={InputType.NUMBER} placeholder='Input type number' />
         <Input type={InputType.PASSWORD} placeholder='Input type password' iconNameLeft='tri-alert' />
