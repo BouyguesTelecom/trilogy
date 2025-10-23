@@ -26,9 +26,9 @@ const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
     return (
       <>
         {groupLabel && (
-          <label className={groupLabelClasses} htmlFor={id}>
+          <p className={groupLabelClasses}>
             {groupLabel}
-          </label>
+          </p>
         )}
         <div
           ref={ref}
