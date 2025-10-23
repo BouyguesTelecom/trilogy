@@ -11,6 +11,7 @@ type CheckboxListChildrenTypes = React.ReactElement<CheckboxProps | DividerProps
  */
 export interface CheckboxListProps {
   children?: CheckboxListChildrenTypes | CheckboxListChildrenTypes[]
+  groupLabel?: string
 }
 
 /**
@@ -22,7 +23,6 @@ export interface CheckboxListWebProps extends CheckboxListProps, CommonProps {
   horizontalMobile?: boolean
   verticalDesktop?: boolean
   accessibilityLabelledBy?: string;
-  groupLabel?: string;
 }
 
 export type CheckboxListRef = HTMLDivElement
