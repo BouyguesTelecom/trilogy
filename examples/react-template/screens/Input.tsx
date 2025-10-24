@@ -231,6 +231,7 @@ export const InputScreen = (): JSX.Element => {
           number: true,
           specialChars: true,
           length: { max: 4, min: 2 },
+          whitespace: false,
         }}
       />
     </Section>

@@ -29,6 +29,7 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
     isNumberVerify,
     isSpecialCharsVerify,
     isUppercaseVerify,
+    isWhitespaceVerify,
   } = useGauge({ validationRules, inputValue })
 
   return (
@@ -70,6 +71,12 @@ const InputGauge = ({ validationRules, inputValue }: InputGaugeProps): JSX.Eleme
             color={isLowerercaseVerify.color}
             iconName={isLowerercaseVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
             type='Minuscule'
+          />
+          <DataVerify
+            display={validationRules?.whitespace === false}
+            color={isWhitespaceVerify.color}
+            iconName={isWhitespaceVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
+            type='Aucun espace'
           />
         </View>
       </View>

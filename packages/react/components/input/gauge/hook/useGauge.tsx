@@ -17,9 +17,18 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
   const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
   const [isUppercaseVerify, setIsUppercaseVerify] = React.useState(initStateVerifies)
   const [isLowerercaseVerify, setisLowerercaseVerify] = React.useState(initStateVerifies)
+  const [isWhitespaceVerify, setIsWhitespaceVerify] = React.useState(initStateVerifies)
 
   const nbAllVerifies = React.useMemo(
-    () => (validationRules && Object.values(validationRules).filter((rule) => rule).length) || 0,
+    () =>
+      (validationRules &&
+        Object.keys(validationRules).filter((rule) => {
+          return (
+            (rule === 'whitespace' && validationRules[rule] === false) ||
+            (rule !== 'whitespace' && validationRules[rule as keyof IValidationRules])
+          )
+        }).length) ||
+      0,
     [validationRules],
   )
 
@@ -60,6 +69,10 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
 
     validationRules?.specialChars &&
       validations.push({ test: /[^\w]/.test(inputValue), setState: setIsSpecialCharsVerify })
+
+    validationRules?.whitespace === false &&
+      validations.push({ test: !/\s/.test(inputValue), setState: setIsWhitespaceVerify })
+
     validationRules?.number && validations.push({ test: /[0-9]/.test(inputValue), setState: setIsNumberVerify })
     validationRules?.uppercase && validations.push({ test: /[A-Z]/.test(inputValue), setState: setIsUppercaseVerify })
     validationRules?.lowercase && validations.push({ test: /[a-z]/.test(inputValue), setState: setisLowerercaseVerify })
@@ -82,5 +95,6 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
     isNumberVerify,
     isSpecialCharsVerify,
     isUppercaseVerify,
+    isWhitespaceVerify,
   }
 }
