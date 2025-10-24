@@ -19,6 +19,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * RadioList Native Component
  * @param children {ReactNode} RadioList children
  * @param autolayout {boolean} Apply auto-layout rules
+ * @param groupLabel {string} RadioList group label
  */
 const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children, groupLabel }, ref): JSX.Element => {
   return (

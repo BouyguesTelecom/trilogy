@@ -19,6 +19,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * CheckboxList Native Component
  * @param children {ReactNode} CheckboxList children
  * @param autolayout {boolean} Apply auto-layout rules
+ * @param groupLabel {string} CheckboxList group label
  */
 const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, groupLabel }, ref): JSX.Element => {
   return (
