@@ -2,6 +2,7 @@ import { AutoLayoutWrapper } from '@/components/autolayout'
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
+import { Text } from '@/components/text'
 import * as React from 'react'
 import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
 
@@ -19,9 +20,13 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param children {ReactNode} RadioList children
  * @param autolayout {boolean} Apply auto-layout rules
  */
-const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children }, ref): JSX.Element => {
-  const refList = React.useRef(ref)
-  return <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX, children }} />
+const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children, groupLabel }, ref): JSX.Element => {
+  return (
+    <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
+      {groupLabel && <Text>{groupLabel}</Text>}
+      {children}
+    </AutoLayoutWrapper>
+  )
 })
 
 RadioList.displayName = ComponentName.RadioList
