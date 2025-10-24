@@ -19,15 +19,15 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, groupLabel, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const groupLabelClasses = hashClass(styled, 'group-label')
 
     return (
       <>
-        {groupLabel && (
+        {label && (
           <p className={groupLabelClasses}>
-            {groupLabel}
+            {label}
           </p>
         )}
         <div

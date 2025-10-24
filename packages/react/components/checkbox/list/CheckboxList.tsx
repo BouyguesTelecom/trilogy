@@ -19,15 +19,15 @@ import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, groupLabel, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const groupLabelClasses = hashClass(styled, 'group-label')
 
     return (
       <>
-        {groupLabel && (
+        {label && (
           <p className={groupLabelClasses}>
-            {groupLabel}
+            {label}
           </p>
         )}
         <div
