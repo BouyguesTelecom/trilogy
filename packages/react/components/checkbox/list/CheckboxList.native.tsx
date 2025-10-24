@@ -5,6 +5,7 @@ import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
 import * as React from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
+import { StyleSheet } from 'react-native'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -22,9 +23,15 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param groupLabel {string} CheckboxList group label
  */
 const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, groupLabel }, ref): JSX.Element => {
+  const styles = StyleSheet.create({
+    label: {
+      marginBottom: 8,
+    },
+  })
+
   return (
     <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
-      {groupLabel && <Text>{groupLabel}</Text>}
+      {groupLabel && <Text style={styles.label}>{groupLabel}</Text>}
       {children}
     </AutoLayoutWrapper>
   )
