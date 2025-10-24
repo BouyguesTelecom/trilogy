@@ -2,8 +2,10 @@ import { AutoLayoutWrapper } from '@/components/autolayout'
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
+import { Text } from '@/components/text'
 import * as React from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
+import { StyleSheet } from 'react-native'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -18,9 +20,21 @@ const SPACING_MATRIX: SpacingMatrix = [
  * CheckboxList Native Component
  * @param children {ReactNode} CheckboxList children
  * @param autolayout {boolean} Apply auto-layout rules
+ * @param label {string} CheckboxList label
  */
-const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children }, ref): JSX.Element => {
-  return <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX, children }} />
+const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, label }, ref): JSX.Element => {
+  const styles = StyleSheet.create({
+    label: {
+      marginBottom: 8,
+    },
+  })
+
+  return (
+    <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      {children}
+    </AutoLayoutWrapper>
+  )
 })
 
 CheckboxList.displayName = ComponentName.CheckboxList

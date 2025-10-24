@@ -13,7 +13,7 @@ $label-weight: $weight-bold;
 
   .input-label {
     display: inline-block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: 500;
   }
 
@@ -443,7 +443,7 @@ $label-weight: $weight-bold;
   &:has(input[disabled]), &:has(select[disabled]), &:has(textarea[disabled]) {
     @include disabledRulesWithoutBG;
     .icon {
-      color: getColor('disabled');    
+      color: getColor('disabled');
     }
   }
 }
@@ -592,4 +592,11 @@ $label-weight: $weight-bold;
       color: $color;
     }
   }
+}
+
+.group-label {
+    display: inline-block;
+    margin-bottom: 8px !important;
+    font-weight: 500;
+    line-height: 20px;
 }
