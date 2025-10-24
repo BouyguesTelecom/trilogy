@@ -22,7 +22,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param autolayout {boolean} Apply auto-layout rules
  * @param groupLabel {string} CheckboxList group label
  */
-const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, groupLabel }, ref): JSX.Element => {
+const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, label }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     label: {
       marginBottom: 8,
@@ -31,7 +31,7 @@ const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(
 
   return (
     <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
-      {groupLabel && <Text style={styles.label}>{groupLabel}</Text>}
+      {label && <Text style={styles.label}>{label}</Text>}
       {children}
     </AutoLayoutWrapper>
   )

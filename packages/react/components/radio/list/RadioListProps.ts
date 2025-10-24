@@ -11,7 +11,7 @@ type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | un
  */
 export interface RadioListProps {
   children?: RadioListChildrenTypes | RadioListChildrenTypes[]
-  groupLabel?: string
+  label?: string
 }
 
 /**
