@@ -11,6 +11,7 @@ type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | un
  */
 export interface RadioListProps {
   children?: RadioListChildrenTypes | RadioListChildrenTypes[]
+  label?: string
 }
 
 /**
@@ -21,7 +22,7 @@ export interface RadioListWebProps extends RadioListProps, CommonProps {
   className?: string
   horizontalMobile?: boolean
   verticalDesktop?: boolean
-  accessibilityLabelledBy?: string;
+  accessibilityLabelledBy?: string
 }
 
 export type RadioListRef = HTMLDivElement

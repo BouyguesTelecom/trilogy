@@ -7,6 +7,8 @@ import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
+import { Text, TextMarkup } from '@/components/text'
+import { TypographyColor } from '@/objects/Typography'
 
 /**
  * RadioList Component
@@ -19,30 +21,43 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const groupLabelClasses = hashClass(styled, 'group-label')
 
     return (
-      <div
-        ref={ref}
-        id={id}
-        role="radiogroup"
-        aria-labelledby={accessibilityLabelledBy}
-        aria-required={isRequiredChild(children) ? 'true' : undefined}
-        className={hashClass(
-          styled,
-          clsx(
-            'radios',
-            className,
-            align && is(getJustifiedClassName(align)),
-            horizontalMobile && is('horizontal-mobile'),
-            verticalDesktop && is('vertical-desktop'),
-          ),
+      <>
+        {label && (
+          <p className={groupLabelClasses}>
+            {label}
+            {isRequiredChild(children) && (
+              <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                {' '}*
+              </Text>
+            )}
+          </p>
         )}
-        {...others}
-      >
-        {children}
-      </div>
+        <div
+          ref={ref}
+          id={id}
+          role="radiogroup"
+          aria-labelledby={accessibilityLabelledBy}
+          aria-required={isRequiredChild(children) ? 'true' : undefined}
+          className={hashClass(
+            styled,
+            clsx(
+              'radios',
+              className,
+              align && is(getJustifiedClassName(align)),
+              horizontalMobile && is('horizontal-mobile'),
+              verticalDesktop && is('vertical-desktop'),
+            ),
+          )}
+          {...others}
+        >
+          {children}
+        </div>
+      </>
     )
   },
 )
