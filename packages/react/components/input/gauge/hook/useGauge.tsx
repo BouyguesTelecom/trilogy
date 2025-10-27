@@ -1,15 +1,16 @@
 import React, { useEffect, useMemo } from 'react'
 
 import { IconColor } from '@/components/icon'
-import { IValidationRules } from '@/components/input/InputProps'
+import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { TrilogyColor, getColorStyle } from '@/objects'
 
 interface IParams {
   validationRules?: IValidationRules
   inputValue: string
+  securityRules?: ISecurityRules[]
 }
 
-export const useGauge = ({ validationRules, inputValue }: IParams) => {
+export const useGauge = ({ validationRules, inputValue, securityRules }: IParams) => {
   const [points, setPoints] = React.useState<number>(0)
   const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
@@ -19,23 +20,47 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
   const [isLowerercaseVerify, setisLowerercaseVerify] = React.useState(initStateVerifies)
 
   const nbAllVerifies = React.useMemo(
-    () => (validationRules && Object.values(validationRules).filter((rule) => rule).length) || 0,
-    [validationRules],
+    () =>
+      (validationRules && Object.values(validationRules).filter((rule) => rule).length) ||
+      (securityRules && securityRules.length) ||
+      0,
+    [validationRules, securityRules],
   )
 
+  const rules = React.useMemo(
+    () =>
+      securityRules &&
+      securityRules.map(({ label, patternValidator, dataAttribute }) => ({
+        label,
+        validate: !!patternValidator?.test(inputValue),
+        dataAttribute,
+      })),
+    [inputValue],
+  )
+
+  const calcPoints = React.useMemo(() => {
+    if (validationRules) {
+      return Number(((points / nbAllVerifies) * 100).toFixed(0))
+    }
+    if (securityRules) {
+      const pts = rules?.filter((rule) => rule.validate).length || 0
+      return Number(((pts / nbAllVerifies) * 100).toFixed(0))
+    }
+
+    return 0
+  }, [points, nbAllVerifies, rules])
+
   const widthGauge = React.useMemo(() => {
-    const calc = Number(((points / nbAllVerifies) * 100).toFixed(0))
-    if (calc <= 50 && calc > 0) return '50%'
-    if (calc <= 99 && calc > 50) return '75%'
-    if (calc === 100) return '100%'
+    if (calcPoints <= 50 && calcPoints > 0) return '50%'
+    if (calcPoints <= 99 && calcPoints > 50) return '75%'
+    if (calcPoints === 100) return '100%'
     return '0%'
-  }, [points, nbAllVerifies])
+  }, [calcPoints, nbAllVerifies])
 
   const colorGauge = () => {
-    const calc = Number(((points / nbAllVerifies) * 100).toFixed(0))
-    if (calc <= 50 && calc > 0) return getColorStyle(TrilogyColor.ERROR)
-    if (calc <= 99 && calc > 50) return getColorStyle(TrilogyColor.WARNING)
-    if (calc === 100) return getColorStyle(TrilogyColor.SUCCESS)
+    if (calcPoints <= 50 && calcPoints > 0) return getColorStyle(TrilogyColor.ERROR)
+    if (calcPoints <= 99 && calcPoints > 50) return getColorStyle(TrilogyColor.WARNING)
+    if (calcPoints === 100) return getColorStyle(TrilogyColor.SUCCESS)
     return getColorStyle(TrilogyColor.NEUTRAL_FADE)
   }
 
@@ -82,5 +107,6 @@ export const useGauge = ({ validationRules, inputValue }: IParams) => {
     isNumberVerify,
     isSpecialCharsVerify,
     isUppercaseVerify,
+    rules,
   }
 }

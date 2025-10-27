@@ -233,6 +233,44 @@ export const InputScreen = (): JSX.Element => {
           length: { max: 4, min: 2 },
         }}
       />
+
+      <Spacer size={SpacerSize.FIVE} />
+      <Title level={4}>Input with security gauge (new prop) </Title>
+      <Input
+        iconNameLeft='tri-alert'
+        type='password'
+        securityGauge
+        placeholder='this is my placeholder'
+        minLength={8}
+        maxLength={15}
+        securityRules={[
+          {
+            label: 'Entre 2 et 4 caractères',
+            patternValidator: /^.{2,4}$/,
+            dataAttribute: { 'security-length': true },
+          },
+          {
+            label: 'Majuscule',
+            patternValidator: /[A-Z]/,
+            dataAttribute: { 'security-uppercase': true },
+          },
+          {
+            label: 'Caractères spéciaux',
+            patternValidator: /[^\w]/,
+            dataAttribute: { 'security-special-chars': true },
+          },
+          {
+            label: 'Minuscule',
+            patternValidator: /[a-z]/,
+            dataAttribute: { 'security-lowercase': true },
+          },
+          {
+            label: 'Chiffre',
+            patternValidator: /[0-9]/,
+            dataAttribute: { 'security-number': true },
+          },
+        ]}
+      />
     </Section>
   )
 }
