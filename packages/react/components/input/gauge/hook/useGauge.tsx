@@ -35,7 +35,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
         validate: !!patternValidator?.test(inputValue),
         dataAttribute,
       })),
-    [inputValue],
+    [inputValue, securityRules],
   )
 
   const calcPoints = React.useMemo(() => {
@@ -48,7 +48,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     }
 
     return 0
-  }, [points, nbAllVerifies, rules])
+  }, [points, nbAllVerifies, rules, validationRules, securityRules])
 
   const widthGauge = React.useMemo(() => {
     if (calcPoints <= 50 && calcPoints > 0) return '50%'
