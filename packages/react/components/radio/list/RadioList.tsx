@@ -7,6 +7,8 @@ import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
+import { Text, TextMarkup } from '@/components/text'
+import { TypographyColor } from '@/lib/objects/Typography'
 
 /**
  * RadioList Component
@@ -28,6 +30,11 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
         {label && (
           <p className={groupLabelClasses}>
             {label}
+            {isRequiredChild(children) && (
+              <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
+                {' '}*
+              </Text>
+            )}
           </p>
         )}
         <div
