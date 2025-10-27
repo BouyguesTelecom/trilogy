@@ -13,10 +13,10 @@ export const RadioScreen = (): JSX.Element => {
       <Container>
         <Title level={4}>Accessibility example</Title>
         <Text id='xx'>How would you like to be contacted ? *</Text>
-        <RadioList accessibilityLabelledBy='xx'>
+        <RadioList label='Contact Method' accessibilityLabelledBy='xx'>
           <Radio name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Radio name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
-          <Radio name='letter' label='letter' value='letter' disabled id='checkbox3' />
+          <Radio required name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </RadioList>
         <Spacer size={SpacerSize.FIVE} />
 
@@ -132,10 +132,10 @@ export const RadioScreen = (): JSX.Element => {
                 value='one'
                 description={
                 <>
-                  <Text level={TextLevels.THREE}><Icon name={IconName.CHECK} size={IconSize.SMALL} /> Téléphone échangeable dès 12 mois</Text>
-                  <Text level={TextLevels.THREE}><Icon name={IconName.CHECK} size={IconSize.SMALL} /> Paiement en 36 mois sans frais</Text>
+                  <Text level={TextLevels.THREE}>Téléphone échangeable dès 12 mois</Text>
+                  <Text level={TextLevels.THREE}>Paiement en 36 mois sans frais</Text>
                   <Divider />
-                  <Text level={2}>À payer aujourd'hui : <strong>199,90 €</strong></Text>
+                  <Text level={2}>À payer aujourd'hui : 199,90 €</Text>
                 </>
                 }
                 icon={IconName.ALERT}
