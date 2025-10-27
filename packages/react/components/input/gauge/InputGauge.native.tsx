@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
@@ -22,6 +22,7 @@ interface DataVerifyProps {
 }
 
 const InputGauge = ({ validationRules, inputValue, securityRules }: InputGaugeProps): JSX.Element => {
+  const id = useId()
   const {
     widthGauge,
     colorGauge,
@@ -84,7 +85,7 @@ const InputGauge = ({ validationRules, inputValue, securityRules }: InputGaugePr
           rules.map((rule, index) => (
             <DataVerify
               index={index + 1}
-              key={rule.label}
+              key={`${id}_${rule.label}`}
               display={true}
               type={rule.label}
               color={rule.validate ? IconColor.SUCCESS : IconColor.NEUTRAL}
