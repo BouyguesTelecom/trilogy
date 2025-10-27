@@ -24,7 +24,7 @@ export const CheckboxScreen = (): JSX.Element => {
         <CheckboxList label='Contact Method' accessibilityLabelledBy='xx'>
           <Checkbox name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Checkbox name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
-          <Checkbox name='letter' label='letter' value='letter' disabled id='checkbox3' />
+          <Checkbox required name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </CheckboxList>
         <Spacer size={SpacerSize.FIVE} />
 
