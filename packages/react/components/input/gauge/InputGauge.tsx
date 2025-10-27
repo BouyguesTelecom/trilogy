@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { useId } from 'react'
 
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
@@ -25,6 +25,7 @@ interface DataVerifyProps {
 }
 
 const InputGauge = ({ validationRules, styled, inputValue, securityRules }: InputGaugeProps): JSX.Element => {
+  const id = useId()
   const {
     widthGauge,
     colorGauge,
@@ -100,7 +101,7 @@ const InputGauge = ({ validationRules, styled, inputValue, securityRules }: Inpu
           rules &&
           rules.map((rule) => (
             <DataVerify
-              key={rule.label}
+              key={`${id}_${rule.label}`}
               display={true}
               type={rule.label}
               color={rule.validate ? IconColor.SUCCESS : IconColor.NEUTRAL}
