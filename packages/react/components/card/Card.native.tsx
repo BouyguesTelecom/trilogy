@@ -9,7 +9,7 @@ import { CardNativeRef, CardProps } from './CardProps'
 
 export const CardContext = createContext({
   floating: false,
-  backgroundColor: '' || {},
+  backgroundColor: '',
   horizontal: false,
   reversed: false,
   active: false,
