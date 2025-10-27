@@ -51,11 +51,9 @@ const InputGauge = ({ validationRules, styled, inputValue, securityRules }: Inpu
           <>
             <DataVerify
               display={!!validationRules?.length}
-              dataAttribute={{ 'data-security-special-chars': true }}
+              dataAttribute={{ 'data-security-length': true }}
               type={LengthvalidationRulesText}
               classes='security-length'
-              data-length-min={validationRules?.length?.min}
-              data-length-max={validationRules?.length?.max}
               color={isLengthVerify.color}
               iconName={isLengthVerify.isVerify ? IconName.CHECK_CIRCLE : IconName.TIMES}
               styled={styled}
