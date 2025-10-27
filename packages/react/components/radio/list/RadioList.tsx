@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
 import { Text, TextMarkup } from '@/components/text'
-import { TypographyColor } from '@/lib/objects/Typography'
+import { TypographyColor } from '@/objects/Typography'
 
 /**
  * RadioList Component
