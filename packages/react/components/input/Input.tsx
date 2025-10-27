@@ -105,6 +105,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       iconNameRight,
       securityGauge,
       validationRules,
+      securityRules,
       required,
       readOnly,
       ...others
@@ -345,7 +346,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
         )}
 
         {securityGauge && type === InputType.PASSWORD && (
-          <InputGauge validationRules={validationRules} styled={styled} inputValue={_value} />
+          <InputGauge
+            validationRules={validationRules}
+            securityRules={securityRules}
+            styled={styled}
+            inputValue={_value}
+          />
         )}
       </div>
     )
