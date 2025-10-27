@@ -16,7 +16,7 @@ export const RadioScreen = (): JSX.Element => {
         <RadioList label='Contact Method' accessibilityLabelledBy='xx'>
           <Radio name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Radio name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
-          <Radio name='letter' label='letter' value='letter' disabled id='checkbox3' />
+          <Radio required name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </RadioList>
         <Spacer size={SpacerSize.FIVE} />
 

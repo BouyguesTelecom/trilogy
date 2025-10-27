@@ -6,6 +6,8 @@ import { Text } from '@/components/text'
 import * as React from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
 import { StyleSheet } from 'react-native'
+import { isRequiredChild } from '@/helpers/require'
+import { TypographyColor } from '@/objects/Typography'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -31,7 +33,9 @@ const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(
 
   return (
     <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && (
+        <Text style={styles.label}>{label} {isRequiredChild(children) && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
+      )}
       {children}
     </AutoLayoutWrapper>
   )
