@@ -9,6 +9,9 @@ import {
   Text,
   Title,
   TypographyAlign,
+  List,
+  ListItem,
+  TextLevels
 } from '@trilogy-ds/react'
 import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
 import * as React from 'react'
@@ -19,6 +22,26 @@ export const ColumnScreen = (): JSX.Element => {
 
   return (
     <Section>
+      <List>
+        <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+          <Column narrow>
+            <ListItem>
+              <Text level={TextLevels.TWO}>
+                List item with Column
+              </Text>
+            </ListItem>
+          </Column>
+        </Columns>
+        <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+          <Column narrow>
+            <ListItem>
+              <Text level={TextLevels.TWO}>
+                List item with Column
+              </Text>
+            </ListItem>
+          </Column>
+        </Columns>
+      </List>
       <Columns>
         <Column>
           <Box fullheight>
