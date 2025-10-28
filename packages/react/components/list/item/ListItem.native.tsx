@@ -71,7 +71,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
             <Icon size='small' name={iconName as IconName} color={status} />
           </View>
         )}
-        <View style={{ flex: 1 }}>{getComponent}</View>
+        <View style={{ flexGrow: 1 }}>{getComponent}</View>
       </View>
     )
   },
