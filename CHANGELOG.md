@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix Otp icon (native)
 - Update labels for Checkboxes & Radios (List) component
 - Add securityRules prop to input type password component for increased flexibility. Note: validationRules is deprecated.
+- Fix ListItem native style rule for childrens
+- Columns native performances
 
 ## [4.10.1] - 2025-10-20
 - Fix column native
