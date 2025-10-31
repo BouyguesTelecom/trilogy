@@ -62,6 +62,9 @@ const Calendar = ({
   const rangeClasse = hashClass(styled, clsx('calendar-range'))
   const dateInRange = hashClass(styled, clsx('calendar-date-in-range'))
   const rangeInitClasse = hashClass(styled, clsx('calendar-range-init'))
+  const rondedLeft = hashClass(styled, clsx('calendar-date-rounded-left'))
+  const rondedRight = hashClass(styled, clsx('calendar-date-rounded-right'))
+
   const isRange = checkIsRange(activeDate)
 
   const isNextDisabled = React.useMemo(
@@ -397,6 +400,8 @@ const Calendar = ({
                         isDateStart && dateStart,
                         isDateEnd && dateEnd,
                         isInRange && dateInRange,
+                        dayIndex === 0 && rondedLeft,
+                        dayIndex === 6 && rondedRight,
                       )}
                     >
                       {day && ind !== false && (

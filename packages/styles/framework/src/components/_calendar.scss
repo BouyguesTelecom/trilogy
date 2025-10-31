@@ -7,7 +7,6 @@
   button {
     all: unset;
     &:focus-visible:not(.is-disabled, .is-active), &:hover:not(.is-disabled, .is-active){
-      cursor: pointer;
       background-color: getColor('main-fade');
     }
     
@@ -30,6 +29,18 @@
     button:not(.is-disabled, .is-active){
       background-color: getColor('main-fade');
       border-radius: 0px;
+    }
+
+    &.calendar-date-rounded-left {
+      button:not(.is-disabled, .is-active){
+        border-radius: 8px 0 0 8px;
+      }
+    }
+
+    &.calendar-date-rounded-right {
+      button:not(.is-disabled, .is-active){
+        border-radius: 0px 8px 8px 0;
+      }
     }
   }
 
