@@ -1,0 +1,457 @@
+@use 'sass:math';
+
+.flex-box {
+  display: flex;
+  gap: 8px;
+  --ColumnGap: 8px;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  // DIRECTION
+  &.is-direction-column {
+    flex-direction: column;
+  }
+
+  &.is-direction-row {
+    flex-direction: row;
+  }
+
+  &.is-direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.is-direction-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  @include desktop {
+    &.is-direction-row-desktop {
+      flex-direction: row;
+    }
+
+    &.is-direction-column-desktop {
+      flex-direction: column;
+    }
+
+    &.is-direction-row-reverse-desktop {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-reverse-desktop {
+      flex-direction: column-reverse;
+    }
+  }
+
+  @include tablet {
+    &.is-direction-row-tablet {
+      flex-direction: row;
+    }
+
+    &.is-direction-column-tablet {
+      flex-direction: column;
+    }
+
+    &.is-direction-row-reverse-tablet {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-reverse-tablet {
+      flex-direction: column-reverse;
+    }
+  }
+
+  @include mobile {
+    &:has(>.flex-item):not([class*='is-direction']) {
+      flex-direction: column;
+    }
+
+    &.is-direction-row-mobile {
+      flex-direction: row;
+    }
+
+    &.is-direction-column-mobile {
+      flex-direction: column;
+    }
+
+    &.is-direction-row-reverse-mobile {
+      flex-direction: row-reverse;
+    }
+
+    &.is-direction-column-reverse-mobile {
+      flex-direction: column-reverse;
+    }
+  }
+
+  // ALIGN ITEMS
+  &.is-aligned-start {
+    align-items: flex-start;
+  }
+
+  &.is-aligned-end {
+    align-items: flex-end;
+  }
+
+  &.is-aligned-center {
+    align-items: center;
+  }
+
+  &.is-aligned-stretch {
+    align-items: stretch;
+  }
+
+  @include mobile {
+    &.is-aligned-start-mobile {
+      align-items: flex-start;
+    }
+
+    &.is-aligned-end-mobile {
+      align-items: flex-end;
+    }
+
+    &.is-aligned-center-mobile {
+      align-items: center;
+    }
+
+    &.is-aligned-stretch-mobile {
+      align-items: stretch;
+    }
+  }
+
+  @include tablet {
+    &.is-aligned-start-tablet {
+      align-items: flex-start;
+    }
+
+    &.is-aligned-end-tablet {
+      align-items: flex-end;
+    }
+
+    &.is-aligned-center-tablet {
+      align-items: center;
+    }
+
+    &.is-aligned-stretch-tablet {
+      align-items: stretch;
+    }
+  }
+
+  @include desktop {
+    &.is-aligned-start-desktop {
+      align-items: flex-start;
+    }
+
+    &.is-aligned-end-desktop {
+      align-items: flex-end;
+    }
+
+    &.is-aligned-center-desktop {
+      align-items: center;
+    }
+
+    &.is-aligned-stretch-desktop {
+      align-items: stretch;
+    }
+  }
+
+  // JUSTIFY CONTENT
+  &.is-justified-start {
+    justify-content: flex-start;
+  }
+
+  &.is-justified-end {
+    justify-content: flex-end;
+  }
+
+  &.is-justified-center {
+    justify-content: center;
+  }
+
+  &.is-spaced-between {
+    justify-content: space-between;
+  }
+
+  &.is-spaced-around {
+    justify-content: space-around;
+  }
+
+  &.is-spaced-evenly {
+    justify-content: space-evenly;
+  }
+
+  @include mobile {
+    &.is-justified-start-mobile {
+      justify-content: flex-start;
+    }
+
+    &.is-justified-end-mobile {
+      justify-content: flex-end;
+    }
+
+    &.is-justified-center-mobile {
+      justify-content: center;
+    }
+
+    &.is-spaced-between-mobile {
+      justify-content: space-between;
+    }
+
+    &.is-spaced-around-mobile {
+      justify-content: space-around;
+    }
+
+    &.is-spaced-evenly-mobile {
+      justify-content: space-evenly;
+    }
+  }
+
+  @include tablet {
+    &.is-justified-start-tablet {
+      justify-content: flex-start;
+    }
+
+    &.is-justified-end-tablet {
+      justify-content: flex-end;
+    }
+
+    &.is-justified-center-tablet {
+      justify-content: center;
+    }
+
+    &.is-spaced-between-tablet {
+      justify-content: space-between;
+    }
+
+    &.is-spaced-around-tablet {
+      justify-content: space-around;
+    }
+
+    &.is-spaced-evenly-tablet {
+      justify-content: space-evenly;
+    }
+  }
+
+  @include desktop {
+    &.is-justified-start-desktop {
+      justify-content: flex-start;
+    }
+
+    &.is-justified-end-desktop {
+      justify-content: flex-end;
+    }
+
+    &.is-justified-center-desktop {
+      justify-content: center;
+    }
+
+    &.is-spaced-between-desktop {
+      justify-content: space-between;
+    }
+
+    &.is-spaced-around-desktop {
+      justify-content: space-around;
+    }
+
+    &.is-spaced-evenly-desktop {
+      justify-content: space-evenly;
+    }
+  }
+
+  &.is-scrollable {
+    overflow: auto;
+    width: calc(100% + 48px) !important;
+    margin: -24px auto -24px 50% !important;
+    transform: translate(-50%);
+    padding: 24px;
+    scroll-padding: 24px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    @include mobile {
+      width: calc(100% + 32px) !important;
+      margin: -16px auto -16px 50% !important;
+      padding: 16px;
+      scroll-padding: 16px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: auto !important;
+    }
+
+    .flex-item {
+      scroll-snap-align: center;
+    }
+  }
+
+
+  // GAP
+  $gap: 4px, 8px, 12px, 16px, 24px, 32px, 40px, 48px, 54px, 62px;
+
+  @for $i from 1 through length($gap) {
+    $item: nth($gap, $i);
+    &.is-mobile.has-gap-#{$i} {
+      gap: $item;
+
+      > .flex-item {
+        --ColumnGap: #{$item};
+      }
+    }
+
+    @include mobile {
+      &.has-gap-#{$i}-mobile {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include tablet {
+      &.has-gap-#{$i}:not(.is-desktop),
+      &.has-gap-#{$i}-tablet {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include desktop {
+      &.has-gap-#{$i},
+      &.has-gap-#{$i}-desktop {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include widescreen {
+      &.has-gap-#{$i}-widescreen {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include fullhd {
+      &.has-gap-#{$i}-fullhd {
+        gap: $item;
+
+        > .flex-item {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+  }
+
+  &.is-gapless {
+    gap: 0;
+
+    > .flex-item {
+      --ColumnGap: 1px;
+    }
+  }
+
+  $itemWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction)) - 1) / (var(--ColumnFraction))) * var(--ColumnGap)));
+  $itemSize: (
+    "1" : math.div(12, 1),
+    "2" : math.div(12, 2),
+    "3" : math.div(12, 3),
+    "4" : math.div(12, 4),
+    "5" : math.div(12, 5),
+    "6" : math.div(12, 6),
+    "7" : math.div(12, 7),
+    "8" : math.div(12, 8),
+    "9" : math.div(12, 9),
+    "10" : math.div(12, 10),
+    "11" : math.div(12, 11),
+    "12" : math.div(12, 12),
+    "full" : math.div(12, 12),
+    "half" : math.div(12, 6)
+  );
+
+  // SIZE
+  .flex-item {
+    width: 100%;
+
+    &.is-narrow {
+      width: auto;
+    }
+
+    &[class*="is-"]:not(.is-narrow) {
+      width: #{$itemWidth};
+    }
+
+    &:not(.is-narrow) {
+      @include mobile {
+        --ColumnFraction: 1;
+      }
+    }
+  }
+
+  @each $key, $value in $itemSize {
+    .flex-item.is-#{$key} {
+      flex: none;
+      --ColumnFraction: #{$value};
+    }
+  }
+
+  @include mobile {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-mobile {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+
+  @include tablet {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-tablet {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+
+  @include touch {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-touch {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+
+  @include desktop {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-desktop {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+
+  @include widescreen {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-widescreen {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+
+  @include fullhd {
+    @each $key, $value in $itemSize {
+      .flex-item.is-#{$key}-fullhd {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
+}

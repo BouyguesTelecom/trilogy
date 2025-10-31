@@ -1,5 +1,7 @@
 import {
   AutoLayout,
+  Column,
+  Columns,
   IconName,
   List,
   ListIconStatus,
@@ -10,7 +12,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const ListScreen = (): JSX.Element => {
   return (
@@ -106,6 +107,48 @@ export const ListScreen = (): JSX.Element => {
           </ListItem>
           <ListItem iconName={IconName.ALERT}>
             <Text level={TextLevels.ONE}>Ceci est un titre </Text>
+          </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>List ul ol</Title>
+        <List ordered>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+          <ListItem>
+            <List>
+              <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+            </List>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+            <List>
+              <ListItem>
+                <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+              </ListItem>
+              <ListItem>
+                <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Text>
+          </ListItem>
+        </List>
+
+        <List>
+          <ListItem>
+            <Columns>
+              <Column>
+                <Text>Test</Text>
+              </Column>
+            </Columns>
           </ListItem>
         </List>
       </AutoLayout>

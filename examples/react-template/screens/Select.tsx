@@ -34,7 +34,7 @@ export const SelectView = (): JSX.Element => {
           <BoxContent>
             {!isMobile && (
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Select label={'label'} {...register('gender')}>
+                <Select label={'label'} {...register('gender')} sample='Select sample' help='Select helper'>
                   {POSTALCODE.map((postalcode) => (
                     <SelectOption
                       key={postalcode.code}
@@ -54,6 +54,8 @@ export const SelectView = (): JSX.Element => {
         <Box flat>
           <BoxContent>
             <Select
+              sample='Select sample'
+              help='Select helper'
               required
               custom
               disabled
@@ -102,6 +104,31 @@ export const SelectView = (): JSX.Element => {
               Set One
             </Button>
             <Text>Selected value : {JSON.stringify(option2, null, 2)}</Text>
+          </BoxContent>
+        </Box>
+        <Spacer size={SpacerSize.FOUR} />
+
+        <Title level={TitleLevels.THREE}>Big list</Title>
+        <Box flat>
+          <BoxContent>
+            <Select
+              custom
+              required
+              status='success'
+              iconName='tri-alert'
+              name='option'
+              label='label'
+              id='select-native-id'
+              selected={option4}
+              onChange={(e) => {
+                e?.selectValue && setOption4(e.selectValue)
+              }}
+            >
+              {[...Array(20).keys()].map((_, i) => {
+                return <SelectOption id={`option_${i}`} value={`option_${i}`} label={`option_${i}`} />
+              })}
+            </Select>
+            <Text>Selected value : {JSON.stringify(option4, null, 2)}</Text>
           </BoxContent>
         </Box>
         <Spacer size={SpacerSize.FOUR} />

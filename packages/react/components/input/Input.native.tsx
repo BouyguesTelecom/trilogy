@@ -94,6 +94,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       iconNameLeft,
       iconNameRight,
       securityGauge,
+      securityRules,
       validationRules,
       onIconClick,
       required,
@@ -317,7 +318,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       >
         {!dynamicPlaceholder && label && (
           <>
-            <Text typo={TypographyColor.TEXT_DISABLED}>
+            <Text typo={TypographyColor.TEXT_MAIN}>
               {label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}
             </Text>
             <Spacer size={SpacerSize.THREE} />
@@ -326,7 +327,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
         {!dynamicPlaceholder && label && sample && (
           <>
-            <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_DISABLED}>
+            <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_MAIN}>
               {sample}
             </Text>
             <Spacer size={SpacerSize.THREE} />
@@ -440,6 +441,31 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
                 />
               </TouchableOpacity>
             )}
+          {iconNameRight &&
+            !iconNameLeft &&
+            type !== InputType.SEARCH &&
+            type !== InputType.PASSWORD &&
+            (!status || status === InputStatus.DEFAULT) && (
+              <TouchableOpacity
+                style={styles.inputContainerRight}
+                activeOpacity={onIconClick ? 0.2 : 1}
+                onPress={(e) => {
+                  onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: value,
+                    target: e,
+                  })
+                }}
+              >
+                <Icon
+                  testId='icon-right-id'
+                  align={Alignable.ALIGNED_CENTER}
+                  name={iconNameRight as unknown as IconName}
+                  size={IconSize.SMALL}
+                  color={(disabled && TrilogyColor.DISABLED) || TrilogyColor.MAIN}
+                />
+              </TouchableOpacity>
+            )}
           {type === InputType.PASSWORD && (
             <>
               {iconNameLeft && (
@@ -522,7 +548,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           </Text>
         )}
         {type === InputType.PASSWORD && securityGauge && (
-          <InputGauge validationRules={validationRules} inputValue={value} />
+          <InputGauge securityRules={securityRules} validationRules={validationRules} inputValue={value} />
         )}
       </View>
     )

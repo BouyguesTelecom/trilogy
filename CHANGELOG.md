@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.11.0] - 2025-10-XX
+- Fix Alert behavior out of ScrollView (native)
+- Fix Otp icon (native)
+- Update labels for Checkboxes & Radios (List) component
+- Add securityRules prop to input type password component for increased flexibility. Note: validationRules is deprecated.
+- Fix ListItem native style rule for childrens
+- Columns native performances
+
+## [4.10.1] - 2025-10-20
+- Fix column native
+- Fix List native
+- Fix FlexBox gap
+- Fix tag color
+
+## [4.10.0] - 2025-10-10
+- Add accent fade color
+
+## [4.9.3] - 2025-10-08
+- Fix Icon container native
+- Fix Button disabled native
+- Fix TabList native
+
+## [4.9.2] - 2025-10-02
+- Fix Tag alignement with / without icon (native)
+
+## [4.9.1] - 2025-09-27
+- Fix FlexBox component direction / gap / justify / align
+
+## [4.9.0] - 2025-09-17
+- Add FlexBox component
+
+## [4.8.2] - 2025-09-17
+- Prevent click on button link disabled
+- Fix Popover web trigger
+- Fix Price striked color
+- Fix spinner
+
+## [4.8.1] - 2025-09-02
+- Exports enums from FlexBox
+
+## [4.8.0] - 2025-09-01
+- Update SegmentControl padding
+- Update radio's padding
+- Suffix colors variables for themes
+- Add FlexBox component
+
+## [4.7.4] - 2025-08-22
+- Fix iconNameRight Icon (native)
+- Clean colors variables
+
+## [4.7.1] - 2025-07-21
+- Fix Select options position
+- Fix price native
+
+## [4.7.0] - 2025-07-14
+- Add props "help" & "sample" into Select component
+- Fix icon left on input type password
+- Add prop "simple" on Range component to transform it into Slider component
+- Fix increment on ol List component
+- Fix style of Select and Link component
+
+## [4.6.1] - 2025-07-07
+- Fix modal z-index
+
 ## [4.6.0] - 2025-06-29
 - Add prop "sticker" on RadioTile and CheckboxTile component
 - Remove forced "text-align" on Box Content
@@ -103,7 +167,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix spacing between icon and content
 
 ## [4.1.1] - 2025-03-01
-- Fix Column fullHeight
+- Fix FlexItem fullHeight
 
 ## [4.1.0] - 2025-02-25
 - Add device platform helpers and update occurrences (Native)

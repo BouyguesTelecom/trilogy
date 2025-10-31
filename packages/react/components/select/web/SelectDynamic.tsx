@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useContext, useMemo } from 'react'
+import React, { PropsWithChildren, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -8,6 +8,8 @@ import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { SelectContext } from '../context'
+
+const OPTION_SIZE = 48
 
 const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
@@ -28,18 +30,42 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       placeholder,
       required,
       custom,
+      help,
+      sample,
       ...others
     },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
     const { setIsVisibleOptions, isVisibleOptions, selectedOptionValues } = useContext(SelectContext)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [openUpward, setOpenUpward] = useState(false)
+    const optionsListSize = useRef(0)
+    const [dropdownStyles, setDropdownStyles] = useState<React.CSSProperties>({})
 
     const selectClasses = hashClass(styled, clsx('select', className))
-    const optionsClasses = hashClass(styled, clsx('select-options'))
+    const optionsClasses = hashClass(styled, clsx('select-options', openUpward && 'select-options-top'))
     const portalClasses = hashClass(styled, 'select-trilogy_modal_open')
 
-    const onClickInput = () => setIsVisibleOptions((prev) => !prev)
+    const onClickInput = () => {
+      if (containerRef.current && optionsListSize.current) {
+        const { top, bottom } = containerRef.current.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        const spaceBelow = windowHeight - bottom
+        const padding = 10
+        const maxHeightBelow = spaceBelow - padding
+        const maxHeightAbove = top - padding
+        const openUpward = maxHeightBelow < optionsListSize.current && maxHeightAbove > maxHeightBelow
+        setOpenUpward(openUpward)
+        setDropdownStyles({
+          maxHeight: openUpward ? `${maxHeightAbove}px` : `${maxHeightBelow}px`,
+          overflowY: 'auto',
+        })
+      }
+
+      setIsVisibleOptions((prev) => !prev)
+    }
+
     const onCloseOptions = () => setIsVisibleOptions(false)
 
     const onKeyPressInput = (keyCode: number) => {
@@ -67,9 +93,18 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
       })
     }, [selectedOptionValues, options])
 
+    useEffect(() => {
+      const childrenCount = React.Children.count(children)
+      if (childrenCount > 0) {
+        optionsListSize.current = childrenCount * OPTION_SIZE
+      }
+    }, [children])
+
     return (
-      <div className={selectClasses} {...others}>
+      <div className={selectClasses} ref={containerRef} {...others}>
         <Input
+          sample={sample}
+          help={help}
           required={required}
           status={status}
           ref={ref as React.RefObject<HTMLInputElement>}
@@ -92,7 +127,14 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
           }}
           {...{ readOnly: true, id, role: 'combobox' }}
         />
-        <ul role='listbox' className={optionsClasses} style={{ display: isVisibleOptions ? 'block' : 'none' }}>
+        <ul
+          role='listbox'
+          className={optionsClasses}
+          style={{
+            display: isVisibleOptions ? 'block' : 'none',
+            ...dropdownStyles,
+          }}
+        >
           {children}
         </ul>
         {isVisibleOptions &&

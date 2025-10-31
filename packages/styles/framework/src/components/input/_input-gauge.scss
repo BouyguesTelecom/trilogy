@@ -18,11 +18,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     .security {
       display: flex;
       align-items: center;
       margin-bottom: 4px;
+      flex-basis: 50%;
+      flex-shrink: 1;
+      flex-grow: 0;
+
+      &:nth-child(even) {
+        justify-content: flex-end;
+      }
 
       .icon {
         position: relative;

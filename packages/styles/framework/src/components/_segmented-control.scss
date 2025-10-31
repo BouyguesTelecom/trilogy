@@ -26,12 +26,11 @@
   }
 
   .segmented-control-item {
-    padding: 0 $spacing-5;
+    padding: $spacing-3 $spacing-4;
     border-radius: var(--radius-small);
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
-    height: 42px;
     color: getColor('font');
     background-color: getColor('background');
 
@@ -40,7 +39,6 @@
     }
 
     @include mobile {
-      padding: 0 $spacing-4;
       flex: 1 1 0;
       width: 0;
       text-overflow: ellipsis;

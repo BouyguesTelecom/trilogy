@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Accessibility, Dev } from '../../objects/facets'
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
+import { Accessibility, Dev } from '../../objects/facets'
 
-import { type ChangeEvent, FocusEventHandler} from 'react'
+import { type ChangeEvent, FocusEventHandler } from 'react'
+import { CommonProps } from '../../objects/facets/CommonProps'
 import { IconName, IconNameValues } from '../icon'
 import {
   InputAutoCapitalize,
@@ -20,7 +21,6 @@ import {
   InputType,
   InputTypeValues,
 } from './InputEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
 
 export interface InputChangeEventWeb {
   inputName: string
@@ -113,6 +113,7 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   maxLength?: number
   securityGauge?: boolean
   validationRules?: IValidationRules
+  securityRules?: ISecurityRules[]
   required?: boolean
   readOnly?: boolean
   min?: string | number
@@ -131,6 +132,12 @@ export interface IValidationRules {
   uppercase?: boolean
   lowercase?: boolean
   specialChars?: boolean
+}
+
+export interface ISecurityRules {
+  label?: string
+  patternValidator?: RegExp
+  dataAttribute?: { [key: string]: string | boolean | number }
 }
 
 export type InputRef = HTMLInputElement

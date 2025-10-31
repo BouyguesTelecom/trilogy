@@ -41,6 +41,11 @@
         margin-bottom: 10px;
     }
 
+    a {
+        color: unset;
+        text-decoration: none;
+    }
+    
   a.link {
     color: getColor('font');
     cursor: pointer;

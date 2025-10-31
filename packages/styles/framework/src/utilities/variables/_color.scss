@@ -16,6 +16,7 @@ $colors: (
   'main':[ #3d5d7e, 'main', 'white'],
   'main-fade':[ #eff2f8, 'main-fade', 'white'],
   'accent':[ #da641b,'accent', 'white'],
+  'accent-fade':[ #faebe3,'accent-fade', 'white'],
   'font':[ #3d5d7e, 'font', 'white'],
   'font-placeholder':[ #687a87, 'font-placeholder', 'white'],
   'success':[ #007B52, 'success', 'white'],
@@ -43,7 +44,11 @@ $fade-colors: (
 ) !default;
 
 @function getColor( $name ) {
-  @return var(--color-#{nth(map-get($colors,$name),2)});
+   @if global-variable-exists(suffix-theme) {
+    @return var(--color-#{nth(map-get($colors, $name), 2)}-#{$suffix-theme});
+  } @else {
+    @return var(--color-#{nth(map-get($colors,$name),2)});
+  }
 }
 
 @function getColorValue( $name ) {

@@ -32,10 +32,6 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
   &.is-active {
     outline: var(--border-active);
   }
@@ -88,7 +84,7 @@ a.box {
 
   .box-header {
     z-index: inherit;
-    background-color: getColor('font');
+    background-color: getColor('main');
     color: getColor('background');
     margin-top: calc(var(--padding-box) * -1);
     margin-left: calc(var(--padding-box) * -1);

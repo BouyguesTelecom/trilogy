@@ -1,27 +1,7 @@
-import {
-  Alignable,
-  Icon,
-  Popover,
-  RadioList,
-  Section,
-  Spacer,
-  SpacerSize,
-  TypographyBold,
-  TypographyColor,
-} from '@trilogy-ds/react'
-import {
-  Column,
-  Columns,
-  Container,
-  IconName,
-  Radio,
-  RadioTile,
-  RadioTiles,
-  Text,
-  Title,
-} from '@trilogy-ds/react/components'
-import { isMobile } from '@trilogy-ds/react/helpers'
 import * as React from 'react'
+import { Alignable, Popover, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
+import { Section, Spacer, RadioList, Column, Columns, Container, Divider, Icon, IconName, IconSize, Radio, RadioTile, RadioTiles, Text, TextLevels, Title } from '@trilogy-ds/react/components'
+import { isMobile } from '@trilogy-ds/react/helpers'
 
 export const RadioScreen = (): JSX.Element => {
   const [radio, setRadio] = React.useState('one')
@@ -33,10 +13,10 @@ export const RadioScreen = (): JSX.Element => {
       <Container>
         <Title level={4}>Accessibility example</Title>
         <Text id='xx'>How would you like to be contacted ? *</Text>
-        <RadioList accessibilityLabelledBy='xx'>
+        <RadioList label='Contact Method' accessibilityLabelledBy='xx'>
           <Radio name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Radio name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
-          <Radio name='letter' label='letter' value='letter' disabled id='checkbox3' />
+          <Radio required name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </RadioList>
         <Spacer size={SpacerSize.FIVE} />
 
@@ -150,7 +130,14 @@ export const RadioScreen = (): JSX.Element => {
                 id='tile-horizontal-1'
                 label='Label 1'
                 value='one'
-                description='Je suis une description simple'
+                description={
+                <>
+                  <Text level={TextLevels.THREE}>Téléphone échangeable dès 12 mois</Text>
+                  <Text level={TextLevels.THREE}>Paiement en 36 mois sans frais</Text>
+                  <Divider />
+                  <Text level={2}>À payer aujourd'hui : 199,90 €</Text>
+                </>
+                }
                 icon={IconName.ALERT}
                 horizontal
                 name={'name-tile-horizontal-1'}

@@ -13,69 +13,70 @@ import { StyleSheet, View } from 'react-native'
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  */
-const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(({ children, status, iconName }, ref): JSX.Element => {
-  const id = useId()
-  const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)
-  const isLastItem = chilIndexes[chilIndexes.length - 1] === id
+const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
+  ({ children, status, iconName }, ref): JSX.Element => {
+    const id = useId()
+    const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)
+    const isLastItem = chilIndexes[chilIndexes.length - 1] === id
 
-  useEffect(() => {
-    setChildIndexes((prev) => [...prev, id])
-  }, [id])
+    useEffect(() => {
+      setChildIndexes((prev) => [...prev, id])
+    }, [id])
 
-  const styles = StyleSheet.create({
-    text: {
-      paddingHorizontal: 16,
-    },
-    content: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingVertical: iconName ? 8 : 2,
-      borderBottomWidth: divider && !isLastItem ? 1 : 0,
-      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL),
-    },
-    disc: {
-      alignSelf: 'center',
-      width: 4,
-      height: 4,
-      backgroundColor: getColorStyle(TrilogyColor.MAIN),
-      borderRadius: 4,
-    },
-  })
+    const styles = StyleSheet.create({
+      text: {
+        paddingHorizontal: 16,
+      },
+      content: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: iconName ? 8 : 2,
+        borderBottomWidth: divider && !isLastItem ? 1 : 0,
+        borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL),
+      },
+      disc: {
+        alignSelf: 'center',
+        width: 4,
+        height: 4,
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        borderRadius: 4,
+      },
+    })
 
-  const getComponent = useMemo(() => {
-    if (typeof children === 'object') return <View style={styles.text}>{children}</View>
-    if (['string', 'number'].includes(typeof children)) {
-      return (
-        <Text style={styles.text} level={TextLevels.ONE}>
-          {children}
-        </Text>
-      )
-    }
-  }, [children])
+    const getComponent = useMemo(() => {
+      if (typeof children === 'object') return <View style={styles.text}>{children}</View>
+      if (['string', 'number'].includes(typeof children)) {
+        return (
+          <Text style={styles.text} level={TextLevels.ONE}>
+            {children}
+          </Text>
+        )
+      }
+    }, [children])
 
-  return (
-    <View ref={ref} style={[styles.content]}>
-      {ordered && !iconName && (
-        <View>
-          <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{chilIndexes.indexOf(id) + 1}.</Text>
-        </View>
-      )}
-      {!iconName && !ordered && (
-        <View>
-          <View style={styles.disc} />
-        </View>
-      )}
-      {iconName && (
-        <View>
-          <Icon size='small' name={iconName as IconName} color={status} />
-        </View>
-      )}
-      <View>{getComponent}</View>
-    </View>
-  )
-})
+    return (
+      <View ref={ref} style={[styles.content]}>
+        {ordered && !iconName && (
+          <View>
+            <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{chilIndexes.indexOf(id) + 1}.</Text>
+          </View>
+        )}
+        {!iconName && !ordered && (
+          <View>
+            <View style={styles.disc} />
+          </View>
+        )}
+        {iconName && (
+          <View>
+            <Icon size='small' name={iconName as IconName} color={status} />
+          </View>
+        )}
+        <View style={{ flexGrow: 1 }}>{getComponent}</View>
+      </View>
+    )
+  },
+)
 
 ListItem.displayName = ComponentName.ListItem
 
 export default ListItem
-
