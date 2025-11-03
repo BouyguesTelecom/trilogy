@@ -31,6 +31,16 @@ const Image = React.forwardRef<ImageRef, ImageProps>(({
   onClick,
   radius,
   align,
+  // Filter out native-specific props
+  resizeMode,
+  priority,
+  cache,
+  fallback,
+  onLoadStart,
+  onProgress,
+  onLoad,
+  onError,
+  onLoadEnd,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -60,6 +70,8 @@ const Image = React.forwardRef<ImageRef, ImageProps>(({
         className={hashClass(styled, clsx(radius && has(`border-radius-${radius}`), circled ? is('circled') : ''))}
         src={typeof src === 'string' ? src : ''}
         alt={alt}
+        onLoad={onLoad as any}
+        onError={onError as any}
       />
     </figure>
   )

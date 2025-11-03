@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { Image as ImageNative, StyleSheet, TouchableOpacity, View, ImageSourcePropType } from 'react-native'
+import { Image as ImageNative, StyleSheet, TouchableOpacity, View, ImageSourcePropType, NativeSyntheticEvent, ImageLoadEventData } from 'react-native'
 import { ImageNativeRef, ImageProps, ResizeMode, Priority, CacheControl, Source } from './ImageProps'
 
 // Simple in-memory cache for image loading states
@@ -141,14 +141,15 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(({
     onLoadStart?.()
   }, [getCacheKey, onLoadStart])
 
-  const handleLoad = React.useCallback((event: any) => {
+  const handleLoad = React.useCallback((event: NativeSyntheticEvent<ImageLoadEventData>) => {
     const cacheKey = getCacheKey()
     if (cacheKey) {
       imageCache.set(cacheKey, { loading: false, error: false, loaded: true })
       preloadedImages.add(cacheKey)
       setImageState({ loading: false, error: false, loaded: true })
     }
-    onLoad?.(event)
+    // Cast to any for cross-platform compatibility
+    onLoad?.(event as any)
   }, [getCacheKey, onLoad])
 
   const handleError = React.useCallback(() => {
@@ -175,7 +176,7 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(({
     return mode as any
   }
 
-  const imageSource = buildImageSource()
+  const imageSource = buildImageSource() || src as any
 
   const styles = StyleSheet.create({
     image: {
