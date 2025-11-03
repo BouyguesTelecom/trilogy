@@ -25,7 +25,7 @@ import {
  * @param others
  */
 const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
-  const { inverted } = React.useContext(TabsContext)
+  const { inverted, fullwidth } = React.useContext(TabsContext)
   const TabListRef = React.useRef<ScrollView>(null)
   const paddingHorizontalTab = 12
   const negativeGap = -35
@@ -100,6 +100,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
         </View>
       )}
       <ScrollView
+        scrollEnabled={fullwidth ? false : undefined}
         ref={TabListRef}
         scrollEventThrottle={16}
         onContentSizeChange={(w) => setTabListWidth(w)}
@@ -107,6 +108,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
         showsHorizontalScrollIndicator={false}
         style={styles.tabList}
         onScroll={handleScrollList}
+        contentContainerStyle={{ flexGrow: fullwidth ? 1 : undefined }}
         {...others}
       >
         {React.Children.map(children, (child, index) => {
