@@ -54,7 +54,6 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', cir
       style={styles.image}
       accessibilityLabel={alt}
       source={imageSource}
-      resizeMode="contain"
       {...others}
       alt={alt}
     />
