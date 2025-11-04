@@ -8,6 +8,8 @@ export enum RadiusValues {
   LARGE = 'large',
 }
 
+export type ImageCache = 'immutable' | 'web' | 'cacheOnly'
+
 export interface ImageProps extends AlignableProps, Clickable, CommonProps {
   src: string | number
   alt?: string
@@ -15,6 +17,7 @@ export interface ImageProps extends AlignableProps, Clickable, CommonProps {
   width?: DimensionValue | number | undefined
   height?: DimensionValue | number | undefined
   radius?: RadiusValues
+  cache?: ImageCache
 }
 
 export type ImageRef = HTMLElement
