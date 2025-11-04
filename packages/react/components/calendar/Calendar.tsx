@@ -2,9 +2,10 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
+import { Select, SelectOption } from '../select'
 import { CalendarProps, DateValue } from './CalendarProps'
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
@@ -21,16 +22,13 @@ const Calendar = ({
   disabled,
   readOnly,
   disabledDates,
-  onViewChange,
   onChange,
   onMonthChange,
 }: CalendarProps) => {
   let globalDayIndex = 0
-  let globalYearIndex = 0
 
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0] || currentDate)
-  const [isVisibleYears, setIsVisibleYears] = React.useState<boolean>(false)
   const [activeDate, setActiveDate] = React.useState<DateValue>(value)
   const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
 
@@ -41,29 +39,27 @@ const Calendar = ({
 
   const weeksId = React.useId()
   const daysId = React.useId()
-  const yearsId = React.useId()
-  const yearId = React.useId()
 
   const calendarClasses = hashClass(styled, clsx('calendar'))
   const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
+  const headerDropdownClasses = hashClass(styled, clsx('calendar-header-dropdown'))
   const calendarActiveMonthClasses = hashClass(styled, clsx('calendar-active-month'))
   const calendarDayLabelClasses = hashClass(styled, clsx('calendar-week-day-label'))
-  const calendarWeekDay = hashClass(styled, clsx('calendar-week-day'))
-  const calendarActiveDate = hashClass(styled, clsx('calendar-active-date'))
-  const calendarNextMonth = hashClass(styled, clsx('calendar-next-month'))
-  const calendarPrevMonth = hashClass(styled, clsx('calendar-prev-month'))
-  const calendarYear = hashClass(styled, clsx('calendar-year'))
-  const calendarWeekDayDisabled = hashClass(styled, clsx('calendar-week-day-disabled'))
+  const calendarWeekDayClasses = hashClass(styled, clsx('calendar-week-day'))
+  const calendarActiveDateClasses = hashClass(styled, clsx('calendar-active-date'))
+  const calendarNextMonthClasses = hashClass(styled, clsx('calendar-next-month'))
+  const calendarPrevMonthClasses = hashClass(styled, clsx('calendar-prev-month'))
+  const calendarWeekDayDisabledClasses = hashClass(styled, clsx('calendar-week-day-disabled'))
   const isDisabledClass = hashClass(styled, clsx(is('disabled')))
-  const isActiveClass = hashClass(styled, clsx(is('active')))
-  const calendarWeek = hashClass(styled, clsx('calendar-week'))
-  const dateStart = hashClass(styled, clsx('calendar-date-start'))
-  const dateEnd = hashClass(styled, clsx('calendar-date-end'))
-  const rangeClasse = hashClass(styled, clsx('calendar-range'))
-  const dateInRange = hashClass(styled, clsx('calendar-date-in-range'))
-  const rangeInitClasse = hashClass(styled, clsx('calendar-range-init'))
-  const rondedLeft = hashClass(styled, clsx('calendar-date-rounded-left'))
-  const rondedRight = hashClass(styled, clsx('calendar-date-rounded-right'))
+  const isActiveClasses = hashClass(styled, clsx(is('active')))
+  const calendarWeekClasses = hashClass(styled, clsx('calendar-week'))
+  const dateStartClasses = hashClass(styled, clsx('calendar-date-start'))
+  const dateEndClasses = hashClass(styled, clsx('calendar-date-end'))
+  const rangeClasses = hashClass(styled, clsx('calendar-range'))
+  const dateInRangeClasses = hashClass(styled, clsx('calendar-date-in-range'))
+  const rangeInitClasses = hashClass(styled, clsx('calendar-range-init'))
+  const rondedLeftClasses = hashClass(styled, clsx('calendar-date-rounded-left'))
+  const rondedRightClasses = hashClass(styled, clsx('calendar-date-rounded-right'))
 
   const isRange = checkIsRange(activeDate)
 
@@ -80,11 +76,6 @@ const Calendar = ({
       (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
     [minDate, visibleMonth],
   )
-
-  const MarkupMonth = useMemo(() => {
-    if (!isRange) return 'button'
-    return 'span'
-  }, [isRange])
 
   const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
     const date = new Date(year, month, 1)
@@ -155,14 +146,6 @@ const Calendar = ({
     [refsDays.current, refDayFocused.current],
   )
 
-  const navigateWithKeyboardInYears = React.useCallback(
-    (currentIndex: number, nextIndex: number) => {
-      const nextRef = refsYears.current[currentIndex + nextIndex]
-      if (nextRef) return nextRef.focus()
-    },
-    [refsYears],
-  )
-
   const handlePressEnterInDays = React.useCallback(
     (e: React.KeyboardEvent | React.MouseEvent) => {
       if (readOnly) return
@@ -186,22 +169,6 @@ const Calendar = ({
     [refsDays.current, onChange, readOnly, activeDate, isRange],
   )
 
-  const handlePressEnterInYears = React.useCallback(
-    (e: React.KeyboardEvent | React.MouseEvent) => {
-      if (readOnly || isRange) return
-      const elm = e.target as HTMLButtonElement
-      if (!elm) return
-      refsYears.current.forEach((day) => (day.tabIndex = -1))
-      elm.tabIndex = 0
-      const newDate = new Date(Number(elm.dataset.year), activeDate.getMonth(), activeDate.getDate())
-      setActiveDate(newDate)
-      setVisibleMonth(newDate)
-      setIsVisibleYears(false)
-      if (onChange) onChange(newDate)
-    },
-    [refsYears.current, onChange, activeDate, readOnly],
-  )
-
   const onKeyDownDay = React.useCallback(
     (e: React.KeyboardEvent, index: number, isDisabled: boolean) => {
       switch (e.key) {
@@ -222,48 +189,14 @@ const Calendar = ({
     [handlePressEnterInDays],
   )
 
-  const onKeyDownYear = React.useCallback((e: React.KeyboardEvent, index: number) => {
-    switch (e.key) {
-      case 'ArrowRight':
-        return navigateWithKeyboardInYears(index, 1)
-      case 'ArrowLeft':
-        return navigateWithKeyboardInYears(index, -1)
-      case 'ArrowUp':
-        return navigateWithKeyboardInYears(index, -3)
-      case 'ArrowDown':
-        return navigateWithKeyboardInYears(index, 3)
-      case 'Enter':
-        return handlePressEnterInYears(e)
-      default:
-        return
-    }
-  }, [])
-
-  const onPressTableHeader = React.useCallback(() => {
-    if (isRange) return
-    setIsVisibleYears((prev) => {
-      if (prev) refsDays.current = []
-      return !prev
-    })
-    onViewChange && onViewChange(isVisibleYears ? 'month' : 'year')
-  }, [refsDays.current, onViewChange, isRange, isVisibleYears])
-
   React.useEffect(() => {
-    if (isVisibleYears && refsYears.current) {
-      const yearToFocus = refsYears.current.findIndex((year) => year.tabIndex === 0)
-      if (yearToFocus !== -1) {
-        refYearFocused.current = yearToFocus
-        refsYears.current[yearToFocus].focus()
-      }
-    }
-
-    if (!isVisibleYears && typeof refYearFocused.current === 'number' && refsDays.current) {
+    if (typeof refYearFocused.current === 'number' && refsDays.current) {
       const dayToFocus = refsDays.current.findIndex((day) => day.tabIndex === 0)
       if (dayToFocus !== -1) {
         refsDays.current[dayToFocus].focus()
       }
     }
-  }, [isVisibleYears, refsYears.current, refYearFocused.current, refsDays.current])
+  }, [refsYears.current, refYearFocused.current, refsDays.current])
 
   React.useEffect(() => {
     if (refsDays.current) {
@@ -282,189 +215,151 @@ const Calendar = ({
     <table
       className={clsx(
         calendarClasses,
-        isRange && rangeClasse,
-        isRange && (activeDate as Date[]).length === 1 && rangeInitClasse,
+        isRange && rangeClasses,
+        isRange && (activeDate as Date[]).length === 1 && rangeInitClasses,
       )}
     >
       <thead className={calendarheaderClasses}>
         <tr>
-          {!isVisibleYears && (
-            <th colSpan={1} className={calendarPrevMonth}>
-              <button
-                onClick={() => handleClickNextPrevMonth(-1)}
-                aria-label='Previous month'
-                type='button'
-                disabled={isPrevDisabled}
-              >
-                <Icon name='tri-arrow-left' />
-              </button>
-            </th>
-          )}
-
-          <th colSpan={isVisibleYears ? 12 : 5} className={calendarActiveMonthClasses}>
-            <MarkupMonth
-              disabled={disabled}
-              onClick={onPressTableHeader}
+          <th colSpan={1} className={calendarPrevMonthClasses}>
+            <button
+              onClick={() => handleClickNextPrevMonth(-1)}
+              aria-label='Previous month'
               type='button'
-              aria-label={`${isVisibleYears ? 'Year' : 'Day'} view is open, switch to ${
-                isVisibleYears ? 'day' : 'year'
-              } view`}
+              disabled={isPrevDisabled}
             >
-              {visibleMonth.toLocaleDateString('fr-FR', {
-                year: 'numeric',
-                month: 'long',
-              })}
-            </MarkupMonth>
+              <Icon name='tri-arrow-left' />
+            </button>
           </th>
-          {!isVisibleYears && (
-            <th colSpan={1} className={calendarNextMonth}>
-              <button
-                onClick={() => handleClickNextPrevMonth(1)}
-                aria-label='Next month'
-                type='button'
-                disabled={isNextDisabled}
-              >
-                <Icon name='tri-arrow-right' />
-              </button>
-            </th>
-          )}
+
+          <th colSpan={5} className={calendarActiveMonthClasses}>
+            {isRange ? (
+              <span>
+                {visibleMonth.toLocaleDateString('fr-FR', {
+                  year: 'numeric',
+                  month: 'long',
+                })}
+              </span>
+            ) : (
+              <div className={headerDropdownClasses}>
+                <Select>
+                  <SelectOption>Sept.</SelectOption>
+                </Select>
+                <Select>
+                  <SelectOption>2025</SelectOption>
+                </Select>
+              </div>
+            )}
+          </th>
+          <th colSpan={1} className={calendarNextMonthClasses}>
+            <button
+              onClick={() => handleClickNextPrevMonth(1)}
+              aria-label='Next month'
+              type='button'
+              disabled={isNextDisabled}
+            >
+              <Icon name='tri-arrow-right' />
+            </button>
+          </th>
         </tr>
 
-        {!isVisibleYears && (
-          <tr>
-            {days.map((day, index) => {
-              return (
-                <th className={calendarDayLabelClasses} key={index}>
-                  {day.slice(0, 1)}
-                </th>
-              )
-            })}
-          </tr>
-        )}
+        <tr>
+          {days.map((day, index) => {
+            return (
+              <th className={calendarDayLabelClasses} key={index}>
+                {day.slice(0, 1)}
+              </th>
+            )
+          })}
+        </tr>
       </thead>
       <tbody>
-        {!isVisibleYears &&
-          allDaysInMonth.map((week, weekIndex) => {
-            return (
-              <tr key={`${weeksId}_${weekIndex}`} className={calendarWeek}>
-                {week.map((day, dayIndex) => {
-                  const ind = day !== null && globalDayIndex++
-                  const isDateStart = isRange && activeDate[0] && day?.getTime() === activeDate[0].getTime()
-                  const isDateEnd = isRange && activeDate[1] && day?.getTime() === activeDate[1].getTime()
+        {allDaysInMonth.map((week, weekIndex) => {
+          return (
+            <tr key={`${weeksId}_${weekIndex}`} className={calendarWeekClasses}>
+              {week.map((day, dayIndex) => {
+                const ind = day !== null && globalDayIndex++
+                const isDateStart = isRange && activeDate[0] && day?.getTime() === activeDate[0].getTime()
+                const isDateEnd = isRange && activeDate[1] && day?.getTime() === activeDate[1].getTime()
 
-                  const isActive = !isRange
-                    ? day?.getFullYear() === activeDate.getFullYear() &&
-                      day?.getMonth() === activeDate.getMonth() &&
-                      day?.getDate() === activeDate.getDate()
-                    : activeDate?.some(
-                        (date) =>
-                          date?.getFullYear() === day?.getFullYear() &&
-                          date?.getMonth() === day?.getMonth() &&
-                          date?.getDate() === day?.getDate(),
-                      )
+                const isActive = !isRange
+                  ? day?.getFullYear() === activeDate.getFullYear() &&
+                    day?.getMonth() === activeDate.getMonth() &&
+                    day?.getDate() === activeDate.getDate()
+                  : activeDate?.some(
+                      (date) =>
+                        date?.getFullYear() === day?.getFullYear() &&
+                        date?.getMonth() === day?.getMonth() &&
+                        date?.getDate() === day?.getDate(),
+                    )
 
-                  const isDisabled =
-                    disabled ||
-                    (day && day.getTime() > maxDate?.getTime()) ||
-                    (day && day.getTime() < minDate?.getTime()) ||
-                    (day &&
-                      disabledDates?.some(
-                        (date) =>
-                          date?.getFullYear() === day?.getFullYear() &&
-                          date?.getMonth() === day?.getMonth() &&
-                          date?.getDate() === day?.getDate(),
-                      )) ||
-                    false
+                const isDisabled =
+                  disabled ||
+                  (day && day.getTime() > maxDate?.getTime()) ||
+                  (day && day.getTime() < minDate?.getTime()) ||
+                  (day &&
+                    disabledDates?.some(
+                      (date) =>
+                        date?.getFullYear() === day?.getFullYear() &&
+                        date?.getMonth() === day?.getMonth() &&
+                        date?.getDate() === day?.getDate(),
+                    )) ||
+                  false
 
-                  const isInRange =
-                    (isRange &&
-                      activeDate[0] &&
-                      dateEndHovered &&
-                      day &&
-                      day.getTime() >= activeDate[0].getTime() &&
-                      day.getTime() < dateEndHovered.getTime()) ||
-                    (isRange &&
-                      activeDate[0] &&
-                      activeDate[1] &&
-                      day &&
-                      day.getTime() >= activeDate[0].getTime() &&
-                      day.getTime() < activeDate[1].getTime())
+                const isInRange =
+                  (isRange &&
+                    activeDate[0] &&
+                    dateEndHovered &&
+                    day &&
+                    day.getTime() >= activeDate[0].getTime() &&
+                    day.getTime() < dateEndHovered.getTime()) ||
+                  (isRange &&
+                    activeDate[0] &&
+                    activeDate[1] &&
+                    day &&
+                    day.getTime() >= activeDate[0].getTime() &&
+                    day.getTime() < activeDate[1].getTime())
 
-                  return (
-                    <td
-                      key={`${daysId}_${dayIndex}_${day?.getTime()}`}
-                      className={clsx(
-                        calendarWeekDay,
-                        isActive && calendarActiveDate,
-                        isDisabled && calendarWeekDayDisabled,
-                        isDateStart && dateStart,
-                        isDateEnd && dateEnd,
-                        isInRange && dateInRange,
-                        dayIndex === 0 && rondedLeft,
-                        dayIndex === 6 && rondedRight,
-                      )}
-                    >
-                      {day && ind !== false && (
-                        <button
-                          type='button'
-                          onKeyDown={(e) => onKeyDownDay(e, ind, isDisabled)}
-                          tabIndex={isActive ? 0 : -1}
-                          aria-selected={isActive ? 'true' : 'false'}
-                          data-timestamp={day?.getTime()}
-                          ref={(el) => {
-                            if (el) refsDays.current[ind] = el
-                          }}
-                          onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
-                          className={clsx(isDisabled && isDisabledClass, isActive && isActiveClass)}
-                          onMouseOver={() => {
-                            if (!isRange) return
-                            if (activeDate[0] !== undefined && activeDate.length === 1) setDateEndHovered(day)
-                          }}
-                        >
-                          {day.getDate()}
-                        </button>
-                      )}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        {isVisibleYears &&
-          !isRange &&
-          yearsBetween.map((years, yearsIndex) => {
-            return (
-              <tr key={`${yearsId}_${yearsIndex}`}>
-                {years.map((year, yearIndex) => {
-                  const ind = globalYearIndex++
-                  const isActive = activeDate.getFullYear() === year
-
-                  return (
-                    <td
-                      colSpan={3}
-                      key={`${yearId}_${yearIndex}_${year}`}
-                      className={clsx(calendarYear, isActive && calendarActiveDate)}
-                    >
+                return (
+                  <td
+                    key={`${daysId}_${dayIndex}_${day?.getTime()}`}
+                    className={clsx(
+                      calendarWeekDayClasses,
+                      isActive && calendarActiveDateClasses,
+                      isDisabled && calendarWeekDayDisabledClasses,
+                      isDateStart && dateStartClasses,
+                      isDateEnd && dateEndClasses,
+                      isInRange && dateInRangeClasses,
+                      dayIndex === 0 && rondedLeftClasses,
+                      dayIndex === 6 && rondedRightClasses,
+                    )}
+                  >
+                    {day && ind !== false && (
                       <button
-                        tabIndex={isActive ? 0 : -1}
-                        data-year={year}
-                        aria-selected={isActive ? 'true' : 'false'}
                         type='button'
-                        role='radio'
-                        onKeyDown={(e) => onKeyDownYear(e, ind)}
+                        onKeyDown={(e) => onKeyDownDay(e, ind, isDisabled)}
+                        tabIndex={isActive ? 0 : -1}
+                        aria-selected={isActive ? 'true' : 'false'}
+                        data-timestamp={day?.getTime()}
                         ref={(el) => {
-                          if (el) refsYears.current[ind] = el
+                          if (el) refsDays.current[ind] = el
                         }}
-                        onMouseUp={handlePressEnterInYears}
+                        onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
+                        className={clsx(isDisabled && isDisabledClass, isActive && isActiveClasses)}
+                        onMouseOver={() => {
+                          if (!isRange) return
+                          if (activeDate[0] !== undefined && activeDate.length === 1) setDateEndHovered(day)
+                        }}
                       >
-                        {year}
+                        {day.getDate()}
                       </button>
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
+                    )}
+                  </td>
+                )
+              })}
+            </tr>
+          )
+        })}
       </tbody>
     </table>
   )
