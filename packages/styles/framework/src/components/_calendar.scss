@@ -44,13 +44,13 @@
     }
   }
 
-
   &-next-month, &-prev-month {
+    padding-bottom: 16px;
     button {
     text-align: center;
-    border-radius: 32px;
-    width: 32px;
-    height: 32px;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
       i {
         height: 100%;
       }
@@ -74,22 +74,22 @@
     &-label {
       padding: 4px;
       text-align: center !important;
-      width: 32px;
+      width: 36px;
+      color: getColor('font-placeholder');
     } 
     button {
       display: block;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 4px;
     }
   }
-
 
   &-active-month {
     height: 28px;
     text-align: center !important;
     position: relative;
-    padding: 10px 0;
+    padding-bottom: 16px;
     .icon {
       vertical-align: bottom;
     }
@@ -107,17 +107,20 @@
   &-header-dropdown {
     display: flex;
     gap: $spacing-3;
+    justify-content: center;
     .select{
       margin-bottom: 0 !important;
-      width: 50%;
+      width: 40%;
       select {
         height: 30px !important;
         margin-bottom: 0 !important;
         padding: 0px 25px 0px 5px;
+        &:focus{
+          padding-left: 4px !important;
+        }
       }
       .control:after {
-        right: -5px !important;
-
+        right: -8px !important;
       }
     }
   }

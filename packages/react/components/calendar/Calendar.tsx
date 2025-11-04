@@ -6,6 +6,7 @@ import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Select, SelectOption } from '../select'
+import { Text } from '../text'
 import { CalendarProps, DateValue } from './CalendarProps'
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
@@ -266,9 +267,9 @@ const Calendar = ({
         <tr>
           {days.map((day, index) => {
             return (
-              <th className={calendarDayLabelClasses} key={index}>
-                {day.slice(0, 1)}
-              </th>
+              <td className={calendarDayLabelClasses} key={index}>
+                <Text>{day.slice(0, 1)}</Text>
+              </td>
             )
           })}
         </tr>
