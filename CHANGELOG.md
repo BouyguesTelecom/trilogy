@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add fullwidth prop on Tabs component (Native)
 - Add cache fonctionnalities for Image component (Native)
 
-## [4.11.0] - 2025-10-XX
+## [4.11.0] - 2025-10-31
 - Fix Alert behavior out of ScrollView (native)
 - Fix Otp icon (native)
 - Update labels for Checkboxes & Radios (List) component
