@@ -17,6 +17,8 @@ import { ComponentName } from '../enumsComponentsName'
  * @param onClick {Function} onClick Event
  * @param align {Alignable} Align Image
  * @param circled {boolean} Circled Image
+ * -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param cache {ImageCache} Caching strategy for the image
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
