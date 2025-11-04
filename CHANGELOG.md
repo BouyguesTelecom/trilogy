@@ -5,7 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.12.0] - 2025-XX-XX
 - Fix fullwidth prop on Tabs component
-- Add fullwidth prop on Tabs component (native)
+- Add fullwidth prop on Tabs component (Native)
+- Add cache fonctionnalities for Image component (Native)
 
 ## [4.11.0] - 2025-10-XX
 - Fix Alert behavior out of ScrollView (native)

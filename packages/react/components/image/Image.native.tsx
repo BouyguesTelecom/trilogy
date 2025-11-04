@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ImageNativeRef, ImageProps } from './ImageProps'
+import { ImageNativeRef, ImageProps, ImageCache } from './ImageProps'
 
 /**
  * Image Component
@@ -12,8 +12,10 @@ import { ImageNativeRef, ImageProps } from './ImageProps'
  * @param height {number|string} Image height (Number if not percent else string)
  * @param onClick {Function} onClick Event
  * @param circled {boolean} Circled Image
+ * -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, ...others }, ref): JSX.Element => {
+const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, cache, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
       width: width ? width : '100%',
@@ -24,12 +26,34 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', cir
     },
   })
 
+  const getCachePolicy = (cacheType?: ImageCache): "force-cache" | "only-if-cached" | "default" | "reload" | undefined => {
+    switch (cacheType) {
+      case 'immutable':
+        // Aggressive caching - image never changes, cache indefinitely
+        return 'force-cache'
+      case 'cacheOnly':
+        // Only load from cache, never fetch from network
+        return 'only-if-cached'
+      case 'web':
+      default:
+        // Standard web behavior - respect HTTP headers and cache intelligently
+        return 'default'
+    }
+  }
+
+  const imageSource = typeof src === 'number'
+    ? src
+    : {
+        uri: src,
+        cache: getCachePolicy(cache)
+      }
+
   const image = (
     <ImageNative
       ref={ref}
       style={styles.image}
       accessibilityLabel={alt}
-      source={typeof src === 'number' ? src : { uri: src }}
+      source={imageSource}
       {...others}
       alt={alt}
     />
