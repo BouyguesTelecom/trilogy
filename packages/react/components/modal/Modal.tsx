@@ -135,7 +135,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
         >
           <div ref={modalContentRef} className={hashClass(styled, clsx('modal-content'))}>
             <div className={hashClass(styled, clsx('modal-header'))}>
-              {!hideCloseButton && (
+              {!hideCloseButton && !unClosable && (
                 <button
                   onClick={(e: React.MouseEvent) => {
                     handleClose(onClose, e)
