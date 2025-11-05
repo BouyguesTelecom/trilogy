@@ -275,37 +275,28 @@ const Calendar = ({
           </th>
 
           <th colSpan={5} className={calendarActiveMonthClasses}>
-            {isRange ? (
-              <span>
-                {visibleMonth.toLocaleDateString('fr-FR', {
-                  year: 'numeric',
-                  month: 'long',
-                })}
-              </span>
-            ) : (
-              <div className={headerDropdownClasses}>
-                <Select
-                  selected={String(visibleMonth.getMonth())}
-                  onChange={(value) => handleMonthSelect(Number(value.selectValue))}
-                >
-                  {months.map((monthName, monthIndex) => (
-                    <SelectOption key={monthIndex} value={String(monthIndex)} disabled={!availableMonths[monthIndex]}>
-                      {monthName}
-                    </SelectOption>
-                  ))}
-                </Select>
-                <Select
-                  selected={String(visibleMonth.getFullYear())}
-                  onChange={(value) => handleYearSelect(Number(value.selectValue))}
-                >
-                  {yearsBetween.map((year) => (
-                    <SelectOption key={year} value={String(year)}>
-                      {String(year)}
-                    </SelectOption>
-                  ))}
-                </Select>
-              </div>
-            )}
+            <div className={headerDropdownClasses}>
+              <Select
+                selected={String(visibleMonth.getMonth())}
+                onChange={(value) => handleMonthSelect(Number(value.selectValue))}
+              >
+                {months.map((monthName, monthIndex) => (
+                  <SelectOption key={monthIndex} value={String(monthIndex)} disabled={!availableMonths[monthIndex]}>
+                    {monthName}
+                  </SelectOption>
+                ))}
+              </Select>
+              <Select
+                selected={String(visibleMonth.getFullYear())}
+                onChange={(value) => handleYearSelect(Number(value.selectValue))}
+              >
+                {yearsBetween.map((year) => (
+                  <SelectOption key={year} value={String(year)}>
+                    {String(year)}
+                  </SelectOption>
+                ))}
+              </Select>
+            </div>
           </th>
           <th colSpan={1} className={calendarNextMonthClasses}>
             <button
