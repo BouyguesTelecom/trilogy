@@ -93,12 +93,7 @@ const Calendar = ({
   const yearsBetween = React.useMemo(() => {
     const minYear = minDate.getFullYear()
     const maxYear = maxDate.getFullYear()
-    const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
-    return years.reduce((acc: number[][], year: number, index: number) => {
-      if (index % 3 === 0) acc.push([])
-      acc[acc.length - 1].push(year)
-      return acc
-    }, [])
+    return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
   }, [minDate, maxDate])
 
   const allDaysInMonth = React.useMemo(() => {
@@ -247,7 +242,9 @@ const Calendar = ({
                   <SelectOption>Sept.</SelectOption>
                 </Select>
                 <Select>
-                  <SelectOption>2025</SelectOption>
+                  {yearsBetween.map((year) => (
+                    <SelectOption key={year}>{String(year)}</SelectOption>
+                  ))}
                 </Select>
               </div>
             )}
