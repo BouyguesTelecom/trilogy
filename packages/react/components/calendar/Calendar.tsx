@@ -10,6 +10,7 @@ import { Text } from '../text'
 import { CalendarProps, DateValue } from './CalendarProps'
 
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
+const months = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'dec.']
 const currentDate = new Date()
 
 function checkIsRange(date: DateValue): date is [Date, Date] | [Date] | [] {
@@ -96,6 +97,20 @@ const Calendar = ({
     return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
   }, [minDate, maxDate])
 
+  const availableMonths = React.useMemo(() => {
+    const currentYear = visibleMonth.getFullYear()
+    const minYear = minDate.getFullYear()
+    const maxYear = maxDate.getFullYear()
+    const minMonth = minDate.getMonth()
+    const maxMonth = maxDate.getMonth()
+
+    return Array.from({ length: 12 }, (_, monthIndex) => {
+      if (currentYear === minYear && monthIndex < minMonth) return false
+      if (currentYear === maxYear && monthIndex > maxMonth) return false
+      return true
+    })
+  }, [minDate, maxDate, visibleMonth])
+
   const allDaysInMonth = React.useMemo(() => {
     refsDays.current = []
     const activeYear = visibleMonth.getFullYear()
@@ -110,6 +125,37 @@ const Calendar = ({
       onMonthChange && onMonthChange(nextMonth)
     },
     [visibleMonth],
+  )
+
+  const handleMonthSelect = React.useCallback(
+    (selectedMonth: number) => {
+      const newDate = new Date(visibleMonth.getFullYear(), selectedMonth, visibleMonth.getDate())
+      if (newDate.getTime() < minDate.getTime() || newDate.getTime() > maxDate.getTime()) return
+      setVisibleMonth(newDate)
+      onMonthChange && onMonthChange(newDate)
+    },
+    [visibleMonth, onMonthChange, minDate, maxDate],
+  )
+
+  const handleYearSelect = React.useCallback(
+    (selectedYear: number) => {
+      const newDate = new Date(selectedYear, visibleMonth.getMonth(), visibleMonth.getDate())
+
+      if (newDate.getTime() < minDate.getTime() || newDate.getTime() > maxDate.getTime()) {
+        if (newDate.getTime() < minDate.getTime()) {
+          setVisibleMonth(new Date(selectedYear, minDate.getMonth(), visibleMonth.getDate()))
+          onMonthChange && onMonthChange(new Date(selectedYear, minDate.getMonth(), visibleMonth.getDate()))
+        } else {
+          setVisibleMonth(new Date(selectedYear, maxDate.getMonth(), visibleMonth.getDate()))
+          onMonthChange && onMonthChange(new Date(selectedYear, maxDate.getMonth(), visibleMonth.getDate()))
+        }
+        return
+      }
+
+      setVisibleMonth(newDate)
+      onMonthChange && onMonthChange(newDate)
+    },
+    [visibleMonth, onMonthChange, minDate, maxDate],
   )
 
   const navigateInDaysWithKeyboard = React.useCallback(
@@ -238,12 +284,24 @@ const Calendar = ({
               </span>
             ) : (
               <div className={headerDropdownClasses}>
-                <Select>
-                  <SelectOption>Sept.</SelectOption>
+                <Select
+                  selected={String(visibleMonth.getMonth())}
+                  onChange={(value) => handleMonthSelect(Number(value.selectValue))}
+                >
+                  {months.map((monthName, monthIndex) => (
+                    <SelectOption key={monthIndex} value={String(monthIndex)} disabled={!availableMonths[monthIndex]}>
+                      {monthName}
+                    </SelectOption>
+                  ))}
                 </Select>
-                <Select>
+                <Select
+                  selected={String(visibleMonth.getFullYear())}
+                  onChange={(value) => handleYearSelect(Number(value.selectValue))}
+                >
                   {yearsBetween.map((year) => (
-                    <SelectOption key={year}>{String(year)}</SelectOption>
+                    <SelectOption key={year} value={String(year)}>
+                      {String(year)}
+                    </SelectOption>
                   ))}
                 </Select>
               </div>

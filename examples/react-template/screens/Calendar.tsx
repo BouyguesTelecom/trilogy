@@ -17,7 +17,6 @@ export const CalendarScreen = (): JSX.Element => {
           <Text>Simple Calendar</Text>
           <Calendar
             onMonthChange={(e) => console.log(e)}
-            onViewChange={(e) => console.log(e)}
             disabledDates={disabledDates}
             maxDate={maxDate}
             minDate={minDate}
