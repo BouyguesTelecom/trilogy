@@ -27,8 +27,6 @@ const Calendar = ({
   onChange,
   onMonthChange,
 }: CalendarProps) => {
-  let globalDayIndex = 0
-
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0] || currentDate)
   const [activeDate, setActiveDate] = React.useState<DateValue>(value)
@@ -36,8 +34,6 @@ const Calendar = ({
 
   const refsDays = React.useRef<HTMLButtonElement[]>([])
   const refDayFocused = React.useRef<HTMLButtonElement>()
-  const refsYears = React.useRef<HTMLButtonElement[]>([])
-  const refYearFocused = React.useRef<number>()
 
   const weeksId = React.useId()
   const daysId = React.useId()
@@ -124,7 +120,7 @@ const Calendar = ({
       setVisibleMonth(nextMonth)
       onMonthChange && onMonthChange(nextMonth)
     },
-    [visibleMonth],
+    [visibleMonth, onMonthChange],
   )
 
   const handleMonthSelect = React.useCallback(
@@ -232,15 +228,6 @@ const Calendar = ({
   )
 
   React.useEffect(() => {
-    if (typeof refYearFocused.current === 'number' && refsDays.current) {
-      const dayToFocus = refsDays.current.findIndex((day) => day.tabIndex === 0)
-      if (dayToFocus !== -1) {
-        refsDays.current[dayToFocus].focus()
-      }
-    }
-  }, [refsYears.current, refYearFocused.current, refsDays.current])
-
-  React.useEffect(() => {
     if (refsDays.current) {
       const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
       if (!haveActiveDate && refsDays?.current[0]?.tabIndex) {
@@ -325,7 +312,7 @@ const Calendar = ({
           return (
             <tr key={`${weeksId}_${weekIndex}`} className={calendarWeekClasses}>
               {week.map((day, dayIndex) => {
-                const ind = day !== null && globalDayIndex++
+                const ind = day !== null && day.getDate() - 1
                 const isDateStart = isRange && activeDate[0] && day?.getTime() === activeDate[0].getTime()
                 const isDateEnd = isRange && activeDate[1] && day?.getTime() === activeDate[1].getTime()
 
