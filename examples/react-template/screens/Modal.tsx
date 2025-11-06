@@ -32,6 +32,8 @@ export const ModalScreen = (): JSX.Element => {
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
   const [openModal3, setOpenModal3] = useState(false)
+  const [openModal4, setOpenModal4] = useState(false)
+  const [openModal5, setOpenModal5] = useState(false)
 
   function AccessibilityElm() {
     if (isMobile) return <></>
@@ -151,6 +153,47 @@ export const ModalScreen = (): JSX.Element => {
           <ModalFooter>
             <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal3(false)}>
               Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+        <Modal
+          trigger={
+            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal4(true)}>
+              Unclosable Modal
+            </Button>
+          }
+          unClosable
+          active={openModal4}
+          onClose={() => setOpenModal4(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal4(false)}>
+              Close Modal
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+
+        <Modal
+          trigger={
+            <Button variant={ButtonVariant.PRIMARY} onClick={() => setOpenModal5(true)}>
+              Hide close button Modal
+            </Button>
+          }
+          hideCloseButton
+          active={openModal5}
+          onClose={() => setOpenModal5(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpenModal5(false)}>
+              Close Modal
             </Button>
           </ModalFooter>
         </Modal>
