@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-//import translation from '@trilogy-ds/locales/lib/calendar'
+import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -10,10 +10,8 @@ import { Select, SelectOption } from '../select'
 import { Text } from '../text'
 import { CalendarProps, DateValue } from './CalendarProps'
 
-// const days = [...translation.days]
-// const months = [...translation.months]
-const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Venderedi', 'Samedi']
-const months = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'dec.']
+const days = [...translation.days]
+const months = [...translation.months]
 const currentDate = new Date()
 
 function checkIsRange(date: DateValue): date is [Date, Date] | [Date] | [] {
