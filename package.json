@@ -130,6 +130,7 @@
     "react-native": "^0.73.5",
     "react-native-web": "^0.19.13",
     "react-router-dom": "^6.22.2",
+    "@react-native-community/cli": "^20.0.2",
     "react-hook-form": "^7.54.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-test-renderer": "~18.2.0",
@@ -157,6 +158,9 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
     "webpack-iconfont-plugin-nodejs": "^1.0.33"
+  },
+  "overrides": {
+    "@react-native-community/cli": "^20.0.2"
   },
   "workspaces": [
     "packages/react",
