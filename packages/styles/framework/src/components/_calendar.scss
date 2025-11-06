@@ -1,0 +1,128 @@
+.calendar {
+  border-collapse: separate;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding:24px;
+  border-radius: 8px;
+
+  button {
+    all: unset;
+    &:focus-visible:not(.is-disabled, .is-active), &:hover:not(.is-disabled, .is-active){
+      background-color: getColor('main-fade');
+    }
+    
+    &.is-active:hover, &.is-active:focus-visible,
+    &.is-disabled:hover, &.is-disabled:focus-visible {
+      filter: brightness(80%);
+    }
+  }
+
+  &-range.calendar-range-init {
+    .calendar-week-day:not(.calendar-date-in-range) {
+      button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
+        background-color: getColor('main');
+        color: getColor('background');
+      }
+    } 
+  }
+
+  &-date-in-range {
+    button:not(.is-disabled, .is-active){
+      background-color: getColor('main-fade');
+      border-radius: 0px;
+    }
+
+    &.calendar-date-rounded-left {
+      button:not(.is-disabled, .is-active){
+        border-radius: 8px 0 0 8px;
+      }
+    }
+
+    &.calendar-date-rounded-right {
+      button:not(.is-disabled, .is-active){
+        border-radius: 0px 8px 8px 0;
+      }
+    }
+  }
+
+  &-next-month, &-prev-month {
+    padding-bottom: 16px;
+    button {
+    text-align: center;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+      i {
+        height: 100%;
+      }
+    }
+  }
+
+  &-week:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &-week-day {
+    padding: 4px 0px;
+    text-align: center !important;
+    vertical-align: middle;
+    &-disabled {
+      button {
+        color: getColor('disabled');
+        background-color: getColor('disabled-fade');
+      }
+    }
+    &-label {
+      padding: 4px;
+      text-align: center !important;
+      width: 36px;
+      color: getColor('font-placeholder');
+    } 
+    button {
+      display: block;
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+    }
+  }
+
+  &-active-month {
+    height: 28px;
+    text-align: center !important;
+    position: relative;
+    padding-bottom: 16px;
+    .icon {
+      vertical-align: bottom;
+    }
+    button {
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  }
+
+  &-active-date button {
+    background-color: getColor('main');
+    color: getColor('background');
+  }
+
+  &-header-dropdown {
+    display: flex;
+    gap: $spacing-3;
+    justify-content: center;
+    .select{
+      margin-bottom: 0 !important;
+      width: 40%;
+      select {
+        height: 30px !important;
+        margin-bottom: 0 !important;
+        padding: 0px 25px 0px 5px;
+        &:focus{
+          padding-left: 4px !important;
+        }
+      }
+      .control:after {
+        right: -8px !important;
+      }
+    }
+  }
+
+}
