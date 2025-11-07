@@ -3,7 +3,7 @@
 # Pre-push hook to check for references to old Artifactory registry
 # This script prevents push if any references to "glouton" are found
 
-echo "🔍 Checking for old registry references..."
+echo "🔍 Checking files..."
 
 # Colors for output
 RED='\033[0;31m'
