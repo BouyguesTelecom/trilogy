@@ -164,13 +164,19 @@ const Calendar = ({
         return nextRef.focus()
       }
 
+      const mustNextMonth = [1, 7].includes(nextIndex)
+      const mustPrevMonth = [-1, -7].includes(nextIndex)
+
       setVisibleMonth((prev) => {
         const currentYear = prev.getFullYear()
         const currentMonth = prev.getMonth()
-        if ([1, 7].includes(nextIndex)) return new Date(currentYear, currentMonth + 1)
-        if ([-1, -7].includes(nextIndex)) return new Date(currentYear, currentMonth - 1)
+        if (mustNextMonth && !isNextDisabled) return new Date(currentYear, currentMonth + 1)
+        if (mustPrevMonth && !isPrevDisabled) return new Date(currentYear, currentMonth - 1)
         return prev
       })
+
+      if (mustNextMonth && isNextDisabled) return
+      if (mustPrevMonth && isPrevDisabled) return
 
       const prevDayFocused = new Date(Number(refDayFocused.current?.dataset.timestamp))
       setTimeout(() => {
@@ -182,7 +188,7 @@ const Calendar = ({
         refDayFocused.current = refsDays.current[nextDayFocused.getDate() - 1]
       }, 10)
     },
-    [refsDays.current, refDayFocused.current],
+    [refsDays.current, refDayFocused.current, isNextDisabled, isPrevDisabled],
   )
 
   const handlePressEnterInDays = React.useCallback(
