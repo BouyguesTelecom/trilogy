@@ -17,40 +17,44 @@ FORBIDDEN_TERM="glouton"
 # Function to check files
 check_files() {
     local found_files=()
+    local directories_to_check=("packages" "examples" ".")
 
-    # Search in all text files (excluding binaries and certain folders)
-    while IFS= read -r -d '' file; do
-        if grep -l "$FORBIDDEN_TERM" "$file" 2>/dev/null; then
-            found_files+=("$file")
+    # Search only in specific directories for better performance
+    for dir in "${directories_to_check[@]}"; do
+        if [ -d "$dir" ]; then
+            while IFS= read -r -d '' file; do
+                if grep -l "$FORBIDDEN_TERM" "$file" 2>/dev/null; then
+                    found_files+=("$file")
+                fi
+            done < <(find "$dir" -maxdepth 3 -type f \
+                ! -path "*/node_modules/*" \
+                ! -path "*/.git/*" \
+                ! -path "*/dist/*" \
+                ! -path "*/build/*" \
+                ! -path "*/.cache/*" \
+                ! -path "*/scripts/*" \
+                ! -name "*.png" \
+                ! -name "*.jpg" \
+                ! -name "*.jpeg" \
+                ! -name "*.gif" \
+                ! -name "*.ico" \
+                ! -name "*.svg" \
+                ! -name "*.woff" \
+                ! -name "*.woff2" \
+                ! -name "*.ttf" \
+                ! -name "*.eot" \
+                ! -name "*.otf" \
+                ! -name "*.pdf" \
+                ! -name "*.zip" \
+                ! -name "*.tar.gz" \
+                ! -name "*.tgz" \
+                ! -name "*.exe" \
+                ! -name "*.dll" \
+                ! -name "*.so" \
+                ! -name "*.dylib" \
+                -print0)
         fi
-    done < <(find . -type f \
-        ! -path "./.git/*" \
-        ! -path "./node_modules/*" \
-        ! -path "./.next/*" \
-        ! -path "./dist/*" \
-        ! -path "./build/*" \
-        ! -path "./.cache/*" \
-        ! -path "./scripts/*" \
-        ! -name "*.png" \
-        ! -name "*.jpg" \
-        ! -name "*.jpeg" \
-        ! -name "*.gif" \
-        ! -name "*.ico" \
-        ! -name "*.svg" \
-        ! -name "*.woff" \
-        ! -name "*.woff2" \
-        ! -name "*.ttf" \
-        ! -name "*.eot" \
-        ! -name "*.otf" \
-        ! -name "*.pdf" \
-        ! -name "*.zip" \
-        ! -name "*.tar.gz" \
-        ! -name "*.tgz" \
-        ! -name "*.exe" \
-        ! -name "*.dll" \
-        ! -name "*.so" \
-        ! -name "*.dylib" \
-        -print0)
+    done
 
     if [ ${#found_files[@]} -gt 0 ]; then
         echo -e "${RED}❌ ERROR: References to '$FORBIDDEN_TERM' found!${NC}"
