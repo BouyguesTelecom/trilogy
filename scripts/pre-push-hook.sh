@@ -30,6 +30,7 @@ check_files() {
         ! -path "./dist/*" \
         ! -path "./build/*" \
         ! -path "./.cache/*" \
+        ! -path "./scripts/*" \
         ! -name "*.png" \
         ! -name "*.jpg" \
         ! -name "*.jpeg" \
