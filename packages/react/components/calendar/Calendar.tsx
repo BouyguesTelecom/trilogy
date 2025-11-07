@@ -127,7 +127,6 @@ const Calendar = ({
   const handleMonthSelect = React.useCallback(
     (selectedMonth: number) => {
       const newDate = new Date(visibleMonth.getFullYear(), selectedMonth, visibleMonth.getDate())
-      if (newDate.getTime() < minDate.getTime() || newDate.getTime() > maxDate.getTime()) return
       setVisibleMonth(newDate)
       onMonthChange && onMonthChange(newDate)
     },
