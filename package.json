@@ -6,7 +6,7 @@
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "prebuild": "npm run build:version",
+    "prebuild": "npm run build:version && ./scripts/install-hooks.sh",
     "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
@@ -35,7 +35,8 @@
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
     "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
     "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
-    "setup": "npm i && npm run build && npm i && npm start"
+    "setup": "npm i && npm run build && npm i && npm start",
+    "postinstall": "./scripts/install-hooks.sh"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",

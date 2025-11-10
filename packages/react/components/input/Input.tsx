@@ -48,6 +48,7 @@ interface IconWrapper {
  * @param securityGauge {boolean} add security gauge for input type password
  * @param validationRules {IValidationRules} Textarea max length
  * @param readOnly {boolean} Read only input
+ * @param autoCapitalize {InputAutoCapitalize} Auto capitalize input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -108,6 +109,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityRules,
       required,
       readOnly,
+      autoCapitalize,
       ...others
     },
     ref,
@@ -253,6 +255,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             defaultValue={defaultValue}
             name={name}
             onSubmit={onSubmit}
+            autoCapitalize={type === InputType.PASSWORD ? 'off' : autoCapitalize || undefined}
             ref={ref}
             disabled={disabled}
             minLength={minLength}
