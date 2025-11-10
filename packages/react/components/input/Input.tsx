@@ -108,6 +108,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       securityRules,
       required,
       readOnly,
+      autoCapitalize,
       ...others
     },
     ref,
@@ -253,7 +254,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             defaultValue={defaultValue}
             name={name}
             onSubmit={onSubmit}
-            autoCapitalize={inputType === InputType.PASSWORD ? 'off' : undefined}
+            autoCapitalize={inputType === InputType.PASSWORD && 'off' || autoCapitalize || undefined}
             ref={ref}
             disabled={disabled}
             minLength={minLength}
