@@ -3,6 +3,7 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 24px;
   border-radius: 8px;
+  border-spacing: 0 8px;
 
   button {
     all: unset;
@@ -57,12 +58,7 @@
     }
   }
 
-  &-week:not(:last-child) {
-    margin-bottom: 8px;
-  }
-
   &-week-day {
-    padding: 4px 0px;
     text-align: center !important;
     vertical-align: middle;
     &-disabled {
