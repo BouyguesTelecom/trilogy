@@ -13,7 +13,7 @@
     
     &.is-active:hover, &.is-active:focus-visible,
     &.is-disabled:hover, &.is-disabled:focus-visible {
-      filter: brightness(80%);
+      filter: brightness(80%) !important;
     }
   }
 
@@ -30,6 +30,10 @@
     button:not(.is-disabled, .is-active){
       background-color: getColor('main-fade');
       border-radius: 0px;
+      &:hover {
+        filter: brightness(95%) !important;
+        border-radius: 4px;
+      }
     }
 
     &.calendar-date-rounded-left {
