@@ -255,7 +255,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             defaultValue={defaultValue}
             name={name}
             onSubmit={onSubmit}
-            autoCapitalize={inputType === InputType.PASSWORD && 'off' || autoCapitalize || undefined}
+            autoCapitalize={type === InputType.PASSWORD ? 'off' : autoCapitalize || undefined}
             ref={ref}
             disabled={disabled}
             minLength={minLength}
