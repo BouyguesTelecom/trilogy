@@ -13,7 +13,7 @@
     
     &.is-active:hover, &.is-active:focus-visible,
     &.is-disabled:hover, &.is-disabled:focus-visible {
-      filter: brightness(80%) !important;
+      filter: brightness(80%) ;
     }
   }
 
@@ -31,7 +31,7 @@
       background-color: getColor('main-fade');
       border-radius: 0px;
       &:hover {
-        filter: brightness(95%) !important;
+        filter: brightness(95%) ;
         border-radius: 4px;
       }
     }
