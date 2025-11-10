@@ -316,7 +316,11 @@ const Calendar = ({
       <tbody>
         {allDaysInMonth.map((week, weekIndex) => {
           return (
-            <tr key={`${weeksId}_${weekIndex}`} className={calendarWeekClasses}>
+            <tr
+              key={`${weeksId}_${weekIndex}`}
+              className={calendarWeekClasses}
+              onMouseLeave={() => setDateEndHovered(undefined)}
+            >
               {week.map((day, dayIndex) => {
                 const ind = day !== null && day.getDate() - 1
                 const isDateStart = isRange && activeDate[0] && day?.getTime() === activeDate[0].getTime()
