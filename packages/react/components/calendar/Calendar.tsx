@@ -230,7 +230,7 @@ const Calendar = ({
           return
       }
     },
-    [handlePressEnterInDays],
+    [handlePressEnterInDays, navigateInDaysWithKeyboard],
   )
 
   React.useEffect(() => {
@@ -245,6 +245,12 @@ const Calendar = ({
       }
     }
   }, [refsDays.current, refDayFocused.current])
+
+  React.useEffect(() => {
+    setActiveDate(value)
+    if (value instanceof Date) return setVisibleMonth(value)
+    if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
+  }, [value])
 
   return (
     <table
