@@ -1,5 +1,5 @@
 import { Calendar, Column, Columns, Section, Text } from '@trilogy-ds/react/components'
-import { DateValue } from '@trilogy-ds/react/components/calendar/CalendarProps'
+import { ChangeEventCalendar } from '@trilogy-ds/react/components/calendar/CalendarProps'
 import { useState } from 'react'
 
 const minDate = new Date(2025, 9, 10)
@@ -7,8 +7,8 @@ const maxDate = new Date(2032, 11, 20)
 const disabledDates = [new Date(2025, 10, 4), new Date(2025, 10, 10)]
 
 export const CalendarScreen = (): JSX.Element => {
-  const [value, setValue] = useState(new Date(2025, 10, 2))
-  const [values, setValues] = useState<DateValue>([])
+  const [value, setValue] = useState<ChangeEventCalendar>(new Date(2025, 10, 2))
+  const [values, setValues] = useState<ChangeEventCalendar>([])
 
   return (
     <Section>
@@ -22,7 +22,7 @@ export const CalendarScreen = (): JSX.Element => {
             minDate={minDate}
             value={value}
             onChange={(e) => {
-              console.log(e)
+              setValue(e)
             }}
           />
         </Column>

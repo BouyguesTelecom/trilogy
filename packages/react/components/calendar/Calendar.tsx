@@ -8,13 +8,13 @@ import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Select, SelectOption } from '../select'
 import { Text } from '../text'
-import { CalendarProps, DateValue } from './CalendarProps'
+import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
 const days = [...translation.days]
 const months = [...translation.months]
 const currentDate = new Date()
 
-function checkIsRange(date: DateValue): date is [Date, Date] | [Date] | [] {
+function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] | [] {
   return !(date instanceof Date)
 }
 
@@ -30,7 +30,7 @@ const Calendar = ({
 }: CalendarProps) => {
   const { styled } = useTrilogyContext()
   const [visibleMonth, setVisibleMonth] = React.useState<Date>(value instanceof Date ? value : value[0] || currentDate)
-  const [activeDate, setActiveDate] = React.useState<DateValue>(value)
+  const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
   const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
 
   const refsDays = React.useRef<HTMLButtonElement[]>([])
@@ -199,7 +199,7 @@ const Calendar = ({
       refsDays.current.forEach((day) => (day.tabIndex = -1))
       elm.tabIndex = 0
       const newDate = new Date(Number(elm.dataset.timestamp))
-      let newActiveDate: DateValue = [newDate]
+      let newActiveDate: ChangeEventCalendar = [newDate]
       if (!isRange) newActiveDate = newDate
 
       if (isRange && activeDate.length === 1 && newDate.getTime() > activeDate[0].getTime()) {
