@@ -127,13 +127,6 @@ $height-arrow-small:30px;
       border: 0px solid transparent;
       border-bottom: 1px solid getColor('neutral');
 
-      .text, p, span, label {
-        -webkit-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-      }
-
       .tab-icon {
         margin-top: 2px;
       }

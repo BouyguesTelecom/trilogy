@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add cache fonctionnalities for Image component (Native)
 - Fix input autocapitalize on type password (Web)
 - Add Calendar component (Web only)
+- Fix unselectable text content for Tab (Web)
 
 ## [4.11.0] - 2025-10-31
 - Fix Alert behavior out of ScrollView (native)
