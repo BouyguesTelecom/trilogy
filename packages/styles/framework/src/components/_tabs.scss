@@ -127,7 +127,6 @@ $height-arrow-small:30px;
       border: 0px solid transparent;
       border-bottom: 1px solid getColor('neutral');
 
-      // Permettre la sélection de texte dans le contenu des tabs
       .text, p, span, label {
         -webkit-user-select: text;
         -moz-user-select: text;
@@ -208,7 +207,6 @@ $height-arrow-small:30px;
       transition: opacity 2s ease-in-out;
       transition-delay: 1s;
 
-      // Permettre la sélection de texte dans le contenu des panneaux
       .text, p, span, label, div, * {
         -webkit-user-select: text;
         -moz-user-select: text;
