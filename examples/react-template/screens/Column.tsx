@@ -1,5 +1,5 @@
 import {
-  Alignable, Container,
+  Alignable,
   IconName,
   IconSize,
   Price,
@@ -10,7 +10,7 @@ import {
   Title,
   TypographyAlign,
 } from '@trilogy-ds/react'
-import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
+import { Box, BoxContent, Column, Columns, GapSize, Icon, Section, Container} from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { View } from 'react-native'
 
@@ -19,9 +19,31 @@ export const ColumnScreen = (): JSX.Element => {
 
   return (
     <Section>
+      <Container>
+      <Columns>
+        <Column tabletSize={6} desktopSize={10}>
+          <Box fullheight>
+            <Columns verticalAlign={'ALIGNED_CENTER'} fullheight>
+              <Column>
+                <Text>Box 1</Text>
+              </Column>
+            </Columns>
+          </Box>
+        </Column>
+        <Column>
+          <Box fullheight>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+            <Text>Box 2</Text>
+          </Box>
+        </Column>
+      </Columns>
+
       <Columns>
         <Column widescreenSize={8}>
-          <Container className='container_410'>
+          <div className='container-query_410'>
             <Columns>
               <Column tabletSize={6} desktopSize={10}>
                 <Box fullheight>
@@ -220,7 +242,7 @@ export const ColumnScreen = (): JSX.Element => {
                 </Box>
               </Column>
             </Columns>
-          </Container>
+          </div>
 
         </Column>
         <Column size={4}>
@@ -229,6 +251,7 @@ export const ColumnScreen = (): JSX.Element => {
           </Box>
         </Column>
       </Columns>
+      </Container>
     </Section>
   )
 }

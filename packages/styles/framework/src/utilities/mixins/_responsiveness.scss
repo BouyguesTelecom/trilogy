@@ -1,7 +1,7 @@
 // Responsiveness
 // Container queries pour la responsivité basée sur la taille du conteneur
 
-.container {
+.container-query, body {
   container-type: inline-size;
 }
 
