@@ -64,7 +64,7 @@ $height-arrow-small:30px;
     .arrow-prev, .arrow-next {
       background-color: getColor('font');
     }
-    
+
   }
 
   &:has(.tab-list.is-aligned-start) {
@@ -199,6 +199,13 @@ $height-arrow-small:30px;
     .tab-panel {
       transition: opacity 2s ease-in-out;
       transition-delay: 1s;
+
+      * {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
 
       &:not(.is-active) {
         display: none;
