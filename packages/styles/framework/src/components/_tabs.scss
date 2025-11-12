@@ -200,7 +200,7 @@ $height-arrow-small:30px;
       transition: opacity 2s ease-in-out;
       transition-delay: 1s;
 
-      .text, p, span, label, div, * {
+      * {
         -webkit-user-select: text;
         -moz-user-select: text;
         -ms-user-select: text;
