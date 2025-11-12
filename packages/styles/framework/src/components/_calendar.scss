@@ -30,6 +30,10 @@
     button:not(.is-disabled, .is-active){
       background-color: getColor('main-fade');
       border-radius: 0px;
+      &:hover {
+        filter: brightness(95%) ;
+        border-radius: 4px;
+      }
     }
 
     &.calendar-date-rounded-left {

@@ -178,6 +178,7 @@ const Calendar = ({
       if (mustPrevMonth && isPrevDisabled) return
 
       const prevDayFocused = new Date(Number(refDayFocused.current?.dataset.timestamp))
+
       setTimeout(() => {
         const year = prevDayFocused.getFullYear()
         const month = prevDayFocused.getMonth()
@@ -399,6 +400,9 @@ const Calendar = ({
                         onMouseOver={() => {
                           if (!isRange) return
                           if (activeDate[0] !== undefined && activeDate.length === 1) setDateEndHovered(day)
+                        }}
+                        onClick={() => {
+                          refDayFocused.current = refsDays.current[ind]
                         }}
                       >
                         {day.getDate()}
