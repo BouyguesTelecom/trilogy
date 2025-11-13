@@ -24,12 +24,8 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
 
     if (!canContinueTyping) {
       setter(isYear ? `000${key}` : `0${key}`)
-      if (sensitive === false || digit <= sensitive) {
-        setCanContinueTyping(true)
-      }
-      if (sensitive && digit > sensitive) {
-        setTimeout(() => inputElement.blur(), 0)
-      }
+      if (sensitive === false || digit <= sensitive) setCanContinueTyping(true)
+      if (sensitive && digit > sensitive) setTimeout(() => inputElement.blur(), 0)
     }
 
     if (canContinueTyping) {
@@ -42,15 +38,11 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       }
     }
 
-    if (isYear) {
-      setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
-    }
+    if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
   }
 
   const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Backspace' || e.key === 'Delete') {
-      e.preventDefault()
-    }
+    if (e.key === 'Backspace' || e.key === 'Delete') e.preventDefault()
   }
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
