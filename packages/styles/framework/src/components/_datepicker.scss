@@ -1,0 +1,311 @@
+// DatePicker Component Styles
+// Inspired by MUI DatePicker design with Trilogy conventions
+
+.datepicker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  // Input field styles
+  &-input {
+    @include input;
+    position: relative;
+    padding-right: $spacing-8; // Space for calendar icon
+    cursor: pointer;
+
+    &:read-only {
+      cursor: pointer;
+    }
+
+    // Calendar icon positioning
+    & + .datepicker-icon {
+      position: absolute;
+      right: $spacing-4;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: getColor('font-placeholder');
+      width: 20px;
+      height: 20px;
+    }
+
+    // States
+    &:hover:not(:disabled):not(.is-disabled) {
+      @include hoverRules;
+    }
+
+    &:focus,
+    &:focus-visible {
+      border: 2px solid getColor('main');
+      padding-left: 15px;
+      padding-right: calc(#{$spacing-8} - 1px);
+    }
+
+    &.has-error {
+      border-color: getColor('error');
+
+      &:focus,
+      &:focus-visible {
+        border-color: getColor('error');
+      }
+    }
+
+    &.is-disabled,
+    &:disabled {
+      @include disabledRules;
+      cursor: not-allowed;
+    }
+
+    &.is-readonly {
+      background-color: getColor('neutral-fade');
+      cursor: pointer;
+    }
+  }
+
+  // Calendar popup container
+  &-calendar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: $spacing-2;
+    background-color: getColor('background');
+    border: 1px solid getColor('neutral-fade');
+    border-radius: $radius;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: map-get($zindex, dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease-out;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    // Position variants
+    &.is-top {
+      top: auto;
+      bottom: 100%;
+      margin-top: 0;
+      margin-bottom: $spacing-2;
+      transform: translateY(8px);
+
+      &.is-open {
+        transform: translateY(0);
+      }
+    }
+
+    // Calendar content
+    .calendar {
+      border: none;
+      box-shadow: none;
+      margin: 0;
+      padding: $spacing-4;
+    }
+  }
+
+  // Field wrapper for proper spacing
+  .field {
+    margin-bottom: 0;
+    position: relative;
+
+    .control {
+      position: relative;
+    }
+  }
+
+  // Size variants
+  &.is-small {
+    .datepicker-input {
+      @include control-small;
+      height: 40px;
+      padding-right: $spacing-6;
+
+      & + .datepicker-icon {
+        right: $spacing-3;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  &.is-large {
+    .datepicker-input {
+      @include control-large;
+      height: 64px;
+      padding-right: $spacing-9;
+
+      & + .datepicker-icon {
+        right: $spacing-5;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  // Full width variant
+  &.is-fullwidth {
+    width: 100%;
+    display: block;
+
+    .datepicker-input {
+      width: 100%;
+    }
+  }
+
+  // Color variants
+  @each $name in $colors-brand-functionnal {
+    $color: getColor($name);
+    $brandName: getColorBrandName($name);
+
+    &.is-#{$brandName} {
+      .datepicker-input {
+        border-color: $color;
+
+        &:focus,
+        &:focus-visible {
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  // Error state
+  &.has-error {
+    .datepicker-input {
+      border-color: getColor('error');
+
+      &:focus,
+      &:focus-visible {
+        border-color: getColor('error');
+      }
+    }
+
+    .datepicker-icon {
+      color: getColor('error');
+    }
+  }
+
+  // Success state
+  &.has-success {
+    .datepicker-input {
+      border-color: getColor('success');
+
+      &:focus,
+      &:focus-visible {
+        border-color: getColor('success');
+      }
+    }
+
+    .datepicker-icon {
+      color: getColor('success');
+    }
+  }
+
+  // Required indicator
+  &.is-required {
+    .datepicker-label::after {
+      content: " *";
+      color: getColor('error');
+    }
+  }
+
+  // Label styles
+  &-label {
+    display: block;
+    font-size: $size-small;
+    font-weight: $weight-semibold;
+    color: getColor('font');
+    margin-bottom: $spacing-2;
+  }
+
+  // Helper text
+  &-helper {
+    font-size: $size-small;
+    margin-top: $spacing-1;
+    color: getColor('font-placeholder');
+
+    &.is-error {
+      color: getColor('error');
+    }
+
+    &.is-success {
+      color: getColor('success');
+    }
+  }
+
+  // Loading state
+  &.is-loading {
+    .datepicker-input {
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTggMTVBNyA3IDAgMSAxIDggMUE3IDcgMCAwIDEgOCAxNVoiIHN0cm9rZT0iIzY4N0E4NyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgo8L3N2Zz4K');
+      background-repeat: no-repeat;
+      background-position: right $spacing-4 center;
+      background-size: 16px;
+      animation: spin 1s linear infinite;
+    }
+
+    .datepicker-icon {
+      display: none;
+    }
+  }
+
+  // Responsive behavior
+  @media (max-width: 768px) {
+    &-calendar {
+      left: $spacing-4;
+      right: $spacing-4;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  // Focus trap for accessibility
+  &-calendar:focus-within {
+    outline: 2px solid getColor('main');
+    outline-offset: 2px;
+  }
+
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    .datepicker-input {
+      border-width: 2px;
+    }
+
+    &-calendar {
+      border-width: 2px;
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    &-calendar {
+      transition: none;
+    }
+
+    &.is-loading .datepicker-input {
+      animation: none;
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Dark theme support (if implemented)
+@media (prefers-color-scheme: dark) {
+  .datepicker {
+    &-calendar {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
