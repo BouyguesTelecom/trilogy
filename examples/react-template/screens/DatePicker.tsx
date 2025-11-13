@@ -1,5 +1,7 @@
+import * as React from 'react'
+
 import { Button, Column, Columns, DatePicker, Section, Text } from '@trilogy-ds/react/components'
-import { DatePickerFormatEnum, DatePickerModeEnum, DatePickerVariantEnum } from '@trilogy-ds/react/components/datepicker'
+import { DatePickerFormatEnum, DatePickerModeEnum, DatePickerVariantEnum } from '@trilogy-ds/react/components'
 import { useState } from 'react'
 
 const minDate = new Date(2020, 0, 1)

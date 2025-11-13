@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react'
-import { Text, TextLevels, TextMarkup } from '../../components/text'
-import { useTrilogyContext } from '../../context'
-import { hashClass } from '../../helpers'
-import { TypographyColor } from '../../objects'
-import { has, is } from '../../services'
-import { Calendar, ChangeEventCalendar } from '../calendar'
-import { Icon, IconName, IconSize } from '../icon'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { TypographyColor, TrilogyColor } from '@/objects'
+import { has, is } from '@/services'
+import { Calendar, ChangeEventCalendar } from '@/components/calendar'
+import { Icon, IconName, IconSize } from '@/components/icon'
 import { DatePickerFormatEnum, DatePickerModeEnum, DatePickerVariantEnum } from './DatePickerEnum'
 import { DatePickerProps, DatePickerRef } from './DatePickerProps'
 
@@ -361,7 +361,7 @@ const DatePicker = React.forwardRef<DatePickerRef, DatePickerProps>(
             <Icon
               name={IconName.SEARCH}
               size={IconSize.SMALL}
-              color={disabled ? 'disabled' : undefined}
+              color={TrilogyColor.BACKGROUND}
             />
           </div>
         </div>
