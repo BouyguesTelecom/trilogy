@@ -1,45 +1,55 @@
 import React, { useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 
+interface HandleKeyPress {
+  event: React.KeyboardEvent<HTMLInputElement>
+  sensitiveValue: number | false
+  maxValue: number
+  segment: string
+  isYear: boolean
+  segmentPosition: number
+  segmentSetter: React.Dispatch<React.SetStateAction<string>>
+}
+
 const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
-  const [day, setDay] = useState('jj')
-  const [month, setMonth] = useState('mm')
-  const [year, setYear] = useState('aaaa')
-  const [canContinueTyping, setCanContinueTyping] = useState(false)
-  const [yearPosition, setYearPosition] = useState(0)
+  const [day, setDay] = useState<string>('jj')
+  const [month, setMonth] = useState<string>('mm')
+  const [year, setYear] = useState<string>('aaaa')
+  const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
+  const [yearPosition, setYearPosition] = useState<number>(0)
   const refsSegment = React.useRef<HTMLInputElement[]>([])
 
-  const handleKeyPress = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    sensitive: number | false,
-    max: number,
-    segment: string,
-    isYear: boolean,
-    position: number,
-    setter: React.Dispatch<React.SetStateAction<string>>,
-  ) => {
-    const { key } = e
-    e.preventDefault()
+  const handleKeyPress = ({
+    event,
+    sensitiveValue,
+    maxValue,
+    segment,
+    isYear,
+    segmentPosition,
+    segmentSetter,
+  }: HandleKeyPress) => {
+    const { key } = event
+    event.preventDefault()
     if (!/[0-9]/.test(key)) return
     const digit = parseInt(key)
 
     if (!canContinueTyping) {
-      setter(isYear ? `000${key}` : `0${key}`)
-      if (sensitive === false || digit <= sensitive) setCanContinueTyping(true)
-      if (sensitive && digit > sensitive)
+      segmentSetter(isYear ? `000${key}` : `0${key}`)
+      if (sensitiveValue === false || digit <= sensitiveValue) setCanContinueTyping(true)
+      if (sensitiveValue && digit > sensitiveValue)
         setTimeout(() => {
-          if (position < 2) refsSegment.current[position + 1].focus()
+          if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
         }, 0)
     }
 
     if (canContinueTyping) {
       const newValue = isYear ? segment + key : segment[1] + key
       const num = parseInt(newValue)
-      if (num >= 1 && num <= max) setter(isYear ? newValue.slice(-4) : newValue)
+      if (num >= 1 && num <= maxValue) segmentSetter(isYear ? newValue.slice(-4) : newValue)
       if (!isYear || (isYear && yearPosition === 3)) {
         setCanContinueTyping(false)
         setTimeout(() => {
-          if (position < 2) refsSegment.current[position + 1].focus()
+          if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
         }, 0)
       }
     }
@@ -60,7 +70,17 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       <input
         type='text'
         value={day}
-        onKeyUp={(e) => handleKeyPress(e, 3, 31, day, false, 0, setDay)}
+        onKeyUp={(e) =>
+          handleKeyPress({
+            event: e,
+            sensitiveValue: 3,
+            maxValue: 31,
+            segment: day,
+            isYear: false,
+            segmentPosition: 0,
+            segmentSetter: setDay,
+          })
+        }
         onFocus={handleFocus}
         onKeyDown={handleKeyDownDay}
         placeholder='jj'
@@ -73,7 +93,17 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       <input
         type='text'
         value={month}
-        onKeyUp={(e) => handleKeyPress(e, 1, 12, month, false, 1, setMonth)}
+        onKeyUp={(e) =>
+          handleKeyPress({
+            event: e,
+            sensitiveValue: 1,
+            maxValue: 12,
+            segment: month,
+            isYear: false,
+            segmentPosition: 1,
+            segmentSetter: setMonth,
+          })
+        }
         onFocus={handleFocus}
         onKeyDown={handleKeyDownDay}
         placeholder='mm'
@@ -86,7 +116,17 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       <input
         type='text'
         value={year}
-        onKeyUp={(e) => handleKeyPress(e, false, 9999, year, true, 2, setYear)}
+        onKeyUp={(e) =>
+          handleKeyPress({
+            event: e,
+            sensitiveValue: false,
+            maxValue: 9999,
+            segment: year,
+            isYear: true,
+            segmentPosition: 2,
+            segmentSetter: setYear,
+          })
+        }
         onFocus={handleFocus}
         onKeyDown={handleKeyDownDay}
         placeholder='aaaa'
