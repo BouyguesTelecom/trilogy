@@ -1,0 +1,15 @@
+.date-picker {
+    position: relative;
+    &-calendar {
+        position: absolute;
+        z-index: 1001;
+        left: 0;
+        right: 0;
+        padding: 8px 0;
+    &.calendar-top {
+        top: auto;
+        bottom: 100%;
+        overflow-y: scroll;
+    }
+    }
+}

@@ -1,5 +1,10 @@
+import { Calendar } from '@/components/calendar'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import clsx from 'clsx'
 import React, { useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
 
 interface HandleKeyPress {
   event: React.KeyboardEvent<HTMLInputElement>
@@ -11,13 +16,22 @@ interface HandleKeyPress {
   segmentSetter: React.Dispatch<React.SetStateAction<string>>
 }
 
+const APPROXIMATIVE_HEIGHT_CALENDAR = 420
+
 const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
+  const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
   const [month, setMonth] = useState<string>('mm')
   const [year, setYear] = useState<string>('aaaa')
+  const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false)
   const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
   const [yearPosition, setYearPosition] = useState<number>(0)
+  const [openUpward, setOpenUpward] = useState<boolean>(false)
   const refsSegment = React.useRef<HTMLInputElement[]>([])
+  const refContainer = React.useRef<HTMLDivElement>(null)
+
+  const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
+  const datePickerClasses = hashClass(styled, clsx('date-picker'))
 
   const handleKeyPress = ({
     event,
@@ -65,8 +79,23 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
     e.target.select()
   }
 
+  const handlePressCalendar = () => {
+    if (refContainer.current) {
+      const { top, bottom } = refContainer.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const spaceBelow = windowHeight - bottom
+      const padding = 10
+      const maxHeightBelow = spaceBelow - padding
+      const maxHeightAbove = top - padding
+      const openUpward = maxHeightBelow < APPROXIMATIVE_HEIGHT_CALENDAR && maxHeightAbove > maxHeightBelow
+      setOpenUpward(openUpward)
+    }
+
+    setIsOpenCalendar((prev) => !prev)
+  }
+
   return (
-    <div>
+    <div ref={refContainer} className={datePickerClasses}>
       <input
         type='text'
         value={day}
@@ -136,6 +165,12 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
           if (el) refsSegment.current[2] = el
         }}
       />
+      <button onClick={handlePressCalendar}>
+        <Icon name='tri-calendar' />
+      </button>
+      <div className={calendarContainerClasses} style={{ display: isOpenCalendar ? 'block' : 'none' }}>
+        <Calendar />
+      </div>
     </div>
   )
 })
