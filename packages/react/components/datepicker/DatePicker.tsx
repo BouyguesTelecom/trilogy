@@ -6,18 +6,31 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
+type SegmentType = 'day' | 'month' | 'year'
+
 interface HandleKeyPress {
   event: React.KeyboardEvent<HTMLInputElement>
-  sensitiveValue: number | false
-  maxValue: number
-  segment: string
-  segmentPosition: number
-  segmentSetter: React.Dispatch<React.SetStateAction<string>>
+  type: 'day' | 'month' | 'year'
 }
 
 interface DatePickerProps {
   value?: Date
   onChange?: (date: Date | null) => void
+}
+
+interface Segment {
+  sensitiveValue: number | false
+  maxValue: number
+  segment: string
+  segmentPosition: number
+  segmentSetter: React.Dispatch<React.SetStateAction<string>>
+  label: string
+}
+
+interface Segments {
+  day: Segment
+  month: Segment
+  year: Segment
 }
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
@@ -31,30 +44,48 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
   const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
   const [yearPosition, setYearPosition] = useState<number>(0)
   const [openUpward, setOpenUpward] = useState<boolean>(false)
-
   const refsSegment = React.useRef<HTMLInputElement[]>([])
   const refContainer = React.useRef<HTMLDivElement>(null)
-  React.useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
-
   const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
   const datePickerClasses = hashClass(styled, clsx('date-picker'))
+  React.useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
 
-  const handleKeyPress = ({
-    event,
-    sensitiveValue,
-    maxValue,
-    segment,
-    segmentPosition,
-    segmentSetter,
-  }: HandleKeyPress) => {
+  const segments: Segments = {
+    day: {
+      sensitiveValue: 3,
+      maxValue: 31,
+      segment: day,
+      segmentPosition: 0,
+      segmentSetter: setDay,
+      label: 'jj',
+    },
+    month: {
+      sensitiveValue: 1,
+      maxValue: 12,
+      segment: month,
+      segmentPosition: 1,
+      segmentSetter: setMonth,
+      label: 'mm',
+    },
+    year: {
+      sensitiveValue: false,
+      maxValue: 9999,
+      segment: year,
+      segmentPosition: 2,
+      segmentSetter: setYear,
+      label: 'aaaa',
+    },
+  }
+
+  const handleKeyPress = ({ event, type }: HandleKeyPress) => {
     const { key } = event
     event.preventDefault()
     if (!/[0-9]/.test(key)) return
     const digit = parseInt(key)
-    const isDay = segmentPosition === 0
-    const isMonth = segmentPosition === 1
-    const isYear = segmentPosition === 2
-
+    const { segmentPosition, segment, segmentSetter, sensitiveValue, maxValue } = segments[type]
+    const isDay = type === 'day'
+    const isMonth = type === 'month'
+    const isYear = type === 'year'
     const newValue = !canContinueTyping ? (isYear ? `000${key}` : `0${key}`) : isYear ? segment + key : segment[1] + key
 
     if (!canContinueTyping) {
@@ -78,7 +109,6 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
     }
 
     if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
-
     const newDay = isDay ? newValue : day
     const newMonth = isMonth ? newValue : month
     const newYear = isYear ? newValue : year
@@ -94,8 +124,16 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
     }
   }
 
-  const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Backspace' || e.key === 'Delete') e.preventDefault()
+  const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
+    e.preventDefault()
+    const { segmentSetter } = segments[type]
+    switch (e.key) {
+      case 'Backspace':
+        segmentSetter(type)
+        break
+      default:
+        return
+    }
   }
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -144,18 +182,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       <input
         type='text'
         value={day}
-        onKeyUp={(e) =>
-          handleKeyPress({
-            event: e,
-            sensitiveValue: 3,
-            maxValue: 31,
-            segment: day,
-            segmentPosition: 0,
-            segmentSetter: setDay,
-          })
-        }
+        onKeyUp={(e) => handleKeyPress({ event: e, type: 'day' })}
         onFocus={handleFocus}
-        onKeyDown={handleKeyDownDay}
+        onKeyDown={(e) => handleKeyDownDay(e, 'day')}
         placeholder='jj'
         maxLength={2}
         readOnly
@@ -166,18 +195,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       <input
         type='text'
         value={month}
-        onKeyUp={(e) =>
-          handleKeyPress({
-            event: e,
-            sensitiveValue: 1,
-            maxValue: 12,
-            segment: month,
-            segmentPosition: 1,
-            segmentSetter: setMonth,
-          })
-        }
+        onKeyUp={(e) => handleKeyPress({ event: e, type: 'month' })}
         onFocus={handleFocus}
-        onKeyDown={handleKeyDownDay}
+        onKeyDown={(e) => handleKeyDownDay(e, 'month')}
         placeholder='mm'
         maxLength={2}
         readOnly
@@ -188,18 +208,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       <input
         type='text'
         value={year}
-        onKeyUp={(e) =>
-          handleKeyPress({
-            event: e,
-            sensitiveValue: false,
-            maxValue: 9999,
-            segment: year,
-            segmentPosition: 2,
-            segmentSetter: setYear,
-          })
-        }
+        onKeyUp={(e) => handleKeyPress({ event: e, type: 'year' })}
         onFocus={handleFocus}
-        onKeyDown={handleKeyDownDay}
+        onKeyDown={(e) => handleKeyDownDay(e, 'year')}
         placeholder='aaaa'
         maxLength={4}
         readOnly
