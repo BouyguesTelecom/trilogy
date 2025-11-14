@@ -4,7 +4,7 @@ import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface HandleKeyPress {
   event: React.KeyboardEvent<HTMLInputElement>
@@ -16,14 +16,14 @@ interface HandleKeyPress {
 }
 
 interface DatePickerProps {
+  value?: Date
   onChange?: (date: Date | null) => void
 }
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
-const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange }) => {
+const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }) => {
   const { styled } = useTrilogyContext()
-
   const [day, setDay] = useState<string>('jj')
   const [month, setMonth] = useState<string>('mm')
   const [year, setYear] = useState<string>('aaaa')
@@ -78,13 +78,18 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
 
     if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
 
-    const newDay = parseInt(isDay ? newValue : day)
-    const newMonth = parseInt(isMonth ? newValue : month)
-    const newYear = parseInt(isYear ? newValue : year)
+    const newDay = isDay ? newValue : day
+    const newMonth = isMonth ? newValue : month
+    const newYear = isYear ? newValue : year
 
-    if (newDay && newMonth && newYear) {
+    if (parseInt(newDay) && parseInt(newMonth) && parseInt(newYear)) {
       const newDate = new Date(`${newYear}-${newMonth}-${newDay}`)
-      if (onChange) onChange(isNaN(newDate?.getTime()) ? null : newDate)
+      const isValidDate =
+        newDate.getFullYear() === parseInt(newYear) &&
+        newDate.getMonth() === parseInt(newMonth) - 1 &&
+        newDate.getDate() === parseInt(newDay) &&
+        !isNaN(newDate.getTime())
+      if (onChange) onChange(isNaN(newDate?.getTime()) || !isValidDate ? null : newDate)
     }
   }
 
@@ -122,6 +127,16 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
     setIsOpenCalendar(false)
     if (onChange) onChange(dateCalendar)
   }
+
+  useEffect(() => {
+    if (!value) return
+    const dateDay = value.getDate()
+    const dateMonth = value.getMonth() + 1
+    const dateYear = value.getFullYear()
+    setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
+    setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
+    setYear(String(dateYear))
+  }, [value])
 
   return (
     <div ref={refContainer} className={datePickerClasses}>
