@@ -7,6 +7,7 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
   const [year, setYear] = useState('aaaa')
   const [canContinueTyping, setCanContinueTyping] = useState(false)
   const [yearPosition, setYearPosition] = useState(0)
+  const refsSegment = React.useRef<HTMLInputElement[]>([])
 
   const handleKeyPress = (
     e: React.KeyboardEvent<HTMLInputElement>,
@@ -14,10 +15,10 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
     max: number,
     segment: string,
     isYear: boolean,
+    position: number,
     setter: React.Dispatch<React.SetStateAction<string>>,
   ) => {
-    const key = e.key
-    const inputElement = e.target as HTMLInputElement
+    const { key } = e
     e.preventDefault()
     if (!/[0-9]/.test(key)) return
     const digit = parseInt(key)
@@ -25,7 +26,10 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
     if (!canContinueTyping) {
       setter(isYear ? `000${key}` : `0${key}`)
       if (sensitive === false || digit <= sensitive) setCanContinueTyping(true)
-      if (sensitive && digit > sensitive) setTimeout(() => inputElement.blur(), 0)
+      if (sensitive && digit > sensitive)
+        setTimeout(() => {
+          if (position < 2) refsSegment.current[position + 1].focus()
+        }, 0)
     }
 
     if (canContinueTyping) {
@@ -34,10 +38,11 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       if (num >= 1 && num <= max) setter(isYear ? newValue.slice(-4) : newValue)
       if (!isYear || (isYear && yearPosition === 3)) {
         setCanContinueTyping(false)
-        setTimeout(() => inputElement.blur(), 0)
+        setTimeout(() => {
+          if (position < 2) refsSegment.current[position + 1].focus()
+        }, 0)
       }
     }
-
     if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
   }
 
@@ -55,32 +60,41 @@ const DatePicker = React.forwardRef<HTMLDivElement>((): JSX.Element => {
       <input
         type='text'
         value={day}
-        onKeyUp={(e) => handleKeyPress(e, 3, 31, day, false, setDay)}
-        onKeyDown={handleKeyDownDay}
+        onKeyUp={(e) => handleKeyPress(e, 3, 31, day, false, 0, setDay)}
         onFocus={handleFocus}
+        onKeyDown={handleKeyDownDay}
         placeholder='jj'
         maxLength={2}
         readOnly
+        ref={(el) => {
+          if (el) refsSegment.current[0] = el
+        }}
       />
       <input
         type='text'
         value={month}
-        onKeyUp={(e) => handleKeyPress(e, 1, 12, month, false, setMonth)}
-        onKeyDown={handleKeyDownDay}
+        onKeyUp={(e) => handleKeyPress(e, 1, 12, month, false, 1, setMonth)}
         onFocus={handleFocus}
+        onKeyDown={handleKeyDownDay}
         placeholder='mm'
         maxLength={2}
         readOnly
+        ref={(el) => {
+          if (el) refsSegment.current[1] = el
+        }}
       />
       <input
         type='text'
         value={year}
-        onKeyUp={(e) => handleKeyPress(e, false, 9999, year, true, setYear)}
-        onKeyDown={handleKeyDownDay}
+        onKeyUp={(e) => handleKeyPress(e, false, 9999, year, true, 2, setYear)}
         onFocus={handleFocus}
+        onKeyDown={handleKeyDownDay}
         placeholder='aaaa'
         maxLength={4}
         readOnly
+        ref={(el) => {
+          if (el) refsSegment.current[2] = el
+        }}
       />
     </div>
   )
