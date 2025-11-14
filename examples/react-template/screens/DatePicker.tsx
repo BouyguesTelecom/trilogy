@@ -6,7 +6,7 @@ export const DatePickerScreen = (): JSX.Element => {
       <Text>Date picker</Text>
       <Button variant='CONVERSION'>Click me</Button>
 
-      <DatePicker />
+      <DatePicker onChange={(e) => console.log(e)} />
     </Section>
   )
 }
