@@ -25,6 +25,7 @@ interface Segment {
   segmentPosition: number
   segmentSetter: React.Dispatch<React.SetStateAction<string>>
   label: string
+  initValue: string
 }
 
 interface Segments {
@@ -58,6 +59,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       segmentPosition: 0,
       segmentSetter: setDay,
       label: 'jj',
+      initValue: '01',
     },
     month: {
       sensitiveValue: 1,
@@ -66,6 +68,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       segmentPosition: 1,
       segmentSetter: setMonth,
       label: 'mm',
+      initValue: '01',
     },
     year: {
       sensitiveValue: false,
@@ -74,6 +77,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
       segmentPosition: 2,
       segmentSetter: setYear,
       label: 'aaaa',
+      initValue: String(new Date().getFullYear()),
     },
   }
 
@@ -125,11 +129,38 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
   }
 
   const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
-    e.preventDefault()
-    const { segmentSetter, label } = segments[type]
+    const { segmentSetter, label, maxValue, initValue } = segments[type]
     switch (e.key) {
       case 'Backspace':
+        e.preventDefault()
         segmentSetter(label)
+        break
+      case ' ':
+        e.preventDefault()
+        setIsOpenCalendar(true)
+        break
+      case 'Escape':
+        e.preventDefault()
+        setIsOpenCalendar(false)
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        segmentSetter((prev) => {
+          if (type === 'year' && prev === 'aaaa') return initValue
+          const currentValue = parseInt(prev) || 0
+          const nextValue = (currentValue % maxValue) + 1
+          return String(nextValue).padStart(2, '0')
+        })
+        break
+      case 'ArrowDown':
+        e.preventDefault()
+        segmentSetter((prev) => {
+          if (type === 'year' && prev === 'aaaa') return initValue
+          const value = parseInt(prev)
+          if (!value) return String(maxValue).padStart(2, '0')
+          const nextValue = value <= 1 ? maxValue : value - 1
+          return String(nextValue).padStart(2, '0')
+        })
         break
       default:
         return

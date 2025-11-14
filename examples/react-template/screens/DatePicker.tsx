@@ -16,7 +16,7 @@ export const DatePickerScreen = (): JSX.Element => {
         Set Date 2025-12-10
       </Button>
 
-      <DatePicker onChange={(e) => console.log(e)} value={date} />
+      <DatePicker onChange={(e) => console.log(e)} />
     </Section>
   )
 }
