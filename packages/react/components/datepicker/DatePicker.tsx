@@ -22,7 +22,7 @@ interface DatePickerProps {
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
-const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }) => {
+const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
   const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
   const [month, setMonth] = useState<string>('mm')
@@ -34,6 +34,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
 
   const refsSegment = React.useRef<HTMLInputElement[]>([])
   const refContainer = React.useRef<HTMLDivElement>(null)
+  React.useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
 
   const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
   const datePickerClasses = hashClass(styled, clsx('date-picker'))
