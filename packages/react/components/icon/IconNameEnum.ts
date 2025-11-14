@@ -5,6 +5,7 @@ export enum IconName {
   ARROW_RIGHT = 'tri-arrow-right',
   ARROW_UP = 'tri-arrow-up',
   BELL = 'tri-bell',
+  CALENDAR = 'tri-calendar',
   CHECK_CIRCLE = 'tri-check-circle',
   CHECK = 'tri-check',
   EXCLAMATION_CIRCLE = 'tri-exclamation-circle',
@@ -22,7 +23,7 @@ export enum IconName {
   PICTO_PAYMENT_CB = 'tri-picto-payment-cb',
   PICTO_PAYMENT_MASTERCARD = 'tri-picto-payment-mastercard',
   PICTO_PAYMENT_PAYPAL = 'tri-picto-payment-paypal',
-  PICTO_PAYMENT_VISA = 'tri-picto-payment-visa'
+  PICTO_PAYMENT_VISA = 'tri-picto-payment-visa',
 }
 
 export type IconNameValues = `${IconName}`
