@@ -126,10 +126,10 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
 
   const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
     e.preventDefault()
-    const { segmentSetter } = segments[type]
+    const { segmentSetter, label } = segments[type]
     switch (e.key) {
       case 'Backspace':
-        segmentSetter(type)
+        segmentSetter(label)
         break
       default:
         return
