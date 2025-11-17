@@ -2,6 +2,7 @@ import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
+import { useClickOutside } from '@/helpers/clickOustide'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
@@ -19,7 +20,7 @@ const getFirstDayFocusable = () => {
   const calendar = document.querySelector('[data-calendar-trilogy]') as HTMLTableElement
   const activeDate = calendar.querySelector(`[data-active-date]`)
   const today = calendar.querySelector(`[data-today]`)
-  const firstOfMonth = calendar.querySelector(`[data-calendar-trilogy] tbody button`)
+  const firstOfMonth = calendar.querySelector(`[data-calendar-trilogy] tbody button:not(:disabled)`)
   return (activeDate ?? today ?? firstOfMonth) as HTMLElement
 }
 
@@ -42,6 +43,10 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
   const datePickerClasses = hashClass(styled, clsx('date-picker'))
   useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
+
+  useClickOutside(refCalendar, () => {
+    setIsOpenCalendar(false)
+  })
 
   const segments: Segments = {
     day: {
@@ -226,8 +231,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
 
   useEffect(() => {
     if (isOpenCalendar && refCalendar.current) {
-      const elms = refCalendar.current.querySelectorAll(`[data-focusable]`)
+      const elms = refCalendar.current.querySelectorAll(`[data-focusable=true]`)
       const firstDayFocusable = getFirstDayFocusable()
+      refsFocusable.current[0] = firstDayFocusable
       firstDayFocusable.focus()
       elms.forEach((el, i) => {
         const htmlElement = el as HTMLElement
@@ -289,11 +295,18 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
             ref={refCalendar}
             value={calendarValue}
             onMonthChange={() => {
-              if (isOpenCalendar) {
+              if (isOpenCalendar && refCalendar.current) {
+                const calendar = refCalendar.current
                 setTimeout(() => {
+                  refsFocusable.current = []
+                  const elms = calendar.querySelectorAll(`[data-focusable=true]`)
                   const firstDayFocusable = getFirstDayFocusable()
                   refsFocusable.current[0] = firstDayFocusable
-                }, 0)
+                  elms.forEach((el, i) => {
+                    const htmlElement = el as HTMLElement
+                    if (htmlElement) refsFocusable.current[i + 1] = htmlElement
+                  })
+                }, 10)
               }
             }}
           />

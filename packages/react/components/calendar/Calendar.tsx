@@ -98,8 +98,20 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     const yearsBetween = React.useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
-      return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
-    }, [minDate, maxDate])
+      const currentYear = value instanceof Date && value?.getFullYear()
+      const isCurrentYearInclude = currentYear && currentYear >= minYear && currentYear <= maxYear
+      let years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => {
+        const year = minYear + i
+        return {
+          value: year,
+          disabled: false,
+        }
+      })
+      if (currentYear && !isCurrentYearInclude) {
+        years = [{ value: currentYear, disabled: true }, ...years]
+      }
+      return years
+    }, [minDate, maxDate, value])
 
     const availableMonths = React.useMemo(() => {
       const currentYear = visibleMonth.getFullYear()
@@ -109,10 +121,17 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       const maxMonth = maxDate.getMonth()
 
       return Array.from({ length: 12 }, (_, monthIndex) => {
+        if (currentYear < minYear || currentYear > maxYear) return false
         if (currentYear === minYear && monthIndex < minMonth) return false
         if (currentYear === maxYear && monthIndex > maxMonth) return false
         return true
       })
+    }, [minDate, maxDate, visibleMonth])
+
+    const availableYear = React.useMemo(() => {
+      const minYear = minDate.getFullYear()
+      const maxYear = maxDate.getFullYear()
+      return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
     }, [minDate, maxDate, visibleMonth])
 
     const allDaysInMonth = React.useMemo(() => {
@@ -277,7 +296,8 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
           <tr>
             <th colSpan={1} className={calendarPrevMonthClasses}>
               <button
-                data-focusable='prev'
+                className={clsx(isPrevDisabled && isDisabledClass)}
+                data-focusable={!isPrevDisabled}
                 onClick={() => handleClickNextPrevMonth(-1)}
                 aria-label='Previous month'
                 type='button'
@@ -293,7 +313,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
             <th colSpan={5} className={calendarActiveMonthClasses}>
               <div className={headerDropdownClasses}>
                 <Select
-                  data-focusable='month'
+                  data-focusable='true'
                   selected={String(visibleMonth.getMonth())}
                   onChange={(value) => handleMonthSelect(Number(value.selectValue))}
                   ref={(el) => {
@@ -307,7 +327,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
                   ))}
                 </Select>
                 <Select
-                  data-focusable='year'
+                  data-focusable='true'
                   selected={String(visibleMonth.getFullYear())}
                   onChange={(value) => handleYearSelect(Number(value.selectValue))}
                   ref={(el) => {
@@ -315,8 +335,12 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
                   }}
                 >
                   {yearsBetween.map((year) => (
-                    <SelectOption key={year} value={String(year)}>
-                      {String(year)}
+                    <SelectOption
+                      key={year.value}
+                      value={String(year.value)}
+                      disabled={!availableYear.includes(year.value)}
+                    >
+                      {String(year.value)}
                     </SelectOption>
                   ))}
                 </Select>
@@ -324,7 +348,8 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
             </th>
             <th colSpan={1} className={calendarNextMonthClasses}>
               <button
-                data-focusable='calendar'
+                className={clsx(isNextDisabled && isDisabledClass)}
+                data-focusable={!isNextDisabled}
                 onClick={() => handleClickNextPrevMonth(1)}
                 aria-label='Next month'
                 type='button'
