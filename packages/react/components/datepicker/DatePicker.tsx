@@ -5,34 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-
-type SegmentType = 'day' | 'month' | 'year'
-
-interface HandleKeyPress {
-  event: React.KeyboardEvent<HTMLInputElement>
-  type: 'day' | 'month' | 'year'
-}
-
-interface DatePickerProps {
-  value?: Date
-  onChange?: (date: Date | null) => void
-}
-
-interface Segment {
-  sensitiveValue: number | false
-  maxValue: number
-  segment: string
-  segmentPosition: number
-  segmentSetter: React.Dispatch<React.SetStateAction<string>>
-  label: string
-  initValue: string
-}
-
-interface Segments {
-  day: Segment
-  month: Segment
-  year: Segment
-}
+import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
@@ -50,7 +23,7 @@ const getFirstDayFocusable = () => {
   return (activeDate ?? today ?? firstOfMonth) as HTMLElement
 }
 
-const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
+const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value, minDate, maxDate }, ref) => {
   const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
   const [month, setMonth] = useState<string>('mm')
@@ -310,6 +283,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
       {isOpenCalendar && (
         <div className={calendarContainerClasses}>
           <Calendar
+            maxDate={maxDate}
+            minDate={minDate}
             onChange={handleChangeCalendar}
             ref={refCalendar}
             value={calendarValue}
