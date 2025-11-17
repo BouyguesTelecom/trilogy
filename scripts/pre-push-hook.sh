@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Pre-push hook to check for references to old Artifactory registry
-# This script prevents push if any references to "glouton" are found
 
 echo "🔍 Checking files..."
 
