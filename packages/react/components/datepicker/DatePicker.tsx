@@ -1,10 +1,10 @@
-import { Calendar, ChangeEventCalendar } from '@/components/calendar'
+import { Calendar, CalendarRef, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 type SegmentType = 'day' | 'month' | 'year'
 
@@ -36,7 +36,7 @@ interface Segments {
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
-const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
+const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
   const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
   const [month, setMonth] = useState<string>('mm')
@@ -45,11 +45,13 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
   const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
   const [yearPosition, setYearPosition] = useState<number>(0)
   const [openUpward, setOpenUpward] = useState<boolean>(false)
-  const refsSegment = React.useRef<HTMLInputElement[]>([])
-  const refContainer = React.useRef<HTMLDivElement>(null)
+  const refsSegment = useRef<HTMLInputElement[]>([])
+  const refContainer = useRef<HTMLDivElement>(null)
+  const refCalendar = useRef<CalendarRef>(null)
+  const currentFocusIndexRef = useRef<number>(0)
   const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
   const datePickerClasses = hashClass(styled, clsx('date-picker'))
-  React.useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
+  useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
 
   const segments: Segments = {
     day: {
@@ -198,6 +200,24 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
     if (onChange) onChange(dateCalendar)
   }
 
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (isOpenCalendar && e.key === 'Tab') {
+      e.preventDefault()
+      if (refCalendar.current?.refs) {
+        const currentIndex = currentFocusIndexRef.current
+        const offset = e.shiftKey ? -1 : 1
+        const nextIndex =
+          (currentIndex + offset + refCalendar.current?.refs.current.length) % refCalendar.current?.refs.current.length
+        currentFocusIndexRef.current = nextIndex
+        refCalendar.current?.refs.current[nextIndex].focus()
+      }
+    }
+    if (isOpenCalendar && e.key === 'Escape') {
+      e.preventDefault()
+      setIsOpenCalendar(false)
+    }
+  }
+
   useEffect(() => {
     if (!value) return
     const dateDay = value.getDate()
@@ -208,8 +228,13 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
     setYear(String(dateYear))
   }, [value])
 
+  useEffect(() => {
+    if (isOpenCalendar && refCalendar.current) refCalendar.current?.refs.current[0].focus()
+    if (!isOpenCalendar && currentFocusIndexRef.current) currentFocusIndexRef.current = 0
+  }, [isOpenCalendar, refCalendar, currentFocusIndexRef])
+
   return (
-    <div ref={refContainer} className={datePickerClasses}>
+    <div ref={refContainer} className={datePickerClasses} onKeyDown={onKeyDown}>
       <input
         type='text'
         value={day}
@@ -253,7 +278,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({ onChange
         <Icon name='tri-calendar' />
       </button>
       <div className={calendarContainerClasses} style={{ display: isOpenCalendar ? 'block' : 'none' }}>
-        <Calendar onChange={handleChangeCalendar} />
+        <Calendar onChange={handleChangeCalendar} ref={refCalendar} />
       </div>
     </div>
   )

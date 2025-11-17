@@ -3,12 +3,12 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useImperativeHandle } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Select, SelectOption } from '../select'
 import { Text } from '../text'
-import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
+import { CalendarProps, CalendarRef, ChangeEventCalendar } from './CalendarProps'
 
 const days = [...translation.days]
 const months = [...translation.months]
@@ -18,7 +18,7 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
   return !(date instanceof Date)
 }
 
-const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
+const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
   (
     {
       value = currentDate,
@@ -41,6 +41,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     const refsDays = React.useRef<HTMLButtonElement[]>([])
     const refDayFocused = React.useRef<HTMLButtonElement>()
+    const refs = React.useRef<HTMLElement[]>([])
 
     const weeksId = React.useId()
     const daysId = React.useId()
@@ -259,6 +260,13 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
     }, [value])
 
+    useImperativeHandle(
+      ref,
+      (): CalendarRef => ({
+        refs: refs,
+      }),
+    )
+
     return (
       <table
         className={clsx(
@@ -275,6 +283,9 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 aria-label='Previous month'
                 type='button'
                 disabled={isPrevDisabled}
+                ref={(el) => {
+                  if (el && refs) refs.current[1] = el
+                }}
               >
                 <Icon name='tri-arrow-left' />
               </button>
@@ -285,6 +296,9 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 <Select
                   selected={String(visibleMonth.getMonth())}
                   onChange={(value) => handleMonthSelect(Number(value.selectValue))}
+                  ref={(el) => {
+                    if (el && refs) refs.current[2] = el
+                  }}
                 >
                   {months.map((monthName, monthIndex) => (
                     <SelectOption key={monthIndex} value={String(monthIndex)} disabled={!availableMonths[monthIndex]}>
@@ -295,6 +309,9 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 <Select
                   selected={String(visibleMonth.getFullYear())}
                   onChange={(value) => handleYearSelect(Number(value.selectValue))}
+                  ref={(el) => {
+                    if (el && refs) refs.current[3] = el
+                  }}
                 >
                   {yearsBetween.map((year) => (
                     <SelectOption key={year} value={String(year)}>
@@ -310,6 +327,9 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 aria-label='Next month'
                 type='button'
                 disabled={isNextDisabled}
+                ref={(el) => {
+                  if (el && refs) refs.current[4] = el
+                }}
               >
                 <Icon name='tri-arrow-right' />
               </button>
@@ -400,6 +420,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                           data-timestamp={day?.getTime()}
                           ref={(el) => {
                             if (el) refsDays.current[ind] = el
+                            if (el && refs && isActive) refs.current[0] = el
                           }}
                           onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
                           className={clsx(isDisabled && isDisabledClass, isActive && isActiveClasses)}
