@@ -7,7 +7,7 @@ const maxDate = new Date(2032, 11, 20)
 const disabledDates = [new Date(2025, 10, 4), new Date(2025, 10, 10)]
 
 export const CalendarScreen = (): JSX.Element => {
-  const [value, setValue] = useState<ChangeEventCalendar>(new Date(2025, 10, 2))
+  const [value, setValue] = useState<ChangeEventCalendar>(new Date(2025, 10, 30))
   const [values, setValues] = useState<ChangeEventCalendar>([])
 
   return (
