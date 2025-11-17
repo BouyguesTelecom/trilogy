@@ -45,7 +45,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
 
   useClickOutside(refCalendar, () => {
-    setIsOpenCalendar(false)
+    setTimeout(() => {
+      setIsOpenCalendar(false)
+    }, 0)
   })
 
   const segments: Segments = {
@@ -186,7 +188,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
       const openUpward = maxHeightBelow < APPROXIMATIVE_HEIGHT_CALENDAR && maxHeightAbove > maxHeightBelow
       setOpenUpward(openUpward)
     }
-    setIsOpenCalendar((prev) => !prev)
+    setIsOpenCalendar(true)
   }
 
   const handleChangeCalendar = (e: ChangeEventCalendar) => {
@@ -240,6 +242,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
         if (htmlElement) refsFocusable.current[i + 1] = htmlElement
       })
     }
+    if (!isOpenCalendar && currentFocusIndexRef.current) currentFocusIndexRef.current = 0
   }, [isOpenCalendar, refCalendar, currentFocusIndexRef])
 
   return (

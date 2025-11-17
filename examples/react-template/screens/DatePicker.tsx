@@ -1,9 +1,6 @@
 import { Button, DatePicker, Section, Text } from '@trilogy-ds/react/components'
 import { useState } from 'react'
 
-const minDate = new Date(2025, 9, 10)
-const maxDate = new Date(2025, 11, 20)
-
 export const DatePickerScreen = (): JSX.Element => {
   const [date, setDate] = useState(new Date())
   return (
@@ -18,7 +15,7 @@ export const DatePickerScreen = (): JSX.Element => {
         Set Date 2025-12-10
       </Button>
 
-      <DatePicker onChange={(e) => console.log(e)} minDate={minDate} maxDate={maxDate} />
+      <DatePicker onChange={(e) => console.log(e)} value={date} />
     </Section>
   )
 }
