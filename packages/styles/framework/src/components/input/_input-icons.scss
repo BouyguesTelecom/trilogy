@@ -27,7 +27,7 @@
     }
   }
   .has-icons-right {
-    .icon-right, button[data-show-pwd]{
+    .icon-right, button[data-show-pwd], button[data-show-calendar] {
       position: absolute;
       height: 100%;
       width: 45px;
@@ -41,7 +41,7 @@
       }
     }
 
-    button[data-show-pwd]{
+    button[data-show-pwd], button[data-show-calendar] {
       background-color: transparent;
       border:none;
       border-top-right-radius: $radius-small ;

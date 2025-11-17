@@ -1,3 +1,5 @@
+import { DatePickerStatus, DatePickerStatusValues } from './DatePickerEnum'
+
 export type SegmentType = 'day' | 'month' | 'year'
 
 export interface HandleKeyPress {
@@ -10,8 +12,12 @@ export interface DatePickerProps {
   onChange?: (date: Date | null) => void
   minDate?: Date
   maxDate?: Date
-  disabled?: boolean
-  readOnly?: boolean
+  className?: string
+  label?: string
+  sample?: string
+  required?: boolean
+  status?: DatePickerStatus | DatePickerStatusValues
+  help?: string
 }
 
 export interface Segment {

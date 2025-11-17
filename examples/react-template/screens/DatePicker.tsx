@@ -15,7 +15,14 @@ export const DatePickerScreen = (): JSX.Element => {
         Set Date 2025-12-10
       </Button>
 
-      <DatePicker onChange={(e) => console.log(e)} value={date} />
+      <DatePicker
+        onChange={(e) => console.log(e)}
+        value={date}
+        label='Input label without accessibilityLabel'
+        sample='Input sample'
+        help='Search helper input'
+        required
+      />
     </Section>
   )
 }
