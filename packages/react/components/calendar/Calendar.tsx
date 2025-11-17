@@ -296,7 +296,6 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
           <tr>
             <th colSpan={1} className={calendarPrevMonthClasses}>
               <button
-                className={clsx(isPrevDisabled && isDisabledClass)}
                 data-focusable={!isPrevDisabled}
                 onClick={() => handleClickNextPrevMonth(-1)}
                 aria-label='Previous month'
@@ -348,7 +347,6 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
             </th>
             <th colSpan={1} className={calendarNextMonthClasses}>
               <button
-                className={clsx(isNextDisabled && isDisabledClass)}
                 data-focusable={!isNextDisabled}
                 onClick={() => handleClickNextPrevMonth(1)}
                 aria-label='Next month'
