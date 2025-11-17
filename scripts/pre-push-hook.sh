@@ -135,7 +135,7 @@ if ! check_npm_config; then
 fi
 
 # If everything is OK
-echo -e "${GREEN}✅ No references to '$FORBIDDEN_TERM' found!${NC}"
+echo -e "${GREEN}✅ No references found!${NC}"
 echo -e "${GREEN}🚀 Push allowed.${NC}"
 echo
 
