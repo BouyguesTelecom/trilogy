@@ -34,5 +34,5 @@ else
 fi
 
 echo -e "${GREEN}🎉 Git hooks installation completed!${NC}"
-echo -e "${YELLOW}💡 The pre-push hook will now prevent pushing files containing 'glouton' references${NC}"
+echo -e "${YELLOW}💡 The pre-push hook will now prevent pushing files containing references${NC}"
 echo
