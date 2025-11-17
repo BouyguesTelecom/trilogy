@@ -3,12 +3,12 @@ import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
-import React, { useImperativeHandle } from 'react'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Select, SelectOption } from '../select'
 import { Text } from '../text'
-import { CalendarProps, CalendarRef, ChangeEventCalendar } from './CalendarProps'
+import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
 const days = [...translation.days]
 const months = [...translation.months]
@@ -18,7 +18,7 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
   return !(date instanceof Date)
 }
 
-const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
+const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (
     {
       value = currentDate,
@@ -260,15 +260,10 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
       if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
     }, [value])
 
-    useImperativeHandle(
-      ref,
-      (): CalendarRef => ({
-        refs: refs,
-      }),
-    )
-
     return (
       <table
+        data-calendar-trilogy=''
+        ref={ref}
         className={clsx(
           calendarClasses,
           isRange && rangeClasses,
@@ -279,6 +274,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
           <tr>
             <th colSpan={1} className={calendarPrevMonthClasses}>
               <button
+                data-focusable='prev'
                 onClick={() => handleClickNextPrevMonth(-1)}
                 aria-label='Previous month'
                 type='button'
@@ -294,6 +290,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
             <th colSpan={5} className={calendarActiveMonthClasses}>
               <div className={headerDropdownClasses}>
                 <Select
+                  data-focusable='month'
                   selected={String(visibleMonth.getMonth())}
                   onChange={(value) => handleMonthSelect(Number(value.selectValue))}
                   ref={(el) => {
@@ -307,6 +304,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
                   ))}
                 </Select>
                 <Select
+                  data-focusable='year'
                   selected={String(visibleMonth.getFullYear())}
                   onChange={(value) => handleYearSelect(Number(value.selectValue))}
                   ref={(el) => {
@@ -323,6 +321,7 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
             </th>
             <th colSpan={1} className={calendarNextMonthClasses}>
               <button
+                data-focusable='calendar'
                 onClick={() => handleClickNextPrevMonth(1)}
                 aria-label='Next month'
                 type='button'
@@ -358,6 +357,12 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
                   const ind = day !== null && day.getDate() - 1
                   const isDateStart = isRange && activeDate[0] && day?.getTime() === activeDate[0].getTime()
                   const isDateEnd = isRange && activeDate[1] && day?.getTime() === activeDate[1].getTime()
+                  const today = new Date()
+
+                  const isToday =
+                    day?.getFullYear() === today.getFullYear() &&
+                    day?.getMonth() === today.getMonth() &&
+                    day?.getDate() === today.getDate()
 
                   const isActive = !isRange
                     ? day?.getFullYear() === activeDate.getFullYear() &&
@@ -420,7 +425,6 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
                           data-timestamp={day?.getTime()}
                           ref={(el) => {
                             if (el) refsDays.current[ind] = el
-                            if (el && refs && isActive) refs.current[0] = el
                           }}
                           onMouseUp={(e) => !isDisabled && handlePressEnterInDays(e)}
                           className={clsx(isDisabled && isDisabledClass, isActive && isActiveClasses)}
@@ -431,6 +435,8 @@ const Calendar = React.forwardRef<CalendarRef, CalendarProps>(
                           onClick={() => {
                             refDayFocused.current = refsDays.current[ind]
                           }}
+                          {...(isToday && { 'data-today': 'true' })}
+                          {...(isActive && { 'data-active-date': 'true' })}
                         >
                           {day.getDate()}
                         </button>

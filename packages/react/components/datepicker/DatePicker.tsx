@@ -1,4 +1,4 @@
-import { Calendar, CalendarRef, ChangeEventCalendar } from '@/components/calendar'
+import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
@@ -42,6 +42,14 @@ const checkIsValidDate = (date: Date, year: string, month: string, day: string) 
   date.getDate() === parseInt(day) &&
   !isNaN(date.getTime())
 
+const getFirstDayFocusable = () => {
+  const calendar = document.querySelector('[data-calendar-trilogy]') as HTMLTableElement
+  const activeDate = calendar.querySelector(`[data-active-date]`)
+  const today = calendar.querySelector(`[data-today]`)
+  const firstOfMonth = calendar.querySelector(`[data-calendar-trilogy] tbody button`)
+  return (activeDate ?? today ?? firstOfMonth) as HTMLElement
+}
+
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
   const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
@@ -52,8 +60,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   const [yearPosition, setYearPosition] = useState<number>(0)
   const [openUpward, setOpenUpward] = useState<boolean>(false)
   const refsSegment = useRef<HTMLInputElement[]>([])
+  const refsFocusable = useRef<HTMLElement[]>([])
   const refContainer = useRef<HTMLDivElement>(null)
-  const refCalendar = useRef<CalendarRef>(null)
+  const refCalendar = useRef<HTMLTableElement>(null)
   const currentFocusIndexRef = useRef<number>(0)
   const segmentFocused = useRef<HTMLElement | null>(null)
   const refIcon = useRef(null)
@@ -217,13 +226,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (isOpenCalendar && e.key === 'Tab') {
       e.preventDefault()
-      if (refCalendar.current?.refs) {
+      if (refsFocusable.current) {
         const currentIndex = currentFocusIndexRef.current
         const offset = e.shiftKey ? -1 : 1
-        const nextIndex =
-          (currentIndex + offset + refCalendar.current?.refs.current.length) % refCalendar.current?.refs.current.length
+        const nextIndex = (currentIndex + offset + refsFocusable?.current.length) % refsFocusable?.current.length
         currentFocusIndexRef.current = nextIndex
-        refCalendar.current?.refs.current[nextIndex].focus()
+        refsFocusable.current[nextIndex].focus()
       }
     }
     if (isOpenCalendar && ['Escape', 'Enter'].includes(e.key)) {
@@ -244,8 +252,15 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   }, [value])
 
   useEffect(() => {
-    if (isOpenCalendar && refCalendar.current) refCalendar.current?.refs.current[0].focus()
-    if (!isOpenCalendar && currentFocusIndexRef.current) currentFocusIndexRef.current = 0
+    if (isOpenCalendar && refCalendar.current) {
+      const elms = refCalendar.current.querySelectorAll(`[data-focusable]`)
+      const firstDayFocusable = getFirstDayFocusable()
+      firstDayFocusable.focus()
+      elms.forEach((el, i) => {
+        const htmlElement = el as HTMLElement
+        if (htmlElement) refsFocusable.current[i + 1] = htmlElement
+      })
+    }
   }, [isOpenCalendar, refCalendar, currentFocusIndexRef])
 
   return (
@@ -294,7 +309,19 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
       </button>
       {isOpenCalendar && (
         <div className={calendarContainerClasses}>
-          <Calendar onChange={handleChangeCalendar} ref={refCalendar} value={calendarValue} />
+          <Calendar
+            onChange={handleChangeCalendar}
+            ref={refCalendar}
+            value={calendarValue}
+            onMonthChange={() => {
+              if (isOpenCalendar) {
+                setTimeout(() => {
+                  const firstDayFocusable = getFirstDayFocusable()
+                  refsFocusable.current[0] = firstDayFocusable
+                }, 0)
+              }
+            }}
+          />
         </div>
       )}
     </div>
