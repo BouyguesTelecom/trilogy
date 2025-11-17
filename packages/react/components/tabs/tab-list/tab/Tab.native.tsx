@@ -82,7 +82,7 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
         <Text
           style={styles.text}
           typo={fullwidth ? [TypographyAlign.TEXT_CENTERED] : undefined}
-          numberOfLines={fullwidth ? 1 : 0}
+          numberOfLines={fullwidth ? 1 : undefined}
         >
           {label && label}
         </Text>

@@ -63,7 +63,7 @@ export const TabScreen = (): JSX.Element => {
             <TabList>
               <Tab
                 active={index === 0}
-                label='Tab long text 1'
+                label='Tab long text content 1'
                 iconName={IconName.ALERT}
                 href='/hello'
                 onClick={() => setIndex(0)}
