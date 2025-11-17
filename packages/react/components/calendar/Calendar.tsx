@@ -243,13 +243,16 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     React.useEffect(() => {
       if (refsDays.current) {
-        const haveActiveDate = refsDays.current.some((day) => day.tabIndex === 0)
-        if (!haveActiveDate && refsDays?.current[0]?.tabIndex) {
+        const activeDateIndex = refsDays.current.findIndex((day) => day.tabIndex === 0)
+        if (activeDateIndex === -1 && refsDays?.current[0]?.tabIndex) {
           const firstActiveDate = refsDays.current.findIndex((day) => !day.disabled)
           if (firstActiveDate !== -1) {
             refsDays.current[firstActiveDate].tabIndex = 0
             refDayFocused.current = refsDays.current[firstActiveDate]
           }
+        }
+        if (activeDateIndex !== -1 && refsDays?.current[0]?.tabIndex) {
+          refDayFocused.current = refsDays.current[activeDateIndex]
         }
       }
     }, [refsDays.current, refDayFocused.current])

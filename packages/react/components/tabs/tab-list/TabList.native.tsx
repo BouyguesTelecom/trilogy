@@ -106,9 +106,12 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
         onContentSizeChange={(w) => setTabListWidth(w)}
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.tabList}
+        style={[styles.tabList, fullwidth && { flex: 1 }]}
         onScroll={handleScrollList}
-        contentContainerStyle={{ flexGrow: fullwidth ? 1 : undefined }}
+        contentContainerStyle={{
+          flexGrow: fullwidth ? 1 : undefined,
+          flex: fullwidth ? 1 : undefined,
+        }}
         {...others}
       >
         {React.Children.map(children, (child, index) => {
