@@ -4,7 +4,7 @@ import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 
 type SegmentType = 'day' | 'month' | 'year'
 
@@ -36,6 +36,12 @@ interface Segments {
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
+const checkIsValidDate = (date: Date, year: string, month: string, day: string) =>
+  date.getFullYear() === parseInt(year) &&
+  date.getMonth() === parseInt(month) - 1 &&
+  date.getDate() === parseInt(day) &&
+  !isNaN(date.getTime())
+
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, value }, ref) => {
   const { styled } = useTrilogyContext()
   const [day, setDay] = useState<string>('jj')
@@ -49,6 +55,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
   const refContainer = useRef<HTMLDivElement>(null)
   const refCalendar = useRef<CalendarRef>(null)
   const currentFocusIndexRef = useRef<number>(0)
+  const segmentFocused = useRef<HTMLElement | null>(null)
+  const refIcon = useRef(null)
   const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
   const datePickerClasses = hashClass(styled, clsx('date-picker'))
   useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
@@ -82,6 +90,14 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
       initValue: String(new Date().getFullYear()),
     },
   }
+
+  const calendarValue = useMemo(() => {
+    if (parseInt(day) && parseInt(month) && parseInt(year)) {
+      const newDate = new Date(`${year}-${month}-${day}`)
+      const isValidDate = checkIsValidDate(newDate, year, month, day)
+      if (isValidDate) return newDate
+    }
+  }, [day, month, year])
 
   const handleKeyPress = ({ event, type }: HandleKeyPress) => {
     const { key } = event
@@ -121,17 +137,13 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
 
     if (parseInt(newDay) && parseInt(newMonth) && parseInt(newYear)) {
       const newDate = new Date(`${newYear}-${newMonth}-${newDay}`)
-      const isValidDate =
-        newDate.getFullYear() === parseInt(newYear) &&
-        newDate.getMonth() === parseInt(newMonth) - 1 &&
-        newDate.getDate() === parseInt(newDay) &&
-        !isNaN(newDate.getTime())
+      const isValidDate = checkIsValidDate(newDate, newYear, newMonth, newDay)
       if (onChange) onChange(isNaN(newDate?.getTime()) || !isValidDate ? null : newDate)
     }
   }
 
   const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
-    const { segmentSetter, label, maxValue, initValue } = segments[type]
+    const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
     switch (e.key) {
       case 'Backspace':
         e.preventDefault()
@@ -140,6 +152,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
       case ' ':
         e.preventDefault()
         setIsOpenCalendar(true)
+        segmentFocused.current = refsSegment.current[segmentPosition]
         break
       case 'Escape':
         e.preventDefault()
@@ -176,6 +189,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
 
   const handlePressCalendar = () => {
     if (refContainer.current) {
+      segmentFocused.current = refIcon.current
       const { top, bottom } = refContainer.current.getBoundingClientRect()
       const windowHeight = window.innerHeight
       const spaceBelow = windowHeight - bottom
@@ -212,9 +226,10 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
         refCalendar.current?.refs.current[nextIndex].focus()
       }
     }
-    if (isOpenCalendar && e.key === 'Escape') {
+    if (isOpenCalendar && ['Escape', 'Enter'].includes(e.key)) {
       e.preventDefault()
       setIsOpenCalendar(false)
+      segmentFocused.current?.focus()
     }
   }
 
@@ -274,12 +289,14 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({ onChange, valu
           if (el) refsSegment.current[2] = el
         }}
       />
-      <button onClick={handlePressCalendar}>
+      <button onClick={handlePressCalendar} ref={refIcon}>
         <Icon name='tri-calendar' />
       </button>
-      <div className={calendarContainerClasses} style={{ display: isOpenCalendar ? 'block' : 'none' }}>
-        <Calendar onChange={handleChangeCalendar} ref={refCalendar} />
-      </div>
+      {isOpenCalendar && (
+        <div className={calendarContainerClasses}>
+          <Calendar onChange={handleChangeCalendar} ref={refCalendar} value={calendarValue} />
+        </div>
+      )}
     </div>
   )
 })
