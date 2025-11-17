@@ -390,6 +390,7 @@ const Calendar = ({
                   >
                     {day && ind !== false && (
                       <button
+                        disabled={isDisabled}
                         type='button'
                         onKeyDown={(e) => onKeyDownDay(e, ind, isDisabled)}
                         tabIndex={isActive ? 0 : -1}
