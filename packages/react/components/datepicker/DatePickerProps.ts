@@ -20,6 +20,7 @@ export interface DatePickerProps {
   help?: string
   disabled?: boolean
   id?: string
+  disabledDates?: Date[]
 }
 
 export interface Segment {

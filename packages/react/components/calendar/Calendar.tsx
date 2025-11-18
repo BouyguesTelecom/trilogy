@@ -18,6 +18,17 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
   return !(date instanceof Date)
 }
 
+/**
+ * Calendar Component
+ * @param value {Date | [Date, Date] | [Date] | []} Value for calendar
+ * @param minDate {Date} Min value for calendar
+ * @param maxDate {Date} Max value for calendar
+ * @param disabled {boolean} Disabled calendar
+ * @param readOnly {boolean} Read only calendar
+ * @param disabledDates {Date[]} Values disabled
+ * @param onChange {Function} OnChange Calendar Event
+ * @param onMonthChange {Function} onMonthChange Calendar Event
+ */
 const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (
     {

@@ -28,6 +28,23 @@ const getFirstDayFocusable = () => {
   return (activeDate ?? today ?? firstOfMonth) as HTMLElement
 }
 
+/**
+ * DatePicker Component
+ * @param id
+ * @param value {Date | [Date, Date] | [Date] | []} Value for DatePicker
+ * @param minDate {Date} Min value for DatePicker
+ * @param maxDate {Date} Max value for DatePicker
+ * @param disabled {boolean} Disabled DatePicker
+ * @param readOnly {boolean} Read only DatePicker
+ * @param disabledDates {Date[]} Values disabled
+ * @param onChange {Function} DatePicker DatePicker Event
+ * @param className {string} Additional CSS Classes
+ * @param label {string} Label for DatePicker
+ * @param sample {string} Sample for DatePicker (below label)
+ * @param help {string} Help for DatePicker
+ * @param required {boolean} Required DatePicker
+ * @param status {InputStatus} DatePicker with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ */
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (
     {
@@ -42,6 +59,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       help,
       status,
       disabled,
+      disabledDates,
       id = React.useId(),
     },
     ref,
@@ -275,6 +293,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const calendar = useMemo(() => {
       return (
         <Calendar
+          disabledDates={disabledDates}
           maxDate={maxDate}
           minDate={minDate}
           onChange={handleChangeCalendar}
@@ -297,7 +316,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           }}
         />
       )
-    }, [maxDate, minDate, handleChangeCalendar, refCalendar, calendarValue, isOpenCalendar, refsFocusable])
+    }, [
+      disabledDates,
+      maxDate,
+      minDate,
+      handleChangeCalendar,
+      refCalendar,
+      calendarValue,
+      isOpenCalendar,
+      refsFocusable,
+    ])
 
     useEffect(() => {
       if (!value) return
