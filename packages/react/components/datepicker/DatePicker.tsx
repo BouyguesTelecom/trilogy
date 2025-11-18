@@ -112,7 +112,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const handleKeyPress = ({ event, type }: HandleKeyPress) => {
       const { key } = event
       event.preventDefault()
-      if (!/[0-9]/.test(key)) return
+      const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+      if (!allowedKeys.includes(key)) return
       const digit = parseInt(key)
       const { segmentPosition, segment, segmentSetter, sensitiveValue, maxValue } = segments[type]
       const isDay = type === 'day'
