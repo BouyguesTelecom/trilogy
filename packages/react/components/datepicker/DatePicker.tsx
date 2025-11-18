@@ -30,6 +30,7 @@ const getFirstDayFocusable = () => {
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   ({ onChange, value, minDate, maxDate, className, label, sample, required, help, status }, ref) => {
     const { styled } = useTrilogyContext()
+
     const [day, setDay] = useState<string>('jj')
     const [month, setMonth] = useState<string>('mm')
     const [year, setYear] = useState<string>('aaaa')
@@ -37,6 +38,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
     const [yearPosition, setYearPosition] = useState<number>(0)
     const [openUpward, setOpenUpward] = useState<boolean>(false)
+    const [focused, setIsFocused] = useState<boolean>(false)
+
     const refsSegment = useRef<HTMLInputElement[]>([])
     const refsFocusable = useRef<HTMLElement[]>([])
     const refContainer = useRef<HTMLDivElement>(null)
@@ -44,10 +47,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const currentFocusIndexRef = useRef<number>(0)
     const segmentFocused = useRef<HTMLElement | null>(null)
     const refIcon = useRef(null)
+    const refInput = useRef<HTMLDivElement>(null)
+
     const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
     const datePickerClasses = hashClass(styled, clsx('field date-picker', className))
     const controlClasses = hashClass(styled, clsx('control', has('icons-right')))
-    const inputClasses = hashClass(styled, clsx('input', status && is(status)))
+    const inputClasses = hashClass(styled, clsx('input', status && is(status), focused && is('focused')))
     const iconRightClasses = hashClass(styled, clsx('icon-right'))
     const helpClasses = clsx('help', status && is(status))
     const inputLabelClasses = hashClass(styled, 'input-label')
@@ -57,6 +62,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     useClickOutside(refCalendar, () => {
       setTimeout(() => {
         setIsOpenCalendar(false)
+      }, 0)
+    })
+
+    useClickOutside(refInput, () => {
+      setTimeout(() => {
+        setIsFocused(false)
       }, 0)
     })
 
@@ -187,9 +198,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       }
     }
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocus = () => {
+      setIsFocused(true)
       setCanContinueTyping(false)
-      e.target.select()
     }
 
     const handlePressCalendar = () => {
@@ -279,13 +290,22 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           </Text>
         )}
         <div className={controlClasses}>
-          <div className={inputClasses}>
+          <div
+            ref={refInput}
+            className={inputClasses}
+            onMouseDown={() => {
+              setTimeout(() => {
+                refsSegment.current[0].focus()
+              }, 0)
+            }}
+          >
             <input
               type='text'
               value={day}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'day' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'day')}
+              onMouseDown={(e) => e.stopPropagation()}
               placeholder='jj'
               maxLength={2}
               readOnly
@@ -300,6 +320,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'month' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'month')}
+              onMouseDown={(e) => e.stopPropagation()}
               placeholder='mm'
               maxLength={2}
               readOnly
@@ -314,6 +335,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'year' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'year')}
+              onMouseDown={(e) => e.stopPropagation()}
               placeholder='aaaa'
               maxLength={4}
               readOnly
@@ -322,7 +344,14 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               }}
             />
           </div>
-          <button onClick={handlePressCalendar} ref={refIcon} data-show-calendar='true'>
+          <button
+            onClick={handlePressCalendar}
+            ref={refIcon}
+            data-show-calendar='true'
+            onFocus={() => {
+              setIsFocused(false)
+            }}
+          >
             <Icon name='tri-calendar' className={iconRightClasses} />
           </button>
         </div>

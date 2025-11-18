@@ -5,7 +5,7 @@
     z-index: 1001;
     left: 0;
     right: 0;
-    padding: 8px 0;
+    padding: 6px 0;
     &.calendar-top {
       top: auto;
       bottom: 100%;
@@ -15,11 +15,30 @@
 
   input {
     all: unset;
-    width: 23px;
+    width: 20px;
     outline: none;
+    text-align: center;
     &:last-child {
       width: 40px;
     }
+    &:focus-visible {
+      background-color: getColor('main-fade')
+    }
+    &::selection {
+      background-color: getColor('main-fade')
+    }
   }
+
+  .input {
+    &.is-focused {
+      border: 2px solid  currentColor;
+      padding-left: 15px;
+      background-color: getColor('background') !important;
+    }
+    &:active {
+      padding-left: 15px;
+    }
+  }
+ 
   
 }

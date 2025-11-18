@@ -18,6 +18,7 @@ export interface DatePickerProps {
   required?: boolean
   status?: DatePickerStatus | DatePickerStatusValues
   help?: string
+  disabled?: boolean
 }
 
 export interface Segment {
