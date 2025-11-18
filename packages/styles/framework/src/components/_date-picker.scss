@@ -39,6 +39,20 @@
       padding-left: 15px;
     }
   }
- 
+
+  .modal {
+    flex-direction: inherit;
+    .modal-content, .modal-header {
+      background-color: transparent !important;
+    }
+    .modal-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .calendar {
+        height: 440px;
+      }
+    }
+  }
   
 }

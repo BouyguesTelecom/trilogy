@@ -8,6 +8,7 @@ import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { Modal, ModalBody } from '../modal'
 import { Text, TextLevels, TextMarkup } from '../text'
 import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
 
@@ -39,6 +40,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const [yearPosition, setYearPosition] = useState<number>(0)
     const [openUpward, setOpenUpward] = useState<boolean>(false)
     const [focused, setIsFocused] = useState<boolean>(false)
+    const [isMobile, setIsMobile] = useState<boolean>(false)
 
     const refsSegment = useRef<HTMLInputElement[]>([])
     const refsFocusable = useRef<HTMLElement[]>([])
@@ -249,6 +251,33 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       }
     }
 
+    const calendar = useMemo(() => {
+      return (
+        <Calendar
+          maxDate={maxDate}
+          minDate={minDate}
+          onChange={handleChangeCalendar}
+          ref={refCalendar}
+          value={calendarValue}
+          onMonthChange={() => {
+            if (isOpenCalendar && refCalendar.current) {
+              const calendar = refCalendar.current
+              setTimeout(() => {
+                refsFocusable.current = []
+                const elms = calendar.querySelectorAll(`[data-focusable=true]`)
+                const firstDayFocusable = getFirstDayFocusable()
+                refsFocusable.current[0] = firstDayFocusable
+                elms.forEach((el, i) => {
+                  const htmlElement = el as HTMLElement
+                  if (htmlElement) refsFocusable.current[i + 1] = htmlElement
+                })
+              }, 10)
+            }
+          }}
+        />
+      )
+    }, [maxDate, minDate, handleChangeCalendar, refCalendar, calendarValue, isOpenCalendar, refsFocusable])
+
     useEffect(() => {
       if (!value) return
       const dateDay = value.getDate()
@@ -272,6 +301,13 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       }
       if (!isOpenCalendar && currentFocusIndexRef.current) currentFocusIndexRef.current = 0
     }, [isOpenCalendar, refCalendar, currentFocusIndexRef])
+
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768)
+      handleResize()
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     return (
       <div ref={refContainer} className={datePickerClasses} onKeyDown={onKeyDown}>
@@ -357,31 +393,11 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           </button>
         </div>
         {help && <Text className={helpClasses}>{help}</Text>}
-        {isOpenCalendar && (
-          <div className={calendarContainerClasses}>
-            <Calendar
-              maxDate={maxDate}
-              minDate={minDate}
-              onChange={handleChangeCalendar}
-              ref={refCalendar}
-              value={calendarValue}
-              onMonthChange={() => {
-                if (isOpenCalendar && refCalendar.current) {
-                  const calendar = refCalendar.current
-                  setTimeout(() => {
-                    refsFocusable.current = []
-                    const elms = calendar.querySelectorAll(`[data-focusable=true]`)
-                    const firstDayFocusable = getFirstDayFocusable()
-                    refsFocusable.current[0] = firstDayFocusable
-                    elms.forEach((el, i) => {
-                      const htmlElement = el as HTMLElement
-                      if (htmlElement) refsFocusable.current[i + 1] = htmlElement
-                    })
-                  }, 10)
-                }
-              }}
-            />
-          </div>
+        {isOpenCalendar && !isMobile && <div className={calendarContainerClasses}>{calendar}</div>}
+        {isOpenCalendar && isMobile && (
+          <Modal active={isOpenCalendar} hideCloseButton={true}>
+            <ModalBody>{calendar}</ModalBody>
+          </Modal>
         )}
       </div>
     )
