@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [4.X.X] - 2025-XX-XX
 - Fix Tab native fullwidth (ui)
+- Fix order for flexbox (web)
 
 ## [4.12.1] - 2025-11-13
 - Fix native launch
