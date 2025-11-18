@@ -29,7 +29,23 @@ const getFirstDayFocusable = () => {
 }
 
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
-  ({ onChange, value, minDate, maxDate, className, label, sample, required, help, status }, ref) => {
+  (
+    {
+      onChange,
+      value,
+      minDate,
+      maxDate,
+      className,
+      label,
+      sample,
+      required,
+      help,
+      status,
+      disabled,
+      id = React.useId(),
+    },
+    ref,
+  ) => {
     const { styled } = useTrilogyContext()
 
     const [day, setDay] = useState<string>('jj')
@@ -112,6 +128,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }, [day, month, year])
 
     const handleKeyPress = ({ event, type }: HandleKeyPress) => {
+      if (disabled) return
       const { key } = event
       event.preventDefault()
       const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -162,6 +179,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
+      if (disabled) return
       const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
       switch (e.key) {
         case 'Backspace':
@@ -202,11 +220,13 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const handleFocus = () => {
+      if (disabled) return
       setIsFocused(true)
       setCanContinueTyping(false)
     }
 
     const handlePressCalendar = () => {
+      if (disabled) return
       if (refContainer.current) {
         segmentFocused.current = refIcon.current
         const { top, bottom } = refContainer.current.getBoundingClientRect()
@@ -234,6 +254,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return
       if (isOpenCalendar && e.key === 'Tab') {
         e.preventDefault()
         if (refsFocusable.current) {
@@ -312,7 +333,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     return (
       <div ref={refContainer} className={datePickerClasses} onKeyDown={onKeyDown}>
         {label && (
-          <label className={inputLabelClasses}>
+          <label className={inputLabelClasses} htmlFor={id}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -328,15 +349,20 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         )}
         <div className={controlClasses}>
           <div
+            aria-disabled={disabled}
             ref={refInput}
             className={inputClasses}
             onMouseDown={() => {
+              if (disabled) return
               setTimeout(() => {
                 refsSegment.current[0].focus()
               }, 0)
             }}
           >
             <input
+              disabled={disabled}
+              id={id}
+              name='day'
               type='text'
               value={day}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'day' })}
@@ -352,6 +378,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
             <span>/</span>
             <input
+              disabled={disabled}
+              name='month'
               type='text'
               value={month}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'month' })}
@@ -367,6 +395,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
             <span>/</span>
             <input
+              disabled={disabled}
+              name='year'
               type='text'
               value={year}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'year' })}
@@ -382,6 +412,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
           </div>
           <button
+            tabIndex={disabled ? -1 : undefined}
             onClick={handlePressCalendar}
             ref={refIcon}
             data-show-calendar='true'

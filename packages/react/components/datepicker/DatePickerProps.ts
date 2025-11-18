@@ -19,6 +19,7 @@ export interface DatePickerProps {
   status?: DatePickerStatus | DatePickerStatusValues
   help?: string
   disabled?: boolean
+  id?: string
 }
 
 export interface Segment {

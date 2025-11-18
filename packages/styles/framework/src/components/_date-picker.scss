@@ -32,11 +32,19 @@
   .input {
     &.is-focused {
       border: 2px solid  currentColor;
-      padding-left: 15px;
+      padding-left: 15px !important;
       background-color: getColor('background') !important;
     }
     &:active {
-      padding-left: 15px;
+      padding-left: 15px !important;
+    }
+    &[aria-disabled="true"] {
+      &:active {
+        padding-left: 16px !important;
+      }
+      & input::selection {
+        background-color: transparent !important
+      }
     }
   }
 
