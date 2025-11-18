@@ -1,0 +1,66 @@
+.date-picker {
+  position: relative;
+  &-calendar {
+    position: absolute;
+    z-index: 1001;
+    left: 0;
+    right: 0;
+    padding: 6px 0;
+    &.calendar-top {
+      top: auto;
+      bottom: 100%;
+      overflow-y: scroll;
+    }
+  }
+
+  input {
+    all: unset;
+    width: 20px;
+    outline: none;
+    text-align: center;
+    &:last-child {
+      width: 40px;
+    }
+    &:focus-visible {
+      background-color: getColor('main-fade')
+    }
+    &::selection {
+      background-color: getColor('main-fade')
+    }
+  }
+
+  .input {
+    &.is-focused {
+      border: 2px solid  currentColor;
+      padding-left: 15px !important;
+      background-color: getColor('background') !important;
+    }
+    &:active {
+      padding-left: 15px !important;
+    }
+    &[aria-disabled="true"] {
+      &:active {
+        padding-left: 16px !important;
+      }
+      & input::selection {
+        background-color: transparent !important
+      }
+    }
+  }
+
+  .modal {
+    flex-direction: inherit;
+    .modal-content, .modal-header {
+      background-color: transparent !important;
+    }
+    .modal-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .calendar {
+        height: 440px;
+      }
+    }
+  }
+  
+}
