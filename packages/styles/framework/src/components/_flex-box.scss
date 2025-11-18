@@ -24,20 +24,24 @@
     flex-direction: column-reverse;
   }
 
-  @include desktop {
-    &.is-direction-row-desktop {
-      flex-direction: row;
-    }
-
-    &.is-direction-column-desktop {
+  @include mobile {
+    &:has(>.flex-item):not([class*='is-direction']) {
       flex-direction: column;
     }
 
-    &.is-direction-row-reverse-desktop {
+    &.is-direction-row-mobile {
+      flex-direction: row;
+    }
+
+    &.is-direction-column-mobile {
+      flex-direction: column;
+    }
+
+    &.is-direction-row-reverse-mobile {
       flex-direction: row-reverse;
     }
 
-    &.is-direction-column-reverse-desktop {
+    &.is-direction-column-reverse-mobile {
       flex-direction: column-reverse;
     }
   }
@@ -60,24 +64,20 @@
     }
   }
 
-  @include mobile {
-    &:has(>.flex-item):not([class*='is-direction']) {
-      flex-direction: column;
-    }
-
-    &.is-direction-row-mobile {
+  @include desktop {
+    &.is-direction-row-desktop {
       flex-direction: row;
     }
 
-    &.is-direction-column-mobile {
+    &.is-direction-column-desktop {
       flex-direction: column;
     }
 
-    &.is-direction-row-reverse-mobile {
+    &.is-direction-row-reverse-desktop {
       flex-direction: row-reverse;
     }
 
-    &.is-direction-column-reverse-mobile {
+    &.is-direction-column-reverse-desktop {
       flex-direction: column-reverse;
     }
   }

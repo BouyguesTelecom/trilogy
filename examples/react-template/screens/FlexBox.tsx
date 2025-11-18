@@ -29,6 +29,18 @@ export const FlexBoxScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Title level={TitleLevels.FIVE}>Align elements</Title>
 
+      <FlexBox direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.ROW, desktop: DirectionEnum.COLUMN }}>
+        <FlexItem size={{ tablet: 4, mobile: 4 }}>
+        <Box><BoxContent></BoxContent></Box>
+        </FlexItem>
+        <FlexItem size={{ tablet: 4, mobile: 4 }}>
+          <Box><BoxContent></BoxContent></Box>
+        </FlexItem>
+        <FlexItem size={{ tablet: 4, mobile: 4 }}>
+          <Box><BoxContent></BoxContent></Box>
+        </FlexItem>
+      </FlexBox>
+
       <FlexBox direction={DirectionEnum.COLUMN} gap={GapSize.EIGHT}>
         <FlexBox>
           <Icon name={IconName.INFOS_CIRCLE} />
