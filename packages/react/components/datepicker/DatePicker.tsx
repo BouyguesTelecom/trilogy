@@ -446,6 +446,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
           </div>
           <button
+            type='button'
             tabIndex={disabled ? -1 : undefined}
             onClick={handlePressCalendar}
             ref={refIcon}
