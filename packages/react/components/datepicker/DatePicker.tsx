@@ -392,14 +392,15 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               id={id}
               name='day'
               type='text'
+              inputMode='numeric'
               value={day}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'day' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'day')}
               onMouseDown={(e) => e.stopPropagation()}
+              onChange={(e) => e.stopPropagation()}
               placeholder='jj'
               maxLength={2}
-              readOnly
               ref={(el) => {
                 if (el) refsSegment.current[0] = el
               }}
@@ -409,14 +410,15 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               disabled={disabled}
               name='month'
               type='text'
+              inputMode='numeric'
               value={month}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'month' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'month')}
               onMouseDown={(e) => e.stopPropagation()}
+              onChange={(e) => e.stopPropagation()}
               placeholder='mm'
               maxLength={2}
-              readOnly
               ref={(el) => {
                 if (el) refsSegment.current[1] = el
               }}
@@ -426,14 +428,15 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               disabled={disabled}
               name='year'
               type='text'
+              inputMode='numeric'
               value={year}
               onKeyUp={(e) => handleKeyPress({ event: e, type: 'year' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'year')}
               onMouseDown={(e) => e.stopPropagation()}
+              onChange={(e) => e.stopPropagation()}
               placeholder='aaaa'
               maxLength={4}
-              readOnly
               ref={(el) => {
                 if (el) refsSegment.current[2] = el
               }}
