@@ -76,7 +76,28 @@ $gap: 4px,
       }
     }
 
+    @include container-tablet-with-print {
+      &.has-gap-#{$i}:not(.is-desktop) {
+        gap: $item;
+
+        > .column {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
     @include desktop {
+      &.has-gap-#{$i},
+      &.has-gap-#{$i}-desktop {
+        gap: $item;
+
+        > .column {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include container-desktop {
       &.has-gap-#{$i},
       &.has-gap-#{$i}-desktop {
         gap: $item;
@@ -97,7 +118,27 @@ $gap: 4px,
       }
     }
 
+    @include container-widescreen {
+      &.has-gap-#{$i}-widescreen {
+        gap: $item;
+
+        > .column {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
     @include fullhd {
+      &.has-gap-#{$i}-fullhd {
+        gap: $item;
+
+        > .column {
+          --ColumnGap: #{$item};
+        }
+      }
+    }
+
+    @include container-fullhd {
       &.has-gap-#{$i}-fullhd {
         gap: $item;
 
@@ -111,6 +152,24 @@ $gap: 4px,
 
 
   @include mobile {
+    &.is-peek {
+      padding-right: 15%;
+    }
+
+    @each $key, $value in $columnSize {
+      & > .column.is-#{$key}-mobile {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      &.is-mobile > .column.is-offset-#{$key}-mobile {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+  }
+
+  @include container-mobile {
     &.is-peek {
       padding-right: 15%;
     }
@@ -159,7 +218,53 @@ $gap: 4px,
     }
   }
 
+  @include container-tablet-with-print {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-tablet {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      .column.is-offset-#{$key}-tablet {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+
+      .column.is-offset-#{$key} {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+
+    &.is-aligned-start {
+      align-items: start !important;
+    }
+
+    &.is-aligned-center {
+      align-items: center !important;
+    }
+
+    &.is-aligned-end {
+      align-items: end !important;
+    }
+  }
+
   @include touch {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-touch {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      > .column.is-offset-#{$key}-touch {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+
+  }
+
+  @include container-touch {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-touch {
         flex: none;
@@ -189,6 +294,21 @@ $gap: 4px,
 
   }
 
+  @include container-desktop {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-desktop {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      > .column.is-offset-#{$key}-desktop {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+
+  }
+
   @include widescreen {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-widescreen {
@@ -204,7 +324,37 @@ $gap: 4px,
 
   }
 
+  @include container-widescreen {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-widescreen {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      > .is-offset-#{$key}-widescreen {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+
+  }
+
   @include fullhd {
+    @each $key, $value in $columnSize {
+      > .column.is-#{$key}-fullhd {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+
+      > .column.is-offset-#{$key}-fullhd {
+        --offset: #{$value};
+        margin-left: $offsetWidth;
+      }
+    }
+
+  }
+
+  @include container-fullhd {
     @each $key, $value in $columnSize {
       > .column.is-#{$key}-fullhd {
         flex: none;
@@ -243,7 +393,42 @@ $gap: 4px,
     }
   }
 
+  @include container-mobile {
+    --ColumnGap: 16px;
+    &:not(.is-mobile) {
+      flex-direction: column;
+
+      > .column,
+      > .column[class*="is-"] {
+        --ColumnFraction: 1;
+      }
+    }
+
+    &.is-aligned-start {
+      align-items: unset !important;
+    }
+
+    &.is-aligned-center {
+      align-items: unset !important;
+    }
+
+    &.is-aligned-end {
+      align-items: unset !important;
+    }
+  }
+
   @include tablet-only {
+    &.is-desktop {
+      flex-direction: column;
+
+      > .column,
+      > .column[class*="is-"] {
+        --ColumnFraction: 1;
+      }
+    }
+  }
+
+  @include container-tablet-only {
     &.is-desktop {
       flex-direction: column;
 
@@ -262,6 +447,12 @@ $gap: 4px,
   flex-shrink: 1;
 
   @include mobile {
+    &.is-narrow-mobile {
+      flex: none;
+    }
+  }
+
+  @include container-mobile {
     &.is-narrow-mobile {
       flex: none;
     }
@@ -286,13 +477,44 @@ $gap: 4px,
     }
   }
 
+  @include container-tablet-with-print {
+    &.is-narrow,
+    &.is-narrow-tablet {
+      flex: none;
+    }
+
+    &.is-aligned-start {
+      align-self: start !important;
+    }
+
+    &.is-aligned-center {
+      align-self: center !important;
+    }
+
+    &.is-aligned-end {
+      align-self: end !important;
+    }
+  }
+
   @include touch {
     &.is-narrow-touch {
       flex: none;
     }
   }
 
+  @include container-touch {
+    &.is-narrow-touch {
+      flex: none;
+    }
+  }
+
   @include desktop {
+    &.is-narrow-desktop {
+      flex: none;
+    }
+  }
+
+  @include container-desktop {
     &.is-narrow-desktop {
       flex: none;
     }
@@ -305,7 +527,20 @@ $gap: 4px,
 
   }
 
+  @include container-widescreen {
+    &.is-narrow-widescreen {
+      flex: none;
+    }
+
+  }
+
   @include fullhd {
+    &.is-narrow-fullhd {
+      flex: none;
+    }
+  }
+
+  @include container-fullhd {
     &.is-narrow-fullhd {
       flex: none;
     }
@@ -360,6 +595,10 @@ $gap: 4px,
   }
 
   @include mobile {
+    gap: 16px;
+  }
+
+  @include container-mobile {
     gap: 16px;
   }
 
@@ -427,10 +666,22 @@ $gap: 4px,
       display: flex;
       align-items: stretch;
     }
+
+    @include container-mobile {
+      flex-direction: column-reverse;
+      display: flex;
+      align-items: stretch;
+    }
   }
 
   // Responsiveness
   @include tablet {
+    &:not(.is-desktop) {
+      flex-direction: row;
+    }
+  }
+
+  @include container-tablet-with-print {
     &:not(.is-desktop) {
       flex-direction: row;
     }
@@ -442,7 +693,33 @@ $gap: 4px,
       flex-direction: row;
     }
   }
+
+  @include container-desktop {
+    // Modifiers
+    &.is-desktop {
+      flex-direction: row;
+    }
+  }
   @include mobile {
+    &.is-fullbleed {
+      width: 100vw !important;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      padding: 24px;
+    }
+    &.is-fullbleed {
+      scroll-padding: 16px;
+    }
+    &.is-fullbleed.is-scrollable > .column {
+      scroll-snap-align: center;
+      scroll-padding: 16px;
+    }
+    .scroll-view {
+      overflow: inherit;
+    }
+  }
+
+  @include container-mobile {
     &.is-fullbleed {
       width: 100vw !important;
       margin-left: 50%;
