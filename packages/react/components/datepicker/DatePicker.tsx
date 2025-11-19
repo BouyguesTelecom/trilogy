@@ -82,7 +82,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false)
     const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
     const [yearPosition, setYearPosition] = useState<number>(0)
-    const [openUpward, setOpenUpward] = useState<boolean>(false)
     const [focused, setIsFocused] = useState<boolean>(false)
     const [isMobile, setIsMobile] = useState<boolean>(false)
     const [portalPosition, setPortalPosition] = useState<{
@@ -284,17 +283,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     const handlePressCalendar = () => {
       if (disabled) return
-      if (refContainer.current) {
-        segmentFocused.current = refIcon.current
-        const { top, bottom } = refContainer.current.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        const spaceBelow = windowHeight - bottom
-        const padding = 10
-        const maxHeightBelow = spaceBelow - padding
-        const maxHeightAbove = top - padding
-        const openUpward = maxHeightBelow < APPROXIMATIVE_HEIGHT_CALENDAR && maxHeightAbove > maxHeightBelow
-        setOpenUpward(openUpward)
-      }
+      if (refContainer.current) segmentFocused.current = refIcon.current
       calculatePortalPosition()
       setIsOpenCalendar(true)
     }
