@@ -1,18 +1,4 @@
 .date-picker {
-  position: relative;
-  &-calendar {
-    position: absolute;
-    z-index: 1001;
-    left: 0;
-    right: 0;
-    padding: 6px 0;
-    &.calendar-top {
-      top: auto;
-      bottom: 100%;
-      overflow-y: scroll;
-    }
-  }
-
   input {
     all: unset;
     width: 20px;

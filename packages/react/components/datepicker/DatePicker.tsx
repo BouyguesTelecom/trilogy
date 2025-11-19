@@ -7,7 +7,17 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { forwardRef, KeyboardEvent, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import ReactDOM from 'react-dom'
 import { Modal, ModalBody } from '../modal'
 import { Text, TextLevels, TextMarkup } from '../text'
 import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
@@ -75,6 +85,11 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const [openUpward, setOpenUpward] = useState<boolean>(false)
     const [focused, setIsFocused] = useState<boolean>(false)
     const [isMobile, setIsMobile] = useState<boolean>(false)
+    const [portalPosition, setPortalPosition] = useState<{
+      top: number
+      left: number
+      width: number
+    }>({ top: 0, left: 0, width: 0 })
 
     const refsSegment = useRef<HTMLInputElement[]>([])
     const refsFocusable = useRef<HTMLElement[]>([])
@@ -85,7 +100,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const refIcon = useRef(null)
     const refInput = useRef<HTMLDivElement>(null)
 
-    const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar', openUpward && 'calendar-top'))
+    const calendarContainerClasses = hashClass(styled, clsx('date-picker-calendar'))
     const datePickerClasses = hashClass(styled, clsx('field date-picker', className))
     const controlClasses = hashClass(styled, clsx('control', has('icons-right')))
     const inputClasses = hashClass(styled, clsx('input', status && is(status), focused && is('focused')))
@@ -144,6 +159,30 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         if (isValidDate) return newDate
       }
     }, [day, month, year])
+
+    const calculatePortalPosition = useCallback(() => {
+      if (!refInput.current) return
+
+      const rect = refInput.current.getBoundingClientRect()
+      const { top, bottom, left, width } = rect
+      const windowHeight = window.innerHeight
+      const spaceBelow = windowHeight - bottom
+      const padding = 10
+      const maxHeightBelow = spaceBelow - padding
+      const maxHeightAbove = top - padding
+      const shouldOpenUpward = maxHeightBelow < APPROXIMATIVE_HEIGHT_CALENDAR && maxHeightAbove > maxHeightBelow
+
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+
+      setPortalPosition({
+        top: shouldOpenUpward
+          ? top + scrollTop - APPROXIMATIVE_HEIGHT_CALENDAR - padding
+          : bottom + scrollTop + padding,
+        left: left + scrollLeft,
+        width: width,
+      })
+    }, [])
 
     const handleKeyPress = ({ event, type }: HandleKeyPress) => {
       if (disabled) return
@@ -256,6 +295,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         const openUpward = maxHeightBelow < APPROXIMATIVE_HEIGHT_CALENDAR && maxHeightAbove > maxHeightBelow
         setOpenUpward(openUpward)
       }
+      calculatePortalPosition()
       setIsOpenCalendar(true)
     }
 
@@ -361,6 +401,17 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    useEffect(() => {
+      if (!isOpenCalendar) return
+      const handleUpdate = () => calculatePortalPosition()
+      window.addEventListener('scroll', handleUpdate, true)
+      window.addEventListener('resize', handleUpdate)
+      return () => {
+        window.removeEventListener('scroll', handleUpdate, true)
+        window.removeEventListener('resize', handleUpdate)
+      }
+    }, [isOpenCalendar, calculatePortalPosition])
+
     return (
       <div ref={refContainer} className={datePickerClasses} onKeyDown={onKeyDown}>
         {label && (
@@ -458,8 +509,26 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             <Icon name='tri-calendar' className={iconRightClasses} />
           </button>
         </div>
+
         {help && <Text className={helpClasses}>{help}</Text>}
-        {isOpenCalendar && !isMobile && <div className={calendarContainerClasses}>{calendar}</div>}
+
+        {isOpenCalendar &&
+          !isMobile &&
+          ReactDOM.createPortal(
+            <div
+              className={calendarContainerClasses}
+              style={{
+                position: 'absolute',
+                top: `${portalPosition.top}px`,
+                left: `${portalPosition.left}px`,
+                minWidth: `${portalPosition.width}px`,
+                zIndex: 9999,
+              }}
+            >
+              {calendar}
+            </div>,
+            document.body,
+          )}
         {isOpenCalendar && isMobile && (
           <Modal active={isOpenCalendar} hideCloseButton={true}>
             <ModalBody>{calendar}</ModalBody>
