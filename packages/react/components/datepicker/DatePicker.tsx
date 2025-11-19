@@ -2,7 +2,7 @@ import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
-import { useClickOutside } from '@/helpers/clickOustide'
+import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
@@ -259,17 +259,20 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       setIsOpenCalendar(true)
     }
 
-    const handleChangeCalendar = (e: ChangeEventCalendar) => {
-      const dateCalendar = e as Date
-      const dateDay = dateCalendar.getDate()
-      const dateMonth = dateCalendar.getMonth() + 1
-      const dateYear = dateCalendar.getFullYear()
-      setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
-      setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
-      setYear(String(dateYear))
-      setIsOpenCalendar(false)
-      if (onChange) onChange(dateCalendar)
-    }
+    const handleChangeCalendar = React.useCallback(
+      (e: ChangeEventCalendar) => {
+        const dateCalendar = e as Date
+        const dateDay = dateCalendar.getDate()
+        const dateMonth = dateCalendar.getMonth() + 1
+        const dateYear = dateCalendar.getFullYear()
+        setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
+        setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
+        setYear(String(dateYear))
+        setIsOpenCalendar(false)
+        if (onChange) onChange(dateCalendar)
+      },
+      [onChange],
+    )
 
     const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
       if (disabled) return

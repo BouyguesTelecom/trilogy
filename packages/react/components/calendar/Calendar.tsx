@@ -84,14 +84,14 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       () =>
         disabled ||
         (maxDate?.getMonth() === visibleMonth?.getMonth() && maxDate?.getFullYear() === visibleMonth?.getFullYear()),
-      [maxDate, visibleMonth],
+      [maxDate, visibleMonth, disabled],
     )
 
     const isPrevDisabled = React.useMemo(
       () =>
         disabled ||
         (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
-      [minDate, visibleMonth],
+      [minDate, visibleMonth, disabled],
     )
 
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
