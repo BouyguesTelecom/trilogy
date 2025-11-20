@@ -1,12 +1,12 @@
 .date-picker {
   input {
     all: unset;
-    width: 20px;
     outline: none;
     text-align: center;
     caret-color: transparent;
-    &:last-child {
-      width: 40px;
+    field-sizing: content;
+    &[aria-valuenow]:not(:last-child) {
+      width: 20px;
     }
     &:focus-visible {
       background-color: getColor('main-fade')
