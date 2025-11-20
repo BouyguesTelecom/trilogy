@@ -3,9 +3,6 @@
     outline: none;
     text-align: center;
     caret-color: transparent;
-    &[aria-valuenow]:not(:last-child) {
-      width: 20px;
-    }
     &:focus-visible {
       background-color: getColor('main-fade')
     }
