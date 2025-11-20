@@ -431,6 +431,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             }}
           >
             <input
+              autoCorrect='off'
+              autoCapitalize='none'
+              spellCheck={false}
               aria-valuenow={day !== 'jj' ? Number(day) : undefined}
               disabled={disabled}
               id={id}
@@ -451,6 +454,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
             <span>/</span>
             <input
+              autoCorrect='off'
+              autoCapitalize='none'
+              spellCheck={false}
               aria-valuenow={month !== 'mm' ? Number(month) : undefined}
               disabled={disabled}
               name='month'
@@ -470,6 +476,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             />
             <span>/</span>
             <input
+              autoCorrect='off'
+              autoCapitalize='none'
+              spellCheck={false}
               aria-valuenow={year !== 'aaaa' ? Number(year) : undefined}
               disabled={disabled}
               name='year'
