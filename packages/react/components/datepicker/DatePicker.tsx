@@ -124,35 +124,38 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       }, 0)
     })
 
-    const segments: Segments = {
-      day: {
-        sensitiveValue: 3,
-        maxValue: 31,
-        segment: day,
-        segmentPosition: 0,
-        segmentSetter: setDay,
-        label: 'jj',
-        initValue: '01',
-      },
-      month: {
-        sensitiveValue: 1,
-        maxValue: 12,
-        segment: month,
-        segmentPosition: 1,
-        segmentSetter: setMonth,
-        label: 'mm',
-        initValue: '01',
-      },
-      year: {
-        sensitiveValue: false,
-        maxValue: 9999,
-        segment: year,
-        segmentPosition: 2,
-        segmentSetter: setYear,
-        label: 'aaaa',
-        initValue: String(new Date().getFullYear()),
-      },
-    }
+    const segments: Segments = useMemo(
+      () => ({
+        day: {
+          sensitiveValue: 3,
+          maxValue: 31,
+          segment: day,
+          segmentPosition: 0,
+          segmentSetter: setDay,
+          label: 'jj',
+          initValue: '01',
+        },
+        month: {
+          sensitiveValue: 1,
+          maxValue: 12,
+          segment: month,
+          segmentPosition: 1,
+          segmentSetter: setMonth,
+          label: 'mm',
+          initValue: '01',
+        },
+        year: {
+          sensitiveValue: false,
+          maxValue: 9999,
+          segment: year,
+          segmentPosition: 2,
+          segmentSetter: setYear,
+          label: 'aaaa',
+          initValue: String(new Date().getFullYear()),
+        },
+      }),
+      [day, month, year],
+    )
 
     const calendarValue = useMemo(() => {
       if (parseInt(day) && parseInt(month) && parseInt(year)) {
@@ -186,57 +189,59 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       })
     }, [])
 
-    const handleKeyPress = ({ event, type }: HandleKeyPress) => {
-      if (disabled) return
-      const key = event.data
-      event.preventDefault()
+    const handleKeyPress = useCallback(
+      ({ event, type }: HandleKeyPress) => {
+        if (disabled) return
+        const key = event.data
+        event.preventDefault()
+        const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        if (!allowedKeys.includes(key)) return
+        const digit = parseInt(key)
+        const { segmentPosition, segment, segmentSetter, sensitiveValue, maxValue } = segments[type]
+        const isDay = type === 'day'
+        const isMonth = type === 'month'
+        const isYear = type === 'year'
+        const newValue = !canContinueTyping
+          ? isYear
+            ? `000${key}`
+            : `0${key}`
+          : isYear
+          ? segment + key
+          : segment[1] + key
 
-      const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-      if (!allowedKeys.includes(key)) return
-      const digit = parseInt(key)
-      const { segmentPosition, segment, segmentSetter, sensitiveValue, maxValue } = segments[type]
-      const isDay = type === 'day'
-      const isMonth = type === 'month'
-      const isYear = type === 'year'
-      const newValue = !canContinueTyping
-        ? isYear
-          ? `000${key}`
-          : `0${key}`
-        : isYear
-        ? segment + key
-        : segment[1] + key
-
-      if (!canContinueTyping) {
-        segmentSetter(newValue)
-        if (sensitiveValue === false || digit <= sensitiveValue) setCanContinueTyping(true)
-        if (sensitiveValue && digit > sensitiveValue)
-          setTimeout(() => {
-            if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
-          }, 0)
-      }
-
-      if (canContinueTyping) {
-        const num = parseInt(newValue)
-        if (num >= 1 && num <= maxValue) segmentSetter(isYear ? newValue.slice(-4) : newValue)
-        if (!isYear || (isYear && yearPosition === 3)) {
-          setCanContinueTyping(false)
-          setTimeout(() => {
-            if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
-          }, 0)
+        if (!canContinueTyping) {
+          segmentSetter(newValue)
+          if (sensitiveValue === false || digit <= sensitiveValue) setCanContinueTyping(true)
+          if (sensitiveValue && digit > sensitiveValue)
+            setTimeout(() => {
+              if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
+            }, 0)
         }
-      }
 
-      if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
-      const newDay = isDay ? newValue : day
-      const newMonth = isMonth ? newValue : month
-      const newYear = isYear ? newValue : year
+        if (canContinueTyping) {
+          const num = parseInt(newValue)
+          if (num >= 1 && num <= maxValue) segmentSetter(isYear ? newValue.slice(-4) : newValue)
+          if (!isYear || (isYear && yearPosition === 3)) {
+            setCanContinueTyping(false)
+            setTimeout(() => {
+              if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
+            }, 0)
+          }
+        }
 
-      if (parseInt(newDay) && parseInt(newMonth) && parseInt(newYear)) {
-        const newDate = new Date(`${newYear}-${newMonth}-${newDay}`)
-        const isValidDate = checkIsValidDate(newDate, newYear, newMonth, newDay)
-        if (onChange) onChange(isNaN(newDate?.getTime()) || !isValidDate ? null : newDate)
-      }
-    }
+        if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
+        const newDay = isDay ? newValue : day
+        const newMonth = isMonth ? newValue : month
+        const newYear = isYear ? newValue : year
+
+        if (parseInt(newDay) && parseInt(newMonth) && parseInt(newYear)) {
+          const newDate = new Date(`${newYear}-${newMonth}-${newDay}`)
+          const isValidDate = checkIsValidDate(newDate, newYear, newMonth, newDay)
+          if (onChange) onChange(isNaN(newDate?.getTime()) || !isValidDate ? null : newDate)
+        }
+      },
+      [disabled, segments, canContinueTyping, onChange],
+    )
 
     const formatDateValue = () => {
       const newDate = new Date(`${year}-${month}-${day}`)
@@ -244,45 +249,50 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return isNaN(newDate?.getTime()) || !isValidDate ? '' : newDate.toLocaleDateString()
     }
 
-    const handleKeyDownDay = (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
-      if (disabled) return
-      const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
-      switch (e.key) {
-        case 'Backspace':
-          segmentSetter(label)
-          break
-        case ' ':
-          e.preventDefault()
-          setIsOpenCalendar(true)
-          segmentFocused.current = refsSegment.current[segmentPosition]
-          break
-        case 'Escape':
-          e.preventDefault()
-          setIsOpenCalendar(false)
-          break
-        case 'ArrowUp':
-          e.preventDefault()
-          segmentSetter((prev) => {
-            if (type === 'year' && prev === 'aaaa') return initValue
-            const currentValue = parseInt(prev) || 0
-            const nextValue = (currentValue % maxValue) + 1
-            return String(nextValue).padStart(2, '0')
-          })
-          break
-        case 'ArrowDown':
-          e.preventDefault()
-          segmentSetter((prev) => {
-            if (type === 'year' && prev === 'aaaa') return initValue
-            const value = parseInt(prev)
-            if (!value) return String(maxValue).padStart(2, '0')
-            const nextValue = value <= 1 ? maxValue : value - 1
-            return String(nextValue).padStart(2, '0')
-          })
-          break
-        default:
-          return
-      }
-    }
+    const handleKeyDownDay = useCallback(
+      (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
+        if (disabled) return
+        const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
+        switch (e.key) {
+          case 'Backspace':
+            e.preventDefault()
+            setCanContinueTyping(false)
+            segmentSetter(label)
+            break
+          case ' ':
+            e.preventDefault()
+            setIsOpenCalendar(true)
+            segmentFocused.current = refsSegment.current[segmentPosition]
+            break
+          case 'Escape':
+            e.preventDefault()
+            setIsOpenCalendar(false)
+            break
+          case 'ArrowUp':
+            e.preventDefault()
+            segmentSetter((prev) => {
+              if (type === 'year' && prev === 'aaaa') return initValue
+              const currentValue = parseInt(prev) || 0
+              const nextValue = (currentValue % maxValue) + 1
+              return String(nextValue).padStart(2, '0')
+            })
+            break
+          case 'ArrowDown':
+            e.preventDefault()
+            segmentSetter((prev) => {
+              if (type === 'year' && prev === 'aaaa') return initValue
+              const value = parseInt(prev)
+              if (!value) return String(maxValue).padStart(2, '0')
+              const nextValue = value <= 1 ? maxValue : value - 1
+              return String(nextValue).padStart(2, '0')
+            })
+            break
+          default:
+            return
+        }
+      },
+      [disabled, segments],
+    )
 
     const handleFocus = () => {
       if (disabled) return
@@ -312,24 +322,27 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       [onChange],
     )
 
-    const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-      if (disabled) return
-      if (isOpenCalendar && e.key === 'Tab') {
-        e.preventDefault()
-        if (refsFocusable.current) {
-          const currentIndex = currentFocusIndexRef.current
-          const offset = e.shiftKey ? -1 : 1
-          const nextIndex = (currentIndex + offset + refsFocusable?.current.length) % refsFocusable?.current.length
-          currentFocusIndexRef.current = nextIndex
-          refsFocusable.current[nextIndex].focus()
+    const onKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLDivElement>) => {
+        if (disabled) return
+        if (isOpenCalendar && e.key === 'Tab') {
+          e.preventDefault()
+          if (refsFocusable.current) {
+            const currentIndex = currentFocusIndexRef.current
+            const offset = e.shiftKey ? -1 : 1
+            const nextIndex = (currentIndex + offset + refsFocusable?.current.length) % refsFocusable?.current.length
+            currentFocusIndexRef.current = nextIndex
+            refsFocusable.current[nextIndex].focus()
+          }
         }
-      }
-      if (isOpenCalendar && ['Escape', 'Enter'].includes(e.key)) {
-        e.preventDefault()
-        setIsOpenCalendar(false)
-        segmentFocused.current?.focus()
-      }
-    }
+        if (isOpenCalendar && ['Escape', 'Enter'].includes(e.key)) {
+          e.preventDefault()
+          setIsOpenCalendar(false)
+          segmentFocused.current?.focus()
+        }
+      },
+      [disabled, isOpenCalendar],
+    )
 
     const calendar = useMemo(() => {
       return (
