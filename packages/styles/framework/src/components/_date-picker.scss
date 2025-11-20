@@ -1,10 +1,8 @@
 .date-picker {
-  input {
-    all: unset;
+  span {
     outline: none;
     text-align: center;
     caret-color: transparent;
-    field-sizing: content;
     &[aria-valuenow]:not(:last-child) {
       width: 20px;
     }
@@ -29,7 +27,7 @@
       &:active {
         padding-left: 16px !important;
       }
-      & input::selection {
+      & span::selection {
         background-color: transparent !important
       }
     }

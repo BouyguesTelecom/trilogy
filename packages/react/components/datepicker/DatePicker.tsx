@@ -54,6 +54,7 @@ const getFirstDayFocusable = () => {
  * @param help {string} Help for DatePicker
  * @param required {boolean} Required DatePicker
  * @param status {InputStatus} DatePicker with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param testId {string} Test Id for Test Integration
  */
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (
@@ -71,6 +72,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       disabled,
       disabledDates,
       id = React.useId(),
+      testId,
+      ...others
     },
     ref,
   ) => {
@@ -90,12 +93,12 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       width: number
     }>({ top: 0, left: 0, width: 0 })
 
-    const refsSegment = useRef<HTMLInputElement[]>([])
+    const refsSegment = useRef<HTMLSpanElement[]>([])
     const refsFocusable = useRef<HTMLElement[]>([])
     const refContainer = useRef<HTMLDivElement>(null)
     const refCalendar = useRef<HTMLTableElement>(null)
     const currentFocusIndexRef = useRef<number>(0)
-    const segmentFocused = useRef<HTMLElement | null>(null)
+    const segmentFocused = useRef<HTMLSpanElement | null>(null)
     const refIcon = useRef(null)
     const refInput = useRef<HTMLDivElement>(null)
 
@@ -235,7 +238,13 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       }
     }
 
-    const handleKeyDownDay = (e: React.KeyboardEvent<HTMLInputElement>, type: SegmentType) => {
+    const formatDateValue = () => {
+      const newDate = new Date(`${year}-${month}-${day}`)
+      const isValidDate = checkIsValidDate(newDate, year, month, day)
+      return isNaN(newDate?.getTime()) || !isValidDate ? '' : newDate.toLocaleDateString()
+    }
+
+    const handleKeyDownDay = (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
       if (disabled) return
       const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
       switch (e.key) {
@@ -420,6 +429,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         )}
         <div className={controlClasses}>
           <div
+            data-testid={testId}
+            role='group'
+            aria-valuetext={formatDateValue()}
             aria-disabled={disabled}
             ref={refInput}
             className={inputClasses}
@@ -429,73 +441,68 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 refsSegment.current[0].focus()
               }, 0)
             }}
+            {...others}
           >
-            <input
+            <span
+              suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
               aria-valuenow={day !== 'jj' ? Number(day) : undefined}
-              disabled={disabled}
+              contentEditable={!disabled}
               id={id}
-              name='day'
-              type='text'
               inputMode='numeric'
-              value={day}
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'day' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'day')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
-              placeholder='jj'
-              maxLength={2}
               ref={(el) => {
                 if (el) refsSegment.current[0] = el
               }}
-            />
+            >
+              {day}
+            </span>
             <span>/</span>
-            <input
+            <span
+              suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
               aria-valuenow={month !== 'mm' ? Number(month) : undefined}
-              disabled={disabled}
-              name='month'
-              type='text'
+              contentEditable={!disabled}
               inputMode='numeric'
-              value={month}
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'month' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'month')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
-              placeholder='mm'
-              maxLength={2}
               ref={(el) => {
                 if (el) refsSegment.current[1] = el
               }}
-            />
+            >
+              {month}
+            </span>
             <span>/</span>
-            <input
+            <span
+              suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
               aria-valuenow={year !== 'aaaa' ? Number(year) : undefined}
-              disabled={disabled}
-              name='year'
-              type='text'
+              contentEditable={!disabled}
               inputMode='numeric'
-              value={year}
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'year' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'year')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
-              placeholder='aaaa'
-              maxLength={4}
               ref={(el) => {
                 if (el) refsSegment.current[2] = el
               }}
-            />
+            >
+              {year}
+            </span>
           </div>
           <button
             type='button'
