@@ -444,11 +444,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             {...others}
           >
             <span
+              aria-valuemin={1}
+              aria-valuemax={31}
+              aria-readonly={false}
+              aria-label='day'
+              role='spinbutton'
               suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
-              aria-valuenow={day !== 'jj' ? Number(day) : undefined}
+              aria-valuetext={day}
               contentEditable={!disabled}
               id={id}
               inputMode='numeric'
@@ -465,11 +470,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             </span>
             <span>/</span>
             <span
+              aria-valuemin={1}
+              aria-valuemax={12}
+              aria-readonly={false}
+              aria-label='month'
+              role='spinbutton'
               suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
-              aria-valuenow={month !== 'mm' ? Number(month) : undefined}
+              aria-valuetext={month}
               contentEditable={!disabled}
               inputMode='numeric'
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'month' })}
@@ -485,11 +495,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             </span>
             <span>/</span>
             <span
+              aria-valuemin={0}
+              aria-valuemax={9999}
+              aria-readonly={false}
+              aria-label='year'
+              role='spinbutton'
               suppressContentEditableWarning
               autoCorrect='off'
               autoCapitalize='none'
               spellCheck={false}
-              aria-valuenow={year !== 'aaaa' ? Number(year) : undefined}
+              aria-valuetext={year}
               contentEditable={!disabled}
               inputMode='numeric'
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'year' })}
