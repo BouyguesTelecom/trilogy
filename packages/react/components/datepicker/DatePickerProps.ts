@@ -3,7 +3,7 @@ import { DatePickerStatus, DatePickerStatusValues } from './DatePickerEnum'
 export type SegmentType = 'day' | 'month' | 'year'
 
 export interface HandleKeyPress {
-  event: React.KeyboardEvent<HTMLInputElement>
+  event: React.InputEvent<HTMLInputElement>
   type: 'day' | 'month' | 'year'
 }
 

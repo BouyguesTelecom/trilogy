@@ -185,8 +185,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     const handleKeyPress = ({ event, type }: HandleKeyPress) => {
       if (disabled) return
-      const { key } = event
+      const key = event.data
       event.preventDefault()
+
       const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
       if (!allowedKeys.includes(key)) return
       const digit = parseInt(key)
@@ -239,7 +240,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
       switch (e.key) {
         case 'Backspace':
-          e.preventDefault()
           segmentSetter(label)
           break
         case ' ':
@@ -441,7 +441,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               type='text'
               inputMode='numeric'
               value={day}
-              onKeyUp={(e) => handleKeyPress({ event: e, type: 'day' })}
+              onBeforeInput={(e) => handleKeyPress({ event: e, type: 'day' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'day')}
               onMouseDown={(e) => e.stopPropagation()}
@@ -463,7 +463,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               type='text'
               inputMode='numeric'
               value={month}
-              onKeyUp={(e) => handleKeyPress({ event: e, type: 'month' })}
+              onBeforeInput={(e) => handleKeyPress({ event: e, type: 'month' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'month')}
               onMouseDown={(e) => e.stopPropagation()}
@@ -485,7 +485,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               type='text'
               inputMode='numeric'
               value={year}
-              onKeyUp={(e) => handleKeyPress({ event: e, type: 'year' })}
+              onBeforeInput={(e) => handleKeyPress({ event: e, type: 'year' })}
               onFocus={handleFocus}
               onKeyDown={(e) => handleKeyDownDay(e, 'year')}
               onMouseDown={(e) => e.stopPropagation()}
