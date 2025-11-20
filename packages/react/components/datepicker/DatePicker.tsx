@@ -84,7 +84,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const [year, setYear] = useState<string>('aaaa')
     const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false)
     const [canContinueTyping, setCanContinueTyping] = useState<boolean>(false)
-    const [yearPosition, setYearPosition] = useState<number>(0)
     const [focused, setIsFocused] = useState<boolean>(false)
     const [isMobile, setIsMobile] = useState<boolean>(false)
     const [portalPosition, setPortalPosition] = useState<{
@@ -220,8 +219,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
         if (canContinueTyping) {
           const num = parseInt(newValue)
+          if (isYear && String(num).length === 5) return
           if (num >= 1 && num <= maxValue) segmentSetter(isYear ? newValue.slice(-4) : newValue)
-          if (!isYear || (isYear && yearPosition === 3)) {
+          if (!isYear) {
             setCanContinueTyping(false)
             setTimeout(() => {
               if (segmentPosition < 2) refsSegment.current[segmentPosition + 1].focus()
@@ -229,7 +229,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           }
         }
 
-        if (isYear) setYearPosition((prev) => (prev === 3 ? 0 : prev + 1))
         const newDay = isDay ? newValue : day
         const newMonth = isMonth ? newValue : month
         const newYear = isYear ? newValue : year
