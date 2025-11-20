@@ -2,7 +2,7 @@ import { Button, DatePicker, Section, Text } from '@trilogy-ds/react/components'
 import { useState } from 'react'
 
 export const DatePickerScreen = (): JSX.Element => {
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState()
   return (
     <Section>
       <Text>Date picker</Text>
@@ -16,7 +16,9 @@ export const DatePickerScreen = (): JSX.Element => {
       </Button>
 
       <DatePicker
-        onChange={(e) => console.log(e)}
+        onChange={(e) => {
+          setDate(e)
+        }}
         value={date}
         label='Input label without accessibilityLabel'
         sample='Input sample'

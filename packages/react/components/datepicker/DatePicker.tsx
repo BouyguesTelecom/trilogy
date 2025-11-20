@@ -366,7 +366,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       const dateYear = value.getFullYear()
       setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
       setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
-      setYear(String(dateYear))
+      setYear(String(dateYear).padStart(4, '0'))
     }, [value])
 
     useEffect(() => {
