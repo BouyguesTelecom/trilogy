@@ -474,6 +474,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyDown={(e) => handleKeyDownDay(e, 'day')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
+              onInput={() => (refsSegment.current[0].textContent = day)}
               ref={(el) => {
                 if (el) refsSegment.current[0] = el
               }}
@@ -499,6 +500,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyDown={(e) => handleKeyDownDay(e, 'month')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
+              onInput={() => (refsSegment.current[1].textContent = month)}
               ref={(el) => {
                 if (el) refsSegment.current[1] = el
               }}
@@ -524,6 +526,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyDown={(e) => handleKeyDownDay(e, 'year')}
               onMouseDown={(e) => e.stopPropagation()}
               onChange={(e) => e.stopPropagation()}
+              onInput={() => (refsSegment.current[2].textContent = year)}
               ref={(el) => {
                 if (el) refsSegment.current[2] = el
               }}
