@@ -16,6 +16,7 @@ export const DatePickerScreen = (): JSX.Element => {
       </Button>
 
       <DatePicker
+        data-cy='birthday'
         onChange={(e) => {
           if (e instanceof Date) setDate(e)
           console.log(e)
