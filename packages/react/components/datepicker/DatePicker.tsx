@@ -449,7 +449,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             className={inputClasses}
             onMouseDown={(e) => {
               if (disabled) return
-              if (document.activeElement === refsSegment.current[0]) return e.preventDefault()
+              const clickedSegment = refsSegment.current.find((segment) => segment === document.activeElement)
+              if (clickedSegment) return e.preventDefault()
               setTimeout(() => {
                 refsSegment.current[0].focus()
               }, 0)
