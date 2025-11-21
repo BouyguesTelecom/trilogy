@@ -78,7 +78,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     ref,
   ) => {
     const { styled } = useTrilogyContext()
-
+    const { 'data-cy': dataCy, ...otherProps } = others as any
     const [day, setDay] = useState<string>('jj')
     const [month, setMonth] = useState<string>('mm')
     const [year, setYear] = useState<string>('aaaa')
@@ -108,6 +108,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const iconRightClasses = hashClass(styled, clsx('icon-right'))
     const helpClasses = clsx('help', status && is(status))
     const inputLabelClasses = hashClass(styled, 'input-label')
+    const inputHidden = hashClass(styled, 'input-hidden')
 
     useImperativeHandle(ref, () => refContainer.current as HTMLDivElement)
 
@@ -441,7 +442,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         )}
         <div className={controlClasses}>
           <div
-            data-testid={testId}
             role='group'
             aria-valuetext={formatDateValue()}
             aria-disabled={disabled}
@@ -455,7 +455,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 refsSegment.current[0].focus()
               }, 0)
             }}
-            {...others}
+            {...otherProps}
           >
             <span
               aria-valuemin={1}
@@ -469,7 +469,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               spellCheck={false}
               aria-valuetext={day}
               contentEditable={!disabled}
-              id={id}
               inputMode='numeric'
               onBeforeInput={(e) => handleKeyPress({ event: e, type: 'day' })}
               onFocus={handleFocus}
@@ -535,6 +534,14 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             >
               {year}
             </span>
+            <input
+              id={id}
+              data-testid={testId}
+              value={`${year}/${month}/${day}`}
+              data-cy={dataCy}
+              tabIndex={-1}
+              className={inputHidden}
+            />
           </div>
           <button
             type='button'
