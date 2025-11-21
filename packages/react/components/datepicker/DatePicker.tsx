@@ -447,8 +447,10 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             aria-disabled={disabled}
             ref={refInput}
             className={inputClasses}
-            onMouseDown={() => {
+            onMouseDown={(e) => {
               if (disabled) return
+              e.preventDefault()
+              if (document.activeElement === refsSegment.current[0]) return
               setTimeout(() => {
                 refsSegment.current[0].focus()
               }, 0)
