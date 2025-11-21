@@ -537,7 +537,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             <input
               id={id}
               data-testid={testId}
-              value={`${year}-${month}-${day}`}
+              value={value ? value.toISOString().split('T')[0] : ''}
               data-cy={dataCy}
               tabIndex={-1}
               className={inputHidden}
