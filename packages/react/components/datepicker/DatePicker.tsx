@@ -311,11 +311,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         const dateDay = dateCalendar.getDate()
         const dateMonth = dateCalendar.getMonth() + 1
         const dateYear = dateCalendar.getFullYear()
-        setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
-        setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
-        setYear(String(dateYear))
+
+        const dayFormated = dateDay < 10 ? `0${dateDay}` : String(dateDay)
+        const monthFormated = dateMonth < 10 ? `0${dateMonth}` : String(dateMonth)
+        const yearFormated = String(dateYear)
+
+        setDay(dayFormated)
+        setMonth(monthFormated)
+        setYear(yearFormated)
         setIsOpenCalendar(false)
-        if (onChange) onChange(dateCalendar.toISOString().split('T')[0])
+        if (onChange) onChange(`${yearFormated}-${monthFormated}-${dayFormated}`)
       },
       [onChange],
     )
