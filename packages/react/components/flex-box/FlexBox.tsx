@@ -33,7 +33,7 @@ const generateClassNames = ({ value, getClassName }: GetResponsiveClassesProp): 
   }
 
   if (typeof value === 'object') {
-    const breakpoints = ['tablet', 'mobile', 'desktop'] as const
+    const breakpoints = ['mobile', 'tablet', 'desktop'] as const
     return breakpoints
       .filter((key) => key in value && (value as Record<typeof key, string | number>)[key] !== undefined)
       .map((key) => `${getClassName((value as Record<typeof key, string | number>)[key])}-${key}`)
