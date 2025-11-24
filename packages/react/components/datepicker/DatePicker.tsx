@@ -73,6 +73,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       disabledDates,
       id = React.useId(),
       testId,
+      name,
       ...others
     },
     ref,
@@ -233,26 +234,23 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         const newDay = isDay ? newValue : day
         const newMonth = isMonth ? newValue : month
         const newYear = isYear ? newValue : year
-
         if (parseInt(newDay) && parseInt(newMonth) && parseInt(newYear)) {
-          const newDate = new Date(`${newYear}-${newMonth}-${newDay}`)
-          const isValidDate = checkIsValidDate(newDate, newYear, newMonth, newDay)
-          if (onChange) onChange(isNaN(newDate?.getTime()) || !isValidDate ? null : newDate)
+          if (onChange) onChange(`${newYear.slice(-4)}-${newMonth}-${newDay}`)
         }
       },
       [disabled, segments, canContinueTyping, onChange],
     )
 
     const formatDateValue = () => {
-      const newDate = new Date(`${year}-${month}-${day}`)
-      const isValidDate = checkIsValidDate(newDate, year, month, day)
-      return isNaN(newDate?.getTime()) || !isValidDate ? '' : newDate.toLocaleDateString()
+      const isValidDate = parseInt(day) && parseInt(month) && parseInt(year)
+      return !isValidDate ? '' : `${year}-${month}-${day}`
     }
 
     const handleKeyDownDay = useCallback(
       (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
         if (disabled) return
         const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
+
         switch (e.key) {
           case 'Backspace':
             e.preventDefault()
@@ -291,7 +289,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             return
         }
       },
-      [disabled, segments],
+      [disabled, segments, year, month, day],
     )
 
     const handleFocus = () => {
@@ -317,7 +315,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
         setYear(String(dateYear))
         setIsOpenCalendar(false)
-        if (onChange) onChange(dateCalendar)
+        if (onChange) onChange(dateCalendar.toISOString().split('T')[0])
       },
       [onChange],
     )
@@ -348,8 +346,8 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return (
         <Calendar
           disabledDates={disabledDates}
-          maxDate={maxDate}
-          minDate={minDate}
+          maxDate={maxDate ? new Date(maxDate) : undefined}
+          minDate={minDate ? new Date(minDate) : undefined}
           onChange={handleChangeCalendar}
           ref={refCalendar}
           value={calendarValue}
@@ -382,13 +380,16 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     ])
 
     useEffect(() => {
-      if (!value) return
-      const dateDay = value.getDate()
-      const dateMonth = value.getMonth() + 1
-      const dateYear = value.getFullYear()
-      setDay(dateDay < 10 ? `0${dateDay}` : String(dateDay))
-      setMonth(dateMonth < 10 ? `0${dateMonth}` : String(dateMonth))
-      setYear(String(dateYear).padStart(4, '0'))
+      if (!value) {
+        setDay('jj')
+        setMonth('mm')
+        setYear('aaaa')
+      } else {
+        const [year, month, day] = value.split('-')
+        setDay(parseInt(day) < 10 ? `0${day}` : day)
+        setMonth(parseInt(month) < 10 ? `0${month}` : month)
+        setYear(year.padStart(4, '0'))
+      }
     }, [value])
 
     useEffect(() => {
@@ -535,13 +536,20 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               {year}
             </span>
             <input
+              name={name}
               type='text'
               id={id}
               data-testid={testId}
-              value={`${day}-${month}-${year}`}
+              value={`${year}-${month}-${day}`}
               data-cy={dataCy}
               tabIndex={-1}
               className={inputHidden}
+              onChange={(e) => {
+                const [year, month, day] = e.target.value.split('-')
+                setDay(parseInt(day) < 10 ? `0${day}` : day)
+                setMonth(parseInt(month) < 10 ? `0${month}` : month)
+                setYear(year.padStart(4, '0'))
+              }}
             />
           </div>
           <button

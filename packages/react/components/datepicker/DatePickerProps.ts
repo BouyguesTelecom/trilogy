@@ -10,10 +10,10 @@ export interface HandleKeyPress {
 }
 
 export interface DatePickerProps extends Dev, CommonProps {
-  value?: Date
-  onChange?: (date: Date | null) => void
-  minDate?: Date
-  maxDate?: Date
+  value?: string | null
+  onChange?: (date: string | null) => void
+  minDate?: string
+  maxDate?: string
   label?: string
   sample?: string
   required?: boolean
@@ -21,6 +21,7 @@ export interface DatePickerProps extends Dev, CommonProps {
   help?: string
   disabled?: boolean
   disabledDates?: Date[]
+  name?: string
 }
 
 export interface Segment {
