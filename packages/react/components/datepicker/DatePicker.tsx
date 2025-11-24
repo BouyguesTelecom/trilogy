@@ -535,24 +535,13 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               {year}
             </span>
             <input
-              type='date'
+              type='text'
               id={id}
               data-testid={testId}
-              value={`${year}-${month}-${day}`}
+              value={`${day}-${month}-${year}`}
               data-cy={dataCy}
               tabIndex={-1}
               className={inputHidden}
-              onChange={(e) => {
-                const inputValue = e.target.value
-                const [year, month, day] = inputValue.split('-')
-                const parsedDate = new Date(inputValue)
-                if (!isNaN(parsedDate.getTime())) {
-                  setDay(day)
-                  setMonth(month)
-                  setYear(year)
-                  if (onChange) onChange(parsedDate)
-                }
-              }}
             />
           </div>
           <button
