@@ -41,9 +41,9 @@ const getFirstDayFocusable = () => {
 /**
  * DatePicker Component
  * @param id
- * @param value {string} Value for DatePicker (DD-MM-YYYY)
- * @param minDate {string} Min value for DatePicker (DD-MM-YYYY)
- * @param maxDate {string} Max value for DatePicker (DD-MM-YYYY)
+ * @param value {string} Value for DatePicker (YYYY-MM-DD)
+ * @param minDate {string} Min value for DatePicker (YYYY-MM-DD)
+ * @param maxDate {string} Max value for DatePicker (YYYY-MM-DD)
  * @param disabled {boolean} Disabled DatePicker
  * @param readOnly {boolean} Read only DatePicker
  * @param disabledDates {Date[]} Values disabled
