@@ -249,7 +249,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const handleKeyDownDay = useCallback(
       (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
         if (disabled) return
-        const { segmentSetter, label, maxValue, initValue, segmentPosition } = segments[type]
+        const { segmentSetter, label, maxValue, initValue, segmentPosition, segment } = segments[type]
 
         switch (e.key) {
           case 'Backspace':
@@ -268,22 +268,30 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             break
           case 'ArrowUp':
             e.preventDefault()
-            segmentSetter((prev) => {
-              if (type === 'year' && prev === 'aaaa') return initValue
-              const currentValue = parseInt(prev) || 0
-              const nextValue = (currentValue % maxValue) + 1
-              return String(nextValue).padStart(2, '0')
-            })
+            const currentValue = parseInt(segment) || 0
+            const nextValue = (currentValue % maxValue) + 1
+            const availableValue =
+              type === 'year' && segment === 'aaaa' ? initValue : String(nextValue).padStart(2, '0')
+            segmentSetter(availableValue)
+            const updatedDayUp = type === 'day' ? availableValue : day
+            const updatedMonthUp = type === 'month' ? availableValue : month
+            const updatedYearUp = type === 'year' ? availableValue : year
+            if (parseInt(updatedDayUp) && parseInt(updatedMonthUp) && parseInt(updatedYearUp) && onChange) {
+              onChange(`${updatedYearUp}-${updatedMonthUp}-${updatedDayUp}`)
+            }
             break
           case 'ArrowDown':
             e.preventDefault()
-            segmentSetter((prev) => {
-              if (type === 'year' && prev === 'aaaa') return initValue
-              const value = parseInt(prev)
-              if (!value) return String(maxValue).padStart(2, '0')
-              const nextValue = value <= 1 ? maxValue : value - 1
-              return String(nextValue).padStart(2, '0')
-            })
+            const value = parseInt(segment) || maxValue
+            const nextVal = value <= 1 ? maxValue : value - 1
+            const availableVal = type === 'year' && segment === 'aaaa' ? initValue : String(nextVal).padStart(2, '0')
+            segmentSetter(availableVal)
+            const updatedDayDown = type === 'day' ? availableVal : day
+            const updatedMonthDown = type === 'month' ? availableVal : month
+            const updatedYearDown = type === 'year' ? availableVal : year
+            if (parseInt(updatedDayDown) && parseInt(updatedMonthDown) && parseInt(updatedYearDown) && onChange) {
+              onChange(`${updatedYearDown}-${updatedMonthDown}-${updatedDayDown}`)
+            }
             break
           default:
             return
