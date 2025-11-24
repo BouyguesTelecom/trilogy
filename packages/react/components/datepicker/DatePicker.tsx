@@ -386,9 +386,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         setYear('aaaa')
       } else {
         const [year, month, day] = value.split('-')
-        setDay(parseInt(day) < 10 ? `0${day}` : day)
-        setMonth(parseInt(month) < 10 ? `0${month}` : month)
-        setYear(year.padStart(4, '0'))
+        setDay(day)
+        setMonth(month)
+        setYear(year)
       }
     }, [value])
 
