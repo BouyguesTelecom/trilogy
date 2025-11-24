@@ -541,6 +541,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               {year}
             </span>
             <input
+              disabled={disabled}
               name={name}
               type='text'
               id={id}
