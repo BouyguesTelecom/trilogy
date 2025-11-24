@@ -41,9 +41,9 @@ const getFirstDayFocusable = () => {
 /**
  * DatePicker Component
  * @param id
- * @param value {Date | [Date, Date] | [Date] | []} Value for DatePicker
- * @param minDate {Date} Min value for DatePicker
- * @param maxDate {Date} Max value for DatePicker
+ * @param value {string} Value for DatePicker (DD-MM-YYYY)
+ * @param minDate {string} Min value for DatePicker (DD-MM-YYYY)
+ * @param maxDate {string} Max value for DatePicker (DD-MM-YYYY)
  * @param disabled {boolean} Disabled DatePicker
  * @param readOnly {boolean} Read only DatePicker
  * @param disabledDates {Date[]} Values disabled
@@ -551,9 +551,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               className={inputHidden}
               onChange={(e) => {
                 const [year, month, day] = e.target.value.split('-')
-                setDay(parseInt(day) < 10 ? `0${day}` : day)
-                setMonth(parseInt(month) < 10 ? `0${month}` : month)
-                setYear(year.padStart(4, '0'))
+                setDay(day)
+                setMonth(month)
+                setYear(year)
               }}
             />
           </div>
