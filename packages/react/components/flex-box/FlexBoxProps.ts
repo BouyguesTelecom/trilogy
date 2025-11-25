@@ -25,6 +25,7 @@ export interface FlexBoxProps extends CommonProps {
   scrollable?: boolean
   fullBleed?: boolean
   fullheight?: boolean
+  mobile?: boolean
 }
 
 export type FlexBoxRef = HTMLDivElement
