@@ -56,7 +56,7 @@ const generateClassNames = ({ value, getClassName }: GetResponsiveClassesProp): 
  * @param fullheight {boolean} Full height (height: 100%)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, scrollable, fullheight, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, scrollable, fullheight, mobile, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -69,6 +69,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         ...generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),
+        mobile && is('mobile'),
         className,
       ]),
     )
