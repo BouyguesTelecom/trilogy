@@ -113,16 +113,6 @@
   }
 }
 
-// Mixin séparé pour le print (media query nécessaire)
-@mixin container-tablet-with-print {
-  @container (min-width: #{$tablet}) {
-    @content;
-  }
-  @media print {
-    @content;
-  }
-}
-
 @mixin container-tablet-only {
   @container (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
     @content;

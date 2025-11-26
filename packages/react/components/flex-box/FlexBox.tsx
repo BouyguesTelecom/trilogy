@@ -3,10 +3,11 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { Align, getAlignClassName } from '@/objects/facets/Alignable'
 import { getJustifyClassName, Justify } from '@/objects/facets/Justifiable'
+import { Wrap, getWrapClassName } from '@/objects/facets/Wrap'
 import { has, is } from '@/services'
 import clsx from 'clsx'
 import React from 'react'
-import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps } from './FlexBoxProps'
+import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps, WrapProps } from './FlexBoxProps'
 import { DirectionEnum, DirectionEnumValues } from '@/objects'
 import { GapSize } from '@/components/columns'
 
@@ -19,6 +20,8 @@ interface GetResponsiveClassesProp {
     | Align
     | JustifyProps
     | Justify
+    | WrapProps
+    | Wrap
     | FlexBoxSize
     | GapSize
     | undefined
@@ -52,11 +55,12 @@ const generateClassNames = ({ value, getClassName }: GetResponsiveClassesProp): 
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; tablet?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; desktop?: 'row' | 'column' | 'row-reverse' | 'column-reverse' } } Flex direction
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'; tablet?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'; desktop?: 'start' | 'end' | 'center' | 'stretch' | 'baseline' } } Align items
  * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'; tablet?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'; desktop?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' } } Justify content
+ * @param wrap { 'wrap' | 'nowrap' | 'wrap-reverse' | { mobile?: 'wrap' | 'nowrap' | 'wrap-reverse'; tablet?: 'wrap' | 'nowrap' | 'wrap-reverse'; desktop?: 'wrap' | 'nowrap' | 'wrap-reverse' } } Wrap content
  * @param scrollable {boolean} scrollable mode (overflow-x: auto)
  * @param fullheight {boolean} Full height (height: 100%)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, scrollable, fullheight, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -66,6 +70,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         ...generateClassNames({ value: direction, getClassName: (val) => is(`direction-${val}`) }),
         ...generateClassNames({ value: align, getClassName: (val) => is(getAlignClassName(val as string)) }),
         ...generateClassNames({ value: justify, getClassName: (val) => is(getJustifyClassName(val as string)) }),
+        ...generateClassNames({ value: wrap, getClassName: (val) => is(getWrapClassName(val as string)) }),
         ...generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),
