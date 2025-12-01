@@ -43,6 +43,8 @@ export const getAlignClassName = (alignType?: string): string => {
       return 'aligned-end'
     case 'STRETCH':
       return 'aligned-stretch'
+    case 'ALIGNED_STRETCH':
+      return 'aligned-stretch'
     default:
       return 'aligned-start'
   }
