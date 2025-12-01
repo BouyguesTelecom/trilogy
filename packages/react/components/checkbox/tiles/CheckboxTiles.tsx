@@ -37,6 +37,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
         (getAlignClassName(verticalAlign) === 'aligned-start' && is('aligned-start')) ||
         (getAlignClassName(verticalAlign) === 'aligned-center' && is('aligned-center')) ||
         (getAlignClassName(verticalAlign) === 'aligned-end' && is('aligned-end')) ||
+        (getAlignClassName(verticalAlign) === 'aligned-stretch' && is('aligned-stretch')) ||
         null
     }
 
