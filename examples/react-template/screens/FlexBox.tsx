@@ -11,49 +11,10 @@ export const FlexBoxScreen = (): JSX.Element => {
             <Box>Size 10 desktop</Box>
           </FlexItem>
           <FlexItem size={{tablet: 3}}>
-            <Box>Size 2 desktop</Box>
+            <Box>Size 3 desktop</Box>
           </FlexItem>
         </FlexBox>
       </Container>
-
-      <Title level={TitleLevels.THREE}>Container Query Test</Title>
-      <FlexBox gap={GapSize.FOUR}>
-        <FlexItem size={{desktop: 10}}>
-          <Box>Size 10 desktop</Box>
-        </FlexItem>
-        <FlexItem size={{desktop: 2}}>
-          <Box>Size 2 desktop</Box>
-        </FlexItem>
-      </FlexBox>
-      <FlexBox>
-        <FlexItem>
-          <div className={"container-query_410"}>
-            <Title level={TitleLevels.THREE}>Container query</Title>
-            <FlexBox>
-              <FlexItem size={{desktop: 4, tablet: 6}}>
-                <Box>Size 10 desktop</Box>
-              </FlexItem>
-              <FlexItem size={{desktop: 4, tablet: 6}}>
-                <Box>Size 2 desktop</Box>
-              </FlexItem>
-              <FlexItem size={{desktop: 4, tablet: 6}}>
-                <Box>Size 2 desktop</Box>
-              </FlexItem>
-            </FlexBox>
-          </div>
-        </FlexItem>
-        <FlexItem size={4}>
-          <Box fullheight>Size 4 - Assistant Digital</Box>
-        </FlexItem>
-      </FlexBox>
-      <FlexBox>
-        <FlexItem size={{desktop: 10}}>
-          <Box>Size 11 desktop</Box>
-        </FlexItem>
-        <FlexItem size={{desktop: 2}}>
-          <Box>Size 2 desktop</Box>
-        </FlexItem>
-      </FlexBox>
 
 
       <Title level={TitleLevels.FIVE}>Align elements</Title>
