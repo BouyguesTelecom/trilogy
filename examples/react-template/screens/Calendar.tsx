@@ -1,4 +1,4 @@
-import { Button, Calendar, Column, Columns, Section, Text } from '@trilogy-ds/react/components'
+import { Button, Calendar, Column, Columns, Section, Text, View } from '@trilogy-ds/react/components'
 import { ChangeEventCalendar } from '@trilogy-ds/react/components/calendar/CalendarProps'
 import { useState } from 'react'
 
@@ -12,8 +12,7 @@ export const CalendarScreen = (): JSX.Element => {
 
   return (
     <Section>
-      <Columns align='ALIGNED_CENTER'>
-        <Column narrow>
+        <View>
           <Text>Simple Calendar</Text>
           <Button onClick={() => setValue(new Date(2025, 9, 11))} variant='CONVERSION'>
             Set Date {new Date(2025, 9, 11).toLocaleDateString()}
@@ -28,8 +27,8 @@ export const CalendarScreen = (): JSX.Element => {
               setValue(e)
             }}
           />
-        </Column>
-        <Column narrow>
+        </View>
+        <View>
           <Text>Range Calendar</Text>
           <Button onClick={() => setValues([new Date(2025, 9, 11), new Date(2025, 9, 20)])} variant='CONVERSION'>
             Set Date [{new Date(2025, 9, 11).toLocaleDateString()}, {new Date(2025, 9, 20).toLocaleDateString()} ]
@@ -40,8 +39,7 @@ export const CalendarScreen = (): JSX.Element => {
               setValues(e)
             }}
           />
-        </Column>
-      </Columns>
+        </View>
     </Section>
   )
 }
