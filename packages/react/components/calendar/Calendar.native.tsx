@@ -305,7 +305,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               disabled={isPrevDisabled}
               accessible={true}
               accessibilityRole="button"
-              accessibilityLabel="Mois précédent"
               accessibilityState={{ disabled: isPrevDisabled }}
               style={[styles.navButton, isPrevDisabled && styles.disabledButton]}
             >
@@ -318,7 +317,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   style={styles.monthSelector}
                   accessible={true}
                   accessibilityRole="button"
-                  accessibilityLabel={`Mois actuel: ${months[visibleMonth.getMonth()]}, appuyer pour ouvrir la sélection`}
                   onPress={() => setShowMonthPicker(true)}
                 >
                   <View style={styles.selectorContent}>
@@ -332,7 +330,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   style={styles.yearSelector}
                   accessible={true}
                   accessibilityRole="button"
-                  accessibilityLabel={`Année actuelle: ${visibleMonth.getFullYear()}, appuyer pour ouvrir la sélection`}
                   onPress={() => setShowYearPicker(true)}
                 >
                   <View style={styles.selectorContent}>
@@ -350,7 +347,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               disabled={isNextDisabled}
               accessible={true}
               accessibilityRole="button"
-              accessibilityLabel="Mois suivant"
               accessibilityState={{ disabled: isNextDisabled }}
               style={[styles.navButton, isNextDisabled && styles.disabledButton]}
             >
