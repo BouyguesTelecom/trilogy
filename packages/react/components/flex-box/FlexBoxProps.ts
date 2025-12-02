@@ -1,5 +1,4 @@
 import { Align } from '@/objects/facets/Alignable'
-import { Wrap } from '@/objects/facets/Wrap'
 import { DirectionEnum, DirectionEnumValues } from '@/objects/facets/Direction'
 import { Justify } from '@/objects/facets/Justifiable'
 import { View } from 'react-native'
@@ -10,13 +9,15 @@ interface ResponsiveValue<T> {
   mobile?: T
   tablet?: T
   desktop?: T
+  widescreen?: T
+  fullhd?: T
 }
 
 export type FlexBoxSize = ResponsiveValue<GapSize>
 export type Direction = ResponsiveValue<DirectionEnum | DirectionEnumValues>
 export type AlignProps = ResponsiveValue<Align>
 export type JustifyProps = ResponsiveValue<Justify>
-export type WrapProps = ResponsiveValue<Wrap>
+export type WrapProps = ResponsiveValue<boolean>
 
 export interface FlexBoxProps extends CommonProps {
   children?: React.ReactNode
@@ -24,7 +25,7 @@ export interface FlexBoxProps extends CommonProps {
   direction?: Direction | DirectionEnum | DirectionEnumValues
   align?: AlignProps | Align
   justify?: JustifyProps | Justify
-  wrap?: WrapProps | Wrap
+  wrap?: WrapProps | boolean
   scrollable?: boolean
   fullBleed?: boolean
   fullheight?: boolean

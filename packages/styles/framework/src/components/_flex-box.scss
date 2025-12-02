@@ -33,13 +33,6 @@
   &.is-wrap {
     flex-wrap: wrap;
   }
-  &.is-nowrap {
-    flex-wrap: nowrap;
-  }
-  &.is-wrap-reverse {
-    flex-wrap: wrap-reverse;
-  }
-
 
   @include mobile {
     &:has(>.flex-item):not([class*='is-direction']) {
@@ -65,12 +58,6 @@
     &.is-wrap-mobile {
       flex-wrap: wrap;
     }
-    &.is-nowrap-mobile {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-mobile {
-      flex-wrap: wrap-reverse;
-    }
   }
   @include tablet {
     &.is-direction-row-tablet {
@@ -91,13 +78,6 @@
     &.is-wrap-tablet {
       flex-wrap: wrap;
     }
-    &.is-nowrap-tablet {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-tablet {
-      flex-wrap: wrap-reverse;
-    }
-
   }
   @include desktop {
     &.is-direction-row-desktop {
@@ -116,12 +96,6 @@
     }
     &.is-wrap-desktop {
       flex-wrap: wrap;
-    }
-    &.is-nowrap-desktop {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-desktop{
-      flex-wrap: wrap-reverse;
     }
   }
 
@@ -148,13 +122,6 @@
     &.is-wrap-mobile {
       flex-wrap: wrap;
     }
-    &.is-nowrap-mobile {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-mobile {
-      flex-wrap: wrap-reverse;
-    }
-
   }
   @include container-tablet {
     &.is-direction-row-tablet {
@@ -175,13 +142,6 @@
     &.is-wrap-mobile {
       flex-wrap: wrap;
     }
-    &.is-nowrap-mobile {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-mobile {
-      flex-wrap: wrap-reverse;
-    }
-
   }
   @include container-desktop {
     &.is-direction-row-desktop {
@@ -202,13 +162,6 @@
     &.is-wrap-desktop {
       flex-wrap: wrap;
     }
-    &.is-nowrap-desktop {
-      flex-wrap: nowrap;
-    }
-    &.is-wrap-reverse-desktop {
-      flex-wrap: wrap-reverse;
-    }
-
   }
 
   // ALIGN ITEMS

@@ -1,13 +1,12 @@
 import { Align, BoxContent, ButtonVariant, Container, DirectionEnum, Justify, TrilogyColor, TypographyBold } from '@trilogy-ds/react'
 import { Box, Button, FlexBox, FlexItem, GapSize, Icon, IconName, IconSize, Section, Switch, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react/components'
-import { Wrap } from '../../../packages/react/objects/facets/Wrap'
 
 export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Container className="container_410">
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
-        <FlexBox wrap={{desktop: "WRAP"}} gap={GapSize.FOUR}>
+        <FlexBox wrap={{fullhd : true}} gap={GapSize.FOUR}>
           <FlexItem size={{tablet: 10}}>
             <Box>Size 10 desktop</Box>
           </FlexItem>
