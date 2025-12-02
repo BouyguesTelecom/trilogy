@@ -10,9 +10,240 @@ const days = [...translation.days]
 const months = [...translation.months]
 const currentDate = new Date()
 
-function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] | [] {
+const checkIsRange = (date: ChangeEventCalendar): date is [Date, Date] | [Date] | [] => {
   return !(date instanceof Date)
 }
+
+const styles = StyleSheet.create({
+  calendar: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    padding: 24,
+    shadowColor: '#636363',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  header: {
+    marginBottom: 16,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    paddingBottom: 16,
+  },
+  navButton: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    backgroundColor: 'transparent',
+  },
+  disabledButton: {
+    opacity: 0.5,
+  },
+  monthYearContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  dropdownContainer: {
+    flexDirection: 'row',
+    gap: 12,
+    justifyContent: 'center',
+  },
+  monthSelector: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#e9ecef',
+    minWidth: 80,
+    alignItems: 'center',
+    height: 30,
+    justifyContent: 'center',
+  },
+  yearSelector: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#e9ecef',
+    minWidth: 70,
+    alignItems: 'center',
+    height: 30,
+    justifyContent: 'center',
+  },
+  selectorContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  selectorText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#495057',
+    flex: 1,
+    textAlign: 'center',
+  },
+  dropdownIcon: {
+    marginLeft: 4,
+    width: 12,
+    height: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  daysLabelRow: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  dayLabel: {
+    width: 36,
+    alignItems: 'center',
+    paddingVertical: 4,
+    marginHorizontal: 2,
+  },
+  dayLabelText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#6c757d',
+    textTransform: 'uppercase',
+  },
+  body: {
+    gap: 8,
+  },
+  weekRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 0,
+  },
+  emptyDay: {
+    width: 36,
+    height: 36,
+    marginHorizontal: 2,
+  },
+  dayButton: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    marginHorizontal: 2,
+    backgroundColor: 'transparent',
+  },
+  dayText: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#212529',
+  },
+  activeDay: {
+    backgroundColor: '#4a5568',
+  },
+  activeDayText: {
+    color: '#ffffff',
+    fontWeight: '600',
+  },
+  disabledDay: {
+    backgroundColor: '#f8f9fa',
+    opacity: 0.6,
+  },
+  disabledDayText: {
+    color: '#adb5bd',
+  },
+  dateStart: {
+    backgroundColor: '#4a5568',
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+  dateEnd: {
+    backgroundColor: '#4a5568',
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+  },
+  dateInRange: {
+    backgroundColor: '#e2e8f0',
+    borderRadius: 0,
+  },
+  roundedLeft: {
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+  },
+  roundedRight: {
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+  },
+  todayButton: {
+    borderWidth: 0,
+    backgroundColor: 'transparent',
+  },
+  todayText: {
+    fontWeight: '600',
+    color: '#4a5568',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pickerContainer: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    maxHeight: 300,
+    width: 200,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  pickerScrollView: {
+    maxHeight: 300,
+  },
+  pickerItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+  },
+  pickerItemSelected: {
+    backgroundColor: '#4a5568',
+  },
+  pickerItemDisabled: {
+    opacity: 0.5,
+  },
+  pickerItemText: {
+    fontSize: 16,
+    color: '#212529',
+    flex: 1,
+  },
+  pickerItemTextSelected: {
+    color: '#ffffff',
+    fontWeight: '600',
+  },
+  pickerItemTextDisabled: {
+    color: '#adb5bd',
+  },
+})
 
 /**
  * Calendar Component (React Native)
@@ -473,237 +704,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     )
   },
 )
-
-const styles = StyleSheet.create({
-  calendar: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    padding: 24,
-    shadowColor: '#636363',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4, // Pour Android
-  },
-  header: {
-    marginBottom: 16,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-    paddingBottom: 16,
-  },
-  navButton: {
-    width: 36,
-    height: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-    backgroundColor: 'transparent',
-  },
-  disabledButton: {
-    opacity: 0.5,
-  },
-  monthYearContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  dropdownContainer: {
-    flexDirection: 'row',
-    gap: 12,
-    justifyContent: 'center',
-  },
-  monthSelector: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#e9ecef',
-    minWidth: 80,
-    alignItems: 'center',
-    height: 30,
-    justifyContent: 'center',
-  },
-  yearSelector: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#e9ecef',
-    minWidth: 70,
-    alignItems: 'center',
-    height: 30,
-    justifyContent: 'center',
-  },
-  selectorContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  selectorText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#495057',
-    flex: 1,
-    textAlign: 'center',
-  },
-  dropdownIcon: {
-    marginLeft: 4,
-    width: 12,
-    height: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  daysLabelRow: {
-    flexDirection: 'row',
-    marginBottom: 8,
-  },
-  dayLabel: {
-    width: 36,
-    alignItems: 'center',
-    paddingVertical: 4,
-    marginHorizontal: 2,
-  },
-  dayLabelText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#6c757d',
-    textTransform: 'uppercase',
-  },
-  body: {
-    gap: 8,
-  },
-  weekRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 0,
-  },
-  emptyDay: {
-    width: 36,
-    height: 36,
-    marginHorizontal: 2,
-  },
-  dayButton: {
-    width: 36,
-    height: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-    marginHorizontal: 2,
-    backgroundColor: 'transparent',
-  },
-  dayText: {
-    fontSize: 14,
-    fontWeight: '400',
-    color: '#212529',
-  },
-  activeDay: {
-    backgroundColor: '#4a5568', // Couleur bleu-gris comme dans l'image
-  },
-  activeDayText: {
-    color: '#ffffff',
-    fontWeight: '600',
-  },
-  disabledDay: {
-    backgroundColor: '#f8f9fa',
-    opacity: 0.6,
-  },
-  disabledDayText: {
-    color: '#adb5bd',
-  },
-  dateStart: {
-    backgroundColor: '#4a5568',
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
-  },
-  dateEnd: {
-    backgroundColor: '#4a5568',
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8,
-    borderTopLeftRadius: 4,
-    borderBottomLeftRadius: 4,
-  },
-  dateInRange: {
-    backgroundColor: '#e2e8f0',
-    borderRadius: 0,
-  },
-  roundedLeft: {
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-  },
-  roundedRight: {
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8,
-  },
-  todayButton: {
-    borderWidth: 0,
-    backgroundColor: 'transparent',
-  },
-  todayText: {
-    fontWeight: '600',
-    color: '#4a5568',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pickerContainer: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    maxHeight: 300,
-    width: 200,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  pickerScrollView: {
-    maxHeight: 300,
-  },
-  pickerItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  pickerItemSelected: {
-    backgroundColor: '#4a5568',
-  },
-  pickerItemDisabled: {
-    opacity: 0.5,
-  },
-  pickerItemText: {
-    fontSize: 16,
-    color: '#212529',
-    flex: 1,
-  },
-  pickerItemTextSelected: {
-    color: '#ffffff',
-    fontWeight: '600',
-  },
-  pickerItemTextDisabled: {
-    color: '#adb5bd',
-  },
-})
 
 Calendar.displayName = ComponentName.Calendar
 export default Calendar
