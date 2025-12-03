@@ -24,6 +24,7 @@ import { LinkProps, LinkRef } from './LinkProps'
  * @param href {string} Href link
  * @param routerLink Custom Router Link as props
  * @param blank Link Target Blank
+ * @param rel {string} Relationship between the current document and the linked document
  * -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
