@@ -1,10 +1,10 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TimelineItemWebProps } from './TimelineItemProps'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import clsx from 'clsx'
+import * as React from 'react'
 import { TimelineMarkerRef } from '../marker/TimelineMarkerProps'
+import { TimelineItemWebProps } from './TimelineItemProps'
 
 /**
  * Timeline Item Component

@@ -1,5 +1,4 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react'
 
 import {
   AutoLayout,
@@ -22,10 +21,11 @@ import {
   TextLevels,
   Title,
   TitleLevels,
+  TrilogyColor,
+  TypographyAlign,
+  TypographyBold,
   View,
-} from '@trilogy-ds/react/components'
-
-import { TrilogyColor, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
+} from '@trilogy-ds/react'
 
 export const TemplateOne = () => {
   return (

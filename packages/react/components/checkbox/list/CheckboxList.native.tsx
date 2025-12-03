@@ -1,13 +1,13 @@
-import { AutoLayoutWrapper } from '@/components/autolayout'
-import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
+import { AutoLayoutWrapper } from '@/components/autolayout/index.native'
+import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix/index.native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { SpacerSize } from '@/components/spacer'
-import { Text } from '@/components/text'
-import * as React from 'react'
-import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
-import { StyleSheet } from 'react-native'
+import { SpacerSize } from '@/components/spacer/index.native'
+import { Text } from '@/components/text/index.native'
 import { isRequiredChild } from '@/helpers/require'
-import { TypographyColor } from '@/objects/Typography'
+import { TypographyColor } from '@/objects/Typography/index.native'
+import * as React from 'react'
+import { StyleSheet } from 'react-native'
+import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps/index.native'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -24,22 +24,26 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param autolayout {boolean} Apply auto-layout rules
  * @param label {string} CheckboxList label
  */
-const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, label }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
-    label: {
-      marginBottom: 8,
-    },
-  })
+const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(
+  ({ children, label }, ref): JSX.Element => {
+    const styles = StyleSheet.create({
+      label: {
+        marginBottom: 8,
+      },
+    })
 
-  return (
-    <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
-      {label && (
-        <Text style={styles.label}>{label} {isRequiredChild(children) && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
-      )}
-      {children}
-    </AutoLayoutWrapper>
-  )
-})
+    return (
+      <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
+        {label && (
+          <Text style={styles.label}>
+            {label} {isRequiredChild(children) && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}
+          </Text>
+        )}
+        {children}
+      </AutoLayoutWrapper>
+    )
+  },
+)
 
 CheckboxList.displayName = ComponentName.CheckboxList
 

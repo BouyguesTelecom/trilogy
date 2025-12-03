@@ -1,7 +1,6 @@
-import { SpacerSize } from '@trilogy-ds/react'
 import {
+  Alignable,
   Checkbox,
-  CheckboxList,
   CheckboxTile,
   CheckboxTiles,
   Column,
@@ -10,10 +9,12 @@ import {
   IconName,
   Section,
   Spacer,
+  SpacerSize,
   Text,
   Title,
-} from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
+} from '@trilogy-ds/react'
+
+import { CheckboxList } from '@trilogy-ds/react/lib/components/checkbox/list'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (
@@ -21,10 +22,10 @@ export const CheckboxScreen = (): JSX.Element => {
       <Container>
         <Title level={4}>Accessibility example</Title>
         <Text id='xx'>How would you like to be contacted ? *</Text>
-        <CheckboxList label='Contact Method' accessibilityLabelledBy='xx'>
+        <CheckboxList accessibilityLabelledBy='xx'>
           <Checkbox name='Email' label='Email' value='Email' checked id='checkbox1' required />
           <Checkbox name='Phone' label='PhoneTéléphone' value='Phone' id='checkbox2' />
-          <Checkbox required name='letter' label='letter' value='letter' disabled id='checkbox3' />
+          <Checkbox name='letter' label='letter' value='letter' disabled id='checkbox3' />
         </CheckboxList>
         <Spacer size={SpacerSize.FIVE} />
 

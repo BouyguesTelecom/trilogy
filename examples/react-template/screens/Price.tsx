@@ -1,5 +1,5 @@
-import { Alignable, TrilogyColor } from '@trilogy-ds/react'
 import {
+  Alignable,
   Column,
   Columns,
   Divider,
@@ -10,8 +10,8 @@ import {
   SpacerSize,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import * as React from 'react'
+  TrilogyColor,
+} from '@trilogy-ds/react'
 
 export const PriceScreen = (): JSX.Element => {
   return (

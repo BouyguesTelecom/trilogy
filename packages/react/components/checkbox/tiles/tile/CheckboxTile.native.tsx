@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { SpacerSize } from '@/components/spacer'
-import { Text, TextLevels } from '@/components/text'
-import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
+import { Icon, IconName, IconSize } from '@/components/icon/index.native'
+import { SpacerSize } from '@/components/spacer/index.native'
+import { Sticker } from '@/components/sticker/index.native'
+import { Text, TextLevels } from '@/components/text/index.native'
+import { View } from '@/components/view/index.native'
+import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects/index.native'
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
-import { Sticker } from '@/components/sticker'
 
 const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (

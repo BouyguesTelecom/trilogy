@@ -9,8 +9,7 @@ import {
   Section,
   Text,
   TextLevels,
-} from '@trilogy-ds/react/components'
-import * as React from 'react'
+} from '@trilogy-ds/react'
 
 export const TextScreen = (): JSX.Element => {
   return (

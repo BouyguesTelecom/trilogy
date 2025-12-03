@@ -1,4 +1,3 @@
-import { TrilogyColor } from '@trilogy-ds/react'
 import {
   Accordion,
   AccordionBody,
@@ -20,7 +19,8 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+  TrilogyColor,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const CardScreen = (): JSX.Element => {

@@ -1,10 +1,10 @@
-import * as React from "react"
-import { StyleSheet, TouchableOpacity } from "react-native"
-import { FabNativeRef, FabProps } from "./FabProps"
-import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "@/objects"
-import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { Text } from "@/components/text"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon/index.native'
+import { Text } from '@/components/text/index.native'
+import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from '@/objects/index.native'
+import * as React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { FabNativeRef, FabProps } from './FabProps'
 
 /**
  * Fab Native Component

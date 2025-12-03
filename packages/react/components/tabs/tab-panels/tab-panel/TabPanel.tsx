@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
 import { TabPanelProps, TabPanelRef } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'

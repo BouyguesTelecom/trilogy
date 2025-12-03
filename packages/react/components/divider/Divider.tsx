@@ -1,6 +1,6 @@
 import { DividerProps, DividerRef } from '@/components/divider/DividerProps'
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'

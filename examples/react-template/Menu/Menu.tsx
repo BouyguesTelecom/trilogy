@@ -4,21 +4,20 @@ import {
   BoxContent,
   Column,
   Columns,
-  Rows,
-  Row,
-  Divider,
   Icon,
   IconName,
   Input,
+  Row,
+  Rows,
   ScrollView,
   Section,
   Text,
   TextLevels,
   Title,
   TitleLevels,
+  TypographyAlign,
   View,
-} from '@trilogy-ds/react/components'
-import { TypographyAlign } from '@trilogy-ds/react/objects'
+} from '@trilogy-ds/react'
 import * as React from 'react'
 import * as Screens from '../screens'
 

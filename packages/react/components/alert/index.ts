@@ -1,4 +1,8 @@
 import Alert, { ToasterAlertProvider } from './Alert'
 import ToasterContext from './context'
 
-export { Alert, ToasterContext, ToasterAlertProvider }
+export * from './AlertEnum'
+export * from './AlertProps'
+
+export { Alert, ToasterAlertProvider, ToasterContext }
+

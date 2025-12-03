@@ -1,10 +1,4 @@
-import * as React from "react";
-import {
-  Section,
-  Title,
-  TitleLevels,
-  Divider,
-} from "@trilogy-ds/react/components";
+import { Divider, Section, Title, TitleLevels } from '@trilogy-ds/react'
 
 export const TitleScreen = (): JSX.Element => {
   return (
@@ -19,5 +13,5 @@ export const TitleScreen = (): JSX.Element => {
       <Title overline>Overline</Title>
       <Divider />
     </Section>
-  );
-};
+  )
+}

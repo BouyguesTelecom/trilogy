@@ -1,9 +1,18 @@
-import { TrilogyColor, View } from '@trilogy-ds/react'
-import { Box, FlexBox, FlexItem, Section, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react/components'
-import { useRef, useState, useEffect } from 'react'
+import {
+  Box,
+  FlexBox,
+  FlexItem,
+  Section,
+  Text,
+  TextLevels,
+  Title,
+  TitleLevels,
+  TrilogyColor,
+  View,
+} from '@trilogy-ds/react'
+import { useEffect, useRef, useState } from 'react'
 
 export const QueryContainerScreen = (): JSX.Element => {
-
   const resizeRef1 = useRef<HTMLDivElement>(null)
   const [isResizing1, setIsResizing1] = useState(false)
   const [width1, setWidth1] = useState(300)
@@ -107,109 +116,110 @@ export const QueryContainerScreen = (): JSX.Element => {
   }
   return (
     <>
-        <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
-          <Title level={TitleLevels.THREE}>Sans CSS Container Queries</Title>
-          <FlexBox>
-            <FlexItem>
-              <FlexBox wrap>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-                <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
-                  <Box>CarteOffreMobile00000</Box>
-                </FlexItem>
-              </FlexBox>
-            </FlexItem>
-            <FlexItem
-              size={3}
-              ref={resizeRef1}
-              style={{
-                width: `${width1}px`,
-                flexBasis: `${width1}px`,
-                flexGrow: 0,
-                flexShrink: 0,
-                position: 'relative',
-                minWidth: '200px',
-                maxWidth: '80%'
-              }}
-            >
-              <Box fullheight backgroundColor={TrilogyColor.MAIN}>
-                <Title inverted level={4}>Assistant Digital</Title>
-              </Box>
-              <div
-                onMouseDown={handleMouseDown1}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '12px',
-                  height: '100%',
-                  cursor: 'col-resize',
-                  background: 'rgba(0, 123, 255, 0.4)',
-                  border: '2px solid #007bff',
-                  zIndex: 11,
-                  borderRadius: '0 4px 4px 0'
-                }}
-                title="Glisser pour redimensionner"
-              />
-            </FlexItem>
-          </FlexBox>
-        </Section>
-      <Section backgroundColor={TrilogyColor.ACCENT_FADE}>
-
-      <Title level={TitleLevels.THREE}>Avec CSS Container Queries</Title>
-      <Text level={TextLevels.TWO}>
-        Container Query size : <strong className='title_410 is-level-3_410'>{containerWidth}px</strong>
-      </Text>
-      <FlexBox>
-        <FlexItem>
-          <View ref={queryContainerRef} className={"query-container_410 has-background-main-fade_410"} >
+      <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+        <Title level={TitleLevels.THREE}>Sans CSS Container Queries</Title>
+        <FlexBox>
+          <FlexItem>
             <FlexBox wrap>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
-              <FlexItem size={{mobile: 12, desktop: 4, tablet: 6, fullHd: 3}}>
+              <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
                 <Box>CarteOffreMobile00000</Box>
               </FlexItem>
             </FlexBox>
-          </View>
-        </FlexItem>
+          </FlexItem>
+          <FlexItem
+            size={3}
+            ref={resizeRef1}
+            style={{
+              width: `${width1}px`,
+              flexBasis: `${width1}px`,
+              flexGrow: 0,
+              flexShrink: 0,
+              position: 'relative',
+              minWidth: '200px',
+              maxWidth: '80%',
+            }}
+          >
+            <Box fullheight backgroundColor={TrilogyColor.MAIN}>
+              <Title inverted level={4}>
+                Assistant Digital
+              </Title>
+            </Box>
+            <div
+              onMouseDown={handleMouseDown1}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '12px',
+                height: '100%',
+                cursor: 'col-resize',
+                background: 'rgba(0, 123, 255, 0.4)',
+                border: '2px solid #007bff',
+                zIndex: 11,
+                borderRadius: '0 4px 4px 0',
+              }}
+              title='Glisser pour redimensionner'
+            />
+          </FlexItem>
+        </FlexBox>
+      </Section>
+      <Section backgroundColor={TrilogyColor.ACCENT_FADE}>
+        <Title level={TitleLevels.THREE}>Avec CSS Container Queries</Title>
+        <Text level={TextLevels.TWO}>
+          Container Query size : <strong className='title_410 is-level-3_410'>{containerWidth}px</strong>
+        </Text>
+        <FlexBox>
+          <FlexItem>
+            <View ref={queryContainerRef} className={'query-container_410 has-background-main-fade_410'}>
+              <FlexBox wrap>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+                <FlexItem size={{ mobile: 12, desktop: 4, tablet: 6, fullhd: 3 }}>
+                  <Box>CarteOffreMobile00000</Box>
+                </FlexItem>
+              </FlexBox>
+            </View>
+          </FlexItem>
           <FlexItem
             size={3}
             ref={resizeRef2}
@@ -220,11 +230,13 @@ export const QueryContainerScreen = (): JSX.Element => {
               flexShrink: 0,
               position: 'relative',
               minWidth: '200px',
-              maxWidth: '80%'
+              maxWidth: '80%',
             }}
           >
             <Box fullheight backgroundColor={TrilogyColor.MAIN}>
-              <Title inverted level={4}>Assistant Digital</Title>
+              <Title inverted level={4}>
+                Assistant Digital
+              </Title>
             </Box>
             <div
               onMouseDown={handleMouseDown2}
@@ -238,15 +250,13 @@ export const QueryContainerScreen = (): JSX.Element => {
                 background: 'rgba(0, 123, 255, 0.4)',
                 border: '2px solid #007bff',
                 zIndex: 11,
-                borderRadius: '0 4px 4px 0'
+                borderRadius: '0 4px 4px 0',
               }}
-              title="Glisser pour redimensionner"
+              title='Glisser pour redimensionner'
             />
           </FlexItem>
-      </FlexBox>
-
-    </Section>
-
+        </FlexBox>
+      </Section>
     </>
   )
 }

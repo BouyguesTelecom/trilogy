@@ -1,6 +1,4 @@
-import { IconName } from '@trilogy-ds/react'
-import { Divider, InputStatus, Section, Textarea } from '@trilogy-ds/react/components'
-import * as React from 'react'
+import { Divider, IconName, InputStatus, Section, Textarea } from '@trilogy-ds/react'
 
 export const TextareaScreen = (): JSX.Element => {
   return (

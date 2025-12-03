@@ -14,8 +14,7 @@ import {
   Text,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import * as React from 'react'
+} from '@trilogy-ds/react'
 
 export const PopoverScreen = (): JSX.Element => {
   return (

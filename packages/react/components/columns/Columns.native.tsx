@@ -3,7 +3,7 @@ import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import { ColumnsContext, ColumnsContextType } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
-import React, { useState, useMemo, useCallback } from 'react'
+import React, { useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
 
 const staticStyles = StyleSheet.create({
@@ -27,11 +27,14 @@ const staticStyles = StyleSheet.create({
  * @param gap {GapSize} Gap between columns
  */
 const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
-  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, ...others }, ref): JSX.Element => {
+  (
+    { children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, ...others },
+    ref,
+  ): JSX.Element => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
-    const onLayoutHandler = useCallback(
+    const onLayoutHandler = React.useCallback(
       (event: LayoutChangeEvent) => {
         if (!width) {
           const { width } = event.nativeEvent.layout
@@ -44,32 +47,38 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
       [fullBleed, width],
     )
 
-    const realGap = useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
+    const realGap = React.useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
 
-    const dynamicStyles = useMemo(() => ({
-      columns: {
-        width: fullBleed && width ? width + enlarge * 2 : '100%' as const,
-        marginHorizontal: -enlarge,
-        paddingHorizontal: enlarge,
-        flexDirection: 'row' as const,
-        gap: realGap,
-        height: fullheight ? '100%' as const : 'auto' as const
-      },
-      verticalAlign: {
-        alignItems: getAlignStyle(verticalAlign) as 'flex-start' | 'flex-end' | 'center' | 'stretch',
-      },
-      scrollContainer: {
-        paddingHorizontal: enlarge,
-        gap: realGap,
-      },
-    }), [fullBleed, width, enlarge, realGap, fullheight, verticalAlign])
+    const dynamicStyles = React.useMemo(
+      () => ({
+        columns: {
+          width: fullBleed && width ? width + enlarge * 2 : ('100%' as const),
+          marginHorizontal: -enlarge,
+          paddingHorizontal: enlarge,
+          flexDirection: 'row' as const,
+          gap: realGap,
+          height: fullheight ? ('100%' as const) : ('auto' as const),
+        },
+        verticalAlign: {
+          alignItems: getAlignStyle(verticalAlign) as 'flex-start' | 'flex-end' | 'center' | 'stretch',
+        },
+        scrollContainer: {
+          paddingHorizontal: enlarge,
+          gap: realGap,
+        },
+      }),
+      [fullBleed, width, enlarge, realGap, fullheight, verticalAlign],
+    )
 
-    const contextValue = useMemo((): ColumnsContextType => ({
-      width,
-      realGap,
-      scrollable: scrollable || false,
-      childrensLength: React.Children.count(children),
-    }), [width, realGap, scrollable, children])
+    const contextValue = React.useMemo(
+      (): ColumnsContextType => ({
+        width,
+        realGap,
+        scrollable: scrollable || false,
+        childrensLength: React.Children.count(children),
+      }),
+      [width, realGap, scrollable, children],
+    )
 
     return (
       <ColumnsContext.Provider value={contextValue}>

@@ -12,3 +12,4 @@ styles/**
 *.stories.tsx
 *jest*
 *snapshotResolver.ts
+tsup.config.ts

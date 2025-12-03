@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { has, is } from '@/services'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getJustifiedClassName } from '@/objects/index'
+import { has, is } from '@/services/index'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ImageProps, ImageRef } from './ImageProps'
 import { ComponentName } from '../enumsComponentsName'
+import { ImageProps, ImageRef } from './ImageProps'
 
 /**
  * Image Component

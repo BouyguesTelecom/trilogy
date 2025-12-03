@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { SpacerProps, SpacerRef } from './SpacerProps'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { SpacerProps, SpacerRef } from './SpacerProps'
 
 /**
  * Spacer Component

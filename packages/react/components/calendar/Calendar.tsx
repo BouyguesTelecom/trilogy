@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
-import translation from '@trilogy-ds/locales/lib/calendar'
+import { calendarLocale } from '@trilogy-ds/locales'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -10,8 +10,8 @@ import { Select, SelectOption } from '../select'
 import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
-const days = [...translation.days]
-const months = [...translation.months]
+const days = [...calendarLocale.days]
+const months = [...calendarLocale.months]
 const currentDate = new Date()
 
 function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] | [] {

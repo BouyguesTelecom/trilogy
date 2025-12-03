@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
 import { Icon, IconName } from '@/components/icon'
-import { PaginationProps, PaginationRef } from './PaginationProps'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { Pager } from './PaginationEnum'
+import React, { useEffect, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { Pager } from './PaginationEnum'
+import { PaginationProps, PaginationRef } from './PaginationProps'
 
 /**
  * Pagination Component

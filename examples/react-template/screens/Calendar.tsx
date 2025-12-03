@@ -1,5 +1,4 @@
-import { Button, Calendar, Column, Columns, Section, Text } from '@trilogy-ds/react/components'
-import { ChangeEventCalendar } from '@trilogy-ds/react/components/calendar/CalendarProps'
+import { Button, Calendar, ChangeEventCalendar, Column, Columns, Section, Text } from '@trilogy-ds/react'
 import { useState } from 'react'
 
 const minDate = new Date(2025, 9, 10)
