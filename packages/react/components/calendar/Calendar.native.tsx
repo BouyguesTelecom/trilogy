@@ -45,8 +45,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       calendar: {
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderRadius: 8,
-        borderColor: 'red',
-        borderWidth: 1,
         padding: 24,
         shadowColor: getColorStyle(TrilogyColor.DISABLED),
         shadowOffset: {
@@ -55,13 +53,11 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         },
         shadowOpacity: 0.2,
         shadowRadius: 8,
-        elevation: 4,
+        elevation: 4
       },
       header: {
         alignContent: 'center',
-        marginBottom: 16,
-        borderColor: 'red',
-        borderWidth: 1,
+        marginBottom: 16
       },
       headerRow: {
         flexDirection: 'row',
