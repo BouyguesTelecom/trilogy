@@ -15,7 +15,7 @@ export const CalendarScreen = (): JSX.Element => {
         <View>
           <Text>Simple Calendar</Text>
           <Button onClick={() => setValue(new Date(2025, 9, 11))} variant='CONVERSION'>
-            Set Date {new Date(2025, 9, 11).toLocaleDateString()}
+            {`Set Date ${new Date(2025, 9, 11).toLocaleDateString()}`}
           </Button>
           <Calendar
             onMonthChange={(e) => console.log(e)}
@@ -31,7 +31,7 @@ export const CalendarScreen = (): JSX.Element => {
         <View>
           <Text>Range Calendar</Text>
           <Button onClick={() => setValues([new Date(2025, 9, 11), new Date(2025, 9, 20)])} variant='CONVERSION'>
-            Set Date [{new Date(2025, 9, 11).toLocaleDateString()}, {new Date(2025, 9, 20).toLocaleDateString()} ]
+            {`Set Date [${new Date(2025, 9, 11).toLocaleDateString()}, ${new Date(2025, 9, 20).toLocaleDateString()} ]`}
           </Button>
           <Calendar
             value={values}
