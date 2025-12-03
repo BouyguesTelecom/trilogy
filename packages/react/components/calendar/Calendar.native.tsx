@@ -1,11 +1,12 @@
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Modal, ScrollView, Text as RNText } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyAlign } from '@/objects'
 
 const days = [...translation.days]
 const months = [...translation.months]
@@ -543,7 +544,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             isToday && styles.todayButton,
           ]}
         >
-          <RNText
+          <Text
+            typo={TypographyAlign.TEXT_CENTERED}
             style={[
               styles.dayText,
               isActive && styles.activeDayText,
@@ -552,7 +554,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             ]}
           >
             {day.getDate()}
-          </RNText>
+          </Text>
         </TouchableOpacity>
       )
     }
@@ -587,7 +589,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowMonthPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <RNText style={styles.selectorText}>{months[visibleMonth.getMonth()]}</RNText>
+                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>{months[visibleMonth.getMonth()]}</Text>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -600,7 +602,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowYearPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <RNText style={styles.selectorText}>{visibleMonth.getFullYear()}</RNText>
+                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>{visibleMonth.getFullYear()}</Text>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -627,7 +629,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           <View style={styles.daysLabelRow}>
             {days.map((day, index) => (
               <View key={index} style={styles.dayLabel}>
-                <RNText style={styles.dayLabelText}>{day.slice(0, 1)}</RNText>
+                <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.dayLabelText}>{day.slice(0, 1)}</Text>
               </View>
             ))}
           </View>
@@ -675,7 +677,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                       }
                     }}
                   >
-                    <Text style={[
+                    <Text
+                    typo={TypographyAlign.TEXT_CENTERED}
+                    style={[
                       styles.pickerItemText,
                       visibleMonth.getMonth() === monthIndex && styles.pickerItemTextSelected,
                       !availableMonths[monthIndex] && styles.pickerItemTextDisabled,
@@ -722,7 +726,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                       }
                     }}
                   >
-                    <Text style={[
+                    <Text
+                    typo={TypographyAlign.TEXT_CENTERED}
+                    style={[
                       styles.pickerItemText,
                       visibleMonth.getFullYear() === year.value && styles.pickerItemTextSelected,
                       !availableYear.includes(year.value) && styles.pickerItemTextDisabled,
