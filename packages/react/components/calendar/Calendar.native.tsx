@@ -7,6 +7,7 @@ import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign } from '@/objects'
+import { get } from 'http'
 
 const days = [...translation.days]
 const months = [...translation.months]
@@ -196,7 +197,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         backgroundColor: mainColor,
       },
       activeDayText: {
-        color: '#ffffff',
+        color: getColorStyle(TrilogyColor.BACKGROUND),
         fontWeight: '600',
         width: '100%',
       },
@@ -205,7 +206,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         opacity: 0.6,
       },
       disabledDayText: {
-        color: '#adb5bd',
+        color: getColorStyle(TrilogyColor.DISABLED),
         width: '100%',
       },
       dateStart: {
@@ -272,7 +273,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         paddingHorizontal: 16,
         paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#f0f0f0',
+        borderBottomColor: getColorStyle(TrilogyColor.BACKGROUND),
       },
       pickerItemSelected: {
         backgroundColor: mainColor,
@@ -282,11 +283,11 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       pickerItemText: {
         fontSize: 16,
-        color: '#212529',
+        color: getColorStyle(TrilogyColor.MAIN),
         flex: 1,
       },
       pickerItemTextSelected: {
-        color: '#ffffff',
+        color: getColorStyle(TrilogyColor.BACKGROUND),
         fontWeight: '600',
       },
       pickerItemTextDisabled: {
