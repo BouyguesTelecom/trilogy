@@ -68,7 +68,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 16,
-        paddingBottom: 16,
+        paddingBottom: 16
       },
       navButton: {
         width: 36,
@@ -78,12 +78,17 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         borderRadius: 4,
         backgroundColor: 'transparent',
       },
+      iconWrapper: {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
       disabledButton: {
         opacity: 0.5,
       },
       monthYearContainer: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
       },
       dropdownContainer: {
         flexDirection: 'row',
@@ -126,6 +131,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         color: '#495057',
         flex: 1,
         textAlign: 'center',
+        textAlignVertical: 'center',
       },
       dropdownIcon: {
         marginLeft: 4,
@@ -563,7 +569,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               accessibilityState={{ disabled: isPrevDisabled }}
               style={[styles.navButton, isPrevDisabled && styles.disabledButton]}
             >
-              <Icon name='tri-arrow-left' />
+              <View style={styles.iconWrapper}>
+                <Icon name='tri-arrow-left' />
+              </View>
             </TouchableOpacity>
 
             <View style={styles.monthYearContainer}>
@@ -575,7 +583,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowMonthPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <Text style={styles.selectorText}>{months[visibleMonth.getMonth()]}</Text>
+                    <RNText style={styles.selectorText}>{months[visibleMonth.getMonth()]}</RNText>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -588,7 +596,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowYearPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <Text style={styles.selectorText}>{visibleMonth.getFullYear()}</Text>
+                    <RNText style={styles.selectorText}>{visibleMonth.getFullYear()}</RNText>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -605,7 +613,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               accessibilityState={{ disabled: isNextDisabled }}
               style={[styles.navButton, isNextDisabled && styles.disabledButton]}
             >
-              <Icon name='tri-arrow-right' />
+              <View style={styles.iconWrapper}>
+                <Icon name='tri-arrow-right' />
+              </View>
             </TouchableOpacity>
           </View>
 
