@@ -46,7 +46,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderRadius: 8,
         padding: 24,
-        shadowColor: '#636363',
+        shadowColor: getColorStyle(TrilogyColor.DISABLED),
         shadowOffset: {
           width: 0,
           height: 2,
