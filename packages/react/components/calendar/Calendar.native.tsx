@@ -7,7 +7,6 @@ import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign } from '@/objects'
-import { get } from 'http'
 
 const days = [...translation.days]
 const months = [...translation.months]
