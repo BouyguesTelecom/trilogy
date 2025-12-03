@@ -319,8 +319,19 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       const firstDayOfMonth = date.getDay()
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
       const allDays: Array<(Date | null)[]> = []
+
+      // Add empty days for the beginning of the month
       for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
+
+      // Add all days of the month
       for (let day = 1; day <= lastDayOfMonth; day++) days.push(new Date(year, month, day))
+
+      // Add empty days to complete the last week (ensure each week has 7 days)
+      while (days.length % 7 !== 0) {
+        days.push(null)
+      }
+
+      // Split into weeks
       for (let i = 0; i < days.length; i += 7) allDays.push(days.slice(i, i + 7))
       return allDays
     }, [])
