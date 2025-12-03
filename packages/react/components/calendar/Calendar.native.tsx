@@ -40,13 +40,20 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     },
     ref,
   ) => {
+    // Get colors at the top level
+    const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const shadowColor = getColorStyle(TrilogyColor.DISABLED)
+    const disabledFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
+    const mainColor = getColorStyle(TrilogyColor.MAIN)
+    const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
+    const disabledColor = getColorStyle(TrilogyColor.DISABLED)
 
-    const styles = StyleSheet.create({
+    const styles = React.useMemo(() => StyleSheet.create({
       calendar: {
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+        backgroundColor,
         borderRadius: 8,
         padding: 24,
-        shadowColor: getColorStyle(TrilogyColor.DISABLED),
+        shadowColor,
         shadowOffset: {
           width: 0,
           height: 2,
@@ -94,10 +101,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       monthSelector: {
         paddingHorizontal: 8,
         paddingVertical: 4,
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+        backgroundColor,
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: getColorStyle(TrilogyColor.DISABLED_FADE),
+        borderColor: disabledFadeColor,
         width: 80,
         alignItems: 'center',
         height: 30,
@@ -106,10 +113,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       yearSelector: {
         paddingHorizontal: 8,
         paddingVertical: 4,
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+        backgroundColor,
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: getColorStyle(TrilogyColor.DISABLED_FADE),
+        borderColor: disabledFadeColor,
         width: 80,
         alignItems: 'center',
         height: 30,
@@ -188,7 +195,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         textAlignVertical: 'center',
       },
       activeDay: {
-        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        backgroundColor: mainColor,
       },
       activeDayText: {
         color: '#ffffff',
@@ -197,7 +204,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         textAlignVertical: 'center',
       },
       disabledDay: {
-        backgroundColor: getColorStyle(TrilogyColor.DISABLED_FADE),
+        backgroundColor: disabledFadeColor,
         opacity: 0.6,
       },
       disabledDayText: {
@@ -206,21 +213,21 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         textAlignVertical: 'center',
       },
       dateStart: {
-        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        backgroundColor: mainColor,
         borderTopLeftRadius: 8,
         borderBottomLeftRadius: 8,
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
       },
       dateEnd: {
-        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        backgroundColor: mainColor,
         borderTopRightRadius: 8,
         borderBottomRightRadius: 8,
         borderTopLeftRadius: 4,
         borderBottomLeftRadius: 4,
       },
       dateInRange: {
-        backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
+        backgroundColor: mainFadeColor,
         borderRadius: 0,
       },
       roundedLeft: {
@@ -237,7 +244,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       todayText: {
         fontWeight: '600',
-        color: getColorStyle(TrilogyColor.MAIN),
+        color: mainColor,
         textAlign: 'center',
         textAlignVertical: 'center',
       },
@@ -274,7 +281,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         borderBottomColor: '#f0f0f0',
       },
       pickerItemSelected: {
-        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        backgroundColor: mainColor,
       },
       pickerItemDisabled: {
         opacity: 0.5,
@@ -289,10 +296,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontWeight: '600',
       },
       pickerItemTextDisabled: {
-        color: getColorStyle(TrilogyColor.DISABLED),
+        color: disabledColor,
       },
-    })
-
+    }), [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor])
     const [visibleMonth, setVisibleMonth] = React.useState<Date>(
       value instanceof Date ? value : value[0] || currentDate,
     )
