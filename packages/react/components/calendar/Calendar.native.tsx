@@ -289,7 +289,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontWeight: '600',
       },
       pickerItemTextDisabled: {
-        color: '#adb5bd',
+        color: getColorStyle(TrilogyColor.DISABLED),
       },
     })
 
