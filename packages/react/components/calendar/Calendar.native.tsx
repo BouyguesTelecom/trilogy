@@ -43,7 +43,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
 
     const styles = StyleSheet.create({
       calendar: {
-        backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderRadius: 8,
         padding: 24,
         shadowColor: '#636363',
