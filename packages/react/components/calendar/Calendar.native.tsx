@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Modal, ScrollView, Text as RNText } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Text } from '../text'
@@ -45,6 +45,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       calendar: {
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderRadius: 8,
+        borderColor: 'red',
+        borderWidth: 1,
         padding: 24,
         shadowColor: getColorStyle(TrilogyColor.DISABLED),
         shadowOffset: {
@@ -56,7 +58,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         elevation: 4,
       },
       header: {
+        alignContent: 'center',
         marginBottom: 16,
+        borderColor: 'red',
+        borderWidth: 1,
       },
       headerRow: {
         flexDirection: 'row',
@@ -167,30 +172,32 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         borderRadius: 4,
         backgroundColor: 'transparent',
         maxWidth: 36,
+        minWidth: 36,
       },
       dayText: {
         fontSize: 14,
         fontWeight: '400',
         color: '#212529',
+        textAlign: 'center',
+        textAlignVertical: 'center',
       },
       activeDay: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
-        alignSelf: 'center',
-        textAlign: 'center',
       },
       activeDayText: {
         color: '#ffffff',
         fontWeight: '600',
+        textAlign: 'center',
+        textAlignVertical: 'center',
       },
       disabledDay: {
-        backgroundColor: '#f8f9fa',
+        backgroundColor: getColorStyle(TrilogyColor.DISABLED_FADE),
         opacity: 0.6,
       },
       disabledDayText: {
         color: '#adb5bd',
+        textAlign: 'center',
+        textAlignVertical: 'center',
       },
       dateStart: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
@@ -207,7 +214,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         borderBottomLeftRadius: 4,
       },
       dateInRange: {
-        backgroundColor: '#e2e8f0',
+        backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
         borderRadius: 0,
       },
       roundedLeft: {
@@ -225,6 +232,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       todayText: {
         fontWeight: '600',
         color: getColorStyle(TrilogyColor.MAIN),
+        textAlign: 'center',
+        textAlignVertical: 'center',
       },
       modalOverlay: {
         flex: 1,
@@ -511,7 +520,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             isToday && styles.todayButton,
           ]}
         >
-          <Text
+          <RNText
             style={[
               styles.dayText,
               isActive && styles.activeDayText,
@@ -520,7 +529,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             ]}
           >
             {day.getDate()}
-          </Text>
+          </RNText>
         </TouchableOpacity>
       )
     }
