@@ -143,7 +143,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       daysLabelRow: {
         flexDirection: 'row',
         marginBottom: 8,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
       },
       dayLabel: {
         flex: 1,
@@ -163,7 +163,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       weekRow: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginBottom: 0,
       },
       emptyDay: {
@@ -171,6 +171,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         height: 36,
         alignItems: 'center',
         justifyContent: 'center',
+        maxWidth: 36,
+        minWidth: 36,
       },
       dayButton: {
         flex: 1,
