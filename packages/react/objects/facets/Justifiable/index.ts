@@ -14,7 +14,7 @@ export enum Justify {
   END = 'END',
   SPACE_BETWEEN = 'SPACE_BETWEEN',
   SPACE_AROUND = 'SPACE_AROUND',
-  SPACE_EVENLY = 'SPACE_EVENLY'
+  SPACE_EVENLY = 'SPACE_EVENLY',
 }
 
 export type JustifiableValues = keyof typeof Justifiable

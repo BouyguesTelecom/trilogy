@@ -12,7 +12,7 @@ export enum Align {
   CENTER = 'CENTER',
   START = 'START',
   END = 'END',
-  STRETCH = 'STRETCH'
+  STRETCH = 'STRETCH',
 }
 
 export type AlignableValues = `${Alignable}`
@@ -42,6 +42,8 @@ export const getAlignClassName = (alignType?: string): string => {
     case 'END':
       return 'aligned-end'
     case 'STRETCH':
+      return 'aligned-stretch'
+    case 'ALIGNED_STRETCH':
       return 'aligned-stretch'
     default:
       return 'aligned-start'

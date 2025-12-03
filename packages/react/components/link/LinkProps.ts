@@ -20,6 +20,7 @@ interface Link extends Accessibility, Clickable, Dev, CommonProps {
   inverted?: boolean
   blank?: boolean
   title?: string
+  rel?: string
 }
 
 export interface LinkProps extends Link {

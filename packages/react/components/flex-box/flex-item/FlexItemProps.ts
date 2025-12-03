@@ -7,8 +7,8 @@ export interface FlexSize {
   tablet?: FlexItemSize
   touch?: FlexItemSize
   desktop?: FlexItemSize
-  wideScreen?: FlexItemSize
-  fullHd?: FlexItemSize
+  widescreen?: FlexItemSize
+  fullhd?: FlexItemSize
 }
 
 /**
