@@ -1,24 +1,20 @@
-import { Align, BoxContent, ButtonVariant, Container, DirectionEnum, Justify, TrilogyColor, TypographyBold, View } from '@trilogy-ds/react'
-import { Box, Button, FlexBox, FlexItem, GapSize, Icon, IconName, IconSize, Section, Switch, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react/components'
+import { TrilogyColor, View } from '@trilogy-ds/react'
+import { Box, FlexBox, FlexItem, Section, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react/components'
 import { useRef, useState, useEffect } from 'react'
 
 export const QueryContainerScreen = (): JSX.Element => {
-  // Pas besoin d'injection de styles CSS
-  // Premier élément redimensionnable
+
   const resizeRef1 = useRef<HTMLDivElement>(null)
   const [isResizing1, setIsResizing1] = useState(false)
   const [width1, setWidth1] = useState(300)
 
-  // Deuxième élément redimensionnable
   const resizeRef2 = useRef<HTMLDivElement>(null)
   const [isResizing2, setIsResizing2] = useState(false)
   const [width2, setWidth2] = useState(350)
 
-  // Référence pour la div query-container_410
   const queryContainerRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
 
-  // Fonction pour mettre à jour la taille du container
   const updateContainerWidth = () => {
     if (queryContainerRef.current) {
       const rect = queryContainerRef.current.getBoundingClientRect()
@@ -26,29 +22,27 @@ export const QueryContainerScreen = (): JSX.Element => {
     }
   }
 
-  // Observer pour détecter les changements de taille
   useEffect(() => {
-    updateContainerWidth() // Taille initiale
-    
+    updateContainerWidth()
+
     if (!queryContainerRef.current) return
 
     const resizeObserver = new ResizeObserver(() => {
       updateContainerWidth()
     })
-    
+
     resizeObserver.observe(queryContainerRef.current)
-    
+
     return () => resizeObserver.disconnect()
   }, [])
 
-  // Logique pour le premier élément
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isResizing1 || !resizeRef1.current) return
-      
+
       const rect = resizeRef1.current.getBoundingClientRect()
       const newWidth = rect.right - e.clientX
-      
+
       if (newWidth >= 200 && newWidth <= window.innerWidth * 0.8) {
         setWidth1(newWidth)
       }
@@ -72,14 +66,13 @@ export const QueryContainerScreen = (): JSX.Element => {
     }
   }, [isResizing1])
 
-  // Logique pour le deuxième élément
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isResizing2 || !resizeRef2.current) return
-      
+
       const rect = resizeRef2.current.getBoundingClientRect()
       const newWidth = rect.right - e.clientX
-      
+
       if (newWidth >= 200 && newWidth <= window.innerWidth * 0.8) {
         setWidth2(newWidth)
       }
@@ -181,7 +174,6 @@ export const QueryContainerScreen = (): JSX.Element => {
           </FlexBox>
         </Section>
       <Section backgroundColor={TrilogyColor.ACCENT_FADE}>
-      {/* Premier FlexBox */}
 
       <Title level={TitleLevels.THREE}>Avec CSS Container Queries</Title>
       <Text level={TextLevels.TWO}>
