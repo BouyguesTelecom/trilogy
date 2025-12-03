@@ -6,23 +6,26 @@ import React from 'react'
 import { View, ViewStyle } from 'react-native'
 
 /**
- * Columns Item Component - Columns Child
+ * Column Component - Columns Child
  * @param children {React.ReactNode}
+ * @param narrow {boolean} Makes the column only as wide as its content.
+ * @param size {number} Size of the column based on a 12-column grid system.
+ * @param verticalAlign { 'top' | 'bottom' | 'center' } Vertical alignment of the column content.
  */
-
-const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
+const Column = React.memo(React.forwardRef<ColumnNativeRef, ColumnProps>(
   ({ children, narrow, size, verticalAlign, ...others }, ref): JSX.Element => {
     const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
+    const calculatedWidth = React.useMemo(() =>
+      size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null,
+      [size, width, realGap, childrensLength]
+    )
+
     const scrollableStyle: ViewStyle = React.useMemo(
       () => ({
-        width: size
-          ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength)
-          : narrow
-          ? 'auto'
-          : width - 2 * realGap,
+        width: calculatedWidth || (narrow ? 'auto' : width - 2 * realGap),
       }),
-      [size, narrow, width, realGap, childrensLength],
+      [calculatedWidth, narrow, width, realGap],
     )
 
     const noScrollableStyle: ViewStyle = React.useMemo(
@@ -30,9 +33,14 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
         flex: narrow ? 0 : 1,
         flexGrow: size || narrow ? 0 : 1,
         flexShrink: narrow ? 1 : 0,
-        flexBasis: size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : 'auto',
+        flexBasis: calculatedWidth || 'auto',
       }),
-      [size, narrow, width, realGap, childrensLength],
+      [narrow, size, calculatedWidth],
+    )
+
+    const justifyContentStyle = React.useMemo(
+      () => ({ justifyContent: getAlignStyle(verticalAlign) as 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' }),
+      [verticalAlign]
     )
 
     return (
@@ -41,7 +49,7 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
         style={[
           scrollable && scrollableStyle,
           !scrollable && noScrollableStyle,
-          { justifyContent: getAlignStyle(verticalAlign) },
+          justifyContentStyle,
         ]}
         {...others}
       >
@@ -49,7 +57,7 @@ const Column = React.forwardRef<ColumnNativeRef, ColumnProps>(
       </View>
     )
   },
-)
+))
 
 Column.displayName = ComponentName.Column
 

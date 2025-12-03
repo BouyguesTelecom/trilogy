@@ -6,3 +6,4 @@ import TabPanel from './tab-panels/tab-panel/TabPanel'
 
 export * from './TabsProps'
 export { Tab, TabList, TabPanel, TabPanels, Tabs }
+

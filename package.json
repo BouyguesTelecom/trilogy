@@ -1,13 +1,13 @@
 {
   "name": "trilogy-ds",
-  "version": "4.7.4",
+  "version": "4.10.0",
   "private": true,
   "license": "UNLICENSED",
   "author": "Bouygues Telecom",
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
-    "prebuild": "npm run build:version",
-    "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
+    "prebuild": "npm run build:version && ./scripts/install-hooks.sh",
+    "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
     "build:storybook": "rimraf docs/storybook/storybook-static && cd docs/storybook && build-storybook",
     "build:control": "node scripts/control-lib-architecture.js",
@@ -35,7 +35,8 @@
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
     "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
     "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
-    "setup": "npm i && npm run build && npm i && npm start"
+    "setup": "npm i && npm run build && npm i && npm start",
+    "postinstall": "./scripts/install-hooks.sh"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
@@ -64,6 +65,7 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@mdx-js/react": "^3.0.1",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
+    "@react-native-community/cli": "^20.0.2",
     "@size-limit/preset-big-lib": "^8.2.6",
     "@storybook/addon-a11y": "^6.5.16",
     "@storybook/addon-actions": "^6.5.16",
@@ -79,6 +81,7 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/react-native": "^12.5.1",
     "@testing-library/user-event": "^13.5.0",
+    "@trilogy-ds/locales": "^4.10.0",
     "@types/color": "^3.0.6",
     "@types/jest": "^29.5.12",
     "@types/node": "^15.14.9",
@@ -114,6 +117,7 @@
     "jest": "^29.7.0",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-util": "^29.7.0",
     "markdownlint": "^0.31.1",
     "metro-react-native-babel-preset": "^0.77.0",
     "mini-css-extract-plugin": "^2.8.1",
@@ -158,6 +162,9 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
     "webpack-iconfont-plugin-nodejs": "^1.0.33"
+  },
+  "overrides": {
+    "@react-native-community/cli": "^20.0.2"
   },
   "workspaces": [
     "packages/react",

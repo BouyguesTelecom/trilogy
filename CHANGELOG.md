@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.0] - 2025-11-24
+- Fix Tab native fullwidth (ui)
+- Add DatePicker component (Web only)
+- Fix Calendar
+- Fix order for flexbox (web)
+
+## [4.12.1] - 2025-11-13
+- Fix native launch
+- Fix rule input security
+
+## [4.12.0] - 2025-11-12
+- Fix fullwidth prop on Tabs component
+- Add fullwidth prop on Tabs component (Native)
+- Add cache fonctionnalities for Image component (Native)
+- Fix input autocapitalize on type password (Web)
+- Add Calendar component (Web only)
+- Fix unselectable text content for Tab (Web)
+
+## [4.11.0] - 2025-10-31
+- Fix Alert behavior out of ScrollView (native)
+- Fix Otp icon (native)
+- Update labels for Checkboxes & Radios (List) component
+- Add securityRules prop to input type password component for increased flexibility. Note: validationRules is deprecated.
+- Fix ListItem native style rule for childrens
+- Columns native performances
+
+## [4.10.1] - 2025-10-20
+- Fix column native
+- Fix List native
+- Fix FlexBox gap
+- Fix tag color
+
+## [4.10.0] - 2025-10-10
+- Add accent fade color
+
+## [4.9.3] - 2025-10-08
+- Fix Icon container native
+- Fix Button disabled native
+- Fix TabList native
+
+## [4.9.2] - 2025-10-02
+- Fix Tag alignement with / without icon (native)
+
+## [4.9.1] - 2025-09-27
+- Fix FlexBox component direction / gap / justify / align
+
 ## [4.9.0] - 2025-09-17
 - Add FlexBox component
 

@@ -43,7 +43,7 @@ jobs:
           npm version --workspace packages/react --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} || echo "Version already set, continuing..."
       - name: Install dependencies
         run: |
-          npm i
+          npm i --legacy-peer-deps
           npm run build
           npm run pages
       - name: Setup Pages

@@ -23,69 +23,64 @@ import { FabProps, FabRef } from './FabProps'
  * @param disabled {boolean} disabled button
  * @param testId {string} Test Id for Test Integration
  **/
-const Fab = React.forwardRef<FabRef, FabProps>(
-  (
-    {
-      children,
-      extended,
-      iconName,
-      accessibilityLabel,
-      onClick,
-      className,
-      id,
-      fixed = true,
-      top,
-      bottom,
-      left,
-      right,
-      disabled,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const [isExtended, setIsExtended] = useState<boolean>(extended || false)
+const Fab = React.forwardRef<FabRef, FabProps>(({
+  children,
+  extended,
+  iconName,
+  accessibilityLabel,
+  onClick,
+  className,
+  id,
+  fixed = true,
+  top,
+  bottom,
+  left,
+  right,
+  disabled,
+  ...others
+}, ref): JSX.Element => {
+  const { styled } = useTrilogyContext()
+  const [isExtended, setIsExtended] = useState<boolean>(extended || false)
 
-    useEffect(() => {
-      setIsExtended(extended || false)
-    }, [isExtended])
+  useEffect(() => {
+    setIsExtended(extended || false)
+  }, [isExtended])
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const positionStyle: React.CSSProperties | any =
-      top || bottom || left || right
-        ? {
-            position: fixed ? 'fixed' : 'absolute',
-            top: top ?? 'auto',
-            bottom: bottom ?? 'auto',
-            left: left ?? 'auto',
-            right: right ?? 'auto',
-          }
-        : {
-            position: 'relative',
-          }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const positionStyle: React.CSSProperties | any =
+    top || bottom || left || right
+      ? {
+          position: fixed ? 'fixed' : 'absolute',
+          top: top ?? 'auto',
+          bottom: bottom ?? 'auto',
+          left: left ?? 'auto',
+          right: right ?? 'auto',
+        }
+      : {
+          position: 'relative',
+        }
 
-    const _className = hashClass(styled, clsx('fab', extended && is('extended'), className))
+  const _className = hashClass(styled, clsx('fab', extended && is('extended'), className))
 
-    return (
-      <button
-        ref={ref}
-        id={id}
-        disabled={disabled}
-        aria-label={accessibilityLabel}
-        onClick={(e) => {
-          onClick?.(e)
-          e.stopPropagation()
-        }}
-        style={{ ...positionStyle }}
-        {...others}
-        className={_className}
-      >
-        <Icon name={iconName as IconName} />
-        {children}
-      </button>
-    )
-  },
-)
+  return (
+    <button
+      ref={ref}
+      id={id}
+      disabled={disabled}
+      aria-label={accessibilityLabel}
+      onClick={(e) => {
+        onClick?.(e)
+        e.stopPropagation()
+      }}
+      style={{ ...positionStyle }}
+      {...others}
+      className={_className}
+    >
+      <Icon name={iconName as IconName} />
+      {children}
+    </button>
+  )
+})
 
 Fab.displayName = ComponentName.Fab
 export default Fab

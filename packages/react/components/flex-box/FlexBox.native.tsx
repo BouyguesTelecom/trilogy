@@ -12,6 +12,8 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
     const isValueDirection = typeof direction === 'string'
+    const isValueAlign = typeof align === 'string'
+    const isValueJustify = typeof justify === 'string'
 
     const onLayoutHandler = React.useCallback(
       (event: LayoutChangeEvent) => {
@@ -31,8 +33,8 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
       columns: {
         flexDirection: !isValueDirection ? direction?.mobile : direction,
         gap: realGap,
-        alignItems: getAlignStyle(align),
-        justifyContent: getJustifyStyle(justify),
+        alignItems: !isValueAlign ? getAlignStyle(align?.mobile) : getAlignStyle(align),
+        justifyContent: !isValueJustify ? getJustifyStyle(justify?.mobile) : getJustifyStyle(justify),
         width: fullBleed && width ? width + enlarge * 2 : '100%',
         marginHorizontal: -enlarge,
         paddingHorizontal: enlarge,

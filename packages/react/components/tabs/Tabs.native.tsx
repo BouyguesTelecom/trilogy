@@ -10,7 +10,7 @@ import { View } from 'react-native'
  * @param activeIndex {number} default active tab index
  * @param inverted {boolean} Inverted style
  */
-const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted }, ref) => {
+const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted, fullwidth }, ref) => {
   const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
   const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
@@ -29,6 +29,7 @@ const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex
         inverted: isInverted,
         setInverted: setIsInverted,
         setActiveIndex: setCurrentIndex,
+        fullwidth,
       }}
     >
       <View ref={ref}>{children}</View>

@@ -13,7 +13,7 @@ import { TableThNativeRef, TableThProps } from './TableThProps'
 const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     tableTh: {
-      flexDirection: 'column',
+      flexDirection: "column",
       flex: 1,
       backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
@@ -22,7 +22,7 @@ const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ..
     },
     title: {
       fontSize: 14,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
   })
 

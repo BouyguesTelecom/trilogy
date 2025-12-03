@@ -14,21 +14,19 @@ import React from 'react'
  * @param testId
  * @param others
  */
-const TabPanels = React.forwardRef<TabPanelsRef, TabPanelsProps>(
-  ({ children, className, id, testId, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('tab-panels', className))
+const TabPanels = React.forwardRef<TabPanelsRef, TabPanelsProps>(({ children, className, id, testId, ...others }, ref) => {
+  const { styled } = useTrilogyContext()
+  const classes = hashClass(styled, clsx('tab-panels', className))
 
-    return (
-      <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) return false
-          return <TabPanel {...child.props} index={index} />
-        })}
-      </div>
-    )
-  },
-)
+  return (
+    <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return false
+        return <TabPanel {...child.props} index={index} />
+      })}
+    </div>
+  )
+})
 
 TabPanels.displayName = ComponentName.TabPanels
 export default TabPanels

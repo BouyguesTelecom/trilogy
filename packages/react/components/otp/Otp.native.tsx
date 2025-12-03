@@ -28,7 +28,6 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
     const [codeInput, setCodeInput] = useState<string>(value || '')
     // eslint-disable-next-line prefer-spread
     const [codeDigitsArray] = useState([...Array(length).keys()])
-
     const [focused, setFocused] = useState(false)
     const color = getColorStyle(disabled ? TrilogyColor.DISABLED : error ? TrilogyColor.ERROR : TrilogyColor.MAIN)
 
@@ -109,7 +108,6 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
       },
       text: {
         paddingLeft: 5,
-        marginBottom: 8,
         color: color,
       },
     })
@@ -137,13 +135,15 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
 
     return (
       <SafeAreaView ref={ref} style={style.container} {...others}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: label ? 8 : undefined }}>
           {Boolean(label) && (
-            <Text style={style.text} level={TextLevels.FOUR}>
-              {label}
-            </Text>
+            <View>
+              <Text style={style.text} level={TextLevels.FOUR}>
+                {label}
+              </Text>
+            </View>
           )}
-          {error && <Icon name={IconName.EXCLAMATION_CIRCLE} color={IconColor.ERROR} size={IconSize.SMALL} />}
+          {error && <Icon name={IconName.EXCLAMATION_CIRCLE} color={IconColor.ERROR} size={IconSize.SMALLER} />}
         </View>
         <Pressable style={style.inputsContainer} onPress={handleOnPress}>
           {codeDigitsArray.map((_item: number, index: number) => (

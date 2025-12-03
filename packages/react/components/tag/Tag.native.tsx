@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconSize } from '@/components/icon/index.native'
+import { Icon, IconColor, IconSize } from '@/components/icon/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import { getStatusStyle } from '@/objects/facets/Status/index.native'
 import React from 'react'
@@ -26,10 +26,11 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'baseline',
+        alignSelf: 'center',
         borderRadius: 15,
         paddingHorizontal: 8,
         paddingVertical: 4,
+        minHeight: small ? 24 : 32,
         backgroundColor:
           (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
           (variant && (backgroundColor as TrilogyColor)) ||
@@ -55,7 +56,12 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
       <View ref={ref} style={styles.tag} {...others}>
         {iconName && (
           <View style={styles.icon}>
-            <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} testId={`${testId}-icon`} />
+            <Icon
+              color={IconColor[variant || IconColor.BACKGROUND]}
+              size={small ? IconSize.SMALLER : IconSize.SMALL}
+              name={iconName}
+              testId={`${testId}-icon`}
+            />
           </View>
         )}
         <Text style={styles.text}>{label}</Text>

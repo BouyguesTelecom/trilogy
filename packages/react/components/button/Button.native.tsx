@@ -90,7 +90,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         justifyContent: 'center',
       },
       textDisabledIcon: {
-        color: getColorStyle(TrilogyColor.DISABLED_FADE),
+        color: getColorStyle(TrilogyColor.DISABLED),
         alignSelf: 'center',
         alignItems: 'center',
         fontWeight: 'bold',

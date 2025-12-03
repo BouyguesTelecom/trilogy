@@ -22,6 +22,7 @@ export enum ComponentName {
   BreadcrumbItem = 'BreadcrumbItem',
   Button = 'Button',
   ButtonList = 'ButtonList',
+  Calendar = 'Calendar',
   ButtonVariant = 'ButtonVariant',
   ButtonMarkup = 'ButtonMarkup',
   ButtonType = 'ButtonType',
@@ -160,4 +161,5 @@ export enum ComponentName {
   Chips = 'Chips',
   ChipsList = 'ChipsList',
   Range = 'Range',
+  DatePicker = 'DatePicker',
 }

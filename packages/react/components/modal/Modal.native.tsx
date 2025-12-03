@@ -71,8 +71,8 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
         {trigger}
         <ModalRN
           isVisible={visible}
-          onBackdropPress={() => handleClose({} as GestureResponderEvent)}
-          onSwipeComplete={handleClose}
+          onBackdropPress={unClosable ? undefined : () => handleClose({} as GestureResponderEvent)}
+          onSwipeComplete={unClosable ? undefined : handleClose}
           swipeDirection={unClosable ? undefined : ['down']}
           scrollTo={handleScrollTo}
           scrollOffset={scrollOffset}
@@ -83,12 +83,12 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
           {...others}
         >
           <View ref={ref} style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
-            <View style={{ paddingVertical: !title && hideCloseButton ? 8 : 16 }}>
+            <View style={{ paddingVertical: !title && (hideCloseButton || unClosable) ? 8 : 16 }}>
               <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
                 <Column>
                   <Title level={4}>{title}</Title>
                 </Column>
-                {!hideCloseButton && (
+                {!hideCloseButton && !unClosable && (
                   <Column narrow>
                     <TouchableOpacity onPress={handleClose}>
                       <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
@@ -97,7 +97,6 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
                 )}
               </Columns>
             </View>
-
             {children}
           </View>
         </ModalRN>

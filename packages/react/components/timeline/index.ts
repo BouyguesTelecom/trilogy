@@ -5,3 +5,4 @@ import Timeline from './Timeline'
 
 export * from './TimelineProps'
 export { Timeline, TimelineContent, TimelineItem, TimelineMarker }
+

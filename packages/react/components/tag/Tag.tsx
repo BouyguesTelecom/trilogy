@@ -34,10 +34,7 @@ const Tag = React.forwardRef<TagRef, TagProps>(
       ),
     )
 
-    const tagIconClassNames = hashClass(
-      styled,
-      clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues))),
-    )
+    const tagIconClassNames = clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)))
 
     return (
       <span ref={ref} id={id} className={tagClassNames} {...others}>

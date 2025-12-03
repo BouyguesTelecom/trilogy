@@ -13,14 +13,7 @@ import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
  * @param absolute {boolean} Absolute position for Menu
  * @param fullwidth {boolean} Fullwidth size for Menu
  */
-const AutoCompleteMenu = ({
-  children,
-  className,
-  id,
-  absolute,
-  fullwidth,
-  testId,
-}: AutoCompleteMenuProps): JSX.Element => {
+const AutoCompleteMenu = ({ children, className, id, absolute, fullwidth, testId }: AutoCompleteMenuProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (

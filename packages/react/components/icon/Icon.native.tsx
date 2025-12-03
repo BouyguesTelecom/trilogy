@@ -84,6 +84,12 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
       icon: {
         transform: isIOS ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
       },
+      iconContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: defaultSize,
+        height: defaultSize
+      },
       stretched: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -157,7 +163,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
         )
       } else {
         iconView = (
-          <View {...others}>
+          <View style={styles.iconContainer} {...others}>
             <WithLocalSvg
               style={[styles.icon, style]}
               asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}

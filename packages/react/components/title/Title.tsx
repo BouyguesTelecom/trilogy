@@ -58,59 +58,54 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * - --------------- NATIVE PROPERTIES ----------------------------------
  * @param style {object} Additional styles
  */
-const Title = React.forwardRef<TitleRef, TitleProps>(
-  (
-    {
-      level = TitleLevels.ONE,
-      markup,
-      children,
-      className,
-      id,
+const Title = React.forwardRef<TitleRef, TitleProps>(({
+  level = TitleLevels.ONE,
+  markup,
+  children,
+  className,
+  id,
+  typo,
+  skeleton,
+  inverted,
+  onClick,
+  accessibilityLabel,
+  subtitle,
+  overline,
+  marginless,
+  ...others
+}, ref): JSX.Element => {
+  const { styled } = useTrilogyContext()
+
+  const classes = hashClass(
+    styled,
+    clsx(
+      'title',
+      level && getTitleLevel(level),
       typo,
-      skeleton,
-      inverted,
-      onClick,
-      accessibilityLabel,
-      subtitle,
-      overline,
-      marginless,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
-    const { styled } = useTrilogyContext()
+      skeleton && is('loading'),
+      inverted && is('inverted'),
+      marginless && is('marginless'),
+      className,
+    ),
+  )
 
-    const classes = hashClass(
-      styled,
-      clsx(
-        'title',
-        level && getTitleLevel(level),
-        typo,
-        skeleton && is('loading'),
-        inverted && is('inverted'),
-        marginless && is('marginless'),
-        className,
-      ),
-    )
+  const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
+  const overlineClasses = hashClass(styled, clsx('overline', typo, className))
 
-    const subtitleClasses = hashClass(styled, clsx('subtitle', typo, className))
-    const overlineClasses = hashClass(styled, clsx('overline', typo, className))
+  const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
 
-    const Tag = markup && isCorrectMarkup(markup) ? markup : 'p'
+  const getClassname = () => {
+    if (subtitle) return subtitleClasses
+    if (overline) return overlineClasses
+    return classes
+  }
 
-    const getClassname = () => {
-      if (subtitle) return subtitleClasses
-      if (overline) return overlineClasses
-      return classes
-    }
-
-    return (
-      <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
-        {children}
-      </Tag>
-    )
-  },
-)
+  return (
+    <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
+      {children}
+    </Tag>
+  )
+})
 
 Title.displayName = ComponentName.Title
 export default Title

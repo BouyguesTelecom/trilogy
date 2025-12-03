@@ -5,7 +5,7 @@ import { Animated, DimensionValue, Easing } from 'react-native'
 import CircularProgress from './CircularProgress'
 
 interface AnimatedCircularProgressProps {
-  children?: ReactNode
+  children?: any
   size?: number
   width?: number
   fill?: DimensionValue

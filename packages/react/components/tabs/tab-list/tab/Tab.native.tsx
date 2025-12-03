@@ -3,6 +3,7 @@ import { Icon } from '@/components/icon/index.native'
 import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text/index.native'
+import { TypographyAlign } from '@/objects/Typography/index.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React from 'react'
 import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
@@ -21,7 +22,7 @@ import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } fr
 const Tab = React.forwardRef<TabNativeRef, TabProps>(
   ({ active, onClick, to, href, iconName, label, disabled, ...others }, ref) => {
     const { index, ...props } = others as any
-    const { activeIndex, setActiveIndex, inverted } = React.useContext(TabsContext)
+    const { activeIndex, setActiveIndex, inverted, fullwidth } = React.useContext(TabsContext)
     const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
 
     const handleClick = React.useCallback(
@@ -37,6 +38,9 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
 
     const styles = StyleSheet.create({
       tab: {
+        flex: fullwidth ? 1 : undefined,
+        flexBasis: fullwidth ? 0 : undefined,
+        minWidth: fullwidth ? 0 : undefined,
         paddingVertical: 4,
         paddingHorizontal: 12,
         borderBottomWidth: isActive ? 2 : 1,
@@ -53,6 +57,10 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
       text: {
         textAlign: 'center',
         color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
+        ...(fullwidth && {
+          flex: 1,
+          flexShrink: 1,
+        }),
       },
     })
 
@@ -71,7 +79,13 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
             />
           </View>
         )}
-        <Text style={styles.text}>{label && label}</Text>
+        <Text
+          style={styles.text}
+          typo={fullwidth ? [TypographyAlign.TEXT_CENTERED] : undefined}
+          numberOfLines={fullwidth ? 1 : undefined}
+        >
+          {label && label}
+        </Text>
       </TouchableOpacity>
     )
   },

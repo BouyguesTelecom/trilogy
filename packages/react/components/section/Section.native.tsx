@@ -11,38 +11,36 @@ import { SectionNativeRef, SectionProps } from './SectionProps'
  * @param backgroundSrc {string} Source of background Image
  * @param paddingless {boolean} remove padding
  **/
-const Section = React.forwardRef<SectionNativeRef, SectionProps>(
-  ({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
-    const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
+const Section = React.forwardRef<SectionNativeRef, SectionProps>(({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
+  const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
-    const styles = StyleSheet.create({
-      container: {
-        backgroundColor: backgroundSrc ? undefined : backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-        paddingVertical: 32,
-        paddingHorizontal: 24,
-      },
-    })
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: backgroundSrc ? undefined : backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
+      paddingVertical: 32,
+      paddingHorizontal: 24,
+    },
+  })
 
-    if (backgroundSrc) {
-      return (
-        <ImageBackground
-          resizeMode='cover'
-          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-        >
-          <View ref={ref} style={[styles.container, style]} {...others}>
-            {children}
-          </View>
-        </ImageBackground>
-      )
-    }
-
+  if (backgroundSrc) {
     return (
-      <View ref={ref} style={[styles.container, style]} {...others}>
-        {children}
-      </View>
+      <ImageBackground
+        resizeMode='cover'
+        source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+      >
+        <View ref={ref} style={[styles.container, style]} {...others}>
+          {children}
+        </View>
+      </ImageBackground>
     )
-  },
-)
+  }
+
+  return (
+    <View ref={ref} style={[styles.container, style]} {...others}>
+      {children}
+    </View>
+  )
+})
 
 Section.displayName = ComponentName.Section
 export default Section

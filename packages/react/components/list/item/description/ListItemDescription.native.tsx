@@ -8,15 +8,15 @@ import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from './ListIt
  * ListItemDescription Component
  * @param children {React.ReactNode}
  */
-const ListItemDescription = React.forwardRef<ListItemDescriptionNativeRef, ListItemDescriptionProps>(
-  ({ children }, ref): JSX.Element => {
-    if (['string', 'number'].includes(typeof children)) {
-      return <Text>{children}</Text>
-    }
+const ListItemDescription = React.forwardRef<ListItemDescriptionNativeRef, ListItemDescriptionProps>(({
+  children,
+}, ref): JSX.Element => {
+  if (["string", "number"].includes(typeof children)) {
+    return <Text>{children}</Text>
+  }
 
-    return <View ref={ref}>{children}</View>
-  },
-)
+  return <View ref={ref}>{children}</View>
+})
 
 ListItemDescription.displayName = ComponentName.ListItemDescription
 

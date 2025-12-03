@@ -25,7 +25,7 @@ import {
  * @param others
  */
 const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
-  const { inverted } = React.useContext(TabsContext)
+  const { inverted, fullwidth } = React.useContext(TabsContext)
   const TabListRef = React.useRef<ScrollView>(null)
   const paddingHorizontalTab = 12
   const negativeGap = -35
@@ -47,7 +47,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
   })
 
   const isVisibleArrowLeft = React.useMemo(() => {
-    if (!tabElms.length) return false
+    if (!tabElms.length || !tabElms[0]) return false
     return scrollLeft > tabElms[0].width / 2
   }, [tabElms, scrollLeft])
 
@@ -100,13 +100,18 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
         </View>
       )}
       <ScrollView
+        scrollEnabled={fullwidth ? false : undefined}
         ref={TabListRef}
         scrollEventThrottle={16}
         onContentSizeChange={(w) => setTabListWidth(w)}
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.tabList}
+        style={[styles.tabList, fullwidth && { flex: 1 }]}
         onScroll={handleScrollList}
+        contentContainerStyle={{
+          flexGrow: fullwidth ? 1 : undefined,
+          flex: fullwidth ? 1 : undefined,
+        }}
         {...others}
       >
         {React.Children.map(children, (child, index) => {

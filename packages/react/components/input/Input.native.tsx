@@ -28,8 +28,10 @@ import {
   InputTextContentType,
   InputType,
 } from './InputEnum'
-import { InputNativeProps, InputNativeRef } from './InputProps'
+import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
+
+export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
  * Input Native Component
@@ -92,6 +94,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       iconNameLeft,
       iconNameRight,
       securityGauge,
+      securityRules,
       validationRules,
       onIconClick,
       required,
@@ -545,7 +548,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           </Text>
         )}
         {type === InputType.PASSWORD && securityGauge && (
-          <InputGauge validationRules={validationRules} inputValue={value} />
+          <InputGauge securityRules={securityRules} validationRules={validationRules} inputValue={value} />
         )}
       </View>
     )

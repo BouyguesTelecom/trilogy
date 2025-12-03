@@ -19,43 +19,49 @@ import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
  */
-const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(
-  (
-    { children, className, id, active, arrowDirection, arrowAlign, closeable, avatarSrc, avatarDirection, ...others },
-    ref,
-  ): JSX.Element => {
-    const [display, setDisplay] = useState<boolean>(active || false)
-    const { styled } = useTrilogyContext()
+const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(({
+  children,
+  className,
+  id,
+  active,
+  arrowDirection,
+  arrowAlign,
+  closeable,
+  avatarSrc,
+  avatarDirection,
+  ...others
+}, ref): JSX.Element => {
+  const [display, setDisplay] = useState<boolean>(active || false)
+  const { styled } = useTrilogyContext()
 
-    useEffect(() => {
-      setDisplay(active || false)
-    }, [active])
+  useEffect(() => {
+    setDisplay(active || false)
+  }, [active])
 
-    const classes = hashClass(
-      styled,
-      clsx('product-tour', display && is('active'), avatarDirection && has(`icon-${avatarDirection}`), className),
-    )
+  const classes = hashClass(
+    styled,
+    clsx('product-tour', display && is('active'), avatarDirection && has(`icon-${avatarDirection}`), className),
+  )
 
-    return (
-      <div ref={ref} id={id} className={classes} {...others}>
-        {arrowDirection && (
-          <div className={hashClass(styled, clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />
-        )}
-        {avatarSrc && (
-          <span className={hashClass(styled, clsx('icon', is('medium')))}>
-            <img className={hashClass(styled, clsx(is('rounded')))} src={avatarSrc} />
-          </span>
-        )}
-        {closeable && (
-          <div style={{ cursor: 'pointer' }} onClick={() => setDisplay(!display)}>
-            <Icon size={IconSize.SMALL} name={IconName.TIMES} className='close' />
-          </div>
-        )}
-        <div className={hashClass(styled, clsx('product-tour-content'))}>{children}</div>
-      </div>
-    )
-  },
-)
+  return (
+    <div ref={ref} id={id} className={classes} {...others}>
+      {arrowDirection && (
+        <div className={hashClass(styled, clsx('arrow', is(arrowDirection), arrowAlign && is(arrowAlign)))} />
+      )}
+      {avatarSrc && (
+        <span className={hashClass(styled, clsx('icon', is('medium')))}>
+          <img className={hashClass(styled, clsx(is('rounded')))} src={avatarSrc} />
+        </span>
+      )}
+      {closeable && (
+        <div style={{ cursor: 'pointer' }} onClick={() => setDisplay(!display)}>
+          <Icon size={IconSize.SMALL} name={IconName.TIMES} className='close' />
+        </div>
+      )}
+      <div className={hashClass(styled, clsx('product-tour-content'))}>{children}</div>
+    </div>
+  )
+})
 
 ProductTour.displayName = ComponentName.ProductTour
 export default ProductTour

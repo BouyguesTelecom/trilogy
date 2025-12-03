@@ -16,21 +16,25 @@ import { TimelineMarkerRef, TimelineMarkerWebProps } from './TimelineMarkerProps
  * @param className {string} Additional CSS Classes
  * @param iconClassname {string} Additional CSS Classes for icon
  */
-const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(
-  ({ className, id, iconClassname, iconName, ...others }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
-    const iconClasses = clsx(iconClassname)
+const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(({
+  className,
+  id,
+  iconClassname,
+  iconName,
+  ...others
+}, ref): JSX.Element => {
+  const { styled } = useTrilogyContext()
+  const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
+  const iconClasses = clsx(iconClassname)
 
-    return (
-      <div ref={ref} id={id} className={classes} {...others}>
-        <div className='card-header-icon'>
-          <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
-        </div>
+  return (
+    <div ref={ref} id={id} className={classes} {...others}>
+      <div className='card-header-icon'>
+        <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
       </div>
-    )
-  },
-)
+    </div>
+  )
+})
 
 TimelineMarker.displayName = ComponentName.TimelineMarker
 export default TimelineMarker

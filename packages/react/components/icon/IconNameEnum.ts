@@ -5,6 +5,7 @@ export enum IconName {
   ARROW_RIGHT = 'tri-arrow-right',
   ARROW_UP = 'tri-arrow-up',
   BELL = 'tri-bell',
+  CALENDAR = 'tri-calendar',
   CHECK_CIRCLE = 'tri-check-circle',
   CHECK = 'tri-check',
   EXCLAMATION_CIRCLE = 'tri-exclamation-circle',
