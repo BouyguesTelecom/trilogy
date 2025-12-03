@@ -407,11 +407,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         setActiveDate(newActiveDate)
         setDateEndHovered(undefined)
         onChange && onChange(newActiveDate)
-
-        // Announce selection for accessibility
-        AccessibilityInfo.announceForAccessibility(
-          `Date sélectionnée: ${newDate.toLocaleDateString()}`
-        )
       },
       [onChange, readOnly, activeDate, isRange],
     )
@@ -494,7 +489,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           }}
           accessible={true}
           accessibilityRole="button"
-          accessibilityLabel={`${day.getDate()} ${months[day.getMonth()]} ${day.getFullYear()}${isActive ? ', sélectionné' : ''}${isDisabled ? ', désactivé' : ''}${isToday ? ', aujourd\'hui' : ''}`}
           accessibilityState={{
             selected: isActive,
             disabled: isDisabled,
