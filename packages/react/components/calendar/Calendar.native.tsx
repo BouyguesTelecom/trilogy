@@ -671,7 +671,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                     }}
                   >
                     <Text
-                    typo={TypographyAlign.TEXT_CENTERED}
+                    typo={TypographyAlign.TEXT_LEFT}
                     style={[
                       styles.pickerItemText,
                       visibleMonth.getMonth() === monthIndex && styles.pickerItemTextSelected,
@@ -720,7 +720,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                     }}
                   >
                     <Text
-                    typo={TypographyAlign.TEXT_CENTERED}
+                    typo={TypographyAlign.TEXT_LEFT}
                     style={[
                       styles.pickerItemText,
                       visibleMonth.getFullYear() === year.value && styles.pickerItemTextSelected,
