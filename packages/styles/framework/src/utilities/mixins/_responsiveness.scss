@@ -6,13 +6,13 @@
 }
 
 @mixin until($device) {
-  @media screen and (max-width: $device - 1px) {
+  @media screen and (max-width: #{$device - 1px}) {
     @content;
   }
 }
 
 @mixin mobile {
-  @media screen and (max-width: $tablet - 1px) {
+  @media screen and (max-width: #{$tablet - 1px}) {
     @content;
   }
 }
@@ -24,13 +24,13 @@
 }
 
 @mixin tablet-only {
-  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+  @media screen and (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
     @content;
   }
 }
 
 @mixin touch {
-  @media screen and (max-width: $desktop - 1px) {
+  @media screen and (max-width: #{$desktop - 1px}) {
     @content;
   }
 }
@@ -42,13 +42,13 @@
 }
 
 @mixin desktop-only {
-  @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px) {
+  @media screen and (min-width: #{$desktop}) and (max-width: #{$widescreen - 1px}) {
     @content;
   }
 }
 
 @mixin until-widescreen {
-  @media screen and (max-width: $widescreen - 1px) {
+  @media screen and (max-width: #{$widescreen - 1px}) {
     @content;
   }
 }
@@ -60,13 +60,13 @@
 }
 
 @mixin widescreen-only {
-  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+  @media screen and (min-width: #{$widescreen}) and (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
 
 @mixin until-fullhd {
-  @media screen and (max-width: $fullhd - 1px) {
+  @media screen and (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
@@ -78,7 +78,97 @@
 }
 
 @mixin all-desktop-only {
-  @media screen and (min-width: $desktop) and (max-width: $fullhd - 1px) {
+  @media screen and (min-width: #{$desktop}) and (max-width: #{$fullhd - 1px}) {
     @content;
   }
 }
+
+// Responsive for container queries
+.query-container {
+  container-type: inline-size;
+}
+
+@mixin container-from($device) {
+  @container (min-width: #{$device}) {
+    @content;
+  }
+}
+
+@mixin container-until($device) {
+  @container (max-width: #{$device - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-mobile {
+  @container (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-tablet {
+  @container (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin container-tablet-only {
+  @container (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-touch {
+  @container (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-desktop {
+  @container (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin container-desktop-only {
+  @container (min-width: #{$desktop}) and (max-width: #{$widescreen - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-until-widescreen {
+  @container (max-width: #{$widescreen - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-widescreen {
+  @container (min-width: #{$widescreen}) {
+    @content;
+  }
+}
+
+@mixin container-widescreen-only {
+  @container (min-width: #{$widescreen}) and (max-width: #{$fullhd - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-until-fullhd {
+  @container (max-width: #{$fullhd - 1px}) {
+    @content;
+  }
+}
+
+@mixin container-fullhd {
+  @container (min-width: #{$fullhd}) {
+    @content;
+  }
+}
+
+@mixin container-all-desktop-only {
+  @container (min-width: #{$desktop}) and (max-width: #{$fullhd - 1px}) {
+    @content;
+  }
+}
+

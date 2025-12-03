@@ -1,33 +1,24 @@
-import {
-  Align,
-  BoxContent,
-  ButtonVariant,
-  DirectionEnum,
-  Justify,
-  TrilogyColor,
-  TypographyBold,
-} from '@trilogy-ds/react'
-import {
-  Box,
-  Button,
-  FlexBox,
-  FlexItem,
-  GapSize,
-  Icon,
-  IconName,
-  IconSize,
-  Section,
-  Text,
-  TextLevels,
-  Title,
-  Switch,
-  TitleLevels,
-} from '@trilogy-ds/react/components'
+import { Align, BoxContent, ButtonVariant, Container, DirectionEnum, Justify, TrilogyColor, TypographyBold } from '@trilogy-ds/react'
+import { Box, Button, FlexBox, FlexItem, GapSize, Icon, IconName, IconSize, Section, Switch, Text, TextLevels, Title, TitleLevels } from '@trilogy-ds/react/components'
 
 export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+      <Container className="container_410">
+        <Title level={TitleLevels.THREE}>Container Query Test</Title>
+        <FlexBox wrap={{fullhd : true}} gap={GapSize.FOUR}>
+          <FlexItem size={{tablet: 10}}>
+            <Box>Size 10 desktop</Box>
+          </FlexItem>
+          <FlexItem size={{tablet: 3}}>
+            <Box>Size 3 desktop</Box>
+          </FlexItem>
+        </FlexBox>
+      </Container>
+
+
       <Title level={TitleLevels.FIVE}>Align elements</Title>
+
 
       <FlexBox direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.ROW, desktop: DirectionEnum.COLUMN }}>
         <FlexItem size={{ tablet: 4, mobile: 4 }}>
