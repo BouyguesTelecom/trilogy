@@ -647,11 +647,12 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           animationType="fade"
           onRequestClose={() => setShowMonthPicker(false)}
         >
-          <TouchableOpacity
-            style={styles.modalOverlay}
-            activeOpacity={1}
-            onPress={() => setShowMonthPicker(false)}
-          >
+          <View style={styles.modalOverlay}>
+            <TouchableOpacity
+              style={StyleSheet.absoluteFillObject}
+              activeOpacity={1}
+              onPress={() => setShowMonthPicker(false)}
+            />
             <View style={styles.pickerContainer}>
               <ScrollView style={styles.pickerScrollView}>
                 {months.map((monthName, monthIndex) => (
@@ -686,7 +687,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                 ))}
               </ScrollView>
             </View>
-          </TouchableOpacity>
+          </View>
         </Modal>
 
         {/* Year Picker Modal */}
@@ -696,11 +697,12 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           animationType="fade"
           onRequestClose={() => setShowYearPicker(false)}
         >
-          <TouchableOpacity
-            style={styles.modalOverlay}
-            activeOpacity={1}
-            onPress={() => setShowYearPicker(false)}
-          >
+          <View style={styles.modalOverlay}>
+            <TouchableOpacity
+              style={StyleSheet.absoluteFillObject}
+              activeOpacity={1}
+              onPress={() => setShowYearPicker(false)}
+            />
             <View style={styles.pickerContainer}>
               <ScrollView style={styles.pickerScrollView}>
                 {yearsBetween.map((year) => (
@@ -735,7 +737,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                 ))}
               </ScrollView>
             </View>
-          </TouchableOpacity>
+          </View>
         </Modal>
       </View>
     )
