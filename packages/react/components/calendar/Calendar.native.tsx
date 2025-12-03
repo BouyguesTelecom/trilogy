@@ -175,6 +175,11 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       activeDay: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center',
       },
       activeDayText: {
         color: '#ffffff',
@@ -219,7 +224,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       todayText: {
         fontWeight: '600',
-        color: '#4a5568',
+        color: getColorStyle(TrilogyColor.MAIN),
       },
       modalOverlay: {
         flex: 1,
