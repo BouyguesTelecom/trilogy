@@ -149,6 +149,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontWeight: '600',
         color: '#6c757d',
         textTransform: 'uppercase',
+        textAlign: 'center',
+        textAlignVertical: 'center',
       },
       body: {
         gap: 8,
@@ -600,7 +602,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           <View style={styles.daysLabelRow}>
             {days.map((day, index) => (
               <View key={index} style={styles.dayLabel}>
-                <Text style={styles.dayLabelText}>{day.slice(0, 1)}</Text>
+                <RNText style={styles.dayLabelText}>{day.slice(0, 1)}</RNText>
               </View>
             ))}
           </View>
