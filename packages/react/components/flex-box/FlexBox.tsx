@@ -79,7 +79,7 @@ const generateWrapClassNames = ({ value, getClassName }: GetWrapClassesProp): st
  * @param fullheight {boolean} Full height (height: 100%)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -93,6 +93,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         ...generateWrapClassNames({ value: wrap, getClassName: (val) => is(`wrap`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),
+        mobile && is('mobile'),
         className,
       ]),
     )

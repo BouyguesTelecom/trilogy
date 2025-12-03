@@ -725,6 +725,7 @@
     }
 
     @include mobile {
+      &.has-gap-#{$i},
       &.has-gap-#{$i}-mobile {
         gap: $item;
 
@@ -754,6 +755,7 @@
       }
     }
     @include widescreen {
+      &.has-gap-#{$i},
       &.has-gap-#{$i}-widescreen {
         gap: $item;
 
@@ -763,6 +765,7 @@
       }
     }
     @include fullhd {
+      &.has-gap-#{$i},
       &.has-gap-#{$i}-fullhd {
         gap: $item;
 
