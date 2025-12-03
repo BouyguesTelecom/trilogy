@@ -134,8 +134,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontWeight: '500',
         color: '#495057',
         flex: 1,
-        textAlign: 'center',
-        textAlignVertical: 'center',
+        width: '100%',
       },
       dropdownIcon: {
         marginLeft: 4,
@@ -159,8 +158,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontWeight: '600',
         color: '#6c757d',
         textTransform: 'uppercase',
-        textAlign: 'center',
-        textAlignVertical: 'center',
+        width: '100%',
       },
       body: {
         gap: 8,
@@ -192,8 +190,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontSize: 14,
         fontWeight: '400',
         color: '#212529',
-        textAlign: 'center',
-        textAlignVertical: 'center',
+        width: '100%',
       },
       activeDay: {
         backgroundColor: mainColor,
@@ -201,8 +198,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       activeDayText: {
         color: '#ffffff',
         fontWeight: '600',
-        textAlign: 'center',
-        textAlignVertical: 'center',
+        width: '100%',
       },
       disabledDay: {
         backgroundColor: disabledFadeColor,
@@ -210,8 +206,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       disabledDayText: {
         color: '#adb5bd',
-        textAlign: 'center',
-        textAlignVertical: 'center',
+        width: '100%',
       },
       dateStart: {
         backgroundColor: mainColor,
@@ -246,8 +241,6 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       todayText: {
         fontWeight: '600',
         color: mainColor,
-        textAlign: 'center',
-        textAlignVertical: 'center',
       },
       modalOverlay: {
         flex: 1,
