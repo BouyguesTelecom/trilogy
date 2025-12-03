@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, AccessibilityInfo, Modal, ScrollView } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Text } from '../text'
@@ -132,12 +132,12 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       daysLabelRow: {
         flexDirection: 'row',
         marginBottom: 8,
+        justifyContent: 'space-around',
       },
       dayLabel: {
-        width: 36,
+        flex: 1,
         alignItems: 'center',
         paddingVertical: 4,
-        marginHorizontal: 2,
       },
       dayLabelText: {
         fontSize: 12,
@@ -150,22 +150,23 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       weekRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         marginBottom: 0,
       },
       emptyDay: {
-        width: 36,
+        flex: 1,
         height: 36,
-        marginHorizontal: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       dayButton: {
-        width: 36,
+        flex: 1,
         height: 36,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 4,
-        marginHorizontal: 2,
         backgroundColor: 'transparent',
+        maxWidth: 36,
       },
       dayText: {
         fontSize: 14,
@@ -173,7 +174,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         color: '#212529',
       },
       activeDay: {
-        backgroundColor: '#4a5568',
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
       },
       activeDayText: {
         color: '#ffffff',
@@ -187,14 +188,14 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         color: '#adb5bd',
       },
       dateStart: {
-        backgroundColor: '#4a5568',
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
         borderTopLeftRadius: 8,
         borderBottomLeftRadius: 8,
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
       },
       dateEnd: {
-        backgroundColor: '#4a5568',
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
         borderTopRightRadius: 8,
         borderBottomRightRadius: 8,
         borderTopLeftRadius: 4,
@@ -253,7 +254,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         borderBottomColor: '#f0f0f0',
       },
       pickerItemSelected: {
-        backgroundColor: '#4a5568',
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
       },
       pickerItemDisabled: {
         opacity: 0.5,
