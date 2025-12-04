@@ -105,9 +105,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
-      // Ajuster pour commencer par lundi : getDay() retourne 0=dimanche, 1=lundi, etc.
-      // On veut 0=lundi, 1=mardi, etc.
-      const firstDayOfMonth = (date.getDay() + 6) % 7 // Convertir dimanche=0 vers dimanche=6
+      const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
       const allDays: Array<(Date | null)[]> = []
       for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
