@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Modal, ScrollView, Platform } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Text } from '../text'
@@ -68,7 +68,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         },
         shadowOpacity: 0.2,
         shadowRadius: 8,
-        elevation: 4
+        elevation: 4,
+        width: Platform.OS === 'ios' ? '85%' : '75%',
+        alignSelf: 'center'
       },
       header: {
         alignContent: 'center',
