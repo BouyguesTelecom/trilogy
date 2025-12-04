@@ -289,16 +289,16 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       pickerItemText: {
         fontSize: 16,
-        color: mainColor,
+        color: '#212529',
         flex: 1,
-        lineHeight: 0,
+        lineHeight: 20,
       },
       pickerItemTextSelected: {
-        color: backgroundColor,
+        color: '#ffffff',
         fontWeight: '600',
       },
       pickerItemTextDisabled: {
-        color: disabledColor,
+        color: '#6c757d',
       },
     }), [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor])
 
