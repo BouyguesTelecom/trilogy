@@ -443,7 +443,12 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     React.useEffect(() => {
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)
-      if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
+      if (!(value instanceof Date) && value[0]) {
+        if (value[1]) {
+          return setVisibleMonth(value[1])
+        }
+        return setVisibleMonth(value[0])
+      }
     }, [value])
 
     const renderDayButton = (day: Date | null, dayIndex: number) => {
