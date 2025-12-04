@@ -34,7 +34,7 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
-    const onLayoutHandler = React.useCallback(
+    const onLayoutHandler = useCallback(
       (event: LayoutChangeEvent) => {
         if (!width) {
           const { width } = event.nativeEvent.layout
@@ -47,9 +47,9 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
       [fullBleed, width],
     )
 
-    const realGap = React.useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
+    const realGap = useMemo(() => (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize], [gap])
 
-    const dynamicStyles = React.useMemo(
+    const dynamicStyles = useMemo(
       () => ({
         columns: {
           width: fullBleed && width ? width + enlarge * 2 : ('100%' as const),
@@ -70,7 +70,7 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
       [fullBleed, width, enlarge, realGap, fullheight, verticalAlign],
     )
 
-    const contextValue = React.useMemo(
+    const contextValue = useMemo(
       (): ColumnsContextType => ({
         width,
         realGap,
