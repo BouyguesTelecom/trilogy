@@ -291,6 +291,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         fontSize: 16,
         color: mainColor,
         flex: 1,
+        lineHeight: 0,
       },
       pickerItemTextSelected: {
         color: backgroundColor,
