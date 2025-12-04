@@ -288,9 +288,16 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     }, [refsDays.current, refDayFocused.current])
 
     React.useEffect(() => {
+      const prevActiveDate = activeDate
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)
-      if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
+      if (!(value instanceof Date) && value[0]) {
+        const isNewRangeSelection =
+          !prevActiveDate ||
+          (Array.isArray(prevActiveDate) && prevActiveDate.length === 0) ||
+          (Array.isArray(prevActiveDate) && Array.isArray(value) && prevActiveDate.length === 2 && value.length === 1)
+        if (isNewRangeSelection) return setVisibleMonth(value[0])
+      }
     }, [value])
 
     return (
