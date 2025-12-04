@@ -41,7 +41,14 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     },
     ref,
   ) => {
-    // Get colors at the top level
+    const [visibleMonth, setVisibleMonth] = React.useState<Date>(
+      value instanceof Date ? value : value[0] || currentDate,
+    )
+    const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
+    const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
+    const [showMonthPicker, setShowMonthPicker] = React.useState<boolean>(false)
+    const [showYearPicker, setShowYearPicker] = React.useState<boolean>(false)
+
     const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
     const shadowColor = getColorStyle(TrilogyColor.DISABLED)
     const disabledFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
@@ -196,7 +203,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         backgroundColor: mainColor,
       },
       activeDayText: {
-        color: getColorStyle(TrilogyColor.BACKGROUND),
+        color: backgroundColor,
         fontWeight: '600',
         width: '100%',
       },
@@ -205,7 +212,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         opacity: 0.6,
       },
       disabledDayText: {
-        color: getColorStyle(TrilogyColor.DISABLED),
+        color: disabledColor,
         width: '100%',
       },
       dateStart: {
@@ -249,7 +256,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         alignItems: 'center',
       },
       pickerContainer: {
-        backgroundColor: '#ffffff',
+        backgroundColor,
         borderRadius: 8,
         maxHeight: 300,
         width: 200,
@@ -272,7 +279,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         paddingHorizontal: 16,
         paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: getColorStyle(TrilogyColor.BACKGROUND),
+        borderBottomColor: backgroundColor,
       },
       pickerItemSelected: {
         backgroundColor: mainColor,
@@ -282,24 +289,17 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       pickerItemText: {
         fontSize: 16,
-        color: getColorStyle(TrilogyColor.MAIN),
+        color: mainColor,
         flex: 1,
       },
       pickerItemTextSelected: {
-        color: getColorStyle(TrilogyColor.BACKGROUND),
+        color: backgroundColor,
         fontWeight: '600',
       },
       pickerItemTextDisabled: {
         color: disabledColor,
       },
     }), [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor])
-    const [visibleMonth, setVisibleMonth] = React.useState<Date>(
-      value instanceof Date ? value : value[0] || currentDate,
-    )
-    const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
-    const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
-    const [showMonthPicker, setShowMonthPicker] = React.useState<boolean>(false)
-    const [showYearPicker, setShowYearPicker] = React.useState<boolean>(false)
 
     const isRange = checkIsRange(activeDate)
 
