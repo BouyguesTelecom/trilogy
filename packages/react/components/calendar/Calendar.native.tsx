@@ -521,6 +521,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           }}
           style={[
             styles.dayButton,
+            isToday && styles.todayButton,
             isActive && styles.activeDay,
             isDisabled && styles.disabledDay,
             isInRange && styles.dateInRange,
@@ -528,16 +529,15 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             isDateEnd && styles.dateEnd,
             dayIndex === 0 && styles.roundedLeft,
             dayIndex === 6 && styles.roundedRight,
-            isToday && styles.todayButton,
           ]}
         >
           <Text
             typo={TypographyAlign.TEXT_CENTERED}
             style={[
               styles.dayText,
+              isToday && styles.todayText,
               isActive && styles.activeDayText,
               isDisabled && styles.disabledDayText,
-              isToday && styles.todayText,
             ]}
           >
             {day.getDate()}
