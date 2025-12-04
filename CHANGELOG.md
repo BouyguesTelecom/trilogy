@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add DatePicker component (Web only)
 - Fix Calendar
 - Fix order for flexbox (web)
+- Fix completed range position
 
 ## [4.12.1] - 2025-11-13
 - Fix native launch
