@@ -69,7 +69,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         shadowOpacity: 0.2,
         shadowRadius: 8,
         elevation: 4,
-        width: Platform.OS === 'ios' ? '85%' : '75%',
+        width: '85%',
         alignSelf: 'center'
       },
       header: {
@@ -160,7 +160,11 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       dayLabel: {
         flex: 1,
         alignItems: 'center',
-        paddingVertical: 4,
+        paddingVertical: Platform.OS === 'android' ? 8 : 4,
+        height: Platform.OS === 'android' ? 44 : 36,
+        justifyContent: 'center',
+        maxWidth: Platform.OS === 'android' ? 44 : 36,
+        minWidth: Platform.OS === 'android' ? 44 : 36,
       },
       dayLabelText: {
         fontSize: 12,
@@ -179,21 +183,21 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       },
       emptyDay: {
         flex: 1,
-        height: 36,
+        height: Platform.OS === 'android' ? 44 : 36,
         alignItems: 'center',
         justifyContent: 'center',
-        maxWidth: 36,
-        minWidth: 36,
+        maxWidth: Platform.OS === 'android' ? 44 : 36,
+        minWidth: Platform.OS === 'android' ? 44 : 36,
       },
       dayButton: {
         flex: 1,
-        height: 36,
+        height: Platform.OS === 'android' ? 44 : 36,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 4,
         backgroundColor: 'transparent',
-        maxWidth: 36,
-        minWidth: 36,
+        maxWidth: Platform.OS === 'android' ? 44 : 36,
+        minWidth: Platform.OS === 'android' ? 44 : 36,
       },
       dayText: {
         fontSize: 14,
