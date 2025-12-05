@@ -277,9 +277,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       },
       modalContent: {
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 8,
-        padding: 16,
-        margin: 20,
+        paddingBottom: 16,
         maxHeight: Dimensions.get('window').height * 0.8,
         width: Dimensions.get('window').width * 0.9,
         shadowColor: '#000',
@@ -290,27 +288,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         shadowOpacity: 0.25,
         shadowRadius: 8,
         elevation: 5,
-      },
-      modalHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 16,
-        paddingBottom: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      },
-      modalTitle: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: getColorStyle(TrilogyColor.MAIN),
-      },
-      closeButton: {
-        width: 32,
-        height: 32,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
+      }
     })
 
     return (
@@ -386,21 +364,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
               onPress={handleCloseCalendar}
             />
             <View style={styles.modalContent}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>Sélectionner une date</Text>
-                <TouchableOpacity
-                  style={styles.closeButton}
-                  onPress={handleCloseCalendar}
-                  activeOpacity={0.7}
-                >
-                  <Icon
-                    name={IconName.TIMES}
-                    size={IconSize.SMALL}
-                    color={TrilogyColor.MAIN}
-                  />
-                </TouchableOpacity>
-              </View>
-
               <Calendar
                 value={calendarValue}
                 minDate={minDate ? new Date(minDate) : undefined}
