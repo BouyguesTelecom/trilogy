@@ -1,4 +1,4 @@
-import { IconColor, isMobile } from '@trilogy-ds/react'
+import { IconColor } from '@trilogy-ds/react'
 
 import {
   Accordion,
@@ -23,22 +23,15 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { useTrilogyContext } from '@trilogy-ds/react/context'
-import * as React from 'react'
 import { useState } from 'react'
 
 export const ModalScreen = (): JSX.Element => {
-  const { hash } = useTrilogyContext()
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
   const [openModal3, setOpenModal3] = useState(false)
   const [openModal4, setOpenModal4] = useState(false)
   const [openModal5, setOpenModal5] = useState(false)
 
-  function AccessibilityElm() {
-    if (isMobile) return <></>
-    return <span className={`sr-only${hash ? '_' + hash : ''}`}>Menu</span>
-  }
   return (
     <>
       <Section>
@@ -116,10 +109,12 @@ export const ModalScreen = (): JSX.Element => {
         <Modal
           title='Hello'
           trigger={
-            <Button onClick={() => setOpenModal2(true)}>
-              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
-              <AccessibilityElm />
-            </Button>
+            <Icon
+              name={IconName.EYE}
+              size={IconSize.LARGE}
+              color={IconColor.MAIN}
+              onClick={() => setOpenModal2(true)}
+            />
           }
           active={openModal2}
           onClose={() => setOpenModal2(false)}
@@ -138,10 +133,12 @@ export const ModalScreen = (): JSX.Element => {
         <Modal
           title='Hello'
           trigger={
-            <Button onClick={() => setOpenModal3(true)}>
-              <Icon name={IconName.EYE} size={IconSize.LARGE} color={IconColor.MAIN} />
-              <AccessibilityElm />
-            </Button>
+            <Icon
+              name={IconName.EYE}
+              size={IconSize.LARGE}
+              color={IconColor.MAIN}
+              onClick={() => setOpenModal3(true)}
+            />
           }
           active={openModal3}
           onClose={() => setOpenModal3(false)}
