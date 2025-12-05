@@ -8,7 +8,15 @@ import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign } from '@/objects'
 
-const days = [...translation.days]
+const days = [
+  translation.days[1],
+  translation.days[2],
+  translation.days[3],
+  translation.days[4],
+  translation.days[5],
+  translation.days[6],
+  translation.days[0]
+]
 const months = [...translation.months]
 const currentDate = new Date()
 
@@ -327,7 +335,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
-      const firstDayOfMonth = date.getDay()
+      const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
       const allDays: Array<(Date | null)[]> = []
 
