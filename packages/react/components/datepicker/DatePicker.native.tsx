@@ -276,7 +276,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         alignItems: 'center',
       },
       modalContent: {
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         paddingBottom: 16,
         maxHeight: Dimensions.get('window').height * 0.8,
         width: Dimensions.get('window').width * 0.9,
