@@ -277,8 +277,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       },
       modalContent: {
         paddingBottom: 16,
-        maxHeight: Dimensions.get('window').height * 0.8,
-        width: Dimensions.get('window').width * 0.9,
+        width: '90%',
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
