@@ -30,7 +30,6 @@ export const DatePickerScreen = (): JSX.Element => {
         help='Search helper input'
         required
       />
-      <input type='date' onChange={(e) => console.log(e.target.value)} />
     </Section>
   )
 }
