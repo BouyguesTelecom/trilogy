@@ -149,12 +149,49 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
       const numbersOnly = limited.replace(/\//g, '')
 
-      let formatted = numbersOnly
-      if (numbersOnly.length >= 3) {
-        formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2)
-      }
-      if (numbersOnly.length >= 5) {
-        formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2, 4) + '/' + numbersOnly.slice(4)
+      // Logique de formatage intelligent comme le web
+      let formatted = ''
+
+      if (numbersOnly.length === 1) {
+        const firstDigit = parseInt(numbersOnly[0])
+        if (firstDigit > 3) {
+          // Si le premier chiffre est > 3, ajouter un 0 devant et traiter comme jour/mois
+          formatted = '0' + numbersOnly[0] + '/'
+        } else {
+          formatted = numbersOnly
+        }
+      } else if (numbersOnly.length === 2) {
+        const firstTwoDigits = parseInt(numbersOnly.slice(0, 2))
+        if (firstTwoDigits > 31) {
+          // Si les deux premiers chiffres forment un nombre > 31, reformater
+          formatted = '0' + numbersOnly[0] + '/' + '0' + numbersOnly[1]
+        } else {
+          formatted = numbersOnly.slice(0, 2) + '/'
+        }
+      } else if (numbersOnly.length === 3) {
+        // Gérer le formatage intelligent du mois
+        const dayPart = numbersOnly.slice(0, 2)
+        const monthDigit = parseInt(numbersOnly[2])
+        if (monthDigit > 1) {
+          // Si le premier chiffre du mois est > 1, ajouter un 0 devant
+          formatted = dayPart + '/' + '0' + numbersOnly[2] + '/'
+        } else {
+          formatted = dayPart + '/' + numbersOnly[2]
+        }
+      } else if (numbersOnly.length >= 4) {
+        const dayPart = numbersOnly.slice(0, 2)
+        const monthPart = numbersOnly.slice(2, 4)
+        const monthValue = parseInt(monthPart)
+
+        if (monthValue > 12) {
+          // Si le mois est > 12, reformater
+          formatted = dayPart + '/' + '0' + numbersOnly[2] + '/' + numbersOnly[3]
+        } else {
+          formatted = dayPart + '/' + monthPart
+          if (numbersOnly.length > 4) {
+            formatted += '/' + numbersOnly.slice(4)
+          }
+        }
       }
 
       previousTextRef.current = formatted
