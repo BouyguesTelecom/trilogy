@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -305,9 +305,9 @@ const DatePicker = forwardRef<View, DatePickerProps>(
             activeOpacity={0.7}
           >
             <Icon
-              name={IconName.CALENDAR}
+              name='tri-calendar'
               size={IconSize.SMALL}
-              color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+              color={TrilogyColor.MAIN}
             />
           </TouchableOpacity>
         </View>
