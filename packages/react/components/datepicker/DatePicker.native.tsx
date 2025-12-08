@@ -131,12 +131,20 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         const day = date.getDate().toString().padStart(2, '0')
         const formattedDate = `${year}-${month}-${day}`
 
+        // Fermer la modal et s'assurer que l'input n'est plus en focus
         setIsCalendarVisible(false)
+        setIsFocused(false)
+
+        // Mettre à jour immédiatement l'affichage
+        const displayFormatted = formatDateForDisplay(formattedDate)
+        setDisplayValue(displayFormatted)
+        setInputValue(displayFormatted)
+
         if (onChange) {
           onChange(formattedDate)
         }
       },
-      [onChange, isDateInRange],
+      [onChange, isDateInRange, formatDateForDisplay],
     )
 
     // Gérer la saisie manuelle avec formatage automatique
