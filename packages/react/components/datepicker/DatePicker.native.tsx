@@ -49,8 +49,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     },
     ref,
   ) => {
-    const [displayValue, setDisplayValue] = useState<string>('')
-    const [inputValue, setInputValue] = useState<string>('')
+    const [inputText, setInputText] = useState<string>('')
     const [isCalendarVisible, setIsCalendarVisible] = useState<boolean>(false)
     const [isFocused, setIsFocused] = useState<boolean>(false)
 
@@ -131,14 +130,9 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         const day = date.getDate().toString().padStart(2, '0')
         const formattedDate = `${year}-${month}-${day}`
 
-        // Fermer la modal et s'assurer que l'input n'est plus en focus
+        // Fermer la modal
         setIsCalendarVisible(false)
         setIsFocused(false)
-
-        // Mettre à jour immédiatement l'affichage
-        const displayFormatted = formatDateForDisplay(formattedDate)
-        setDisplayValue(displayFormatted)
-        setInputValue(displayFormatted)
 
         if (onChange) {
           onChange(formattedDate)
@@ -149,48 +143,52 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
     // Gérer la saisie manuelle avec formatage automatique
     const handleManualInput = useCallback((text: string) => {
-      // Supprimer tous les caractères non numériques
-      const numbersOnly = text.replace(/[^\d]/g, '')
+      // Supprimer tous les caractères non numériques sauf /
+      const cleaned = text.replace(/[^\d/]/g, '')
+
+      // Limiter la longueur maximale (DD/MM/YYYY = 10 caractères)
+      const limited = cleaned.slice(0, 10)
 
       // Formater automatiquement avec les "/"
-      let formatted = numbersOnly
-      if (numbersOnly.length >= 2) {
+      let formatted = limited
+
+      // Si on tape que des chiffres, ajouter les / automatiquement
+      const numbersOnly = limited.replace(/\//g, '')
+      if (numbersOnly.length >= 2 && !limited.includes('/')) {
         formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2)
       }
-      if (numbersOnly.length >= 4) {
-        formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2, 4) + '/' + numbersOnly.slice(4, 8)
-      }
-
-      setInputValue(formatted)
-
-      // Essayer de parser la date si elle semble complète (8 chiffres)
-      if (numbersOnly.length === 8) {
-        const day = numbersOnly.slice(0, 2)
-        const month = numbersOnly.slice(2, 4)
-        const year = numbersOnly.slice(4, 8)
-        const formattedForParsing = `${day}/${month}/${year}`
-
-        const parsedDate = parseManualInput(formattedForParsing)
-        if (parsedDate && onChange) {
-          onChange(parsedDate)
+      if (numbersOnly.length >= 4 && limited.split('/').length < 3) {
+        const parts = formatted.split('/')
+        if (parts.length === 2 && parts[1].length >= 2) {
+          formatted = parts[0] + '/' + parts[1].slice(0, 2) + '/' + parts[1].slice(2)
         }
       }
-    }, [onChange, parseManualInput])
+
+      setInputText(formatted)
+    }, [])
 
     // Gérer la fin de saisie
     const handleInputBlur = useCallback(() => {
       setIsFocused(false)
 
-      if (inputValue) {
-        const parsedDate = parseManualInput(inputValue)
-        if (parsedDate && onChange) {
-          onChange(parsedDate)
-        } else {
-          // Si la saisie n'est pas valide, revenir à la valeur précédente
-          setInputValue(formatDateForDisplay(value || null))
+      if (inputText.trim() === '') {
+        // Si l'input est vide, effacer la date
+        if (onChange) {
+          onChange(null)
         }
+        return
       }
-    }, [inputValue, parseManualInput, onChange, value, formatDateForDisplay])
+
+      // Essayer de parser la saisie
+      const parsedDate = parseManualInput(inputText)
+      if (parsedDate && onChange) {
+        onChange(parsedDate)
+      } else {
+        // Si la saisie n'est pas valide, revenir à la valeur précédente
+        const previousFormatted = formatDateForDisplay(value || null)
+        setInputText(previousFormatted)
+      }
+    }, [inputText, parseManualInput, onChange, value, formatDateForDisplay])
 
     // Ouvrir le calendrier (uniquement via l'icône)
     const handleOpenCalendar = useCallback(() => {
@@ -207,16 +205,13 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     const handleInputFocus = useCallback(() => {
       if (disabled) return
       setIsFocused(true)
-      // Initialiser avec la valeur formatée pour l'édition
-      setInputValue(formatDateForDisplay(value || null))
-    }, [disabled, value, formatDateForDisplay])
+    }, [disabled])
 
-    // Mettre à jour l'affichage quand la valeur change
+    // Mettre à jour l'affichage quand la valeur change (seulement si pas en cours de saisie)
     useEffect(() => {
-      const formatted = formatDateForDisplay(value || null)
-      setDisplayValue(formatted)
       if (!isFocused) {
-        setInputValue(formatted)
+        const formatted = formatDateForDisplay(value || null)
+        setInputText(formatted)
       }
     }, [value, formatDateForDisplay, isFocused])
 
@@ -324,7 +319,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            value={isFocused ? inputValue : displayValue}
+            value={inputText}
             placeholder="jj/mm/aaaa"
             placeholderTextColor={getColorStyle(TrilogyColor.NEUTRAL)}
             editable={!disabled}
