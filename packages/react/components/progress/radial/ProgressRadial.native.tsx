@@ -4,8 +4,8 @@ import { isAndroid } from '@/helpers/device.native'
 import { getAlignStyle, TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import ContentLoader, { Circle } from 'react-content-loader/native'
 import { StyleSheet, View } from 'react-native'
+import { Skeleton } from '../../skeleton'
 import { ProgressRadialNativeRef, ProgressRadialProps } from './ProgressRadialProps'
 import { AnimatedCircularProgress } from './react-native-circular-progress'
 
@@ -88,14 +88,12 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   })
 
   const ProgressRadialSkeleton = (): JSX.Element => (
-    <ContentLoader style={styles.skeleton} {...others}>
-      <View style={{ opacity: 0 }} />
-      {isAndroid && (
-        <View>
-          <Circle cx='50' cy='50' r='50' />
-        </View>
-      )}
-    </ContentLoader>
+    <Skeleton
+      style={styles.skeleton}
+      width={progressRadialWidth}
+      height={progressRadialWidth}
+      borderRadius={progressRadialSkeletonRadius}
+    />
   )
 
   if (skeleton) {

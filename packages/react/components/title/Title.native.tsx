@@ -5,8 +5,8 @@ import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, Typogra
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useContext } from 'react'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { StyleSheet, Text as TextNative, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text as TextNative, TouchableOpacity } from 'react-native'
+import { Skeleton } from '../skeleton'
 import { TitleLevels } from './TitleEnum'
 import { TitleNativeRef, TitleProps } from './TitleProps'
 
@@ -119,14 +119,13 @@ const Title = React.forwardRef<TitleNativeRef, TitleProps>(({
 
   if (skeleton) {
     titleView = (
-      <ContentLoader style={styles.skeleton}>
+      <Skeleton
+        style={styles.skeleton}
+        height={titlesLevels()}
+        borderRadius={5}
+      >
         {titleView}
-        {isAndroid && (
-          <View>
-            <Rect rx='15' ry='15' width='100%' height='100%' />
-          </View>
-        )}
-      </ContentLoader>
+      </Skeleton>
     )
   }
 
