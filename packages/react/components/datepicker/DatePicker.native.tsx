@@ -149,13 +149,11 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
       const numbersOnly = limited.replace(/\//g, '')
 
-      // Logique de formatage intelligent comme le web
       let formatted = ''
 
       if (numbersOnly.length === 1) {
         const firstDigit = parseInt(numbersOnly[0])
         if (firstDigit > 3) {
-          // Si le premier chiffre est > 3, ajouter un 0 devant et traiter comme jour/mois
           formatted = '0' + numbersOnly[0] + '/'
         } else {
           formatted = numbersOnly
@@ -163,17 +161,14 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       } else if (numbersOnly.length === 2) {
         const firstTwoDigits = parseInt(numbersOnly.slice(0, 2))
         if (firstTwoDigits > 31) {
-          // Si les deux premiers chiffres forment un nombre > 31, reformater
           formatted = '0' + numbersOnly[0] + '/' + '0' + numbersOnly[1]
         } else {
           formatted = numbersOnly.slice(0, 2) + '/'
         }
       } else if (numbersOnly.length === 3) {
-        // Gérer le formatage intelligent du mois
         const dayPart = numbersOnly.slice(0, 2)
         const monthDigit = parseInt(numbersOnly[2])
         if (monthDigit > 1) {
-          // Si le premier chiffre du mois est > 1, ajouter un 0 devant
           formatted = dayPart + '/' + '0' + numbersOnly[2] + '/'
         } else {
           formatted = dayPart + '/' + numbersOnly[2]
@@ -184,7 +179,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         const monthValue = parseInt(monthPart)
 
         if (monthValue > 12) {
-          // Si le mois est > 12, reformater
           formatted = dayPart + '/' + '0' + numbersOnly[2] + '/' + numbersOnly[3]
         } else {
           formatted = dayPart + '/' + monthPart
@@ -197,42 +191,36 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       previousTextRef.current = formatted
       setInputText(formatted)
 
-      // Déclencher onChange dès qu'on commence à taper l'année (comme le web)
-      if (numbersOnly.length >= 5) {
-        // On a au moins DD/MM/Y, essayer de parser
+      if (numbersOnly.length >= 5 && onChange) {
         const dayPart = numbersOnly.slice(0, 2)
         const monthPart = numbersOnly.slice(2, 4)
         const yearPart = numbersOnly.slice(4)
+        const currentYear = new Date().getFullYear().toString()
 
-        // Construire une date pour validation
-        let testDateString = `${dayPart}/${monthPart}/`
-
-        if (yearPart.length >= 1) {
-          let yearToTest = yearPart
-
-          // Si l'année n'est pas complète, la compléter intelligemment
-          if (yearPart.length < 4) {
-            const currentYear = new Date().getFullYear().toString()
-            if (yearPart.length === 1) {
-              // Si on a juste 1 chiffre, essayer avec l'année actuelle
-              yearToTest = currentYear.slice(0, 3) + yearPart
-            } else if (yearPart.length === 2) {
-              // Si on a 2 chiffres, essayer avec le siècle actuel
-              yearToTest = currentYear.slice(0, 2) + yearPart
-            } else if (yearPart.length === 3) {
-              // Si on a 3 chiffres, ajouter le dernier chiffre de l'année actuelle
-              yearToTest = yearPart + currentYear.slice(3)
-            }
+        let yearToTest = yearPart
+        if (yearPart.length < 4) {
+          if (yearPart.length === 1) {
+            yearToTest = currentYear.slice(0, 3) + yearPart
+          } else if (yearPart.length === 2) {
+            yearToTest = currentYear.slice(0, 2) + yearPart
+          } else if (yearPart.length === 3) {
+            yearToTest = yearPart + currentYear.slice(3)
           }
+        }
 
-          testDateString += yearToTest
+        const testDateString = `${dayPart}/${monthPart}/${yearToTest}`
+        console.log('Testing date string:', testDateString)
 
-          // Essayer de parser la date
-          const parsedDate = parseManualInput(testDateString)
-          if (parsedDate && onChange) {
-            console.log('DatePicker onChange triggered:', parsedDate)
-            onChange(parsedDate)
-          }
+        const dayNum = parseInt(dayPart, 10)
+        const monthNum = parseInt(monthPart, 10)
+        const yearNum = parseInt(yearToTest, 10)
+
+        if (dayNum >= 1 && dayNum <= 31 && monthNum >= 1 && monthNum <= 12 && yearNum >= 1000) {
+          const formattedDate = `${yearNum}-${monthNum.toString().padStart(2, '0')}-${dayNum.toString().padStart(2, '0')}`
+          console.log(`DatePicker onChange triggered (${numbersOnly.length} chars):`, formattedDate)
+          onChange(formattedDate)
+        } else {
+          console.log('Date validation failed:', { dayNum, monthNum, yearNum })
         }
       }
     }, [parseManualInput, onChange])
