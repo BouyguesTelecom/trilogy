@@ -130,18 +130,12 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
     const handleManualInput = useCallback((text: string) => {
       const previousText = previousTextRef.current
-
-      // Détecter si c'est une suppression
       const isDeleting = text.length < previousText.length
 
       if (isDeleting) {
-        // En cas de suppression, permettre la suppression libre
         const cleaned = text.replace(/[^\d/]/g, '')
-
-        // Si on supprime et qu'on se retrouve avec un slash à la fin, le supprimer aussi
         let formatted = cleaned
         if (formatted.endsWith('/')) {
-          // Supprimer le slash final si on vient de supprimer un chiffre
           formatted = formatted.slice(0, -1)
         }
 
@@ -150,14 +144,11 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         return
       }
 
-      // Logique normale pour l'ajout de caractères
       const cleaned = text.replace(/[^\d/]/g, '')
       const limited = cleaned.slice(0, 10)
 
-      // Extraire seulement les chiffres pour le formatage
       const numbersOnly = limited.replace(/\//g, '')
 
-      // Formater automatiquement
       let formatted = numbersOnly
       if (numbersOnly.length >= 3) {
         formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2)
@@ -204,9 +195,10 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     }, [disabled])
 
     useEffect(() => {
+      const formatted = formatDateForDisplay(value || null)
       if (!isFocused) {
-        const formatted = formatDateForDisplay(value || null)
         setInputText(formatted)
+        previousTextRef.current = formatted
       }
     }, [value, formatDateForDisplay, isFocused])
 
