@@ -196,7 +196,46 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
       previousTextRef.current = formatted
       setInputText(formatted)
-    }, [])
+
+      // Déclencher onChange dès qu'on commence à taper l'année (comme le web)
+      if (numbersOnly.length >= 5) {
+        // On a au moins DD/MM/Y, essayer de parser
+        const dayPart = numbersOnly.slice(0, 2)
+        const monthPart = numbersOnly.slice(2, 4)
+        const yearPart = numbersOnly.slice(4)
+
+        // Construire une date pour validation
+        let testDateString = `${dayPart}/${monthPart}/`
+
+        if (yearPart.length >= 1) {
+          let yearToTest = yearPart
+
+          // Si l'année n'est pas complète, la compléter intelligemment
+          if (yearPart.length < 4) {
+            const currentYear = new Date().getFullYear().toString()
+            if (yearPart.length === 1) {
+              // Si on a juste 1 chiffre, essayer avec l'année actuelle
+              yearToTest = currentYear.slice(0, 3) + yearPart
+            } else if (yearPart.length === 2) {
+              // Si on a 2 chiffres, essayer avec le siècle actuel
+              yearToTest = currentYear.slice(0, 2) + yearPart
+            } else if (yearPart.length === 3) {
+              // Si on a 3 chiffres, ajouter le dernier chiffre de l'année actuelle
+              yearToTest = yearPart + currentYear.slice(3)
+            }
+          }
+
+          testDateString += yearToTest
+
+          // Essayer de parser la date
+          const parsedDate = parseManualInput(testDateString)
+          if (parsedDate && onChange) {
+            console.log('DatePicker onChange triggered:', parsedDate)
+            onChange(parsedDate)
+          }
+        }
+      }
+    }, [parseManualInput, onChange])
 
     const handleInputBlur = useCallback(() => {
       setIsFocused(false)
