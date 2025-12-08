@@ -3,7 +3,7 @@ import { Icon, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { forwardRef, useCallback, useEffect, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useState, useRef } from 'react'
 import {
   StyleSheet,
   TextInput,
@@ -51,6 +51,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     const [inputText, setInputText] = useState<string>('')
     const [isCalendarVisible, setIsCalendarVisible] = useState<boolean>(false)
     const [isFocused, setIsFocused] = useState<boolean>(false)
+    const previousTextRef = useRef<string>('')
 
     const calendarValue = value ? new Date(value) : undefined
 
@@ -128,22 +129,44 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     )
 
     const handleManualInput = useCallback((text: string) => {
+      const previousText = previousTextRef.current
+
+      // Détecter si c'est une suppression
+      const isDeleting = text.length < previousText.length
+
+      if (isDeleting) {
+        // En cas de suppression, permettre la suppression libre
+        const cleaned = text.replace(/[^\d/]/g, '')
+
+        // Si on supprime et qu'on se retrouve avec un slash à la fin, le supprimer aussi
+        let formatted = cleaned
+        if (formatted.endsWith('/')) {
+          // Supprimer le slash final si on vient de supprimer un chiffre
+          formatted = formatted.slice(0, -1)
+        }
+
+        previousTextRef.current = formatted
+        setInputText(formatted)
+        return
+      }
+
+      // Logique normale pour l'ajout de caractères
       const cleaned = text.replace(/[^\d/]/g, '')
       const limited = cleaned.slice(0, 10)
 
-      let formatted = limited
-
+      // Extraire seulement les chiffres pour le formatage
       const numbersOnly = limited.replace(/\//g, '')
-      if (numbersOnly.length >= 2 && !limited.includes('/')) {
+
+      // Formater automatiquement
+      let formatted = numbersOnly
+      if (numbersOnly.length >= 3) {
         formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2)
       }
-      if (numbersOnly.length >= 4 && limited.split('/').length < 3) {
-        const parts = formatted.split('/')
-        if (parts.length === 2 && parts[1].length >= 2) {
-          formatted = parts[0] + '/' + parts[1].slice(0, 2) + '/' + parts[1].slice(2)
-        }
+      if (numbersOnly.length >= 5) {
+        formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2, 4) + '/' + numbersOnly.slice(4)
       }
 
+      previousTextRef.current = formatted
       setInputText(formatted)
     }, [])
 
