@@ -17,7 +17,7 @@ export const DatePickerScreen = (): JSX.Element => {
       </Button>
 
       <DatePicker
-        maxDate='2025-12-24'
+        maxDate='2026-12-24'
         minDate='2025-12-01'
         data-cy='birthday'
         onChange={(e) => {
