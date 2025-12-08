@@ -208,19 +208,13 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           }
         }
 
-        const testDateString = `${dayPart}/${monthPart}/${yearToTest}`
-        console.log('Testing date string:', testDateString)
-
         const dayNum = parseInt(dayPart, 10)
         const monthNum = parseInt(monthPart, 10)
         const yearNum = parseInt(yearToTest, 10)
 
         if (dayNum >= 1 && dayNum <= 31 && monthNum >= 1 && monthNum <= 12 && yearNum >= 1000) {
           const formattedDate = `${yearNum}-${monthNum.toString().padStart(2, '0')}-${dayNum.toString().padStart(2, '0')}`
-          console.log(`DatePicker onChange triggered (${numbersOnly.length} chars):`, formattedDate)
           onChange(formattedDate)
-        } else {
-          console.log('Date validation failed:', { dayNum, monthNum, yearNum })
         }
       }
     }, [parseManualInput, onChange])
