@@ -10,8 +10,7 @@ import {
   TouchableOpacity,
   View,
   Platform,
-  Modal,
-  Dimensions,
+  Modal
 } from 'react-native'
 import { DatePickerProps } from './DatePickerProps'
 
@@ -53,10 +52,8 @@ const DatePicker = forwardRef<View, DatePickerProps>(
     const [isCalendarVisible, setIsCalendarVisible] = useState<boolean>(false)
     const [isFocused, setIsFocused] = useState<boolean>(false)
 
-    // Convertir la valeur string en Date pour le calendrier
     const calendarValue = value ? new Date(value) : undefined
 
-    // Formater la date pour l'affichage (DD/MM/YYYY)
     const formatDateForDisplay = useCallback((dateString: string | null): string => {
       if (!dateString) return ''
 
@@ -74,12 +71,8 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       }
     }, [])
 
-    // Valider et parser une date saisie manuellement (DD/MM/YYYY)
     const parseManualInput = useCallback((input: string): string | null => {
-      // Supprimer tous les caractères non numériques sauf /
       const cleaned = input.replace(/[^\d/]/g, '')
-
-      // Vérifier le format DD/MM/YYYY
       const dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
       const match = cleaned.match(dateRegex)
 
@@ -90,35 +83,29 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       const monthNum = parseInt(month, 10)
       const yearNum = parseInt(year, 10)
 
-      // Validation basique
       if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12) {
         return null
       }
 
-      // Créer la date et vérifier qu'elle est valide
       const date = new Date(yearNum, monthNum - 1, dayNum)
       if (date.getDate() !== dayNum || date.getMonth() !== monthNum - 1 || date.getFullYear() !== yearNum) {
         return null
       }
 
-      // Vérifier les limites min/max
       if (minDate && date < new Date(minDate)) return null
       if (maxDate && date > new Date(maxDate)) return null
 
-      // Retourner au format YYYY-MM-DD
       const formattedMonth = monthNum.toString().padStart(2, '0')
       const formattedDay = dayNum.toString().padStart(2, '0')
       return `${yearNum}-${formattedMonth}-${formattedDay}`
     }, [minDate, maxDate])
 
-    // Valider si une date est dans les limites
     const isDateInRange = useCallback((date: Date): boolean => {
       if (minDate && date < new Date(minDate)) return false
       if (maxDate && date > new Date(maxDate)) return false
       return true
     }, [minDate, maxDate])
 
-    // Gérer le changement de date depuis le calendrier
     const handleCalendarChange = useCallback(
       (selectedDate: ChangeEventCalendar) => {
         const date = selectedDate as Date
@@ -130,7 +117,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         const day = date.getDate().toString().padStart(2, '0')
         const formattedDate = `${year}-${month}-${day}`
 
-        // Fermer la modal
         setIsCalendarVisible(false)
         setIsFocused(false)
 
@@ -141,18 +127,12 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       [onChange, isDateInRange, formatDateForDisplay],
     )
 
-    // Gérer la saisie manuelle avec formatage automatique
     const handleManualInput = useCallback((text: string) => {
-      // Supprimer tous les caractères non numériques sauf /
       const cleaned = text.replace(/[^\d/]/g, '')
-
-      // Limiter la longueur maximale (DD/MM/YYYY = 10 caractères)
       const limited = cleaned.slice(0, 10)
 
-      // Formater automatiquement avec les "/"
       let formatted = limited
 
-      // Si on tape que des chiffres, ajouter les / automatiquement
       const numbersOnly = limited.replace(/\//g, '')
       if (numbersOnly.length >= 2 && !limited.includes('/')) {
         formatted = numbersOnly.slice(0, 2) + '/' + numbersOnly.slice(2)
@@ -167,47 +147,39 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       setInputText(formatted)
     }, [])
 
-    // Gérer la fin de saisie
     const handleInputBlur = useCallback(() => {
       setIsFocused(false)
 
       if (inputText.trim() === '') {
-        // Si l'input est vide, effacer la date
         if (onChange) {
           onChange(null)
         }
         return
       }
 
-      // Essayer de parser la saisie
       const parsedDate = parseManualInput(inputText)
       if (parsedDate && onChange) {
         onChange(parsedDate)
       } else {
-        // Si la saisie n'est pas valide, revenir à la valeur précédente
         const previousFormatted = formatDateForDisplay(value || null)
         setInputText(previousFormatted)
       }
     }, [inputText, parseManualInput, onChange, value, formatDateForDisplay])
 
-    // Ouvrir le calendrier (uniquement via l'icône)
     const handleOpenCalendar = useCallback(() => {
       if (disabled) return
       setIsCalendarVisible(true)
     }, [disabled])
 
-    // Fermer le calendrier
     const handleCloseCalendar = useCallback(() => {
       setIsCalendarVisible(false)
     }, [])
 
-    // Gérer le focus sur l'input
     const handleInputFocus = useCallback(() => {
       if (disabled) return
       setIsFocused(true)
     }, [disabled])
 
-    // Mettre à jour l'affichage quand la valeur change (seulement si pas en cours de saisie)
     useEffect(() => {
       if (!isFocused) {
         const formatted = formatDateForDisplay(value || null)
@@ -215,7 +187,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       }
     }, [value, formatDateForDisplay, isFocused])
 
-    // Styles
     const styles = StyleSheet.create({
       container: {
         width: '100%',
@@ -294,7 +265,6 @@ const DatePicker = forwardRef<View, DatePickerProps>(
 
     return (
       <View ref={ref} style={styles.container} testID={testId} {...others}>
-        {/* Label */}
         {label && (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.label}>
@@ -308,14 +278,12 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           </View>
         )}
 
-        {/* Sample */}
         {sample && (
           <Text level={TextLevels.THREE} style={styles.sample}>
             {sample}
           </Text>
         )}
 
-        {/* Input Container */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -327,7 +295,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             onChangeText={handleManualInput}
-            maxLength={10} // DD/MM/YYYY
+            maxLength={10}
           />
 
           <TouchableOpacity
@@ -344,14 +312,12 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           </TouchableOpacity>
         </View>
 
-        {/* Help Text */}
         {help && (
           <Text style={styles.help}>
             {help}
           </Text>
         )}
 
-        {/* Calendar Modal - Modal React Native classique */}
         <Modal
           visible={isCalendarVisible}
           transparent={true}
