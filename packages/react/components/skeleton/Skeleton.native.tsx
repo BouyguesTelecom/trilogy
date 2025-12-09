@@ -1,17 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { View, ViewStyle, DimensionValue, Animated } from 'react-native'
-
-export interface SkeletonProps {
-  style?: ViewStyle
-  width?: DimensionValue
-  height?: DimensionValue
-  backgroundColor?: string
-  shimmerColor?: string
-  duration?: number
-  borderRadius?: number
-  children?: React.ReactNode
-  testID?: string
-}
+import { View, ViewStyle, Animated } from 'react-native'
+import { SkeletonProps } from './SkeletonProps'
 
 const Skeleton: React.FC<SkeletonProps> = ({
   style,

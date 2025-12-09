@@ -1,2 +1,5 @@
-export { default as Skeleton } from './Skeleton.native'
-export type { SkeletonProps } from './Skeleton.native'
+import Skeleton from './Skeleton.native'
+
+export * from './SkeletonProps'
+
+export { Skeleton }
