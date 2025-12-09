@@ -53,12 +53,12 @@ const Skeleton: React.FC<SkeletonProps> = ({
   })
 
   const containerStyle: ViewStyle = {
-    width: children ? undefined : width, // Si children, s'adapte au contenu
+    width: children ? undefined : width,
     height,
     backgroundColor,
     borderRadius,
     overflow: 'hidden',
-    alignSelf: children ? 'flex-start' : undefined, // Évite l'étirement
+    alignSelf: children ? 'flex-start' : undefined,
     ...style,
   }
 
