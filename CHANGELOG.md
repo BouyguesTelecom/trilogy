@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [4.14.0] - 2025-12-XX
 - Add datepicker native
 - Add calendar native
+- Add container query (FlexBox web)
+- Fix calendar order days
+- Fix position on range calendar (web)
+- Fix radio checkbox stretched (web)
 
 ## [4.13.0] - 2025-11-24
 - Fix Tab native fullwidth (ui)
