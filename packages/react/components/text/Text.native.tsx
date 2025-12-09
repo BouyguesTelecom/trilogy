@@ -1,6 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext } from 'react'

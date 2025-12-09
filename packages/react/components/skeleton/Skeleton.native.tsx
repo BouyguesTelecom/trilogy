@@ -53,11 +53,12 @@ const Skeleton: React.FC<SkeletonProps> = ({
   })
 
   const containerStyle: ViewStyle = {
-    width,
+    width: children ? undefined : width, // Si children, s'adapte au contenu
     height,
     backgroundColor,
     borderRadius,
     overflow: 'hidden',
+    alignSelf: children ? 'flex-start' : undefined, // Évite l'étirement
     ...style,
   }
 
@@ -69,12 +70,10 @@ const Skeleton: React.FC<SkeletonProps> = ({
   if (children) {
     return (
       <View style={containerStyle} testID={testID} onLayout={handleLayout}>
-        {/* Contenu masqué */}
         <View style={{ opacity: 0 }}>
           {children}
         </View>
 
-        {/* Effet shimmer simple et fluide */}
         <Animated.View
           style={[
             {
@@ -95,7 +94,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <View style={containerStyle} testID={testID} onLayout={handleLayout}>
-      {/* Effet shimmer simple et fluide */}
       <Animated.View
         style={[
           {
