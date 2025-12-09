@@ -54,7 +54,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
 
   const containerStyle: ViewStyle = {
     width: children ? undefined : width,
-    height,
+    height: children ? undefined : height, // Si children, s'adapte à la hauteur du contenu
     backgroundColor,
     borderRadius,
     overflow: 'hidden',

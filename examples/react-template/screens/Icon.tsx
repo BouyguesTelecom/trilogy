@@ -16,7 +16,7 @@ export const IconScreen = (): JSX.Element => {
   return (
     <Section>
       <View>
-        <Icon size={IconSize.HUGE} name={IconName.ARROW_UP} align='ALIGNED_CENTER' />
+        <Icon skeleton size={IconSize.HUGE} name={IconName.ARROW_UP} align='ALIGNED_CENTER' />
       </View>
 
       <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
