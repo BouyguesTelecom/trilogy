@@ -4,8 +4,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color/index.native'
 import React, { useState } from 'react'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Skeleton } from '../skeleton'
 
 /**
  * Box Component
@@ -101,15 +101,15 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const boxTestId = 'NotSpecified'
 
     const BoxSkeleton = () => (
-      <ContentLoader style={styles.skeleton} {...others} testID='skeleton'>
-        <View style={{ opacity: 0 }}>{children}</View>
-
-        {Platform.OS === 'android' && (
-          <View>
-            <Rect rx='10' ry='10' width='100%' height='100%' />
-          </View>
-        )}
-      </ContentLoader>
+      <Skeleton
+        style={styles.skeleton}
+        width="100%"
+        height={50}
+        borderRadius={boxRadius}
+        testID='skeleton'
+      >
+        {children}
+      </Skeleton>
     )
 
     if (skeleton) {

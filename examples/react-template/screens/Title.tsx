@@ -3,6 +3,7 @@ import { Divider, Section, Title, TitleLevels } from '@trilogy-ds/react'
 export const TitleScreen = (): JSX.Element => {
   return (
     <Section>
+      <Title skeleton>*************</Title>
       <Title level={TitleLevels.ONE}>Title level 1</Title>
       <Title level={TitleLevels.TWO}>Title level 2</Title>
       <Title level={TitleLevels.THREE}>Title level 3</Title>

@@ -10,7 +10,15 @@ import { Select, SelectOption } from '../select'
 import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
-const days = [...calendarLocale.days]
+const days = [
+  calendarLocale.days[1],
+  calendarLocale.days[2],
+  calendarLocale.days[3],
+  calendarLocale.days[4],
+  calendarLocale.days[5],
+  calendarLocale.days[6],
+  calendarLocale.days[0],
+]
 const months = [...calendarLocale.months]
 const currentDate = new Date()
 
@@ -97,7 +105,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
-      const firstDayOfMonth = date.getDay()
+      const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
       const allDays: Array<(Date | null)[]> = []
       for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
@@ -288,9 +296,16 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     }, [refsDays.current, refDayFocused.current])
 
     React.useEffect(() => {
+      const prevActiveDate = activeDate
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)
-      if (!(value instanceof Date) && value[0]) return setVisibleMonth(value[0])
+      if (!(value instanceof Date) && value[0]) {
+        const isNewRangeSelection =
+          !prevActiveDate ||
+          (Array.isArray(prevActiveDate) && prevActiveDate.length === 0) ||
+          (Array.isArray(prevActiveDate) && Array.isArray(value) && prevActiveDate.length === 2 && value.length === 1)
+        if (isNewRangeSelection) return setVisibleMonth(value[0])
+      }
     }, [value])
 
     return (

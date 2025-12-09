@@ -3,11 +3,21 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.14.0] - 2025-12-XX
+- Add datepicker native
+- Add calendar native
+- Add container query (FlexBox web)
+- Fix calendar order days
+- Fix position on range calendar (web)
+- Fix radio checkbox stretched (web)
+- Update skeleton (native)
+
 ## [4.13.0] - 2025-11-24
 - Fix Tab native fullwidth (ui)
 - Add DatePicker component (Web only)
 - Fix Calendar
 - Fix order for flexbox (web)
+- Fix completed range position
 
 ## [4.12.1] - 2025-11-13
 - Fix native launch
