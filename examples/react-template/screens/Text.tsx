@@ -15,6 +15,7 @@ import * as React from 'react'
 export const TextScreen = (): JSX.Element => {
   return (
     <Section>
+      <Text skeleton>*************</Text>
       <Text numberOfLines={3}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore obcaecati quia voluptatum! Assumenda blanditiis
         dignissimos eligendi excepturi facere facilis, fuga incidunt necessitatibus non obcaecati praesentium quam quia

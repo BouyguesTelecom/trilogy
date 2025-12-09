@@ -1,11 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
-import ContentLoader, { Rect } from 'react-content-loader/native'
-import { StyleSheet, Text as TextNative, View } from 'react-native'
+import { StyleSheet, Text as TextNative } from 'react-native'
+import { Skeleton } from '../skeleton'
 import { TextLevels, TextLevelValues } from './TextEnum'
 import { TextNativeRef, TextProps } from './TextProps'
 
@@ -99,14 +98,18 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(({
 
   if (skeleton) {
     textView = (
-      <ContentLoader style={styles.skeleton}>
+      <Skeleton
+        style={styles.skeleton}
+        height={textLevels(level as TextLevels | TextLevelValues)}
+        borderRadius={
+          (level && level == TextLevels.ONE && 7) ||
+          (level && level == TextLevels.TWO && 7) ||
+          (level && level == TextLevels.THREE && 5) ||
+          3
+        }
+      >
         {textView}
-        {isAndroid && (
-          <View>
-            <Rect rx='7' ry='7' width='100%' height='100%' />
-          </View>
-        )}
-      </ContentLoader>
+      </Skeleton>
     )
   }
   return textView

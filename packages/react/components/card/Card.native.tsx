@@ -3,8 +3,8 @@ import { StatesContext } from '@/context/providerStates'
 import { isAndroid } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
-import ContentLoader, { Rect } from 'react-content-loader/native'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Skeleton } from '../skeleton'
 import { CardNativeRef, CardProps } from './CardProps'
 
 export const CardContext = createContext({
@@ -74,14 +74,15 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     })
 
     const CardSkeleton = () => (
-      <ContentLoader style={styles.skeleton} {...others} testID='skeleton-id'>
-        <View style={{ opacity: 0 }}>{children}</View>
-        {isAndroid && (
-          <View>
-            <Rect rx='10' ry='10' width='100%' height='100%' />
-          </View>
-        )}
-      </ContentLoader>
+      <Skeleton
+        style={styles.skeleton}
+        width="100%"
+        height={50}
+        borderRadius={cardRadius}
+        testID='skeleton-id'
+      >
+        {children}
+      </Skeleton>
     )
 
     const ShadowWrapper = ({ children }: PropsWithChildren) => (
