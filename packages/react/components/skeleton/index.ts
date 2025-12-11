@@ -1,4 +1,4 @@
-import Skeleton from './Skeleton.native'
+import Skeleton from './Skeleton'
 
 export * from './SkeletonProps'
 
