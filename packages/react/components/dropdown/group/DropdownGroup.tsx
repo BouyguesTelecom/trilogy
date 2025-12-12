@@ -9,7 +9,6 @@ import { DropdownGroupProps, DropdownGroupRef } from './DropdownGroupProps'
 /**
  * DropdownGroup Component
  * @param children {React.ReactNode} Children
- * @param title {string} Group title (optional)
  * @param hideSeparator {boolean} Hide separator at the top of the group
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
@@ -48,11 +47,6 @@ const DropdownGroup = React.forwardRef<DropdownGroupRef, DropdownGroupProps>(
         data-testid={testId}
         {...others}
       >
-        {title && (
-          <div className={hashClass(styled, 'dropdown-group-title')}>
-            {title}
-          </div>
-        )}
         {children}
       </div>
     )

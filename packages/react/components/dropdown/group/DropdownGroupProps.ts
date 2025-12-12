@@ -8,7 +8,6 @@ import { Dev } from '../../../objects/facets/Dev'
  */
 export interface DropdownGroupProps extends Accessibility, Dev, CommonProps {
   children?: React.ReactNode
-  title?: string
   hideSeparator?: boolean
 }
 
