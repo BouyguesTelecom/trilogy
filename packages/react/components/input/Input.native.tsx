@@ -542,10 +542,12 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
             </>
           )}
         </View>
-        {help && (
+        {help && typeof help === 'string' ? (
           <Text testId='help-id' style={styles.help}>
             {help}
           </Text>
+        ) : (
+          help
         )}
         {type === InputType.PASSWORD && securityGauge && (
           <InputGauge securityRules={securityRules} validationRules={validationRules} inputValue={value} />
