@@ -1,0 +1,184 @@
+@use 'sass:math';
+@import "../utilities/spacing";
+
+// Variables pour le dropdown
+$dropdown-border-radius: var(--radius-small);
+$dropdown-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+$dropdown-item-padding-vertical: 12px;
+$dropdown-item-padding-horizontal: 16px;
+
+// Dropdown container (wrapper simple)
+.dropdown {
+  position: relative;
+  display: block;
+
+  &.is-active {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+}
+
+// Dropdown menu container
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: none;
+  margin-top: 4px;
+  background-color: getColor('background');
+  border-radius: $dropdown-border-radius;
+  box-shadow: $dropdown-shadow;
+  border: var(--border);
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto;
+
+  // Scroll personnalisé
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: getColor('main-fade');
+    border-radius: 3px;
+  }
+}
+
+// Dropdown content
+.dropdown-content {
+  padding: 0;
+}
+
+// Dropdown item
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: $dropdown-item-padding-vertical $dropdown-item-padding-horizontal;
+  color: getColor('font');
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1.4;
+
+  // Icône dans l'item
+  .icon {
+    margin-right: 12px;
+    flex-shrink: 0;
+
+    &.is-smaller {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // État par défaut
+  &:not(:disabled):not([aria-disabled="true"]) {
+    #{$hoverSelector},
+    &:focus {
+      background-color: getColor('main-fade');
+      outline: none;
+    }
+
+    &:active {
+      background-color: getColor('main-fade');
+    }
+  }
+
+  // État sélectionné/actif
+  &.is-active {
+    background-color: getColor('main-fade');
+    font-weight: $weight-semibold;
+  }
+
+  // État désactivé
+  &:disabled,
+  &[aria-disabled="true"] {
+    color: getColor('disabled');
+    cursor: not-allowed;
+    background-color: transparent;
+
+    .icon {
+      opacity: 0.5;
+    }
+  }
+
+  // Séparateur entre les items
+  &:not(:last-child) {
+    border-bottom: 1px solid getColor('neutral-fade');
+  }
+}
+
+// Dropdown group (pour grouper les items)
+.dropdown-group {
+  &:not(:first-child) {
+    border-top: 2px solid getColor('neutral-fade');
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  // Titre du groupe (optionnel)
+  .dropdown-group-title {
+    padding: 8px $dropdown-item-padding-horizontal;
+    font-size: 0.875rem;
+    font-weight: $weight-semibold;
+    color: getColor('main');
+    background-color: getColor('neutral-fade');
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  // Items dans un groupe
+  .dropdown-item {
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  // Masquer le séparateur si demandé
+  &.is-no-separator {
+    border-top: none;
+  }
+}
+
+// Responsive
+@include mobile {
+  .dropdown-menu {
+    left: 0;
+    right: 0;
+    max-height: 250px;
+  }
+}
+
+// Animation d'ouverture/fermeture
+.dropdown-menu {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown.is-active .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Support pour dropdown menu toujours visible (sans is-active)
+.dropdown-menu.is-visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
