@@ -4,6 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
+import { Icon, IconSize } from '@/components/icon'
 import { DropdownItemProps, DropdownItemRef } from './DropdownItemProps'
 
 /**
@@ -73,9 +74,7 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
         {...others}
       >
         {iconName && (
-          <span className={hashClass(styled, clsx('icon', 'is-smaller'))}>
-            <i className={`tri-${iconName}`} />
-          </span>
+          <Icon name={iconName} size={IconSize.SMALLER} />
         )}
         {children}
       </button>

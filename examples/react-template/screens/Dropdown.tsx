@@ -4,8 +4,9 @@ import { Section } from '@trilogy-ds/react/components/section'
 import { Title } from '@trilogy-ds/react/components/title'
 import { Text } from '@trilogy-ds/react/components/text'
 import { Button } from '@trilogy-ds/react/components/button'
+import { IconName } from '@trilogy-ds/react/components/icon'
 
-const DropdownScreen = (): JSX.Element => {
+export const DropdownScreen = (): JSX.Element => {
   const [isOpen1, setIsOpen1] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
   const [isOpen3, setIsOpen3] = useState(false)
@@ -32,7 +33,7 @@ const DropdownScreen = (): JSX.Element => {
           {isOpen1 && (
             <Dropdown isActive={isOpen1}>
               <DropdownItem
-                iconName="check"
+                iconName={IconName.CHECK}
                 onSelect={() => {
                   setSelectedValue('Option 1')
                   setIsOpen1(false)
@@ -41,7 +42,7 @@ const DropdownScreen = (): JSX.Element => {
                 Option 1
               </DropdownItem>
               <DropdownItem
-                iconName="calendar"
+                iconName={IconName.CALENDAR}
                 onSelect={() => {
                   setSelectedValue('Option 2')
                   setIsOpen1(false)
@@ -50,7 +51,7 @@ const DropdownScreen = (): JSX.Element => {
                 Option 2
               </DropdownItem>
               <DropdownItem
-                iconName="search"
+                iconName={IconName.SEARCH}
                 onSelect={() => {
                   setSelectedValue('Option 3')
                   setIsOpen1(false)
@@ -58,7 +59,7 @@ const DropdownScreen = (): JSX.Element => {
               >
                 Option 3
               </DropdownItem>
-              <DropdownItem iconName="times" disabled>
+              <DropdownItem iconName={IconName.TIMES} disabled>
                 Disabled option
               </DropdownItem>
             </Dropdown>
@@ -88,19 +89,19 @@ const DropdownScreen = (): JSX.Element => {
             <Dropdown isActive={isOpen2}>
               <DropdownGroup title="Actions">
                 <DropdownItem
-                  iconName="check"
+                  iconName={IconName.CHECK}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Create
                 </DropdownItem>
                 <DropdownItem
-                  iconName="calendar"
+                  iconName={IconName.CALENDAR}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Edit
                 </DropdownItem>
                 <DropdownItem
-                  iconName="trash"
+                  iconName={IconName.TRASH}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Delete
@@ -109,19 +110,19 @@ const DropdownScreen = (): JSX.Element => {
 
               <DropdownGroup title="Navigation">
                 <DropdownItem
-                  iconName="arrow-left"
+                  iconName={IconName.ARROW_LEFT}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Home
                 </DropdownItem>
                 <DropdownItem
-                  iconName="eye"
+                  iconName={IconName.EYE}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Profile
                 </DropdownItem>
                 <DropdownItem
-                  iconName="search"
+                  iconName={IconName.SEARCH}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Settings
@@ -130,13 +131,13 @@ const DropdownScreen = (): JSX.Element => {
 
               <DropdownGroup title="Help">
                 <DropdownItem
-                  iconName="infos-circle"
+                  iconName={IconName.INFOS_CIRCLE}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Documentation
                 </DropdownItem>
                 <DropdownItem
-                  iconName="exclamation-circle"
+                  iconName={IconName.EXCLAMATION_CIRCLE}
                   onSelect={() => setIsOpen2(false)}
                 >
                   Support
@@ -163,25 +164,25 @@ const DropdownScreen = (): JSX.Element => {
           {isOpen3 && (
             <Dropdown isActive={isOpen3}>
               <DropdownItem
-                iconName="check"
+                iconName={IconName.CHECK}
                 onSelect={() => setIsOpen3(false)}
               >
                 Normal item
               </DropdownItem>
               <DropdownItem
-                iconName="calendar"
+                iconName={IconName.CALENDAR}
                 active
                 onSelect={() => setIsOpen3(false)}
               >
                 Active item
               </DropdownItem>
               <DropdownItem
-                iconName="search"
+                iconName={IconName.SEARCH}
                 onSelect={() => setIsOpen3(false)}
               >
                 Another normal item
               </DropdownItem>
-              <DropdownItem iconName="times" disabled>
+              <DropdownItem iconName={IconName.TIMES} disabled>
                 Disabled item
               </DropdownItem>
             </Dropdown>
@@ -195,15 +196,13 @@ const DropdownScreen = (): JSX.Element => {
         <Text>Example of always visible dropdown to see the styles.</Text>
         <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
           <Dropdown isActive={true}>
-            <DropdownItem iconName="check">Item with icon</DropdownItem>
+            <DropdownItem iconName={IconName.CHECK}>Item with icon</DropdownItem>
             <DropdownItem>Item without icon</DropdownItem>
-            <DropdownItem iconName="calendar" active>Active item</DropdownItem>
-            <DropdownItem iconName="times" disabled>Disabled item</DropdownItem>
+            <DropdownItem iconName={IconName.CALENDAR} active>Active item</DropdownItem>
+            <DropdownItem iconName={IconName.TIMES} disabled>Disabled item</DropdownItem>
           </Dropdown>
         </div>
       </div>
     </Section>
   )
 }
-
-export default DropdownScreen
