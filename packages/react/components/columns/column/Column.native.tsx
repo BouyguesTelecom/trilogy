@@ -17,7 +17,7 @@ const Column = React.memo(React.forwardRef<ColumnNativeRef, ColumnProps>(
     const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
     const calculatedWidth = React.useMemo(() =>
-      size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null,
+      (size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null),
       [size, width, realGap, childrensLength]
     )
 

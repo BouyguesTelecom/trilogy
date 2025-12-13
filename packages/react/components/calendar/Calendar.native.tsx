@@ -534,7 +534,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             }
           }}
           accessible={true}
-          accessibilityRole="button"
+          accessibilityRole='button'
           accessibilityState={{
             selected: isActive,
             disabled: isDisabled,
@@ -578,7 +578,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               onPress={() => handleClickNextPrevMonth(-1)}
               disabled={isPrevDisabled}
               accessible={true}
-              accessibilityRole="button"
+              accessibilityRole='button'
               accessibilityState={{ disabled: isPrevDisabled }}
               style={[styles.navButton, isPrevDisabled && styles.disabledButton]}
             >
@@ -592,7 +592,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                 <TouchableOpacity
                   style={styles.monthSelector}
                   accessible={true}
-                  accessibilityRole="button"
+                  accessibilityRole='button'
                   onPress={() => setShowMonthPicker(true)}
                 >
                   <View style={styles.selectorContent}>
@@ -605,7 +605,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                 <TouchableOpacity
                   style={styles.yearSelector}
                   accessible={true}
-                  accessibilityRole="button"
+                  accessibilityRole='button'
                   onPress={() => setShowYearPicker(true)}
                 >
                   <View style={styles.selectorContent}>
@@ -622,7 +622,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               onPress={() => handleClickNextPrevMonth(1)}
               disabled={isNextDisabled}
               accessible={true}
-              accessibilityRole="button"
+              accessibilityRole='button'
               accessibilityState={{ disabled: isNextDisabled }}
               style={[styles.navButton, isNextDisabled && styles.disabledButton]}
             >
@@ -658,7 +658,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         <Modal
           visible={showMonthPicker}
           transparent={true}
-          animationType="fade"
+          animationType='fade'
           onRequestClose={() => setShowMonthPicker(false)}
         >
           <View style={styles.modalOverlay}>
@@ -708,7 +708,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         <Modal
           visible={showYearPicker}
           transparent={true}
-          animationType="fade"
+          animationType='fade'
           onRequestClose={() => setShowYearPicker(false)}
         >
           <View style={styles.modalOverlay}>
