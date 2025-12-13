@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix calendar order days
 - Fix position on range calendar (web)
 - Fix radio checkbox stretched (web)
-- Update skeleton (native)
+- Update and fix skeleton (native)
 
 ## [4.13.0] - 2025-11-24
 - Fix Tab native fullwidth (ui)
