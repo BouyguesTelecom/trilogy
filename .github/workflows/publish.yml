@@ -2,33 +2,40 @@ name: Publish to NPM
 
 on:
   release:
-    types: [ created ]
+    types: [created]
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
-          registry-url: 'https://registry.npmjs.org'
-
+          node-version: 18
+          registry-url: https://registry.npmjs.org
 
       - name: Extract version tag
         id: get_version
-        run: echo "::set-output name=VERSION::${GITHUB_REF#refs/tags/}"
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Change version for React package 📌
         run: |
-          npm version --workspace packages/react --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} || echo "Version already set, continuing..."
+          npm version --workspace packages/react --no-git-tag-version "$VERSION" \
+          || echo "Version already set, continuing..."
 
-      - name: Install dependencies
+      - name: Install dependencies & build
         run: |
-          npm i --legacy-peer-deps
+          npm ci --legacy-peer-deps
           npm run build
 
       - name: Tests
@@ -39,31 +46,34 @@ jobs:
           npm run test:native
 
       - name: Publish React package on NPM 📦
-        run:  npm publish --workspace packages/react --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: npm publish --workspace packages/react --access public
 
       - name: Publish Assets package on NPM 📦
-        run: (npm version --workspace packages/assets --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} || echo "Version already set") && npm publish --workspace packages/assets --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: |
+          npm version --workspace packages/assets --no-git-tag-version "$VERSION" \
+          || echo "Version already set"
+          npm publish --workspace packages/assets --access public
 
       - name: Publish Styles package on NPM 📦
-        run: (npm version --workspace packages/styles --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} || echo "Version already set") && npm publish --workspace packages/styles --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: |
+          npm version --workspace packages/styles --no-git-tag-version "$VERSION" \
+          || echo "Version already set"
+          npm publish --workspace packages/styles --access public
 
       - name: Publish Vanilla package on NPM 📦
-        run: (npm version --workspace packages/vanilla --no-git-tag-version ${{ steps.get_version.outputs.VERSION }} || echo "Version already set") && npm publish --workspace packages/vanilla --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: |
+          npm version --workspace packages/vanilla --no-git-tag-version "$VERSION" \
+          || echo "Version already set"
+          npm publish --workspace packages/vanilla --access public
 
       - name: Publish Locale package (en) on NPM 📦
-        run: (npm version --prefix=packages/locales/en --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-en || echo "Version already set") && npm publish packages/locales/en --access public --tag en
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: |
+          npm version --prefix packages/locales/en --no-git-tag-version "${VERSION}-en" \
+          || echo "Version already set"
+          npm publish packages/locales/en --access public --tag en
 
       - name: Publish Locale package (fr) on NPM 📦
-        run: (npm version --prefix=packages/locales/fr --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}-fr || echo "Version already set") && npm publish packages/locales/fr --access public --tag fr
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+        run: |
+          npm version --prefix packages/locales/fr --no-git-tag-version "${VERSION}-fr" \
+          || echo "Version already set"
+          npm publish packages/locales/fr --access public --tag fr
