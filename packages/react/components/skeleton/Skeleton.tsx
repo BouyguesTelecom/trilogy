@@ -14,7 +14,7 @@ import { SkeletonProps } from './SkeletonProps'
  * @param children - Optional children to render inside the skeleton.
  * @param testID - Test identifier for testing purposes.
  */
-const Skeleton: React.FC<SkeletonProps> = ({}) => {
+const Skeleton: React.FC<SkeletonProps> = () => {
   return (
     <></>
   )

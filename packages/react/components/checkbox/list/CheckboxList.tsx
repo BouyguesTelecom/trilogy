@@ -40,7 +40,7 @@ const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
         <div
           ref={ref}
           id={id}
-          role="group"
+          role='group'
           aria-labelledby={accessibilityLabelledBy}
           aria-required={isRequiredChild(children) ? 'true' : undefined}
           className={hashClass(

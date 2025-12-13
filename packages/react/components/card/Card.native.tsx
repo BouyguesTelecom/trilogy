@@ -76,7 +76,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     const CardSkeleton = () => (
       <Skeleton
         style={styles.skeleton}
-        width="100%"
+        width='100%'
         height={50}
         borderRadius={cardRadius}
         testID='skeleton-id'

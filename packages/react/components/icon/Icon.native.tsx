@@ -122,7 +122,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
         width={circledWidth}
         height={circledWidth}
         borderRadius={iconSkeletonRadius}
-        testID="skeleton-id"
+        testID='skeleton-id'
       />
     )
 
