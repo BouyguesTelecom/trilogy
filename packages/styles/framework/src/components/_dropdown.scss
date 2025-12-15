@@ -29,10 +29,13 @@ $dropdown-item-padding-horizontal: 16px;
   background-color: getColor('background');
   border-radius: $dropdown-border-radius;
   box-shadow: $dropdown-shadow;
-  border: var(--border);
   overflow: hidden;
   max-height: 300px;
   overflow-y: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -61,6 +64,7 @@ $dropdown-item-padding-horizontal: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   border: none;
+  border-radius: $dropdown-border-radius;
   background: none;
   width: 100%;
   text-align: left;
@@ -105,6 +109,10 @@ $dropdown-item-padding-horizontal: 16px;
       opacity: 0.5;
     }
   }
+}
+
+.dropdown-item:disabled, .dropdown-item[aria-disabled=true] {
+  background-color: transparent !important;
 }
 
 .dropdown-group {

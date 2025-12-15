@@ -20,7 +20,6 @@ const DropdownGroup = React.forwardRef<DropdownGroupRef, DropdownGroupProps>(
       className,
       id,
       children,
-      title,
       hideSeparator,
       testId,
       ...others
