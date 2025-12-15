@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
 
       - name: Extract version tag
@@ -45,7 +45,7 @@ jobs:
           npm run check-types
           npm run test:native
 
-      - name: Publish React package on NPM 📦
+      - name: Publish React package on NPMJS Registry 📦
         run: npm publish --workspace packages/react --access public
 
       - name: Publish Assets package on NPM 📦
