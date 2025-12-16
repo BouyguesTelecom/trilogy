@@ -47,33 +47,45 @@ jobs:
 
       - name: Publish React package on NPMJS Registry 📦
         run: npm publish --workspace packages/react --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Assets package on NPM 📦
         run: |
           npm version --workspace packages/assets --no-git-tag-version "$VERSION" \
           || echo "Version already set"
           npm publish --workspace packages/assets --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Styles package on NPM 📦
         run: |
           npm version --workspace packages/styles --no-git-tag-version "$VERSION" \
           || echo "Version already set"
           npm publish --workspace packages/styles --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Vanilla package on NPM 📦
         run: |
           npm version --workspace packages/vanilla --no-git-tag-version "$VERSION" \
           || echo "Version already set"
           npm publish --workspace packages/vanilla --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Locale package (en) on NPM 📦
         run: |
           npm version --prefix packages/locales/en --no-git-tag-version "${VERSION}-en" \
           || echo "Version already set"
           npm publish packages/locales/en --access public --tag en --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Publish Locale package (fr) on NPM 📦
         run: |
           npm version --prefix packages/locales/fr --no-git-tag-version "${VERSION}-fr" \
           || echo "Version already set"
           npm publish packages/locales/fr --access public --tag fr --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
