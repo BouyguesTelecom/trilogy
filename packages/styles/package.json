@@ -2,6 +2,11 @@
   "name": "@trilogy-ds/styles",
   "version": "4.7.4",
   "author": "Bouygues Telecom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BouyguesTelecom/trilogy",
+    "directory": "packages/styles"
+  },
   "license": "UNLICENSED",
   "files": [
     "framework/src",
