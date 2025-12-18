@@ -40,7 +40,7 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
         <div
           ref={ref}
           id={id}
-          role="radiogroup"
+          role='radiogroup'
           aria-labelledby={accessibilityLabelledBy}
           aria-required={isRequiredChild(children) ? 'true' : undefined}
           className={hashClass(

@@ -1,14 +1,37 @@
-.divider {
+@mixin divider {
+  content:'';
+  flex: 1;
+  height: 1px;
   background-color: getColor('neutral');
+}
+
+.divider {
   height: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   p.divider-content {
-    white-space: nowrap;
-    padding: 0 $spacing-4;
-    background-color: invertColor('neutral');
+    flex-wrap: nowrap;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &::before {
+     @include divider
+    }
+    &::after {
+     @include divider
+    }
+
+    &:not(:empty) {
+      &::before {
+        margin-right: $spacing-4;
+      }
+      &::after {
+        margin-left: $spacing-4;
+      }
+    }
   }
 
   &:not(.is-marginless) {

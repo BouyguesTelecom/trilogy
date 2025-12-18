@@ -4,6 +4,10 @@
   "private": true,
   "license": "UNLICENSED",
   "author": "Bouygues Telecom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BouyguesTelecom/trilogy"
+  },
   "scripts": {
     "mobile": "npm --workspace=examples/mobile run ios",
     "prebuild": "npm run build:version && ./scripts/install-hooks.sh",

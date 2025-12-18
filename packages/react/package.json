@@ -2,6 +2,11 @@
   "name": "@trilogy-ds/react",
   "version": "4.7.4",
   "author": "Bouygues Telecom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BouyguesTelecom/trilogy",
+    "directory": "packages/react"
+  },
   "files": [
     "lib"
   ],

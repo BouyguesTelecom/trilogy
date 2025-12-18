@@ -776,6 +776,7 @@
     }
 
     @include container-mobile {
+      &.has-gap-#{$i},
       &.has-gap-#{$i}-mobile {
         gap: $item;
 

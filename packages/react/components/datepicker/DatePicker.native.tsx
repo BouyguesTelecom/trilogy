@@ -154,24 +154,24 @@ const DatePicker = forwardRef<View, DatePickerProps>(
         if (numbersOnly.length === 1) {
           const firstDigit = parseInt(numbersOnly[0])
           if (firstDigit > 3) {
-            formatted = '0' + numbersOnly[0] + '/'
+            formatted = `0${numbersOnly[0]}/`
           } else {
             formatted = numbersOnly
           }
         } else if (numbersOnly.length === 2) {
           const firstTwoDigits = parseInt(numbersOnly.slice(0, 2))
           if (firstTwoDigits > 31) {
-            formatted = '0' + numbersOnly[0] + '/' + '0' + numbersOnly[1]
+            formatted = `0${numbersOnly[0]}/` + `0${numbersOnly[1]}`
           } else {
-            formatted = numbersOnly.slice(0, 2) + '/'
+            formatted = `${numbersOnly.slice(0, 2)}/`
           }
         } else if (numbersOnly.length === 3) {
           const dayPart = numbersOnly.slice(0, 2)
           const monthDigit = parseInt(numbersOnly[2])
           if (monthDigit > 1) {
-            formatted = dayPart + '/' + '0' + numbersOnly[2] + '/'
+            formatted = `${dayPart}/` + `0${numbersOnly[2]}/`
           } else {
-            formatted = dayPart + '/' + numbersOnly[2]
+            formatted = `${dayPart}/${numbersOnly[2]}`
           }
         } else if (numbersOnly.length >= 4) {
           const dayPart = numbersOnly.slice(0, 2)
@@ -179,11 +179,11 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           const monthValue = parseInt(monthPart)
 
           if (monthValue > 12) {
-            formatted = dayPart + '/' + '0' + numbersOnly[2] + '/' + numbersOnly[3]
+            formatted = `${dayPart}/` + `0${numbersOnly[2]}/${numbersOnly[3]}`
           } else {
-            formatted = dayPart + '/' + monthPart
+            formatted = `${dayPart}/${monthPart}`
             if (numbersOnly.length > 4) {
-              formatted += '/' + numbersOnly.slice(4)
+              formatted += `/${numbersOnly.slice(4)}`
             }
           }
         }
