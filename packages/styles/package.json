@@ -16,8 +16,8 @@
   ],
   "main": "dist/default/trilogy.css",
   "scripts": {
-    "build:autolayout": "esbuild --platform=node --bundle scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap --loader:.svg=text",
-    "build:spacing": "esbuild --platform=node --bundle scripts/spacing.ts --outfile=scripts/dist/spacing.cjs --sourcemap --loader:.svg=text",
+    "build:autolayout": "esbuild --platform=node --bundle scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap --loader:.svg=text --external:@trilogy-ds/styles/dist/default/trilogy.css --external:@trilogy-ds/styles/dist/default/trilogy-mangled.css",
+    "build:spacing": "esbuild --platform=node --bundle scripts/spacing.ts --outfile=scripts/dist/spacing.cjs --sourcemap --loader:.svg=text --external:@trilogy-ds/styles/dist/default/trilogy.css --external:@trilogy-ds/styles/dist/default/trilogy-mangled.css",
     "create:autolayout": "node scripts/dist/autolayout.cjs",
     "create:spacing": "node scripts/dist/spacing.cjs",
     "prebuild": "npm run copy:icons",
