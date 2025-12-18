@@ -3,6 +3,11 @@
     "version": "4.10.0",
     "description": "Trilogy assets include traductions (fr) for accessibility",
     "author": "Bouygues Telecom",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BouyguesTelecom/trilogy",
+        "directory": "packages/locales/fr"
+    },
     "license": "UNLICENSED",
     "main": "lib/index.js",    
     "module": "lib/index.mjs",  
