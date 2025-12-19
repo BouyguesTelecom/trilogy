@@ -1,7 +1,7 @@
-import { Box, StatusState, TrilogyColor, VariantState } from '@trilogy-ds/react'
 import {
   Badge,
   BadgeVariant,
+  Box,
   Column,
   Columns,
   Divider,
@@ -9,10 +9,12 @@ import {
   IconName,
   IconSize,
   Section,
+  StatusState,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import * as React from 'react'
+  TrilogyColor,
+  VariantState,
+} from '@trilogy-ds/react'
 import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {

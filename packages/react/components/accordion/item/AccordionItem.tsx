@@ -1,6 +1,6 @@
 import { AccordionItemProps, AccordionItemRef } from '@/components/accordion/item/AccordionItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'

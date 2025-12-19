@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
+import { Icon } from '@/components/icon/index.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { BreadcrumbNativeRef, BreadcrumbProps } from './BreadcrumbProps'

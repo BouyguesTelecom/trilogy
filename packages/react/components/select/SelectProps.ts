@@ -1,7 +1,8 @@
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { TextInput } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
 import { SelectStatus, SelectStatusValues } from './SelectEnum'
 
 export interface ISelectOption {

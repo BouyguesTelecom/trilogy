@@ -1,5 +1,5 @@
-import { IconSize, Spacer, SpacerSize, TextLevels, TypographyBold, View } from '@trilogy-ds/react'
 import {
+  Alignable,
   Box,
   BoxContent,
   BoxFooter,
@@ -11,14 +11,21 @@ import {
   Divider,
   Icon,
   IconName,
+  IconSize,
   Link,
   Price,
   Section,
+  Spacer,
+  SpacerSize,
   Text,
+  TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
+  TrilogyColor,
+  TypographyAlign,
+  TypographyBold,
+  View,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const BoxScreen = (): JSX.Element => {

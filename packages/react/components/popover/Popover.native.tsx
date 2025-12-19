@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { PopoverNativeRef, PopoverProps } from './PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle, TrilogyColor } from '@/objects/index.native'
+import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import { PopoverDirection } from './PopoverEnum'
+import { PopoverNativeRef, PopoverProps } from './PopoverProps'
 
 /**
  * Popover Component

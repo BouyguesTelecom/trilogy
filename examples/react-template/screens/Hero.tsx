@@ -1,5 +1,6 @@
-import { Box, BoxContent, TitleMarkup, TrilogyColor } from '@trilogy-ds/react'
 import {
+  Box,
+  BoxContent,
   Button,
   ButtonMarkup,
   ButtonVariant,
@@ -11,8 +12,9 @@ import {
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
-import React from 'react'
+  TitleMarkup,
+  TrilogyColor,
+} from '@trilogy-ds/react'
 
 export const HeroScreen = (): JSX.Element => {
   return (

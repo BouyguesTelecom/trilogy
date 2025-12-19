@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { Icon } from '@/components/icon/index.native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import * as React from 'react'
 import { useState } from 'react'
 import { Linking, StyleSheet, Text, View } from 'react-native'

@@ -1,19 +1,21 @@
 import {
   Alignable,
+  Box,
+  BoxContent,
+  Column,
+  Columns,
+  GapSize,
+  Icon,
   IconName,
   IconSize,
   Price,
+  Section,
   Spacer,
   SpacerSize,
-  Sticker,
   Text,
   Title,
   TypographyAlign,
-  List,
-  ListItem,
-  TextLevels
 } from '@trilogy-ds/react'
-import { Box, BoxContent, Column, Columns, GapSize, Icon, Section } from '@trilogy-ds/react/components'
 import * as React from 'react'
 import { View } from 'react-native'
 
@@ -22,26 +24,6 @@ export const ColumnScreen = (): JSX.Element => {
 
   return (
     <Section>
-      <List>
-        <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-          <Column narrow>
-            <ListItem>
-              <Text level={TextLevels.TWO}>
-                List item with Column
-              </Text>
-            </ListItem>
-          </Column>
-        </Columns>
-        <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-          <Column narrow>
-            <ListItem>
-              <Text level={TextLevels.TWO}>
-                List item with Column
-              </Text>
-            </ListItem>
-          </Column>
-        </Columns>
-      </List>
       <Columns>
         <Column>
           <Box fullheight>
@@ -189,9 +171,7 @@ export const ColumnScreen = (): JSX.Element => {
               <Columns fullheight>
                 <Column verticalAlign='ALIGNED_END'>
                   <Spacer size={12} />
-                  <Columns align={Alignable.ALIGNED_CENTER}>
-                    <Sticker label='BONUS REPRISE 200€' />
-                  </Columns>
+                  <Columns align={Alignable.ALIGNED_CENTER}></Columns>
                   <Spacer size={12} />
 
                   <Title typo={[TypographyAlign.TEXT_CENTERED]}>Galaxy S25</Title>

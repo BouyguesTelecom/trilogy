@@ -1,9 +1,9 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import clsx from 'clsx'
 import * as React from 'react'
 import { ModalBodyProps, ModalBodyRef } from './ModalBodyProps'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Modal Footer Component

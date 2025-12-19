@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
 import { render } from '@testing-library/react'
-import { TrilogyProvider } from '../provider'
+import React from 'react'
 import { TrilogyContext } from '../index'
+import { TrilogyProvider } from '../provider/provider'
 
 describe('TrilogyProvider', () => {
   it('should render children', () => {
@@ -28,15 +28,13 @@ describe('TrilogyProvider', () => {
   })
 
   function getLink() {
-    return document.head.getElementsByTagName("link")[0]
+    return document.head.getElementsByTagName('link')[0]
   }
 
   it('should append link tag with the good version', () => {
     render(
       <TrilogyProvider injectTrilogyAssets>
-        <TrilogyContext.Consumer>
-          {() => <div>test</div>}
-        </TrilogyContext.Consumer>
+        <TrilogyContext.Consumer>{() => <div>test</div>}</TrilogyContext.Consumer>
       </TrilogyProvider>,
     )
     const headerLink = getLink()

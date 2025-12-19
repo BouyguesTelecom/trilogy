@@ -1,7 +1,5 @@
-import * as React from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
-/* eslint import/namespace: ['error', { allowComputed: true }] */
 import { AutoLayout, Section, View } from '@trilogy-ds/react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { MenuScreen } from '../Menu/Menu'
 import * as Screens from '../screens'
 import { Wrapper } from '../Wrapper'

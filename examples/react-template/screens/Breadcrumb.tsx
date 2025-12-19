@@ -1,10 +1,8 @@
-import * as React from 'react'
-import { useState } from 'react'
+import { Spacer, SpacerSize } from '@trilogy-ds/react'
 import {
   Box,
   BoxContent,
   Breadcrumb,
-  BreadcrumbItem,
   Button,
   Card,
   CardContent,
@@ -13,9 +11,10 @@ import {
   Rows,
   Section,
   Text,
-} from '@trilogy-ds/react/components'
-import { TrilogyColor, TypographyBold } from '@trilogy-ds/react/objects'
-import { Spacer, SpacerSize } from '@trilogy-ds/react'
+} from '@trilogy-ds/react/lib/components'
+import { BreadcrumbItem } from '@trilogy-ds/react/lib/components/breadcrumb/item'
+import { TypographyBold } from '@trilogy-ds/react/lib/objects'
+import { useState } from 'react'
 
 export const BreadcrumScreen = (): JSX.Element => {
   const [active, setActive] = useState(2)
@@ -75,11 +74,11 @@ export const BreadcrumScreen = (): JSX.Element => {
       </Card>
 
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>Breadcrumb in rows</Text>
-      <Container >
+      <Container>
         <Rows>
           <Row></Row>
           <Row>
-            <Container >
+            <Container>
               <Breadcrumb>
                 <BreadcrumbItem href='https://Home.fr'>Home</BreadcrumbItem>
                 <BreadcrumbItem to='#anchor'>Catalog</BreadcrumbItem>

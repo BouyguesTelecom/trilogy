@@ -1,4 +1,4 @@
-import { Range, Section } from '@trilogy-ds/react/components'
+import { Range, Section } from '@trilogy-ds/react'
 
 export const RangeScreen = (): JSX.Element => {
   return (

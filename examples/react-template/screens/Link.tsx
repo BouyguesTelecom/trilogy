@@ -1,6 +1,15 @@
-import * as React from 'react'
-import { IconName, Link, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
-import { Alignable, Column, Columns, Divider } from '@trilogy-ds/react'
+import {
+  Alignable,
+  Column,
+  Columns,
+  Divider,
+  IconName,
+  Link,
+  Section,
+  Text,
+  Title,
+  TitleLevels,
+} from '@trilogy-ds/react'
 
 export const LinkScreen = (): JSX.Element => {
   return (

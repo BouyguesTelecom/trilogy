@@ -1,9 +1,9 @@
-import * as React from "react"
-import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative, } from "react-native"
-import { getAlignStyle, getJustifyStyle, TrilogyColor } from "@/objects"
-import { getColorStyle } from "@/objects/facets/Color"
-import { ViewNativeRef, ViewProps } from "./ViewProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle } from '@/objects/facets/Color/index.native'
+import { getAlignStyle, getJustifyStyle, TrilogyColor } from '@/objects/index.native'
+import * as React from 'react'
+import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
+import { ViewNativeRef, ViewProps } from './ViewProps/index.native'
 
 /**
  * View Component (DIV EQUIVALENT)

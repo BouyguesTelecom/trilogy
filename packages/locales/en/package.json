@@ -1,22 +1,36 @@
 {
-  "name": "@trilogy-ds/locales",
-  "version": "4.8.0",
-  "description": "Trilogy assets include traductions (en) for accessibility",
-  "author": "Bouygues Telecom",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/BouyguesTelecom/trilogy",
-    "directory": "packages/locales/en"
-  },
-  "license": "UNLICENSED",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "scripts": {
-    "build": "rimraf ./lib && tsc"
-  },
-  "files": [
-    "lib",
-    "package.json",
-    "README.md"
-  ]
+    "name": "@trilogy-ds/locales",
+    "version": "4.10.0",
+    "description": "Trilogy assets include traductions (en) for accessibility",
+    "author": "Bouygues Telecom",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BouyguesTelecom/trilogy",
+        "directory": "packages/locales/en"
+    },
+    "license": "UNLICENSED",
+    "main": "lib/index.js",    
+    "module": "lib/index.mjs",  
+    "types": "lib/index.d.ts", 
+    "scripts": {
+      "build": "rimraf ./lib && tsup"
+    },
+    "files": [
+      "lib",
+      "package.json",
+      "README.md"
+    ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./*": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  }
 }

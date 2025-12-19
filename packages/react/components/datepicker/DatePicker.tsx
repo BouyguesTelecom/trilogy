@@ -1,11 +1,11 @@
-import { Calendar, ChangeEventCalendar } from '@/components/calendar'
+import { Calendar, ChangeEventCalendar } from '@/components/calendar/index'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { Icon } from '@/components/icon/index'
+import { useTrilogyContext } from '@/context/index'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects'
-import { has, is } from '@/services'
+import { TypographyColor } from '@/objects/Typography/TypographyColor/index'
+import { has, is } from '@/services/index'
 import clsx from 'clsx'
 import React, {
   forwardRef,
@@ -18,8 +18,8 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import { Modal, ModalBody } from '../modal'
-import { Text, TextLevels, TextMarkup } from '../text'
+import { Modal, ModalBody } from '../modal/index'
+import { Text, TextLevels, TextMarkup } from '../text/index'
 import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420

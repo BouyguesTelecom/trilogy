@@ -1,12 +1,12 @@
-import React from 'react'
-import clsx from 'clsx'
-import { StepProps, StepRef } from './StepProps'
-import { is } from '@/services/classify'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import Icon from '@/components/icon/Icon'
-import { IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { IconSize } from '@/components/icon'
+import Icon from '@/components/icon/Icon'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
+import { StepProps, StepRef } from './StepProps'
 
 /**
  * Stepper Step Component

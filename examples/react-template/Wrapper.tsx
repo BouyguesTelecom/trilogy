@@ -1,6 +1,5 @@
 import { AutoLayout, TypographyAlign } from '@trilogy-ds/react'
-import { Icon, IconName, ScrollView, Section, Title, View } from '@trilogy-ds/react/components'
-import * as React from 'react'
+import { Icon, IconName, ScrollView, Section, Title, View } from '@trilogy-ds/react/lib/components'
 import { PropsWithChildren } from 'react'
 
 interface IProps {

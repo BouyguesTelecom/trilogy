@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { SpacerSize } from '@/components/spacer'
+import { SpacerSize } from '@/components/spacer/index.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'

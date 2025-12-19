@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
-import { SpacerSize } from '@/components/spacer'
+import { SpacerSize } from '@/components/spacer/index.native'
 import { Alignable } from '@/objects/facets/Alignable'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'

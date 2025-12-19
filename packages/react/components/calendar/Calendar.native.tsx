@@ -1,12 +1,12 @@
+import { Icon } from '@/components/icon/index.native'
+import { Text } from '@/components/text/index.native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Modal, ScrollView, Platform } from 'react-native'
+import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { Text } from '../text'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TypographyAlign } from '@/objects'
 
 const days = [
   translation.days[1],
@@ -15,7 +15,7 @@ const days = [
   translation.days[4],
   translation.days[5],
   translation.days[6],
-  translation.days[0]
+  translation.days[0],
 ]
 const months = [...translation.months]
 const currentDate = new Date()
@@ -64,257 +64,261 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
     const disabledColor = getColorStyle(TrilogyColor.DISABLED)
 
-    const styles = React.useMemo(() => StyleSheet.create({
-      calendar: {
-        backgroundColor,
-        borderRadius: 8,
-        padding: 24,
-        shadowColor,
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 8,
-        elevation: 4,
-        width: '85%',
-        alignSelf: 'center'
-      },
-      header: {
-        alignContent: 'center',
-        marginBottom: 16
-      },
-      headerRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 16,
-        paddingBottom: 16
-      },
-      navButton: {
-        width: 36,
-        height: 36,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4,
-        backgroundColor: 'transparent',
-      },
-      iconWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      disabledButton: {
-        opacity: 0.5,
-      },
-      monthYearContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      dropdownContainer: {
-        flexDirection: 'row',
-        gap: 12,
-        justifyContent: 'center',
-      },
-      monthSelector: {
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        backgroundColor,
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: disabledFadeColor,
-        width: 80,
-        alignItems: 'center',
-        height: 30,
-        justifyContent: 'center',
-      },
-      yearSelector: {
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        backgroundColor,
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: disabledFadeColor,
-        width: 80,
-        alignItems: 'center',
-        height: 30,
-        justifyContent: 'center',
-      },
-      selectorContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-      },
-      selectorText: {
-        fontSize: 14,
-        fontWeight: '500',
-        color: '#495057',
-        flex: 1,
-        width: '100%',
-      },
-      dropdownIcon: {
-        marginLeft: 4,
-        width: 12,
-        height: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      daysLabelRow: {
-        flexDirection: 'row',
-        marginBottom: 8,
-        justifyContent: 'space-between',
-      },
-      dayLabel: {
-        flex: 1,
-        alignItems: 'center',
-        paddingVertical: Platform.OS === 'android' ? 6 : 4,
-        height: Platform.OS === 'android' ? 42 : 36,
-        justifyContent: 'center',
-        maxWidth: Platform.OS === 'android' ? 42 : 36,
-        minWidth: Platform.OS === 'android' ? 42 : 36,
-      },
-      dayLabelText: {
-        fontSize: 12,
-        fontWeight: '600',
-        color: '#6c757d',
-        textTransform: 'uppercase',
-        width: '100%',
-      },
-      body: {
-        gap: 8,
-      },
-      weekRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 0,
-      },
-      emptyDay: {
-        flex: 1,
-        height: Platform.OS === 'android' ? 42 : 36,
-        alignItems: 'center',
-        justifyContent: 'center',
-        maxWidth: Platform.OS === 'android' ? 42 : 36,
-        minWidth: Platform.OS === 'android' ? 42 : 36,
-      },
-      dayButton: {
-        flex: 1,
-        height: Platform.OS === 'android' ? 42 : 36,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4,
-        backgroundColor: 'transparent',
-        maxWidth: Platform.OS === 'android' ? 42 : 36,
-        minWidth: Platform.OS === 'android' ? 42 : 36,
-      },
-      dayText: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: '#212529',
-        width: '100%',
-      },
-      activeDay: {
-        backgroundColor: mainColor,
-      },
-      activeDayText: {
-        color: backgroundColor,
-        fontWeight: '600',
-        width: '100%',
-      },
-      disabledDay: {
-        backgroundColor: disabledFadeColor,
-        opacity: 0.6,
-      },
-      disabledDayText: {
-        color: disabledColor,
-        width: '100%',
-      },
-      dateStart: {
-        backgroundColor: mainColor,
-        borderTopLeftRadius: 8,
-        borderBottomLeftRadius: 8,
-        borderTopRightRadius: 4,
-        borderBottomRightRadius: 4,
-      },
-      dateEnd: {
-        backgroundColor: mainColor,
-        borderTopRightRadius: 8,
-        borderBottomRightRadius: 8,
-        borderTopLeftRadius: 4,
-        borderBottomLeftRadius: 4,
-      },
-      dateInRange: {
-        backgroundColor: mainFadeColor,
-        borderRadius: 0,
-      },
-      roundedLeft: {
-        borderTopLeftRadius: 8,
-        borderBottomLeftRadius: 8,
-      },
-      roundedRight: {
-        borderTopRightRadius: 8,
-        borderBottomRightRadius: 8,
-      },
-      todayButton: {
-        borderWidth: 0,
-        backgroundColor: 'transparent',
-      },
-      todayText: {
-        fontWeight: '600',
-        color: mainColor,
-      },
-      modalOverlay: {
-        flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      pickerContainer: {
-        backgroundColor,
-        borderRadius: 8,
-        maxHeight: 300,
-        width: 200,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 8,
-        elevation: 5,
-      },
-      pickerScrollView: {
-        maxHeight: 300,
-      },
-      pickerItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: backgroundColor,
-      },
-      pickerItemSelected: {
-        backgroundColor: mainColor,
-      },
-      pickerItemDisabled: {
-        opacity: 0.5,
-      },
-      pickerItemText: {
-        fontSize: 16,
-        color: '#212529',
-        flex: 1,
-        lineHeight: 20,
-      },
-      pickerItemTextSelected: {
-        color: '#ffffff',
-        fontWeight: '600',
-      },
-      pickerItemTextDisabled: {
-        color: '#6c757d',
-      },
-    }), [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor])
+    const styles = React.useMemo(
+      () =>
+        StyleSheet.create({
+          calendar: {
+            backgroundColor,
+            borderRadius: 8,
+            padding: 24,
+            shadowColor,
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 8,
+            elevation: 4,
+            width: '85%',
+            alignSelf: 'center',
+          },
+          header: {
+            alignContent: 'center',
+            marginBottom: 16,
+          },
+          headerRow: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: 16,
+            paddingBottom: 16,
+          },
+          navButton: {
+            width: 36,
+            height: 36,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 4,
+            backgroundColor: 'transparent',
+          },
+          iconWrapper: {
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          disabledButton: {
+            opacity: 0.5,
+          },
+          monthYearContainer: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          dropdownContainer: {
+            flexDirection: 'row',
+            gap: 12,
+            justifyContent: 'center',
+          },
+          monthSelector: {
+            paddingHorizontal: 8,
+            paddingVertical: 4,
+            backgroundColor,
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: disabledFadeColor,
+            width: 80,
+            alignItems: 'center',
+            height: 30,
+            justifyContent: 'center',
+          },
+          yearSelector: {
+            paddingHorizontal: 8,
+            paddingVertical: 4,
+            backgroundColor,
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: disabledFadeColor,
+            width: 80,
+            alignItems: 'center',
+            height: 30,
+            justifyContent: 'center',
+          },
+          selectorContent: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+          },
+          selectorText: {
+            fontSize: 14,
+            fontWeight: '500',
+            color: '#495057',
+            flex: 1,
+            width: '100%',
+          },
+          dropdownIcon: {
+            marginLeft: 4,
+            width: 12,
+            height: 12,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          daysLabelRow: {
+            flexDirection: 'row',
+            marginBottom: 8,
+            justifyContent: 'space-between',
+          },
+          dayLabel: {
+            flex: 1,
+            alignItems: 'center',
+            paddingVertical: Platform.OS === 'android' ? 6 : 4,
+            height: Platform.OS === 'android' ? 42 : 36,
+            justifyContent: 'center',
+            maxWidth: Platform.OS === 'android' ? 42 : 36,
+            minWidth: Platform.OS === 'android' ? 42 : 36,
+          },
+          dayLabelText: {
+            fontSize: 12,
+            fontWeight: '600',
+            color: '#6c757d',
+            textTransform: 'uppercase',
+            width: '100%',
+          },
+          body: {
+            gap: 8,
+          },
+          weekRow: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: 0,
+          },
+          emptyDay: {
+            flex: 1,
+            height: Platform.OS === 'android' ? 42 : 36,
+            alignItems: 'center',
+            justifyContent: 'center',
+            maxWidth: Platform.OS === 'android' ? 42 : 36,
+            minWidth: Platform.OS === 'android' ? 42 : 36,
+          },
+          dayButton: {
+            flex: 1,
+            height: Platform.OS === 'android' ? 42 : 36,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 4,
+            backgroundColor: 'transparent',
+            maxWidth: Platform.OS === 'android' ? 42 : 36,
+            minWidth: Platform.OS === 'android' ? 42 : 36,
+          },
+          dayText: {
+            fontSize: 14,
+            fontWeight: '400',
+            color: '#212529',
+            width: '100%',
+          },
+          activeDay: {
+            backgroundColor: mainColor,
+          },
+          activeDayText: {
+            color: backgroundColor,
+            fontWeight: '600',
+            width: '100%',
+          },
+          disabledDay: {
+            backgroundColor: disabledFadeColor,
+            opacity: 0.6,
+          },
+          disabledDayText: {
+            color: disabledColor,
+            width: '100%',
+          },
+          dateStart: {
+            backgroundColor: mainColor,
+            borderTopLeftRadius: 8,
+            borderBottomLeftRadius: 8,
+            borderTopRightRadius: 4,
+            borderBottomRightRadius: 4,
+          },
+          dateEnd: {
+            backgroundColor: mainColor,
+            borderTopRightRadius: 8,
+            borderBottomRightRadius: 8,
+            borderTopLeftRadius: 4,
+            borderBottomLeftRadius: 4,
+          },
+          dateInRange: {
+            backgroundColor: mainFadeColor,
+            borderRadius: 0,
+          },
+          roundedLeft: {
+            borderTopLeftRadius: 8,
+            borderBottomLeftRadius: 8,
+          },
+          roundedRight: {
+            borderTopRightRadius: 8,
+            borderBottomRightRadius: 8,
+          },
+          todayButton: {
+            borderWidth: 0,
+            backgroundColor: 'transparent',
+          },
+          todayText: {
+            fontWeight: '600',
+            color: mainColor,
+          },
+          modalOverlay: {
+            flex: 1,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+          pickerContainer: {
+            backgroundColor,
+            borderRadius: 8,
+            maxHeight: 300,
+            width: 200,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 8,
+            elevation: 5,
+          },
+          pickerScrollView: {
+            maxHeight: 300,
+          },
+          pickerItem: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingHorizontal: 16,
+            paddingVertical: 12,
+            borderBottomWidth: 1,
+            borderBottomColor: backgroundColor,
+          },
+          pickerItemSelected: {
+            backgroundColor: mainColor,
+          },
+          pickerItemDisabled: {
+            opacity: 0.5,
+          },
+          pickerItemText: {
+            fontSize: 16,
+            color: '#212529',
+            flex: 1,
+            lineHeight: 20,
+          },
+          pickerItemTextSelected: {
+            color: '#ffffff',
+            fontWeight: '600',
+          },
+          pickerItemTextDisabled: {
+            color: '#6c757d',
+          },
+        }),
+      [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor],
+    )
 
     const isRange = checkIsRange(activeDate)
 
@@ -567,10 +571,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     }
 
     return (
-      <View
-        ref={ref}
-        style={styles.calendar}
-      >
+      <View ref={ref} style={styles.calendar}>
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerRow}>
@@ -596,7 +597,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowMonthPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>{months[visibleMonth.getMonth()]}</Text>
+                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>
+                      {months[visibleMonth.getMonth()]}
+                    </Text>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -609,7 +612,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                   onPress={() => setShowYearPicker(true)}
                 >
                   <View style={styles.selectorContent}>
-                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>{visibleMonth.getFullYear()}</Text>
+                    <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.selectorText}>
+                      {visibleMonth.getFullYear()}
+                    </Text>
                     <View style={styles.dropdownIcon}>
                       <Icon name='tri-arrow-down' />
                     </View>
@@ -636,7 +641,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           <View style={styles.daysLabelRow}>
             {days.map((day, index) => (
               <View key={index} style={styles.dayLabel}>
-                <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.dayLabelText}>{day.slice(0, 1)}</Text>
+                <Text typo={TypographyAlign.TEXT_CENTERED} style={styles.dayLabelText}>
+                  {day.slice(0, 1)}
+                </Text>
               </View>
             ))}
           </View>
@@ -645,10 +652,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         {/* Calendar body */}
         <View style={styles.body}>
           {allDaysInMonth.map((week, weekIndex) => (
-            <View
-              key={weekIndex}
-              style={styles.weekRow}
-            >
+            <View key={weekIndex} style={styles.weekRow}>
               {week.map((day, dayIndex) => renderDayButton(day, dayIndex))}
             </View>
           ))}
@@ -686,17 +690,16 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                     }}
                   >
                     <Text
-                    typo={TypographyAlign.TEXT_LEFT}
-                    style={[
-                      styles.pickerItemText,
-                      visibleMonth.getMonth() === monthIndex && styles.pickerItemTextSelected,
-                      !availableMonths[monthIndex] && styles.pickerItemTextDisabled,
-                    ]}>
+                      typo={TypographyAlign.TEXT_LEFT}
+                      style={[
+                        styles.pickerItemText,
+                        visibleMonth.getMonth() === monthIndex && styles.pickerItemTextSelected,
+                        !availableMonths[monthIndex] && styles.pickerItemTextDisabled,
+                      ]}
+                    >
                       {monthName}
                     </Text>
-                    {visibleMonth.getMonth() === monthIndex && (
-                      <Icon name='tri-check' />
-                    )}
+                    {visibleMonth.getMonth() === monthIndex && <Icon name='tri-check' />}
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -736,17 +739,16 @@ const Calendar = React.forwardRef<View, CalendarProps>(
                     }}
                   >
                     <Text
-                    typo={TypographyAlign.TEXT_LEFT}
-                    style={[
-                      styles.pickerItemText,
-                      visibleMonth.getFullYear() === year.value && styles.pickerItemTextSelected,
-                      !availableYear.includes(year.value) && styles.pickerItemTextDisabled,
-                    ]}>
+                      typo={TypographyAlign.TEXT_LEFT}
+                      style={[
+                        styles.pickerItemText,
+                        visibleMonth.getFullYear() === year.value && styles.pickerItemTextSelected,
+                        !availableYear.includes(year.value) && styles.pickerItemTextDisabled,
+                      ]}
+                    >
                       {String(year.value)}
                     </Text>
-                    {visibleMonth.getFullYear() === year.value && (
-                      <Icon name='tri-check' />
-                    )}
+                    {visibleMonth.getFullYear() === year.value && <Icon name='tri-check' />}
                   </TouchableOpacity>
                 ))}
               </ScrollView>

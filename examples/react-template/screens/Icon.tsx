@@ -1,16 +1,16 @@
-import { IconName } from '@trilogy-ds/assets/lib/iconNameEnum'
 import {
   Container,
   Divider,
   Icon,
   IconColor,
+  IconName,
   IconSize,
   Section,
   Text,
   Title,
   TitleLevels,
   View,
-} from '@trilogy-ds/react/components'
+} from '@trilogy-ds/react'
 
 export const IconScreen = (): JSX.Element => {
   return (

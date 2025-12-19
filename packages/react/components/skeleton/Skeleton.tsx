@@ -15,9 +15,7 @@ import { SkeletonProps } from './SkeletonProps'
  * @param testID - Test identifier for testing purposes.
  */
 const Skeleton: React.FC<SkeletonProps> = () => {
-  return (
-    <></>
-  )
+  return <div></div>
 }
 
 export default Skeleton

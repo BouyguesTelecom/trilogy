@@ -1,11 +1,11 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TagListProps, TagListRef } from './TagListProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
-import { getJustifiedClassName } from '@/objects'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getJustifiedClassName } from '@/objects/index'
+import { is } from '@/services/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TagListProps, TagListRef } from './TagListProps'
 
 /**
  * Tag List Component

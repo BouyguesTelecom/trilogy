@@ -1,13 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { SpacerSize } from '@/components/spacer'
-import { Text, TextLevels } from '@/components/text'
-import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
+import { SpacerSize } from '@/components/spacer/index.native'
+import { Sticker } from '@/components/sticker/index.native'
+import { Text, TextLevels } from '@/components/text/index.native'
+import { View } from '@/components/view/index.native'
+import { TypographyAlign, TypographyBold, VariantState } from '@/objects/index.native'
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
-import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
-import { Sticker } from '@/components/sticker'
+import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps/index.native'
 
 const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
@@ -40,35 +39,24 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'center',
-       borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
-        ),
+
         borderWidth: 1,
         width: 19,
         height: 19,
         borderRadius: 4,
-        backgroundColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : 'transparent',
-        ),
       },
-      label: {
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
-      },
+      label: {},
       tile: {
         padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
         maxWidth: '50%',
         borderWidth: (_checked && 2) || 1,
         width: 'auto',
-        borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
-        ),
+
         borderRadius: 6,
         textAlign: 'center',
         alignItems: 'center',
-        backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
       },
       tileDescription: {
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.MAIN),
         alignSelf: horizontal ? 'flex-start' : 'center',
       },
       horizontal: {
@@ -79,11 +67,8 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         width: '100%',
         height: 'auto',
         borderWidth: (_checked && 2) || 1,
-        borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
-        ),
+
         borderRadius: 6,
-        backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
       },
       sticker: {
         position: 'absolute',
@@ -106,60 +91,8 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       }
     }
 
-    if (horizontal) {
-      return (
-        <TouchableOpacity ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
-          {sticker && (
-            <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
-              <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
-            </ViewRN>
-          )}
-
-          <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
-          </TouchableOpacity>
-
-          {icon && (
-            <ViewRN
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-                <Icon
-                  size={IconSize.SMALL}
-                  name={icon}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-                />
-            </ViewRN>
-          )}
-
-          <View style={{ gap: SpacerSize.ONE, flex: 1 }}>
-            {label && typeof label.valueOf() === 'string' && (
-              <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
-                {String(label)}
-              </Text>
-            )}
-            {description && typeof description.valueOf() === 'string' ? (
-              <Text level={TextLevels.TWO} style={styles.tileDescription}>
-                {String(description)}
-              </Text>
-            ) : (
-              description
-            )}
-          </View>
-        </TouchableOpacity>
-      )
-    }
-
     return (
-      <TouchableOpacity
-        ref={ref}
-        disabled={disabled}
-        style={styles.tile}
-        onPress={handleClick}
-        {...others}
-      >
+      <TouchableOpacity ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
             <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
@@ -171,9 +104,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
             disabled={disabled}
             testID={id}
             onPressIn={handleClick}
-          >
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
-          </TouchableOpacity>
+          ></TouchableOpacity>
           {icon && (
             <View
               style={{
@@ -181,9 +112,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-            >
-              <Icon size={IconSize.SMALL} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} name={icon} />
-            </View>
+            ></View>
           )}
           {label && typeof label.valueOf() === 'string' && (
             <Text
