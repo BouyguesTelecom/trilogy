@@ -18,7 +18,11 @@ export enum Align {
   STRETCH = 'STRETCH',
 }
 
+/**
+ * @deprecated
+ */
 export type AlignableValues = `${Alignable}`
+
 export type AlignValues = `${Align}`
 
 export interface AlignableProps {

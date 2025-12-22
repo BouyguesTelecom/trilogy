@@ -20,7 +20,11 @@ export enum Justify {
   SPACE_EVENLY = 'SPACE_EVENLY',
 }
 
+/**
+ * @deprecated
+ */
 export type JustifiableValues = keyof typeof Justifiable
+
 export type JustifyValues = keyof typeof Justify
 
 export interface JustifiableProps {
