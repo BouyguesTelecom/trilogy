@@ -1,6 +1,9 @@
 /**
  * Component Alignement
  */
+/**
+ * @deprecated
+ */
 export enum Alignable {
   ALIGNED_CENTER = 'ALIGNED_CENTER',
   ALIGNED_START = 'ALIGNED_START',
@@ -12,14 +15,15 @@ export enum Align {
   CENTER = 'CENTER',
   START = 'START',
   END = 'END',
-  STRETCH = 'STRETCH'
+  STRETCH = 'STRETCH',
 }
 
 export type AlignableValues = `${Alignable}`
+export type AlignValues = `${Align}`
 
 export interface AlignableProps {
-  align?: Alignable | AlignableValues
-  verticalAlign?: Alignable | AlignableValues
+  align?: Alignable | AlignableValues | Align | AlignValues
+  verticalAlign?: Alignable | AlignableValues | Align | AlignValues
 }
 
 /**
@@ -57,12 +61,13 @@ export const getAlignClassName = (alignType?: string): string => {
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getAlignStyle = (alignType?: string) => {
-  switch (alignType) {
-    case 'ALIGNED_CENTER':
+  if (!alignType) return 'flex-start'
+  switch (true) {
+    case ['ALIGNED_CENTER', 'CENTER'].includes(alignType):
       return 'center'
-    case 'ALIGNED_START':
+    case ['START', 'ALIGNED_START'].includes(alignType):
       return 'flex-start'
-    case 'ALIGNED_END':
+    case ['ALIGNED_END', 'END'].includes(alignType):
       return 'flex-end'
     default:
       return 'flex-start'

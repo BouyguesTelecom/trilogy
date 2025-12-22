@@ -23,7 +23,7 @@ export interface FlexBoxProps extends CommonProps {
   children?: React.ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues
-  align?: AlignProps | Align
+  align?: AlignProps
   justify?: JustifyProps | Justify
   wrap?: WrapProps | boolean
   scrollable?: boolean
