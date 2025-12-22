@@ -7,6 +7,7 @@ import {
   Input,
   InputStatus,
   InputType,
+  Link,
   Section,
   Title,
   TitleLevels,
@@ -211,7 +212,17 @@ export const InputScreen = (): JSX.Element => {
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
         <Input type={InputType.NUMBER} placeholder='Input type number' />
-        <Input type={InputType.PASSWORD} placeholder='Input type password' iconNameLeft='tri-alert' />
+        <Input
+          status='error'
+          type={InputType.PASSWORD}
+          placeholder='Input type password'
+          iconNameLeft='tri-alert'
+          help={
+            <Link href='https://google.com' blank>
+              My redirection link
+            </Link>
+          }
+        />
         <Input type={InputType.DATE} placeholder='Input type date' />
         <Input iconNameLeft='tri-alert' type={InputType.EMAIL} placeholder='Input type mail with custom icon left' />
       </AutoLayout>
