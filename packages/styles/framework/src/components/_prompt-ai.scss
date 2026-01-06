@@ -31,10 +31,14 @@
             height: 36px;
             overflow: hidden;
             margin-bottom: 0 !important;
-
+            
             select {
                 height: 36px;
                 border-width: 0px !important;
+            }
+
+            .field .control::after {
+                right: 0px !important;
             }
         }
 

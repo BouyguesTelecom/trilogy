@@ -20,7 +20,7 @@ const PromptAi = () => {
       <Textarea className='prompt_ai-textarea' onInput={handleTextareaChange} placeholder='Placeholder' />
       <div className='prompt_ai-toolbar'>
         <Button
-          iconName='tri-arrow-down'
+          iconName='tri-attachment'
           className='prompt_ai-toolbar-button prompt_ai-toolbar-item icon-only'
           variant='GHOST'
         />
@@ -30,8 +30,13 @@ const PromptAi = () => {
         </Select>
         <Button
           variant='GHOST'
-          iconName='tri-arrow-up'
+          iconName='tri-micro'
           className='prompt_ai-toolbar-button prompt_ai-toolbar-item icon-only self-end'
+        />
+        <Button
+          variant='GHOST'
+          iconName='tri-arrow-up'
+          className='prompt_ai-toolbar-button prompt_ai-toolbar-item icon-only'
         />
       </div>
     </div>
