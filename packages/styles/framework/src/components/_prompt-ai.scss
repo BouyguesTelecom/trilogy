@@ -1,0 +1,49 @@
+.prompt_ai {
+    box-shadow: 0 0 0 1px var(--color-stroke);
+    border-radius: var(--radius-small);
+    padding: 0px 16px 16px 16px;
+
+    &:focus-within {
+        box-shadow: 0 0 0 2px currentColor;
+    }
+
+    &-textarea {
+        margin-bottom: 0 !important;
+        textarea {
+            outline: none !important;
+            border: 0px !important;
+            background-color: initial !important;
+            min-height: 20px !important;
+            max-height: 250px !important;
+            transition: height 0.1s ease;
+            padding: 16px 0px 0px 0px !important;
+            height: auto;
+            resize: none;
+        }
+    }
+
+    &-toolbar {
+        display: flex;
+        gap: 16px;
+        padding-top: 16px;
+        
+        &-item {
+            height: 36px;
+            overflow: hidden;
+            margin-bottom: 0 !important;
+
+            select {
+                height: 36px;
+                border-width: 0px !important;
+            }
+        }
+
+        &-button.icon-only {
+            width: 36px !important;
+        }
+
+        .self-end {
+            margin-left: auto;
+        }
+    }
+}
