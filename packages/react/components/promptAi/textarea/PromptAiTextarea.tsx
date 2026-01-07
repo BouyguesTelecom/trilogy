@@ -3,19 +3,25 @@ import { Textarea } from '@/components/textarea'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { PromptAiContext } from '../PromptAi'
 import { PromptAiTextareaProps, PromptAiTextareaRef } from './PromptAiTextareaProps'
 
 const PromptAiTextarea = React.forwardRef<PromptAiTextareaRef, PromptAiTextareaProps>(
   ({ className, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('prompt_ai-textarea', className))
+    const { setIsReadyToSubmit } = useContext(PromptAiContext)
 
     const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
       const textarea = e.target as HTMLTextAreaElement
       textarea.style.height = 'auto'
       textarea.style.height = `${textarea.scrollHeight}px`
     }
+
+    useEffect(() => {
+      setIsReadyToSubmit(!!others.value?.length)
+    }, [others.value])
 
     return (
       <Textarea

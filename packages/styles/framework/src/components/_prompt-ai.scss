@@ -47,6 +47,13 @@
             .field .control::after {
                 right: 0px !important;
             }
+
+            &.active {
+                background-color: getColor('main') !important;
+                .icon i {
+                    background-color: getColor('background');
+                }
+            }
         }
 
         &-tool.icon-only {
@@ -55,14 +62,6 @@
 
         &-microphone {
             border-radius: 100px;
-
-            &.active {
-                background-color: getColor('main') !important;
-                .tri-micro {
-                    background-color: getColor('background');
-                }
-
-            }
         }
 
     }
