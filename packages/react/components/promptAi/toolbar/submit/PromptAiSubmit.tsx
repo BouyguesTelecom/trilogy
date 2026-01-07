@@ -9,7 +9,7 @@ import { PromptAiSubmitProps, PromptAiSubmitRef } from './PromptAiSubmitProps'
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
   ({ className, iconName = 'tri-arrow-up', ...others }, ref) => {
     const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('prompt_ai-toolbar-tool', className))
+    const classes = hashClass(styled, clsx('prompt_ai-toolbar-tool icon-only', className))
 
     return <Button ref={ref} iconName={iconName} variant='GHOST' className={classes} {...others} />
   },

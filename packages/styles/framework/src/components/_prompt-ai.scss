@@ -27,12 +27,12 @@
         gap: 16px;
         padding-top: 16px;
         align-items: center;
-        justify-content: space-between;
 
         &-tools {
             display: flex;
             gap: 16px;
             align-items: center;
+            margin-right: auto;
         }
         
         &-tool {
@@ -51,6 +51,18 @@
 
         &-tool.icon-only {
             width: 36px !important;
+        }
+
+        &-microphone {
+            border-radius: 100px;
+
+            &.active {
+                background-color: getColor('main') !important;
+                .tri-micro {
+                    background-color: getColor('background');
+                }
+
+            }
         }
 
     }

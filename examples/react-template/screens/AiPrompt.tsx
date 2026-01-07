@@ -1,6 +1,7 @@
 import {
   PromptAi,
   PromptAiInputFile,
+  PromptAiMicrophone,
   PromptAiSelect,
   PromptAiSubmit,
   PromptAiTextarea,
@@ -9,12 +10,33 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
+import { useState } from 'react'
 
 export const AiPromptScreen = () => {
+  const [transcribedText, setTranscribedText] = useState('')
+  const [isListening, setIsListening] = useState(false)
+
+  const handleSpeechStart = () => {
+    setIsListening(true)
+  }
+
+  const handleSpeechResult = (text: string) => {
+    setTranscribedText(text)
+  }
+
+  const handleSpeechEnd = () => {
+    setIsListening(false)
+  }
+
+  const handleSpeechError = (error: string) => {
+    setIsListening(false)
+    console.log(`Erreur: ${error}`)
+  }
+
   return (
     <Section>
       <PromptAi>
-        <PromptAiTextarea />
+        <PromptAiTextarea value={transcribedText} onChange={(e) => setTranscribedText(e.textareaValue)} />
         <PromptAiToolbar>
           <PromptAiTools>
             <PromptAiInputFile />
@@ -23,6 +45,13 @@ export const AiPromptScreen = () => {
               <SelectOption>Gemini 3</SelectOption>
             </PromptAiSelect>
           </PromptAiTools>
+          <PromptAiMicrophone
+            onSpeechStart={handleSpeechStart}
+            onSpeechResult={handleSpeechResult}
+            onSpeechEnd={handleSpeechEnd}
+            onSpeechError={handleSpeechError}
+            language='fr-FR'
+          />
           <PromptAiSubmit />
         </PromptAiToolbar>
       </PromptAi>

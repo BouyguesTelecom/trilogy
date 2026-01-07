@@ -5,12 +5,14 @@ import PromptAiSubmit from './toolbar/submit/PromptAiSubmit'
 import PromptAiTools from './toolbar/tools/PromptAiTools'
 import { PromptAiButton } from './toolbar/tools/button'
 import PromptAiInputFile from './toolbar/tools/inputFile/PromptAiInputFile'
+import { PromptAiMicrophone } from './toolbar/tools/microphone'
 import { PromptAiSelect } from './toolbar/tools/select'
 
 export {
   PromptAi,
   PromptAiButton,
   PromptAiInputFile,
+  PromptAiMicrophone,
   PromptAiSelect,
   PromptAiSubmit,
   PromptAiTextarea,
