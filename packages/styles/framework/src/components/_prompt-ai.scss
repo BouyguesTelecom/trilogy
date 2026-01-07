@@ -26,10 +26,17 @@
         display: flex;
         gap: 16px;
         padding-top: 16px;
+        align-items: center;
+        justify-content: space-between;
+
+        &-tools {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
         
-        &-item {
+        &-tool {
             height: 36px;
-            overflow: hidden;
             margin-bottom: 0 !important;
             
             select {
@@ -42,12 +49,9 @@
             }
         }
 
-        &-button.icon-only {
+        &-tool.icon-only {
             width: 36px !important;
         }
 
-        .self-end {
-            margin-left: auto;
-        }
     }
 }

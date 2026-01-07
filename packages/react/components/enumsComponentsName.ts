@@ -162,4 +162,12 @@ export enum ComponentName {
   ChipsList = 'ChipsList',
   Range = 'Range',
   DatePicker = 'DatePicker',
+  PromptAi = 'PromptAi',
+  PromptAiInputFile = 'PromptAiInputFile',
+  PromptAiSubmit = 'PromptAiSubmit',
+  PromptAiTextarea = 'PromptAiTextarea',
+  PromptAiToolbar = 'PromptAiToolbar',
+  PromptAiTools = 'PromptAiTools',
+  PromptAiButton = 'PromptAiButton',
+  PromptAiSelect = 'PromptAiSelect',
 }
