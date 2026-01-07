@@ -94,5 +94,5 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
   },
 )
 
-PromptAiMicrophone.displayName = ComponentName.PromptAiInputFile
+PromptAiMicrophone.displayName = ComponentName.PromptAiMicrophone
 export default PromptAiMicrophone

@@ -1,5 +1,6 @@
 import {
   PromptAi,
+  PromptAiFiles,
   PromptAiInputFile,
   PromptAiMicrophone,
   PromptAiSelect,
@@ -36,6 +37,7 @@ export const AiPromptScreen = () => {
   return (
     <Section>
       <PromptAi>
+        <PromptAiFiles />
         <PromptAiTextarea value={transcribedText} onChange={(e) => setTranscribedText(e.textareaValue)} />
         <PromptAiToolbar>
           <PromptAiTools>

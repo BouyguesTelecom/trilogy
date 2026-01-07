@@ -22,6 +22,38 @@
         }
     }
 
+    &-files {
+        padding-top: 16px;
+        &.empty {
+            display: none;
+        }
+
+        &-img {
+            border-radius: 8px;
+        }
+
+        &-file {
+            margin-bottom: 0px !important;
+            width: 72px;
+            height: 72px;
+        }
+
+        &-doc {
+            width: fit-content;
+            &-preview {
+                width: 40px;
+                height: 40px; 
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: none;
+            }
+            &-card-content {
+                padding:8px !important
+            }
+        }
+    }
+
     &-toolbar {
         display: flex;
         gap: 16px;
