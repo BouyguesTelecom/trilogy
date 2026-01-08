@@ -9,7 +9,9 @@
     "serve": "npm run build && npx http-server -p 8090 ./lib"
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/BouyguesTelecom/trilogy",
+    "directory": "packages/vanilla"
   },
   "license": "ISC",
   "devDependencies": {

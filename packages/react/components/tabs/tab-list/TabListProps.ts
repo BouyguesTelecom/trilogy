@@ -1,4 +1,4 @@
-import { Alignable, AlignableValues, Dev } from '@/objects'
+import { AlignableProps, Dev } from '@/objects'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { ScrollView } from 'react-native'
 
@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native'
  */
 export interface TabListProps extends Dev, CommonProps {
   children: React.ReactNode
-  align?: Alignable | AlignableValues
+  align?: AlignableProps['align']
 }
 
 export type TabListRef = HTMLDivElement

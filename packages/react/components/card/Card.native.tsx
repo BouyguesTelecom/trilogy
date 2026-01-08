@@ -1,6 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
@@ -55,10 +54,10 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
         maxWidth: '100%',
       },
       shadow: {
-        shadowColor: 'rgba(0,0,0,.1)',
-        shadowOffset: { width: 2, height: 4 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
+        shadowColor: 'rgba(0,0,0,0.1)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 4,
         elevation: 5,
       },
       skeleton: {
@@ -74,13 +73,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     })
 
     const CardSkeleton = () => (
-      <Skeleton
-        style={styles.skeleton}
-        width="100%"
-        height={50}
-        borderRadius={cardRadius}
-        testID='skeleton-id'
-      >
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={cardRadius} testID='skeleton-id'>
         {children}
       </Skeleton>
     )

@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix radio checkbox stretched (web)
 - Update skeleton (native)
 - Dropdown Menu (web)
+- Update and fix skeleton (native)
+- Fix flexbox gap (mobile container query)
 
 ## [4.13.0] - 2025-11-24
 - Fix Tab native fullwidth (ui)

@@ -103,7 +103,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const BoxSkeleton = () => (
       <Skeleton
         style={styles.skeleton}
-        width="100%"
+        width='100%'
         height={50}
         borderRadius={boxRadius}
         testID='skeleton'

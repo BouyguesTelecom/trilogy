@@ -56,11 +56,7 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
       },
       text: {
         textAlign: 'center',
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
-        ...(fullwidth && {
-          flex: 1,
-          flexShrink: 1,
-        }),
+        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN)
       },
     })
 

@@ -1,6 +1,9 @@
 /**
  * Typo align
  */
+/**
+ * @deprecated
+ */
 export enum Justifiable {
   JUSTIFIED_CENTER = 'JUSTIFIED_CENTER',
   JUSTIFIED_START = 'JUSTIFIED_START',
@@ -14,13 +17,18 @@ export enum Justify {
   END = 'END',
   SPACE_BETWEEN = 'SPACE_BETWEEN',
   SPACE_AROUND = 'SPACE_AROUND',
-  SPACE_EVENLY = 'SPACE_EVENLY'
+  SPACE_EVENLY = 'SPACE_EVENLY',
 }
 
+/**
+ * @deprecated
+ */
 export type JustifiableValues = keyof typeof Justifiable
 
+export type JustifyValues = keyof typeof Justify
+
 export interface JustifiableProps {
-  justify?: Justifiable | JustifiableValues
+  justify?: Justifiable | JustifiableValues | Justify | JustifyValues
 }
 
 /**
@@ -30,14 +38,15 @@ export interface JustifiableProps {
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getJustifyStyle = (justifyContent?: string) => {
-  switch (justifyContent) {
-    case 'JUSTIFIED_CENTER':
+  if (!justifyContent) return 'flex-start'
+  switch (true) {
+    case ['CENTER', 'JUSTIFIED_CENTER'].includes(justifyContent):
       return 'center'
-    case 'JUSTIFIED_START':
+    case ['START', 'JUSTIFIED_START'].includes(justifyContent):
       return 'flex-start'
-    case 'JUSTIFIED_END':
+    case ['END', 'JUSTIFIED_END'].includes(justifyContent):
       return 'flex-end'
-    case 'SPACE_BETWEEN':
+    case ['SPACE_BETWEEN', 'SPACE_BETWEEN'].includes(justifyContent):
       return 'space-between'
     default:
       return 'flex-start'
@@ -45,24 +54,17 @@ export const getJustifyStyle = (justifyContent?: string) => {
 }
 
 export const getJustifyClassName = (justifyContent?: string) => {
-  switch (justifyContent) {
-    case 'JUSTIFIED_CENTER':
+  if (!justifyContent) return 'flex-start'
+  switch (true) {
+    case ['CENTER', 'JUSTIFIED_CENTER'].includes(justifyContent):
       return 'centered'
-    case 'CENTER':
-      return 'justified-center'
-    case 'JUSTIFIED_START':
+    case ['START', 'JUSTIFIED_START'].includes(justifyContent):
       return 'justified-start'
-    case 'START':
-      return 'justified-start'
-    case 'JUSTIFIED_END':
+    case ['END', 'JUSTIFIED_END'].includes(justifyContent):
       return 'justified-end'
-    case 'END':
-      return 'justified-end'
-    case 'SPACE_BETWEEN':
+    case ['SPACE_BETWEEN', 'SPACE_BETWEEN'].includes(justifyContent):
       return 'spaced-between'
-    case 'SPACE_AROUND':
-      return 'spaced-around'
-    case 'SPACE_EVENLY':
+    case justifyContent === 'SPACE_EVENLY':
       return 'spaced-evenly'
     default:
       return 'justified-start'
@@ -70,12 +72,13 @@ export const getJustifyClassName = (justifyContent?: string) => {
 }
 
 export const getJustifiedClassName = (justifyContent?: string) => {
-  switch (justifyContent) {
-    case 'ALIGNED_CENTER':
+  if (!justifyContent) return 'justified-start'
+  switch (true) {
+    case ['ALIGNED_CENTER', 'CENTER'].includes(justifyContent):
       return 'justified-center'
-    case 'ALIGNED_START':
+    case ['START', 'ALIGNED_START'].includes(justifyContent):
       return 'justified-start'
-    case 'ALIGNED_END':
+    case ['ALIGNED_END', 'END'].includes(justifyContent):
       return 'justified-end'
     default:
       return 'justified-start'
@@ -83,12 +86,14 @@ export const getJustifiedClassName = (justifyContent?: string) => {
 }
 
 export const getJustifySelfClassName = (justifyContent?: string): string => {
-  switch (justifyContent) {
-    case 'ALIGNED_CENTER':
+  if (!justifyContent) return 'justified-selfstart'
+
+  switch (true) {
+    case ['ALIGNED_CENTER', 'CENTER'].includes(justifyContent):
       return 'justified-self-center'
-    case 'ALIGNED_START':
+    case ['START', 'ALIGNED_START'].includes(justifyContent):
       return 'justified-self-start'
-    case 'ALIGNED_END':
+    case ['ALIGNED_END', 'END'].includes(justifyContent):
       return 'justified-selfend'
     default:
       return 'justified-selfstart'
