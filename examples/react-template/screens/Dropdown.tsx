@@ -67,7 +67,6 @@ export const DropdownScreen = (): JSX.Element => {
           <Button
             onClick={() => setIsOpen1(!isOpen1)}
             variant="SECONDARY"
-            fullwidth
           >
             Manual control {isOpen1 ? '▲' : '▼'}
           </Button>
