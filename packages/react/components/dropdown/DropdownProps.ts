@@ -6,6 +6,8 @@ import { View } from 'react-native'
 export interface DropdownProps {
   children?: React.ReactNode
   isActive?: boolean
+  defaultOpen?: boolean
+  onToggle?: (isOpen: boolean) => void
   className?: string
   testId?: string
 }

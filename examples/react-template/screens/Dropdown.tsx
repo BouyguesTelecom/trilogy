@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { Dropdown, DropdownItem, DropdownGroup } from '@trilogy-ds/react/components/dropdown'
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownGroup,
+  DropdownTrigger
+} from '@trilogy-ds/react/components/dropdown'
 import { Section } from '@trilogy-ds/react/components/section'
 import { Title } from '@trilogy-ds/react/components/title'
 import { Text } from '@trilogy-ds/react/components/text'
@@ -8,62 +13,45 @@ import { IconName } from '@trilogy-ds/react/components/icon'
 
 export const DropdownScreen = (): JSX.Element => {
   const [isOpen1, setIsOpen1] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [isOpen3, setIsOpen3] = useState(false)
   const [selectedValue, setSelectedValue] = useState<string>('')
 
   return (
     <Section>
       <Title level={1}>Dropdown Component</Title>
-      <Text>Examples of using the Dropdown component as a simple wrapper.</Text>
+      <Text>Examples of using the Dropdown component with automatic state management.</Text>
 
-      {/* Simple dropdown */}
       <div style={{ marginBottom: '2rem' }}>
-        <Title level={3}>Simple Dropdown</Title>
-        <Text>Basic dropdown with simple items and external trigger.</Text>
+        <Title level={3}>Automatic Dropdown</Title>
+        <Text>Dropdown with automatic state management using Dropdown and DropdownTrigger.</Text>
         <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
-          <Button
-            onClick={() => setIsOpen1(!isOpen1)}
-            variant="SECONDARY"
-            fullwidth
-          >
-            {selectedValue || 'Choose an option'} {isOpen1 ? '▲' : '▼'}
-          </Button>
-
-          {isOpen1 && (
-            <Dropdown isActive={isOpen1}>
-              <DropdownItem
-                iconName={IconName.CHECK}
-                onSelect={() => {
-                  setSelectedValue('Option 1')
-                  setIsOpen1(false)
-                }}
-              >
-                Option 1
-              </DropdownItem>
-              <DropdownItem
-                iconName={IconName.CALENDAR}
-                onSelect={() => {
-                  setSelectedValue('Option 2')
-                  setIsOpen1(false)
-                }}
-              >
-                Option 2
-              </DropdownItem>
-              <DropdownItem
-                iconName={IconName.SEARCH}
-                onSelect={() => {
-                  setSelectedValue('Option 3')
-                  setIsOpen1(false)
-                }}
-              >
-                Option 3
-              </DropdownItem>
-              <DropdownItem iconName={IconName.TIMES} disabled>
-                Disabled option
-              </DropdownItem>
-            </Dropdown>
-          )}
+          <Dropdown onToggle={(isOpen: boolean) => console.log('Dropdown toggled:', isOpen)}>
+            <DropdownTrigger>
+              <Button variant='CONVERSION'>
+                {selectedValue || 'Choose an option'} ▼
+              </Button>
+            </DropdownTrigger>
+            <DropdownItem
+              iconName={IconName.CHECK}
+              onSelect={() => setSelectedValue('Option 1')}
+            >
+              Option 1
+            </DropdownItem>
+            <DropdownItem
+              iconName={IconName.CALENDAR}
+              onSelect={() => setSelectedValue('Option 2')}
+            >
+              Option 2
+            </DropdownItem>
+            <DropdownItem
+              iconName={IconName.SEARCH}
+              onSelect={() => setSelectedValue('Option 3')}
+            >
+              Option 3
+            </DropdownItem>
+            <DropdownItem iconName={IconName.TIMES} disabled>
+              Disabled option
+            </DropdownItem>
+          </Dropdown>
         </div>
         {selectedValue && (
           <Text style={{ marginTop: '0.5rem' }}>
@@ -72,121 +60,67 @@ export const DropdownScreen = (): JSX.Element => {
         )}
       </div>
 
-      {/* Dropdown with groups */}
       <div style={{ marginBottom: '2rem' }}>
-        <Title level={3}>Dropdown with Groups</Title>
-        <Text>Dropdown with item groups organized by category.</Text>
+        <Title level={3}>Manual Dropdown</Title>
+        <Text>Basic dropdown with manual state management and external trigger.</Text>
         <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
           <Button
-            onClick={() => setIsOpen2(!isOpen2)}
+            onClick={() => setIsOpen1(!isOpen1)}
             variant="SECONDARY"
             fullwidth
           >
-            Select an action {isOpen2 ? '▲' : '▼'}
+            Manual control {isOpen1 ? '▲' : '▼'}
           </Button>
 
-          {isOpen2 && (
-            <Dropdown isActive={isOpen2}>
-              <DropdownGroup title="Actions">
-                <DropdownItem
-                  iconName={IconName.CHECK}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Create
-                </DropdownItem>
-                <DropdownItem
-                  iconName={IconName.CALENDAR}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Edit
-                </DropdownItem>
-                <DropdownItem
-                  iconName={IconName.TRASH}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Delete
-                </DropdownItem>
-              </DropdownGroup>
-
-              <DropdownGroup title="Navigation">
-                <DropdownItem
-                  iconName={IconName.ARROW_LEFT}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Home
-                </DropdownItem>
-                <DropdownItem
-                  iconName={IconName.EYE}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Profile
-                </DropdownItem>
-                <DropdownItem
-                  iconName={IconName.SEARCH}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Settings
-                </DropdownItem>
-              </DropdownGroup>
-
-              <DropdownGroup title="Help">
-                <DropdownItem
-                  iconName={IconName.INFOS_CIRCLE}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Documentation
-                </DropdownItem>
-                <DropdownItem
-                  iconName={IconName.EXCLAMATION_CIRCLE}
-                  onSelect={() => setIsOpen2(false)}
-                >
-                  Support
-                </DropdownItem>
-              </DropdownGroup>
+          {isOpen1 && (
+            <Dropdown isActive={isOpen1}>
+              <DropdownItem
+                iconName={IconName.CHECK}
+                onSelect={() => {
+                  console.log('Manual option selected')
+                  setIsOpen1(false)
+                }}
+              >
+                Manual Option 1
+              </DropdownItem>
+              <DropdownItem
+                iconName={IconName.CALENDAR}
+                onSelect={() => {
+                  console.log('Manual option selected')
+                  setIsOpen1(false)
+                }}
+              >
+                Manual Option 2
+              </DropdownItem>
             </Dropdown>
           )}
         </div>
       </div>
 
-      {/* Item states */}
+      {/* Automatic dropdown with different states */}
       <div style={{ marginBottom: '2rem' }}>
-        <Title level={3}>Item States</Title>
-        <Text>Items with different states (normal, active, disabled).</Text>
+        <Title level={3}>Automatic Dropdown with Item States</Title>
+        <Text>Dropdown with automatic state management showing different item states.</Text>
         <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
-          <Button
-            onClick={() => setIsOpen3(!isOpen3)}
-            variant="SECONDARY"
-            fullwidth
-          >
-            Item states {isOpen3 ? '▲' : '▼'}
-          </Button>
-
-          {isOpen3 && (
-            <Dropdown isActive={isOpen3}>
-              <DropdownItem
-                iconName={IconName.CHECK}
-                onSelect={() => setIsOpen3(false)}
-              >
-                Normal item
-              </DropdownItem>
-              <DropdownItem
-                iconName={IconName.CALENDAR}
-                active
-                onSelect={() => setIsOpen3(false)}
-              >
-                Active item
-              </DropdownItem>
-              <DropdownItem
-                iconName={IconName.SEARCH}
-                onSelect={() => setIsOpen3(false)}
-              >
-                Another normal item
-              </DropdownItem>
-              <DropdownItem iconName={IconName.TIMES} disabled>
-                Disabled item
-              </DropdownItem>
-            </Dropdown>
-          )}
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant='CONVERSION'>
+                Choose an option ▼
+              </Button>
+            </DropdownTrigger>
+            <DropdownItem iconName={IconName.CHECK}>
+              Normal item
+            </DropdownItem>
+            <DropdownItem iconName={IconName.CALENDAR} active>
+              Active item
+            </DropdownItem>
+            <DropdownItem iconName={IconName.SEARCH}>
+              Another normal item
+            </DropdownItem>
+            <DropdownItem iconName={IconName.TIMES} disabled>
+              Disabled item
+            </DropdownItem>
+          </Dropdown>
         </div>
       </div>
 
