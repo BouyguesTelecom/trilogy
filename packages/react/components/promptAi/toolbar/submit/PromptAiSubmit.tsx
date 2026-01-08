@@ -11,7 +11,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
   ({ className, iconName = 'tri-arrow-up', status = PromptAiSubmitStatus.STREAMING_OFF, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
-    const { isReadyToSubmit } = useContext(PromptAiContext)
+    const { isReadyToSubmit, files } = useContext(PromptAiContext)
     const classesStop = hashClass(styled, clsx('prompt_ai-stop_streaming'))
 
     const onClick = useCallback(() => {
@@ -21,8 +21,8 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
     }, [statusSubmit])
 
     const isActive = useMemo(
-      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || isReadyToSubmit,
-      [statusSubmit, isReadyToSubmit],
+      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || isReadyToSubmit || !!files.length,
+      [statusSubmit, isReadyToSubmit, files.length],
     )
 
     const classesBtn = hashClass(
