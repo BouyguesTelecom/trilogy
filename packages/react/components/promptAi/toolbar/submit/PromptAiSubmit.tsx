@@ -35,6 +35,10 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
       ),
     )
 
+    const onMouseDown = (e: React.MouseEvent) => {
+      e.preventDefault()
+    }
+
     useEffect(() => {
       setStatusSubmit(status)
     }, [status])
@@ -48,7 +52,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
         className={classesBtn}
         type='submit'
         onClick={onClick}
-        {...others}
+        {...{ ...others, onMouseDown }}
       >
         {statusSubmit === PromptAiSubmitStatus.STREAMING_ON && <div className={classesStop} />}
       </Button>

@@ -38,6 +38,7 @@ const PromptAi = React.forwardRef<PromptAiRef, PromptAiProps>(({ className, onSu
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
     onSubmit && onSubmit()
   }
 
