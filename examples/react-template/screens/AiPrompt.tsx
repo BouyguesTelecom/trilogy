@@ -11,18 +11,20 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
+import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
 import { useState } from 'react'
 
 export const AiPromptScreen = () => {
-  const [transcribedText, setTranscribedText] = useState('')
+  const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
+  const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
 
   const handleSpeechStart = () => {
     setIsListening(true)
   }
 
   const handleSpeechResult = (text: string) => {
-    setTranscribedText(text)
+    setText(text)
   }
 
   const handleSpeechEnd = () => {
@@ -34,11 +36,20 @@ export const AiPromptScreen = () => {
     console.log(`Erreur: ${error}`)
   }
 
+  const handleSubmit = () => {
+    if (!text) return
+    setText('')
+    setStatus(PromptAiSubmitStatus.STREAMING_ON)
+    setTimeout(() => {
+      setStatus(PromptAiSubmitStatus.STREAMING_OFF)
+    }, 4000)
+  }
+
   return (
     <Section>
-      <PromptAi>
+      <PromptAi onSubmit={handleSubmit}>
         <PromptAiFiles />
-        <PromptAiTextarea value={transcribedText} onChange={(e) => setTranscribedText(e.textareaValue)} />
+        <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
         <PromptAiToolbar>
           <PromptAiTools>
             <PromptAiInputFile />
@@ -54,7 +65,7 @@ export const AiPromptScreen = () => {
             onSpeechError={handleSpeechError}
             language='fr-FR'
           />
-          <PromptAiSubmit />
+          <PromptAiSubmit status={status} />
         </PromptAiToolbar>
       </PromptAi>
     </Section>

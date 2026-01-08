@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
+import { Icon, IconName } from '@/components/icon'
 import { PromptAiContext } from '@/components/promptAi/PromptAi'
 import clsx from 'clsx'
 import React, { useContext } from 'react'
@@ -7,7 +7,7 @@ import { PromptAiInputFileProps, PromptAiInputFileRef } from './PromptAiInputFil
 
 const PromptAiInputFile = React.forwardRef<PromptAiInputFileRef, PromptAiInputFileProps>(
   ({ className, ...others }, ref) => {
-    const classes = clsx('button is-ghost prompt_ai-toolbar-tool icon-only', className)
+    const classes = clsx('button is-ghost prompt_ai-toolbar-tool icon_only', className)
     const { setFiles } = useContext(PromptAiContext)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const PromptAiInputFile = React.forwardRef<PromptAiInputFileRef, PromptAiInputFi
     return (
       <label htmlFor='promptAiUpload'>
         <span ref={ref} className={classes} {...others}>
-          <Icon name='tri-attachment' />
+          <Icon name={IconName.ATTACHMENT} />
         </span>
         <input type='file' style={{ display: 'none' }} id='promptAiUpload' onChange={handleFileChange} />
       </label>

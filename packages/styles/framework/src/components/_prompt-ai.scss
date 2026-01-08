@@ -88,12 +88,22 @@
                 }
             }
         }
-        &-tool.icon-only {
+        &-tool.icon_only {
             width: 36px !important;
         }
         &-microphone {
             border-radius: 100px;
         }
+        &-tool-submit.streaming {
+            padding: 0;
+        }
 
+    }
+
+    &-stop_streaming {
+        background-color: getColor('background');
+        height: 16px;
+        width: 16px;
+        border-radius: 3px;
     }
 }

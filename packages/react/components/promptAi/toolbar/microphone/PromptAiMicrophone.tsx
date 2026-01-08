@@ -1,5 +1,6 @@
-import { Button } from '@/components/button'
+import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { IconName } from '@/components/icon'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { PromptAiMicrophoneProps, PromptAiMicrophoneRef } from './PromptAiMicrophoneProps'
@@ -75,7 +76,7 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
     }, [state, disabled, isSupported, onSpeechError])
 
     const classes = clsx(
-      'prompt_ai-toolbar-tool icon-only prompt_ai-toolbar-microphone',
+      'prompt_ai-toolbar-tool prompt_ai-toolbar-microphone icon_only',
       state === 'listening' && 'active',
       className,
     )
@@ -83,9 +84,9 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
     return (
       <Button
         ref={ref}
-        iconName='tri-micro'
+        iconName={IconName.MICRO}
         className={classes}
-        variant='GHOST'
+        variant={ButtonVariant.GHOST}
         onClick={handleClick}
         disabled={disabled || !isSupported}
         {...others}
