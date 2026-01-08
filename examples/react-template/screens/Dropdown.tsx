@@ -121,20 +121,6 @@ export const DropdownScreen = (): JSX.Element => {
           </Dropdown>
         </div>
       </div>
-
-      {/* Always open dropdown for demonstration */}
-      <div style={{ marginBottom: '2rem' }}>
-        <Title level={3}>Always Open Dropdown</Title>
-        <Text>Example of always visible dropdown to see the styles.</Text>
-        <div>
-          <Dropdown isActive={true}>
-            <DropdownItem iconName={IconName.CHECK}>Item with icon</DropdownItem>
-            <DropdownItem>Item without icon</DropdownItem>
-            <DropdownItem iconName={IconName.CALENDAR} active>Active item</DropdownItem>
-            <DropdownItem iconName={IconName.TIMES} disabled>Disabled item</DropdownItem>
-          </Dropdown>
-        </div>
-      </div>
     </Section>
   )
 }

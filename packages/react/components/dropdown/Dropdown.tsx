@@ -89,18 +89,57 @@ const DropdownContent = React.forwardRef<DropdownRef, DropdownProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const dropdownRef = React.useRef<HTMLDivElement>(null)
+    const menuRef = React.useRef<HTMLDivElement>(null)
 
-    // Try to get context state, fallback to prop if not in provider
     let contextState: ReturnType<typeof useDropdownContext> | null = null
     try {
       contextState = useDropdownContext()
     } catch {
-      // Not in a DropdownProvider, use prop
       contextState = null
     }
 
     const finalIsActive = contextState ? contextState.isOpen : isActive
 
+    React.useEffect(() => {
+      if (!finalIsActive || !dropdownRef.current || !menuRef.current) return
+
+      const dropdown = dropdownRef.current
+      const menu = menuRef.current
+
+      const positionMenu = () => {
+        const rect = dropdown.getBoundingClientRect()
+        const viewportHeight = window.innerHeight
+
+        const spaceBelow = viewportHeight - rect.bottom - 15
+        const spaceAbove = rect.top - 8
+
+        const menuHeight = 300
+
+        const shouldOpenUpward = spaceBelow < menuHeight && spaceAbove >= menuHeight
+
+        if (shouldOpenUpward) {
+          menu.setAttribute('data-position', 'upward')
+        } else {
+          menu.removeAttribute('data-position')
+        }
+      }
+
+      const rafId = requestAnimationFrame(positionMenu)
+
+      const handleResize = () => {
+        requestAnimationFrame(positionMenu)
+      }
+
+      window.addEventListener('resize', handleResize)
+      window.addEventListener('scroll', handleResize, true)
+
+      return () => {
+        cancelAnimationFrame(rafId)
+        window.removeEventListener('resize', handleResize)
+        window.removeEventListener('scroll', handleResize, true)
+      }
+    }, [finalIsActive])
 
     const classes = hashClass(
       styled,
@@ -113,12 +152,21 @@ const DropdownContent = React.forwardRef<DropdownRef, DropdownProps>(
 
     return (
       <div
-        ref={ref}
+        ref={(node) => {
+          if (dropdownRef.current !== node) {
+            (dropdownRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+          }
+          if (typeof ref === 'function') {
+            ref(node)
+          } else if (ref) {
+            (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+          }
+        }}
         className={classes}
         data-testid={testId}
         {...others}
       >
-        <div className={hashClass(styled, 'dropdown-menu')}>
+        <div ref={menuRef} className={hashClass(styled, 'dropdown-menu')}>
           <div className={hashClass(styled, 'dropdown-content')}>
             {children}
           </div>
