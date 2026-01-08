@@ -23,7 +23,7 @@ export const DropdownScreen = (): JSX.Element => {
       <div style={{ marginBottom: '2rem' }}>
         <Title level={3}>Automatic Dropdown</Title>
         <Text>Dropdown with automatic state management using Dropdown and DropdownTrigger.</Text>
-        <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
+        <div>
           <Dropdown onToggle={(isOpen: boolean) => console.log('Dropdown toggled:', isOpen)}>
             <DropdownTrigger>
               <Button variant='CONVERSION'>
@@ -54,16 +54,16 @@ export const DropdownScreen = (): JSX.Element => {
           </Dropdown>
         </div>
         {selectedValue && (
-          <Text style={{ marginTop: '0.5rem' }}>
+          <Text>
             Selected value: <strong>{selectedValue}</strong>
           </Text>
         )}
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
+      <div>
         <Title level={3}>Manual Dropdown</Title>
         <Text>Basic dropdown with manual state management and external trigger.</Text>
-        <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
+        <div>
           <Button
             onClick={() => setIsOpen1(!isOpen1)}
             variant="SECONDARY"
@@ -97,11 +97,10 @@ export const DropdownScreen = (): JSX.Element => {
         </div>
       </div>
 
-      {/* Automatic dropdown with different states */}
-      <div style={{ marginBottom: '2rem' }}>
+      <div>
         <Title level={3}>Automatic Dropdown with Item States</Title>
         <Text>Dropdown with automatic state management showing different item states.</Text>
-        <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
+        <div>
           <Dropdown>
             <DropdownTrigger>
               <Button variant='CONVERSION'>
@@ -128,7 +127,7 @@ export const DropdownScreen = (): JSX.Element => {
       <div style={{ marginBottom: '2rem' }}>
         <Title level={3}>Always Open Dropdown</Title>
         <Text>Example of always visible dropdown to see the styles.</Text>
-        <div style={{ marginTop: '1rem', maxWidth: '300px', position: 'relative' }}>
+        <div>
           <Dropdown isActive={true}>
             <DropdownItem iconName={IconName.CHECK}>Item with icon</DropdownItem>
             <DropdownItem>Item without icon</DropdownItem>
