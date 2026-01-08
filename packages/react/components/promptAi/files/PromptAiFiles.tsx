@@ -17,7 +17,7 @@ const PromptAiFiles = () => {
   const { styled } = useTrilogyContext()
   const { files, setFiles } = useContext(PromptAiContext)
   const classesFiles = hashClass(styled, clsx('prompt_ai-files'))
-  const classesImgContainer = hashClass(styled, clsx('prompt_ai-files-file prompt_ai-files-img-container'))
+  const classesImgContainer = hashClass(styled, clsx('prompt_ai-files-file'))
   const classesImg = hashClass(styled, clsx('prompt_ai-files-img'))
 
   const handleDelete = useCallback((index: number) => {

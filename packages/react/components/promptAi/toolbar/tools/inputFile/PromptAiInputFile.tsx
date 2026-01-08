@@ -19,6 +19,7 @@ const PromptAiInputFile = React.forwardRef<PromptAiInputFileRef, PromptAiInputFi
       } else {
         setFiles((prev) => [...prev, { type: file.type, name: file.name }])
       }
+      e.target.value = ''
     }
 
     return (
