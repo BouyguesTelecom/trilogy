@@ -1,14 +1,15 @@
 .prompt_ai {
     box-shadow: 0 0 0 1px var(--color-stroke);
     border-radius: var(--radius-small);
-    padding: 0px 16px 16px 16px;
-
+    overflow: hidden;
+    * {
+        margin-bottom: 0px !important;
+    }
     &:focus-within {
         box-shadow: 0 0 0 2px currentColor;
     }
-
     &-textarea {
-        margin-bottom: 0 !important;
+        padding: 16px;
         textarea {
             outline: none !important;
             border: 0px !important;
@@ -21,23 +22,16 @@
             resize: none;
         }
     }
-
     &-files {
-        padding-top: 16px;
-        &.empty {
-            display: none;
-        }
-
+        padding: 16px 16px 0px 16px !important;
         &-img {
             border-radius: 8px;
         }
-
         &-file {
-            margin-bottom: 0px !important;
             width: 72px;
             height: 72px;
+            position: relative;
         }
-
         &-doc {
             width: fit-content;
             &-preview {
@@ -47,39 +41,46 @@
                 align-items: center;
                 justify-content: center;
                 box-shadow: none;
+                .box-content {
+                    margin: 0px !important;
+                }
             }
             &-card-content {
                 padding:8px !important
             }
         }
+        &-delete {
+            background-color: getColor('main-fade');
+            border-radius: 100px;
+            height: 20px;
+            width: 20px;
+        }
+        &-delete-img {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+        }
     }
-
     &-toolbar {
         display: flex;
         gap: 16px;
-        padding-top: 16px;
+        padding: 0px 16px 16px 16px;
         align-items: center;
-
         &-tools {
             display: flex;
             gap: 16px;
             align-items: center;
             margin-right: auto;
         }
-        
         &-tool {
             height: 36px;
-            margin-bottom: 0 !important;
-            
             select {
                 height: 36px;
                 border-width: 0px !important;
             }
-
             .field .control::after {
                 right: 0px !important;
             }
-
             &.active {
                 background-color: getColor('main') !important;
                 .icon i {
@@ -87,11 +88,9 @@
                 }
             }
         }
-
         &-tool.icon-only {
             width: 36px !important;
         }
-
         &-microphone {
             border-radius: 100px;
         }
