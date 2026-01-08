@@ -54,22 +54,22 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
     const enhancedChildren = React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         if (!child.props.onClick) {
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<any>, {
             onClick: (e: React.MouseEvent) => {
               e.preventDefault()
               e.stopPropagation()
               handleClick(e)
             }
-          })
+          } as any)
         }
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement<any>, {
           onClick: (e: React.MouseEvent) => {
             child.props.onClick?.(e)
             if (!e.defaultPrevented) {
               handleClick(e)
             }
           }
-        })
+        } as any)
       }
       return child
     })
