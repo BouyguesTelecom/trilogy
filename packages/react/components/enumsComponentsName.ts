@@ -43,6 +43,7 @@ export enum ComponentName {
   Dropdown = 'Dropdown',
   DropdownItem = 'DropdownItem',
   DropdownGroup = 'DropdownGroup',
+  DropdownTrigger = 'DropdownTrigger',
   Fab = 'Fab',
   FlexBox = 'FlexBox',
   FlexItem = 'FlexItem',
