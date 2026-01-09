@@ -31,7 +31,6 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
 
     const { isOpen } = useDropdownContext()
 
-    // Lightweight positioning logic - works for both automatic and manual modes
     React.useEffect(() => {
       if (!isOpen || !dropdownRef.current || !menuRef.current) return
 
@@ -52,7 +51,6 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
         }
       }
 
-      // Position once when dropdown opens
       requestAnimationFrame(checkPosition)
     }, [isOpen])
 
