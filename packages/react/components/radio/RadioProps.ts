@@ -17,10 +17,14 @@ export interface RadioProps extends Accessibility, CommonProps {
   disabled?: boolean
   readonly?: boolean
   label?: string
-  onChange?: RadioChangeEventHandler
+  onChange?: RadioChangeEventHandler & Partial<React.ChangeEvent<HTMLInputElement>>
   name?: string
   value?: string
   required?: boolean
+}
+
+export interface RadioNativeProps extends Omit<RadioProps, 'onChange'> {
+  onChange?: RadioChangeEventHandler
 }
 
 export type RadioRef = HTMLDivElement
