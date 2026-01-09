@@ -117,6 +117,7 @@ export const DropdownScreen = (): JSX.Element => {
             </DropdownItem>
           </Dropdown>
         )}
+        <div style={{ marginBottom: 1000 }}></div>
     </Section>
   )
 }
