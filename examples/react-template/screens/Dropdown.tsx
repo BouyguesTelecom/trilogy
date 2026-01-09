@@ -61,42 +61,6 @@ export const DropdownScreen = (): JSX.Element => {
       </div>
 
       <div>
-        <Title level={3}>Manual Dropdown</Title>
-        <Text>Basic dropdown with manual state management and external trigger.</Text>
-        <div>
-          <Button
-            onClick={() => setIsOpen1(!isOpen1)}
-            variant="SECONDARY"
-          >
-            Manual control {isOpen1 ? '▲' : '▼'}
-          </Button>
-
-          {isOpen1 && (
-            <Dropdown isActive={isOpen1}>
-              <DropdownItem
-                iconName={IconName.CHECK}
-                onSelect={() => {
-                  console.log('Manual option selected')
-                  setIsOpen1(false)
-                }}
-              >
-                Manual Option 1
-              </DropdownItem>
-              <DropdownItem
-                iconName={IconName.CALENDAR}
-                onSelect={() => {
-                  console.log('Manual option selected')
-                  setIsOpen1(false)
-                }}
-              >
-                Manual Option 2
-              </DropdownItem>
-            </Dropdown>
-          )}
-        </div>
-      </div>
-
-      <div>
         <Title level={3}>Automatic Dropdown with Item States</Title>
         <Text>Dropdown with automatic state management showing different item states.</Text>
         <div>
@@ -121,6 +85,38 @@ export const DropdownScreen = (): JSX.Element => {
           </Dropdown>
         </div>
       </div>
+
+      <Title level={3}>Manual Dropdown</Title>
+      <Text>Basic dropdown with manual state management and external trigger.</Text>
+        <Button
+          onClick={() => setIsOpen1(!isOpen1)}
+          variant="SECONDARY"
+        >
+          Manual control {isOpen1 ? '▲' : '▼'}
+        </Button>
+
+        {isOpen1 && (
+          <Dropdown isActive={isOpen1}>
+            <DropdownItem
+              iconName={IconName.CHECK}
+              onSelect={() => {
+                console.log('Manual option selected')
+                setIsOpen1(false)
+              }}
+            >
+              Manual Option 1
+            </DropdownItem>
+            <DropdownItem
+              iconName={IconName.CALENDAR}
+              onSelect={() => {
+                console.log('Manual option selected')
+                setIsOpen1(false)
+              }}
+            >
+              Manual Option 2
+            </DropdownItem>
+          </Dropdown>
+        )}
     </Section>
   )
 }
