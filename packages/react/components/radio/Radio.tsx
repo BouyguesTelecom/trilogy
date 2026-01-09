@@ -39,13 +39,14 @@ const Radio = React.forwardRef<RadioRef, RadioProps>(
           required={required}
           onChange={(e) => {
             if (onChange && !disabled && !readonly) {
-              onChange({
-                ...e,
-                radioId: e.target.id,
-                radioValue: e.target.value,
-                radioName: e.target.name,
-                radioChecked: e.target.checked,
-              })
+              onChange(
+                Object.assign(e, {
+                  radioId: e.target.id,
+                  radioValue: e.target.value,
+                  radioName: e.target.name,
+                  radioChecked: e.target.checked,
+                }),
+              )
             }
           }}
           {...others}

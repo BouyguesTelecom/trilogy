@@ -65,13 +65,14 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
           required={required}
           onChange={(e) => {
             if (onChange && !disabled && !readonly) {
-              onChange({
-                ...e,
-                radioId: e.target.id,
-                radioValue: e.target.value,
-                radioName: e.target.name,
-                radioChecked: e.target.checked,
-              })
+              onChange(
+                Object.assign(e, {
+                  radioId: e.target.id,
+                  radioValue: e.target.value,
+                  radioName: e.target.name,
+                  radioChecked: e.target.checked,
+                }),
+              )
             }
           }}
           {...others}
