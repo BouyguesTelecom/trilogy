@@ -17,6 +17,20 @@ $dropdown-item-padding-horizontal: 16px;
   }
 }
 
+.dropdown-manual {
+  .dropdown-menu {
+    top: 100%;
+    margin-top: 15px;
+
+    &[data-position="upward"] {
+      top: auto;
+      bottom: 100%;
+      margin-top: 0;
+      margin-bottom: 85px;
+    }
+  }
+}
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -44,7 +58,7 @@ $dropdown-item-padding-horizontal: 16px;
     top: auto;
     bottom: 100%;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     transform: translateY(10px);
   }
 
