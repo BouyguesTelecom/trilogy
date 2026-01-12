@@ -2,7 +2,7 @@
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 import { Accessibility, Dev } from '../../objects/facets'
 
-import { type ChangeEvent, FocusEventHandler } from 'react'
+import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { IconName, IconNameValues } from '../icon'
 import {
@@ -95,7 +95,7 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   onStatusChange?: (status: InputStatus | InputStatusValues) => void
   customValidator?: (value: string) => InputStatus | InputStatusValues
   patternValidator?: RegExp
-  help?: string
+  help?: string | ReactNode
   name?: string
   focused?: boolean
   keyboardStyle?: InputKeyboardAppearance | InputKeyboardAppearanceValues

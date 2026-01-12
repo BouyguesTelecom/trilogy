@@ -342,10 +342,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
           )}
           {loading && <span className={loader} />}
         </div>
-        {help && (
+        {help && typeof help === 'string' ? (
           <Text className={helpClasses} id={idHelp}>
             {help}
           </Text>
+        ) : (
+          help
         )}
 
         {securityGauge && type === InputType.PASSWORD && (
