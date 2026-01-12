@@ -3,16 +3,13 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import { grayscale, TypographyColor } from '@/objects'
-import { Alignable } from '@/objects/facets/Alignable'
+import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  Animated,
   Keyboard,
   NativeSyntheticEvent,
-  Platform,
-  PlatformOSType,
   StyleSheet,
   TextInput,
   TextInputSubmitEditingEventData,
@@ -105,8 +102,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
   ): JSX.Element => {
     const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
     const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
-    const animationDuration = 200
-    const placeholderDefaultSize = 20
     const inputIcon = new Map()
     const inputColor = getColorStyle(TrilogyColor.MAIN)
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
@@ -117,23 +112,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     const [email, setEmail] = useState<string>('')
     const [isFocused, setIsFocused] = useState(false)
     const [iconPassword, setIconPassword] = useState(IconName.EYE)
-    const [dynamicPlaceholder, setDynamicPlaceholder] = useState<boolean>(false)
     const [isKeyboardVisible, setKeyboardVisible] = useState<null | boolean>(null)
-
-    const animation = useRef(new Animated.Value(25)).current
-    const sizeAnimation = useRef(new Animated.Value(placeholderDefaultSize)).current
-
-    const paddingTopByPlatform = (os: PlatformOSType, dynamicPlaceholder: boolean): number => {
-      if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'ios') {
-        return 10
-      }
-
-      if (dynamicPlaceholder && type !== InputType.SEARCH && os === 'android') {
-        return isFocused ? 14 : 15
-      }
-
-      return 0
-    }
 
     const handleChange = useCallback((text: string) => {
       setValue(text)
@@ -164,40 +143,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     }, [defaultValue, placeholder])
 
     useEffect(() => {
-      if (value && value.length > 0 && placeholder && placeholder.length > 0) {
-        setDynamicPlaceholder(true)
-      } else {
-        setDynamicPlaceholder(false)
-      }
-    }, [placeholder, value])
-
-    useEffect(() => {
-      if (dynamicPlaceholder && type !== InputType.SEARCH) {
-        Animated.timing(animation, {
-          toValue: 3,
-          duration: animationDuration,
-          useNativeDriver: false,
-        }).start()
-        Animated.timing(sizeAnimation, {
-          toValue: 12,
-          duration: animationDuration,
-          useNativeDriver: false,
-        }).start()
-      } else {
-        Animated.timing(animation, {
-          toValue: 25,
-          duration: animationDuration,
-          useNativeDriver: false,
-        }).start()
-        Animated.timing(sizeAnimation, {
-          toValue: placeholderDefaultSize,
-          duration: animationDuration,
-          useNativeDriver: false,
-        }).start()
-      }
-    }, [dynamicPlaceholder, animation, sizeAnimation])
-
-    useEffect(() => {
       const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true))
       const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false))
 
@@ -221,7 +166,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           (!iconNameLeft && type !== InputType.SEARCH && isFocused && 9) ||
           10,
         paddingRight: ((iconNameRight || type === InputType.SEARCH) && 32) || 0,
-        marginTop: paddingTopByPlatform(Platform.OS, dynamicPlaceholder),
         width: hasIcon && status ? '85%' : '95%',
         height: 46,
         color: disabled ? getColorStyle(TrilogyColor.DISABLED) : inputColor,
@@ -316,7 +260,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         accessibilityLabel={inputAccessibilityLabel}
         testID={inputTestId}
       >
-        {!dynamicPlaceholder && label && (
+        {label && (
           <>
             <Text typo={TypographyColor.TEXT_MAIN}>
               {label} {label && required && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}
@@ -325,7 +269,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           </>
         )}
 
-        {!dynamicPlaceholder && label && sample && (
+        {label && sample && (
           <>
             <Text level={TextLevels.THREE} typo={TypographyColor.TEXT_MAIN}>
               {sample}
@@ -335,12 +279,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         )}
 
         <View testID='input-wrapper-id' style={styles.inputWrapper}>
-          {dynamicPlaceholder && type !== InputType.SEARCH && (
-            <Animated.Text style={[styles.dynamicPlaceholder, { top: animation, fontSize: sizeAnimation }]}>
-              {placeholder}
-            </Animated.Text>
-          )}
-
           <TextInput
             ref={ref}
             testID='input-id'
@@ -392,7 +330,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           {hasIcon && type !== InputType.PASSWORD && type !== InputType.SEARCH && (
             <View style={styles.inputIconLeft}>
               <Icon
-                align={Alignable.ALIGNED_START}
+                align={Align.START}
                 name={iconNameLeft as unknown as IconName}
                 size={IconSize.SMALL}
                 color={
@@ -423,7 +361,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
               >
                 <Icon
                   testId='icon-status-id'
-                  align={Alignable.ALIGNED_CENTER}
+                  align={Align.CENTER}
                   name={
                     (iconNameLeft as unknown as IconName) ||
                     (iconNameRight as unknown as IconName) ||
@@ -459,7 +397,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
               >
                 <Icon
                   testId='icon-right-id'
-                  align={Alignable.ALIGNED_CENTER}
+                  align={Align.CENTER}
                   name={iconNameRight as unknown as IconName}
                   size={IconSize.SMALL}
                   color={(disabled && TrilogyColor.DISABLED) || TrilogyColor.MAIN}
@@ -489,7 +427,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
               >
                 <Icon
                   testId='password-id'
-                  align={Alignable.ALIGNED_CENTER}
+                  align={Align.CENTER}
                   name={iconPassword}
                   size={IconSize.SMALL}
                   color={
@@ -508,7 +446,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
             <>
               <View style={styles.inputContainerLeft}>
                 <Icon
-                  align={Alignable.ALIGNED_CENTER}
+                  align={Align.CENTER}
                   name={IconName.SEARCH}
                   size={IconSize.SMALL}
                   color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
@@ -532,7 +470,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
                   }}
                 >
                   <Icon
-                    align={Alignable.ALIGNED_CENTER}
+                    align={Align.CENTER}
                     name={IconName.TIMES_CIRCLE}
                     size={IconSize.SMALL}
                     color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
