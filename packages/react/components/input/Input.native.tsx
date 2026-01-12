@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { grayscale, TypographyColor } from '@/objects'
+import { TypographyColor } from '@/objects'
 import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
@@ -169,13 +169,6 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         width: hasIcon && status ? '85%' : '95%',
         height: 46,
         color: disabled ? getColorStyle(TrilogyColor.DISABLED) : inputColor,
-      },
-      dynamicPlaceholder: {
-        position: 'absolute',
-        left: iconNameLeft ? 40 : 10,
-        color: grayscale(getColorStyle(TrilogyColor.FONT)),
-        marginTop: isFocused ? -1 : 0,
-        marginLeft: isFocused ? -1 : 0,
       },
       help: {
         fontSize: 12,
