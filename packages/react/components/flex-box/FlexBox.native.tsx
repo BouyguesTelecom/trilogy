@@ -43,6 +43,8 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
       columnsScrollable: {
         paddingHorizontal: enlarge,
         gap: realGap,
+        alignItems: !isValueAlign ? getAlignStyle(align?.mobile) : getAlignStyle(align),
+        justifyContent: !isValueJustify ? getJustifyStyle(justify?.mobile) : getJustifyStyle(justify),
       },
     })
 
