@@ -10,6 +10,7 @@ import { Title } from '@trilogy-ds/react/components/title'
 import { Text } from '@trilogy-ds/react/components/text'
 import { Button } from '@trilogy-ds/react/components/button'
 import { IconName } from '@trilogy-ds/react/components/icon'
+import { View } from '@trilogy-ds/react/components/view'
 
 export const DropdownScreen = (): JSX.Element => {
   const [isOpen1, setIsOpen1] = useState(false)
@@ -20,10 +21,10 @@ export const DropdownScreen = (): JSX.Element => {
       <Title level={1}>Dropdown Component</Title>
       <Text>Examples of using the Dropdown component with automatic state management.</Text>
 
-      <div style={{ marginBottom: '2rem' }}>
+      <View style={{ marginBottom: 20 }}>
         <Title level={3}>Automatic Dropdown</Title>
         <Text>Dropdown with automatic state management using Dropdown and DropdownTrigger.</Text>
-        <div>
+        <View>
           <Dropdown onToggle={(isOpen: boolean) => console.log('Dropdown toggled:', isOpen)}>
             <DropdownTrigger>
               <Button variant='CONVERSION'>
@@ -52,18 +53,18 @@ export const DropdownScreen = (): JSX.Element => {
               Disabled option
             </DropdownItem>
           </Dropdown>
-        </div>
+        </View>
         {selectedValue && (
           <Text>
             Selected value: <strong>{selectedValue}</strong>
           </Text>
         )}
-      </div>
+      </View>
 
-      <div>
+      <View>
         <Title level={3}>Automatic Dropdown with Item States</Title>
         <Text>Dropdown with automatic state management showing different item states.</Text>
-        <div>
+        <View>
           <Dropdown>
             <DropdownTrigger>
               <Button variant='CONVERSION'>
@@ -83,8 +84,8 @@ export const DropdownScreen = (): JSX.Element => {
               Disabled item
             </DropdownItem>
           </Dropdown>
-        </div>
-      </div>
+        </View>
+      </View>
 
       <Title level={3}>Manual Dropdown</Title>
       <Text>Basic dropdown with manual state management and external trigger.</Text>
@@ -117,7 +118,7 @@ export const DropdownScreen = (): JSX.Element => {
             </DropdownItem>
           </Dropdown>
         )}
-        <div style={{ marginBottom: 1000 }}></div>
+        <View style={{ marginBottom: 1000 }}></View>
     </Section>
   )
 }
