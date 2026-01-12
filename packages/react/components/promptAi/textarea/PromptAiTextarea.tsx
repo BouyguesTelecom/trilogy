@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useContext, useEffect } from 'react'
-import { PromptAiContext } from '../PromptAi'
+import { PromptAiContext } from '../context'
 import { PromptAiTextareaProps, PromptAiTextareaRef } from './PromptAiTextareaProps'
 
 const PromptAiTextarea = React.forwardRef<PromptAiTextareaRef, PromptAiTextareaProps>(

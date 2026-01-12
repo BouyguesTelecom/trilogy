@@ -1,7 +1,7 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
-import { View } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 export interface PromptAiMicrophoneProps extends Accessibility, Dev, CommonProps {
   onSpeechStart?: () => void
@@ -13,4 +13,4 @@ export interface PromptAiMicrophoneProps extends Accessibility, Dev, CommonProps
 }
 
 export type PromptAiMicrophoneRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
-export type PromptAiMicrophoneNativeRef = View
+export type PromptAiMicrophoneNativeRef = TouchableOpacity

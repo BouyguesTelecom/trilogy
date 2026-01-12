@@ -2,7 +2,7 @@ import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
-import { View } from 'react-native'
+import { TextInput } from 'react-native'
 
 export interface PromptAiTextareaProps extends Accessibility, Dev, CommonProps {
   children?: React.ReactNode
@@ -12,4 +12,4 @@ export interface PromptAiTextareaProps extends Accessibility, Dev, CommonProps {
 }
 
 export type PromptAiTextareaRef = HTMLTextAreaElement
-export type PromptAiTextareaNativeRef = View
+export type PromptAiTextareaNativeRef = TextInput

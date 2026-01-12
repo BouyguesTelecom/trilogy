@@ -1,33 +1,10 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { PromptAiProps, PromptAiRef, PromptAiStatus } from './PromptAiProps'
-
-export interface IPromptAiFile {
-  type: string
-  name?: string
-  src?: string
-}
-
-interface IPromptAiContext {
-  isReadyToSubmit: boolean
-  setIsReadyToSubmit: Dispatch<SetStateAction<boolean>>
-  files: IPromptAiFile[]
-  setFiles: Dispatch<SetStateAction<IPromptAiFile[]>>
-  status: PromptAiStatus
-  setStatus: Dispatch<SetStateAction<PromptAiStatus>>
-}
-
-export const PromptAiContext = React.createContext<IPromptAiContext>({
-  isReadyToSubmit: false,
-  setIsReadyToSubmit: () => undefined,
-  files: [],
-  setFiles: () => undefined,
-  status: PromptAiStatus.STREAMING_OFF,
-  setStatus: () => undefined,
-})
+import { IPromptAiFile, PromptAiContext } from './context'
 
 const PromptAi = React.forwardRef<PromptAiRef, PromptAiProps>(({ className, onSubmit, ...others }, ref) => {
   const { styled } = useTrilogyContext()

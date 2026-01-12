@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName } from '@/components/icon'
-import { PromptAiContext } from '@/components/promptAi/PromptAi'
+import { PromptAiContext } from '@/components/promptAi/context'
 import clsx from 'clsx'
 import React, { useContext } from 'react'
 import { PromptAiInputFileProps, PromptAiInputFileRef } from './PromptAiInputFileProps'

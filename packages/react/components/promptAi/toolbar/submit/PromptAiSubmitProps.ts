@@ -2,7 +2,7 @@ import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
-import { View } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 export enum PromptAiSubmitStatus {
   STREAMING_ON = 'streaming-on',
@@ -15,4 +15,4 @@ export interface PromptAiSubmitProps extends Accessibility, Dev, CommonProps {
 }
 
 export type PromptAiSubmitRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
-export type PromptAiSubmitNativeRef = View
+export type PromptAiSubmitNativeRef = TouchableOpacity
