@@ -78,7 +78,11 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
       <div
         ref={ref}
         className={classes}
-        onClick={handleClick}
+        onClick={(e) => {
+          if (e.target !== e.currentTarget) {
+            handleClick(e)
+          }
+        }}
         data-testid={testId}
         {...others}
       >
@@ -90,3 +94,4 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
 
 DropdownTrigger.displayName = ComponentName.DropdownTrigger
 export default DropdownTrigger
+
