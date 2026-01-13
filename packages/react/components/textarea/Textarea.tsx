@@ -25,7 +25,6 @@ import { TextareaProps, TextareaRef } from './TextareaProps'
  * @param rows {number} Textarea rows
  * @param iconName {IconName | IconNameValues} display Icon
  * @param statusIconName {IconName | IconNameValues} display status Icon
- * @param dynamicPlaceholder {boolean}
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -47,7 +46,6 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
       defaultValue,
       help,
       status,
-      dynamicPlaceholder = true,
       rows,
       label,
       maxLength,
