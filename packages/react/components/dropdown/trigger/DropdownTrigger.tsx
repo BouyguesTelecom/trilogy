@@ -78,11 +78,7 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
       <div
         ref={ref}
         className={classes}
-        onClick={(e) => {
-          if (e.target !== e.currentTarget) {
-            handleClick(e)
-          }
-        }}
+        onClick={handleClick}
         data-testid={testId}
         {...others}
       >

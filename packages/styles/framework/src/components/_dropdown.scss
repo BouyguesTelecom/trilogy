@@ -17,6 +17,10 @@ $dropdown-item-padding-horizontal: 16px;
   }
 }
 
+.dropdown-trigger {
+  display: inline-block;
+}
+
 .dropdown-manual {
   .dropdown-menu {
     top: 100%;
