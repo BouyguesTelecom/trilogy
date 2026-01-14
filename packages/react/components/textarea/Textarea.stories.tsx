@@ -20,7 +20,6 @@ export const Base: Story<TextareaProps> = (args) => (
 Base.args = {
   placeholder: "placeholder",
   label: "Label non dynamique",
-  dynamicPlaceholder: false,
 };
 
 export const LabelDynamique: Story<TextareaProps> = (args) => (
@@ -52,7 +51,6 @@ export const AvecCompteur: Story<TextareaProps> = (args) => (
 AvecCompteur.args = {
   placeholder: "placeholder",
   label: "Label dynamique",
-  dynamicPlaceholder: false,
   maxLength: 150,
 };
 
@@ -60,7 +58,6 @@ export const Status: Story<TextareaProps> = (args) => <Textarea {...args} />;
 Status.args = {
   placeholder: "placeholder",
   label: "Label dynamique",
-  dynamicPlaceholder: false,
   maxLength: 150,
   status: "error",
 };
