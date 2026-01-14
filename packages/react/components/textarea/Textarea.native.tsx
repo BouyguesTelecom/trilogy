@@ -29,8 +29,8 @@ import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
  * @param ref Pass a ref for textarea
  * @param maxLength {number} Textarea max length
  * @param rows {number} Textarea rows
- * @param iconName {IconName | IconNameValues} display Icon
- * @param statusIconName {IconName | IconNameValues} display status Icon
+ * @param iconNameLeft {IconName | IconNameValues} display Icon on the left
+ * @param iconNameRight {IconName | IconNameValues} display Icon on the right
  * @param testId {string} Test Id for Test Integration
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard

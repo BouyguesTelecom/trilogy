@@ -23,14 +23,13 @@ import { TextareaProps, TextareaRef } from './TextareaProps'
  * @param ref Pass a ref for textarea
  * @param maxLength {number} Textarea max length
  * @param rows {number} Textarea rows
- * @param iconName {IconName | IconNameValues} display Icon
- * @param statusIconName {IconName | IconNameValues} display status Icon
+ * @param iconNameLeft {IconName | IconNameValues} display Icon on the left
+ * @param iconNameRight {IconName | IconNameValues} display Icon on the right
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param minLength {number} Textarea min length
- * @param typo {TypographyColor | TypographyColorValues} change help typo
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
