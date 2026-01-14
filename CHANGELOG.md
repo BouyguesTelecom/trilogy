@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [4.14.1] - 2026-01-XX
 - Fix container queries
 - Fix dropdown menu (web)
+- Fix input and textarea props
 
 ## [4.14.0] - 2026-01-12
 - Add datepicker native
