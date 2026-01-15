@@ -163,7 +163,8 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
-    "webpack-iconfont-plugin-nodejs": "^1.0.33"
+    "webpack-iconfont-plugin-nodejs": "^1.0.33",
+    "expo-image-picker": "~15.1.0"
   },
   "overrides": {
     "@react-native-community/cli": "^20.0.2"

@@ -9,11 +9,12 @@ const PromptAiToolbar = React.forwardRef<PromptAiToolbarNativeRef, PromptAiToolb
       ref={ref}
       {...others}
       style={{
-        display: 'flex',
+        flexDirection: 'row',
         gap: 16,
         paddingHorizontal: 16,
         paddingTop: 16,
         alignItems: 'center',
+        flexWrap: 'nowrap',
       }}
     />
   )

@@ -37,7 +37,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitP
         variant={ButtonVariant.GHOST}
         onClick={onClick}
         {...{ ...others, onMouseDown }}
-      ></Button>
+      />
     )
   },
 )

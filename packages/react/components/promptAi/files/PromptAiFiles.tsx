@@ -10,15 +10,19 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { Align } from '@/objects'
 import { TypographyBold } from '@/objects/Typography'
 import clsx from 'clsx'
-import React, { useCallback, useContext } from 'react'
-import { PromptAiContext } from '../context'
+import React, { useCallback, useContext, useEffect } from 'react'
+import { IPromptAiFile, PromptAiContext } from '../context'
 
-const PromptAiFiles = () => {
+const PromptAiFiles = ({ files: FilesProps = [] }: { files?: IPromptAiFile[] }) => {
   const { styled } = useTrilogyContext()
   const { files, setFiles } = useContext(PromptAiContext)
   const classesFiles = hashClass(styled, clsx('prompt_ai-files'))
   const classesImgContainer = hashClass(styled, clsx('prompt_ai-files-file'))
   const classesImg = hashClass(styled, clsx('prompt_ai-files-img'))
+
+  useEffect(() => {
+    setFiles((prev) => [...prev, ...FilesProps])
+  }, [FilesProps])
 
   const handleDelete = useCallback((index: number) => {
     setFiles((prev) => {

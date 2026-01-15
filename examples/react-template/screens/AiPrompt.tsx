@@ -11,13 +11,34 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
+import { IPromptAiFile } from '@trilogy-ds/react/components/promptAi/context'
 import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
+import * as ImagePicker from 'expo-image-picker'
 import { useState } from 'react'
 
 export const AiPromptScreen = () => {
   const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
   const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
+  const [selectValue, setSelectValue] = useState('id_two')
+  const [images, setImages] = useState<IPromptAiFile[]>([])
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    })
+    if (!result.canceled)
+      setImages((prev) => [
+        ...prev,
+        {
+          type: result.assets[0].type,
+          name: result.assets[0].fileName,
+          src: result.assets[0].uri,
+        },
+      ])
+  }
 
   const handleSpeechStart = () => {
     setIsListening(true)
@@ -48,14 +69,19 @@ export const AiPromptScreen = () => {
   return (
     <Section>
       <PromptAi onSubmit={handleSubmit}>
-        <PromptAiFiles />
+        <PromptAiFiles files={images} />
         <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
         <PromptAiToolbar>
           <PromptAiTools>
-            <PromptAiInputFile />
-            <PromptAiSelect>
-              <SelectOption>Claude Sonnet</SelectOption>
-              <SelectOption>Gemini 3</SelectOption>
+            <PromptAiInputFile onClick={pickImage} />
+            <PromptAiSelect
+              selected={selectValue}
+              onChange={(e) => {
+                setSelectValue(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
+              <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
             </PromptAiSelect>
           </PromptAiTools>
           <PromptAiMicrophone

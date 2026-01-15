@@ -6,7 +6,7 @@ import { PromptAiMicrophone } from './toolbar/microphone'
 import PromptAiSubmit from './toolbar/submit/PromptAiSubmit'
 import PromptAiTools from './toolbar/tools/PromptAiTools'
 import { PromptAiButton } from './toolbar/tools/button'
-import PromptAiInputFile from './toolbar/tools/inputFile/PromptAiInputFile.native'
+import PromptAiInputFile from './toolbar/tools/inputFile/PromptAiInputFile'
 import { PromptAiSelect } from './toolbar/tools/select'
 
 export {
