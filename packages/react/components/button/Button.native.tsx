@@ -61,7 +61,6 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
     const styles = StyleSheet.create({
       button: {
         maxWidth: '100%',
-        minWidth: children ? '100%' : undefined,
         paddingTop: variant === ButtonVariant.PRIMARY ? 13 : 15,
         paddingBottom: variant === ButtonVariant.PRIMARY ? 13 : 15,
         paddingLeft: variant === ButtonVariant.PRIMARY ? 13 : 15,
@@ -163,6 +162,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         {!loading && children && typeof children === 'string' && !iconName && (
           <Text style={(!disabled && styles.text) || (disabled && styles.textDisabled)}>{children}</Text>
         )}
+        {!loading && children && typeof children !== 'string' && !iconName && children}
         {!loading && iconName && !children && (
           <Icon
             name={iconName}

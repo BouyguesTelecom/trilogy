@@ -1,9 +1,9 @@
-import { IPromptAiFile } from '@trilogy-ds/react/components/promptAi/context'
+import { IPromptAiFile, PromptAiContext } from '@trilogy-ds/react/components/promptAi/context'
 import * as ImagePicker from 'expo-image-picker'
-import { useState } from 'react'
+import { useContext } from 'react'
 
 export default function usePickImage() {
-  const [images, setImages] = useState<IPromptAiFile[]>([])
+  const { files, setFiles } = useContext(PromptAiContext)
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -12,7 +12,7 @@ export default function usePickImage() {
       quality: 1,
     })
     if (!result.canceled)
-      setImages((prev) => [
+      setFiles((prev) => [
         ...prev,
         {
           type: result.assets[0].type,
@@ -23,7 +23,7 @@ export default function usePickImage() {
   }
 
   return {
-    images,
+    images: files,
     pickImage,
   }
 }

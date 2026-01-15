@@ -11,16 +11,27 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
+import { PromptAiProvider } from '@trilogy-ds/react/components/promptAi/context'
 import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { usePickImage } from '../hooks'
 
 export const AiPromptScreen = () => {
+  return (
+    <Section>
+      <PromptAiProvider>
+        <PromptAiView />
+      </PromptAiProvider>
+    </Section>
+  )
+}
+
+const PromptAiView = () => {
   const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
   const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
   const [selectValue, setSelectValue] = useState('opt_one')
-  const { images, pickImage } = usePickImage()
+  const { pickImage } = usePickImage()
 
   const handleSpeechStart = () => {
     setIsListening(true)
@@ -39,43 +50,42 @@ export const AiPromptScreen = () => {
     console.log(`Erreur: ${error}`)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (!text) return
+    console.log('Submitting text:', text)
     setText('')
     setStatus(PromptAiSubmitStatus.STREAMING_ON)
     setTimeout(() => {
       setStatus(PromptAiSubmitStatus.STREAMING_OFF)
     }, 4000)
-  }
+  }, [text])
 
   return (
-    <Section>
-      <PromptAi onSubmit={handleSubmit}>
-        <PromptAiFiles files={images} />
-        <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
-        <PromptAiToolbar>
-          <PromptAiTools>
-            <PromptAiInputFile onClick={pickImage} />
-            <PromptAiSelect
-              selected={selectValue}
-              onChange={(e) => {
-                setSelectValue(e.selectValue)
-              }}
-            >
-              <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
-              <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
-            </PromptAiSelect>
-          </PromptAiTools>
-          <PromptAiMicrophone
-            onSpeechStart={handleSpeechStart}
-            onSpeechResult={handleSpeechResult}
-            onSpeechEnd={handleSpeechEnd}
-            onSpeechError={handleSpeechError}
-            language='fr-FR'
-          />
-          <PromptAiSubmit status={status} />
-        </PromptAiToolbar>
-      </PromptAi>
-    </Section>
+    <PromptAi onSubmit={handleSubmit}>
+      <PromptAiFiles />
+      <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
+      <PromptAiToolbar>
+        <PromptAiTools>
+          <PromptAiInputFile onClick={() => pickImage()} />
+          <PromptAiSelect
+            selected={selectValue}
+            onChange={(e: any) => {
+              setSelectValue(e.selectValue)
+            }}
+          >
+            <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
+            <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
+          </PromptAiSelect>
+        </PromptAiTools>
+        <PromptAiMicrophone
+          onSpeechStart={handleSpeechStart}
+          onSpeechResult={handleSpeechResult}
+          onSpeechEnd={handleSpeechEnd}
+          onSpeechError={handleSpeechError}
+          language='fr-FR'
+        />
+        <PromptAiSubmit status={status} />
+      </PromptAiToolbar>
+    </PromptAi>
   )
 }

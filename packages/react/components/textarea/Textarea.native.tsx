@@ -91,6 +91,10 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
       }
     }, [displayDynamicLabel, animation])
 
+    useEffect(() => {
+      setValue(value || '')
+    }, [value])
+
     const styles = StyleSheet.create({
       textarea: {
         borderWidth: isFocus ? 2 : 1,

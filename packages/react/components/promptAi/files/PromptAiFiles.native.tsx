@@ -9,17 +9,13 @@ import { Text, TextLevels } from '@/components/text'
 import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyBold } from '@/objects/Typography'
-import React, { useCallback, useContext, useEffect } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { View } from 'react-native'
-import { IPromptAiFile, PromptAiContext } from '../context'
+import { PromptAiContext } from '../context'
 
-const PromptAiFiles = ({ files: FilesProps = [] }: { files?: IPromptAiFile[] }) => {
+const PromptAiFiles = () => {
   const { files, setFiles } = useContext(PromptAiContext)
   const backgroundTimes = getColorStyle(TrilogyColor.BACKGROUND)
-
-  useEffect(() => {
-    setFiles(FilesProps)
-  }, [FilesProps])
 
   const handleDelete = useCallback((index: number) => {
     setFiles((prev) => {
@@ -36,9 +32,18 @@ const PromptAiFiles = ({ files: FilesProps = [] }: { files?: IPromptAiFile[] }) 
       {files.map((file, key) => {
         if (file.type === 'image') {
           return (
-            <Column key={key} narrow>
+            <Column
+              key={key}
+              narrow
+              {...{
+                style: {
+                  paddingLeft: key === 0 ? 16 : undefined,
+                  paddingTop: 16,
+                },
+              }}
+            >
               <View>
-                <Image src={file.src} alt={file.name} height={100} width={100} radius={RadiusValues.SMALL} />
+                <Image src={file.src} alt={file.name} height={60} width={60} radius={RadiusValues.SMALL} />
                 <View
                   style={{
                     position: 'absolute',

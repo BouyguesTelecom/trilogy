@@ -11,8 +11,7 @@ const PromptAiToolbar = React.forwardRef<PromptAiToolbarNativeRef, PromptAiToolb
       style={{
         flexDirection: 'row',
         gap: 16,
-        paddingHorizontal: 16,
-        paddingTop: 16,
+        padding: 16,
         alignItems: 'center',
         flexWrap: 'nowrap',
       }}

@@ -1,2 +1,1 @@
-import usePickImage from './pickImage'
-export { usePickImage }
+export * from './pickImage'
