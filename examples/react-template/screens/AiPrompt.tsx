@@ -11,34 +11,16 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
-import { IPromptAiFile } from '@trilogy-ds/react/components/promptAi/context'
 import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
-import * as ImagePicker from 'expo-image-picker'
 import { useState } from 'react'
+import { usePickImage } from '../hooks'
 
 export const AiPromptScreen = () => {
   const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
   const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
-  const [selectValue, setSelectValue] = useState('id_two')
-  const [images, setImages] = useState<IPromptAiFile[]>([])
-
-  const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    })
-    if (!result.canceled)
-      setImages((prev) => [
-        ...prev,
-        {
-          type: result.assets[0].type,
-          name: result.assets[0].fileName,
-          src: result.assets[0].uri,
-        },
-      ])
-  }
+  const [selectValue, setSelectValue] = useState('opt_one')
+  const { images, pickImage } = usePickImage()
 
   const handleSpeechStart = () => {
     setIsListening(true)
