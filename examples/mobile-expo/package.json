@@ -14,9 +14,9 @@
     "@babel/plugin-transform-private-methods": "^7.27.1",
     "@expo/metro-config": "~0.18.11",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
+    "@react-native-community/cli": "^20.0.2",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/native-stack": "^6.9.22",
-    "@react-native-community/cli": "^20.0.2",
     "@types/react": "~18.2.45",
     "@types/react-native": "^0.73.0",
     "clsx": "^2.1.0",
@@ -38,6 +38,7 @@
   },
   "private": true,
   "dependencies": {
+    "@react-navigation/native": "^7.1.27",
     "expo": "~51.0.28",
     "expo-font": "~12.0.10",
     "expo-image-picker": "~15.1.0",

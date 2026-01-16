@@ -1,8 +1,7 @@
-import { ButtonVariant } from '@/components/button'
-import Button from '@/components/button/Button.native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { IconName } from '@/components/icon'
+import { Icon, IconName } from '@/components/icon'
 import React from 'react'
+import PromptAiButton from '../tools/button/PromptAiButton.native'
 import { PromptAiMicrophoneNativeRef, PromptAiMicrophoneProps } from './PromptAiMicrophoneProps'
 
 const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneNativeRef, PromptAiMicrophoneProps>(
@@ -19,7 +18,20 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneNativeRef, PromptA
     },
     ref,
   ) => {
-    return <Button ref={ref} iconName={IconName.MICRO} variant={ButtonVariant.GHOST} {...others} />
+    return (
+      <PromptAiButton {...others} ref={ref}>
+        <Icon
+          name={IconName.MICRO}
+          {...{
+            style: {
+              flexDirection: 'row',
+              justifyContent: 'center',
+              width: 36,
+            },
+          }}
+        />
+      </PromptAiButton>
+    )
   },
 )
 

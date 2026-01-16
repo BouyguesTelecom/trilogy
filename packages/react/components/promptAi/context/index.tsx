@@ -1,5 +1,4 @@
 import React, { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from 'react'
-import { PromptAiStatus } from '../PromptAiProps'
 
 export interface IPromptAiFile {
   type: string
@@ -12,10 +11,8 @@ export interface IPromptAiContext {
   setIsReadyToSubmit: Dispatch<SetStateAction<boolean>>
   files: IPromptAiFile[]
   setFiles: Dispatch<SetStateAction<IPromptAiFile[]>>
-  status: PromptAiStatus
-  setStatus: Dispatch<SetStateAction<PromptAiStatus>>
-  handleSubmit?: null | (() => void)
-  setHandleSubmit: Dispatch<SetStateAction<null | (() => void)>>
+  isFocused: boolean
+  setIsFocused: Dispatch<SetStateAction<boolean>>
 }
 
 export const PromptAiContext = createContext<IPromptAiContext>({
@@ -23,22 +20,17 @@ export const PromptAiContext = createContext<IPromptAiContext>({
   setIsReadyToSubmit: () => undefined,
   files: [],
   setFiles: () => undefined,
-  status: PromptAiStatus.STREAMING_OFF,
-  setStatus: () => undefined,
-  handleSubmit: null,
-  setHandleSubmit: () => undefined,
+  isFocused: false,
+  setIsFocused: () => undefined,
 })
 
 export const PromptAiProvider = ({ children }: PropsWithChildren) => {
   const [isReadyToSubmit, setIsReadyToSubmit] = useState<boolean>(false)
   const [files, setFiles] = useState<IPromptAiFile[]>([])
-  const [status, setStatus] = useState<PromptAiStatus>(PromptAiStatus.STREAMING_OFF)
-  const [handleSubmit, setHandleSubmit] = useState<(() => void) | null>(null)
+  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   return (
-    <PromptAiContext.Provider
-      value={{ handleSubmit, setHandleSubmit, isReadyToSubmit, setIsReadyToSubmit, files, setFiles, status, setStatus }}
-    >
+    <PromptAiContext.Provider value={{ isReadyToSubmit, setIsReadyToSubmit, files, setFiles, isFocused, setIsFocused }}>
       {children}
     </PromptAiContext.Provider>
   )

@@ -1,5 +1,6 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { IconName } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -8,17 +9,21 @@ import { PromptAiContext } from '../../context'
 import { PromptAiSubmitProps, PromptAiSubmitRef, PromptAiSubmitStatus } from './PromptAiSubmitProps'
 
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
-  ({ className, iconName = 'tri-arrow-up', status = PromptAiSubmitStatus.STREAMING_OFF, ...others }, ref) => {
+  ({ className, status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
     const { isReadyToSubmit, files } = useContext(PromptAiContext)
     const classesStop = hashClass(styled, clsx('prompt_ai-stop_streaming'))
 
     const onClick = useCallback(() => {
-      if (statusSubmit === PromptAiSubmitStatus.STREAMING_ON) {
-        setStatusSubmit(PromptAiSubmitStatus.STREAMING_OFF)
+      switch (statusSubmit) {
+        case PromptAiSubmitStatus.STREAMING_ON:
+          setStatusSubmit(PromptAiSubmitStatus.STREAMING_OFF)
+          break
+        default:
+          onSubmit?.()
       }
-    }, [statusSubmit])
+    }, [statusSubmit, onSubmit])
 
     const isActive = useMemo(
       () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || isReadyToSubmit || !!files.length,
@@ -47,7 +52,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
       <Button
         disabled={!isActive}
         ref={ref}
-        iconName={statusSubmit === PromptAiSubmitStatus.STREAMING_OFF ? iconName : undefined}
+        iconName={statusSubmit === PromptAiSubmitStatus.STREAMING_OFF ? IconName.ARROW_UP : undefined}
         variant={ButtonVariant.GHOST}
         className={classesBtn}
         type='submit'

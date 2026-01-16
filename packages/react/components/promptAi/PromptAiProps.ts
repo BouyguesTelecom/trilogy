@@ -5,7 +5,6 @@ import { View } from 'react-native'
 
 export interface PromptAiProps extends Accessibility, Dev, CommonProps {
   children?: React.ReactNode
-  onSubmit?: () => void
 }
 
 export type PromptAiRef = HTMLFormElement

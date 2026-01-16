@@ -61,7 +61,7 @@ const PromptAiView = () => {
   }, [text])
 
   return (
-    <PromptAi onSubmit={handleSubmit}>
+    <PromptAi>
       <PromptAiFiles />
       <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
       <PromptAiToolbar>
@@ -84,7 +84,7 @@ const PromptAiView = () => {
           onSpeechError={handleSpeechError}
           language='fr-FR'
         />
-        <PromptAiSubmit status={status} />
+        <PromptAiSubmit status={status} onSubmit={handleSubmit} />
       </PromptAiToolbar>
     </PromptAi>
   )

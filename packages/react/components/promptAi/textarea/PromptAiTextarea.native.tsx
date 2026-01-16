@@ -7,7 +7,7 @@ import { PromptAiContext } from '../context'
 import { PromptAiTextareaNativeRef, PromptAiTextareaProps } from './PromptAiTextareaProps'
 
 const PromptAiTextarea = React.forwardRef<PromptAiTextareaNativeRef, PromptAiTextareaProps>(({ ...others }, ref) => {
-  const { setIsReadyToSubmit } = useContext(PromptAiContext)
+  const { setIsReadyToSubmit, setIsFocused } = useContext(PromptAiContext)
 
   const style: ViewStyle = {
     maxHeight: 200,
@@ -26,6 +26,8 @@ const PromptAiTextarea = React.forwardRef<PromptAiTextareaNativeRef, PromptAiTex
       {...{
         ...others,
         style,
+        onFocus: () => setIsFocused(true),
+        onBlur: () => setIsFocused(false),
       }}
     />
   )
