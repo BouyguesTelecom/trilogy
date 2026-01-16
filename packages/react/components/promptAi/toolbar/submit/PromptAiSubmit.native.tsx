@@ -10,7 +10,7 @@ import { PromptAiSubmitNativeRef, PromptAiSubmitProps, PromptAiSubmitStatus } fr
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitProps>(
   ({ status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { isReadyToSubmit, files } = useContext(PromptAiContext)
+    const { isReadyToSubmit, files, setIsSend, setFiles } = useContext(PromptAiContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
 
     const onClick = useCallback(() => {
@@ -18,6 +18,8 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitP
         setStatusSubmit(PromptAiSubmitStatus.STREAMING_OFF)
       } else {
         onSubmit && onSubmit()
+        setFiles([])
+        setIsSend(true)
       }
     }, [statusSubmit, onSubmit])
 

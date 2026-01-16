@@ -2,6 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ImageNativeRef, ImageProps, ImageCache } from './ImageProps'
+import { getRadiusStyle } from '@/objects/facets/Radius'
 
 /**
  * Image Component
@@ -15,13 +16,13 @@ import { ImageNativeRef, ImageProps, ImageCache } from './ImageProps'
  * -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, cache, ...others }, ref): JSX.Element => {
+const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, cache, radius, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     image: {
       width: width ? width : '100%',
       height: height ? height : '100%',
-      borderRadius: circled ? 100 : 0,
-      overflow: circled ? 'hidden' : 'visible',
+      borderRadius: circled ? 100 : getRadiusStyle(radius),
+      overflow: (circled || radius) ? 'hidden' : 'visible',
       resizeMode: 'cover',
     },
   })

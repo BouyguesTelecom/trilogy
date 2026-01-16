@@ -51,12 +51,14 @@ const PromptAiFiles = () => {
                     top: 4,
                     backgroundColor: backgroundTimes,
                     borderRadius: 100,
+                    padding: 2,
                   }}
                 >
                   <Icon
                     name='tri-times'
                     className='prompt_ai-files-delete prompt_ai-files-delete-img'
                     onClick={() => handleDelete(key)}
+                    size='smaller'
                   />
                 </View>
               </View>

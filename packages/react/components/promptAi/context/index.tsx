@@ -3,7 +3,7 @@ import React, { createContext, Dispatch, PropsWithChildren, SetStateAction, useS
 export interface IPromptAiFile {
   type: string
   name?: string
-  src?: string
+  src: string
 }
 
 export interface IPromptAiContext {
@@ -13,6 +13,8 @@ export interface IPromptAiContext {
   setFiles: Dispatch<SetStateAction<IPromptAiFile[]>>
   isFocused: boolean
   setIsFocused: Dispatch<SetStateAction<boolean>>
+  isSend: boolean
+  setIsSend: Dispatch<SetStateAction<boolean>>
 }
 
 export const PromptAiContext = createContext<IPromptAiContext>({
@@ -22,15 +24,20 @@ export const PromptAiContext = createContext<IPromptAiContext>({
   setFiles: () => undefined,
   isFocused: false,
   setIsFocused: () => undefined,
+  isSend: false,
+  setIsSend: () => undefined,
 })
 
 export const PromptAiProvider = ({ children }: PropsWithChildren) => {
   const [isReadyToSubmit, setIsReadyToSubmit] = useState<boolean>(false)
   const [files, setFiles] = useState<IPromptAiFile[]>([])
   const [isFocused, setIsFocused] = useState<boolean>(false)
+  const [isSend, setIsSend] = useState<boolean>(false)
 
   return (
-    <PromptAiContext.Provider value={{ isReadyToSubmit, setIsReadyToSubmit, files, setFiles, isFocused, setIsFocused }}>
+    <PromptAiContext.Provider
+      value={{ isReadyToSubmit, setIsReadyToSubmit, files, setFiles, isFocused, setIsFocused, isSend, setIsSend }}
+    >
       {children}
     </PromptAiContext.Provider>
   )
