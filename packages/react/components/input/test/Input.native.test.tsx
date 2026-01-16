@@ -2,11 +2,11 @@ jest.useFakeTimers()
 
 import { fireEvent, render } from '@testing-library/react-native'
 import * as React from 'react'
-import { Platform, PlatformOSType } from 'react-native'
+import { PlatformOSType } from 'react-native'
 import { getColorStyle, StatusState, TrilogyColor } from '../../../objects'
+import { IconName } from '../../icon'
 import Input from '../Input.native'
 import { InputAutoCapitalize, InputKeyboardType, InputStatus, InputType } from '../InputEnum'
-import { IconName } from '../../icon'
 
 describe('Input component', () => {
   const types = [
@@ -118,7 +118,6 @@ describe('Input component', () => {
     expect(getByTestId('input-id').props.style).toEqual({
       paddingLeft: 10,
       paddingRight: 0,
-      marginTop: paddingTopByPlatform(Platform.OS, false),
       width: '95%',
       height: 46,
       color: getColorStyle(TrilogyColor.MAIN),

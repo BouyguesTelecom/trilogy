@@ -82,6 +82,9 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
+    const gapClasses =
+      gap === 0 ? [is('gapless')] : generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) })
+
     const classes = hashClass(
       styled,
       clsx([
@@ -89,7 +92,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         ...generateClassNames({ value: direction, getClassName: (val) => is(`direction-${val}`) }),
         ...generateClassNames({ value: align, getClassName: (val) => is(getAlignClassName(val as string)) }),
         ...generateClassNames({ value: justify, getClassName: (val) => is(getJustifyClassName(val as string)) }),
-        ...generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) }),
+        ...gapClasses,
         ...generateWrapClassNames({ value: wrap, getClassName: (val) => is(`wrap`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),

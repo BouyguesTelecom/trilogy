@@ -46,7 +46,6 @@ type TextareaPropsWeb = Accessibility &
     keyboardType?: InputKeyboardType | InputKeyboardTypeValues
     minLength?: number
     maxLength?: number
-    dynamicPlaceholder?: boolean
     rows?: number
     label?: string
     iconNameLeft?: IconName | IconNameValues

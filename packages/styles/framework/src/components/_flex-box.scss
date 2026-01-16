@@ -859,6 +859,7 @@
   .flex-item {
     flex-grow: 1;
     &.is-narrow {
+      flex: none;
       width: auto;
     }
 
