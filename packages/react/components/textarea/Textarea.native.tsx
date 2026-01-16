@@ -9,7 +9,7 @@ import {
 import { TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { SpacerSize } from '../spacer'
 import { Text as TrilogyText } from '../text'
@@ -126,6 +126,10 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
         zIndex: 10,
       },
     })
+
+    useEffect(() => {
+      setValue(value ?? "")
+    }, [value])
 
     return (
       <View style={{ gap: SpacerSize.THREE }}>
