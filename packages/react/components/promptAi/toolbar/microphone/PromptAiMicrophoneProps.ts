@@ -4,9 +4,9 @@ import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
 
 export interface PromptAiMicrophoneProps extends Accessibility, Dev, CommonProps {
-  onSpeechStart?: () => void
+  onSpeechStart?: (e: Event) => void
   onSpeechResult?: (text: string) => void
-  onSpeechEnd?: () => void
+  onSpeechEnd?: (e: Event) => void
   onSpeechError?: (error: string) => void
   language?: string
   disabled?: boolean

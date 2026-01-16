@@ -36,13 +36,15 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
       recognition.interimResults = false
       recognition.maxAlternatives = 1
 
-      recognition.onstart = () => {
+      recognition.onstart = (e: Event) => {
         setState('listening')
+        onSpeechStart?.(e)
         recognition.stop()
       }
 
-      recognition.onspeechend = () => {
+      recognition.onspeechend = (e) => {
         setState('initial')
+        onSpeechEnd?.(e)
         recognition.stop()
       }
 
@@ -65,14 +67,20 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
       }
 
       return () => recognition.abort()
-    }, [language, onSpeechStart, onSpeechResult, onSpeechEnd, onSpeechError, isSupported])
+    }, [language, onSpeechResult, onSpeechEnd, onSpeechError, isSupported])
 
     const handleClick = useCallback(() => {
       if (disabled || !isSupported) return
       const recognition = recognitionRef.current
       if (!recognition) return
-      setState('listening')
-      recognition.start()
+
+      if (state === 'listening') {
+        setState('initial')
+        recognition.stop()
+      } else {
+        setState('listening')
+        recognition.start()
+      }
     }, [state, disabled, isSupported, onSpeechError])
 
     const classes = clsx(

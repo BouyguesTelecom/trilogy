@@ -66,7 +66,7 @@ const PromptAiView = () => {
       <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
       <PromptAiToolbar>
         <PromptAiTools>
-          <PromptAiInputFile onClick={() => pickImage()} />
+          <PromptAiInputFile onClick={pickImage} />
           <PromptAiSelect
             selected={selectValue}
             onChange={(e: any) => {

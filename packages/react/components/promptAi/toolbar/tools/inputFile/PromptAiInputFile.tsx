@@ -17,7 +17,7 @@ const PromptAiInputFile = React.forwardRef<PromptAiInputFileRef, PromptAiInputFi
         const imageUrl = URL.createObjectURL(file)
         setFiles((prev) => [...prev, { type: 'image', name: file.name, src: imageUrl }])
       } else {
-        setFiles((prev) => [...prev, { type: file.type, name: file.name }])
+        setFiles((prev) => [...prev, { type: file.type, name: file.name, src: '' }])
       }
       e.target.value = ''
     }
