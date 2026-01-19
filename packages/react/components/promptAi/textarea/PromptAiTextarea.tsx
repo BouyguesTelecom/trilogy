@@ -11,7 +11,7 @@ const PromptAiTextarea = React.forwardRef<PromptAiTextareaRef, PromptAiTextareaP
   ({ className, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('prompt_ai-textarea', className))
-    const { setIsReadyToSubmit } = useContext(PromptAiContext)
+    const { setText } = useContext(PromptAiContext)
 
     const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
       const textarea = e.target as HTMLTextAreaElement
@@ -20,8 +20,8 @@ const PromptAiTextarea = React.forwardRef<PromptAiTextareaRef, PromptAiTextareaP
     }
 
     useEffect(() => {
-      setIsReadyToSubmit(!!others.value?.length)
-    }, [others.value])
+      setText(others?.value ?? '')
+    }, [others?.value])
 
     return (
       <Textarea

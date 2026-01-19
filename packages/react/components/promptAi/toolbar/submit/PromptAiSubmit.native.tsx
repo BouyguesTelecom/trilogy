@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { PromptAiContext } from '../../context'
 import PromptAiButton from '../tools/button/PromptAiButton.native'
 import { PromptAiSubmitNativeRef, PromptAiSubmitProps, PromptAiSubmitStatus } from './PromptAiSubmitProps'
@@ -10,7 +10,7 @@ import { PromptAiSubmitNativeRef, PromptAiSubmitProps, PromptAiSubmitStatus } fr
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitProps>(
   ({ status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { isReadyToSubmit, files, setIsSend, setFiles } = useContext(PromptAiContext)
+    const { text, files, setIsSend } = useContext(PromptAiContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
 
     const onClick = useCallback(() => {
@@ -20,14 +20,21 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitP
       } else {
         onSubmit && onSubmit()
         setIsSend(true)
-        setFiles([])
       }
     }, [statusSubmit, onSubmit])
 
     const isActive = useMemo(
-      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || isReadyToSubmit || !!files.length,
-      [statusSubmit, isReadyToSubmit, files.length],
+      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || !!text.trim().length || !!files,
+      [statusSubmit, text, files],
     )
+
+    const styles = StyleSheet.create({
+      icon: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: 36,
+      },
+    })
 
     useEffect(() => {
       setStatusSubmit(status)
@@ -42,11 +49,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitP
             color={IconColor[isActive ? 'WHITE' : 'NEUTRAL']}
             name={IconName.ARROW_UP}
             {...{
-              style: {
-                flexDirection: 'row',
-                justifyContent: 'center',
-                width: 36,
-              },
+              style: styles.icon,
             }}
           />
         )}

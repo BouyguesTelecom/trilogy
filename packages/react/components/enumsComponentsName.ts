@@ -176,4 +176,5 @@ export enum ComponentName {
   PromptAiSelect = 'PromptAiSelect',
   PromptAiMicrophone = 'PromptAiMicrophone',
   PromptAiFiles = 'PromptAiFiles',
+  PromptAiFile = 'PromptAiFile',
 }

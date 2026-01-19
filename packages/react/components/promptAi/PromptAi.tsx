@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { PromptAiProps, PromptAiRef } from './PromptAiProps'
+import { PromptAiProvider } from './context'
 
 const PromptAi = React.forwardRef<PromptAiRef, PromptAiProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
@@ -14,7 +15,11 @@ const PromptAi = React.forwardRef<PromptAiRef, PromptAiProps>(({ className, ...o
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
   }
 
-  return <form ref={ref} className={classes} {...others} onSubmit={handleSubmit} />
+  return (
+    <PromptAiProvider>
+      <form ref={ref} className={classes} {...others} onSubmit={handleSubmit} />
+    </PromptAiProvider>
+  )
 })
 
 PromptAi.displayName = ComponentName.PromptAi

@@ -8,7 +8,7 @@ import { PromptAiContext } from '../context'
 import { PromptAiTextareaNativeRef, PromptAiTextareaProps } from './PromptAiTextareaProps'
 
 const PromptAiTextarea = React.forwardRef<PromptAiTextareaNativeRef, PromptAiTextareaProps>(({ ...others }, ref) => {
-  const { setIsReadyToSubmit, setIsFocused, isSend, setIsSend } = useContext(PromptAiContext)
+  const { setText, setIsFocused, isSend, setIsSend } = useContext(PromptAiContext)
   const textareaRef = useRef<TextInput>(null)
   useImperativeHandle(ref, () => textareaRef.current as TextInput)
 
@@ -22,8 +22,8 @@ const PromptAiTextarea = React.forwardRef<PromptAiTextareaNativeRef, PromptAiTex
   })
 
   useEffect(() => {
-    setIsReadyToSubmit(!!others.value?.length)
-  }, [others.value, setIsReadyToSubmit])
+    setText(others?.value ?? '')
+  }, [others?.value])
 
   useEffect(() => {
     if (isSend) {

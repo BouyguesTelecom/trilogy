@@ -1,116 +1,32 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
-import { Image, RadiusValues } from '@/components/image'
-import { SpacerSize } from '@/components/spacer'
-import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getRadiusStyle } from '@/objects/facets/Radius'
-import { TypographyBold } from '@/objects/Typography'
-import React, { useCallback, useContext } from 'react'
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
+import React, { useContext, useEffect, useMemo } from 'react'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { PromptAiContext } from '../context'
+import { PromptAiFilesNativeRef, PromptAiFilesProps } from './PromptAiFilesProps'
 
-const HEIGHT_ITEM = 60
-
-const PromptAiFiles = () => {
-  const { files, setFiles } = useContext(PromptAiContext)
-  const backgroundTimes = getColorStyle(TrilogyColor.BACKGROUND)
+const PromptAiFiles = React.forwardRef<PromptAiFilesNativeRef, PromptAiFilesProps>(({ children }, ref) => {
+  const { setFiles } = useContext(PromptAiContext)
+  const childrenLength = useMemo(() => React.Children.count(children), [children])
 
   const styles = StyleSheet.create({
-    cardImg: {
-      backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
-      width: 40,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    fileItem: {
+    scrollViewContainer: {
       flexDirection: 'row',
-      flexWrap: 'nowrap',
-      alignItems: 'center',
-      borderWidth: 1,
-      borderColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
-      padding: SpacerSize.TWO,
-      maxWidth: Dimensions.get('screen').width / 1.5,
-      gap: GapSize.TEN,
-      height: HEIGHT_ITEM,
+      gap: GapSize.EIGHT,
+      padding: childrenLength ? GapSize.EIGHT : undefined,
     },
-    icon: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      width: 40,
-    },
-    times: {
-      position: 'absolute',
-      right: 4,
-      top: 4,
-      backgroundColor: backgroundTimes,
-      borderRadius: 100,
-      padding: 2,
-    },
-    scrollViewContainer: { flexDirection: 'row', gap: GapSize.EIGHT, padding: GapSize.EIGHT },
   })
 
-  const handleDelete = useCallback((index: number) => {
-    setFiles((prev) => {
-      const copy = [...prev]
-      copy.splice(index, 1)
-      return copy
-    })
-  }, [])
-
-  if (!files.length) return
+  useEffect(() => {
+    setFiles(childrenLength)
+  }, [childrenLength])
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <View style={styles.scrollViewContainer}>
-        {files.map((file, key) => {
-          if (file.type === 'image') {
-            return (
-              <View key={key}>
-                <Image
-                  src={file.src}
-                  alt={file.name}
-                  height={HEIGHT_ITEM}
-                  width={HEIGHT_ITEM}
-                  radius={RadiusValues.SMALL}
-                />
-                <View style={styles.times}>
-                  <Icon
-                    name='tri-times'
-                    className='prompt_ai-files-delete prompt_ai-files-delete-img'
-                    onClick={() => handleDelete(key)}
-                    size='smaller'
-                  />
-                </View>
-              </View>
-            )
-          }
-
-          return (
-            <View key={key} style={styles.fileItem}>
-              <View style={styles.cardImg}>
-                <Icon name='tri-file-attached' {...{ style: styles.icon }} />
-              </View>
-              <View style={{ flexShrink: 1 }}>
-                <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]} level={TextLevels.THREE} numberOfLines={1}>
-                  {file.name}
-                </Text>
-                <Text level={TextLevels.FOUR} numberOfLines={1}>
-                  {file.type}
-                </Text>
-              </View>
-              <Icon name='tri-times' onClick={() => handleDelete(key)} />
-            </View>
-          )
-        })}
-      </View>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} ref={ref}>
+      <View style={styles.scrollViewContainer}>{children}</View>
     </ScrollView>
   )
-}
+})
 
 PromptAiFiles.displayName = ComponentName.PromptAiFiles
 export default PromptAiFiles

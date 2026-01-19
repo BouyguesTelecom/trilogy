@@ -12,7 +12,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
   ({ className, status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
-    const { isReadyToSubmit, files, setFiles } = useContext(PromptAiContext)
+    const { text, files } = useContext(PromptAiContext)
     const classesStop = hashClass(styled, clsx('prompt_ai-stop_streaming'))
 
     const onClick = useCallback(() => {
@@ -23,13 +23,12 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
           break
         default:
           onSubmit?.()
-          setFiles([])
       }
     }, [statusSubmit, onSubmit])
 
     const isActive = useMemo(
-      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || isReadyToSubmit || !!files.length,
-      [statusSubmit, isReadyToSubmit, files.length],
+      () => statusSubmit === PromptAiSubmitStatus.STREAMING_ON || !!text.trim().length || !!files,
+      [statusSubmit, text, files],
     )
 
     const classesBtn = hashClass(

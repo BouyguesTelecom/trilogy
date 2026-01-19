@@ -1,10 +1,10 @@
-import { IPromptAiFile, PromptAiContext } from '@trilogy-ds/react/components/promptAi/context'
+import { IPromptAiFile } from '@trilogy-ds/react/components/promptAi/context'
 import * as DocumentPicker from 'expo-document-picker'
 import * as ImagePicker from 'expo-image-picker'
-import { useContext } from 'react'
+import { useState } from 'react'
 
-export default function usePickImage({ closeModal }: { closeModal?: () => void }) {
-  const { files, setFiles } = useContext(PromptAiContext)
+export default function usePickImage() {
+  const [files, setFiles] = useState<IPromptAiFile[]>([])
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -21,7 +21,6 @@ export default function usePickImage({ closeModal }: { closeModal?: () => void }
           src: result.assets[0].uri,
         } as IPromptAiFile,
       ])
-      closeModal && closeModal()
     }
   }
 
@@ -36,13 +35,27 @@ export default function usePickImage({ closeModal }: { closeModal?: () => void }
           src: result.assets[0].uri,
         } as IPromptAiFile,
       ])
-      closeModal && closeModal()
     }
   }
 
+  const deleteFile = (index: number) => {
+    setFiles((prev) => {
+      const copy = [...prev]
+      copy.splice(index, 1)
+      return copy
+    })
+  }
+
+  const deleteAllFiles = () => {
+    setFiles([])
+  }
+
   return {
-    images: files,
+    files,
     pickImage,
     pickFile,
+    deleteFile,
+    deleteAllFiles,
+    handleFileChange: () => undefined,
   }
 }

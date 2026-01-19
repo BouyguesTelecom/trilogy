@@ -1,23 +1,21 @@
+import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { PromptAiToolbarNativeRef, PromptAiToolbarProps } from './PromptAiToolbarProps'
 
 const PromptAiToolbar = React.forwardRef<PromptAiToolbarNativeRef, PromptAiToolbarProps>(({ ...others }, ref) => {
-  return (
-    <View
-      ref={ref}
-      {...others}
-      style={{
-        flexDirection: 'row',
-        gap: 16,
-        padding: SpacerSize.TWO,
-        alignItems: 'center',
-        flexWrap: 'nowrap',
-      }}
-    />
-  )
+  const styles = StyleSheet.create({
+    view: {
+      flexDirection: 'row',
+      gap: GapSize.EIGHT,
+      padding: SpacerSize.TWO,
+      alignItems: 'center',
+      flexWrap: 'nowrap',
+    },
+  })
+  return <View ref={ref} style={styles.view} {...others} />
 })
 
 PromptAiToolbar.displayName = ComponentName.PromptAiToolbar

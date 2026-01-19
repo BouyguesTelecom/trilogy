@@ -1,4 +1,4 @@
-import PromptAiInputFile from './PromptAiInputFile.native'
+import PromptAiInputFile from './PromptAiInputFile'
 
 export * from './PromptAiInputFileProps'
 export { PromptAiInputFile }

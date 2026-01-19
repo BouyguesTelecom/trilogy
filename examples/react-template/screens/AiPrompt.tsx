@@ -1,5 +1,6 @@
 import {
   PromptAi,
+  PromptAiFile,
   PromptAiFiles,
   PromptAiMicrophone,
   PromptAiSelect,
@@ -10,26 +11,17 @@ import {
   Section,
   SelectOption,
 } from '@trilogy-ds/react/components'
-import { PromptAiProvider } from '@trilogy-ds/react/components/promptAi/context'
 import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { InputFile } from '../components'
+import usePickImage from '../hooks/pickImage/pickImage'
 
 export const AiPromptScreen = () => {
-  return (
-    <Section>
-      <PromptAiProvider>
-        <PromptAiView />
-      </PromptAiProvider>
-    </Section>
-  )
-}
-
-const PromptAiView = () => {
   const [text, setText] = useState<string>('')
   const [isListening, setIsListening] = useState<boolean>(false)
   const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
   const [selectValue, setSelectValue] = useState<string>('opt_one')
+  const { files, pickFile, pickImage, deleteFile, deleteAllFiles, handleFileChange } = usePickImage()
 
   const handleSpeechStart = () => {
     setIsListening(true)
@@ -52,42 +44,57 @@ const PromptAiView = () => {
     console.log(`STOP`)
   }
 
-  const handleSubmit = useCallback(() => {
-    if (!text) return
+  const handleSubmit = () => {
+    if (!text && !!!files.length) return
     console.log('Submitting text:', text)
     setText('')
+    deleteAllFiles()
     setStatus(PromptAiSubmitStatus.STREAMING_ON)
     setTimeout(() => {
       setStatus(PromptAiSubmitStatus.STREAMING_OFF)
     }, 4000)
-  }, [text])
+  }
 
   return (
-    <PromptAi>
-      <PromptAiFiles />
-      <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
-      <PromptAiToolbar>
-        <PromptAiTools>
-          <InputFile />
-          <PromptAiSelect
-            selected={selectValue}
-            onChange={(e: any) => {
-              setSelectValue(e.selectValue)
-            }}
-          >
-            <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
-            <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
-          </PromptAiSelect>
-        </PromptAiTools>
-        <PromptAiMicrophone
-          onSpeechStart={handleSpeechStart}
-          onSpeechResult={handleSpeechResult}
-          onSpeechEnd={handleSpeechEnd}
-          onSpeechError={handleSpeechError}
-          language='fr-FR'
-        />
-        <PromptAiSubmit status={status} onSubmit={handleSubmit} onCancelSubmit={handleCancelSubmit} />
-      </PromptAiToolbar>
-    </PromptAi>
+    <Section>
+      <PromptAi>
+        <PromptAiFiles>
+          {files.map((file, key) => {
+            return (
+              <PromptAiFile
+                key={key}
+                name={file.name}
+                src={file.src}
+                type={file.type}
+                onDelete={() => deleteFile(key)}
+              />
+            )
+          })}
+        </PromptAiFiles>
+        <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
+        <PromptAiToolbar>
+          <PromptAiTools>
+            <InputFile pickImage={pickImage} pickFile={pickFile} onClick={handleFileChange} />
+            <PromptAiSelect
+              selected={selectValue}
+              onChange={(e: any) => {
+                setSelectValue(e.selectValue)
+              }}
+            >
+              <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
+              <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
+            </PromptAiSelect>
+          </PromptAiTools>
+          <PromptAiMicrophone
+            onSpeechStart={handleSpeechStart}
+            onSpeechResult={handleSpeechResult}
+            onSpeechEnd={handleSpeechEnd}
+            onSpeechError={handleSpeechError}
+            language='fr-FR'
+          />
+          <PromptAiSubmit status={status} onSubmit={handleSubmit} onCancelSubmit={handleCancelSubmit} />
+        </PromptAiToolbar>
+      </PromptAi>
+    </Section>
   )
 }
