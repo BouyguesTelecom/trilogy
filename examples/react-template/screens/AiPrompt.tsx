@@ -1,7 +1,6 @@
 import {
   PromptAi,
   PromptAiFiles,
-  PromptAiInputFile,
   PromptAiMicrophone,
   PromptAiSelect,
   PromptAiSubmit,
@@ -14,7 +13,7 @@ import {
 import { PromptAiProvider } from '@trilogy-ds/react/components/promptAi/context'
 import { PromptAiSubmitStatus } from '@trilogy-ds/react/components/promptAi/toolbar/submit'
 import { useCallback, useState } from 'react'
-import { usePickImage } from '../hooks'
+import { InputFile } from '../components'
 
 export const AiPromptScreen = () => {
   return (
@@ -27,11 +26,10 @@ export const AiPromptScreen = () => {
 }
 
 const PromptAiView = () => {
-  const [text, setText] = useState('')
-  const [isListening, setIsListening] = useState(false)
+  const [text, setText] = useState<string>('')
+  const [isListening, setIsListening] = useState<boolean>(false)
   const [status, setStatus] = useState<PromptAiSubmitStatus>(PromptAiSubmitStatus.STREAMING_OFF)
-  const [selectValue, setSelectValue] = useState('opt_one')
-  const { pickImage } = usePickImage()
+  const [selectValue, setSelectValue] = useState<string>('opt_one')
 
   const handleSpeechStart = () => {
     setIsListening(true)
@@ -50,6 +48,10 @@ const PromptAiView = () => {
     console.log(`Erreur: ${error}`)
   }
 
+  const handleCancelSubmit = () => {
+    console.log(`STOP`)
+  }
+
   const handleSubmit = useCallback(() => {
     if (!text) return
     console.log('Submitting text:', text)
@@ -66,7 +68,7 @@ const PromptAiView = () => {
       <PromptAiTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
       <PromptAiToolbar>
         <PromptAiTools>
-          <PromptAiInputFile onClick={pickImage} />
+          <InputFile />
           <PromptAiSelect
             selected={selectValue}
             onChange={(e: any) => {
@@ -84,7 +86,7 @@ const PromptAiView = () => {
           onSpeechError={handleSpeechError}
           language='fr-FR'
         />
-        <PromptAiSubmit status={status} onSubmit={handleSubmit} />
+        <PromptAiSubmit status={status} onSubmit={handleSubmit} onCancelSubmit={handleCancelSubmit} />
       </PromptAiToolbar>
     </PromptAi>
   )

@@ -12,6 +12,7 @@ export const SVGicons = {
   'exclamation-circle': require('@trilogy-ds/assets/lib/icons/all/exclamation-circle.svg'),
   'eye-slash': require('@trilogy-ds/assets/lib/icons/all/eye-slash.svg'),
   eye: require('@trilogy-ds/assets/lib/icons/all/eye.svg'),
+  'file-attached': require('@trilogy-ds/assets/lib/icons/all/file-attached.svg'),
   'infos-circle': require('@trilogy-ds/assets/lib/icons/all/infos-circle.svg'),
   search: require('@trilogy-ds/assets/lib/icons/all/search.svg'),
   times: require('@trilogy-ds/assets/lib/icons/all/times.svg'),

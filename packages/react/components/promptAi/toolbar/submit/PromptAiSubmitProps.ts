@@ -12,6 +12,7 @@ export enum PromptAiSubmitStatus {
 export interface PromptAiSubmitProps extends Accessibility, Dev, CommonProps {
   status?: PromptAiSubmitStatus
   onSubmit?: ClickEvent
+  onCancelSubmit?: ClickEvent
 }
 
 export type PromptAiSubmitRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement

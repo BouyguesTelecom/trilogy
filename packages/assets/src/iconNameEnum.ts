@@ -11,6 +11,7 @@ export enum IconName {
   EXCLAMATION_CIRCLE = 'tri-exclamation-circle',
   EYE_SLASH = 'tri-eye-slash',
   EYE = 'tri-eye',
+  FILE_ATTACHED = 'tri-file-attached',
   INFOS_CIRCLE = 'tri-infos-circle',
   SEARCH = 'tri-search',
   TIMES = 'tri-times',

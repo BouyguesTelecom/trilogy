@@ -9,7 +9,7 @@ import { PromptAiContext } from '../../context'
 import { PromptAiSubmitProps, PromptAiSubmitRef, PromptAiSubmitStatus } from './PromptAiSubmitProps'
 
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
-  ({ className, status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, ...others }, ref) => {
+  ({ className, status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
     const { isReadyToSubmit, files, setFiles } = useContext(PromptAiContext)
@@ -19,6 +19,7 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitRef, PromptAiSubmitProps>(
       switch (statusSubmit) {
         case PromptAiSubmitStatus.STREAMING_ON:
           setStatusSubmit(PromptAiSubmitStatus.STREAMING_OFF)
+          onCancelSubmit?.()
           break
         default:
           onSubmit?.()

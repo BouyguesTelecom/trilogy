@@ -10,6 +10,11 @@ const PromptAiSelect = React.forwardRef<PromptAiSelectNativeRef, SelectNativePro
       ref={ref}
       {...{
         ...others,
+        wrapper: {
+          borderwidth: 0,
+          height: 36,
+          borderWidth: 0,
+        },
       }}
     />
   )

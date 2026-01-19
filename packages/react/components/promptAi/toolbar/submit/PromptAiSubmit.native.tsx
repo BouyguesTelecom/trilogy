@@ -8,7 +8,7 @@ import PromptAiButton from '../tools/button/PromptAiButton.native'
 import { PromptAiSubmitNativeRef, PromptAiSubmitProps, PromptAiSubmitStatus } from './PromptAiSubmitProps'
 
 const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitProps>(
-  ({ status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, ...others }, ref) => {
+  ({ status = PromptAiSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { isReadyToSubmit, files, setIsSend, setFiles } = useContext(PromptAiContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
@@ -16,10 +16,11 @@ const PromptAiSubmit = React.forwardRef<PromptAiSubmitNativeRef, PromptAiSubmitP
     const onClick = useCallback(() => {
       if (statusSubmit === PromptAiSubmitStatus.STREAMING_ON) {
         setStatusSubmit(PromptAiSubmitStatus.STREAMING_OFF)
+        onCancelSubmit?.()
       } else {
         onSubmit && onSubmit()
-        setFiles([])
         setIsSend(true)
+        setFiles([])
       }
     }, [statusSubmit, onSubmit])
 

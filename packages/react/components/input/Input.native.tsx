@@ -198,6 +198,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           getColorStyle(TrilogyColor.NEUTRAL),
         height: 46,
         width: '100%',
+        ...(others as any)?.wrapper
       },
       inputContainer: {
         height: 46,
