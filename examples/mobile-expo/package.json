@@ -43,6 +43,7 @@
     "expo-document-picker": "~12.0.2",
     "expo-font": "~12.0.10",
     "expo-image-picker": "~15.1.0",
+    "expo-speech": "~12.0.2",
     "expo-splash-screen": "~0.27.7",
     "metro-react-native-babel-preset": "^0.77.0",
     "react": "18.2.0",

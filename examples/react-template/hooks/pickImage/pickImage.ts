@@ -4,8 +4,8 @@ import { useState } from 'react'
 export default function usePickImage() {
   const [files, setFiles] = useState<IPromptAiFile[]>([])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+  const handleFileChange = (e?: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e?.target.files?.[0]
     if (!file) return
     if (file.type.startsWith('image/')) {
       const imageUrl = URL.createObjectURL(file)
