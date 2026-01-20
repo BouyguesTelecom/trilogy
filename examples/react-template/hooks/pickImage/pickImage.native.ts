@@ -21,7 +21,9 @@ export default function usePickImage() {
           src: result.assets[0].uri,
         } as IPromptAiFile,
       ])
+      return true
     }
+    return false
   }
 
   const pickFile = async () => {
@@ -35,7 +37,9 @@ export default function usePickImage() {
           src: result.assets[0].uri,
         } as IPromptAiFile,
       ])
+      return true
     }
+    return false
   }
 
   const deleteFile = (index: number) => {

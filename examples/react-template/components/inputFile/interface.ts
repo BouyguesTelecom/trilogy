@@ -1,5 +1,5 @@
 export interface IInputFile {
-  pickImage: () => Promise<void>
-  pickFile: () => Promise<void>
+  pickImage: () => Promise<boolean>
+  pickFile: () => Promise<boolean>
   onClick?: (e?: React.ChangeEvent<HTMLInputElement>) => void
 }

@@ -18,13 +18,13 @@ export default function InputFile({ pickFile, pickImage }: IInputFile) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const handlePickFile = async () => {
-    await pickFile()
-    setIsOpen(false)
+    const result = await pickFile()
+    if (result) setIsOpen(false)
   }
 
   const handlePickImage = async () => {
-    await pickImage()
-    setIsOpen(false)
+    const result = await pickImage()
+    if (result) setIsOpen(false)
   }
 
   return (
