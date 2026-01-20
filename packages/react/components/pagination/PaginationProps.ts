@@ -9,7 +9,7 @@ import { Pager } from './PaginationEnum'
 export interface PaginationProps extends Accessibility, Dev, CommonProps {
   length: number
   defaultPage?: number
-  onClick?: (event: Pager & Partial<React.MouseEvent<HTMLAnchorElement>>) => void
+  onClick?: (event: Pager & React.MouseEvent<HTMLAnchorElement>) => void
   href?: (page: number) => string
 }
 
