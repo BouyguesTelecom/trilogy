@@ -4,7 +4,6 @@ import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { Pager } from './PaginationEnum'
 import { PaginationProps, PaginationRef } from './PaginationProps'
 
 /**
@@ -22,42 +21,36 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('pagination', className))
-    const pager = React.useMemo<Pager>(() => {
-      // Calculate total pages
 
-      let startPage = 1
-      let endPage = 5
-
-      if (length <= 5) {
-        // less than pageSize(default is 5) total pages so show all
-        startPage = 1
-        endPage = length
-      } else {
-        // more than 3 total pages so calculate start and end pages
-        if (currentPage <= 3) {
+    const getPages = React.useCallback(
+      (page: number) => {
+        let startPage = 1
+        let endPage = 5
+        if (length <= 5) {
           startPage = 1
-          endPage = 4
-        } else if (currentPage + 3 >= length) {
-          startPage = length - 3
           endPage = length
         } else {
-          startPage = currentPage - 1
-          endPage = currentPage + 1
+          if (page <= 3) {
+            startPage = 1
+            endPage = 4
+          } else if (page + 3 >= length) {
+            startPage = length - 3
+            endPage = length
+          } else {
+            startPage = page - 1
+            endPage = page + 1
+          }
         }
-      }
+        const pages = [...Array(endPage + 1 - startPage).keys()].map((i) => startPage + i)
+        return {
+          endPage,
+          pages,
+        }
+      },
+      [length],
+    )
 
-      // Create an array of pages
-      const pages = [...Array(endPage + 1 - startPage).keys()].map((i) => startPage + i)
-
-      // Set pager object
-      return {
-        currentPage,
-        length,
-        endPage,
-        pages,
-      }
-    }, [currentPage, length])
-
+    const [pages, setPages] = useState(() => getPages(defaultPage).pages)
     useEffect(() => {
       setCurrentPage(defaultPage)
     }, [defaultPage])
@@ -68,9 +61,12 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
           className={hashClass(styled, clsx('pagination-previous'))}
           {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
           onClick={(e) => {
-            if (onClick) onClick(Object.assign(e, pager))
+            const nextPage = currentPage - 1
+            const nextPages = getPages(nextPage)
+            if (onClick) onClick(Object.assign(e, nextPages, { currentPage: nextPage, length }))
             if (currentPage !== 1) {
-              setCurrentPage(currentPage - 1)
+              setCurrentPage(nextPage)
+              setPages(nextPages.pages)
             }
           }}
           href={href?.(currentPage - 1)}
@@ -78,20 +74,22 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
           <Icon name={IconName.ARROW_LEFT} />
         </a>
         <ul className={hashClass(styled, clsx('pagination-list'))}>
-          {!pager.pages.includes(1) && (
+          {!pages.includes(1) && (
             <li>
               <span className={hashClass(styled, clsx('pagination-ellipsis'))}>…</span>
             </li>
           )}
-          {pager.pages.map((pageNumber) => (
+          {pages.map((pageNumber) => (
             <li key={pageNumber}>
               <a
                 className={hashClass(styled, clsx('pagination-link'))}
                 {...(currentPage === pageNumber ? { 'aria-current': true } : {})}
                 aria-label={`Aller à la page ${pageNumber}`}
                 onClick={(e) => {
-                  if (onClick) onClick(Object.assign(e, pager))
+                  const nextPages = getPages(pageNumber)
+                  if (onClick) onClick(Object.assign(e, nextPages, { currentPage: pageNumber, length }))
                   setCurrentPage(pageNumber)
+                  setPages(nextPages.pages)
                 }}
                 href={href?.(pageNumber)}
               >
@@ -99,7 +97,7 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
               </a>
             </li>
           ))}
-          {!pager.pages.includes(length) && (
+          {!pages.includes(length) && (
             <li>
               <span className={hashClass(styled, clsx('pagination-ellipsis'))}>…</span>
             </li>
@@ -109,9 +107,12 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
           className={hashClass(styled, clsx('pagination-next'))}
           {...(currentPage === Math.max(length) ? { 'aria-disabled': true } : {})}
           onClick={(e) => {
-            if (onClick) onClick(Object.assign(e, pager))
+            const nextPage = currentPage + 1
+            const nextPages = getPages(nextPage)
+            if (onClick) onClick(Object.assign(e, nextPages, { currentPage: nextPage, length }))
             if (currentPage !== Math.max(length)) {
               setCurrentPage(currentPage + 1)
+              setPages(nextPages.pages)
             }
           }}
           href={href?.(currentPage + 1)}

@@ -22,7 +22,7 @@ export const PaginationScreen = (): JSX.Element => {
 
         <Divider />
 
-        <Pagination onClick={(e) => console.log('event', e)} length={70} />
+        <Pagination onClick={(e) => console.log(e)} length={70} />
         <Divider />
         <Pagination onClick={(e) => console.log('event', e)} length={7} defaultPage={2} />
 
