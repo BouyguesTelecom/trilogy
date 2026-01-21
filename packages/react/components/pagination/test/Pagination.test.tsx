@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
+import * as React from 'react'
 import Pagination from '../Pagination'
 
 describe('Pagination component', () => {
@@ -21,12 +21,14 @@ describe('Pagination component', () => {
     fireEvent.click(getByLabelText('Aller à la page 2'))
 
     // Check if the onClick prop has been called with the correct pager object
-    expect(handleClick).toHaveBeenCalledWith({
-      currentPage: 2,
-      length: 10,
-      endPage: 4,
-      pages: [1, 2, 3, 4],
-    })
+    expect(handleClick).toHaveBeenCalledWith(
+      expect.objectContaining({
+        currentPage: 2,
+        length: 10,
+        endPage: 4,
+        pages: [1, 2, 3, 4],
+      }),
+    )
   })
 
   it('should render the correct href when href prop is provided', () => {

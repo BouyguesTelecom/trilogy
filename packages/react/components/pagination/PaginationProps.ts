@@ -13,5 +13,9 @@ export interface PaginationProps extends Accessibility, Dev, CommonProps {
   href?: (page: number) => string
 }
 
+export interface PaginationNativeProps extends Omit<PaginationProps, 'onClick'> {
+  onClick?: (event: Pager) => void
+}
+
 export type PaginationRef = HTMLElement
 export type PaginationNativeRef = View
