@@ -57,13 +57,15 @@ export const getJustifyClassName = (justifyContent?: string) => {
   if (!justifyContent) return 'flex-start'
   switch (true) {
     case ['CENTER', 'JUSTIFIED_CENTER'].includes(justifyContent):
-      return 'centered'
+      return 'justified-center'
     case ['START', 'JUSTIFIED_START'].includes(justifyContent):
       return 'justified-start'
     case ['END', 'JUSTIFIED_END'].includes(justifyContent):
       return 'justified-end'
     case ['SPACE_BETWEEN', 'SPACE_BETWEEN'].includes(justifyContent):
       return 'spaced-between'
+    case justifyContent === 'SPACE_AROUND':
+      return 'spaced-around'
     case justifyContent === 'SPACE_EVENLY':
       return 'spaced-evenly'
     default:
