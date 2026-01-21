@@ -51,8 +51,10 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
     )
 
     const [pages, setPages] = useState(() => getPages(defaultPage).pages)
+
     useEffect(() => {
       setCurrentPage(defaultPage)
+      setPages(getPages(defaultPage).pages)
     }, [defaultPage])
 
     return (
