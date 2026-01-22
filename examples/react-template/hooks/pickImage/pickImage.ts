@@ -30,8 +30,8 @@ export default function usePickImage() {
 
   return {
     files,
-    pickImage: async () => undefined,
-    pickFile: async () => undefined,
+    pickImage: async () => true,
+    pickFile: async () => true,
     handleFileChange,
     deleteFile,
     deleteAllFiles,

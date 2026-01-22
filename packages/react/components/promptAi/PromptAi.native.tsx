@@ -13,7 +13,7 @@ const PromptAi = React.forwardRef<PromptAiNativeRef, PromptAiProps>(({ ...others
   const styles = StyleSheet.create({
     view: {
       borderWidth: isFocused ? 2 : 1,
-      borderRadius: getRadiusStyle(RadiusValues.MEDIUM),
+      borderRadius: getRadiusStyle(RadiusValues.SMALL),
       borderColor: getColorStyle(TrilogyColor[isFocused ? 'MAIN' : 'STROKE']),
       margin: isFocused ? -1 : undefined,
     },

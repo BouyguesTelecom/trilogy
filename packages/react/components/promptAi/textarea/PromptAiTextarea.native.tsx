@@ -14,9 +14,9 @@ const PromptAiTextarea = React.forwardRef<PromptAiTextareaNativeRef, PromptAiTex
 
   const style = StyleSheet.create({
     textarea: {
-      maxHeight: 200,
-      paddingHorizontal: SpacerSize.TWO,
-      paddingTop: SpacerSize.TWO,
+      maxHeight: 100,
+      paddingHorizontal: SpacerSize.FOUR,
+      paddingTop: SpacerSize.FOUR,
       color: getColorStyle(TrilogyColor.MAIN),
     },
   })

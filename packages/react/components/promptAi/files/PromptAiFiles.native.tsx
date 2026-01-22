@@ -12,8 +12,8 @@ const PromptAiFiles = React.forwardRef<PromptAiFilesNativeRef, PromptAiFilesProp
   const styles = StyleSheet.create({
     scrollViewContainer: {
       flexDirection: 'row',
-      gap: GapSize.EIGHT,
-      padding: childrenLength ? GapSize.EIGHT : undefined,
+      gap: GapSize.EIGHT * 2,
+      padding: childrenLength ? GapSize.EIGHT * 2 : undefined,
     },
   })
 

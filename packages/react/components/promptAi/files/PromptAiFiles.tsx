@@ -1,4 +1,4 @@
-import { Columns } from '@/components/columns'
+import { Columns, GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -19,7 +19,7 @@ const PromptAiFiles = React.forwardRef<PromptAiFilesRef, PromptAiFilesProps>(({ 
 
   if (!childrenLength) return null
   return (
-    <Columns className={classesFiles} scrollable ref={ref}>
+    <Columns className={classesFiles} scrollable ref={ref} gap={GapSize.FOUR}>
       {children}
     </Columns>
   )

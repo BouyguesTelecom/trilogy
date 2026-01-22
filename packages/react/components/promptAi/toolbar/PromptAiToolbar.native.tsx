@@ -10,9 +10,10 @@ const PromptAiToolbar = React.forwardRef<PromptAiToolbarNativeRef, PromptAiToolb
     view: {
       flexDirection: 'row',
       gap: GapSize.EIGHT,
-      padding: SpacerSize.TWO,
+      padding: SpacerSize.FOUR,
       alignItems: 'center',
       flexWrap: 'nowrap',
+      justifyContent: 'flex-end',
     },
   })
   return <View ref={ref} style={styles.view} {...others} />

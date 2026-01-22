@@ -40,7 +40,11 @@ const PromptAiFile = React.forwardRef<PromptAiFileRef, PromptAiFileProps>(({ onD
             </Box>
             <FlexBox direction='column'>
               <FlexBox align={Align.CENTER}>
-                <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]} level={TextLevels.THREE}>
+                <Text
+                  typo={[TypographyBold.TEXT_WEIGHT_BOLD]}
+                  level={TextLevels.THREE}
+                  className='prompt_ai-files-file-name'
+                >
                   {name}
                 </Text>
                 <Icon name='tri-times' className='prompt_ai-files-delete' onClick={onDelete} />

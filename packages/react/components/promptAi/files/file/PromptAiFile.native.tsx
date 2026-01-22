@@ -8,10 +8,12 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
 import { TypographyBold } from '@/objects/Typography'
 import React from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { PromptAiFileNativeRef, PromptAiFileProps } from './PromptAiFileProps'
 
-const HEIGHT_ITEM = 60
+const HEIGHT_ITEM = 64
+const HEIGHT_IMG_FILE = 40
+const MAX_WIDTH_FILE = 264
 
 const PromptAiFile = React.forwardRef<PromptAiFileNativeRef, PromptAiFileProps>(
   ({ onDelete, src, name, type }, ref) => {
@@ -21,8 +23,8 @@ const PromptAiFile = React.forwardRef<PromptAiFileNativeRef, PromptAiFileProps>(
       cardImg: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
         borderRadius: getRadiusStyle(RadiusValues.SMALL),
-        width: 40,
-        height: 40,
+        width: HEIGHT_IMG_FILE,
+        height: HEIGHT_IMG_FILE,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -34,14 +36,14 @@ const PromptAiFile = React.forwardRef<PromptAiFileNativeRef, PromptAiFileProps>(
         borderColor: getColorStyle(TrilogyColor.MAIN_FADE),
         borderRadius: getRadiusStyle(RadiusValues.SMALL),
         padding: SpacerSize.TWO,
-        maxWidth: Dimensions.get('screen').width / 1.5,
+        maxWidth: MAX_WIDTH_FILE,
         gap: GapSize.TEN,
         height: HEIGHT_ITEM,
       },
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: 40,
+        width: HEIGHT_IMG_FILE,
       },
       times: {
         position: 'absolute',
@@ -51,6 +53,7 @@ const PromptAiFile = React.forwardRef<PromptAiFileNativeRef, PromptAiFileProps>(
         borderRadius: 100,
         padding: 2,
       },
+      cardContent: { flexShrink: 1, gap: GapSize.EIGHT },
     })
 
     if (type === 'image') {
@@ -69,7 +72,7 @@ const PromptAiFile = React.forwardRef<PromptAiFileNativeRef, PromptAiFileProps>(
         <View style={styles.cardImg}>
           <Icon name={IconName.FILE_ATTACHED} size={IconSize.SMALLER} {...{ style: styles.icon }} />
         </View>
-        <View style={{ flexShrink: 1 }}>
+        <View style={styles.cardContent}>
           <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]} level={TextLevels.THREE} numberOfLines={1}>
             {name}
           </Text>
