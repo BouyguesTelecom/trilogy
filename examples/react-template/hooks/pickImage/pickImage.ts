@@ -1,8 +1,8 @@
-import { IPromptAiFile } from '@trilogy-ds/react/components/promptAi/context'
+import { IPromptFile } from '@trilogy-ds/react/components/promptAi/context'
 import { useState } from 'react'
 
 export default function usePickImage() {
-  const [files, setFiles] = useState<IPromptAiFile[]>([])
+  const [files, setFiles] = useState<IPromptFile[]>([])
 
   const handleFileChange = (e?: React.ChangeEvent<HTMLInputElement>) => {
     const file = e?.target.files?.[0]

@@ -6,7 +6,7 @@ import {
   Modal,
   ModalBody,
   ModalSize,
-  PromptAiInputFile,
+  PromptInputFile,
   Text,
   View,
 } from '@trilogy-ds/react/components'
@@ -31,7 +31,7 @@ export default function InputFile({ pickFile, pickImage }: IInputFile) {
     <Modal
       title='Titre'
       size={ModalSize.SMALL}
-      trigger={<PromptAiInputFile onChange={() => setIsOpen(true)} />}
+      trigger={<PromptInputFile onChange={() => setIsOpen(true)} />}
       active={isOpen}
       onClose={() => setIsOpen(false)}
     >
