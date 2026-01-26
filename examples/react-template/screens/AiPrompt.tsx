@@ -83,8 +83,10 @@ export const AiPromptScreen = () => {
             >
               <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
               <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
+              <SelectOption id='id_three' value='id_three' label='Gémini 2.5 Flash Preview 06 17' iconName='tri-bell' />
             </PromptAiSelect>
           </PromptAiTools>
+
           <PromptAiMicrophone
             onSpeechStart={handleSpeechStart}
             onSpeechResult={handleSpeechResult}

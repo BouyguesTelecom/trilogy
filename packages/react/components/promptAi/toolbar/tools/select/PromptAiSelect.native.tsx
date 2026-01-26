@@ -11,9 +11,14 @@ const PromptAiSelect = React.forwardRef<PromptAiSelectNativeRef, SelectNativePro
       {...{
         ...others,
         wrapper: {
-          borderwidth: 0,
-          height: 36,
           borderWidth: 0,
+          height: 36,
+          maxWidth: '100%',
+        },
+        inputStyle: {
+          width: '100%',
+          paddingRight: 40,
+          paddingLeft: 0,
         },
       }}
     />

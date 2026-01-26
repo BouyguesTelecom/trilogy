@@ -169,6 +169,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         width: hasIcon && status ? '85%' : '95%',
         height: 46,
         color: disabled ? getColorStyle(TrilogyColor.DISABLED) : inputColor,
+        ...(others as any)?.inputStyle,
       },
       help: {
         fontSize: 12,
@@ -198,7 +199,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           getColorStyle(TrilogyColor.NEUTRAL),
         height: 46,
         width: '100%',
-        ...(others as any)?.wrapper
+        ...(others as any)?.wrapper,
       },
       inputContainer: {
         height: 46,
@@ -249,7 +250,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     return (
       <View
-        style={{ width: '100%' }}
+        style={{ width: '100%', ...(others as any)?.wrapper }}
         accessible={!!inputAccessibilityLabel}
         accessibilityLabel={inputAccessibilityLabel}
         testID={inputTestId}

@@ -12,6 +12,7 @@ const PromptAiTools = React.forwardRef<PromptAiToolsNativeRef, PromptAiToolsProp
       alignItems: 'center',
       marginRight: 'auto',
       flexWrap: 'nowrap',
+      maxWidth: '50%',
     },
   })
 

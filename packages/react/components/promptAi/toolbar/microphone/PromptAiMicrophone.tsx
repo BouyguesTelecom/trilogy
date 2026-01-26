@@ -2,7 +2,8 @@ import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconName } from '@/components/icon'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { PromptAiContext } from '../../context'
 import { PromptAiMicrophoneProps, PromptAiMicrophoneRef } from './PromptAiMicrophoneProps'
 
 type SpeechRecognitionState = 'listening' | 'initial'
@@ -21,6 +22,7 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
     },
     ref,
   ) => {
+    const { text } = useContext(PromptAiContext)
     const [state, setState] = useState<SpeechRecognitionState>('initial')
     const recognitionRef = useRef<SpeechRecognition | null>(null)
 
@@ -88,6 +90,10 @@ const PromptAiMicrophone = React.forwardRef<PromptAiMicrophoneRef, PromptAiMicro
       state === 'listening' && 'active',
       className,
     )
+
+    if (text.length > 0) {
+      return null
+    }
 
     return (
       <Button
