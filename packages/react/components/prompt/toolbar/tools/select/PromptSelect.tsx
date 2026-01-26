@@ -11,7 +11,7 @@ const PADDING_SELECT_OPTION = 58
 
 const PromptSelect = React.forwardRef<PromptSelectRef, SelectProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('prompt_ai-toolbar-tool', className))
+  const classes = hashClass(styled, clsx('prompt-toolbar-tool', className))
 
   const refSpan = useRef<HTMLSpanElement>(null)
   const refSelect = useRef<HTMLSelectElement>(null)

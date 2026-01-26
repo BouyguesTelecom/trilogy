@@ -13,7 +13,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
     const { text, files } = useContext(PromptContext)
-    const classesStop = hashClass(styled, clsx('prompt_ai-stop_streaming'))
+    const classesStop = hashClass(styled, clsx('prompt-stop_streaming'))
 
     const onClick = useCallback(() => {
       switch (statusSubmit) {
@@ -34,7 +34,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
     const classesBtn = hashClass(
       styled,
       clsx(
-        'prompt_ai-toolbar-tool icon_only prompt_ai-toolbar-tool-submit',
+        'prompt-toolbar-tool icon_only prompt-toolbar-tool-submit',
         isActive && 'active',
         status === PromptSubmitStatus.STREAMING_ON && 'streaming',
         className,

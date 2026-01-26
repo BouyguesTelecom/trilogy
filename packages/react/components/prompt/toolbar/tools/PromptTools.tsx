@@ -8,7 +8,7 @@ import { PromptToolsProps, PromptToolsRef } from './PromptToolsProps'
 const PromptTools = React.forwardRef<PromptToolsRef, PromptToolsProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx('prompt_ai-toolbar-tools', className))
+  const classes = hashClass(styled, clsx('prompt-toolbar-tools', className))
   return <div ref={ref} className={classes} {...others} />
 })
 

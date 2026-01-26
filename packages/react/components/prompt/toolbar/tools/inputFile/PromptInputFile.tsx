@@ -9,14 +9,14 @@ import { PromptInputFileProps, PromptInputFileRef } from './PromptInputFileProps
 const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProps>(
   ({ className, onChange, ...others }, ref) => {
     const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('button is-ghost prompt_ai-toolbar-tool icon_only', className))
+    const classes = hashClass(styled, clsx('button is-ghost prompt-toolbar-tool icon_only', className))
 
     return (
-      <label htmlFor='promptAiUpload'>
+      <label htmlFor='promptUpload'>
         <span ref={ref} className={classes} {...others}>
           <Icon name={IconName.ATTACHMENT} />
         </span>
-        <input type='file' style={{ display: 'none' }} id='promptAiUpload' onChange={onChange} />
+        <input type='file' style={{ display: 'none' }} id='promptUpload' onChange={onChange} />
       </label>
     )
   },

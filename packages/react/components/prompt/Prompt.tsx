@@ -8,7 +8,7 @@ import { PromptProvider } from './context'
 
 const Prompt = React.forwardRef<PromptRef, PromptProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('prompt_ai', className))
+  const classes = hashClass(styled, clsx('prompt', className))
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

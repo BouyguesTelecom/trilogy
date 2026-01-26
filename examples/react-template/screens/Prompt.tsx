@@ -65,7 +65,7 @@ export const PromptScreen = () => {
             )
           })}
         </PromptFiles>
-        <PromptTextarea value={text} onChange={(e) => setText(e.textareaValue)} />
+        <PromptTextarea value={text} onChange={(e) => setText(e.textareaValue)} placeholder='Placeholder' />
         <PromptToolbar>
           <PromptTools>
             <InputFile pickImage={pickImage} pickFile={pickFile} onClick={handleFileChange} />

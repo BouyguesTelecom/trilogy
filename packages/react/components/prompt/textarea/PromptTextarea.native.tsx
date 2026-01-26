@@ -35,7 +35,6 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
   return (
     <Textarea
       ref={textareaRef}
-      placeholder='Placeholder'
       {...{
         ...others,
         style: style.textarea,

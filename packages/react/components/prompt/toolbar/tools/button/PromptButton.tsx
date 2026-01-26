@@ -8,7 +8,7 @@ import { PromptButtonProps, PromptButtonRef } from './PromptButtonProps'
 
 const PromptButton = React.forwardRef<PromptButtonRef, PromptButtonProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('prompt_ai-toolbar-tool', className))
+  const classes = hashClass(styled, clsx('prompt-toolbar-tool', className))
 
   return <Button ref={ref} variant={ButtonVariant.GHOST} className={classes} {...others} />
 })

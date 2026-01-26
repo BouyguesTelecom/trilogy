@@ -9,7 +9,7 @@ import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
 
 const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('prompt_ai-textarea', className))
+  const classes = hashClass(styled, clsx('prompt-textarea', className))
   const { setText } = useContext(PromptContext)
 
   const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
@@ -22,14 +22,7 @@ const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
     setText(others?.value ?? '')
   }, [others?.value])
 
-  return (
-    <Textarea
-      ref={ref}
-      className={classes}
-      placeholder='Placeholder'
-      {...{ onInput: handleTextareaChange, ...others }}
-    />
-  )
+  return <Textarea ref={ref} className={classes} {...{ onInput: handleTextareaChange, ...others }} />
 })
 
 PromptTextarea.displayName = ComponentName.PromptTextarea

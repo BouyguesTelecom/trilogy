@@ -16,24 +16,24 @@ import { PromptFileProps, PromptFileRef } from './PromptFileProps'
 
 const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const { styled } = useTrilogyContext()
-  const classesImgContainer = hashClass(styled, clsx('prompt_ai-files-file'))
-  const classesImg = hashClass(styled, clsx('prompt_ai-files-img'))
+  const classesImgContainer = hashClass(styled, clsx('prompt-files-file'))
+  const classesImg = hashClass(styled, clsx('prompt-files-img'))
 
   if (type === 'image') {
     return (
       <div className={classesImgContainer} ref={ref}>
         <Image src={src} alt={name} className={classesImg} />
-        <Icon name='tri-times' className='prompt_ai-files-delete prompt_ai-files-delete-img' onClick={onDelete} />
+        <Icon name='tri-times' className='prompt-files-delete prompt-files-delete-img' onClick={onDelete} />
       </div>
     )
   }
 
   return (
     <Column narrow ref={ref}>
-      <Card flat className='prompt_ai-files-doc prompt_ai-files-file'>
-        <CardContent className='prompt_ai-files-doc-card-content'>
+      <Card flat className='prompt-files-doc prompt-files-file'>
+        <CardContent className='prompt-files-doc-card-content'>
           <FlexBox align={Align.CENTER}>
-            <Box backgroundColor='MAIN_FADE' className='prompt_ai-files-doc-preview'>
+            <Box backgroundColor='MAIN_FADE' className='prompt-files-doc-preview'>
               <BoxContent>
                 <Icon name='tri-file-attached' />
               </BoxContent>
@@ -43,11 +43,11 @@ const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete,
                 <Text
                   typo={[TypographyBold.TEXT_WEIGHT_BOLD]}
                   level={TextLevels.THREE}
-                  className='prompt_ai-files-file-name'
+                  className='prompt-files-file-name'
                 >
                   {name}
                 </Text>
-                <Icon name='tri-times' className='prompt_ai-files-delete' onClick={onDelete} />
+                <Icon name='tri-times' className='prompt-files-delete' onClick={onDelete} />
               </FlexBox>
               <Text level={TextLevels.FOUR}>{type}</Text>
             </FlexBox>

@@ -10,7 +10,7 @@ import { PromptFilesProps, PromptFilesRef } from './PromptFilesProps'
 const PromptFiles = React.forwardRef<PromptFilesRef, PromptFilesProps>(({ children }, ref) => {
   const { styled } = useTrilogyContext()
   const { setFiles } = useContext(PromptContext)
-  const classesFiles = hashClass(styled, clsx('prompt_ai-files'))
+  const classesFiles = hashClass(styled, clsx('prompt-files'))
   const childrenLength = useMemo(() => React.Children.count(children), [children])
 
   useEffect(() => {

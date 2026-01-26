@@ -86,7 +86,7 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneP
     }, [state, disabled, isSupported, onSpeechError])
 
     const classes = clsx(
-      'prompt_ai-toolbar-tool prompt_ai-toolbar-microphone icon_only',
+      'prompt-toolbar-tool prompt-toolbar-microphone icon_only',
       state === 'listening' && 'active',
       className,
     )
