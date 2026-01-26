@@ -78,7 +78,7 @@ $height-prompt-item: 64px;
         &-tools {
             display: flex;
             gap: 16px;
-            align-items: center;
+            align-items: end;
             margin-right: auto;
         }
         &-tool {
@@ -86,8 +86,12 @@ $height-prompt-item: 64px;
             select {
                 height: 36px;
                 border-width: 0px !important;
+                max-width: 180px;
                 &:focus {
                     padding-left: 16px !important;
+                }
+                @include mobile {
+                    max-width: 110px;
                 }
             }
             .field .control::after {

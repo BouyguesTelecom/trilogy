@@ -9,6 +9,7 @@ import { PromptTools } from './toolbar/tools'
 import { PromptButton } from './toolbar/tools/button'
 import { PromptInputFile } from './toolbar/tools/inputFile'
 import { PromptSelect } from './toolbar/tools/select'
+import { PromptSelectOption } from './toolbar/tools/select/options'
 
 export {
   Prompt,
@@ -18,6 +19,7 @@ export {
   PromptInputFile,
   PromptMicrophone,
   PromptSelect,
+  PromptSelectOption,
   PromptSubmit,
   PromptTextarea,
   PromptToolbar,

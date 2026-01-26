@@ -4,12 +4,12 @@ import {
   PromptFiles,
   PromptMicrophone,
   PromptSelect,
+  PromptSelectOption,
   PromptSubmit,
   PromptTextarea,
   PromptToolbar,
   PromptTools,
   Section,
-  SelectOption,
 } from '@trilogy-ds/react/components'
 import { PromptSubmitStatus } from '@trilogy-ds/react/components/prompt/toolbar/submit'
 import { useState } from 'react'
@@ -75,9 +75,14 @@ export const PromptScreen = () => {
                 setSelectValue(e.selectValue)
               }}
             >
-              <SelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
-              <SelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
-              <SelectOption id='id_three' value='id_three' label='Gémini 2.5 Flash Preview 06 17' iconName='tri-bell' />
+              <PromptSelectOption id='id_one' value='opt_one' label='Claude Sonnet' iconName='tri-bell' />
+              <PromptSelectOption id='id_two' value='id_two' label='Gemini' iconName='tri-bell' />
+              <PromptSelectOption
+                id='id_three'
+                value='id_three'
+                label='Gémini 2.5 Flash Preview 06 17'
+                iconName='tri-bell'
+              />
             </PromptSelect>
           </PromptTools>
 
