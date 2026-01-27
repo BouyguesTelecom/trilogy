@@ -13,7 +13,8 @@ const PromptFiles = React.forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ 
     scrollViewContainer: {
       flexDirection: 'row',
       gap: GapSize.EIGHT * 2,
-      padding: childrenLength ? GapSize.EIGHT * 2 : undefined,
+      paddingHorizontal: childrenLength ? GapSize.EIGHT * 2 : undefined,
+      paddingTop: childrenLength ? GapSize.EIGHT * 2 : undefined,
     },
   })
 

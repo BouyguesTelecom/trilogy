@@ -10,6 +10,7 @@ export interface PromptButtonProps extends Accessibility, Dev, CommonProps, Clic
   iconName?: IconName | IconNameValues
   disabled?: boolean
   active?: boolean
+  rounded?: boolean
 }
 
 export type PromptButtonRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement

@@ -14,7 +14,7 @@ const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProp
     return (
       <label htmlFor='promptUpload'>
         <span ref={ref} className={classes} {...others}>
-          <Icon name={IconName.ATTACHMENT} />
+          <Icon name={IconName.PARPERCLIP} />
         </span>
         <input type='file' style={{ display: 'none' }} id='promptUpload' onChange={onChange} />
       </label>

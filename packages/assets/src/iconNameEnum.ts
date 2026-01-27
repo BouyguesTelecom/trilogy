@@ -17,7 +17,7 @@ export enum IconName {
   TIMES = 'tri-times',
   TRASH = 'tri-trash',
   MICRO = 'tri-micro',
-  ATTACHMENT = 'tri-attachment',
+  PARPERCLIP = 'tri-paperclip',
 }
 
 export type IconNameValues = `${IconName}`

@@ -1,24 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName } from '@/components/icon'
-import React from 'react'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { TrilogyColor } from '@/objects'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
+import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from './PromptMicrophoneProps'
 
 const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
-  (
-    {
-      className,
-      onSpeechStart,
-      onSpeechResult,
-      onSpeechEnd,
-      onSpeechError,
-      language = 'fr-FR',
-      disabled = false,
-      ...others
-    },
-    ref,
-  ) => {
+  ({ isListening, onClick, disabled = false, ...others }, ref) => {
+    const { isTyping } = useContext(PromptContext)
+
     const styles = StyleSheet.create({
       icon: {
         flexDirection: 'row',
@@ -27,12 +19,16 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicro
       },
     })
 
+    if (isTyping) return null
+
     return (
-      <PromptButton {...others} ref={ref}>
+      <PromptButton ref={ref} disabled={disabled} onClick={onClick} active={isListening} rounded {...others}>
         <Icon
+          size={IconSize.SMALLER}
+          color={isListening ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN}
           name={IconName.MICRO}
           {...{
-            style: styles.icon,
+            style: [styles.icon],
           }}
         />
       </PromptButton>

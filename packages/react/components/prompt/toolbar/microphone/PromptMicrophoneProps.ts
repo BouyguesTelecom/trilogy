@@ -1,15 +1,12 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
 
-export interface PromptMicrophoneProps extends Accessibility, Dev, CommonProps {
-  onSpeechStart?: (e: Event) => void
-  onSpeechResult?: (text: string) => void
-  onSpeechEnd?: (e: Event) => void
-  onSpeechError?: (error: string) => void
-  language?: string
+export interface PromptMicrophoneProps extends Accessibility, Dev, CommonProps, Clickable {
   disabled?: boolean
+  isListening?: boolean
 }
 
 export type PromptMicrophoneRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement

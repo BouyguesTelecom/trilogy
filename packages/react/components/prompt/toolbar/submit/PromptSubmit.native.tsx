@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconColor, IconName } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
@@ -46,6 +46,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
           <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
         ) : (
           <Icon
+            size={IconSize.SMALLER}
             color={IconColor[isActive ? 'WHITE' : 'NEUTRAL']}
             name={IconName.ARROW_UP}
             {...{

@@ -7,14 +7,14 @@ import { Pressable, StyleSheet } from 'react-native'
 import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
 
 const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
-  ({ disabled, active, onClick, ...others }, ref) => {
+  ({ disabled, active, onClick, rounded, ...others }, ref) => {
     const styles = StyleSheet.create({
       button: {
         height: 36,
         minWidth: 36,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: getRadiusStyle(RadiusValues.SMALL),
+        borderRadius: rounded ? 36 : getRadiusStyle(RadiusValues.SMALL),
         backgroundColor: getColorStyle(TrilogyColor[disabled ? 'DISABLED_FADE' : active ? 'MAIN' : 'BACKGROUND']),
       },
     })

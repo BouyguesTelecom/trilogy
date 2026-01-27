@@ -1,4 +1,4 @@
-import { IPromptFile } from '@trilogy-ds/react/components/promptAi/context'
+import { IPromptFile } from '@trilogy-ds/react/components/prompt/context'
 import * as DocumentPicker from 'expo-document-picker'
 import * as ImagePicker from 'expo-image-picker'
 import { useState } from 'react'

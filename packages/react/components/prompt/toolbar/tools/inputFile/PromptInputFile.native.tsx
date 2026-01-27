@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName } from '@/components/icon'
+import { Icon, IconName, IconSize } from '@/components/icon'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import PromptButton from '../button/PromptButton.native'
@@ -24,7 +24,8 @@ const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFi
         {...others}
       >
         <Icon
-          name={IconName.ATTACHMENT}
+          size={IconSize.SMALLER}
+          name={IconName.PARPERCLIP}
           {...{
             style: styles.icon,
           }}

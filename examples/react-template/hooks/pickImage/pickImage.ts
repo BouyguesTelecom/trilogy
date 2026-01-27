@@ -1,4 +1,4 @@
-import { IPromptFile } from '@trilogy-ds/react/components/promptAi/context'
+import { IPromptFile } from '@trilogy-ds/react/components/prompt/context'
 import { useState } from 'react'
 
 export default function usePickImage() {

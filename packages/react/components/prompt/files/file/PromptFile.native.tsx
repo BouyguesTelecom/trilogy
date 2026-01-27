@@ -16,7 +16,7 @@ const HEIGHT_IMG_FILE = 40
 const MAX_WIDTH_FILE = 264
 
 const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
-  const backgroundTimes = getColorStyle(TrilogyColor.BACKGROUND)
+  const backgroundTimes = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = StyleSheet.create({
     cardImg: {
@@ -53,6 +53,12 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
       padding: 2,
     },
     cardContent: { flexShrink: 1, gap: GapSize.EIGHT },
+    timesFile: {
+      backgroundColor: backgroundTimes,
+      borderRadius: 100,
+      padding: 2,
+      alignSelf: 'flex-start',
+    },
   })
 
   if (type === 'image') {
@@ -79,7 +85,9 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
           {type}
         </Text>
       </View>
-      <Icon name={IconName.TIMES} onClick={onDelete} />
+      <View style={styles.timesFile}>
+        <Icon name={IconName.TIMES} onClick={onDelete} size={IconSize.SMALLER} />
+      </View>
     </View>
   )
 })

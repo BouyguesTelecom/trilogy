@@ -23,21 +23,12 @@ export const PromptScreen = () => {
   const [selectValue, setSelectValue] = useState<string>('id_two')
   const { files, pickFile, pickImage, deleteFile, deleteAllFiles, handleFileChange } = usePickImage()
 
-  const handleSpeechStart = () => {
+  const onPressVoice = () => {
     setIsListening(true)
-  }
-
-  const handleSpeechResult = (text: string) => {
-    setText(text)
-  }
-
-  const handleSpeechEnd = () => {
-    setIsListening(false)
-  }
-
-  const handleSpeechError = (error: string) => {
-    setIsListening(false)
-    console.log(`Erreur: ${error}`)
+    setTimeout(() => {
+      setText('Hello, this is voice api simulation.')
+      setIsListening(false)
+    }, 1000)
   }
 
   const handleCancelSubmit = () => {
@@ -86,13 +77,7 @@ export const PromptScreen = () => {
             </PromptSelect>
           </PromptTools>
 
-          <PromptMicrophone
-            onSpeechStart={handleSpeechStart}
-            onSpeechResult={handleSpeechResult}
-            onSpeechEnd={handleSpeechEnd}
-            onSpeechError={handleSpeechError}
-            language='fr-FR'
-          />
+          <PromptMicrophone isListening={isListening} onClick={onPressVoice} />
           <PromptSubmit status={status} onSubmit={handleSubmit} onCancelSubmit={handleCancelSubmit} />
         </PromptToolbar>
       </Prompt>
