@@ -38,7 +38,6 @@ $height-prompt-item: 64px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 59%;  
         }
         &-doc {
             width: fit-content;
@@ -53,6 +52,10 @@ $height-prompt-item: 64px;
                 .box-content {
                     margin: 0px !important;
                 }
+            }
+
+            &-preview-content {
+                max-width: calc(100% - 56px);
             }
             &-card-content {
                 padding:8px !important

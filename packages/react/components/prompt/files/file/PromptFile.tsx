@@ -38,7 +38,7 @@ const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete,
                 <Icon name='tri-file-attached' />
               </BoxContent>
             </Box>
-            <FlexBox direction='column'>
+            <FlexBox direction='column' className='prompt-files-doc-preview-content'>
               <FlexBox align={Align.CENTER}>
                 <Text
                   typo={[TypographyBold.TEXT_WEIGHT_BOLD]}
