@@ -128,7 +128,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
     })
 
     useEffect(() => {
-      setValue(value ?? "")
+      setValue(value ?? '')
     }, [value])
 
     return (

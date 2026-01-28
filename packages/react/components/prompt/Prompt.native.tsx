@@ -7,9 +7,8 @@ import { RadiusValues } from '../image'
 import { PromptNativeRef, PromptProps } from './PromptProps'
 import { PromptContext, PromptProvider } from './context'
 
-const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others }, ref) => {
+const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others }, ref) => {
   const { isFocused } = useContext(PromptContext)
-
   const styles = StyleSheet.create({
     view: {
       borderWidth: isFocused ? 2 : 1,
@@ -18,9 +17,13 @@ const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others }, re
       margin: isFocused ? -1 : undefined,
     },
   })
+  return <View ref={ref} style={styles.view} {...others} />
+})
+
+const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others }, ref) => {
   return (
     <PromptProvider>
-      <View ref={ref} style={styles.view} {...others} />
+      <PromptElm ref={ref} {...others} />
     </PromptProvider>
   )
 })

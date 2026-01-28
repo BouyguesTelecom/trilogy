@@ -25,3 +25,5 @@ export {
   PromptToolbar,
   PromptTools,
 }
+
+export * from './PromptProps'
