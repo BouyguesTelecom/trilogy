@@ -9,7 +9,7 @@ import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from './PromptMicrop
 
 const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
   ({ isListening, onClick, disabled = false, ...others }, ref) => {
-    const { isTyping, setIsFocused, isFocused } = useContext(PromptContext)
+    const { isTyping, setIsSpeech } = useContext(PromptContext)
 
     const styles = StyleSheet.create({
       icon: {
@@ -21,10 +21,10 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicro
 
     const handleClick = () => {
       onClick?.()
-      setIsFocused(false)
+      setIsSpeech(true)
     }
 
-    if (isTyping && isFocused) return null
+    if (isTyping) return null
 
     return (
       <PromptButton ref={ref} disabled={disabled} onClick={handleClick} active={isListening} rounded {...others}>

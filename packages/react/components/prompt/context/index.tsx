@@ -17,6 +17,8 @@ export interface IPromptContext {
   setIsSend: Dispatch<SetStateAction<boolean>>
   isTyping: boolean
   setIsTyping: Dispatch<SetStateAction<boolean>>
+  isSpeech: boolean
+  setIsSpeech: Dispatch<SetStateAction<boolean>>
 }
 
 export const PromptContext = createContext<IPromptContext>({
@@ -30,6 +32,8 @@ export const PromptContext = createContext<IPromptContext>({
   setIsFocused: () => undefined,
   isSend: false,
   setIsSend: () => undefined,
+  isSpeech: false,
+  setIsSpeech: () => undefined,
 })
 
 export const PromptProvider = ({ children }: PropsWithChildren) => {
@@ -38,10 +42,24 @@ export const PromptProvider = ({ children }: PropsWithChildren) => {
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [isSend, setIsSend] = useState<boolean>(false)
   const [isTyping, setIsTyping] = useState<boolean>(false)
+  const [isSpeech, setIsSpeech] = useState<boolean>(false)
 
   return (
     <PromptContext.Provider
-      value={{ text, setText, files, setFiles, isFocused, setIsFocused, isSend, setIsSend, isTyping, setIsTyping }}
+      value={{
+        text,
+        setText,
+        files,
+        setFiles,
+        isFocused,
+        setIsFocused,
+        isSend,
+        setIsSend,
+        isTyping,
+        setIsTyping,
+        isSpeech,
+        setIsSpeech,
+      }}
     >
       {children}
     </PromptContext.Provider>
