@@ -54,7 +54,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
         disabled={!isActive}
         ref={ref}
         iconName={statusSubmit === PromptSubmitStatus.STREAMING_OFF ? IconName.ARROW_UP : undefined}
-        variant={ButtonVariant.GHOST}
+        variant={ButtonVariant.PRIMARY}
         className={classesBtn}
         type='submit'
         onClick={onClick}
