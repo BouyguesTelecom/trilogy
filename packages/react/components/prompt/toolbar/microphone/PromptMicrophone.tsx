@@ -9,7 +9,7 @@ import { PromptMicrophoneProps, PromptMicrophoneRef } from './PromptMicrophonePr
 const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneProps>(
   ({ className, onClick, disabled = false, isListening, ...others }, ref) => {
     const { isTyping } = useContext(PromptContext)
-    const classes = clsx('prompt-toolbar-tool prompt-toolbar-microphone icon_only', isListening && 'active', className)
+    const classes = clsx('prompt-toolbar-tool prompt-toolbar-microphone icon_only', className)
     if (isTyping) return null
 
     return (
@@ -17,7 +17,7 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneP
         ref={ref}
         iconName={IconName.MICRO}
         className={classes}
-        variant={ButtonVariant.GHOST}
+        variant={isListening ? ButtonVariant.PRIMARY : ButtonVariant.GHOST}
         onClick={onClick}
         disabled={disabled}
         {...others}

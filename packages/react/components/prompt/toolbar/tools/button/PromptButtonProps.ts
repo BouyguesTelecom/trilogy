@@ -1,3 +1,4 @@
+import { ButtonVariant } from '@/components/button'
 import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
@@ -11,6 +12,7 @@ export interface PromptButtonProps extends Accessibility, Dev, CommonProps, Clic
   disabled?: boolean
   active?: boolean
   rounded?: boolean
+  variant?: ButtonVariant
 }
 
 export type PromptButtonRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement

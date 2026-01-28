@@ -7,12 +7,14 @@ import clsx from 'clsx'
 import React from 'react'
 import { PromptButtonProps, PromptButtonRef } from './PromptButtonProps'
 
-const PromptButton = React.forwardRef<PromptButtonRef, PromptButtonProps>(({ className, rounded, ...others }, ref) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('prompt-toolbar-tool', rounded && is('rounded'), className))
+const PromptButton = React.forwardRef<PromptButtonRef, PromptButtonProps>(
+  ({ className, variant, rounded, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('prompt-toolbar-tool', rounded && is('rounded'), className))
 
-  return <Button ref={ref} variant={ButtonVariant.GHOST} className={classes} {...others} />
-})
+    return <Button ref={ref} variant={variant ?? ButtonVariant.GHOST} className={classes} {...others} />
+  },
+)
 
 PromptButton.displayName = ComponentName.PromptButton
 export default PromptButton
