@@ -48,7 +48,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const [minutesInputFocused, setMinutesInputFocused] = useState(false)
     const isDragging = useRef(false)
     const containerRef = useRef<View>(null)
-    const containerLayout = useRef({ x: 0, y: 0 })
 
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
@@ -142,21 +141,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       (event: GestureResponderEvent) => {
         if (disabled) return
 
-        const { pageX, pageY } = event.nativeEvent
-        const dx = pageX - containerLayout.current.x - centerX
-        const dy = pageY - containerLayout.current.y - centerY
+        // Utilise les coordonnées locales pour éviter les problèmes de mesure asynchrone
+        const { locationX, locationY } = event.nativeEvent
+        const dx = locationX - centerX
+        const dy = locationY - centerY
         const newAngle = Math.atan2(dy, dx)
 
         updateTimeFromAngle(newAngle)
       },
       [centerX, centerY, disabled, updateTimeFromAngle],
     )
-
-    const handleLayout = useCallback(() => {
-      containerRef.current?.measureInWindow((x, y) => {
-        containerLayout.current = { x, y }
-      })
-    }, [])
 
     const panResponder = useMemo(
       () =>
@@ -184,10 +178,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           },
           onPanResponderTerminationRequest: () => false,
           onPanResponderGrant: (evt) => {
-            // Mesure la position au début du geste
-            containerRef.current?.measureInWindow((x, y) => {
-              containerLayout.current = { x, y }
-            })
             isDragging.current = true
             handleGesture(evt)
           },
@@ -440,7 +430,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     return (
       <View ref={ref} style={styles.container} {...others}>
-        <View ref={containerRef} style={styles.circleContainer} onLayout={handleLayout} {...panResponder.panHandlers}>
+        <View ref={containerRef} style={styles.circleContainer} {...panResponder.panHandlers}>
           {/* Progress gauge with SVG */}
           {renderProgressGauge()}
 
