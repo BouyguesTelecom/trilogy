@@ -1,16 +1,14 @@
-import { type View } from 'react-native'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { type View } from 'react-native'
 
 /**
  * TimepickerCircular Interface
  */
 export interface TimepickerCircularProps extends CommonProps {
-  /** Current hours value (0-23) */
-  hours?: number
-  /** Current minutes value (0-59) */
-  minutes?: number
+  /** Current time value in format "HH:MM" (default: "00:00") */
+  value?: string
   /** Callback when time changes */
-  onChange?: (hours: number, minutes: number) => void
+  onChange?: (time: string) => void
   /** Label for hours input */
   hoursLabel?: string
   /** Label for minutes input */

@@ -2,13 +2,11 @@ import { Section, Spacer, Text, TimepickerCircular, View } from '@trilogy-ds/rea
 import { useState } from 'react'
 
 export const TimepickerScreen = (): JSX.Element => {
-  const [hours, setHours] = useState(5)
-  const [minutes, setMinutes] = useState(45)
+  const [time, setTime] = useState('05:45')
 
-  const handleTimeChange = (newHours: number, newMinutes: number) => {
-    setHours(newHours)
-    setMinutes(newMinutes)
-    console.log(`Time changed: ${newHours.toString().padStart(2, '0')}:${newMinutes.toString().padStart(2, '0')}`)
+  const handleTimeChange = (newTime: string) => {
+    setTime(newTime)
+    console.log(`Time changed: ${newTime}`)
   }
 
   return (
@@ -18,22 +16,13 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
-        <TimepickerCircular
-          hours={hours}
-          minutes={minutes}
-          onChange={handleTimeChange}
-          hoursLabel="Heures"
-          minutesLabel="Min"
-          step={5}
-        />
+        <TimepickerCircular value={time} onChange={handleTimeChange} hoursLabel='Heures' minutesLabel='Min' step={5} />
 
         <Spacer size={24} />
 
-        <Text>
-          Temps sélectionné : {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
-        </Text>
+        <Text>Temps sélectionné : {time}</Text>
       </View>
-{/*
+      {/*
       <Spacer size={48} />
 
       <View>

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GestureResponderEvent, PanResponder, StyleSheet, TextInput, View } from 'react-native'
 import Svg, { Circle } from 'react-native-svg'
 import { GapSize } from '../columns'
@@ -29,8 +29,7 @@ const HOUR_DOTS_COUNT = 24
 const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
   (
     {
-      hours = 0,
-      minutes = 0,
+      value = '00:00',
       onChange,
       hoursLabel = 'Heures',
       minutesLabel = 'Min',
@@ -42,12 +41,53 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     },
     ref,
   ): JSX.Element => {
-    const [currentHours, setCurrentHours] = useState(hours)
-    const [currentMinutes, setCurrentMinutes] = useState(minutes)
+    const formatNumber = (num: number): string => {
+      return num.toString().padStart(2, '0')
+    }
+
+    // Parse time string "HH:MM" to hours and minutes
+    const parseTime = (timeString: string): { hours: number; minutes: number } => {
+      const [hoursStr, minutesStr] = timeString.split(':')
+      const hours = parseInt(hoursStr || '0', 10)
+      const minutes = parseInt(minutesStr || '0', 10)
+      return {
+        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(23, hours)),
+        minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
+      }
+    }
+
+    // Format hours and minutes to "HH:MM" string
+    const formatTime = (hours: number, minutes: number): string => {
+      return `${formatNumber(hours)}:${formatNumber(minutes)}`
+    }
+
+    const { hours: initialHours, minutes: initialMinutes } = parseTime(value)
+
+    const [currentHours, setCurrentHours] = useState(initialHours)
+    const [currentMinutes, setCurrentMinutes] = useState(initialMinutes)
     const [hoursInputFocused, setHoursInputFocused] = useState(false)
     const [minutesInputFocused, setMinutesInputFocused] = useState(false)
+    const [hoursInputValue, setHoursInputValue] = useState(formatNumber(initialHours))
+    const [minutesInputValue, setMinutesInputValue] = useState(formatNumber(initialMinutes))
+    // États temporaires pour la saisie (ne affectent pas la position du curseur)
+    const [tempHours, setTempHours] = useState(initialHours)
+    const [tempMinutes, setTempMinutes] = useState(initialMinutes)
     const isDragging = useRef(false)
     const containerRef = useRef<View>(null)
+
+    // Synchronise les valeurs d'affichage quand la prop value change
+    // Mais seulement si aucun input n'est focalisé pour ne pas interrompre la saisie
+    useEffect(() => {
+      if (!hoursInputFocused && !minutesInputFocused) {
+        const { hours, minutes } = parseTime(value)
+        setCurrentHours(hours)
+        setCurrentMinutes(minutes)
+        setTempHours(hours)
+        setTempMinutes(minutes)
+        setHoursInputValue(formatNumber(hours))
+        setMinutesInputValue(formatNumber(minutes))
+      }
+    }, [value, hoursInputFocused, minutesInputFocused])
 
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
@@ -87,7 +127,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
           setCurrentHours(newHours)
           setCurrentMinutes(newMinutes)
-          onChange?.(newHours, newMinutes)
+          onChange?.(formatTime(newHours, newMinutes))
         }
       },
       [maxMinutes, onChange, currentHours, currentMinutes, step],
@@ -193,57 +233,95 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     )
 
     const handleHoursChange = (text: string) => {
+      // Ne garde que les chiffres et limite à 2 caractères
+      const cleanText = text.replace(/[^0-9]/g, '').slice(0, 2)
+
+      // Met à jour l'affichage de l'input SANS formatage pendant la saisie
+      setHoursInputValue(cleanText)
+
       // Permet la saisie vide temporairement
-      if (text === '') {
-        setCurrentHours(0)
+      if (cleanText === '') {
+        setTempHours(0)
         return
       }
 
-      // Ne garde que les chiffres
-      const cleanText = text.replace(/[^0-9]/g, '')
       const value = parseInt(cleanText, 10)
 
       if (!isNaN(value)) {
-        // Limite à 23 heures max
-        const clampedValue = Math.min(value, 23)
-        setCurrentHours(clampedValue)
-        onChange?.(clampedValue, currentMinutes)
+        // Met à jour SEULEMENT l'état temporaire, pas currentHours
+        // Le curseur ne bougera qu'au blur
+        setTempHours(value)
       }
     }
 
     const handleMinutesChange = (text: string) => {
+      // Ne garde que les chiffres et limite à 2 caractères
+      const cleanText = text.replace(/[^0-9]/g, '').slice(0, 2)
+
+      // Met à jour l'affichage de l'input SANS formatage pendant la saisie
+      setMinutesInputValue(cleanText)
+
       // Permet la saisie vide temporairement
-      if (text === '') {
-        setCurrentMinutes(0)
+      if (cleanText === '') {
+        setTempMinutes(0)
         return
       }
 
-      // Ne garde que les chiffres
-      const cleanText = text.replace(/[^0-9]/g, '')
       const value = parseInt(cleanText, 10)
 
       if (!isNaN(value)) {
-        // Limite à 59 minutes max
-        const clampedValue = Math.min(value, 59)
-        setCurrentMinutes(clampedValue)
-        onChange?.(currentHours, clampedValue)
+        // Met à jour SEULEMENT l'état temporaire, pas currentMinutes
+        // Le curseur ne bougera qu'au blur
+        setTempMinutes(value)
       }
     }
 
     const handleHoursBlur = () => {
       setHoursInputFocused(false)
-      // S'assure que la valeur est valide au blur
-      onChange?.(currentHours, currentMinutes)
+
+      // Validation des heures : max 23, si supérieur on met 23
+      let validatedHours = tempHours
+      if (tempHours > 23) {
+        validatedHours = 23
+      }
+
+      // Met à jour les états définitifs (ce qui fera bouger le curseur)
+      setCurrentHours(validatedHours)
+      setTempHours(validatedHours)
+
+      // Met à jour l'affichage de l'input avec la valeur formatée
+      setHoursInputValue(formatNumber(validatedHours))
+
+      onChange?.(formatTime(validatedHours, currentMinutes))
     }
 
     const handleMinutesBlur = () => {
       setMinutesInputFocused(false)
-      // S'assure que la valeur est valide au blur
-      onChange?.(currentHours, currentMinutes)
-    }
 
-    const formatNumber = (num: number): string => {
-      return num.toString().padStart(2, '0')
+      // Validation des minutes selon le step
+      let validatedMinutes = tempMinutes
+
+      // Si supérieur à 59, on met 59
+      if (tempMinutes > 59) {
+        validatedMinutes = 59
+      } else {
+        // Arrondir au step le plus proche
+        validatedMinutes = Math.round(tempMinutes / step) * step
+
+        // S'assurer que ça ne dépasse pas 59
+        if (validatedMinutes > 59) {
+          validatedMinutes = 59
+        }
+      }
+
+      // Met à jour les états définitifs (ce qui fera bouger le curseur)
+      setCurrentMinutes(validatedMinutes)
+      setTempMinutes(validatedMinutes)
+
+      // Met à jour l'affichage de l'input avec la valeur formatée
+      setMinutesInputValue(formatNumber(validatedMinutes))
+
+      onChange?.(formatTime(currentHours, validatedMinutes))
     }
 
     const styles = StyleSheet.create({
@@ -468,10 +546,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             <View style={styles.inputWrapper}>
               <TextInput
                 style={[styles.input, hoursInputFocused && styles.inputFocused]}
-                value={formatNumber(currentHours)}
+                value={hoursInputValue}
                 onChangeText={handleHoursChange}
                 keyboardType='number-pad'
-                maxLength={2}
                 editable={!disabled}
                 onFocus={() => setHoursInputFocused(true)}
                 onBlur={handleHoursBlur}
@@ -490,9 +567,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               <TextInput
                 onChangeText={handleMinutesChange}
                 style={[styles.input, minutesInputFocused && styles.inputFocused]}
-                value={formatNumber(currentMinutes)}
+                value={minutesInputValue}
                 keyboardType='number-pad'
-                maxLength={2}
                 editable={!disabled}
                 onFocus={() => setMinutesInputFocused(true)}
                 onBlur={handleMinutesBlur}
