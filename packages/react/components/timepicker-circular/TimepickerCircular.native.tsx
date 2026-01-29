@@ -1,18 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
+import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import {
-  GestureResponderEvent,
-  PanResponder,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native'
+import { GestureResponderEvent, PanResponder, StyleSheet, TextInput, View } from 'react-native'
 import Svg, { Circle } from 'react-native-svg'
-import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
-import { TypographyAlign } from '@/objects'
 import { GapSize } from '../columns'
+import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172
 const CIRCLE_THICKNESS = 24
@@ -46,7 +40,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       step = 5,
       ...others
     },
-    ref
+    ref,
   ): JSX.Element => {
     const [currentHours, setCurrentHours] = useState(hours)
     const [currentMinutes, setCurrentMinutes] = useState(minutes)
@@ -97,7 +91,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           onChange?.(newHours, newMinutes)
         }
       },
-      [maxMinutes, onChange, currentHours, currentMinutes, step]
+      [maxMinutes, onChange, currentHours, currentMinutes, step],
     )
 
     // Vérifie si le touch est sur le curseur
@@ -108,23 +102,27 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const dx = locationX - cursorCenterX
         const dy = locationY - cursorCenterY
         const distance = Math.sqrt(dx * dx + dy * dy)
-        // Zone de touch élargie autour du curseur
-        return distance <= CURSOR_SIZE
+        // Zone de touch élargie autour du curseur pour faciliter l'interaction
+        return distance <= CURSOR_SIZE * 1.5
       },
-      [cursorX, cursorY]
+      [cursorX, cursorY],
     )
 
     // Vérifie si le touch est dans la zone centrale (inputs)
     const isOnCenterInputs = useCallback(
       (locationX: number, locationY: number) => {
-        const dx = locationX - centerX
-        const dy = locationY - centerY
-        const distance = Math.sqrt(dx * dx + dy * dy)
-        // Zone centrale où se trouvent les inputs
-        const innerRadius = radius - thickness / 2 - 20
-        return distance < innerRadius
+        // Zone rectangulaire autour des inputs pour une protection plus précise
+        const inputZoneWidth = 120 // Largeur de la zone des inputs
+        const inputZoneHeight = 120 // Hauteur de la zone des inputs
+
+        const leftBound = centerX - inputZoneWidth / 2
+        const rightBound = centerX + inputZoneWidth / 2
+        const topBound = centerY - inputZoneHeight / 2
+        const bottomBound = centerY + inputZoneHeight / 2
+
+        return locationX >= leftBound && locationX <= rightBound && locationY >= topBound && locationY <= bottomBound
       },
-      [centerX, centerY, radius, thickness]
+      [centerX, centerY],
     )
 
     const isOnCircleTrack = useCallback(
@@ -134,20 +132,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           return false
         }
 
-        // Vérifier si on touche le curseur
-        if (isOnCursor(locationX, locationY)) {
-          return true
-        }
-
-        const dx = locationX - centerX
-        const dy = locationY - centerY
-        const distance = Math.sqrt(dx * dx + dy * dy)
-        // Vérifie si le touch est sur le track du cercle (avec une marge de tolérance élargie)
-        const innerRadius = radius - thickness / 2 - 15
-        const outerRadius = radius + thickness / 2 + 15
-        return distance >= innerRadius && distance <= outerRadius
+        // SEULEMENT permettre le mouvement si on touche directement le curseur
+        return isOnCursor(locationX, locationY)
       },
-      [centerX, centerY, radius, thickness, isOnCursor, isOnCenterInputs]
+      [isOnCursor, isOnCenterInputs],
     )
 
     const handleGesture = useCallback(
@@ -161,7 +149,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
         updateTimeFromAngle(newAngle)
       },
-      [centerX, centerY, disabled, updateTimeFromAngle]
+      [centerX, centerY, disabled, updateTimeFromAngle],
     )
 
     const handleLayout = useCallback(() => {
@@ -176,6 +164,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           // Capture les gestes seulement si on touche le track du cercle
           onStartShouldSetPanResponderCapture: (evt) => {
             if (disabled) return false
+
             const { locationX, locationY } = evt.nativeEvent
             const shouldCapture = isOnCircleTrack(locationX, locationY)
             if (shouldCapture) isDragging.current = true
@@ -186,6 +175,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           },
           onStartShouldSetPanResponder: (evt) => {
             if (disabled) return false
+
             const { locationX, locationY } = evt.nativeEvent
             return isOnCircleTrack(locationX, locationY)
           },
@@ -209,7 +199,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             isDragging.current = false
           },
         }),
-      [disabled, handleGesture, isOnCircleTrack]
+      [disabled, handleGesture, isOnCircleTrack],
     )
 
     const handleHoursChange = (text: string) => {
@@ -314,6 +304,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: 30,
       },
       inputWrapper: {
         alignItems: 'center',
@@ -371,6 +362,11 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         height: size,
         zIndex: 1,
       },
+      nonDraggableZone: {
+        position: 'absolute',
+        borderRadius: 100,
+        zIndex: 25,
+      },
     })
 
     // Calculs pour le SVG
@@ -404,7 +400,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 backgroundColor: isFilled ? mainColor : strokeColor,
               },
             ]}
-          />
+          />,
         )
       }
       return <View style={styles.hourDotsContainer}>{dots}</View>
@@ -422,7 +418,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               r={svgRadius}
               stroke={mainFadeColor}
               strokeWidth={strokeWidth}
-              fill="transparent"
+              fill='transparent'
             />
             {/* Progress circle */}
             <Circle
@@ -431,10 +427,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               r={svgRadius}
               stroke={mainColor}
               strokeWidth={strokeWidth}
-              fill="transparent"
+              fill='transparent'
               strokeDasharray={circumference}
               strokeDashoffset={progressOffset}
-              strokeLinecap="round"
+              strokeLinecap='round'
               transform={`rotate(-90 ${size / 2} ${size / 2})`}
             />
           </Svg>
@@ -444,12 +440,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     return (
       <View ref={ref} style={styles.container} {...others}>
-        <View
-          ref={containerRef}
-          style={styles.circleContainer}
-          onLayout={handleLayout}
-          {...panResponder.panHandlers}
-        >
+        <View ref={containerRef} style={styles.circleContainer} onLayout={handleLayout} {...panResponder.panHandlers}>
           {/* Progress gauge with SVG */}
           {renderProgressGauge()}
 
@@ -458,6 +449,19 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
           {/* Cursor */}
           <View style={styles.cursor} />
+
+          {/* Zone non-draggable au centre */}
+          <View
+            style={[
+              styles.nonDraggableZone,
+              {
+                width: 120,
+                height: 120,
+                left: centerX - 60, // Centré horizontalement
+                top: centerY - 60, // Centré verticalement
+              },
+            ]}
+          />
 
           {/* Center inputs */}
           <View
@@ -476,7 +480,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 style={[styles.input, hoursInputFocused && styles.inputFocused]}
                 value={formatNumber(currentHours)}
                 onChangeText={handleHoursChange}
-                keyboardType="number-pad"
+                keyboardType='number-pad'
                 maxLength={2}
                 editable={!disabled}
                 onFocus={() => setHoursInputFocused(true)}
@@ -494,10 +498,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
             <View style={styles.inputWrapper}>
               <TextInput
+                onChangeText={handleMinutesChange}
                 style={[styles.input, minutesInputFocused && styles.inputFocused]}
                 value={formatNumber(currentMinutes)}
-                onChangeText={handleMinutesChange}
-                keyboardType="number-pad"
+                keyboardType='number-pad'
                 maxLength={2}
                 editable={!disabled}
                 onFocus={() => setMinutesInputFocused(true)}
@@ -512,7 +516,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         </View>
       </View>
     )
-  }
+  },
 )
 
 TimepickerCircular.displayName = ComponentName.TimepickerCircular
