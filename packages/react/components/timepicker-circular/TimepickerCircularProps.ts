@@ -21,6 +21,8 @@ export interface TimepickerCircularProps extends CommonProps {
   thickness?: number
   /** Disabled state */
   disabled?: boolean
+  /** Step increment for minutes when dragging (default: 5) */
+  step?: number
   /** Minimum time (format "HH:MM") */
   minTime?: string
   /** Maximum time (format "HH:MM") */

@@ -43,6 +43,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       size = CIRCLE_SIZE,
       thickness = CIRCLE_THICKNESS,
       disabled = false,
+      step = 5,
       ...others
     },
     ref
@@ -83,9 +84,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
 
-        // Convert angle to total minutes (0-1440) with snap to 5 minutes
+        // Convert angle to total minutes (0-1440) with snap to step minutes
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
-        const newTotalMinutes = Math.round(rawTotalMinutes / 5) * 5
+        const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
         const newHours = Math.floor(newTotalMinutes / 60) % 24
         const newMinutes = newTotalMinutes % 60
 
@@ -96,7 +97,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           onChange?.(newHours, newMinutes)
         }
       },
-      [maxMinutes, onChange, currentHours, currentMinutes]
+      [maxMinutes, onChange, currentHours, currentMinutes, step]
     )
 
     // Vérifie si le touch est sur le curseur
