@@ -11,6 +11,8 @@ import {
 } from 'react-native'
 import Svg, { Circle } from 'react-native-svg'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
+import { TypographyAlign } from '@/objects'
+import { GapSize } from '../columns'
 
 const CIRCLE_SIZE = 172
 const CIRCLE_THICKNESS = 24
@@ -232,15 +234,17 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       },
       inputWrapper: {
         alignItems: 'center',
+        width: 40,
+        gap: GapSize.FOUR,
       },
       input: {
-        width: 40,
-        height: 40,
+        width: 36,
+        height: 36,
         borderWidth: 1,
         borderColor: strokeColor,
         borderRadius: 4,
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '600',
         color: mainColor,
         backgroundColor: backgroundColor,
@@ -249,14 +253,21 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         borderColor: mainColor,
         backgroundColor: mainFadeColor,
       },
+      separatorWrapper: {
+        height: 36,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+      },
       separator: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '600',
         color: mainColor,
         marginHorizontal: 4,
       },
       label: {
-        marginTop: 4,
+        marginTop: 2,
+        fontSize: 11,
       },
       hourDot: {
         position: 'absolute',
@@ -384,12 +395,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 onBlur={() => setHoursInputFocused(false)}
                 selectTextOnFocus
               />
-              <Text level={TextLevels.TWO} style={styles.label}>
+              <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
                 {hoursLabel}
               </Text>
             </View>
 
-            <Text style={styles.separator}>:</Text>
+            <View style={styles.separatorWrapper}>
+              <Text style={styles.separator}>:</Text>
+            </View>
 
             <View style={styles.inputWrapper}>
               <TextInput
@@ -403,7 +416,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 onBlur={() => setMinutesInputFocused(false)}
                 selectTextOnFocus
               />
-              <Text level={TextLevels.TWO} style={styles.label}>
+              <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
                 {minutesLabel}
               </Text>
             </View>

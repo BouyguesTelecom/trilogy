@@ -32,7 +32,7 @@ export const TimepickerScreen = (): JSX.Element => {
           Temps sélectionné : {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
         </Text>
       </View>
-
+{/*
       <Spacer size={48} />
 
       <View>
@@ -61,7 +61,7 @@ export const TimepickerScreen = (): JSX.Element => {
           minutes={15}
           disabled
         />
-      </View>
+      </View> */}
     </Section>
   )
 }
