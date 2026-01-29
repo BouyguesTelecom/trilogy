@@ -52,6 +52,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const [hoursInputFocused, setHoursInputFocused] = useState(false)
     const [minutesInputFocused, setMinutesInputFocused] = useState(false)
     const isDragging = useRef(false)
+    const containerRef = useRef<View>(null)
+    const containerLayout = useRef({ x: 0, y: 0 })
 
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
@@ -81,16 +83,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
 
-        // Convert angle to total minutes (0-1440)
-        const newTotalMinutes = Math.round((normalizedAngle / (2 * Math.PI)) * maxMinutes)
+        // Convert angle to total minutes (0-1440) with snap to 5 minutes
+        const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
+        const newTotalMinutes = Math.round(rawTotalMinutes / 5) * 5
         const newHours = Math.floor(newTotalMinutes / 60) % 24
         const newMinutes = newTotalMinutes % 60
 
-        setCurrentHours(newHours)
-        setCurrentMinutes(newMinutes)
-        onChange?.(newHours, newMinutes)
+        // Only update if value changed to avoid unnecessary re-renders
+        if (newHours !== currentHours || newMinutes !== currentMinutes) {
+          setCurrentHours(newHours)
+          setCurrentMinutes(newMinutes)
+          onChange?.(newHours, newMinutes)
+        }
       },
-      [maxMinutes, onChange]
+      [maxMinutes, onChange, currentHours, currentMinutes]
     )
 
     const isOnCircleTrack = useCallback(
@@ -110,15 +116,21 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       (event: GestureResponderEvent) => {
         if (disabled) return
 
-        const { locationX, locationY } = event.nativeEvent
-        const dx = locationX - centerX
-        const dy = locationY - centerY
+        const { pageX, pageY } = event.nativeEvent
+        const dx = pageX - containerLayout.current.x - centerX
+        const dy = pageY - containerLayout.current.y - centerY
         const newAngle = Math.atan2(dy, dx)
 
         updateTimeFromAngle(newAngle)
       },
       [centerX, centerY, disabled, updateTimeFromAngle]
     )
+
+    const handleLayout = useCallback(() => {
+      containerRef.current?.measureInWindow((x, y) => {
+        containerLayout.current = { x, y }
+      })
+    }, [])
 
     const panResponder = useMemo(
       () =>
@@ -132,7 +144,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             return shouldCapture
           },
           onMoveShouldSetPanResponderCapture: () => {
-            // Une fois qu'on drag, on capture tous les mouvements
             return isDragging.current
           },
           onStartShouldSetPanResponder: (evt) => {
@@ -143,8 +154,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           onMoveShouldSetPanResponder: () => {
             return isDragging.current
           },
-          onPanResponderTerminationRequest: () => false, // Empêche le ScrollView de prendre le contrôle
+          onPanResponderTerminationRequest: () => false,
           onPanResponderGrant: (evt) => {
+            // Mesure la position au début du geste
+            containerRef.current?.measureInWindow((x, y) => {
+              containerLayout.current = { x, y }
+            })
             isDragging.current = true
             handleGesture(evt)
           },
@@ -361,7 +376,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     return (
       <View ref={ref} style={styles.container} {...others}>
-        <View style={styles.circleContainer} {...panResponder.panHandlers}>
+        <View
+          ref={containerRef}
+          style={styles.circleContainer}
+          onLayout={handleLayout}
+          {...panResponder.panHandlers}
+        >
           {/* Progress gauge with SVG */}
           {renderProgressGauge()}
 
