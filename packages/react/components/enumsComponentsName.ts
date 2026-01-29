@@ -166,4 +166,5 @@ export enum ComponentName {
   ChipsList = 'ChipsList',
   Range = 'Range',
   DatePicker = 'DatePicker',
+  TimepickerCircular = 'TimepickerCircular',
 }
