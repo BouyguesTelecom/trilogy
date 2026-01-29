@@ -9,7 +9,7 @@ interface IProps {
   scrollable?: boolean
 }
 
-export const Wrapper = ({ title, children, goBack, scrollable = true }: PropsWithChildren<IProps>): JSX.Element => {
+export const Wrapper = ({ title, children, goBack, scrollable = false }: PropsWithChildren<IProps>): JSX.Element => {
   return (
     <View markup='main' className='main-content'>
       <AutoLayout>
