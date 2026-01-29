@@ -99,17 +99,36 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [maxMinutes, onChange, currentHours, currentMinutes]
     )
 
+    // Vérifie si le touch est sur le curseur
+    const isOnCursor = useCallback(
+      (locationX: number, locationY: number) => {
+        const cursorCenterX = cursorX + CURSOR_SIZE / 2
+        const cursorCenterY = cursorY + CURSOR_SIZE / 2
+        const dx = locationX - cursorCenterX
+        const dy = locationY - cursorCenterY
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        // Zone de touch élargie autour du curseur
+        return distance <= CURSOR_SIZE
+      },
+      [cursorX, cursorY]
+    )
+
     const isOnCircleTrack = useCallback(
       (locationX: number, locationY: number) => {
+        // D'abord vérifier si on touche le curseur
+        if (isOnCursor(locationX, locationY)) {
+          return true
+        }
+
         const dx = locationX - centerX
         const dy = locationY - centerY
         const distance = Math.sqrt(dx * dx + dy * dy)
-        // Vérifie si le touch est sur le track du cercle (avec une marge de tolérance)
-        const innerRadius = radius - thickness / 2 - 10
-        const outerRadius = radius + thickness / 2 + 10
+        // Vérifie si le touch est sur le track du cercle (avec une marge de tolérance élargie)
+        const innerRadius = radius - thickness / 2 - 15
+        const outerRadius = radius + thickness / 2 + 15
         return distance >= innerRadius && distance <= outerRadius
       },
-      [centerX, centerY, radius, thickness]
+      [centerX, centerY, radius, thickness, isOnCursor]
     )
 
     const handleGesture = useCallback(
