@@ -114,9 +114,27 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [cursorX, cursorY]
     )
 
+    // Vérifie si le touch est dans la zone centrale (inputs)
+    const isOnCenterInputs = useCallback(
+      (locationX: number, locationY: number) => {
+        const dx = locationX - centerX
+        const dy = locationY - centerY
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        // Zone centrale où se trouvent les inputs
+        const innerRadius = radius - thickness / 2 - 20
+        return distance < innerRadius
+      },
+      [centerX, centerY, radius, thickness]
+    )
+
     const isOnCircleTrack = useCallback(
       (locationX: number, locationY: number) => {
-        // D'abord vérifier si on touche le curseur
+        // Ne pas capturer si on est sur les inputs au centre
+        if (isOnCenterInputs(locationX, locationY)) {
+          return false
+        }
+
+        // Vérifier si on touche le curseur
         if (isOnCursor(locationX, locationY)) {
           return true
         }
@@ -129,7 +147,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const outerRadius = radius + thickness / 2 + 15
         return distance >= innerRadius && distance <= outerRadius
       },
-      [centerX, centerY, radius, thickness, isOnCursor]
+      [centerX, centerY, radius, thickness, isOnCursor, isOnCenterInputs]
     )
 
     const handleGesture = useCallback(
@@ -195,23 +213,53 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     )
 
     const handleHoursChange = (text: string) => {
-      const value = parseInt(text, 10)
-      if (!isNaN(value) && value >= 0 && value <= 23) {
-        setCurrentHours(value)
-        onChange?.(value, currentMinutes)
-      } else if (text === '') {
+      // Permet la saisie vide temporairement
+      if (text === '') {
         setCurrentHours(0)
+        return
+      }
+
+      // Ne garde que les chiffres
+      const cleanText = text.replace(/[^0-9]/g, '')
+      const value = parseInt(cleanText, 10)
+
+      if (!isNaN(value)) {
+        // Limite à 23 heures max
+        const clampedValue = Math.min(value, 23)
+        setCurrentHours(clampedValue)
+        onChange?.(clampedValue, currentMinutes)
       }
     }
 
     const handleMinutesChange = (text: string) => {
-      const value = parseInt(text, 10)
-      if (!isNaN(value) && value >= 0 && value <= 59) {
-        setCurrentMinutes(value)
-        onChange?.(currentHours, value)
-      } else if (text === '') {
+      // Permet la saisie vide temporairement
+      if (text === '') {
         setCurrentMinutes(0)
+        return
       }
+
+      // Ne garde que les chiffres
+      const cleanText = text.replace(/[^0-9]/g, '')
+      const value = parseInt(cleanText, 10)
+
+      if (!isNaN(value)) {
+        // Limite à 59 minutes max
+        const clampedValue = Math.min(value, 59)
+        setCurrentMinutes(clampedValue)
+        onChange?.(currentHours, clampedValue)
+      }
+    }
+
+    const handleHoursBlur = () => {
+      setHoursInputFocused(false)
+      // S'assure que la valeur est valide au blur
+      onChange?.(currentHours, currentMinutes)
+    }
+
+    const handleMinutesBlur = () => {
+      setMinutesInputFocused(false)
+      // S'assure que la valeur est valide au blur
+      onChange?.(currentHours, currentMinutes)
     }
 
     const formatNumber = (num: number): string => {
@@ -432,7 +480,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 maxLength={2}
                 editable={!disabled}
                 onFocus={() => setHoursInputFocused(true)}
-                onBlur={() => setHoursInputFocused(false)}
+                onBlur={handleHoursBlur}
                 selectTextOnFocus
               />
               <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
@@ -453,7 +501,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 maxLength={2}
                 editable={!disabled}
                 onFocus={() => setMinutesInputFocused(true)}
-                onBlur={() => setMinutesInputFocused(false)}
+                onBlur={handleMinutesBlur}
                 selectTextOnFocus
               />
               <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
