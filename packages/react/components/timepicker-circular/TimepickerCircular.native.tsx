@@ -52,7 +52,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       const hours = parseInt(hoursStr || '0', 10)
       const minutes = parseInt(minutesStr || '0', 10)
       return {
-        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(23, hours)),
+        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
         minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
       }
     }
@@ -100,7 +100,13 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const centerY = size / 2
 
     // Calculate total minutes for the circular position
-    const totalMinutes = currentHours * 60 + currentMinutes
+    let totalMinutes = currentHours * 60 + currentMinutes
+
+    // Gérer le cas spécial de 24:00 - le curseur doit être en position 00:00 (en haut)
+    if (currentHours === 24) {
+      totalMinutes = 0
+    }
+
     const maxMinutes = 24 * 60
     const angle = (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2
 
@@ -109,7 +115,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
 
     // Calculate the progress arc (angle in degrees for SVG)
-    const progressAngle = (totalMinutes / maxMinutes) * 360
+    // Pour 24:00, on veut un cercle complet (360°)
+    let progressAngle
+    if (currentHours === 24) {
+      progressAngle = 360
+    } else {
+      const actualTotalMinutes = currentHours * 60 + currentMinutes
+      progressAngle = (actualTotalMinutes / maxMinutes) * 360
+    }
 
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
@@ -121,8 +134,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         // Convert angle to total minutes (0-1440) with snap to step minutes
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
         const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-        const newHours = Math.floor(newTotalMinutes / 60) % 24
-        const newMinutes = newTotalMinutes % 60
+
+        // Gérer le cas spécial de 24:00 (1440 minutes)
+        let newHours = Math.floor(newTotalMinutes / 60)
+        let newMinutes = newTotalMinutes % 60
+
+        // Si on atteint exactement 1440 minutes (24:00), on garde 24:00
+        if (newTotalMinutes >= 1440) {
+          newHours = 24
+          newMinutes = 0
+        }
 
         // Only update if value changed to avoid unnecessary re-renders
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
@@ -165,6 +186,28 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [centerX, centerY],
     )
 
+    // Vérifie si le touch est sur un point d'heure
+    const isOnHourDot = useCallback(
+      (locationX: number, locationY: number) => {
+        for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
+          const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
+          const dotX = centerX + radius * Math.cos(dotAngle)
+          const dotY = centerY + radius * Math.sin(dotAngle)
+
+          const dx = locationX - dotX
+          const dy = locationY - dotY
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          // Zone de touch plus petite pour éviter les conflits avec le curseur
+          if (distance <= HOUR_DOT_SIZE) {
+            return i
+          }
+        }
+        return -1
+      },
+      [centerX, centerY, radius],
+    )
+
     const isOnCircleTrack = useCallback(
       (locationX: number, locationY: number) => {
         // Ne pas capturer si on est sur les inputs au centre
@@ -189,6 +232,41 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         updateTimeFromAngle(newAngle)
       },
       [centerX, centerY, disabled, updateTimeFromAngle],
+    )
+
+    // Fonction pour gérer le clic sur un point d'heure
+    const handleHourDotPress = useCallback(
+      (hourIndex: number) => {
+        if (disabled) return
+
+        // Calculer les nouvelles heures et minutes
+        let newHours = hourIndex
+        let newMinutes = currentMinutes
+
+        // Gérer le cas spécial de 24:00
+        if (newHours === 24) {
+          newMinutes = 0
+        }
+
+        // Arrondir les minutes selon le step si on change d'heure
+        if (newHours !== currentHours) {
+          newMinutes = Math.round(newMinutes / step) * step
+          if (newMinutes > 59) {
+            newMinutes = 59
+          }
+        }
+
+        // Mettre à jour les états
+        setCurrentHours(newHours)
+        setCurrentMinutes(newMinutes)
+        setTempHours(newHours)
+        setTempMinutes(newMinutes)
+        setHoursInputValue(formatNumber(newHours))
+        setMinutesInputValue(formatNumber(newMinutes))
+
+        onChange?.(formatTime(newHours, newMinutes))
+      },
+      [disabled, currentMinutes, currentHours, step, onChange],
     )
 
     const panGesture = useMemo(
@@ -220,6 +298,30 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           .shouldCancelWhenOutside(false),
       [disabled, handleGesture, isOnCircleTrack],
     )
+
+    const tapGesture = useMemo(
+      () =>
+        Gesture.Tap().onEnd((event) => {
+          if (disabled) return
+
+          const { x, y } = event
+
+          // Ne pas traiter le tap si on était en train de dragger
+          if (isDragging.current) return
+
+          // PRIORITÉ ABSOLUE: Si on clique sur le curseur, ne pas traiter comme un tap sur un point
+          if (isOnCursor(x, y)) return
+
+          // Vérifier si c'est un tap sur un point d'heure
+          const hourDotIndex = isOnHourDot(x, y)
+          if (hourDotIndex !== -1) {
+            handleHourDotPress(hourDotIndex)
+          }
+        }),
+      [disabled, isOnHourDot, handleHourDotPress, isOnCursor],
+    )
+
+    const combinedGesture = useMemo(() => Gesture.Simultaneous(panGesture, tapGesture), [panGesture, tapGesture])
 
     const handleHoursChange = (text: string) => {
       // Ne garde que les chiffres et limite à 2 caractères
@@ -268,10 +370,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const handleHoursBlur = () => {
       setHoursInputFocused(false)
 
-      // Validation des heures : max 23, si supérieur on met 23
+      // Validation des heures : max 24, si supérieur on met 24
       let validatedHours = tempHours
-      if (tempHours > 23) {
-        validatedHours = 23
+      let validatedMinutes = currentMinutes
+
+      if (tempHours > 24) {
+        validatedHours = 24
+      }
+
+      // Si on saisit 24h, forcer les minutes à 00
+      if (validatedHours === 24) {
+        validatedMinutes = 0
+        setCurrentMinutes(0)
+        setTempMinutes(0)
+        setMinutesInputValue('00')
       }
 
       // Met à jour les états définitifs (ce qui fera bouger le curseur)
@@ -281,11 +393,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       // Met à jour l'affichage de l'input avec la valeur formatée
       setHoursInputValue(formatNumber(validatedHours))
 
-      onChange?.(formatTime(validatedHours, currentMinutes))
+      onChange?.(formatTime(validatedHours, validatedMinutes))
     }
 
     const handleMinutesBlur = () => {
       setMinutesInputFocused(false)
+
+      // Si on est à 24h, forcer les minutes à 00
+      if (currentHours === 24) {
+        setCurrentMinutes(0)
+        setTempMinutes(0)
+        setMinutesInputValue('00')
+        onChange?.(formatTime(currentHours, 0))
+        return
+      }
 
       // Validation des minutes selon le step
       let validatedMinutes = tempMinutes
@@ -401,11 +522,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         fontSize: 11,
       },
       hourDot: {
-        position: 'absolute',
         width: HOUR_DOT_SIZE,
         height: HOUR_DOT_SIZE,
         borderRadius: HOUR_DOT_SIZE / 2,
+      },
+      hourDotTouchable: {
+        position: 'absolute',
+        width: HOUR_DOT_SIZE + 12, // Zone de touch élargie
+        height: HOUR_DOT_SIZE + 12,
+        borderRadius: (HOUR_DOT_SIZE + 12) / 2,
         zIndex: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       hourDotsContainer: {
         position: 'absolute',
@@ -430,7 +558,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const strokeWidth = thickness
     const svgRadius = (size - strokeWidth) / 2
     const circumference = 2 * Math.PI * svgRadius
-    const progressOffset = circumference - (totalMinutes / maxMinutes) * circumference
+
+    let progressOffset
+    if (currentHours === 24) {
+      // Pour 24:00, cercle complet
+      progressOffset = 0
+    } else {
+      const actualTotalMinutes = currentHours * 60 + currentMinutes
+      progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
+    }
 
     // Génère les 24 points représentant les heures
     const renderHourDots = () => {
@@ -443,21 +579,38 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
         // Détermine si ce point est "rempli" (avant la position actuelle)
         const dotProgress = i / HOUR_DOTS_COUNT
-        const currentProgress = totalMinutes / maxMinutes
-        const isFilled = dotProgress < currentProgress
+        let currentProgress
+
+        if (currentHours === 24) {
+          // Pour 24:00, tous les points sont remplis
+          currentProgress = 1
+        } else {
+          const actualTotalMinutes = currentHours * 60 + currentMinutes
+          currentProgress = actualTotalMinutes / maxMinutes
+        }
+
+        const isFilled = dotProgress < currentProgress || currentHours === 24
 
         dots.push(
           <View
             key={i}
             style={[
-              styles.hourDot,
+              styles.hourDotTouchable,
               {
-                left: dotX,
-                top: dotY,
-                backgroundColor: isFilled ? mainColor : strokeColor,
+                left: dotX - 6, // Zone de touch élargie
+                top: dotY - 6,
               },
             ]}
-          />,
+          >
+            <View
+              style={[
+                styles.hourDot,
+                {
+                  backgroundColor: isFilled ? mainColor : strokeColor,
+                },
+              ]}
+            />
+          </View>,
         )
       }
       return <View style={styles.hourDotsContainer}>{dots}</View>
@@ -497,7 +650,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     return (
       <View ref={ref} style={styles.container} {...others}>
-        <GestureDetector gesture={panGesture}>
+        <GestureDetector gesture={combinedGesture}>
           <View ref={containerRef} style={styles.circleContainer}>
             {/* Progress gauge with SVG */}
             {renderProgressGauge()}
