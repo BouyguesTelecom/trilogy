@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ImageNativeRef, ImageProps, ImageCache } from './ImageProps'
+import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
 
 /**
  * Image Component
@@ -15,60 +15,58 @@ import { ImageNativeRef, ImageProps, ImageCache } from './ImageProps'
  * -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageNativeRef, ImageProps>(({ src, alt = '', circled, width, height, onClick, cache, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
-    image: {
-      width: width ? width : '100%',
-      height: height ? height : '100%',
-      borderRadius: circled ? 100 : 0,
-      overflow: circled ? 'hidden' : 'visible',
-      resizeMode: circled ? 'none' : 'contain',
-    },
-  })
+const Image = React.forwardRef<ImageNativeRef, ImageProps>(
+  ({ src, alt = '', circled, width, height, onClick, cache, ...others }, ref): JSX.Element => {
+    const styles = StyleSheet.create({
+      image: {
+        width: width ? width : '100%',
+        height: height ? height : '100%',
+        borderRadius: circled ? 100 : 0,
+        overflow: circled ? 'hidden' : 'visible',
+        resizeMode: circled ? undefined : 'contain',
+      },
+    })
 
-  const getCachePolicy = (cacheType?: ImageCache): "force-cache" | "only-if-cached" | "default" | "reload" | undefined => {
-    switch (cacheType) {
-      case 'immutable':
-        // Aggressive caching - image never changes, cache indefinitely
-        return 'force-cache'
-      case 'cacheOnly':
-        // Only load from cache, never fetch from network
-        return 'only-if-cached'
-      case 'web':
-      default:
-        // Standard web behavior - respect HTTP headers and cache intelligently
-        return 'default'
-    }
-  }
-
-  const imageSource = typeof src === 'number'
-    ? src
-    : {
-        uri: src,
-        cache: getCachePolicy(cache)
+    const getCachePolicy = (
+      cacheType?: ImageCache,
+    ): 'force-cache' | 'only-if-cached' | 'default' | 'reload' | undefined => {
+      switch (cacheType) {
+        case 'immutable':
+          // Aggressive caching - image never changes, cache indefinitely
+          return 'force-cache'
+        case 'cacheOnly':
+          // Only load from cache, never fetch from network
+          return 'only-if-cached'
+        case 'web':
+        default:
+          // Standard web behavior - respect HTTP headers and cache intelligently
+          return 'default'
       }
+    }
 
-  const image = (
-    <ImageNative
-      ref={ref}
-      style={styles.image}
-      accessibilityLabel={alt}
-      source={imageSource}
-      {...others}
-      alt={alt}
-    />
-  )
+    const imageSource =
+      typeof src === 'number'
+        ? src
+        : {
+            uri: src,
+            cache: getCachePolicy(cache),
+          }
 
-  return onClick ? (
-    <View>
-      <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
-        {image}
-      </TouchableOpacity>
-    </View>
-  ) : (
-    image
-  )
-})
+    const image = (
+      <ImageNative ref={ref} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
+    )
+
+    return onClick ? (
+      <View>
+        <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+          {image}
+        </TouchableOpacity>
+      </View>
+    ) : (
+      image
+    )
+  },
+)
 
 Image.displayName = ComponentName.Image
 
