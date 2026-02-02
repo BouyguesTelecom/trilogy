@@ -124,8 +124,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       progressAngle = (actualTotalMinutes / maxMinutes) * 360
     }
 
+    // Optimisation pour Android : throttle les updates pour éviter les sauts
+    const lastUpdateTime = useRef(0)
+    const pendingUpdate = useRef<{ hours: number; minutes: number } | null>(null)
+
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
+        const now = Date.now()
+
         // Normalize angle to 0-2π (starting from top)
         let normalizedAngle = angleRad + Math.PI / 2
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
@@ -145,8 +151,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           newMinutes = 0
         }
 
+        // Throttle updates pour éviter les sauts sur Android (max 60fps)
+        if (now - lastUpdateTime.current < 16) {
+          pendingUpdate.current = { hours: newHours, minutes: newMinutes }
+          return
+        }
+
         // Only update if value changed to avoid unnecessary re-renders
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
+          lastUpdateTime.current = now
+          pendingUpdate.current = null
           setCurrentHours(newHours)
           setCurrentMinutes(newMinutes)
           onChange?.(formatTime(newHours, newMinutes))
@@ -155,7 +169,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [maxMinutes, onChange, currentHours, currentMinutes, step],
     )
 
-    // Vérifie si le touch est sur le curseur
+    // Flush pending update when dragging stops
+    const flushPendingUpdate = useCallback(() => {
+      if (pendingUpdate.current) {
+        const { hours, minutes } = pendingUpdate.current
+        if (hours !== currentHours || minutes !== currentMinutes) {
+          setCurrentHours(hours)
+          setCurrentMinutes(minutes)
+          onChange?.(formatTime(hours, minutes))
+        }
+        pendingUpdate.current = null
+      }
+    }, [currentHours, currentMinutes, onChange])
+
+    // Vérifie si le touch est sur le curseur - optimisé pour Android
     const isOnCursor = useCallback(
       (locationX: number, locationY: number) => {
         const cursorCenterX = cursorX + CURSOR_SIZE / 2
@@ -163,8 +190,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const dx = locationX - cursorCenterX
         const dy = locationY - cursorCenterY
         const distance = Math.sqrt(dx * dx + dy * dy)
-        // Zone de touch élargie autour du curseur pour faciliter l'interaction
-        return distance <= CURSOR_SIZE * 1.5
+        // Zone de touch plus large sur Android pour éviter les blocages
+        return distance <= CURSOR_SIZE * 2
       },
       [cursorX, cursorY],
     )
@@ -221,6 +248,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [isOnCursor, isOnCenterInputs],
     )
 
+    // Optimisation : éviter les calculs inutiles
+    const lastAngle = useRef<number | null>(null)
+
     const handleGesture = useCallback(
       (x: number, y: number) => {
         if (disabled) return
@@ -229,6 +259,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const dy = y - centerY
         const newAngle = Math.atan2(dy, dx)
 
+        // Éviter les calculs si l'angle n'a pas assez changé (optimisation Android)
+        if (lastAngle.current !== null) {
+          const angleDiff = Math.abs(newAngle - lastAngle.current)
+          if (angleDiff < 0.02) {
+            // Seuil de 0.02 radians (~1 degré)
+            return
+          }
+        }
+
+        lastAngle.current = newAngle
         updateTimeFromAngle(newAngle)
       },
       [centerX, centerY, disabled, updateTimeFromAngle],
@@ -278,6 +318,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             const { x, y } = event
             if (isOnCircleTrack(x, y)) {
               isDragging.current = true
+              // Reset l'angle précédent pour éviter les sauts
+              lastAngle.current = null
               handleGesture(x, y)
             }
           })
@@ -288,15 +330,23 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             handleGesture(x, y)
           })
           .onEnd(() => {
+            // Flush any pending update when dragging stops
+            flushPendingUpdate()
             isDragging.current = false
           })
           .onFinalize(() => {
+            // Flush any pending update when gesture is finalized
+            flushPendingUpdate()
             isDragging.current = false
           })
+          // Optimisations pour Android
+          .minDistance(0) // Réduire la distance minimale pour détecter le geste
+          .activeOffsetX([-10, 10]) // Zone active plus large
+          .activeOffsetY([-10, 10])
           // Empêche les gestes simultanés (comme le scroll)
           .blocksExternalGesture()
           .shouldCancelWhenOutside(false),
-      [disabled, handleGesture, isOnCircleTrack],
+      [disabled, handleGesture, isOnCircleTrack, flushPendingUpdate],
     )
 
     const tapGesture = useMemo(
