@@ -5,7 +5,6 @@ import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { Text, TextMarkup } from '../text'
 import { checkCents } from './PriceHelpers'
 import { PriceProps, PriceRef } from './PriceProps'
 
@@ -71,7 +70,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
 
       oldAmountComponent = (
         <span aria-hidden='true' className={classesStrike} {...others}>
-          <Text markup={TextMarkup.SPAN}>{`${wholeStrike}`}</Text>
+          <span>{`${wholeStrike}`}</span>
           <span className={hashClass(styled, clsx('price-details'))}>
             <span className={hashClass(styled, clsx('cents'))}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
@@ -96,7 +95,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
 
       amountComponent = (
         <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} {...others}>
-          <Text markup={TextMarkup.SPAN}>{`${whole}`}</Text>
+          <span>{`${whole}`}</span>
           <span className={hashClass(styled, clsx('price-details'))}>
             <span className={hashClass(styled, clsx('cents'))}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
