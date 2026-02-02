@@ -18,14 +18,10 @@ const HOUR_DOTS_COUNT = 24
 
 /**
  * TimepickerCircular Native Component
- * @param hours {number} Current hours value (0-23)
- * @param minutes {number} Current minutes value (0-59)
- * @param onChange {Function} Callback when time changes
- * @param hoursLabel {string} Label for hours input
- * @param minutesLabel {string} Label for minutes input
- * @param size {number} Size of the circular picker
- * @param thickness {number} Thickness of the circular track
- * @param disabled {boolean} Disabled state
+ * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "24:00")
+ * @param onChange {Function} Callback called when time changes, receives new "HH:MM" value
+ * @param disabled {boolean} Disabled state of the component (default: false)
+ * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, ...others }, ref): JSX.Element => {
