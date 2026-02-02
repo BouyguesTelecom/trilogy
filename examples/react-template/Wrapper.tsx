@@ -1,6 +1,5 @@
 import { AutoLayout, TypographyAlign } from '@trilogy-ds/react'
 import { Icon, IconName, ScrollView, Section, Title, View } from '@trilogy-ds/react/components'
-import * as React from 'react'
 import { PropsWithChildren } from 'react'
 
 interface IProps {
@@ -9,7 +8,7 @@ interface IProps {
   scrollable?: boolean
 }
 
-export const Wrapper = ({ title, children, goBack, scrollable = false }: PropsWithChildren<IProps>): JSX.Element => {
+export const Wrapper = ({ title, children, goBack, scrollable = true }: PropsWithChildren<IProps>): JSX.Element => {
   return (
     <View markup='main' className='main-content'>
       <AutoLayout>

@@ -3,7 +3,8 @@ import { Text, TextLevels } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { GestureResponderEvent, PanResponder, StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
 import { GapSize } from '../columns'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
@@ -178,13 +179,11 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     )
 
     const handleGesture = useCallback(
-      (event: GestureResponderEvent) => {
+      (x: number, y: number) => {
         if (disabled) return
 
-        // Utilise les coordonnées locales pour éviter les problèmes de mesure asynchrone
-        const { locationX, locationY } = event.nativeEvent
-        const dx = locationX - centerX
-        const dy = locationY - centerY
+        const dx = x - centerX
+        const dy = y - centerY
         const newAngle = Math.atan2(dy, dx)
 
         updateTimeFromAngle(newAngle)
@@ -192,43 +191,33 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [centerX, centerY, disabled, updateTimeFromAngle],
     )
 
-    const panResponder = useMemo(
+    const panGesture = useMemo(
       () =>
-        PanResponder.create({
-          // Capture les gestes seulement si on touche le track du cercle
-          onStartShouldSetPanResponderCapture: (evt) => {
-            if (disabled) return false
+        Gesture.Pan()
+          .onBegin((event) => {
+            if (disabled) return
 
-            const { locationX, locationY } = evt.nativeEvent
-            const shouldCapture = isOnCircleTrack(locationX, locationY)
-            if (shouldCapture) isDragging.current = true
-            return shouldCapture
-          },
-          onMoveShouldSetPanResponderCapture: () => {
-            return isDragging.current
-          },
-          onStartShouldSetPanResponder: (evt) => {
-            if (disabled) return false
+            const { x, y } = event
+            if (isOnCircleTrack(x, y)) {
+              isDragging.current = true
+              handleGesture(x, y)
+            }
+          })
+          .onUpdate((event) => {
+            if (disabled || !isDragging.current) return
 
-            const { locationX, locationY } = evt.nativeEvent
-            return isOnCircleTrack(locationX, locationY)
-          },
-          onMoveShouldSetPanResponder: () => {
-            return isDragging.current
-          },
-          onPanResponderTerminationRequest: () => false,
-          onPanResponderGrant: (evt) => {
-            isDragging.current = true
-            handleGesture(evt)
-          },
-          onPanResponderMove: handleGesture,
-          onPanResponderRelease: () => {
+            const { x, y } = event
+            handleGesture(x, y)
+          })
+          .onEnd(() => {
             isDragging.current = false
-          },
-          onPanResponderTerminate: () => {
+          })
+          .onFinalize(() => {
             isDragging.current = false
-          },
-        }),
+          })
+          // Empêche les gestes simultanés (comme le scroll)
+          .blocksExternalGesture()
+          .shouldCancelWhenOutside(false),
       [disabled, handleGesture, isOnCircleTrack],
     )
 
@@ -508,78 +497,80 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     return (
       <View ref={ref} style={styles.container} {...others}>
-        <View ref={containerRef} style={styles.circleContainer} {...panResponder.panHandlers}>
-          {/* Progress gauge with SVG */}
-          {renderProgressGauge()}
+        <GestureDetector gesture={panGesture}>
+          <View ref={containerRef} style={styles.circleContainer}>
+            {/* Progress gauge with SVG */}
+            {renderProgressGauge()}
 
-          {/* Hour dots */}
-          {renderHourDots()}
+            {/* Hour dots */}
+            {renderHourDots()}
 
-          {/* Cursor */}
-          <View style={styles.cursor} />
+            {/* Cursor */}
+            <View style={styles.cursor} />
 
-          {/* Zone non-draggable au centre */}
-          <View
-            style={[
-              styles.nonDraggableZone,
-              {
-                width: 120,
-                height: 120,
-                left: centerX - 60, // Centré horizontalement
-                top: centerY - 60, // Centré verticalement
-              },
-            ]}
-          />
+            {/* Zone non-draggable au centre */}
+            <View
+              style={[
+                styles.nonDraggableZone,
+                {
+                  width: 120,
+                  height: 120,
+                  left: centerX - 60, // Centré horizontalement
+                  top: centerY - 60, // Centré verticalement
+                },
+              ]}
+            />
 
-          {/* Center inputs */}
-          <View
-            style={[
-              styles.inputsContainer,
-              {
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-              },
-            ]}
-          >
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={[styles.input, hoursInputFocused && styles.inputFocused]}
-                value={hoursInputValue}
-                onChangeText={handleHoursChange}
-                keyboardType='number-pad'
-                editable={!disabled}
-                onFocus={() => setHoursInputFocused(true)}
-                onBlur={handleHoursBlur}
-                selectTextOnFocus
-              />
-              <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
-                {hoursLabel}
-              </Text>
-            </View>
+            {/* Center inputs */}
+            <View
+              style={[
+                styles.inputsContainer,
+                {
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                },
+              ]}
+            >
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  style={[styles.input, hoursInputFocused && styles.inputFocused]}
+                  value={hoursInputValue}
+                  onChangeText={handleHoursChange}
+                  keyboardType='number-pad'
+                  editable={!disabled}
+                  onFocus={() => setHoursInputFocused(true)}
+                  onBlur={handleHoursBlur}
+                  selectTextOnFocus
+                />
+                <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
+                  {hoursLabel}
+                </Text>
+              </View>
 
-            <View style={styles.separatorWrapper}>
-              <Text style={styles.separator}>:</Text>
-            </View>
+              <View style={styles.separatorWrapper}>
+                <Text style={styles.separator}>:</Text>
+              </View>
 
-            <View style={styles.inputWrapper}>
-              <TextInput
-                onChangeText={handleMinutesChange}
-                style={[styles.input, minutesInputFocused && styles.inputFocused]}
-                value={minutesInputValue}
-                keyboardType='number-pad'
-                editable={!disabled}
-                onFocus={() => setMinutesInputFocused(true)}
-                onBlur={handleMinutesBlur}
-                selectTextOnFocus
-              />
-              <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
-                {minutesLabel}
-              </Text>
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  onChangeText={handleMinutesChange}
+                  style={[styles.input, minutesInputFocused && styles.inputFocused]}
+                  value={minutesInputValue}
+                  keyboardType='number-pad'
+                  editable={!disabled}
+                  onFocus={() => setMinutesInputFocused(true)}
+                  onBlur={handleMinutesBlur}
+                  selectTextOnFocus
+                />
+                <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
+                  {minutesLabel}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
+        </GestureDetector>
       </View>
     )
   },
