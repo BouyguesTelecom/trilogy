@@ -69,7 +69,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
             ? TrilogyColor.MAIN
             : error
             ? TrilogyColor.ERROR
-            : TrilogyColor.NEUTRAL,
+            : TrilogyColor.STROKE,
         ),
         borderWidth: 1,
         borderRadius: 4,
