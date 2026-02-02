@@ -484,7 +484,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
     const circumference = 2 * Math.PI * svgRadius
 
-    let progressOffset
+    let progressOffset: number
     if (currentHours === 24) {
       progressOffset = 0
     } else {
