@@ -195,7 +195,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
           (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
           (status && status === 'default' && inputColor) ||
           (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
-          getColorStyle(TrilogyColor.NEUTRAL),
+          getColorStyle(TrilogyColor.STROKE),
         height: 46,
         width: '100%',
       },
