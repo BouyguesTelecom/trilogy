@@ -28,20 +28,7 @@ const HOUR_DOTS_COUNT = 24
  * @param disabled {boolean} Disabled state
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
-  (
-    {
-      value = '00:00',
-      onChange,
-      hoursLabel = 'Heures',
-      minutesLabel = 'Min',
-      size = CIRCLE_SIZE,
-      thickness = CIRCLE_THICKNESS,
-      disabled = false,
-      step = 5,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
+  ({ value = '00:00', onChange, disabled = false, step = 5, ...others }, ref): JSX.Element => {
     const formatNumber = (num: number): string => {
       return num.toString().padStart(2, '0')
     }
@@ -90,9 +77,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
     const dotColor = getColorStyle(TrilogyColor.NEUTRAL)
 
-    const radius = (size - thickness) / 2
-    const centerX = size / 2
-    const centerY = size / 2
+    const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
+    const centerX = CIRCLE_SIZE / 2
+    const centerY = CIRCLE_SIZE / 2
 
     let totalMinutes = currentHours * 60 + currentMinutes
 
@@ -238,7 +225,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       (hourIndex: number) => {
         if (disabled) return
 
-        let newHours = hourIndex
+        const newHours = hourIndex
         let newMinutes = currentMinutes
         if (newHours === 24) newMinutes = 0
         if (newHours !== currentHours) {
@@ -383,24 +370,24 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         justifyContent: 'center',
       },
       circleContainer: {
-        width: size,
-        height: size,
+        width: CIRCLE_SIZE,
+        height: CIRCLE_SIZE,
         position: 'relative',
       },
       circleBackground: {
         position: 'absolute',
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        borderWidth: thickness,
+        width: CIRCLE_SIZE,
+        height: CIRCLE_SIZE,
+        borderRadius: CIRCLE_SIZE / 2,
+        borderWidth: CIRCLE_THICKNESS,
         borderColor: mainFadeColor,
       },
       circleProgress: {
         position: 'absolute',
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        borderWidth: thickness,
+        width: CIRCLE_SIZE,
+        height: CIRCLE_SIZE,
+        borderRadius: CIRCLE_SIZE / 2,
+        borderWidth: CIRCLE_THICKNESS,
         borderColor: 'transparent',
         borderTopColor: mainColor,
         borderRightColor: progressAngle > 90 ? mainColor : 'transparent',
@@ -480,14 +467,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       },
       hourDotsContainer: {
         position: 'absolute',
-        width: size,
-        height: size,
+        width: CIRCLE_SIZE,
+        height: CIRCLE_SIZE,
         zIndex: 10,
       },
       svgContainer: {
         position: 'absolute',
-        width: size,
-        height: size,
+        width: CIRCLE_SIZE,
+        height: CIRCLE_SIZE,
         zIndex: 1,
       },
       nonDraggableZone: {
@@ -497,8 +484,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       },
     })
 
-    const strokeWidth = thickness
-    const svgRadius = (size - strokeWidth) / 2
+    const strokeWidth = CIRCLE_THICKNESS
+    const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
     const circumference = 2 * Math.PI * svgRadius
 
     let progressOffset
@@ -556,18 +543,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const renderProgressGauge = () => {
       return (
         <View style={styles.svgContainer}>
-          <Svg width={size} height={size}>
+          <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
             <Circle
-              cx={size / 2}
-              cy={size / 2}
+              cx={CIRCLE_SIZE / 2}
+              cy={CIRCLE_SIZE / 2}
               r={svgRadius}
               stroke={mainFadeColor}
               strokeWidth={strokeWidth}
               fill='transparent'
             />
             <Circle
-              cx={size / 2}
-              cy={size / 2}
+              cx={CIRCLE_SIZE / 2}
+              cy={CIRCLE_SIZE / 2}
               r={svgRadius}
               stroke={mainColor}
               strokeWidth={strokeWidth}
@@ -575,7 +562,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               strokeDasharray={circumference}
               strokeDashoffset={progressOffset}
               strokeLinecap='round'
-              transform={`rotate(-90 ${size / 2} ${size / 2})`}
+              transform={`rotate(-90 ${CIRCLE_SIZE / 2} ${CIRCLE_SIZE / 2})`}
             />
           </Svg>
         </View>
@@ -625,7 +612,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 />
 
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
-                  {hoursLabel}
+                  Heures
                 </Text>
               </View>
 
@@ -645,7 +632,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                   selectTextOnFocus
                 />
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
-                  {minutesLabel}
+                  Min
                 </Text>
               </View>
             </View>
