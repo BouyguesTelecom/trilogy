@@ -10,10 +10,11 @@ import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './
 const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { text, files, setIsSend } = useContext(PromptContext)
+    const { text, files, setIsSend, setIsTyping } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
 
     const onClick = useCallback(() => {
+      setIsTyping(false)
       if (statusSubmit === PromptSubmitStatus.STREAMING_ON) {
         setStatusSubmit(PromptSubmitStatus.STREAMING_OFF)
         onCancelSubmit?.()
@@ -21,7 +22,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         onSubmit && onSubmit()
         setIsSend(true)
       }
-    }, [statusSubmit, onSubmit])
+    }, [statusSubmit, onSubmit, setIsTyping])
 
     const isActive = useMemo(
       () => statusSubmit === PromptSubmitStatus.STREAMING_ON || !!text.trim().length || !!files,
