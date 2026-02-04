@@ -62,6 +62,7 @@ export const colors: Record<TrilogyColor, string[]> = {
   [TrilogyColor.NEUTRAL_FADE]: ['#F4F4F4', 'grey-fade', 'white'],
 
   [TrilogyColor.STROKE]: ['#BBC1CE', 'stroke', 'white'],
+  [TrilogyColor.STROKE_FADE]: ['#cadbe8', 'stroke-fade', 'white'],
 }
 
 /**
