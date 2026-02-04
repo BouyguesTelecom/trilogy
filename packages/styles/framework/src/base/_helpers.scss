@@ -424,6 +424,60 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
   flex-wrap: wrap !important;
 }
 
+@include mobile {
+  .is-narrow-mobile {
+    width: fit-content !important;
+  }
+}
+
+@include tablet {
+  .is-narrow-tablet {
+    width: fit-content !important;
+  }
+}
+
+@include tablet-only {
+  .is-narrow-tablet-only {
+    width: fit-content !important;
+  }
+}
+
+@include touch {
+  .is-narrow-touch {
+    width: fit-content !important;
+  }
+}
+
+@include desktop {
+  .is-narrow-desktop {
+    width: fit-content !important;
+  }
+}
+
+@include desktop-only {
+  .is-narrow-desktop-only {
+    width: fit-content !important;
+  }
+}
+
+@include widescreen {
+  .is-narrow-widescreen {
+    width: fit-content !important;
+  }
+}
+
+@include widescreen-only {
+  .is-narrow-widescreen-only {
+    width: fit-content !important;
+  }
+}
+
+@include fullhd {
+  .is-narrow-fullhd {
+    width: fit-content !important;
+  }
+}
+
 .is-rounded {
   border-radius: 9999px !important;
 }
