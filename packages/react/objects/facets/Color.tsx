@@ -25,6 +25,7 @@ export enum TrilogyColor {
   NEUTRAL = 'NEUTRAL',
   NEUTRAL_FADE = 'NEUTRAL_FADE',
   STROKE = 'STROKE',
+  STROKE_FADE = 'STROKE_FADE',
 }
 
 export type TrilogyColorValues = `${TrilogyColor}`
