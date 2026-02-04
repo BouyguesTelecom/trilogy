@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix image radius (native)
 - Fix onClick prop on pagination (web) 
 - Fix justify classname function for flexbox (web)
+- Fix autocomplete (web)
 
 ## [4.14.3] - 2026-01-20
 - Fix desktop breakpoint
