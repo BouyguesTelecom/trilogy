@@ -5,6 +5,12 @@ import clsx from 'clsx'
 import React from 'react'
 import { PromptToolsProps, PromptToolsRef } from './PromptToolsProps'
 
+/**
+ * PromptTools component - Container for prompt toolbar tools and buttons
+ * @param children {ReactNode} Tool components (buttons, selects, etc.)
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ */
 const PromptTools = React.forwardRef<PromptToolsRef, PromptToolsProps>(({ className, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 

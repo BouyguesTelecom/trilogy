@@ -4,9 +4,9 @@ import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 import React from 'react'
 import { PromptSelectOptionNativeRef } from './PromptSelectOptionProps'
 
-const PromptSelect = React.forwardRef<PromptSelectOptionNativeRef, SelectOptionProps>(({ ...others }, ref) => {
+const PromptSelectOption = React.forwardRef<PromptSelectOptionNativeRef, SelectOptionProps>(({ ...others }, ref) => {
   return <SelectOption ref={ref} {...others} />
 })
 
-PromptSelect.displayName = ComponentName.PromptSelect
-export default PromptSelect
+PromptSelectOption.displayName = ComponentName.PromptSelectOption
+export default PromptSelectOption

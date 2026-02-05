@@ -177,4 +177,5 @@ export enum ComponentName {
   PromptMicrophone = 'PromptMicrophone',
   PromptFiles = 'PromptFiles',
   PromptFile = 'PromptFile',
+  PromptSelectOption = 'PromptSelectOption',
 }

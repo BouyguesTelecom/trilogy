@@ -14,6 +14,15 @@ import clsx from 'clsx'
 import React from 'react'
 import { PromptFileProps, PromptFileRef } from './PromptFileProps'
 
+/**
+ * PromptFile component - Displays an individual file attachment with preview and delete option
+ * @param src {string} Source URL for the file (required for images)
+ * @param name {string} Display name of the file
+ * @param type {string} File type (e.g., 'image', 'pdf', 'doc')
+ * @param onDelete {Function} Callback function when delete button is clicked
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ */
 const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const { styled } = useTrilogyContext()
   const classesImgContainer = hashClass(styled, clsx('prompt-files-file'))

@@ -8,6 +8,17 @@ import React, { useContext, useEffect } from 'react'
 import { PromptContext } from '../context'
 import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
 
+/**
+ * PromptTextarea component - Auto-resizing textarea for prompt input
+ * @param value {string} Current value of the textarea
+ * @param onChange {Function} Change event handler
+ * @param placeholder {string} Placeholder text
+ * @param disabled {boolean} Whether the textarea is disabled
+ * @param readOnly {boolean} Whether the textarea is read-only
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
   ({ className, value, onChange, disabled, readOnly, ...others }, ref) => {
     const { styled } = useTrilogyContext()

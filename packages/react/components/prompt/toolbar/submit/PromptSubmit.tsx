@@ -8,6 +8,17 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { PromptContext } from '../../context'
 import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './PromptSubmitProps'
 
+/**
+ * PromptSubmit component - Submit button for prompt with streaming support
+ * @param status {PromptSubmitStatus} Current status of the submit button (streaming on/off)
+ * @param onSubmit {Function} Callback function when submit button is clicked
+ * @param onCancelSubmit {Function} Callback function when cancel/stop streaming is clicked
+ * @param disabled {boolean} Whether the submit button is disabled
+ * @param readOnly {boolean} Whether the submit button is read-only
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
   (
     { className, status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others },

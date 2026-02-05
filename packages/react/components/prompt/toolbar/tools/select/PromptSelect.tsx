@@ -10,6 +10,17 @@ import { PromptSelectRef } from './PromptSelectProps'
 
 const PADDING_SELECT_OPTION = 58
 
+/**
+ * PromptSelect component - Auto-sizing select dropdown for prompt toolbar
+ * @param selected {string} Currently selected option value
+ * @param onChange {Function} Change event handler when selection changes
+ * @param disabled {boolean} Whether the select is disabled
+ * @param readOnly {boolean} Whether the select is read-only
+ * @param children {ReactNode} PromptSelectOption components
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const PromptSelect = React.forwardRef<PromptSelectRef, SelectProps>(
   ({ className, disabled, readOnly, ...others }, ref) => {
     const { styled } = useTrilogyContext()

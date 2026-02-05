@@ -7,6 +7,12 @@ import React, { useContext, useEffect, useMemo } from 'react'
 import { PromptContext } from '../context'
 import { PromptFilesProps, PromptFilesRef } from './PromptFilesProps'
 
+/**
+ * PromptFiles component - Container for displaying attached files in a prompt
+ * @param children {ReactNode} PromptFile components to display
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ */
 const PromptFiles = React.forwardRef<PromptFilesRef, PromptFilesProps>(({ children }, ref) => {
   const { styled } = useTrilogyContext()
   const { setFiles } = useContext(PromptContext)

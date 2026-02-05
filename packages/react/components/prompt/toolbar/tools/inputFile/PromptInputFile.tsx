@@ -8,6 +8,15 @@ import clsx from 'clsx'
 import React, { MouseEvent, useContext } from 'react'
 import { PromptInputFileProps, PromptInputFileRef } from './PromptInputFileProps'
 
+/**
+ * PromptInputFile component - File upload button for prompt attachments
+ * @param onChange {Function} Change event handler when files are selected
+ * @param disabled {boolean} Whether the file input is disabled
+ * @param readOnly {boolean} Whether the file input is read-only
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProps>(
   ({ className, onChange, disabled, readOnly, ...others }, ref) => {
     const { styled } = useTrilogyContext()
@@ -26,7 +35,7 @@ const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProp
 
     return (
       <label htmlFor='promptUpload'>
-        <span ref={ref} className={classes} {...others}>
+        <span ref={ref} className={classes}>
           <Icon name={IconName.PARPERCLIP} />
         </span>
         <input
@@ -37,6 +46,7 @@ const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProp
           id='promptUpload'
           onChange={onChange}
           onClick={onClick}
+          {...others}
         />
       </label>
     )

@@ -7,6 +7,16 @@ import React, { useContext } from 'react'
 import { PromptContext } from '../../context'
 import { PromptMicrophoneProps, PromptMicrophoneRef } from './PromptMicrophoneProps'
 
+/**
+ * PromptMicrophone component - Voice recording button for prompt input
+ * @param onClick {Function} Click event handler for microphone button
+ * @param disabled {boolean} Whether the microphone button is disabled
+ * @param readOnly {boolean} Whether the microphone button is read-only
+ * @param isListening {boolean} Whether the microphone is currently listening/recording
+ * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneProps>(
   ({ className, onClick, disabled = false, isListening, readOnly, ...others }, ref) => {
     const { isTyping, isDisabled, isReadonly } = useContext(PromptContext)
