@@ -16,7 +16,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others },
       borderRadius: getRadiusStyle(RadiusValues.SMALL),
       borderColor: getColorStyle(TrilogyColor[isFocused ? 'MAIN' : isDisabled ? 'DISABLED' : 'STROKE']),
       margin: isFocused ? -1 : undefined,
-      backgroundColor: getColorStyle(TrilogyColor[isDisabled ? 'DISABLED_FADE' : 'BACKGROUND']),
+      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
     },
   })
   return <View ref={ref} style={styles.view} {...others} />

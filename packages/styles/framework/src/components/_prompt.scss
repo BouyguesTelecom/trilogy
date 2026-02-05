@@ -4,11 +4,18 @@ $height-prompt-item: 64px;
     box-shadow: 0 0 0 1px var(--color-stroke);
     border-radius: var(--radius-small);
     overflow: hidden;
+    background-color: getColor('background');
+    &[aria-disabled] {
+        background-color: getColor('background') !important;
+    }
     * {
         margin-bottom: 0px !important;
     }
     &:focus-within {
         box-shadow: 0 0 0 2px currentColor;
+    }
+    &.is-disabled {
+        box-shadow: 0 0 0 1px getColor('disabled') !important;
     }
     &-textarea {
         textarea {
@@ -21,6 +28,9 @@ $height-prompt-item: 64px;
             padding: 16px !important;
             height: auto;
             resize: none;
+            &[disabled] {
+                background-color: getColor('background') !important;
+            }
         } 
     }
     &-files {
@@ -105,6 +115,10 @@ $height-prompt-item: 64px;
                 .icon i {
                     background-color: getColor('background');
                 }
+            }
+            &[disabled], &.is-disabled {
+                background-color: getColor('disabled-fade') !important;
+                cursor: not-allowed;
             }
         }
         &-tool.icon_only {

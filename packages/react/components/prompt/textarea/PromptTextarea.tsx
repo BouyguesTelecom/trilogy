@@ -9,10 +9,13 @@ import { PromptContext } from '../context'
 import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
 
 const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
-  ({ className, value, onChange, ...others }, ref) => {
+  ({ className, value, onChange, disabled, readOnly, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('prompt-textarea', className))
-    const { setText, setIsTyping } = useContext(PromptContext)
+    const { setText, setIsTyping, isDisabled, isReadonly } = useContext(PromptContext)
+
+    const isDisable = isDisabled || disabled
+    const isReadOnly = isReadonly || readOnly
 
     const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
       const textarea = e.target as HTMLTextAreaElement
@@ -32,11 +35,12 @@ const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
 
     return (
       <Textarea
+        disabled={isDisable}
         value={value}
         ref={ref}
         className={classes}
         onChange={handleChange}
-        {...{ onInput: handleTextareaChange, ...others }}
+        {...{ onInput: handleTextareaChange, readOnly: isReadOnly, ...others }}
       />
     )
   },

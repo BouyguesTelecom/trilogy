@@ -1,24 +1,39 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useContext } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { PromptProps, PromptRef } from './PromptProps'
-import { PromptProvider } from './context'
+import { PromptContext, PromptProvider } from './context'
+
+const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, ...others }, ref) => {
+  const { styled } = useTrilogyContext()
+  const { isReadonly, isDisabled } = useContext(PromptContext)
+  const classes = hashClass(styled, clsx('prompt', className))
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
+  }
+
+  return (
+    <form
+      aria-disabled={isDisabled}
+      aria-readonly={isReadonly}
+      ref={ref}
+      className={classes}
+      onSubmit={handleSubmit}
+      {...others}
+    />
+  )
+})
 
 const Prompt = React.forwardRef<PromptRef, PromptProps>(
-  ({ className, readOnly = false, disabled = false, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('prompt', className))
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
-    }
-
+  ({ readOnly = false, disabled = false, className, ...others }, ref) => {
     return (
       <PromptProvider isReadonly={readOnly} isDisabled={disabled}>
-        <form ref={ref} className={classes} {...others} onSubmit={handleSubmit} />
+        <PromptElm ref={ref} className={className} {...others} />
       </PromptProvider>
     )
   },

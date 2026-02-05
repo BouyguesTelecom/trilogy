@@ -9,13 +9,20 @@ import { PromptContext } from '../../context'
 import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './PromptSubmitProps'
 
 const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
-  ({ className, status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
+  (
+    { className, status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others },
+    ref,
+  ) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { styled } = useTrilogyContext()
-    const { text, files } = useContext(PromptContext)
+    const { text, files, isDisabled, isReadonly } = useContext(PromptContext)
+
+    const isDisable = isDisabled || disabled
+    const isReadOnly = isReadonly || readOnly
     const classesStop = hashClass(styled, clsx('prompt-stop_streaming'))
 
     const onClick = useCallback(() => {
+      if (isDisable || isReadOnly) return
       switch (statusSubmit) {
         case PromptSubmitStatus.STREAMING_ON:
           setStatusSubmit(PromptSubmitStatus.STREAMING_OFF)
@@ -51,7 +58,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
 
     return (
       <Button
-        disabled={!isActive}
+        disabled={!isActive || isDisable}
         ref={ref}
         iconName={statusSubmit === PromptSubmitStatus.STREAMING_OFF ? IconName.ARROW_UP : undefined}
         variant={ButtonVariant.PRIMARY}

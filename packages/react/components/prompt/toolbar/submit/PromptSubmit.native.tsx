@@ -10,8 +10,9 @@ import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './
 const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { text, files, setIsSend, setIsTyping } = useContext(PromptContext)
+    const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
+    const isDisable = isDisabled || disabled
 
     const onClick = useCallback(() => {
       setIsTyping(false)
@@ -55,7 +56,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         ) : (
           <Icon
             size={IconSize.SMALLER}
-            color={IconColor[isActive ? 'WHITE' : 'NEUTRAL']}
+            color={IconColor[isDisable || !isActive ? 'NEUTRAL' : 'WHITE']}
             name={IconName.ARROW_HIGH}
             {...{
               style: styles.icon,
