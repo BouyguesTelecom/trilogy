@@ -72,45 +72,52 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
   ): JSX.Element => {
     const [_value, setValue] = useState<string>(value || '')
     const [isFocus, setIsFocus] = useState<boolean>(false)
-    const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL)
+    const getTextareaColor = isFocus ? TrilogyColor.MAIN : TrilogyColor.NEUTRAL
+
+    const getStatusColor =
+      status === 'success'
+        ? StatusState.SUCCESS
+        : status === 'warning'
+        ? StatusState.WARNING
+        : status === 'error'
+        ? StatusState.ERROR
+        : getTextareaColor
+
+    const borderColorTextarea = getColorStyle(getStatusColor)
+    const helpColor = getColorStyle(getStatusColor)
+    const colorTextarea = getColorStyle(TrilogyColor.MAIN)
+    const backgroundColorTeaxtarea = getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND)
+    const counterColor = getColorStyle(TrilogyColor.MAIN)
+    const counterBackground = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.BACKGROUND)
+    const placeholderTextColor = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT_PLACEHOLDER)
 
     const styles = StyleSheet.create({
       textarea: {
         borderWidth: isFocus ? 2 : 1,
         borderRadius: 3,
-        borderColor:
-          (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
-          (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
-          (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
-          (status && status === 'default' && textareaColor) ||
-          textareaColor,
+        borderColor: borderColorTextarea,
         height: customHeight,
         justifyContent: 'flex-start',
         paddingLeft: (iconNameLeft && isFocus && 47) || (iconNameLeft && 48) || 16,
         paddingRight: (iconNameRight && 48) || 16,
         paddingTop: isFocus ? 10 : 11,
         textAlignVertical: 'top',
-        color: getColorStyle(TrilogyColor.MAIN),
-        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
+        color: colorTextarea,
+        backgroundColor: backgroundColorTeaxtarea,
       },
       help: {
         fontSize: 12,
-        color:
-          (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
-          (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||
-          (status && status === 'error' && getColorStyle(StatusState.ERROR)) ||
-          (status && status === 'default' && textareaColor) ||
-          textareaColor,
+        color: helpColor,
         paddingLeft: 4,
         paddingTop: 2,
       },
       counter: {
         fontSize: 10,
-        color: getColorStyle(TrilogyColor.MAIN),
+        color: counterColor,
         position: 'absolute',
         bottom: help ? 24 : 8,
         right: 8,
-        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED) : 'white',
+        backgroundColor: counterBackground,
         padding: 3,
       },
       leftIcon: {
@@ -176,9 +183,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
           style={styles.textarea}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          placeholderTextColor={
-            disabled ? getColorStyle(TrilogyColor.DISABLED) : getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
-          }
+          placeholderTextColor={placeholderTextColor}
           {...others}
         />
 

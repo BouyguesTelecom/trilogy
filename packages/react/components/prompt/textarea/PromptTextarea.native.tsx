@@ -12,7 +12,9 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
   ({ value, onChange, disabled, readOnly, ...others }, ref) => {
     const { setText, setIsFocused, isSend, setIsSend, setIsTyping, isSpeech, setIsSpeech, isDisabled, isReadonly } =
       useContext(PromptContext)
+
     const textareaRef = useRef<TextInput>(null)
+    const color = getColorStyle(TrilogyColor.MAIN)
 
     useImperativeHandle(ref, () => textareaRef.current as TextInput)
 
@@ -24,7 +26,7 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
         maxHeight: 100,
         paddingHorizontal: SpacerSize.FOUR,
         paddingTop: SpacerSize.FOUR,
-        color: getColorStyle(TrilogyColor.MAIN),
+        color: color,
       },
     })
 
