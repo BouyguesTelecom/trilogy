@@ -119,6 +119,7 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   min?: string | number
   max?: string | number
   step?: string | number
+  spellCheck?: boolean
 }
 
 export interface ILengthVerify {
