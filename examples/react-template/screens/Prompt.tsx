@@ -1,3 +1,4 @@
+import { TrilogyColor } from '@/objects'
 import {
   Prompt,
   PromptFile,
@@ -47,8 +48,8 @@ export const PromptScreen = () => {
   }
 
   return (
-    <Section>
-      <Prompt>
+    <Section backgroundColor={TrilogyColor.ACCENT}>
+      <Prompt readOnly>
         <PromptFiles>
           {files.map((file, key) => {
             return (

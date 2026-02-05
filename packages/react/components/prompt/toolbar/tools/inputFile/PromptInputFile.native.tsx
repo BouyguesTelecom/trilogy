@@ -1,12 +1,17 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import React from 'react'
+import { PromptContext } from '@/components/prompt/context'
+import { TrilogyColor } from '@/objects'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import PromptButton from '../button/PromptButton.native'
 import { PromptInputFileNativeRef, PromptInputFileProps } from './PromptInputFileProps'
 
 const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
-  ({ onChange, ...others }, ref) => {
+  ({ onChange, disabled, ...others }, ref) => {
+    const { isDisabled } = useContext(PromptContext)
+    const isDisable = isDisabled || disabled
+
     const styles = StyleSheet.create({
       icon: {
         flexDirection: 'row',
@@ -24,6 +29,7 @@ const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFi
         {...others}
       >
         <Icon
+          color={isDisable ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
           size={IconSize.SMALLER}
           name={IconName.PARPERCLIP}
           {...{

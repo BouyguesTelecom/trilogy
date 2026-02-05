@@ -1,12 +1,18 @@
 import { ComponentName } from '@/components/enumsComponentsName'
+import { PromptContext } from '@/components/prompt/context'
 import Select from '@/components/select/Select.native'
 import { SelectNativeProps } from '@/components/select/SelectProps'
-import React from 'react'
+import React, { useContext } from 'react'
 import { PromptSelectNativeRef } from './PromptSelectProps'
 
-const PromptSelect = React.forwardRef<PromptSelectNativeRef, SelectNativeProps>(({ ...others }, ref) => {
+const PromptSelect = React.forwardRef<PromptSelectNativeRef, SelectNativeProps>(({ disabled, ...others }, ref) => {
+  const { isDisabled, isReadonly } = useContext(PromptContext)
+  const isDisable = isDisabled || disabled
+
   return (
     <Select
+      readOnly={isReadonly}
+      disabled={isDisable}
       ref={ref}
       {...{
         ...others,

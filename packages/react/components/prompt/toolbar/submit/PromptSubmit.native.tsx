@@ -10,7 +10,7 @@ import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './
 const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { text, files, setIsSend, setIsTyping } = useContext(PromptContext)
+    const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
 
     const onClick = useCallback(() => {
@@ -29,6 +29,8 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
       [statusSubmit, text, files],
     )
 
+    const isDisable = isDisabled || !isActive
+
     const styles = StyleSheet.create({
       icon: {
         flexDirection: 'row',
@@ -42,7 +44,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
     }, [status])
 
     return (
-      <PromptButton onClick={onClick} disabled={!isActive} active={isActive} ref={ref} {...others}>
+      <PromptButton onClick={onClick} disabled={isDisable} active={isActive} ref={ref} {...others}>
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
           <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
         ) : (

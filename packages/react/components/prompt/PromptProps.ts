@@ -5,6 +5,8 @@ import { View } from 'react-native'
 
 export interface PromptProps extends Accessibility, Dev, CommonProps {
   children?: React.ReactNode
+  disabled?: boolean
+  readOnly?: boolean
 }
 
 export type PromptRef = HTMLFormElement

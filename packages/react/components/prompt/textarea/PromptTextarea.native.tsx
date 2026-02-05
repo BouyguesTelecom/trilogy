@@ -10,7 +10,8 @@ import { PromptTextareaNativeRef, PromptTextareaProps } from './PromptTextareaPr
 
 const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
   ({ value, onChange, ...others }, ref) => {
-    const { setText, setIsFocused, isSend, setIsSend, setIsTyping, isSpeech, setIsSpeech } = useContext(PromptContext)
+    const { setText, setIsFocused, isSend, setIsSend, setIsTyping, isSpeech, setIsSpeech, isDisabled, isReadonly } =
+      useContext(PromptContext)
     const textareaRef = useRef<TextInput>(null)
     useImperativeHandle(ref, () => textareaRef.current as TextInput)
 
@@ -51,6 +52,8 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
           style: style.textarea,
           onFocus: () => setIsFocused(true),
           onBlur: () => setIsFocused(false),
+          disabled: isDisabled,
+          readOnly: isReadonly,
         }}
       />
     )

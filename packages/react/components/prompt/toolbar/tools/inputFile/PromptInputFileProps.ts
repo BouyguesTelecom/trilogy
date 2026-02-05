@@ -5,6 +5,7 @@ import { View } from 'react-native'
 
 export interface PromptInputFileProps extends Accessibility, Dev, CommonProps {
   onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void
+  disabled?: boolean
 }
 export type PromptInputFileRef = HTMLButtonElement
 export type PromptInputFileNativeRef = View

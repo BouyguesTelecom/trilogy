@@ -19,6 +19,13 @@ export interface IPromptContext {
   setIsTyping: Dispatch<SetStateAction<boolean>>
   isSpeech: boolean
   setIsSpeech: Dispatch<SetStateAction<boolean>>
+  isDisabled: boolean
+  isReadonly: boolean
+}
+
+interface Props {
+  isReadonly: boolean
+  isDisabled: boolean
 }
 
 export const PromptContext = createContext<IPromptContext>({
@@ -34,9 +41,11 @@ export const PromptContext = createContext<IPromptContext>({
   setIsSend: () => undefined,
   isSpeech: false,
   setIsSpeech: () => undefined,
+  isDisabled: false,
+  isReadonly: false,
 })
 
-export const PromptProvider = ({ children }: PropsWithChildren) => {
+export const PromptProvider = ({ children, isDisabled, isReadonly }: PropsWithChildren<Props>) => {
   const [text, setText] = useState<string>('')
   const [files, setFiles] = useState<number>(0)
   const [isFocused, setIsFocused] = useState<boolean>(false)
@@ -59,6 +68,8 @@ export const PromptProvider = ({ children }: PropsWithChildren) => {
         setIsTyping,
         isSpeech,
         setIsSpeech,
+        isReadonly,
+        isDisabled,
       }}
     >
       {children}
