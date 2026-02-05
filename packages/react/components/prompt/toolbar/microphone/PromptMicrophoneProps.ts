@@ -6,6 +6,7 @@ import { View } from 'react-native'
 
 export interface PromptMicrophoneProps extends Accessibility, Dev, CommonProps, Clickable {
   disabled?: boolean
+  readOnly?: boolean
   isListening?: boolean
 }
 

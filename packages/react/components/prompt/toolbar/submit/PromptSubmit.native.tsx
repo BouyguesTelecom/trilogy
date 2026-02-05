@@ -8,9 +8,9 @@ import PromptButton from '../tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
 
 const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
-  ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, ...others }, ref) => {
+  ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
-    const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)
+    const { text, files, setIsSend, setIsTyping } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
 
     const onClick = useCallback(() => {
@@ -29,8 +29,6 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
       [statusSubmit, text, files],
     )
 
-    const isDisable = isDisabled || !isActive
-
     const styles = StyleSheet.create({
       icon: {
         flexDirection: 'row',
@@ -44,14 +42,21 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
     }, [status])
 
     return (
-      <PromptButton onClick={onClick} disabled={isDisable} active={isActive} ref={ref} {...others}>
+      <PromptButton
+        onClick={onClick}
+        disabled={disabled || !isActive}
+        readOnly={readOnly}
+        active={isActive}
+        ref={ref}
+        {...others}
+      >
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
           <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
         ) : (
           <Icon
             size={IconSize.SMALLER}
             color={IconColor[isActive ? 'WHITE' : 'NEUTRAL']}
-            name={IconName.ARROW_UP}
+            name={IconName.ARROW_HIGH}
             {...{
               style: styles.icon,
             }}

@@ -10,6 +10,7 @@ export interface PromptButtonProps extends Accessibility, Dev, CommonProps, Clic
   children?: React.ReactNode
   iconName?: IconName | IconNameValues
   disabled?: boolean
+  readOnly?: boolean
   active?: boolean
   rounded?: boolean
   variant?: ButtonVariant

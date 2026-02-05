@@ -9,11 +9,15 @@ import { PromptContext } from '../context'
 import { PromptTextareaNativeRef, PromptTextareaProps } from './PromptTextareaProps'
 
 const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
-  ({ value, onChange, ...others }, ref) => {
+  ({ value, onChange, disabled, readOnly, ...others }, ref) => {
     const { setText, setIsFocused, isSend, setIsSend, setIsTyping, isSpeech, setIsSpeech, isDisabled, isReadonly } =
       useContext(PromptContext)
     const textareaRef = useRef<TextInput>(null)
+
     useImperativeHandle(ref, () => textareaRef.current as TextInput)
+
+    const isDisable = isDisabled || disabled
+    const isReadOnly = isReadonly || readOnly
 
     const style = StyleSheet.create({
       textarea: {
@@ -52,8 +56,8 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
           style: style.textarea,
           onFocus: () => setIsFocused(true),
           onBlur: () => setIsFocused(false),
-          disabled: isDisabled,
-          readOnly: isReadonly,
+          disabled: isDisable,
+          readOnly: isReadOnly,
         }}
       />
     )

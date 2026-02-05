@@ -9,6 +9,8 @@ export interface PromptTextareaProps extends Accessibility, Dev, CommonProps {
   placeholder?: string
   value?: string
   onChange?: (e: TextareaChangeEvent) => void
+  disabled?: boolean
+  readOnly?: boolean
 }
 
 export type PromptTextareaRef = HTMLTextAreaElement

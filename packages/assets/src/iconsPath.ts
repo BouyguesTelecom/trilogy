@@ -5,6 +5,7 @@ export const SVGicons = {
   'arrow-left': require('@trilogy-ds/assets/lib/icons/all/arrow-left.svg'),
   'arrow-right': require('@trilogy-ds/assets/lib/icons/all/arrow-right.svg'),
   'arrow-up': require('@trilogy-ds/assets/lib/icons/all/arrow-up.svg'),
+  'arrow-high': require('@trilogy-ds/assets/lib/icons/all/arrow-high.svg'),
   bell: require('@trilogy-ds/assets/lib/icons/all/bell.svg'),
   calendar: require('@trilogy-ds/assets/lib/icons/all/calendar.svg'),
   'check-circle': require('@trilogy-ds/assets/lib/icons/all/check-circle.svg'),

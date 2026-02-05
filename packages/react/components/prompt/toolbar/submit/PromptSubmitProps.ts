@@ -13,6 +13,8 @@ export interface PromptSubmitProps extends Accessibility, Dev, CommonProps {
   status?: PromptSubmitStatus
   onSubmit?: ClickEvent
   onCancelSubmit?: ClickEvent
+  disabled?: boolean
+  readOnly?: boolean
 }
 
 export type PromptSubmitRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement

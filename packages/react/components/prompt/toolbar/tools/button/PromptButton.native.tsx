@@ -8,9 +8,10 @@ import { Pressable, StyleSheet } from 'react-native'
 import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
 
 const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
-  ({ disabled, active, onClick, rounded, ...others }, ref) => {
+  ({ disabled, active, onClick, rounded, readOnly, ...others }, ref) => {
     const { isDisabled, isReadonly } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
+    const isReadOnly = isReadonly || readOnly
 
     const styles = StyleSheet.create({
       button: {
@@ -26,7 +27,7 @@ const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
     })
 
     const handleClick = () => {
-      if (onClick && !isReadonly && !isDisable) {
+      if (onClick && !isReadOnly && !isDisable) {
         onClick()
       }
     }

@@ -49,7 +49,7 @@ export const PromptScreen = () => {
 
   return (
     <Section backgroundColor={TrilogyColor.ACCENT}>
-      <Prompt readOnly>
+      <Prompt>
         <PromptFiles>
           {files.map((file, key) => {
             return (

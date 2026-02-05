@@ -8,7 +8,7 @@ import PromptButton from '../button/PromptButton.native'
 import { PromptInputFileNativeRef, PromptInputFileProps } from './PromptInputFileProps'
 
 const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
-  ({ onChange, disabled, ...others }, ref) => {
+  ({ onChange, disabled, readOnly, ...others }, ref) => {
     const { isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
 
@@ -22,6 +22,8 @@ const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFi
 
     return (
       <PromptButton
+        disabled={disabled}
+        readOnly={readOnly}
         ref={ref}
         onClick={() => {
           if (onChange) onChange()

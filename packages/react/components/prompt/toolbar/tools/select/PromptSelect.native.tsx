@@ -5,31 +5,33 @@ import { SelectNativeProps } from '@/components/select/SelectProps'
 import React, { useContext } from 'react'
 import { PromptSelectNativeRef } from './PromptSelectProps'
 
-const PromptSelect = React.forwardRef<PromptSelectNativeRef, SelectNativeProps>(({ disabled, ...others }, ref) => {
-  const { isDisabled, isReadonly } = useContext(PromptContext)
-  const isDisable = isDisabled || disabled
+const PromptSelect = React.forwardRef<PromptSelectNativeRef, SelectNativeProps>(
+  ({ disabled, readOnly, ...others }, ref) => {
+    const { isDisabled, isReadonly } = useContext(PromptContext)
+    const isDisable = isDisabled || disabled
+    const isReadOnly = isReadonly || readOnly
 
-  return (
-    <Select
-      readOnly={isReadonly}
-      disabled={isDisable}
-      ref={ref}
-      {...{
-        ...others,
-        wrapper: {
-          borderWidth: 0,
-          height: 36,
-          maxWidth: '100%',
-        },
-        inputStyle: {
-          width: '100%',
-          paddingRight: 40,
-          paddingLeft: 0,
-        },
-      }}
-    />
-  )
-})
+    return (
+      <Select
+        readOnly={isReadOnly}
+        disabled={isDisable}
+        ref={ref}
+        {...{
+          ...others,
+          wrapper: {
+            borderWidth: 0,
+            height: 36,
+            maxWidth: '100%',
+          },
+          inputStyle: {
+            width: '100%',
+            paddingRight: 40,
+          },
+        }}
+      />
+    )
+  },
+)
 
 PromptSelect.displayName = ComponentName.PromptSelect
 export default PromptSelect

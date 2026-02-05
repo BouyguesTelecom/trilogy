@@ -8,7 +8,7 @@ import PromptButton from '../tools/button/PromptButton.native'
 import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from './PromptMicrophoneProps'
 
 const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
-  ({ isListening, onClick, disabled = false, ...others }, ref) => {
+  ({ isListening, onClick, disabled = false, readOnly, ...others }, ref) => {
     const { isTyping, setIsSpeech, isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
 
@@ -28,7 +28,15 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicro
     if (isTyping) return null
 
     return (
-      <PromptButton ref={ref} onClick={handleClick} active={isListening} rounded {...others}>
+      <PromptButton
+        disabled={disabled}
+        readOnly={readOnly}
+        ref={ref}
+        onClick={handleClick}
+        active={isListening}
+        rounded
+        {...others}
+      >
         <Icon
           size={IconSize.SMALLER}
           color={isDisable ? TrilogyColor.DISABLED : isListening ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN}
