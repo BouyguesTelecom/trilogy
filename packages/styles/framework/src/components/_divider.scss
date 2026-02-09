@@ -3,6 +3,7 @@
   flex: 1;
   height: 1px;
   background-color: getColor('neutral');
+  border: 1px solid #{getColor('stroke-fade')};
 }
 
 .divider {
