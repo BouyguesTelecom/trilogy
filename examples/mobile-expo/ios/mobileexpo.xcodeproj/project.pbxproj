@@ -10,26 +10,37 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		365A5D867301A2AC2BA1E11E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 09E56F966CAE88D05784DB59 /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		70EAAB9B3DDAD85DD0F62B25 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A0452F196A39398F1EEE44E0 /* PrivacyInfo.xcprivacy */; };
+		8B972BDEDCC64427A2E4610F /* poppins-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16B9747A1A014B9383401A24 /* poppins-bold.ttf */; };
 		96905EF65AED1B983A6B3ABC /* libPods-mobileexpo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-mobileexpo.a */; };
+		AC1E423773044A43AA9D631B /* poppins-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2A42EA72B4E4B97B08451A2 /* poppins-regular.ttf */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
+		BAC72486EB4346C48ADAC035 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224ADF72A4546DAA36C5B35 /* noop-file.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		E86286BCF7C745FBACA98487 /* poppins-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87D9D3BFBE9A4E2E92DC2DCC /* poppins-medium.ttf */; };
+		F06C0C6D85154629B7BEE89A /* poppins-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FBC375DF660418AA40D0CB0 /* poppins-semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09E56F966CAE88D05784DB59 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = mobileexpo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* mobileexpo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobileexpo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = mobileexpo/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = mobileexpo/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = mobileexpo/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mobileexpo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mobileexpo/main.m; sourceTree = "<group>"; };
+		16B9747A1A014B9383401A24 /* poppins-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "poppins-bold.ttf"; path = "../../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-bold.ttf"; sourceTree = "<group>"; };
+		2FBC375DF660418AA40D0CB0 /* poppins-semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "poppins-semibold.ttf"; path = "../../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-mobileexpo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobileexpo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-mobileexpo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileexpo.debug.xcconfig"; path = "Target Support Files/Pods-mobileexpo/Pods-mobileexpo.debug.xcconfig"; sourceTree = "<group>"; };
+		716023B178D44FD8B83CE9AE /* mobileexpo-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "mobileexpo-Bridging-Header.h"; path = "mobileexpo/mobileexpo-Bridging-Header.h"; sourceTree = "<group>"; };
+		7224ADF72A4546DAA36C5B35 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "mobileexpo/noop-file.swift"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-mobileexpo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileexpo.release.xcconfig"; path = "Target Support Files/Pods-mobileexpo/Pods-mobileexpo.release.xcconfig"; sourceTree = "<group>"; };
-		A0452F196A39398F1EEE44E0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = mobileexpo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		87D9D3BFBE9A4E2E92DC2DCC /* poppins-medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "poppins-medium.ttf"; path = "../../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-medium.ttf"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = mobileexpo/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		D2A42EA72B4E4B97B08451A2 /* poppins-regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "poppins-regular.ttf"; path = "../../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-mobileexpo/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,7 +67,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				A0452F196A39398F1EEE44E0 /* PrivacyInfo.xcprivacy */,
+				7224ADF72A4546DAA36C5B35 /* noop-file.swift */,
+				716023B178D44FD8B83CE9AE /* mobileexpo-Bridging-Header.h */,
+				09E56F966CAE88D05784DB59 /* PrivacyInfo.xcprivacy */,
 			);
 			name = mobileexpo;
 			sourceTree = "<group>";
@@ -86,6 +99,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				F36734FD0C1F4E28B3FB2669 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -134,6 +148,18 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
+		F36734FD0C1F4E28B3FB2669 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				16B9747A1A014B9383401A24 /* poppins-bold.ttf */,
+				87D9D3BFBE9A4E2E92DC2DCC /* poppins-medium.ttf */,
+				D2A42EA72B4E4B97B08451A2 /* poppins-regular.ttf */,
+				2FBC375DF660418AA40D0CB0 /* poppins-semibold.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,13 +168,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "mobileexpo" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				8B0A4CEEE093C7F584A7D32F /* [Expo] Configure project */,
+				002E56CC21B00562FAA336B5 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				A3B17FEE0D5DE432B3FFFBE2 /* [CP] Embed Pods Frameworks */,
+				D5C129155761FC01E830C0A2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,13 +224,36 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				70EAAB9B3DDAD85DD0F62B25 /* PrivacyInfo.xcprivacy in Resources */,
+				8B972BDEDCC64427A2E4610F /* poppins-bold.ttf in Resources */,
+				E86286BCF7C745FBACA98487 /* poppins-medium.ttf in Resources */,
+				AC1E423773044A43AA9D631B /* poppins-regular.ttf in Resources */,
+				F06C0C6D85154629B7BEE89A /* poppins-semibold.ttf in Resources */,
+				365A5D867301A2AC2BA1E11E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		002E56CC21B00562FAA336B5 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-mobileexpo/expo-configure-project.sh\"\n";
+		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -266,26 +315,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mobileexpo/Pods-mobileexpo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B0A4CEEE093C7F584A7D32F /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-mobileexpo/expo-configure-project.sh\"\n";
-		};
-		A3B17FEE0D5DE432B3FFFBE2 /* [CP] Embed Pods Frameworks */ = {
+		D5C129155761FC01E830C0A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,6 +343,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
+				BAC72486EB4346C48ADAC035 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = mobileexpo/mobileexpo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -341,10 +373,12 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.mobileexpo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.mobile-expo";
 				PRODUCT_NAME = mobileexpo;
+				SWIFT_OBJC_BRIDGING_HEADER = "mobileexpo/mobileexpo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -355,6 +389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = mobileexpo/mobileexpo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = mobileexpo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -366,9 +401,11 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.mobileexpo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.mobile-expo";
 				PRODUCT_NAME = mobileexpo;
+				SWIFT_OBJC_BRIDGING_HEADER = "mobileexpo/mobileexpo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
