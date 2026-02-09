@@ -54,7 +54,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: var(--border);
+    border: 1px solid #{getColor('stroke-fade')};
 
     .box-header {
       margin-top: calc(var(--padding-box) * -1 - 1px);

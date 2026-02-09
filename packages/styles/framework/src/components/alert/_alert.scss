@@ -41,7 +41,7 @@ a.alert {
     padding-bottom: 0 !important;
   }
 
-  .icon {
+  &-icon {
     padding: 0;
   }
 
@@ -58,7 +58,7 @@ a.alert {
       background-color: fadeColor($name);
       border: 1px solid getColor($name);
 
-      .icon {
+      .alert-icon {
         color: getColor($name);
       }
     }

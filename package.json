@@ -113,6 +113,10 @@
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "expo-document-picker": "~12.0.2",
+    "expo-image-picker": "~15.1.0",
+    "expo-speech": "~12.0.2",
+    "expo-speech-recognition": "^0.3.2",
     "extract-loader": "^5.1.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
@@ -163,10 +167,7 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1",
-    "webpack-iconfont-plugin-nodejs": "^1.0.33",
-    "expo-image-picker": "~15.1.0",
-    "expo-document-picker": "~12.0.2",
-    "expo-speech": "~12.0.2"
+    "webpack-iconfont-plugin-nodejs": "^1.0.33"
   },
   "overrides": {
     "@react-native-community/cli": "^20.0.2"

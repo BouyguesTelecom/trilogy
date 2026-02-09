@@ -67,7 +67,7 @@ $basis-values: (
 
   &.is-flat {
     box-shadow: none;
-    border: var(--border);
+    border: 1px solid #{getColor('stroke-fade')};
 
     .card-content {
       padding-left: 20px;
@@ -112,7 +112,7 @@ $basis-values: (
         flex-basis: map-get($basis-values, 'is-#{$i}');
       }
     }
-    
+
     .card-image {
       max-width: 100%;
 
@@ -236,7 +236,7 @@ $basis-values: (
     .card-image {
       order: 2;
     }
-    
+
     .card-content {
       order: 1;
     }

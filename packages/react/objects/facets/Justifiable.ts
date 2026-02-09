@@ -33,6 +33,7 @@ export interface JustifiableProps {
 
 /**
  * Returns justifyContent style depending on justify type
+ * INFO : Update this function with FlexBox V5 changes
  * @param justifyContent {Justifiable|string} - justify type
  * @returns {string} - Justify value
  */
@@ -48,6 +49,8 @@ export const getJustifyStyle = (justifyContent?: string) => {
       return 'flex-end'
     case ['SPACE_BETWEEN', 'SPACE_BETWEEN'].includes(justifyContent):
       return 'space-between'
+    case justifyContent === 'SPACE_AROUND':
+      return 'space-around'
     default:
       return 'flex-start'
   }

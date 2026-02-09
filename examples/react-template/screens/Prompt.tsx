@@ -13,6 +13,7 @@ import {
   Section,
 } from '@trilogy-ds/react/components'
 import { PromptSubmitStatus } from '@trilogy-ds/react/components/prompt/toolbar/submit'
+import { ExpoSpeechRecognitionModule, useSpeechRecognitionEvent } from 'expo-speech-recognition'
 import { useState } from 'react'
 import { InputFile } from '../components'
 import usePickImage from '../hooks/pickImage/pickImage'
@@ -23,13 +24,36 @@ export const PromptScreen = () => {
   const [status, setStatus] = useState<PromptSubmitStatus>(PromptSubmitStatus.STREAMING_OFF)
   const [selectValue, setSelectValue] = useState<string>('id_two')
   const { files, pickFile, pickImage, deleteFile, deleteAllFiles, handleFileChange } = usePickImage()
+  const [recognizing, setRecognizing] = useState(false)
+  const [transcript, setTranscript] = useState('')
 
-  const onPressVoice = () => {
-    setIsListening(true)
-    setTimeout(() => {
-      setText('Hello, this is voice api simulation.')
-      setIsListening(false)
-    }, 1000)
+  useSpeechRecognitionEvent('start', () => setRecognizing(true))
+  useSpeechRecognitionEvent('end', () => setRecognizing(false))
+  useSpeechRecognitionEvent('result', (event) => {
+    setTranscript(event.results[0]?.transcript)
+  })
+  useSpeechRecognitionEvent('error', (event) => {
+    console.log('===> ERRROOOR')
+    console.log('error code:', event.error, 'error message:', event.message)
+  })
+
+  const handleStart = async () => {
+    const result = await ExpoSpeechRecognitionModule.requestPermissionsAsync()
+    if (!result.granted) {
+      console.warn('Permissions not granted', result)
+      return
+    }
+
+    // Start speech recognition
+    ExpoSpeechRecognitionModule.start({
+      lang: 'en-US',
+      interimResults: true,
+      maxAlternatives: 1,
+      continuous: false,
+      requiresOnDeviceRecognition: false,
+      addsPunctuation: false,
+      contextualStrings: ['Carlsen', 'Nepomniachtchi', 'Praggnanandhaa'],
+    })
   }
 
   const handleCancelSubmit = () => {
@@ -78,7 +102,7 @@ export const PromptScreen = () => {
             </PromptSelect>
           </PromptTools>
 
-          <PromptMicrophone isListening={isListening} onClick={onPressVoice} />
+          <PromptMicrophone isListening={isListening} onClick={handleStart} />
           <PromptSubmit status={status} onSubmit={handleSubmit} onCancelSubmit={handleCancelSubmit} />
         </PromptToolbar>
       </Prompt>

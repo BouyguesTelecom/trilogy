@@ -37,7 +37,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
         borderRadius: 6,
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
-        borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.NEUTRAL),
+        borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.STROKE),
       },
       bodyBackground: {
         borderRadius: 6,

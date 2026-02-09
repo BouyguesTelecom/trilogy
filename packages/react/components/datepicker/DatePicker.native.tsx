@@ -287,7 +287,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           (status === 'warning' && getColorStyle(TrilogyColor.WARNING)) ||
           (status === 'error' && getColorStyle(TrilogyColor.ERROR)) ||
           (isFocused && getColorStyle(TrilogyColor.MAIN)) ||
-          getColorStyle(TrilogyColor.NEUTRAL),
+          getColorStyle(TrilogyColor.STROKE),
         borderRadius: 3,
         height: 46,
         paddingHorizontal: 10,
