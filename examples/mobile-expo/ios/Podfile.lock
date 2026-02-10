@@ -43,10 +43,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoSpeech (12.0.2):
-    - ExpoModulesCore
-  - ExpoSpeechRecognition (0.3.2):
-    - ExpoModulesCore
   - EXSplashScreen (0.27.7):
     - DoubleConversion
     - ExpoModulesCore
@@ -1297,8 +1293,6 @@ DEPENDENCIES:
   - ExpoImagePicker (from `../node_modules/expo-image-picker/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
-  - ExpoSpeech (from `../node_modules/expo-speech/ios`)
-  - ExpoSpeechRecognition (from `../node_modules/expo-speech-recognition/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
@@ -1389,10 +1383,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
-  ExpoSpeech:
-    :path: "../node_modules/expo-speech/ios"
-  ExpoSpeechRecognition:
-    :path: "../node_modules/expo-speech-recognition/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
   FBLazyVector:
@@ -1524,8 +1514,6 @@ SPEC CHECKSUMS:
   ExpoImagePicker: 1e696c26a3e5c01a0ab1b99897db3da59c04a141
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
   ExpoModulesCore: 831ece8311a489418746925820bbffdda587d6f4
-  ExpoSpeech: 258ea713923eb70ef63d3bdb14f47a462d0b6f0e
-  ExpoSpeechRecognition: bea549e6dc5a12277db1c6fb8ab2f70d425d557f
   EXSplashScreen: 3cad09949c2ca6730cbb2801b8c51cb87692425a
   FBLazyVector: ac12dc084d1c8ec4cc4d7b3cf1b0ebda6dab85af
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
