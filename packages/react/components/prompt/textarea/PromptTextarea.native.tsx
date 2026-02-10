@@ -32,8 +32,10 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
 
     const handleChange = (e: TextareaChangeEvent) => {
       onChange?.(e)
-      if (!isSpeech && e.textareaValue.trim().length > 0) setIsTyping(true)
-      setIsSpeech(false)
+      if (!isSpeech && e.textareaValue.trim().length > 0) {
+        setIsTyping(true)
+        setIsSpeech(false)
+      }
     }
 
     useEffect(() => {
