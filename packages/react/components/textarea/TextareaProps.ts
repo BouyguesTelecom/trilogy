@@ -53,6 +53,7 @@ type TextareaPropsWeb = Accessibility &
     customHeight?: number
     required?: boolean
     sample?: string
+    spellCheck?: boolean
   }
 
 export type TextareaNativeProps = TextareaPropsWeb & ReferenceableNative<TextInput>
