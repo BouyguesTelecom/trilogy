@@ -46,6 +46,7 @@ interface Props {
   required?: boolean
   sample?: string
   help?: string
+  readOnly?: boolean
 }
 
 export interface SelectProps<T = SelectChangeEvent> extends Accessibility, Dev, CommonProps, Props {

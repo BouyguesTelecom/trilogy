@@ -31,6 +31,7 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
       required,
       sample,
       help,
+      readOnly,
       ...others
     },
     ref,

@@ -22,6 +22,12 @@
             "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"
           ]
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
       ]
     ],
     "assetBundlePatterns": [

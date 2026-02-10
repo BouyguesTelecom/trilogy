@@ -21,7 +21,7 @@ import SelectOption from './option'
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
   (
-    { children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, status, ...others },
+    { children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, status, readOnly, ...others },
     ref,
   ): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
@@ -46,8 +46,8 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
     }, [selected])
 
     const handleOpenCloseModal = useCallback(() => {
-      !disabled && setDisplay((prev) => !prev)
-    }, [disabled])
+      !disabled && !readOnly && setDisplay((prev) => !prev)
+    }, [disabled, readOnly])
 
     const isChecked = useCallback(
       (value: string) =>
