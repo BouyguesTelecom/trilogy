@@ -16,7 +16,7 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
-        <TimepickerCircular value={time} onChange={handleTimeChange} hoursLabel='Heures' minutesLabel='Min' step={5} />
+        <TimepickerCircular value={time} onChange={handleTimeChange} step={10} />
 
         <Spacer size={24} />
 

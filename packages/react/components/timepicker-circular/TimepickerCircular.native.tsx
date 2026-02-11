@@ -2,11 +2,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
+import { Button } from '../button'
 import { GapSize } from '../columns'
+import { Modal, ModalBody, ModalFooter } from '../modal'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172
@@ -47,25 +50,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const [currentHours, setCurrentHours] = useState(initialHours)
     const [currentMinutes, setCurrentMinutes] = useState(initialMinutes)
-    const [hoursInputFocused, setHoursInputFocused] = useState(false)
-    const [minutesInputFocused, setMinutesInputFocused] = useState(false)
+    const [isPickerVisible, setIsPickerVisible] = useState(false)
+    const [tempPickerDate, setTempPickerDate] = useState(() => {
+      const date = new Date()
+      date.setHours(initialHours, initialMinutes, 0, 0)
+      return date
+    })
     const [hoursInputValue, setHoursInputValue] = useState(formatNumber(initialHours))
     const [minutesInputValue, setMinutesInputValue] = useState(formatNumber(initialMinutes))
-    const [tempHours, setTempHours] = useState(initialHours)
-    const [tempMinutes, setTempMinutes] = useState(initialMinutes)
     const containerRef = useRef<View>(null)
-
-    useEffect(() => {
-      if (!hoursInputFocused && !minutesInputFocused) {
-        const { hours, minutes } = parseTime(value)
-        setCurrentHours(hours)
-        setCurrentMinutes(minutes)
-        setTempHours(hours)
-        setTempMinutes(minutes)
-        setHoursInputValue(formatNumber(hours))
-        setMinutesInputValue(formatNumber(minutes))
-      }
-    }, [value, hoursInputFocused, minutesInputFocused])
 
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
@@ -145,6 +138,61 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         pendingUpdate.current = null
       }
     }, [currentHours, currentMinutes, onChange])
+
+    const handlePickerChange = useCallback(
+      (event: any, selectedDate?: Date) => {
+        if (Platform.OS === 'android') {
+          setIsPickerVisible(false)
+          if (selectedDate && event.type !== 'dismissed') {
+            const hours = selectedDate.getHours()
+            const minutes = selectedDate.getMinutes()
+            setCurrentHours(hours)
+            setCurrentMinutes(minutes)
+            setTempPickerDate(selectedDate)
+            if (onChange) {
+              onChange(formatTime(hours, minutes))
+            }
+          }
+        } else {
+          if (selectedDate && event.type !== 'dismissed') {
+            setTempPickerDate(selectedDate)
+          } else if (event.type === 'dismissed') {
+            setIsPickerVisible(false)
+          }
+        }
+      },
+      [onChange, formatTime],
+    )
+
+    const handleInputPress = useCallback(() => {
+      if (disabled) return
+      const currentDate = new Date()
+      currentDate.setHours(currentHours, currentMinutes, 0, 0)
+      setTempPickerDate(currentDate)
+      setIsPickerVisible(true)
+    }, [disabled, currentHours, currentMinutes])
+
+    const handleConfirmPicker = useCallback(() => {
+      const hours = tempPickerDate.getHours()
+      const minutes = tempPickerDate.getMinutes()
+
+      setCurrentHours(hours)
+      setCurrentMinutes(minutes)
+      setHoursInputValue(formatNumber(hours))
+      setMinutesInputValue(formatNumber(minutes))
+      setIsPickerVisible(false)
+
+      if (onChange) {
+        onChange(formatTime(hours, minutes))
+      }
+    }, [tempPickerDate, onChange, formatTime, formatNumber])
+
+    const handleCancelPicker = useCallback(() => {
+      setIsPickerVisible(false)
+      const currentDate = new Date()
+      currentDate.setHours(currentHours, currentMinutes, 0, 0)
+      setTempPickerDate(currentDate)
+    }, [currentHours, currentMinutes])
 
     const isOnCursor = useCallback(
       (locationX: number, locationY: number) => {
@@ -230,8 +278,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         }
         setCurrentHours(newHours)
         setCurrentMinutes(newMinutes)
-        setTempHours(newHours)
-        setTempMinutes(newMinutes)
         setHoursInputValue(formatNumber(newHours))
         setMinutesInputValue(formatNumber(newMinutes))
         onChange?.(formatTime(newHours, newMinutes))
@@ -285,80 +331,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     )
 
     const combinedGesture = useMemo(() => Gesture.Simultaneous(panGesture, tapGesture), [panGesture, tapGesture])
-
-    const handleHoursChange = (text: string) => {
-      const cleanText = text.replace(/[^0-9]/g, '').slice(0, 2)
-      setHoursInputValue(cleanText)
-
-      if (cleanText === '') {
-        setTempHours(0)
-        return
-      }
-
-      const value = parseInt(cleanText, 10)
-      if (!isNaN(value)) setTempHours(value)
-    }
-
-    const handleMinutesChange = (text: string) => {
-      const cleanText = text.replace(/[^0-9]/g, '').slice(0, 2)
-      setMinutesInputValue(cleanText)
-      if (cleanText === '') {
-        setTempMinutes(0)
-        return
-      }
-
-      const value = parseInt(cleanText, 10)
-      if (!isNaN(value)) setTempMinutes(value)
-    }
-
-    const handleHoursBlur = () => {
-      setHoursInputFocused(false)
-
-      let validatedHours = tempHours
-      let validatedMinutes = currentMinutes
-      if (tempHours > 24) validatedHours = 24
-
-      if (validatedHours === 24) {
-        validatedMinutes = 0
-        setCurrentMinutes(0)
-        setTempMinutes(0)
-        setMinutesInputValue('00')
-      }
-
-      setCurrentHours(validatedHours)
-      setTempHours(validatedHours)
-      setHoursInputValue(formatNumber(validatedHours))
-      onChange?.(formatTime(validatedHours, validatedMinutes))
-    }
-
-    const handleMinutesBlur = () => {
-      setMinutesInputFocused(false)
-
-      if (currentHours === 24) {
-        setCurrentMinutes(0)
-        setTempMinutes(0)
-        setMinutesInputValue('00')
-        onChange?.(formatTime(currentHours, 0))
-        return
-      }
-
-      let validatedMinutes = tempMinutes
-
-      if (tempMinutes > 59) {
-        validatedMinutes = 59
-      } else {
-        validatedMinutes = Math.round(tempMinutes / step) * step
-
-        if (validatedMinutes > 59) {
-          validatedMinutes = 59
-        }
-      }
-
-      setCurrentMinutes(validatedMinutes)
-      setTempMinutes(validatedMinutes)
-      setMinutesInputValue(formatNumber(validatedMinutes))
-      onChange?.(formatTime(currentHours, validatedMinutes))
-    }
 
     const styles = StyleSheet.create({
       container: {
@@ -427,6 +399,24 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         color: mainColor,
         backgroundColor: backgroundColor,
       },
+      inputDisplay: {
+        width: 36,
+        height: 36,
+        borderWidth: 1,
+        borderColor: strokeColor,
+        borderRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: backgroundColor,
+      },
+      inputText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: mainColor,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        includeFontPadding: false,
+      },
       inputFocused: {
         borderColor: mainColor,
         borderWidth: 2,
@@ -477,6 +467,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         position: 'absolute',
         borderRadius: 100,
         zIndex: 25,
+      },
+      picker: {
+        height: 200,
       },
     })
 
@@ -595,45 +588,47 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 },
               ]}
             >
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={[styles.input, hoursInputFocused && styles.inputFocused]}
-                  value={hoursInputValue}
-                  onChangeText={handleHoursChange}
-                  keyboardType='number-pad'
-                  editable={!disabled}
-                  onFocus={() => setHoursInputFocused(true)}
-                  onBlur={handleHoursBlur}
-                  selectTextOnFocus
-                />
+              <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
+                <View style={[styles.input, styles.inputDisplay]}>
+                  <Text typo={TypographyAlign.TEXT_CENTERED}>{hoursInputValue}</Text>
+                </View>
 
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
                   Heures
                 </Text>
-              </View>
+              </TouchableOpacity>
 
               <View style={styles.separatorWrapper}>
-                <Text style={styles.separator}>:</Text>
+                <Text>:</Text>
               </View>
 
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  onChangeText={handleMinutesChange}
-                  style={[styles.input, minutesInputFocused && styles.inputFocused]}
-                  value={minutesInputValue}
-                  keyboardType='number-pad'
-                  editable={!disabled}
-                  onFocus={() => setMinutesInputFocused(true)}
-                  onBlur={handleMinutesBlur}
-                  selectTextOnFocus
-                />
+              <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
+                <View style={[styles.input, styles.inputDisplay]}>
+                  <Text typo={TypographyAlign.TEXT_CENTERED}>{minutesInputValue}</Text>
+                </View>
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
                   Min
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </GestureDetector>
+
+        <Modal active={isPickerVisible} onClose={handleCancelPicker}>
+          <ModalBody>
+            <DateTimePicker
+              value={tempPickerDate}
+              mode='time'
+              display={'spinner'}
+              onChange={handlePickerChange}
+              style={styles.picker}
+              minuteInterval={step as any}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={handleConfirmPicker}>Confirmer</Button>
+          </ModalFooter>
+        </Modal>
       </View>
     )
   },
