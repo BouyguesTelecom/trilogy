@@ -1,39 +1,36 @@
 import {
   Align,
-  Alignable,
+  Box,
   BoxContent,
+  Button,
   ButtonVariant,
   Container,
   DirectionEnum,
-  Image,
-  Justify,
-  TrilogyColor,
-  TypographyBold,
-  View,
-} from '@trilogy-ds/react'
-import {
-  Box,
-  Button,
   FlexBox,
   FlexItem,
   GapSize,
   Icon,
   IconName,
   IconSize,
+  Image,
+  Justify,
   Section,
   Switch,
   Text,
   TextLevels,
   Title,
   TitleLevels,
-} from '@trilogy-ds/react/components'
+  TrilogyColor,
+  TypographyBold,
+  View,
+} from '@trilogy-ds/react'
 
 export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Container className='container_410'>
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
-        <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Alignable.ALIGNED_CENTER} scrollable>
+        <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Align.CENTER} scrollable>
           <FlexItem size={{ tablet: 10 }}>
             <Box>
               <Text>Size 10 desktop</Text>

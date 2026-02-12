@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconSize } from '@/components/icon'
-import { Text } from '@/components/text'
-import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
+import { Icon, IconSize } from '@/components/icon/index.native'
+import { Text } from '@/components/text/index.native'
+import { isIOS } from '@/helpers/device/index.native'
+import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects/index.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { StickerNativeRef, StickerProps } from './StickerProps'
+import { StickerNativeRef, StickerProps } from './StickerProps/index.native'
 
 /**
  * Sticker component

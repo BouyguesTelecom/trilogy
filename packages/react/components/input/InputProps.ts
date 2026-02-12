@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
-import { Accessibility, Dev } from '../../objects/facets'
-
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
+import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
+import { IconName, IconNameValues } from '../icon/IconNameEnum'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,

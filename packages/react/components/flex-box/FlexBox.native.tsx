@@ -3,7 +3,7 @@ import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getJustifyStyle } from '@/objects/facets/Justifiable'
 import React, { useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
-import { ColumnsGapValue } from '../columns'
+import { ColumnsGapValue } from '../columns/index.native'
 import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
 import { FlexBoxContext } from './context'
 

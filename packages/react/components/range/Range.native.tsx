@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
+import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects/index.native'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, TextLevels } from '../text'
+import { Text, TextLevels } from '../text/index.native'
 import { RangeNativeProps, RangeNativeRef } from './RangeProps'
 
 /**

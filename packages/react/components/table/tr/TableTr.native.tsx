@@ -1,10 +1,10 @@
+import { getColorStyle, TrilogyColor } from '@/components/../objects/index.native'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text, TextLevels } from '@/components/text/index.native'
+import { View } from '@/components/view/index.native'
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { TableTrNativeRef, TableTrPropsNative } from './TableTrProps'
-import { View } from '@/components/view'
-import { Text, TextLevels } from '@/components/text'
-import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor } from '@/components/../objects'
 
 /**
  * TableTr Component

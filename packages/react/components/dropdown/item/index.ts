@@ -1,2 +1,4 @@
-export { default as DropdownItem } from './DropdownItem'
+import DropdownItem from './DropdownItem'
+
 export * from './DropdownItemProps'
+export { DropdownItem }

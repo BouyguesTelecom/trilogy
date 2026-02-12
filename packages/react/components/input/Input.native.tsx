@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { Text, TextLevels } from '@/components/text'
-import { isIOS } from '@/helpers/device.native'
-import { TypographyColor } from '@/objects'
+import { Icon, IconName, IconSize } from '@/components/icon/index.native'
+import { Text, TextLevels } from '@/components/text/index.native'
+import { isIOS } from '@/helpers/device/index.native'
 import { Align } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { StatusState } from '@/objects/facets/Status'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import { StatusState } from '@/objects/facets/Status/index.native'
+import { TypographyColor } from '@/objects/index.native'
 import React, { useCallback, useEffect, useState } from 'react'
 import {
   Keyboard,
@@ -16,7 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Spacer, SpacerSize } from '../spacer'
+import { Spacer, SpacerSize } from '../spacer/index.native'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,

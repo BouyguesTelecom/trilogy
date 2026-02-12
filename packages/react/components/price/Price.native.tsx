@@ -1,9 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Spacer, SpacerSize } from '@/components/spacer'
+import { Spacer, SpacerSize } from '@/components/spacer/index.native'
 import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
+import {
+  Alignable,
+  getColorStyle,
+  getTypographyBoldStyle,
+  TrilogyColor,
+  TypographyBold,
+} from '../../objects/index.native'
 import { PriceLevel } from './PriceEnum'
 import { checkCents } from './PriceHelpers'
 import { PriceNativeRef, PriceProps } from './PriceProps'

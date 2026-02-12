@@ -1,9 +1,8 @@
-import clsx from 'clsx'
-import React, { useId } from 'react'
-
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { hashClass } from '@/helpers'
+import clsx from 'clsx'
+import React, { useId } from 'react'
 import { useGauge } from './hook/useGauge'
 
 interface InputGaugeProps {

@@ -1,9 +1,9 @@
 import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
-import { StatusState } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon/index.native'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import { StatusState } from '@/objects/index.native'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 

@@ -1,14 +1,10 @@
-import * as React from "react"
-import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from "./ViewProps"
-import clsx from "clsx"
-import { has, is } from "@/services"
-import {
-  getLoadingClassName,
-  getJustifyClassName,
-  getAlignClassName, getBackgroundClassName,
-} from "@/objects"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects/index'
+import { has, is } from '@/services/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
 
 /**
  * View Component (DIV EQUIVALENT)

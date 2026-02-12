@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { has, is } from '@/services'
-import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
-import { Icon, IconName, IconSize } from '../icon'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { has, is } from '@/services/index'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import React, { useEffect, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { Icon, IconName, IconSize } from '../icon'
+import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
 
 /**
  * Product Tour Component

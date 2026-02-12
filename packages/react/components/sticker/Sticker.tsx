@@ -1,12 +1,12 @@
-import React from 'react'
-import clsx from 'clsx'
-import { StickerProps, StickerRef } from './StickerProps'
-import { is } from '@/services/classify'
-import { getVariantClassName } from '@/objects'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
 import { Icon, IconSize } from '@/components/icon'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getVariantClassName } from '@/objects/index'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { StickerProps, StickerRef } from './StickerProps'
 
 /**
  * Sticker component

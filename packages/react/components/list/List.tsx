@@ -1,5 +1,5 @@
 import { ListProps, ListRef } from '@/components/list/ListProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 import clsx from 'clsx'

@@ -1,5 +1,5 @@
 import { RadioProps, RadioRef } from '@/components/radio/RadioProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'

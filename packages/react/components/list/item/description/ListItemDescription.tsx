@@ -1,9 +1,9 @@
-import * as React from "react"
-import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
-import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ListItemDescriptionProps, ListItemDescriptionRef } from './ListItemDescriptionProps'
 
 /**
  * ListItemDescription Component

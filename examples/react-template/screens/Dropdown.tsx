@@ -1,16 +1,11 @@
-import React, { useState } from 'react'
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownGroup,
-  DropdownTrigger
-} from '@trilogy-ds/react/components/dropdown'
-import { Section } from '@trilogy-ds/react/components/section'
-import { Title } from '@trilogy-ds/react/components/title'
-import { Text } from '@trilogy-ds/react/components/text'
-import { Button } from '@trilogy-ds/react/components/button'
-import { IconName } from '@trilogy-ds/react/components/icon'
-import { View } from '@trilogy-ds/react/components/view'
+import { Dropdown, DropdownItem, DropdownTrigger } from '@trilogy-ds/react'
+import { Button } from '@trilogy-ds/react/lib/components/button'
+import { IconName } from '@trilogy-ds/react/lib/components/icon'
+import { Section } from '@trilogy-ds/react/lib/components/section'
+import { Text } from '@trilogy-ds/react/lib/components/text'
+import { Title } from '@trilogy-ds/react/lib/components/title'
+import { View } from '@trilogy-ds/react/lib/components/view'
+import { useState } from 'react'
 
 export const DropdownScreen = (): JSX.Element => {
   const [isOpen1, setIsOpen1] = useState(false)
@@ -27,26 +22,15 @@ export const DropdownScreen = (): JSX.Element => {
         <View>
           <Dropdown onToggle={(isOpen: boolean) => console.log('Dropdown toggled:', isOpen)}>
             <DropdownTrigger>
-              <Button variant='CONVERSION'>
-                {selectedValue || 'Choose an option'} ▼
-              </Button>
+              <Button variant='CONVERSION'>{selectedValue || 'Choose an option'} ▼</Button>
             </DropdownTrigger>
-            <DropdownItem
-              iconName={IconName.CHECK}
-              onSelect={() => setSelectedValue('Option 1')}
-            >
+            <DropdownItem iconName={IconName.CHECK} onSelect={() => setSelectedValue('Option 1')}>
               Option 1
             </DropdownItem>
-            <DropdownItem
-              iconName={IconName.CALENDAR}
-              onSelect={() => setSelectedValue('Option 2')}
-            >
+            <DropdownItem iconName={IconName.CALENDAR} onSelect={() => setSelectedValue('Option 2')}>
               Option 2
             </DropdownItem>
-            <DropdownItem
-              iconName={IconName.SEARCH}
-              onSelect={() => setSelectedValue('Option 3')}
-            >
+            <DropdownItem iconName={IconName.SEARCH} onSelect={() => setSelectedValue('Option 3')}>
               Option 3
             </DropdownItem>
             <DropdownItem iconName={IconName.TIMES} disabled>
@@ -67,19 +51,13 @@ export const DropdownScreen = (): JSX.Element => {
         <View>
           <Dropdown>
             <DropdownTrigger>
-              <Button variant='CONVERSION'>
-                Choose an option ▼
-              </Button>
+              <Button variant='CONVERSION'>Choose an option ▼</Button>
             </DropdownTrigger>
-            <DropdownItem iconName={IconName.CHECK}>
-              Normal item
-            </DropdownItem>
+            <DropdownItem iconName={IconName.CHECK}>Normal item</DropdownItem>
             <DropdownItem iconName={IconName.CALENDAR} active>
               Active item
             </DropdownItem>
-            <DropdownItem iconName={IconName.SEARCH}>
-              Another normal item
-            </DropdownItem>
+            <DropdownItem iconName={IconName.SEARCH}>Another normal item</DropdownItem>
             <DropdownItem iconName={IconName.TIMES} disabled>
               Disabled item
             </DropdownItem>
@@ -89,36 +67,33 @@ export const DropdownScreen = (): JSX.Element => {
 
       <Title level={3}>Manual Dropdown</Title>
       <Text>Basic dropdown with manual state management and external trigger.</Text>
-        <Button
-          onClick={() => setIsOpen1(!isOpen1)}
-          variant="SECONDARY"
-        >
-          Manual control {isOpen1 ? '▲' : '▼'}
-        </Button>
+      <Button onClick={() => setIsOpen1(!isOpen1)} variant='SECONDARY'>
+        Manual control {isOpen1 ? '▲' : '▼'}
+      </Button>
 
-        {isOpen1 && (
-          <Dropdown isActive={isOpen1}>
-            <DropdownItem
-              iconName={IconName.CHECK}
-              onSelect={() => {
-                console.log('Manual option selected')
-                setIsOpen1(false)
-              }}
-            >
-              Manual Option 1
-            </DropdownItem>
-            <DropdownItem
-              iconName={IconName.CALENDAR}
-              onSelect={() => {
-                console.log('Manual option selected')
-                setIsOpen1(false)
-              }}
-            >
-              Manual Option 2
-            </DropdownItem>
-          </Dropdown>
-        )}
-        <View style={{ marginBottom: 1000 }}></View>
+      {isOpen1 && (
+        <Dropdown isActive={isOpen1}>
+          <DropdownItem
+            iconName={IconName.CHECK}
+            onSelect={() => {
+              console.log('Manual option selected')
+              setIsOpen1(false)
+            }}
+          >
+            Manual Option 1
+          </DropdownItem>
+          <DropdownItem
+            iconName={IconName.CALENDAR}
+            onSelect={() => {
+              console.log('Manual option selected')
+              setIsOpen1(false)
+            }}
+          >
+            Manual Option 2
+          </DropdownItem>
+        </Dropdown>
+      )}
+      <View style={{ marginBottom: 1000 }}></View>
     </Section>
   )
 }

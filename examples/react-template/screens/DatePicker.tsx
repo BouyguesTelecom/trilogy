@@ -1,4 +1,4 @@
-import { Button, DatePicker, Section, Text } from '@trilogy-ds/react/components'
+import { Button, DatePicker, Section, Text } from '@trilogy-ds/react'
 import { useState } from 'react'
 
 export const DatePickerScreen = (): JSX.Element => {

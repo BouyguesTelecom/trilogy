@@ -1,14 +1,14 @@
+import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { DirectionEnum, DirectionEnumValues } from '@/objects'
 import { Align, getAlignClassName } from '@/objects/facets/Alignable'
 import { Justify } from '@/objects/facets/Justifiable'
-import { has, is } from '@/services'
+import { has, is } from '@/services/index'
 import clsx from 'clsx'
 import React from 'react'
 import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps, WrapProps } from './FlexBoxProps'
-import { DirectionEnum, DirectionEnumValues } from '@/objects'
-import { GapSize } from '@/components/columns'
 
 interface GetResponsiveClassesProp {
   value:

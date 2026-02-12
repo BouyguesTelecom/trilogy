@@ -15,37 +15,13 @@ import { DropdownGroupProps, DropdownGroupRef } from './DropdownGroupProps'
  * @param testId {string} Test id
  */
 const DropdownGroup = React.forwardRef<DropdownGroupRef, DropdownGroupProps>(
-  (
-    {
-      className,
-      id,
-      children,
-      hideSeparator,
-      testId,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
+  ({ className, id, children, hideSeparator, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
-    const classes = hashClass(
-      styled,
-      clsx(
-        'dropdown-group',
-        hideSeparator && is('no-separator'),
-        className,
-      ),
-    )
+    const classes = hashClass(styled, clsx('dropdown-group', hideSeparator && is('no-separator'), className))
 
     return (
-      <div
-        ref={ref}
-        id={id}
-        className={classes}
-        role="group"
-        data-testid={testId}
-        {...others}
-      >
+      <div ref={ref} id={id} className={classes} role='group' data-testid={testId} {...others}>
         {children}
       </div>
     )

@@ -1,2 +1,4 @@
-export { default as DropdownGroup } from './DropdownGroup'
+import DropdownGroup from './DropdownGroup'
+
 export * from './DropdownGroupProps'
+export { DropdownGroup }

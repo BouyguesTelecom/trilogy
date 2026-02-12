@@ -1,4 +1,4 @@
-import { Accessibility, Dev } from '@/objects'
+import { Accessibility, Dev } from '@/objects/index'
 import { View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Pager } from './PaginationEnum'

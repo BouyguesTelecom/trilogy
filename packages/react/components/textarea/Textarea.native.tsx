@@ -1,18 +1,18 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconColor } from '@/components/icon'
+import { Icon, IconColor } from '@/components/icon/index.native'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import { TypographyColor } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { StatusState } from '@/objects/facets/Status'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
+import { StatusState } from '@/objects/facets/Status/index.native'
+import { TypographyColor } from '@/objects/index.native'
 import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { SpacerSize } from '../spacer'
-import { Text as TrilogyText } from '../text'
+import { SpacerSize } from '../spacer/index.native'
+import { Text as TrilogyText } from '../text/index.native'
 import { TextLevels } from '../text/TextEnum'
 import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
 

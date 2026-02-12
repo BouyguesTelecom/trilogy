@@ -1,13 +1,13 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { IconProps, IconRef } from './IconProps'
-import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 
 /**
  * Icon Component

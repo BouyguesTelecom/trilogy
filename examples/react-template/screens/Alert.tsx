@@ -1,6 +1,6 @@
-import { isMobile, StatusState } from '@trilogy-ds/react'
 import {
   Alert,
+  AlertMarkup,
   Box,
   BoxContent,
   Button,
@@ -8,16 +8,17 @@ import {
   Columns,
   Container,
   IconName,
+  isMobile,
   Spacer,
   SpacerSize,
+  StatusState,
   Title,
   TitleLevels,
+  ToasterAlertPosition,
   ToasterAlertProvider,
   ToasterContext,
   View,
-} from '@trilogy-ds/react/components'
-import { AlertMarkup } from '@trilogy-ds/react/components/alert/AlertEnum'
-import { ToasterAlertPosition } from '@trilogy-ds/react/components/alert/AlertProps'
+} from '@trilogy-ds/react'
 import React, { useContext, useState } from 'react'
 
 const ToasterAlertView: React.FC = () => {

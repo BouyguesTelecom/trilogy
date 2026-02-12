@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Title, TitleLevels } from '@/components/title'
-import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { Title, TitleLevels } from '@/components/title/index.native'
+import { isIOS } from '@/helpers/device/index.native'
+import { getColorStyle, TrilogyColor } from '@/objects/index.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ModalContext } from '../context'
-import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
+import { ModalFooterNativeRef, ModalFooterProps } from './ModalFooterProps'
 
 /**
  * Modal Footer Component

@@ -1,6 +1,11 @@
-export { default as Dropdown } from './Dropdown'
+import Dropdown from './Dropdown'
+import DropdownGroup from './group/DropdownGroup'
+import DropdownItem from './item/DropdownItem'
+import DropdownTrigger from './trigger/DropdownTrigger'
+
 export * from './DropdownProps'
-export * from './item'
-export * from './group'
-export * from './trigger'
-export * from './context'
+export * from './group/DropdownGroupProps'
+export * from './item/DropdownItemProps'
+export * from './trigger/DropdownTriggerProps'
+
+export { Dropdown, DropdownGroup, DropdownItem, DropdownTrigger }

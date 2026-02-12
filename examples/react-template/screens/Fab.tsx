@@ -1,19 +1,12 @@
-import * as React from "react";
-import {
-  Fab,
-  IconName,
-  Section,
-  Title,
-  View,
-} from "@trilogy-ds/react/components";
+import { Fab, IconName, Section, Title, View } from '@trilogy-ds/react'
+import * as React from 'react'
 
 export const FabScreen = (): JSX.Element => {
-  const [active, setActive] = React.useState<boolean>(false);
+  const [active, setActive] = React.useState<boolean>(false)
   return (
     <Section>
-      <View style={{height: "80rem"}}>
-
-        <Title level={"TWO"}>FAB button</Title>
+      <View style={{ height: '80rem' }}>
+        <Title level={'TWO'}>FAB button</Title>
         <Fab
           extended={active}
           onClick={() => setActive(!active)}
@@ -25,5 +18,5 @@ export const FabScreen = (): JSX.Element => {
         </Fab>
       </View>
     </Section>
-  );
-};
+  )
+}

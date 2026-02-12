@@ -39,6 +39,7 @@
   "private": true,
   "dependencies": {
     "@react-native-community/cli-platform-ios": "^20.1.1",
+    "@react-navigation/native": "^7.1.28",
     "expo": "~51.0.28",
     "expo-font": "~12.0.10",
     "expo-splash-screen": "~0.27.7",

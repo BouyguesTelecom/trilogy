@@ -1,6 +1,6 @@
-import { VariantProps } from '@/objects'
+import { VariantProps } from '@/objects/index'
 import { TouchableOpacity } from 'react-native'
-import { IconName, IconNameValues } from '../../../../components/icon'
+import { IconName, IconNameValues } from '../../../../components/icon/IconNameEnum'
 import { RadioNativeProps, RadioProps } from '../../../../components/radio/RadioProps'
 
 /**

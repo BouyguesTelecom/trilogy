@@ -1,4 +1,5 @@
 import {
+  Alignable,
   Box,
   BoxContent,
   Button,
@@ -13,9 +14,8 @@ import {
   Tabs,
   Text,
   Title,
-} from '@trilogy-ds/react/components'
-import { isMobile } from '@trilogy-ds/react/helpers'
-import { Alignable } from '@trilogy-ds/react/objects'
+  isMobile,
+} from '@trilogy-ds/react'
 import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {
@@ -53,32 +53,6 @@ export const TabScreen = (): JSX.Element => {
           <Button variant='CONVERSION' onClick={() => setIndex(1)}>
             Set Tab 2
           </Button>
-        </BoxContent>
-      </Box>
-
-      <Box flat>
-        <BoxContent>
-          <Title className='is-centered'>Full width</Title>
-          <Tabs fullwidth>
-            <TabList>
-              <Tab
-                active={index === 0}
-                label='Tab long text content 1'
-                iconName={IconName.ALERT}
-                href='/hello'
-                onClick={() => setIndex(0)}
-              />
-              <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)} />
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Text>Tab 1</Text>
-              </TabPanel>
-              <TabPanel>
-                <Text>Tab 2</Text>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
         </BoxContent>
       </Box>
 

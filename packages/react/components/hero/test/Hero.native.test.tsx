@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Container } from '@/components/container'
 import Hero from '@/components/hero/Hero.native'
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/objects/index'
 
 jest.useFakeTimers()
 

@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { is } from '@/services'
+import { Text, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
 import { isRequiredChild } from '@/helpers/require'
+import { getJustifiedClassName } from '@/objects/index'
+import { TypographyColor } from '@/objects/Typography'
+import { is } from '@/services'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
-import { Text, TextMarkup } from '@/components/text'
-import { TypographyColor } from '@/objects/Typography'
 
 /**
  * RadioList Component

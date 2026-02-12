@@ -1,5 +1,4 @@
-import { Box, BoxContent, Container, Divider, Section, Text, Title, TitleLevels } from '@trilogy-ds/react/components'
-import * as React from 'react'
+import { Box, BoxContent, Container, Divider, Section, Text, Title, TitleLevels } from '@trilogy-ds/react'
 
 export const ContainerScreen = (): JSX.Element => {
   return (

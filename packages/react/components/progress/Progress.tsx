@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { ProgressProps, ProgressRef } from './ProgressProps'
-import { is } from '@/services/index'
-import { getStatusClassName } from '@/objects'
-import { hashClass } from '@/helpers'
-import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
 import { Text } from '@/components/text'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getStatusClassName } from '@/objects/index'
+import { is } from '@/services/index'
+import clsx from 'clsx'
+import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { ProgressProps, ProgressRef } from './ProgressProps'
 
 /**
  * Progress component

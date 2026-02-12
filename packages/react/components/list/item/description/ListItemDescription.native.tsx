@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Text } from "@/components/text"
-import { View } from "@/components/view"
-import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from "./ListItemDescriptionProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text } from '@/components/text/index.native'
+import { View } from '@/components/view/index.native'
+import * as React from 'react'
+import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from './ListItemDescriptionProps'
 
 /**
  * ListItemDescription Component

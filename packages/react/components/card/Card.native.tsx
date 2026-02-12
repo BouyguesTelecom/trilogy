@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { createContext, PropsWithChildren } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '../skeleton'

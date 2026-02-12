@@ -1,12 +1,12 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { useTrilogyContext } from '@/context/index'
+import { hashClass } from '@/helpers/index'
+import { getColorClassName, TrilogyColor } from '@/objects/index'
+import { is } from '@/services/index'
 import clsx from 'clsx'
 import * as React from 'react'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName, TrilogyColor } from '@/objects'
-import { is } from '@/services'
-import { Icon, IconName, IconSize } from '@/components/icon'
 import { ListItemProps, ListItemRef } from './ListItemProps'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItem Component
