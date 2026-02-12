@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { DirectionEnum, DirectionEnumValues } from '@/objects'
 import { Align, getAlignClassName } from '@/objects/facets/Alignable'
-import { getJustifyClassName, Justify } from '@/objects/facets/Justifiable'
+import { Justify } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services/index'
 import clsx from 'clsx'
 import React from 'react'
@@ -65,6 +65,31 @@ const generateWrapClassNames = ({ value, getClassName }: GetWrapClassesProp): st
 }
 
 /**
+ * Internal Jusitify class name generator fix (to remove & update real function for V5)
+ * @param justifyContent
+ * @returns
+ */
+const getJustifyClassName = (justifyContent?: string) => {
+  if (!justifyContent) return 'flex-start'
+  switch (true) {
+    case ['CENTER', 'JUSTIFIED_CENTER'].includes(justifyContent):
+      return 'justified-center'
+    case ['START', 'JUSTIFIED_START'].includes(justifyContent):
+      return 'justified-start'
+    case ['END', 'JUSTIFIED_END'].includes(justifyContent):
+      return 'justified-end'
+    case ['SPACE_BETWEEN', 'SPACE_BETWEEN'].includes(justifyContent):
+      return 'spaced-between'
+    case justifyContent === 'SPACE_EVENLY':
+      return 'spaced-evenly'
+    case justifyContent === 'SPACE_AROUND':
+      return 'spaced-around'
+    default:
+      return 'justified-start'
+  }
+}
+
+/**
  * @beta
  * FlexBox component
  * @param children {React.ReactNode} Box child
@@ -82,6 +107,9 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
+    const gapClasses =
+      gap === 0 ? [is('gapless')] : generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) })
+
     const classes = hashClass(
       styled,
       clsx([
@@ -89,7 +117,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
         ...generateClassNames({ value: direction, getClassName: (val) => is(`direction-${val}`) }),
         ...generateClassNames({ value: align, getClassName: (val) => is(getAlignClassName(val as string)) }),
         ...generateClassNames({ value: justify, getClassName: (val) => is(getJustifyClassName(val as string)) }),
-        ...generateClassNames({ value: gap, getClassName: (val) => has(`gap-${val}`) }),
+        ...gapClasses,
         ...generateWrapClassNames({ value: wrap, getClassName: (val) => is(`wrap`) }),
         scrollable && is('scrollable'),
         fullheight && is('fullheight'),

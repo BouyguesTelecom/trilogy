@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import type { CheckboxProps } from '../../../components/checkbox/CheckboxProps'
 import type { DividerProps } from '../../../components/divider/DividerProps'
-import { Alignable, AlignableValues } from '../../../objects/facets/Alignable'
+import { AlignableProps } from '../../../objects/facets/Alignable'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
 type CheckboxListChildrenTypes = React.ReactElement<CheckboxProps | DividerProps> | undefined
@@ -18,7 +18,7 @@ export interface CheckboxListProps {
  * Checkbox List Web Interface
  */
 export interface CheckboxListWebProps extends CheckboxListProps, CommonProps {
-  align?: Alignable | AlignableValues
+  align?: AlignableProps['align']
   className?: string
   horizontalMobile?: boolean
   verticalDesktop?: boolean

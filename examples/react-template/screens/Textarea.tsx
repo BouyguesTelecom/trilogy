@@ -12,6 +12,7 @@ export const TextareaScreen = (): JSX.Element => {
         iconNameLeft={IconName.CHECK}
         iconNameRight='tri-exclamation-circle'
         status={InputStatus.ERROR}
+        placeholder='Placeholder'
       />
 
       <Divider />

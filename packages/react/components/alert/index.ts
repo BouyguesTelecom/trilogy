@@ -5,4 +5,3 @@ export * from './AlertEnum'
 export * from './AlertProps'
 
 export { Alert, ToasterAlertProvider, ToasterContext }
-

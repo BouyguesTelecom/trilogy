@@ -3,15 +3,39 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.14.0] - 2025-12-XX
+## [4.14.5] - 2026-02-XX
+- Adde stroke color
+
+## [4.14.4] - 2026-02-09
+- Fix Alert style (web)
+- Fix Alert interfaces
+- Fix border color in some components (native)
+- Fix image radius (native)
+- Fix onClick prop on pagination (web)
+- Fix justify classname function for flexbox (web)
+- Fix autocomplete (web)
+- Stroke fade color
+
+## [4.14.3] - 2026-01-20
+- Fix desktop breakpoint
+
+## [4.14.2] - 2026-01-15
+- Fix container queries
+- Fix dropdown menu (web)
+- Fix input and textarea props
+
+## [4.14.0] - 2026-01-12
 - Add datepicker native
 - Add calendar native
 - Add container query (FlexBox web)
 - Fix calendar order days
 - Fix position on range calendar (web)
 - Fix radio checkbox stretched (web)
+- Update skeleton (native)
+- Dropdown Menu (web)
 - Update and fix skeleton (native)
 - Fix flexbox gap (mobile container query)
+- Fix onChange prop (Radio)
 
 ## [4.13.0] - 2025-11-24
 - Fix Tab native fullwidth (ui)

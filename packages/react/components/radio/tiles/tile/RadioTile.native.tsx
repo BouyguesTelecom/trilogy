@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon/index.native'
-import { RadioTileNativeRef, RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/tiles/tile/RadioTileProps'
 import { SpacerSize } from '@/components/spacer/index.native'
 import { Sticker } from '@/components/sticker/index.native'
 import { Text, TextLevels } from '@/components/text/index.native'
@@ -26,7 +26,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  * @param horizontal Horizontal radio
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileProps>(
+const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,

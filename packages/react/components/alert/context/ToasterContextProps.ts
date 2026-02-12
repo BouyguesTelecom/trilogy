@@ -1,4 +1,4 @@
-import { ToasterAlertPosition } from '@/components/alert/AlertProps'
+import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
 import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility, StatusProps } from '@/objects/index'
 import { AlertMarkup, AlertMarkupValues } from '../AlertEnum'
@@ -25,6 +25,7 @@ export interface ToastProps extends StatusProps, Accessibility {
 
 interface ToastConfig {
   position?: ToasterAlertPosition
+  float?: ToasterAlertFloat
   duration?: number
   offset?: number
 }

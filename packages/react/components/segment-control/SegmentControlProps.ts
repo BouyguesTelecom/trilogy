@@ -1,4 +1,4 @@
-import { Alignable, AlignableValues } from '@/objects/index'
+import { AlignableProps } from '@/objects/index'
 import type { View } from 'react-native'
 import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
@@ -9,7 +9,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 export interface SegmentControlProps extends Clickable, CommonProps {
   children: React.ReactNode
   activeIndex?: number
-  align?: Alignable | AlignableValues
+  align?: AlignableProps['align']
 }
 
 export type SegmentControlRef = HTMLDivElement

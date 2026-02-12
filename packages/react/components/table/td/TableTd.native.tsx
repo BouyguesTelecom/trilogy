@@ -16,8 +16,8 @@ const TableTd = React.forwardRef<TableTdNativeRef, TableTdProps>(({ children, ..
       padding: 10,
       borderBottomWidth: 0.2,
       borderRightWidth: 0.2,
-      borderBottomColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      borderBottomColor: getColorStyle(TrilogyColor.STROKE_FADE),
+      borderRightColor: getColorStyle(TrilogyColor.STROKE_FADE),
     },
     text: {
       color: getColorStyle(TrilogyColor.MAIN),

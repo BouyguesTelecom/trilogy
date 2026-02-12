@@ -23,7 +23,7 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(
         height: height ? height : '100%',
         borderRadius: circled ? 100 : 0,
         overflow: circled ? 'hidden' : 'visible',
-        resizeMode: 'contain',
+        resizeMode: circled ? undefined : 'contain',
       },
     })
 

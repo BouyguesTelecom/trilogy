@@ -3,13 +3,13 @@ import { IconSize } from '@/components/icon/IconEnum'
 import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme/index.native'
-import { isAndroid, isIOS } from '@/helpers/device/index.native'
+import { isIOS } from '@/helpers/device/index.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color/index.native'
 import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
 import { WithLocalSvg } from 'react-native-svg/css'
+import { Skeleton } from '../skeleton/index.native'
 
 /**
  * Icon Component
@@ -88,7 +88,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
         alignItems: 'center',
         justifyContent: 'center',
         width: defaultSize,
-        height: defaultSize
+        height: defaultSize,
       },
       stretched: {
         justifyContent: 'center',

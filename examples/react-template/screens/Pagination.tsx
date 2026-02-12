@@ -18,13 +18,13 @@ export const PaginationScreen = (): JSX.Element => {
       <Section>
         <Title level={TitleLevels.THREE}>Pagination</Title>
         <Divider />
-        <Pagination onClick={(e) => console.log('event', e)} length={5} href={(pageNumber) => `/page/${pageNumber}`} />
+        <Pagination length={5} href={(pageNumber) => `/page/${pageNumber}`} />
 
         <Divider />
 
-        <Pagination onClick={(e) => console.log('event', e)} length={70} />
+        <Pagination onClick={(e) => console.log(e)} length={70} />
         <Divider />
-        <Pagination onClick={(e) => console.log('event', e)} length={7} defaultPage={2} />
+        <Pagination length={7} defaultPage={2} />
 
         <Divider />
         <Box flat>

@@ -38,7 +38,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
         paddingTop: 6,
         paddingBottom: 5,
         margin: 6,
-        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
+        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE),
         borderWidth: 1,
         flexDirection: 'row',
       },

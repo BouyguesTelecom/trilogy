@@ -75,9 +75,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     setSearch(matching(data, _inputValue))
   }, [data])
 
-  const onTextChanged = async (e: InputChangeEventWeb) => {
-    setIsAutocompleteMenuVisible(true)
-
+  const handleChangeInputValue = (e: InputChangeEventWeb) => {
     if (onChange) {
       onChange({
         inputName: name || '',
@@ -87,20 +85,20 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         event: e,
       })
     }
-
-    // Check if the input value is a regular expression or a string
     if (e.inputValue.startsWith('/') && e.inputValue.endsWith('/')) {
       try {
         const pattern = e.inputValue.substring(1, e.inputValue.lastIndexOf('/'))
         setInputValue(new RegExp(pattern, 'i').source)
       } catch (error) {
-        // If the regular expression is invalid, keep the input value as a string
         setInputValue(e.inputValue)
       }
     } else {
       setInputValue(e.inputValue)
     }
+  }
 
+  const getSuggestionsHandler = async (e: InputChangeEventWeb) => {
+    setIsAutocompleteMenuVisible(true)
     if (getSuggestions) {
       const data = await getSuggestions(e.inputValue)
       setSearch(data)
@@ -108,7 +106,8 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
       setSearch(matching(data, e.inputValue))
     }
   }
-  const onInputChange = debounceSuggestionsTimeout ? debounce(onTextChanged, debounceSuggestionsTimeout) : onTextChanged
+
+  const onInputChange = debounceSuggestionsTimeout ? debounce(getSuggestionsHandler, debounceSuggestionsTimeout) : getSuggestionsHandler
 
   const suggestionSelected = (value: T, data: T[], search: T[]) => {
     setIsAutocompleteMenuVisible(false)
@@ -163,7 +162,6 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         status={status}
         autoCompleteType={InputAutoCompleteType.OFF}
         disabled={disabled}
-        // Add delay for selection of suggestion
         onBlur={(e: FocusEvent<HTMLInputElement, Element>) => {
           setTimeout(() => setIsAutocompleteMenuVisible(false), 250)
           if (onBlur) onBlur(e)
@@ -172,6 +170,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         onKeyUp={handleKeyPress}
         value={_inputValue}
         onChange={(event: InputChangeEventWeb) => {
+          handleChangeInputValue(event)
           onInputChange(event)
         }}
         onIconClick={onIconClick}

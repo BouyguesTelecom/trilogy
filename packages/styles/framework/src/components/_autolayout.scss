@@ -29,6 +29,9 @@ body:not(.is-tight) {
   .stepper:not(.flex-box > .stepper):not(:last-child) {
     margin-bottom: 24px;
   }
+  .alert:not(.flex-box > .alert):not(:last-child) {
+    margin-bottom: 24px;
+  }
   .pagination:not(.flex-box > .pagination):not(:last-child) {
     margin-bottom: 24px;
   }
@@ -39,9 +42,6 @@ body:not(.is-tight) {
     margin-bottom: 24px;
   }
   .range:not(.flex-box > .range):not(:last-child) {
-    margin-bottom: 24px;
-  }
-  .stepper:not(.flex-box > .stepper):not(:last-child) {
     margin-bottom: 24px;
   }
   .price-container:not(.flex-box > .price-container):not(:last-child) {
@@ -195,6 +195,9 @@ body:not(.is-tight) {
   .stepper:not(.flex-box > .stepper):not(:last-child) {
       margin-bottom: 16px;
     }
+  .alert:not(.flex-box > .alert):not(:last-child) {
+      margin-bottom: 16px;
+    }
   .pagination:not(.flex-box > .pagination):not(:last-child) {
       margin-bottom: 16px;
     }
@@ -205,9 +208,6 @@ body:not(.is-tight) {
       margin-bottom: 16px;
     }
   .range:not(.flex-box > .range):not(:last-child) {
-      margin-bottom: 16px;
-    }
-  .stepper:not(.flex-box > .stepper):not(:last-child) {
       margin-bottom: 16px;
     }
   .price-container:not(.flex-box > .price-container):not(:last-child) {

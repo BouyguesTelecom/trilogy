@@ -12,6 +12,7 @@ import {
   Icon,
   IconName,
   IconSize,
+  Image,
   Justify,
   Section,
   Switch,
@@ -21,6 +22,7 @@ import {
   TitleLevels,
   TrilogyColor,
   TypographyBold,
+  View,
 } from '@trilogy-ds/react'
 
 export const FlexBoxScreen = (): JSX.Element => {
@@ -28,19 +30,50 @@ export const FlexBoxScreen = (): JSX.Element => {
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Container className='container_410'>
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
-        <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR}>
+        <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Align.CENTER} scrollable>
           <FlexItem size={{ tablet: 10 }}>
+            <Box>
+              <Text>Size 10 desktop</Text>
+              <Text>Size 10 desktop</Text>
+              <Text>Size 10 desktop</Text>
+            </Box>
+          </FlexItem>
+          <FlexItem size={{ tablet: 3 }}>
             <Box>
               <Text>Size 10 desktop</Text>
             </Box>
           </FlexItem>
           <FlexItem size={{ tablet: 3 }}>
             <Box>
-              <Text>Size 3 desktop</Text>
+              <Text>Size 10 desktop</Text>
+              <Text>Size 10 desktop</Text>
+              <Text>Size 10 desktop</Text>
+              <Text>Size 10 desktop</Text>
             </Box>
           </FlexItem>
         </FlexBox>
       </Container>
+
+      <Box backgroundColor={TrilogyColor.MAIN_FADE}>
+        <BoxContent>
+          <FlexBox align={Align.CENTER} justify={Justify.CENTER}>
+            <FlexItem narrow>
+              <Image
+                width={30}
+                height={30}
+                circled
+                src={'https://www.bouyguestelecom.fr/assets/media/full/CMS/ACO-MCARE/add-box.webp'}
+              />
+            </FlexItem>
+            <FlexItem>
+              <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>titre</Text>
+            </FlexItem>
+            <FlexItem narrow>
+              <Icon name={IconName.ARROW_RIGHT} />
+            </FlexItem>
+          </FlexBox>
+        </BoxContent>
+      </Box>
 
       <Title level={TitleLevels.FIVE}>Align elements</Title>
 
@@ -69,16 +102,16 @@ export const FlexBoxScreen = (): JSX.Element => {
           <Icon name={IconName.INFOS_CIRCLE} size={IconSize.HUGE} />
         </FlexBox>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Align elements with gap</Title>
           <FlexBox gap={GapSize.FOUR}>
             <Icon name={IconName.INFOS_CIRCLE} />
             <Icon name={IconName.INFOS_CIRCLE} />
             <Icon name={IconName.INFOS_CIRCLE} />
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Align elements space between</Title>
           <FlexBox justify={Justify.SPACE_BETWEEN}>
             <FlexItem narrow>
@@ -97,9 +130,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               </Box>
             </FlexItem>
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Align elements with flex none (used to be Columns)</Title>
           <FlexBox direction={DirectionEnum.ROW}>
             <FlexItem narrow>
@@ -118,9 +151,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               </Box>
             </FlexItem>
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Align elements with size (used to be Columns)</Title>
           <FlexBox>
             <FlexItem size={{ tablet: 4, mobile: 4 }}>
@@ -144,9 +177,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               </Box>
             </FlexItem>
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Scollable</Title>
           <FlexBox direction={DirectionEnum.ROW} gap={GapSize.FOUR}>
             <FlexItem size={{ tablet: 4, mobile: 12 }}>
@@ -184,9 +217,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               </FlexItem>
             </FlexBox>
           </Box>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Flex into Flex</Title>
           <FlexBox direction={DirectionEnum.ROW} justify={Justify.SPACE_BETWEEN}>
             <FlexBox>
@@ -198,9 +231,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               <Button variant={ButtonVariant.PRIMARY}>Right</Button>
             </FlexBox>
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Flex direction reverse</Title>
           <FlexBox direction={DirectionEnum.ROW}>
             <FlexBox direction={DirectionEnum.COLUMN_REVERSE}>
@@ -212,9 +245,9 @@ export const FlexBoxScreen = (): JSX.Element => {
               <Button variant={ButtonVariant.PRIMARY}>Right</Button>
             </FlexBox>
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Align and justify responsive</Title>
           <FlexBox
             direction={DirectionEnum.ROW}
@@ -228,9 +261,9 @@ export const FlexBoxScreen = (): JSX.Element => {
             {/*// @ts-ignore*/}
             <Box style={{ height: '300px' }} />
           </FlexBox>
-        </>
+        </View>
 
-        <>
+        <View>
           <Title level={TitleLevels.FIVE}>Complex example</Title>
           <Box>
             <BoxContent backgroundColor={TrilogyColor.MAIN_FADE}>
@@ -258,7 +291,7 @@ export const FlexBoxScreen = (): JSX.Element => {
               </FlexBox>
             </BoxContent>
           </Box>
-        </>
+        </View>
       </FlexBox>
     </Section>
   )

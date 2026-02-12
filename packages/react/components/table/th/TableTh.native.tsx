@@ -17,7 +17,7 @@ const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ..
       flex: 1,
       backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
       padding: 10,
-      borderRightColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+      borderRightColor: getColorStyle(TrilogyColor.STROKE_FADE),
       borderRightWidth: 0.2,
     },
     title: {

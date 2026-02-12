@@ -4,7 +4,7 @@ import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color/index.native'
 import React, { useContext } from 'react'
 import { StyleSheet, Text as TextNative } from 'react-native'
-import { Skeleton } from '../skeleton'
+import { Skeleton } from '../skeleton/index.native'
 import { TextLevels, TextLevelValues } from './TextEnum'
 import { TextNativeRef, TextProps } from './TextProps'
 
