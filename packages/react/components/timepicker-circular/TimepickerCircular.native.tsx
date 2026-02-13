@@ -3,7 +3,7 @@ import { Text, TextLevels } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import DateTimePicker from '@react-native-community/datetimepicker'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
@@ -59,6 +59,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const [hoursInputValue, setHoursInputValue] = useState(formatNumber(initialHours))
     const [minutesInputValue, setMinutesInputValue] = useState(formatNumber(initialMinutes))
     const containerRef = useRef<View>(null)
+
+    // Synchroniser l'état local avec la prop value
+    useEffect(() => {
+      const { hours, minutes } = parseTime(value)
+      setCurrentHours(hours)
+      setCurrentMinutes(minutes)
+      setHoursInputValue(formatNumber(hours))
+      setMinutesInputValue(formatNumber(minutes))
+
+      // Mettre à jour aussi la date temporaire du picker
+      const date = new Date()
+      date.setHours(hours, minutes, 0, 0)
+      setTempPickerDate(date)
+    }, [value])
 
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
