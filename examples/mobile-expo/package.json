@@ -14,7 +14,6 @@
     "@babel/plugin-transform-private-methods": "^7.27.1",
     "@expo/metro-config": "~0.18.11",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
-    "@react-native-community/cli": "^20.0.2",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/native-stack": "^6.9.22",
     "@types/react": "~18.2.45",
@@ -32,9 +31,6 @@
     "react-native-toast-message": "^2.2.0",
     "shortid": "^2.2.16",
     "typescript": "~5.3.3"
-  },
-  "overrides": {
-    "@react-native-community/cli": "^20.0.2"
   },
   "private": true,
   "dependencies": {
