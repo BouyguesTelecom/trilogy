@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   id-token: write
+  actions: read
 
 jobs:
   publish:
@@ -21,6 +22,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
+          
+      - name: Update npm to latest version
+        run: npm install -g npm@latest
 
       - name: Extract version tag
         id: get_version
