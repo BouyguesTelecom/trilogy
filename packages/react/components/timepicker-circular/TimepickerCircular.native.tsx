@@ -628,8 +628,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           </View>
         </GestureDetector>
 
-        <Modal active={isPickerVisible} onClose={handleCancelPicker}>
-          <ModalBody>
+        {Platform.OS === 'android' ? (
+          isPickerVisible && (
             <DateTimePicker
               value={tempPickerDate}
               mode='time'
@@ -638,11 +638,24 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               style={styles.picker}
               minuteInterval={step as any}
             />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={handleConfirmPicker}>Confirmer</Button>
-          </ModalFooter>
-        </Modal>
+          )
+        ) : (
+          <Modal active={isPickerVisible} onClose={handleCancelPicker}>
+            <ModalBody>
+              <DateTimePicker
+                value={tempPickerDate}
+                mode='time'
+                display={'spinner'}
+                onChange={handlePickerChange}
+                style={styles.picker}
+                minuteInterval={step as any}
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={handleConfirmPicker}>Confirmer</Button>
+            </ModalFooter>
+          </Modal>
+        )}
       </View>
     )
   },
