@@ -33,12 +33,10 @@
     "shortid": "^2.2.16",
     "typescript": "~5.3.3"
   },
-  "overrides": {
-    "@react-native-community/cli": "^20.0.2"
-  },
   "private": true,
   "dependencies": {
-    "@react-native-community/cli-platform-ios": "^20.1.1",
+    "@react-native-community/datetimepicker": "^8.2.0",
+    "@react-navigation/native": "^7.1.28",
     "expo": "~51.0.28",
     "expo-font": "~12.0.10",
     "expo-splash-screen": "~0.27.7",

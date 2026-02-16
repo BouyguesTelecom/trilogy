@@ -22,7 +22,8 @@
             "../../node_modules/@trilogy-ds/assets/lib/fonts/ttf/poppins-semibold.ttf"
           ]
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -35,7 +36,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.mobileexpo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
