@@ -72,7 +72,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
   ): JSX.Element => {
     const [_value, setValue] = useState<string>(value || '')
     const [isFocus, setIsFocus] = useState<boolean>(false)
-    const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL)
+    const textareaColor = isFocus ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE)
 
     const styles = StyleSheet.create({
       textarea: {

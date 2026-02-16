@@ -160,7 +160,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
           className={classes}
           {...others}
         >
-          <Icon name={iconAlert} />
+          <Icon name={iconAlert} className='alert-icon' />
           <div className={hashClass(styled, clsx('body'))}>
             {title && typeof title.valueOf() === 'string' ? (
               <Title markup={markup} level={TitleLevels.SIX}>

@@ -56,7 +56,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         position: 'relative',
         borderStyle: flat ? 'solid' : undefined,
         borderWidth: (flat && 1) || (active && 2) || 0,
-        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.NEUTRAL),
+        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE),
         marginTop: headerOffset ? 35 : 0,
         flex: fullheight ? 1 : 0,
       },
