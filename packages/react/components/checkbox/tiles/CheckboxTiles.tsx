@@ -13,6 +13,7 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  * @param id
  * @param align {Alignable}
  * @param verticalAlign {Alignable}
+ * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */

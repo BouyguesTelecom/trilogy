@@ -1,13 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { SpacerSize } from '@/components/spacer'
+import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
+import { CheckboxTilesContext } from '../context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
-import { Sticker } from '@/components/sticker'
 
 const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
@@ -30,6 +31,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   ): JSX.Element => {
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
+    const { isGrid } = useContext(CheckboxTilesContext)
 
     const styles = StyleSheet.create({
       container: {
@@ -40,7 +42,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'center',
-       borderColor: getColorStyle(
+        borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
         borderWidth: 1,
@@ -55,8 +57,9 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
       },
       tile: {
+        flex: isGrid ? 1 : undefined,
         padding: _checked ? SpacerSize.FOUR - 1 : SpacerSize.FOUR,
-        maxWidth: '50%',
+        maxWidth: isGrid ? '100%' : '50%',
         borderWidth: (_checked && 2) || 1,
         width: 'auto',
         borderColor: getColorStyle(
@@ -72,6 +75,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         alignSelf: horizontal ? 'flex-start' : 'center',
       },
       horizontal: {
+        flex: isGrid ? 1 : undefined,
         flexDirection: 'row',
         alignItems: 'center',
         gap: SpacerSize.THREE,
@@ -126,11 +130,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
                 alignItems: 'center',
               }}
             >
-                <Icon
-                  size={IconSize.SMALL}
-                  name={icon}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
-                />
+              <Icon size={IconSize.SMALL} name={icon} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} />
             </ViewRN>
           )}
 
@@ -153,25 +153,14 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     }
 
     return (
-      <TouchableOpacity
-        ref={ref}
-        disabled={disabled}
-        style={styles.tile}
-        onPress={handleClick}
-        {...others}
-      >
+      <TouchableOpacity ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
             <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
           </ViewRN>
         )}
         <View style={{ gap: SpacerSize.TWO }}>
-          <TouchableOpacity
-            style={[styles.checkBox]}
-            disabled={disabled}
-            testID={id}
-            onPressIn={handleClick}
-          >
+          <TouchableOpacity style={[styles.checkBox]} disabled={disabled} testID={id} onPressIn={handleClick}>
             {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
           </TouchableOpacity>
           {icon && (

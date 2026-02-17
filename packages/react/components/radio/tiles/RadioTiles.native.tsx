@@ -2,8 +2,9 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import { SpacerSize } from '@/components/spacer'
 import { Alignable } from '@/objects/facets/Alignable'
-import React, { useMemo } from 'react'
+import React, { ReactNode, useCallback, useMemo } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
+import { RadioTilesContext } from './context'
 
 /**
  * RadioTiles
@@ -11,10 +12,12 @@ import { FlatList, StyleSheet, View } from 'react-native'
  * @param children {ReactNode}
  * @param align { Alignable | AlignableValues} align content
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
- * @param numberCols {FlexSize | FlexItemSize} number of columns for grid layout
+ * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  */
 const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
   ({ id, children, align, verticalAlign, numberCols, ...others }, ref): JSX.Element => {
+    const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
+
     const columnCount = useMemo(() => {
       if (!numberCols) return null
       if (typeof numberCols === 'number') return numberCols
@@ -22,7 +25,10 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
     }, [numberCols])
 
     const styles = StyleSheet.create({
-      responsive: {
+      container: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: SpacerSize.TWO,
         alignItems:
           (verticalAlign === Alignable.ALIGNED_CENTER && 'center') ||
           (verticalAlign === Alignable.ALIGNED_START && 'flex-start') ||
@@ -34,33 +40,36 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
           (align === Alignable.ALIGNED_END && 'flex-end') ||
           undefined,
       },
-      container: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+      columnWrapper: {
         gap: SpacerSize.TWO,
+        marginBottom: SpacerSize.TWO,
       },
     })
 
-    if (columnCount) {
-      const childArray = React.Children.toArray(children).filter(React.isValidElement)
-      return (
-        <FlatList
-          data={childArray}
-          numColumns={columnCount}
-          scrollEnabled={false}
-          renderItem={({ item }) => item as React.ReactElement}
-          keyExtractor={(item, index) => (item.key ? item.key.toString() : index.toString())}
-          columnWrapperStyle={columnCount > 1 ? { gap: SpacerSize.TWO } : undefined}
-          contentContainerStyle={styles.responsive}
-          {...others}
-        />
-      )
-    }
+    const renderItem = useCallback(({ item }: { item: ReactNode; index: number }) => {
+      return <View style={{ flex: 1 }}>{item}</View>
+    }, [])
+
+    const keyExtractor = useCallback((_: ReactNode, index: number) => index.toString(), [])
 
     return (
-      <View ref={ref} id={id} style={[styles.container, styles.responsive]} {...others}>
-        {children}
-      </View>
+      <RadioTilesContext.Provider value={{ isGrid: columnCount !== null }}>
+        {columnCount !== null ? (
+          <FlatList
+            data={childArray}
+            numColumns={columnCount}
+            scrollEnabled={false}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            columnWrapperStyle={[styles.columnWrapper]}
+            {...others}
+          />
+        ) : (
+          <View ref={ref} id={id} style={[styles.container]} {...others}>
+            {children}
+          </View>
+        )}
+      </RadioTilesContext.Provider>
     )
   },
 )

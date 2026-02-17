@@ -8,8 +8,9 @@ import { VariantState } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { RadioTilesContext } from '../context'
 
 /**
  * radioTile Component
@@ -46,18 +47,20 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     },
     ref,
   ): JSX.Element => {
+    const { isGrid } = useContext(RadioTilesContext)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
 
     const styles = StyleSheet.create({
       container: {
+        flex: isGrid ? 1 : undefined,
         flexDirection: horizontal ? 'row' : 'column',
-        width: horizontal ? '100%' : undefined,
+        width: horizontal || isGrid ? '100%' : undefined,
         borderWidth: checked ? 2 : 1,
         alignItems: 'center',
         gap: SpacerSize.THREE,
         borderRadius: 6,
         padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
-        maxWidth: horizontal ? undefined : '50%',
+        maxWidth: horizontal || isGrid ? undefined : '50%',
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
         borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
