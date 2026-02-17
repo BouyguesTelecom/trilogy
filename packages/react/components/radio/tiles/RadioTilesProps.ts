@@ -1,14 +1,12 @@
+import { GridItemSize, GridSize } from '@/objects/facets/Grid'
 import { View } from 'react-native'
 import { AlignableProps } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
-import { FlexItemSize, FlexSize } from '../../flex-box/flex-item/FlexItemProps'
-
-type NumberColors = FlexSize | FlexItemSize
 
 export interface RadioTilesProps extends AlignableProps, CommonProps {
   children: React.ReactNode
   accessibilityLabelledBy?: string
-  numberCols?: NumberColors
+  numberCols?: GridSize | GridItemSize
 }
 
 export type RadioTilesRef = HTMLDivElement

@@ -75,7 +75,7 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(
             align && alignClass,
             verticalAlign && verticalAlignClass,
             gridColumnClasses && 'is-grid',
-            gridColumnClasses,
+            gridColumnClasses && gridColumnClasses,
           ),
         )}
         {...others}
