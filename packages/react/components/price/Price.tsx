@@ -22,6 +22,7 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param accessibilityLabel {string} Accessibility label
  * @param overline {string} Price overline
  * @param oldAmount {boolean} old Amount Price
+ * @param marginless {boolean} Remove margin from price container
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * - --------------- NATIVE PROPERTIES ----------------------------------
@@ -41,6 +42,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       accessibilityLabel,
       oldAmount,
       overline,
+      marginless,
       ...others
     },
     ref,
@@ -120,6 +122,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
               (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
               (align == Alignable.ALIGNED_END && is('justified-end')) ||
               '',
+            marginless && is('marginless'),
           ),
         )}
       >
