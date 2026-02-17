@@ -1,12 +1,13 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { Alignable } from '@/objects'
+import { getJustifiedClassName, getJustifyClassName } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { checkCents } from './PriceHelpers'
 import { PriceProps, PriceRef } from './PriceProps'
+import { Alignable } from '@/objects'
 
 /**
  * Price Component
@@ -17,7 +18,8 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
  * @param children {React.ReactNode}
- * @param align {Alignable} Price alignement
+ * @param align {Alignable} Price alignement @deprecated Use justify instead
+ * @param justify {Justifiable} Price justification
  * @param inline {boolean} Inline display Price
  * @param accessibilityLabel {string} Accessibility label
  * @param overline {string} Price overline
@@ -38,6 +40,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       level,
       inverted,
       align,
+      justify,
       accessibilityLabel,
       oldAmount,
       overline,
@@ -116,10 +119,12 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
           clsx(
             'price-container',
             is(`level-${level || '1'}`),
-            (align == Alignable.ALIGNED_START && is('justified-start')) ||
-              (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
-              (align == Alignable.ALIGNED_END && is('justified-end')) ||
-              '',
+            justify
+              ? is(getJustifyClassName(justify))
+              : (align == Alignable.ALIGNED_START && is('justified-start')) ||
+                  (align == Alignable.ALIGNED_CENTER && is('justified-center')) ||
+                  (align == Alignable.ALIGNED_END && is('justified-end')) ||
+                  '',
           ),
         )}
       >

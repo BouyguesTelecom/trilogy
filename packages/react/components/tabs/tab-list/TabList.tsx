@@ -5,6 +5,7 @@ import { TabListProps, TabListRef } from '@/components/tabs/tab-list/TabListProp
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { is } from '@/services'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
@@ -16,11 +17,12 @@ import { TabsContext } from '../context'
  * @param className
  * @param id
  * @param testId
- * @param align
+ * @param justify
+ * @param align @deprecated Use justify instead
  * @param others
  */
 const TabList = React.forwardRef<TabListRef, TabListProps>(
-  ({ children, className, id, testId, align, ...others }, ref) => {
+  ({ children, className, id, testId, align, justify, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const TabListRef = React.useRef<HTMLDivElement>(null)
     const tabRefs = React.useRef<DOMRect[]>([])
@@ -32,7 +34,15 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
     const [scrollLeft, setScrollLeft] = React.useState<number>(0)
     const [tabFocused, setTabFocused] = React.useState<number>(0)
 
-    const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
+    const classes = hashClass(
+      styled,
+      clsx(
+        'tab-list',
+        justify && is(getJustifiedClassName(justify)),
+        !justify && align && is(getAlignClassName(align)),
+        className,
+      ),
+    )
 
     const isVisibleArrowLeft = useMemo(() => {
       if (!tabRefs.current.length) return false

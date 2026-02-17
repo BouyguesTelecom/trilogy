@@ -83,6 +83,12 @@ $height-arrow-small:30px;
     overflow-y: hidden;
     max-width: 100%;
 
+    &.is-justified-start,
+    &.is-justified-center,
+    &.is-justified-end {
+      display: flex;
+    }
+
     &::-webkit-scrollbar {
       width: 0 !important;
       height: 0 !important;
