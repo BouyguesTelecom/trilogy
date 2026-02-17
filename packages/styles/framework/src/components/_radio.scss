@@ -80,3 +80,63 @@
     }
   }
 }
+
+.radio-tiles {
+  &.is-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @for $i from 1 through 12 {
+    &.is-grid-cols-#{$i} {
+      grid-template-columns: repeat(#{$i}, 1fr);
+    }
+  }
+
+  @include mobile {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-mobile-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+
+  @include tablet {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-tablet-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+
+  @include touch {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-touch-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+
+  @include desktop {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-desktop-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+
+  @include widescreen {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-widescreen-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+
+  @include fullhd {
+    @for $i from 1 through 12 {
+      &.is-grid-cols-fullhd-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+  }
+}

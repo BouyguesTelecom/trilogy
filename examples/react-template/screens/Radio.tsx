@@ -1,7 +1,23 @@
-import * as React from 'react'
 import { Alignable, Popover, SpacerSize, TypographyBold, TypographyColor } from '@trilogy-ds/react'
-import { Section, Spacer, RadioList, Column, Columns, Container, Divider, Icon, IconName, IconSize, Radio, RadioTile, RadioTiles, Text, TextLevels, Title } from '@trilogy-ds/react/components'
+import {
+  Column,
+  Columns,
+  Container,
+  Divider,
+  Icon,
+  IconName,
+  Radio,
+  RadioList,
+  RadioTile,
+  RadioTiles,
+  Section,
+  Spacer,
+  Text,
+  TextLevels,
+  Title,
+} from '@trilogy-ds/react/components'
 import { isMobile } from '@trilogy-ds/react/helpers'
+import * as React from 'react'
 
 export const RadioScreen = (): JSX.Element => {
   const [radio, setRadio] = React.useState('one')
@@ -64,7 +80,7 @@ export const RadioScreen = (): JSX.Element => {
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <Title level={4}>Tiles Radio's</Title>
             <Text id='zz'>Tiles Radio's</Text>
-            <RadioTiles accessibilityLabelledBy='zz'>
+            <RadioTiles accessibilityLabelledBy='zz' numberCols={2}>
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'one'}
@@ -131,12 +147,12 @@ export const RadioScreen = (): JSX.Element => {
                 label='Label 1'
                 value='one'
                 description={
-                <>
-                  <Text level={TextLevels.THREE}>Téléphone échangeable dès 12 mois</Text>
-                  <Text level={TextLevels.THREE}>Paiement en 36 mois sans frais</Text>
-                  <Divider />
-                  <Text level={2}>À payer aujourd'hui : 199,90 €</Text>
-                </>
+                  <>
+                    <Text level={TextLevels.THREE}>Téléphone échangeable dès 12 mois</Text>
+                    <Text level={TextLevels.THREE}>Paiement en 36 mois sans frais</Text>
+                    <Divider />
+                    <Text level={2}>À payer aujourd'hui : 199,90 €</Text>
+                  </>
                 }
                 icon={IconName.ALERT}
                 horizontal
