@@ -88,6 +88,7 @@ $height-prompt-item: 64px;
         gap: 16px;
         padding: 0px 16px 16px 16px;
         align-items: center;
+        justify-content: flex-end;
         &-tools {
             display: flex;
             gap: 16px;
