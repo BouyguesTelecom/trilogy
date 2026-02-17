@@ -35,7 +35,10 @@
   }
 
   @include mobile {
-    &:has(>.flex-item):not([class*='is-direction']) {
+    &:has(>.flex-item):not([class*='is-direction']):not(.is-mobile) {
+      flex-direction: column;
+    }
+    &:has(>.flex-item):not([class*='is-direction']):not(.is-mobile) {
       flex-direction: column;
     }
 
@@ -139,7 +142,7 @@
   }
 
   @include container-mobile {
-    &:has(>.flex-item):not([class*='is-direction']) {
+    &:has(>.flex-item):not([class*='is-direction']):not(.is-mobile) {
       flex-direction: column;
     }
 
@@ -705,7 +708,7 @@
       margin-bottom: auto !important;
     }
 
-    .flex-item {
+    > .flex-item {
       scroll-snap-align: center;
     }
   }
@@ -856,7 +859,7 @@
   );
 
   // SIZE
-  .flex-item {
+  > .flex-item {
     flex-grow: 1;
     &.is-narrow {
       flex: none;
@@ -877,17 +880,27 @@
       }
     }
   }
+  &.is-mobile{
+    @each $key, $value in $itemSize {
+      > .flex-item.is-#{$key} {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
+    }
+  }
 
-  @each $key, $value in $itemSize {
-    .flex-item.is-#{$key} {
-      flex: none;
-      --ColumnFraction: #{$value};
+  @include tablet {
+    @each $key, $value in $itemSize {
+      > .flex-item.is-#{$key} {
+        flex: none;
+        --ColumnFraction: #{$value};
+      }
     }
   }
 
   @include mobile {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-mobile {
+      > .flex-item.is-#{$key}-mobile {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -895,7 +908,7 @@
   }
   @include tablet {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-tablet {
+      > .flex-item.is-#{$key}-tablet {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -903,7 +916,7 @@
   }
   @include touch {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-touch {
+      > .flex-item.is-#{$key}-touch {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -911,7 +924,7 @@
   }
   @include desktop {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-desktop {
+      > .flex-item.is-#{$key}-desktop {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -919,7 +932,7 @@
   }
   @include widescreen {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-widescreen {
+      > .flex-item.is-#{$key}-widescreen {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -927,7 +940,7 @@
   }
   @include fullhd {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-fullhd {
+      > .flex-item.is-#{$key}-fullhd {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -936,7 +949,7 @@
 
   @include container-mobile {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-mobile {
+      > .flex-item.is-#{$key}-mobile {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -946,7 +959,7 @@
 
   @include container-tablet {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-tablet {
+      > .flex-item.is-#{$key}-tablet {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -956,7 +969,7 @@
 
   @include container-touch {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-touch {
+      > .flex-item.is-#{$key}-touch {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -966,7 +979,7 @@
 
   @include container-desktop {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-desktop {
+      > .flex-item.is-#{$key}-desktop {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -976,7 +989,7 @@
 
   @include container-widescreen {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-widescreen {
+      > .flex-item.is-#{$key}-widescreen {
         flex: none;
         --ColumnFraction: #{$value};
       }
@@ -985,7 +998,7 @@
 
   @include container-fullhd {
     @each $key, $value in $itemSize {
-      .flex-item.is-#{$key}-fullhd {
+      > .flex-item.is-#{$key}-fullhd {
         flex: none;
         --ColumnFraction: #{$value};
       }
