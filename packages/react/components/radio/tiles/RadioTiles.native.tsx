@@ -62,6 +62,7 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             columnWrapperStyle={[styles.columnWrapper]}
+            style={{ overflow: 'visible' }}
             {...others}
           />
         ) : (

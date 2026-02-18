@@ -46,6 +46,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             columnWrapperStyle={[styles.columnWrapper]}
+            style={{ overflow: 'visible' }}
             {...others}
           />
         ) : (
