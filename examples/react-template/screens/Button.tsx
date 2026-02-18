@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   Button,
   ButtonList,
@@ -8,8 +9,12 @@ import {
   Spacer,
   Title,
   TitleLevels,
+  View,
+  Text,
+  Icon,
+  IconColor,
+  SpacerSize,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 import { ButtonListDirectionEnum } from '@trilogy-ds/react/lib/components/button/list/ButtonListEnum'
 import { Alignable } from '@trilogy-ds/react'
 
@@ -81,7 +86,7 @@ export const ButtonScreen = (): JSX.Element => {
       <Title level={TitleLevels.TWO}>fullwidth </Title>
       <Spacer size={10}/>
       <Button fullwidth variant={"PRIMARY"}>
-        Cliquer
+        Click
       </Button>
       <Separator/>
 
@@ -102,6 +107,13 @@ export const ButtonScreen = (): JSX.Element => {
           Icon Ghost
         </Button>
       </ButtonList>
+      <Button variant={'PRIMARY'}>
+        <View>
+          <Text>Icon Custom Children</Text>
+          <Spacer horizontal size={SpacerSize.THREE} />
+          <Icon color={IconColor.WHITE} name={IconName.ALERT} />
+        </View>
+      </Button>
     </Section>
   );
 };

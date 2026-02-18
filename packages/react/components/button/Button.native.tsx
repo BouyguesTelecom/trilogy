@@ -81,6 +81,9 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         alignItems: 'center',
         fontWeight: 'bold',
         justifyContent: 'center',
+        margin: 0,
+        padding: 0,
+        lineHeight: 0,
       },
       textDisabled: {
         color: getColorStyle(TrilogyColor.DISABLED),
@@ -124,6 +127,54 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
       ? children
       : 'NotSpecified'
 
+    const isStringLoading = typeof loading === 'string'
+    const isShowingLoader = (isStringLoading && getLoadingClassName(loading as string) === 'loading') || (typeof loading === 'boolean' && loading)
+    const isLoaded = isStringLoading && getLoadingClassName(loading as string) === 'loaded'
+    const showContent = !loading || isLoaded
+
+    const iconColor = disabled
+      ? TrilogyColor.DISABLED
+      : variant === 'SECONDARY' || variant === 'GHOST'
+      ? TrilogyColor.MAIN
+      : TrilogyColor.BACKGROUND
+
+    const textStyle = (!disabled && styles.text) || (disabled && styles.textDisabled)
+    const iconTextStyle = (!disabled && styles.buttonIconText) || (disabled && styles.textDisabledIcon)
+
+    const applyTextStyle = (node: React.ReactNode): React.ReactNode => {
+      if (typeof node === 'string') {
+        return <Text style={iconName ? iconTextStyle : textStyle}>{node}</Text>
+      }
+      if (React.isValidElement(node)) {
+        const element = node as React.ReactElement<any>
+        if (element.type === Text) {
+          return React.cloneElement(element, {
+            style: [iconName ? iconTextStyle : textStyle, element.props.style],
+          })
+        }
+        if (element.props.children) {
+          return React.cloneElement(element, {}, ...React.Children.map(element.props.children, applyTextStyle) || [])
+        }
+      }
+      return node
+    }
+
+    const renderChildren = () => {
+      if (typeof children === 'string') {
+        return <Text style={iconName ? iconTextStyle : textStyle}>{children}</Text>
+      }
+      if (React.isValidElement(children)) {
+        const styled = applyTextStyle(children) as React.ReactElement<any>
+        return React.cloneElement(styled, {
+          style: [
+            { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...(iconName && { marginLeft: 8 }) },
+            styled.props.style,
+          ],
+        })
+      }
+      return <>{children}</>
+    }
+
     return (
       <TouchableOpacity
         ref={ref}
@@ -135,52 +186,20 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         onPress={(e?: unknown) => onClick?.(e)}
         {...others}
       >
-        {loading && typeof loading === 'string' && getLoadingClassName(loading) === 'loading' && (
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: 45,
-            }}
-          >
+        {isShowingLoader && (
+          <View style={{ alignItems: 'center', justifyContent: 'center', height: 45 }}>
             <ActivityIndicator color={loaderColor} testID='activity-indicator' />
           </View>
         )}
-        {loading && typeof loading === 'boolean' && loading === true && (
-          <View
-            style={{
-              alignItems: 'center',
-              height: 45,
-              justifyContent: 'center',
-            }}
-          >
-            <ActivityIndicator color={loaderColor} testID='activity-indicator' />
-          </View>
-        )}
-        {loading && typeof loading === 'string' && getLoadingClassName(loading) === 'loaded' && (
-          <Text style={(!disabled && styles.text) || (disabled && styles.textDisabled)}>{children}</Text>
-        )}
-        {!loading && children && typeof children === 'string' && !iconName && (
-          <Text style={(!disabled && styles.text) || (disabled && styles.textDisabled)}>{children}</Text>
-        )}
-        {!loading && children && typeof children === 'string' && iconName && (
-          <View style={styles.buttonIconContainer}>
-            <Icon
-              name={iconName}
-              size={IconSize.SMALL}
-              color={
-                disabled
-                  ? TrilogyColor.DISABLED
-                  : variant === 'SECONDARY' || variant === 'GHOST'
-                  ? TrilogyColor.MAIN
-                  : TrilogyColor.BACKGROUND
-              }
-              testId='button-icon'
-            />
-            <Text style={(!disabled && styles.buttonIconText) || (disabled && styles.textDisabledIcon)}>
-              {children}
-            </Text>
-          </View>
+        {showContent && children && (
+          iconName ? (
+            <View style={styles.buttonIconContainer}>
+              <Icon name={iconName} size={IconSize.SMALL} color={iconColor} testId='button-icon' />
+              {renderChildren()}
+            </View>
+          ) : (
+            renderChildren()
+          )
         )}
       </TouchableOpacity>
     )
