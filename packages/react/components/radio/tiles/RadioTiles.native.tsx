@@ -46,9 +46,24 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
       },
     })
 
-    const renderItem = useCallback(({ item }: { item: ReactNode; index: number }) => {
-      return <View style={{ flex: 1 }}>{item}</View>
-    }, [])
+    const renderItem = useCallback(
+      ({ item, index }: { item: ReactNode; index: number }) => {
+        if (!columnCount) return <View style={{ flex: 1 }}>{item}</View>
+        const isLastItem = index === childArray.length - 1
+        const isOddItem = childArray.length % columnCount !== 0 && isLastItem
+        return (
+          <View
+            style={{
+              flex: isOddItem ? 0 : 1,
+              width: isOddItem ? `${100 / columnCount}%` : undefined,
+            }}
+          >
+            {item}
+          </View>
+        )
+      },
+      [childArray.length, columnCount],
+    )
 
     const keyExtractor = useCallback((_: ReactNode, index: number) => index.toString(), [])
 
