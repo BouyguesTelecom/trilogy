@@ -26,7 +26,7 @@ import { PromptFileProps, PromptFileRef } from './PromptFileProps'
 const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const { styled } = useTrilogyContext()
   const classesImgContainer = hashClass(styled, clsx('prompt-files-file'))
-  const classesImg = hashClass(styled, clsx('prompt-files-img'))
+  const classesImg = clsx('prompt-files-img')
 
   if (type === 'image') {
     return (

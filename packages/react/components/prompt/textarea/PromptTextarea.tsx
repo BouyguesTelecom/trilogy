@@ -1,8 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Textarea } from '@/components/textarea'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useContext, useEffect } from 'react'
 import { PromptContext } from '../context'
@@ -21,8 +19,7 @@ import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
  */
 const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
   ({ className, value, onChange, disabled, readOnly, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('prompt-textarea', className))
+    const classes = clsx('prompt-textarea', className)
     const { setText, setIsTyping, isDisabled, isReadonly } = useContext(PromptContext)
 
     const isDisable = isDisabled || disabled

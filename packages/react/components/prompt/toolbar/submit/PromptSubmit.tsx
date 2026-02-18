@@ -49,14 +49,11 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
       [statusSubmit, text, files],
     )
 
-    const classesBtn = hashClass(
-      styled,
-      clsx(
-        'prompt-toolbar-tool icon_only prompt-toolbar-tool-submit',
-        isActive && 'active',
-        status === PromptSubmitStatus.STREAMING_ON && 'streaming',
-        className,
-      ),
+    const classesBtn = clsx(
+      'prompt-toolbar-tool icon_only prompt-toolbar-tool-submit',
+      isActive && 'active',
+      status === PromptSubmitStatus.STREAMING_ON && 'streaming',
+      className,
     )
 
     const onMouseDown = (e: React.MouseEvent) => {

@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-    <TrilogyProvider>
+    <TrilogyProvider mangled>
       <HashRouter>
         <Router />
       </HashRouter>

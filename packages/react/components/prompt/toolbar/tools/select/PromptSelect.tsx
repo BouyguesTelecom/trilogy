@@ -3,7 +3,6 @@ import { PromptContext } from '@/components/prompt/context'
 import { Select } from '@/components/select'
 import { SelectProps } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { PromptSelectRef } from './PromptSelectProps'
@@ -28,7 +27,7 @@ const PromptSelect = React.forwardRef<PromptSelectRef, SelectProps>(
 
     const isDisable = isDisabled || disabled
     const isReadOnly = isReadonly || readOnly
-    const classes = hashClass(styled, clsx('prompt-toolbar-tool', className))
+    const classes = clsx('prompt-toolbar-tool', className)
 
     const refSpan = useRef<HTMLSpanElement>(null)
     const refSelect = useRef<HTMLSelectElement>(null)
