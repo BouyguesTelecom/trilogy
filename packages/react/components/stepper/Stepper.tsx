@@ -48,7 +48,7 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
   return (
     <div ref={ref} id={id} className={classes} {...others}>
       <Text level={2} className='step-count' typo={[TypographyColor.TEXT_MAIN_FADE]}>
-        Étape {currentStep.step}/{nbChild}
+        Étape {currentStep.step}sur {nbChild}
       </Text>
       <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
         {currentStep.label}

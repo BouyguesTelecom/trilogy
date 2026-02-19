@@ -56,6 +56,9 @@ export const setTypographyColor = (typo: Array<string> | string = '', inverted =
         (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_WHITE)
           ? getColorStyle(TrilogyColor.BACKGROUND)
           : typo === TypographyColor.TEXT_WHITE && getColorStyle(TrilogyColor.BACKGROUND)) ||
+        (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN_FADE)
+          ? getColorStyle(TrilogyColor.MAIN_FADE)
+          : typo === TypographyColor.TEXT_MAIN_FADE && getColorStyle(TrilogyColor.MAIN_FADE)) ||
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN)
 }

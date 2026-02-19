@@ -1,4 +1,4 @@
-import { Button, IconName, Section, Step, Stepper } from '@trilogy-ds/react/components'
+import { Button, IconName, Section, Spacer, Step, Stepper } from '@trilogy-ds/react/components'
 import * as React from 'react'
 
 export const StepperScreen = (): JSX.Element => {
@@ -21,9 +21,13 @@ export const StepperScreen = (): JSX.Element => {
         <Step done={4 < activeStep} current={activeStep === 4} label='Livraison' />
         <Step done={5 < activeStep} current={activeStep === 5} iconName={IconName.EYE} label='Confirm' />
       </Stepper>
+      <Spacer size={12} />
+
       <Button onClick={handleClickNext} variant={'PRIMARY'}>
         Next
       </Button>
+
+      <Spacer size={12} />
 
       <Stepper>
         <Step current data-testid='test-step-1' label='Step 1' />
