@@ -13,6 +13,7 @@ export enum TypographyColor {
   TEXT_NEUTRAL = 'has-text-grey',
   TEXT_WHITE = 'has-text-white',
   TEXT_DISABLED = 'has-text-disabled',
+  TEXT_MAIN_FADE = 'has-text-main-fade',
 }
 
 /**
