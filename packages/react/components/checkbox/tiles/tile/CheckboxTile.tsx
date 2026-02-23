@@ -73,6 +73,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
         onClick={handleDivClick}
         aria-checked={_checked}
         aria-disabled={disabled}
+        role='checkbox'
       >
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
         <div className={hashClass(styled, clsx('checkbox-content'))}>

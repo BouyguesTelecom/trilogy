@@ -66,6 +66,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
         onClick={handleDivClick}
         aria-checked={checked}
         aria-disabled={disabled}
+        role='radio'
       >
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
         <div className={hashClass(styled, clsx('radio-content'))}>
