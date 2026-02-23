@@ -166,9 +166,7 @@ export const RadioScreen = (): JSX.Element => {
                 id='tile-horizontal-2'
                 label='Label 2'
                 value='two'
-                description=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.s'
+                description=' Lorem ipsum dolor sit amet'
                 icon={IconName.ALERT}
                 horizontal
                 name={'name-tile-horizontal-1'}
@@ -180,9 +178,7 @@ export const RadioScreen = (): JSX.Element => {
                 id='tile-horizontal-3'
                 label='Label 3'
                 value='three'
-                description=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.s'
+                description=' Lorem ipsum dolor sit amet'
                 horizontal
                 name={'name-tile-horizontal-1'}
               />
@@ -192,9 +188,9 @@ export const RadioScreen = (): JSX.Element => {
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <Title level={4}>Grid Tiles Radio's</Title>
             <Text id='zz'>Grid Radio's</Text>
-            <RadioTiles accessibilityLabelledBy='zz' numberCols={{ desktop: 2, mobile: 1 }}>
+            <RadioTiles accessibilityLabelledBy='zz' numberCols={{ desktop: 3, mobile: 2, tablet: 2 }}>
               <RadioTile
-                disabled
+                icon={IconName.ALERT}
                 onChange={(e) => setRadioGrid(e.radioValue)}
                 checked={radioGrid === 'one'}
                 id='grid-1'
@@ -204,7 +200,7 @@ export const RadioScreen = (): JSX.Element => {
                 name={'grid-tile-1'}
               />
               <RadioTile
-                horizontal
+                disabled
                 onChange={(e) => setRadioGrid(e.radioValue)}
                 checked={radioGrid === 'two'}
                 id='grid-2'

@@ -87,13 +87,11 @@ export const CheckboxScreen = (): JSX.Element => {
               />
               <CheckboxTile
                 disabled
-                sticker='Avantages'
+                sticker='Avantagess'
                 id='tile-horizontal-2'
                 label='label-t-2'
                 value='value-t-2'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.'
+                description='Lorem ipsum dolor sit amet'
                 icon={IconName.ALERT}
                 horizontal
               />
@@ -103,9 +101,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 id='tile-horizontal-3'
                 label='label-t-3'
                 value='value-t-3'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.s'
+                description='Lorem ipsum dolor sit amet'
                 horizontal
               />
             </CheckboxTiles>
@@ -118,7 +114,7 @@ export const CheckboxScreen = (): JSX.Element => {
             <CheckboxTiles
               accessibilityLabelledBy='ww'
               align={Alignable.ALIGNED_CENTER}
-              numberCols={{ desktop: 2, mobile: 1 }}
+              numberCols={{ desktop: 3, mobile: 2, tablet: 2 }}
             >
               <CheckboxTile
                 id='tile-horizontal-1'
@@ -132,11 +128,8 @@ export const CheckboxScreen = (): JSX.Element => {
                 id='tile-horizontal-2'
                 label='label-t-2'
                 value='value-t-2'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.'
+                description='Lorem ipsum dolor sit amet'
                 icon={IconName.ALERT}
-                horizontal
               />
 
               <CheckboxTile
@@ -144,9 +137,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 id='tile-horizontal-3'
                 label='label-t-3'
                 value='value-t-3'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.s'
+                description='Lorem ipsum dolor sit amet'
               />
             </CheckboxTiles>
           </Column>

@@ -135,10 +135,12 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
           )}
 
           <View style={{ gap: SpacerSize.ONE, flex: 1 }}>
-            {label && typeof label.valueOf() === 'string' && (
+            {label && typeof label.valueOf() === 'string' ? (
               <Text style={styles.label} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
                 {String(label)}
               </Text>
+            ) : (
+              label
             )}
             {description && typeof description.valueOf() === 'string' ? (
               <Text level={TextLevels.TWO} style={styles.tileDescription}>
@@ -174,7 +176,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
               <Icon size={IconSize.SMALL} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} name={icon} />
             </View>
           )}
-          {label && typeof label.valueOf() === 'string' && (
+          {label && typeof label.valueOf() === 'string' ? (
             <Text
               level={TextLevels.ONE}
               typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
@@ -182,6 +184,8 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
             >
               {String(label)}
             </Text>
+          ) : (
+            label
           )}
           {description && typeof description.valueOf() === 'string' && (
             <Text level={TextLevels.TWO} typo={[TypographyAlign.TEXT_CENTERED]}>

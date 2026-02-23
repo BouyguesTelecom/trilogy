@@ -121,10 +121,12 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
         )}
 
         <View style={[styles.content]}>
-          {label && (
+          {label && typeof label === 'string' ? (
             <Text level={TextLevels.ONE} typo={typoTitle}>
               {String(label)}
             </Text>
+          ) : (
+            label
           )}
           {description && typeof description.valueOf() === 'string' ? (
             <Text level={TextLevels.TWO} typo={typoText}>

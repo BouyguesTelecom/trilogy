@@ -19,9 +19,10 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
     const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
 
     const columnCount = useMemo(() => {
-      if (!numberCols) return null
+      if (!numberCols || numberCols === 1) return null
       if (typeof numberCols === 'number') return numberCols
-      return numberCols.mobile || numberCols.tablet || 1
+      if (numberCols.mobile === 1 || numberCols.tablet === 1) return null
+      return numberCols.mobile || numberCols.tablet
     }, [numberCols])
 
     const styles = StyleSheet.create({
