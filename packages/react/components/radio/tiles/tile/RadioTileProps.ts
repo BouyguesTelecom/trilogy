@@ -1,4 +1,5 @@
 import { VariantProps } from '@/objects'
+import { ReactNode } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { RadioNativeProps, RadioProps } from '../../../../components/radio/RadioProps'
@@ -13,8 +14,13 @@ interface RadioTilePropsCommon {
   sticker?: string
   stickerVariant?: VariantProps['variant']
 }
-export interface RadioTileProps extends RadioProps, RadioTilePropsCommon {}
-export interface RadioTileNativeProps extends RadioNativeProps, RadioTilePropsCommon {}
+export interface RadioTileProps extends Omit<RadioProps, 'label'>, RadioTilePropsCommon {
+  label?: string | ReactNode
+}
+
+export interface RadioTileNativeProps extends Omit<RadioNativeProps, 'label'>, RadioTilePropsCommon {
+  label?: string | ReactNode
+}
 
 export type RadioTileRef = HTMLDivElement
 export type RadioTileNativeRef = TouchableOpacity

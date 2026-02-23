@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Accessibility } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
@@ -20,7 +19,7 @@ export interface RadioProps extends Accessibility, CommonProps {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
-  label?: string | ReactNode
+  label?: string
   onChange?: RadioChangeEventHandler
   name?: string
   value?: string

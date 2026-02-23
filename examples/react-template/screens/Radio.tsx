@@ -198,7 +198,7 @@ export const RadioScreen = (): JSX.Element => {
                 onChange={(e) => setRadioGrid(e.radioValue)}
                 checked={radioGrid === 'one'}
                 id='grid-1'
-                label='Label 1'
+                label={<Text>Label 1</Text>}
                 value='one'
                 description='Description'
                 name={'grid-tile-1'}

@@ -16,7 +16,7 @@ import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
  * @param checked {Boolean}
  * @param disabled {Boolean}
  * @param readonly {Boolean}
- * @param label {string}
+ * @param label {string | ReactNode}
  * @param onChange {Function}
  * @param name {string}
  * @param value {string}

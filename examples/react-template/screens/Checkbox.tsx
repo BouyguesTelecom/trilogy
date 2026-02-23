@@ -122,7 +122,7 @@ export const CheckboxScreen = (): JSX.Element => {
             >
               <CheckboxTile
                 id='tile-horizontal-1'
-                label='label-t-1'
+                label={<Text>label-t-1</Text>}
                 value='value-t-1'
                 description='Je suis une description simple'
                 icon={IconName.ALERT}

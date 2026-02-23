@@ -15,7 +15,7 @@ import React from 'react'
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly radio
  * @param id {string} Id for button, by default id is generate
- * @param label {string} Label for radio
+ * @param label {string | ReactNode} Label for radio
  * @param description {ReactNode} Description for radio
  * @param onChange {ChangeEvent}
  * @param name {string} Name for radio
