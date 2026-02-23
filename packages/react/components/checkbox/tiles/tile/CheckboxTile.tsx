@@ -71,7 +71,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
         ref={ref}
         className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}
         onClick={handleDivClick}
-        aria-checked={checked}
+        aria-checked={_checked}
         aria-disabled={disabled}
       >
         {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
@@ -86,13 +86,25 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
             disabled={disabled}
             name={name}
             value={value}
-            checked={readonly ? checked : _checked}
-            onClick={(e) => e.stopPropagation()}
-            onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
+            checked={_checked}
             style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setChecked(e.target.checked)
+              if (onChange && !disabled && !readonly) {
+                onChange(
+                  Object.assign(e, {
+                    checkboxId: e.target.id,
+                    checkboxValue: e.target.value,
+                    checkboxName: e.target.name,
+                    checkboxChecked: e.target.checked,
+                  }),
+                )
+              }
+            }}
             {...others}
           />
-          <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+          <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))} onClick={(e) => e.preventDefault()}>
             {label}
           </label>
         </div>

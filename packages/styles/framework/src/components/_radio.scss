@@ -72,3 +72,7 @@
     }
   }
 }
+
+.radio-tile[aria-checked="true"] {
+  cursor: default;
+}

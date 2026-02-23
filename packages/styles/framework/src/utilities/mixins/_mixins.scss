@@ -105,7 +105,6 @@
   .#{$type},
   .#{$type}-tile {
     position: relative;
-    cursor: pointer;
 
     label.#{$type}-label {
       cursor: pointer;
@@ -234,10 +233,12 @@
 
     &[aria-disabled="true"] {
       @include disabledRules;
+      label.#{$type}-label {
+        cursor: not-allowed !important;
+      }
     }
 
     &[aria-checked="true"] {
-      cursor: default;
       border-color: getColor('main');
       border-width: 2px;
       padding: 15px;
@@ -250,6 +251,10 @@
         top: -1px;
         right: 15px;
       }
+    }
+
+    &:not([aria-disabled="true"]) {
+      cursor: pointer;
     }
 
     &:not([aria-disabled="true"]):not([aria-checked="true"]) {
