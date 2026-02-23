@@ -80,7 +80,7 @@ export const RadioScreen = (): JSX.Element => {
           <Column size={12} align={Alignable.ALIGNED_CENTER}>
             <Title level={4}>Tiles Radio's</Title>
             <Text id='zz'>Tiles Radio's</Text>
-            <RadioTiles accessibilityLabelledBy='zz' numberCols={2}>
+            <RadioTiles accessibilityLabelledBy='zz'>
               <RadioTile
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'one'}
@@ -110,9 +110,7 @@ export const RadioScreen = (): JSX.Element => {
                     <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
                     <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
                       Between the 20/02 and 23/02
-                      {!isMobile && (
-                        <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}>Popover active</Popover>
-                      )}
+                      {!isMobile && <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}></Popover>}
                     </Text>
                   </>
                 }

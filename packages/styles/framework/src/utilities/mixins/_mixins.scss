@@ -105,6 +105,7 @@
   .#{$type},
   .#{$type}-tile {
     position: relative;
+    cursor: pointer;
 
     label.#{$type}-label {
       cursor: pointer;
@@ -219,16 +220,39 @@
   //TILE ONLY
   .#{$type}-tile {
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 40px 16px 16px;
+    border: var(--border);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    background-color: getColor('background');
     text-align: center;
+    align-items: center;
+    font-size: 14px;
 
-    input:disabled,
-    input:disabled:checked {
-      & ~ label.#{$type}-label {
-        @include disabledRules;
+    &[aria-disabled="true"] {
+      @include disabledRules;
+    }
+
+    &[aria-checked="true"] {
+      cursor: default;
+      border-color: getColor('main');
+      border-width: 2px;
+      padding: 15px;
+      padding-top: 39px;
+      label.radio-label:before {
+        top: 15px;
+        left: 15px;
       }
     }
-    &:has(input:focus-visible) label.#{$type}-label{
+
+    &:not([aria-disabled="true"]):not([aria-checked="true"]) {
+      @include label-states;
+    }
+
+    &:has(input:focus-visible) {
       outline:  1px solid;
     }
 
@@ -240,66 +264,21 @@
       margin-right: 0;
     }
 
+    .radio-content {
+      display: flex;
+      flex-direction: column;
+    }
+
     label.#{$type}-label {
       display: block;
-      position: relative;
-      padding: 40px 16px 16px;
-      border: var(--border);
-      border-radius: var(--radius);
-      box-sizing: border-box;
-      background-color: getColor('background');
-      height: 100%;
-
+      font-weight: bold;
+      width: 100%;
+      display: block;
+      font-size: 16px;
+      order: - 1;
       &:before {
         top: 16px;
         left: 16px;
-      }
-
-      span.#{$type}-title {
-        font-weight: bold;
-        width: 100%;
-        display: block;
-        font-size: 16px;
-      }
-    }
-
-    input {
-      &:not(:disabled):not(:checked) ~ label.radio-label {
-        @include label-states;
-      }
-
-      &:not(:disabled) ~ label.checkbox-label {
-        @include label-states;
-      }
-
-      &:checked:not(:disabled) ~ label.#{$type}-label {
-        border-color: getColor('main');
-        border-width: 2px;
-        padding: 15px;
-        padding-top: 39px;
-
-        &:before {
-          top: 15px;
-          left: 15px;
-        }
-
-        span.#{$type}-title {
-          color: getColor('main');
-        }
-      }
-
-      &:disabled {
-        & ~ label.#{$type}-label {
-          &:before {
-            border-color: getColor('disabled') !important;
-          }
-        }
-      }
-
-      &:disabled:checked ~ label.#{$type}-label {
-        .checkbox-title {
-          color: getColor('disabled');
-        }
       }
     }
 
@@ -311,44 +290,30 @@
     }
 
     &.is-horizontal {
-      display: flex;
-      justify-content: space-between;
+      flex-direction: row;
       align-items: center;
       max-width: unset;
       width: 100%;
       position: relative;
+      text-align: left;
+      padding: $spacing-4 $spacing-4 $spacing-4 $spacing-8;
+      align-items: center;
 
       &.is-narrow {
         width: fit-content;
       }
 
-      input {
-        &:checked:not(:disabled) ~ label.#{$type}-label {
-          padding: ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-8 - 1px);
-        }
-
-      }
-
       label.#{$type}-label {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: left;
-        padding: $spacing-4 $spacing-4 $spacing-4 $spacing-8;
-
-
         &:before,
         &:after {
           top: 50% !important;
           transform: translateY(-50%);
         }
-        > .icon {
-          margin-right: $spacing-4;
-        }
-
       }
 
+      & > .icon {
+        margin-right: $spacing-4;
+      }
     }
   }
 }
