@@ -82,6 +82,7 @@ export const RadioScreen = (): JSX.Element => {
             <Text id='zz'>Tiles Radio's</Text>
             <RadioTiles accessibilityLabelledBy='zz'>
               <RadioTile
+                disabled
                 onChange={(e) => setRadioTile(e.radioValue)}
                 checked={radioTile === 'one'}
                 id='tile-1'

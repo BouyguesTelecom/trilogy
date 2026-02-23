@@ -246,6 +246,10 @@
         top: 15px;
         left: 15px;
       }
+      .#{$type}-sticker {
+        top: -1px;
+        right: 15px;
+      }
     }
 
     &:not([aria-disabled="true"]):not([aria-checked="true"]) {
@@ -264,7 +268,7 @@
       margin-right: 0;
     }
 
-    .radio-content {
+    .#{$type}-content {
       display: flex;
       flex-direction: column;
     }
@@ -313,6 +317,10 @@
 
       & > .icon {
         margin-right: $spacing-4;
+      }
+
+      &[aria-checked="true"] {
+        padding: ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-8 - 1px);
       }
     }
   }

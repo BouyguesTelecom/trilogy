@@ -55,8 +55,8 @@
 .checkbox-tile {
   input:checked ~ label.checkbox-label {
     &:after {
-      top: 15px;
-      left: 15px;
+      top: 16px;
+      left: 16px;
     }
   }
 }

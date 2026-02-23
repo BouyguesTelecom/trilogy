@@ -47,7 +47,6 @@ export const CheckboxScreen = (): JSX.Element => {
               accessibilityLabelledBy='zz'
               align={Alignable.ALIGNED_CENTER}
               verticalAlign={Alignable.ALIGNED_CENTER}
-              numberCols={2}
             >
               <CheckboxTile
                 id='tile-1'
