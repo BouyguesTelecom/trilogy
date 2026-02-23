@@ -23,6 +23,7 @@ export const RadioScreen = (): JSX.Element => {
   const [radio, setRadio] = React.useState('one')
   const [radioTile, setRadioTile] = React.useState('one')
   const [radioTileHorizontal, setRadioTileHoriztonal] = React.useState('one')
+  const [radioGrid, setRadioGrid] = React.useState('one')
 
   return (
     <Section>
@@ -158,6 +159,7 @@ export const RadioScreen = (): JSX.Element => {
                 name={'name-tile-horizontal-1'}
               />
               <RadioTile
+                disabled
                 sticker='Avantages'
                 checked={radioTileHorizontal === 'two'}
                 onChange={(e) => setRadioTileHoriztonal(e.radioValue)}
@@ -183,6 +185,65 @@ export const RadioScreen = (): JSX.Element => {
                 similique animi.s'
                 horizontal
                 name={'name-tile-horizontal-1'}
+              />
+            </RadioTiles>
+          </Column>
+
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Title level={4}>Grid Tiles Radio's</Title>
+            <Text id='zz'>Grid Radio's</Text>
+            <RadioTiles accessibilityLabelledBy='zz' numberCols={{ desktop: 2, mobile: 1 }}>
+              <RadioTile
+                disabled
+                onChange={(e) => setRadioGrid(e.radioValue)}
+                checked={radioGrid === 'one'}
+                id='grid-1'
+                label='Label 1'
+                value='one'
+                description='Description'
+                name={'grid-tile-1'}
+              />
+              <RadioTile
+                horizontal
+                onChange={(e) => setRadioGrid(e.radioValue)}
+                checked={radioGrid === 'two'}
+                id='grid-2'
+                label='Label 2'
+                value='two'
+                description='Description'
+                icon={IconName.ALERT}
+                name={'grid-tile-1'}
+              />
+              <RadioTile
+                sticker='Avantages'
+                description={
+                  <>
+                    <Text marginless typo={TypographyBold.TEXT_WEIGHT_BOLD}>
+                      Description
+                    </Text>
+                    <Text typo={TypographyBold.TEXT_WEIGHT_BOLD}>FREE</Text>
+                    <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD, TypographyColor.TEXT_INFO]} level={4}>
+                      Between the 20/02 and 23/02
+                      {!isMobile && <Popover trigger={<Icon name='tri-infos-circle' size='smaller' />}></Popover>}
+                    </Text>
+                  </>
+                }
+                onChange={(e) => setRadioGrid(e.radioValue)}
+                checked={radioGrid === 'three'}
+                icon={IconName.ALERT}
+                name='grid-tile-1'
+                label={'Label 3'}
+                value='three'
+              />
+              <RadioTile
+                sticker='Avantage'
+                onChange={(e) => setRadioGrid(e.radioValue)}
+                checked={radioGrid === 'four'}
+                id='grid-4'
+                label='Label 4'
+                value='four'
+                description='Je suis une description simple'
+                name={'grid-tile-1'}
               />
             </RadioTiles>
           </Column>

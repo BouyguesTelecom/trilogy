@@ -86,6 +86,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 horizontal
               />
               <CheckboxTile
+                disabled
                 sticker='Avantages'
                 id='tile-horizontal-2'
                 label='label-t-2'
@@ -106,6 +107,46 @@ export const CheckboxScreen = (): JSX.Element => {
                 aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
                 similique animi.s'
                 horizontal
+              />
+            </CheckboxTiles>
+          </Column>
+
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Title level={4}>CheckboxTiles Grid</Title>
+            <Text id='ww'>CheckboxTiles Grid</Text>
+            <Spacer size={SpacerSize.FIVE} />
+            <CheckboxTiles
+              accessibilityLabelledBy='ww'
+              align={Alignable.ALIGNED_CENTER}
+              numberCols={{ desktop: 2, mobile: 1 }}
+            >
+              <CheckboxTile
+                id='tile-horizontal-1'
+                label='label-t-1'
+                value='value-t-1'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+              <CheckboxTile
+                sticker='Avantages'
+                id='tile-horizontal-2'
+                label='label-t-2'
+                value='value-t-2'
+                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.'
+                icon={IconName.ALERT}
+                horizontal
+              />
+
+              <CheckboxTile
+                sticker='Avantages'
+                id='tile-horizontal-3'
+                label='label-t-3'
+                value='value-t-3'
+                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
+                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
+                similique animi.s'
               />
             </CheckboxTiles>
           </Column>
