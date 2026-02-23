@@ -233,6 +233,7 @@
 
     &[aria-disabled="true"] {
       @include disabledRules;
+      filter: none;
       label.#{$type}-label {
         cursor: not-allowed !important;
       }
