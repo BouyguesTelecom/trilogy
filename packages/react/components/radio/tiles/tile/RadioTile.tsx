@@ -81,6 +81,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
             checked={checked}
             required={required}
             style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}
+            onClick={(e) => e.stopPropagation()}
             onChange={(e) => {
               if (onChange && !disabled && !readonly) {
                 onChange(

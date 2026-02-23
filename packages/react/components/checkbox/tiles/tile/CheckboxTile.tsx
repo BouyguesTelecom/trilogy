@@ -87,6 +87,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
             name={name}
             value={value}
             checked={readonly ? checked : _checked}
+            onClick={(e) => e.stopPropagation()}
             onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
             style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}
             {...others}
