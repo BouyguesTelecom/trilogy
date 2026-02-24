@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { getAlignStyle } from '@/objects/facets/Alignable'
-import React, { ReactNode, useCallback, useMemo } from 'react'
+import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { CheckboxTilesNativeRef, CheckboxTilesProps } from './CheckboxTilesProps'
 import { CheckboxTilesContext } from './context'
 
 const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
-  ({ children, align, verticalAlign, numberCols, ...others }, ref): JSX.Element => {
+  ({ children, align, verticalAlign, numberCols, id, ...others }, ref): JSX.Element => {
     const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
 
     const columnCount = useMemo(() => {
@@ -56,6 +56,8 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
       <CheckboxTilesContext.Provider value={{ isGrid: columnCount !== null }}>
         {columnCount !== null ? (
           <FlatList
+            id={id}
+            ref={ref as RefObject<FlatList>}
             data={childArray}
             numColumns={columnCount}
             scrollEnabled={false}
@@ -66,7 +68,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
             {...others}
           />
         ) : (
-          <View ref={ref} style={[styles.container]} {...others}>
+          <View id={id} ref={ref as RefObject<View>} style={[styles.container]} {...others}>
             {children}
           </View>
         )}

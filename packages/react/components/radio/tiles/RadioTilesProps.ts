@@ -1,5 +1,5 @@
 import { GridItemSize, GridSize } from '@/objects/facets/Grid'
-import { View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { AlignableProps } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
@@ -10,4 +10,4 @@ export interface RadioTilesProps extends AlignableProps, CommonProps {
 }
 
 export type RadioTilesRef = HTMLDivElement
-export type RadioTilesNativeRef = View
+export type RadioTilesNativeRef = View | FlatList

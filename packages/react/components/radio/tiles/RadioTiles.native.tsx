@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import { SpacerSize } from '@/components/spacer'
 import { Alignable } from '@/objects/facets/Alignable'
-import React, { ReactNode, useCallback, useMemo } from 'react'
+import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { RadioTilesContext } from './context'
 
@@ -72,6 +72,8 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
       <RadioTilesContext.Provider value={{ isGrid: columnCount !== null }}>
         {columnCount !== null ? (
           <FlatList
+            id={id}
+            ref={ref as RefObject<FlatList>}
             data={childArray}
             numColumns={columnCount}
             scrollEnabled={false}
@@ -82,7 +84,7 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
             {...others}
           />
         ) : (
-          <View ref={ref} id={id} style={[styles.container]} {...others}>
+          <View ref={ref as RefObject<View>} id={id} style={[styles.container]} {...others}>
             {children}
           </View>
         )}
