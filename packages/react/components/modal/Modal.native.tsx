@@ -80,6 +80,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
           propagateSwipe={true}
           style={[styles.modal]}
           onModalHide={onModalHide}
+          backdropTransitionOutTiming={1}
           {...others}
         >
           <View ref={ref} style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
