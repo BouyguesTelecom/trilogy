@@ -14,7 +14,7 @@ import * as React from 'react'
  * @param children {ReactNode}
  * @param align { Alignable | AlignableValues} align content
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
- * @param numberCols {FlexSize | FlexItemSize} number of columns for grid layout
+ * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
