@@ -16,9 +16,9 @@ export const StepperScreen = (): JSX.Element => {
     <Section>
       <Stepper>
         <Step done={1 < activeStep} current={activeStep === 1} iconName={IconName.EYE} label='Recup' />
-        <Step done={2 < activeStep} current={activeStep === 2} label='Compléments' />
+        <Step done={2 < activeStep} current={activeStep === 2} label='Compléments' iconName={IconName.BELL} />
         <Step error done={3 < activeStep} current={activeStep === 3} iconName={IconName.SEARCH} label='Coordonate' />
-        <Step done={4 < activeStep} current={activeStep === 4} label='Livraison' />
+        <Step done={4 < activeStep} current={activeStep === 4} label='Livraison' iconName={IconName.INFOS_CIRCLE} />
         <Step done={5 < activeStep} current={activeStep === 5} iconName={IconName.EYE} label='Confirm' />
       </Stepper>
       <Spacer size={12} />

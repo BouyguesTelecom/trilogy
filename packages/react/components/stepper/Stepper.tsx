@@ -1,14 +1,16 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { TypographyColor } from '@/objects'
+import { Align, TypographyColor } from '@/objects'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
+import { FlexBox } from '../flex-box'
+import { Icon, IconName } from '../icon'
 import { Text } from '../text'
 import { Title } from '../title'
 import { StepperProps, StepperRef } from './StepperProps'
 
-type CurrentStepType = { label: number | null; step: number }
+type CurrentStepType = { label: number | null; step: number; icon: IconName | null }
 /**
  * Stepper Component
  * @param centered Center the stepper
@@ -20,7 +22,7 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-wrapper', className))
   const classesSteps = hashClass(styled, clsx('stepper-items'))
-  const [currentStep, setCurrentStep] = React.useState<CurrentStepType>({ label: null, step: 1 })
+  const [currentStep, setCurrentStep] = React.useState<CurrentStepType>({ label: null, step: 1, icon: null })
 
   const nbChild = React.useMemo<number>(() => {
     if (children && Array.isArray(children)) return children.length
@@ -35,12 +37,13 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
         children.map((child, index) => {
           if (child?.props?.current && child?.props?.label) {
             haveCurrentStep = true
-            setCurrentStep({ step: index + 1, label: child?.props?.label })
+            setCurrentStep({ step: index + 1, label: child?.props?.label, icon: child?.props?.iconName })
           }
         })
-        if (!haveCurrentStep) setCurrentStep({ step: 1, label: children[0]?.props?.label })
+        if (!haveCurrentStep)
+          setCurrentStep({ step: 1, label: children[0]?.props?.label, icon: children[0]?.props?.iconName })
       } else {
-        setCurrentStep({ label: null, step: 1 })
+        setCurrentStep({ label: null, step: 1, icon: null })
       }
     }
   }, [children])
@@ -50,9 +53,13 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
       <Text level={2} className='step-count' typo={[TypographyColor.TEXT_MAIN_FADE]}>
         Étape {currentStep.step}sur {nbChild}
       </Text>
-      <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
-        {currentStep.label}
-      </Title>
+      <FlexBox align={Align.CENTER}>
+        {currentStep.icon && <Icon name={currentStep.icon} />}
+        <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
+          {currentStep.label}
+        </Title>
+      </FlexBox>
+
       <div className={classesSteps}>{children}</div>
     </div>
   )
