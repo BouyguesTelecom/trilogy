@@ -19,7 +19,7 @@ import { StepProps, StepRef } from './StepProps'
  * @param label {string} Step label
  */
 const Step = React.forwardRef<StepRef, StepProps>(
-  ({ className, id, active, current, done, label, error, ...others }, ref) => {
+  ({ className, id, active, current, done, label, error, iconName, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classesStepLabel = hashClass(styled, clsx('step-label'))
 

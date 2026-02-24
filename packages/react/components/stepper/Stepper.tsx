@@ -54,7 +54,7 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
         Étape {currentStep.step}sur {nbChild}
       </Text>
       <FlexBox align={Align.CENTER}>
-        {currentStep.icon && <Icon name={currentStep.icon} />}
+        {currentStep.icon && <Icon name={currentStep.icon} size='small' />}
         <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
           {currentStep.label}
         </Title>
