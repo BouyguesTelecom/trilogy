@@ -1,4 +1,7 @@
+import { Button } from '@/components/button'
+import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { Modal, ModalBody, ModalFooter } from '@/components/modal'
 import { Text, TextLevels } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -7,9 +10,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
-import { Button } from '../button'
-import { GapSize } from '../columns'
-import { Modal, ModalBody, ModalFooter } from '../modal'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172

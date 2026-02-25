@@ -1,4 +1,4 @@
-import { Section, Spacer, Text, TimepickerCircular, View } from '@trilogy-ds/react/components'
+import { Section, Spacer, Text, Timepicker, View } from '@trilogy-ds/react/components'
 import { useState } from 'react'
 
 export const TimepickerScreen = (): JSX.Element => {
@@ -16,7 +16,8 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
-        <TimepickerCircular value={time} onChange={handleTimeChange} step={10} />
+        <Timepicker circular value={time} onChange={handleTimeChange} step={10} />
+        <Timepicker />
 
         <Spacer size={24} />
 
