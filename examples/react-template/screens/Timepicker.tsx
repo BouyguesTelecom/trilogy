@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export const TimepickerScreen = (): JSX.Element => {
   const [time, setTime] = useState('05:40')
+  const [timeCircular, setTimeCircular] = useState('05:40')
 
   const handleTimeChange = (newTime: string) => {
     setTime(newTime)
@@ -28,7 +29,7 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
-        <Timepicker value={time} onChange={handleTimeChange} step={10} />
+        <Timepicker value={timeCircular} onChange={setTimeCircular} step={10} />
 
         <Spacer size={24} />
 
