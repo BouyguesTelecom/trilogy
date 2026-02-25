@@ -81,7 +81,7 @@ export const TimepickerSelector = ({
           {
             height: itemHeight,
             top: verticalPadding,
-            backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
+            backgroundColor: getColorStyle(TrilogyColor.MAIN),
           },
         ]}
       />
