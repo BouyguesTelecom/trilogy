@@ -1,4 +1,5 @@
 import { Button, ButtonVariant } from '@/components/button'
+import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { FlexBox } from '@/components/flex-box'
 import Input from '@/components/input/Input.native'
@@ -107,7 +108,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
               Minutes
             </Text>
           </FlexBox>
-          <FlexBox align={Align.CENTER}>
+          <FlexBox align={Align.CENTER} gap={GapSize.FOUR}>
             <View style={{ flex: 1 }}>
               <TimepickerSelector
                 items={hourItems}

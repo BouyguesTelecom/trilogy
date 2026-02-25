@@ -16,7 +16,7 @@ interface SelectProps {
   visibleItems?: number
 }
 
-const itemHeight = 45
+const itemHeight = 36
 
 export const TimepickerSelector = ({ items, value, onValueChange, visibleItems = 5 }: SelectProps) => {
   const [scrollOffset, setScrollOffset] = useState(0)
@@ -103,9 +103,9 @@ const styles = StyleSheet.create({
   },
   indicator: {
     position: 'absolute',
-    left: 16,
-    right: 16,
+    left: 0,
+    right: 0,
     zIndex: -1,
-    borderRadius: 10,
+    borderRadius: 8,
   },
 })
