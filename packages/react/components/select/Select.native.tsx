@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 
@@ -20,10 +20,7 @@ import SelectOption from './option'
  * @param nullable {boolean} Unselect Select Option Item
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
-  (
-    { children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, status, ...others },
-    ref,
-  ): JSX.Element => {
+  ({ children, id, selected, iconName, onChange, disabled, multiple, onBlur, status, ...others }, ref): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
     const [selectedNames, setSelectedNames] = React.useState<string[]>([])
     const [display, setDisplay] = useState<boolean>(false)
@@ -150,24 +147,22 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
       <Modal
         active={display}
         onClose={handleOpenCloseModal}
-        unClosable
         trigger={
-          <TouchableOpacity onPress={handleOpenCloseModal}>
+          <Pressable onPress={handleOpenCloseModal}>
             <Input
               status={status}
               ref={ref}
               onBlur={onBlur as (event: unknown) => void}
               onIconClick={handleOpenCloseModal}
               disabled={disabled}
-              placeholder={label}
               iconNameLeft={iconName}
               iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
               value={selectedNames.join(', ')}
               defaultValue={selectedNames.join(', ')}
-              {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
+              {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />
-          </TouchableOpacity>
+          </Pressable>
         }
       >
         <ModalBody>
