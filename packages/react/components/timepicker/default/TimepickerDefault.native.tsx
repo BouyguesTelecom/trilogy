@@ -8,7 +8,7 @@ import { Text, TextLevels } from '@/components/text'
 import { TimepickerProps } from '@/components/timepicker/TimepickerProps'
 import { TypographyAlign, TypographyBold } from '@/objects'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Pressable, View } from 'react-native'
+import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
 
 const generateItems = (count: number) =>
@@ -62,7 +62,6 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
       setDisplay(false)
     }, [hours, minutes])
 
-    // Sync local state when value prop changes from parent
     React.useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
@@ -82,6 +81,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
               iconNameRight={'tri-clock'}
               placeholder='--:--'
               value={inputValue}
+              ref={ref as React.RefObject<TextInput>}
               {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />

@@ -1,7 +1,7 @@
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { ColorValue, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native'
 import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
 
 interface SelectItem {
