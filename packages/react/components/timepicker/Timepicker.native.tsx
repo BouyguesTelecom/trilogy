@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { TimepickerCircular } from './circular'
+import TimepickerCircular from './circular/TimepickerCircular.native'
 import { TimepickerDefault } from './default'
 import { TimepickerNativeRef, TimepickerProps } from './TimepickerProps'
 

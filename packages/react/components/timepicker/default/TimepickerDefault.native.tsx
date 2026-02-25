@@ -4,7 +4,9 @@ import Input from '@/components/input/Input.native'
 import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
+import { Text, TextLevels } from '@/components/text'
 import { TimepickerProps } from '@/components/timepicker/TimepickerProps'
+import { TypographyAlign, TypographyBold } from '@/objects'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Pressable, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
@@ -68,8 +70,6 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
       setInputValue(value !== '00:00' ? value : undefined)
     }, [value])
 
-    const displayValue = value !== '00:00' ? value : undefined
-
     return (
       <Modal
         hideCloseButton
@@ -89,6 +89,18 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
         }
       >
         <View style={{ paddingBottom: 20 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', paddingBottom: 8 }}>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>
+                Heures
+              </Text>
+            </View>
+            <View style={{ flex: 1, alignItems: 'center' }}>
+              <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>
+                Minutes
+              </Text>
+            </View>
+          </View>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <View style={{ flex: 1 }}>
               <TimepickerSelector

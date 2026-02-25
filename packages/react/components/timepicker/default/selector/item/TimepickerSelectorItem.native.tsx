@@ -1,9 +1,9 @@
-import { Text } from '@/components/text'
-import { TypographyColor } from '@/lib'
-import { TypographyAlign } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
 import React, { useMemo } from 'react'
 import { ColorValue, StyleSheet, View } from 'react-native'
+import { Text } from '@/components/text'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 
 interface SelectItem {
   label: string

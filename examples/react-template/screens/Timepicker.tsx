@@ -2,7 +2,7 @@ import { Section, Spacer, Text, Timepicker, View } from '@trilogy-ds/react/compo
 import { useState } from 'react'
 
 export const TimepickerScreen = (): JSX.Element => {
-  const [time, setTime] = useState('05:45')
+  const [time, setTime] = useState('05:40')
 
   const handleTimeChange = (newTime: string) => {
     setTime(newTime)
@@ -16,43 +16,24 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
+        <Text>Timepicker circular</Text>
+
+        <Spacer size={16} />
+
         <Timepicker circular value={time} onChange={handleTimeChange} step={10} />
-        <Timepicker />
+
+        <Spacer size={16} />
+
+        <Text>Timepicker classic</Text>
+
+        <Spacer size={24} />
+
+        <Timepicker value={time} onChange={handleTimeChange} step={10} />
 
         <Spacer size={24} />
 
         <Text>Temps sélectionné : {time}</Text>
       </View>
-      {/*
-      <Spacer size={48} />
-
-      <View>
-        <Text>TimepickerCircular avec taille personnalisée</Text>
-
-        <Spacer size={24} />
-
-        <TimepickerCircular
-          hours={12}
-          minutes={30}
-          size={200}
-          thickness={40}
-          onChange={(h, m) => console.log(`Custom size picker: ${h}:${m}`)}
-        />
-      </View>
-
-      <Spacer size={48} />
-
-      <View>
-        <Text>TimepickerCircular désactivé</Text>
-
-        <Spacer size={24} />
-
-        <TimepickerCircular
-          hours={8}
-          minutes={15}
-          disabled
-        />
-      </View> */}
     </Section>
   )
 }
