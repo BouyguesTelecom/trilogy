@@ -14,14 +14,13 @@ interface WheelItemProps {
   item: SelectItem
   index: number
   scrollOffset: number
-  itemHeight: number
-  textColor?: ColorValue
-  activeTextColor?: ColorValue
 }
+
+const itemHeight = 45
 
 const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max)
 
-const TimepickerSelectorItem = ({ item, index, scrollOffset, itemHeight }: WheelItemProps) => {
+const TimepickerSelectorItem = ({ item, index, scrollOffset }: WheelItemProps) => {
   const position = index * itemHeight
   const distance = Math.abs(scrollOffset - position)
 

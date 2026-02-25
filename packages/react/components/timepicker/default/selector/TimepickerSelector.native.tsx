@@ -13,20 +13,16 @@ interface SelectProps {
   items: SelectItem[]
   value: string | number
   onValueChange: (value: string | number) => void
-  itemHeight?: number
   visibleItems?: number
-  textColor?: ColorValue
-  activeTextColor?: ColorValue
 }
+
+const itemHeight = 45
 
 export const TimepickerSelector = ({
   items,
   value,
   onValueChange,
-  itemHeight = 45,
   visibleItems = 5,
-  textColor,
-  activeTextColor,
 }: SelectProps) => {
   const [scrollOffset, setScrollOffset] = useState(0)
   const containerHeight = itemHeight * visibleItems
@@ -105,9 +101,6 @@ export const TimepickerSelector = ({
             item={item}
             index={index}
             scrollOffset={scrollOffset}
-            itemHeight={itemHeight}
-            textColor={textColor}
-            activeTextColor={activeTextColor}
           />
         ))}
       </ScrollView>
