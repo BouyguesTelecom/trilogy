@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
-import { View } from '../view'
 import { TimepickerCircular } from './circular'
+import { TimepickerProps, TimepickerRef } from './TimepickerProps'
 
-const Timepicker = React.forwardRef<any, any>(({ selected, circular, ...props }, ref): JSX.Element => {
-  if (circular) return <TimepickerCircular />
-  return <View style={{ width: 20, height: 20, backgroundColor: 'red' }} />
+const Timepicker = React.forwardRef<TimepickerRef, TimepickerProps>(({ circular, ...props }, ref): JSX.Element => {
+  if (circular) return <TimepickerCircular ref={ref} {...props} />
+  return <div>Timepicker web not implemented</div>
 })
 
 Timepicker.displayName = ComponentName.Timepicker

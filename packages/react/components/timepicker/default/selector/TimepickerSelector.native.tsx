@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo, useRef } from 'react'
-import { ColorValue, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from 'react-native'
-import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated'
+import { ModalContext } from '@/components/modal/context/ModalContext'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { ColorValue, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native'
 import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
 
 interface SelectItem {
@@ -27,40 +28,50 @@ export const TimepickerSelector = ({
   textColor,
   activeTextColor,
 }: SelectProps) => {
-  const scrollY = useSharedValue(0)
+  const [scrollOffset, setScrollOffset] = useState(0)
   const containerHeight = itemHeight * visibleItems
-  const listRef = useRef<Animated.FlatList<SelectItem>>(null)
+  const localScrollRef = useRef<ScrollView>(null)
+  const { scrollViewRef, handleOnScroll: modalOnScroll } = useContext(ModalContext)
   const selectedIndex = useMemo(() => items.findIndex((item) => item.value === value), [items, value])
-  const horizontalPadding = (containerHeight - itemHeight) / 2
+  const verticalPadding = (containerHeight - itemHeight) / 2
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollY.value = event.contentOffset.y
+  // Connect our ScrollView ref to ModalContext so react-native-modal delegates gestures properly
+  useEffect(() => {
+    if (localScrollRef.current && scrollViewRef) {
+      (scrollViewRef as React.MutableRefObject<ScrollView | null>).current = localScrollRef.current
+    }
+  }, [scrollViewRef])
+
+  useEffect(() => {
+    if (localScrollRef.current && selectedIndex >= 0) {
+      const targetOffset = selectedIndex * itemHeight
+      setScrollOffset(targetOffset)
+      setTimeout(() => {
+        localScrollRef.current?.scrollTo({ y: targetOffset, animated: false })
+      }, 50)
+    }
+  }, [selectedIndex, itemHeight])
+
+  const onScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      setScrollOffset(event.nativeEvent.contentOffset.y)
+      // Propagate scroll to ModalContext so react-native-modal tracks it
+      modalOnScroll?.(event)
     },
-  })
+    [modalOnScroll],
+  )
 
   const onScrollEnd = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const index = Math.round(event.nativeEvent.contentOffset.y / itemHeight)
+      const offsetY = event.nativeEvent.contentOffset.y
+      const index = Math.round(offsetY / itemHeight)
+      setScrollOffset(offsetY)
       if (items[index] && items[index].value !== value) {
         onValueChange(items[index].value)
       }
     },
     [items, itemHeight, onValueChange, value],
   )
-
-  const renderItem = ({ item, index }: { item: SelectItem; index: number }) => {
-    return (
-      <TimepickerSelectorItem
-        item={item}
-        index={index}
-        scrollY={scrollY}
-        itemHeight={itemHeight}
-        textColor={textColor}
-        activeTextColor={activeTextColor}
-      />
-    )
-  }
 
   return (
     <View style={[styles.container, { height: containerHeight }]}>
@@ -69,33 +80,37 @@ export const TimepickerSelector = ({
           styles.indicator,
           {
             height: itemHeight,
-            top: horizontalPadding,
-            backgroundColor: 'red',
+            top: verticalPadding,
+            backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
           },
         ]}
       />
 
-      <Animated.FlatList
-        ref={listRef}
-        data={items}
-        renderItem={renderItem}
-        keyExtractor={(item) => String(item.value)}
+      <ScrollView
+        ref={localScrollRef}
         showsVerticalScrollIndicator={false}
         snapToInterval={itemHeight}
         decelerationRate='fast'
-        onScroll={scrollHandler}
+        onScroll={onScroll}
         onMomentumScrollEnd={onScrollEnd}
         contentContainerStyle={{
-          paddingVertical: horizontalPadding,
+          paddingVertical: verticalPadding,
         }}
         scrollEventThrottle={16}
-        getItemLayout={(_, index) => ({
-          length: itemHeight,
-          offset: itemHeight * index,
-          index,
-        })}
-        initialScrollIndex={selectedIndex >= 0 ? selectedIndex : 0}
-      />
+        nestedScrollEnabled
+      >
+        {items.map((item, index) => (
+          <TimepickerSelectorItem
+            key={String(item.value)}
+            item={item}
+            index={index}
+            scrollOffset={scrollOffset}
+            itemHeight={itemHeight}
+            textColor={textColor}
+            activeTextColor={activeTextColor}
+          />
+        ))}
+      </ScrollView>
     </View>
   )
 }
@@ -111,11 +126,5 @@ const styles = StyleSheet.create({
     right: 16,
     zIndex: -1,
     borderRadius: 10,
-  },
-  gradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    zIndex: 1,
   },
 })

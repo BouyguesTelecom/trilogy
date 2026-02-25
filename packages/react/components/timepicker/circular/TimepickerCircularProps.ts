@@ -1,15 +1,10 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
+import { TimepickerProps } from '../TimepickerProps'
 import { type View } from 'react-native'
 
 /**
  * TimepickerCircular Interface
  */
-export interface TimepickerCircularProps extends CommonProps {
-  value?: string
-  onChange?: (time: string) => void
-  disabled?: boolean
-  step?: number
-}
+export interface TimepickerCircularProps extends Omit<TimepickerProps, 'circular'> {}
 
 export type TimepickerCircularRef = HTMLDivElement
 export type TimepickerCircularNativeRef = View

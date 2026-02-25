@@ -1,84 +1,117 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { FlexBox } from '@/components/flex-box'
 import Input from '@/components/input/Input.native'
-import ModalBody from '@/components/modal/body/ModalBody.native'
 import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import React, { useCallback, useState } from 'react'
+import { TimepickerProps } from '../TimepickerProps'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Pressable, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
 
-const scores = [
-  { value: 0, label: '0' },
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: '3' },
-  { value: 4, label: '4' },
-  { value: 5, label: '5' },
-  { value: 6, label: '6' },
-  { value: 7, label: '7' },
-  { value: 8, label: '8' },
-  { value: 9, label: '9' },
-  { value: 10, label: '10' },
-  { value: 11, label: '11' },
-  { value: 12, label: '12' },
-  { value: 13, label: '13' },
-  { value: 14, label: '14' },
-  { value: 15, label: '15' },
-]
+const generateItems = (count: number) =>
+  Array.from({ length: count }, (_, i) => ({
+    value: i,
+    label: i.toString().padStart(2, '0'),
+  }))
 
-const TimepickerDefault = React.forwardRef<any, any>(({ disabled, others, id, children }, ref): JSX.Element => {
-  const [display, setDisplay] = useState<boolean>(false)
-  const [values, setValues] = useState<{ home: number; away: number } | null>(null)
+const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular'>>(
+  ({ disabled, id, value = '00:00', onChange, step = 1, ...others }, ref): JSX.Element => {
+    const [display, setDisplay] = useState<boolean>(false)
 
-  const handleOpenCloseModal = useCallback(() => {
-    !disabled && setDisplay((prev) => !prev)
-  }, [disabled])
-
-  return (
-    <Modal
-      hideCloseButton
-      active={display}
-      trigger={
-        <Pressable onPress={handleOpenCloseModal}>
-          <Input
-            ref={ref}
-            onIconClick={handleOpenCloseModal}
-            disabled={disabled}
-            iconNameRight={'tri-clock'}
-            placeholder='--:--'
-            {...{ editable: false, pointerEvents: 'none', id }}
-            {...others}
-          />
-        </Pressable>
+    const parseTime = (timeStr: string) => {
+      const [h, m] = timeStr.split(':')
+      return {
+        hours: parseInt(h || '0', 10) || 0,
+        minutes: parseInt(m || '0', 10) || 0,
       }
-    >
-      <ModalBody>
-        <View style={{ paddingBottom: 20 }}>
-          <FlexBox>
-            <TimepickerSelector
-              items={scores}
-              value={values?.home ?? 0}
-              onValueChange={(e) => {
-                setValues((prev) => ({
-                  ...(prev ?? { home: 0, away: 0 }),
-                  home: Number(e),
-                }))
-              }}
+    }
+
+    const { hours, minutes } = parseTime(value)
+    const [selectedHours, setSelectedHours] = useState(hours)
+    const [selectedMinutes, setSelectedMinutes] = useState(minutes)
+
+    const hourItems = useMemo(() => generateItems(24), [])
+    const minuteItems = useMemo(() => {
+      const items = []
+      for (let i = 0; i < 60; i += step) {
+        items.push({ value: i, label: i.toString().padStart(2, '0') })
+      }
+      return items
+    }, [step])
+
+    const handleOpenCloseModal = useCallback(() => {
+      if (!disabled) {
+        setDisplay((prev) => !prev)
+      }
+    }, [disabled])
+
+    const handleValidate = useCallback(() => {
+      const formatted = `${selectedHours.toString().padStart(2, '0')}:${selectedMinutes.toString().padStart(2, '0')}`
+      onChange?.(formatted)
+      setDisplay(false)
+    }, [selectedHours, selectedMinutes, onChange])
+
+    const handleCancel = useCallback(() => {
+      setSelectedHours(hours)
+      setSelectedMinutes(minutes)
+      setDisplay(false)
+    }, [hours, minutes])
+
+    // Sync local state when value prop changes
+    React.useEffect(() => {
+      const { hours: h, minutes: m } = parseTime(value)
+      setSelectedHours(h)
+      setSelectedMinutes(m)
+    }, [value])
+
+    const displayValue = value !== '00:00' ? value : undefined
+
+    return (
+      <Modal
+        hideCloseButton
+        active={display}
+        trigger={
+          <Pressable onPress={handleOpenCloseModal}>
+            <Input
+              onIconClick={handleOpenCloseModal}
+              disabled={disabled}
+              iconNameRight={'tri-clock'}
+              placeholder='--:--'
+              value={displayValue}
+              {...{ editable: false, pointerEvents: 'none', id }}
+              {...others}
             />
-          </FlexBox>
+          </Pressable>
+        }
+      >
+        <View style={{ paddingBottom: 20 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <View style={{ flex: 1 }}>
+              <TimepickerSelector
+                items={hourItems}
+                value={selectedHours}
+                onValueChange={(v) => setSelectedHours(Number(v))}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <TimepickerSelector
+                items={minuteItems}
+                value={selectedMinutes}
+                onValueChange={(v) => setSelectedMinutes(Number(v))}
+              />
+            </View>
+          </View>
         </View>
-      </ModalBody>
-      <ModalFooter>
-        <Button>Valider</Button>
-        <Spacer size={SpacerSize.FOUR} />
-        <Button variant={ButtonVariant.SECONDARY}>Annuler</Button>
-      </ModalFooter>
-    </Modal>
-  )
-})
+        <ModalFooter>
+          <Button onClick={handleValidate}>Valider</Button>
+          <Spacer size={SpacerSize.FOUR} />
+          <Button variant={ButtonVariant.SECONDARY} onClick={handleCancel}>Annuler</Button>
+        </ModalFooter>
+      </Modal>
+    )
+  },
+)
 
 TimepickerDefault.displayName = ComponentName.Timepicker
 export default TimepickerDefault
