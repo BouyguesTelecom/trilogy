@@ -30,6 +30,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
     const { hours, minutes } = parseTime(value)
     const [selectedHours, setSelectedHours] = useState(hours)
     const [selectedMinutes, setSelectedMinutes] = useState(minutes)
+    const [inputValue, setInputValue] = useState<string | undefined>(value !== '00:00' ? value : undefined)
 
     const hourItems = useMemo(() => generateItems(24), [])
     const minuteItems = useMemo(() => {
@@ -48,6 +49,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
 
     const handleValidate = useCallback(() => {
       const formatted = `${selectedHours.toString().padStart(2, '0')}:${selectedMinutes.toString().padStart(2, '0')}`
+      setInputValue(formatted)
       onChange?.(formatted)
       setDisplay(false)
     }, [selectedHours, selectedMinutes, onChange])
@@ -58,11 +60,12 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
       setDisplay(false)
     }, [hours, minutes])
 
-    // Sync local state when value prop changes
+    // Sync local state when value prop changes from parent
     React.useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
+      setInputValue(value !== '00:00' ? value : undefined)
     }, [value])
 
     const displayValue = value !== '00:00' ? value : undefined
@@ -78,7 +81,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
               disabled={disabled}
               iconNameRight={'tri-clock'}
               placeholder='--:--'
-              value={displayValue}
+              value={inputValue}
               {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />
