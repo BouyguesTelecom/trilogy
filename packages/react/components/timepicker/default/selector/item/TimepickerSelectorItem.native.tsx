@@ -1,6 +1,5 @@
 import { Text } from '@/components/text'
 import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
-import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import React, { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
@@ -46,7 +45,7 @@ const TimepickerSelectorItem = ({ item, index, scrollOffset }: WheelItemProps) =
       <Text
         typo={
           computedStyle.isActive
-            ? [TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED, TypographyColor.TEXT_WHITE]
+            ? [TypographyAlign.TEXT_CENTERED, TypographyColor.TEXT_WHITE]
             : [TypographyAlign.TEXT_CENTERED]
         }
         style={{ lineHeight: 0 }}
