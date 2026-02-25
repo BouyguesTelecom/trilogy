@@ -18,12 +18,7 @@ interface SelectProps {
 
 const itemHeight = 45
 
-export const TimepickerSelector = ({
-  items,
-  value,
-  onValueChange,
-  visibleItems = 5,
-}: SelectProps) => {
+export const TimepickerSelector = ({ items, value, onValueChange, visibleItems = 5 }: SelectProps) => {
   const [scrollOffset, setScrollOffset] = useState(0)
   const containerHeight = itemHeight * visibleItems
   const localScrollRef = useRef<ScrollView>(null)
@@ -31,7 +26,6 @@ export const TimepickerSelector = ({
   const selectedIndex = useMemo(() => items.findIndex((item) => item.value === value), [items, value])
   const verticalPadding = (containerHeight - itemHeight) / 2
 
-  // Connect our ScrollView ref to ModalContext so react-native-modal delegates gestures properly
   useEffect(() => {
     if (localScrollRef.current && scrollViewRef) {
       (scrollViewRef as React.MutableRefObject<ScrollView | null>).current = localScrollRef.current
@@ -51,7 +45,6 @@ export const TimepickerSelector = ({
   const onScroll = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       setScrollOffset(event.nativeEvent.contentOffset.y)
-      // Propagate scroll to ModalContext so react-native-modal tracks it
       modalOnScroll?.(event)
     },
     [modalOnScroll],
@@ -96,12 +89,7 @@ export const TimepickerSelector = ({
         nestedScrollEnabled
       >
         {items.map((item, index) => (
-          <TimepickerSelectorItem
-            key={String(item.value)}
-            item={item}
-            index={index}
-            scrollOffset={scrollOffset}
-          />
+          <TimepickerSelectorItem key={String(item.value)} item={item} index={index} scrollOffset={scrollOffset} />
         ))}
       </ScrollView>
     </View>

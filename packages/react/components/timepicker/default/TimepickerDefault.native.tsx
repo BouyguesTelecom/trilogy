@@ -1,12 +1,13 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { FlexBox } from '@/components/flex-box'
 import Input from '@/components/input/Input.native'
 import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { TimepickerProps } from '@/components/timepicker/TimepickerProps'
-import { TypographyAlign, TypographyBold } from '@/objects'
+import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
@@ -73,6 +74,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
       <Modal
         hideCloseButton
         active={display}
+        onClose={handleOpenCloseModal}
         trigger={
           <Pressable onPress={handleOpenCloseModal}>
             <Input
@@ -89,19 +91,23 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
         }
       >
         <View style={{ paddingBottom: 20 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', paddingBottom: 8 }}>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>
-                Heures
-              </Text>
-            </View>
-            <View style={{ flex: 1, alignItems: 'center' }}>
-              <Text level={TextLevels.TWO} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}>
-                Minutes
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <FlexBox justify={Justify.SPACE_BETWEEN} align={Align.CENTER}>
+            <Text
+              level={TextLevels.TWO}
+              typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED, TypographyAlign.TEXT_CENTERED]}
+              style={{ flex: 1 }}
+            >
+              Heures
+            </Text>
+            <Text
+              level={TextLevels.TWO}
+              typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
+              style={{ flex: 1 }}
+            >
+              Minutes
+            </Text>
+          </FlexBox>
+          <FlexBox align={Align.CENTER}>
             <View style={{ flex: 1 }}>
               <TimepickerSelector
                 items={hourItems}
@@ -116,12 +122,14 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
                 onValueChange={(v) => setSelectedMinutes(Number(v))}
               />
             </View>
-          </View>
+          </FlexBox>
         </View>
         <ModalFooter>
           <Button onClick={handleValidate}>Valider</Button>
           <Spacer size={SpacerSize.FOUR} />
-          <Button variant={ButtonVariant.SECONDARY} onClick={handleCancel}>Annuler</Button>
+          <Button variant={ButtonVariant.SECONDARY} onClick={handleCancel}>
+            Annuler
+          </Button>
         </ModalFooter>
       </Modal>
     )
