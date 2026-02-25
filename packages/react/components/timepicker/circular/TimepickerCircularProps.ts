@@ -1,4 +1,4 @@
-import { TimepickerProps } from '../TimepickerProps'
+import { TimepickerProps } from '@/components/timepicker/TimepickerProps'
 import { type View } from 'react-native'
 
 /**

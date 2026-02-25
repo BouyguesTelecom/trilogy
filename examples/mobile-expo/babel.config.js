@@ -15,10 +15,7 @@ module.exports = function (api) {
         {
           loose: true,
         },
-      ],
-
-      // Plugin requis pour react-native-reanimated - DOIT ÊTRE LE DERNIER
-      'react-native-reanimated/plugin',
+      ]
     ],
   }
 }
