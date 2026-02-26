@@ -131,7 +131,7 @@ const ToasterAlert = ({
  */
 const Alert = React.forwardRef<AlertRef, AlertProps>(
   (
-    { banner, status, className, id, iconName, title, description, onClick, display = true, markup, ...others },
+    { banner, status, className, id, iconName, title, description, onClick, display = true, markup, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -158,6 +158,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
             e.stopPropagation()
           }}
           className={classes}
+          data-testid={testId}
           {...others}
         >
           <Icon name={iconAlert} className='alert-icon' />
