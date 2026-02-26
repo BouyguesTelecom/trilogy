@@ -547,7 +547,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             >
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
                 <View style={[styles.input, styles.inputDisplay]}>
-                  <Text typo={TypographyAlign.TEXT_CENTERED}>{hoursInputValue}</Text>
+                  <Text typo={TypographyAlign.TEXT_CENTERED} style={{ lineHeight: 0 }}>
+                    {hoursInputValue}
+                  </Text>
                 </View>
 
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
@@ -561,7 +563,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
                 <View style={[styles.input, styles.inputDisplay]}>
-                  <Text typo={TypographyAlign.TEXT_CENTERED}>{minutesInputValue}</Text>
+                  <Text typo={TypographyAlign.TEXT_CENTERED} style={{ lineHeight: 0 }}>
+                    {minutesInputValue}
+                  </Text>
                 </View>
                 <Text level={TextLevels.FOUR} typo={TypographyAlign.TEXT_CENTERED}>
                   Min
