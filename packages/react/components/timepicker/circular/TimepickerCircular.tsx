@@ -218,12 +218,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
           setCurrentHours(newHours)
           onChange?.(formatTime(newHours, currentMinutes))
         } else {
-          const newMinutes = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(59, numValue))
+          let newMinutes = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(59, numValue))
+          newMinutes = Math.round(newMinutes / step) * step
+          if (newMinutes > 59) newMinutes = 59
           setCurrentMinutes(newMinutes)
           onChange?.(formatTime(currentHours, newMinutes))
         }
       },
-      [currentHours, currentMinutes, onChange, formatNumber, formatTime],
+      [currentHours, currentMinutes, onChange, formatNumber, formatTime, step],
     )
 
     const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLSpanElement>) => {
