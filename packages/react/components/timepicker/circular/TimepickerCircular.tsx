@@ -344,7 +344,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     )
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('timepicker'))} {...others}>
+      <div ref={ref} className={hashClass(styled, clsx('timepicker-circular'))} {...others}>
         <div
           ref={containerRef}
           style={styles.circleContainer}
