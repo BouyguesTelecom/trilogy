@@ -82,10 +82,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         let normalizedAngle = angleRad + Math.PI / 2
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
-
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
         const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-
         let newHours = Math.floor(newTotalMinutes / 60)
         let newMinutes = newTotalMinutes % 60
 
@@ -218,12 +216,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         if (type === 'hours') {
           const newHours = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(24, numValue))
           setCurrentHours(newHours)
-          element.textContent = formatNumber(newHours)
           onChange?.(formatTime(newHours, currentMinutes))
         } else {
           const newMinutes = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(59, numValue))
           setCurrentMinutes(newMinutes)
-          element.textContent = formatNumber(newMinutes)
           onChange?.(formatTime(currentHours, newMinutes))
         }
       },
