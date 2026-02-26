@@ -7,11 +7,11 @@ import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { TimepickerProps } from '@/components/timepicker/TimepickerProps'
 import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
+import { TimepickerDefaultProps } from './TimepickerDefaultProps'
 
 const generateItems = (count: number) =>
   Array.from({ length: count }, (_, i) => ({
@@ -19,8 +19,11 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
-const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular'>>(
-  ({ disabled, id, value = '00:00', onChange, step = 1, ...others }, ref): JSX.Element => {
+const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
+  (
+    { disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others },
+    ref,
+  ): JSX.Element => {
     const [display, setDisplay] = useState<boolean>(false)
 
     const parseTime = (timeStr: string) => {
@@ -79,6 +82,11 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerProps, 'circular
         trigger={
           <Pressable onPress={handleOpenCloseModal}>
             <Input
+              testId={testId}
+              label={label}
+              sample={sample}
+              help={help}
+              required={required}
               onIconClick={handleOpenCloseModal}
               disabled={disabled}
               iconNameRight={'tri-clock'}
