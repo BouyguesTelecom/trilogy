@@ -15,7 +15,7 @@ import React from 'react'
  * @param disabled {boolean} Disabled
  * @param readOnly {boolean} readonly radio
  * @param id {string} Id for button, by default id is generate
- * @param label {string} Label for radio
+ * @param label {string | ReactNode} Label for radio
  * @param description {ReactNode} Description for radio
  * @param onChange {ChangeEvent}
  * @param name {string} Name for radio
@@ -51,46 +51,56 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const inputRef = React.useRef<HTMLInputElement>(null)
+
+    const handleDivClick = () => {
+      if (!disabled && !readonly && inputRef.current) {
+        inputRef.current.click()
+      }
+    }
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
-        <input
-          type='radio'
-          readOnly={readonly}
-          id={id}
-          disabled={disabled}
-          name={name}
-          value={value}
-          checked={checked}
-          required={required}
-          onChange={(e) => {
-            if (onChange && !disabled && !readonly) {
-              onChange(
-                Object.assign(e, {
-                  radioId: e.target.id,
-                  radioValue: e.target.value,
-                  radioName: e.target.name,
-                  radioChecked: e.target.checked,
-                }),
-              )
-            }
-          }}
-          {...others}
-        />
-        <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
-          {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
-          {horizontal ? (
-            <span>
-              <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-              {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
-            </span>
-          ) : (
-            <>
-              <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
-              {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
-            </>
-          )}
-        </label>
+      <div
+        ref={ref}
+        className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}
+        onClick={handleDivClick}
+        aria-checked={checked}
+        aria-disabled={disabled}
+        role='radio'
+      >
+        {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
+        <div className={hashClass(styled, clsx('radio-content'))}>
+          {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
+          <input
+            ref={inputRef}
+            type='radio'
+            readOnly={readonly}
+            id={id}
+            disabled={disabled}
+            name={name}
+            value={value}
+            checked={checked}
+            required={required}
+            style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              if (onChange && !disabled && !readonly) {
+                onChange(
+                  Object.assign(e, {
+                    radioId: e.target.id,
+                    radioValue: e.target.value,
+                    radioName: e.target.name,
+                    radioChecked: e.target.checked,
+                  }),
+                )
+              }
+            }}
+            {...others}
+          />
+          <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
+            {label}
+          </label>
+        </div>
         {sticker && <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />}
       </div>
     )
