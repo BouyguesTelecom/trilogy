@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add numberCols prop on RadioTiles and CheckboxTile
 - Update html RadioTiles and CheckboxTile for ay11
 - Update type of label on RadioTiles and CheckboxTile for ReactNode
+- Timepicker (circular / default)
+- Update stepper ui
+- Some testId
+- Fix modal flickering
+- Fix Accordion style
 
 ## [4.14.4] - 2026-02-09
 - Fix Alert style (web)
