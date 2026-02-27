@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Some testId
 - Fix modal flickering
 - Fix Accordion style
+- PromptAi component
 
 ## [4.14.4] - 2026-02-09
 - Fix Alert style (web)
