@@ -20,7 +20,10 @@ import SelectOption from './option'
  * @param nullable {boolean} Unselect Select Option Item
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
-  ({ children, id, selected, iconName, onChange, disabled, multiple, onBlur, status, ...others }, ref): JSX.Element => {
+  (
+    { children, id, selected, iconName, onChange, disabled, multiple, onBlur, status, readOnly, ...others },
+    ref,
+  ): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
     const [selectedNames, setSelectedNames] = React.useState<string[]>([])
     const [display, setDisplay] = useState<boolean>(false)
@@ -43,14 +46,14 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
     }, [selected])
 
     const handleOpenCloseModal = useCallback(() => {
-      !disabled && setDisplay((prev) => !prev)
-    }, [disabled])
+      !disabled && !readOnly && setDisplay((prev) => !prev)
+    }, [disabled, readOnly])
 
     const isChecked = useCallback(
       (value: string) =>
-        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value),
+          : selectedValues === value,
       [multiple, selectedValues],
     )
 
