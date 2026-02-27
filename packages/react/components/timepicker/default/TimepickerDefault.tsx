@@ -154,7 +154,12 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
             calculatePortalPosition()
             setDisplay(true)
           }}
-          {...others}
+          onClick={() => {
+            if (refInput.current) {
+              refInput.current.select()
+            }
+          }}
+          {...{ ...others }}
         />
 
         {display && (
