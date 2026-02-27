@@ -27,6 +27,16 @@ $CURSOR_SIZE: 30px;
     .flex-box {
       margin-bottom: 0px !important;
     }
+
+    &-divider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 90%;
+      background-color: getColor('neutral');
+      width: 1px;
+    }
   }
 
   &-selector {
@@ -46,6 +56,10 @@ $CURSOR_SIZE: 30px;
       text-align: center;
       cursor: pointer;
       user-select: none;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       
       &.is-active {
         background-color: getColor('main');

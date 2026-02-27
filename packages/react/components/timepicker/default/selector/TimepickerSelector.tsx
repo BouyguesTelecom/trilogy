@@ -23,7 +23,7 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
   useEffect(() => {
     const selectedIndex = items.findIndex((item) => item.value === value)
     if (selectedIndex !== -1 && containerRef.current) {
-      const itemHeight = 48
+      const itemHeight = 36
       const scrollTop = selectedIndex * itemHeight - ((visibleItems - 1) * itemHeight) / 2
       containerRef.current.scrollTop = Math.max(0, scrollTop)
     }
@@ -41,8 +41,6 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
         <TimepickerSelectorItem
           key={`${item.value}-${index}`}
           item={item}
-          index={index}
-          scrollOffset={0}
           isSelected={item.value === value}
           onClick={() => onValueChange(item.value)}
         />

@@ -12,13 +12,11 @@ interface SelectItem {
 
 interface WheelItemProps {
   item: SelectItem
-  index: number
-  scrollOffset: number
   isSelected: boolean
   onClick: () => void
 }
 
-const TimepickerSelectorItem = ({ item, index, scrollOffset, isSelected, onClick }: WheelItemProps) => {
+const TimepickerSelectorItem = ({ item, isSelected, onClick }: WheelItemProps) => {
   const { styled } = useTrilogyContext()
 
   return (

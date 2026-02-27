@@ -8,8 +8,7 @@ import { hashClass } from '@/helpers'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
 import clsx from 'clsx'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { View } from 'react-native'
+import React, { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { TimepickerSelector } from './selector'
 import { TimepickerDefaultProps } from './TimepickerDefaultProps'
 
@@ -21,7 +20,7 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
-const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
   ({ disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others }, ref) => {
     const [display, setDisplay] = useState<boolean>(false)
     const [portalPosition, setPortalPosition] = useState<{
@@ -32,8 +31,9 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
     }>({ top: 0, left: 0, width: 0, openUpward: false })
 
     const { styled } = useTrilogyContext()
-    const timepickerRef = useRef(null)
-    const refInput = useRef<HTMLDivElement>(null)
+    const timepickerRef = useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
+    useImperativeHandle(ref, () => timepickerRef.current as HTMLInputElement)
 
     useClickOutside(timepickerRef, () => {
       setTimeout(() => {
@@ -97,18 +97,25 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
       }
     }, [disabled, display, calculatePortalPosition])
 
-    const handleValidate = useCallback(() => {
-      const formatted = `${selectedHours.toString().padStart(2, '0')}:${selectedMinutes.toString().padStart(2, '0')}`
-      setInputValue(formatted)
-      onChange?.(formatted)
-      setDisplay(false)
-    }, [selectedHours, selectedMinutes, onChange])
+    const handleHourChange = useCallback(
+      (newHour: number) => {
+        setSelectedHours(newHour)
+        const formatted = `${newHour.toString().padStart(2, '0')}:${selectedMinutes.toString().padStart(2, '0')}`
+        setInputValue(formatted)
+        onChange?.(formatted)
+      },
+      [selectedMinutes, onChange],
+    )
 
-    const handleCancel = useCallback(() => {
-      setSelectedHours(hours)
-      setSelectedMinutes(minutes)
-      setDisplay(false)
-    }, [hours, minutes])
+    const handleMinuteChange = useCallback(
+      (newMinute: number) => {
+        setSelectedMinutes(newMinute)
+        const formatted = `${selectedHours.toString().padStart(2, '0')}:${newMinute.toString().padStart(2, '0')}`
+        setInputValue(formatted)
+        onChange?.(formatted)
+      },
+      [selectedHours, onChange],
+    )
 
     React.useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
@@ -130,27 +137,25 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
 
     return (
       <div ref={timepickerRef} style={{ position: 'relative' }}>
-        <div ref={refInput}>
-          <Input
-            ref={ref}
-            testId={testId}
-            label={label}
-            sample={sample}
-            help={help}
-            required={required}
-            onIconClick={handleOpenCloseModal}
-            disabled={disabled}
-            iconNameRight={'tri-clock'}
-            placeholder='--:--'
-            value={inputValue}
-            id={id}
-            onFocus={() => {
-              calculatePortalPosition()
-              setDisplay(true)
-            }}
-            {...others}
-          />
-        </div>
+        <Input
+          ref={refInput}
+          testId={testId}
+          label={label}
+          sample={sample}
+          help={help}
+          required={required}
+          onIconClick={handleOpenCloseModal}
+          disabled={disabled}
+          iconNameRight={'tri-clock'}
+          placeholder='--:--'
+          value={inputValue}
+          id={id}
+          onFocus={() => {
+            calculatePortalPosition()
+            setDisplay(true)
+          }}
+          {...others}
+        />
 
         {display && (
           <div
@@ -162,7 +167,14 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
               marginBottom: portalPosition.openUpward ? '4px' : '0',
             }}
           >
-            <FlexBox align={Align.CENTER} justify={Justify.SPACE_BETWEEN} gap={GapSize.ONE}>
+            <div className={hashClass(styled, clsx('timepicker-menu-divider'))} />
+
+            <FlexBox
+              align={Align.CENTER}
+              justify={Justify.SPACE_BETWEEN}
+              gap={GapSize.ONE}
+              className='timepicker-menu-header'
+            >
               <Text
                 level={TextLevels.TWO}
                 typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
@@ -170,7 +182,6 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
               >
                 Heure
               </Text>
-              <div style={{ width: '1px', height: '20px', backgroundColor: '#E2E8F0' }} />
               <Text
                 level={TextLevels.TWO}
                 typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
@@ -179,16 +190,21 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
                 Minute
               </Text>
             </FlexBox>
-            <FlexBox align={Align.CENTER} justify={Justify.SPACE_BETWEEN}>
+            <FlexBox
+              align={Align.CENTER}
+              justify={Justify.SPACE_BETWEEN}
+              className='timepicker-menu-selectors'
+              gap={GapSize.FOUR}
+            >
               <TimepickerSelector
                 items={hourItems}
                 value={selectedHours}
-                onValueChange={(v) => setSelectedHours(Number(v))}
+                onValueChange={(v) => handleHourChange(Number(v))}
               />
               <TimepickerSelector
                 items={minuteItems}
                 value={selectedMinutes}
-                onValueChange={(v) => setSelectedMinutes(Number(v))}
+                onValueChange={(v) => handleMinuteChange(Number(v))}
               />
             </FlexBox>
           </div>
