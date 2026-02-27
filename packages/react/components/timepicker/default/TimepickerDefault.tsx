@@ -20,9 +20,26 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
+const parseTime = (timeStr: string) => {
+  const [h, m] = timeStr.split(':')
+  return {
+    hours: parseInt(h || '0', 10) || 0,
+    minutes: parseInt(m || '0', 10) || 0,
+  }
+}
+
 const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
   ({ disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others }, ref) => {
     const [display, setDisplay] = useState<boolean>(false)
+    const { styled } = useTrilogyContext()
+    const { hours, minutes } = parseTime(value)
+    useImperativeHandle(ref, () => timepickerRef.current as HTMLInputElement)
+
+    const [selectedHours, setSelectedHours] = useState(hours)
+    const [selectedMinutes, setSelectedMinutes] = useState(minutes)
+    const [inputValue, setInputValue] = useState<string | undefined>(value !== '00:00' ? value : undefined)
+    const timepickerRef = useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
     const [portalPosition, setPortalPosition] = useState<{
       top: number
       left: number
@@ -30,24 +47,14 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       openUpward: boolean
     }>({ top: 0, left: 0, width: 0, openUpward: false })
 
-    const { styled } = useTrilogyContext()
-    const timepickerRef = useRef<HTMLInputElement>(null)
-    const refInput = useRef<HTMLInputElement>(null)
-    useImperativeHandle(ref, () => timepickerRef.current as HTMLInputElement)
+    const menuClasses = hashClass(styled, clsx('timepicker-menu'))
+    const dividerClasses = hashClass(styled, clsx('timepicker-menu-divider'))
 
     useClickOutside(timepickerRef, () => {
       setTimeout(() => {
         setDisplay(false)
       }, 0)
     })
-
-    const parseTime = (timeStr: string) => {
-      const [h, m] = timeStr.split(':')
-      return {
-        hours: parseInt(h || '0', 10) || 0,
-        minutes: parseInt(m || '0', 10) || 0,
-      }
-    }
 
     const calculatePortalPosition = useCallback(() => {
       if (!refInput.current) return
@@ -73,11 +80,6 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
         openUpward: shouldOpenUpward,
       })
     }, [])
-
-    const { hours, minutes } = parseTime(value)
-    const [selectedHours, setSelectedHours] = useState(hours)
-    const [selectedMinutes, setSelectedMinutes] = useState(minutes)
-    const [inputValue, setInputValue] = useState<string | undefined>(value !== '00:00' ? value : undefined)
 
     const hourItems = useMemo(() => generateItems(24), [])
     const minuteItems = useMemo(() => {
@@ -139,7 +141,6 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       <div ref={timepickerRef} style={{ position: 'relative' }}>
         <Input
           ref={refInput}
-          testId={testId}
           label={label}
           sample={sample}
           help={help}
@@ -164,7 +165,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
 
         {display && (
           <div
-            className={hashClass(styled, clsx('timepicker-menu'))}
+            className={menuClasses}
             style={{
               top: portalPosition.openUpward ? 'auto' : '100%',
               bottom: portalPosition.openUpward ? '100%' : 'auto',
@@ -172,7 +173,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
               marginBottom: portalPosition.openUpward ? '4px' : '0',
             }}
           >
-            <div className={hashClass(styled, clsx('timepicker-menu-divider'))} />
+            <div className={dividerClasses} />
 
             <FlexBox
               align={Align.CENTER}
