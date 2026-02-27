@@ -20,4 +20,5 @@ export const SVGicons = {
   trash: require('@trilogy-ds/assets/lib/icons/all/trash.svg'),
   paperclip: require('@trilogy-ds/assets/lib/icons/all/paperclip.svg'),
   micro: require('@trilogy-ds/assets/lib/icons/all/micro.svg'),
+  clock: require('@trilogy-ds/assets/lib/icons/all/clock.svg'),
 }

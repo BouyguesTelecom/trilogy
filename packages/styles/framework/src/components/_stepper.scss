@@ -1,22 +1,18 @@
 @use "sass:math";
 
-.stepper-wrapper {
+.stepper-items {
   display: flex;
   position: relative;
   justify-content: space-between;
   min-height: 44px;
-  gap: $spacing-4;
-
-  @include touch {
-    gap : $spacing-2;
-  }
+  gap: $spacing-2;
+  margin-top: $spacing-3;
 }
 
 .stepper-item {
   display: flex;
   flex-direction: column;
   width: 100%;
-
   &:before {
     content: "";
     display: block;
@@ -27,180 +23,64 @@
   }
 
   &.is-error {
-
     &:before {
       background-color: getColor('error') !important;
-
     }
+
     &.is-current{
       &:before{
         animation: progress 1s;
-      }
-
-    }
-
-    .step-bars {
-      background: getColor('error') !important;
-    }
-
-    color: getColor('font');
-
-    .step-label {
-
-      &::before {
-        content: "";
-        mask-image: url('./assets/icons/all/times.svg') !important;
-        background-color: getColor('error') !important;
-        border-width: 0;
-        mask-size: 20px;
-        width: 20px;
-        height: 20px;
-        align-self: baseline;
-        margin-top: 2px;
-      }
-
-      .icon {
-        display: none;
       }
     }
   }
 
   &.is-done {
-
     &:before {
       background-color: getColor('font');
-    }
-
-    .step-bars {
-      background: getColor('font');
-      transition: background-color 1s ease-in-out;
-    }
-
-    .step-label {
-      &::before {
-        content: "";
-        mask-image: url('./assets/icons/all/check-circle.svg');
-        background-color: getColor('success');
-        border-width: 0;
-        min-width: 20px;
-        mask-size: 20px;
-        height: 20px;
-        align-self: baseline;
-        margin-top: 2px;
-      }
     }
   }
 
   &.is-current,
   &.is-active {
-
     &:before {
       background-color: getColor('main');
       animation: progress 1s;
     }
-
-    .step-bars {
-      background: getColor('main');
-    }
-
-    .step-label {
-      font-style: normal;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 22px;
-      width: max-content;
-
-      .icon [class^=tri-], .icon [class*=" tri-"] {
-        height: 22px;
-        width: 22px;
-        margin: 0 4px 0 -4px;
-      }
-
-      @include tablet-only {
-        width: 90% !important;
-      }
-
-      @include mobile {
-        font-size: 18px;
-        width: 90%;
-      }
-    }
   }
 }
 
-.step-bars {
-  height: 4px;
-  background: getColor('disabled');
-  border-radius: var(--radius-small);
-  display: none;
+.step-count {
+  margin-bottom: $spacing-2 !important;
 }
 
 .step-label {
-  display: flex;
-  align-items: center;
-  color: getColor('font');
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  padding-top: $spacing-2;
-  gap: $spacing-1;
-  .icon {
-    font-size: 20px;
-    height: auto;
-  }
+  transition: opacity 0.3s ease-in-out;
+  animation: fadeInLabel 0.4s ease-out;
+}
 
-  @include touch {
-    position: absolute;
-    top: 10px;
-    left: 0;
+@keyframes fadeInLabel {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
-@include desktop {
+@include mobile{
   .step-count {
-    display: none;
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  .step-label {
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+  .stepper-wrapper .icon {
+    font-size: 16px !important;
   }
 }
-
-@include mobile {
-  .step-count {
-    position: absolute;
-    top: 23px;
-    right: 8px;
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 600;
-  }
-
-  .stepper-item:not(.is-current) {
-    display: flex;
-
-    .step-label {
-      display: none;
-    }
-  }
-}
-
-@include tablet-only {
-  .step-count {
-    position: absolute;
-    top: 24px;
-    right: 8px;
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 600;
-  }
-
-  .stepper-item:not(.is-current) {
-    display: flex;
-
-    .step-label {
-      display: none;
-    }
-  }
-}
-
 
 @keyframes progress {
   0%, 100% {

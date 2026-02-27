@@ -78,6 +78,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       disabled,
       onChange,
       onKeyPress,
+      onKeyDown,
       onKeyUp,
       onIconClick,
       onClick,
@@ -262,6 +263,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
             maxLength={maxLength}
             autoComplete={autoCompleteType}
             onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
+            onKeyDown={(e: React.KeyboardEvent) => onKeyDown && onKeyDown(onPressKey(e))}
             onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
             onMouseEnter={(e) => onMouseEnter?.(e)}
             onMouseLeave={(e) => onMouseLeave?.(e)}

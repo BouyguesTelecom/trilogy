@@ -178,4 +178,6 @@ export enum ComponentName {
   PromptFiles = 'PromptFiles',
   PromptFile = 'PromptFile',
   PromptSelectOption = 'PromptSelectOption',
+  TimepickerCircular = 'TimepickerCircular',
+  Timepicker = 'Timepicker',
 }

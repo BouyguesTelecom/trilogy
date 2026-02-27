@@ -28,6 +28,7 @@ export enum IconName {
   PICTO_PAYMENT_PAYPAL = 'tri-picto-payment-paypal',
   PICTO_PAYMENT_VISA = 'tri-picto-payment-visa',
   PARPERCLIP = 'tri-paperclip',
+  CLOCK = 'tri-clock',
 }
 
 export type IconNameValues = `${IconName}`

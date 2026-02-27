@@ -3,8 +3,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.14.5] - 2026-02-XX
+## [4.15.0] - 2026-02-XX
 - Adde stroke color
+- Add numberCols prop on RadioTiles and CheckboxTile
+- Update html RadioTiles and CheckboxTile for ay11
+- Update type of label on RadioTiles and CheckboxTile for ReactNode
+- Timepicker (circular / default)
+- Update stepper ui
+- Some testId
+- Fix modal flickering
+- Fix Accordion style
 
 ## [4.14.4] - 2026-02-09
 - Fix Alert style (web)

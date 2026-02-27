@@ -86,13 +86,12 @@ export const CheckboxScreen = (): JSX.Element => {
                 horizontal
               />
               <CheckboxTile
-                sticker='Avantages'
+                disabled
+                sticker='Avantagess'
                 id='tile-horizontal-2'
                 label='label-t-2'
                 value='value-t-2'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.'
+                description='Lorem ipsum dolor sit amet'
                 icon={IconName.ALERT}
                 horizontal
               />
@@ -102,10 +101,43 @@ export const CheckboxScreen = (): JSX.Element => {
                 id='tile-horizontal-3'
                 label='label-t-3'
                 value='value-t-3'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eum molestiae itaque commodi minus est
-                aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
-                similique animi.s'
+                description='Lorem ipsum dolor sit amet'
                 horizontal
+              />
+            </CheckboxTiles>
+          </Column>
+
+          <Column size={12} align={Alignable.ALIGNED_CENTER}>
+            <Title level={4}>CheckboxTiles Grid</Title>
+            <Text id='ww'>CheckboxTiles Grid</Text>
+            <Spacer size={SpacerSize.FIVE} />
+            <CheckboxTiles
+              accessibilityLabelledBy='ww'
+              align={Alignable.ALIGNED_CENTER}
+              numberCols={{ desktop: 3, mobile: 2, tablet: 2 }}
+            >
+              <CheckboxTile
+                id='tile-horizontal-1'
+                label={<Text>label-t-1</Text>}
+                value='value-t-1'
+                description='Je suis une description simple'
+                icon={IconName.ALERT}
+              />
+              <CheckboxTile
+                sticker='Avantages'
+                id='tile-horizontal-2'
+                label='label-t-2'
+                value='value-t-2'
+                description='Lorem ipsum dolor sit amet'
+                icon={IconName.ALERT}
+              />
+
+              <CheckboxTile
+                sticker='Avantages'
+                id='tile-horizontal-3'
+                label='label-t-3'
+                value='value-t-3'
+                description='Lorem ipsum dolor sit amet'
               />
             </CheckboxTiles>
           </Column>

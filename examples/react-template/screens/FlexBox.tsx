@@ -32,6 +32,19 @@ export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Container className='container_410'>
+
+        <Title level={TitleLevels.THREE}>Props mobile</Title>
+        <FlexBox mobile>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
+          </FlexItem>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
+          </FlexItem>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
+          </FlexItem>
+        </FlexBox>
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
         <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Alignable.ALIGNED_CENTER} scrollable>
           <FlexItem size={{ tablet: 10 }}>

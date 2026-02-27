@@ -28,7 +28,8 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -41,7 +42,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.mobileexpo"
     },
     "web": {
       "favicon": "./assets/favicon.png"

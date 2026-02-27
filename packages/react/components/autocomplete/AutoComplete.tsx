@@ -41,6 +41,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     onFocus,
     id,
     loading,
+    testId,
     ...others
   }: AutoCompletePropsWeb<T>,
   ref: React.Ref<HTMLInputElement>,
@@ -54,7 +55,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   const [search, setSearch] = useState<T[]>([])
 
   const autocompleteClasses = hashClass(styled, clsx(is('autocomplete'), is('active')))
-  const autocompleteContainerClasses = hashClass(styled,  clsx(is('autocomplete-container')))
+  const autocompleteContainerClasses = hashClass(styled, clsx(is('autocomplete-container')))
 
   useEffect(() => {
     setInputValue(value || '')
@@ -108,7 +109,9 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     }
   }
 
-  const onInputChange = debounceSuggestionsTimeout ? debounce(getSuggestionsHandler, debounceSuggestionsTimeout) : getSuggestionsHandler
+  const onInputChange = debounceSuggestionsTimeout
+    ? debounce(getSuggestionsHandler, debounceSuggestionsTimeout)
+    : getSuggestionsHandler
 
   const suggestionSelected = (value: T, data: T[], search: T[]) => {
     setIsAutocompleteMenuVisible(false)
@@ -176,18 +179,25 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         }}
         onIconClick={onIconClick}
         loading={loading}
+        data-testid={testId}
         {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
 
       {isAutocompleteMenuVisible && (
         <div className={autocompleteClasses}>
           {search.length > 0 && (
-            <AutoCompleteMenu absolute={absoluteMenu} fullwidth={fullwidthMenu} className={classNameMenu}>
+            <AutoCompleteMenu
+              absolute={absoluteMenu}
+              fullwidth={fullwidthMenu}
+              className={classNameMenu}
+              testId={`${testId}-menu`}
+            >
               {search.map((item, i) => (
                 <AutoCompleteItem<T>
                   active={activeItem === i}
                   key={i}
                   item={item}
+                  testId={`${testId}-item`}
                   suggestionSelected={(v: T) => suggestionSelected(v, data, search)}
                 >
                   {children ? children(item) : getLabel(item)}

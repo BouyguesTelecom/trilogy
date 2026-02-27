@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from './SelectProps'
 import SelectOption from './option'
 
@@ -21,7 +21,7 @@ import SelectOption from './option'
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
   (
-    { children, id, selected, label, iconName, onChange, disabled, multiple, onBlur, status, readOnly, ...others },
+    { children, id, selected, iconName, onChange, disabled, multiple, onBlur, status, readOnly, ...others },
     ref,
   ): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
@@ -51,9 +51,9 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
 
     const isChecked = useCallback(
       (value: string) =>
-        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value),
+          : selectedValues === value,
       [multiple, selectedValues],
     )
 
@@ -150,24 +150,22 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
       <Modal
         active={display}
         onClose={handleOpenCloseModal}
-        unClosable
         trigger={
-          <TouchableOpacity onPress={handleOpenCloseModal}>
+          <Pressable onPress={handleOpenCloseModal}>
             <Input
               status={status}
               ref={ref}
               onBlur={onBlur as (event: unknown) => void}
               onIconClick={handleOpenCloseModal}
               disabled={disabled}
-              placeholder={label}
               iconNameLeft={iconName}
               iconNameRight={display ? 'tri-arrow-up' : 'tri-arrow-down'}
               value={selectedNames.join(', ')}
               defaultValue={selectedNames.join(', ')}
-              {...{ editable: false, onPressIn: handleOpenCloseModal, id }}
+              {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />
-          </TouchableOpacity>
+          </Pressable>
         }
       >
         <ModalBody>

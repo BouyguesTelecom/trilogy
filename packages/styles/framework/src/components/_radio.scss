@@ -71,12 +71,8 @@
       left: 18px;
     }
   }
+}
 
-  input:checked:disabled ~ label.radio-label {
-    &:after {
-      background-color: getColor('neutral');
-      top: 19px;
-      left: 19px;
-    }
-  }
+.radio-tile[aria-checked="true"] {
+  cursor: default;
 }
