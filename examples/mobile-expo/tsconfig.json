@@ -14,8 +14,10 @@
     }
   },
   "include": [
-    "../react/**/*.ts",
-    "../react/**/*.tsx"
+    "./**/*.ts",
+    "./**/*.tsx",
+    "../../packages/react/**/*.ts",
+    "../../packages/react/**/*.tsx"
   ],
   "extends": "expo/tsconfig.base"
 }

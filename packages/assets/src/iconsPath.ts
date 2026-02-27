@@ -16,4 +16,5 @@ export const SVGicons = {
   search: require('@trilogy-ds/assets/lib/icons/all/search.svg'),
   times: require('@trilogy-ds/assets/lib/icons/all/times.svg'),
   trash: require('@trilogy-ds/assets/lib/icons/all/trash.svg'),
+  clock: require('@trilogy-ds/assets/lib/icons/all/clock.svg'),
 }

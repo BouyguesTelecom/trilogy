@@ -1,0 +1,71 @@
+$CIRCLE_SIZE: 172px;
+$CURSOR_SIZE: 30px;
+
+.timepicker-circular {
+
+  .circle_container {
+    width: $CIRCLE_SIZE;
+    height: $CIRCLE_SIZE;
+    position: relative;
+
+    &-cursor {
+      position: absolute;
+      width: $CURSOR_SIZE;
+      height: $CURSOR_SIZE;
+      border-radius: 50%;
+      background-color: getColor('neutral-fade');
+      border: 2px solid getColor('main');
+      z-index: 20;
+    }
+
+    &-inputs {
+      position: absolute;
+      display: flex;
+      flex-direction:row;
+      align-items: center;
+      justify-content: center;
+      z-index:  30;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      cursor:default;
+      pointer-events:none;
+      gap: $spacing-1;
+
+      &-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 40px;
+        gap: $spacing-1;
+        pointer-events: auto
+      }
+
+      &-wrapper-input {
+          @include input;
+          width: 36px;
+          height: 36px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: default;
+          pointer-events: auto
+      }
+
+      &-separator {
+        height: 36px;
+        margin-bottom: 10px
+      }
+    }
+  }
+
+  .non_draggable_zone {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 25;
+    cursor: default;
+  }
+}
