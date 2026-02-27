@@ -2,11 +2,11 @@ import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { FlexBox } from '@/components/flex-box'
 import { Input } from '@/components/input'
-import { Text, TextLevels } from '@/components/text'
+import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { useClickOutside } from '@/helpers/clickOutside'
-import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
+import { Align, Justify, TypographyAlign } from '@/objects'
 import clsx from 'clsx'
 import React, { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { TimepickerSelector } from './selector'
@@ -181,18 +181,10 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
               gap={GapSize.ONE}
               className='timepicker-menu-header'
             >
-              <Text
-                level={TextLevels.TWO}
-                typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
-                className='timepicker-menu-title'
-              >
+              <Text typo={[TypographyAlign.TEXT_CENTERED]} className='timepicker-menu-title'>
                 Heure
               </Text>
-              <Text
-                level={TextLevels.TWO}
-                typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyAlign.TEXT_CENTERED]}
-                className='timepicker-menu-title'
-              >
+              <Text typo={[TypographyAlign.TEXT_CENTERED]} className='timepicker-menu-title'>
                 Minute
               </Text>
             </FlexBox>
