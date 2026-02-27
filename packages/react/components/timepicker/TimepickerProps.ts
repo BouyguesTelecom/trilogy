@@ -1,5 +1,5 @@
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { type View, type TextInput } from 'react-native'
+import { type TextInput, type View } from 'react-native'
 
 /**
  * Timepicker Interface (shared props for both default and circular)
@@ -10,6 +10,10 @@ export interface TimepickerProps extends CommonProps {
   disabled?: boolean
   step?: number
   circular?: boolean
+  label?: string
+  sample?: string
+  required?: boolean
+  help?: string
 }
 
 export type TimepickerRef = HTMLDivElement

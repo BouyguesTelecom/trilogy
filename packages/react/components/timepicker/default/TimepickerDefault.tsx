@@ -37,7 +37,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
 
     const [selectedHours, setSelectedHours] = useState(hours)
     const [selectedMinutes, setSelectedMinutes] = useState(minutes)
-    const [inputValue, setInputValue] = useState<string | undefined>(value !== '00:00' ? value : undefined)
+    const [inputValue, setInputValue] = useState<string>(value !== '00:00' ? value : '')
     const timepickerRef = useRef<HTMLInputElement>(null)
     const refInput = useRef<HTMLInputElement>(null)
     const [portalPosition, setPortalPosition] = useState<{
@@ -119,11 +119,135 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       [selectedHours, onChange],
     )
 
+    const handleKeyDown = useCallback(
+      (event: { inputKeyCode: number; preventDefault: () => void }) => {
+        const { inputKeyCode, preventDefault } = event
+        if (inputKeyCode === 38 || inputKeyCode === 40) {
+          preventDefault()
+
+          const input = refInput.current
+          if (!input) return
+
+          const cursorPosition = input.selectionStart || 0
+          const isHourSection = cursorPosition <= 2
+          const increment = inputKeyCode === 38 ? 1 : -1
+
+          if (isHourSection) {
+            const newHours = Math.max(0, Math.min(23, selectedHours + increment))
+            handleHourChange(newHours)
+            setTimeout(() => {
+              if (input) {
+                input.setSelectionRange(0, 2)
+              }
+            }, 0)
+          } else {
+            const newMinutes = Math.max(0, Math.min(59, selectedMinutes + increment))
+            const roundedMinutes = Math.round(newMinutes / step) * step
+            const finalMinutes = Math.max(0, Math.min(59, roundedMinutes))
+            handleMinuteChange(finalMinutes)
+            setTimeout(() => {
+              if (input) {
+                input.setSelectionRange(3, 5)
+              }
+            }, 0)
+          }
+        }
+        if (inputKeyCode === 37 || inputKeyCode === 39) {
+          const input = refInput.current
+          if (!input) return
+
+          const cursorPosition = input.selectionStart || 0
+          const inputValue = input.value || ''
+
+          if (inputKeyCode === 37 && cursorPosition === 3 && inputValue.length >= 3) {
+            preventDefault()
+            setTimeout(() => {
+              if (input) {
+                input.setSelectionRange(2, 2)
+              }
+            }, 0)
+          } else if (inputKeyCode === 39 && cursorPosition === 2 && inputValue.length >= 3) {
+            preventDefault()
+            setTimeout(() => {
+              if (input) {
+                input.setSelectionRange(3, 3)
+              }
+            }, 0)
+          }
+        }
+      },
+      [selectedHours, selectedMinutes, step, handleHourChange, handleMinuteChange],
+    )
+
+    const handleInputChange = useCallback(
+      (event: { inputValue: string }) => {
+        const { inputValue } = event
+        const previousValue = refInput.current?.value || ''
+        const cleanValue = inputValue.replace(/[^\d:]/g, '')
+        let formattedValue = ''
+        const digits = cleanValue.replace(/:/g, '')
+        let shouldMoveCursor = false
+
+        if (digits.length === 0) {
+          formattedValue = ''
+        } else if (digits.length === 1) {
+          formattedValue = digits
+        } else if (digits.length === 2) {
+          formattedValue = `${digits}:`
+          if (previousValue.length === 2 && !previousValue.includes(':')) {
+            shouldMoveCursor = true
+          }
+        } else if (digits.length === 3) {
+          formattedValue = `${digits.slice(0, 2)}:${digits.slice(2)}`
+        } else if (digits.length === 4) {
+          formattedValue = `${digits.slice(0, 2)}:${digits.slice(2, 4)}`
+        } else {
+          formattedValue = `${digits.slice(0, 2)}:${digits.slice(2, 4)}`
+        }
+        if (formattedValue.length > 5) {
+          formattedValue = formattedValue.slice(0, 5)
+        }
+
+        setInputValue(formattedValue)
+        if (shouldMoveCursor) {
+          setTimeout(() => {
+            if (refInput.current) {
+              refInput.current.setSelectionRange(3, 3)
+            }
+          }, 0)
+        }
+
+        if (formattedValue.includes(':') && formattedValue.length === 5) {
+          const { hours, minutes } = parseTime(formattedValue)
+          if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+            const roundedMinutes = Math.round(minutes / step) * step
+            const finalMinutes = Math.max(0, Math.min(59, roundedMinutes))
+            const finalFormattedValue = `${hours.toString().padStart(2, '0')}:${finalMinutes
+              .toString()
+              .padStart(2, '0')}`
+
+            setSelectedHours(hours)
+            setSelectedMinutes(finalMinutes)
+            if (finalMinutes !== minutes) {
+              setInputValue(finalFormattedValue)
+            }
+
+            onChange?.(finalFormattedValue)
+          }
+        } else if (formattedValue === '') {
+          setSelectedHours(0)
+          setSelectedMinutes(0)
+          onChange?.('00:00')
+        }
+      },
+      [onChange],
+    )
+
     React.useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
-      setInputValue(value !== '00:00' ? value : undefined)
+      setInputValue(value !== '00:00' ? value : '')
     }, [value])
 
     React.useEffect(() => {
@@ -151,6 +275,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
           placeholder='--:--'
           value={inputValue}
           id={id}
+          onChange={handleInputChange}
           onFocus={() => {
             calculatePortalPosition()
             setDisplay(true)
@@ -160,6 +285,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
               refInput.current.select()
             }
           }}
+          onKeyDown={handleKeyDown}
           {...{ ...others }}
         />
 

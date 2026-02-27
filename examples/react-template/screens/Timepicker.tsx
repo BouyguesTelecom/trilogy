@@ -10,6 +10,11 @@ export const TimepickerScreen = (): JSX.Element => {
     console.log(`Time changed: ${newTime}`)
   }
 
+  const handleTimeDefaultChange = (newTime: string) => {
+    setTimeCircular(newTime)
+    console.log(`Time changed: ${newTime}`)
+  }
+
   return (
     <Section>
       <View>
@@ -29,7 +34,15 @@ export const TimepickerScreen = (): JSX.Element => {
 
         <Spacer size={24} />
 
-        <Timepicker value={timeCircular} onChange={setTimeCircular} step={10} />
+        <Timepicker
+          value={timeCircular}
+          onChange={handleTimeDefaultChange}
+          step={10}
+          label='label'
+          sample='sample'
+          required
+          help='help'
+        />
 
         <Spacer size={24} />
 
