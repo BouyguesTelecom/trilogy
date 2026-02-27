@@ -2,8 +2,15 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
+import { FlexAlignType, StyleSheet, Text, View } from 'react-native'
+import {
+  Alignable,
+  getColorStyle,
+  getJustifyStyle,
+  getTypographyBoldStyle,
+  TrilogyColor,
+  TypographyBold,
+} from '../../objects'
 import { PriceLevel } from './PriceEnum'
 import { checkCents } from './PriceHelpers'
 import { PriceNativeRef, PriceProps } from './PriceProps'
@@ -17,7 +24,8 @@ import { PriceNativeRef, PriceProps } from './PriceProps'
  * @param level {PriceLevel} Price custom size
  * @param style {Object} Additional style
  * @param inverted {boolean} Inverted Price Color
- * @param align {Alignable} Price alignement
+ * @param align {Alignable} Price alignement @deprecated Use justify instead
+ * @param justify {Justifiable} Price justification
  * @param inline {boolean} Inline display Price
  * @param testId {string} id for test
  * @param accessibilityLabel {string}
@@ -34,6 +42,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       level,
       inverted,
       align,
+      justify,
       testId,
       accessibilityLabel,
       oldAmount,
@@ -141,11 +150,12 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const styles = StyleSheet.create({
       container: {
         flexDirection: 'row',
-        alignSelf:
-          (align && align == Alignable.ALIGNED_START && 'flex-start') ||
-          (align && align == Alignable.ALIGNED_CENTER && 'center') ||
-          (align && align == Alignable.ALIGNED_END && 'flex-end') ||
-          'flex-start',
+        alignSelf: justify
+          ? (getJustifyStyle(justify) as FlexAlignType)
+          : (align && align == Alignable.ALIGNED_START && 'flex-start') ||
+            (align && align == Alignable.ALIGNED_CENTER && 'center') ||
+            (align && align == Alignable.ALIGNED_END && 'flex-end') ||
+            'flex-start',
       },
       priceContainer: {
         padding: 0,
