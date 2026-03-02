@@ -32,19 +32,6 @@ export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
       <Container className='container_410'>
-
-        <Title level={TitleLevels.THREE}>Props mobile</Title>
-        <FlexBox mobile>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
-          </FlexItem>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
-          </FlexItem>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE}></Box>
-          </FlexItem>
-        </FlexBox>
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
         <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Alignable.ALIGNED_CENTER} scrollable>
           <FlexItem size={{ tablet: 10 }}>
@@ -68,11 +55,83 @@ export const FlexBoxScreen = (): JSX.Element => {
             </Box>
           </FlexItem>
         </FlexBox>
-      </Container>
+        <Title level={TitleLevels.THREE}>Direction Column</Title>
+        <FlexBox gap={GapSize.FOUR} fullheight justify={Justify.END}>
+          <FlexItem size={4}>
+            <Box fullheight backgroundColor={TrilogyColor.SUCCESS_FADE}>
+              <FlexBox>
+                <FlexItem narrow>
+                  <Icon name='tri-alert' size={IconSize.MEDIUM} />
+                </FlexItem>
+                <FlexItem>
+                  <Text>Content</Text>
+                </FlexItem>
+              </FlexBox>
+            </Box>
+          </FlexItem>
+          <FlexItem size={4}>
+            <Box fullheight backgroundColor={TrilogyColor.SUCCESS_FADE}>
+            </Box>
+          </FlexItem>
+        </FlexBox>
+        <FlexBox>
+          <FlexItem>
+            <Box fullheight>
+              <BoxContent>
+                <FlexBox direction={DirectionEnum.COLUMN} fullheight> 
+                  <FlexItem>
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                  </FlexItem>
+                  <FlexItem>
+                    <Button variant='CONVERSION'>Button</Button>
+                  </FlexItem>
+                </FlexBox>
+
+              </BoxContent>
+            </Box>
+
+          </FlexItem>
+          <FlexItem>
+            <Box fullheight>
+              <BoxContent className='box-content_410'>
+                <FlexBox fullheight direction={DirectionEnum.COLUMN}> 
+                  <FlexItem>
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                    <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+                  </FlexItem>
+                  <FlexItem narrow>
+                    <Button variant='CONVERSION'>Button</Button>
+                  </FlexItem>
+                </FlexBox>
+
+              </BoxContent>
+            </Box>
+
+          </FlexItem>
+        </FlexBox>
+        </Container>
+        <Title level={TitleLevels.THREE}>Props mobile</Title>
+        <FlexBox mobile>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+          </FlexItem>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+          </FlexItem>
+          <FlexItem size={4}>
+            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+          </FlexItem>
+        </FlexBox>
 
       <Box backgroundColor={TrilogyColor.MAIN_FADE}>
         <BoxContent>
-          <FlexBox align={Align.CENTER} justify={Justify.CENTER}>
+          <FlexBox align={Align.CENTER} justify={Justify.CENTER} mobile>
             <FlexItem narrow>
               <Image
                 width={30}

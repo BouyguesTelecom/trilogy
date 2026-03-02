@@ -833,11 +833,7 @@
   }
 
   &.is-gapless {
-    gap: 0;
-
-    > .flex-item {
-      --ColumnGap: 1px;
-    }
+    --ColumnGap: 0;
   }
 
   $itemWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction)) - 1) / (var(--ColumnFraction))) * var(--ColumnGap)));
@@ -861,6 +857,8 @@
   // SIZE
   > .flex-item {
     flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
     &.is-narrow {
       flex: none;
       width: auto;
