@@ -110,6 +110,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       required,
       readOnly,
       autoCapitalize,
+      testId,
       ...others
     },
     ref,
@@ -243,6 +244,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
         )}
         <div className={controlClasses}>
           <input
+            data-testid={testId}
             aria-describedby={`${idHelp} ${idSample}`}
             id={id}
             required={required}

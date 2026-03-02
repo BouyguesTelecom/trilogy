@@ -27,7 +27,7 @@ const HOUR_DOTS_COUNT = 24
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
-  ({ value = '00:00', onChange, disabled = false, step = 5, ...others }, ref): JSX.Element => {
+  ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
     const formatNumber = (num: number): string => {
       return num.toString().padStart(2, '0')
     }
@@ -516,7 +516,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const renderProgressGauge = () => progressGauge
 
     return (
-      <View ref={ref} style={styles.container} {...others}>
+      <View ref={ref} style={styles.container} testID={testId} {...others}>
         <GestureDetector gesture={combinedGesture}>
           <View ref={containerRef} style={styles.circleContainer}>
             {renderProgressGauge()}

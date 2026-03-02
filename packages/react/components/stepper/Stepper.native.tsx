@@ -83,7 +83,7 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
 
   return (
     <View ref={ref}>
-      <Text style={styles.counter} level={TextLevels.TWO} typo={[TypographyColor.TEXT_MAIN_FADE]}>
+      <Text style={styles.counter} level={TextLevels.TWO} typo={[TypographyColor.TEXT_PLACEHOLDER]}>
         Étape {currentStep.step} sur {nbChild}
       </Text>
       <View style={styles.hasIcon}>
