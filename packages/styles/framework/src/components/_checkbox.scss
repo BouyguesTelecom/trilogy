@@ -55,8 +55,8 @@
 .checkbox-tile {
   input:checked ~ label.checkbox-label {
     &:after {
-      top: 16px;
-      left: 16px;
+      top: 15px;
+      left: 15px;
     }
   }
 }
@@ -68,4 +68,3 @@
     }
   }
 }
-
