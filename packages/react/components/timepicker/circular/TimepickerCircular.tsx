@@ -22,7 +22,7 @@ const HOUR_DOTS_COUNT = 24
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
-  ({ value = '00:00', onChange, disabled = false, step = 5, ...others }, ref): JSX.Element => {
+  ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const formatNumber = (num: number): string => num.toString().padStart(2, '0')
     const formatTime = (hours: number, minutes: number): string => `${formatNumber(hours)}:${formatNumber(minutes)}`
@@ -344,7 +344,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     )
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('timepicker-circular'))} {...others}>
+      <div ref={ref} className={hashClass(styled, clsx('timepicker-circular'))} data-testid={testId} {...others}>
         <div
           ref={containerRef}
           style={styles.circleContainer}

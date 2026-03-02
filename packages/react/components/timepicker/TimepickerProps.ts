@@ -1,7 +1,8 @@
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { type TextInput, type View } from 'react-native'
 
-interface BaseTimepickerProps extends CommonProps {
+interface BaseTimepickerProps extends CommonProps, Dev {
   value?: string
   onChange?: (time: string) => void
   disabled?: boolean

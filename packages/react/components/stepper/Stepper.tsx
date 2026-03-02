@@ -50,7 +50,7 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
 
   return (
     <div ref={ref} id={id} className={classes} {...others}>
-      <Text level={2} className='step-count' typo={[TypographyColor.TEXT_MAIN_FADE]}>
+      <Text level={2} className='step-count' typo={[TypographyColor.TEXT_PLACEHOLDER]}>
         Étape {currentStep.step}sur {nbChild}
       </Text>
       <FlexBox align={Align.CENTER}>

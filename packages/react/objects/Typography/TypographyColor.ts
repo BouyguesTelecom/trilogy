@@ -14,6 +14,7 @@ export enum TypographyColor {
   TEXT_WHITE = 'has-text-white',
   TEXT_DISABLED = 'has-text-disabled',
   TEXT_MAIN_FADE = 'has-text-main-fade',
+  TEXT_PLACEHOLDER = 'has-text-font-placeholder',
 }
 
 /**
@@ -59,6 +60,9 @@ export const setTypographyColor = (typo: Array<string> | string = '', inverted =
         (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_MAIN_FADE)
           ? getColorStyle(TrilogyColor.MAIN_FADE)
           : typo === TypographyColor.TEXT_MAIN_FADE && getColorStyle(TrilogyColor.MAIN_FADE)) ||
+        (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_PLACEHOLDER)
+          ? getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+          : typo === TypographyColor.TEXT_PLACEHOLDER && getColorStyle(TrilogyColor.FONT_PLACEHOLDER)) ||
         (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
         getColorStyle(TrilogyColor.MAIN)
 }

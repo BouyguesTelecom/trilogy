@@ -8,7 +8,7 @@ import { hashClass } from '@/helpers'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { Align, Justify, TypographyAlign } from '@/objects'
 import clsx from 'clsx'
-import React, { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { TimepickerSelector } from './selector'
 import { TimepickerDefaultProps } from './TimepickerDefaultProps'
 
@@ -33,12 +33,10 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
     const [display, setDisplay] = useState<boolean>(false)
     const { styled } = useTrilogyContext()
     const { hours, minutes } = parseTime(value)
-    useImperativeHandle(ref, () => timepickerRef.current as HTMLInputElement)
 
     const [selectedHours, setSelectedHours] = useState(hours)
     const [selectedMinutes, setSelectedMinutes] = useState(minutes)
     const [inputValue, setInputValue] = useState<string>(value !== '00:00' ? value : '')
-    const timepickerRef = useRef<HTMLInputElement>(null)
     const refInput = useRef<HTMLInputElement>(null)
     const [portalPosition, setPortalPosition] = useState<{
       top: number
@@ -50,7 +48,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
     const menuClasses = hashClass(styled, clsx('timepicker-menu'))
     const dividerClasses = hashClass(styled, clsx('timepicker-menu-divider'))
 
-    useClickOutside(timepickerRef, () => {
+    useClickOutside(refInput, () => {
       setTimeout(() => {
         setDisplay(false)
       }, 0)
@@ -92,9 +90,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
 
     const handleOpenCloseModal = useCallback(() => {
       if (!disabled) {
-        if (!display) {
-          calculatePortalPosition()
-        }
+        if (!display) calculatePortalPosition()
         setDisplay((prev) => !prev)
       }
     }, [disabled, display, calculatePortalPosition])
@@ -119,65 +115,13 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       [selectedHours, onChange],
     )
 
-    const handleKeyDown = useCallback(
-      (event: { inputKeyCode: number; preventDefault: () => void }) => {
-        const { inputKeyCode, preventDefault } = event
-        if (inputKeyCode === 38 || inputKeyCode === 40) {
-          preventDefault()
-
-          const input = refInput.current
-          if (!input) return
-
-          const cursorPosition = input.selectionStart || 0
-          const isHourSection = cursorPosition <= 2
-          const increment = inputKeyCode === 38 ? 1 : -1
-
-          if (isHourSection) {
-            const newHours = Math.max(0, Math.min(23, selectedHours + increment))
-            handleHourChange(newHours)
-            setTimeout(() => {
-              if (input) {
-                input.setSelectionRange(0, 2)
-              }
-            }, 0)
-          } else {
-            const newMinutes = Math.max(0, Math.min(59, selectedMinutes + increment))
-            const roundedMinutes = Math.round(newMinutes / step) * step
-            const finalMinutes = Math.max(0, Math.min(59, roundedMinutes))
-            handleMinuteChange(finalMinutes)
-            setTimeout(() => {
-              if (input) {
-                input.setSelectionRange(3, 5)
-              }
-            }, 0)
-          }
-        }
-        if (inputKeyCode === 37 || inputKeyCode === 39) {
-          const input = refInput.current
-          if (!input) return
-
-          const cursorPosition = input.selectionStart || 0
-          const inputValue = input.value || ''
-
-          if (inputKeyCode === 37 && cursorPosition === 3 && inputValue.length >= 3) {
-            preventDefault()
-            setTimeout(() => {
-              if (input) {
-                input.setSelectionRange(2, 2)
-              }
-            }, 0)
-          } else if (inputKeyCode === 39 && cursorPosition === 2 && inputValue.length >= 3) {
-            preventDefault()
-            setTimeout(() => {
-              if (input) {
-                input.setSelectionRange(3, 3)
-              }
-            }, 0)
-          }
-        }
-      },
-      [selectedHours, selectedMinutes, step, handleHourChange, handleMinuteChange],
-    )
+    const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+      const { key } = event
+      if (key === 'Escape') {
+        setDisplay(false)
+        refInput.current?.blur()
+      }
+    }, [])
 
     const handleInputChange = useCallback(
       (event: { inputValue: string }) => {
@@ -262,8 +206,9 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
     }, [display, calculatePortalPosition])
 
     return (
-      <div ref={timepickerRef} style={{ position: 'relative' }}>
+      <div ref={ref} style={{ position: 'relative' }}>
         <Input
+          testId={testId}
           ref={refInput}
           label={label}
           sample={sample}
