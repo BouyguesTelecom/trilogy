@@ -68,7 +68,6 @@ export interface InputNativeEvents {
 export interface InputWebEvents {
   onChange?: InputChangeEventHandlerWeb
   onKeyUp?: InputKeyboardEventHandler
-  onKeyDown?: InputKeyboardEventHandler
   onKeyPress?: InputKeyboardEventHandler
   onIconClick?: InputClickEventHandler
   onClick?: InputClickEventHandler

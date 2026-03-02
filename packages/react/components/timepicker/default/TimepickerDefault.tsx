@@ -285,8 +285,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
               refInput.current.select()
             }
           }}
-          onKeyDown={handleKeyDown}
-          {...{ ...others }}
+          {...{ ...others, onKeyDown: handleKeyDown }}
         />
 
         {display && (
