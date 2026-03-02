@@ -45,6 +45,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const refsSegment = useRef<HTMLSpanElement[]>([])
     const containerRef = useRef<HTMLDivElement>(null)
     const lastAngle = useRef<number | null>(null)
+    const pointerIdRef = useRef<number | null>(null)
 
     useEffect(() => {
       const { hours, minutes } = parseTime(value)
@@ -101,12 +102,19 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       [maxMinutes, onChange, currentHours, currentMinutes, step],
     )
 
-    const getMousePosition = (event: MouseEvent | React.MouseEvent): { x: number; y: number } => {
+    const getMousePosition = (
+      event: MouseEvent | React.MouseEvent | PointerEvent | React.PointerEvent | TouchEvent,
+    ): { x: number; y: number } => {
       if (!containerRef.current) return { x: 0, y: 0 }
       const rect = containerRef.current.getBoundingClientRect()
+      const anyEvent = event as any
+      if (anyEvent.touches && anyEvent.touches.length > 0) {
+        const t = anyEvent.touches[0]
+        return { x: t.clientX - rect.left, y: t.clientY - rect.top }
+      }
       return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top,
+        x: anyEvent.clientX - rect.left,
+        y: anyEvent.clientY - rect.top,
       }
     }
 
@@ -153,12 +161,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       }
     }
 
-    const handleMouseMove = useCallback(
-      (event: MouseEvent) => {
+    const handleMove = useCallback(
+      (event: MouseEvent | PointerEvent) => {
         if (!isDragging || disabled) return
         event.preventDefault()
 
-        const { x, y } = getMousePosition(event)
+        const { x, y } = getMousePosition(event as any)
         const dx = x - centerX
         const dy = y - centerY
         const newAngle = Math.atan2(dy, dx)
@@ -177,18 +185,51 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const handleMouseUp = useCallback(() => {
       setIsDragging(false)
       lastAngle.current = null
+      if (pointerIdRef.current !== null) {
+        containerRef.current?.releasePointerCapture(pointerIdRef.current)
+        pointerIdRef.current = null
+      }
     }, [])
+
+    const handlePointerDown = (event: React.PointerEvent) => {
+      if (disabled) return
+      event.preventDefault()
+
+      const { x, y } = getMousePosition(event as any)
+      pointerIdRef.current = event.pointerId
+      containerRef.current?.setPointerCapture(event.pointerId)
+
+      if (isOnCursor(x, y)) {
+        setIsDragging(true)
+        lastAngle.current = null
+
+        const dx = x - centerX
+        const dy = y - centerY
+        const newAngle = Math.atan2(dy, dx)
+        updateTimeFromAngle(newAngle)
+      } else {
+        const hourDotIndex = isOnHourDot(x, y)
+        if (hourDotIndex !== -1) {
+          handleHourDotPress(hourDotIndex)
+        }
+      }
+    }
 
     useEffect(() => {
       if (isDragging) {
-        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('pointermove', handleMove)
+        document.addEventListener('pointerup', handleMouseUp)
+        document.addEventListener('mousemove', handleMove)
         document.addEventListener('mouseup', handleMouseUp)
+
         return () => {
-          document.removeEventListener('mousemove', handleMouseMove)
+          document.removeEventListener('pointermove', handleMove)
+          document.removeEventListener('pointerup', handleMouseUp)
+          document.removeEventListener('mousemove', handleMove)
           document.removeEventListener('mouseup', handleMouseUp)
         }
       }
-    }, [isDragging, handleMouseMove, handleMouseUp])
+    }, [isDragging, handleMove, handleMouseUp])
 
     const handleHourDotPress = useCallback(
       (hourIndex: number) => {
@@ -329,6 +370,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       () => ({
         circleContainer: {
           cursor: 'pointer',
+          touchAction: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
         },
         cursor: {
           left: cursorX,
@@ -347,9 +391,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       <div ref={ref} className={hashClass(styled, clsx('timepicker-circular'))} data-testid={testId} {...others}>
         <div
           ref={containerRef}
-          style={styles.circleContainer}
+          style={styles.circleContainer as any}
           className={hashClass(styled, clsx('circle_container'))}
           onMouseDown={handleMouseDown}
+          onPointerDown={handlePointerDown}
         >
           {progressGauge}
           <div style={{ position: 'absolute', width: CIRCLE_SIZE, height: CIRCLE_SIZE, zIndex: 10 }}>{hourDots}</div>
