@@ -1,97 +1,99 @@
 @use "sass:math";
+@import './stepper-legacy';
 
-.stepper-items {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  min-height: 44px;
-  gap: $spacing-2;
-  margin-top: $spacing-3;
-}
-
-.stepper-item {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  &:before {
-    content: "";
-    display: block;
-    height: 4px;
-    border-radius: var(--radius-small);
-    background-size: 200% !important;
-    background-color: getColor('neutral');
+.stepper-container {
+  .stepper-items {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    min-height: 44px;
+    gap: $spacing-2;
+    margin-top: $spacing-3;
   }
 
-  &.is-error {
+  .stepper-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
     &:before {
-      background-color: getColor('error') !important;
+      content: "";
+      display: block;
+      height: 4px;
+      border-radius: var(--radius-small);
+      background-size: 200% !important;
+      background-color: getColor('neutral');
     }
 
-    &.is-current{
-      &:before{
+    &.is-error {
+      &:before {
+        background-color: getColor('error') !important;
+      }
+
+      &.is-current {
+        &:before {
+          animation: progress 1s;
+        }
+      }
+    }
+
+    &.is-done {
+      &:before {
+        background-color: getColor('font');
+      }
+    }
+
+    &.is-current,
+    &.is-active {
+      &:before {
+        background-color: getColor('main');
         animation: progress 1s;
       }
     }
   }
 
-  &.is-done {
-    &:before {
-      background-color: getColor('font');
-    }
-  }
-
-  &.is-current,
-  &.is-active {
-    &:before {
-      background-color: getColor('main');
-      animation: progress 1s;
-    }
-  }
-}
-
-.step-count {
-  margin-bottom: $spacing-2 !important;
-}
-
-.step-label {
-  transition: opacity 0.3s ease-in-out;
-  animation: fadeInLabel 0.4s ease-out;
-}
-
-@keyframes fadeInLabel {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@include mobile{
   .step-count {
-    font-size: 12px !important;
-    line-height: 18px !important;
+    margin-bottom: $spacing-2 !important;
   }
+
   .step-label {
-    font-size: 14px !important;
-    line-height: 18px !important;
+    transition: opacity 0.3s ease-in-out;
+    animation: fadeInLabel 0.4s ease-out;
   }
 
-  .stepper-wrapper .icon {
-    font-size: 16px !important;
+  @keyframes fadeInLabel {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @include mobile {
+    .step-count {
+      font-size: 12px !important;
+      line-height: 18px !important;
+    }
+    .step-label {
+      font-size: 14px !important;
+      line-height: 18px !important;
+    }
+
+    .stepper-wrapper .icon {
+      font-size: 16px !important;
+    }
+  }
+
+  @keyframes progress {
+    0%, 100% {
+      background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral') 50%, getColor('neutral') 100%);
+    }
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
   }
 }
-
-@keyframes progress {
-  0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral') 50%, getColor('neutral') 100%);
-  }
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-

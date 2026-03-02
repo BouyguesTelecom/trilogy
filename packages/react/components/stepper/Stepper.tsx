@@ -1,6 +1,6 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { Align, TypographyColor } from '@/objects'
+import { Align, DirectionEnum, TypographyColor } from '@/objects'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -9,6 +9,7 @@ import { Icon, IconName } from '../icon'
 import { Text } from '../text'
 import { Title } from '../title'
 import { StepperProps, StepperRef } from './StepperProps'
+import { GapSize } from '@/components/columns'
 
 type CurrentStepType = { label: number | null; step: number; icon: IconName | null }
 /**
@@ -20,7 +21,7 @@ type CurrentStepType = { label: number | null; step: number; icon: IconName | nu
  */
 const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, ...others }, ref) => {
   const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('stepper-wrapper', className))
+  const classes = hashClass(styled, clsx('stepper-container', className))
   const classesSteps = hashClass(styled, clsx('stepper-items'))
   const [currentStep, setCurrentStep] = React.useState<CurrentStepType>({ label: null, step: 1, icon: null })
 
@@ -49,19 +50,44 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
   }, [children])
 
   return (
-    <div ref={ref} id={id} className={classes} {...others}>
-      <Text level={2} className='step-count' typo={[TypographyColor.TEXT_PLACEHOLDER]}>
-        Étape {currentStep.step} sur {nbChild}
-      </Text>
-      <FlexBox align={Align.CENTER}>
-        {currentStep.icon && <Icon name={currentStep.icon} size='small' />}
-        <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
-          {currentStep.label}
-        </Title>
-      </FlexBox>
+    <FlexBox gap={GapSize.EIGHT} direction={DirectionEnum.COLUMN}>
+      <div className='stepper-wrapper'>
+        <div className='stepper-item is-done' data-label='Récapitulatif'>
+          <div className='step-label'>Récapitulatif</div>
+        </div>
+        <div className='stepper-item is-done' data-label='Compléments'>
+          <div className='step-label'>Compléments</div>
+        </div>
+        <div className='stepper-item is-current' data-label='Coordonnées'>
+          <div className='step-label'>Coordonnées</div>
+        </div>
+        <div className='stepper-item' data-label='Livraison'>
+          <div className='step-label'>Livraison</div>
+        </div>
+        <div className='stepper-item' data-label='Confirmation'>
+          <div className='step-label'>Confirmation</div>
+        </div>
+        <div className='step-count'>
+          <p className='text'>1/5</p>
+        </div>
+      </div>
 
-      <div className={classesSteps}>{children}</div>
-    </div>
+      <h1>New</h1>
+
+      <div ref={ref} id={id} className={classes} {...others}>
+        <Text level={2} className='step-count' typo={[TypographyColor.TEXT_PLACEHOLDER]}>
+          Étape {currentStep.step} sur {nbChild}
+        </Text>
+        <FlexBox align={Align.CENTER}>
+          {currentStep.icon && <Icon name={currentStep.icon} size='small' />}
+          <Title level={5} className='step-label' key={`step-${currentStep.step}-${currentStep.label}`}>
+            {currentStep.label}
+          </Title>
+        </FlexBox>
+
+        <div className={classesSteps}>{children}</div>
+      </div>
+    </FlexBox>
   )
 })
 
