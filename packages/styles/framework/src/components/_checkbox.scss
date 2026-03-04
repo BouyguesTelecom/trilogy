@@ -31,7 +31,8 @@
 
 .checkbox,
 .checkbox-tile {
-  input:checked ~ label.checkbox-label {
+  input:checked ~ label.checkbox-label,
+  input:checked ~ .checkbox-container {
     &:before {
       background-color: getColor('main');
     }
@@ -44,7 +45,8 @@
     }
   }
 
-  label.checkbox-label {
+  label.checkbox-label,
+  .checkbox-container {
     &:before,
     &:after {
       border-radius: var(--radius-small);
@@ -53,7 +55,8 @@
 }
 
 .checkbox-tile {
-  input:checked ~ label.checkbox-label {
+  input:checked ~ label.checkbox-label,
+  input:checked ~ .checkbox-container {
     &:after {
       top: 15px;
       left: 15px;

@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
+import { Sticker } from '@/components/sticker'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
+import { VariantState } from '@/objects'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
-import { Sticker } from '@/components/sticker'
-import { VariantState } from '@/objects'
 
 /**
  * CheckboxTile
@@ -52,6 +52,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
     const [_checked, setChecked] = useState<boolean>(checked || false)
+    const refInput = React.useRef<HTMLInputElement>(null)
 
     useEffect(() => {
       if (!readonly) {
@@ -60,8 +61,14 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
     }, [checked, readonly])
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}>
+      <div
+        ref={ref}
+        className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}
+        role='button'
+        onClick={() => refInput?.current?.click()}
+      >
         <input
+          ref={refInput}
           type='checkbox'
           readOnly={readonly}
           required={required}
@@ -73,20 +80,24 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
           onChange={(e) => (onChange ? onChange : setChecked(e.target.checked))}
           {...others}
         />
-        <label htmlFor={id} className={hashClass(styled, clsx('checkbox-label'))}>
+        <div className={hashClass(styled, clsx('checkbox-container'))}>
           {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
           {horizontal ? (
             <span>
-              <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
+              <label htmlFor={id} className={hashClass(styled, clsx('checkbox-title'))}>
+                {label}
+              </label>
               {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
             </span>
           ) : (
             <>
-              <span className={hashClass(styled, clsx('checkbox-title'))}>{label}</span>
+              <label htmlFor={id} className={hashClass(styled, clsx('checkbox-title'))}>
+                {label}
+              </label>
               {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
             </>
           )}
-        </label>
+        </div>
         {sticker && <Sticker label={sticker} variant={stickerVariant} className='checkbox-sticker' small />}
       </div>
     )

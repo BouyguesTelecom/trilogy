@@ -3,16 +3,15 @@ import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { CommonProps } from '../../../../objects/facets/CommonProps'
 import { VariantProps } from '@/objects'
+import { ReactNode } from 'react'
 
-/**
- * Columns Item Interface
- */
-export interface CheckboxTileProps extends CheckboxProps, CommonProps {
+export interface CheckboxTileProps extends Omit<CheckboxProps, 'label'>, CommonProps {
   horizontal?: boolean
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode
   sticker?: string
   stickerVariant?: VariantProps['variant']
+  label?: string | ReactNode
 }
 
 export type CheckboxTileRef = HTMLDivElement

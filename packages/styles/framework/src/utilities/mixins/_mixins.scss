@@ -44,6 +44,60 @@
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    &.is-grid {
+      display: grid;
+      & > .#{$type}-tile {
+        width: 100%;
+        max-width: none;
+      }
+    }
+    @for $i from 1 through 12 {
+      &.is-grid-cols-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+    @include mobile {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-mobile-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
+    @include tablet {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-tablet-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
+    @include touch {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-touch-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
+    @include desktop {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-desktop-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
+    @include widescreen {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-widescreen-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
+    @include fullhd {
+      @for $i from 1 through 12 {
+        &.is-grid-cols-fullhd-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
+        }
+      }
+    }
   }
 
   //BOTH
@@ -51,7 +105,8 @@
   .#{$type}-tile {
     position: relative;
 
-    label.#{$type}-label {
+    label.#{$type}-label, 
+    .#{$type}-container {
       cursor: pointer;
       font-size: 14px;
 
@@ -73,7 +128,8 @@
       position: absolute;
       outline: none;
 
-      &:checked ~ label.#{$type}-label {
+      &:checked ~ label.#{$type}-label,  
+      &:checked ~ .#{$type}-container {
         border-color: getColor('main');
 
         &:before {
@@ -84,18 +140,22 @@
           background-color: getColor('main');
         }
       }
-      &:focus-visible ~ label.#{$type}-label:before {
+
+      &:focus-visible ~ label.#{$type}-label:before,
+      &:focus-visible ~ .#{$type}-container:before {
         outline: 1px solid;
       }
 
       &:disabled,
       &:disabled:checked {
-        & ~ label.checkbox-label {
+        & ~ label.checkbox-label,
+        & ~ .checkbox-container {
           &:after {
             background-color: getColor('disabled-fade');
           }
         }
-        & ~ label.radio-label {
+        & ~ label.radio-label,
+        & ~ .radio-container {
           &:after {
             background-color: getColor('disabled');
           }
@@ -103,7 +163,8 @@
       }
 
       &:disabled {
-        & ~ label.#{$type}-label {
+        & ~ label.#{$type}-label,
+         & ~ .#{$type}-container {
           &:after {
             background-color: transparent;
           }
@@ -164,11 +225,14 @@
 
     input:disabled,
     input:disabled:checked {
-      & ~ label.#{$type}-label {
+      & ~ label.#{$type}-label,
+      & ~ .#{$type}-container {
         @include disabledRules;
       }
     }
-    &:has(input:focus-visible) label.#{$type}-label{
+
+    &:has(input:focus-visible) label.#{$type}-label,
+    &:has(input:focus-visible) .#{$type}-container{
       outline:  1px solid;
     }
 
@@ -180,7 +244,8 @@
       margin-right: 0;
     }
 
-    label.#{$type}-label {
+    label.#{$type}-label,
+    .#{$type}-container {
       display: block;
       position: relative;
       padding: 40px 16px 16px;
@@ -195,24 +260,32 @@
         left: 16px;
       }
 
-      span.#{$type}-title {
+      span.#{$type}-title,
+      label.#{$type}-title {
         font-weight: bold;
         width: 100%;
         display: block;
         font-size: 16px;
       }
+
+      label.#{$type}-title {
+        cursor: pointer;
+      }
     }
 
     input {
-      &:not(:disabled):not(:checked) ~ label.radio-label {
+      &:not(:disabled):not(:checked) ~ label.radio-label,
+       &:not(:disabled):not(:checked) ~ .radio-container {
         @include label-states;
       }
 
-      &:not(:disabled) ~ label.checkbox-label {
+      &:not(:disabled) ~ label.checkbox-label,
+      &:not(:disabled) ~ .checkbox-container {
         @include label-states;
       }
 
-      &:checked:not(:disabled) ~ label.#{$type}-label {
+      &:checked:not(:disabled) ~ label.#{$type}-label,
+       &:checked:not(:disabled) ~ .#{$type}-container {
         border-color: getColor('main');
         border-width: 2px;
         padding: 15px;
@@ -223,20 +296,23 @@
           left: 15px;
         }
 
-        span.#{$type}-title {
+        span.#{$type}-title,
+        label.#{$type}-title  {
           color: getColor('main');
         }
       }
 
       &:disabled {
-        & ~ label.#{$type}-label {
+        & ~ label.#{$type}-label,
+        & ~ .#{$type}-container  {
           &:before {
             border-color: getColor('disabled') !important;
           }
         }
       }
 
-      &:disabled:checked ~ label.#{$type}-label {
+      &:disabled:checked ~ label.#{$type}-label,
+      &:disabled:checked ~ .#{$type}-container {
         .checkbox-title {
           color: getColor('disabled');
         }
@@ -263,13 +339,15 @@
       }
 
       input {
-        &:checked:not(:disabled) ~ label.#{$type}-label {
+        &:checked:not(:disabled) ~ label.#{$type}-label,
+        &:checked:not(:disabled) ~ .#{$type}-container {
           padding: ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-8 - 1px);
         }
 
       }
 
-      label.#{$type}-label {
+      label.#{$type}-label,
+      .#{$type}-container {
         width: 100%;
         display: flex;
         align-items: center;
