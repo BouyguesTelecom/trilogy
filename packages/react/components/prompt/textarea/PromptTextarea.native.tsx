@@ -52,6 +52,8 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
 
     return (
       <Textarea
+        autoCapitalize='sentences'
+        autoCorrect={true}
         value={value}
         ref={textareaRef}
         onChange={handleChange}
