@@ -143,19 +143,35 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  padding-top: $spacing-2;
   gap: $spacing-1;
   .icon {
     font-size: 20px;
     height: auto;
   }
-
-  @include touch {
-    position: absolute;
-    top: 10px;
-    left: 0;
-  }
 }
+
+.stepper-wrapper > .stepper-item > .step-label {
+  padding-top: $spacing-2;
+    @include touch {
+      position: absolute;
+      top: 10px;
+      left: 0;
+    }
+}
+
+.stepper-container > .stepper-content > .step-label {
+  transition: opacity 0.3s ease-in-out;
+  animation: fadeInLabel 0.4s ease-out;
+}
+
+.stepper-content {
+  margin-bottom: $spacing-3 !important;
+}
+
+.stepper-steps {
+  margin-bottom: $spacing-2 !important;
+}
+
 
 @include desktop {
   .step-count {
@@ -180,6 +196,20 @@
       display: none;
     }
   }
+
+  .stepper-container > .stepper-steps {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+
+  .stepper-container > .stepper-content > .step-label {
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+  .stepper-container > .stepper-content > .icon {
+    font-size: 16px !important;
+  }
 }
 
 @include tablet-only {
@@ -194,9 +224,9 @@
 
   .stepper-item:not(.is-current) {
     display: flex;
-
+  
     .step-label {
-      display: none;
+    display: none;
     }
   }
 }
@@ -214,3 +244,11 @@
   }
 }
 
+@keyframes fadeInLabel {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
