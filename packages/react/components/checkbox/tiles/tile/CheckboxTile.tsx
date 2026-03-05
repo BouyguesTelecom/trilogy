@@ -65,7 +65,12 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
         ref={ref}
         className={hashClass(styled, clsx('checkbox-tile', horizontal && is('horizontal'), className))}
         role='button'
-        onClick={() => refInput?.current?.click()}
+        onClick={(e) => {
+          if (disabled || readonly) return
+          const target = e.target as HTMLElement
+          if (target.closest('input, label')) return
+          refInput.current?.click()
+        }}
       >
         <input
           ref={refInput}

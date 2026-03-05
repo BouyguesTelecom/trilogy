@@ -58,7 +58,12 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
         ref={ref}
         className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}
         role='button'
-        onClick={() => refInput?.current?.click()}
+        onClick={(e) => {
+          if (disabled || readonly) return
+          const target = e.target as HTMLElement
+          if (target.closest('input, label')) return
+          refInput.current?.click()
+        }}
       >
         <input
           ref={refInput}
