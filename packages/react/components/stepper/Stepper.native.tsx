@@ -1,10 +1,10 @@
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Text } from '@/components/text'
+import { TypographyBold, TypographyColor } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TypographyBold, TypographyColor } from '@/objects'
-import { Text, TextLevels } from '@/components/text'
 import { StepperNativeRef, StepperProps } from './StepperProps'
-import { Icon, IconName, IconSize } from '@/components/icon'
-import { ComponentName } from '@/components/enumsComponentsName'
 
 interface ICurrentStep {
   step: number
@@ -33,14 +33,15 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginTop: 10,
+      marginTop: 8,
+      marginBottom: 12,
     },
     hasIcon: {
       flexDirection: 'row',
+      alignItems: 'center',
     },
     icon: {
       marginRight: 4,
-      marginTop: 3,
     },
     counter: {
       marginRight: 10,
@@ -89,9 +90,9 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
 
   return (
     <View ref={ref}>
-      <View style={styles.steppers} {...others}>
-        {children}
-      </View>
+      <Text level={3} typo={[TypographyColor.TEXT_PLACEHOLDER]}>
+        Étape {currentStep.step} sur {nbChild}
+      </Text>
       <View style={styles.step}>
         <View style={styles.hasIcon}>
           {currentStep.iconName && (
@@ -99,17 +100,13 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
               <Icon name={currentStep.iconName as IconName} size={IconSize.SMALL} />
             </Text>
           )}
-          <Text level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+          <Text level={2} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
             {currentStep.name}
           </Text>
         </View>
-        <Text
-          style={styles.counter}
-          level={TextLevels.THREE}
-          typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD, TypographyColor.TEXT_MAIN]}
-        >
-          {currentStep.step}/{nbChild}
-        </Text>
+      </View>
+      <View style={styles.steppers} {...others}>
+        {children}
       </View>
     </View>
   )
