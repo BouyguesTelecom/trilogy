@@ -31,7 +31,8 @@
 
 .radio,
 .radio-tile {
-  input:checked ~ label.radio-label {
+  input:checked ~ label.radio-label,
+  input:checked ~ .radio-container {
     cursor: default;
 
     &:after {
@@ -41,7 +42,8 @@
     }
   }
 
-  label.radio-label {
+  label.radio-label,
+  .radio-container {
     &:before,
     &:after {
       border-radius: 9999px;
@@ -61,18 +63,19 @@
       @include hoverRules()
     }
   }
-
 }
 
 .radio-tile {
-  input:checked ~ label.radio-label {
+  input:checked ~ label.radio-label,
+  input:checked ~ .radio-container {
     &:after {
       top: 18px;
       left: 18px;
     }
   }
 
-  input:checked:disabled ~ label.radio-label {
+  input:checked:disabled ~ label.radio-label,
+  input:checked:disabled ~ .radio-container {
     &:after {
       background-color: getColor('neutral');
       top: 19px;

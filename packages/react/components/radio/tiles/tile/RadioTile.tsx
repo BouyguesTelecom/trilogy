@@ -51,10 +51,22 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const refInput = React.useRef<HTMLInputElement>(null)
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}>
+      <div
+        ref={ref}
+        className={hashClass(styled, clsx('radio-tile', horizontal && is('horizontal'), className))}
+        role='button'
+        onClick={(e) => {
+          if (disabled || readonly) return
+          const target = e.target as HTMLElement
+          if (target.closest('input, label')) return
+          refInput.current?.click()
+        }}
+      >
         <input
+          ref={refInput}
           type='radio'
           readOnly={readonly}
           id={id}
@@ -77,20 +89,24 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
           }}
           {...others}
         />
-        <label htmlFor={id} className={hashClass(styled, clsx('radio-label'))}>
+        <div className={hashClass(styled, clsx('radio-container'))}>
           {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
           {horizontal ? (
             <span>
-              <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
+              <label htmlFor={id} className={hashClass(styled, clsx('radio-title'))}>
+                {label}
+              </label>
               {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
             </span>
           ) : (
             <>
-              <span className={hashClass(styled, clsx('radio-title'))}>{label}</span>
+              <label htmlFor={id} className={hashClass(styled, clsx('radio-title'))}>
+                {label}
+              </label>
               {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
             </>
           )}
-        </label>
+        </div>
         {sticker && <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />}
       </div>
     )
