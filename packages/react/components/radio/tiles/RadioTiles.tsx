@@ -21,7 +21,7 @@ import * as React from 'react'
  */
 const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(
   (
-    { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, ...others },
+    { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -64,6 +64,7 @@ const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         role={'radiogroup'}

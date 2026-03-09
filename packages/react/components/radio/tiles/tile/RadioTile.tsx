@@ -46,6 +46,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
       required,
       sticker,
       stickerVariant = VariantState.ACCENT,
+      testId,
       ...others
     },
     ref,
@@ -66,6 +67,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
         }}
       >
         <input
+          data-testid={testId}
           ref={refInput}
           type='radio'
           readOnly={readonly}

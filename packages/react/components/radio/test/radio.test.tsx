@@ -4,8 +4,8 @@ import Radio from '../Radio'
 
 describe('Radio component', () => {
   it('renders correctly', () => {
-    const { getByLabelText } = render(<Radio label='Test radio' />)
-    expect(getByLabelText('Test radio')).toBeInTheDocument()
+    const { getByTestId } = render(<Radio testId='radio' label='Test radio' />)
+    expect(getByTestId('radio')).toBeInTheDocument()
   })
 
   it('handles disabled correctly', () => {

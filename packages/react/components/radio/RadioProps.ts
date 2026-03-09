@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native'
-import { Accessibility } from '../../objects'
+import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 interface EventHandler {
@@ -15,7 +15,7 @@ export type RadioChangeEventHandlerNative = (event: EventHandler) => void
 /**
  * radio Interface
  */
-export interface RadioProps extends Accessibility, CommonProps {
+export interface RadioProps extends Accessibility, CommonProps, Dev {
   checked?: boolean
   disabled?: boolean
   readonly?: boolean
