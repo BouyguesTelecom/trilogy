@@ -10,7 +10,7 @@ import { Divider } from "..";
 
 describe("Divider component", () => {
   test("should have a separator in document", () => {
-    render(<Divider />);
+    render(<Divider testId="separator" />);
 
     expect(screen.getByTestId("separator")).toBeInTheDocument();
     expect(screen.getByTestId("separator")).toHaveClass("divider");
