@@ -12,10 +12,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional css classes
  * @param id
  */
-const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id }, ref): JSX.Element => {
+const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   return (
-    <div ref={ref} data-modal-footer='' id={id} className={hashClass(styled, clsx('modal-footer', className))}>
+    <div ref={ref} data-modal-footer='' id={id} className={hashClass(styled, clsx('modal-footer', className))} data-testid={testId}>
       {children}
     </div>
   )
