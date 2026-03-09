@@ -24,7 +24,7 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
  * @param className {string} Additional CSS Classes (ONLY FOR WEB)
  */
 const Badge = React.forwardRef<BadgeRef, BadgeProps>(
-  ({ className, children, id, label, inverted, onClick, variant, position, status, ...others }, ref): JSX.Element => {
+  ({ className, children, id, label, inverted, onClick, variant, position, status, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -65,6 +65,7 @@ const Badge = React.forwardRef<BadgeRef, BadgeProps>(
     const simpleBadge =
       status && iconName && iconColor ? (
         <Icon
+          testId={!children ? testId : undefined}
           ref={ref}
           name={iconName}
           className={clsx(position && is(position), 'badge-icon')}
@@ -76,6 +77,7 @@ const Badge = React.forwardRef<BadgeRef, BadgeProps>(
         />
       ) : (
         <span
+          data-testid={!children ? testId : undefined}
           ref={ref}
           id={id}
           className={classes}
@@ -91,7 +93,7 @@ const Badge = React.forwardRef<BadgeRef, BadgeProps>(
 
     if (children) {
       return (
-        <span className='badge-container'>
+        <span className='badge-container' data-testid={testId}>
           {children}
           {simpleBadge}
         </span>
