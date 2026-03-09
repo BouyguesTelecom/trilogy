@@ -17,7 +17,7 @@ import { BoxContentProps, BoxContentRef } from './BoxContentProps'
  * @param testId test id
  */
 const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(
-  ({ children, className, id, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
+  ({ children, className, id, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -31,6 +31,7 @@ const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(
     )
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         className={classes}

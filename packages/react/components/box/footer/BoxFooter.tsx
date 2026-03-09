@@ -16,11 +16,12 @@ import { BoxFooterProps, BoxFooterRef } from './BoxFooterProps'
  * @param id
  */
 const BoxFooter = React.forwardRef<BoxFooterRef, BoxFooterProps>(
-  ({ className, children, backgroundColor, id, ...others }, ref): JSX.Element => {
+  ({ className, children, backgroundColor, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         className={hashClass(

@@ -13,11 +13,11 @@ import { BoxItemProps, BoxItemRef } from './BoxItemProps'
  * @param className {string} Additional CSS Classes
  */
 const BoxItem = React.forwardRef<BoxItemRef, BoxItemProps>(
-  ({ className, id, children, ...others }, ref): JSX.Element => {
+  ({ className, id, children, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
-      <div ref={ref} id={id} className={hashClass(styled, clsx('box-item', className))} {...others}>
+      <div ref={ref} id={id} className={hashClass(styled, clsx('box-item', className))} data-testid={testId} {...others}>
         {children}
       </div>
     )
