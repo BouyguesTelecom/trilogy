@@ -14,7 +14,7 @@ describe('Otp', () => {
   }
 
   it('renders without error', () => {
-    const { container } = render(<Otp {...defaultProps} data-testid={'otp-input'} />)
+    const { container } = render(<Otp {...defaultProps} testId={'otp-input'} />)
     expect(container).toMatchSnapshot()
   })
 })

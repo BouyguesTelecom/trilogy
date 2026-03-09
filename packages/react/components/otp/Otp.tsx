@@ -107,6 +107,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
       label,
       help,
       autoFocus,
+      testId,
       ...others
     },
     ref,
@@ -167,6 +168,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
           </Text>
         )}
         <div
+          data-testid={testId}
           ref={ref}
           id={id}
           className={classes}
@@ -178,6 +180,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
         >
           {codeInput.map((digit, idx) => (
             <input
+              data-testid={testId ? `${testId}-item`: undefined}
               aria-disabled={disabled}
               key={idx}
               type={'tel'} // To display the numeric keypad and avoid showing the plus/minus arrows.
