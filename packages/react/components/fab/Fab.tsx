@@ -37,6 +37,7 @@ const Fab = React.forwardRef<FabRef, FabProps>(({
   left,
   right,
   disabled,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -64,6 +65,7 @@ const Fab = React.forwardRef<FabRef, FabProps>(({
 
   return (
     <button
+      data-testid={testId}
       ref={ref}
       id={id}
       disabled={disabled}
