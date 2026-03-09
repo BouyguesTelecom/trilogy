@@ -29,7 +29,7 @@ import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 
 const Icon = React.forwardRef<IconRef, IconProps>(
   (
-    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, ...others },
+    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -56,7 +56,7 @@ const Icon = React.forwardRef<IconRef, IconProps>(
     )
 
     return (
-      <span id={id} onClick={onClick && onClick} className={classes} {...others} ref={ref}>
+      <span id={id} onClick={onClick && onClick} className={classes} data-testid={testId} {...others} ref={ref}>
         <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
       </span>
     )
