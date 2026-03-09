@@ -15,11 +15,12 @@ import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
  * @param accessibilityLabel {string} Accessibility label
  */
 const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
-  ({ children, className, id, ...others }, ref) => {
+  ({ children, className, id, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     return (
       <nav
+        data-testid={testId}
         ref={ref}
         id={id}
         role='navigation'
