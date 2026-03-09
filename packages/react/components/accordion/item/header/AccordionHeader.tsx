@@ -13,11 +13,12 @@ import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps
  * @param others
  */
 const AccordionHeader = React.forwardRef<AccordionHeaderRef, AccordionHeaderProps>(
-  ({ children, className, id, ...others }, ref): React.JSX.Element => {
+  ({ children, className, id, testId, ...others }, ref): React.JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
       <summary
+        data-testid={testId}
         ref={ref}
         id={id}
         className={hashClass(styled, clsx('accordion-header', className))}

@@ -6,8 +6,8 @@ describe('AccordionItem', () => {
   it('should render correctly', () => {
     const { getByTestId } = render(
       <Accordion>
-        <AccordionItem data-testid={'accordion-item'} open={false}>
-          <AccordionHeader data-testid={'content'}>Accordion Header</AccordionHeader>
+        <AccordionItem testId={'accordion-item'} open={false}>
+          <AccordionHeader testId={'content'}>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
         </AccordionItem>
       </Accordion>,

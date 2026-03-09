@@ -12,12 +12,12 @@ import clsx from 'clsx'
  * @param children
  * @param others
  */
-const Accordion = React.forwardRef<AccordionRef, AccordionProps>(({ id, className, children, ...others }, ref) => {
+const Accordion = React.forwardRef<AccordionRef, AccordionProps>(({ id, className, children, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('accordion', className))
 
   return (
-    <div ref={ref} id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
       {children}
     </div>
   )
