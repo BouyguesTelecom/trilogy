@@ -19,12 +19,13 @@ import { ChipsProps, ChipsRef } from './ChipsProps'
  * @param others
  */
 const Chips = React.forwardRef<ChipsRef, ChipsProps>(
-  ({ className, onClick, children, active, disabled, id, ...others }, ref): JSX.Element => {
+  ({ className, onClick, children, active, disabled, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('chips', active && is('active'), className))
 
     return (
       <button
+        data-testid={testId}
         ref={ref}
         {...{ disabled: disabled }}
         aria-disabled={disabled}
