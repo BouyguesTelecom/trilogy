@@ -1,5 +1,5 @@
 import { BackgroundProps } from '@/objects/atoms/Background'
-import { Clickable } from '@/objects/facets'
+import { Clickable, Dev } from '@/objects/facets'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { BackgroundHeight } from './heroEnum'
 import { View } from 'react-native'
@@ -7,7 +7,7 @@ import { View } from 'react-native'
 /**
  * Hero Interface
  */
-export interface HeroProps extends Clickable, BackgroundProps, CommonProps {
+export interface HeroProps extends Clickable, BackgroundProps, CommonProps, Dev {
   children?: React.ReactNode
   overlap?: React.ReactNode[] | boolean
   backgroundHeight?: BackgroundHeight
