@@ -12,9 +12,9 @@ import { Image } from "../";
 
 describe("Image component", () => {
   test('should have "image" className', () => {
-    render(<Image src={"https://www.test.com"} />);
+    render(<Image testId="image" src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("figure")).toBeInTheDocument();
+    expect(screen.getByTestId("image")).toBeInTheDocument();
     expect(screen.getByRole("figure")).toHaveClass("image");
   });
 
