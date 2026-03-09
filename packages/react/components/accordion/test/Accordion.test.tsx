@@ -5,7 +5,7 @@ import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '../ind
 describe('Accordion', () => {
   it('should render correctly', () => {
     const { getByTestId } = render(
-      <Accordion data-testid={'accordion'}>
+      <Accordion testId={'accordion'}>
         <AccordionItem>
           <AccordionHeader>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
