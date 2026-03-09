@@ -17,7 +17,7 @@ import { PaginationProps, PaginationRef } from './PaginationProps'
  * @param testId {string} Test Id for Test Integration
  */
 const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
-  ({ className, id, length, defaultPage = 1, onClick, href, ...others }, ref): JSX.Element => {
+  ({ className, id, length, defaultPage = 1, onClick, href, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('pagination', className))
@@ -58,7 +58,7 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
     }, [defaultPage])
 
     return (
-      <nav ref={ref} id={id} className={classes} {...others}>
+      <nav ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         <a
           className={hashClass(styled, clsx('pagination-previous'))}
           {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
