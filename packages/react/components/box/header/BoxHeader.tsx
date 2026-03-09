@@ -19,7 +19,7 @@ import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
  * @param className {string} Additional CSS Classes
  */
 const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
-  ({ children, className, id, align, variant, ...others }, ref): JSX.Element => {
+  ({ children, className, id, align, variant, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     let alignClass = null
     if (align) {
@@ -35,7 +35,7 @@ const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
     )
 
     return (
-      <div ref={ref} id={id} className={classes} {...others}>
+      <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         {children && typeof children.valueOf() === 'string' ? <p>{children}</p> : children}
       </div>
     )
