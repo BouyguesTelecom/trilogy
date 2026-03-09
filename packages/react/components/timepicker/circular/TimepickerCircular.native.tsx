@@ -276,6 +276,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const panGesture = useMemo(
       () =>
         Gesture.Pan()
+          .runOnJS(true)
           .onBegin((event) => {
             if (disabled) return
             const { x, y } = event
@@ -305,16 +306,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const tapGesture = useMemo(
       () =>
-        Gesture.Tap().onEnd((event) => {
-          if (disabled) return
+        Gesture.Tap()
+          .runOnJS(true)
+          .onEnd((event) => {
+            if (disabled) return
 
-          const { x, y } = event
-          if (isOnCursor(x, y)) return
-          const hourDotIndex = isOnHourDot(x, y)
-          if (hourDotIndex !== -1) {
-            handleHourDotPress(hourDotIndex)
-          }
-        }),
+            const { x, y } = event
+            if (isOnCursor(x, y)) return
+            const hourDotIndex = isOnHourDot(x, y)
+            if (hourDotIndex !== -1) {
+              handleHourDotPress(hourDotIndex)
+            }
+          }),
       [disabled, isOnHourDot, handleHourDotPress, isOnCursor],
     )
 
