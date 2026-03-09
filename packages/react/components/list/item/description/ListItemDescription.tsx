@@ -14,10 +14,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
   children,
   className,
+  testId,
+  ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
-  return <dd ref={ref} className={hashClass(styled, clsx(className))}>{children}</dd>
+  return <dd ref={ref} className={hashClass(styled, clsx(className))} data-testid={testId} {...others}>{children}</dd>
 })
 
 ListItemDescription.displayName = ComponentName.ListItemDescription
