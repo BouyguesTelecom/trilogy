@@ -43,6 +43,7 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
       inverted,
       blank,
       title,
+      testId,
       ...others
     },
     ref,
@@ -57,6 +58,7 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
       const RouterLinkTrilogy = (): JSX.Element => {
         return (
           <RouterLink
+            data-testid={testId}
             ref={ref}
             id={id}
             aria-label={accessibilityLabel}
@@ -79,6 +81,7 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
     const LinkTrilogy = (): JSX.Element => {
       return (
         <a
+          data-testid={testId}
           ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           aria-label={accessibilityLabel}
