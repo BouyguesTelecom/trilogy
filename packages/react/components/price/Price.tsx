@@ -41,6 +41,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       accessibilityLabel,
       oldAmount,
       overline,
+      testId,
       ...others
     },
     ref,
@@ -94,7 +95,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const dataPrice = `${whole}${!hideCents && cents ? `.${cents}` : ''}`
 
       amountComponent = (
-        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} {...others}>
+        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} data-testid={testId} {...others}>
           <span>{`${whole}`}</span>
           <span className={hashClass(styled, clsx('price-details'))}>
             <span className={hashClass(styled, clsx('cents'))}>
