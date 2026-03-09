@@ -11,11 +11,11 @@ import { PromptToolsProps, PromptToolsRef } from './PromptToolsProps'
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptTools = React.forwardRef<PromptToolsRef, PromptToolsProps>(({ className, ...others }, ref) => {
+const PromptTools = React.forwardRef<PromptToolsRef, PromptToolsProps>(({ className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('prompt-toolbar-tools', className))
-  return <div ref={ref} className={classes} {...others} />
+  return <div ref={ref} className={classes} data-testid={testId} {...others} />
 })
 
 PromptTools.displayName = ComponentName.PromptTools
