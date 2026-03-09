@@ -23,7 +23,7 @@ export const CardContext = createContext({ horizontal: false })
  */
 const Card = React.forwardRef<CardRef, CardProps>(
   (
-    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, ...others },
+    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, testId, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
@@ -50,6 +50,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
     if (href) {
       return (
         <a
+          data-testid={testId}
           ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           href={href}
@@ -66,6 +67,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
 
     return (
       <div
+        data-testid={testId}
         ref={ref as React.Ref<HTMLDivElement>}
         id={id}
         onClick={onClick && onClick}
