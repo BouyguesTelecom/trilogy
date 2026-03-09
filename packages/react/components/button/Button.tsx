@@ -51,6 +51,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       type,
       iconName,
       disabled,
+      testId,
       ...others
     },
     ref,
@@ -85,6 +86,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     if (Tag === 'button' && !href && !to) {
       return (
         <button
+          data-testid={testId}
           ref={ref as React.Ref<HTMLButtonElement>}
           id={id}
           aria-label={accessibilityLabel}
@@ -108,6 +110,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     if (Tag === 'input') {
       return (
         <input
+          data-testid={testId}
           ref={ref as React.Ref<HTMLInputElement>}
           id={id}
           className={classes}
@@ -129,7 +132,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     if (routerLink && to && !isDisabled) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
-        <RouterLink ref={ref} aria-label={accessibilityLabel} to={to} className={classes} {...others}>
+        <RouterLink ref={ref} aria-label={accessibilityLabel} to={to} className={classes} data-testid={testId} {...others}>
           {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
           {children}
         </RouterLink>
@@ -138,6 +141,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
 
     return (
       <a
+        data-testid={testId}
         ref={ref as React.Ref<HTMLAnchorElement>}
         id={id}
         aria-label={accessibilityLabel}

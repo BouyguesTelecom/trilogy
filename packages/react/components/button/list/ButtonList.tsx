@@ -17,11 +17,12 @@ import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
  * @param direction
  */
 const ButtonList = React.forwardRef<ButtonListRef, ButtonListWebProps>(
-  ({ className, id, align, direction, ...others }, ref): JSX.Element => {
+  ({ className, id, align, direction, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         className={hashClass(
