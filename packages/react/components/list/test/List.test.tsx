@@ -5,7 +5,7 @@ import { ListItem, ListItemDescription } from '../item'
 
 describe('List', () => {
   test('renders without errors', () => {
-    const { getByTestId } = render(<List data-testid='list' />)
+    const { getByTestId } = render(<List testId='list' />)
     expect(getByTestId('list')).toBeInTheDocument()
   })
 
