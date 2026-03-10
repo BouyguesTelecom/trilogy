@@ -20,7 +20,7 @@ import { PopoverRef, PopoverWebProps } from './PopoverProps'
  * @param accessibilityLabel {string} Accessibility label
  */
 const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
-  ({ className, id, direction, children, active, arrowPosition, trigger, ...others }, ref): JSX.Element => {
+  ({ className, id, direction, children, active, arrowPosition, trigger, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -35,7 +35,7 @@ const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
     )
 
     return (
-      <span ref={ref} id={id} className={classes} {...others}>
+      <span ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         {trigger && trigger}
         <span className={hashClass(styled, 'popover-content')}>{children}</span>
       </span>
