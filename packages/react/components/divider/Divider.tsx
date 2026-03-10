@@ -26,6 +26,7 @@ const Divider = React.forwardRef<DividerRef, DividerProps>(({
   marginless,
   iconName,
   inverted,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -44,7 +45,7 @@ const Divider = React.forwardRef<DividerRef, DividerProps>(({
   const contentClasses = hashClass(styled, clsx('divider-content'))
 
   return (
-    <div ref={ref} id={id} data-testid='separator' className={classes} {...others}>
+    <div ref={ref} id={id} data-testid={testId || 'separator'} className={classes} {...others}>
       <p className={contentClasses}>
         {iconName && !content && <Icon name={iconName} size={IconSize.MEDIUM} />}
         {content && content}
