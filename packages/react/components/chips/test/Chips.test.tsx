@@ -28,7 +28,7 @@ describe("Chips", () => {
 
   it("passes additional props to the component", () => {
     const { getByText } = render(
-      <Chips data-testid="test-chips">Hello, world!</Chips>
+      <Chips testId="test-chips">Hello, world!</Chips>
     );
     expect(getByText("Hello, world!")).toHaveAttribute(
       "data-testid",
