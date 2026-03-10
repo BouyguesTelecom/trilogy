@@ -6,7 +6,7 @@ import { ComponentName } from '../enumsComponentsName'
 import { PromptProps, PromptRef } from './PromptProps'
 import { PromptContext, PromptProvider } from './context'
 
-const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, ...others }, ref) => {
+const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const { isReadonly, isDisabled } = useContext(PromptContext)
   const classes = hashClass(styled, clsx('prompt', className))
@@ -18,6 +18,7 @@ const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, ...othe
 
   return (
     <form
+      data-testid={testId}
       aria-disabled={isDisabled}
       aria-readonly={isReadonly}
       ref={ref}
