@@ -10,7 +10,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param size {SpacerSize} ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT
  * @param horizontal {Boolean} If horizontal margin
  */
-const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id }, ref): JSX.Element => {
+const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const styles = {
     spacer: {
@@ -20,7 +20,7 @@ const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, cla
   }
   const classes = hashClass(styled, clsx(className))
 
-  return <div ref={ref} id={id} style={styles.spacer} className={classes} />
+  return <div ref={ref} id={id} style={styles.spacer} data-testid={testId} className={classes} />
 })
 
 Spacer.displayName = ComponentName.Spacer

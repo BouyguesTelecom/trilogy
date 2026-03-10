@@ -24,6 +24,7 @@ const Table = React.forwardRef<TableRef, TableProps>(({
   border = TableBorderEnum.LINES,
   striped,
   compact,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -40,7 +41,7 @@ const Table = React.forwardRef<TableRef, TableProps>(({
     ),
   )
 
-  return <table ref={ref} id={id} className={classes} {...others} />
+  return <table ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 Table.displayName = ComponentName.Table

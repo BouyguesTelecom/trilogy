@@ -5,8 +5,8 @@ import Switch from "../Switch";
 describe("Switch", () => {
   it("renders the label text", () => {
     const labelText = "My Switch";
-    const { getByText } = render(<Switch label={labelText} />);
-    expect(getByText(labelText)).toBeInTheDocument();
+    const { getByTestId } = render(<Switch testId="switch" label={labelText} />);
+    expect(getByTestId("switch")).toBeInTheDocument();
   });
 
   it("calls onChange function when clicked", () => {

@@ -4,10 +4,10 @@ import Range from "../Range";
 
 describe("Range component", () => {
   test("renders with default values", () => {
-    const { getByText } = render(
-      <Range min={0} max={100} label="Test Range" />
+    const { getByTestId } = render(
+      <Range min={0} max={100} label="Test Range" testId="range" />
     );
-    const range = getByText("Test Range");
+    const range = getByTestId("range");
     expect(range).toBeInTheDocument();
   });
 });

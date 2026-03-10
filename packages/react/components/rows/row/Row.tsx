@@ -13,10 +13,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} Additional CSS Classes
  */
-const Row = React.forwardRef<RowRef, RowProps>(({ className, id, narrow, ...others }, ref) => {
+const Row = React.forwardRef<RowRef, RowProps>(({ className, id, narrow, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('row', narrow && is('narrow'), className))
-  return <div ref={ref} id={id} className={classes} {...others} />
+  return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 Row.displayName = ComponentName.Row

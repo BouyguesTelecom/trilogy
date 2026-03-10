@@ -44,6 +44,7 @@ const View = React.forwardRef<ViewRef, ViewProps>(({
   flexable,
   justify,
   align,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -80,6 +81,7 @@ const View = React.forwardRef<ViewRef, ViewProps>(({
       onClick={onClick}
       style={style}
       className={classes}
+      data-testid={testId}
       {...(backgroundSrc && {
         style: {
           backgroundImage: `url(${backgroundSrc})`,

@@ -1,10 +1,10 @@
-import { ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
+import { Dev, ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
 import { ScrollView } from 'react-native'
 
 /**
  * ScroView Interface
  */
-export interface ScrollViewProps {
+export interface ScrollViewProps extends Dev {
   children?: React.ReactNode
   className?: string
   footer?: React.ReactNode

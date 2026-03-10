@@ -37,9 +37,9 @@ describe('Text component', () => {
   })
 
   test('should contain toto as text', () => {
-    render(<Text>toto</Text>)
+    render(<Text testId='text'>toto</Text>)
 
-    expect(screen.getByText('toto')).toBeInTheDocument()
+    expect(screen.getByTestId('text')).toBeInTheDocument()
   })
 
   test('should have "is-inverted" className', () => {

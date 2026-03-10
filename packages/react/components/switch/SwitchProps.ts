@@ -1,6 +1,7 @@
 import { StatusProps } from '../../objects/facets/Status'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Switch } from 'react-native'
+import { Dev } from '@/objects/facets/Dev'
 
 export interface SwitchChangeEvent {
   switchState: boolean
@@ -9,7 +10,7 @@ export interface SwitchChangeEvent {
 
 type SwitchEventHandler = (event: SwitchChangeEvent) => void
 
-export interface SwitchProps extends StatusProps, CommonProps {
+export interface SwitchProps extends StatusProps, CommonProps, Dev {
   checked?: boolean
   onChange?: SwitchEventHandler
   onClick?: SwitchEventHandler

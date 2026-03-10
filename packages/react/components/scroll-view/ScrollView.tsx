@@ -24,7 +24,7 @@ import { ComponentName } from "../enumsComponentsName"
  * @param onRefresh {void} On Refreshing ScrollView
  */
 const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
-  ({ id, scrollDirection, children }, ref): JSX.Element => {
+  ({ id, scrollDirection, children, testId }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const scrollDirectionClassName = () => {
@@ -43,7 +43,7 @@ const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
       clsx("scroll-view", scrollDirection && scrollDirectionClassName())
     )
     return (
-      <div ref={ref} className={classes} id={id}>
+      <div ref={ref} className={classes} id={id} data-testid={testId}>
         {children}
       </div>
     )

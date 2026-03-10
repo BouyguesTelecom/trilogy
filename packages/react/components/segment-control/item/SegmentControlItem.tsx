@@ -16,7 +16,7 @@ import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControl
  * @param className {string} Additional CSS Classes
  */
 const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
-  ({ active, onClick, disabled, className, id, children, ...others }, ref): JSX.Element => {
+  ({ active, onClick, disabled, className, id, children, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const { styled } = useTrilogyContext()
 
@@ -26,6 +26,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
 
     return (
       <button
+        data-testid={testId}
         type='button'
         ref={ref}
         id={id}

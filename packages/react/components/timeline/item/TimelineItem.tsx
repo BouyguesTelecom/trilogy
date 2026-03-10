@@ -15,13 +15,13 @@ import { TimelineMarkerRef } from '../marker/TimelineMarkerProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const TimelineItem = React.forwardRef<TimelineMarkerRef, TimelineItemWebProps>(({ className, id, done, active, cancel, ...others }, ref) => {
+const TimelineItem = React.forwardRef<TimelineMarkerRef, TimelineItemWebProps>(({ className, id, done, active, cancel, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
     clsx('timeline-item', done && 'done', active && 'active', cancel && 'cancel', className),
   )
-  return <div ref={ref} id={id} className={classes} {...others} />
+  return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 TimelineItem.displayName = ComponentName.TimelineItem

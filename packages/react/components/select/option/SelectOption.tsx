@@ -75,6 +75,7 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
           aria-selected={isChecked}
           data-value={value}
           onClick={!disabled ? handleClickOption : undefined}
+          data-testid={testId}
           {...others}
         >
           {iconName && <Icon name={iconName} />}

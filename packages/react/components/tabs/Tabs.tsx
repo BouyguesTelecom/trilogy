@@ -19,7 +19,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param id
  */
 const Tabs = React.forwardRef<TabsRef, TabsProps>(
-  ({ children, className, id, activeIndex, fullwidth, inverted, small }, ref) => {
+  ({ children, className, id, activeIndex, fullwidth, inverted, small, testId }, ref) => {
     const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
     const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
 
@@ -43,7 +43,7 @@ const Tabs = React.forwardRef<TabsRef, TabsProps>(
           setActiveIndex: setCurrentIndex,
         }}
       >
-        <div ref={ref} id={id} className={classes} data-tabs-context=''>
+        <div ref={ref} id={id} className={classes} data-tabs-context='' data-testid={testId}>
           {children}
         </div>
       </TabsContext.Provider>

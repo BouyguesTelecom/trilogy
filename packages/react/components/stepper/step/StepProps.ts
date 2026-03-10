@@ -1,11 +1,12 @@
 import { View } from 'react-native'
 import { IconName, IconNameValues } from '../../../components/icon'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Stepper Step Interface
  */
-export interface StepProps extends CommonProps {
+export interface StepProps extends CommonProps, Dev {
   active?: boolean
   current?: boolean
   done?: boolean

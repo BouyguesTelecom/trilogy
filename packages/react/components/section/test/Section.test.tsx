@@ -14,7 +14,7 @@ describe('Section', () => {
       style: { color: 'red' },
     }
     const { getByTestId } = render(
-      <Section {...props} data-testid='test-section'>
+      <Section {...props} testId='test-section'>
         <div data-testid='test-children' />
       </Section>,
     )

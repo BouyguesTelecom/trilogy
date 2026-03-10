@@ -20,7 +20,7 @@ import { TagProps, TagRef } from './TagProps'
  * @param className {string} Additional CSS Classes
  **/
 const Tag = React.forwardRef<TagRef, TagProps>(
-  ({ label, className, id, variant, inverted, small, iconName, ...others }, ref): JSX.Element => {
+  ({ label, className, id, variant, inverted, small, iconName, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const tagClassNames = hashClass(
@@ -37,7 +37,7 @@ const Tag = React.forwardRef<TagRef, TagProps>(
     const tagIconClassNames = clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)))
 
     return (
-      <span ref={ref} id={id} className={tagClassNames} {...others}>
+      <span ref={ref} id={id} className={tagClassNames} data-testid={testId} {...others}>
         {iconName && <Icon className={tagIconClassNames} name={iconName} />}
         {label}
       </span>

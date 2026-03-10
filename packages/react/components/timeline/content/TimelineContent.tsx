@@ -19,20 +19,20 @@ import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentPr
  * @param id {string} Custom id
  */
 const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(
-  ({ children, className, id, heading, content, linkLabel, linkTo, ...others }, ref): JSX.Element => {
+  ({ children, className, id, heading, content, linkLabel, linkTo, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('timeline-content', className))
 
     if (children) {
       return (
-        <div ref={ref} id={id} className={classes} {...others}>
+        <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
           {children}
         </div>
       )
     }
 
     return (
-      <div ref={ref} id={id} className={classes} {...others}>
+      <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         {heading && <Text markup={TextMarkup.P}>{heading}</Text>}
         {content && (
           <Text className='main-content' markup={TextMarkup.P}>
