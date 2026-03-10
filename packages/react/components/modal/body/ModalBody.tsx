@@ -12,10 +12,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional css classes
  * @param id
  */
-const ModalBody = React.forwardRef<ModalBodyRef, ModalBodyProps>(({ children, className, id }, ref): JSX.Element => {
+const ModalBody = React.forwardRef<ModalBodyRef, ModalBodyProps>(({ children, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   return (
-    <div ref={ref} id={id} className={hashClass(styled, clsx('modal-body', className))}>
+    <div ref={ref} id={id} className={hashClass(styled, clsx('modal-body', className))} data-testid={testId}>
       {children}
     </div>
   )

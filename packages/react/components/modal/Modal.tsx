@@ -38,6 +38,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
       hideCloseButton = false,
       trigger,
       title,
+      testId,
       ...others
     },
     ref,
@@ -120,6 +121,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
       <div onKeyDown={onKeyDown} ref={refModal}>
         {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
         <div
+          data-testid={testId}
           ref={ref}
           id={id}
           className={classes}
