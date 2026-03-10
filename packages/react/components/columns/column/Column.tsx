@@ -53,6 +53,7 @@ const Column = React.forwardRef<ColumnRef, ColumnProps>(
       fullhdOffset,
       narrow,
       verticalAlign,
+      testId,
       ...others
     },
     ref,
@@ -83,7 +84,7 @@ const Column = React.forwardRef<ColumnRef, ColumnProps>(
       ),
     )
 
-    return <div ref={ref} id={id} className={classes} {...others} />
+    return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
   },
 )
 Column.displayName = ComponentName.Column
