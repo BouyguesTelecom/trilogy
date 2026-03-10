@@ -1,4 +1,4 @@
-import { Accessibility, StatusProps } from '@/objects/facets'
+import { Accessibility, Dev, StatusProps } from '@/objects/facets'
 import { View } from 'react-native'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -7,7 +7,7 @@ type Styles = { [key: string]: any }
 /**
  * Progress Item Interface
  */
-export interface ProgressItemProps extends StatusProps, Accessibility {
+export interface ProgressItemProps extends StatusProps, Accessibility, Dev {
   children?: React.ReactNode
   percent: number
   minPercent?: number

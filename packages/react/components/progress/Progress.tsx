@@ -28,6 +28,7 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
                     legendCenter,
                     legendEnd,
                     stacked,
+                    testId,
                     ...others
                   }, ref) => {
   const { styled } = useTrilogyContext()
@@ -47,7 +48,7 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
 
   if (children && stacked) {
     return (
-      <div className={stackedClasses} {...others} >
+      <div className={stackedClasses} data-testid={testId} {...others} >
         {children}
       </div>
     )
@@ -55,7 +56,7 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(({
 
   return (
     <div ref={ref} className='progress-container'>
-      <progress id={id} className={classes} value={value} max={max} {...others}>
+      <progress id={id} className={classes} value={value} max={max} data-testid={testId} {...others}>
         {value}
       </progress>
       {(legendStart || legendCenter || legendEnd) && (

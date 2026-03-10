@@ -1,11 +1,12 @@
 import { StatusProps } from '../../objects/facets/Status'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { View } from 'react-native'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Progress Interface
  */
-export interface ProgressProps extends StatusProps, CommonProps {
+export interface ProgressProps extends StatusProps, CommonProps, Dev {
   children?: React.ReactNode
   value?: number
   max?: number
