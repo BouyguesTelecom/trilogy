@@ -18,12 +18,13 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  * @param className Additional CSS Classes
  */
 const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
-  ({ src, alt = '', className, id, size, onClick, ...others }, ref): JSX.Element => {
+  ({ src, alt = '', className, id, size, onClick, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('card-image', size && is(`${size}`), className))
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         onClick={(e) => {

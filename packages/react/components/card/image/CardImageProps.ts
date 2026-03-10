@@ -1,12 +1,12 @@
 import { Image } from 'react-native'
-import { Clickable } from '../../../objects'
+import { Clickable, Dev } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 import { CardImageSize, CardImageSizeValues } from './CardImageEnum'
 
 /**
  * Card Image Interface
  */
-export interface CardImageProps extends Clickable, CommonProps {
+export interface CardImageProps extends Clickable, CommonProps, Dev {
   src: string | number
   size?: CardImageSize | CardImageSizeValues
   alt?: string
