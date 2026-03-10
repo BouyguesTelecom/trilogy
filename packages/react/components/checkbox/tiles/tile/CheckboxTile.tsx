@@ -46,6 +46,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
       required,
       sticker,
       stickerVariant = VariantState.ACCENT,
+      testId,
       ...others
     },
     ref,
@@ -73,6 +74,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
         }}
       >
         <input
+          data-testid={testId}
           ref={refInput}
           type='checkbox'
           readOnly={readonly}

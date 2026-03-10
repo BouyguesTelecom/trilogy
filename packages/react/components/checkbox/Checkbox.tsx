@@ -22,7 +22,7 @@ import { CheckboxProps, CheckboxRef } from './CheckboxProps'
  */
 const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
   (
-    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, required, ...others },
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, children, required, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -49,6 +49,7 @@ const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
     return (
       <div ref={ref} className={hashClass(styled, clsx('checkbox', className))}>
         <input
+          data-testid={testId}
           type='checkbox'
           readOnly={readonly}
           id={id}

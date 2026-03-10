@@ -19,7 +19,7 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  */
 const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
   (
-    { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, ...others },
+    { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -62,6 +62,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         id={id}
         role={'group'}
