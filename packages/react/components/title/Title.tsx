@@ -72,6 +72,7 @@ const Title = React.forwardRef<TitleRef, TitleProps>(({
   subtitle,
   overline,
   marginless,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -101,7 +102,7 @@ const Title = React.forwardRef<TitleRef, TitleProps>(({
   }
 
   return (
-    <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} {...others}>
+    <Tag ref={ref} id={id} aria-label={accessibilityLabel} onClick={onClick} className={getClassname()} data-testid={testId} {...others}>
       {children}
     </Tag>
   )

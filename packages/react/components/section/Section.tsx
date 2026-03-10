@@ -18,7 +18,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param skeleton {boolean} Skeleton before loaded
  * - -------------- NATIVE PROPERTIES ---------------
  **/
-const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, ...others }, ref) => {
+const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   const _className = hashClass(
@@ -35,6 +35,7 @@ const Section = React.forwardRef<SectionRef, SectionProps>(({ className, id, ske
 
   return (
     <section
+      data-testid={testId}
       ref={ref}
       id={id}
       {...(backgroundSrc && {

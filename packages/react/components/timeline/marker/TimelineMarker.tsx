@@ -21,6 +21,7 @@ const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProp
   id,
   iconClassname,
   iconName,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -28,7 +29,7 @@ const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProp
   const iconClasses = clsx(iconClassname)
 
   return (
-    <div ref={ref} id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
       <div className='card-header-icon'>
         <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
       </div>

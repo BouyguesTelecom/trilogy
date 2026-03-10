@@ -38,6 +38,7 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(({
   name,
   reversed,
   fullWidth,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const [_checked, setChecked] = useState<boolean>(checked || false)
@@ -59,6 +60,7 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(({
       className={hashClass(styled, clsx('switch', reversed && is('reversed'), fullWidth && is('fullwidth'), className))}
     >
       <input
+        data-testid={testId}
         onChange={(e) => {
           if (!readonly) {
             setChecked(!_checked)

@@ -1,8 +1,8 @@
 import { View } from 'react-native'
-import { Clickable } from '../../../objects'
+import { Clickable, Dev } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 
-export interface TableThProps extends Clickable, CommonProps {
+export interface TableThProps extends Clickable, CommonProps, Dev {
   children: React.ReactNode
   rowSpan?: number
   colSpan?: number

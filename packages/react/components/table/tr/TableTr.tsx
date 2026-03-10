@@ -26,6 +26,7 @@ const TableTr = React.forwardRef<TableTrRef, TableTrProps>(({
   expanded,
   expansion,
   color,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -41,7 +42,7 @@ const TableTr = React.forwardRef<TableTrRef, TableTrProps>(({
     )
   )
 
-  return <tr ref={ref} id={id} className={classes} {...others} />
+  return <tr ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 TableTr.displayName = ComponentName.TableTr

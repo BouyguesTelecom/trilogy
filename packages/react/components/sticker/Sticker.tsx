@@ -29,6 +29,7 @@ const Sticker = React.forwardRef<StickerRef, StickerProps>(({
   outlined,
   iconName,
   accessibilityLabel,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -46,7 +47,7 @@ const Sticker = React.forwardRef<StickerRef, StickerProps>(({
   )
 
   return (
-    <p ref={ref} id={id} className={classes} aria-label={accessibilityLabel} {...others}>
+    <p ref={ref} id={id} className={classes} aria-label={accessibilityLabel} data-testid={testId} {...others}>
       {iconName && <Icon size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />}
       {label}
     </p>

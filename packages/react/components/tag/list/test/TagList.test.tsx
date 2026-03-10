@@ -12,9 +12,9 @@ import { is } from '../../../../services'
 
 describe('TagList component', () => {
   test('should have "tags" className', () => {
-    render(<TagList>DEFAULT</TagList>)
+    render(<TagList testId='taglist'>DEFAULT</TagList>)
 
-    expect(screen.getByText('DEFAULT')).toBeInTheDocument()
+    expect(screen.getByTestId('taglist')).toBeInTheDocument()
     expect(screen.getByText('DEFAULT')).toHaveClass('tags')
   })
 

@@ -12,9 +12,9 @@ import { Tag, TagVariant } from '..'
 
 describe('Tag component', () => {
   test('should contain toto as text', () => {
-    render(<Tag label='toto' />)
+    render(<Tag testId='tag' label='toto' />)
 
-    expect(screen.getByText('toto')).toBeInTheDocument()
+    expect(screen.getByTestId('tag')).toBeInTheDocument()
   })
 
   test('should have "tag" className', () => {

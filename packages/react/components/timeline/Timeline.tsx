@@ -13,11 +13,11 @@ import { ComponentName } from '../enumsComponentsName'
  * @param horizontal {boolean} timeline horizontal
  * @param className {string} Additional CSS Classes
  */
-const Timeline = React.forwardRef<TimelineRef, TimelineProps>(({ className, id, horizontal, ...others }, ref) => {
+const Timeline = React.forwardRef<TimelineRef, TimelineProps>(({ className, id, horizontal, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('timeline', horizontal && is('horizontal'), className))
 
-  return <div ref={ref} id={id} className={classes} {...others} />
+  return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 Timeline.displayName = ComponentName.Timeline

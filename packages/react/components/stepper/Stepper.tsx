@@ -20,7 +20,7 @@ type CurrentStepType = { label: number | null; step: number; icon: IconName | nu
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className Additional CSS Classes
  */
-const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, ...others }, ref) => {
+const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-container', className))
   const [currentStep, setCurrentStep] = React.useState<CurrentStepType>({ label: null, step: 1, icon: null })
@@ -52,7 +52,7 @@ const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, chi
   }, [children])
 
   return (
-    <div ref={ref} id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
       <Text level={2} typo={[TypographyColor.TEXT_PLACEHOLDER]} className='stepper-steps'>
         Étape {currentStep.step} sur {nbChild}
       </Text>

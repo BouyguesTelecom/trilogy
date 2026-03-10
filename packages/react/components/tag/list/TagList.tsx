@@ -14,11 +14,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, ...others }, ref) => {
+const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   return (
     <div
+      data-testid={testId}
       ref={ref}
       id={id}
       className={hashClass(

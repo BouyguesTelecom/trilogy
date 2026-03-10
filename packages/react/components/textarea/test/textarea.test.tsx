@@ -4,8 +4,8 @@ import Textarea from "../Textarea";
 
 describe("Textarea", () => {
   it("renders without crashing", () => {
-    const { getByRole } = render(<Textarea />);
-    const textarea = getByRole("textbox");
+    const { getByTestId } = render(<Textarea testId="textarea" />);
+    const textarea = getByTestId("textarea");
     expect(textarea).toBeInTheDocument();
   });
 

@@ -3,8 +3,9 @@
  */
 import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
-export interface TimelineContentProps {
+export interface TimelineContentProps extends Dev {
   children?: React.ReactNode
   heading?: string
   content?: string
