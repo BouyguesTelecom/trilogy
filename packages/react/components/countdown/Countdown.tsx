@@ -30,7 +30,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param centered
  */
 const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
-  ({ deadline, className, id, format, event, small, inverted, ...others }, ref): JSX.Element => {
+  ({ deadline, className, id, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const [timeLeft] = useState(deadline)
     const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -119,7 +119,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
     }, [timer, event, init])
 
     return (
-      <ul ref={ref} id={id} className={classes} {...others}>
+      <ul ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         {(show[CountdownUnite.DAY] || timer.days != 0) && (
           <li className={hashClass(styled, clsx('count'))}>
             <span className={hashClass(styled, clsx('value'))}>{timer.days ? timer.days : 0}</span>j
