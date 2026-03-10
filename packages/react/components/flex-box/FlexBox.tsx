@@ -104,7 +104,7 @@ const getJustifyClassName = (justifyContent?: string) => {
  * @param fullheight {boolean} Full height (height: 100%)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
-  ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, ...others }, ref) => {
+  ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const gapClasses =
@@ -126,7 +126,7 @@ const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
       ]),
     )
 
-    return <div ref={ref} id={id} className={classes} {...others} />
+    return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
   },
 )
 

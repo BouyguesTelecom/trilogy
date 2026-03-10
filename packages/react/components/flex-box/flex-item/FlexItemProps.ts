@@ -1,3 +1,4 @@
+import { Dev } from '@/objects/facets/Dev'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
@@ -14,7 +15,7 @@ export interface FlexSize {
 /**
  * FlexItem Interface
  */
-export interface FlexItemProps extends AlignableProps, CommonProps {
+export interface FlexItemProps extends AlignableProps, CommonProps, Dev {
   children?: React.ReactNode
   size?: FlexSize | FlexItemSize
   narrow?: boolean
