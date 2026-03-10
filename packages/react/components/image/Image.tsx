@@ -33,6 +33,7 @@ const Image = React.forwardRef<ImageRef, ImageProps>(({
   onClick,
   radius,
   align,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -48,6 +49,7 @@ const Image = React.forwardRef<ImageRef, ImageProps>(({
 
   return (
     <figure
+      data-testid={testId}
       ref={ref}
       id={id}
       onClick={(e) => {

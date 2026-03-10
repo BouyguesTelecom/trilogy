@@ -23,7 +23,7 @@ import { has, is } from '@/services/classify'
  */
 const Hero = React.forwardRef<HeroRef, HeroProps>(
   (
-    { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, ...others },
+    { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -42,6 +42,7 @@ const Hero = React.forwardRef<HeroRef, HeroProps>(
 
     return (
       <section
+        data-testid={testId}
         ref={ref}
         id={id}
         onClick={onClick && onClick}

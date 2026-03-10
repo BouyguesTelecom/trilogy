@@ -6,8 +6,8 @@ import { VariantState } from '@/objects'
 
 describe('Hero', () => {
   it('renders children', () => {
-    const { getByText } = render(<Hero>My Hero Content</Hero>)
-    const contentElement = getByText('My Hero Content')
+    const { getByTestId } = render(<Hero testId='hero'>My Hero Content</Hero>)
+    const contentElement = getByTestId('hero')
     expect(contentElement).toBeInTheDocument()
   })
 
