@@ -96,6 +96,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
       onIconClick,
       required,
       readOnly,
+      formatPattern,
       ...others
     },
     ref,
@@ -116,16 +117,16 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     const handleChange = useCallback((text: string) => {
       setValue(text)
-      setEmail('')
+        setEmail('')
       const domain = text.split('@')?.[1]
-      if (domain) {
-        const domains = ['gmail.com', 'bbox.fr']
-        domains.forEach((item) => {
-          const domainSplit = domain.split('')
-          const itemSplit = item.split('').slice(0, domainSplit.length)
-          if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
-        })
-      }
+        if (domain) {
+          const domains = ['gmail.com', 'bbox.fr']
+          domains.forEach((item) => {
+            const domainSplit = domain.split('')
+            const itemSplit = item.split('').slice(0, domainSplit.length)
+            if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
+          })
+        }
     }, [])
 
     const handleClick = () => {
@@ -139,8 +140,10 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     }
 
     useEffect(() => {
-      setValue(defaultValue || '')
-    }, [defaultValue, placeholder])
+      let newVal = defaultValue || ''
+      if (formatPattern) newVal = formatPattern(newVal)
+      setValue(newVal)
+    }, [defaultValue, placeholder, formatPattern])
 
     useEffect(() => {
       const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true))
@@ -292,11 +295,13 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
             keyboardType={keyboardType || InputKeyboardType.DEFAULT}
             onSubmitEditing={handleSubmit}
             onChangeText={(text: string) => {
-              handleChange(text)
+              let formatted = text
+              if (formatPattern) formatted = formatPattern(formatted)
+              handleChange(formatted)
               if (onChange) {
                 onChange({
                   inputName: (name && name) || '',
-                  inputValue: text,
+                  inputValue: formatted,
                   inputSelectionStart: null,
                 })
               }
