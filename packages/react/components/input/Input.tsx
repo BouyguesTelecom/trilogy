@@ -49,6 +49,7 @@ interface IconWrapper {
  * @param validationRules {IValidationRules} Textarea max length
  * @param readOnly {boolean} Read only input
  * @param autoCapitalize {InputAutoCapitalize} Auto capitalize input
+ * @param formatPattern {Function} custom formatter called on every value change
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -111,6 +112,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       readOnly,
       autoCapitalize,
       testId,
+      formatPattern,
       ...others
     },
     ref,
@@ -154,7 +156,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     )
 
     const onPressKey = useCallback((e: React.KeyboardEvent) => {
-      const target = e.target as HTMLFormElement
+      const target = e.target as HTMLInputElement
       return {
         inputName: target.name,
         inputValue: target.value,
@@ -200,8 +202,10 @@ const Input = React.forwardRef<InputRef, InputProp>(
         : customValidator
 
     useEffect(() => {
-      setValue(value ?? defaultValue ?? '')
-    }, [value, defaultValue])
+      let newVal = value ?? defaultValue ?? ''
+      if (formatPattern) newVal = formatPattern(newVal)
+      setValue(newVal)
+    }, [value, defaultValue, formatPattern])
 
     useEffect(() => {
       setIsFocused(focused ?? false)
@@ -279,6 +283,8 @@ const Input = React.forwardRef<InputRef, InputProp>(
               }
             }}
             onChange={(e) => {
+              let formatted = e.target.value
+              if (formatPattern) formatted = formatPattern(formatted)
               // --- solution to prevent cursor jump ---
               if (
                 inputType !== InputType.DATE &&
@@ -289,17 +295,19 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 const caret = e.target.selectionStart
                 const element = e.target
                 window.requestAnimationFrame(() => {
+                  if (!formatPattern) {
                   element.selectionStart = caret
                   element.selectionEnd = caret
+                  }
                 })
               }
               // ---------------------------------------
               // eslint-disable-next-line no-console
-              if (!forceControl) setValue(e.target.value)
+              if (!forceControl) setValue(formatted)
               if (onChange) {
                 onChange({
                   inputName: e.target.name,
-                  inputValue: e.target.value,
+                  inputValue: formatted,
                   inputSelectionStart: e.target.selectionStart,
                   target: e.target,
                   event: e,

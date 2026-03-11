@@ -20,6 +20,8 @@ export const InputScreen = (): JSX.Element => {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
   const [leavingDate, setLeavingDate] = React.useState('')
   const [inputSearch, setInputSearch] = React.useState('')
+  const [inputFormated2, setInputFormated2] = React.useState('06 12 34 56 78')
+  const [inputFormated3, setInputFormated3] = React.useState('1234 5678 9012 3456')
 
   const form = useForm<{
     toto: string
@@ -182,6 +184,34 @@ export const InputScreen = (): JSX.Element => {
       />
       <Spacer size={SpacerSize.FIVE} />
 
+      <Title level={4}>Phone number formatting</Title>
+      <Input
+        value={inputFormated2}
+        onChange={(e) => setInputFormated2(e.inputValue)}
+        placeholder='06 12 34 56 78'
+        formatPattern={(v) =>
+          v
+            .replace(/\D/g, '')
+            .replace(/(.{2})/g, '$1 ')
+            .trim()
+        }
+      />
+      <Spacer size={SpacerSize.FIVE} />
+
+      <Title level={4}>French bank card number formatting</Title>
+      <Input
+        value={inputFormated3}
+        onChange={(e) => setInputFormated3(e.inputValue)}
+        placeholder='1234 5678 9012 3456'
+        formatPattern={(v) =>
+          v
+            .replace(/\D/g, '')
+            .replace(/(.{4})/g, '$1 ')
+            .trim()
+        }
+      />
+      <Spacer size={SpacerSize.FIVE} />
+
       <AutoLayout>
         <Title level={TitleLevels.THREE}>Status</Title>
         <Divider />
@@ -211,7 +241,7 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
-        <Input type={InputType.NUMBER} placeholder='Input type number' />
+        <Input type={InputType.NUMBER} placeholder='Input type number' onc />
         <Input
           status='error'
           type={InputType.PASSWORD}
