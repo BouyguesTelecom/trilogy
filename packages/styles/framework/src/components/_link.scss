@@ -2,6 +2,10 @@
   [disabled] {
     @include disabledRulesWithoutBG;
   }
+
+  &.is-small {
+    font-size: $size-6;
+  }
 }
 
 .link:not([disabled]) {
