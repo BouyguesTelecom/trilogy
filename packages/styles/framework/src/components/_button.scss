@@ -68,8 +68,12 @@ $button-border-width: 2px !default;
   [aria-disabled=true] {
     pointer-events: none;
   }
-  .icon{
-    justify-content: start;
+  &:has(.icon) {
+    gap: $spacing-2;
+  }
+
+  .icon {
+    width: auto;
   }
 
   &.is-loading {

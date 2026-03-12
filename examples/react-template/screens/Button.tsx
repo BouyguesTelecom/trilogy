@@ -6,19 +6,19 @@ import {
   IconName,
   Section,
   Spacer,
+  Icon,
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 import { ButtonListDirectionEnum } from '@trilogy-ds/react/lib/components/button/list/ButtonListEnum'
 import { Alignable } from '@trilogy-ds/react'
 
 const Separator = () => {
   return (
     <>
-      <Spacer size={10} />
+      <Spacer size={"10"} />
       <Divider />
-      <Spacer size={50} />
+      <Spacer size={"50"} />
     </>
   )
 }
@@ -28,7 +28,7 @@ export const ButtonScreen = (): JSX.Element => {
     <Section>
       {/*  ======== variants ======== */}
       <Title level={TitleLevels.TWO}>Variant </Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <ButtonList>
         {Object.values(ButtonVariant).map((variant, index) => {
           return <Button variant={variant} key={index}>{variant}</Button>;
@@ -37,7 +37,7 @@ export const ButtonScreen = (): JSX.Element => {
       <Separator/>
       {/*  ======== list column ======== */}
       <Title level={TitleLevels.TWO}>List column</Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <ButtonList direction={ButtonListDirectionEnum.COLUMN} align={Alignable.ALIGNED_START}>
         {Object.values(ButtonVariant).map((variant, index) => {
           return <Button variant={variant} key={index}>{variant}</Button>;
@@ -45,13 +45,17 @@ export const ButtonScreen = (): JSX.Element => {
       </ButtonList>
       <Separator/>
 
+      <Title level={TitleLevels.TWO}>Icon</Title>
+      <Button iconName={IconName.SEARCH} variant={ButtonVariant.PRIMARY} />
+
+
       <Title level={TitleLevels.TWO}>Link</Title>
       <Button disabled variant={ButtonVariant.PRIMARY} href='/hello'>Hello !</Button>
 
 
       {/*  ======== loading & variant ======== */}
       <Title level={TitleLevels.TWO}>loading + variant </Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
@@ -65,7 +69,7 @@ export const ButtonScreen = (): JSX.Element => {
 
       {/*  ======== disabled & variant ======== */}
       <Title level={TitleLevels.TWO}>disabled + variant </Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <ButtonList>
         {Object.values(ButtonVariant).map((color, index) => {
           return (
@@ -79,7 +83,7 @@ export const ButtonScreen = (): JSX.Element => {
 
       {/*  ======== fullwidth ======== */}
       <Title level={TitleLevels.TWO}>fullwidth </Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <Button fullwidth variant={"PRIMARY"}>
         Cliquer
       </Button>
@@ -87,7 +91,7 @@ export const ButtonScreen = (): JSX.Element => {
 
       {/*  ======== icons ======== */}
       <Title level={TitleLevels.TWO}>iconName </Title>
-      <Spacer size={10}/>
+      <Spacer size={"10"}/>
       <ButtonList>
         <Button iconName={IconName.TIMES} variant={"CONVERSION"}>
           Icon Conversion

@@ -101,7 +101,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           type={type ?? 'button'}
           {...others}
         >
-          {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
+          {iconName && <Icon name={iconName} />}
           {children}
         </button>
       )
@@ -133,7 +133,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
         <RouterLink ref={ref} aria-label={accessibilityLabel} to={to} className={classes} data-testid={testId} {...others}>
-          {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
+          {iconName && <Icon name={iconName} />}
           {children}
         </RouterLink>
       )
@@ -155,7 +155,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
         {...others}
         {...(disabled && { 'aria-disabled': true })}
       >
-        {iconName && <Icon className={!children ? 'is-marginless' : ''} name={iconName} />}
+        {iconName && <Icon name={iconName} />}
         {children}
       </a>
     )
