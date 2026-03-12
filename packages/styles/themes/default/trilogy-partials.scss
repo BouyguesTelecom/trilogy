@@ -72,7 +72,8 @@ $body-line-height: 1.5 !default;
 @import './framework/src/components/fab';
 
 @import "./framework/src/grid/all";
-@import "./framework/src/layout/all";
+@import "./framework/src/layout/section";
+@import "./framework/src/layout/hero";
 
 // Icons
 @import "../../assets/icons/all";
