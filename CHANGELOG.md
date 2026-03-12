@@ -3,11 +3,32 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.15.0] - 2026-02-XX
-- Adde stroke color
-- Add numberCols prop on RadioTiles and CheckboxTile
-- Update html RadioTiles and CheckboxTile for ay11
-- Update type of label on RadioTiles and CheckboxTile for ReactNode
+## [4.15.4] - 2026-03-XX
+- Add `small` prop on Link component
+- Add `formatPattern` prop on Input component
+- Add testId prop on 30+ components
+- Fix icon button style
+- Fix timepicker-circular
+- Fix stepper compatibility with old style
+- Update structure of RadioTiles and CheckboxTiles (keep old style for compatibility)
+- Fix onClick on RadioTiles/CheckboxTiles
+- Fix react dependencies
+- Fix autocorrect on textarea in Prompt component
+
+## [4.15.3] - 2026-03-02
+- Revert to 4.14.4 for: checkbox, radio and stepper
+
+## [4.15.2] - 2026-03-02
+- Fix stepper legacy
+
+## [4.15.1] - 2026-03-02
+- Fix spacing in stepper
+
+## [4.15.0] - 2026-03-02
+- Add stroke color
+- Add numberCols prop on RadioTiles and CheckboxTiles
+- Update html RadioTiles and CheckboxTiles for a11y
+- Update type of label on RadioTiles and CheckboxTiles for ReactNode
 - Timepicker (circular / default)
 - Update stepper ui
 - Some testId
