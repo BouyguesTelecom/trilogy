@@ -241,7 +241,7 @@ export const InputScreen = (): JSX.Element => {
         <Divider />
 
         <Input type={InputType.TEXT} placeholder='Input type texte' />
-        <Input type={InputType.NUMBER} placeholder='Input type number' onc />
+        <Input type={InputType.NUMBER} placeholder='Input type number' />
         <Input
           status='error'
           type={InputType.PASSWORD}

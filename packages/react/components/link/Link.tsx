@@ -18,13 +18,13 @@ import { LinkProps, LinkRef } from './LinkProps'
  * @param accessibilityLabel {string} Accessibility label
  * @param iconName {IconName} Adding Icon Link
  * @param inverted {boolean} Inverted link
- * @param others
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param href {string} Href link
  * @param routerLink Custom Router Link as props
  * @param blank Link Target Blank
  * @param rel {string} Relationship between the current document and the linked document
+ * @param small {boolean} small link
  * -------------------------- NATIVE PROPERTIES -------------------------------
  */
 
@@ -44,13 +44,14 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
       blank,
       title,
       testId,
+      small,
       ...others
     },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
-    const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), className))
+    const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), small && is('small'), className))
 
     if (routerLink && to) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
