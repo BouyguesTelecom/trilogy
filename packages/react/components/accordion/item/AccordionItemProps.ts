@@ -1,5 +1,6 @@
 import { View } from 'react-native'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 export type TargetElement = HTMLElement & {
   active?: boolean
@@ -18,7 +19,7 @@ export interface OnClickCallback {
 /**
  * AccordionItem Interface
  */
-export interface AccordionItemProps extends CommonProps {
+export interface AccordionItemProps extends CommonProps, Dev {
   children: React.ReactNode | Array<React.ReactNode>
   open?: boolean
   onClick?: OnClickCallback

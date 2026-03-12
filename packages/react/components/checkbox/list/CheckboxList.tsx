@@ -21,7 +21,7 @@ import { TypographyColor } from '@/objects/Typography'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const groupLabelClasses = hashClass(styled, 'group-label')
 
@@ -38,6 +38,7 @@ const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
           </p>
         )}
         <div
+          data-testid={testId}
           ref={ref}
           id={id}
           role='group'

@@ -16,11 +16,11 @@ import { is } from '@/services/classify'
  * @param id {string} Set id attribute
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
-  ({ className, id, medium, ...others }, ref): JSX.Element => {
+  ({ className, id, medium, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
 
-    return <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} {...others} />
+    return <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} data-testid={testId} {...others} />
   },
 )
 

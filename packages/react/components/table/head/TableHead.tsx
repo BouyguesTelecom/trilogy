@@ -16,7 +16,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */
-const TableHead = React.forwardRef<TableHeadRef, TableHeadProps>(({ className, id, color, backgroundColor, ...others }, ref): JSX.Element => {
+const TableHead = React.forwardRef<TableHeadRef, TableHeadProps>(({ className, id, color, backgroundColor, testId, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(
     styled,
@@ -26,7 +26,7 @@ const TableHead = React.forwardRef<TableHeadRef, TableHeadProps>(({ className, i
       color && is(getColorClassName(color)),
     ),
   )
-  return <thead ref={ref} id={id} className={classes} {...others} />
+  return <thead ref={ref} id={id} className={classes} data-testid={testId} {...others} />
 })
 
 TableHead.displayName = ComponentName.TableHead

@@ -17,7 +17,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * - -------------- NATIVE PROPERTIES ---------------
  */
-const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(({ className, id, onClick, children, activeIndex, align, ...others }, ref): JSX.Element => {
+const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(({ className, id, onClick, children, activeIndex, align, testId, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('segmented-control', align && getJustifiedClassName(align), className))
@@ -42,7 +42,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
   }, [activateIndex])
 
   return (
-    <div ref={ref} id={id} className={classes} {...others}>
+    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
       {children &&
         Array.isArray(children) &&
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

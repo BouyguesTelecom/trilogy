@@ -33,7 +33,7 @@ import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/Flex
  */
 
 const FlexItem = React.forwardRef<FlexItemRef, FlexItemProps>(
-  ({ className, id, size, narrow, verticalAlign, ...others }, ref) => {
+  ({ className, id, size, narrow, verticalAlign, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const isNumber = typeof size === 'number'
@@ -54,7 +54,7 @@ const FlexItem = React.forwardRef<FlexItemRef, FlexItemProps>(
       ),
     )
 
-    return <div ref={ref} id={id} className={classes} {...others} />
+    return <div ref={ref} id={id} className={classes} data-testid={testId} {...others} />
   },
 )
 FlexItem.displayName = ComponentName.FlexItem

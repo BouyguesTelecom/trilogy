@@ -20,7 +20,7 @@ import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
  */
 const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
   (
-    { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, ...others },
+    { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -32,6 +32,7 @@ const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
 
     return (
       <div
+        data-testid={testId}
         ref={ref}
         {...(percent && { style: { width: `${percent}%` } })}
         className={classes}

@@ -1,5 +1,5 @@
 import type { View } from 'react-native'
-import type { BackgroundProps, ChildrenWithNoText } from '../../objects'
+import type { BackgroundProps, ChildrenWithNoText, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,7 +8,7 @@ type Styles = { [key: string]: any }
 /**
  * Section Interface
  */
-export interface SectionProps extends BackgroundProps, ChildrenWithNoText, CommonProps {
+export interface SectionProps extends BackgroundProps, ChildrenWithNoText, CommonProps, Dev {
   skeleton?: boolean
   style?: Styles
 }

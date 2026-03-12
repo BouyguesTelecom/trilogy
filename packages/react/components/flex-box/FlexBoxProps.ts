@@ -4,6 +4,7 @@ import { Justify } from '@/objects/facets/Justifiable'
 import { View } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { GapSize } from '../columns'
+import { Dev } from '@/objects/facets/Dev'
 
 interface ResponsiveValue<T> {
   mobile?: T
@@ -19,7 +20,7 @@ export type AlignProps = ResponsiveValue<Align>
 export type JustifyProps = ResponsiveValue<Justify>
 export type WrapProps = ResponsiveValue<boolean>
 
-export interface FlexBoxProps extends CommonProps {
+export interface FlexBoxProps extends CommonProps, Dev {
   children?: React.ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues

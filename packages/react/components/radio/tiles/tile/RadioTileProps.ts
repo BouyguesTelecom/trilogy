@@ -1,11 +1,10 @@
-import { VariantProps } from '@/objects'
+import { Dev, VariantProps } from '@/objects'
 import { TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '../../../../components/icon'
 import { RadioNativeProps, RadioProps } from '../../../../components/radio/RadioProps'
 import { ReactNode } from 'react'
 
-
-interface RadioTilePropsCommon {
+interface RadioTilePropsCommon extends Dev {
   horizontal?: boolean
   icon?: IconName | IconNameValues
   description?: string | React.ReactNode

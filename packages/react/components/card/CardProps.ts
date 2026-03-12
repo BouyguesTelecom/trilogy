@@ -4,12 +4,13 @@ import { Accessibility } from '../../objects/facets/Accessibility'
 import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Fullheight } from '../../objects/facets/Fullheight'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Card Interface
  */
 
-export interface CardProps extends Fullheight, Clickable, Accessibility, CommonProps {
+export interface CardProps extends Fullheight, Clickable, Accessibility, CommonProps, Dev {
   children?: React.ReactNode
   flat?: boolean
   horizontal?: boolean

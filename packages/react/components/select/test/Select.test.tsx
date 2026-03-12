@@ -17,7 +17,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should be native-old select', () => {
     const p = { ...props, selected: 'opt_2' }
     const { getByTestId } = render(
-      <Select {...p} data-testid={'testId'}>
+      <Select {...p} testId={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -39,7 +39,7 @@ describe('SELECT NATIVE WEB', () => {
 
   it('should change value', () => {
     const { getByTestId } = render(
-      <Select {...props} data-testid={'testId'}>
+      <Select {...props} testId={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -59,7 +59,7 @@ describe('SELECT NATIVE WEB', () => {
 
   it('should call focus and blur event', () => {
     const { getByTestId } = render(
-      <Select {...props} data-testid={'testId'}>
+      <Select {...props} testId={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -80,7 +80,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should be disabled', () => {
     const p = { ...props, disabled: true }
     const { getByTestId } = render(
-      <Select {...p} data-testid={'testId'}>
+      <Select {...p} testId={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (
@@ -98,7 +98,7 @@ describe('SELECT NATIVE WEB', () => {
   it('should have icon', () => {
     const p = { ...props, iconName: 'tri-advisor' as IconName }
     const { getByTestId } = render(
-      <Select {...p} data-testid={'testId'}>
+      <Select {...p} testId={'testId'}>
         {[...Array(5)].map((_, i) => {
           const value = `opt_${i}`
           return (

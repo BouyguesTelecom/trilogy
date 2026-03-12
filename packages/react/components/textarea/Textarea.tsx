@@ -51,6 +51,7 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
       minLength,
       iconNameLeft,
       iconNameRight,
+      testId,
       ...others
     },
     ref,
@@ -92,6 +93,7 @@ const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
 
         <div className={controlClasses}>
           <textarea
+            data-testid={testId}
             ref={ref}
             minLength={minLength}
             disabled={disabled}

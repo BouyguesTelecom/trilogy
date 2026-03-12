@@ -11,7 +11,7 @@ import { Link } from '@/components/link'
 describe('Popover component', () => {
   test('should have "popover" className', () => {
     const { getByTestId } = render(
-      <Popover data-testid="popover-id" trigger={<Link>Hello</Link>}>
+      <Popover testId="popover-id" trigger={<Link>Hello</Link>}>
         DEFAULT
       </Popover>,
     )

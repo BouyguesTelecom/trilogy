@@ -13,10 +13,10 @@ import { CardContentProps, CardContentRef } from './CardContentProps'
  * @param className {string} Additional CSS Classes
  */
 const CardContent = React.forwardRef<CardContentRef, CardContentProps>(
-  ({ children, className, id, ...others }, ref): JSX.Element => {
+  ({ children, className, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     return (
-      <div ref={ref} id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
+      <div data-testid={testId} ref={ref} id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
         {children}
       </div>
     )

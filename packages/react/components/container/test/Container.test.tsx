@@ -6,7 +6,7 @@ import Container from '@/components/container/Container'
 describe('Container', () => {
   it('should render with correct classes and props', () => {
     const { getByTestId } = render(
-      <Container data-testid='container' medium>
+      <Container testId='container' medium>
         <div data-testid='test-child'>Test Child</div>
       </Container>,
     )

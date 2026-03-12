@@ -6,7 +6,7 @@ import { IconName } from '../../icon'
 describe('Link component', () => {
   test('renders children', async () => {
     const { findByText } = render(
-      <Link href='https://example.com' data-testid={'test-link'}>
+      <Link href='https://example.com' testId={'test-link'}>
         Example
       </Link>,
     )
@@ -17,7 +17,7 @@ describe('Link component', () => {
   test('clicking on link calls onClick', async () => {
     const handleClick = jest.fn()
     const { findByText } = render(
-      <Link href='https://example.com' onClick={handleClick} data-testid={'test-link'}>
+      <Link href='https://example.com' onClick={handleClick} testId={'test-link'}>
         Example
       </Link>,
     )
@@ -28,7 +28,7 @@ describe('Link component', () => {
 
   test('displays an icon when iconName is passed', async () => {
     const { findByTestId } = render(
-      <Link href='https://example.com' iconName={IconName.SEARCH} data-testid={'test-icon'}>
+      <Link href='https://example.com' iconName={IconName.SEARCH} testId={'test-icon'}>
         Example
       </Link>,
     )
@@ -40,7 +40,7 @@ describe('Link component', () => {
   test('should have link with routerlink', () => {
     const fn = jest.fn()
     const { getByTestId } = render(
-      <Link onClick={fn} accessibilityLabel='label' data-testid='routerlink' routerLink={'a'} to='https://Example.com'>
+      <Link onClick={fn} accessibilityLabel='label' testId='routerlink' routerLink={'a'} to='https://Example.com'>
         example
       </Link>,
     )

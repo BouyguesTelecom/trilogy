@@ -36,7 +36,7 @@ const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWe
     }
 
     return (
-      <li ref={ref} id={id} onClick={onClick} aria-current={active ? 'page' : undefined}>
+      <li ref={ref} id={id} onClick={onClick} aria-current={active ? 'page' : undefined} data-testid={testId}>
         {active ? (
           children
         ) : (

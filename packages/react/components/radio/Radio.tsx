@@ -21,7 +21,7 @@ import { ComponentName } from '../enumsComponentsName'
  */
 const Radio = React.forwardRef<RadioRef, RadioProps>(
   (
-    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, required, ...others },
+    { checked, className, disabled, readonly, id = React.useId(), label, onChange, name, value, required, testId, ...others },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
@@ -29,6 +29,7 @@ const Radio = React.forwardRef<RadioRef, RadioProps>(
     return (
       <div ref={ref} className={hashClass(styled, clsx('radio', className))}>
         <input
+          data-testid={testId}
           type='radio'
           readOnly={readonly}
           id={id}

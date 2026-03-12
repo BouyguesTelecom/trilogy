@@ -7,7 +7,7 @@ describe('AccordionItem', () => {
   it('should render correctly', () => {
     const { getByTestId } = render(
       <Accordion>
-        <AccordionItem data-testid={'accordion'} open={false}>
+        <AccordionItem testId={'accordion'} open={false}>
           <AccordionHeader data-testid={'header'}>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
         </AccordionItem>
@@ -21,7 +21,7 @@ describe('AccordionItem', () => {
   test('should not expand on accordion disabled when clicked', () => {
     const { getByTestId } = render(
       <Accordion>
-        <AccordionItem data-testid={'accordion'} disabled={true}>
+        <AccordionItem testId={'accordion'} disabled={true}>
           <AccordionHeader data-testid={'header'}>Accordion Header</AccordionHeader>
           <AccordionBody> content </AccordionBody>
         </AccordionItem>
@@ -40,7 +40,7 @@ describe('AccordionItem', () => {
     const { getByTestId } = render(
       <Accordion>
         <AccordionItem open={true}>
-          <AccordionHeader data-testid={'accordion'}>Accordion Header</AccordionHeader>
+          <AccordionHeader testId={'accordion'}>Accordion Header</AccordionHeader>
           <AccordionBody>content</AccordionBody>
         </AccordionItem>
       </Accordion>,

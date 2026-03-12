@@ -14,7 +14,7 @@ export const LinkScreen = (): JSX.Element => {
         <Link>underlined link</Link>, or this <Link>underlined one.</Link>
       </Text>
       <Title level={TitleLevels.THREE}>External links</Title>
-      <Link href='https://google.com' blank>
+      <Link href='https://google.com' blank small>
         External link
       </Link>
       <Title level={TitleLevels.THREE}>Link with icon</Title>

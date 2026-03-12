@@ -3,6 +3,7 @@ import {
   AlignableProps,
   BackgroundProps,
   Clickable,
+  Dev,
   Fullwidth,
   JustifiableProps,
   Loadable,
@@ -43,7 +44,7 @@ export interface ViewProps
     Fullwidth,
     AlignableProps,
     BackgroundProps,
-    Accessibility {
+    Accessibility, Dev {
   children?: React.ReactNode
   className?: string
   style?: Styles

@@ -31,6 +31,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
   className,
   id,
   small,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -94,7 +95,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
   }, [firstProgressCurrentValue, secondProgressCurrentValue])
 
   return (
-    <div id={id} {...others} className={classes} ref={progressRadialRef}>
+    <div id={id} data-testid={testId} {...others} className={classes} ref={progressRadialRef}>
       <div ref={ref} className={classesContent}>
         {label && (
           <Title level={TitleLevels.TWO} marginless>

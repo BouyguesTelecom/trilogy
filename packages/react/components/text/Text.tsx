@@ -34,6 +34,7 @@ const Text = React.forwardRef<TextRef, TextProps>(({
   accessibilityLabel,
   marginless,
   numberOfLines,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -80,6 +81,7 @@ const Text = React.forwardRef<TextRef, TextProps>(({
 
   return (
     <Tag
+      data-testid={testId}
       ref={ref}
       id={id}
       style={numberOfLines ? { WebkitLineClamp: numberOfLines } : {}}

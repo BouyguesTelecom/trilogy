@@ -7,7 +7,7 @@ import BoxItem from '../item'
 describe('Box component', () => {
   test('renders without crashing', () => {
     const { getByTestId } = render(
-      <Box data-testid={'box'}>
+      <Box testId={'box'}>
         <BoxContent>Im a box</BoxContent>
       </Box>,
     )
@@ -28,7 +28,7 @@ describe('Box component', () => {
   test('calls onClick handler when clicked', () => {
     const onClick = jest.fn()
     const { getByTestId } = render(
-      <Box onClick={onClick} data-testid='box'>
+      <Box onClick={onClick} testId='box'>
         Box Cliquable
       </Box>,
     )
@@ -62,18 +62,18 @@ describe('Box component', () => {
   })
 
   test('adds a `data-testid` attribute to the component', () => {
-    const { container } = render(<Box data-testid='box' />)
+    const { container } = render(<Box testId='box' />)
     expect(container.firstChild).toHaveAttribute('data-testid', 'box')
   })
 
   test('Should have classes content', () => {
-    const { getByTestId } = render(<BoxContent data-testid='boxContent' backgroundColor='SUCCESS' />)
+    const { getByTestId } = render(<BoxContent testId='boxContent' backgroundColor='SUCCESS' />)
     const boxContent = getByTestId('boxContent')
     expect(boxContent).toHaveClass('box-content has-background-success')
   })
 
   test('Should have classes footer', () => {
-    const { getByTestId } = render(<BoxFooter data-testid='boxFooter' backgroundColor='SUCCESS' />)
+    const { getByTestId } = render(<BoxFooter testId='boxFooter' backgroundColor='SUCCESS' />)
     const boxFooter = getByTestId('boxFooter')
     expect(boxFooter).toHaveClass('box-footer has-background-success')
   })

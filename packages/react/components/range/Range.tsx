@@ -47,6 +47,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
       gap = 0,
       simple,
       value,
+      testId,
     },
     ref,
   ): JSX.Element => {
@@ -121,7 +122,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     return (
       <div ref={ref} id={id} className={hashClass(styled, clsx('range-container', className))}>
         <label className={hashClass(styled, clsx('range-label'))}>{label}</label>
-        <div className={hashClass(styled, clsx('range'))}>
+        <div className={hashClass(styled, clsx('range'))} data-testid={testId}>
           <div ref={refTrack} className={hashClass(styled, clsx('range-track'))}></div>
           {!simple && (
             <input

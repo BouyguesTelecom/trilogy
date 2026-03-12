@@ -21,7 +21,7 @@ import { TypographyColor } from '@/objects/Typography'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
 const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, ...others }, ref): JSX.Element => {
+  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const groupLabelClasses = hashClass(styled, 'group-label')
 
@@ -38,6 +38,7 @@ const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
           </p>
         )}
         <div
+          data-testid={testId}
           ref={ref}
           id={id}
           role='radiogroup'

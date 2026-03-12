@@ -19,7 +19,7 @@ import { StepProps, StepRef } from './StepProps'
  * @param label {string} Step label
  */
 const Step = React.forwardRef<StepRef, StepProps>(
-  ({ className, id, active, current, done, label, iconName, error, ...others }, ref) => {
+  ({ className, id, active, current, done, label, iconName, error, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(
@@ -34,7 +34,7 @@ const Step = React.forwardRef<StepRef, StepProps>(
       ),
     )
 
-    return <div ref={ref} id={id} className={classes} data-label={label} {...others} />
+    return <div ref={ref} id={id} className={classes} data-label={label} data-testid={testId} {...others} />
   },
 )
 

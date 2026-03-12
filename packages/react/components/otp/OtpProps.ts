@@ -1,10 +1,11 @@
 import { SafeAreaView } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 
 /**
  * Otp Interface
  */
-export interface OtpProps extends CommonProps {
+export interface OtpProps extends CommonProps, Dev {
   value?: string
   length?: number
   disabled?: boolean

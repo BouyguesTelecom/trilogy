@@ -46,6 +46,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       headerOffset,
       fullheight,
       active,
+      testId,
       ...others
     },
     ref,
@@ -78,6 +79,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
 
     return (
       <Tag
+        data-testid={testId}
         ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
         id={id}
         style={onClick && { ...hoverStyle }}
