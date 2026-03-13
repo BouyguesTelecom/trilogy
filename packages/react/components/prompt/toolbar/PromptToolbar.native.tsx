@@ -1,11 +1,13 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import React, { useContext } from 'react'
+import { Pressable, StyleSheet } from 'react-native'
+import { PromptContext } from '../context'
 import { PromptToolbarNativeRef, PromptToolbarProps } from './PromptToolbarProps'
 
 const PromptToolbar = React.forwardRef<PromptToolbarNativeRef, PromptToolbarProps>(({ ...others }, ref) => {
+  const { textareaRef } = useContext(PromptContext)
   const styles = StyleSheet.create({
     view: {
       flexDirection: 'row',
@@ -16,7 +18,7 @@ const PromptToolbar = React.forwardRef<PromptToolbarNativeRef, PromptToolbarProp
       justifyContent: 'flex-end',
     },
   })
-  return <View ref={ref} style={styles.view} {...others} />
+  return <Pressable ref={ref} style={styles.view} onPress={() => textareaRef?.current?.focus()} {...others} />
 })
 
 PromptToolbar.displayName = ComponentName.PromptToolbar

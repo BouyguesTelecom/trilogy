@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix onClick on RadioTiles/CheckboxTiles
 - Fix react dependencies
 - Fix autocorrect on textarea in Prompt component
+- Extend focus in Prompt component
 
 ## [4.15.3] - 2026-03-02
 - Revert to 4.14.4 for: checkbox, radio and stepper
