@@ -10,24 +10,7 @@
 @import "./framework/src/utilities/post";
 @import "./themes/default/src/utilities/post";
 
-// Import framework parts individually (instead of ./framework/src/all)
-// to exclude base/_elements.scss which contains bare HTML tag selectors
-// (body { @extend .reset-wrap }, html { @extend .html-wrap }, header { @extend .header })
-// that would leak global reset styles in the mangled/partials context.
-@import "./framework/src/utilities/all";
-
-// Base without _elements.scss (no body/html/header tag selectors)
-@import "./framework/src/base/reset";
-@import "./framework/src/base/generic";
-@import "./framework/src/base/fonts";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
-
-@import "./framework/src/elements";
-@import "./framework/src/components";
-@import "./framework/src/grid/all";
-@import "./framework/src/layout/section";
-@import "./framework/src/layout/hero";
+@import "./framework/src/all";
 
 // Icons
 @import "../../assets/icons/all";
