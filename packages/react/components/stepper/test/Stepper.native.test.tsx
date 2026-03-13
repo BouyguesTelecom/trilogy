@@ -17,6 +17,6 @@ describe('Stepper', () => {
     expect(screen.getByText('Recup')).toBeOnTheScreen()
     expect(screen.queryByText('Compléments')).not.toBeOnTheScreen()
     expect(screen.queryByText('Coordonate')).not.toBeOnTheScreen()
-    expect(screen.getByText('Étape 1 sur 2')).toBeOnTheScreen()
+    expect(screen.getByText('Étape 1 sur 1')).toBeOnTheScreen()
   })
 })
