@@ -833,7 +833,7 @@
   }
 
   &.is-gapless {
-    --ColumnGap: 0;
+    --ColumnGap: 0px;
   }
 
   $itemWidth: calc((100% / (var(--ColumnFraction))) - ((((var(--ColumnFraction)) - 1) / (var(--ColumnFraction))) * var(--ColumnGap)));
