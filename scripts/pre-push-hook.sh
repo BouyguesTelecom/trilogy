@@ -120,11 +120,11 @@ check_npm_config() {
 
 # Function to run tests
 run_tests() {
-    echo "🧪 Lancement des tests..."
+    echo "🧪 Run tests..."
     if npm run test; then
-        echo -e "${GREEN}✅ Tests web réussis !${NC}"
+        echo -e "${GREEN}✅ Tests web OK !${NC}"
     else
-        echo -e "${RED}❌ Tests web échoués !${NC}"
+        echo -e "${RED}❌ Tests web OK !${NC}"
         return 1
     fi
     if npm run test:native; then
@@ -137,7 +137,7 @@ run_tests() {
 }
 
 # Run checks
-echo "🧪 Lancement des tests..."
+echo "🧪 Run tests..."
 if ! run_tests; then
     exit 1
 fi
