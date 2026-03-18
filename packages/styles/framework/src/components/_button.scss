@@ -68,7 +68,7 @@ $button-border-width: 2px !default;
     gap: $spacing-2;
   }
 
-  .icon {
+  .icon:not([class*='has-background-']) {
     width: auto;
   }
 
@@ -80,3 +80,4 @@ $button-border-width: 2px !default;
   }
 
 }
+
