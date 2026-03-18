@@ -7,20 +7,20 @@ $icon-padding-default: 8px;
 $icon-dimensions-default: 15px;
 
 $size: (
-  'default': (
-    container: 20px, icon:15px
+  'smaller': (
+    container: 20px, icon:16px, radius: var(--radius-small)
   ),
   'small': (
-    container: 32px, icon: 20px
+    container: 32px, icon: 20px, radius: var(--radius-small)
   ),
   'medium': (
-    container: 48px, icon: 32px
+    container: 48px, icon: 32px, radius: var(--radius-medium)
   ),
   'large': (
-    container: 66px, icon: 44px
+    container: 66px, icon: 44px, radius: var(--radius-medium)
   ),
   'huge': (
-    container: 99px, icon: 66px
+    container: 99px, icon: 66px, radius: var(--radius-large)
   )
 );
 
@@ -31,7 +31,7 @@ $size: (
     font-size: inherit;
     width: 1.5em;
     height: 1.5em;
-
+    border-radius: var(--radius-small);
     [class^="tri-"],
     [class*=" tri-"] {
       &::before {
@@ -53,6 +53,7 @@ $size: (
   @each $name, $sizeConfig in $size {
     &.is-#{$name} {
       font-size: map.get($sizeConfig, 'icon');
+      border-radius: map.get($sizeConfig, 'radius');
       [class^="tri-picto-"],
       [class*=" tri-picto-"] {
         min-height: 1.5em !important;
@@ -91,7 +92,7 @@ $size: (
 
     &.is-stretched {
         transform: skewX(-#{$icon-stretching-level});
-        border-top-right-radius: 9px;
+        border-radius: 0 9px 0 0;
         background-color: getColor('font');
 
       [class^="tri-"],
