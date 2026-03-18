@@ -14,25 +14,29 @@ $sticker-height: 35px;
   max-height: 36px;
 
   .icon {
-    width: 1em;
-    margin-right: 5px;
+    font-size: 20px;
+    width: auto;
+    height: auto;
+    margin-right: $spacing-2;
   }
 
   &.is-small {
     .icon {
-      margin-right: 3px;
+      margin-right: $spacing-1;
     }
   }
 
   &:not(.is-hat) {
     width: fit-content;
-
     @include mobile {
       font-size: 12px;
       padding: $spacing-1 $spacing-2;
       height: auto;
       line-height: 15px;
-
+      .icon {
+        font-size: 16px;
+        margin-right: $spacing-1;
+      }
     }
   }
 
@@ -59,7 +63,11 @@ $sticker-height: 35px;
     padding: $spacing-1 $spacing-2;
     height: auto;
     line-height: 15px;
-
+    .icon {
+      font-size: 16px;
+      height: 15px;
+      margin-right: $spacing-1;
+    }
   }
 
   // deprecated
