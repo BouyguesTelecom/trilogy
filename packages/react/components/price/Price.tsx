@@ -47,9 +47,12 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-
+    const priceDetailsClasses = hashClass(styled, clsx('price-details'))
+    const centsClasses = hashClass(styled, clsx('cents'))
+    const periodClasses = hashClass(styled, clsx('period'))
+    const overlineClasses = hashClass(styled, clsx('overline'))
+    const srOnly = hashClass(styled, clsx('sr-only'))
     const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
-
     const classesStrike = hashClass(
       styled,
       clsx('price', inverted && is('inverted'), oldAmount && 'strike', overline && has('suptitle'), className),
@@ -72,12 +75,12 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       oldAmountComponent = (
         <span aria-hidden='true' className={classesStrike} {...others}>
           <span>{`${wholeStrike}`}</span>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
+          <span className={priceDetailsClasses}>
+            <span className={centsClasses}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
               {mention && <sup>{mention}</sup>}
             </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+            {period && <span className={periodClasses}>/{period}</span>}
           </span>
         </span>
       )
@@ -95,14 +98,21 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const dataPrice = `${whole}${!hideCents && cents ? `.${cents}` : ''}`
 
       amountComponent = (
-        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} data-testid={testId} {...others}>
+        <span
+          aria-hidden='true'
+          aria-label={accessibilityLabel}
+          className={classes}
+          data-price={dataPrice}
+          data-testid={testId}
+          {...others}
+        >
           <span>{`${whole}`}</span>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
+          <span className={priceDetailsClasses}>
+            <span className={centsClasses}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
               {mention && <sup>{mention}</sup>}
             </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+            {period && <span className={periodClasses}>/{period}</span>}
           </span>
         </span>
       )
@@ -124,11 +134,11 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
           ),
         )}
       >
-        {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
+        {overline && <p className={overlineClasses}>{overline}</p>}
         {oldAmountComponent}
         {amountComponent}
         {tagAmountComponent}
-        {accessibilityLabel && <p className={hashClass(styled, clsx('sr-only'))}>{accessibilityLabel}</p>}
+        {accessibilityLabel && <p className={srOnly}>{accessibilityLabel}</p>}
       </div>
     )
   },
