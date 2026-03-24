@@ -14,42 +14,42 @@ describe("Image component", () => {
   test('should have "image" className', () => {
     render(<Image testId="image" src={"https://www.test.com"} />);
 
-    expect(screen.getByTestId("image")).toBeInTheDocument();
+    expect(screen.getByTestId("image").firstChild).toBeInTheDocument();
     expect(screen.getByRole("figure")).toHaveClass("image");
   });
 
   test("should have correct lib attribute", () => {
-    render(<Image src={"https://www.test.com"} />);
+    render(<Image testId="image" src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).toHaveAttribute(
+    expect(screen.getByTestId("image").firstChild).toHaveAttribute(
       "src",
       "https://www.test.com"
     );
   });
 
   test("should have correct alt attribute", () => {
-    render(<Image alt={"test"} src={"https://www.test.com"} />);
+    render(<Image testId="image" alt={"test"} src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).toHaveAttribute("alt", "test");
+    expect(screen.getByTestId("image").firstChild).toHaveAttribute("alt", "test");
   });
 
   test('should have "is-circled" className', () => {
-    render(<Image circled={true} src={"https://www.test.com"} />);
+    render(<Image testId="image" circled={true} src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).toHaveClass(is("circled"));
+    expect(screen.getByTestId("image").firstChild).toHaveClass(is("circled"));
   });
 
   test('should not have "is-circled" className', () => {
-    render(<Image circled={false} src={"https://www.test.com"} />);
+    render(<Image testId="image" circled={false} src={"https://www.test.com"} />);
 
-    expect(screen.getByRole("img")).not.toHaveClass(is("circled"));
+    expect(screen.getByTestId("image").firstChild).not.toHaveClass(is("circled"));
   });
 
   test("should onClick attribut work", () => {
     const mockCallBack = jest.fn();
-    render(<Image onClick={mockCallBack} src={"https://www.test.com"} />);
+    render(<Image testId="image" onClick={mockCallBack} src={"https://www.test.com"} />);
 
-    fireEvent.click(screen.getByRole("img"));
+    fireEvent.click(screen.getByTestId("image").firstChild as HTMLElement);
     expect(mockCallBack).toHaveBeenCalled();
   });
 

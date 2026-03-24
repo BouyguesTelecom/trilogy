@@ -25,19 +25,18 @@
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
-    "@react-native-picker/picker": "^2.6.1",
-    "@react-native-community/datetimepicker": "^8.0.0",
+    "@react-native-community/datetimepicker": "^9.1.0",
     "@trilogy-ds/assets": "*",
     "@trilogy-ds/locales": "en",
     "@trilogy-ds/styles": "*",
-    "clsx": "^2.1.0",
-    "react-native-gesture-handler": "^2.16.0",
-    "react-native-modal": "^13.0.1",
-    "react-native-svg": "^15.11.1",
-    "react-native-toast-message": "^2.2.0"
+    "clsx": "^2.1.1",
+    "react-native-gesture-handler": "^2.30.0",
+    "react-native-modal": "^13.0.2",
+    "react-native-svg": "^15.15.4",
+    "react-native-toast-message": "^2.3.3"
   },
   "devDependencies": {
-    "jest-util": "^29.7.0"
+    "jest-util": "^30.3.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

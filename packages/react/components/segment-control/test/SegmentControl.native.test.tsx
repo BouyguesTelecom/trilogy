@@ -1,5 +1,4 @@
-import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
+import { render, userEvent } from '@testing-library/react-native'
 import SegmentControl from '../SegmentControl'
 import SegmentControlItem from '../item'
 
@@ -9,7 +8,7 @@ describe('SegmentControl', () => {
   it('renders with all props', async () => {
     const onClick = jest.fn()
     const onClickDisabled = jest.fn()
-    render(
+    const {getByText} =  render(
       <SegmentControl className='custom-class'>
         <SegmentControlItem onClick={onClick}>Segment 1</SegmentControlItem>
         <SegmentControlItem active>Segment 2</SegmentControlItem>
@@ -19,13 +18,13 @@ describe('SegmentControl', () => {
       </SegmentControl>,
     )
 
-    expect(screen.getByText('Segment 1')).toBeOnTheScreen()
-    expect(screen.getByText('Segment 2')).toBeOnTheScreen()
-    expect(screen.getByText('Segment 3')).toBeOnTheScreen()
+    expect(getByText('Segment 1')).toBeOnTheScreen()
+    expect(getByText('Segment 2')).toBeOnTheScreen()
+    expect(getByText('Segment 3')).toBeOnTheScreen()
 
     const user = userEvent.setup()
-    await user.press(screen.getByText('Segment 1'))
-    await user.press(screen.getByText('Segment 2'))
+    await user.press(getByText('Segment 1'))
+    await user.press(getByText('Segment 2'))
     expect(onClick).toHaveBeenCalled()
     expect(onClickDisabled).not.toHaveBeenCalled()
   })

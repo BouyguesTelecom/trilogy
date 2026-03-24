@@ -121,22 +121,22 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
     return (
       <ul ref={ref} id={id} className={classes} data-testid={testId} {...others}>
         {(show[CountdownUnite.DAY] || timer.days != 0) && (
-          <li className={hashClass(styled, clsx('count'))}>
+          <li className={hashClass(styled, clsx('count'))} data-testid={`${testId}-days`}>
             <span className={hashClass(styled, clsx('value'))}>{timer.days ? timer.days : 0}</span>j
           </li>
         )}
         {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
-          <li className={hashClass(styled, clsx('count'))}>
+          <li className={hashClass(styled, clsx('count'))} data-testid={`${testId}-hours`}>
             <span className={hashClass(styled, clsx('value'))}>{timer.hours ? timer.hours : 0}</span>h
           </li>
         )}
         {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
-          <li className={hashClass(styled, clsx('count'))}>
+          <li className={hashClass(styled, clsx('count'))} data-testid={`${testId}-minutes`}>
             <span className={hashClass(styled, clsx('value'))}>{timer.minutes ? timer.minutes : 0}</span>m
           </li>
         )}
         {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
-          <li className={hashClass(styled, clsx('count'))}>
+          <li className={hashClass(styled, clsx('count'))} data-testid={`${testId}-seconds`}>
             <span className={hashClass(styled, clsx('value'))}>{timer.seconds ? timer.seconds : 0}</span>s
           </li>
         )}

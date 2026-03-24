@@ -1,63 +1,49 @@
+import { render } from "@testing-library/react";
 import * as React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot, Root } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import Countdown from "../Countdown";
 import { CountdownFormat, getFormatWidth } from "../CountdownEnum";
 
 describe("Countdown", () => {
   let container: HTMLDivElement | null = null;
+  let root: Root | null = null;
 
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+      root = createRoot(container); 
   });
 
   afterEach(() => {
-    if (container) {
-      unmountComponentAtNode(container);
+    if (container && root) {
+       act(() => {
+        root?.unmount();
+      });
       container.remove();
       container = null;
     }
   });
 
   it("renders countdown component", () => {
-    act(() => {
-      render(<Countdown deadline={new Date()} />, container);
-    });
-
-    const countdown = container?.querySelector(".countdown");
-
-    expect(countdown).toBeTruthy();
+     const {getByTestId} =  render(<Countdown testId="countdown" deadline={new Date()} />);    
+    expect(getByTestId('countdown')).toBeTruthy();
   });
 
   it("renders countdown with specified format", () => {
-    act(() => {
-      render(
-        <Countdown
-          deadline={new Date()}
-          format={CountdownFormat.DAY_HOUR_MIN_SEC}
-        />,
-        container
-      );
-    });
+    const {getByTestId} =  
+    render(
+      <Countdown 
+      testId="countdown"  
+      deadline={new Date()}
+      format={CountdownFormat.DAY_HOUR_MIN_SEC} 
+      />
+    );    
 
-    const countdownDays = container?.querySelector(
-      ".countdown li:nth-child(1) .value"
-    );
-    const countdownHours = container?.querySelector(
-      ".countdown li:nth-child(2) .value"
-    );
-    const countdownMinutes = container?.querySelector(
-      ".countdown li:nth-child(3) .value"
-    );
-    const countdownSeconds = container?.querySelector(
-      ".countdown li:nth-child(4) .value"
-    );
-
-    expect(countdownDays).toBeTruthy();
-    expect(countdownHours).toBeTruthy();
-    expect(countdownMinutes).toBeTruthy();
-    expect(countdownSeconds).toBeTruthy();
+    expect(getByTestId('countdown-days')).toBeTruthy();
+    expect(getByTestId('countdown-hours')).toBeTruthy();
+    expect(getByTestId('countdown-minutes')).toBeTruthy();
+    expect(getByTestId('countdown-seconds')).toBeTruthy();
   });
 });
 
