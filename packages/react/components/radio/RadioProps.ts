@@ -31,4 +31,4 @@ export interface RadioNativeProps extends Omit<RadioProps, 'onChange'> {
 }
 
 export type RadioRef = HTMLDivElement
-export type RadioNativeRef = TouchableOpacity
+export type RadioNativeRef = React.ElementRef<typeof TouchableOpacity>

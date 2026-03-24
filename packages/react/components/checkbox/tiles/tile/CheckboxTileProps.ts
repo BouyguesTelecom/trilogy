@@ -15,4 +15,4 @@ export interface CheckboxTileProps extends Omit<CheckboxProps, 'label'>, CommonP
 }
 
 export type CheckboxTileRef = HTMLDivElement
-export type CheckboxTileNativeRef = TouchableOpacity
+export type CheckboxTileNativeRef = React.ElementRef<typeof TouchableOpacity>

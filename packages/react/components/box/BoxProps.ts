@@ -1,4 +1,4 @@
-import { TouchableOpacity, type View } from 'react-native'
+import { type TouchableOpacity, type View } from 'react-native'
 import { BackgroundProps } from '../../objects/atoms/Background'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { Clickable } from '../../objects/facets/Clickable'
@@ -25,4 +25,4 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
 }
 
 export type BoxRef = HTMLDivElement
-export type BoxNativeRef = View | TouchableOpacity
+export type BoxNativeRef = View | React.ElementRef<typeof TouchableOpacity>

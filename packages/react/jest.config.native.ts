@@ -9,6 +9,6 @@ export default {
   testRegex: ['/components/.*/test/.*native'],
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  transformIgnorePatterns: ['node_modules/(?!(@react-native|react-native|react-native-toast-message)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(@react-native|react-native|react-native-toast-message|react-native-*)/)'],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.native.ts'],
 }

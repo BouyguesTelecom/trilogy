@@ -19,4 +19,4 @@ export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, Breadc
 }
 
 export type BreadcrumbItemRef = HTMLLIElement
-export type BreadcrumbItemNativeRef = TouchableOpacity
+export type BreadcrumbItemNativeRef = React.ElementRef<typeof TouchableOpacity>

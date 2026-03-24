@@ -38,4 +38,4 @@ interface CheckboxWithChildren extends CheckboxCommonProps {
 }
 
 export type CheckboxRef = HTMLDivElement
-export type CheckboxNativeRef = TouchableOpacity
+export type CheckboxNativeRef = React.ElementRef<typeof TouchableOpacity>

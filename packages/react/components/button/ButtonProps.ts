@@ -32,4 +32,4 @@ export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, C
 }
 
 export type ButtonRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
-export type ButtonNativeRef = TouchableOpacity
+export type ButtonNativeRef = React.ElementRef<typeof TouchableOpacity>

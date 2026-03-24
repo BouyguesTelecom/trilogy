@@ -17,4 +17,4 @@ export interface RadioTileProps extends Omit<RadioProps, 'label'>, RadioTileProp
 export interface RadioTileNativeProps extends Omit<RadioNativeProps, 'label'>, RadioTilePropsCommon {}
 
 export type RadioTileRef = HTMLDivElement
-export type RadioTileNativeRef = TouchableOpacity
+export type RadioTileNativeRef = React.ElementRef<typeof TouchableOpacity>

@@ -1,4 +1,4 @@
 import { TouchableOpacity } from 'react-native'
 
 export type PromptSelectOptionRef = HTMLOptionElement
-export type PromptSelectOptionNativeRef = TouchableOpacity
+export type PromptSelectOptionNativeRef = React.ElementRef<typeof TouchableOpacity>

@@ -120,7 +120,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       return (
         <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
           <TouchableOpacity
-            ref={ref as React.Ref<TouchableOpacity>}
+            ref={ref}
             onPress={(e?: unknown) => onClick?.(e)}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             style={[styles.box, !flat && styles.shadow, (others as any)?.style]}

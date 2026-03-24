@@ -11,7 +11,7 @@ interface TableTrPropsWeb extends Clickable, Dev {
   color?: TrilogyColor | TrilogyColorValues
 }
 
-export type TableTrPropsNative = TableTrPropsWeb & ReferenceableNative<TouchableOpacity>
+export type TableTrPropsNative = TableTrPropsWeb & ReferenceableNative<View>
 
 export type TableTrProps = TableTrPropsWeb & Referenceable<HTMLTableRowElement> & CommonProps
 

@@ -17,4 +17,4 @@ export interface SelectOptionProps<T extends string | number = string> extends A
 }
 
 export type SelectOptionRef = HTMLOptionElement | HTMLLIElement
-export type SelectOptionNativeRef = TouchableOpacity
+export type SelectOptionNativeRef = React.ElementRef<typeof TouchableOpacity>

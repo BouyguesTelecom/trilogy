@@ -16,4 +16,4 @@ export interface ChipsProps extends Clickable, Accessibility, Dev, CommonProps {
 }
 
 export type ChipsRef = HTMLButtonElement
-export type ChipsNativeRef = TouchableOpacity
+export type ChipsNativeRef = React.ElementRef<typeof TouchableOpacity>

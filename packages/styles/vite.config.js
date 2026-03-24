@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import path from "path";
-import glob from "glob";
+import {glob} from "glob";
 import {generateIconsScss} from "./config/plugins/vite-plugin-generate-icons-scss";
 import {cssPlugin} from "./config/plugins/vite-plugin-mangler";
 

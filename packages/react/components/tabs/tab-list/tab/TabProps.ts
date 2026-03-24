@@ -18,4 +18,4 @@ export interface TabProps extends Clickable, Accessibility, Dev, CommonProps {
 }
 
 export type TabRef = HTMLElement | HTMLButtonElement | HTMLLinkElement
-export type TabNativeRef = TouchableOpacity
+export type TabNativeRef = React.ElementRef<typeof TouchableOpacity>

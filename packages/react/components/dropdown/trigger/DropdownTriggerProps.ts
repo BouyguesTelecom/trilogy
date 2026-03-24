@@ -11,4 +11,4 @@ export interface DropdownTriggerProps extends Clickable, CommonProps, Dev {
 }
 
 export type DropdownTriggerRef = HTMLDivElement
-export type DropdownTriggerNativeRef = TouchableOpacity
+export type DropdownTriggerNativeRef = React.ElementRef<typeof TouchableOpacity>

@@ -19,4 +19,4 @@ export interface FabProps extends Accessibility, Clickable, Dev, CommonProps {
 }
 
 export type FabRef = HTMLButtonElement
-export type FabNativeRef = TouchableOpacity
+export type FabNativeRef = React.ElementRef<typeof TouchableOpacity>

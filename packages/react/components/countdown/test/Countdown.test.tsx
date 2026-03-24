@@ -1,88 +1,69 @@
-import * as React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import Countdown from "../Countdown";
-import { CountdownFormat, getFormatWidth } from "../CountdownEnum";
+import { render } from '@testing-library/react'
+import * as React from 'react'
+import { createRoot, Root } from 'react-dom/client'
+import { act } from 'react-dom/test-utils'
+import Countdown from '../Countdown'
+import { CountdownFormat, getFormatWidth } from '../CountdownEnum'
 
-describe("Countdown", () => {
-  let container: HTMLDivElement | null = null;
+describe('Countdown', () => {
+  let container: HTMLDivElement | null = null
+  let root: Root | null = null
 
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
-  });
+    container = document.createElement('div')
+    document.body.appendChild(container)
+    root = createRoot(container)
+  })
 
   afterEach(() => {
-    if (container) {
-      unmountComponentAtNode(container);
-      container.remove();
-      container = null;
+    if (container && root) {
+      act(() => {
+        root?.unmount()
+      })
+      container.remove()
+      container = null
     }
-  });
+  })
 
-  it("renders countdown component", () => {
-    act(() => {
-      render(<Countdown deadline={new Date()} />, container);
-    });
+  it('renders countdown component', () => {
+    const { getByTestId } = render(<Countdown testId='countdown' deadline={new Date()} />)
+    expect(getByTestId('countdown')).toBeTruthy()
+  })
 
-    const countdown = container?.querySelector(".countdown");
+  it('renders countdown with specified format', () => {
+    const { getByTestId } = render(
+      <Countdown testId='countdown' deadline={new Date()} format={CountdownFormat.DAY_HOUR_MIN_SEC} />,
+    )
 
-    expect(countdown).toBeTruthy();
-  });
+    expect(getByTestId('countdown-days')).toBeTruthy()
+    expect(getByTestId('countdown-hours')).toBeTruthy()
+    expect(getByTestId('countdown-minutes')).toBeTruthy()
+    expect(getByTestId('countdown-seconds')).toBeTruthy()
+  })
+})
 
-  it("renders countdown with specified format", () => {
-    act(() => {
-      render(
-        <Countdown
-          deadline={new Date()}
-          format={CountdownFormat.DAY_HOUR_MIN_SEC}
-        />,
-        container
-      );
-    });
+describe('getFormatWidth', () => {
+  it('returns the correct width for HOUR_MIN_SEC format', () => {
+    expect(getFormatWidth(CountdownFormat.HOUR_MIN_SEC)).toBe('60%')
+  })
 
-    const countdownDays = container?.querySelector(
-      ".countdown li:nth-child(1) .value"
-    );
-    const countdownHours = container?.querySelector(
-      ".countdown li:nth-child(2) .value"
-    );
-    const countdownMinutes = container?.querySelector(
-      ".countdown li:nth-child(3) .value"
-    );
-    const countdownSeconds = container?.querySelector(
-      ".countdown li:nth-child(4) .value"
-    );
+  it('returns the correct width for DAY_HOUR_MIN format', () => {
+    expect(getFormatWidth(CountdownFormat.DAY_HOUR_MIN)).toBe('60%')
+  })
 
-    expect(countdownDays).toBeTruthy();
-    expect(countdownHours).toBeTruthy();
-    expect(countdownMinutes).toBeTruthy();
-    expect(countdownSeconds).toBeTruthy();
-  });
-});
+  it('returns the correct width for MIN_SEC format', () => {
+    expect(getFormatWidth(CountdownFormat.MIN_SEC)).toBe('40%')
+  })
 
-describe("getFormatWidth", () => {
-  it("returns the correct width for HOUR_MIN_SEC format", () => {
-    expect(getFormatWidth(CountdownFormat.HOUR_MIN_SEC)).toBe("60%");
-  });
+  it('returns the correct width for DAY_HOUR format', () => {
+    expect(getFormatWidth(CountdownFormat.DAY_HOUR)).toBe('40%')
+  })
 
-  it("returns the correct width for DAY_HOUR_MIN format", () => {
-    expect(getFormatWidth(CountdownFormat.DAY_HOUR_MIN)).toBe("60%");
-  });
+  it('returns the correct width for SEC format', () => {
+    expect(getFormatWidth(CountdownFormat.SEC)).toBe('20%')
+  })
 
-  it("returns the correct width for MIN_SEC format", () => {
-    expect(getFormatWidth(CountdownFormat.MIN_SEC)).toBe("40%");
-  });
-
-  it("returns the correct width for DAY_HOUR format", () => {
-    expect(getFormatWidth(CountdownFormat.DAY_HOUR)).toBe("40%");
-  });
-
-  it("returns the correct width for SEC format", () => {
-    expect(getFormatWidth(CountdownFormat.SEC)).toBe("20%");
-  });
-
-  it("returns the correct width for DAY format", () => {
-    expect(getFormatWidth(CountdownFormat.DAY)).toBe("20%");
-  });
-});
+  it('returns the correct width for DAY format', () => {
+    expect(getFormatWidth(CountdownFormat.DAY)).toBe('20%')
+  })
+})

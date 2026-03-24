@@ -12,4 +12,4 @@ export interface SegmentControlItemProps extends Clickable, CommonProps, Dev {
 }
 
 export type SegmentControlItemRef = HTMLButtonElement
-export type SegmentControlItemNativeRef = TouchableOpacity
+export type SegmentControlItemNativeRef = React.ElementRef<typeof TouchableOpacity>
