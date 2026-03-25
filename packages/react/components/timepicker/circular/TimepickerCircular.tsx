@@ -3,7 +3,7 @@ import { Text, TextLevels } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { TypographyAlign, TypographyBold } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { is } from '@/services'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimepickerCircularProps, TimepickerCircularRef } from './TimepickerCircularProps'
@@ -52,10 +52,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       setCurrentHours(hours)
       setCurrentMinutes(minutes)
     }, [value])
-
-    const mainColor = getColorStyle(TrilogyColor.MAIN)
-    const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
-    const dotColor = getColorStyle(TrilogyColor.NEUTRAL)
 
     const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
     const centerX = CIRCLE_SIZE / 2
@@ -314,18 +310,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             onClick={() => handleHourDotPress(i)}
           >
             <div
+              className={hashClass(styled, clsx('timepicker-circular_dot-hour', isFilled && is('filled')))}
               style={{
                 width: HOUR_DOT_SIZE,
                 height: HOUR_DOT_SIZE,
                 borderRadius: '50%',
-                backgroundColor: isFilled ? mainColor : dotColor,
               }}
             />
           </div>,
         )
       }
       return dots
-    }, [currentHours, currentMinutes, mainColor, dotColor, centerX, radius, maxMinutes, handleHourDotPress])
+    }, [currentHours, currentMinutes, centerX, radius, maxMinutes, handleHourDotPress])
 
     const progressGauge = useMemo(() => {
       const strokeWidth = CIRCLE_THICKNESS
@@ -346,25 +342,25 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             cx={CIRCLE_SIZE / 2}
             cy={CIRCLE_SIZE / 2}
             r={svgRadius}
-            stroke={mainFadeColor}
             strokeWidth={strokeWidth}
             fill='transparent'
+            className={hashClass(styled, clsx('timepicker-circular_progress-container'))}
           />
           <circle
             cx={CIRCLE_SIZE / 2}
             cy={CIRCLE_SIZE / 2}
             r={svgRadius}
-            stroke={mainColor}
             strokeWidth={strokeWidth}
             fill='transparent'
             strokeDasharray={circumference}
             strokeDashoffset={progressOffset}
             strokeLinecap='round'
             transform={`rotate(-90 ${CIRCLE_SIZE / 2} ${CIRCLE_SIZE / 2})`}
+            className={hashClass(styled, clsx('timepicker-circular_progress'))}
           />
         </svg>
       )
-    }, [currentHours, currentMinutes, mainFadeColor, mainColor, maxMinutes])
+    }, [currentHours, currentMinutes, maxMinutes])
 
     const styles = useMemo(
       () => ({
