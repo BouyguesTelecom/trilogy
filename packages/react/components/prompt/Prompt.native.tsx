@@ -7,7 +7,7 @@ import { RadiusValues } from '../image'
 import { PromptNativeRef, PromptProps } from './PromptProps'
 import { PromptContext, PromptProvider } from './context'
 
-const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others }, ref) => {
+const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)
 
   const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ ...others },
       borderRadius: getRadiusStyle(RadiusValues.SMALL),
       borderColor: getColorStyle(TrilogyColor[isFocused ? 'MAIN' : isDisabled ? 'DISABLED' : 'STROKE']),
       margin: isFocused ? -1 : undefined,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+      backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
     },
   })
   return <View ref={ref} style={styles.view} {...others} />
@@ -26,7 +26,7 @@ const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(
   ({ disabled = false, readOnly = false, ...others }, ref) => {
     return (
       <PromptProvider isDisabled={disabled} isReadonly={readOnly}>
-        <PromptElm ref={ref} {...others} />
+        <PromptElm ref={ref} disabled={disabled} {...others} />
       </PromptProvider>
     )
   },

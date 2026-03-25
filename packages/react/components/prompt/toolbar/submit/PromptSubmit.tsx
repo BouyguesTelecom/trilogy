@@ -66,7 +66,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
 
     return (
       <Button
-        disabled={!isActive || isDisable}
+        disabled={isDisable}
         ref={ref}
         iconName={statusSubmit === PromptSubmitStatus.STREAMING_OFF ? IconName.ARROW_UP : undefined}
         variant={ButtonVariant.PRIMARY}
