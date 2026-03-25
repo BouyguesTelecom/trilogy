@@ -45,10 +45,11 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
     return (
       <PromptButton
         onClick={onClick}
-        disabled={disabled || !isActive}
+        disabled={disabled}
         readOnly={readOnly}
         active={isActive}
         ref={ref}
+        {...{ isSubmit: true, isActive }}
         {...others}
       >
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
@@ -56,7 +57,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         ) : (
           <Icon
             size={IconSize.SMALLER}
-            color={TrilogyColor[isDisable || !isActive ? 'DISABLED' : 'BACKGROUND']}
+            color={TrilogyColor[isDisable ? 'DISABLED_FADE' : !isActive ? 'DISABLED' : 'BACKGROUND']}
             name={IconName.ARROW_HIGH}
             {...{
               style: styles.icon,

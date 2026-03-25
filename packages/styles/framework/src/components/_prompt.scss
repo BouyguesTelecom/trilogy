@@ -5,8 +5,9 @@ $height-prompt-item: 64px;
     border-radius: var(--radius-small);
     overflow: hidden;
     background-color: getColor('background');
-    &[aria-disabled] {
-        background-color: getColor('background') !important;
+    &[aria-disabled=true] {
+        background-color: getColor('disabled-fade') !important;
+        border: 1px solid getColor('disabled');
     }
     * {
         margin-bottom: 0px !important;
@@ -28,9 +29,6 @@ $height-prompt-item: 64px;
             padding: 16px !important;
             height: auto;
             resize: none;
-            &[disabled] {
-                background-color: getColor('background') !important;
-            }
         } 
     }
     &-files {
@@ -131,7 +129,22 @@ $height-prompt-item: 64px;
         &-tool-submit.streaming {
             padding: 0;
         }
-
+        &-tool-submit:not(.active):not(:disabled) {
+            background-color: getColor('disabled-fade') !important;
+            &:hover {
+                filter: brightness(1) !important;
+                cursor: default !important;
+            }
+            i {
+                background-color: getColor('disabled') !important;
+            }
+        }
+        &-tool-submit:disabled {
+            background-color: getColor('disabled') !important;
+            i {
+                background-color: getColor('disabled-fade') !important;
+            }
+        }
     }
 
     &-stop_streaming {

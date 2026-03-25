@@ -21,7 +21,13 @@ const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
         alignItems: 'center',
         borderRadius: rounded ? 36 : getRadiusStyle(RadiusValues.SMALL),
         backgroundColor: getColorStyle(
-          isDisable ? TrilogyColor?.DISABLED_FADE : active ? TrilogyColor.MAIN : 'transparent',
+          isDisable && (others as any)?.isSubmit
+            ? TrilogyColor?.DISABLED
+            : !(others as any)?.isActive && (others as any)?.isSubmit
+            ? 'DISABLED_FADE'
+            : active
+            ? TrilogyColor.MAIN
+            : 'transparent',
         ),
       },
     })
