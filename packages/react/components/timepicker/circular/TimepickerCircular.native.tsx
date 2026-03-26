@@ -3,7 +3,7 @@ import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Modal, ModalBody, ModalFooter } from '@/components/modal'
 import { Text, TextLevels } from '@/components/text'
-import { TypographyAlign } from '@/objects'
+import { TypographyAlign, TypographyBold } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -13,7 +13,7 @@ import Svg, { Circle } from 'react-native-svg'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 24
+const CIRCLE_THICKNESS = 28
 const CURSOR_SIZE = 30
 const CURSOR_STROKE = 2
 const HOUR_DOT_SIZE = 8
@@ -353,6 +353,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 30,
+            gap: 4,
           },
           inputWrapper: {
             alignItems: 'center',
@@ -550,7 +551,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             >
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
                 <View style={[styles.input, styles.inputDisplay]}>
-                  <Text typo={TypographyAlign.TEXT_CENTERED} style={{ lineHeight: 0 }}>
+                  <Text
+                    typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
+                    style={{ lineHeight: 0 }}
+                  >
                     {hoursInputValue}
                   </Text>
                 </View>
@@ -561,12 +565,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               </TouchableOpacity>
 
               <View style={styles.separatorWrapper}>
-                <Text>:</Text>
+                <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>:</Text>
               </View>
 
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
                 <View style={[styles.input, styles.inputDisplay]}>
-                  <Text typo={TypographyAlign.TEXT_CENTERED} style={{ lineHeight: 0 }}>
+                  <Text
+                    typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
+                    style={{ lineHeight: 0 }}
+                  >
                     {minutesInputValue}
                   </Text>
                 </View>
