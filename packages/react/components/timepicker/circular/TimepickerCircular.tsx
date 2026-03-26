@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimepickerCircularProps, TimepickerCircularRef } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 24
+const CIRCLE_THICKNESS = 27
 const CURSOR_SIZE = 30
 const HOUR_DOT_SIZE = 8
 const HOUR_DOTS_COUNT = 24
@@ -439,7 +439,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             </div>
 
             <div className={hashClass(styled, clsx('circle_container-inputs-separator'))}>
-              <Text>:</Text>
+              <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>:</Text>
             </div>
 
             <div className={hashClass(styled, clsx('circle_container-inputs-wrapper'))}>

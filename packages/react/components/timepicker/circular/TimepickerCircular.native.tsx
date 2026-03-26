@@ -13,7 +13,7 @@ import Svg, { Circle } from 'react-native-svg'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
 const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 28
+const CIRCLE_THICKNESS = 27
 const CURSOR_SIZE = 30
 const CURSOR_STROKE = 2
 const HOUR_DOT_SIZE = 8
