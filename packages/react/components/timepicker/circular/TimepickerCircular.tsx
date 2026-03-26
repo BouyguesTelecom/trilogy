@@ -39,9 +39,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
 
     const { hours: initialHours, minutes: initialMinutes } = parseTime(value)
 
+    const progressContainerClasses = hashClass(styled, clsx('timepicker-circular_progress-container'))
+    const progressClasses = hashClass(styled, clsx('timepicker-circular_progress'))
+    const dotClasses = hashClass(styled, clsx('timepicker-circular_dot-hour'))
+    const dotFilledClasses = hashClass(styled, clsx(is('filled')))
+
     const [currentHours, setCurrentHours] = useState(initialHours)
     const [currentMinutes, setCurrentMinutes] = useState(initialMinutes)
     const [isDragging, setIsDragging] = useState(false)
+    const [blurKey, setBlurKey] = useState(0)
     const refsSegment = useRef<HTMLSpanElement[]>([])
     const containerRef = useRef<HTMLDivElement>(null)
     const lastAngle = useRef<number | null>(null)
@@ -120,7 +126,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       const dx = x - cursorCenterX
       const dy = y - cursorCenterY
       const distance = Math.sqrt(dx * dx + dy * dy)
-      return distance <= CURSOR_SIZE * 2
+      return distance <= CURSOR_SIZE / 2 + 4
     }
 
     const isOnHourDot = (x: number, y: number): number => {
@@ -192,10 +198,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       event.preventDefault()
 
       const { x, y } = getMousePosition(event as any)
-      pointerIdRef.current = event.pointerId
-      containerRef.current?.setPointerCapture(event.pointerId)
 
       if (isOnCursor(x, y)) {
+        pointerIdRef.current = event.pointerId
+        containerRef.current?.setPointerCapture(event.pointerId)
         setIsDragging(true)
         lastAngle.current = null
 
@@ -257,10 +263,11 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         } else {
           let newMinutes = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(59, numValue))
           newMinutes = Math.round(newMinutes / step) * step
-          if (newMinutes > 59) newMinutes = 59
+          if (newMinutes >= 60) newMinutes = 60 - step
           setCurrentMinutes(newMinutes)
           onChange?.(formatTime(currentHours, newMinutes))
         }
+        setBlurKey((k) => k + 1)
       },
       [currentHours, currentMinutes, onChange, formatNumber, formatTime, step],
     )
@@ -310,7 +317,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             onClick={() => handleHourDotPress(i)}
           >
             <div
-              className={hashClass(styled, clsx('timepicker-circular_dot-hour', isFilled && is('filled')))}
+              className={`${dotClasses} ${isFilled ? dotFilledClasses : ''}`}
               style={{
                 width: HOUR_DOT_SIZE,
                 height: HOUR_DOT_SIZE,
@@ -344,7 +351,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             r={svgRadius}
             strokeWidth={strokeWidth}
             fill='transparent'
-            className={hashClass(styled, clsx('timepicker-circular_progress-container'))}
+            className={progressContainerClasses}
           />
           <circle
             cx={CIRCLE_SIZE / 2}
@@ -356,7 +363,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             strokeDashoffset={progressOffset}
             strokeLinecap='round'
             transform={`rotate(-90 ${CIRCLE_SIZE / 2} ${CIRCLE_SIZE / 2})`}
-            className={hashClass(styled, clsx('timepicker-circular_progress'))}
+            className={progressClasses}
           />
         </svg>
       )
@@ -400,6 +407,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
           <div className={hashClass(styled, clsx('circle_container-inputs'))}>
             <div className={hashClass(styled, clsx('circle_container-inputs-wrapper'))}>
               <span
+                key={`hours-${blurKey}`}
                 aria-valuemin={0}
                 aria-valuemax={24}
                 aria-readonly={false}
@@ -415,6 +423,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
                 onKeyDown={handleKeyDown}
                 onBlur={(e) => handleBlur('hours', e.target as HTMLSpanElement)}
                 onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
                 className={hashClass(styled, clsx('circle_container-inputs-wrapper-input'))}
                 ref={(el) => {
                   if (el) refsSegment.current[0] = el
@@ -435,6 +444,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
 
             <div className={hashClass(styled, clsx('circle_container-inputs-wrapper'))}>
               <span
+                key={`minutes-${blurKey}`}
                 aria-valuemin={0}
                 aria-valuemax={59}
                 aria-readonly={false}
@@ -450,6 +460,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
                 onKeyDown={handleKeyDown}
                 onBlur={(e) => handleBlur('minutes', e.target as HTMLSpanElement)}
                 onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
                 className={hashClass(styled, clsx('circle_container-inputs-wrapper-input'))}
                 ref={(el) => {
                   if (el) refsSegment.current[1] = el
