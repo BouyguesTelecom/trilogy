@@ -3,6 +3,21 @@ $CURSOR_SIZE: 30px;
 
 .timepicker-circular {
 
+  &_dot-hour {
+    background-color: getColor('neutral');
+    &.is-filled {
+        background-color: getColor('main');
+    }
+  }
+
+  &_progress {
+    stroke: getColor('main');
+  }
+
+  &_progress-container {
+    stroke: getColor('main-fade');
+  }
+
   .circle_container {
     width: $CIRCLE_SIZE;
     height: $CIRCLE_SIZE;
@@ -17,6 +32,8 @@ $CURSOR_SIZE: 30px;
       border: 2px solid getColor('main');
       z-index: 20;
     }
+
+
 
     &-inputs {
       position: absolute;
