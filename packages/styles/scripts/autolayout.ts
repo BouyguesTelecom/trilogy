@@ -68,6 +68,7 @@ export const DEFAULT_SPACING_MATRIX: DefaultSpacingMatrix = [
   [INSERT_SPACE_BETWEEN, '.title.is-level-4 + .subtitle', null, THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.title.is-level-5 + .subtitle', null, THREE, TWO],
   [INSERT_SPACE_BETWEEN, '.title.is-level-6 + .subtitle', null, THREE, TWO],
+  [INSERT_SPACE_BETWEEN, '.is-autocomplete-container', 'default', FIVE, FOUR],
 ]
 
 const createBodyAutolayoutSCSS = (spacingMatrix: DefaultSpacingMatrix): string => {
