@@ -6,6 +6,13 @@
   border: 1px solid #{getColor('stroke-fade')};
 }
 
+@mixin dividerDashed {
+  content:'';
+  flex: 1;
+  height: 1px;
+  border: 1px dashed #{getColor('stroke-fade')};
+}
+
 .divider {
   height: 1px;
   display: flex;
@@ -18,13 +25,6 @@
     display: flex;
     align-items: center;
 
-    &::before {
-     @include divider
-    }
-    &::after {
-     @include divider
-    }
-
     &:not(:empty) {
       &::before {
         margin-right: $spacing-4;
@@ -32,6 +32,24 @@
       &::after {
         margin-left: $spacing-4;
       }
+    }
+  }
+
+  &:not(.is-dashed) p.divider-content {
+    &::before {
+      @include divider
+    }
+    &::after {
+      @include divider
+    }
+  }
+
+  &.is-dashed p.divider-content {
+    &::before {
+      @include dividerDashed
+    }
+    &::after {
+      @include dividerDashed
     }
   }
 

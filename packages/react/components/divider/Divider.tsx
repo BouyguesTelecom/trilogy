@@ -27,6 +27,7 @@ const Divider = React.forwardRef<DividerRef, DividerProps>(({
   iconName,
   inverted,
   testId,
+  variant = 'solid',
   ...others
 }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
@@ -40,6 +41,7 @@ const Divider = React.forwardRef<DividerRef, DividerProps>(({
       className,
       inverted && is('inverted'),
       iconName && has('icon'),
+      variant === "dashed" && is('dashed')
     ),
   )
   const contentClasses = hashClass(styled, clsx('divider-content'))
