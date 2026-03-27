@@ -1,4 +1,4 @@
-import { Accessibility, AlignableProps, Dev } from '../../objects'
+import { Accessibility, AlignableProps, Dev, JustifiableProps } from '../../objects'
 import { Invertable } from '../../objects/facets/Invertable'
 import { PriceLevel, PriceLevelValues } from './PriceEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
@@ -7,7 +7,7 @@ import { View } from 'react-native'
 /**
  * Price Interface
  */
-export interface PriceProps extends Invertable, Accessibility, AlignableProps, Dev, CommonProps {
+export interface PriceProps extends Invertable, Accessibility, JustifiableProps, Dev, CommonProps {
   children?: React.ReactNode
   amount?: number
   mention?: string
@@ -16,6 +16,10 @@ export interface PriceProps extends Invertable, Accessibility, AlignableProps, D
   level?: PriceLevel | PriceLevelValues
   oldAmount?: number
   overline?: string
+  /**
+   * @deprecated Use justify instead
+   */
+  align?: AlignableProps['align']
 }
 
 export type PriceRef = HTMLDivElement
