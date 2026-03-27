@@ -8,7 +8,7 @@ export const DividerScreen = (): JSX.Element => {
     <Section>
       <Rows gap={GapSize.EIGHT}>
         <Row>
-          <Divider />
+          <Divider variant='dashed' />
         </Row>
         <Row>
           <Divider />
