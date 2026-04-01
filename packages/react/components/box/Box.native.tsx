@@ -4,7 +4,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '../skeleton'
 
 /**
@@ -63,14 +63,14 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       shadow: shadowless
         ? {}
         : {
-            shadowColor: '#000',
+            shadowColor: Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.67)' : '#000',
             shadowOffset: {
               width: 0,
-              height: 1,
+              height: 1.3,
             },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-            elevation: 1,
+            shadowOpacity: 0.15,
+            shadowRadius: 2.4,
+            elevation: 4,
           },
       skeleton: {
         width: '100%',
