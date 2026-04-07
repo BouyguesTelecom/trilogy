@@ -66,7 +66,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const isNegativeStrike = oldAmount && oldAmount < 0
       const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
       const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
-      const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
+      const wholeStrike = isNegativeStrike ? (absoluteWholeStrike === 0 ? '-0' : -absoluteWholeStrike) : absoluteWholeStrike
 
       let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents
@@ -90,7 +90,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const isNegative = amount < 0
       const absoluteAmount = Math.abs(amount)
       const absoluteWhole = Math.floor(absoluteAmount)
-      const whole = isNegative ? -absoluteWhole : absoluteWhole
+      const whole = isNegative ? (absoluteWhole === 0 ? '-0' : -absoluteWhole) : absoluteWhole
 
       let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents
