@@ -553,7 +553,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 <View style={[styles.input, styles.inputDisplay]}>
                   <Text
                     typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
-                    style={{ lineHeight: 0 }}
+                    style={{ lineHeight: Platform.OS === 'android' ? 20 : 0 }}
                   >
                     {hoursInputValue}
                   </Text>
@@ -572,7 +572,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
                 <View style={[styles.input, styles.inputDisplay]}>
                   <Text
                     typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
-                    style={{ lineHeight: 0 }}
+                    style={{ lineHeight: Platform.OS === 'android' ? 20 : 0 }}
                   >
                     {minutesInputValue}
                   </Text>
