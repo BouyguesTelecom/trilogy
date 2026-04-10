@@ -312,15 +312,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const hourDots = useMemo(() => {
       const dots = []
-      const actualTotalMinutes = currentHours * 60 + currentMinutes
-      const currentProgress = currentHours === 24 ? 1 : actualTotalMinutes / maxMinutes
-
       for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
         const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
         const dotX = centerX + radius * Math.cos(dotAngle) - HOUR_DOT_SIZE / 2
         const dotY = centerY + radius * Math.sin(dotAngle) - HOUR_DOT_SIZE / 2
-        const dotProgress = i / HOUR_DOTS_COUNT
-        const isFilled = dotProgress < currentProgress || currentHours === 24
 
         dots.push(
           <View
@@ -337,7 +332,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               style={[
                 styles.hourDot,
                 {
-                  backgroundColor: isFilled ? mainColor : dotColor,
+                  backgroundColor: dotColor,
                 },
               ]}
             />
@@ -345,20 +340,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         )
       }
       return <View style={styles.hourDotsContainer}>{dots}</View>
-    }, [
-      currentHours,
-      currentMinutes,
-      mainColor,
-      dotColor,
-      centerX,
-      radius,
-      maxMinutes,
-      styles.hourDotTouchable,
-      styles.hourDot,
-      styles.hourDotsContainer,
-    ])
+    }, [dotColor])
 
-    const progressGauge = useMemo(() => {
+    const progressBackground = useMemo(() => {
       return (
         <View style={styles.svgContainer}>
           <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
@@ -370,6 +354,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               strokeWidth={strokeWidth}
               fill='transparent'
             />
+          </Svg>
+        </View>
+      )
+    }, [svgRadius, mainFadeColor, strokeWidth])
+
+    const progressCircle = useMemo(() => {
+      return (
+        <View style={[styles.svgContainer, { zIndex: 3 }]}> 
+          <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
             <Circle
               cx={CIRCLE_SIZE / 2}
               cy={CIRCLE_SIZE / 2}
@@ -385,14 +378,15 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           </Svg>
         </View>
       )
-    }, [svgRadius, mainFadeColor, strokeWidth, mainColor, circumference, progressOffset])
+    }, [svgRadius, mainColor, strokeWidth, circumference, progressOffset])
 
     return (
       <View ref={ref} style={styles.container} testID={testId} {...others}>
         <GestureDetector gesture={combinedGesture}>
           <View ref={containerRef} style={styles.circleContainer}>
-            {progressGauge}
+            {progressBackground}
             {hourDots}
+            {progressCircle}
             <View
               style={[
                 styles.cursor,
@@ -582,7 +576,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: CIRCLE_SIZE,
     height: CIRCLE_SIZE,
-    zIndex: 10,
+    zIndex: 2,
   },
   svgContainer: {
     position: 'absolute',
