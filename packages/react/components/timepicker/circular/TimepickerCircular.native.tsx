@@ -361,7 +361,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const progressCircle = useMemo(() => {
       return (
-        <View style={[styles.svgContainer, { zIndex: 3 }]}> 
+        <View style={[styles.svgContainer, { zIndex: 3 }]}>
           <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE}>
             <Circle
               cx={CIRCLE_SIZE / 2}
