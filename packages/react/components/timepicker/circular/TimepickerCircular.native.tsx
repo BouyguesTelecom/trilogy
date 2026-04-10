@@ -66,6 +66,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const containerRef = useRef<View>(null)
     const lastAngle = useRef<number | null>(null)
+    const lastTotalMinutes = useRef(initialHours * 60 + initialMinutes)
 
     useEffect(() => {
       const { hours, minutes } = parseTime(value)
@@ -73,6 +74,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       setCurrentMinutes(minutes)
       setHoursInputValue(formatNumber(hours))
       setMinutesInputValue(formatNumber(minutes))
+      lastTotalMinutes.current = hours * 60 + minutes
       const date = new Date()
       date.setHours(hours, minutes, 0, 0)
       setTempPickerDate(date)
@@ -110,13 +112,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           newHours = 24
           newMinutes = 0
         }
-        if (newHours !== currentHours || newMinutes !== currentMinutes) {
+        if (newTotalMinutes !== lastTotalMinutes.current) {
+          lastTotalMinutes.current = newTotalMinutes
           setCurrentHours(newHours)
           setCurrentMinutes(newMinutes)
           onChange?.(formatTime(newHours, newMinutes))
         }
       },
-      [maxMinutes, onChange, currentHours, currentMinutes, step],
+      [maxMinutes, onChange, step],
     )
 
     const handlePickerChange = useCallback(
@@ -217,20 +220,32 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [isOnCursor, isOnCenterInputs],
     )
 
+    const normalizeAngle = useCallback((angle: number) => {
+      let normalized = angle
+      while (normalized <= -Math.PI) normalized += 2 * Math.PI
+      while (normalized > Math.PI) normalized -= 2 * Math.PI
+      return normalized
+    }, [])
+
     const handleGesture = useCallback(
-      (x: number, y: number) => {
+      (x: number, y: number, isStart = false) => {
         if (disabled) return
         const dx = x - centerX
         const dy = y - centerY
-        const newAngle = Math.atan2(dy, dx)
-        if (lastAngle.current !== null) {
-          const angleDiff = Math.abs(newAngle - lastAngle.current)
-          if (angleDiff < 0.01) return
+        const rawAngle = Math.atan2(dy, dx)
+        const newAngle = normalizeAngle(rawAngle)
+
+        if (lastAngle.current !== null && !isStart) {
+          let angleDiff = newAngle - lastAngle.current
+          if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI
+          if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI
+          if (Math.abs(angleDiff) < 0.02) return
         }
+
         lastAngle.current = newAngle
         updateTimeFromAngle(newAngle)
       },
-      [centerX, centerY, disabled, updateTimeFromAngle],
+      [centerX, centerY, disabled, normalizeAngle, updateTimeFromAngle],
     )
 
     const handleHourDotPress = useCallback(
@@ -260,8 +275,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             if (disabled) return
             const { x, y } = event
             if (isOnCircleTrack(x, y)) {
-              lastAngle.current = null
-              handleGesture(x, y)
+              handleGesture(x, y, true)
             }
           })
           .onUpdate((event) => {
@@ -276,8 +290,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             lastAngle.current = null
           })
           .minDistance(0)
-          .activeOffsetX([-2, 2])
-          .activeOffsetY([-2, 2])
           .blocksExternalGesture()
           .shouldCancelWhenOutside(false),
       [disabled, handleGesture, isOnCircleTrack],
