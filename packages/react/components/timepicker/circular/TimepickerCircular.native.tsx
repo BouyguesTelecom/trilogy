@@ -18,6 +18,30 @@ const CURSOR_SIZE = 30
 const CURSOR_STROKE = 2
 const HOUR_DOT_SIZE = 8
 const HOUR_DOTS_COUNT = 24
+const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
+const centerX = CIRCLE_SIZE / 2
+const centerY = CIRCLE_SIZE / 2
+const maxMinutes = 24 * 60
+const strokeWidth = CIRCLE_THICKNESS
+const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
+const circumference = 2 * Math.PI * svgRadius
+
+const formatNumber = (num: number): string => {
+  return num.toString().padStart(2, '0')
+}
+
+const parseTime = (timeString: string): { hours: number; minutes: number } => {
+  const [hoursStr, minutesStr] = timeString.split(':')
+  const hours = parseInt(hoursStr || '0', 10)
+  const minutes = parseInt(minutesStr || '0', 10)
+  return {
+    hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
+    minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
+  }
+}
+const formatTime = (hours: number, minutes: number): string => {
+  return `${formatNumber(hours)}:${formatNumber(minutes)}`
+}
 
 /**
  * TimepickerCircular Native Component
@@ -28,37 +52,20 @@ const HOUR_DOTS_COUNT = 24
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
-    const formatNumber = (num: number): string => {
-      return num.toString().padStart(2, '0')
-    }
-
-    const parseTime = (timeString: string): { hours: number; minutes: number } => {
-      const [hoursStr, minutesStr] = timeString.split(':')
-      const hours = parseInt(hoursStr || '0', 10)
-      const minutes = parseInt(minutesStr || '0', 10)
-      return {
-        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
-        minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
-      }
-    }
-
-    const formatTime = (hours: number, minutes: number): string => {
-      return `${formatNumber(hours)}:${formatNumber(minutes)}`
-    }
-
-    const { hours: initialHours, minutes: initialMinutes } = parseTime(value)
-
+    const { hours: initialHours, minutes: initialMinutes } = useMemo(() => parseTime(value), [value])
     const [currentHours, setCurrentHours] = useState(initialHours)
     const [currentMinutes, setCurrentMinutes] = useState(initialMinutes)
     const [isPickerVisible, setIsPickerVisible] = useState(false)
+    const [hoursInputValue, setHoursInputValue] = useState(formatNumber(initialHours))
+    const [minutesInputValue, setMinutesInputValue] = useState(formatNumber(initialMinutes))
     const [tempPickerDate, setTempPickerDate] = useState(() => {
       const date = new Date()
       date.setHours(initialHours, initialMinutes, 0, 0)
       return date
     })
-    const [hoursInputValue, setHoursInputValue] = useState(formatNumber(initialHours))
-    const [minutesInputValue, setMinutesInputValue] = useState(formatNumber(initialMinutes))
+
     const containerRef = useRef<View>(null)
+    const lastAngle = useRef<number | null>(null)
 
     useEffect(() => {
       const { hours, minutes } = parseTime(value)
@@ -66,7 +73,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       setCurrentMinutes(minutes)
       setHoursInputValue(formatNumber(hours))
       setMinutesInputValue(formatNumber(minutes))
-
       const date = new Date()
       date.setHours(hours, minutes, 0, 0)
       setTempPickerDate(date)
@@ -78,46 +84,32 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
     const dotColor = getColorStyle(TrilogyColor.NEUTRAL)
 
-    const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
-    const centerX = CIRCLE_SIZE / 2
-    const centerY = CIRCLE_SIZE / 2
+    const totalMinutes = useMemo(() => {
+      if (currentHours === 24) return 0
+      else return currentHours * 60 + currentMinutes
+    }, [currentHours, currentMinutes])
 
-    let totalMinutes = currentHours * 60 + currentMinutes
+    const angle = useMemo(() => (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2, [totalMinutes])
 
-    if (currentHours === 24) {
-      totalMinutes = 0
-    }
-
-    const maxMinutes = 24 * 60
-    const angle = (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2
-
-    const cursorX = centerX + radius * Math.cos(angle) - CURSOR_SIZE / 2
-    const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
-    let progressAngle
-    if (currentHours === 24) {
-      progressAngle = 360
-    } else {
-      const actualTotalMinutes = currentHours * 60 + currentMinutes
-      progressAngle = (actualTotalMinutes / maxMinutes) * 360
-    }
+    const { cursorX, cursorY } = useMemo(() => {
+      const cursorX = centerX + radius * Math.cos(angle) - CURSOR_SIZE / 2
+      const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
+      return { cursorX, cursorY }
+    }, [angle])
 
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
         let normalizedAngle = angleRad + Math.PI / 2
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
-
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
         const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-
         let newHours = Math.floor(newTotalMinutes / 60)
         let newMinutes = newTotalMinutes % 60
-
         if (newTotalMinutes >= 1440) {
           newHours = 24
           newMinutes = 0
         }
-
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
           setCurrentHours(newHours)
           setCurrentMinutes(newMinutes)
@@ -137,9 +129,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             setCurrentHours(hours)
             setCurrentMinutes(minutes)
             setTempPickerDate(selectedDate)
-            if (onChange) {
-              onChange(formatTime(hours, minutes))
-            }
+            if (onChange) onChange(formatTime(hours, minutes))
           }
         } else {
           if (selectedDate && event.type !== 'dismissed') {
@@ -163,16 +153,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const handleConfirmPicker = useCallback(() => {
       const hours = tempPickerDate.getHours()
       const minutes = tempPickerDate.getMinutes()
-
       setCurrentHours(hours)
       setCurrentMinutes(minutes)
       setHoursInputValue(formatNumber(hours))
       setMinutesInputValue(formatNumber(minutes))
       setIsPickerVisible(false)
-
-      if (onChange) {
-        onChange(formatTime(hours, minutes))
-      }
+      if (onChange) onChange(formatTime(hours, minutes))
     }, [tempPickerDate, onChange, formatTime, formatNumber])
 
     const handleCancelPicker = useCallback(() => {
@@ -202,7 +188,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const rightBound = centerX + inputZoneWidth / 2
         const topBound = centerY - inputZoneHeight / 2
         const bottomBound = centerY + inputZoneHeight / 2
-
         return locationX >= leftBound && locationX <= rightBound && locationY >= topBound && locationY <= bottomBound
       },
       [centerX, centerY],
@@ -232,21 +217,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [isOnCursor, isOnCenterInputs],
     )
 
-    const lastAngle = useRef<number | null>(null)
-
     const handleGesture = useCallback(
       (x: number, y: number) => {
         if (disabled) return
-
         const dx = x - centerX
         const dy = y - centerY
         const newAngle = Math.atan2(dy, dx)
-
         if (lastAngle.current !== null) {
           const angleDiff = Math.abs(newAngle - lastAngle.current)
           if (angleDiff < 0.01) return
         }
-
         lastAngle.current = newAngle
         updateTimeFromAngle(newAngle)
       },
@@ -256,7 +236,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const handleHourDotPress = useCallback(
       (hourIndex: number) => {
         if (disabled) return
-
         const newHours = hourIndex
         let newMinutes = currentMinutes
         if (newHours === 24) newMinutes = 0
@@ -310,7 +289,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           .runOnJS(true)
           .onEnd((event) => {
             if (disabled) return
-
             const { x, y } = event
             if (isOnCursor(x, y)) return
             const hourDotIndex = isOnHourDot(x, y)
@@ -323,120 +301,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 
     const combinedGesture = useMemo(() => Gesture.Simultaneous(panGesture, tapGesture), [panGesture, tapGesture])
 
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          container: {
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          circleContainer: {
-            width: CIRCLE_SIZE,
-            height: CIRCLE_SIZE,
-            position: 'relative',
-          },
-          cursor: {
-            position: 'absolute',
-            width: CURSOR_SIZE,
-            height: CURSOR_SIZE,
-            borderRadius: CURSOR_SIZE / 2,
-            backgroundColor: backgroundColor,
-            borderWidth: CURSOR_STROKE,
-            borderColor: mainColor,
-            left: cursorX,
-            top: cursorY,
-            zIndex: 20,
-          },
-          inputsContainer: {
-            position: 'absolute',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 30,
-            gap: 4,
-          },
-          inputWrapper: {
-            alignItems: 'center',
-            width: 40,
-            gap: GapSize.FOUR,
-          },
-          input: {
-            width: 36,
-            height: 36,
-            borderWidth: 1,
-            borderColor: strokeColor,
-            borderRadius: 4,
-            textAlign: 'center',
-            fontSize: 14,
-            fontWeight: '600',
-            color: mainColor,
-            backgroundColor: backgroundColor,
-          },
-          inputDisplay: {
-            width: 36,
-            height: 36,
-            borderWidth: 1,
-            borderColor: strokeColor,
-            borderRadius: 4,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: backgroundColor,
-          },
-          separatorWrapper: {
-            height: 36,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: 10,
-          },
-          hourDot: {
-            width: HOUR_DOT_SIZE,
-            height: HOUR_DOT_SIZE,
-            borderRadius: HOUR_DOT_SIZE / 2,
-          },
-          hourDotTouchable: {
-            position: 'absolute',
-            width: HOUR_DOT_SIZE + 12,
-            height: HOUR_DOT_SIZE + 12,
-            borderRadius: (HOUR_DOT_SIZE + 12) / 2,
-            zIndex: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-          hourDotsContainer: {
-            position: 'absolute',
-            width: CIRCLE_SIZE,
-            height: CIRCLE_SIZE,
-            zIndex: 10,
-          },
-          svgContainer: {
-            position: 'absolute',
-            width: CIRCLE_SIZE,
-            height: CIRCLE_SIZE,
-            zIndex: 1,
-          },
-          nonDraggableZone: {
-            position: 'absolute',
-            borderRadius: 100,
-            zIndex: 25,
-          },
-          picker: {
-            height: 200,
-          },
-        }),
-      [backgroundColor, mainColor, strokeColor, cursorX, cursorY],
-    )
-
-    const strokeWidth = CIRCLE_THICKNESS
-    const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
-    const circumference = 2 * Math.PI * svgRadius
-
-    let progressOffset: number
-    if (currentHours === 24) {
-      progressOffset = 0
-    } else {
-      const actualTotalMinutes = currentHours * 60 + currentMinutes
-      progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
-    }
+    const progressOffset = useMemo(() => {
+      if (currentHours === 24) {
+        return 0
+      } else {
+        const actualTotalMinutes = currentHours * 60 + currentMinutes
+        return circumference - (actualTotalMinutes / maxMinutes) * circumference
+      }
+    }, [currentHours, currentMinutes])
 
     const hourDots = useMemo(() => {
       const dots = []
@@ -486,8 +358,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       styles.hourDotsContainer,
     ])
 
-    const renderHourDots = () => hourDots
-
     const progressGauge = useMemo(() => {
       return (
         <View style={styles.svgContainer}>
@@ -517,15 +387,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       )
     }, [svgRadius, mainFadeColor, strokeWidth, mainColor, circumference, progressOffset])
 
-    const renderProgressGauge = () => progressGauge
-
     return (
       <View ref={ref} style={styles.container} testID={testId} {...others}>
         <GestureDetector gesture={combinedGesture}>
           <View ref={containerRef} style={styles.circleContainer}>
-            {renderProgressGauge()}
-            {renderHourDots()}
-            <View style={styles.cursor} />
+            {progressGauge}
+            {hourDots}
+            <View
+              style={[
+                styles.cursor,
+                { backgroundColor: backgroundColor, borderColor: mainColor, left: cursorX, top: cursorY },
+              ]}
+            />
             <View
               style={[
                 styles.nonDraggableZone,
@@ -550,10 +423,19 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               ]}
             >
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
-                <View style={[styles.input, styles.inputDisplay]}>
+                <View
+                  style={[
+                    styles.input,
+                    styles.inputDisplay,
+                    {
+                      borderColor: strokeColor,
+                      backgroundColor: backgroundColor,
+                    },
+                  ]}
+                >
                   <Text
                     typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
-                    style={{ lineHeight: 0 }}
+                    style={{ lineHeight: Platform.OS === 'android' ? 20 : 0 }}
                   >
                     {hoursInputValue}
                   </Text>
@@ -569,10 +451,16 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
               </View>
 
               <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
-                <View style={[styles.input, styles.inputDisplay]}>
+                <View
+                  style={[
+                    styles.input,
+                    styles.inputDisplay,
+                    { borderColor: strokeColor, backgroundColor: backgroundColor },
+                  ]}
+                >
                   <Text
                     typo={[TypographyAlign.TEXT_CENTERED, TypographyBold.TEXT_WEIGHT_BOLD]}
-                    style={{ lineHeight: 0 }}
+                    style={{ lineHeight: Platform.OS === 'android' ? 20 : 0 }}
                   >
                     {minutesInputValue}
                   </Text>
@@ -621,3 +509,93 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
 TimepickerCircular.displayName = ComponentName.TimepickerCircular
 
 export default TimepickerCircular
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  circleContainer: {
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    position: 'relative',
+  },
+  cursor: {
+    position: 'absolute',
+    width: CURSOR_SIZE,
+    height: CURSOR_SIZE,
+    borderRadius: CURSOR_SIZE / 2,
+    borderWidth: CURSOR_STROKE,
+    zIndex: 20,
+  },
+  inputsContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 30,
+    gap: 4,
+  },
+  inputWrapper: {
+    alignItems: 'center',
+    width: 40,
+    gap: GapSize.FOUR,
+  },
+  input: {
+    width: 36,
+    height: 36,
+    borderWidth: 1,
+    borderRadius: 4,
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  inputDisplay: {
+    width: 36,
+    height: 36,
+    borderWidth: 1,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  separatorWrapper: {
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  hourDot: {
+    width: HOUR_DOT_SIZE,
+    height: HOUR_DOT_SIZE,
+    borderRadius: HOUR_DOT_SIZE / 2,
+  },
+  hourDotTouchable: {
+    position: 'absolute',
+    width: HOUR_DOT_SIZE + 12,
+    height: HOUR_DOT_SIZE + 12,
+    borderRadius: (HOUR_DOT_SIZE + 12) / 2,
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  hourDotsContainer: {
+    position: 'absolute',
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    zIndex: 10,
+  },
+  svgContainer: {
+    position: 'absolute',
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    zIndex: 1,
+  },
+  nonDraggableZone: {
+    position: 'absolute',
+    borderRadius: 100,
+    zIndex: 25,
+  },
+  picker: {
+    height: 200,
+  },
+})
