@@ -239,7 +239,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           let angleDiff = newAngle - lastAngle.current
           if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI
           if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI
-          const threshold = Platform.OS === 'android' ? 0.06 : 0.01
+          const threshold = Platform.OS === 'android' ? 0.09 : 0.01
           if (Math.abs(angleDiff) < threshold) return
         }
 
