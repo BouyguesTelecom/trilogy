@@ -65,7 +65,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     })
 
     const containerRef = useRef<View>(null)
-    const lastAngle = useRef<number | null>(null)
+    const pendingAngle = useRef<number | null>(null)
+    const rafId = useRef<number | null>(null)
     const lastTotalMinutes = useRef(initialHours * 60 + initialMinutes)
 
     useEffect(() => {
@@ -227,6 +228,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       return normalized
     }, [])
 
+    const flushGesture = useCallback(() => {
+      rafId.current = null
+      const angle = pendingAngle.current
+      if (angle === null) return
+      pendingAngle.current = null
+      updateTimeFromAngle(angle)
+    }, [updateTimeFromAngle])
+
     const handleGesture = useCallback(
       (x: number, y: number, isStart = false) => {
         if (disabled) return
@@ -235,18 +244,20 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         const rawAngle = Math.atan2(dy, dx)
         const newAngle = normalizeAngle(rawAngle)
 
-        if (lastAngle.current !== null && !isStart) {
-          let angleDiff = newAngle - lastAngle.current
-          if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI
-          if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI
-          const threshold = Platform.OS === 'android' ? 0.09 : 0.01
-          if (Math.abs(angleDiff) < threshold) return
+        if (isStart) {
+          pendingAngle.current = newAngle
+          if (rafId.current === null) {
+            rafId.current = requestAnimationFrame(flushGesture)
+          }
+          return
         }
 
-        lastAngle.current = newAngle
-        updateTimeFromAngle(newAngle)
+        pendingAngle.current = newAngle
+        if (rafId.current === null) {
+          rafId.current = requestAnimationFrame(flushGesture)
+        }
       },
-      [centerX, centerY, disabled, normalizeAngle, updateTimeFromAngle],
+      [centerX, centerY, disabled, normalizeAngle, flushGesture],
     )
 
     const handleHourDotPress = useCallback(
@@ -285,10 +296,18 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
             handleGesture(x, y)
           })
           .onEnd(() => {
-            lastAngle.current = null
+            pendingAngle.current = null
+            if (rafId.current !== null) {
+              cancelAnimationFrame(rafId.current)
+              rafId.current = null
+            }
           })
           .onFinalize(() => {
-            lastAngle.current = null
+            pendingAngle.current = null
+            if (rafId.current !== null) {
+              cancelAnimationFrame(rafId.current)
+              rafId.current = null
+            }
           })
           .minDistance(0)
           .blocksExternalGesture()
