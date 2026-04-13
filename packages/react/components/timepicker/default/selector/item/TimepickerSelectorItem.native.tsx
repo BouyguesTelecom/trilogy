@@ -2,7 +2,7 @@ import { Text } from '@/components/text'
 import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import React, { useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Platform, StyleSheet, View } from 'react-native'
 
 interface SelectItem {
   label: string
@@ -48,7 +48,7 @@ const TimepickerSelectorItem = ({ item, index, scrollOffset }: WheelItemProps) =
             ? [TypographyAlign.TEXT_CENTERED, TypographyColor.TEXT_WHITE]
             : [TypographyAlign.TEXT_CENTERED]
         }
-        style={{ lineHeight: 0 }}
+        style={{ lineHeight: Platform.OS === 'ios' ? 0 : undefined }}
       >
         {item.label}
       </Text>
