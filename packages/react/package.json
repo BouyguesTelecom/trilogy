@@ -26,7 +26,7 @@
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-picker/picker": "^2.6.1",
-    "@react-native-community/datetimepicker": "^8.0.0",
+    "@react-native-community/datetimepicker": "8.2.0",
     "@trilogy-ds/assets": "*",
     "@trilogy-ds/locales": "en",
     "@trilogy-ds/styles": "*",
