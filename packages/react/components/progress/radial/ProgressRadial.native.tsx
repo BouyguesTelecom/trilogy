@@ -33,6 +33,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   secondValueColor,
   align,
   skeleton,
+  small,
   ...others
 }, ref): JSX.Element => {
   const color = getColorStyle(status || TrilogyColor.MAIN)
@@ -40,7 +41,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   const percentWidth = value || 0
   const secondFill = secondValue ? { secondFill: secondValue } : null
   const secondFillColor = { secondFillTintColor: getColorStyle(secondValueColor || TrilogyColor.MAIN) }
-  const progressRadialWidth = 100
+  const progressRadialWidth = small ? 100 : 124
   const progressRadialSkeletonRadius = 50
 
   const styles = StyleSheet.create({
@@ -127,7 +128,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   return (
     <View ref={ref} style={styles.container} {...others}>
       <AnimatedCircularProgress
-        size={90}
+        size={small ? 90 : 124}
         width={7}
         fill={!full ? percentWidth : 100}
         tintColor={color}
