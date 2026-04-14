@@ -42,7 +42,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
   const secondFill = secondValue ? { secondFill: secondValue } : null
   const secondFillColor = { secondFillTintColor: getColorStyle(secondValueColor || TrilogyColor.MAIN) }
   const progressRadialWidth = small ? 100 : 124
-  const progressRadialSkeletonRadius = 50
+  const progressRadialSkeletonRadius = small ? 50 : 124
 
   const styles = StyleSheet.create({
     container: {

@@ -17,7 +17,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
-        <ProgressRadial value={30} secondValue={30}>
+        <ProgressRadial value={30} secondValue={30} skeleton>
           <View>
             <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
               60
