@@ -47,14 +47,14 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const isNegative = amount ? amount < 0 : false
     const absoluteAmount = amount ? Math.abs(amount) : 0
     const absoluteWhole = Math.floor(absoluteAmount)
-    const whole = isNegative ? -absoluteWhole : absoluteWhole
+    const whole = isNegative ? (absoluteWhole === 0 ? "-0" : -absoluteWhole) : absoluteWhole
 
     const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
 
     const isNegativeStriked = oldAmount && oldAmount < 0
     const absoluteAmountStriked = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
-    const wholeStriked = absoluteWholeStriked && isNegativeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+    const wholeStriked = isNegativeStriked ? (absoluteWholeStriked === 0 ? "-0": -(absoluteWholeStriked as number)) : absoluteWholeStriked
 
     const centsStriked =
       absoluteAmountStriked && checkCents(absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
