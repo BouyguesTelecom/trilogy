@@ -1,6 +1,16 @@
-import * as React from 'react'
-import { Divider, Progress, ProgressRadial, Section, Text, TextLevels, Title, TitleLevels, View, ProgressItem } from '@trilogy-ds/react/components'
 import { StatusState, TypographyAlign, TypographyBold } from '@trilogy-ds/react'
+import {
+  Divider,
+  Progress,
+  ProgressItem,
+  ProgressRadial,
+  Section,
+  Text,
+  TextLevels,
+  Title,
+  TitleLevels,
+  View,
+} from '@trilogy-ds/react/components'
 
 export const ProgressScreen = (): JSX.Element => {
   return (
@@ -17,7 +27,7 @@ export const ProgressScreen = (): JSX.Element => {
 
         <Title level={TitleLevels.THREE}>Progress Bar</Title>
 
-        <ProgressRadial value={30} secondValue={30} skeleton>
+        <ProgressRadial value={30} secondValue={30}>
           <View>
             <Title typo={TypographyAlign.TEXT_CENTERED} level={TitleLevels.THREE} marginless>
               60
@@ -27,6 +37,8 @@ export const ProgressScreen = (): JSX.Element => {
             </Text>
           </View>
         </ProgressRadial>
+
+        <ProgressRadial value={30} secondValue={30} label='60' description='/ 100 Go' />
 
         <Divider />
 
@@ -50,7 +62,7 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendEnd="5Go" />
+        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendEnd='5Go' />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>
@@ -87,6 +99,7 @@ export const ProgressScreen = (): JSX.Element => {
             / 100 Go
           </Text>
         </ProgressRadial>
+        <ProgressRadial value={30} secondValue={30} label='60' description='/ 100 Go' small />
 
         <Title level={TitleLevels.THREE}>Vide : </Title>
 
@@ -96,4 +109,3 @@ export const ProgressScreen = (): JSX.Element => {
     </>
   )
 }
-
