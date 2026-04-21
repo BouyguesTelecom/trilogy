@@ -8,5 +8,4 @@ export default {
 
   // Exemple de chemin de test, utilisé pour vérifier la cohérence de l'implémentation ci-dessus
   testPathForConsistencyCheck: 'some/example.test.tsx',
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
 }
