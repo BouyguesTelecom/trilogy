@@ -1232,9 +1232,9 @@ PODS:
     - React-utils (= 0.74.5)
   - RNCPicker (2.7.5):
     - React-Core
-  - RNDateTimePicker (8.6.0):
+  - RNDateTimePicker (8.2.0):
     - React-Core
-  - RNGestureHandler (2.16.2):
+  - RNGestureHandler (2.31.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1352,7 +1352,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNGestureHandler (from `../../../packages/react/node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -1498,7 +1498,7 @@ EXTERNAL SOURCES:
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
-    :path: "../node_modules/react-native-gesture-handler"
+    :path: "../../../packages/react/node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -1573,13 +1573,13 @@ SPEC CHECKSUMS:
   React-utils: f242eb7e7889419d979ca0e1c02ccc0ea6e43b29
   ReactCommon: f7da14a8827b72704169a48c929bcde802698361
   RNCPicker: 3e2c37a8328f368ce14da050cdc8231deb5fc9f9
-  RNDateTimePicker: 5144134317b7df26573a2aff37adc18ca3e9b50e
-  RNGestureHandler: 2282cfbcf86c360d29f44ace393203afd5c6cff7
+  RNDateTimePicker: 40ffda97d071a98a10fdca4fa97e3977102ccd14
+  RNGestureHandler: e960f308116c0ac67a13b2acc2aedf0e2eee9479
   RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
   RNSVG: 43b64ed39c14ce830d840903774154ca0c1f27ec
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 950bbfd7e6f04790fdb51149ed51df41f329fcc8
 
-PODFILE CHECKSUM: 10bf45eafdd61a8a7e5e44c7cc8d447fb8529da5
+PODFILE CHECKSUM: 52772c0ef95e2aca603bb4000def6c15228a5191
 
 COCOAPODS: 1.15.2
