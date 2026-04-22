@@ -63,7 +63,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       thumb: {
         height: '100%',
         aspectRatio: 1,
-        backgroundColor: 'white',
+        backgroundColor: thumbColor,
       },
     })
 
