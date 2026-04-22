@@ -32,7 +32,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, ...others },
     ref,
   ): JSX.Element => {
-    const borderColor = '#ccc'
+    const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
     const cardRadius = 6
     const styles = StyleSheet.create({
       card: {
