@@ -11,6 +11,7 @@ const monorepoPackages = {
   '@trilogy-ds/react': path.resolve(monorepoRoot, 'packages/react'),
   '@trilogy-ds/assets': path.resolve(monorepoRoot, 'packages/assets'),
   '@trilogy-ds/styles': path.resolve(monorepoRoot, 'packages/styles'),
+  'react-native-reanimated': path.resolve(projectRoot, 'node_modules/react-native-reanimated'),
   'react-native-gesture-handler': path.resolve(
     monorepoRoot,
     'packages/react/node_modules/react-native-gesture-handler',

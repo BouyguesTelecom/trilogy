@@ -1,11 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { isIOS } from '@/helpers/device.native'
 import { getStatusStyle } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Switch as SwitchNative } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
+import Animated, {
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
 import { SwitchNativeRef, SwitchProps } from './SwitchProps'
-
 /**
  * Switch Component
  * @param id {string} Is auto generate by default
@@ -16,56 +21,87 @@ import { SwitchNativeRef, SwitchProps } from './SwitchProps'
  * @param readonly {boolean} Switch readonly
  * @param name {string} Switch name
  */
+const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
+  ({ id = React.useId(), checked, onChange, status, disabled, readonly, name }, ref): JSX.Element => {
+    const height = useSharedValue(0)
+    const width = useSharedValue(0)
+    const value = useSharedValue(checked ? 1 : 0)
+    const [_checked, setChecked] = useState<boolean>(checked || false)
 
-const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(({
-  id = React.useId(),
-  checked,
-  onChange,
-  status,
-  disabled,
-  readonly,
-  name,
-}, ref): JSX.Element => {
-  const [_checked, setChecked] = useState<boolean>(checked || false)
+    const backgroundColorOff = getColorStyle(TrilogyColor.NEUTRAL)
+    const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
+    const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const statusColor = getStatusStyle(status).color
+    const trackColorOff = disabled ? backgroundColorDisabled : backgroundColorOff
+    const trackColorOn = disabled ? backgroundColorDisabled : statusColor
 
-  useEffect(() => {
-    if (!readonly) {
-      setChecked(checked || false)
-    }
-  }, [checked, readonly])
+    const trackAnimatedStyle = useAnimatedStyle(() => {
+      const color = interpolateColor(value.value, [0, 1], [trackColorOff, trackColorOn])
+      const colorValue = withTiming(color, { duration: 300 })
+      return {
+        backgroundColor: colorValue,
+        borderRadius: height.value / 2,
+      }
+    })
 
-  const backgroundColorOff = getColorStyle(TrilogyColor.NEUTRAL)
-  const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
-  const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const thumbAnimatedStyle = useAnimatedStyle(() => {
+      const moveValue = interpolate(Number(value.value), [0, 1], [0, width.value - height.value])
+      const translateValue = withTiming(moveValue, { duration: 300 })
+      return {
+        transform: [{ translateX: translateValue }],
+        borderRadius: height.value / 2,
+      }
+    })
 
-  const styles = StyleSheet.create({
-    switchIos: {
-      transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }],
-    },
-  })
+    const styles = StyleSheet.create({
+      track: {
+        alignItems: 'flex-start',
+        width: 44,
+        height: 22,
+        padding: 2,
+      },
+      thumb: {
+        height: '100%',
+        aspectRatio: 1,
+        backgroundColor: 'white',
+      },
+    })
 
-  return (
-    <SwitchNative
-      ref={ref}
-      testID='switch-id'
-      style={isIOS ? styles.switchIos : {}}
-      trackColor={{
-        false: disabled ? backgroundColorDisabled : backgroundColorOff,
-        true: disabled ? backgroundColorDisabled : getStatusStyle(status).color,
-      }}
-      thumbColor={thumbColor}
-      ios_backgroundColor={disabled ? backgroundColorDisabled : backgroundColorOff}
-      onValueChange={(state) => {
-        if (onChange) {
-          onChange({ switchState: state, switchName: name || '' })
-        }
-      }}
-      nativeID={name ? `${name}_${id}` : id}
-      disabled={disabled}
-      value={_checked}
-    />
-  )
-})
+    useEffect(() => {
+      if (!readonly) {
+        setChecked(checked || false)
+        value.value = checked ? 1 : 0
+      }
+    }, [checked, readonly])
+
+    return (
+      <Pressable
+        ref={ref}
+        testID='switch-id'
+        nativeID={name ? `${name}_${id}` : id}
+        disabled={disabled}
+        onPress={() => {
+          if (!readonly && onChange) {
+            const newValue = !_checked
+            setChecked(newValue)
+            value.value = newValue ? 1 : 0
+            onChange({ switchState: newValue, switchName: name || '' })
+          }
+        }}
+      >
+        <Animated.View
+          style={[styles.track, trackAnimatedStyle]}
+          onLayout={(e) => {
+            height.value = e.nativeEvent.layout.height
+            width.value = e.nativeEvent.layout.width
+          }}
+        >
+          <Animated.View style={[styles.thumb, thumbAnimatedStyle]}></Animated.View>
+        </Animated.View>
+      </Pressable>
+    )
+  },
+)
 
 Switch.displayName = ComponentName.Switch
 
