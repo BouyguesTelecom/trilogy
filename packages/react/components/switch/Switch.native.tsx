@@ -104,7 +104,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
             width.value = e.nativeEvent.layout.width
           }}
         >
-          <Animated.View style={[styles.thumb, thumbAnimatedStyle]}></Animated.View>
+          <Animated.View style={[styles.thumb, thumbAnimatedStyle]} />
         </Animated.View>
       </Pressable>
     )
