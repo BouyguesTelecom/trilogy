@@ -75,7 +75,16 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       44
 
     const centsLevel = priceLevel * 0.4
-    const suptitleLevel = priceLevel * 0.2
+
+    const suptitleLevel =
+      (level == PriceLevel.ONE && 16) ||
+      (level == PriceLevel.TWO && 16) ||
+      (level == PriceLevel.THREE && 16) ||
+      (level == PriceLevel.FOUR && 14) ||
+      (level == PriceLevel.FIVE && 14) ||
+      (level == PriceLevel.SIX && 10) ||
+      (level == PriceLevel.SEVEN && 10) ||
+      16
 
     const priceLevelStriked =
       (level == PriceLevel.ONE && 44) ||
@@ -213,7 +222,6 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
         paddingLeft: 4,
         marginBottom: -3,
         color: color,
-        fontWeight: (level == PriceLevel.SIX && 'normal') || (level == PriceLevel.SEVEN && 'normal') || 'bold',
       },
       tag: {
         paddingTop:
