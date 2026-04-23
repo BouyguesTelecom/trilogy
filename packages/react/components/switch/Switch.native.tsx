@@ -68,6 +68,9 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
         aspectRatio: 1,
         backgroundColor: thumbColor,
       },
+      pressable: {
+        alignSelf: 'flex-start',
+      },
     })
 
     useEffect(() => {
@@ -79,6 +82,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
 
     return (
       <Pressable
+        style={styles.pressable}
         accessibilityRole='switch'
         ref={ref}
         testID='switch-id'
