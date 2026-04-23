@@ -12,9 +12,9 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
 import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
 
-const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 27
-const CURSOR_SIZE = 30
+const CIRCLE_SIZE = 204
+const CIRCLE_THICKNESS = 32
+const CURSOR_SIZE = 32
 const CURSOR_STROKE = 2
 const HOUR_DOT_SIZE = 8
 const HOUR_DOTS_COUNT = 24
@@ -568,8 +568,8 @@ const styles = StyleSheet.create({
     gap: GapSize.FOUR,
   },
   input: {
-    width: 36,
-    height: 36,
+    width: 40,
+    height: 40,
     borderWidth: 1,
     borderRadius: 4,
     textAlign: 'center',
@@ -577,8 +577,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   inputDisplay: {
-    width: 36,
-    height: 36,
+    width: 40,
+    height: 40,
     borderWidth: 1,
     borderRadius: 4,
     justifyContent: 'center',
