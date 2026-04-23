@@ -11,6 +11,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import { SwitchNativeRef, SwitchProps } from './SwitchProps'
+
+const TRACK_WIDTH = 44
+const TRACK_HEIGHT = 22
 /**
  * Switch Component
  * @param id {string} Is auto generate by default
@@ -23,8 +26,8 @@ import { SwitchNativeRef, SwitchProps } from './SwitchProps'
  */
 const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
   ({ id = React.useId(), checked, onChange, status, disabled, readonly, name }, ref): JSX.Element => {
-    const height = useSharedValue(0)
-    const width = useSharedValue(0)
+    const height = useSharedValue(TRACK_HEIGHT)
+    const width = useSharedValue(TRACK_WIDTH)
     const value = useSharedValue(checked ? 1 : 0)
     const [_checked, setChecked] = useState<boolean>(checked || false)
 
@@ -37,7 +40,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
 
     const trackAnimatedStyle = useAnimatedStyle(() => {
       const color = interpolateColor(value.value, [0, 1], [trackColorOff, trackColorOn])
-      const colorValue = withTiming(color, { duration: 300 })
+      const colorValue = withTiming(color, { duration: 200 })
       return {
         backgroundColor: colorValue,
         borderRadius: height.value / 2,
@@ -46,7 +49,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
 
     const thumbAnimatedStyle = useAnimatedStyle(() => {
       const moveValue = interpolate(Number(value.value), [0, 1], [0, width.value - height.value])
-      const translateValue = withTiming(moveValue, { duration: 300 })
+      const translateValue = withTiming(moveValue, { duration: 200 })
       return {
         transform: [{ translateX: translateValue }],
         borderRadius: height.value / 2,
@@ -56,8 +59,8 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
     const styles = StyleSheet.create({
       track: {
         alignItems: 'flex-start',
-        width: 44,
-        height: 22,
+        width: TRACK_WIDTH,
+        height: TRACK_HEIGHT,
         padding: 2,
       },
       thumb: {
@@ -76,6 +79,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
 
     return (
       <Pressable
+        accessibilityRole='switch'
         ref={ref}
         testID='switch-id'
         nativeID={name ? `${name}_${id}` : id}
