@@ -75,13 +75,20 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       if (onCloseRef.current) onCloseRef.current({} as GestureResponderEvent)
     }, [])
 
+    const animateOut = useCallback(
+      (withOnClose: boolean) => {
+        if (withOnClose) callOnClose()
+        translateY.value = withTiming(SCREEN_HEIGHT, { duration: ANIMATION_DURATION }, (finished) => {
+          if (finished) runOnJS(handleDismiss)()
+        })
+        backdropOpacity.value = withTiming(0, { duration: ANIMATION_DURATION })
+      },
+      [callOnClose, handleDismiss],
+    )
+
     const handleClose = useCallback(() => {
-      callOnClose()
-      translateY.value = withTiming(SCREEN_HEIGHT, { duration: ANIMATION_DURATION }, (finished) => {
-        if (finished) runOnJS(handleDismiss)()
-      })
-      backdropOpacity.value = withTiming(0, { duration: ANIMATION_DURATION })
-    }, [callOnClose, handleDismiss])
+      animateOut(true)
+    }, [animateOut])
 
     const animateIn = useCallback(() => {
       translateY.value = withTiming(0, { duration: ANIMATION_DURATION })
@@ -94,7 +101,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
         backdropOpacity.value = 0
         setVisible(true)
       } else if (visible) {
-        handleClose()
+        animateOut(false)
       }
     }, [active])
 
@@ -107,11 +114,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       })
       .onEnd(() => {
         if (translateY.value > DISMISS_THRESHOLD) {
-          runOnJS(callOnClose)()
-          translateY.value = withTiming(SCREEN_HEIGHT, { duration: ANIMATION_DURATION }, (finished) => {
-            if (finished) runOnJS(handleDismiss)()
-          })
-          backdropOpacity.value = withTiming(0, { duration: ANIMATION_DURATION })
+          runOnJS(handleClose)()
         } else {
           translateY.value = withTiming(0, { duration: 200 })
           backdropOpacity.value = withTiming(0.5, { duration: 200 })
