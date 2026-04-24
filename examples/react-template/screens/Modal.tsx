@@ -51,8 +51,6 @@ export const ModalScreen = (): JSX.Element => {
           onClose={() => setOpenModal1(false)}
         >
           <ModalBody>
-            <Icon name={IconName.ARROW_RIGHT} onClick={() => setOpenModal1(true)} />
-
             <Text>Modal content</Text>
             <Accordion id='accordion-1'>
               <AccordionItem id='ONE' open>

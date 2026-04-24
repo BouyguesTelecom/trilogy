@@ -63,7 +63,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
     onModalHideRef.current = onModalHide
 
     const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      // Kept for ModalBody context compatibility
+      // Keep for ModalBody context compatibility
     }
 
     const handleDismiss = useCallback(() => {
