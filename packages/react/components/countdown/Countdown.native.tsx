@@ -1,8 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
+import { Title, TitleLevels } from '@/components/title'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text as TextNative, View } from 'react-native'
 import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from './CountdownProps'
@@ -123,71 +124,89 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
       }
     }, [timer, event, init])
 
-    const countdownColor = inverted ? getColorStyle(TrilogyColor.BACKGROUND) : getColorStyle(TrilogyColor.MAIN)
-
     const styles = StyleSheet.create({
       countdown: {
         alignSelf: centered ? 'center' : 'flex-start',
-        borderColor: countdownColor,
-        borderWidth: 1,
-        borderRadius: small ? 4 : 8,
+        backgroundColor: getColorStyle(TrilogyColor.ACCENT_FADE),
+        borderRadius: small ? 8 : 8,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: small ? 8 : 12,
-        paddingVertical: small ? 8 : 12,
+        paddingHorizontal: 12,
+        paddingVertical: 8,
       },
       text: {
-        color: countdownColor,
+        color: getColorStyle(TrilogyColor.MAIN),
+        fontSize: small ? 16 : 20,
         fontWeight: '600',
         fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        minWidth: small ? 28 : 34,
+        textAlign: 'center',
       },
       date: {
-        fontSize: small ? 12 : 14,
-        fontWeight: small ? '500' : '400',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontSize: 12,
+        fontWeight: '400',
+        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
       },
       separator: {
-        width: 1,
-        height: '100%',
-        backgroundColor: countdownColor,
-        margin: 8,
+        color: getColorStyle(TrilogyColor.MAIN),
+        fontWeight: '400',
+        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
+        fontSize: 12,
+        lineHeight: 16,
+        marginHorizontal: 4,
+        textAlignVertical: 'center',
+        includeFontPadding: false,
       },
     })
 
     return (
       <View ref={ref} style={styles.countdown} {...others}>
         {(show[CountdownUnite.DAY] || timer.days != 0) && (
-          <Text style={styles.text} testId='day-id'>
-            {timer.days ? timer.days : 0}
-            <Text style={styles.date}>j</Text>
-          </Text>
+          <Title style={styles.text} level={TitleLevels.FOUR}>
+            {String(timer.days ? timer.days : 0).padStart(2, '0')}
+            <Text style={styles.date} level={TextLevels.THREE}>
+              J
+            </Text>
+          </Title>
         )}
         {show[CountdownUnite.DAY] && show[CountdownUnite.HOUR] && (
-          <View style={styles.separator} testID='hour-day-id'></View>
+          <TextNative style={styles.separator} testID='hour-day-id'>
+            {':'}
+          </TextNative>
         )}
         {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
-          <Text style={styles.text}>
-            {timer.hours ? timer.hours : 0}
-            <Text style={styles.date}>h</Text>
-          </Text>
+          <Title style={styles.text} level={TitleLevels.FOUR}>
+            {String(timer.hours ? timer.hours : 0).padStart(2, '0')}
+            <Text style={styles.date} level={TextLevels.THREE}>
+              H
+            </Text>
+          </Title>
         )}
         {show[CountdownUnite.HOUR] && show[CountdownUnite.MIN] && (
-          <View style={styles.separator} testID='hour-min-id'></View>
+          <TextNative style={styles.separator} testID='hour-min-id'>
+            {':'}
+          </TextNative>
         )}
         {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
-          <Text style={styles.text}>
-            {timer.minutes ? timer.minutes : 0}
-            <Text style={styles.date}>m</Text>
-          </Text>
+          <Title style={styles.text} level={TitleLevels.FOUR}>
+            {String(timer.minutes ? timer.minutes : 0).padStart(2, '0')}
+            <Text style={styles.date} level={TextLevels.THREE}>
+              M
+            </Text>
+          </Title>
         )}
         {show[CountdownUnite.SEC] && show[CountdownUnite.MIN] && (
-          <View style={styles.separator} testID='sec-min-id'></View>
+          <TextNative style={styles.separator} testID='sec-min-id'>
+            {':'}
+          </TextNative>
         )}
         {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
-          <Text style={styles.text} level={TextLevels.ONE}>
-            {timer.seconds ? timer.seconds : 0}
-            <Text style={styles.date}>s</Text>
-          </Text>
+          <Title style={styles.text} level={TitleLevels.FOUR}>
+            {String(timer.seconds ? timer.seconds : 0).padStart(2, '0')}
+            <Text style={styles.date} level={TextLevels.THREE}>
+              S
+            </Text>
+          </Title>
         )}
       </View>
     )
