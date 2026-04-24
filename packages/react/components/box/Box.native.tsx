@@ -81,7 +81,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       },
       highlighted: {
         position: 'absolute',
-        width: 8,
+        width: 4,
         borderTopStartRadius: boxRadius,
         borderBottomStartRadius: boxRadius,
         height: boxHeight,
