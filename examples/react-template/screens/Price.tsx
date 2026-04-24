@@ -11,7 +11,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const PriceScreen = (): JSX.Element => {
   return (
@@ -53,9 +52,11 @@ export const PriceScreen = (): JSX.Element => {
 
       <Divider />
 
-      <Price overline='A partir de' oldAmount={10.99} level={2} amount={24.99} period={'mois'} />
+      <Price overline='A partir de' oldAmount={10.99} level={1} amount={24.99} period={'mois'} />
 
       <Price overline='A partir de' oldAmount={10.99} level={2} amount={24.99} period={'mois'} />
+
+      <Price overline='A partir de' oldAmount={10.99} level={3} amount={24.99} period={'mois'} />
 
       <Price overline='A partir de' oldAmount={10.99} level={4} amount={24.99} period={'mois'} />
 
