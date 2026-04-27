@@ -46,6 +46,9 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
   ): JSX.Element => {
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
     const [boxHeight, setBoxHeight] = useState(0)
+    const [numberOfContent, setNumberOfContent] = useState(0)
+    const [header, setHeader] = useState<boolean>(false)
+
     const boxRadius = 6
     const styles = StyleSheet.create({
       box: {
@@ -82,10 +85,11 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       highlighted: {
         position: 'absolute',
         width: 4,
-        borderTopStartRadius: boxRadius,
-        borderBottomStartRadius: boxRadius,
+        borderTopStartRadius: 4,
+        borderBottomStartRadius: 4,
         height: boxHeight,
         backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
+        overflow: 'hidden',
       },
       boxImage: {
         width: '100%',
@@ -101,13 +105,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const boxTestId = 'NotSpecified'
 
     const BoxSkeleton = () => (
-      <Skeleton
-        style={styles.skeleton}
-        width='100%'
-        height={50}
-        borderRadius={boxRadius}
-        testID='skeleton'
-      >
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={boxRadius} testID='skeleton'>
         {children}
       </Skeleton>
     )
@@ -118,7 +116,16 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
 
     if (onClick) {
       return (
-        <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+        <BoxContext.Provider
+          value={{
+            fullHeight: fullheight || false,
+            highlighted,
+            numberOfContent,
+            header,
+            setHeader,
+            setNumberOfContent,
+          }}
+        >
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
@@ -155,7 +162,9 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     }
 
     return (
-      <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+      <BoxContext.Provider
+        value={{ fullHeight: fullheight || false, highlighted, numberOfContent, header, setHeader, setNumberOfContent }}
+      >
         <View
           ref={ref as React.Ref<View>}
           onLayout={(event) => {
