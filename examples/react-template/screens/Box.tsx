@@ -207,11 +207,30 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
       <Divider />
-      <Columns mobile>
+      <Columns mobile multiline>
         <Column size={6}>
           <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
             <BoxHeader>Test</BoxHeader>
             <BoxContent>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+            <BoxFooter>
+              <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+            </BoxFooter>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box className='is-fullheight'>
+            <BoxHeader>Test</BoxHeader>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -238,6 +257,105 @@ export const BoxScreen = (): JSX.Element => {
             </BoxContent>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
+            </BoxContent>
+            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+              <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+            </BoxFooter>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
+            <BoxHeader>Test</BoxHeader>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+            <BoxContent>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+            </BoxContent>
+            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+              <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+            </BoxFooter>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box className='is-fullheight' headerOffset>
+            <BoxHeader>Test</BoxHeader>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+            <BoxContent>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+            </BoxContent>
+            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+              <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+            </BoxFooter>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
+            <BoxHeader>Test</BoxHeader>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+              <Button variant={ButtonVariant.CONVERSION}>Test</Button>
+            </BoxFooter>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
+            <BoxHeader>Test</BoxHeader>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box className='is-fullheight' headerOffset>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box className='is-fullheight' headerOffset>
+            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
             </BoxContent>
             <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>

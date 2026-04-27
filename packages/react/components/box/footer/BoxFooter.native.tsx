@@ -2,6 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { BoxContext } from '../context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
 
 /**
@@ -12,14 +13,16 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, ...others }, ref): JSX.Element => {
     const boxRadius = 6
+    const { highlighted } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
       boxFooter: {
         padding: 12,
         justifyContent: 'center',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
-        borderBottomLeftRadius: boxRadius,
+        borderBottomLeftRadius: highlighted ? 0 : boxRadius,
         borderBottomRightRadius: boxRadius,
+        marginLeft: highlighted ? 4 : 0,
       },
     })
 
