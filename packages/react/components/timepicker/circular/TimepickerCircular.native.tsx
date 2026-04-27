@@ -34,9 +34,12 @@ const parseTime = (timeString: string): { hours: number; minutes: number } => {
   const [hoursStr, minutesStr] = timeString.split(':')
   const hours = parseInt(hoursStr || '0', 10)
   const minutes = parseInt(minutesStr || '0', 10)
+  const totalMinutes = isNaN(hours) || isNaN(minutes) ? 0 : hours * 60 + minutes
+  const clampedTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, totalMinutes))
+
   return {
-    hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
-    minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
+    hours: Math.floor(clampedTotalMinutes / 60),
+    minutes: clampedTotalMinutes % 60,
   }
 }
 const formatTime = (hours: number, minutes: number): string => {
@@ -45,7 +48,7 @@ const formatTime = (hours: number, minutes: number): string => {
 
 /**
  * TimepickerCircular Native Component
- * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "24:00")
+ * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "23:59")
  * @param onChange {Function} Callback called when time changes, receives new "HH:MM" value
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
@@ -88,8 +91,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const dotColor = getColorStyle(TrilogyColor.NEUTRAL)
 
     const totalMinutes = useMemo(() => {
-      if (currentHours === 24) return 0
-      else return currentHours * 60 + currentMinutes
+      return currentHours * 60 + currentMinutes
     }, [currentHours, currentMinutes])
 
     const angle = useMemo(() => (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2, [totalMinutes])
@@ -106,13 +108,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
-        const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-        let newHours = Math.floor(newTotalMinutes / 60)
-        let newMinutes = newTotalMinutes % 60
-        if (newTotalMinutes >= 1440) {
-          newHours = 24
-          newMinutes = 0
-        }
+        const roundedTotalMinutes = Math.round(rawTotalMinutes / step) * step
+        const newTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, roundedTotalMinutes))
+        const newHours = Math.floor(newTotalMinutes / 60)
+        const newMinutes = newTotalMinutes % 60
         if (newTotalMinutes !== lastTotalMinutes.current) {
           lastTotalMinutes.current = newTotalMinutes
           setCurrentHours(newHours)
@@ -265,7 +264,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
         if (disabled) return
         const newHours = hourIndex
         let newMinutes = currentMinutes
-        if (newHours === 24) newMinutes = 0
         if (newHours !== currentHours) {
           newMinutes = Math.round(newMinutes / step) * step
           if (newMinutes > 59) newMinutes = 59
@@ -334,12 +332,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
     const combinedGesture = useMemo(() => Gesture.Simultaneous(panGesture, tapGesture), [panGesture, tapGesture])
 
     const progressOffset = useMemo(() => {
-      if (currentHours === 24) {
-        return 0
-      } else {
-        const actualTotalMinutes = currentHours * 60 + currentMinutes
-        return circumference - (actualTotalMinutes / maxMinutes) * circumference
-      }
+      const actualTotalMinutes = currentHours * 60 + currentMinutes
+      return circumference - (actualTotalMinutes / maxMinutes) * circumference
     }, [currentHours, currentMinutes])
 
     const hourDots = useMemo(() => {
