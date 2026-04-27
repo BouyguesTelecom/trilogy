@@ -1,5 +1,5 @@
-$CIRCLE_SIZE: 172px;
-$CURSOR_SIZE: 30px;
+$CIRCLE_SIZE: 204px;
+$CURSOR_SIZE: 32px;
 
 .timepicker-circular {
 
@@ -60,8 +60,8 @@ $CURSOR_SIZE: 30px;
 
       &-wrapper-input {
           @include input;
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           text-align: center;
           display: flex;
           align-items: center;
@@ -71,7 +71,7 @@ $CURSOR_SIZE: 30px;
       }
 
       &-separator {
-        height: 36px;
+        height: 40px;
         margin-bottom: 10px
       }
     }

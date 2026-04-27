@@ -8,15 +8,15 @@ import clsx from 'clsx'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimepickerCircularProps, TimepickerCircularRef } from './TimepickerCircularProps'
 
-const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 27
-const CURSOR_SIZE = 30
+const CIRCLE_SIZE = 204
+const CIRCLE_THICKNESS = 32
+const CURSOR_SIZE = 32
 const HOUR_DOT_SIZE = 8
 const HOUR_DOTS_COUNT = 24
 
 /**
  * TimepickerCircular Web Component
- * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "24:00")
+ * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "23:59")
  * @param onChange {Function} Callback called when time changes, receives new "HH:MM" value
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
@@ -31,9 +31,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       const [hoursStr, minutesStr] = timeString.split(':')
       const hours = parseInt(hoursStr || '0', 10)
       const minutes = parseInt(minutesStr || '0', 10)
+      const totalMinutes = isNaN(hours) || isNaN(minutes) ? 0 : hours * 60 + minutes
+      const clampedTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, totalMinutes))
+
       return {
-        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
-        minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
+        hours: Math.floor(clampedTotalMinutes / 60),
+        minutes: clampedTotalMinutes % 60,
       }
     }
 
@@ -63,8 +66,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const centerX = CIRCLE_SIZE / 2
     const centerY = CIRCLE_SIZE / 2
 
-    let totalMinutes = currentHours * 60 + currentMinutes
-    if (currentHours === 24) totalMinutes = 0
+    const totalMinutes = currentHours * 60 + currentMinutes
 
     const maxMinutes = 24 * 60
     const angle = (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2
@@ -72,13 +74,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const cursorX = centerX + radius * Math.cos(angle) - CURSOR_SIZE / 2
     const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
 
-    let progressAngle
-    if (currentHours === 24) {
-      progressAngle = 360
-    } else {
-      const actualTotalMinutes = currentHours * 60 + currentMinutes
-      progressAngle = (actualTotalMinutes / maxMinutes) * 360
-    }
+    const progressAngle = (totalMinutes / maxMinutes) * 360
 
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
@@ -86,14 +82,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
-        const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-        let newHours = Math.floor(newTotalMinutes / 60)
-        let newMinutes = newTotalMinutes % 60
-
-        if (newTotalMinutes >= 1440) {
-          newHours = 24
-          newMinutes = 0
-        }
+        const roundedTotalMinutes = Math.round(rawTotalMinutes / step) * step
+        const newTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, roundedTotalMinutes))
+        const newHours = Math.floor(newTotalMinutes / 60)
+        const newMinutes = newTotalMinutes % 60
 
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
           setCurrentHours(newHours)
@@ -239,7 +231,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
 
         const newHours = hourIndex
         let newMinutes = currentMinutes
-        if (newHours === 24) newMinutes = 0
         if (newHours !== currentHours) {
           newMinutes = Math.round(newMinutes / step) * step
           if (newMinutes > 59) newMinutes = 59
@@ -257,7 +248,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         const numValue = parseInt(value, 10)
 
         if (type === 'hours') {
-          const newHours = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(24, numValue))
+          const newHours = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(23, numValue))
           setCurrentHours(newHours)
           onChange?.(formatTime(newHours, currentMinutes))
         } else {
@@ -289,14 +280,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const hourDots = useMemo(() => {
       const dots = []
       const actualTotalMinutes = currentHours * 60 + currentMinutes
-      const currentProgress = currentHours === 24 ? 1 : actualTotalMinutes / maxMinutes
+      const currentProgress = actualTotalMinutes / maxMinutes
 
       for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
         const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
         const dotX = centerX + radius * Math.cos(dotAngle) - HOUR_DOT_SIZE / 2
         const dotY = centerY + radius * Math.sin(dotAngle) - HOUR_DOT_SIZE / 2
         const dotProgress = i / HOUR_DOTS_COUNT
-        const isFilled = dotProgress < currentProgress || currentHours === 24
+        const isFilled = dotProgress < currentProgress
 
         dots.push(
           <div
@@ -335,13 +326,8 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
       const circumference = 2 * Math.PI * svgRadius
 
-      let progressOffset: number
-      if (currentHours === 24) {
-        progressOffset = 0
-      } else {
-        const actualTotalMinutes = currentHours * 60 + currentMinutes
-        progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
-      }
+      const actualTotalMinutes = currentHours * 60 + currentMinutes
+      const progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
 
       return (
         <svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} style={{ position: 'absolute', zIndex: 1 }}>
@@ -409,7 +395,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
               <span
                 key={`hours-${blurKey}`}
                 aria-valuemin={0}
-                aria-valuemax={24}
+                aria-valuemax={23}
                 aria-readonly={false}
                 aria-label='hours'
                 role='spinbutton'

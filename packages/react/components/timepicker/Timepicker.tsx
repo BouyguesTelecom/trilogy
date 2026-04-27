@@ -6,7 +6,7 @@ import { TimepickerProps, TimepickerRef } from './TimepickerProps'
 
 /**
  * Timepicker Native Component
- * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "24:00")
+ * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "23:59")
  * @param onChange {Function} Callback called when time changes, receives new "HH:MM" value
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
