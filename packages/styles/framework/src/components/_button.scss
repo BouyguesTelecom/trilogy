@@ -1,15 +1,12 @@
 $button-border-width: 2px !default;
 
 .buttons {
+  display: flex;
   width: 100%;
-  column-gap: 16px;
-
-  &.is-vertical {
-    row-gap: 16px;
-  }
-
+  gap: 16px;
+  flex-direction: column;
   @include tablet {
-    display: flex;
+    flex-direction: row;
     align-items: center;
     width: auto;
   }
@@ -39,7 +36,6 @@ $button-border-width: 2px !default;
 
   @include mobile {
     width: 100%;
-    margin: 8px 0 !important;
   }
 
   @each $name, $pair in $button-colors {
@@ -72,7 +68,7 @@ $button-border-width: 2px !default;
     gap: $spacing-2;
   }
 
-  .icon {
+  .icon:not([class*='has-background-']) {
     width: auto;
   }
 
@@ -84,3 +80,4 @@ $button-border-width: 2px !default;
   }
 
 }
+
