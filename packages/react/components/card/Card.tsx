@@ -17,12 +17,13 @@ export const CardContext = createContext({ horizontal: false })
  * @param skeleton {boolean} Loading card
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
- * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * @param children {React.ReactNode} Card content
+ * @param fullheight {boolean} Full height card
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
- * @param fullheight {boolean} Full height card
  * @param href {string} Link href (renders card as anchor)
+ * @param testId {string} Test Id for Test Integration
  */
 const Card = React.forwardRef<CardRef, CardProps>(
   (

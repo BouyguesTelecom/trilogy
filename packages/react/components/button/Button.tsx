@@ -21,10 +21,10 @@ import { ButtonProps, ButtonRef } from './ButtonProps'
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} If Icon, Button + Icon && Button IconName
+ * @param id {string} Custom id for button (ONLY FOR WEB)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {ButtonMarkup} HTML element : button|input|a (ONLY FOR WEB)
  * @param className {string} Additional css classes (ONLY FOR WEB)
- * @param id {string} Custom id for button (ONLY FOR WEB)
  * @param to {string} Link
  * @param href {string} Href
  * @param name {string} Button name attribute

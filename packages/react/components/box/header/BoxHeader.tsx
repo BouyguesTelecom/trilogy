@@ -11,12 +11,12 @@ import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
 /**
  * Box Header Component
  * @param children {React.ReactNode} Children
- * @param help {string} Box Header Help Sticker
  * @param variant {TrilogyColor} Box Header backgroundColor
- * @param align
- * @param id
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param align {AlignProps} Box Header Alignment
  */
 const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
   ({ children, className, id, align, variant, testId, ...others }, ref): JSX.Element => {

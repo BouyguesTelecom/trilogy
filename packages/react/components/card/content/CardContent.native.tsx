@@ -6,10 +6,12 @@ import { CardContentNativeRef, CardContentProps } from './CardContentProps'
 
 /**
  * Card Content Component
- * @param children {ReactNode} Card Content Children
+ * @param children {React.ReactNode} Custom Card Content Children
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const CardContent = React.forwardRef<CardContentNativeRef, CardContentProps>(
-  ({ children, ...others }, ref): JSX.Element => {
+  ({ children, testId, ...others }, ref): JSX.Element => {
     const cardContextValues = useContext(CardContext)
 
     const styles = StyleSheet.create({
@@ -21,7 +23,7 @@ const CardContent = React.forwardRef<CardContentNativeRef, CardContentProps>(
     })
 
     return (
-      <View ref={ref} style={styles.card} {...others}>
+      <View testID={testId} ref={ref} style={styles.card} {...others}>
         {children}
       </View>
     )

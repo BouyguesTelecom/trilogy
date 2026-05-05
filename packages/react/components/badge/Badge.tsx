@@ -20,9 +20,9 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
  * @param position {BadgePositionEnum} Badge position relative to parent element
  * @param onClick {Function} onClick Event for Badge
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  */
 const Badge = React.forwardRef<BadgeRef, BadgeProps>(
   (

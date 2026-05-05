@@ -7,11 +7,13 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
 
 /**
  * Box Footer Component
- * @param children {React.ReactNode} Childrens
+ * @param children {React.ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
-  ({ children, backgroundColor, ...others }, ref): JSX.Element => {
+  ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
     const boxRadius = 6
     const { highlighted } = React.useContext(BoxContext)
 
@@ -27,7 +29,7 @@ const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
     })
 
     return (
-      <View ref={ref} style={[styles.boxFooter]} {...others}>
+      <View ref={ref} style={[styles.boxFooter]} testID={testId} {...others}>
         {children && typeof children.valueOf() === 'string' ? <Text>{String(children)}</Text> : children}
       </View>
     )

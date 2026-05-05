@@ -21,10 +21,10 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param backgroundSrc {string} Source of background image
  * @param active {boolean} Activated box
  * @param testId {string} Test Id for Test Integration
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  * @param fullheight {boolean} Full height box
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  * @param href {string} Link href (renders box as anchor)
  * @param blank {boolean} Target blank when href is set
  */

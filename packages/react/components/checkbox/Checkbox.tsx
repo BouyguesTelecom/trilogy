@@ -14,11 +14,12 @@ import { CheckboxProps, CheckboxRef } from './CheckboxProps'
  * @param label {string} Label for Checkbox // Incompatible with children
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
- * @param children {React.ReactNode} Children for Checkbox, should be only [phrasing content](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#technical_summary)
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param value {string} Value for checkbox
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required input checkboxes
+ * @param children {React.ReactNode} Children for Checkbox, should be only [phrasing content](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#technical_summary)
  */
 const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
   (

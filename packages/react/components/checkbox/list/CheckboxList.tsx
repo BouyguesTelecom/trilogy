@@ -13,6 +13,8 @@ import { TypographyColor } from '@/objects/Typography'
 /**
  * Checkbox List Component
  * @param children {ReactNode} CheckboxList children
+ * @param label {string} Label for the CheckboxList group
+ * @param align {JustifyProps} Align checkboxes within the list
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param align {boolean} align Checkboxes

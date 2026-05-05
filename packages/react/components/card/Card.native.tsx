@@ -16,16 +16,16 @@ export const CardContext = createContext({
 
 /**
  * Card Component
- * @param flat Adding border for Card content
- * @param horizontal Horizontal Card orientation
- * @param floating Floating card
- * @param children {ReactNode}
+ * @param flat {boolean} Adding border for Card content
+ * @param horizontal {boolean} Horizontal Card orientation
+ * @param floating {boolean} Floating card
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Loading card
  * @param reversed {boolean} Reversed card
- * @param fullheight {boolean}
- * @param active {boolean} Activated box
- * @param others
+ * @param active {boolean} Activated card
+ * @param id {string} Custom id attribute
+ * @param children {React.ReactNode} Card content
+ * @param fullheight {boolean} Full height card
  */
 const Card = React.forwardRef<CardNativeRef, CardProps>(
   (

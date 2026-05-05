@@ -39,7 +39,6 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  */
 const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (
@@ -50,6 +49,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       disabled,
       readOnly,
       disabledDates,
+      testId,
       onChange,
       onMonthChange,
     },
@@ -314,6 +314,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     return (
       <table
+        data-testid={testId}
         data-calendar-trilogy=''
         ref={ref}
         className={clsx(
