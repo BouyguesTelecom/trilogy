@@ -10,7 +10,7 @@ import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentC
  * @param children {ReactChild} React Child Element
  * @param onClick onClick Event
  * @param disabled {boolean} disable onClick on item
- * @param inverted {boolean} invert color of active item
+ * @param id {string} Custom id attribute
  */
 const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(({
   active,

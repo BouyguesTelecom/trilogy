@@ -25,6 +25,7 @@ import { RadioTilesContext } from '../context'
  * @param value {string} Value for radio
  * @param icon {IconName} icon for radio
  * @param horizontal Horizontal radio
+ * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
 const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(

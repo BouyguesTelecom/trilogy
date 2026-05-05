@@ -11,16 +11,16 @@ import { ButtonVariant } from './ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from './ButtonProps'
 
 /**
- * Button Native Component
+ * Button Component
  * @param loading {boolean} Loading button
  * @param disabled {boolean} Disabled button
- * @param variant {Color} Button color : primary|secondary
- * @param children {React.ReactNode} Button child
- * @param onClick {Function} Click Event
+ * @param variant {ButtonVariant} Button variant : accent|primary|secondary|ghost
+ * @param children {ReactNode} Button child
  * @param fullwidth {boolean} Fullwidth button
- * @param testId {string} id for test
- * @param accessibilityLabel {string}
- * @param iconName {IconName} If Icon, Button + Icon && Button IconName
+ * @param onClick {Function} Click Event
+ * @param accessibilityLabel {string} Accessibility label
+ * @param testId {string} Test Id for Test Integration
+ * @param iconName {IconName} Icon displayed inside the button
  */
 const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
   (

@@ -18,11 +18,7 @@ import {
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
- * @param className
- * @param id
- * @param testId
- * @param align
- * @param others
+ * @param id {string} Custom id attribute
  */
 const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
   const { inverted, fullwidth } = React.useContext(TabsContext)

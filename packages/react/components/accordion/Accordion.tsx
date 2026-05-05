@@ -7,10 +7,12 @@ import clsx from 'clsx'
 
 /**
  * Accordion Component
- * @param id
+ * @param children {React.ReactNode} Accordion items (AccordionItem components)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param children
- * @param others
  */
 const Accordion = React.forwardRef<AccordionRef, AccordionProps>(({ id, className, children, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

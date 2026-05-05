@@ -8,14 +8,13 @@ import { LinkNativeRef, LinkPropsNative } from './LinkProps'
 
 /**
  * Link Component
- * @param to {string} Url to open
- * @param title {string} Title attribute
+ * @param children {React.ReactNode} Content children for Link
+ * @param to {string} Use for router navigation
  * @param onClick {Function} onClick Event
- * @param children {React.ReactNode}
- * @param testId {string} id for test
- * @param accessibilityLabel {string}
- * @param iconName {IconName} Adding Icon Link
- * @param inverted {boolean} Inverted link
+ * @param accessibilityLabel {string} Accessibility label
+ * @param iconName {IconName} Adding Icon to Link
+ * @param inverted {boolean} Inverted link color
+ * @param testId {string} Test Id for Test Integration
  */
 const Link = React.forwardRef<LinkNativeRef, LinkPropsNative>(
   ({ children, to, onClick, testId, accessibilityLabel, iconName, inverted, ...others }, ref): JSX.Element => {

@@ -7,11 +7,12 @@ import { ModalContext } from '../context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from './ModalBodyProps'
 
 /**
- * Modal Footer Component
+ * Modal Body Component
  * @param children {React.ReactNode}
- * @param others
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
-const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, ...others }, ref): JSX.Element => {
+const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, testId, ...others }, ref): JSX.Element => {
   const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
 
   return (
@@ -30,6 +31,7 @@ const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ childr
             paddingBottom: isFooter ? 8 : isIOS ? 40 : 16,
           },
         ]}
+        testID={testId}
         {...others}
       >
         {children}

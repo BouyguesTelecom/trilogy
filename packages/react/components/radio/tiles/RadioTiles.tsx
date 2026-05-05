@@ -18,6 +18,7 @@ import * as React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(
   (

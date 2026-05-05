@@ -18,10 +18,12 @@ interface AccordionChild {
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children
+ * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param testId {string} Test Id for Test Integration
+ * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  */
 const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
-  ({ open, id, onClick, disabled, children, ...others }, ref): JSX.Element => {
+  ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
     const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
@@ -138,7 +140,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
         <View style={styles.item} ref={ref}>
           <TouchableWithoutFeedback
             style={styles.item}
-            testID={id || ''}
+            testID={id || testId || ''}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onPress={(e: any) => {
               if (!disabled) {

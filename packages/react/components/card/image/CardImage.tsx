@@ -12,6 +12,8 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  * @param alt Alt attribute
  * @param size Image Card size on horizontal align
  * @param onClick {Function} onClick Event
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param contain {boolean} Resize mode contain
  * - -------------------------- WEB PROPERTIES ----------------------------------

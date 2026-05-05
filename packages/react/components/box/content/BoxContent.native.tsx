@@ -6,13 +6,15 @@ import * as React from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 
 /**
- * Box Content Component
- * @param children {React.ReactNode} Childrens
+ * Box Content
+ * @param children {React.ReactNode} Box Content Children
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
-  ({ children, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
+  ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
@@ -31,6 +33,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
 
     const content = (
       <View
+        testID={testId}
         ref={ref}
         style={[styles.boxContent]}
         {...others}

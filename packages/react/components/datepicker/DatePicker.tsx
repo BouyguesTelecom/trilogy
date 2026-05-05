@@ -40,21 +40,22 @@ const getFirstDayFocusable = () => {
 
 /**
  * DatePicker Component
- * @param id
- * @param value {string} Value for DatePicker (YYYY-MM-DD)
- * @param minDate {string} Min value for DatePicker (YYYY-MM-DD)
- * @param maxDate {string} Max value for DatePicker (YYYY-MM-DD)
+ * @param value {string} Selected date value (format: YYYY-MM-DD)
+ * @param minDate {string} Minimum selectable date (format: YYYY-MM-DD)
+ * @param maxDate {string} Maximum selectable date (format: YYYY-MM-DD)
  * @param disabled {boolean} Disabled DatePicker
- * @param readOnly {boolean} Read only DatePicker
- * @param disabledDates {Date[]} Values disabled
- * @param onChange {Function} DatePicker DatePicker Event
- * @param className {string} Additional CSS Classes
- * @param label {string} Label for DatePicker
- * @param sample {string} Sample for DatePicker (below label)
- * @param help {string} Help for DatePicker
- * @param required {boolean} Required DatePicker
- * @param status {InputStatus} DatePicker with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param disabledDates {Date[]} List of disabled/unavailable dates
+ * @param onChange {Function} Callback when date changes, receives date string (YYYY-MM-DD) or null
+ * @param label {string} Label text for DatePicker
+ * @param sample {string} Example text shown below the label
+ * @param help {string} Help text shown below the field
+ * @param required {boolean} Required field
+ * @param status {DatePickerStatus} DatePicker status (SUCCESS | WARNING | ERROR | DEFAULT)
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param name {string} Name attribute
  */
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (

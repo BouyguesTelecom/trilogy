@@ -28,14 +28,17 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
 
 /**
  * Calendar Component
- * @param value {Date | [Date, Date] | [Date] | []} Value for calendar
- * @param minDate {Date} Min value for calendar
- * @param maxDate {Date} Max value for calendar
+ * @param value {Date | [Date, Date] | [Date] | []} Calendar selected date(s)
+ * @param minDate {Date} Minimum selectable date
+ * @param maxDate {Date} Maximum selectable date
  * @param disabled {boolean} Disabled calendar
  * @param readOnly {boolean} Read only calendar
- * @param disabledDates {Date[]} Values disabled
- * @param onChange {Function} OnChange Calendar Event
- * @param onMonthChange {Function} onMonthChange Calendar Event
+ * @param disabledDates {Date[]} List of disabled/unavailable dates
+ * @param onChange {Function} Callback when selected date(s) change
+ * @param onMonthChange {Function} Callback when the displayed month changes
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (
@@ -46,6 +49,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       disabled,
       readOnly,
       disabledDates,
+      testId,
       onChange,
       onMonthChange,
     },
@@ -310,6 +314,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     return (
       <table
+        data-testid={testId}
         data-calendar-trilogy=''
         ref={ref}
         className={clsx(

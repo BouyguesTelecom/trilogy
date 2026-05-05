@@ -9,12 +9,13 @@ import { PaginationProps, PaginationRef } from './PaginationProps'
 /**
  * Pagination Component
  * @param length {number} Number of pages
- * @param defaultPage {number} Current default active page (default is 1)
- * @param onClick {Function} Return pagination object
- * * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional css classes
- * @param href {Function} Function that generates a link for seo bots
+ * @param defaultPage {number} Default active page (default: 1)
+ * @param onClick {Function} Callback returning the pagination object
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param href {Function} Function that generates a link for SEO bots
  */
 const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
   ({ className, id, length, defaultPage = 1, onClick, href, testId, ...others }, ref): JSX.Element => {

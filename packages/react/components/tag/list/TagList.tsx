@@ -10,9 +10,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Tag List Component
  * @param children {ReactNode} Children Tag List
- * @param marginless {boolean} delete margin
+ * @param id {string} Custom id attribute
  *  - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param marginless {boolean} delete margin
+ * @param align {string} Alignment of the tags
+ * @param testId {string} Test Id for Test Integration
  */
 const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

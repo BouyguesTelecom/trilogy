@@ -11,9 +11,11 @@ import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
  * Box Header Component
  * @param children {React.ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
-  ({ children, variant, ...others }, ref): JSX.Element => {
+  ({ children, variant, testId, ...others }, ref): JSX.Element => {
     const statesContext = useContext(StatesContext)
     const boxContext = useContext(BoxContext)
     const centered = false
@@ -58,6 +60,7 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
       <View
         style={[styles.boxHeader]}
         ref={ref}
+        testID={testId}
         {...others}
         onLayout={() => {
           boxContext.setHeader(true)

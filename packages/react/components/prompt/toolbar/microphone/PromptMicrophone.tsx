@@ -13,9 +13,8 @@ import { PromptMicrophoneProps, PromptMicrophoneRef } from './PromptMicrophonePr
  * @param disabled {boolean} Whether the microphone button is disabled
  * @param readOnly {boolean} Whether the microphone button is read-only
  * @param isListening {boolean} Whether the microphone is currently listening/recording
- * @param className {string} Additional CSS classes (ONLY FOR WEB)
- * @param testId {string} Test Id for Test Integration
- * @param accessibilityLabel {string} Accessibility label
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneProps>(
   ({ className, onClick, disabled = false, isListening, readOnly, ...others }, ref) => {

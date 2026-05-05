@@ -1,41 +1,36 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import { TimelineMarkerRef, TimelineMarkerWebProps } from './TimelineMarkerProps'
-import { is } from '@/services/classify'
+import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { ComponentName } from '@/components/enumsComponentsName'
+import { is } from '@/services/classify'
+import clsx from 'clsx'
+import * as React from 'react'
+import { TimelineMarkerRef, TimelineMarkerWebProps } from './TimelineMarkerProps'
 
 /**
  * Timeline Marker Component
  * @param iconName {IconName} Icon Name - sample : IconName.CHECK
- * @param iconColor {IconColor} Icon Color
+ * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param iconClassname {string} Additional CSS Classes for icon
  */
-const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(({
-  className,
-  id,
-  iconClassname,
-  iconName,
-  testId,
-  ...others
-}, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
-  const iconClasses = clsx(iconClassname)
+const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(
+  ({ className, id, iconClassname, iconName, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))
+    const iconClasses = clsx(iconClassname)
 
-  return (
-    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
-      <div className='card-header-icon'>
-        <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
+    return (
+      <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
+        <div className='card-header-icon'>
+          <Icon className={iconClasses} name={iconName} size={IconSize.SMALL} />
+        </div>
       </div>
-    </div>
-  )
-})
+    )
+  },
+)
 
 TimelineMarker.displayName = ComponentName.TimelineMarker
 export default TimelineMarker

@@ -11,13 +11,12 @@ import { PopoverRef, PopoverWebProps } from './PopoverProps'
  * @param children {ReactNode} Popover content
  * @param direction {PopoverDirection} Popover direction (DOWN|LEFT|RIGHT)
  * @param active {boolean} Is the popover active
- * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
- * @param trigger {ReactNode} Trigger element
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
+ * @param arrowPosition {PopoverArrowPosition} Position of the popover arrow
+ * @param trigger {ReactNode} Trigger element
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Id for popover
- * @param accessibilityLabel {string} Accessibility label
  */
 const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
   ({ className, id, direction, children, active, arrowPosition, trigger, testId, ...others }, ref): JSX.Element => {

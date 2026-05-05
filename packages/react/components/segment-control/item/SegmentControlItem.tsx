@@ -11,9 +11,10 @@ import { SegmentControlItemProps, SegmentControlItemRef } from './SegmentControl
  * @param children {ReactChild} React Child Element
  * @param onClick onClick Event
  * @param disabled {boolean} disable onClick on item
- * @param inverted {boolean} invert color of active item
+ * @param id {string} Custom id attribute
  * - -------------- WEB PROPERTIES ---------------
  * @param className {string} Additional CSS Classes
+ * @param testId {string} Test Id for Test Integration
  */
 const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
   ({ active, onClick, disabled, className, id, children, testId, ...others }, ref): JSX.Element => {

@@ -10,7 +10,8 @@ import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from './BreadcrumbItemPr
  * Breadcrumb Item Component
  * @param children {string} Breadcrumb Item Text
  * @param active {boolean} Active link
- * @param to {string} Url. Use  Router Link
+ * @param id {string} Custom id attribute
+ * @param to {string} Url. Use React Router Link instead of a native-old <a> tag.
  * @param onClick {Function} Click Event
  * @param testId {string} Test Id for Test Integration
  */

@@ -4,11 +4,13 @@ import { StyleSheet, View } from 'react-native'
 import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
 
 /**
- * Box item Component
- * @param children {React.ReactNode} BoxItem Children
+ * Box Item Component
+ * @param children {React.ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
-const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, ...others }, ref): JSX.Element => {
+const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, testId, ...others }, ref): JSX.Element => {
   const height = Number(size) || 48
   const styles = StyleSheet.create({
     boxItem: {
@@ -21,7 +23,7 @@ const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, si
   })
 
   return (
-    <View ref={ref} style={[styles.boxItem]} {...others}>
+    <View ref={ref} style={[styles.boxItem]} testID={testId} {...others}>
       {children}
     </View>
   )

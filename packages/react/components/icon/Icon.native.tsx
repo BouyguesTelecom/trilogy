@@ -3,30 +3,26 @@ import { IconSize } from '@/components/icon/IconEnum'
 import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
-import { isAndroid, isIOS } from '@/helpers/device.native'
+import { isIOS } from '@/helpers/device.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
 import { WithLocalSvg } from 'react-native-svg/css'
+import { Skeleton } from '../skeleton'
 
 /**
  * Icon Component
- * @param size Size of Icon
- * @param name IconName
- * @param badgeContent {string} Display badge with icon
- * @param status SUCCESS|ERROR|WARNING|PRIMARY|TERTIARY|WHITE|GREY If CircleIcon or not
- * @param circled true-false if CircleIcon
- * @param content If TextIcon use it for text
- * @param stacked {boolean} Stacked icon
- * @param backgroundColor {TrilogyColor} Custom Background color only if circled
- * @param color {IconColor} Custom Icon Color
- * @param statusPosition {IconStatusPosition} Position for icon with status (TOP|BOTTOM)
+ * @param name {IconName} Icon name
+ * @param size {IconSize} Size of Icon
+ * @param circled {boolean} Display icon with circular background
  * @param stretched {boolean} Stretched icon
+ * @param color {IconColor} Custom Icon Color
+ * @param backgroundColor {TrilogyColor} Custom Background color (only if circled)
  * @param onClick {Function} onClick Event Icon
- * @param align { Alignable | AlignableValues} align content
  * @param skeleton {boolean} Icon Skeleton
+ * @param testId {string} Test Id for Test Integration
+ * @param align {Alignable | AlignableValues} Align content
  */
 const Icon = React.forwardRef<IconNativeRef, IconProps>(
   (
@@ -88,7 +84,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
         alignItems: 'center',
         justifyContent: 'center',
         width: defaultSize,
-        height: defaultSize
+        height: defaultSize,
       },
       stretched: {
         justifyContent: 'center',

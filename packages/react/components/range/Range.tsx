@@ -8,26 +8,26 @@ import { RangeProps, RangeRef } from './RangeProps'
 
 /**
  * Range Component
- * @param simple {boolean} display one cursor
- * @param unit {string} display unit of values
- * - -------------------------- MOBILE PROPERTIES -------------------------------
- * @param min {number} min length
- * @param max {number} max length
- * @param label {string} label of range
- * @param labelValueCursorMin {string} label to display next to value display
- * @param value {number[]} array of values
- * @param onChange {function} on change cursors
+ * @param min {number} Minimum value
+ * @param max {number} Maximum value
+ * @param label {string} Label of range
+ * @param simple {boolean} Display single cursor (slider mode)
+ * @param unit {string} Unit displayed next to values
+ * @param name {string} Input name
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param gap {number} space max between min and max cursor
- * @param onChangeMin {function} on change min cursor
- * @param onChangeMax {function} on change max cursor
- * @param value {number} only for slider
- * @param onChange {function} on change cursor (works with simple prop)
  * @param className {string} Additional CSS Classes
- * @param id {string} id for Range
- * @param valueMin {number} value min cursor
- * @param valueMax {number} value max cursor
- * @param name {string} input name
+ * @param id {string} Custom id attribute
+ * @param value {number} Current value (for simple/slider mode)
+ * @param valueMin {number} Current min cursor value
+ * @param valueMax {number} Current max cursor value
+ * @param gap {number} Maximum gap allowed between min and max cursor
+ * @param onChange {InputChangeEventHandlerWeb} Callback for single cursor change
+ * @param onChangeMin {InputChangeEventHandlerWeb} Callback when min cursor changes
+ * @param onChangeMax {InputChangeEventHandlerWeb} Callback when max cursor changes
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param value {number[]} Current values array [min, max]
+ * @param onChange {InputChangeEventHandlerNative} Callback for cursor changes
  */
 const Range = React.forwardRef<RangeRef, RangeProps>(
   (

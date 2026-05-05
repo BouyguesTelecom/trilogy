@@ -31,36 +31,40 @@ import InputGauge from './gauge/InputGauge.native'
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
 /**
- * Input Native Component
+ * Input Component
  * @param name {string} Input name
  * @param label {string} Label for input
  * @param sample {string} Sample for input (below label)
  * @param disabled {boolean} Disabled input
  * @param onChange {Function} OnChange Input Event
- * @param onFocus {Function} OnFocus Input Event
- * @param onBlur {Function} OnBlur Input Event
+ * @param onFocus {Function} onFocus Input Event
+ * @param onBlur {Function} onBlur Input Event
  * @param placeholder {string} Placeholder Input
  * @param type {InputType} Type for input
  * @param defaultValue {string} Default Value for Input
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param help {string} Help for input
- * @param hasIcon {boolean} Input Has Icon, Precise IconName with customIcon
- * @param ref Pass a ref for input
- * @param customIcon {IconName} Adding if you want custom icon
- * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
- * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
- * @param autoCorrect {boolean} Auto correct sentence
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
- * @param textContentType {InputTextContentType} Give the keyboard and the system information
- * @param keyboardType {InputKeyboardType} Keybaord type
- * @param keyType {KeyType} Keyboard key return type
- * @param onSubmit {Function} onSubmit
- * @param maxLength {number} Textarea max length
- * @param accessibilityLabel {string} Accessibility label
- * @param testId {string} Test Id for Test Integration
- * @param required {boolean} Required input
- * @param accessibilityActivate {boolean}
+ * @param onSubmit {Function} onSubmit Event
+ * @param maxLength {number} Input max length
+ * @param securityGauge {boolean} Add security gauge for input type password
  * @param readOnly {boolean} Read only input
+ * @param autoCapitalize {InputAutoCapitalize} Auto capitalize input
+ * @param formatPattern {Function} Custom formatter called on every value change
+ * @param iconNameLeft {IconName | IconNameValues} Icon on the left of the input
+ * @param iconNameRight {IconName | IconNameValues} Icon on the right of the input
+ * @param securityRules {ISecurityRules} Security rules for password type input
+ * @param validationRules {IValidationRules} Validation rules for password type input
+ * @param onIconClick {Function} onIconClick Input Event
+ * @param accessibilityLabel {string} Accessibility label
+ * @param required {boolean} Required input
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
+ * @param autoCorrect {boolean} Auto correct sentence
+ * @param textContentType {InputTextContentType} Give the keyboard and the system information
+ * @param keyboardType {InputKeyboardType} Keyboard type
+ * @param keyType {KeyType} Key type for submit button
+ * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
 const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
   (
@@ -117,16 +121,16 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     const handleChange = useCallback((text: string) => {
       setValue(text)
-        setEmail('')
+      setEmail('')
       const domain = text.split('@')?.[1]
-        if (domain) {
-          const domains = ['gmail.com', 'bbox.fr']
-          domains.forEach((item) => {
-            const domainSplit = domain.split('')
-            const itemSplit = item.split('').slice(0, domainSplit.length)
-            if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
-          })
-        }
+      if (domain) {
+        const domains = ['gmail.com', 'bbox.fr']
+        domains.forEach((item) => {
+          const domainSplit = domain.split('')
+          const itemSplit = item.split('').slice(0, domainSplit.length)
+          if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
+        })
+      }
     }, [])
 
     const handleClick = () => {

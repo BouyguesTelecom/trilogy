@@ -8,21 +8,23 @@ import { is } from '@/services'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * Fab Component - Floating Button Action
- * @param children {ReactNode} Text for fab button
- * @param extended {boolean} extend fab button
- * @param iconName {IconName | IconNameValues} name of icon
+ * Fab Component - Floating Action Button
+ * @param children {ReactNode} Text or content of the fab button
+ * @param extended {boolean} Extended fab mode (shows text alongside icon)
+ * @param iconName {IconName | IconNameValues} Icon to display inside the button
  * @param accessibilityLabel {string} Accessibility label
- * @param onClick {ClickEvent} onClick Event
- * @param className {string} Additional CSS Classes (only web)
- * @param fixed {boolean} position fixed,true by dyfault
- * @param top {number} position top
- * @param left {number} position left
- * @param bottom {number} position bottom
- * @param right {number} position right
- * @param disabled {boolean} disabled button
+ * @param onClick {ClickEvent} Click event handler
+ * @param top {number} Top position offset
+ * @param bottom {number} Bottom position offset
+ * @param left {number} Left position offset
+ * @param right {number} Right position offset
+ * @param disabled {boolean} Disabled state
  * @param testId {string} Test Id for Test Integration
- **/
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param fixed {boolean} Fixed positioning (true by default)
+ */
 const Fab = React.forwardRef<FabRef, FabProps>(({
   children,
   extended,

@@ -11,12 +11,11 @@ import { ChipsProps, ChipsRef } from './ChipsProps'
  * @param children {string} Chips content
  * @param id {string} Chips id
  * @param onClick {Function} onClick Event for all Chips
- * @param active {boolean} active Render Chips Active
+ * @param active {boolean} Render Chips Active
  * @param disabled {boolean} Disabled chips
- *  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
- * @param others
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const Chips = React.forwardRef<ChipsRef, ChipsProps>(
   ({ className, onClick, children, active, disabled, id, testId, ...others }, ref): JSX.Element => {

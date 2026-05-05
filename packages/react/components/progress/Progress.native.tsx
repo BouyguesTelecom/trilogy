@@ -7,13 +7,17 @@ import { Animated, StyleSheet } from 'react-native'
 import { ProgressNativeRef, ProgressProps } from './ProgressProps'
 
 /**
- * Progress component
- * @param children {ReactNode} Use Children it only if stacked progress
+ * Progress Component
+ * @param children {ReactNode} Children for stacked progress
+ * @param value {number} Progress value (0-100)
+ * @param max {number} Maximum value (default: 100)
  * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
- * @param stacked {boolean} Stacked progress
- * @param legendCenter {string} Unique legend
- * @param legendStart {string} First extremity legend, only with legendEnd property
- * @param legendEnd {string} Second extremity legend, only with legendStart property
+ * @param legendStart {string} Legend at the start of the progress bar
+ * @param legendCenter {string} Legend at the center of the progress bar
+ * @param legendEnd {string} Legend at the end of the progress bar
+ * @param stacked {boolean} Stacked progress bar (use children)
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
   (

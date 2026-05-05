@@ -9,21 +9,20 @@ import { Skeleton } from '../skeleton'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Childrens
+ * @param children {React.ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
- * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
- * @param testId {string} Test id
- * @param shadowless {boolean} Remove box shadow
- * @param backgroundSrc {string} Source of background Image
  * @param inverted {boolean} Inverted Box Color
- * @param flat {boolean} Flat box remove shadow and add plain border
- * @param hat {boolean} Box with a component Sticker props:hat
- * @param flex {boolean} Flex: 1 to the box if usage of Image for Example
- * @param fullheight {boolean}
+ * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
+ * @param shadowless {boolean} Remove box shadow
+ * @param flat {boolean} Flat box, removes shadow and adds plain border
+ * @param backgroundSrc {string} Source of background image
+ * @param headerOffset {boolean} Add a header offset to the box
  * @param active {boolean} Activated box
- * @param others
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * @param fullheight {boolean} Full height box
  */
 const Box = React.forwardRef<BoxNativeRef, BoxProps>(
   (
@@ -40,6 +39,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       headerOffset,
       fullheight,
       active,
+      testId,
       ...others
     },
     ref,
@@ -102,7 +102,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       },
     })
 
-    const boxTestId = 'NotSpecified'
+    const boxTestId = testId ?? 'NotSpecified'
 
     const BoxSkeleton = () => (
       <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={boxRadius} testID='skeleton'>

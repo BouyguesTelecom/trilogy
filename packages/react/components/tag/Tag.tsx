@@ -10,14 +10,15 @@ import { TagProps, TagRef } from './TagProps'
 
 /**
  * Tag Component
- * @param children {ReactNode} Add childrens for tag
- * @param variant {TagVariant} Available tag variants
- * @param inverted {boolean} Inverted tag
- * @param small {boolean} display small tag
- * @param iconName {IconName} display icon
+ * @param label {string} Tag text content
+ * @param variant {TagVariant} Tag color variant
+ * @param inverted {boolean} Inverted tag color
+ * @param small {boolean} Small tag
+ * @param iconName {IconName} Icon displayed in tag
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  **/
 const Tag = React.forwardRef<TagRef, TagProps>(
   ({ label, className, id, variant, inverted, small, iconName, testId, ...others }, ref): JSX.Element => {

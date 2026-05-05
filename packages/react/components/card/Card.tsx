@@ -17,13 +17,31 @@ export const CardContext = createContext({ horizontal: false })
  * @param skeleton {boolean} Loading card
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
- * - ------------------ WEB PROPERTIES -----------------------
+ * @param id {string} Custom id attribute
+ * @param children {React.ReactNode} Card content
+ * @param fullheight {boolean} Full height card
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param fullheight
+ * @param href {string} Link href (renders card as anchor)
+ * @param testId {string} Test Id for Test Integration
  */
 const Card = React.forwardRef<CardRef, CardProps>(
   (
-    { className, id, flat, horizontal, floating, skeleton, onClick, reversed, href, fullheight, active, testId, ...others },
+    {
+      className,
+      id,
+      flat,
+      horizontal,
+      floating,
+      skeleton,
+      onClick,
+      reversed,
+      href,
+      fullheight,
+      active,
+      testId,
+      ...others
+    },
     ref,
   ) => {
     const { styled } = useTrilogyContext()

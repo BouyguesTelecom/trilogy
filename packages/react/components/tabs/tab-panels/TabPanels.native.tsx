@@ -10,9 +10,7 @@ import { StyleSheet, View } from 'react-native'
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
  * @param className
- * @param id
- * @param testId
- * @param others
+ * @param id {string} Custom id attribute
  */
 const TabPanels = React.forwardRef<TabPanelsNativeRef, TabPanelsProps>(({ children, ...others }, ref) => {
   const { inverted } = React.useContext(TabsContext)

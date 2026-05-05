@@ -21,14 +21,14 @@ const calculateTimer = (timeDifference: number) => {
  * Countdown Component
  * @param deadline {Date} Date to reach before the end of the countdown
  * @param format {CountdownFormat} Format of countdown
- * @param inverted {Boolean} White countdown on darked background
- * @param event
- * @param small
- * @param centered
- * @param others
+ * @param inverted {boolean} White countdown on dark background
+ * @param testId {string} Test Id for Test Integration
+ * @param event {string} Event label displayed alongside countdown
+ * @param id {string} Custom id attribute
+ * @param small {boolean} Small countdown
  */
 const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
-  ({ deadline, format, event, small, inverted, ...others }, ref): JSX.Element => {
+  ({ deadline, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {
     const [init, setInit] = useState(false)
     const [timeLeft, setTimeLeft] = useState(deadline)
     const initialTimeDifference = deadline.getTime() - new Date().getTime()
@@ -160,7 +160,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
     })
 
     return (
-      <View ref={ref} style={styles.countdown} {...others}>
+      <View testID={testId} ref={ref} style={styles.countdown} {...others}>
         {(show[CountdownUnite.DAY] || timer.days != 0) && (
           <Title style={styles.text} level={TitleLevels.FOUR}>
             {String(timer.days ? timer.days : 0).padStart(2, '0')}

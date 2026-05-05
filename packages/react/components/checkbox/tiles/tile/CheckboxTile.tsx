@@ -12,21 +12,24 @@ import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
 
 /**
  * CheckboxTile
- * @param id {string}
- * @param checked {Boolean}
- * @param disabled {Boolean}
- * @param readonly {Boolean}
- * @param label {string}
- * @param onChange {Function}
- * @param name {string}
- * @param value {string}
- * @param description {string}
- * @param icon {IconName}
- * @param horizontal {boolean}
- * @param sticker {string} sticker label
- * @param stickerVariant {VariantState} Sticker variant
+ * @param id {string} Custom id attribute
+ * @param checked {Boolean} Checked state of the checkbox
+ * @param disabled {Boolean} Disabled state of the checkbox
+ * @param readonly {Boolean} Readonly state of the checkbox
+ * @param label {string} Label for the checkbox tile
+ * @param onChange {Function} Change event handler for the checkbox
+ * @param name {string} Name attribute for the checkbox input
+ * @param description {string} Description text for the checkbox tile
+ * @param icon {IconName} Icon to display in the checkbox tile
+ * @param horizontal {boolean} Horizontal layout for the checkbox tile
+ * @param sticker {string} Sticker label for the checkbox tile
+ * @param stickerVariant {VariantState} Sticker variant for the checkbox tile
+ * @param required {boolean} Required input checkboxes
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param value {string} Value attribute for the checkbox input
+ * @param required {boolean} Required input checkboxes
  */
 const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
   (

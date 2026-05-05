@@ -6,9 +6,13 @@ import { useTrilogyContext } from '@/context'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * Spacer Component
- * @param size {SpacerSize} ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT
- * @param horizontal {Boolean} If horizontal margin
+ * Spacer Component - Adds vertical or horizontal spacing
+ * @param size {SpacerSize} Spacing size: ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT
+ * @param horizontal {boolean} Apply as horizontal margin instead of vertical (default: false)
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
