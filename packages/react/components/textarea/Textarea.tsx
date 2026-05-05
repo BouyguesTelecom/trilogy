@@ -20,15 +20,16 @@ import { TextareaProps, TextareaRef } from './TextareaProps'
  * @param placeholder {string} Placeholder textarea
  * @param defaultValue {string} Default Value for textarea
  * @param help {string} Help for textarea
- * @param ref Pass a ref for textarea
  * @param maxLength {number} Textarea max length
  * @param rows {number} Textarea rows
- * @param iconNameLeft {IconName | IconNameValues} display Icon on the left
- * @param iconNameRight {IconName | IconNameValues} display Icon on the right
- * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param iconNameLeft {IconName | IconNameValues} Icon on the left
+ * @param iconNameRight {IconName | IconNameValues} Icon on the right
+ * @param status {InputStatus} Textarea with status (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param required {boolean} Required
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  * @param minLength {number} Textarea min length
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */

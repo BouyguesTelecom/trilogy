@@ -21,16 +21,15 @@ import { ButtonProps, ButtonRef } from './ButtonProps'
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} If Icon, Button + Icon && Button IconName
- * @param id {string} Custom id for button (ONLY FOR WEB)
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param markup {ButtonMarkup} HTML element : button|input|a (ONLY FOR WEB)
- * @param className {string} Additional css classes (ONLY FOR WEB)
- * @param to {string} Link
+ * @param markup {ButtonMarkup} HTML element : button|input|a
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
+ * @param to {string} Router link destination
  * @param href {string} Href
  * @param name {string} Button name attribute
- * @param routerLink Custom Router Link as props
- * @param styled {boolean} Component Wearing Styles - Hashed Trilogy Css
- * @param type {ButtonType} button type (button|reset|submit)
+ * @param routerLink {React.ElementType} Custom Router Link component
+ * @param type {ButtonType} Button type (button|reset|submit)
  */
 const Button = React.forwardRef<ButtonRef, ButtonProps>(
   (
@@ -132,7 +131,14 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     if (routerLink && to && !isDisabled) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
       return (
-        <RouterLink ref={ref} aria-label={accessibilityLabel} to={to} className={classes} data-testid={testId} {...others}>
+        <RouterLink
+          ref={ref}
+          aria-label={accessibilityLabel}
+          to={to}
+          className={classes}
+          data-testid={testId}
+          {...others}
+        >
           {iconName && <Icon name={iconName} />}
           {children}
         </RouterLink>

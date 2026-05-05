@@ -19,6 +19,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param shadowless {boolean} Remove box shadow
  * @param flat {boolean} Flat box, removes shadow and adds plain border
  * @param backgroundSrc {string} Source of background image
+ * @param headerOffset {boolean} Add a header offset to the box
  * @param active {boolean} Activated box
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute

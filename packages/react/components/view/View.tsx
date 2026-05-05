@@ -13,6 +13,7 @@ import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
  * @param backgroundColor {TrilogyColor} View background color
  * @param backgroundSrc {string} View background image source
  * @param fullwidth {boolean} Full width view (default: true)
+ * @param flexable {boolean} Enable flex layout
  * @param justify {JustifyProps} Justify content alignment
  * @param align {AlignProps} Align items alignment
  * @param testId {string} Test Id for Test Integration
