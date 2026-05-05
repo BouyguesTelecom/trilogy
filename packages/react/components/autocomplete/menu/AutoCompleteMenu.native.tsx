@@ -4,6 +4,14 @@ import { TrilogyColor, getColorStyle } from '@/objects'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 
+/**
+ * AutoCompleteMenu Component
+ * @param children {ReactNode} Children
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
+ * @param suggestions {Array} Suggestions list for AutoComplete
+ * @param handleSelectItem {Function} Callback when selecting an item
+ */
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
   const styles = StyleSheet.create({
     list: {

@@ -8,10 +8,15 @@ import { AutoCompleteItemProps } from './AutoCompleteItemProps'
 
 /**
  * AutoCompleteItem Component
+ * @param item {string | Item} item value
+ * @param testId {string} Test Id for Test Integration
+ * - ------------------ WEB PROPERTIES -----------------------
  * @param suggestionSelected {Function} select item
  * @param active {boolean} isActive
- * - ------------------ WEB PROPERTIES -----------------------
- * @param className {string} Additional CSS Classes
+ * @param children {ReactNode} Children
+ * @param id {string} Custom id attribute
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param onSelect {Function} Callback when selecting an item
  */
 const AutoCompleteItem = <T extends string | Item<unknown>>({
   children,

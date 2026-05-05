@@ -232,15 +232,15 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param getSuggestions {Function} Async suggestions provider
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
  * @param testId {string} Test Id for Test Integration
+ * @param loading {boolean} Loading input
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  * @param name {string} Input name
  * @param classNameMenu {string} Additional CSS Classes for Menu
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param accessibilityLabel {string} Accessibility label
- * @param loading {boolean} Loading input
  */
 const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
   props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
