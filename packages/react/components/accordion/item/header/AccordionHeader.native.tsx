@@ -5,7 +5,9 @@ import { AccordionHeaderNativeRef, AccordionHeaderProps } from './AccordionHeade
 
 /**
  * Accordion Header
- * @param children {React.ReactNode}
+ * @param children {React.ReactNode} Header content
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
   ({ children }, ref): JSX.Element => {

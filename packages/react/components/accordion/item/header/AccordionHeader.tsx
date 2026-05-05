@@ -7,10 +7,11 @@ import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps
 
 /**
  * Accordion Header
+ * @param children {React.ReactNode} Header content
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param children {React.ReactNode}
- * @param testId
- * @param others
  */
 const AccordionHeader = React.forwardRef<AccordionHeaderRef, AccordionHeaderProps>(
   ({ children, className, id, testId, ...others }, ref): React.JSX.Element => {

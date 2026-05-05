@@ -5,9 +5,12 @@ import { StyleSheet, View } from 'react-native'
 
 /**
  * Accordion Component
- * @param children {ReactNode}
+ * @param children {React.ReactNode} Accordion items (AccordionItem components)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ * @param id {string} Custom id attribute
  */
-const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ ...others }, ref): JSX.Element => {
+const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     accordion: {
       width: '100%',
@@ -16,7 +19,7 @@ const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ ...oth
     },
   })
 
-  return <View ref={ref} style={styles.accordion} {...others} />
+  return <View ref={ref} testID={testId} style={styles.accordion} {...others} />
 })
 
 Accordion.displayName = ComponentName.Accordion
