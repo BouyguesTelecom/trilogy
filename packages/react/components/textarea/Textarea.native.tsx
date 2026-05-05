@@ -29,7 +29,6 @@ import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
  * @param maxLength {number} Textarea max length
  * @param iconNameLeft {IconName | IconNameValues} Display icon on the left
  * @param iconNameRight {IconName | IconNameValues} Display icon on the right
- * @param testId {string} Test Id for Test Integration
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param value {string} Value for textarea
  * @param required {boolean} Required
