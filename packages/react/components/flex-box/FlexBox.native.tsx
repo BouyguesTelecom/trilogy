@@ -7,6 +7,18 @@ import { ColumnsGapValue } from '../columns'
 import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
 import { FlexBoxContext } from './context'
 
+/**
+ * FlexBox Component (React Native) - Flexible box layout container
+ * @param children {React.ReactNode} FlexBox child elements
+ * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children (supports responsive values)
+ * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
+ * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
+ * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: ...; tablet?: ...; desktop?: ... } } Justify content (supports responsive values)
+ * @param scrollable {boolean} Enable horizontal scrolling
+ * @param fullBleed {boolean} Expand to full screen width, bleeding past parent padding
+ * @param fullheight {boolean} Full height (height: 100%)
+ * @param testId {string} Test Id for Test Integration
+ */
 const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
   ({ id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, ...others }, ref) => {
     const [width, setWidth] = useState(0)

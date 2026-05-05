@@ -1,27 +1,27 @@
-import * as React from "react"
-import { ScrollViewProps, ScrollViewRef } from "./ScrollViewProps"
-import { useTrilogyContext } from "@/context"
-import { hashClass } from "@/helpers"
-import clsx from "clsx"
-import { is } from "@/services"
-import { ScrollDirectionEnum } from "@/objects"
-import { ComponentName } from "../enumsComponentsName"
+import { useTrilogyContext } from '@/context'
+import { hashClass } from '@/helpers'
+import { ScrollDirectionEnum } from '@/objects'
+import { is } from '@/services'
+import clsx from 'clsx'
+import * as React from 'react'
+import { ComponentName } from '../enumsComponentsName'
+import { ScrollViewProps, ScrollViewRef } from './ScrollViewProps'
 
 /**
- * Scroll View Component
+ * ScrollView Component
  * @param children {React.ReactNode} ScrollView child
- * @param id {string} Id for Web / TestID for Native
- * @param scrollDirection {Direction} Scroll vertically or horizontally
- * - -------------- WEB PROPERTIES -----------------
- * @param className {string} Additional css classes
- * - -------------- NATIVE PROPERTIES ---------------
- * @param footer {React.ReactNode} ScrollView footer
- * @param bounce {boolean} Bounce effect on scroll
- * @param centerContent {boolean} center content in scrollView
- * @param refresh {boolean} Is Refreshable ScrollView
- * @param refreshControlColor {TrilogyColor} Color Of Refresh Control
- * @param scrollDirection {Direction} Scroll vertically in default
- * @param onRefresh {void} On Refreshing ScrollView
+ * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param footer {React.ReactNode} Footer element fixed at the bottom
+ * @param bounce {boolean} Bounce effect on scroll (iOS)
+ * @param centerContent {boolean} Center content in scrollView
+ * @param refresh {boolean} Enable pull-to-refresh
+ * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
+ * @param onRefresh {Function} Callback when user triggers a refresh
  */
 const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
   ({ id, scrollDirection, children, testId }, ref): JSX.Element => {
@@ -30,24 +30,21 @@ const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
     const scrollDirectionClassName = () => {
       switch (scrollDirection) {
         case ScrollDirectionEnum?.HORIZONTAL:
-          return is("horizontal")
+          return is('horizontal')
         case ScrollDirectionEnum?.VERTICAL:
-          return is("vertical")
+          return is('vertical')
         default:
-          return ""
+          return ''
       }
     }
 
-    const classes = hashClass(
-      styled,
-      clsx("scroll-view", scrollDirection && scrollDirectionClassName())
-    )
+    const classes = hashClass(styled, clsx('scroll-view', scrollDirection && scrollDirectionClassName()))
     return (
       <div ref={ref} className={classes} id={id} data-testid={testId}>
         {children}
       </div>
     )
-  }
+  },
 )
 
 ScrollView.displayName = ComponentName.ScrollView

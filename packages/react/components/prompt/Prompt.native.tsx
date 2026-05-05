@@ -22,6 +22,14 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
   return <View ref={ref} style={styles.view} {...others} />
 })
 
+/**
+ * Prompt Component (React Native) - Form wrapper for chat-like or AI prompt interfaces
+ * @param readOnly {boolean} Read-only state (disables editing)
+ * @param disabled {boolean} Disabled state
+ * @param children {ReactNode} Child components (Input, Textarea, toolbar buttons, etc.)
+ * @param testId {string} Test Id for Test Integration
+ * @param accessibilityLabel {string} Accessibility label
+ */
 const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(
   ({ disabled = false, readOnly = false, ...others }, ref) => {
     return (

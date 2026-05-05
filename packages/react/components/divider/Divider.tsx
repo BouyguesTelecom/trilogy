@@ -9,49 +9,43 @@ import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Divider Component
- * @param content {string} Add text content for Divider
+ * @param content {string} Text content for Divider
  * @param unboxed {boolean} Full-width separator in another component
- * @param marginless {boolean} delete margin
+ * @param marginless {boolean} Remove margin
+ * @param inverted {boolean} Inverted divider color
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  * @param iconName {IconName} Custom icon for Divider
  * @param color {TrilogyColor} Border color of Divider
- * @param others
  */
-const Divider = React.forwardRef<DividerRef, DividerProps>(({
-  className,
-  id,
-  unboxed,
-  content,
-  marginless,
-  iconName,
-  inverted,
-  testId,
-  ...others
-}, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const Divider = React.forwardRef<DividerRef, DividerProps>(
+  ({ className, id, unboxed, content, marginless, iconName, inverted, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      'divider',
-      unboxed && is('unboxed'),
-      marginless && is('marginless'),
-      className,
-      inverted && is('inverted'),
-      iconName && has('icon'),
-    ),
-  )
-  const contentClasses = hashClass(styled, clsx('divider-content'))
+    const classes = hashClass(
+      styled,
+      clsx(
+        'divider',
+        unboxed && is('unboxed'),
+        marginless && is('marginless'),
+        className,
+        inverted && is('inverted'),
+        iconName && has('icon'),
+      ),
+    )
+    const contentClasses = hashClass(styled, clsx('divider-content'))
 
-  return (
-    <div ref={ref} id={id} data-testid={testId || 'separator'} className={classes} {...others}>
-      <p className={contentClasses}>
-        {iconName && !content && <Icon name={iconName} size={IconSize.MEDIUM} />}
-        {content && content}
-      </p>
-    </div>
-  )
-})
+    return (
+      <div ref={ref} id={id} data-testid={testId || 'separator'} className={classes} {...others}>
+        <p className={contentClasses}>
+          {iconName && !content && <Icon name={iconName} size={IconSize.MEDIUM} />}
+          {content && content}
+        </p>
+      </div>
+    )
+  },
+)
 Divider.displayName = ComponentName.Divider
 export default Divider

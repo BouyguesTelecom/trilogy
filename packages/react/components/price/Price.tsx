@@ -10,21 +10,21 @@ import { PriceProps, PriceRef } from './PriceProps'
 
 /**
  * Price Component
- * @param amount {number} Amount for Price
- * @param mention {string} Mention for price ( (1)* )
- * @param period {string} Period for Price (mois)
- * @param hideCents {boolean} Display cents
+ * @param amount {number} Price amount
+ * @param oldAmount {number} Old price amount (displayed as strikethrough)
+ * @param mention {string} Mention text (e.g. "(1)*")
+ * @param period {string} Period label (e.g. "/ month")
+ * @param overline {string} Overline text above price
+ * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode}
- * @param align {Alignable} Price alignement
- * @param inline {boolean} Inline display Price
+ * @param children {React.ReactNode} Price child elements
+ * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
- * @param overline {string} Price overline
- * @param oldAmount {boolean} old Amount Price
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param id {string} Custom id attribute
  */
 const Price = React.forwardRef<PriceRef, PriceProps>(
   (

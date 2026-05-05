@@ -15,10 +15,11 @@ type CurrentStepType = { label: number | null; step: number; icon: IconName | nu
 
 /**
  * Stepper Component
- * @param centered Center the stepper
- * @param children {ReactNode}
+ * @param children {ReactNode} Stepper steps (Step components)
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className Additional CSS Classes
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

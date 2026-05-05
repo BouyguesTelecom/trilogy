@@ -15,11 +15,11 @@ import { has, is } from '@/services/classify'
  * @param variant {VariantState} Hero background color : main/accent
  * @param onClick {Function} onClick Event
  * @param inverted {boolean} Inverted
- * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
- * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
+ * @param overlap {ReactNode[]|boolean} Hero overlap components (need to add key for each element)
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param id {string} Custom id attribute
  */
 const Hero = React.forwardRef<HeroRef, HeroProps>(
   (

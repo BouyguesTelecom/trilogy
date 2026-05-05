@@ -215,30 +215,30 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
 
 /**
  * AutoComplete Component
- * @param placeholder {string} placeholder for input
+ * @param placeholder {string} Placeholder for input
  * @param defaultValue {string} Default Value for Input
- * @param data {string[]} Datas AutoComplete list Item
- * @param value {string} Value of Input
+ * @param data {string[]} Data list for AutoComplete items
+ * @param value {string} Controlled value of Input
  * @param onChange {Function} OnChange Input Event
  * @param onFocus {Function} OnFocus Input Event
+ * @param onBlur {Function} onBlur Input Event
  * @param children {Function} Custom Component for dropdown list
  * @param displayMenu {boolean} Display Autocomplete Menu (default: true)
- * @param matching {Function} matching function
+ * @param matching {Function} Custom matching function
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
- * @param onBlur {Function} onBlur Input Event
- * @param testId {string} Test Id for Test Integration
  * @param disabled {boolean} Disabled input
  * @param onIconClick {Function} onIconClick Input Event
- * @param onItemSelected {Function} onSelectedItemList event
- * @param customIcon {string} Additional icon classes
+ * @param onItemSelected {Function} onItemSelected event
+ * @param getSuggestions {Function} Async suggestions provider
  * @param debounceSuggestionsTimeout {number} Timeout for getSuggestions debounce
- * @param getSuggestions {Function} getSuggestions event
- * - ------------------ WEB PROPERTIES -----------------------
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  * @param name {string} Input name
  * @param classNameMenu {string} Additional CSS Classes for Menu
  * @param absoluteMenu {boolean} Absolute position for Menu
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
- * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  * @param loading {boolean} Loading input
  */

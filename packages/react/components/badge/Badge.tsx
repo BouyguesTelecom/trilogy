@@ -12,19 +12,23 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} If no content add children (Icon for example)
- * @param id
+ * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
+ * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param variant {BadgeVariant} Badge color variant (SUCCESS|INFO|WARNING|ERROR|MAIN|ACCENT)
+ * @param position {BadgePositionEnum} Badge position relative to parent element
  * @param onClick {Function} onClick Event for Badge
- * @param variant
- * @param position
- * @param others
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes (ONLY FOR WEB)
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const Badge = React.forwardRef<BadgeRef, BadgeProps>(
-  ({ className, children, id, label, inverted, onClick, variant, position, status, testId, ...others }, ref): JSX.Element => {
+  (
+    { className, children, id, label, inverted, onClick, variant, position, status, testId, ...others },
+    ref,
+  ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(

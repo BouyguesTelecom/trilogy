@@ -17,15 +17,16 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param inverted {boolean} Inverted Box Color
  * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
  * @param shadowless {boolean} Remove box shadow
- * @param flat {boolean} Flat box remove shadow and add plain border
- * @param backgroundSrc {string} Source of background Image
- * @param testId {string} Test id
+ * @param flat {boolean} Flat box, removes shadow and adds plain border
+ * @param backgroundSrc {string} Source of background image
  * @param active {boolean} Activated box
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional css classes
- * @param fullheight
- * @param blank If href && blank : target Blank
- * @param others
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
+ * @param fullheight {boolean} Full height box
+ * @param href {string} Link href (renders box as anchor)
+ * @param blank {boolean} Target blank when href is set
  */
 const Box = React.forwardRef<BoxRef, BoxProps>(
   (
@@ -84,9 +85,10 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         id={id}
         style={onClick && { ...hoverStyle }}
         href={href}
-        {...(href && blank && {
-          target: '_blank',
-        })}
+        {...(href &&
+          blank && {
+            target: '_blank',
+          })}
         onClick={(e) => {
           // eslint-disable-next-line no-unused-expressions
           onClick?.(e)

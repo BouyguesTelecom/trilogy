@@ -13,15 +13,21 @@ import { ModalProps, ModalRef } from './ModalProps'
 /**
  * Modal Component
  * @param active {boolean} Activated Modal
- * @param title {string} Title Modal
- * @param onClose {Function} Additional close custom function
- * @param onOpen {Function} Additional open custom function
- * @param children {React.ReactNode}
+ * @param title {string} Modal title
+ * @param children {React.ReactNode} Modal content
+ * @param trigger {React.ReactNode} Element that triggers the modal opening
+ * @param onClose {Function} Callback when modal closes
+ * @param onOpen {Function} Callback when modal opens
+ * @param unClosable {boolean} Prevent modal from being closed by the user
+ * @param hideCloseButton {boolean} Hide the close button
+ * @param onModalHide {Function} Callback after modal is fully hidden
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  * @param panel {boolean} Panel Side Modal
+ * @param size {ModalSize} Modal size
  * @param accessibilityLabel {string} Accessibility label
- * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
 const Modal = React.forwardRef<ModalRef, ModalProps>(
   (

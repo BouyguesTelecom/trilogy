@@ -11,22 +11,22 @@ import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 
 /**
  * Icon Component
- * @param size Size of Icon
- * @param name IconName
- * @param status SUCCESS|ERROR If CircleIcon or not
- * @param circled true-false if CircleIcon
- * @param content If TextIcon use it for text
- * @param badgeContent {string} Icon with bage content
+ * @param name {IconName} Icon name
+ * @param size {IconSize} Size of Icon
+ * @param circled {boolean} Display icon with circular background
  * @param stretched {boolean} Stretched icon
  * @param color {IconColor} Custom Icon Color
- * @param backgroundColor {TrilogyColor} Custom Background color only if circled
+ * @param backgroundColor {TrilogyColor} Custom Background color (only if circled)
+ * @param badgeContent {string} Icon with badge content
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className Additional css classes
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param content {string} Text content for TextIcon
  */
-
 const Icon = React.forwardRef<IconRef, IconProps>(
   (
     { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, testId, ...others },
