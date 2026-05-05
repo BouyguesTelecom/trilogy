@@ -13,6 +13,8 @@ import React from 'react'
  * @param children {React.ReactNode}
  * @param verticalAlign {AlignProps} Vertical alignment of column
  * @param narrow {boolean} Narrow column item
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param mobileSize {ColumnsSize} Apply => is-size-mobile

@@ -26,22 +26,20 @@ import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
  * @param placeholder {string} Placeholder textarea
  * @param defaultValue {string} Default Value for textarea
  * @param help {string} Help for textarea
- * @param ref Pass a ref for textarea
  * @param maxLength {number} Textarea max length
- * @param rows {number} Textarea rows
- * @param iconNameLeft {IconName | IconNameValues} display Icon on the left
- * @param iconNameRight {IconName | IconNameValues} display Icon on the right
+ * @param iconNameLeft {IconName | IconNameValues} Display icon on the left
+ * @param iconNameRight {IconName | IconNameValues} Display icon on the right
  * @param testId {string} Test Id for Test Integration
  * @param status {InputStatus} Textarea with status - (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param value {string} Value for textarea
+ * @param required {boolean} Required
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param keyboardStyle {InputKeyboardAppearance} Custom appearance for keyboard
  * @param autoCapitalize {InputAutoCapitalize} Capitalize => NONE | SENTENCES | WORDS | CHARS
  * @param autoCorrect {boolean} Auto correct sentence
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  * @param textContentType {InputTextContentType} Give the keyboard and the system information
- * @param keyboardType {InputKeyboardType} Keybaord type
- * @param value {string} Value for textarea
- * @param customHeight {number} custom textarea height
- * @param required {boolean} Required
+ * @param keyboardType {InputKeyboardType} Keyboard type
+ * @param customHeight {number} Custom textarea height
  */
 const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
   (

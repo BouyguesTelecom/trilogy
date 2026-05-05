@@ -3,13 +3,13 @@ import { IconSize } from '@/components/icon/IconEnum'
 import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
-import { isAndroid, isIOS } from '@/helpers/device.native'
+import { isIOS } from '@/helpers/device.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
 import { WithLocalSvg } from 'react-native-svg/css'
+import { Skeleton } from '../skeleton'
 
 /**
  * Icon Component
@@ -19,11 +19,10 @@ import { WithLocalSvg } from 'react-native-svg/css'
  * @param stretched {boolean} Stretched icon
  * @param color {IconColor} Custom Icon Color
  * @param backgroundColor {TrilogyColor} Custom Background color (only if circled)
- * @param badgeContent {string} Icon with badge content
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
  * @param testId {string} Test Id for Test Integration
- * @param align { Alignable | AlignableValues} align content
+ * @param align {Alignable | AlignableValues} Align content
  */
 const Icon = React.forwardRef<IconNativeRef, IconProps>(
   (
@@ -85,7 +84,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
         alignItems: 'center',
         justifyContent: 'center',
         width: defaultSize,
-        height: defaultSize
+        height: defaultSize,
       },
       stretched: {
         justifyContent: 'center',

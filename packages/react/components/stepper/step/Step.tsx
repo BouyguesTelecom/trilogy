@@ -11,8 +11,10 @@ import { StepProps, StepRef } from './StepProps'
  * @param active {boolean} Active step
  * @param current {boolean} Current step
  * @param done {boolean} Step done
- * @param error {boolean} display error step
- * @param children {ReactNode} Stepper Step Children
+ * @param error {boolean} Display error step
+ * @param id {string} Custom id attribute
+ * @param iconName {IconName} Step icon name
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param label {string} Step label

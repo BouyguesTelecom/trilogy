@@ -8,11 +8,9 @@ import { StyleSheet, View } from 'react-native'
 import { StickerNativeRef, StickerProps } from './StickerProps'
 
 /**
- * Sticker component
- * @param children {ReactNode} Sticker child
+ * Sticker Component
  * @param variant {StatusState} Sticker variant : primary only
  * @param small {boolean} Small Sticker
- * @param hat {boolean} Hat Sticker ( for box )
  * @param outlined {boolean} Outlined sticker
  * @param iconName {IconName} Icon
  * @param label {string} Sticker label text
