@@ -11,15 +11,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Progress Radial component
- * @param percent {number} Progress percent
  * @param label {string} Custom label
  * @param description {string} Custom description
  * @param children {React.ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
- * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param secondValue {number} Second progress percent (for dual progress)
+ * @param small {boolean} Display small progress radial
+ * @param id {string} Custom id attribute
+ * @param value {number} Progress percent
  * - --------------- WEB PROPERTIES -------------------------------------
  * @param className {string} Additional CSS Classes
- * @param small {boolean} Display small progress radial
+ * @param testId {string} Test Id for Test Integration
  */
 const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(({
   children,

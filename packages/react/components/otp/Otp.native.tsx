@@ -15,14 +15,16 @@ import { OtpNativeRef, OtpProps } from './OtpProps'
  * @param disabled {boolean} Disabled OTP Code Input
  * @param error {boolean} OTP Code Input has error | Display error icon
  * @param onCompleted {Function} Return code input string
- * @param onFocus {Function} onFocus return if focused opt
- * @param activated {boolean} Activated OTP
  * @param onChange {Function} onChange Input return current code
+ * @param onFocus {Function} onFocus return if focused opt
  * @param label {string} Label for OTP
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * @param activated {boolean} Activated OTP
  */
 const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
   (
-    { value, length = 6, disabled, error, onCompleted, onFocus, activated, onChange, label, ...others },
+    { value, length = 6, disabled, error, onCompleted, onFocus, activated, onChange, label, testId, ...others },
     ref,
   ): JSX.Element => {
     const [codeInput, setCodeInput] = useState<string>(value || '')
@@ -134,7 +136,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
     }
 
     return (
-      <SafeAreaView ref={ref} style={style.container} {...others}>
+      <SafeAreaView ref={ref} style={style.container} testID={testId} {...others}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: label ? 8 : undefined }}>
           {Boolean(label) && (
             <View>

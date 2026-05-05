@@ -7,6 +7,13 @@ import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from './PromptMicrophoneProps'
 
+/**
+ * PromptMicrophone component - Voice recording button for prompt input
+ * @param onClick {Function} Click event handler for microphone button
+ * @param disabled {boolean} Whether the microphone button is disabled
+ * @param readOnly {boolean} Whether the microphone button is read-only
+ * @param isListening {boolean} Whether the microphone is currently listening/recording
+ */
 const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
   ({ isListening, onClick, disabled = false, readOnly, ...others }, ref) => {
     const { isTyping, setIsSpeech, isDisabled } = useContext(PromptContext)

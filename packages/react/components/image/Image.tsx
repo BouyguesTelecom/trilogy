@@ -11,16 +11,16 @@ import { ImageProps, ImageRef } from './ImageProps'
  * Image Component
  * @param src {string} Image source
  * @param alt {string} Image alt
- * @param radius {RadiusValues} Image border radius size
  * @param width {number|string} Image width (number for px, string for %)
  * @param height {number|string} Image height (number for px, string for %)
  * @param onClick {Function} onClick Event
- * @param align {Alignable} Image alignment
  * @param circled {boolean} Circled Image
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param radius {RadiusValues} Image border radius size
+ * @param align {Alignable} Image alignment
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image
  */

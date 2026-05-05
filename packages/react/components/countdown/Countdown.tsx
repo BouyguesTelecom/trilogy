@@ -22,13 +22,11 @@ const calculateTimer = (timeDifference: number) => {
  * @param format {CountdownFormat} Format of countdown
  * @param inverted {boolean} White countdown on dark background
  * @param testId {string} Test Id for Test Integration
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes
+ * @param event {string} Event label displayed alongside countdown
  * @param id {string} Custom id attribute
  * @param small {boolean} Small countdown
- * @param event {string} Event label displayed alongside countdown
- * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param centered {boolean} Centered countdown
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
   ({ deadline, className, id, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {

@@ -4,16 +4,19 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { getColorClassName, TrilogyColor } from '@/objects'
 import { is } from '@/services'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconSize } from '@/components/icon'
 import { ListItemProps, ListItemRef } from './ListItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItem Component
- * @param className {string} Additional CSS Classes
  * @param children {React.ReactNode}
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const ListItem = React.forwardRef<ListItemRef, ListItemProps>(({ className, id, children, iconName, status, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()

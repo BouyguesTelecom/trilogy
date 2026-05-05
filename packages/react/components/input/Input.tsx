@@ -36,7 +36,6 @@ interface IconWrapper {
  * @param placeholder {string} Placeholder Input
  * @param type {InputType} Type for input
  * @param defaultValue {string} Default Value for Input
- * @param hasIcon {boolean} Adding if you want icon - Default icon is defined by status
  * @param status {InputStatus} Input with status - (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param patternValidator {RegExp} regex validator
  * @param customValidator {Function} custom function validator
@@ -46,10 +45,17 @@ interface IconWrapper {
  * @param onSubmit {Function} onSubmit Event
  * @param maxLength {number} Textarea max length
  * @param securityGauge {boolean} add security gauge for input type password
- * @param validationRules {IValidationRules} Textarea max length
  * @param readOnly {boolean} Read only input
  * @param autoCapitalize {InputAutoCapitalize} Auto capitalize input
  * @param formatPattern {Function} custom formatter called on every value change
+ * @param iconNameLeft {IconName | IconNameValues} Icon on the left of the input
+ * @param iconNameRight {IconName | IconNameValues} Icon on the right of the input
+ * @param securityRules {ISecurityRules} Security rules for password type input
+ * @param validationRules {IValidationRules} Validation rules for password type input
+ * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
+ * @param onIconClick {Function} onIconClick Input Event
+ * @param accessibilityLabel {string} Accessibility label
+ * @param required {boolean} Required input
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param loading {boolean} Loading input
  * @param value {string} Value for Input
@@ -59,14 +65,9 @@ interface IconWrapper {
  * @param onMouseLeave {Function} onMouseLeave Input Event
  * @param onKeyPress {Function} onKeyPress Input Event
  * @param onKeyUp {Function} onKeyUp Input Event
- * @param onIconClick {Function} onIconClick Input Event
  * @param onClick {Function} onClick Input Event
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Textarea min length
- * @param accessibilityLabel {string} Accessibility label
- * @param required {boolean} Required input
- * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
 const Input = React.forwardRef<InputRef, InputProp>(
   (

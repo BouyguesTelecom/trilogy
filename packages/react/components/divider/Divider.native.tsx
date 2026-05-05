@@ -7,15 +7,15 @@ import { StyleSheet, View } from 'react-native'
 import { DividerNativeRef, DividerProps } from './DividerProps'
 
 /**
- * Divider Native Component
- * @param content {string} Add text content for Divider
+ * Divider Component
+ * @param content {string} Text content for Divider
  * @param unboxed {boolean} Full-width separator in another component
- * @param marginless {boolean} delete margin
+ * @param marginless {boolean} Remove margin
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * @param iconName {IconName} Custom icon for Divider
- * @param color {TrilogyColor} Border color of Divider
- * @param others
  */
-const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unboxed, marginless, iconName, ...others }, ref): JSX.Element => {
+const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unboxed, marginless, iconName, testId, ...others }, ref): JSX.Element => {
   const [textWidth, setTextWidth] = React.useState(0)
   const [containerWidth, setContainerWidth] = React.useState(0)
   const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
@@ -62,6 +62,7 @@ const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unb
   if (content || iconName) {
     return (
       <View
+      testID={testId}
       ref={ref}
         style={styles.container}
         onLayout={(event) => {
@@ -82,7 +83,7 @@ const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unb
     )
   }
 
-  return <View style={styles.divider} {...others} />
+  return <View testID={testId} style={styles.divider} {...others} />
 })
 
 Divider.displayName = ComponentName.Divider

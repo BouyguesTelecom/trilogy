@@ -7,6 +7,14 @@ import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
 
+/**
+ * PromptSubmit component - Submit button for prompt with streaming support
+ * @param status {PromptSubmitStatus} Current status of the submit button (streaming on/off)
+ * @param onSubmit {Function} Callback function when submit button is clicked
+ * @param onCancelSubmit {Function} Callback function when cancel/stop streaming is clicked
+ * @param disabled {boolean} Whether the submit button is disabled
+ * @param readOnly {boolean} Whether the submit button is read-only
+ */
 const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)

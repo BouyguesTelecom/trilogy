@@ -22,9 +22,9 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  */
 const Price = React.forwardRef<PriceRef, PriceProps>(
   (

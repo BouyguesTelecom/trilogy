@@ -11,10 +11,10 @@ import { ScrollViewProps, ScrollViewRef } from './ScrollViewProps'
  * ScrollView Component
  * @param children {React.ReactNode} ScrollView child
  * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
- * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param footer {React.ReactNode} Footer element fixed at the bottom
  * @param bounce {boolean} Bounce effect on scroll (iOS)

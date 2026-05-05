@@ -15,7 +15,6 @@ import { StepProps, StepRef } from './StepProps'
  * @param children {ReactNode} Stepper Step Children
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param iconName {IconName | IconNameValues} display icon
  * @param label {string} Step label
  */
 const Step = React.forwardRef<StepRef, StepProps>(

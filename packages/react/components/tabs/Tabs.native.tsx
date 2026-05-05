@@ -9,6 +9,7 @@ import { View } from 'react-native'
  * @param children {ReactNode} Children for tabs
  * @param activeIndex {number} default active tab index
  * @param inverted {boolean} Inverted style
+ * @param fullwidth {boolean} Fullwidth tabs
  */
 const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted, fullwidth }, ref) => {
   const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)

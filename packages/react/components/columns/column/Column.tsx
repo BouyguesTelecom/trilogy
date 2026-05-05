@@ -10,11 +10,10 @@ import React from 'react'
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
- * @param verticalCentered {boolean} Vertical center Column item
- * @param centered {boolean} center Column item
  * @param children {React.ReactNode}
- * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param verticalAlign {AlignProps} Vertical alignment of column
  * @param narrow {boolean} Narrow column item
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param mobileSize {ColumnsSize} Apply => is-size-mobile
  * @param tabletSize {ColumnsSize} Apply => is-size-tablet
@@ -29,9 +28,7 @@ import React from 'react'
  * @param desktopOffset {ColumnsSize} Apply => is-offset-desktop
  * @param widescreenOffset {ColumnsSize} Apply => is-offset-widescreen
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
- * @param align { Alignable | AlignableValues} align content
  */
-
 const Column = React.forwardRef<ColumnRef, ColumnProps>(
   (
     {

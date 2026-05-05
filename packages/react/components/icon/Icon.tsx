@@ -21,11 +21,10 @@ import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
  * @param onClick {Function} onClick Event Icon
  * @param skeleton {boolean} Icon Skeleton
  * @param testId {string} Test Id for Test Integration
+ * @param align { Alignable | AlignableValues} align content
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
- * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param content {string} Text content for TextIcon
  */
 const Icon = React.forwardRef<IconRef, IconProps>(
   (

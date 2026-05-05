@@ -10,22 +10,20 @@ import { LinkProps, LinkRef } from './LinkProps'
 /**
  * Link Component
  * @param children {React.ReactNode} Content children for Link
- * @param href {string} Link URL
  * @param to {string} Use for router navigation
- * @param title {string} Title attribute
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label
  * @param iconName {IconName} Adding Icon to Link
  * @param inverted {boolean} Inverted link color
- * @param inline {boolean} Inline link
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  * @param routerLink {React.ElementType} Custom Router Link component
  * @param blank {boolean} Link target blank
- * @param rel {string} Relationship between the current document and the linked document
  * @param small {boolean} Small link
+ * @param href {string} Link URL
+ * @param title {string} Title attribute
  */
 const Link = React.forwardRef<LinkRef, LinkProps>(
   (

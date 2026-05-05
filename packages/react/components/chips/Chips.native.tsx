@@ -15,10 +15,10 @@ import { ChipsContext } from './list/ChipsList.native'
  * @param onClick {Function} onClick Event for all Chips
  * @param active {boolean} active Render Chips Active
  * @param disabled {boolean} Disabled chips
+ * @param testId {string} Test Id for Test Integration
  */
-
 const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
-  ({ children, onClick, disabled, active, ...others }, ref): JSX.Element => {
+  ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)
 
@@ -54,6 +54,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
 
     return (
       <TouchableOpacity
+        testID={testId}
         ref={ref}
         disabled={disabled}
         style={styles.chips}

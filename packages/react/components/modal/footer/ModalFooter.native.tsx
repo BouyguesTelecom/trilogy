@@ -10,8 +10,10 @@ import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
 /**
  * Modal Footer Component
  * @param children {React.ReactNode}
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
-const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(({ children, ...others }, ref): JSX.Element => {
+const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(({ children, testId, ...others }, ref): JSX.Element => {
   const { setIsFooter } = React.useContext(ModalContext)
 
   React.useEffect(() => {
@@ -23,7 +25,7 @@ const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(({ 
   }, [])
 
   return (
-    <View ref={ref} style={[styles.container]} {...others}>
+    <View ref={ref} style={[styles.container]} testID={testId} {...others}>
       <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
         {(typeof children === 'string' && (
           <Title level={TitleLevels.THREE} style={styles.title}>

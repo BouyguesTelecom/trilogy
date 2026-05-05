@@ -19,15 +19,20 @@ const staticStyles = StyleSheet.create({
 })
 
 /**
- * Columns Native Component
+ * Columns Component
+ * @param scrollable {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
- * @param centered {boolean} Center columns
- * @param verticalCentered {boolean} Vertical centered columns
- * @param scrollable {boolean} Makes columns vertically scrollable.
+ * @param marginless {boolean} delete margin
+ * @param testId {string} Test Id for Test Integration
+ * @param fullBleed {boolean} Full Bleed Columns
+ * @param fullheight {boolean} Full Height Columns
  * @param gap {GapSize} Gap between columns
+ * @param align {JustifyProps} Horizontal alignment of columns
+ * @param verticalAlign {AlignProps} Vertical alignment of columns
+ * @param id {string} Custom id attribute
  */
 const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
-  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, ...others }, ref): JSX.Element => {
+  ({ children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, testId, ...others }, ref): JSX.Element => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
 
@@ -75,6 +80,7 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
       <ColumnsContext.Provider value={contextValue}>
         {!scrollable && (
           <View
+            testID={testId}
             ref={ref}
             onLayout={onLayoutHandler}
             style={[

@@ -13,11 +13,11 @@ import { SectionProps, SectionRef } from './SectionProps'
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background image
  * @param inverted {boolean} Inverted Section Color
- * @param skeleton {boolean} Loading skeleton state
- * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param skeleton {boolean} Loading skeleton state
+ * @param testId {string} Test Id for Test Integration
  */
 const Section = React.forwardRef<SectionRef, SectionProps>(
   ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, testId, ...others }, ref) => {

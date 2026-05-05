@@ -16,8 +16,8 @@ import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './Prompt
  * @param disabled {boolean} Whether the submit button is disabled
  * @param readOnly {boolean} Whether the submit button is read-only
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
- * @param testId {string} Test Id for Test Integration
- * @param accessibilityLabel {string} Accessibility label
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
   (

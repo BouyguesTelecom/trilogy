@@ -14,13 +14,14 @@ import { TypographyColor } from '@/objects/Typography'
  * Checkbox List Component
  * @param children {ReactNode} CheckboxList children
  * @param label {string} Label for the CheckboxList group
- * @param align {JustifyProps} Align checkboxes within the list
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param align {boolean} align Checkboxes
  * @param verticalDesktop {boolean} Vertical Checkboxes
  * @param horizontalMobile {boolean} Expect mobile screen
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
   ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, testId, ...others }, ref): JSX.Element => {

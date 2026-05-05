@@ -11,15 +11,19 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
 
 /**
  * Progress Radial component
- * @param percent {number} Progress percent
  * @param label {string} Custom label
  * @param description {string} Custom description
- * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
- * @param full {boolean} Full progressRadial
- * @param disk {boolean} Disk ProgressRadial
- * @param secondValueColor {TrilogyColor} Second Progress status variant (SUCCESS|INFO|WARNING|ERROR|TERTIARY)
- * @param align {Alignable} Progress Radial Alignement
+ * @param children {React.ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
+ * @param secondValue {number} Second progress percent (for dual progress)
+ * @param small {boolean} Display small progress radial
+ * @param id {string} Custom id attribute
+ * @param value {number} Progress percent
+ * @param status {StatusState} Progress status variant (SUCCESS|INFO|WARNING|ERROR)
+ * @param full {boolean} Display full progress (100%)
+ * @param disk {boolean} Display progress as disk
+ * @param secondValueColor {TrilogyColor} Color of the second progress (for dual progress)
+ * @param align {Align} Alignment of the component (LEFT|CENTER|RIGHT)
  */
 const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(
   (

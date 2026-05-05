@@ -12,13 +12,12 @@ import { ComponentName } from '../enumsComponentsName'
  * @param content {string} Text content for Divider
  * @param unboxed {boolean} Full-width separator in another component
  * @param marginless {boolean} Remove margin
- * @param inverted {boolean} Inverted divider color
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  * @param iconName {IconName} Custom icon for Divider
- * @param color {TrilogyColor} Border color of Divider
+ * @param inverted {boolean} Inverted divider color
  */
 const Divider = React.forwardRef<DividerRef, DividerProps>(
   ({ className, id, unboxed, content, marginless, iconName, inverted, testId, ...others }, ref): JSX.Element => {

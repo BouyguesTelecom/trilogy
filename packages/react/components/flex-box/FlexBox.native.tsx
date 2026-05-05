@@ -8,19 +8,21 @@ import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
 import { FlexBoxContext } from './context'
 
 /**
- * FlexBox Component (React Native) - Flexible box layout container
+ * @beta
+ * FlexBox Component - Flexible box layout container
  * @param children {React.ReactNode} FlexBox child elements
  * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children (supports responsive values)
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
  * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: ...; tablet?: ...; desktop?: ... } } Justify content (supports responsive values)
- * @param scrollable {boolean} Enable horizontal scrolling
- * @param fullBleed {boolean} Expand to full screen width, bleeding past parent padding
+ * @param scrollable {boolean} Enable horizontal scrolling (overflow-x: auto)
  * @param fullheight {boolean} Full height (height: 100%)
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
 const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
-  ({ id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, ...others }, ref) => {
+  ({ id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, testId, ...others }, ref) => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
     const isValueDirection = typeof direction === 'string'
@@ -70,13 +72,14 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
         }}
       >
         {!scrollable && (
-          <View id={id} ref={ref} onLayout={onLayoutHandler} style={[styles.columns]} {...others}>
+          <View testID={testId} id={id} ref={ref} onLayout={onLayoutHandler} style={[styles.columns]} {...others}>
             {children}
           </View>
         )}
 
         {scrollable && (
           <View
+            testID={testId}
             id={id}
             onLayout={onLayoutHandler}
             style={{

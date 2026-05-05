@@ -44,7 +44,6 @@ const getFirstDayFocusable = () => {
  * @param minDate {string} Minimum selectable date (format: YYYY-MM-DD)
  * @param maxDate {string} Maximum selectable date (format: YYYY-MM-DD)
  * @param disabled {boolean} Disabled DatePicker
- * @param readOnly {boolean} Read only DatePicker
  * @param disabledDates {Date[]} List of disabled/unavailable dates
  * @param onChange {Function} Callback when date changes, receives date string (YYYY-MM-DD) or null
  * @param label {string} Label text for DatePicker
@@ -52,11 +51,11 @@ const getFirstDayFocusable = () => {
  * @param help {string} Help text shown below the field
  * @param required {boolean} Required field
  * @param status {DatePickerStatus} DatePicker status (SUCCESS | WARNING | ERROR | DEFAULT)
- * @param name {string} Name attribute
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param name {string} Name attribute
  */
 const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (

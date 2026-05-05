@@ -8,9 +8,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Modal Footer Component
  * @param children {React.ReactNode}
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
- * @param id
  */
 const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()

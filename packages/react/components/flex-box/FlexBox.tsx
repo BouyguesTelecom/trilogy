@@ -97,15 +97,16 @@ const getJustifyClassName = (justifyContent?: string) => {
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
  * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: ...; tablet?: ...; desktop?: ... } } Justify content (supports responsive values)
- * @param wrap { boolean | { mobile?: boolean; tablet?: boolean; desktop?: boolean } } Wrap flex content (supports responsive values)
  * @param scrollable {boolean} Enable horizontal scrolling (overflow-x: auto)
- * @param fullBleed {boolean} Expand to full screen width, bleeding past parent padding
  * @param fullheight {boolean} Full height (height: 100%)
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param mobile {boolean} Apply mobile-specific layout class
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param wrap { boolean | { mobile?: boolean; tablet?: boolean; desktop?: boolean } } Wrap flex content (supports responsive values)
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, testId, ...others }, ref) => {

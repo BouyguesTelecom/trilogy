@@ -14,16 +14,16 @@ import { ComponentName } from '../enumsComponentsName'
  * @param iconName {IconName | IconNameValues} Icon to display inside the button
  * @param accessibilityLabel {string} Accessibility label
  * @param onClick {ClickEvent} Click event handler
- * @param fixed {boolean} Fixed positioning (true by default)
  * @param top {number} Top position offset
  * @param bottom {number} Bottom position offset
  * @param left {number} Left position offset
  * @param right {number} Right position offset
  * @param disabled {boolean} Disabled state
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
+ * @param fixed {boolean} Fixed positioning (true by default)
  */
 const Fab = React.forwardRef<FabRef, FabProps>(({
   children,

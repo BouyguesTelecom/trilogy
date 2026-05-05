@@ -10,12 +10,16 @@ import React from 'react'
 
 /**
  * Columns Component
- * @param centered {boolean} Center columns
- * @param verticalCentered {boolean} Vertical centered columns
- * @param marginSize {ColumnsSize} Delete margins between columns with Size
  * @param scrollable {boolean} Make colomns scrollable to vertical
  * @param children {React.ReactNode}
  * @param marginless {boolean} delete margin
+ * @param testId {string} Test Id for Test Integration
+ * @param fullBleed {boolean} Full Bleed Columns
+ * @param fullheight {boolean} Full Height Columns
+ * @param gap {GapSize} Gap between columns
+ * @param align {JustifyProps} Horizontal alignment of columns
+ * @param verticalAlign {AlignProps} Vertical alignment of columns
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param multiline {boolean} Multiline Columns
  * @param className {string} Additional CSS Classes

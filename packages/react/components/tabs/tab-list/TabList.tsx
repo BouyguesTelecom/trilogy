@@ -13,11 +13,11 @@ import { TabsContext } from '../context'
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
- * @param className
- * @param id
- * @param testId
- * @param align
- * @param others
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param testId {string} Test Id for Test Integration
+ * @param align {string} Alignment of the tabs
  */
 const TabList = React.forwardRef<TabListRef, TabListProps>(
   ({ children, className, id, testId, align, ...others }, ref) => {

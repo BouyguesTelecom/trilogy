@@ -11,9 +11,9 @@ import { is } from '@/services/classify'
  * Container Component
  * @param children {React.ReactNode} Container child elements
  * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
  * @param medium {boolean} Set medium container width
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(

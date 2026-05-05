@@ -13,9 +13,9 @@ import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
  * @param placeholder {string} Placeholder text
  * @param disabled {boolean} Whether the textarea is disabled
  * @param readOnly {boolean} Whether the textarea is read-only
- * @param className {string} Additional CSS classes (ONLY FOR WEB)
- * @param testId {string} Test Id for Test Integration
- * @param accessibilityLabel {string} Accessibility label
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
   ({ className, value, onChange, disabled, readOnly, ...others }, ref) => {

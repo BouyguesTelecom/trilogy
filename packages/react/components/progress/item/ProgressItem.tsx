@@ -10,13 +10,15 @@ import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
 /**
  * Progress Item component - Only if stacked
  * @param percent {number} Progress percent
+ * @param children {React.ReactNode}
+ * -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS classes
  * @param minPercent {number} Default min percent is 100
  * @param maxPercent {number} Default max percent is 100
  * @param status {StatusProps} Progress alert variant (SUCCESS|INFO|WARNING|ERROR)
- * @param children {React.ReactNode}
  * @param accessibilityLabel {string} Accessibility label
- * -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS classes
+ * -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param style {ViewStyle} Custom styles for the progress item
  */
 const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
   (

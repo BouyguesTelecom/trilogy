@@ -15,7 +15,8 @@ import { StickerNativeRef, StickerProps } from './StickerProps'
  * @param hat {boolean} Hat Sticker ( for box )
  * @param outlined {boolean} Outlined sticker
  * @param iconName {IconName} Icon
- * @param others
+ * @param label {string} Sticker label text
+ * @param accessibilityLabel {string} Accessibility label
  */
 const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
   ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {

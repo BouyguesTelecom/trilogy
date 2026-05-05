@@ -86,11 +86,15 @@ const formatTranslation = (translation: string, x: string, y: string) => {
  * @param onCompleted {Function} Return code input string
  * @param onChange {Function} onChange Input return current code
  * @param onFocus {Function} onFocus return if focused opt
- * @param autoFocus {boolean} Should auto focus otp
  * @param label {string} Label for OTP
- * @param help {string} error message to display
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
+ * @param autoFocus {boolean} Should auto focus otp
+ * @param help {string} error message to display
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param activated {boolean} Activated OTP
  */
 const Otp = React.forwardRef<OtpRef, OtpProps>(
   (

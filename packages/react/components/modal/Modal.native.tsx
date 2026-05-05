@@ -28,12 +28,15 @@ const ANIMATION_DURATION = 300
 /**
  * Modal Component
  * @param active {boolean} Activated Modal
- * @param title {string} Title Modal
- * @param onClose {Function} Additional close custom function
- * @param onOpen {Function} Additional open custom function
- * @param children {React.ReactNode}
- * @param onModalHide {Function} Callback on Hide
- * @param unClosable {boolean} unClosable Native Modal
+ * @param title {string} Modal title
+ * @param children {React.ReactNode} Modal content
+ * @param trigger {React.ReactNode} Element that triggers the modal opening
+ * @param onClose {Function} Callback when modal closes
+ * @param unClosable {boolean} Prevent modal from being closed by the user
+ * @param hideCloseButton {boolean} Hide the close button
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param onModalHide {Function} Callback after modal is fully hidden
  */
 const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
   (
@@ -46,6 +49,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       unClosable = false,
       trigger,
       title,
+      testId,
       ...others
     },
     ref,
@@ -134,6 +138,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       <ModalContext.Provider value={{ scrollViewRef, handleOnScroll, isFooter, setIsFooter }}>
         {trigger}
         <RNModal
+          testID={testId}
           visible={visible}
           transparent
           animationType='none'

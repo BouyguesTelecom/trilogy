@@ -10,12 +10,13 @@ import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
 /**
  * Pagination Component
  * @param length {number} Number of pages
- * @param defaultPage {number} Current default active page (default is 1)
- * @param pageSize {number} Element per page (default is 10)
- * @param onClick {Function} Return pagination object
+ * @param defaultPage {number} Default active page (default: 1)
+ * @param onClick {Function} Callback returning the pagination object
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
-  ({ length, defaultPage = 1, onClick, ...others }, ref): JSX.Element => {
+  ({ length, defaultPage = 1, onClick, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
     const prevCurrentPage = useRef<number>(currentPage)
@@ -113,7 +114,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
     })
 
     return (
-      <View ref={ref} style={styles.container} {...others}>
+      <View ref={ref} style={styles.container} testID={testId} {...others}>
         <TouchableOpacity
           onPress={() => {
             if (currentPage !== 1) {

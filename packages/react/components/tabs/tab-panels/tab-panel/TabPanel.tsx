@@ -10,9 +10,10 @@ import React from 'react'
 /**
  * Tab Panel Component
  * @param children {ReactChild} React Child Element
- * @param className
- * @param testId
- * @param others
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param id {string} Custom id attribute
+ * @param className {string} Additional CSS Classes
  */
 const TabPanel = React.forwardRef<TabPanelRef, TabPanelProps>(({ children, className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
