@@ -47,6 +47,8 @@ $fade-colors: (
 @function getColor( $name ) {
    @if global-variable-exists(suffix-theme) {
     @return var(--color-#{nth(map-get($colors, $name), 2)}-#{$suffix-theme});
+  } @else if $name == 'white' {
+    @return var(--color-white);
   } @else {
     @return var(--color-#{nth(map-get($colors,$name),2)});
   }
@@ -83,4 +85,9 @@ $colors-brand-functionnal: (
 
 $colors-feedback: (
   'success', 'error', 'warning', 'info'
+);
+
+
+$colors-all: (
+   "white",  "main",  "main-fade" , "accent",  "accent-fade",  "font", "font-placeholder", "success", "success-fade", "info", "info-fade", "warning", "warning-fade", "error", "error-fade", "disabled", "disabled-fade", "neutral", "neutral-fade", "stroke", "stroke-fade"
 );

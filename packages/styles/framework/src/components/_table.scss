@@ -131,6 +131,20 @@
       border-width: 0 0 1px;
       color: getColor('font');
     }
+
+    &[class*="has-background"] {
+      th {
+        background-color: transparent;
+      }
+    }
+    
+    @each $name in $colors-all {
+      &.is-#{$name} tr {
+        th {
+          color: getColor($name);
+        }
+      }
+    }
   }
 
   tfoot {
