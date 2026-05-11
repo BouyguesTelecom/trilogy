@@ -1,6 +1,5 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '../enumsComponentsName'
@@ -60,11 +59,11 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     React.useEffect(() => {
       if (refTrack.current) {
         const track = refTrack.current as HTMLElement
-        track.style.background = `linear-gradient(to right, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${
+        track.style.background = `linear-gradient(to right, var(--color-main-fade) ${
           (cursorMin / max) * 100
-        }% , ${getColorStyle(TrilogyColor.MAIN)} ${(cursorMin / max) * 100}% , ${getColorStyle(TrilogyColor.MAIN)} ${
+        }% , var(--color-main) ${(cursorMin / max) * 100}% , var(--color-main) ${
           (cursorMax / max) * 100
-        }%, ${getColorStyle(TrilogyColor.MAIN_FADE)} ${(cursorMax / max) * 100}%) `
+        }%, var(--color-main-fade) ${(cursorMax / max) * 100}%) `
       }
     }, [cursorMin, cursorMax])
 
