@@ -71,7 +71,7 @@ const meta: Meta<InputProp> = {
       },
       description: {
         component:
-          'A comprehensive input component story covering labels, icons, statuses, formatting, and validation.',
+          ' ',
       },
     },
   },
