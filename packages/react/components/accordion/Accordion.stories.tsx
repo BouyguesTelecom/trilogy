@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import Accordion from './Accordion'
+import AccordionComponent from './Accordion'
 import AccordionItem from './item'
 import AccordionBody from './item/body'
 import AccordionHeader from './item/header'
 import type { AccordionProps } from './AccordionProps'
 
-Accordion.displayName = 'Accordion'
+AccordionComponent.displayName = 'Accordion'
 
-const All = (props: AccordionProps): JSX.Element => <Accordion {...props} />
-All.displayName = 'Accordion'
+const Accordion = (props: AccordionProps): JSX.Element => <AccordionComponent {...props} />
+Accordion.displayName = 'Accordion'
 
 
 interface AccordionStoryArgs {
@@ -21,7 +21,7 @@ interface AccordionStoryArgs {
 
 const meta: Meta<AccordionStoryArgs> = {
   title: 'Components/Accordion',
-  component: All,
+  component: Accordion,
   subcomponents: { AccordionItem, AccordionHeader, AccordionBody },
   tags: ['autodocs'],
   parameters: {
@@ -65,12 +65,12 @@ const meta: Meta<AccordionStoryArgs> = {
     body_children: "Detailed content of this accordion item.",
   },
   render: ({ item_open, item_disabled, header_children, body_children }) => (
-    <Accordion>
+    <AccordionComponent>
       <AccordionItem open={item_open} disabled={item_disabled}>
         <AccordionHeader>{header_children}</AccordionHeader>
         <AccordionBody>{body_children}</AccordionBody>
       </AccordionItem>
-    </Accordion>
+    </AccordionComponent>
   ),
 }
 
@@ -91,7 +91,7 @@ export const Disabled: Story = {
 
 export const MultipleItems: Story = {
   render: ({ item_open, item_disabled, header_children, body_children }) => (
-    <Accordion>
+    <AccordionComponent>
       <AccordionItem open={item_open} disabled={item_disabled}>
         <AccordionHeader>{header_children}</AccordionHeader>
         <AccordionBody>{body_children}</AccordionBody>
@@ -104,6 +104,6 @@ export const MultipleItems: Story = {
         <AccordionHeader>Third item</AccordionHeader>
         <AccordionBody>Content of the third item.</AccordionBody>
       </AccordionItem>
-    </Accordion>
+    </AccordionComponent>
   ),
 }

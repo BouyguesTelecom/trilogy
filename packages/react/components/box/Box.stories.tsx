@@ -1,20 +1,21 @@
-import { TrilogyColor } from '@/objects/facets/Color'
 import type { Meta, StoryObj } from '@storybook/react'
-import Box from './Box'
-import type { BoxProps } from './BoxProps'
+import React from 'react'
+import BoxComponent from './Box'
 import BoxContent from './content'
 import BoxFooter from './footer'
 import BoxHeader from './header'
 import BoxItem from './item'
+import type { BoxProps } from './BoxProps'
+import { TrilogyColor } from '@/objects/facets/Color'
 
-Box.displayName = 'Box'
+BoxComponent.displayName = 'Box'
 
-const BoxDocsComponent = (props: BoxProps): JSX.Element => (
-  <Box {...props}>
+const Box = (props: BoxProps): JSX.Element => (
+  <BoxComponent {...props}>
     <BoxContent>Box content</BoxContent>
-  </Box>
+  </BoxComponent>
 )
-BoxDocsComponent.displayName = 'Box'
+Box.displayName = 'Box'
 
 interface BoxStoryArgs {
   box_active: boolean
@@ -38,7 +39,7 @@ interface BoxStoryArgs {
 
 const meta: Meta<BoxStoryArgs> = {
   title: 'Components/Box',
-  component: BoxDocsComponent,
+  component: Box,
   subcomponents: { BoxContent, BoxHeader, BoxFooter, BoxItem },
   tags: ['autodocs'],
   parameters: {
@@ -194,7 +195,7 @@ const meta: Meta<BoxStoryArgs> = {
     footer_children,
     footer_backgroundColor,
   }) => (
-    <Box
+    <BoxComponent
       active={box_active}
       inverted={box_inverted}
       flat={box_flat}
@@ -205,9 +206,11 @@ const meta: Meta<BoxStoryArgs> = {
       highlighted={box_highlighted}
     >
       {header_enabled && <BoxHeader variant={header_variant}>{header_children}</BoxHeader>}
-      <BoxContent>{item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}</BoxContent>
+      <BoxContent>
+        {item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}
+      </BoxContent>
       {footer_enabled && <BoxFooter backgroundColor={footer_backgroundColor}>{footer_children}</BoxFooter>}
-    </Box>
+    </BoxComponent>
   ),
 }
 
