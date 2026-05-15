@@ -109,11 +109,6 @@ const meta: Meta<IconStoryArgs> = {
       description: 'Align icon in its container',
       table: { category: 'Icon' },
     },
-    id: { table: { disable: true } },
-    className: { table: { disable: true } },
-    testId: { table: { disable: true } },
-    accessibilityLabel: { table: { disable: true } },
-    onClick: { table: { disable: true } },
   },
   args: {
     icon_name: IconName.CHECK,
@@ -137,7 +132,7 @@ export const Circled: Story = {
   args: {
     icon_circled: true,
     icon_backgroundColor: TrilogyColor.ACCENT,
-    icon_color: TrilogyColor.WHITE,
+    icon_color: TrilogyColor.BACKGROUND,
   },
 }
 

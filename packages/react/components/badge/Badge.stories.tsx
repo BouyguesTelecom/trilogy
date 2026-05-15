@@ -50,7 +50,6 @@ const meta: Meta<BadgeProps> = {
     id: { table: { disable: true } },
     testId: { table: { disable: true } },
     className: { table: { disable: true } },
-    style: { table: { disable: true } },
     accessibilityLabel: { table: { disable: true } },
   },
   args: {

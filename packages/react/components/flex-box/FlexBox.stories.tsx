@@ -197,10 +197,6 @@ const meta: Meta<FlexBoxStoryArgs> = {
       description: 'Third item content',
       table: { category: 'FlexItem' },
     },
-    className: { table: { disable: true } },
-    id: { table: { disable: true } },
-    testId: { table: { disable: true } },
-    fullBleed: { table: { disable: true } },
   },
   args: {
     flex_gap: GapSize.FOUR,

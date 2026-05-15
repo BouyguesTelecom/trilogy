@@ -97,11 +97,6 @@ const meta: Meta<ImageStoryArgs> = {
       description: 'Image alignment',
       table: { category: 'Image' },
     },
-    id: { table: { disable: true } },
-    className: { table: { disable: true } },
-    testId: { table: { disable: true } },
-    onClick: { table: { disable: true } },
-    cache: { table: { disable: true } },
   },
   args: {
     image_src: 'https://picsum.photos/id/1/1500/600',

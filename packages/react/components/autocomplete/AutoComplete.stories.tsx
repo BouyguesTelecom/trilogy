@@ -164,13 +164,9 @@ const meta: Meta<AutoCompletePropsWeb> = {
     keyboardType: { table: { disable: true } },
     keyType: { table: { disable: true } },
     onSubmit: { table: { disable: true } },
-    onKeyUp: { table: { disable: true } },
-    onKeyPress: { table: { disable: true } },
-    onClick: { table: { disable: true } },
     id: { table: { disable: true } },
     testId: { table: { disable: true } },
     className: { table: { disable: true } },
-    style: { table: { disable: true } },
     accessibilityLabel: { table: { disable: true } },
   },
   args: {
