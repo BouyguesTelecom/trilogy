@@ -1,9 +1,9 @@
 import type { Decorator, Preview } from '@storybook/react'
 import { TrilogyProvider } from '@trilogy-ds/react/context/provider'
-import '@trilogy-ds/styles/dist/default/trilogy.css'
+import '@trilogy-ds/styles/dist/default/trilogy-mangled.css'
 
 const withTrilogyProvider: Decorator = (Story) => (
-  <TrilogyProvider>
+  <TrilogyProvider mangled>
     <div style={{ padding: '1.5rem' }}>
       <Story />
     </div>

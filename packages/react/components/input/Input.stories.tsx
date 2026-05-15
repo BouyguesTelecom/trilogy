@@ -13,31 +13,6 @@ import {
   InputType,
 } from './InputEnum'
 
-const InputStory = (args: InputProp): JSX.Element => {
-  const [currentValue, setCurrentValue] = React.useState(args.value ?? args.defaultValue ?? '')
-
-  React.useEffect(() => {
-    setCurrentValue(args.value ?? args.defaultValue ?? '')
-  }, [args.value, args.defaultValue])
-
-  const controlledValue = args.value !== undefined ? currentValue : undefined
-
-  return (
-    <div style={{ maxWidth: 560, padding: 24 }}>
-      <InputComponent
-        {...args}
-        value={controlledValue}
-        onChange={(event) => {
-          setCurrentValue(event.inputValue)
-          args.onChange?.(event)
-        }}
-      />
-    </div>
-  )
-}
-
-InputStory.displayName = 'InputStory'
-
 const meta: Meta<InputProp> = {
   title: 'Components/Input',
   component: InputComponent,
@@ -91,6 +66,9 @@ const meta: Meta<InputProp> = {
       ],
     },
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component:
           'A comprehensive input component story covering labels, icons, statuses, formatting, and validation.',
@@ -336,7 +314,6 @@ const meta: Meta<InputProp> = {
     keyType: 'default',
     securityGauge: false,
   },
-  render: (args) => <InputStory {...args} />,
 }
 
 export default meta
