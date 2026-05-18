@@ -5,26 +5,20 @@ import PaginationComponent from './Pagination'
 PaginationComponent.displayName = 'Pagination'
 
 interface PaginationStoryArgs {
-  pagination_length: number
-  pagination_defaultPage: number
-  pagination_id: string
-  pagination_className: string
-  pagination_testId: string
+  length: number
+  defaultPage: number
+  id: string
+  className: string
+  testId: string
 }
 
-const Pagination = ({
-  pagination_length,
-  pagination_defaultPage,
-  pagination_id,
-  pagination_className,
-  pagination_testId,
-}: PaginationStoryArgs): JSX.Element => (
+const Pagination = ({ length, defaultPage, id, className, testId }: PaginationStoryArgs): JSX.Element => (
   <PaginationComponent
-    length={pagination_length}
-    defaultPage={pagination_defaultPage}
-    id={pagination_id || undefined}
-    className={pagination_className || undefined}
-    testId={pagination_testId || undefined}
+    length={length}
+    defaultPage={defaultPage}
+    id={id || undefined}
+    className={className || undefined}
+    testId={testId || undefined}
     onClick={() => undefined}
   />
 )
@@ -37,46 +31,58 @@ const meta: Meta<PaginationStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: '',
       },
     },
   },
   argTypes: {
-    pagination_length: {
+    length: {
       control: { type: 'number', min: 1, max: 100, step: 1 },
       name: 'length',
       description: 'Number of pages',
     },
-    pagination_defaultPage: {
+    defaultPage: {
       control: { type: 'number', min: 1, max: 100, step: 1 },
       name: 'defaultPage',
       description: 'Default active page',
     },
-    pagination_id: {
+    id: {
       control: 'text',
       name: 'id',
       description: 'Custom html id',
     },
-    pagination_className: {
+    className: {
       control: 'text',
       name: 'className',
       description: 'Additional CSS classes',
     },
-    pagination_testId: {
+    testId: {
       control: 'text',
       name: 'testId',
       description: 'Testing identifier',
     },
   },
   args: {
-    pagination_length: 10,
-    pagination_defaultPage: 1,
-    pagination_id: '',
-    pagination_className: '',
-    pagination_testId: '',
+    length: 10,
+    defaultPage: 1,
+    id: '',
+    className: '',
+    testId: '',
   },
-  render: (args) => <Pagination {...args} />,
+  render: ({ length, defaultPage, id, className, testId }) => (
+    <PaginationComponent
+      length={length}
+      defaultPage={defaultPage}
+      id={id || undefined}
+      className={className || undefined}
+      testId={testId || undefined}
+      onClick={() => undefined}
+    />
+  ),
 }
 
 export default meta
@@ -86,24 +92,24 @@ export const Default: Story = {}
 
 export const DefaultPageThree: Story = {
   args: {
-    pagination_defaultPage: 3,
+    defaultPage: 3,
   },
 }
 
 export const FivePages: Story = {
   args: {
-    pagination_length: 5,
+    length: 5,
   },
 }
 
 export const WithSeoHref: Story = {
-  render: ({ pagination_length, pagination_defaultPage, pagination_id, pagination_className, pagination_testId }) => (
+  render: ({ length, defaultPage, id, className, testId }) => (
     <PaginationComponent
-      length={pagination_length}
-      defaultPage={pagination_defaultPage}
-      id={pagination_id || undefined}
-      className={pagination_className || undefined}
-      testId={pagination_testId || undefined}
+      length={length}
+      defaultPage={defaultPage}
+      id={id || undefined}
+      className={className || undefined}
+      testId={testId || undefined}
       href={(page) => `?page=${page}`}
       onClick={() => undefined}
     />

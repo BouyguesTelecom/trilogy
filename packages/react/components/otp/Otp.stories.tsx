@@ -5,41 +5,41 @@ import OtpComponent from './Otp'
 OtpComponent.displayName = 'Otp'
 
 interface OtpStoryArgs {
-  otp_value?: string
-  otp_length: number
-  otp_disabled: boolean
-  otp_error: boolean
-  otp_help?: string
-  otp_label?: string
-  otp_autoFocus: boolean
-  otp_id?: string
-  otp_className?: string
-  otp_testId?: string
+  value?: string
+  length: number
+  disabled: boolean
+  error: boolean
+  help?: string
+  label?: string
+  autoFocus: boolean
+  id?: string
+  className?: string
+  testId?: string
 }
 
 const Otp = ({
-  otp_value,
-  otp_length,
-  otp_disabled,
-  otp_error,
-  otp_help,
-  otp_label,
-  otp_autoFocus,
-  otp_id,
-  otp_className,
-  otp_testId,
+  value,
+  length,
+  disabled,
+  error,
+  help,
+  label,
+  autoFocus,
+  id,
+  className,
+  testId,
 }: OtpStoryArgs): JSX.Element => (
   <OtpComponent
-    value={otp_value}
-    length={otp_length}
-    disabled={otp_disabled}
-    error={otp_error}
-    help={otp_help}
-    label={otp_label}
-    autoFocus={otp_autoFocus}
-    id={otp_id}
-    className={otp_className}
-    testId={otp_testId}
+    value={value}
+    length={length}
+    disabled={disabled}
+    error={error}
+    help={help}
+    label={label}
+    autoFocus={autoFocus}
+    id={id}
+    className={className}
+    testId={testId}
     onChange={() => undefined}
     onCompleted={() => undefined}
     onFocus={() => undefined}
@@ -54,76 +54,95 @@ const meta: Meta<OtpStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: '',
       },
     },
   },
   argTypes: {
-    otp_value: {
+    value: {
       control: 'text',
       name: 'value',
       description: 'Current OTP value',
     },
-    otp_length: {
+    length: {
       control: { type: 'number', min: 1, max: 12, step: 1 },
       name: 'length',
       description: 'Number of OTP digits',
     },
-    otp_disabled: {
+    disabled: {
       control: 'boolean',
       name: 'disabled',
       description: 'Disable all OTP inputs',
     },
-    otp_error: {
+    error: {
       control: 'boolean',
       name: 'error',
       description: 'Display error style',
     },
-    otp_help: {
+    help: {
       control: 'text',
       name: 'help',
       description: 'Helper or error message',
     },
-    otp_label: {
+    label: {
       control: 'text',
       name: 'label',
       description: 'Label displayed above inputs',
     },
-    otp_autoFocus: {
+    autoFocus: {
       control: 'boolean',
       name: 'autoFocus',
       description: 'Auto focus first input',
     },
-    otp_id: {
+    id: {
       control: 'text',
       name: 'id',
       description: 'Custom html id',
     },
-    otp_className: {
+    className: {
       control: 'text',
       name: 'className',
       description: 'Custom CSS classes',
     },
-    otp_testId: {
+    testId: {
       control: 'text',
       name: 'testId',
       description: 'Testing identifier',
     },
   },
   args: {
-    otp_value: '',
-    otp_length: 6,
-    otp_disabled: false,
-    otp_error: false,
-    otp_help: '',
-    otp_label: 'Set your OTP',
-    otp_autoFocus: false,
-    otp_id: '',
-    otp_className: '',
-    otp_testId: '',
+    value: '',
+    length: 6,
+    disabled: false,
+    error: false,
+    help: '',
+    label: 'Set your OTP',
+    autoFocus: false,
+    id: '',
+    className: '',
+    testId: '',
   },
-  render: (args) => <Otp {...args} />,
+  render: ({ value, length, disabled, error, help, label, autoFocus, id, className, testId }) => (
+    <OtpComponent
+      value={value}
+      length={length}
+      disabled={disabled}
+      error={error}
+      help={help}
+      label={label}
+      autoFocus={autoFocus}
+      id={id}
+      className={className}
+      testId={testId}
+      onChange={() => undefined}
+      onCompleted={() => undefined}
+      onFocus={() => undefined}
+    />
+  ),
 }
 
 export default meta
@@ -133,29 +152,29 @@ export const Default: Story = {}
 
 export const Prefilled: Story = {
   args: {
-    otp_value: '123456',
+    value: '123456',
   },
 }
 
 export const Disabled: Story = {
   args: {
-    otp_disabled: true,
-    otp_label: 'OTP Disabled',
+    disabled: true,
+    label: 'OTP Disabled',
   },
 }
 
 export const Error: Story = {
   args: {
-    otp_error: true,
-    otp_help: 'This is an error message',
-    otp_label: 'OTP Error',
+    error: true,
+    help: 'This is an error message',
+    label: 'OTP Error',
   },
 }
 
 export const LengthFour: Story = {
   args: {
-    otp_length: 4,
-    otp_label: 'OTP code size 4',
+    length: 4,
+    label: 'OTP code size 4',
   },
 }
 

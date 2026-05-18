@@ -9,47 +9,47 @@ import { ModalSize } from './ModalEnum'
 ModalComponent.displayName = 'Modal'
 
 interface ModalStoryArgs {
-  modal_title: string
-  modal_size?: ModalSize
-  modal_panel: boolean
-  modal_unClosable: boolean
-  modal_hideCloseButton: boolean
-  modal_accessibilityLabel: string
-  modal_id?: string
-  modal_className?: string
-  modal_testId?: string
-  body_text: string
-  footer_primaryLabel: string
-  footer_secondaryLabel: string
+  title: string
+  size?: ModalSize
+  panel: boolean
+  unClosable: boolean
+  hideCloseButton: boolean
+  accessibilityLabel: string
+  id?: string
+  className?: string
+  testId?: string
+  bodyChildren: string
+  footerPrimaryChildren: string
+  footerSecondaryChildren: string
 }
 
 const Modal = ({
-  modal_title,
-  modal_size,
-  modal_panel,
-  modal_unClosable,
-  modal_hideCloseButton,
-  modal_accessibilityLabel,
-  modal_id,
-  modal_className,
-  modal_testId,
-  body_text,
-  footer_primaryLabel,
-  footer_secondaryLabel,
+  title,
+  size,
+  panel,
+  unClosable,
+  hideCloseButton,
+  accessibilityLabel,
+  id,
+  className,
+  testId,
+  bodyChildren,
+  footerPrimaryChildren,
+  footerSecondaryChildren,
 }: ModalStoryArgs): JSX.Element => {
   const [open, setOpen] = React.useState(false)
 
   return (
     <ModalComponent
-      title={modal_title}
-      size={modal_size}
-      panel={modal_panel}
-      unClosable={modal_unClosable}
-      hideCloseButton={modal_hideCloseButton}
-      accessibilityLabel={modal_accessibilityLabel}
-      id={modal_id}
-      className={modal_className}
-      testId={modal_testId}
+      title={title}
+      size={size}
+      panel={panel}
+      unClosable={unClosable}
+      hideCloseButton={hideCloseButton}
+      accessibilityLabel={accessibilityLabel}
+      id={id}
+      className={className}
+      testId={testId}
       active={open}
       onClose={() => setOpen(false)}
       trigger={
@@ -58,13 +58,13 @@ const Modal = ({
         </Button>
       }
     >
-      <ModalBody>{body_text}</ModalBody>
+      <ModalBody>{bodyChildren}</ModalBody>
       <ModalFooter>
         <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpen(false)}>
-          {footer_secondaryLabel}
+          {footerSecondaryChildren}
         </Button>
         <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpen(false)}>
-          {footer_primaryLabel}
+          {footerPrimaryChildren}
         </Button>
       </ModalFooter>
     </ModalComponent>
@@ -80,80 +80,83 @@ const meta: Meta<ModalStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: '',
       },
     },
   },
   argTypes: {
-    modal_title: {
+    title: {
       control: 'text',
       name: 'title',
       description: 'Modal title',
       table: { category: 'Modal' },
     },
-    modal_size: {
+    size: {
       control: 'select',
       options: [undefined, ...Object.values(ModalSize)],
       name: 'size',
       description: 'Modal size',
       table: { category: 'Modal' },
     },
-    modal_panel: {
+    panel: {
       control: 'boolean',
       name: 'panel',
       description: 'Display as side panel',
       table: { category: 'Modal' },
     },
-    modal_unClosable: {
+    unClosable: {
       control: 'boolean',
       name: 'unClosable',
       description: 'Prevent user from closing the modal via overlay or escape',
       table: { category: 'Modal' },
     },
-    modal_hideCloseButton: {
+    hideCloseButton: {
       control: 'boolean',
       name: 'hideCloseButton',
       description: 'Hide close button in header',
       table: { category: 'Modal' },
     },
-    modal_accessibilityLabel: {
+    accessibilityLabel: {
       control: 'text',
       name: 'accessibilityLabel',
       description: 'Accessible label for close action',
       table: { category: 'Modal' },
     },
-    modal_id: {
+    id: {
       control: 'text',
       name: 'id',
       description: 'Custom html id',
       table: { category: 'Modal' },
     },
-    modal_className: {
+    className: {
       control: 'text',
       name: 'className',
       description: 'Custom CSS classes',
       table: { category: 'Modal' },
     },
-    modal_testId: {
+    testId: {
       control: 'text',
       name: 'testId',
       description: 'Testing identifier',
       table: { category: 'Modal' },
     },
-    body_text: {
+    bodyChildren: {
       control: 'text',
       name: 'children',
       description: 'Content rendered inside ModalBody (required)',
       table: { category: 'ModalBody' },
     },
-    footer_primaryLabel: {
+    footerPrimaryChildren: {
       control: 'text',
       name: 'children',
       description: 'Primary button label inside ModalFooter',
       table: { category: 'ModalFooter' },
     },
-    footer_secondaryLabel: {
+    footerSecondaryChildren: {
       control: 'text',
       name: 'children',
       description: 'Secondary button label inside ModalFooter',
@@ -161,20 +164,66 @@ const meta: Meta<ModalStoryArgs> = {
     },
   },
   args: {
-    modal_title: 'Modal title',
-    modal_size: ModalSize.MEDIUM,
-    modal_panel: false,
-    modal_unClosable: false,
-    modal_hideCloseButton: false,
-    modal_accessibilityLabel: 'Close',
-    modal_id: '',
-    modal_className: '',
-    modal_testId: '',
-    body_text: 'This is the modal body content.',
-    footer_primaryLabel: 'Confirm',
-    footer_secondaryLabel: 'Cancel',
+    title: 'Modal title',
+    size: ModalSize.MEDIUM,
+    panel: false,
+    unClosable: false,
+    hideCloseButton: false,
+    accessibilityLabel: 'Close',
+    id: '',
+    className: '',
+    testId: '',
+    bodyChildren: 'This is the modal body content.',
+    footerPrimaryChildren: 'Confirm',
+    footerSecondaryChildren: 'Cancel',
   },
-  render: (args) => <Modal {...args} />,
+  render: ({
+    title,
+    size,
+    panel,
+    unClosable,
+    hideCloseButton,
+    accessibilityLabel,
+    id,
+    className,
+    testId,
+    bodyChildren,
+    footerPrimaryChildren,
+    footerSecondaryChildren,
+  }) => {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <ModalComponent
+        title={title}
+        size={size}
+        panel={panel}
+        unClosable={unClosable}
+        hideCloseButton={hideCloseButton}
+        accessibilityLabel={accessibilityLabel}
+        id={id}
+        className={className}
+        testId={testId}
+        active={open}
+        onClose={() => setOpen(false)}
+        trigger={
+          <Button variant={ButtonVariant.PRIMARY} onClick={() => setOpen(true)}>
+            Open modal
+          </Button>
+        }
+      >
+        <ModalBody>{bodyChildren}</ModalBody>
+        <ModalFooter>
+          <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpen(false)}>
+            {footerSecondaryChildren}
+          </Button>
+          <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpen(false)}>
+            {footerPrimaryChildren}
+          </Button>
+        </ModalFooter>
+      </ModalComponent>
+    )
+  },
 }
 
 export default meta
@@ -184,37 +233,37 @@ export const Default: Story = {}
 
 export const Panel: Story = {
   args: {
-    modal_panel: true,
-    modal_size: ModalSize.LARGE,
+    panel: true,
+    size: ModalSize.LARGE,
   },
 }
 
 export const WithoutFooter: Story = {
   render: ({
-    modal_title,
-    modal_size,
-    modal_panel,
-    modal_unClosable,
-    modal_hideCloseButton,
-    modal_accessibilityLabel,
-    modal_id,
-    modal_className,
-    modal_testId,
-    body_text,
+    title,
+    size,
+    panel,
+    unClosable,
+    hideCloseButton,
+    accessibilityLabel,
+    id,
+    className,
+    testId,
+    bodyChildren,
   }) => {
     const [open, setOpen] = React.useState(false)
 
     return (
       <ModalComponent
-        title={modal_title}
-        size={modal_size}
-        panel={modal_panel}
-        unClosable={modal_unClosable}
-        hideCloseButton={modal_hideCloseButton}
-        accessibilityLabel={modal_accessibilityLabel}
-        id={modal_id}
-        className={modal_className}
-        testId={modal_testId}
+        title={title}
+        size={size}
+        panel={panel}
+        unClosable={unClosable}
+        hideCloseButton={hideCloseButton}
+        accessibilityLabel={accessibilityLabel}
+        id={id}
+        className={className}
+        testId={testId}
         active={open}
         onClose={() => setOpen(false)}
         trigger={
@@ -223,7 +272,7 @@ export const WithoutFooter: Story = {
           </Button>
         }
       >
-        <ModalBody>{body_text}</ModalBody>
+        <ModalBody>{bodyChildren}</ModalBody>
       </ModalComponent>
     )
   },
@@ -231,8 +280,8 @@ export const WithoutFooter: Story = {
 
 export const UnClosable: Story = {
   args: {
-    modal_unClosable: true,
-    modal_hideCloseButton: true,
+    unClosable: true,
+    hideCloseButton: true,
   },
 }
 

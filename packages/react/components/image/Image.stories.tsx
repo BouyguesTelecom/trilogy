@@ -1,41 +1,25 @@
 import { Alignable } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
 import ImageComponent from './Image'
 import type { ImageProps } from './ImageProps'
-import React from 'react'
 import { RadiusValues } from './ImageProps'
 
 ImageComponent.displayName = 'Image'
 
 interface ImageStoryArgs {
-  image_src: string
-  image_alt: string
-  image_width?: number
-  image_height?: number
-  image_circled: boolean
-  image_radius?: RadiusValues
-  image_align?: ImageProps['align']
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  circled: boolean
+  radius?: RadiusValues
+  align?: ImageProps['align']
 }
 
-const Image = ({
-  image_src,
-  image_alt,
-  image_width,
-  image_height,
-  image_circled,
-  image_radius,
-  image_align,
-}: ImageStoryArgs): JSX.Element => (
+const Image = ({ src, alt, width, height, circled, radius, align }: ImageStoryArgs): JSX.Element => (
   <div style={{ minHeight: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-    <ImageComponent
-      src={image_src}
-      alt={image_alt}
-      width={image_width}
-      height={image_height}
-      circled={image_circled}
-      radius={image_radius}
-      align={image_align}
-    />
+    <ImageComponent src={src} alt={alt} width={width} height={height} circled={circled} radius={radius} align={align} />
   </div>
 )
 
@@ -47,50 +31,53 @@ const meta: Meta<ImageStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: ' ',
       },
     },
   },
   argTypes: {
-    image_src: {
+    src: {
       control: 'text',
       name: 'src',
       description: 'Image source',
       table: { category: 'Image' },
     },
-    image_alt: {
+    alt: {
       control: 'text',
       name: 'alt',
       description: 'Alternative text',
       table: { category: 'Image' },
     },
-    image_width: {
+    width: {
       control: 'number',
       name: 'width',
       description: 'Image width',
       table: { category: 'Image' },
     },
-    image_height: {
+    height: {
       control: 'number',
       name: 'height',
       description: 'Image height',
       table: { category: 'Image' },
     },
-    image_circled: {
+    circled: {
       control: 'boolean',
       name: 'circled',
       description: 'Display image with circular crop',
       table: { category: 'Image' },
     },
-    image_radius: {
+    radius: {
       control: 'select',
       options: [undefined, ...Object.values(RadiusValues)],
       name: 'radius',
       description: 'Border radius size',
       table: { category: 'Image' },
     },
-    image_align: {
+    align: {
       control: 'select',
       options: [undefined, ...Object.values(Alignable)],
       name: 'align',
@@ -99,13 +86,13 @@ const meta: Meta<ImageStoryArgs> = {
     },
   },
   args: {
-    image_src: 'https://picsum.photos/id/1/1500/600',
-    image_alt: 'Sample landscape',
-    image_width: 320,
-    image_height: 160,
-    image_circled: false,
-    image_radius: RadiusValues.MEDIUM,
-    image_align: Alignable.ALIGNED_CENTER,
+    src: 'https://picsum.photos/id/1/1500/600',
+    alt: 'Sample landscape',
+    width: 320,
+    height: 160,
+    circled: false,
+    radius: RadiusValues.MEDIUM,
+    align: Alignable.ALIGNED_CENTER,
   },
 }
 
@@ -117,22 +104,22 @@ export const Default: Story = {}
 
 export const Circled: Story = {
   args: {
-    image_circled: true,
-    image_width: 180,
-    image_height: 180,
-    image_radius: undefined,
+    circled: true,
+    width: 180,
+    height: 180,
+    radius: undefined,
   },
 }
 
 export const Rounded: Story = {
   args: {
-    image_radius: RadiusValues.LARGE,
+    radius: RadiusValues.LARGE,
   },
 }
 
 export const Small: Story = {
   args: {
-    image_width: 180,
-    image_height: 100,
+    width: 180,
+    height: 100,
   },
 }

@@ -1,42 +1,42 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import * as React from 'react'
+import { Button } from '../button'
 import PopoverComponent from './Popover'
 import { PopoverArrowPosition, PopoverDirection } from './PopoverEnum'
-import { Button } from '../button'
 
 PopoverComponent.displayName = 'Popover'
 
 interface PopoverStoryArgs {
-  popover_children: string
-  popover_triggerLabel: string
-  popover_direction?: PopoverDirection
-  popover_active: boolean
-  popover_arrowPosition?: PopoverArrowPosition
-  popover_id: string
-  popover_className: string
-  popover_testId: string
+  children: string
+  triggerLabel: string
+  direction?: PopoverDirection
+  active: boolean
+  arrowPosition?: PopoverArrowPosition
+  id: string
+  className: string
+  testId: string
 }
 
 const Popover = ({
-  popover_children,
-  popover_triggerLabel,
-  popover_direction,
-  popover_active,
-  popover_arrowPosition,
-  popover_id,
-  popover_className,
-  popover_testId,
+  children,
+  triggerLabel,
+  direction,
+  active,
+  arrowPosition,
+  id,
+  className,
+  testId,
 }: PopoverStoryArgs): JSX.Element => (
   <PopoverComponent
-    direction={popover_direction}
-    active={popover_active}
-    arrowPosition={popover_arrowPosition}
-    id={popover_id || undefined}
-    className={popover_className || undefined}
-    testId={popover_testId || undefined}
-    trigger={<Button variant="PRIMARY">{popover_triggerLabel}</Button>}
+    direction={direction}
+    active={active}
+    arrowPosition={arrowPosition}
+    id={id || undefined}
+    className={className || undefined}
+    testId={testId || undefined}
+    trigger={<Button variant='PRIMARY'>{triggerLabel}</Button>}
   >
-    {popover_children}
+    {children}
   </PopoverComponent>
 )
 
@@ -48,66 +48,81 @@ const meta: Meta<PopoverStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: '',
       },
     },
   },
   argTypes: {
-    popover_children: {
+    children: {
       control: 'text',
       name: 'children',
       description: 'Popover content',
     },
-    popover_triggerLabel: {
+    triggerLabel: {
       control: 'text',
       name: 'trigger',
       description: 'Text rendered inside the trigger button',
     },
-    popover_direction: {
+    direction: {
       control: 'select',
       options: [undefined, ...Object.values(PopoverDirection)],
       name: 'direction',
       description: 'Popover direction',
     },
-    popover_active: {
+    active: {
       control: 'boolean',
       name: 'active',
       description: 'Set popover active state',
     },
-    popover_arrowPosition: {
+    arrowPosition: {
       control: 'select',
       options: [undefined, ...Object.values(PopoverArrowPosition)],
       name: 'arrowPosition',
       description: 'Position of popover arrow',
     },
-    popover_id: {
+    id: {
       control: 'text',
       name: 'id',
       description: 'Custom html id',
     },
-    popover_className: {
+    className: {
       control: 'text',
       name: 'className',
       description: 'Additional CSS classes',
     },
-    popover_testId: {
+    testId: {
       control: 'text',
       name: 'testId',
       description: 'Testing identifier',
     },
   },
   args: {
-    popover_children: 'Popover content',
-    popover_triggerLabel: 'Open popover',
-    popover_direction: PopoverDirection.BOTTOM,
-    popover_active: true,
-    popover_arrowPosition: undefined,
-    popover_id: '',
-    popover_className: '',
-    popover_testId: '',
+    children: 'Popover content',
+    triggerLabel: 'Open popover',
+    direction: PopoverDirection.BOTTOM,
+    active: true,
+    arrowPosition: undefined,
+    id: '',
+    className: '',
+    testId: '',
   },
-  render: (args) => <Popover {...args} />,
+  render: ({ children, triggerLabel, direction, active, arrowPosition, id, className, testId }) => (
+    <PopoverComponent
+      direction={direction}
+      active={active}
+      arrowPosition={arrowPosition}
+      id={id || undefined}
+      className={className || undefined}
+      testId={testId || undefined}
+      trigger={<Button variant='PRIMARY'>{triggerLabel}</Button>}
+    >
+      {children}
+    </PopoverComponent>
+  ),
 }
 
 export default meta
@@ -117,31 +132,31 @@ export const Default: Story = {}
 
 export const Left: Story = {
   args: {
-    popover_direction: PopoverDirection.LEFT,
+    direction: PopoverDirection.LEFT,
   },
 }
 
 export const Right: Story = {
   args: {
-    popover_direction: PopoverDirection.RIGHT,
+    direction: PopoverDirection.RIGHT,
   },
 }
 
 export const ArrowStart: Story = {
   args: {
-    popover_arrowPosition: PopoverArrowPosition.START,
+    arrowPosition: PopoverArrowPosition.START,
   },
 }
 
 export const ArrowEnd: Story = {
   args: {
-    popover_arrowPosition: PopoverArrowPosition.END,
+    arrowPosition: PopoverArrowPosition.END,
   },
 }
 
 export const Inactive: Story = {
   args: {
-    popover_active: false,
+    active: false,
   },
 }
 

@@ -1,35 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
 import { TrilogyColor } from '../../objects'
 import HeroComponent from './Hero'
 import { BackgroundHeight } from './heroEnum'
-import React from 'react'
 
 HeroComponent.displayName = 'Hero'
 
 interface HeroStoryArgs {
-  hero_children: string
-  hero_backgroundColor?: TrilogyColor
-  hero_backgroundSrc?: string
-  hero_inverted: boolean
-  hero_overlap: boolean
-  hero_backgroundHeight?: BackgroundHeight
+  children: string
+  backgroundColor?: TrilogyColor
+  backgroundSrc?: string
+  inverted: boolean
+  overlap: boolean
+  backgroundHeight?: BackgroundHeight
 }
 
 const Hero = ({
-  hero_children,
-  hero_backgroundColor,
-  hero_backgroundSrc,
-  hero_inverted,
-  hero_overlap,
-  hero_backgroundHeight,
+  children,
+  backgroundColor,
+  backgroundSrc,
+  inverted,
+  overlap,
+  backgroundHeight,
 }: HeroStoryArgs): JSX.Element => (
   <HeroComponent
-    backgroundColor={hero_backgroundColor}
-    backgroundSrc={hero_backgroundSrc}
-    inverted={hero_inverted}
-    backgroundHeight={hero_backgroundHeight}
+    backgroundColor={backgroundColor}
+    backgroundSrc={backgroundSrc}
+    inverted={inverted}
+    backgroundHeight={backgroundHeight}
     overlap={
-      hero_overlap
+      overlap
         ? [
             <div
               key='hero-overlap'
@@ -57,10 +57,10 @@ const Hero = ({
         justifyContent: 'center',
         gap: 12,
         padding: 32,
-        color: hero_inverted ? '#fff' : '#1f2937',
+        color: inverted ? '#fff' : '#1f2937',
       }}
     >
-      <h2 style={{ margin: 0, fontSize: 40, lineHeight: 1.1 }}>{hero_children}</h2>
+      <h2 style={{ margin: 0, fontSize: 40, lineHeight: 1.1 }}>{children}</h2>
       <p style={{ margin: 0, maxWidth: 560, fontSize: 18, lineHeight: 1.5 }}>
         A hero section used to highlight a key message with optional background, image and overlap content.
       </p>
@@ -76,26 +76,29 @@ const meta: Meta<HeroStoryArgs> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
+      source: {
+        type: 'dynamic',
+      },
       description: {
         component: ' ',
       },
     },
   },
   argTypes: {
-    hero_children: {
+    children: {
       control: 'text',
       name: 'children',
       description: 'Main hero title',
       table: { category: 'Hero' },
     },
-    hero_backgroundColor: {
+    backgroundColor: {
       control: 'select',
       options: [undefined, ...Object.values(TrilogyColor)],
       name: 'backgroundColor',
       description: 'Hero background color',
       table: { category: 'Hero' },
     },
-    hero_backgroundSrc: {
+    backgroundSrc: {
       control: 'select',
       options: [
         undefined,
@@ -107,19 +110,19 @@ const meta: Meta<HeroStoryArgs> = {
       description: 'Background image source',
       table: { category: 'Hero' },
     },
-    hero_inverted: {
+    inverted: {
       control: 'boolean',
       name: 'inverted',
       description: 'Use inverted hero styling',
       table: { category: 'Hero' },
     },
-    hero_overlap: {
+    overlap: {
       control: 'boolean',
       name: 'overlap',
       description: 'Display an overlapped content card',
       table: { category: 'Hero' },
     },
-    hero_backgroundHeight: {
+    backgroundHeight: {
       control: 'select',
       options: [undefined, ...Object.values(BackgroundHeight)],
       name: 'backgroundHeight',
@@ -128,12 +131,12 @@ const meta: Meta<HeroStoryArgs> = {
     },
   },
   args: {
-    hero_children: 'Hero title',
-    hero_backgroundColor: TrilogyColor.MAIN,
-    hero_backgroundSrc: undefined,
-    hero_inverted: true,
-    hero_overlap: false,
-    hero_backgroundHeight: BackgroundHeight.MEDIUM,
+    children: 'Hero title',
+    backgroundColor: TrilogyColor.MAIN,
+    backgroundSrc: undefined,
+    inverted: true,
+    overlap: false,
+    backgroundHeight: BackgroundHeight.MEDIUM,
   },
 }
 
@@ -145,20 +148,20 @@ export const Default: Story = {}
 
 export const BackgroundImage: Story = {
   args: {
-    hero_backgroundColor: undefined,
-    hero_backgroundSrc: 'https://picsum.photos/id/1/1500/600',
+    backgroundColor: undefined,
+    backgroundSrc: 'https://picsum.photos/id/1/1500/600',
   },
 }
 
 export const Overlapped: Story = {
   args: {
-    hero_overlap: true,
+    overlap: true,
   },
 }
 
 export const BackgroundColor: Story = {
   args: {
-    hero_backgroundSrc: undefined,
-    hero_backgroundColor: TrilogyColor.ACCENT,
+    backgroundSrc: undefined,
+    backgroundColor: TrilogyColor.ACCENT,
   },
 }
