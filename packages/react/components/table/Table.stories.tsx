@@ -1,3 +1,4 @@
+import { TrilogyColor } from '@/objects/facets/Color'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import TableComponent from './Table'
@@ -19,32 +20,25 @@ TableTd.displayName = 'TableTd'
 const Table = (props: TableProps): JSX.Element => <TableComponent {...props} />
 Table.displayName = 'Table'
 
-interface TableStoryArgs {
-  table_border?: TableBorderEnum
-  table_striped: boolean
-  table_compact: boolean
-  table_fullwidth: boolean
-  table_id: string
-  table_className: string
-  table_testId: string
-  head_col1: string
-  head_col2: string
-  head_col3: string
-  row1_col1: string
-  row1_col2: string
-  row1_col3: string
-  row2_col1: string
-  row2_col2: string
-  row2_col3: string
-  row3_col1: string
-  row3_col2: string
-  row3_col3: string
+interface TableStoryArgs extends TableProps {
+  tableHeadColor?: TrilogyColor
+  tableHeadBackgroundColor?: TrilogyColor
+  tableBodyColor?: TrilogyColor
+  tableBodyBackgroundColor?: TrilogyColor
+  tableTrExpandable: boolean
+  tableTrExpansion: boolean
+  tableTrExpanded: boolean
+  tableTrColor?: TrilogyColor
+  tableThColSpan: number
+  tableThRowSpan: number
+  tableTdColSpan: number
+  tableTdRowSpan: number
 }
 
 const meta: Meta<TableStoryArgs> = {
   title: 'Components/Table',
   component: Table,
-  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd },
+  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, React.ComponentType<unknown>>,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -54,195 +48,179 @@ const meta: Meta<TableStoryArgs> = {
     },
   },
   argTypes: {
-    table_border: {
+    children: {
+      table: { disable: true },
+      control: false,
+    },
+    className: {
+      table: { disable: true },
+      control: false,
+    },
+    id: {
+      table: { disable: true },
+      control: false,
+    },
+    testId: {
+      table: { disable: true },
+      control: false,
+    },
+    border: {
       control: 'select',
       options: [undefined, ...Object.values(TableBorderEnum)],
-      name: 'border',
       description: 'Border display mode',
-      table: { category: 'Table' },
     },
-    table_striped: {
+    striped: {
       control: 'boolean',
-      name: 'striped',
       description: 'Alternate row background colors',
-      table: { category: 'Table' },
     },
-    table_compact: {
+    compact: {
       control: 'boolean',
-      name: 'compact',
       description: 'Compact row spacing',
-      table: { category: 'Table' },
     },
-    table_fullwidth: {
+    fullwidth: {
       control: 'boolean',
-      name: 'fullwidth',
       description: 'Stretch table to full width',
-      table: { category: 'Table' },
     },
-    table_id: {
-      control: 'text',
-      name: 'id',
-      description: 'Custom html id',
-      table: { category: 'Table' },
-    },
-    table_className: {
-      control: 'text',
-      name: 'className',
-      description: 'Additional CSS classes',
-      table: { category: 'Table' },
-    },
-    table_testId: {
-      control: 'text',
-      name: 'testId',
-      description: 'Testing identifier',
-      table: { category: 'Table' },
-    },
-    head_col1: {
-      control: 'text',
-      name: 'col1',
-      description: 'First column header',
+    tableHeadColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Text color for TableHead',
       table: { category: 'TableHead' },
     },
-    head_col2: {
-      control: 'text',
-      name: 'col2',
-      description: 'Second column header',
+    tableHeadBackgroundColor: {
+      name: 'backgroundColor',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Background color for TableHead',
       table: { category: 'TableHead' },
     },
-    head_col3: {
-      control: 'text',
-      name: 'col3',
-      description: 'Third column header',
-      table: { category: 'TableHead' },
+    tableBodyColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Text color for TableBody',
+      table: { category: 'TableBody' },
     },
-    row1_col1: {
-      control: 'text',
-      name: 'col1',
-      description: 'Row 1 – first cell',
-      table: { category: 'TableBody Row 1' },
+    tableBodyBackgroundColor: {
+      name: 'backgroundColor',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Background color for TableBody',
+      table: { category: 'TableBody' },
     },
-    row1_col2: {
-      control: 'text',
-      name: 'col2',
-      description: 'Row 1 – second cell',
-      table: { category: 'TableBody Row 1' },
+    tableTrExpandable: {
+      name: 'expandable',
+      control: 'boolean',
+      description: 'Enable expandable state on TableTr',
+      table: { category: 'TableTr' },
     },
-    row1_col3: {
-      control: 'text',
-      name: 'col3',
-      description: 'Row 1 – third cell',
-      table: { category: 'TableBody Row 1' },
+    tableTrExpansion: {
+      name: 'expansion',
+      control: 'boolean',
+      description: 'Mark row as expansion row',
+      table: { category: 'TableTr' },
     },
-    row2_col1: {
-      control: 'text',
-      name: 'col1',
-      description: 'Row 2 – first cell',
-      table: { category: 'TableBody Row 2' },
+    tableTrExpanded: {
+      name: 'expanded',
+      control: 'boolean',
+      description: 'Expanded state for TableTr',
+      table: { category: 'TableTr' },
     },
-    row2_col2: {
-      control: 'text',
-      name: 'col2',
-      description: 'Row 2 – second cell',
-      table: { category: 'TableBody Row 2' },
+    tableTrColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Highlight color for TableTr',
+      table: { category: 'TableTr' },
     },
-    row2_col3: {
-      control: 'text',
-      name: 'col3',
-      description: 'Row 2 – third cell',
-      table: { category: 'TableBody Row 2' },
+    tableThColSpan: {
+      name: 'colSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Column span for first TableTh',
+      table: { category: 'TableTh' },
     },
-    row3_col1: {
-      control: 'text',
-      name: 'col1',
-      description: 'Row 3 – first cell',
-      table: { category: 'TableBody Row 3' },
+    tableThRowSpan: {
+      name: 'rowSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Row span for first TableTh',
+      table: { category: 'TableTh' },
     },
-    row3_col2: {
-      control: 'text',
-      name: 'col2',
-      description: 'Row 3 – second cell',
-      table: { category: 'TableBody Row 3' },
+    tableTdColSpan: {
+      name: 'colSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Column span for first TableTd',
+      table: { category: 'TableTd' },
     },
-    row3_col3: {
-      control: 'text',
-      name: 'col3',
-      description: 'Row 3 – third cell',
-      table: { category: 'TableBody Row 3' },
+    tableTdRowSpan: {
+      name: 'rowSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Row span for first TableTd',
+      table: { category: 'TableTd' },
     },
   },
   args: {
-    table_border: undefined,
-    table_striped: false,
-    table_compact: false,
-    table_fullwidth: true,
-    table_id: '',
-    table_className: '',
-    table_testId: '',
-    head_col1: 'Name',
-    head_col2: 'Role',
-    head_col3: 'Status',
-    row1_col1: 'Alice',
-    row1_col2: 'Developer',
-    row1_col3: 'Active',
-    row2_col1: 'Bob',
-    row2_col2: 'Designer',
-    row2_col3: 'Active',
-    row3_col1: 'Charlie',
-    row3_col2: 'Manager',
-    row3_col3: 'Inactive',
+    striped: false,
+    compact: false,
+    fullwidth: true,
+    tableTrExpandable: false,
+    tableTrExpansion: false,
+    tableTrExpanded: false,
+    tableThColSpan: 1,
+    tableThRowSpan: 1,
+    tableTdColSpan: 1,
+    tableTdRowSpan: 1,
   },
   render: ({
-    table_border,
-    table_striped,
-    table_compact,
-    table_fullwidth,
-    table_id,
-    table_className,
-    table_testId,
-    head_col1,
-    head_col2,
-    head_col3,
-    row1_col1,
-    row1_col2,
-    row1_col3,
-    row2_col1,
-    row2_col2,
-    row2_col3,
-    row3_col1,
-    row3_col2,
-    row3_col3,
+    border,
+    striped,
+    compact,
+    fullwidth,
+    tableHeadColor,
+    tableHeadBackgroundColor,
+    tableBodyColor,
+    tableBodyBackgroundColor,
+    tableTrExpandable,
+    tableTrExpansion,
+    tableTrExpanded,
+    tableTrColor,
+    tableThColSpan,
+    tableThRowSpan,
+    tableTdColSpan,
+    tableTdRowSpan,
   }) => (
-    <TableComponent
-      border={table_border}
-      striped={table_striped}
-      compact={table_compact}
-      fullwidth={table_fullwidth}
-      id={table_id || undefined}
-      className={table_className || undefined}
-      testId={table_testId || undefined}
-    >
-      <TableHead>
+    <TableComponent border={border} striped={striped} compact={compact} fullwidth={fullwidth}>
+      <TableHead color={tableHeadColor} backgroundColor={tableHeadBackgroundColor}>
         <TableTr>
-          <TableTh>{head_col1}</TableTh>
-          <TableTh>{head_col2}</TableTh>
-          <TableTh>{head_col3}</TableTh>
+          <TableTh colSpan={tableThColSpan} rowSpan={tableThRowSpan}>
+            Name
+          </TableTh>
+          <TableTh>Role</TableTh>
+          <TableTh>Status</TableTh>
         </TableTr>
       </TableHead>
-      <TableBody>
-        <TableTr>
-          <TableTd>{row1_col1}</TableTd>
-          <TableTd>{row1_col2}</TableTd>
-          <TableTd>{row1_col3}</TableTd>
+      <TableBody color={tableBodyColor} backgroundColor={tableBodyBackgroundColor}>
+        <TableTr
+          expandable={tableTrExpandable}
+          expansion={tableTrExpansion}
+          expanded={tableTrExpanded}
+          color={tableTrColor}
+        >
+          <TableTd colSpan={tableTdColSpan} rowSpan={tableTdRowSpan}>
+            Alice
+          </TableTd>
+          <TableTd>Developer</TableTd>
+          <TableTd>Active</TableTd>
         </TableTr>
         <TableTr>
-          <TableTd>{row2_col1}</TableTd>
-          <TableTd>{row2_col2}</TableTd>
-          <TableTd>{row2_col3}</TableTd>
+          <TableTd>Bob</TableTd>
+          <TableTd>Designer</TableTd>
+          <TableTd>Active</TableTd>
         </TableTr>
         <TableTr>
-          <TableTd>{row3_col1}</TableTd>
-          <TableTd>{row3_col2}</TableTd>
-          <TableTd>{row3_col3}</TableTd>
+          <TableTd>Charlie</TableTd>
+          <TableTd>Manager</TableTd>
+          <TableTd>Inactive</TableTd>
         </TableTr>
       </TableBody>
     </TableComponent>
@@ -256,33 +234,23 @@ type Story = StoryObj<TableStoryArgs>
 export const Default: Story = {}
 
 export const Striped: Story = {
-  args: {
-    table_striped: true,
-  },
+  args: { striped: true },
 }
 
 export const Compact: Story = {
-  args: {
-    table_compact: true,
-  },
+  args: { compact: true },
 }
 
 export const BorderAll: Story = {
-  args: {
-    table_border: TableBorderEnum.ALL,
-  },
+  args: { border: TableBorderEnum.ALL },
 }
 
 export const BorderInner: Story = {
-  args: {
-    table_border: TableBorderEnum.INNER,
-  },
+  args: { border: TableBorderEnum.INNER },
 }
 
 export const BorderLines: Story = {
-  args: {
-    table_border: TableBorderEnum.LINES,
-  },
+  args: { border: TableBorderEnum.LINES },
 }
 
 export const Playground: Story = {}
