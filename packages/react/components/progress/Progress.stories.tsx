@@ -5,6 +5,7 @@ import ProgressComponent from './Progress'
 import ProgressItem from './item/ProgressItem'
 
 ProgressComponent.displayName = 'Progress'
+Object.defineProperty(ProgressComponent, 'name', { value: 'Progress' })
 
 interface ProgressStoryArgs {
   value: number

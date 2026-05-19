@@ -9,6 +9,7 @@ import { ButtonListDirectionEnum } from './list/ButtonListEnum'
 import React from 'react'
 
 ButtonComponent.displayName = 'Button'
+Object.defineProperty(ButtonComponent, 'name', { value: 'Button' })
 
 const Button = (props: ButtonProps): JSX.Element => <ButtonComponent {...props}>Click me</ButtonComponent>
 Button.displayName = 'Button'

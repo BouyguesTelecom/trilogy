@@ -10,6 +10,7 @@ import type { RadioTileProps } from './tile/RadioTileProps'
 
 RadioTileComponent.displayName = 'RadioTile'
 RadioTiles.displayName = 'RadioTiles'
+Object.defineProperty(RadioTileComponent, 'name', { value: 'RadioTile' })
 
 const RadioTile = (props: RadioTileProps): JSX.Element => <RadioTileComponent {...props} />
 RadioTile.displayName = 'RadioTile'

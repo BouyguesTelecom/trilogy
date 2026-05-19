@@ -11,6 +11,7 @@ import React from 'react'
 DropdownComponent.displayName = 'Dropdown'
 DropdownTrigger.displayName = 'DropdownTrigger'
 DropdownItem.displayName = 'DropdownItem'
+Object.defineProperty(DropdownComponent, 'name', { value: 'Dropdown' })
 
 const Dropdown = (props: DropdownProps): JSX.Element => <DropdownComponent {...props} />
 Dropdown.displayName = 'Dropdown'

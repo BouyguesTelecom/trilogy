@@ -6,6 +6,8 @@ import SegmentControlItem from './item/SegmentControlItem'
 
 SegmentControlComponent.displayName = 'SegmentControl'
 SegmentControlItem.displayName = 'SegmentControlItem'
+Object.defineProperty(SegmentControlComponent, 'name', { value: 'SegmentControl' })
+Object.defineProperty(SegmentControlItem, 'name', { value: 'SegmentControlItem' })
 
 interface SegmentControlStoryArgs {
   segment_activeIndex?: number

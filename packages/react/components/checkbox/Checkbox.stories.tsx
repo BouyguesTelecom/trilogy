@@ -7,6 +7,7 @@ import type { CheckboxListWebProps } from './list/CheckboxListProps'
 
 CheckboxComponent.displayName = 'Checkbox'
 CheckboxList.displayName = 'CheckboxList'
+Object.defineProperty(CheckboxComponent, 'name', { value: 'Checkbox' })
 
 const Checkbox = (props: CheckboxProps & { children?: React.ReactNode }): JSX.Element => (
   <CheckboxComponent {...props} />

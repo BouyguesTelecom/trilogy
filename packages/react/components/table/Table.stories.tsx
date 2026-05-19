@@ -15,6 +15,7 @@ TableHead.displayName = 'TableHead'
 TableTr.displayName = 'TableTr'
 TableTh.displayName = 'TableTh'
 TableTd.displayName = 'TableTd'
+Object.defineProperty(TableComponent, 'name', { value: 'Table' })
 
 const Table = (props: TableProps): JSX.Element => <TableComponent {...props} />
 Table.displayName = 'Table'

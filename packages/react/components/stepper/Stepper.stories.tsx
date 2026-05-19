@@ -6,6 +6,8 @@ import type { StepperProps } from './StepperProps'
 
 StepperComponent.displayName = 'Stepper'
 StepComponent.displayName = 'Step'
+Object.defineProperty(StepperComponent, 'name', { value: 'Stepper' })
+Object.defineProperty(StepComponent, 'name', { value: 'Step' })
 
 const Stepper = (props: StepperProps): JSX.Element => <StepperComponent {...props} />
 Stepper.displayName = 'Stepper'

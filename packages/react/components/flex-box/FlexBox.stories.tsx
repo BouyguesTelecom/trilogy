@@ -7,6 +7,7 @@ import { FlexBox as Flexbox, FlexItem } from './index'
 
 Flexbox.displayName = 'FlexBox'
 FlexItem.displayName = 'FlexItem'
+Object.defineProperty(Flexbox, 'name', { value: 'FlexBox' })
 
 interface FlexBoxStoryArgs {
   gap?: GapSize

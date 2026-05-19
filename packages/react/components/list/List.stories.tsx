@@ -7,6 +7,7 @@ import { ListIconStatus } from './item/ListItemProps'
 import { ListItemDescription } from './item/description'
 
 ListComponent.displayName = 'List'
+Object.defineProperty(ListComponent, 'name', { value: 'List' })
 
 interface ListStoryArgs {
   ordered: boolean

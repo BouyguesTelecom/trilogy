@@ -11,6 +11,7 @@ import type { CardImageProps } from './image/CardImageProps'
 CardComponent.displayName = 'Card'
 CardContent.displayName = 'CardContent'
 CardImage.displayName = 'CardImage'
+Object.defineProperty(CardComponent, 'name', { value: 'Card' })
 
 const Card = (props: CardProps & { children: React.ReactNode }) => <CardComponent {...props} />
 const CardContentWrapper = (props: CardContentProps & { children: React.ReactNode }) => <CardContent {...props} />

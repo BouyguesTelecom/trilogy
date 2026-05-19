@@ -9,6 +9,7 @@ import type { BoxProps } from './BoxProps'
 import { TrilogyColor } from '@/objects/facets/Color'
 
 BoxComponent.displayName = 'Box'
+Object.defineProperty(BoxComponent, 'name', { value: 'Box' })
 
 const Box = (props: BoxProps): JSX.Element => (
   <BoxComponent {...props}>
@@ -16,6 +17,7 @@ const Box = (props: BoxProps): JSX.Element => (
   </BoxComponent>
 )
 Box.displayName = 'Box'
+Object.defineProperty(Box, 'name', { value: 'Box' })
 
 interface BoxStoryArgs {
   box_active: boolean

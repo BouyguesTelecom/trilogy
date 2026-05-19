@@ -7,6 +7,7 @@ import ModalComponent from './Modal'
 import { ModalSize } from './ModalEnum'
 
 ModalComponent.displayName = 'Modal'
+Object.defineProperty(ModalComponent, 'name', { value: 'Modal' })
 
 interface ModalStoryArgs {
   title: string

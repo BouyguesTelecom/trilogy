@@ -10,6 +10,7 @@ import React from 'react'
 
 CheckboxTileComponent.displayName = 'CheckboxTile'
 CheckboxTiles.displayName = 'CheckboxTiles'
+Object.defineProperty(CheckboxTileComponent, 'name', { value: 'CheckboxTile' })
 
 const CheckboxTile = (props: CheckboxTileProps): JSX.Element => <CheckboxTileComponent {...props} />
 CheckboxTile.displayName = 'CheckboxTile'

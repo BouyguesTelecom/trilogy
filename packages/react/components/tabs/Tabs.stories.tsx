@@ -13,6 +13,7 @@ TabList.displayName = 'TabList'
 Tab.displayName = 'Tab'
 TabPanels.displayName = 'TabPanels'
 TabPanel.displayName = 'TabPanel'
+Object.defineProperty(TabsComponent, 'name', { value: 'Tabs' })
 
 const Tabs = (props: TabsProps): JSX.Element => <TabsComponent {...props} />
 Tabs.displayName = 'Tabs'

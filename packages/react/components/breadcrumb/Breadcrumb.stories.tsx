@@ -5,6 +5,7 @@ import BreadcrumbItem from './item/BreadcrumbItem'
 import React from 'react'
 
 BreadcrumbComponent.displayName = 'Breadcrumb'
+Object.defineProperty(BreadcrumbComponent, 'name', { value: 'Breadcrumb' })
 
 const Breadcrumb = ({ children, ...props }: BreadcrumbWebProps): JSX.Element => (
   <BreadcrumbComponent {...props}>
@@ -17,6 +18,7 @@ const Breadcrumb = ({ children, ...props }: BreadcrumbWebProps): JSX.Element => 
   </BreadcrumbComponent>
 )
 Breadcrumb.displayName = 'Breadcrumb'
+Object.defineProperty(Breadcrumb, 'name', { value: 'Breadcrumb' })
 
 interface BreadcrumbStoryArgs {
   item_label_1: string

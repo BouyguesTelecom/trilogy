@@ -7,6 +7,7 @@ import SelectOption from './option'
 
 SelectComponent.displayName = 'Select'
 SelectOption.displayName = 'SelectOption'
+Object.defineProperty(SelectComponent, 'name', { value: 'Select' })
 
 const Select = (props: SelectProps): JSX.Element => <SelectComponent {...props} />
 Select.displayName = 'Select'

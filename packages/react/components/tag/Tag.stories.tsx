@@ -8,9 +8,11 @@ import TagList from './list'
 
 TagComponent.displayName = 'Tag'
 TagList.displayName = 'TagList'
+Object.defineProperty(TagComponent, 'name', { value: 'Tag' })
 
 const Tag = (props: TagProps): JSX.Element => <TagComponent {...props} />
 Tag.displayName = 'Tag'
+Object.defineProperty(Tag, 'name', { value: 'Tag' })
 
 interface TagStoryArgs {
   tag_label: string

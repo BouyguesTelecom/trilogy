@@ -6,6 +6,8 @@ import RowComponent from './row/Row'
 
 RowsComponent.displayName = 'Rows'
 RowComponent.displayName = 'Row'
+Object.defineProperty(RowsComponent, 'name', { value: 'Rows' })
+Object.defineProperty(RowComponent, 'name', { value: 'Row' })
 
 interface RowsStoryArgs {
   rows_gap?: GapSize

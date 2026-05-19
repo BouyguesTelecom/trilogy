@@ -11,9 +11,11 @@ TimelineComponent.displayName = 'Timeline'
 TimelineItem.displayName = 'TimelineItem'
 TimelineMarker.displayName = 'TimelineMarker'
 TimelineContent.displayName = 'TimelineContent'
+Object.defineProperty(TimelineComponent, 'name', { value: 'Timeline' })
 
 const Timeline = (props: TimelineProps): JSX.Element => <TimelineComponent {...props} />
 Timeline.displayName = 'Timeline'
+Object.defineProperty(Timeline, 'name', { value: 'Timeline' })
 
 interface TimelineStoryArgs {
   timeline_horizontal: boolean

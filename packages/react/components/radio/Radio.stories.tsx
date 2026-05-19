@@ -7,6 +7,7 @@ import type { RadioListWebProps } from './list/RadioListProps'
 
 RadioComponent.displayName = 'Radio'
 RadioList.displayName = 'RadioList'
+Object.defineProperty(RadioComponent, 'name', { value: 'Radio' })
 
 const Radio = (props: RadioProps & { children?: React.ReactNode }): JSX.Element => <RadioComponent {...props} />
 Radio.displayName = 'Radio'

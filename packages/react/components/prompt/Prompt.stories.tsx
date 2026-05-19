@@ -12,6 +12,7 @@ import { PromptSelect } from './toolbar/tools/select'
 import { PromptSelectOption } from './toolbar/tools/select/options'
 
 PromptComponent.displayName = 'Prompt'
+Object.defineProperty(PromptComponent, 'name', { value: 'Prompt' })
 
 interface PromptStoryArgs {
   disabled: boolean

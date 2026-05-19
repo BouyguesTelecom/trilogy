@@ -8,9 +8,13 @@ import { ColumnsSize, GapSize } from './ColumnsTypes'
 
 ColumnsComponent.displayName = 'Columns'
 Column.displayName = 'Column'
+Object.defineProperty(Column, 'name', { value: 'Column' })
+Object.defineProperty(ColumnsComponent, 'name', { value: 'Columns' })
 
 const Columns = (props: ColumnsProps & { children: React.ReactNode }): JSX.Element => <ColumnsComponent {...props} />
 Columns.displayName = 'Columns'
+Object.defineProperty(Columns, 'name', { value: 'Columns' })
+
 
 interface ColumnsStoryArgs extends ColumnsProps {
   column_size: ColumnsSize

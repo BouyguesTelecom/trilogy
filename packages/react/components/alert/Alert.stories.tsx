@@ -24,6 +24,7 @@ type AlertStoryArgs = AlertProps & {
 
 const Alert = (props: AlertProps): JSX.Element => <Alert {...props} />
 Alert.displayName = 'Alert'
+Object.defineProperty(Alert, 'name', { value: 'Alert' })
 
 const ToasterTrigger = (args: AlertStoryArgs): JSX.Element => {
   const { show } = React.useContext(ToasterContext)

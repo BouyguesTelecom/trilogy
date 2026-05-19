@@ -7,6 +7,7 @@ import React from 'react'
 
 ChipsComponent.displayName = 'Chips'
 ChipsList.displayName = 'ChipsList'
+Object.defineProperty(ChipsComponent, 'name', { value: 'Chips' })
 
 const Chips = (props: ChipsProps): JSX.Element => <ChipsComponent {...props} />
 Chips.displayName = 'Chips'

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import AccordionComponent from './Accordion'
+import type { AccordionProps } from './AccordionProps'
 import AccordionItem from './item'
 import AccordionBody from './item/body'
 import AccordionHeader from './item/header'
-import type { AccordionProps } from './AccordionProps'
 
 AccordionComponent.displayName = 'Accordion'
 
 const Accordion = (props: AccordionProps): JSX.Element => <AccordionComponent {...props} />
 Accordion.displayName = 'Accordion'
-
+Object.defineProperty(Accordion, 'name', { value: 'Accordion' })
 
 interface AccordionStoryArgs {
   item_open: boolean
@@ -27,8 +27,7 @@ const meta: Meta<AccordionStoryArgs> = {
   parameters: {
     docs: {
       description: {
-        component:
-          ''
+        component: '',
       },
     },
   },
@@ -36,19 +35,19 @@ const meta: Meta<AccordionStoryArgs> = {
     item_open: {
       control: 'boolean',
       name: 'open',
-      description: "Open accordion item by default",
+      description: 'Open accordion item by default',
       table: { category: 'AccordionItem' },
     },
     item_disabled: {
       control: 'boolean',
       name: 'disabled',
-      description: "Disable interaction",
+      description: 'Disable interaction',
       table: { category: 'AccordionItem' },
     },
     header_children: {
       control: 'text',
       name: 'children',
-      description: "Header text",
+      description: 'Header text',
       table: { category: 'AccordionHeader' },
     },
     body_children: {
@@ -61,8 +60,8 @@ const meta: Meta<AccordionStoryArgs> = {
   args: {
     item_open: false,
     item_disabled: false,
-    header_children: "Accordion title",
-    body_children: "Detailed content of this accordion item.",
+    header_children: 'Accordion title',
+    body_children: 'Detailed content of this accordion item.',
   },
   render: ({ item_open, item_disabled, header_children, body_children }) => (
     <AccordionComponent>
