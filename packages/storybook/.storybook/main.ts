@@ -18,6 +18,13 @@ const config: StorybookConfig = {
       '@trilogy-ds/react': path.resolve(__dirname, '../../react'),
       '@': path.resolve(__dirname, '../../react'),
     }
+
+    viteConfig.build = viteConfig.build ?? {}
+    viteConfig.build.minify = 'esbuild'
+    viteConfig.esbuild = {
+      ...viteConfig.esbuild,
+      keepNames: true,
+    }
     return viteConfig
   },
 }
