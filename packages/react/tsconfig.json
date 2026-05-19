@@ -36,7 +36,6 @@
     "./**/*.tsx"
   ],
   "exclude": [
-    "./components/**/*.stories.tsx",
     "node_modules",
     "./jest*",
     "jest/snapshotResolver.ts",

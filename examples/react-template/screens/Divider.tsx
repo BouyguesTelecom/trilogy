@@ -18,7 +18,7 @@ export const DividerScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.EIGHT} />
 
       <Box>
-        <Divider iconName={IconName.EYE_SLASH} />
+        <Divider iconName={IconName.EYE_SLASH}  />
         <Text>Lorem ipsum dolor sit amet</Text>
       </Box>
       <Box>
