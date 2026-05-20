@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactNode, SetStateAction } from "react"
 import { ITrilogyTheme } from "./interfaces"
-import { colors } from "../objects/facets/Color"
+import { DEFAULT_TRILOGY_COLORS } from "../objects/facets/defaultColors"
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode;
@@ -16,7 +16,7 @@ export const defaultIcons = {}
 
 export const defaultTheme: ITrilogyTheme = {
   icons: defaultIcons,
-  colors: colors,
+  colors: DEFAULT_TRILOGY_COLORS,
   fontFamily: { 'regular': 'poppins-regular', 'medium': 'poppins-medium', 'bold': 'poppins-semibold' }
 }
 
