@@ -251,7 +251,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
         <div className={controlClasses}>
           <input
             data-testid={testId}
-            aria-describedby={`${idHelp} ${idSample}`}
+            aria-describedby={type === 'password' && help ? `${idHelp} ${idSample}` : undefined}
             id={id}
             required={required}
             readOnly={readOnly}
