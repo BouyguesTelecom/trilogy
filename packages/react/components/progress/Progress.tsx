@@ -57,6 +57,11 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(
     )
 
     const stackedClasses = hashClass(styled, clsx('progress', stacked && is('stacked'), className))
+    const progressContainerClasses = hashClass(styled, clsx('progress-container'))
+    const progressLegendsClasses = hashClass(styled, clsx('progress-legends'))
+    const progresslegendStartClasses = hashClass(styled, clsx('progress-legend-start'))
+    const progresslegendCenterClasses = hashClass(styled, clsx('progress-legend-center'))
+    const progresslegendEndClasses = hashClass(styled, clsx('progress-legend-end'))
 
     if (children && stacked) {
       return (
@@ -67,24 +72,24 @@ const Progress = React.forwardRef<ProgressRef, ProgressProps>(
     }
 
     return (
-      <div ref={ref} className='progress-container'>
+      <div ref={ref} className={progressContainerClasses}>
         <progress id={id} className={classes} value={value} max={max} data-testid={testId} {...others}>
           {value}
         </progress>
         {(legendStart || legendCenter || legendEnd) && (
-          <div className='progress-legends'>
+          <div className={progressLegendsClasses}>
             {legendStart && (
-              <div className='progress-legend-start'>
+              <div className={progresslegendStartClasses}>
                 <Text>{legendStart}</Text>
               </div>
             )}
             {legendCenter && (
-              <div className='progress-legend-center'>
+              <div className={progresslegendCenterClasses}>
                 <Text>{legendCenter}</Text>
               </div>
             )}
             {legendEnd && (
-              <div className='progress-legend-end'>
+              <div className={progresslegendEndClasses}>
                 <Text>{legendEnd}</Text>
               </div>
             )}
