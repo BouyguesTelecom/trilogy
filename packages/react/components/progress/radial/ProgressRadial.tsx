@@ -42,7 +42,6 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
 
   const classes = hashClass(styled, clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
   const classesContent = hashClass(styled, clsx('progress-radial-content'))
-
   const progressRadialRef = useRef<HTMLDivElement>(null)
 
   // Function to update the background style based on the current progress
@@ -100,12 +99,12 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
     <div id={id} data-testid={testId} {...others} className={classes} ref={progressRadialRef}>
       <div ref={ref} className={classesContent}>
         {label && (
-          <Title level={TitleLevels.TWO} marginless>
+          <Title level={TitleLevels.TWO} marginless className='progress-radial-content-label'>
             {label}
           </Title>
         )}
         {description && (
-          <Text level={TextLevels.ONE} marginless>
+          <Text level={TextLevels.ONE} marginless className='progress-radial-content-description'>
             {description}
           </Text>
         )}
