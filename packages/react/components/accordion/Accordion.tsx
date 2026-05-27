@@ -20,6 +20,7 @@ const Accordion = React.forwardRef<AccordionRef, AccordionProps>(({ id, classNam
 
   return (
     <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
+      <p>test</p>
       {children}
     </div>
   )
