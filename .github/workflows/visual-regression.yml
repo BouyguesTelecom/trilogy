@@ -76,7 +76,7 @@ jobs:
               '- 3️⃣ Review attached images (prod/local/diff) in Playwright report.',
               '',
               '​⚠️ Manual approval required to merge this PR.',
-              '✅​ Open the waiting job `visual-regression-approval` and click `Review deployments` to approve.'
+              '👉👉👉 Open the waiting job `visual-regression-approval` and click `Review deployments` to approve 👈​👈​👈​'
             ].join('\n')
 
             await github.rest.issues.createComment({
