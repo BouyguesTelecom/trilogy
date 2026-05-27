@@ -25,7 +25,7 @@ const PromptFiles = React.forwardRef<PromptFilesRef, PromptFilesProps>(({ childr
 
   if (!childrenLength) return null
   return (
-    <Columns className={classesFiles} scrollable ref={ref} gap={GapSize.FOUR}>
+    <Columns className={classesFiles} scrollable ref={ref} gap={GapSize.FOUR} marginless>
       {children}
     </Columns>
   )
