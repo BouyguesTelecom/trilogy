@@ -31,7 +31,7 @@ const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete,
   if (type === 'image') {
     return (
       <div className={classesImgContainer} ref={ref}>
-        <Image src={src} alt={name} className={classesImg} />
+        <Image src={src} alt={name} className={classesImg} height={64} width={64} />
         <Icon name='tri-times' className='prompt-files-delete prompt-files-delete-img' onClick={onDelete} />
       </div>
     )

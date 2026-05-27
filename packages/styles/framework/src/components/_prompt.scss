@@ -36,6 +36,7 @@ $height-prompt-item: 64px;
         margin:0 !important;
         &-img {
             border-radius: 8px;
+            overflow: hidden;
         }
         &-file {
             width: $height-prompt-item;
