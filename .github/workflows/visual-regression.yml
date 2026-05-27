@@ -2,7 +2,7 @@ name: Visual Regression
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: read
@@ -12,6 +12,8 @@ jobs:
   visual-regression:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    outputs:
+      has_diff: ${{ steps.visual-result.outputs.has_diff }}
 
     steps:
       - name: Checkout
@@ -40,6 +42,15 @@ jobs:
           VISUAL_MAX_DIFF_RATIO: "0.001"
         run: npm --workspace=@trilogy-ds/storybook run test:visual -- --reporter=html,line
 
+      - name: Compute visual result
+        id: visual-result
+        run: |
+          if [ "${{ steps.visual.outcome }}" = "failure" ]; then
+            echo "has_diff=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_diff=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload visual report
         if: always()
         uses: actions/upload-artifact@v4
@@ -64,7 +75,8 @@ jobs:
               '- Download artifact: visual-regression-report',
               '- Review attached images (prod/local/diff) in Playwright report.',
               '',
-              'If the change is intentional, add the label `visual-approved` on this PR to allow merge.'
+              'Manual approval required to merge this PR.',
+              'Open the waiting job `visual-regression-approval` and click `Review deployments` to approve.'
             ].join('\n')
 
             await github.rest.issues.createComment({
@@ -74,13 +86,12 @@ jobs:
               body,
             })
 
-      - name: Enforce approval on visual diffs
-        if: steps.visual.outcome == 'failure' && !contains(github.event.pull_request.labels.*.name, 'visual-approved')
-        run: |
-          echo "Visual differences detected and not approved."
-          echo "Review the artifact 'visual-regression-report' and add label 'visual-approved' to proceed if changes are intentional."
-          exit 1
-
-      - name: Visual diffs approved by label
-        if: steps.visual.outcome == 'failure' && contains(github.event.pull_request.labels.*.name, 'visual-approved')
-        run: echo "Visual differences detected but approved via 'visual-approved' label."
+  visual-regression-approval:
+    if: github.event.pull_request.draft == false && needs.visual-regression.outputs.has_diff == 'true'
+    needs: [visual-regression]
+    runs-on: ubuntu-latest
+    environment:
+      name: visual-regression-approval
+    steps:
+      - name: Await manual approval
+        run: echo "Visual diffs detected and manually approved."
