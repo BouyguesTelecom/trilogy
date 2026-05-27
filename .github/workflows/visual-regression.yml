@@ -69,14 +69,14 @@ jobs:
           script: |
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
             const body = [
-              'Visual regression failed (prod vs local).',
+              '🚨🚨🚨 Visual regression failed (prod vs local) 🚨🚨🚨',
               '',
-              `- Open run: ${runUrl}`,
-              '- Download artifact: visual-regression-report',
-              '- Review attached images (prod/local/diff) in Playwright report.',
+              `- 1️⃣ Open run: ${runUrl}`,
+              '- 2️⃣ Download artifact: visual-regression-report',
+              '- 3️⃣ Review attached images (prod/local/diff) in Playwright report.',
               '',
-              'Manual approval required to merge this PR.',
-              'Open the waiting job `visual-regression-approval` and click `Review deployments` to approve.'
+              '​⚠️ Manual approval required to merge this PR.',
+              '✅​ Open the waiting job `visual-regression-approval` and click `Review deployments` to approve.'
             ].join('\n')
 
             await github.rest.issues.createComment({
