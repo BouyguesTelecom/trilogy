@@ -1,0 +1,83 @@
+name: Visual Regression
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  visual-regression:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run visual regression (prod vs local)
+        id: visual
+        continue-on-error: true
+        env:
+          STORYBOOK_PROD_URL: https://trilogy.design/storybook
+          VISUAL_MAX_DIFF_RATIO: "0.001"
+        run: npm --workspace=@trilogy-ds/storybook run test:visual -- --reporter=html,line
+
+      - name: Upload visual report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-report
+          path: |
+            packages/storybook/playwright-report
+            packages/storybook/test-results
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Comment PR when visual diff detected
+        if: steps.visual.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            const body = [
+              'Visual regression failed (prod vs local).',
+              '',
+              `- Open run: ${runUrl}`,
+              '- Download artifact: visual-regression-report',
+              '- Review attached images (prod/local/diff) in Playwright report.',
+              '',
+              'If the change is intentional, add the label `visual-approved` on this PR to allow merge.'
+            ].join('\n')
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            })
+
+      - name: Enforce approval on visual diffs
+        if: steps.visual.outcome == 'failure' && !contains(github.event.pull_request.labels.*.name, 'visual-approved')
+        run: |
+          echo "Visual differences detected and not approved."
+          echo "Review the artifact 'visual-regression-report' and add label 'visual-approved' to proceed if changes are intentional."
+          exit 1
+
+      - name: Visual diffs approved by label
+        if: steps.visual.outcome == 'failure' && contains(github.event.pull_request.labels.*.name, 'visual-approved')
+        run: echo "Visual differences detected but approved via 'visual-approved' label."

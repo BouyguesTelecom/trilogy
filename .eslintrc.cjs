@@ -16,15 +16,15 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parserOptions: {
-    project: ['packages/react/tsconfig.json'],
+    project: ['packages/react/tsconfig.json', 'packages/storybook/tsconfig.eslint.json'],
     ecmaFeatures: {
       jsx: true,
       tsx: true,
     },
   },
   rules: {
-    'react-hooks/rules-of-hooks':'off',
-    'no-case-declarations':'off',
+    'react-hooks/rules-of-hooks': 'off',
+    'no-case-declarations': 'off',
     'react/jsx-no-useless-fragment': 'off',
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
