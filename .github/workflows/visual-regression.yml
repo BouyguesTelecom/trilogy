@@ -45,7 +45,7 @@ jobs:
       - name: Compute visual result
         id: visual-result
         run: |
-          if [ "${{ steps.visual.outcome }}" = "failure" ]; then
+          if find packages/storybook/test-results -type f \( -name '*-diff.png' -o -name '*-failure.png' \) | grep -q .; then
             echo "has_diff=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_diff=false" >> "$GITHUB_OUTPUT"
