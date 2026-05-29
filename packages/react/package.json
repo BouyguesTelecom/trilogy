@@ -36,7 +36,11 @@
     "rollup-plugin-copy": "^3.5.0"
   },
   "devDependencies": {
-    "jest-util": "^29.7.0"
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "jest-util": "^29.7.0",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
