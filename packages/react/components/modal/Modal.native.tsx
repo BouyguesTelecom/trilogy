@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Column, Columns } from '../columns'
@@ -134,6 +135,8 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       backgroundColor: `rgba(0, 0, 0, ${backdropOpacity.value})`,
     }))
 
+    const { bottom: bottomInset } = useSafeAreaInsets()
+
     return (
       <ModalContext.Provider value={{ scrollViewRef, handleOnScroll, isFooter, setIsFooter }}>
         {trigger}
@@ -156,7 +159,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
             </Animated.View>
             <Animated.View
               ref={ref}
-              style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }, animatedStyle]}
+              style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }, animatedStyle, isAndroid ? { paddingBottom: bottomInset } : {}]}
               {...others}
             >
               <GestureDetector gesture={panGesture}>
