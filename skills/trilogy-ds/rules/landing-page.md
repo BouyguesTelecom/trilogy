@@ -1,4 +1,5 @@
 # Landing Page Generation — Trilogy
+---
 
 ## Objectif
 
@@ -8,6 +9,74 @@ Le fichier utilise :
 - **Babel Standalone** pour la transpilation JSX côté client
 - **Import Maps** pour résoudre les modules ES (React, Trilogy) via CDN
 - **Trilogy CSS** chargé depuis le CDN assets Bouygues Telecom
+
+---
+
+## Quand appliquer ces règles
+
+> ⚠️ **Ce fichier ne s'applique QUE lorsque l'utilisateur demande explicitement une landing page _autoportante_** (un seul fichier HTML statique, exécutable sans build).
+>
+> **Sinon, ne PAS suivre ce template.** Par défaut, générer du **Trilogy en React classique** :
+> composants `.tsx`/`.jsx` dans un projet (Next.js, Vite, CRA…), imports ES standards depuis
+> `@trilogy-ds/react`, `TrilogyProvider`, build via le bundler du projet. Aucun fichier HTML
+> unique, ni Babel Standalone, ni import map, ni CDN esm.sh.
+>
+> Indices déclencheurs de ce mode autoportant : « page autoportante », « un seul fichier HTML »,
+> « sans build », « ouvrable en double-clic », « fichier `.html` statique ». En l'absence de ces
+> demandes, rester sur du React classique.
+
+---
+
+## ⚠️ Pièges runtime VÉRIFIÉS — à lire avant toute génération
+
+> Ces règles évitent le symptôme nº1 : **page blanche** (le JSX compile, mais le rendu
+> React plante au montage avec une erreur minifiée du type
+> `TypeError: Cannot read properties of undefined (reading '1')`).
+> Elles sont confirmées empiriquement sur le bundle
+> `@trilogy-ds/react@4.6.0-beta-7` servi via `esm.sh` (le bundle du template).
+
+### 1. Composants NON exportés par ce bundle esm.sh — NE PAS les importer
+
+| Composant importé | Symptôme | Remplacer par |
+|-------------------|----------|---------------|
+| `FlexBox` / `FlexItem` | `does not provide an export named 'FlexBox'` → page blanche | `Columns` + `Column` (grille 12) |
+| `Box` / `BoxContent` (pour un simple bloc) | rendu instable | `Card` + `CardContent` |
+| `TrilogyProvider` | `export named 'TrilogyProvider'` introuvable | **Rien** : inutile, les composants fonctionnent sans Provider |
+| `Spacer` (selon versions) | montage KO | `<Divider invisible />` |
+
+> ⚠️ Le SKILL.md principal cite `FlexBox`/`FlexItem` comme primitives responsive.
+> **Dans une LP autoportante via ce CDN, elles ne sont pas disponibles** : rester sur
+> `Columns`/`Column`. Pour les layouts verticaux, empiler les composants + `<Divider invisible />`.
+
+### 2. Valeurs d'enum qui font CRASHER le rendu
+
+| Valeur | Symptôme | Solution |
+|--------|----------|----------|
+| `backgroundColor="ACCENT_FADE"` sur `Section`/`Hero` | `Cannot read properties of undefined (reading '1')` → page blanche | Utiliser `"MAIN_FADE"` ou `"NEUTRAL_FADE"` (les seuls `_FADE` vérifiés OK) |
+
+> Règle de prudence : pour les fonds de section, se limiter à `MAIN`, `NEUTRAL_FADE`,
+> `MAIN_FADE`, `BACKGROUND`. Ne pas utiliser de token `_FADE` non vérifié.
+
+### 3. Ouverture SANS serveur (double-clic `file://`)
+
+- ✅ **La page S'OUVRE en `file://`** (double-clic) **dès lors que le code React est correct** :
+  les `import` de l'importmap pointent vers des URL `https://esm.sh`, pas vers le disque.
+- L'avertissement console `'file:' URLs are treated as unique security origins` est **bénin**
+  (il concerne des ressources annexes) et **n'empêche pas** le rendu.
+- 🔑 **Conséquence** : si la page est blanche en `file://`, le problème n'est PAS le `file://`
+  mais une **erreur de composant/enum** (voir §1 et §2). Ne pas perdre de temps à monter un
+  serveur — corriger le JSX.
+
+### 4. Composants & props VÉRIFIÉS OK (utiliser ce sous-ensemble en priorité)
+
+`Section`, `Container`, `Columns`, `Column` (`size`, `mobileSize`), `Hero`
+(`backgroundColor`, `inverted`), `Title` (`level="1"`…`"6"`, `inverted`), `Text`
+(`inverted`), `Button` (`variant="CONVERSION|SECONDARY|GHOST"`, `fullwidth`,
+`markup="a"` + `href`), `Card` (`fullheight`, `floating`, `flat`), `CardContent`,
+`Divider` (`invisible`), `Price` (`amount`, `period`, `mention`), `Sticker`
+(`variant`, `label`), `Alert` (`status`, `title`, `description`, `display`),
+`Accordion` + `AccordionItem` (`open`) + `AccordionHeader` + `AccordionBody`,
+`Icon` (`name="tri-…"`, `color`, `status`, `size`, `markup="span"`), `Link` (`href`).
 
 ---
 
@@ -95,7 +164,7 @@ Le fichier utilise :
         </Section>
 
         {/* 5. Section CTA final */}
-        <Section backgroundColor="ACCENT_FADE">
+        <Section backgroundColor="MAIN_FADE">
           <Container>
             {/* Rappel CTA */}
           </Container>
@@ -139,6 +208,9 @@ Le fichier utilise :
 - [ ] Aucune balise HTML native dans le JSX (`div`, `p`, `h1`, `span`, etc.)
 - [ ] Aucun CSS custom (ni inline, ni fichier, ni className custom)
 - [ ] Tous les imports depuis `@trilogy-ds/react`
+- [ ] **Aucun import de `FlexBox`, `FlexItem`, `TrilogyProvider`** (non exportés par le bundle esm.sh → page blanche)
+- [ ] **Layout via `Columns`/`Column` uniquement** (pas de FlexBox) ; espacement vertical via `<Divider invisible />`
+- [ ] **Aucun `backgroundColor="ACCENT_FADE"`** — se limiter à `MAIN`, `MAIN_FADE`, `NEUTRAL_FADE`, `BACKGROUND`
 - [ ] Props enum en string lowercase ou UPPERCASE selon l'API (`level="1"`, `variant="CONVERSION"`, `backgroundColor="MAIN"`)
 - [ ] Props `inverted` sur les textes/titres quand fond sombre
 - [ ] `Sticker` utilise `label="..."` (jamais children)
@@ -171,7 +243,7 @@ Le fichier utilise :
 | Avantages | Icônes + textes ou columns | MAIN_FADE |
 | Témoignages / Chiffres | Preuves sociales | blanc |
 | FAQ | Accordion 3-5 questions | blanc ou MAIN_FADE |
-| CTA final | Rappel du CTA conversion | ACCENT_FADE |
+| CTA final | Rappel du CTA conversion | MAIN_FADE |
 
 ---
 
@@ -207,6 +279,11 @@ Focus : clarté, étapes, FAQ. Sections : Hero → Étapes (Stepper) → FAQ →
 | `background={...}` sur Section/Hero | Prop inexistante | `backgroundColor="..."` |
 | `<Sticker>text</Sticker>` | API incorrecte | `<Sticker label="text" />` |
 | `<Alert>contenu</Alert>` | API incorrecte | `<Alert title="..." description="..." />` |
-| `centered` sur Hero | Prop inexistante | Gérer via `<Container>` + FlexBox |
+| `centered` sur Hero | Prop inexistante | Gérer via `<Container>` + Columns |
 | `<AccordionItem active>` | Prop inexistante | `<AccordionItem open>` |
 | Utiliser des enums TS (`TitleLevels.ONE`) | Non disponible sans TypeScript | Utiliser les strings : `level="1"` |
+| Importer `FlexBox` / `FlexItem` | `does not provide an export named 'FlexBox'` → **page blanche** | Layout en `Columns` / `Column` |
+| Importer `TrilogyProvider` | Export introuvable sur le bundle esm.sh | Le retirer : inutile |
+| `backgroundColor="ACCENT_FADE"` | `Cannot read properties of undefined (reading '1')` → **page blanche** | `"MAIN_FADE"` ou `"NEUTRAL_FADE"` |
+| Monter un serveur à cause d'une page blanche en `file://` | Perte de temps : le `file://` n'est pas la cause | Corriger le composant/enum fautif (§1 et §2 ci-dessus) |
+| Diagnostiquer une erreur React minifiée à l'aveugle | Stack illisible | Bissection : envelopper les sections suivantes dans `{false && (<>…</>)}` et réactiver une à une |
