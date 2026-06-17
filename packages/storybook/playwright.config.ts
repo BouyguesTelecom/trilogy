@@ -1,7 +1,14 @@
 import { defineConfig } from '@playwright/test'
+import { cpus } from 'os'
+
+const cpuCount = cpus().length
+const localWorkers = Math.max(2, Math.min(8, Math.floor(cpuCount / 2)))
+const configuredWorkers = Number(process.env.PW_WORKERS)
 
 export default defineConfig({
   testDir: '../react/components',
+  workers:
+    Number.isFinite(configuredWorkers) && configuredWorkers > 0 ? configuredWorkers : process.env.CI ? 4 : localWorkers,
   expect: {
     toHaveScreenshot: {
       animations: 'disabled',
