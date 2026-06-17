@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build -o storybook-static",
-    "test:visual": "playwright test \".*\\.visual\\.spec\\.ts$\""
+    "test:visual": "playwright test \".*\\.visual\\.spec\\.ts$\" --reporter=line"
   },
   "dependencies": {
     "@trilogy-ds/react": "*",
