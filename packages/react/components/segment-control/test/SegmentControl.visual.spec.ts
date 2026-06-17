@@ -2,11 +2,11 @@ import { test } from '@playwright/test'
 import { expectStoryToMatchProd } from '@trilogy-ds/storybook/test/visual/visualRegression'
 
 const segmentControlStories = [
-  { id: 'components-segment-control--default', name: 'Default' },
-  { id: 'components-segment-control--centered', name: 'Centered' },
-  { id: 'components-segment-control--active-second', name: 'Active second' },
-  { id: 'components-segment-control--with-disabled-item', name: 'With disabled item' },
-  { id: 'components-segment-control--playground', name: 'Playground' },
+  { id: 'components-segmentcontrol--default', name: 'Default' },
+  { id: 'components-segmentcontrol--centered', name: 'Centered' },
+  { id: 'components-segmentcontrol--active-second', name: 'Active second' },
+  { id: 'components-segmentcontrol--with-disabled-item', name: 'With disabled item' },
+  { id: 'components-segmentcontrol--playground', name: 'Playground' },
 ] as const
 
 for (const story of segmentControlStories) {

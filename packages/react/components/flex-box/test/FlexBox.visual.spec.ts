@@ -2,10 +2,10 @@ import { test } from '@playwright/test'
 import { expectStoryToMatchProd } from '@trilogy-ds/storybook/test/visual/visualRegression'
 
 const flexBoxStories = [
-  { id: 'components-flex-box--default', name: 'Default' },
-  { id: 'components-flex-box--column-layout', name: 'Column layout' },
-  { id: 'components-flex-box--wrapped', name: 'Wrapped' },
-  { id: 'components-flex-box--narrow-items', name: 'Narrow items' },
+  { id: 'components-flexbox--default', name: 'Default' },
+  { id: 'components-flexbox--column-layout', name: 'Column layout' },
+  { id: 'components-flexbox--wrapped', name: 'Wrapped' },
+  { id: 'components-flexbox--narrow-items', name: 'Narrow items' },
 ] as const
 
 for (const story of flexBoxStories) {

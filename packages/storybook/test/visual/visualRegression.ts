@@ -58,13 +58,14 @@ const freezeTime = async (page: Page) => {
       const OriginalDate = Date
 
       class FixedDate extends OriginalDate {
-        constructor(...args: ConstructorParameters<typeof Date>) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        constructor(...args: any[]) {
           if (args.length === 0) {
             super(fixedNow)
             return
           }
 
-          super(...args)
+          super(args[0], args[1], args[2], args[3], args[4], args[5], args[6])
         }
 
         static now() {
