@@ -34,6 +34,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 storybook-static
+test-results
 *.test.tsx.snap
 coverage
 styles/fonts/src/glyphs/all/optimized
