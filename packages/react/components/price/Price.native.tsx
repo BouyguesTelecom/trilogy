@@ -222,6 +222,10 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
         paddingLeft: 4,
         marginBottom: -3,
         color: color,
+        textAlign:
+          (align === Alignable.ALIGNED_CENTER && 'center') ||
+          (align === Alignable.ALIGNED_END && 'right') ||
+          'left',
       },
       tag: {
         paddingTop:
