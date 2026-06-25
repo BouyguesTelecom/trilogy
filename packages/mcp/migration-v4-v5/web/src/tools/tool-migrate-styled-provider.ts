@@ -28,7 +28,7 @@ async function detectProjectType(root: string): Promise<ProjectType> {
 }
 
 function getStylesheetUrl(mangled: boolean): string {
-  const base = 'https://assets.bouyguestelecom.fr/TRILOGY/trilogy-styles@5.0.0/default'
+  const base = 'https://cdn.jsdelivr.net/npm/@trilogy-ds/styles/dist/default'
   return mangled ? `${base}/trilogy-mangled.css` : `${base}/trilogy.css`
 }
 

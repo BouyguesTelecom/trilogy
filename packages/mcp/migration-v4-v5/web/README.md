@@ -1,35 +1,54 @@
-# Trilogy MCP - Migration Starter (Web)
+# Trilogy MCP - Migration v4 to v5 (Web)
 
-Local-first MCP server starter for Trilogy web migration.
+Local-first MCP server for Trilogy web migrations over STDIO.
 
-## Goals
+## Quick Start
 
-- Keep everything local-first via STDIO.
-- Start from a clean baseline with no migration rules/tooling preloaded.
-- Add tools and rules incrementally when needed.
-- Keep architecture minimal and easy to extend.
+### Build
 
-## Available Tools
+```bash
+npm run build
+```
 
-- None registered yet.
+Or from the repository root:
 
-## Available Resources
+```bash
+npm run mcp:migration:build
+```
 
-- None registered yet.
+### Use with an MCP Host
 
-## Available Prompts
+Point your MCP host to the built server:
 
-- None registered yet.
+```bash
+node packages/mcp/migration-v4-v5/web/dist/index.js
+```
 
-## Safety Model
+Configuration example:
 
-- Path sandbox: writes should remain under workspace root.
-- No shell execution tool is exposed.
+```json
+{
+  "command": "node",
+  "args": ["packages/mcp/migration-v4-v5/web/dist/index.js"]
+}
+```
 
-## Run
+Once connected, the server exposes:
+- **Prompt**: `migrate` - entry point for migrations
+- **Tools**: migration tools (e.g., `migrate_styled_provider`)
+- **Resources**: migration rules and workflow guides
+
+## Development
 
 ```bash
 npm run dev
 ```
 
-The server should be launched by an MCP host over STDIO.
+## Architecture
+
+- **Tools** (`src/tools/`): Migration operations (e.g., removing props, adding links)
+- **Rules** (`src/domain/rules/`): Markdown-based migration rules with frontmatter
+- **Resources** (`src/resources/`): Queryable migration catalogs and guides
+- **Prompts** (`src/prompts/`): Entry points for the host/agent
+
+All tools require `confirmDestructive: true` to apply changes.
