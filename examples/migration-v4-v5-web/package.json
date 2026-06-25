@@ -1,0 +1,19 @@
+{
+  "name": "@trilogy-ds/example-mcp-migration-v4-v5-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Petit projet Vite TSX v4 pour tester le serveur MCP migration v4-v5-web",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "*",
+    "@trilogy-ds/react": "*",
+    "vite": "*"
+  },
+  "dependencies": {
+    "react-lottie-player": "^2.1.0"
+  }
+}
