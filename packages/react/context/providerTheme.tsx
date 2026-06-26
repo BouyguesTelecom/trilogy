@@ -5,6 +5,7 @@ export const defaultTheme: ITrilogyTheme = {
   icons: {},
   colors: {},
   fontFamily: {},
+  radius: {},
 }
 
 interface ITrilogyThemeContext {
