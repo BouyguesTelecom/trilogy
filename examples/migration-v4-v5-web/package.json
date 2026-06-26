@@ -12,8 +12,5 @@
     "@vitejs/plugin-react": "*",
     "@trilogy-ds/react": "*",
     "vite": "*"
-  },
-  "dependencies": {
-    "react-lottie-player": "^2.1.0"
   }
 }
