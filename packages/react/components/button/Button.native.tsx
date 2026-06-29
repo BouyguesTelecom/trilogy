@@ -41,7 +41,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
       : variant === ButtonVariant.CONVERSION
       ? TrilogyColor.ACCENT
       : variant === ButtonVariant.GHOST
-      ? TrilogyColor.BACKGROUND
+      ? 'transparent'
       : TrilogyColor.MAIN
 
     const color =
