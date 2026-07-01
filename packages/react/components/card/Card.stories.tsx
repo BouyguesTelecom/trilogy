@@ -8,14 +8,6 @@ import CardImage from './image/CardImage'
 import { CardImageSize } from './image/CardImageEnum'
 import type { CardImageProps } from './image/CardImageProps'
 
-CardComponent.displayName = 'Card'
-CardContent.displayName = 'CardContent'
-CardImage.displayName = 'CardImage'
-
-const Card = (props: CardProps & { children: React.ReactNode }) => <CardComponent {...props} />
-const CardContentWrapper = (props: CardContentProps & { children: React.ReactNode }) => <CardContent {...props} />
-const CardImageWrapper = (props: CardImageProps) => <CardImage {...props} />
-
 interface CardStoryArgs extends CardProps, CardContentProps {
   content: string
   src: string
@@ -25,13 +17,13 @@ interface CardStoryArgs extends CardProps, CardContentProps {
 
 const meta: Meta<CardStoryArgs> = {
   title: 'Components/Card',
-  component: Card,
-  subcomponents: { CardContent: CardContentWrapper, CardImage: CardImageWrapper },
+  component: CardComponent,
+  subcomponents: { CardContent, CardImage },
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
-        component: '',
+        component: ' ',
       },
     },
   },
