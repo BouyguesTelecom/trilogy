@@ -24,7 +24,7 @@
 // import sass bulma
 @mixin input {
   @include control;
-  height: 56px;
+  height: $size-inputs;
   background-color: getColor('background');
   border: var(--border);
   color: getColor('font');
