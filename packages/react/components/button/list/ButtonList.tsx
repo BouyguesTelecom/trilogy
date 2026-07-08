@@ -11,10 +11,12 @@ import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
 /**
  * Button List Component
  * @param children {ReactNode} ButtonList children
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param id
- * @param align
- * @param direction
+ * @param align {JustifiedAlign} Justified align
+ * @param direction {ButtonListDirectionEnum} Button list direction
+ * @param className {string} Additional CSS Classes
  */
 const ButtonList = React.forwardRef<ButtonListRef, ButtonListWebProps>(
   ({ className, id, align, direction, testId, ...others }, ref): JSX.Element => {

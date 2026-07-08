@@ -8,19 +8,20 @@ import { useTrilogyContext } from '@/context/index'
 import { ComponentName } from '../enumsComponentsName'
 
 /**
- * Text component
- * @param children {string} Text child
- * @param inverted {Boolean} Text white color
- * @param level {TextLevels | number} Text size : 1-4
- * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typos
- * @param skeleton {Boolean} Text Skeleton
+ * Text Component
+ * @param children {string} Text content
+ * @param level {TextLevels} Text size level (1-4)
+ * @param typo {TypographyColor | TypographyTransform | TypographyBold | TypographyAlign} Typography variant(s)
+ * @param inverted {boolean} Inverted text color (white)
+ * @param skeleton {boolean} Text loading skeleton
+ * @param marginless {boolean} Remove margin after text
+ * @param numberOfLines {number} Max number of lines before ellipsis
  * @param accessibilityLabel {string} Accessibility label
- * @param marginless {boolean} Removes margin after Text
- * @param numberOfLines {number} Ellipsis after limit number of lines
- * - --------------- WEB PROPERTIES ----------------------------------
- * @param className {string} Additional css classes
- * @param markup {TextMarkup} Text markup
- * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
+ * @param markup {TextMarkup} HTML markup element
  */
 const Text = React.forwardRef<TextRef, TextProps>(({
   level,

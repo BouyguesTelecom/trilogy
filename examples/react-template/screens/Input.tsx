@@ -288,27 +288,27 @@ export const InputScreen = (): JSX.Element => {
           {
             label: 'Entre 2 et 4 caractères',
             patternValidator: /^.{2,4}$/,
-            dataAttribute: { 'security-length': true },
+            dataAttribute: { 'security-length': 'true' },
           },
           {
             label: 'Majuscule',
             patternValidator: /[A-Z]/,
-            dataAttribute: { 'security-uppercase': true },
+            dataAttribute: { 'security-uppercase': 'true' },
           },
           {
             label: 'Caractères spéciaux',
             patternValidator: /[^\w]/,
-            dataAttribute: { 'security-special-chars': true },
+            dataAttribute: { 'security-special-chars': 'true' },
           },
           {
             label: 'Minuscule',
             patternValidator: /[a-z]/,
-            dataAttribute: { 'security-lowercase': true },
+            dataAttribute: { 'security-lowercase': 'true' },
           },
           {
             label: 'Chiffre',
             patternValidator: /[0-9]/,
-            dataAttribute: { 'security-number': true },
+            dataAttribute: { 'security-number': 'true' },
           },
         ]}
       />

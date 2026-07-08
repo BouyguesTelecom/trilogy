@@ -91,17 +91,22 @@ const getJustifyClassName = (justifyContent?: string) => {
 
 /**
  * @beta
- * FlexBox component
- * @param children {React.ReactNode} Box child
- * @param className {string} Additional css classes
- * @param id {string} Id attribute
- * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children
- * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; tablet?: 'row' | 'column' | 'row-reverse' | 'column-reverse'; desktop?: 'row' | 'column' | 'row-reverse' | 'column-reverse' } } Flex direction
- * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'; tablet?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'; desktop?: 'start' | 'end' | 'center' | 'stretch' | 'baseline' } } Align items
- * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'; tablet?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'; desktop?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' } } Justify content
- * @param wrap { boolean | { mobile?: boolean; tablet?: boolean; desktop?: boolean; widescreen?: boolean; fullhd?: boolean } } Wrap content
- * @param scrollable {boolean} scrollable mode (overflow-x: auto)
+ * FlexBox Component - Flexible box layout container
+ * @param children {React.ReactNode} FlexBox child elements
+ * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children (supports responsive values)
+ * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
+ * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
+ * @param justify { 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | { mobile?: ...; tablet?: ...; desktop?: ... } } Justify content (supports responsive values)
+ * @param scrollable {boolean} Enable horizontal scrolling (overflow-x: auto)
  * @param fullheight {boolean} Full height (height: 100%)
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param mobile {boolean} Apply mobile-specific layout class
+ * @param className {string} Additional CSS Classes
+ * @param wrap { boolean | { mobile?: boolean; tablet?: boolean; desktop?: boolean } } Wrap flex content (supports responsive values)
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
 const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, testId, ...others }, ref) => {

@@ -10,19 +10,19 @@ import { PriceNativeRef, PriceProps } from './PriceProps'
 
 /**
  * Price Component
- * @param amount {number} Amount for Price
- * @param mention {string} Mention for price ( (1)* )
- * @param period {string} Period for Price (mois)
- * @param hideCents {boolean} Display cents
+ * @param amount {number} Price amount
+ * @param oldAmount {number} Old price amount (displayed as strikethrough)
+ * @param mention {string} Mention text (e.g. "(1)*")
+ * @param period {string} Period label (e.g. "/ month")
+ * @param overline {string} Overline text above price
+ * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
- * @param style {Object} Additional style
  * @param inverted {boolean} Inverted Price Color
- * @param align {Alignable} Price alignement
- * @param inline {boolean} Inline display Price
- * @param testId {string} id for test
- * @param accessibilityLabel {string}
- * @param oldAmount {boolean} Striked Amount Price
- * @param overline {string} Price overline
+ * @param children {React.ReactNode} Price child elements
+ * @param align {Alignable} Price alignment
+ * @param accessibilityLabel {string} Accessibility label
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const Price = React.forwardRef<PriceNativeRef, PriceProps>(
   (
@@ -47,14 +47,14 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const isNegative = amount ? amount < 0 : false
     const absoluteAmount = amount ? Math.abs(amount) : 0
     const absoluteWhole = Math.floor(absoluteAmount)
-    const whole = isNegative ? -absoluteWhole : absoluteWhole
+    const whole = isNegative ? (absoluteWhole === 0 ? "-0" : -absoluteWhole) : absoluteWhole
 
     const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
 
     const isNegativeStriked = oldAmount && oldAmount < 0
     const absoluteAmountStriked = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
-    const wholeStriked = absoluteWholeStriked && isNegativeStriked ? -absoluteWholeStriked : absoluteWholeStriked
+    const wholeStriked = isNegativeStriked ? (absoluteWholeStriked === 0 ? "-0": -(absoluteWholeStriked as number)) : absoluteWholeStriked
 
     const centsStriked =
       absoluteAmountStriked && checkCents(absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
@@ -75,7 +75,16 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       44
 
     const centsLevel = priceLevel * 0.4
-    const suptitleLevel = priceLevel * 0.2
+
+    const suptitleLevel =
+      (level == PriceLevel.ONE && 16) ||
+      (level == PriceLevel.TWO && 16) ||
+      (level == PriceLevel.THREE && 16) ||
+      (level == PriceLevel.FOUR && 14) ||
+      (level == PriceLevel.FIVE && 14) ||
+      (level == PriceLevel.SIX && 10) ||
+      (level == PriceLevel.SEVEN && 10) ||
+      16
 
     const priceLevelStriked =
       (level == PriceLevel.ONE && 44) ||
@@ -213,7 +222,10 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
         paddingLeft: 4,
         marginBottom: -3,
         color: color,
-        fontWeight: (level == PriceLevel.SIX && 'normal') || (level == PriceLevel.SEVEN && 'normal') || 'bold',
+        textAlign:
+          (align === Alignable.ALIGNED_CENTER && 'center') ||
+          (align === Alignable.ALIGNED_END && 'right') ||
+          'left',
       },
       tag: {
         paddingTop:

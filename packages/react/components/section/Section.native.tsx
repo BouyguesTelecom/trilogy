@@ -6,11 +6,12 @@ import { SectionNativeRef, SectionProps } from './SectionProps'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
- * @param children {React.ReactNode}
+ * @param children {React.ReactNode} Section child elements
  * @param backgroundColor {TrilogyColor} Section Background Color
- * @param backgroundSrc {string} Source of background Image
- * @param paddingless {boolean} remove padding
- **/
+ * @param backgroundSrc {string} Source of background image
+ * @param inverted {boolean} Inverted Section Color
+ * @param id {string} Custom id attribute
+ */
 const Section = React.forwardRef<SectionNativeRef, SectionProps>(({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 

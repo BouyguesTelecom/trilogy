@@ -1,5 +1,6 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
+import { DEFAULT_TRILOGY_COLORS } from './defaultColors'
 
 /**
  * Trilogy color
@@ -33,37 +34,7 @@ export type TrilogyColorValues = `${TrilogyColor}`
 /**
  * Trilogy color values
  */
-export const colors: Record<TrilogyColor, string[]> = {
-  [TrilogyColor.BACKGROUND]: ['#fff', 'white', 'main'],
-  [TrilogyColor.MAIN]: ['#3d5d7e', 'main', 'white'],
-  [TrilogyColor.MAIN_FADE]: ['#BBC6CD', 'main-fade', 'white'],
-  [TrilogyColor.ACCENT]: ['#da641b', 'accent', 'white'],
-  [TrilogyColor.ACCENT_FADE]: ['#faebe3', 'accent-fade', 'white'],
-
-  [TrilogyColor.FONT]: ['#3d5d7e', 'main', 'white'],
-  [TrilogyColor.FONT_PLACEHOLDER]: ['#687a87', 'font-placeholder', 'white'],
-
-  [TrilogyColor.SUCCESS]: ['#007B52', 'success', 'white'],
-  [TrilogyColor.SUCCESS_FADE]: ['#cae8ca', 'success-fade', 'white'],
-
-  [TrilogyColor.INFO]: ['#1A688A', 'info', 'white'],
-  [TrilogyColor.INFO_FADE]: ['#c8dbec', 'info-fade', 'white'],
-
-  [TrilogyColor.WARNING]: ['#FFBB33', 'warning', 'white'],
-  [TrilogyColor.WARNING_FADE]: ['#ecdbc6', 'warning-fade', 'white'],
-
-  [TrilogyColor.ERROR]: ['#D42D02', 'error', 'white'],
-  [TrilogyColor.ERROR_FADE]: ['#eecccc', 'error-fade', 'white'],
-
-  [TrilogyColor.DISABLED]: ['#646464', 'disabled', 'white'],
-  [TrilogyColor.DISABLED_FADE]: ['#D1D1D1', 'disabled-fade', 'white'],
-
-  [TrilogyColor.NEUTRAL]: ['#707070', 'grey', 'white'],
-  [TrilogyColor.NEUTRAL_FADE]: ['#F4F4F4', 'grey-fade', 'white'],
-
-  [TrilogyColor.STROKE]: ['#BBC1CE', 'stroke', 'white'],
-  [TrilogyColor.STROKE_FADE]: ['#cadbe8', 'stroke-fade', 'white'],
-}
+export const colors: Record<TrilogyColor, string[]> = DEFAULT_TRILOGY_COLORS as unknown as Record<TrilogyColor, string[]>
 
 /**
  * Returns color's className depending on Trilogy Color

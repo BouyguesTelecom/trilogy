@@ -7,9 +7,8 @@ import { PopoverDirection } from './PopoverEnum'
 
 /**
  * Popover Component
- * @param children {ReactNode} Popover children
+ * @param children {ReactNode} Popover content
  * @param direction {PopoverDirection} Popover direction (DOWN|LEFT|RIGHT)
- * @param content {ReactNode} Content of the popover (hidden popover if null|undefined)
  * @param active {boolean} Is the popover active
  */
 const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(({ children, active = false, direction }, ref): JSX.Element => {

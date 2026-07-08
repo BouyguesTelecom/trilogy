@@ -8,18 +8,18 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
 
 /**
- * Checkbox Native Component
+ * Checkbox Component
  * @param checked {boolean} Checked Checkbox
  * @param disabled {boolean} Disabled
- * @param readonly {boolean} readonly Checkbox
+ * @param readOnly {boolean} readonly Checkbox
  * @param id {string} Id for button, by default id is generate
- * @param label {string} Label for Checkbox
- * @param onClick {ClickEvent}
+ * @param label {string} Label for Checkbox // Incompatible with children
  * @param onChange {ChangeEvent}
  * @param name {string} Name for checkbox
+ * @param testId {string} Test Id for Test Integration
  */
 const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label }, ref): JSX.Element => {
+  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
     const [_checked, setChecked] = useState(checked || false)
 
     useEffect(() => {
@@ -34,7 +34,9 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
+        borderColor: getColorStyle(
+          disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
+        ),
         borderWidth: 0.6,
         width: 19,
         height: 19,
@@ -67,7 +69,12 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
 
     return (
       <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick()}>
-        <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
+        <TouchableOpacity
+          style={styles.checkBox}
+          disabled={disabled}
+          testID={testId || id}
+          onPressIn={() => handleClick()}
+        >
           {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
         </TouchableOpacity>
         {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}

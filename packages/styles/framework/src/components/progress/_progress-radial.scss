@@ -24,5 +24,15 @@
   &.is-small {
     width: 75px;
     height: 75px;
+
+    .progress-radial-content {
+      &-label {
+        font-size: $text-16;
+        line-height: normal;
+      }
+       &-description {
+          font-size: $text-10;
+       }
+    }
   }
 }

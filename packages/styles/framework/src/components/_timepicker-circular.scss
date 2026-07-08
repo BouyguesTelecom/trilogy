@@ -1,7 +1,22 @@
-$CIRCLE_SIZE: 172px;
-$CURSOR_SIZE: 30px;
+$CIRCLE_SIZE: 204px;
+$CURSOR_SIZE: 32px;
 
 .timepicker-circular {
+
+  &_dot-hour {
+    background-color: getColor('neutral');
+    &.is-filled {
+        background-color: getColor('main');
+    }
+  }
+
+  &_progress {
+    stroke: getColor('main');
+  }
+
+  &_progress-container {
+    stroke: getColor('main-fade');
+  }
 
   .circle_container {
     width: $CIRCLE_SIZE;
@@ -17,6 +32,8 @@ $CURSOR_SIZE: 30px;
       border: 2px solid getColor('main');
       z-index: 20;
     }
+
+
 
     &-inputs {
       position: absolute;
@@ -43,8 +60,8 @@ $CURSOR_SIZE: 30px;
 
       &-wrapper-input {
           @include input;
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           text-align: center;
           display: flex;
           align-items: center;
@@ -54,7 +71,7 @@ $CURSOR_SIZE: 30px;
       }
 
       &-separator {
-        height: 36px;
+        height: 40px;
         margin-bottom: 10px
       }
     }

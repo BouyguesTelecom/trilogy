@@ -37,11 +37,11 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * Alert Component
  * @param iconName {IconName} Custom icon
  * @param title {string} Alert title content
- * @param description {string|ReactNode} Aleert description content
+ * @param description {string|ReactNode} Alert description content
  * @param status {StatusState} Status Variant (INFO|SUCCESS|WARNING|ERROR)
- * @param info (boolean) Small info alert use it without button and arrow
+ * @param banner {boolean} Banner style alert (no border, full-width)
  * @param onClick {Function} onClick Event for all alert
- * @param display {Boolean} Display Alert component
+ * @param display {boolean} Display Alert component
  */
 const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {

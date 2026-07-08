@@ -30,13 +30,15 @@ const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, testId,
 })
 
 /**
- * Prompt component that provides a form wrapper for chat-like interfaces
- * @param readOnly {boolean} Whether the prompt is in read-only mode
- * @param disabled {boolean} Whether the prompt is disabled
- * @param children {ReactNode} Child components (textarea, toolbar, etc.)
- * @param className {string} Additional CSS classes (ONLY FOR WEB)
+ * Prompt Component - Form wrapper for chat-like or AI prompt interfaces
+ * @param readOnly {boolean} Read-only state (disables editing)
+ * @param disabled {boolean} Disabled state
+ * @param children {ReactNode} Child components (Input, Textarea, toolbar buttons, etc.)
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
  */
 const Prompt = React.forwardRef<PromptRef, PromptProps>(
   ({ readOnly = false, disabled = false, className, ...others }, ref) => {

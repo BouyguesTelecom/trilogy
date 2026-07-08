@@ -5,9 +5,10 @@ import { StyleSheet, View } from 'react-native'
 import { BreadcrumbNativeRef, BreadcrumbProps } from './BreadcrumbProps'
 
 /**
- * Breadcrumb Native Component
+ * Breadcrumb Component
  * @param children {React.ReactNode} Breadcrumb Children
  * @param testId {string} Test id
+ * @param id {string} Custom id attribute
  */
 const Breadcrumb = React.forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {

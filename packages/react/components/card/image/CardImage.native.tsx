@@ -7,10 +7,11 @@ import { CardImageNativeRef, CardImageProps } from './CardImageProps'
 /**
  * Card Image Component
  * @param src Image source
- * @param size Image Card size on horizontal align
  * @param alt Alt attribute
+ * @param size Image Card size on horizontal align
  * @param onClick {Function} onClick Event
- * @param horizontal {boolean} Horizontal Card orientation
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * @param contain {boolean} Resize mode contain
  */
 const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(

@@ -5,16 +5,17 @@ import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableCo
 
 /**
  * Box Table Component
- * @param children {React.ReactNode} Childrens
+ * @param children {React.ReactNode} Children
+ * @param testId {string} Test Id for Test Integration
  */
 const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
-  ({ children, ...others }, ref): JSX.Element => {
+  ({ children, testId, ...others }, ref): JSX.Element => {
     const styles = StyleSheet.create({
       boxTableContainer: {},
     })
 
     return (
-      <View ref={ref} style={[styles.boxTableContainer]} {...others}>
+      <View ref={ref} style={[styles.boxTableContainer]} {...others} testID={testId}>
         {children}
       </View>
     )

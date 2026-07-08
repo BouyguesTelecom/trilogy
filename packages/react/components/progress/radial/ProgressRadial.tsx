@@ -11,15 +11,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Progress Radial component
- * @param percent {number} Progress percent
  * @param label {string} Custom label
  * @param description {string} Custom description
  * @param children {React.ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
- * - --------------- NATIVE PROPERTIES ----------------------------------
+ * @param secondValue {number} Second progress percent (for dual progress)
+ * @param small {boolean} Display small progress radial
+ * @param id {string} Custom id attribute
+ * @param value {number} Progress percent
  * - --------------- WEB PROPERTIES -------------------------------------
  * @param className {string} Additional CSS Classes
- * @param small {boolean} Display small progress radial
+ * @param testId {string} Test Id for Test Integration
  */
 const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(({
   children,
@@ -40,7 +42,6 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
 
   const classes = hashClass(styled, clsx('progress-radial', skeleton && is('loading'), small && is('small'), className))
   const classesContent = hashClass(styled, clsx('progress-radial-content'))
-
   const progressRadialRef = useRef<HTMLDivElement>(null)
 
   // Function to update the background style based on the current progress
@@ -98,12 +99,12 @@ const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
     <div id={id} data-testid={testId} {...others} className={classes} ref={progressRadialRef}>
       <div ref={ref} className={classesContent}>
         {label && (
-          <Title level={TitleLevels.TWO} marginless>
+          <Title level={TitleLevels.TWO} marginless className='progress-radial-content-label'>
             {label}
           </Title>
         )}
         {description && (
-          <Text level={TextLevels.ONE} marginless>
+          <Text level={TextLevels.ONE} marginless className='progress-radial-content-description'>
             {description}
           </Text>
         )}

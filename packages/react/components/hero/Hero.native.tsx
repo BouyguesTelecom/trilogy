@@ -5,20 +5,20 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+
 /**
  * Hero Component
- * @param children {ReactNode} Hero Children
+ * @param children {React.ReactNode} Hero Children
+ * @param backgroundColor {TrilogyColor} Hero background color
  * @param backgroundSrc {string} If source, it will display background option
- * @param backgroundColor {TrilogyColor} Background Color
- * @param inverted {Boolean} Inverted Hero
  * @param onClick {Function} onClick Event
- * @param overlap {ReactNode[]|Boolean} Hero overlap components in tab (need to add key for each element),
- * if second element add second special overlap (only native-old) - Web (Boolean) Native (ReactNode)
- * @param backgroundHeight {BackgroundHeight} Background heigth
+ * @param inverted {boolean} Inverted
+ * @param overlap {ReactNode[]|boolean} Hero overlap components (need to add key for each element)
+ * @param testId {string} Test Id for Test Integration
  */
 const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
   (
-    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, ...others },
+    { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, testId, ...others },
     ref,
   ): JSX.Element => {
     const [overlapHeight, setOverlapHeight] = useState<number>(0)
@@ -128,13 +128,13 @@ const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
     }
 
     return onClick ? (
-      <View ref={ref}>
+      <View testID={testId} ref={ref}>
         <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
           {heroView}
         </TouchableOpacity>
       </View>
     ) : (
-      <View ref={ref} style={{ width: '100%' }}>
+      <View testID={testId} ref={ref} style={{ width: '100%' }}>
         {heroView}
         {overlapView}
       </View>

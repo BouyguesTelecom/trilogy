@@ -161,6 +161,9 @@ body:not(.is-tight) {
   .title.is-level-6 + .subtitle:not(.flex-box > .title.is-level-6 + .subtitle):not(:last-child) {
     margin-bottom: 12px;
   }
+  .is-autocomplete-container:not(.flex-box > .is-autocomplete-container):not(:last-child) {
+    margin-bottom: 24px;
+  }
 }
 
 @include mobile() {
@@ -326,6 +329,9 @@ body:not(.is-tight) {
     }
   .title.is-level-6 + .subtitle:not(.flex-box > .title.is-level-6 + .subtitle):not(:last-child) {
       margin-bottom: 8px;
+    }
+  .is-autocomplete-container:not(.flex-box > .is-autocomplete-container):not(:last-child) {
+      margin-bottom: 16px;
     }
 
   }

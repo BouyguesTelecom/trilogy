@@ -6,7 +6,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Tag List Component
  * @param children {ReactNode} Children Tag List
- * @param centered {boolean} Center tags
+ * @param id {string} Custom id attribute
  */
 const TagList = React.forwardRef<TagListNativeRef, TagListProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({

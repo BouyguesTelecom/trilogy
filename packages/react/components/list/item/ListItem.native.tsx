@@ -12,9 +12,10 @@ import { StyleSheet, View } from 'react-native'
  * @param children {React.ReactNode}
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
+ * @param testId {string} Test Id for Test Integration
  */
 const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
-  ({ children, status, iconName }, ref): JSX.Element => {
+  ({ children, status, iconName, testId }, ref): JSX.Element => {
     const id = useId()
     const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)
     const isLastItem = chilIndexes[chilIndexes.length - 1] === id
@@ -55,7 +56,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
     }, [children])
 
     return (
-      <View ref={ref} style={[styles.content]}>
+      <View ref={ref} style={[styles.content]} testID={testId}>
         {ordered && !iconName && (
           <View>
             <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{chilIndexes.indexOf(id) + 1}.</Text>

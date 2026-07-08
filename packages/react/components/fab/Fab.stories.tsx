@@ -1,60 +1,109 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { FabProps } from "./FabProps";
-import Fab from "./Fab";
-import { IconName } from "../icon";
+import type { Meta, StoryObj } from '@storybook/react'
+import { IconName } from '../icon'
+import FabComponent from './Fab'
+import type { FabProps } from './FabProps'
+import React from 'react'
 
-export default {
-  title: "Components/Fab",
-  component: Fab,
+FabComponent.displayName = 'Fab'
+const meta: Meta<FabProps> = {
+  title: 'Components/Fab',
+  component: FabComponent,
+  tags: ['autodocs'],
   parameters: {
-    backgrounds: {
-      default: "light",
-      values: [
-        { name: "light", value: "#f6f9fc" },
-        { name: "dark", value: "#25465F" },
-      ],
+    docs: {
+      description: {
+        component: ' ',
+      },
     },
   },
-} as Meta;
+  argTypes: {
+    children: {
+      control: 'text',
+      description: ' ',
+    },
+    iconName: {
+      control: 'select',
+      options: Object.values(IconName),
+      description: 'Icon displayed in the button',
+    },
+    extended: {
+      control: 'boolean',
+      description: 'Show extended mode (icon + text)',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable interaction',
+    },
+    fixed: {
+      control: 'boolean',
+      description: 'Use fixed positioning (otherwise absolute)',
+    },
+    top: {
+      control: 'number',
+      description: 'Top offset position',
+    },
+    bottom: {
+      control: 'number',
+      description: 'Bottom offset position',
+    },
+    left: {
+      control: 'number',
+      description: 'Left offset position',
+    },
+    right: {
+      control: 'number',
+      description: 'Right offset position',
+    },
+    onClick: {
+      action: 'clicked',
+      description: 'Click handler',
+    },
+    accessibilityLabel: { table: { disable: true } },
+    testId: { table: { disable: true } },
+    id: { table: { disable: true } },
+    className: { table: { disable: true } },
+  },
+  args: {
+    children: 'New Conversation',
+    iconName: IconName.INFOS_CIRCLE,
+    extended: true,
+    disabled: false,
+    fixed: false,
+    bottom: 16,
+    right: 16,
+    top: undefined,
+    left: undefined,
+  },
+  render: (args) => (
+    <div style={{ minHeight: 220, position: 'relative' }}>
+      <FabComponent {...args} />
+    </div>
+  ),
+}
 
-export const Base: Story<FabProps> = (args) => <Fab {...args} />;
+export default meta
 
-Base.args = {
-  extended: false,
-  iconName: IconName.BELL,
-  children: "Alert",
-};
+type Story = StoryObj<FabProps>
 
-export const Position: Story<FabProps> = (args) => (
-  <div>
-    <h1 className={"title is-level-2"}>Intégration HTML</h1>
-    <p className={"text"}>
-      Afin de positionner le FAButton, il vous faut utiliser le helper{" "}
-      <code>is-absolute</code> et positionner votre componsant avec
-      l&apos;attribut <code>style=&ldquo; &ldquo;</code>
-    </p>
-    <h1 className={"title is-level-2"}>Intégration REACT</h1>
-    <p className={"text"}>
-      Utiliser les props de position ( <code>top , left , bottom, right </code>{" "}
-      ).
-    </p>
-    <Fab {...args} />
-  </div>
-);
+export const Default: Story = {}
 
-Position.args = {
-  iconName: IconName.BELL,
-  bottom: 24,
-  right: 24,
-  extended: true,
-  children: "Je suis en position absolute",
-};
+export const Compact: Story = {
+  args: {
+    extended: false,
+  },
+}
 
-export const Extended: Story<FabProps> = (args) => <Fab {...args} />;
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+}
 
-Extended.args = {
-  iconName: IconName.BELL,
-  extended: true,
-  children: "Extended fab",
-};
+export const TopLeft: Story = {
+  args: {
+    top: 16,
+    left: 16,
+    bottom: undefined,
+    right: undefined,
+  },
+}

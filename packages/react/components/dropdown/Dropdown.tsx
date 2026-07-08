@@ -109,9 +109,10 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
  * @param children {React.ReactNode} Children (DropdownTrigger, DropdownItem and DropdownGroup)
  * @param isActive {boolean} Dropdown active/open state (for manual control)
  * @param defaultOpen {boolean} Initial open state (for automatic control)
- * @param onToggle {Function} Callback when dropdown state changes (for automatic control)
- * @param className {string} Additional CSS classes
- * @param testId {string} Test ID
+ * @param onToggle {Function} Callback when dropdown open state changes
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
   (

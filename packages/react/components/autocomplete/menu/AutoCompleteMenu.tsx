@@ -8,10 +8,15 @@ import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
 /**
  * AutoCompleteMenu Component
  * @param children {ReactNode} Children
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additional CSS Classes
  * @param absolute {boolean} Absolute position for Menu
  * @param fullwidth {boolean} Fullwidth size for Menu
+ * - -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param suggestions {Array} Suggestions list for AutoComplete
+ * @param handleSelectItem {Function} Callback when selecting an item
  */
 const AutoCompleteMenu = ({ children, className, id, absolute, fullwidth, testId }: AutoCompleteMenuProps): JSX.Element => {
   const { styled } = useTrilogyContext()

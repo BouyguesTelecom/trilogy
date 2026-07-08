@@ -1,106 +1,85 @@
-import React from "react"
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import ContainerComponent from './Container'
+import type { ContainerProps } from './ContainerProps'
 
-import { Meta, Story } from "@storybook/react"
-import Container from "./Container"
-import { Box } from "../box"
-import { Text } from "../text"
-import { ContainerProps } from "./ContainerProps"
-import { Section } from "../section"
-import { Divider } from "../divider"
-import { Title, TitleLevels } from "../title"
-import { StickyPosition } from "../../objects"
+ContainerComponent.displayName = 'Container'
 
-export default {
+const Container = (props: ContainerProps & { children: React.ReactNode }): JSX.Element => (
+  <ContainerComponent {...props} />
+)
+Container.displayName = 'Container'
+
+interface ContainerStoryArgs extends ContainerProps {
+  content: string
+}
+
+const meta: Meta<ContainerStoryArgs> = {
   title: 'Components/Container',
   component: Container,
-} as Meta
-
-export const Base: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box>
-      <Text>Je suis une box dans un container</Text>
-    </Box>
-  </Container>
-)
-export const Sticky: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box>
-      <Text>Container STICKY TOP or STICKY BOTTOM ? ツ</Text>
-    </Box>
-  </Container>
-)
-
-Sticky.args = {
-  sticky: StickyPosition.TOP,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: '',
+      },
+    },
+  },
+  argTypes: {
+    medium: {
+      control: 'boolean',
+      name: 'medium',
+      description: 'Set medium container width',
+      table: { category: 'Container' },
+    },
+    content: {
+      control: 'text',
+      name: 'children',
+      description: 'Container content text',
+      table: { category: 'Container' },
+    },
+  },
+  args: {
+    medium: false,
+    content: 'This is container content',
+  },
+  render: ({ medium, content }) => (
+    <ContainerComponent medium={medium}>
+      <div style={{ padding: '24px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>{content}</div>
+    </ContainerComponent>
+  ),
 }
 
-export const ConteneurFluid: Story<ContainerProps> = (args) => (
-  <Section>
-   <Divider />
-  <Container {...args}>
-    <Box>
-      <Text>Container content</Text>
-    </Box>
-  </Container>
-  </Section>
-)
-ConteneurFluid.args = {
-  fluid: true,
+export default meta
+
+type Story = StoryObj<ContainerStoryArgs>
+
+export const Default: Story = {}
+
+export const Medium: Story = {
+  args: {
+    medium: true,
+  },
 }
 
-export const ConteneurMedium: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box>
-      <Text>Container medium</Text>
-    </Box>
-  </Container>
-)
-ConteneurMedium.args = {
-  medium: true,
+export const WithContent: Story = {
+  render: () => (
+    <ContainerComponent>
+      <div style={{ padding: '24px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+        <h2>Container Title</h2>
+        <p>This is a standard width container with multiple lines of content to demonstrate the layout.</p>
+      </div>
+    </ContainerComponent>
+  ),
 }
 
-export const Fullwidth: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box>
-      <Text>Container Fullwidth</Text>
-    </Box>
-  </Container>
-)
-Fullwidth.args = {
-  fullwidth: true,
-}
-
-export const Centered: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box>
-      <Text>Container Centered</Text>
-    </Box>
-  </Container>
-)
-Centered.args = {
-  fluid: true,
-  centered: true,
-}
-
-export const SurLesCotés: Story<ContainerProps> = (args) => (<>
-  <Section>
-    <Title level={TitleLevels.THREE}>Conteneur fluid,  pulled-right / left</Title>
-    <Divider />
-    <Container {...args}>
-      <Box>
-        <Text>Pulled Right , or left ? ツ </Text>
-      </Box>
-    </Container>
-  </Section>
-<Section>
-    <Container >
-      <Box>
-        <Text>Pulled left</Text>
-      </Box>
-    </Container></Section> </>
-
-)
-SurLesCotés.args = {
-  fluid: true,
-  pulledRight: true
+export const MediumWithContent: Story = {
+  render: () => (
+    <ContainerComponent medium>
+      <div style={{ padding: '24px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+        <h2>Medium Container Title</h2>
+        <p>This is a medium width container with multiple lines of content to demonstrate the reduced width.</p>
+      </div>
+    </ContainerComponent>
+  ),
 }

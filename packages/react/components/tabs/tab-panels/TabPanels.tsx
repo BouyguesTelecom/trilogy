@@ -9,10 +9,10 @@ import React from 'react'
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
- * @param className
- * @param id
- * @param testId
- * @param others
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const TabPanels = React.forwardRef<TabPanelsRef, TabPanelsProps>(({ children, className, id, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

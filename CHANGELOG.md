@@ -3,7 +3,28 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.15.4] - 2026-03-XX
+## [4.17.0] - 2026-04-27
+- Add icon
+- Update title sizes
+- Update price overline
+- Update countdown ui
+- Update modal (native) : migration => react-native-reanimated
+- Update Switch (native): migration => react-native-reanimated
+- Fix timepicker (native)
+  
+## [4.16.3] - 2026-04-15
+- Fix ProgressRadial props (native)
+- Fix negative Price (native)
+
+## [4.16.2] - 2026-04-14
+- Fix timepicker : default and circular (native)
+- Fix ProgressRadial (native)
+- Fix Autocomplete spacings (web)
+- Fix Shadow on Box and Card component (native)
+- Fix negative Price (web)
+- Fix Prompt disabled (native)
+
+## [4.16.1] - 2026-03-18
 - Add `small` prop on Link component
 - Add `formatPattern` prop on Input component
 - Add testId prop on 30+ components
@@ -14,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix onClick on RadioTiles/CheckboxTiles
 - Fix react dependencies
 - Fix autocorrect on textarea in Prompt component
+- Extend focus in Prompt component
 
 ## [4.15.3] - 2026-03-02
 - Revert to 4.14.4 for: checkbox, radio and stepper

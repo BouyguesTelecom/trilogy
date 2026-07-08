@@ -4,26 +4,25 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '../skeleton'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Childrens
+ * @param children {React.ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
- * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
- * @param testId {string} Test id
- * @param shadowless {boolean} Remove box shadow
- * @param backgroundSrc {string} Source of background Image
  * @param inverted {boolean} Inverted Box Color
- * @param flat {boolean} Flat box remove shadow and add plain border
- * @param hat {boolean} Box with a component Sticker props:hat
- * @param flex {boolean} Flex: 1 to the box if usage of Image for Example
- * @param fullheight {boolean}
+ * @param highlighted {TrilogyColor} Add Left Highlight Border With Semantic Color
+ * @param shadowless {boolean} Remove box shadow
+ * @param flat {boolean} Flat box, removes shadow and adds plain border
+ * @param backgroundSrc {string} Source of background image
+ * @param headerOffset {boolean} Add a header offset to the box
  * @param active {boolean} Activated box
- * @param others
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
+ * @param fullheight {boolean} Full height box
  */
 const Box = React.forwardRef<BoxNativeRef, BoxProps>(
   (
@@ -40,12 +39,16 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       headerOffset,
       fullheight,
       active,
+      testId,
       ...others
     },
     ref,
   ): JSX.Element => {
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
     const [boxHeight, setBoxHeight] = useState(0)
+    const [numberOfContent, setNumberOfContent] = useState(0)
+    const [header, setHeader] = useState<boolean>(false)
+
     const boxRadius = 6
     const styles = StyleSheet.create({
       box: {
@@ -56,21 +59,21 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         position: 'relative',
         borderStyle: flat ? 'solid' : undefined,
         borderWidth: (flat && 1) || (active && 2) || 0,
-        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE),
+        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE_FADE),
         marginTop: headerOffset ? 35 : 0,
         flex: fullheight ? 1 : 0,
       },
       shadow: shadowless
         ? {}
         : {
-            shadowColor: '#000',
+            shadowColor: Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.67)' : '#000',
             shadowOffset: {
               width: 0,
-              height: 1,
+              height: 1.3,
             },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-            elevation: 1,
+            shadowOpacity: 0.15,
+            shadowRadius: 2.4,
+            elevation: 4,
           },
       skeleton: {
         width: '100%',
@@ -81,11 +84,12 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       },
       highlighted: {
         position: 'absolute',
-        width: 8,
-        borderTopStartRadius: boxRadius,
-        borderBottomStartRadius: boxRadius,
+        width: 4,
+        borderTopStartRadius: 4,
+        borderBottomStartRadius: 4,
         height: boxHeight,
         backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
+        overflow: 'hidden',
       },
       boxImage: {
         width: '100%',
@@ -98,16 +102,10 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       },
     })
 
-    const boxTestId = 'NotSpecified'
+    const boxTestId = testId ?? 'NotSpecified'
 
     const BoxSkeleton = () => (
-      <Skeleton
-        style={styles.skeleton}
-        width='100%'
-        height={50}
-        borderRadius={boxRadius}
-        testID='skeleton'
-      >
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={boxRadius} testID='skeleton'>
         {children}
       </Skeleton>
     )
@@ -118,7 +116,16 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
 
     if (onClick) {
       return (
-        <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+        <BoxContext.Provider
+          value={{
+            fullHeight: fullheight || false,
+            highlighted,
+            numberOfContent,
+            header,
+            setHeader,
+            setNumberOfContent,
+          }}
+        >
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
@@ -155,7 +162,9 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     }
 
     return (
-      <BoxContext.Provider value={{ fullHeight: fullheight || false }}>
+      <BoxContext.Provider
+        value={{ fullHeight: fullheight || false, highlighted, numberOfContent, header, setHeader, setNumberOfContent }}
+      >
         <View
           ref={ref as React.Ref<View>}
           onLayout={(event) => {

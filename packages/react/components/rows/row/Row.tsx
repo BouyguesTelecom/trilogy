@@ -12,6 +12,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} Additional CSS Classes
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const Row = React.forwardRef<RowRef, RowProps>(({ className, id, narrow, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

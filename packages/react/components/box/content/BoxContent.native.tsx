@@ -3,17 +3,19 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 
 /**
- * Box Content Component
- * @param children {React.ReactNode} Childrens
+ * Box Content
+ * @param children {React.ReactNode} Box Content Children
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
-  ({ children, backgroundColor, backgroundSrc, ...others }, ref): JSX.Element => {
-    const { fullHeight } = React.useContext(BoxContext)
+  ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
+    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
       boxContent: {
@@ -21,18 +23,35 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         borderRadius: 6,
         flex: fullHeight ? 1 : undefined,
+        marginLeft: highlighted ? 4 : 0,
+        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : 6,
+        borderTopRightRadius: header ? 0 : 6,
+        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : 6,
+        borderBottomRightRadius: numberOfContent > 1 ? 0 : 6,
       },
     })
 
     const content = (
-      <View ref={ref} style={[styles.boxContent]} {...others}>
+      <View
+        testID={testId}
+        ref={ref}
+        style={[styles.boxContent]}
+        {...others}
+        onLayout={() => {
+          setNumberOfContent((prev) => prev + 1)
+        }}
+      >
         {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
       </View>
     )
 
     if (backgroundSrc) {
       return (
-        <ImageBackground source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }} style={{ flex: 1 }} imageStyle={{ borderRadius: 6 }}>
+        <ImageBackground
+          source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+          style={{ flex: 1 }}
+          imageStyle={{ borderRadius: 6 }}
+        >
           {content}
         </ImageBackground>
       )

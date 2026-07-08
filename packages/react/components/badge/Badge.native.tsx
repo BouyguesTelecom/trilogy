@@ -9,16 +9,15 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} If no content add children (Icon for example)
- * @param id
+ * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
+ * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)
+ * @param variant {BadgeVariant} Badge color variant (SUCCESS|INFO|WARNING|ERROR|MAIN|ACCENT)
+ * @param position {BadgePositionEnum} Badge position relative to parent element
  * @param onClick {Function} onClick Event for Badge
- * @param variant
- * @param position
- * @param others
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes (ONLY FOR WEB)
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {

@@ -6,24 +6,17 @@ import { RefreshControl, ScrollView as ScrollViewNative, StyleSheet, View } from
 import { ScrollViewNativeRef, ScrollViewProps } from './ScrollViewProps'
 
 /**
- * Scroll View Component
+ * ScrollView Component
  * @param children {React.ReactNode} ScrollView child
- * @param footer {React.ReactNode} ScrollView footer
- * @param bounce {boolean} Bounce effect on scroll
- * @param centerContent {boolean} center content in scrollView
- * @param refresh {boolean} Is Refreshable ScrollView
- * @param onRefresh {void} On Refreshing ScrollView
- * @param refreshControlColor {TrilogyColor} Color Of Refresh Control
- * @param scrollDirection {Direction} Scroll vertically in default
- * @param id {string} Id for Web / TestID for Native
+ * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
+ * @param id {string} Custom id attribute
+ * @param footer {React.ReactNode} Footer element fixed at the bottom
+ * @param bounce {boolean} Bounce effect on scroll (iOS)
+ * @param centerContent {boolean} Center content in scrollView
+ * @param refresh {boolean} Enable pull-to-refresh
+ * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
+ * @param onRefresh {Function} Callback when user triggers a refresh
  */
-type ScrollviewRef =
-  | string
-  | ((instance: ScrollViewNative | null) => void)
-  | React.RefObject<ScrollViewNative>
-  | null
-  | undefined
-
 const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
   (
     {

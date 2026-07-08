@@ -1,225 +1,256 @@
-import * as React from "react";
+import { TrilogyColor } from '@/objects/facets/Color'
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import TableComponent from './Table'
+import type { TableProps } from './TableProps'
+import { TableBorderEnum } from './TableProps'
+import TableBody from './body'
+import TableHead from './head'
+import TableTd from './td'
+import TableTh from './th'
+import TableTr from './tr'
 
-import { Meta, Story } from "@storybook/react";
+TableComponent.displayName = 'Table'
+TableBody.displayName = 'TableBody'
+TableHead.displayName = 'TableHead'
+TableTr.displayName = 'TableTr'
+TableTh.displayName = 'TableTh'
+TableTd.displayName = 'TableTd'
 
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableTd,
-  TableTh,
-  TableTr,
-} from "./index";
-import { TableProps } from "./TableProps";
-import { View } from "../view";
-import { Text, TextLevels } from "../text";
-import { Icon, IconName } from "../icon";
+const Table = (props: TableProps): JSX.Element => <TableComponent {...props} />
+Table.displayName = 'Table'
 
-export default {
-  title: "Components/Table",
+interface TableStoryArgs extends TableProps {
+  tableHeadColor?: TrilogyColor
+  tableHeadBackgroundColor?: TrilogyColor
+  tableBodyColor?: TrilogyColor
+  tableBodyBackgroundColor?: TrilogyColor
+  tableTrExpandable: boolean
+  tableTrExpansion: boolean
+  tableTrExpanded: boolean
+  tableTrColor?: TrilogyColor
+  tableThColSpan: number
+  tableThRowSpan: number
+  tableTdColSpan: number
+  tableTdRowSpan: number
+}
+
+const meta: Meta<TableStoryArgs> = {
+  title: 'Components/Table',
   component: Table,
-  subcomponents: { TableBody, TableHead, TableTd, TableTh, TableTr },
-} as Meta;
+  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, React.ComponentType<unknown>>,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: ' ',
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      table: { disable: true },
+      control: false,
+    },
+    className: {
+      table: { disable: true },
+      control: false,
+    },
+    id: {
+      table: { disable: true },
+      control: false,
+    },
+    testId: {
+      table: { disable: true },
+      control: false,
+    },
+    border: {
+      control: 'select',
+      options: [undefined, ...Object.values(TableBorderEnum)],
+      description: 'Border display mode',
+    },
+    striped: {
+      control: 'boolean',
+      description: 'Alternate row background colors',
+    },
+    compact: {
+      control: 'boolean',
+      description: 'Compact row spacing',
+    },
+    fullwidth: {
+      control: 'boolean',
+      description: 'Stretch table to full width',
+    },
+    tableHeadColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Text color for TableHead',
+      table: { category: 'TableHead' },
+    },
+    tableHeadBackgroundColor: {
+      name: 'backgroundColor',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Background color for TableHead',
+      table: { category: 'TableHead' },
+    },
+    tableBodyColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Text color for TableBody',
+      table: { category: 'TableBody' },
+    },
+    tableBodyBackgroundColor: {
+      name: 'backgroundColor',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Background color for TableBody',
+      table: { category: 'TableBody' },
+    },
+    tableTrExpandable: {
+      name: 'expandable',
+      control: 'boolean',
+      description: 'Enable expandable state on TableTr',
+      table: { category: 'TableTr' },
+    },
+    tableTrExpansion: {
+      name: 'expansion',
+      control: 'boolean',
+      description: 'Mark row as expansion row',
+      table: { category: 'TableTr' },
+    },
+    tableTrExpanded: {
+      name: 'expanded',
+      control: 'boolean',
+      description: 'Expanded state for TableTr',
+      table: { category: 'TableTr' },
+    },
+    tableTrColor: {
+      name: 'color',
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Highlight color for TableTr',
+      table: { category: 'TableTr' },
+    },
+    tableThColSpan: {
+      name: 'colSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Column span for first TableTh',
+      table: { category: 'TableTh' },
+    },
+    tableThRowSpan: {
+      name: 'rowSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Row span for first TableTh',
+      table: { category: 'TableTh' },
+    },
+    tableTdColSpan: {
+      name: 'colSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Column span for first TableTd',
+      table: { category: 'TableTd' },
+    },
+    tableTdRowSpan: {
+      name: 'rowSpan',
+      control: { type: 'number', min: 1, max: 3, step: 1 },
+      description: 'Row span for first TableTd',
+      table: { category: 'TableTd' },
+    },
+  },
+  args: {
+    striped: false,
+    compact: false,
+    fullwidth: true,
+    tableTrExpandable: false,
+    tableTrExpansion: false,
+    tableTrExpanded: false,
+    tableThColSpan: 1,
+    tableThRowSpan: 1,
+    tableTdColSpan: 1,
+    tableTdRowSpan: 1,
+  },
+  render: ({
+    border,
+    striped,
+    compact,
+    fullwidth,
+    tableHeadColor,
+    tableHeadBackgroundColor,
+    tableBodyColor,
+    tableBodyBackgroundColor,
+    tableTrExpandable,
+    tableTrExpansion,
+    tableTrExpanded,
+    tableTrColor,
+    tableThColSpan,
+    tableThRowSpan,
+    tableTdColSpan,
+    tableTdRowSpan,
+  }) => (
+    <TableComponent border={border} striped={striped} compact={compact} fullwidth={fullwidth}>
+      <TableHead color={tableHeadColor} backgroundColor={tableHeadBackgroundColor}>
+        <TableTr>
+          <TableTh colSpan={tableThColSpan} rowSpan={tableThRowSpan}>
+            Name
+          </TableTh>
+          <TableTh>Role</TableTh>
+          <TableTh>Status</TableTh>
+        </TableTr>
+      </TableHead>
+      <TableBody color={tableBodyColor} backgroundColor={tableBodyBackgroundColor}>
+        <TableTr
+          expandable={tableTrExpandable}
+          expansion={tableTrExpansion}
+          expanded={tableTrExpanded}
+          color={tableTrColor}
+        >
+          <TableTd colSpan={tableTdColSpan} rowSpan={tableTdRowSpan}>
+            Alice
+          </TableTd>
+          <TableTd>Developer</TableTd>
+          <TableTd>Active</TableTd>
+        </TableTr>
+        <TableTr>
+          <TableTd>Bob</TableTd>
+          <TableTd>Designer</TableTd>
+          <TableTd>Active</TableTd>
+        </TableTr>
+        <TableTr>
+          <TableTd>Charlie</TableTd>
+          <TableTd>Manager</TableTd>
+          <TableTd>Inactive</TableTd>
+        </TableTr>
+      </TableBody>
+    </TableComponent>
+  ),
+}
 
-export const Base: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Title 1</TableTh>
-        <TableTh>Title 2</TableTh>
-        <TableTh>Title 3</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr>
-        <TableTd>Donnée 1</TableTd>
-        <TableTd>Donnée 2</TableTd>
-        <TableTd>Donnée 3</TableTd>
-      </TableTr>
-      <TableTr>
-        <TableTd>Donnée 4</TableTd>
-        <TableTd>Donnée 5</TableTd>
-        <TableTd>Donnée 6</TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-export const AvecBordures: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Title 1</TableTh>
-        <TableTh>Title 2</TableTh>
-        <TableTh>Title 3</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr>
-        <TableTd>Donnée 1</TableTd>
-        <TableTd>Donnée 2</TableTd>
-        <TableTd>Donnée 3</TableTd>
-      </TableTr>
-      <TableTr>
-        <TableTd>Donnée 4</TableTd>
-        <TableTd>Donnée 5</TableTd>
-        <TableTd>Donnée 6</TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-AvecBordures.args = {
-  bordered: true,
-};
-export const PleineLargeur: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Title 1</TableTh>
-        <TableTh>Title 2</TableTh>
-        <TableTh>Title 3</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr>
-        <TableTd>Donnée 1</TableTd>
-        <TableTd>Donnée 2</TableTd>
-        <TableTd>Donnée 3</TableTd>
-      </TableTr>
-      <TableTr>
-        <TableTd>Donnée 4</TableTd>
-        <TableTd>Donnée 5</TableTd>
-        <TableTd>Donnée 6</TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-PleineLargeur.args = {
-  fullwidth: true,
-  bordered: true,
-};
-export const TableauComparatif: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Title 1</TableTh>
-        <TableTh>Title 2</TableTh>
-        <TableTh>Title 3</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr>
-        <TableTd>Donnée 1</TableTd>
-        <TableTd>Donnée 2</TableTd>
-        <TableTd>Donnée 3</TableTd>
-      </TableTr>
-      <TableTr>
-        <TableTd>Donnée 4</TableTd>
-        <TableTd>Donnée 5</TableTd>
-        <TableTd>Donnée 6</TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-TableauComparatif.args = {
-  bordered: true,
-  fullwidth: true,
-  comparative: true,
-};
-export const LignesAffichéesOuMasquées: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Date</TableTh>
-        <TableTh>Libellé opération</TableTh>
-        <TableTh>Montant</TableTh>
-        <TableTh>Solde client</TableTh>
-        <TableTh>Opérations associées</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr expandable expanded data-expandable-row="">
-        <TableTd>09/11/2018</TableTd>
-        <TableTd>
-          <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
-          <Text>Réf. paiement : 28268</Text>
-        </TableTd>
-        <TableTd>-100,00 €</TableTd>
-        <TableTd>0,00 €</TableTd>
-        <TableTd data-expandable-trigger="">
-          <Icon name={IconName.ARROW_DOWN} content="Afficher" />
-        </TableTd>
-      </TableTr>
-      <TableTr className="is-expansion">
-        <TableTd colSpan={7}>
-          <View
-            className="subtable"
-            backgroundSrc={
-              "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-            }
-          >
-            <Text level={TextLevels.FOUR}>
-              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure
-              ullamco exercitation nulla eiusmod in
-            </Text>
-            <Text>
-              Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-              nostrud aliquip.
-            </Text>
-          </View>
-        </TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-LignesAffichéesOuMasquées.args = {
-  bordered: true,
-};
-export const LignesEnSurbrillance: Story<TableProps> = (args) => (
-  <Table {...args}>
-    <TableHead>
-      <TableTr>
-        <TableTh>Date</TableTh>
-        <TableTh>Libellé opération</TableTh>
-        <TableTh>Montant</TableTh>
-        <TableTh>Solde client</TableTh>
-        <TableTh>Opérations associées</TableTh>
-      </TableTr>
-    </TableHead>
-    <TableBody>
-      <TableTr expandable expanded data-expandable-row="">
-        <TableTd>09/11/2018</TableTd>
-        <TableTd>
-          <Text>Prélèvement PAPGPXXXXXXXXXX</Text>
-          <Text>Réf. paiement : 28268</Text>
-        </TableTd>
-        <TableTd>-100,00 €</TableTd>
-        <TableTd>0,00 €</TableTd>
-        <TableTd data-expandable-trigger="">
-          <Icon name={IconName.ARROW_DOWN} content="Afficher" />
-        </TableTd>
-      </TableTr>
-      <TableTr className="is-expansion">
-        <TableTd colSpan={7}>
-          <View
-            className="subtable"
-            backgroundSrc={
-              "https://design.bouyguestelecom.fr/bg-sensation.421f50d9.png"
-            }
-          >
-            <Text level={TextLevels.FOUR}>
-              Dolore fugiat reprehenderit nostrud velit voluptate dolor irure
-              ullamco exercitation nulla eiusmod in
-            </Text>
-            <Text>
-              Laboris cupidatat culpa nisi ad consectetur ex ea laboris est
-              nostrud aliquip.
-            </Text>
-          </View>
-        </TableTd>
-      </TableTr>
-    </TableBody>
-  </Table>
-);
-LignesEnSurbrillance.args = {
-  bordered: true,
-};
+export default meta
+
+type Story = StoryObj<TableStoryArgs>
+
+export const Default: Story = {}
+
+export const Striped: Story = {
+  args: { striped: true },
+}
+
+export const Compact: Story = {
+  args: { compact: true },
+}
+
+export const BorderAll: Story = {
+  args: { border: TableBorderEnum.ALL },
+}
+
+export const BorderInner: Story = {
+  args: { border: TableBorderEnum.INNER },
+}
+
+export const BorderLines: Story = {
+  args: { border: TableBorderEnum.LINES },
+}
+
+export const Playground: Story = {}

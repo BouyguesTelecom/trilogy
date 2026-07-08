@@ -1,120 +1,167 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import CheckboxComponent from './Checkbox'
+import type { CheckboxProps } from './CheckboxProps'
+import CheckboxList from './list/CheckboxList'
+import type { CheckboxListWebProps } from './list/CheckboxListProps'
 
-import { Meta, Story } from "@storybook/react";
-import Radio from "./Checkbox";
-import { CheckboxProps } from "./CheckboxProps";
-import { IconName } from "../icon";
+CheckboxComponent.displayName = 'Checkbox'
+CheckboxList.displayName = 'CheckboxList'
 
-export default {
-  title: "Components/Checkbox",
+const Checkbox = (props: CheckboxProps & { children?: React.ReactNode }): JSX.Element => (
+  <CheckboxComponent {...props} />
+)
+Checkbox.displayName = 'Checkbox'
+
+interface CheckboxStoryArgs extends CheckboxProps, Omit<CheckboxListWebProps, 'children'> {
+  label: string
+  checkbox_label: string
+  checkbox_checked: boolean
+  checkbox_disabled: boolean
+  checkbox_readonly: boolean
+  wrapper_enabled: boolean
+  wrapper_label: string
+}
+
+const meta: Meta<CheckboxStoryArgs> = {
+  title: 'Components/Checkbox',
   component: Checkbox,
-} as Meta;
+  subcomponents: { CheckboxList },
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: '',
+      },
+    },
+  },
+  argTypes: {
+    checkbox_label: {
+      control: 'text',
+      name: 'label',
+      description: 'Checkbox label text',
+      table: { category: 'Checkbox' },
+    },
+    checkbox_checked: {
+      control: 'boolean',
+      name: 'checked',
+      description: 'Checked state',
+      table: { category: 'Checkbox' },
+    },
+    checkbox_disabled: {
+      control: 'boolean',
+      name: 'disabled',
+      description: 'Disabled state',
+      table: { category: 'Checkbox' },
+    },
+    checkbox_readonly: {
+      control: 'boolean',
+      name: 'readonly',
+      description: 'Read-only state',
+      table: { category: 'Checkbox' },
+    },
+    wrapper_enabled: {
+      control: 'boolean',
+      name: 'enabled',
+      description: 'Use CheckboxList wrapper (optional)',
+      table: { category: 'CheckboxList' },
+    },
+    wrapper_label: {
+      control: 'text',
+      name: 'label',
+      description: 'CheckboxList group label',
+      table: { category: 'CheckboxList' },
+    },
+    verticalDesktop: {
+      control: 'boolean',
+      name: 'verticalDesktop',
+      description: 'Vertical layout on desktop',
+      table: { category: 'CheckboxList' },
+    },
+    horizontalMobile: {
+      control: 'boolean',
+      name: 'horizontalMobile',
+      description: 'Horizontal layout on mobile',
+      table: { category: 'CheckboxList' },
+    },
+  },
+  args: {
+    checkbox_label: 'I agree to the terms',
+    checkbox_checked: false,
+    checkbox_disabled: false,
+    checkbox_readonly: false,
+    wrapper_enabled: false,
+    wrapper_label: '',
+    verticalDesktop: false,
+    horizontalMobile: false,
+  },
+  render: ({
+    checkbox_label,
+    checkbox_checked,
+    checkbox_disabled,
+    checkbox_readonly,
+    wrapper_enabled,
+    wrapper_label,
+    verticalDesktop,
+    horizontalMobile,
+  }) => {
+    const checkboxNode = (
+      <CheckboxComponent
+        label={checkbox_label}
+        checked={checkbox_checked}
+        disabled={checkbox_disabled}
+        readonly={checkbox_readonly}
+        onChange={() => {}}
+      />
+    )
 
-export const Base: Story<CheckboxProps> = (args) => (
-  <>
-    <Checkbox {...args} />
-    <Checkbox
-      label="Je suis cochée"
-      name="checkbox2"
-      value="default value 2"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      checked
-    />
-    <Checkbox
-      label="Je suis disabled"
-      name="checkbox3"
-      value="default value 3"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      disabled
-    />
-  </>
-);
+    if (!wrapper_enabled) {
+      return checkboxNode
+    }
 
-Base.args = {
-  label: "On peut me cocher grâce au controls ↓ ",
-  name: "checkbox1",
-  value: "default value 1",
-  onClick: (e) => console.log(e.checkboxValue, e.checkboxChecked),
-  checked: false,
-  disabled: false,
-};
+    return (
+      <CheckboxList label={wrapper_label} verticalDesktop={verticalDesktop} horizontalMobile={horizontalMobile}>
+        {checkboxNode}
+      </CheckboxList>
+    )
+  },
+}
 
-export const Tile: Story<CheckboxProps> = (args) => (
-  <>
-    <Checkbox {...args} />
-    <Checkbox
-      label="Radio tile avec Icône"
-      name="checkbox"
-      value="default value 1"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      checked
-      description={"Je suis la description de la checkbox"}
-      disabled={false}
-      tile={true}
-      iconTile={IconName.INFOS_CIRCLE}
-    />
-    <Checkbox
-      label="Radio tile disabled"
-      name="checkbox"
-      value="default value 1"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      description={"Je suis la description de la checkbox"}
-      disabled
-      tile={true}
-      iconTile={IconName.UI_5G}
-    />
-  </>
-);
+export default meta
 
-Tile.args = {
-  label: "Checkbox Tile",
-  description: "On peut me cocher et ajouter une icône grâce au controls ↓ ",
-  name: "checkbox",
-  value: "default value 1",
-  onClick: (e) => console.log(e.checkboxValue, e.checkboxChecked),
-  checked: false,
-  disabled: false,
-  tile: true,
-};
+type Story = StoryObj<CheckboxStoryArgs>
 
-export const TileHorizontal: Story<CheckboxProps> = (args) => (
-  <>
-    <Checkbox {...args} />
-    <Checkbox
-      label="Radio tile avec Icône"
-      name="checkbox"
-      value="default value 1"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      checked
-      description={"Je suis la description de la checkbox"}
-      disabled={false}
-      tile={true}
-      iconTile={IconName.INFOS_CIRCLE}
-      horizontalTile={true}
-    />
-    <Checkbox
-      label="Radio tile horizontal disabled"
-      name="checkbox"
-      value="default value 1"
-      onClick={(e) => console.log(e.checkboxValue, e.checkboxChecked)}
-      description={"Je suis la description de la checkbox"}
-      disabled
-      tile={true}
-      iconTile={IconName.WATCH}
-      horizontalTile={true}
-    />
-  </>
-);
+export const Default: Story = {}
 
-TileHorizontal.args = {
-  label: "Checkbox tile horizontal",
-  description: "On peut me cocher et ajouter une icône grâce au controls ↓ ",
-  name: "checkbox",
-  value: "default value 1",
-  onClick: (e) => console.log(e.checkboxValue, e.checkboxChecked),
-  checked: false,
-  disabled: false,
-  tile: true,
-  horizontalTile: true,
-  iconTile: IconName.CHECK_CIRCLE,
-};
+export const Checked: Story = {
+  args: {
+    checkbox_checked: true,
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    checkbox_disabled: true,
+  },
+}
+
+export const ReadOnly: Story = {
+  args: {
+    checkbox_readonly: true,
+    checkbox_checked: true,
+  },
+}
+
+export const WithCheckboxList: Story = {
+  args: {
+    wrapper_enabled: true,
+    wrapper_label: 'Select your preferences',
+  },
+  render: (args) => (
+    <CheckboxList label={args.wrapper_label} verticalDesktop={args.verticalDesktop}>
+      <CheckboxComponent label='Option 1' onChange={() => {}} />
+      <CheckboxComponent label='Option 2' onChange={() => {}} />
+      <CheckboxComponent label='Option 3' onChange={() => {}} />
+    </CheckboxList>
+  ),
+}

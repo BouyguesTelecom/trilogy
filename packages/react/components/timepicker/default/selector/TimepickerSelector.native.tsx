@@ -1,7 +1,6 @@
-import { ModalContext } from '@/components/modal/context/ModalContext'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
 
 interface SelectItem {
@@ -22,15 +21,8 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
   const [scrollOffset, setScrollOffset] = useState(0)
   const containerHeight = itemHeight * visibleItems
   const localScrollRef = useRef<ScrollView>(null)
-  const { scrollViewRef, handleOnScroll: modalOnScroll } = useContext(ModalContext)
   const selectedIndex = useMemo(() => items.findIndex((item) => item.value === value), [items, value])
   const verticalPadding = (containerHeight - itemHeight) / 2
-
-  useEffect(() => {
-    if (localScrollRef.current && scrollViewRef) {
-      (scrollViewRef as React.MutableRefObject<ScrollView | null>).current = localScrollRef.current
-    }
-  }, [scrollViewRef])
 
   useEffect(() => {
     if (localScrollRef.current && selectedIndex >= 0) {
@@ -42,13 +34,9 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
     }
   }, [selectedIndex, itemHeight])
 
-  const onScroll = useCallback(
-    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      setScrollOffset(event.nativeEvent.contentOffset.y)
-      modalOnScroll?.(event)
-    },
-    [modalOnScroll],
-  )
+  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setScrollOffset(event.nativeEvent.contentOffset.y)
+  }, [])
 
   const onScrollEnd = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -88,9 +76,11 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
         scrollEventThrottle={16}
         nestedScrollEnabled
       >
-        {items.map((item, index) => (
-          <TimepickerSelectorItem key={String(item.value)} item={item} index={index} scrollOffset={scrollOffset} />
-        ))}
+        <Pressable>
+          {items.map((item, index) => (
+            <TimepickerSelectorItem key={String(item.value)} item={item} index={index} scrollOffset={scrollOffset} />
+          ))}
+        </Pressable>
       </ScrollView>
     </View>
   )

@@ -28,6 +28,9 @@ export const ButtonScreen = (): JSX.Element => {
     <Section>
       {/*  ======== variants ======== */}
       <Title level={TitleLevels.TWO}>Variant </Title>
+      <Button variant={ButtonVariant.PRIMARY}>Primary
+        <Icon backgroundColor='ACCENT' name={IconName.ARROW_RIGHT} />
+      </Button>
       <Spacer size={"10"}/>
       <ButtonList>
         {Object.values(ButtonVariant).map((variant, index) => {

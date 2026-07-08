@@ -7,9 +7,7 @@ import { Animated, StyleSheet } from 'react-native'
 /**
  * Tab Panel Component
  * @param children {ReactChild} React Child Element
- * @param className
- * @param testId
- * @param others
+ * @param testId {string} Test Id for Test Integration
  */
 const TabPanel = React.forwardRef<TabPanelNativeRef, TabPanelProps>(({ children, testId, ...others }, ref) => {
   const { index, ...props } = others as any

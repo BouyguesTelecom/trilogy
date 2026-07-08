@@ -9,6 +9,8 @@ import { BoxItemProps, BoxItemRef } from './BoxItemProps'
  * Box Item Component
  * @param children {React.ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */

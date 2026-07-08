@@ -27,7 +27,7 @@ export const CardScreen = (): JSX.Element => {
   const [skeleton, setSkeleton] = React.useState<boolean>(false)
 
   return (
-    <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+    <Section backgroundColor={TrilogyColor.BACKGROUND}>
       <Columns multiline>
         <Column size={6}>
           <Card horizontal href='https://google.com'>

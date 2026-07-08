@@ -6,11 +6,13 @@ import { StyleSheet, View } from 'react-native'
 
 /**
  * Container Component
- * @param children {React.ReactNode}
+ * @param children {React.ReactNode} Container child elements
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
-const Container = React.forwardRef<ContainerNativeRef, ContainerProps>(({ children, ...others }, ref): JSX.Element => {
+const Container = React.forwardRef<ContainerNativeRef, ContainerProps>(({ children, testId, ...others }, ref): JSX.Element => {
   return (
-    <View ref={ref} style={styles.container} {...others}>
+    <View  testID={testId} ref={ref} style={styles.container} {...others}>
       {children}
     </View>
   )

@@ -10,10 +10,13 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
 
 /**
  * CheckboxTiles
- * @param id
+ * @param id {string} Custom id attribute
  * @param align {Alignable}
  * @param verticalAlign {Alignable}
  * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
+ * @param accessibilityLabelledBy {string} Id of the element that labels the group of checkboxes for accessibility
+ * @param children {React.ReactNode} CheckboxTile components as children
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */

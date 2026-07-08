@@ -8,7 +8,8 @@ import { CardContentProps, CardContentRef } from './CardContentProps'
 /**
  * Card Content Component
  * @param children {React.ReactNode} Custom Card Content Children
- * @param titleSup {string} Add a sup title
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */

@@ -11,7 +11,7 @@ $label-weight: $weight-bold;
     }
   }
 
-  .input-label {
+  .input-label, .textarea-label {
     display: inline-block;
     margin-bottom: 8px;
     font-weight: 500;

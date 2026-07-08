@@ -49,9 +49,9 @@ const Title = React.forwardRef<TitleNativeRef, TitleProps>(({
   const titlesLevels = () => {
     switch (level) {
       case TitleLevels.ONE:
-        return 32
-      case TitleLevels.TWO:
         return 28
+      case TitleLevels.TWO:
+        return 24
       case TitleLevels.THREE:
         return 22
       case TitleLevels.FOUR:

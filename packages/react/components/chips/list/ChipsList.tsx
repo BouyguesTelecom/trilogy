@@ -8,12 +8,14 @@ import { ChipsListProps, ChipsListRef } from './ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
- * @param className
- * @param id
+ * @param id {string} Custom id attribute
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
- * @param others
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ * @param accessibilityLabelledBy {string} Accessibility label id for ChipsList
  */
 const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
   ({ className, id, children, multiple, scrollable, accessibilityLabelledBy, testId, ...others }, ref) => {

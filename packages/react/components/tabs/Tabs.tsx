@@ -10,13 +10,14 @@ import { ComponentName } from '../enumsComponentsName'
 /**
  * Tabs Component
  * @param children {ReactNode} Children for tabs
- * @param activeIndex {number} default active tab index
+ * @param activeIndex {number} Default active tab index
  * @param inverted {boolean} Inverted style
  * @param fullwidth {boolean} Fullwidth tabs
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param small {boolean} small tabs
- * @param id
+ * @param id {string} Custom id attribute
+ * @param small {boolean} Small tabs
  */
 const Tabs = React.forwardRef<TabsRef, TabsProps>(
   ({ children, className, id, activeIndex, fullwidth, inverted, small, testId }, ref) => {

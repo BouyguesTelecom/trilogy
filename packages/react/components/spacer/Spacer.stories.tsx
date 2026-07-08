@@ -1,44 +1,80 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import SpacerComponent from './Spacer'
+import { SpacerSize } from './SpacerEnum'
 
-import { Meta, Story } from "@storybook/react";
-import { SpacerProps } from "./SpacerProps";
-import Spacer from "./Spacer";
-import { SpacerSize } from "./SpacerEnum";
-import { Tag, TagVariant } from "../tag";
+SpacerComponent.displayName = 'Spacer'
 
-const spacerSizeOptions = [
-  SpacerSize.NONE,
-  SpacerSize.SMALLER,
-  SpacerSize.SMALL,
-  SpacerSize.MEDIUM,
-  SpacerSize.LARGE,
-  SpacerSize.HUGE,
-];
+interface SpacerStoryArgs {
+  size: SpacerSize
+  horizontal: boolean
+  id: string
+  className: string
+  testId: string
+}
 
-export default {
-  title: "Components/Spacer",
-  component: Spacer,
-  argTypes: {
-    // ...autres propriétés...
-    size: {
-      control: {
-        type: "select",
-        options: spacerSizeOptions, // Remplacez MyEnum par votre propre enum
-      },
+const meta: Meta<SpacerStoryArgs> = {
+  title: 'Components/Spacer',
+  component: SpacerComponent,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      source: { type: 'dynamic' },
+      description: { component: ' ' },
     },
   },
-} as Meta;
+  argTypes: {
+    size: {
+      control: 'select',
+      options: Object.values(SpacerSize).filter((value) => typeof value === 'number'),
+      description: 'Space size in pixels',
+    },
+    horizontal: {
+      control: 'boolean',
+      description: 'Use horizontal spacing instead of vertical',
+    },
+    id: { control: 'text', description: 'Custom html id' },
+    className: { control: 'text', description: 'Additional CSS classes' },
+    testId: { control: 'text', description: 'Testing identifier' },
+  },
+  args: {
+    size: SpacerSize.FOUR,
+    horizontal: false,
+    id: '',
+    className: '',
+    testId: '',
+  },
+  render: ({ size, horizontal, id, className, testId }) => (
+    <div style={{ border: '1px dashed #d1d5db', padding: 12 }}>
+      <span>Before</span>
+      <SpacerComponent
+        size={size}
+        horizontal={horizontal}
+        id={id || undefined}
+        className={className || undefined}
+        testId={testId || undefined}
+      />
+      <span>After</span>
+    </div>
+  ),
+}
 
-export const Base: Story<SpacerProps> = (args) => {
-  const { size, ...otherProps } = args;
+export default meta
 
-  return (
-    <>
-      <Tag variant={TagVariant.SUCCESS}>
-        Play with the props <code>size</code>
-      </Tag>
-      <Spacer {...otherProps} size={size} />
-      <Tag>Dans le pannel de contrôle ⬇</Tag>
-    </>
-  );
-};
+type Story = StoryObj<SpacerStoryArgs>
+
+export const Default: Story = {}
+
+export const Horizontal: Story = {
+  args: {
+    horizontal: true,
+  },
+}
+
+export const Large: Story = {
+  args: {
+    size: SpacerSize.EIGHT,
+  },
+}
+
+export const Playground: Story = {}

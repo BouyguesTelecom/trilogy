@@ -4,12 +4,10 @@ import { ComponentName } from '../../enumsComponentsName'
 import { ProgressItemNativeRef, ProgressItemProps } from './ProgressItemProps'
 
 /**
- * ProgressItem component - Only if stacked
+ * Progress Item component - Only if stacked
  * @param percent {number} Progress percent
- * @param minPercent {number} Default min percent is 100
- * @param status {StatusProps} Progress status state
- * @param style {Style} Styles passed from parent
  * @param children {React.ReactNode}
+ * @param style {ViewStyle} Custom styles for the progress item
  */
 const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
   ({ children, percent, style, ...others }, ref): JSX.Element => {

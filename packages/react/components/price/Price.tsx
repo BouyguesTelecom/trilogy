@@ -10,21 +10,21 @@ import { PriceProps, PriceRef } from './PriceProps'
 
 /**
  * Price Component
- * @param amount {number} Amount for Price
- * @param mention {string} Mention for price ( (1)* )
- * @param period {string} Period for Price (mois)
- * @param hideCents {boolean} Display cents
+ * @param amount {number} Price amount
+ * @param oldAmount {number} Old price amount (displayed as strikethrough)
+ * @param mention {string} Mention text (e.g. "(1)*")
+ * @param period {string} Period label (e.g. "/ month")
+ * @param overline {string} Overline text above price
+ * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode}
- * @param align {Alignable} Price alignement
- * @param inline {boolean} Inline display Price
+ * @param children {React.ReactNode} Price child elements
+ * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
- * @param overline {string} Price overline
- * @param oldAmount {boolean} old Amount Price
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * - --------------- NATIVE PROPERTIES ----------------------------------
  */
 const Price = React.forwardRef<PriceRef, PriceProps>(
   (
@@ -47,9 +47,12 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-
+    const priceDetailsClasses = hashClass(styled, clsx('price-details'))
+    const centsClasses = hashClass(styled, clsx('cents'))
+    const periodClasses = hashClass(styled, clsx('period'))
+    const overlineClasses = hashClass(styled, clsx('overline'))
+    const srOnly = hashClass(styled, clsx('sr-only'))
     const classes = hashClass(styled, clsx('price', inverted && is('inverted'), overline && has('suptitle'), className))
-
     const classesStrike = hashClass(
       styled,
       clsx('price', inverted && is('inverted'), oldAmount && 'strike', overline && has('suptitle'), className),
@@ -63,7 +66,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const isNegativeStrike = oldAmount && oldAmount < 0
       const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
       const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
-      const wholeStrike = isNegativeStrike && absoluteWholeStrike ? -absoluteWholeStrike : absoluteWholeStrike
+      const wholeStrike = isNegativeStrike ? (absoluteWholeStrike === 0 ? '-0' : -absoluteWholeStrike) : absoluteWholeStrike
 
       let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents
@@ -72,12 +75,12 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       oldAmountComponent = (
         <span aria-hidden='true' className={classesStrike} {...others}>
           <span>{`${wholeStrike}`}</span>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
+          <span className={priceDetailsClasses}>
+            <span className={centsClasses}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
               {mention && <sup>{mention}</sup>}
             </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+            {period && <span className={periodClasses}>/{period}</span>}
           </span>
         </span>
       )
@@ -87,7 +90,7 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const isNegative = amount < 0
       const absoluteAmount = Math.abs(amount)
       const absoluteWhole = Math.floor(absoluteAmount)
-      const whole = isNegative ? -absoluteWhole : absoluteWhole
+      const whole = isNegative ? (absoluteWhole === 0 ? '-0' : -absoluteWhole) : absoluteWhole
 
       let cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents
@@ -95,14 +98,21 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const dataPrice = `${whole}${!hideCents && cents ? `.${cents}` : ''}`
 
       amountComponent = (
-        <span aria-hidden='true' aria-label={accessibilityLabel} className={classes} data-price={dataPrice} data-testid={testId} {...others}>
+        <span
+          aria-hidden='true'
+          aria-label={accessibilityLabel}
+          className={classes}
+          data-price={dataPrice}
+          data-testid={testId}
+          {...others}
+        >
           <span>{`${whole}`}</span>
-          <span className={hashClass(styled, clsx('price-details'))}>
-            <span className={hashClass(styled, clsx('cents'))}>
+          <span className={priceDetailsClasses}>
+            <span className={centsClasses}>
               {centsDisplayed === '€' ? <>&nbsp;{centsDisplayed}</> : centsDisplayed}
               {mention && <sup>{mention}</sup>}
             </span>
-            {period && <span className={hashClass(styled, clsx('period'))}>/{period}</span>}
+            {period && <span className={periodClasses}>/{period}</span>}
           </span>
         </span>
       )
@@ -124,11 +134,11 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
           ),
         )}
       >
-        {overline && <p className={hashClass(styled, clsx('overline'))}>{overline}</p>}
+        {overline && <p className={overlineClasses}>{overline}</p>}
         {oldAmountComponent}
         {amountComponent}
         {tagAmountComponent}
-        {accessibilityLabel && <p className={hashClass(styled, clsx('sr-only'))}>{accessibilityLabel}</p>}
+        {accessibilityLabel && <p className={srOnly}>{accessibilityLabel}</p>}
       </div>
     )
   },

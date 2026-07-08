@@ -1,12 +1,18 @@
+import { getLabel } from '@/components/autocomplete/Autocomplete.helpers'
+import { Text } from '@/components/text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { Text } from '@/components/text'
-import { getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import { AutoCompleteItemProps } from './AutoCompleteItemProps'
 
-const AutoCompleteItemNative = ({ item, onSelect }: AutoCompleteItemProps): JSX.Element => {
+/**
+ * AutoCompleteItem Component
+ * @param item {string | Item} item value
+ * @param testId {string} Test Id for Test Integration
+ * @param onSelect {Function} Callback when selecting an item
+ */
+const AutoCompleteItemNative = ({ item, testId, onSelect }: AutoCompleteItemProps): JSX.Element => {
   return (
-    <TouchableOpacity style={styles.itemList} onPress={onSelect}>
+    <TouchableOpacity style={styles.itemList} onPress={onSelect} testID={testId}>
       <Text>{getLabel(item)}</Text>
     </TouchableOpacity>
   )

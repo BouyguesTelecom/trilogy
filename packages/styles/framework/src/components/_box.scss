@@ -65,8 +65,9 @@ a.box {
 
   &.is-highlighted {
     border-left: $highlighted-border-width solid transparent;
-    border-top-left-radius: calc(var(--radius) + $highlighted-border-width);
-    border-bottom-left-radius: calc(var(--radius) + $highlighted-border-width);
+    border-top-left-radius: $highlighted-border-width;
+    border-bottom-left-radius: $highlighted-border-width;
+    border-left-color: getColor('main');
     @each $name, $pair in $colors-brand-functionnal {
       $color: getColor($name);
       $brandName: getColorBrandName($name);
@@ -76,9 +77,23 @@ a.box {
         border-left-width: $highlighted-border-width;
       }
     }
+    > .box-content {
+      &:first-child {
+        border-top-left-radius: 0;
+      }
 
-    .box-header {
+      &:last-child {
+        border-bottom-left-radius: 0;
+      }
+    }
+    > .box-footer {
+      border-bottom-left-radius: 0;
+    }
+
+    > .box-header {
       margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
+      border-radius: $highlighted-border-width var(--radius) 0 0;
+
     }
   }
 

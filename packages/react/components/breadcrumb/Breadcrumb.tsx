@@ -10,6 +10,7 @@ import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
  * Breadcrumb Component
  * @param children {React.ReactNode} Breadcrumb Children
  * @param testId {string} Test id
+ * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label

@@ -6,8 +6,18 @@ import { FlatList, StyleSheet, View } from 'react-native'
 import { CheckboxTilesNativeRef, CheckboxTilesProps } from './CheckboxTilesProps'
 import { CheckboxTilesContext } from './context'
 
+/**
+ * CheckboxTiles
+ * @param id {string} Custom id attribute
+ * @param align {Alignable}
+ * @param verticalAlign {Alignable}
+ * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
+ * @param accessibilityLabelledBy {string} Id of the element that labels the group of checkboxes for accessibility
+ * @param children {React.ReactNode} CheckboxTile components as children
+ * @param testId {string} Test Id for Test Integration
+ */
 const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
-  ({ children, align, verticalAlign, numberCols, id, ...others }, ref): JSX.Element => {
+  ({ children, align, verticalAlign, numberCols, id, testId, ...others }, ref): JSX.Element => {
     const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
 
     const columnCount = useMemo(() => {
@@ -56,6 +66,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
       <CheckboxTilesContext.Provider value={{ isGrid: columnCount !== null }}>
         {columnCount !== null ? (
           <FlatList
+            testID={testId}
             id={id}
             ref={ref as RefObject<FlatList>}
             data={childArray}

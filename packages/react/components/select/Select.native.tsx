@@ -12,12 +12,13 @@ import SelectOption from './option'
  * @param name {string} Select name
  * @param selected {string} Selected value
  * @param children {React.ReactNode} Children for Select
- * @param label {string} label for select
- * @param iconName {IconName} icon for left of selector
+ * @param iconName {IconName} Icon for left of selector
  * @param onChange {Function} onChange Event
- * @param disabled {boolean} disable Select
- * @param multiple {boolean} select multiple options
- * @param nullable {boolean} Unselect Select Option Item
+ * @param disabled {boolean} Disable Select
+ * @param multiple {boolean} Select multiple options
+ * @param onBlur {Function} onBlur Select Event
+ * @param status {SelectStatus} Select with status (SUCCESS|WARNING|ERROR|DEFAULT)
+ * @param readOnly {boolean} Read-only Select
  */
 const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
   (

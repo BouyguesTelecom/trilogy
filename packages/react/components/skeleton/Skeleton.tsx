@@ -2,17 +2,18 @@ import React from 'react'
 import { SkeletonProps } from './SkeletonProps'
 
 /**
- * Skeleton component to display a loading placeholder with shimmer effect.
- * ---------------------- native ------------------------
- * @param style - Custom styles for the skeleton container.
- * @param width - Width of the skeleton. Default is '100%'.
- * @param height - Height of the skeleton. Default is 20.
- * @param backgroundColor - Background color of the skeleton.
- * @param shimmerColor - Color of the shimmer effect.
- * @param duration - Duration of the shimmer animation in milliseconds. Default is 1200.
- * @param borderRadius - Border radius of the skeleton. Default is 4.
- * @param children - Optional children to render inside the skeleton.
- * @param testID - Test identifier for testing purposes.
+ * Skeleton Component - Loading placeholder with animated shimmer effect
+ * @note Web implementation is a stub — the full implementation is in Skeleton.native.tsx
+ * - -------------------------- NATIVE PROPERTIES ----------------------------
+ * @param width {DimensionValue} Width of the skeleton placeholder (default: '100%')
+ * @param height {DimensionValue} Height of the skeleton placeholder (default: 20)
+ * @param backgroundColor {string} Background color (default: '#E1E9EE')
+ * @param shimmerColor {string} Color of the shimmer animation (default: '#F7F8F8')
+ * @param duration {number} Shimmer animation duration in milliseconds (default: 1200)
+ * @param borderRadius {number} Border radius of the container (default: 4)
+ * @param children {React.ReactNode} Optional children to render inside the skeleton
+ * @param testID {string} Test identifier (React Native)
+ * @param style {ViewStyle} Custom container style (React Native)
  */
 const Skeleton: React.FC<SkeletonProps> = () => {
   return (

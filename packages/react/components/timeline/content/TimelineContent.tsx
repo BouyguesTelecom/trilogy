@@ -14,9 +14,10 @@ import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentPr
  * @param heading {string} Text heading
  * @param linkLabel {string} Text for content link
  * @param linkTo {string} href of link
+ * @param id {string} Custom id
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param id {string} Custom id
  */
 const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(
   ({ children, className, id, heading, content, linkLabel, linkTo, testId, ...others }, ref): JSX.Element => {

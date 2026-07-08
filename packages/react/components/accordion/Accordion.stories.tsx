@@ -1,77 +1,110 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { AccordionProps } from "./AccordionProps";
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-} from "./index";
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import AccordionComponent from './Accordion'
+import type { AccordionProps } from './AccordionProps'
+import AccordionItem from './item'
+import AccordionBody from './item/body'
+import AccordionHeader from './item/header'
 
-export default {
-  title: "Components/Accordion",
+AccordionComponent.displayName = 'Accordion'
+
+const Accordion = (props: AccordionProps): JSX.Element => <AccordionComponent {...props} />
+Accordion.displayName = 'Accordion'
+
+interface AccordionStoryArgs {
+  item_open: boolean
+  item_disabled: boolean
+  header_children: string
+  body_children: string
+}
+
+const meta: Meta<AccordionStoryArgs> = {
+  title: 'Components/Accordion',
   component: Accordion,
-  subcomponents: { AccordionBody, AccordionItem, AccordionHeader },
-} as Meta;
+  subcomponents: { AccordionItem, AccordionHeader, AccordionBody },
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: '',
+      },
+    },
+  },
+  argTypes: {
+    item_open: {
+      control: 'boolean',
+      name: 'open',
+      description: 'Open accordion item by default',
+      table: { category: 'AccordionItem' },
+    },
+    item_disabled: {
+      control: 'boolean',
+      name: 'disabled',
+      description: 'Disable interaction',
+      table: { category: 'AccordionItem' },
+    },
+    header_children: {
+      control: 'text',
+      name: 'children',
+      description: 'Header text',
+      table: { category: 'AccordionHeader' },
+    },
+    body_children: {
+      control: 'text',
+      name: 'children',
+      description: 'Body content',
+      table: { category: 'AccordionBody' },
+    },
+  },
+  args: {
+    item_open: false,
+    item_disabled: false,
+    header_children: 'Accordion title',
+    body_children: 'Detailed content of this accordion item.',
+  },
+  render: ({ item_open, item_disabled, header_children, body_children }) => (
+    <AccordionComponent>
+      <AccordionItem open={item_open} disabled={item_disabled}>
+        <AccordionHeader>{header_children}</AccordionHeader>
+        <AccordionBody>{body_children}</AccordionBody>
+      </AccordionItem>
+    </AccordionComponent>
+  ),
+}
 
-export const Base: Story<AccordionProps> = (args) => (
-  /* L'utilisation de l'accordion nécessite l'injection de Trilogy-Vanilla pour fonctioner :
-       <script id='vanilla-script' lib="https://assets.bouyguestelecom.fr/TRILOGY/trilogy-vanilla@3.2.0/trilogy-vanilla.min.js"></script>
-  */
-  <Accordion {...args}>
-    <AccordionItem id="UN" open>
-      <AccordionHeader>Hello World</AccordionHeader>
-      <AccordionBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus
-        ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis
-        venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec
-        sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
-        porttitor mi magna a neque. Donec dui urna, vehicula et sem eget,
-        facilisis sodales sem., consectetur adipiscing elit. Pellentesque risus
-        mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex
-        sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis
-        efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec sodales,
-        arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor
-        mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
-        sodales sem.
-      </AccordionBody>
-    </AccordionItem>
-    <AccordionItem id="DEUX">
-      <AccordionHeader>Hello World </AccordionHeader>
-      <AccordionBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus
-        ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis
-        venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec
-        sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
-        porttitor mi magna a neque. Donec dui urna, vehicula et sem eget,
-        facilisis sodales sem.
-      </AccordionBody>
-    </AccordionItem>
-    <AccordionItem id="TROIS">
-      <AccordionHeader>Hello World</AccordionHeader>
-      <AccordionBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus
-        ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis
-        venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec
-        sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
-        porttitor mi magna a neque. Donec dui urna, vehicula et sem eget,
-        facilisis sodales sem.
-      </AccordionBody>
-    </AccordionItem>
-    <AccordionItem id="QUATRE" disabled>
-      <AccordionHeader>Item disabled</AccordionHeader>
-      <AccordionBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus
-        ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis
-        venenatis efficitur. Aenean ac eleifend lacus, in mollis lectus. Donec
-        sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
-        porttitor mi magna a neque. Donec dui urna, vehicula et sem eget,
-        facilisis sodales sem.
-      </AccordionBody>
-    </AccordionItem>
-  </Accordion>
-);
+export default meta
+type Story = StoryObj<AccordionStoryArgs>
+export const Default: Story = {}
+
+export const OpenByDefault: Story = {
+  name: 'Open by default',
+  args: { item_open: true },
+}
+
+export const Disabled: Story = {
+  name: 'Disabled',
+  args: {
+    item_disabled: true,
+    header_children: 'Disabled accordion',
+  },
+}
+
+export const MultipleItems: Story = {
+  name: 'Multiple items',
+  render: ({ item_open, item_disabled, header_children, body_children }) => (
+    <AccordionComponent>
+      <AccordionItem open={item_open} disabled={item_disabled}>
+        <AccordionHeader>{header_children}</AccordionHeader>
+        <AccordionBody>{body_children}</AccordionBody>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionHeader>Second item</AccordionHeader>
+        <AccordionBody>Content of the second item.</AccordionBody>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionHeader>Third item</AccordionHeader>
+        <AccordionBody>Content of the third item.</AccordionBody>
+      </AccordionItem>
+    </AccordionComponent>
+  ),
+}

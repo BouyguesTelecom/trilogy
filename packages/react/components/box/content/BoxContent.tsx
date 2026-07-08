@@ -12,9 +12,10 @@ import { BoxContentProps, BoxContentRef } from './BoxContentProps'
  * @param children {React.ReactNode} Box Content Children
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param testId test id
  */
 const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(
   ({ children, className, id, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {

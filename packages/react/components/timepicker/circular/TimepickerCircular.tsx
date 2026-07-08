@@ -3,26 +3,26 @@ import { Text, TextLevels } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { TypographyAlign, TypographyBold } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { is } from '@/services'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimepickerCircularProps, TimepickerCircularRef } from './TimepickerCircularProps'
 
-const CIRCLE_SIZE = 172
-const CIRCLE_THICKNESS = 24
-const CURSOR_SIZE = 30
+const CIRCLE_SIZE = 204
+const CIRCLE_THICKNESS = 32
+const CURSOR_SIZE = 32
 const HOUR_DOT_SIZE = 8
 const HOUR_DOTS_COUNT = 24
 
 /**
  * TimepickerCircular Web Component
- * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "24:00")
+ * @param value {string} Current time value in "HH:MM" format (e.g., "14:30", "23:59")
  * @param onChange {Function} Callback called when time changes, receives new "HH:MM" value
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
 const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
-  ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
+  ({ value = '00:00', onChange, disabled = false, step = 5, testId, className, id, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const formatNumber = (num: number): string => num.toString().padStart(2, '0')
     const formatTime = (hours: number, minutes: number): string => `${formatNumber(hours)}:${formatNumber(minutes)}`
@@ -31,17 +31,26 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       const [hoursStr, minutesStr] = timeString.split(':')
       const hours = parseInt(hoursStr || '0', 10)
       const minutes = parseInt(minutesStr || '0', 10)
+      const totalMinutes = isNaN(hours) || isNaN(minutes) ? 0 : hours * 60 + minutes
+      const clampedTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, totalMinutes))
+
       return {
-        hours: isNaN(hours) ? 0 : Math.max(0, Math.min(24, hours)),
-        minutes: isNaN(minutes) ? 0 : Math.max(0, Math.min(59, minutes)),
+        hours: Math.floor(clampedTotalMinutes / 60),
+        minutes: clampedTotalMinutes % 60,
       }
     }
 
     const { hours: initialHours, minutes: initialMinutes } = parseTime(value)
 
+    const progressContainerClasses = hashClass(styled, clsx('timepicker-circular_progress-container'))
+    const progressClasses = hashClass(styled, clsx('timepicker-circular_progress'))
+    const dotClasses = hashClass(styled, clsx('timepicker-circular_dot-hour'))
+    const dotFilledClasses = hashClass(styled, clsx(is('filled')))
+
     const [currentHours, setCurrentHours] = useState(initialHours)
     const [currentMinutes, setCurrentMinutes] = useState(initialMinutes)
     const [isDragging, setIsDragging] = useState(false)
+    const [blurKey, setBlurKey] = useState(0)
     const refsSegment = useRef<HTMLSpanElement[]>([])
     const containerRef = useRef<HTMLDivElement>(null)
     const lastAngle = useRef<number | null>(null)
@@ -53,16 +62,11 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       setCurrentMinutes(minutes)
     }, [value])
 
-    const mainColor = getColorStyle(TrilogyColor.MAIN)
-    const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
-    const dotColor = getColorStyle(TrilogyColor.NEUTRAL)
-
     const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
     const centerX = CIRCLE_SIZE / 2
     const centerY = CIRCLE_SIZE / 2
 
-    let totalMinutes = currentHours * 60 + currentMinutes
-    if (currentHours === 24) totalMinutes = 0
+    const totalMinutes = currentHours * 60 + currentMinutes
 
     const maxMinutes = 24 * 60
     const angle = (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2
@@ -70,13 +74,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const cursorX = centerX + radius * Math.cos(angle) - CURSOR_SIZE / 2
     const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
 
-    let progressAngle
-    if (currentHours === 24) {
-      progressAngle = 360
-    } else {
-      const actualTotalMinutes = currentHours * 60 + currentMinutes
-      progressAngle = (actualTotalMinutes / maxMinutes) * 360
-    }
+    const progressAngle = (totalMinutes / maxMinutes) * 360
 
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
@@ -84,14 +82,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI
         if (normalizedAngle >= 2 * Math.PI) normalizedAngle -= 2 * Math.PI
         const rawTotalMinutes = (normalizedAngle / (2 * Math.PI)) * maxMinutes
-        const newTotalMinutes = Math.round(rawTotalMinutes / step) * step
-        let newHours = Math.floor(newTotalMinutes / 60)
-        let newMinutes = newTotalMinutes % 60
-
-        if (newTotalMinutes >= 1440) {
-          newHours = 24
-          newMinutes = 0
-        }
+        const roundedTotalMinutes = Math.round(rawTotalMinutes / step) * step
+        const newTotalMinutes = Math.max(0, Math.min(23 * 60 + 59, roundedTotalMinutes))
+        const newHours = Math.floor(newTotalMinutes / 60)
+        const newMinutes = newTotalMinutes % 60
 
         if (newHours !== currentHours || newMinutes !== currentMinutes) {
           setCurrentHours(newHours)
@@ -124,7 +118,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       const dx = x - cursorCenterX
       const dy = y - cursorCenterY
       const distance = Math.sqrt(dx * dx + dy * dy)
-      return distance <= CURSOR_SIZE * 2
+      return distance <= CURSOR_SIZE / 2 + 4
     }
 
     const isOnHourDot = (x: number, y: number): number => {
@@ -196,10 +190,10 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       event.preventDefault()
 
       const { x, y } = getMousePosition(event as any)
-      pointerIdRef.current = event.pointerId
-      containerRef.current?.setPointerCapture(event.pointerId)
 
       if (isOnCursor(x, y)) {
+        pointerIdRef.current = event.pointerId
+        containerRef.current?.setPointerCapture(event.pointerId)
         setIsDragging(true)
         lastAngle.current = null
 
@@ -237,7 +231,6 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
 
         const newHours = hourIndex
         let newMinutes = currentMinutes
-        if (newHours === 24) newMinutes = 0
         if (newHours !== currentHours) {
           newMinutes = Math.round(newMinutes / step) * step
           if (newMinutes > 59) newMinutes = 59
@@ -255,16 +248,17 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         const numValue = parseInt(value, 10)
 
         if (type === 'hours') {
-          const newHours = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(24, numValue))
+          const newHours = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(23, numValue))
           setCurrentHours(newHours)
           onChange?.(formatTime(newHours, currentMinutes))
         } else {
           let newMinutes = isNaN(numValue) || value === '' ? 0 : Math.max(0, Math.min(59, numValue))
           newMinutes = Math.round(newMinutes / step) * step
-          if (newMinutes > 59) newMinutes = 59
+          if (newMinutes >= 60) newMinutes = 60 - step
           setCurrentMinutes(newMinutes)
           onChange?.(formatTime(currentHours, newMinutes))
         }
+        setBlurKey((k) => k + 1)
       },
       [currentHours, currentMinutes, onChange, formatNumber, formatTime, step],
     )
@@ -286,14 +280,14 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const hourDots = useMemo(() => {
       const dots = []
       const actualTotalMinutes = currentHours * 60 + currentMinutes
-      const currentProgress = currentHours === 24 ? 1 : actualTotalMinutes / maxMinutes
+      const currentProgress = actualTotalMinutes / maxMinutes
 
       for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
         const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
         const dotX = centerX + radius * Math.cos(dotAngle) - HOUR_DOT_SIZE / 2
         const dotY = centerY + radius * Math.sin(dotAngle) - HOUR_DOT_SIZE / 2
         const dotProgress = i / HOUR_DOTS_COUNT
-        const isFilled = dotProgress < currentProgress || currentHours === 24
+        const isFilled = dotProgress < currentProgress
 
         dots.push(
           <div
@@ -314,31 +308,26 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             onClick={() => handleHourDotPress(i)}
           >
             <div
+              className={`${dotClasses} ${isFilled ? dotFilledClasses : ''}`}
               style={{
                 width: HOUR_DOT_SIZE,
                 height: HOUR_DOT_SIZE,
                 borderRadius: '50%',
-                backgroundColor: isFilled ? mainColor : dotColor,
               }}
             />
           </div>,
         )
       }
       return dots
-    }, [currentHours, currentMinutes, mainColor, dotColor, centerX, radius, maxMinutes, handleHourDotPress])
+    }, [currentHours, currentMinutes, centerX, radius, maxMinutes, handleHourDotPress])
 
     const progressGauge = useMemo(() => {
       const strokeWidth = CIRCLE_THICKNESS
       const svgRadius = (CIRCLE_SIZE - strokeWidth) / 2
       const circumference = 2 * Math.PI * svgRadius
 
-      let progressOffset: number
-      if (currentHours === 24) {
-        progressOffset = 0
-      } else {
-        const actualTotalMinutes = currentHours * 60 + currentMinutes
-        progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
-      }
+      const actualTotalMinutes = currentHours * 60 + currentMinutes
+      const progressOffset = circumference - (actualTotalMinutes / maxMinutes) * circumference
 
       return (
         <svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} style={{ position: 'absolute', zIndex: 1 }}>
@@ -346,25 +335,25 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             cx={CIRCLE_SIZE / 2}
             cy={CIRCLE_SIZE / 2}
             r={svgRadius}
-            stroke={mainFadeColor}
             strokeWidth={strokeWidth}
             fill='transparent'
+            className={progressContainerClasses}
           />
           <circle
             cx={CIRCLE_SIZE / 2}
             cy={CIRCLE_SIZE / 2}
             r={svgRadius}
-            stroke={mainColor}
             strokeWidth={strokeWidth}
             fill='transparent'
             strokeDasharray={circumference}
             strokeDashoffset={progressOffset}
             strokeLinecap='round'
             transform={`rotate(-90 ${CIRCLE_SIZE / 2} ${CIRCLE_SIZE / 2})`}
+            className={progressClasses}
           />
         </svg>
       )
-    }, [currentHours, currentMinutes, mainFadeColor, mainColor, maxMinutes])
+    }, [currentHours, currentMinutes, maxMinutes])
 
     const styles = useMemo(
       () => ({
@@ -388,7 +377,13 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     )
 
     return (
-      <div ref={ref} className={hashClass(styled, clsx('timepicker-circular'))} data-testid={testId} {...others}>
+      <div
+        ref={ref}
+        className={hashClass(styled, clsx('timepicker-circular', className))}
+        data-testid={testId}
+        id={id}
+        {...others}
+      >
         <div
           ref={containerRef}
           style={styles.circleContainer as any}
@@ -404,8 +399,9 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
           <div className={hashClass(styled, clsx('circle_container-inputs'))}>
             <div className={hashClass(styled, clsx('circle_container-inputs-wrapper'))}>
               <span
+                key={`hours-${blurKey}`}
                 aria-valuemin={0}
-                aria-valuemax={24}
+                aria-valuemax={23}
                 aria-readonly={false}
                 aria-label='hours'
                 role='spinbutton'
@@ -419,6 +415,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
                 onKeyDown={handleKeyDown}
                 onBlur={(e) => handleBlur('hours', e.target as HTMLSpanElement)}
                 onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
                 className={hashClass(styled, clsx('circle_container-inputs-wrapper-input'))}
                 ref={(el) => {
                   if (el) refsSegment.current[0] = el
@@ -434,11 +431,12 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
             </div>
 
             <div className={hashClass(styled, clsx('circle_container-inputs-separator'))}>
-              <Text>:</Text>
+              <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>:</Text>
             </div>
 
             <div className={hashClass(styled, clsx('circle_container-inputs-wrapper'))}>
               <span
+                key={`minutes-${blurKey}`}
                 aria-valuemin={0}
                 aria-valuemax={59}
                 aria-readonly={false}
@@ -454,6 +452,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
                 onKeyDown={handleKeyDown}
                 onBlur={(e) => handleBlur('minutes', e.target as HTMLSpanElement)}
                 onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
                 className={hashClass(styled, clsx('circle_container-inputs-wrapper-input'))}
                 ref={(el) => {
                   if (el) refsSegment.current[1] = el

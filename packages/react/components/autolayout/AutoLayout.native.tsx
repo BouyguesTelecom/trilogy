@@ -7,12 +7,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 
 /**
- * AutoLayout Component
- * @param children
- * @param matrix
- * @param edges {EdgeType[]} ('bottom' | 'top'), add edge(s)
- * @param edgeSize {SpacerSize} Edge size if exist (default = SMALL)
- * @param noSpace {boolean} Set spaces between children to NONE
+ * AutoLayout Component - Automatic layout wrapper with edge insets and spacing
+ * @param children {React.ReactNode} Child components to layout
+ * @param edges {EdgeType[]} Edges to apply spacing to ('top' | 'bottom')
+ * @param edgeSize {SpacerSize} Spacing size for safe area edges
+ * @param noSpace {boolean} Disable automatic spacing
+ * @param matrix {SpacingMatrix} Custom spacing matrix for between children spacing (overrides default matrix)
  */
 const AutoLayout: React.FC<AutoLayoutProps> = ({
   children,

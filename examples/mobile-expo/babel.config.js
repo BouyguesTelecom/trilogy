@@ -1,5 +1,6 @@
 module.exports = function (api) {
   api.cache(true)
+
   return {
     presets: [['module:metro-react-native-babel-preset', { useTransformReactJSXExperimental: true }]],
     plugins: [
@@ -15,7 +16,8 @@ module.exports = function (api) {
         {
           loose: true,
         },
-      ]
+      ],
+      'react-native-reanimated/plugin',
     ],
   }
 }

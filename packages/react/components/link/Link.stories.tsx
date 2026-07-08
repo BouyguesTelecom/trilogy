@@ -1,60 +1,157 @@
-import * as React from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { IconName } from '../icon'
+import LinkComponent from './Link'
+import type { LinkProps } from './LinkProps'
+import React from 'react'
 
-import { Meta, Story } from "@storybook/react";
-import Link from "./Link";
-import { LinkProps } from "./LinkProps";
-import { Divider } from "../divider";
-import { Text } from "../text";
-import { IconName } from "../icon";
+LinkComponent.displayName = 'Link'
 
-export default {
-  title: "Components/Link",
-  component: Link,
-} as Meta;
+interface LinkStoryArgs extends Omit<LinkProps, 'children' | 'iconName' | 'routerLink'> {
+  children: string
+  iconName?: IconName
+  routerLink?: 'a'
+}
 
-export const Base: Story<LinkProps> = (args) => (
-  <>
-    <Link {...args}> Mot de passe oublié ?</Link>
-    <Divider />
-    <Text>
-      Je suis dans un paragraphe et ceci est un{" "}
-      <Link inline>lien standard</Link> tandis que ceci est un
-      <Link inline> lien standard non souligné</Link>. ou bien
-      <Link inline>celui-ci non souligné</Link>.
-    </Text>
-  </>
-);
+const meta: Meta<LinkStoryArgs> = {
+  title: 'Components/Link',
+  component: LinkComponent,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: ' ',
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'Link text content',
+    },
+    href: {
+      control: 'text',
+      description: 'Anchor URL when using native anchor mode',
+    },
+    to: {
+      control: 'text',
+      description: 'Destination used with routerLink mode',
+    },
+    title: {
+      control: 'text',
+      description: 'Native title attribute',
+    },
+    accessibilityLabel: {
+      control: 'text',
+      description: 'Accessibility label for assistive technologies',
+    },
+    iconName: {
+      control: 'select',
+      options: [undefined, ...Object.values(IconName)],
+      description: 'Optional trailing icon',
+    },
+    routerLink: {
+      control: 'select',
+      options: [undefined, 'a'],
+      description: 'Router link component (use with to)',
+    },
+    rel: {
+      control: 'text',
+      description: 'Native rel attribute',
+    },
+    id: {
+      control: 'text',
+      description: 'Custom html id',
+    },
+    className: {
+      control: 'text',
+      description: 'Custom CSS class names',
+    },
+    testId: {
+      control: 'text',
+      description: 'Testing identifier',
+    },
+    onClick: {
+      action: 'clicked',
+      control: false,
+      description: 'Click handler',
+    },
+    role: {
+      control: 'text',
+      description: 'ARIA role',
+    },
+    inline: {
+      control: 'boolean',
+      description: 'Inline mode',
+    },
+    inverted: {
+      control: 'boolean',
+      description: 'Use inverted color style',
+    },
+    blank: {
+      control: 'boolean',
+      description: 'Open in a new tab (target _blank)',
+    },
+    small: {
+      control: 'boolean',
+      description: 'Use compact text size',
+    },
+  },
+  args: {
+    children: 'Read more',
+    href: 'https://example.com',
+    to: '/docs',
+    title: 'Read more',
+    accessibilityLabel: 'Read more',
+    iconName: undefined,
+    routerLink: undefined,
+    rel: '',
+    id: '',
+    className: '',
+    testId: '',
+    role: '',
+    inline: false,
+    inverted: false,
+    blank: false,
+    small: false,
+  },
+  render: ({ children, ...args }) => <LinkComponent {...args}>{children}</LinkComponent>,
+}
 
-export const DansUnParagraphe: Story<LinkProps> = (args) => (
-  <Text>
-    Je suis dans un paragraphe et ceci est un{" "}
-    <Link {...args}>lien standard</Link> inline.
-  </Text>
-);
-DansUnParagraphe.args = {
-  inline: true,
-};
+export default meta
+type Story = StoryObj<LinkStoryArgs>
 
-export const LiensVersPageExterne: Story<LinkProps> = (args) => (
-  <Link {...args}>En savoir plus</Link>
-);
-LiensVersPageExterne.args = {
-  iconName: IconName.NEW_TABBED_PAGE,
-  href: "_blank",
-};
+export const Default: Story = {}
 
-export const LienAutonome: Story<LinkProps> = (args) => (
-  <Link {...args}>Mot de passe oublié</Link>
-);
-LienAutonome.args = {
-  href: "_blank",
-};
+export const WithIcon: Story = {
+  args: {
+    iconName: IconName.SEARCH,
+  },
+}
 
-export const Inverted: Story<LinkProps> = (args) => (
-  <div style={{ backgroundColor: "#25465f", padding: 10 }}>
-    <Link {...args}> Mot de passe oublié ?</Link>
-  </div>
-);
-Inverted.args = {
-  inverted: true,
-};
+export const Inverted: Story = {
+  args: {
+    inverted: true,
+  },
+}
+
+export const Small: Story = {
+  args: {
+    small: true,
+  },
+}
+
+export const BlankTarget: Story = {
+  args: {
+    blank: true,
+  },
+}
+
+export const RouterLinkMode: Story = {
+  args: {
+    routerLink: 'a',
+    to: '/account',
+    href: undefined,
+  },
+}
+
+export const Playground: Story = {}

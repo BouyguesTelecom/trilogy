@@ -7,12 +7,14 @@ export const ChipsContext = createContext({ isMultiple: false })
 
 /**
  * ChipsList Component - Container for Chips
+ * @param id {string} Custom id attribute
  * @param children {React.ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
+ * @param testId {string} Test Id for Test Integration
  */
 const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
-  ({ children, multiple, scrollable = true, ...others }, ref): JSX.Element => {
+  ({ children, multiple, scrollable = true, testId, ...others }, ref): JSX.Element => {
     const styles = StyleSheet.create({
       container: {
         flexWrap: 'wrap',
@@ -24,6 +26,7 @@ const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
       <ChipsContext.Provider value={{ isMultiple: multiple || false }}>
         {scrollable ? (
           <ScrollView
+            testID={testId}
             ref={ref as React.Ref<ScrollView>}
             horizontal
             showsHorizontalScrollIndicator={false}

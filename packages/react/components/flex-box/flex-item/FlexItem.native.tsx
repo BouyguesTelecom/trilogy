@@ -8,30 +8,14 @@ import { FlexBoxContext } from '../context'
 /**
  * FlexItem Component - FlexBox Child
  * @param size {FlexItemSize} Size 1-12
- * @param verticalCentered {boolean} Vertical center item
- * @param centered {boolean} center item
  * @param children {React.ReactNode}
- * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * @param narrow {boolean} Narrow item
- * @param className {string} Additional CSS Classes
- * @param mobileSize {FlexItemSize} Apply => is-size-mobile
- * @param tabletSize {FlexItemSize} Apply => is-size-tablet
- * @param touchSize {FlexItemSize} Apply => is-size-touch
- * @param desktopSize {FlexItemSize} Apply => is-size-desktop
- * @param widescreenSize {FlexItemSize} Apply => is-size-widescreen
- * @param fullhdSize {FlexItemSize} Apply => is-size-fullhd
- * @param offset {FlexItemSize} Apply => is-offset
- * @param mobileOffset {FlexItemSize} Apply => is-offset-mobile
- * @param tabletOffset {FlexItemSize} Apply => is-offset-tablet
- * @param touchOffset {FlexItemSize} Apply => is-offset-touch
- * @param desktopOffset {FlexItemSize} Apply => is-offset-desktop
- * @param widescreenOffset {FlexItemSize} Apply => is-offset-widescreen
- * @param fullhdOffset {FlexItemSize} Apply => is-offset-fullhd
- * @param align { Alignable | AlignableValues} align content
+ * @param verticalAlign { 'start' | 'end' | 'center' | 'stretch' | 'baseline' } Vertical alignment of the item
  */
-
 const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
-  ({ id, size, narrow, verticalAlign, children, ...others }, ref) => {
+  ({ id, size, narrow, verticalAlign, children, testId, ...others }, ref) => {
     const { width, realGap, scrollable, childrenLength } = React.useContext(FlexBoxContext)
     const realSize = (size && typeof size === 'number' && size) || (size && size?.mobile) || 0
 
@@ -58,6 +42,7 @@ const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
 
     return (
       <View
+        testID={testId}
         id={id}
         ref={ref}
         style={[

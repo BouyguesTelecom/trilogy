@@ -4,16 +4,20 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { BoxContext } from '../context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
 
 /**
  * Box Header Component
  * @param children {React.ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
+ * @param id {string} Custom id attribute
+ * @param testId {string} Test Id for Test Integration
  */
 const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
-  ({ children, variant, ...others }, ref): JSX.Element => {
+  ({ children, variant, testId, ...others }, ref): JSX.Element => {
     const statesContext = useContext(StatesContext)
+    const boxContext = useContext(BoxContext)
     const centered = false
     const pulledLeft = false
     const pulledRight = false
@@ -28,7 +32,7 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
         backgroundColor: headerBgc,
         padding: 10,
         paddingLeft: 16,
-        borderTopLeftRadius: 6,
+        borderTopLeftRadius: boxContext?.highlighted ? 4 : 6,
         borderTopRightRadius: 6,
         marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
         justifyContent: 'space-between',
@@ -53,7 +57,15 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
     })
 
     return (
-      <View style={[styles.boxHeader]} ref={ref} {...others}>
+      <View
+        style={[styles.boxHeader]}
+        ref={ref}
+        testID={testId}
+        {...others}
+        onLayout={() => {
+          boxContext.setHeader(true)
+        }}
+      >
         {children && typeof children.valueOf() === 'string' ? (
           <Text style={styles.text}>{String(children)}</Text>
         ) : (

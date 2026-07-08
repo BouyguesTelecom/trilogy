@@ -6,9 +6,11 @@ import { View } from 'react-native'
 
 /**
  * List Component
- * @param children {React.ReactNode}
- * @param divider {boolean} Add divider between items
- * @param ordered {boolean} Display ordered list
+ * @param children {React.ReactNode} List items (ListItem components)
+ * @param divider {boolean} Add a divider between list items
+ * @param ordered {boolean} Display as an ordered list (ol) instead of unordered (ul)
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  */
 const List = React.forwardRef<ListNativeRef, ListProps>(({ children, ordered = false, divider = false, testId, ...others }, ref): JSX.Element => {
   const [chilIndexes, setChildIndexes] = React.useState<string[]>([])

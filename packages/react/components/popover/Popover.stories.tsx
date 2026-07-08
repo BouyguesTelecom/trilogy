@@ -1,50 +1,163 @@
-import * as React from "react";
-import { Meta, Story } from "@storybook/react";
-import { PopoverProps } from "./PopoverProps";
-import { Popover, PopoverDirection } from ".";
-import { Button } from "../button";
+import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
+import { Button } from '../button'
+import PopoverComponent from './Popover'
+import { PopoverArrowPosition, PopoverDirection } from './PopoverEnum'
 
-export default {
-  title: "Components/Popover",
+PopoverComponent.displayName = 'Popover'
+
+interface PopoverStoryArgs {
+  children: string
+  triggerLabel: string
+  direction?: PopoverDirection
+  active: boolean
+  arrowPosition?: PopoverArrowPosition
+  id: string
+  className: string
+  testId: string
+}
+
+const Popover = ({
+  children,
+  triggerLabel,
+  direction,
+  active,
+  arrowPosition,
+  id,
+  className,
+  testId,
+}: PopoverStoryArgs): JSX.Element => (
+  <PopoverComponent
+    direction={direction}
+    active={active}
+    arrowPosition={arrowPosition}
+    id={id || undefined}
+    className={className || undefined}
+    testId={testId || undefined}
+    trigger={<Button variant='PRIMARY'>{triggerLabel}</Button>}
+  >
+    {children}
+  </PopoverComponent>
+)
+
+Popover.displayName = 'Popover'
+
+const meta: Meta<PopoverStoryArgs> = {
+  title: 'Components/Popover',
   component: Popover,
-} as Meta;
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+      },
+      description: {
+        component: '',
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      control: 'text',
+      name: 'children',
+      description: 'Popover content',
+    },
+    triggerLabel: {
+      control: 'text',
+      name: 'trigger',
+      description: 'Text rendered inside the trigger button',
+    },
+    direction: {
+      control: 'select',
+      options: [undefined, ...Object.values(PopoverDirection)],
+      name: 'direction',
+      description: 'Popover direction',
+    },
+    active: {
+      control: 'boolean',
+      name: 'active',
+      description: 'Set popover active state',
+    },
+    arrowPosition: {
+      control: 'select',
+      options: [undefined, ...Object.values(PopoverArrowPosition)],
+      name: 'arrowPosition',
+      description: 'Position of popover arrow',
+    },
+    id: {
+      control: 'text',
+      name: 'id',
+      description: 'Custom html id',
+    },
+    className: {
+      control: 'text',
+      name: 'className',
+      description: 'Additional CSS classes',
+    },
+    testId: {
+      control: 'text',
+      name: 'testId',
+      description: 'Testing identifier',
+    },
+  },
+  args: {
+    children: 'Popover content',
+    triggerLabel: 'Open popover',
+    direction: PopoverDirection.BOTTOM,
+    active: true,
+    arrowPosition: undefined,
+    id: '',
+    className: '',
+    testId: '',
+  },
+  render: ({ children, triggerLabel, direction, active, arrowPosition, id, className, testId }) => (
+    <PopoverComponent
+      direction={direction}
+      active={active}
+      arrowPosition={arrowPosition}
+      id={id || undefined}
+      className={className || undefined}
+      testId={testId || undefined}
+      trigger={<Button variant='PRIMARY'>{triggerLabel}</Button>}
+    >
+      {children}
+    </PopoverComponent>
+  ),
+}
 
-export const Base: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
-Base.args = {
-  content: "Voici une simple popover",
-};
+export default meta
+type Story = StoryObj<PopoverStoryArgs>
 
-export const PopoverActive: Story<PopoverProps> = (args) => (
-  <Popover {...args}>
-    <Button variant={"PRIMARY"}>Simple Popover</Button>
-  </Popover>
-);
-PopoverActive.args = {
-  active: true,
-  content: "Popover active",
-};
+export const Default: Story = {}
 
-export const PopoverDirections: Story<PopoverProps> = (args) => (
-  <>
-    <Popover {...args}>
-      <Button variant={"PRIMARY"}>Bottom</Button>
-    </Popover>
-    <Popover content="En haut">
-      <Button variant={"PRIMARY"}>top</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.RIGHT} content="A droite">
-      <Button variant={"PRIMARY"}>Right</Button>
-    </Popover>
-    <Popover direction={PopoverDirection.LEFT} content="A gauche">
-      <Button variant={"PRIMARY"}>Left</Button>
-    </Popover>
-  </>
-);
-PopoverDirections.args = {
-  direction: PopoverDirection.BOTTOM,
-  content: "Bottom popover",
-};
+export const Left: Story = {
+  args: {
+    direction: PopoverDirection.LEFT,
+  },
+}
+
+export const Right: Story = {
+  args: {
+    direction: PopoverDirection.RIGHT,
+  },
+}
+
+export const ArrowStart: Story = {
+  args: {
+    arrowPosition: PopoverArrowPosition.START,
+  },
+}
+
+export const ArrowEnd: Story = {
+  args: {
+    arrowPosition: PopoverArrowPosition.END,
+  },
+}
+
+export const Inactive: Story = {
+  args: {
+    active: false,
+  },
+}
+
+export const Playground: Story = {}

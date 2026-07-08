@@ -117,3 +117,24 @@ The TrilogyProvider simplifies integrating Trilogy style into your app by wrappi
        <AppNative />
      </TrilogyThemeProvider>
    ```
+
+---
+
+## 🤖 AI Agent Skill
+
+[![skills.sh](https://skills.sh/b/BouyguesTelecom/trilogy)](https://skills.sh/BouyguesTelecom/trilogy)
+
+This repository includes an [AI agent skill](skills/trilogy-ds/) that teaches coding agents (Claude, Copilot, Cursor, Codex, etc.) how to build UIs with the Trilogy design system.
+
+### Install the skill
+
+```bash
+npx skills add BouyguesTelecom/trilogy
+```
+
+The skill covers:
+- Page structure (`Section` → `Container` → content)
+- Grid system (12-column `Columns`/`Column`, responsive `FlexBox`)
+- Component composition patterns (Card, Accordion, Tabs, Price, etc.)
+- Enum usage (uppercase vs lowercase accessors)
+- Self-contained landing page generation (HTML + JSX)

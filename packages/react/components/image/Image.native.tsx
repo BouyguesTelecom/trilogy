@@ -7,16 +7,16 @@ import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
  * Image Component
  * @param src {string} Image source
  * @param alt {string} Image alt
- * @param radius {RadiusValues} Image border radius size
- * @param width {number|string} Image width (Number if not percent else string)
- * @param height {number|string} Image height (Number if not percent else string)
+ * @param width {number|string} Image width (number for px, string for %)
+ * @param height {number|string} Image height (number for px, string for %)
  * @param onClick {Function} onClick Event
  * @param circled {boolean} Circled Image
- * -------------------------- NATIVE PROPERTIES -------------------------------
+ * @param testId {string} Test Id for Test Integration
+ * @param id {string} Custom id attribute
  * @param cache {ImageCache} Caching strategy for the image
  */
 const Image = React.forwardRef<ImageNativeRef, ImageProps>(
-  ({ src, alt = '', circled, width, height, onClick, cache, ...others }, ref): JSX.Element => {
+  ({ src, alt = '', circled, width, height, onClick, cache, testId, ...others }, ref): JSX.Element => {
     const styles = StyleSheet.create({
       image: {
         width: width ? width : '100%',
@@ -53,7 +53,7 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(
           }
 
     const image = (
-      <ImageNative ref={ref} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
+      <ImageNative testID={testId} ref={ref} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
     )
 
     return onClick ? (

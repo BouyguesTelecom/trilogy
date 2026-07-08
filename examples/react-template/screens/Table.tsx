@@ -1,5 +1,3 @@
-import * as React from 'react'
-import { useState } from 'react'
 import {
   Icon,
   IconName,
@@ -17,6 +15,7 @@ import {
   View,
 } from '@trilogy-ds/react/components'
 import { TableBorderEnum } from '@trilogy-ds/react/lib/components/table/TableProps'
+import { useState } from 'react'
 
 export const TableScreen = (): JSX.Element => {
   const [expendable, setExpendable] = useState(false)
@@ -24,7 +23,7 @@ export const TableScreen = (): JSX.Element => {
     <Section>
       <ScrollView>
         <Table border={TableBorderEnum.ALL} fullwidth>
-          <TableHead>
+          <TableHead backgroundColor='SUCCESS' color='ACCENT'>
             <TableTr>
               <TableTh>Paramètre</TableTh>
               <TableTh>Description</TableTh>

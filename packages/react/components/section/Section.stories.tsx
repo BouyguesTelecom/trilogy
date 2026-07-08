@@ -1,63 +1,94 @@
-import * as React from "react";
+import { TrilogyColor } from '@/objects/facets/Color'
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import SectionComponent from './Section'
 
-import { Meta, Story } from "@storybook/react";
-import Section from "./Section";
-import { SectionProps } from "./SectionProps";
-import { TrilogyColor } from "../../objects";
-import { Title, TitleLevels } from "../title";
+SectionComponent.displayName = 'Section'
 
-export default {
-  title: "Components/Section",
-  component: Section,
-} as Meta;
+interface SectionStoryArgs {
+  children: string
+  backgroundColor?: TrilogyColor
+  backgroundSrc?: string
+  inverted: boolean
+  skeleton: boolean
+  id: string
+  className: string
+  testId: string
+}
 
-export const Base: Story<SectionProps> = (args) => (
-  <>
-    <Section {...args}>
-      <Title level={TitleLevels.ONE}>Premiére section</Title>
-    </Section>
-    <Section {...args}>
-      <Title level={TitleLevels.ONE}>Deuxiéme section</Title>
-    </Section>
-    <Section {...args}>
-      <Title level={TitleLevels.ONE}>Troisiéme section</Title>
-    </Section>
-  </>
-);
+const meta: Meta<SectionStoryArgs> = {
+  title: 'Components/Section',
+  component: SectionComponent,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+      },
+      description: {
+        component: ' ',
+      },
+    },
+  },
+  argTypes: {
+    children: { control: 'text', description: 'Section content' },
+    backgroundColor: {
+      control: 'select',
+      options: [undefined, ...Object.values(TrilogyColor)],
+      description: 'Background color',
+    },
+    backgroundSrc: {
+      control: 'text',
+      description: 'Background image source',
+    },
+    inverted: { control: 'boolean', description: 'Inverted text color mode' },
+    skeleton: { control: 'boolean', description: 'Loading skeleton state' },
+    id: { control: 'text', description: 'Custom html id' },
+    className: { control: 'text', description: 'Additional CSS classes' },
+    testId: { control: 'text', description: 'Testing identifier' },
+  },
+  args: {
+    children: 'Section content',
+    backgroundColor: undefined,
+    backgroundSrc: '',
+    inverted: false,
+    skeleton: false,
+    id: '',
+    className: '',
+    testId: '',
+  },
+  render: ({ children, backgroundColor, backgroundSrc, inverted, skeleton, id, className, testId }) => (
+    <SectionComponent
+      backgroundColor={backgroundColor}
+      backgroundSrc={backgroundSrc || undefined}
+      inverted={inverted}
+      skeleton={skeleton}
+      id={id || undefined}
+      className={className || undefined}
+      testId={testId || undefined}
+    >
+      <div style={{ padding: 24 }}>{children}</div>
+    </SectionComponent>
+  ),
+}
 
-export const Skeleton: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Title level={TitleLevels.THREE} skeleton>
-      Section skeleton
-    </Title>
-  </Section>
-);
+export default meta
 
-Skeleton.args = {
-  skeleton: true,
-};
+type Story = StoryObj<SectionStoryArgs>
 
-export const CouleurDeFond: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Title level={TitleLevels.THREE} inverted>
-      Section avec background
-    </Title>
-  </Section>
-);
-CouleurDeFond.args = {
-  background: TrilogyColor.MAIN,
-};
+export const Default: Story = {}
 
-export const ImageDeFond: Story<SectionProps> = (args) => (
-  <Section {...args}>
-    <Section>
-      <Title level={TitleLevels.THREE} skeleton>
-        Section avec image de fond
-      </Title>
-    </Section>
-  </Section>
-);
-ImageDeFond.args = {
-  backgroundSrc:
-    "https://design.bouyguestelecom.fr/v1/card-sample.200bd9f7.png",
-};
+export const Colored: Story = {
+  args: {
+    backgroundColor: TrilogyColor.MAIN_FADE,
+  },
+}
+
+export const WithBackgroundImage: Story = {
+  args: {
+    backgroundSrc: 'https://picsum.photos/id/24/1400/500',
+    inverted: true,
+  },
+}
+
+export const Playground: Story = {}

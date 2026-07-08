@@ -8,14 +8,13 @@ import { RangeNativeProps, RangeNativeRef } from './RangeProps'
 
 /**
  * Range Component
- * @param min {number} min length
- * @param max {number} max length
- * @param label {string} label of range
- * @param labelValueCursorMin {string} label to display next to value display
- * @param onChange {function}
- * @param value {number[]} array of values
- * @param simple {boolean} display one cursor
- * @param unit {string} display unit of values
+ * @param min {number} Min value
+ * @param max {number} Max value
+ * @param label {string} Label of range
+ * @param onChange {function} onChange Event
+ * @param value {number[]} Array of values
+ * @param simple {boolean} Display one cursor
+ * @param unit {string} Display unit of values
  */
 const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
   ({ min, max, label, unit, onChange, value, simple }, ref): JSX.Element => {

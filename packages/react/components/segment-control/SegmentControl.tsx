@@ -10,12 +10,13 @@ import { ComponentName } from '../enumsComponentsName'
 /**
  * SegmentControl Component
  * @param children {ReactNode} Children for SegmentControl
- * @param onClick onClick event
- * @param activeIndex {number} default active SegmentControl index
- * @param disabled {boolean} disabled SegmentControl
- * - -------------- WEB PROPERTIES ---------------
+ * @param onClick {Function} onClick event
+ * @param activeIndex {number} Default active SegmentControl index
+ * @param align {AlignableProps['align']} Alignment of the segment control
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * - -------------- NATIVE PROPERTIES ---------------
+ * @param id {string} Custom id attribute
  */
 const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(({ className, id, onClick, children, activeIndex, align, testId, ...others }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()

@@ -14,7 +14,6 @@ interface ICurrentStep {
 
 /**
  * Stepper Component
- * @param centered {boolean} Center the stepper
  * @param children {ReactNode}
  */
 const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ...others }, ref): JSX.Element => {

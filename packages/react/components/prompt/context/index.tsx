@@ -1,4 +1,5 @@
-import React, { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from 'react'
+import React, { createContext, Dispatch, PropsWithChildren, SetStateAction, useRef, useState } from 'react'
+import { TextInput } from 'react-native'
 
 export interface IPromptFile {
   type: string
@@ -21,6 +22,7 @@ export interface IPromptContext {
   setIsSpeech: Dispatch<SetStateAction<boolean>>
   isDisabled: boolean
   isReadonly: boolean
+  textareaRef: React.RefObject<TextInput>
 }
 
 interface Props {
@@ -43,6 +45,7 @@ export const PromptContext = createContext<IPromptContext>({
   setIsSpeech: () => undefined,
   isDisabled: false,
   isReadonly: false,
+  textareaRef: { current: null },
 })
 
 export const PromptProvider = ({ children, isDisabled, isReadonly }: PropsWithChildren<Props>) => {
@@ -52,6 +55,7 @@ export const PromptProvider = ({ children, isDisabled, isReadonly }: PropsWithCh
   const [isSend, setIsSend] = useState<boolean>(false)
   const [isTyping, setIsTyping] = useState<boolean>(false)
   const [isSpeech, setIsSpeech] = useState<boolean>(false)
+  const textareaRef = useRef<TextInput>(null)
 
   return (
     <PromptContext.Provider
@@ -70,6 +74,7 @@ export const PromptProvider = ({ children, isDisabled, isReadonly }: PropsWithCh
         setIsSpeech,
         isReadonly,
         isDisabled,
+        textareaRef,
       }}
     >
       {children}

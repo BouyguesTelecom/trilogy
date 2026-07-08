@@ -10,6 +10,24 @@ import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTilesContext } from '../context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
 
+/**
+ * CheckboxTile
+ * @param id {string} Custom id attribute
+ * @param checked {Boolean} Checked state of the checkbox
+ * @param disabled {Boolean} Disabled state of the checkbox
+ * @param readonly {Boolean} Readonly state of the checkbox
+ * @param label {string} Label for the checkbox tile
+ * @param onChange {Function} Change event handler for the checkbox
+ * @param name {string} Name attribute for the checkbox input
+ * @param description {string} Description text for the checkbox tile
+ * @param icon {IconName} Icon to display in the checkbox tile
+ * @param horizontal {boolean} Horizontal layout for the checkbox tile
+ * @param sticker {string} Sticker label for the checkbox tile
+ * @param stickerVariant {VariantState} Sticker variant for the checkbox tile
+ * @param testId {string} Test Id for Test Integration
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
+ */
 const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
     {
@@ -25,6 +43,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
       horizontal,
       sticker,
       stickerVariant = VariantState.ACCENT,
+      testId,
       ...others
     },
     ref,
@@ -112,7 +131,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
 
     if (horizontal) {
       return (
-        <TouchableOpacity ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
+        <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
           {sticker && (
             <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
               <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
@@ -155,7 +174,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     }
 
     return (
-      <TouchableOpacity ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
+      <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
             <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />

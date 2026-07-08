@@ -8,11 +8,14 @@ import React from 'react'
 /**
  * Accordion Item Component
  * @param active {boolean} Active Accordion Item
- * @param className {string} Additional CSS Classes
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children {ReactNode}
+ * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param testId {string} Test Id for Test Integration
+ * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS Classes
  */
 const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
   ({ open, className, children, id = React.useId(), onClick, disabled, testId, ...others }, ref): JSX.Element => {

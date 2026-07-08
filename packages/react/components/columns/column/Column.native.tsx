@@ -6,11 +6,11 @@ import React from 'react'
 import { View, ViewStyle } from 'react-native'
 
 /**
- * Column Component - Columns Child
+ * Columns Item Component - Columns Child
+ * @param size {ColumnsSize} Size 1-12
  * @param children {React.ReactNode}
- * @param narrow {boolean} Makes the column only as wide as its content.
- * @param size {number} Size of the column based on a 12-column grid system.
- * @param verticalAlign { 'top' | 'bottom' | 'center' } Vertical alignment of the column content.
+ * @param verticalAlign {AlignProps} Vertical alignment of column
+ * @param narrow {boolean} Narrow column item
  */
 const Column = React.memo(React.forwardRef<ColumnNativeRef, ColumnProps>(
   ({ children, narrow, size, verticalAlign, ...others }, ref): JSX.Element => {
