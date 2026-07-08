@@ -1,0 +1,92 @@
+@import "../utilities/spacing";
+
+// -----------------------------------------------------------------------------
+// Slider (carousel)
+// Slide positioning (flex, widths, translate) is applied by the component at
+// runtime. These rules cover the static layout of the container, navigation and
+// pagination. Element classes are scoped under `.slider`.
+// -----------------------------------------------------------------------------
+
+.slider {
+  position: relative;
+  width: 100%;
+
+  // Focus is indicated on the individual controls (nav buttons / dots) rather
+  // than with a ring around the whole carousel region.
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  .viewport {
+    overflow: hidden;
+    width: 100%;
+    touch-action: pan-y;
+  }
+
+  .wrapper {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+  }
+
+  .slide {
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-3;
+    margin-top: $spacing-3;
+  }
+
+  .nav {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    // reset native <button> chrome (icon provides the visual)
+    padding: 0;
+    border: 0;
+    background: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--trilogy-main, #25465f);
+      outline-offset: 2px;
+      border-radius: 50%;
+    }
+  }
+
+  .dots {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .bullet {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    background-color: var(--trilogy-neutral, #7f949f);
+    transition:
+      width 0.25s ease,
+      background-color 0.25s ease;
+
+    &.is-active {
+      width: 24px;
+      background-color: var(--trilogy-main, #25465f);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--trilogy-main, #25465f);
+      outline-offset: 2px;
+    }
+  }
+}
