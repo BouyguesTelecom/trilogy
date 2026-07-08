@@ -37,9 +37,7 @@ export const waitForStoryReady = async (page: Page) => {
             await img.decode()
             return
           }
-        } catch {
-          // Ignore decode failures, load/error listeners below will settle the wait.
-        }
+        } catch {}
 
         await new Promise<void>((resolve) => {
           const settle = () => resolve()
@@ -73,7 +71,6 @@ const freezeTime = async (page: Page) => {
         }
       }
 
-      // Keep static Date APIs intact for app code that relies on them.
       FixedDate.parse = OriginalDate.parse
       FixedDate.UTC = OriginalDate.UTC
 
