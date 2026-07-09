@@ -452,7 +452,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       const section = viewport.parentElement
       const onKeyDown = (e: KeyboardEvent) => {
         if (realTotal <= 1) return
-        // Don't hijack keys meant for a focused control inside a slide.
+
+        const target = e.target as HTMLElement | null
+        if (target && target !== section && target.closest('input, select, textarea, [role="slider"], [role="spinbutton"], [role="combobox"]')) return
         switch (e.key) {
           case 'ArrowLeft':
             e.preventDefault()

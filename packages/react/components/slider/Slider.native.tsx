@@ -72,7 +72,10 @@ const Slider = React.forwardRef<SliderNativeRef, SliderProps>(
       const id = setInterval(() => {
         let next = indexRef.current + 1
         if (next >= total) {
-          if (!loop) return
+          if (!loop) {
+            clearInterval(id)
+            return
+          }
           next = 0
         }
         goTo(next)
@@ -116,7 +119,11 @@ const Slider = React.forwardRef<SliderNativeRef, SliderProps>(
             <TouchableOpacity
               accessibilityRole='button'
               accessibilityLabel='Previous slide'
-              onPress={() => goTo((activeIndex - 1 + total) % total)}
+              onPress={() => {
+                const prev = activeIndex - 1
+                if (prev < 0 && !loop) return
+                goTo((prev + total) % total)
+              }}
             >
               <Icon circled size={IconSize.SMALL} name={IconName.ARROW_LEFT} />
             </TouchableOpacity>
@@ -142,7 +149,11 @@ const Slider = React.forwardRef<SliderNativeRef, SliderProps>(
             <TouchableOpacity
               accessibilityRole='button'
               accessibilityLabel='Next slide'
-              onPress={() => goTo((activeIndex + 1) % total)}
+              onPress={() => {
+                const next = activeIndex + 1
+                if (next >= total && !loop) return
+                goTo(next % total)
+              }}
             >
               <Icon circled size={IconSize.SMALL} name={IconName.ARROW_RIGHT} />
             </TouchableOpacity>
