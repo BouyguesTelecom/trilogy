@@ -33,6 +33,7 @@ $button-border-width: 2px !default;
   padding: 0 $spacing-4;
   text-decoration: inherit;
   font-weight: $weight-semibold;
+  height: $size-inputs;
 
   @include mobile {
     width: 100%;

@@ -41,7 +41,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
       : variant === ButtonVariant.CONVERSION
       ? TrilogyColor.ACCENT
       : variant === ButtonVariant.GHOST
-      ? TrilogyColor.BACKGROUND
+      ? 'transparent'
       : TrilogyColor.MAIN
 
     const color =
@@ -163,7 +163,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         {!loading && children && typeof children === 'string' && !iconName && (
           <Text style={(!disabled && styles.text) || (disabled && styles.textDisabled)}>{children}</Text>
         )}
-        {!loading && children && typeof children === 'string' && iconName && (
+        {!loading && iconName && (
           <View style={styles.buttonIconContainer}>
             <Icon
               name={iconName}
