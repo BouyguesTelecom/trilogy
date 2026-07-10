@@ -11,6 +11,8 @@ $suffix: '';
  */
 $colors: (
   'background': [#fff, 'white', 'main'],
+  'brand': [#ccd5f8, 'brand', 'white'],
+  'brand-fade': [#e8eef8, 'brand-fade', 'white'],
   'stroke':[ #727272, 'stroke', 'white' ],
   'stroke-fade':[ #cadbe8, 'stroke-fade', 'white' ],
   'transparent': ['transparent', 'transparent', 'transparent'],
@@ -35,6 +37,7 @@ $colors: (
 ) !default;
 
 $fade-colors: (
+  'brand': 'brand-fade',
   'main': 'main-fade',
   'success': 'success-fade',
   'info':'info-fade',
