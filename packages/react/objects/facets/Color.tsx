@@ -7,6 +7,8 @@ import { DEFAULT_TRILOGY_COLORS } from './defaultColors'
  */
 export enum TrilogyColor {
   BACKGROUND = 'WHITE',
+  BRAND = 'BRAND',
+  BRAND_FADE = 'BRAND_FADE',
   MAIN = 'MAIN',
   MAIN_FADE = 'MAIN_FADE',
   ACCENT = 'ACCENT',
@@ -34,7 +36,10 @@ export type TrilogyColorValues = `${TrilogyColor}`
 /**
  * Trilogy color values
  */
-export const colors: Record<TrilogyColor, string[]> = DEFAULT_TRILOGY_COLORS as unknown as Record<TrilogyColor, string[]>
+export const colors: Record<TrilogyColor, string[]> = DEFAULT_TRILOGY_COLORS as unknown as Record<
+  TrilogyColor,
+  string[]
+>
 
 /**
  * Returns color's className depending on Trilogy Color

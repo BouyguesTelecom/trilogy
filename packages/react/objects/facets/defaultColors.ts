@@ -1,9 +1,14 @@
 export const DEFAULT_TRILOGY_COLORS = {
   WHITE: ['#fff', 'white', 'main'],
+
   MAIN: ['#3d5d7e', 'main', 'white'],
   MAIN_FADE: ['#BBC6CD', 'main-fade', 'white'],
+
   ACCENT: ['#da641b', 'accent', 'white'],
   ACCENT_FADE: ['#faebe3', 'accent-fade', 'white'],
+
+  BRAND: ['#ccd5f8', 'brand', 'white'],
+  BRAND_FADE: ['#e8eef8', 'brand-fade', 'white'],
 
   FONT: ['#3d5d7e', 'main', 'white'],
   FONT_PLACEHOLDER: ['#687a87', 'font-placeholder', 'white'],
