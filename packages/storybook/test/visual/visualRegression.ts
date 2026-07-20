@@ -10,8 +10,8 @@ const MAX_DIFF_RATIO = Number(process.env.VISUAL_MAX_DIFF_RATIO ?? '0.001')
 const FIXED_NOW = Number(process.env.VISUAL_FIXED_NOW ?? '1760572800000')
 
 export type VisualStory = {
-  id: string
-  name: string
+  readonly id: string
+  readonly name: string
 }
 
 export const waitForStoryReady = async (page: Page) => {
@@ -96,11 +96,13 @@ export const expectStoryToMatchProd = async ({
   testInfo,
   story,
   maxDiffRatio,
+  waitForImages: _waitForImages,
 }: {
   page: Page
   testInfo: TestInfo
   story: VisualStory
   maxDiffRatio?: number
+  waitForImages?: boolean
 }): Promise<void> => {
   try {
     await freezeTime(page)
