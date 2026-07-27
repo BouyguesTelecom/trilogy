@@ -40,7 +40,12 @@
     "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
     "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
     "setup": "npm i && npm run build && npm i && npm start",
-    "postinstall": "./scripts/install-hooks.sh"
+    "postinstall": "./scripts/install-hooks.sh",
+    "mcp:migration:dev": "npm --workspace=@trilogy-ds/mcp-migration-v4-v5-web run dev",
+    "mcp:migration:build": "npm --workspace=@trilogy-ds/mcp-migration-v4-v5-web run build",
+    "mcp:migration:smoke": "npm run mcp:migration:build && npm --workspace=@trilogy-ds/example-mcp-migration-v4-v5-web run build",
+    "mcp:migration:start": "npm --workspace=@trilogy-ds/example-mcp-migration-v4-v5-web run start",
+    "mcp:migration:inspector": "npm --workspace=@trilogy-ds/example-mcp-migration-v4-v5-web run inspector"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.6.1",
@@ -147,7 +152,9 @@
     "packages/vanilla",
     "packages/storybook",
     "packages/locales/en",
-    "examples/react-template"
+    "packages/mcp/migration-v4-v5/web",
+    "examples/react-template",
+    "examples/migration-v4-v5-web"
   ],
   "engineStrict": true,
   "engines": {

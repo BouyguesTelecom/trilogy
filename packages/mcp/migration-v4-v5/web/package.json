@@ -1,0 +1,24 @@
+{
+  "name": "@trilogy-ds/mcp-migration-v4-v5-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first MCP server for Trilogy v4 to v5 Web migration",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --skipLibCheck",
+    "dev": "npm run build && node dist/index.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
