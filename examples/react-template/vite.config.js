@@ -34,7 +34,7 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [react(), tsconfigPaths()],
+  plugins: [react(), tsconfigPaths({ ignoreConfigErrors: true })],
   optimizeDeps: {
     exclude: ['react-native'],
   },
