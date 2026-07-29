@@ -111,7 +111,7 @@ export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues | 
     if (trilogyColor === 'transparent') return 'transparent'
 
     if (!trilogyColor || !colors[trilogyColor]) {
-      return colorsStyle.default
+      return colorsStyle.default[0]
     }
     return colorArray[0]
   } else {

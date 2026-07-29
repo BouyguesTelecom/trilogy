@@ -1,12 +1,7 @@
 import { AlignableProps, Clickable, Dev } from '../../objects'
 import { DimensionValue, type Image } from 'react-native'
 import { CommonProps } from '../../objects/facets/CommonProps'
-
-export enum RadiusValues {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
-}
+import { Radius, RadiusValues } from '../../objects/facets/Radius'
 
 export type ImageCache = 'immutable' | 'web' | 'cacheOnly'
 
@@ -16,7 +11,7 @@ export interface ImageProps extends AlignableProps, Clickable, CommonProps, Dev 
   circled?: boolean
   width?: DimensionValue | number | undefined
   height?: DimensionValue | number | undefined
-  radius?: RadiusValues
+  radius?: Radius | RadiusValues
   cache?: ImageCache
 }
 

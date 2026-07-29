@@ -1,7 +1,7 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Image, RadiusValues } from '@/components/image'
+import { Image } from '@/components/image'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -10,6 +10,7 @@ import { TypographyBold } from '@/objects/Typography'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PromptFileNativeRef, PromptFileProps } from './PromptFileProps'
+import { Radius } from '@/objects/facets/Radius'
 
 const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40
@@ -21,7 +22,7 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
   const styles = StyleSheet.create({
     cardImg: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
+      borderRadius: getRadiusStyle(Radius.SMALL),
       width: HEIGHT_IMG_FILE,
       height: HEIGHT_IMG_FILE,
       justifyContent: 'center',
@@ -33,7 +34,7 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
       alignItems: 'center',
       borderWidth: 1,
       borderColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
+      borderRadius: getRadiusStyle(Radius.SMALL),
       padding: SpacerSize.TWO,
       maxWidth: MAX_WIDTH_FILE,
       gap: GapSize.TEN,
@@ -64,7 +65,7 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
   if (type === 'image') {
     return (
       <View ref={ref}>
-        <Image src={src} alt={name} height={HEIGHT_ITEM} width={HEIGHT_ITEM} radius={RadiusValues.SMALL} />
+        <Image src={src} alt={name} height={HEIGHT_ITEM} width={HEIGHT_ITEM} radius={Radius.SMALL} />
         <View style={styles.times}>
           <Icon name={IconName.TIMES} onClick={onDelete} size={IconSize.SMALLER} />
         </View>

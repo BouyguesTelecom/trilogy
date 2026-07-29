@@ -1,4 +1,4 @@
-export const DEFAULT_TRILOGY_COLORS = {
+export const DEFAULT_TRILOGY_COLORS: Record<string, [string, string, string]> = {
   WHITE: ['#fff', 'white', 'main'],
 
   MAIN: ['#3d5d7e', 'main', 'white'],
@@ -33,4 +33,4 @@ export const DEFAULT_TRILOGY_COLORS = {
 
   STROKE: ['#BBC1CE', 'stroke', 'white'],
   STROKE_FADE: ['#cadbe8', 'stroke-fade', 'white'],
-} as const
+}

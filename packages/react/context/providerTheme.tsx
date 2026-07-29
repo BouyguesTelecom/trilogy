@@ -2,9 +2,7 @@ import React, { Dispatch, ReactNode, SetStateAction } from 'react'
 import { ITrilogyTheme } from './interfaces'
 
 export const defaultTheme: ITrilogyTheme = {
-  icons: {},
   colors: {},
-  fontFamily: {},
 }
 
 interface ITrilogyThemeContext {
