@@ -13,10 +13,11 @@ export enum Radius {
 export type RadiusValues = `${Radius}`
 
 export const getRadiusStyle = (_radius: Radius) => {
-  if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
+  try {
     const { theme } = useContext(TrilogyThemeContext)
     const radiusStyle = theme?.radius || DEFAULT_TRILOGY_RADIUS
-    const radiusValue = radiusStyle[_radius] || radiusStyle.small
-    return radiusValue
+    return radiusStyle[_radius] ?? DEFAULT_TRILOGY_RADIUS[_radius]
+  } catch {
+    return DEFAULT_TRILOGY_RADIUS[_radius]
   }
 }
