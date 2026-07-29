@@ -7,6 +7,7 @@ import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-nativ
 import { Icon, IconColor, IconName, IconSize } from '../icon'
 import { ChipsNativeRef, ChipsProps } from './ChipsProps'
 import { ChipsContext } from './list/ChipsList.native'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -21,6 +22,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
   ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
 
     useEffect(() => {
       setActiveItem(active || false)
@@ -32,7 +34,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
           (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
           (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: borderFullRadius,
         paddingLeft: 12,
         paddingRight: 12,
         paddingTop: 6,

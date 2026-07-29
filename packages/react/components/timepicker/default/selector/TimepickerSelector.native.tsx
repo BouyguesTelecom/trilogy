@@ -2,6 +2,8 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
+import { getRadiusStyle } from '@/objects/facets/Radius'
+import { Radius } from '@/objects/facets/Radius'
 
 interface SelectItem {
   label: string
@@ -23,6 +25,7 @@ export const TimepickerSelector = ({ items, value, onValueChange, visibleItems =
   const localScrollRef = useRef<ScrollView>(null)
   const selectedIndex = useMemo(() => items.findIndex((item) => item.value === value), [items, value])
   const verticalPadding = (containerHeight - itemHeight) / 2
+  const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
 
   useEffect(() => {
     if (localScrollRef.current && selectedIndex >= 0) {

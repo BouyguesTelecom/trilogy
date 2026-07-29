@@ -11,6 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import { SwitchNativeRef, SwitchProps } from './SwitchProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 const TRACK_WIDTH = 44
 const TRACK_HEIGHT = 22
@@ -35,6 +36,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
     const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
     const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
     const statusColor = getStatusStyle(status).color
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
     const trackColorOff = disabled ? backgroundColorDisabled : backgroundColorOff
     const trackColorOn = disabled ? backgroundColorDisabled : statusColor
 
@@ -43,7 +45,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       const colorValue = withTiming(color, { duration: 200 })
       return {
         backgroundColor: colorValue,
-        borderRadius: height.value / 2,
+        borderRadius: borderFullRadius,
       }
     })
 
@@ -52,7 +54,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       const translateValue = withTiming(moveValue, { duration: 200 })
       return {
         transform: [{ translateX: translateValue }],
-        borderRadius: height.value / 2,
+        borderRadius: borderFullRadius,
       }
     })
 

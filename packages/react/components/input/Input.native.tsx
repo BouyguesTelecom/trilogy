@@ -27,6 +27,7 @@ import {
 } from './InputEnum'
 import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -112,6 +113,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
     inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
     inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const [value, setValue] = useState<string>(defaultValue || '')
     const [email, setEmail] = useState<string>('')
@@ -196,7 +198,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         alignSelf: 'stretch',
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: isFocused ? 2 : 1,
-        borderRadius: 3,
+        borderRadius: borderSmallerRadius,
         borderColor:
           (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
           (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||

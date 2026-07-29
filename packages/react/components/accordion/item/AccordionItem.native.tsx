@@ -6,6 +6,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -36,13 +37,13 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       item: {
         width: '100%',
         padding: 5,
-        borderRadius: 6,
+        borderRadius: getRadiusStyle(Radius.SMALL),
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
         borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.STROKE_FADE),
       },
       bodyBackground: {
-        borderRadius: 6,
+        borderRadius: getRadiusStyle(Radius.SMALL),
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         overflow: 'hidden',
       },
@@ -64,7 +65,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
         paddingRight: 10,
         position: 'absolute',
         bottom: 0,
-        borderRadius: 6,
+        borderRadius: getRadiusStyle(Radius.SMALL),
         left: 0,
         right: 0,
       },

@@ -18,11 +18,13 @@ const MAX_WIDTH_FILE = 264
 
 const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const backgroundTimes = getColorStyle(TrilogyColor.MAIN_FADE)
+  const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+  const borderFullRadius = getRadiusStyle(Radius.FULL)
 
   const styles = StyleSheet.create({
     cardImg: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(Radius.SMALL),
+      borderRadius: borderSmallRadius,
       width: HEIGHT_IMG_FILE,
       height: HEIGHT_IMG_FILE,
       justifyContent: 'center',
@@ -34,7 +36,7 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
       alignItems: 'center',
       borderWidth: 1,
       borderColor: getColorStyle(TrilogyColor.MAIN_FADE),
-      borderRadius: getRadiusStyle(Radius.SMALL),
+      borderRadius: borderSmallRadius,
       padding: SpacerSize.TWO,
       maxWidth: MAX_WIDTH_FILE,
       gap: GapSize.TEN,
@@ -50,13 +52,13 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
       right: 4,
       top: 4,
       backgroundColor: backgroundTimes,
-      borderRadius: 100,
+      borderRadius: borderFullRadius,
       padding: 2,
     },
     cardContent: { flexShrink: 1, gap: GapSize.EIGHT },
     timesFile: {
       backgroundColor: backgroundTimes,
-      borderRadius: 100,
+      borderRadius: borderFullRadius,
       padding: 2,
       alignSelf: 'flex-start',
     },

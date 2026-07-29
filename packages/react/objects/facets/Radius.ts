@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { DEFAULT_TRILOGY_RADIUS } from './defaultRadius'
 
 export enum Radius {
+  SMALLER = 'smaller',
   SMALL = 'small',
   MEDIUM = 'medium',
   LARGE = 'large',

@@ -2,6 +2,7 @@ import { AccordionNativeRef, AccordionProps } from '@/components/accordion/Accor
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Accordion Component
@@ -15,7 +16,7 @@ const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId
     accordion: {
       width: '100%',
       minHeight: 10,
-      borderRadius: 6,
+      borderRadius: getRadiusStyle(Radius.SMALL),
     },
   })
 

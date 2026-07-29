@@ -7,6 +7,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 import { OtpNativeRef, OtpProps } from './OtpProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * OTP Code Component
@@ -28,10 +29,10 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
     ref,
   ): JSX.Element => {
     const [codeInput, setCodeInput] = useState<string>(value || '')
-    // eslint-disable-next-line prefer-spread
     const [codeDigitsArray] = useState([...Array(length).keys()])
     const [focused, setFocused] = useState(false)
     const color = getColorStyle(disabled ? TrilogyColor.DISABLED : error ? TrilogyColor.ERROR : TrilogyColor.MAIN)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     useEffect(() => {
       if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
@@ -85,7 +86,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
       inputSelectedContainer: {
         borderColor: color,
         borderWidth: 1,
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
         marginHorizontal: 5,
         justifyContent: 'center',
         alignContent: 'center',

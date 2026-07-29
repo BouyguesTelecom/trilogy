@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { BoxContext } from '../context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Box Header Component
@@ -25,6 +26,8 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
 
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const styles = StyleSheet.create({
       boxHeader: {
@@ -32,8 +35,8 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
         backgroundColor: headerBgc,
         padding: 10,
         paddingLeft: 16,
-        borderTopLeftRadius: boxContext?.highlighted ? 4 : 6,
-        borderTopRightRadius: 6,
+        borderTopLeftRadius: boxContext?.highlighted ? borderSmallerRadius : borderSmallRadius,
+        borderTopRightRadius: borderSmallRadius,
         marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
         justifyContent: 'space-between',
         alignItems:

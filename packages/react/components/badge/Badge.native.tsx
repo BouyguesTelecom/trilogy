@@ -4,6 +4,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { StatusState } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
@@ -33,7 +34,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
         minWidth: label ? 20 : 10,
         height: label ? 20 : 10,
         backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: getRadiusStyle(Radius.FULL),
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -53,7 +54,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
         backgroundColor: 'white',
         width: 16,
         minHeight: 16,
-        borderRadius: 15,
+        borderRadius: getRadiusStyle(Radius.FULL),
       },
       iconStatusPositionTopLeft: {
         top: -4,

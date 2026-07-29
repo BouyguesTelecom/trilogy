@@ -4,6 +4,7 @@ import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { BoxContext } from '../context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Box Footer Component
@@ -14,7 +15,7 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
  */
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
-    const boxRadius = 6
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const { highlighted } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
@@ -22,8 +23,8 @@ const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
         padding: 12,
         justifyContent: 'center',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
-        borderBottomLeftRadius: highlighted ? 0 : boxRadius,
-        borderBottomRightRadius: boxRadius,
+        borderBottomLeftRadius: highlighted ? 0 : borderSmallRadius,
+        borderBottomRightRadius: borderSmallRadius,
         marginLeft: highlighted ? 4 : 0,
       },
     })

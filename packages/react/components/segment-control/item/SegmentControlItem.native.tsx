@@ -3,6 +3,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * SegmentControlItem Item Component
@@ -12,68 +13,65 @@ import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentC
  * @param disabled {boolean} disable onClick on item
  * @param id {string} Custom id attribute
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(({
-  active,
-  children,
-  onClick,
-  disabled,
-  ...others
-}, ref): JSX.Element => {
-  const [activeItem, setActiveItem] = useState<boolean>(active || false)
+const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
+  ({ active, children, onClick, disabled, ...others }, ref): JSX.Element => {
+    const [activeItem, setActiveItem] = useState<boolean>(active || false)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
-  const styles = StyleSheet.create({
-    tabsItem: {
-      flexDirection: 'column',
-      flex: 1,
-      marginRight: 4,
-      borderRadius: 4,
-      alignItems: 'center',
-      backgroundColor:
-        (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-        (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
-        getColorStyle(TrilogyColor.BACKGROUND),
-    },
-    text: {
-      paddingHorizontal: 10,
-      color:
-        (activeItem && getColorStyle(TrilogyColor.BACKGROUND)) ||
-        (!activeItem && disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-        getColorStyle(TrilogyColor.MAIN),
-      marginVertical: 12,
-      fontSize: 16,
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      fontWeight: activeItem ? '600' : 'normal',
-    },
-  })
+    const styles = StyleSheet.create({
+      tabsItem: {
+        flexDirection: 'column',
+        flex: 1,
+        marginRight: 4,
+        borderRadius: borderSmallerRadius,
+        alignItems: 'center',
+        backgroundColor:
+          (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
+          (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
+          getColorStyle(TrilogyColor.BACKGROUND),
+      },
+      text: {
+        paddingHorizontal: 10,
+        color:
+          (activeItem && getColorStyle(TrilogyColor.BACKGROUND)) ||
+          (!activeItem && disabled && getColorStyle(TrilogyColor.DISABLED)) ||
+          getColorStyle(TrilogyColor.MAIN),
+        marginVertical: 12,
+        fontSize: 16,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontWeight: activeItem ? '600' : 'normal',
+      },
+    })
 
-  useEffect(() => {
-    setActiveItem(active || false)
-  }, [active])
+    useEffect(() => {
+      setActiveItem(active || false)
+    }, [active])
 
-  return (
-    <TouchableOpacity
-      ref={ref}
-      disabled={disabled}
-      style={[styles.tabsItem]}
-      onPress={(e?: unknown) => {
-        if (!disabled) {
-          setActiveItem(active || false)
-          if (onClick) {
-            onClick(e)
+    return (
+      <TouchableOpacity
+        ref={ref}
+        disabled={disabled}
+        style={[styles.tabsItem]}
+        onPress={(e?: unknown) => {
+          if (!disabled) {
+            setActiveItem(active || false)
+            if (onClick) {
+              onClick(e)
+            }
           }
-        }
-      }}
-      {...others}
-    >
-      {children && typeof children.valueOf() === 'string' && (
-        <Text style={styles.text} ellipsizeMode={'tail'} numberOfLines={1}>
-          {String(children)}
-        </Text>
-      )}
-    </TouchableOpacity>
-  )
-})
+        }}
+        {...others}
+      >
+        {children && typeof children.valueOf() === 'string' && (
+          <Text style={styles.text} ellipsizeMode={'tail'} numberOfLines={1}>
+            {String(children)}
+          </Text>
+        )}
+      </TouchableOpacity>
+    )
+  },
+)
 
 SegmentControlItem.displayName = ComponentName.SegmentControlItem
 
