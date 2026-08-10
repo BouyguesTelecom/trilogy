@@ -3,7 +3,8 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext, useEffect, useState } from 'react'
-import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
+import { GestureResponderEvent, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Icon, IconColor, IconName, IconSize } from '../icon'
 import { ChipsNativeRef, ChipsProps } from './ChipsProps'
 import { ChipsContext } from './list/ChipsList.native'
@@ -26,7 +27,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
       setActiveItem(active || false)
     }, [active])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       chips: {
         backgroundColor:
           (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||

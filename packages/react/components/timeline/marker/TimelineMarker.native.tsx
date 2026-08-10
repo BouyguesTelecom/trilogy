@@ -6,7 +6,8 @@ import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timel
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * TimelineMarker Native Component
@@ -18,7 +19,7 @@ const TimelineMarker = React.forwardRef<TimelineMarkerNativeRef, TimelineMarkerP
   const { active, done, cancel } = useContext(TimelineItemContext)
   const { height } = useContext(TimelineHeightContext)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     marker: {
       flex: 1,
       alignSelf: 'flex-start',

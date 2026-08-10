@@ -12,6 +12,7 @@ import {
   Platform,
   Modal
 } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { DatePickerProps } from './DatePickerProps'
 
 /**
@@ -262,7 +263,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       }
     }, [value, formatDateForDisplay, isFocused])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         width: '100%',
       },

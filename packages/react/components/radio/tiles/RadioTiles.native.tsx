@@ -3,7 +3,8 @@ import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/R
 import { SpacerSize } from '@/components/spacer'
 import { Alignable } from '@/objects/facets/Alignable'
 import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { RadioTilesContext } from './context'
 
 /**
@@ -25,7 +26,7 @@ const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
       return numberCols.mobile || numberCols.tablet
     }, [numberCols])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         flexWrap: 'wrap',

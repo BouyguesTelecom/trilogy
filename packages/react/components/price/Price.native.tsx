@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
 import { PriceLevel } from './PriceEnum'
 import { checkCents } from './PriceHelpers'
@@ -147,7 +148,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       )
     }
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         alignSelf:

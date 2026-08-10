@@ -1,7 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import * as React from 'react'
-import { ImageBackground, StyleSheet, View } from 'react-native'
+import { ImageBackground, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { SectionNativeRef, SectionProps } from './SectionProps'
 
 /**
@@ -15,7 +16,7 @@ import { SectionNativeRef, SectionProps } from './SectionProps'
 const Section = React.forwardRef<SectionNativeRef, SectionProps>(({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
   const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     container: {
       backgroundColor: backgroundSrc ? undefined : backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
       paddingVertical: 32,

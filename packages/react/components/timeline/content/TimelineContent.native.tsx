@@ -6,7 +6,8 @@ import { TimelineContentNativeRef, TimelineContentProps } from '@/components/tim
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import { TypographyColor } from '@/objects'
 import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Timeline Content Component
@@ -20,7 +21,7 @@ const TimelineContent = React.forwardRef<TimelineContentNativeRef, TimelineConte
   ({ content, heading, linkLabel, linkTo, children }, ref): JSX.Element => {
     const timelineContextValues = useContext(TimelineItemContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flex: 6,
         marginBottom: 8,

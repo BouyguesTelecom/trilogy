@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableContainerProps'
 
 /**
@@ -10,7 +11,7 @@ import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableCo
  */
 const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxTableContainer: {},
     })
 

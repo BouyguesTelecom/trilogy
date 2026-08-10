@@ -5,7 +5,8 @@ import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, Typogra
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useContext } from 'react'
-import { StyleSheet, Text as TextNative, TouchableOpacity } from 'react-native'
+import { Text as TextNative, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 import { TitleLevels } from './TitleEnum'
 import { TitleNativeRef, TitleProps } from './TitleProps'
@@ -78,7 +79,7 @@ const Title = React.forwardRef<TitleNativeRef, TitleProps>(({
     }
   }
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     text: {
       fontFamily: getTypographyBoldStyle(fontFamily),
       fontSize: titlesLevels(),

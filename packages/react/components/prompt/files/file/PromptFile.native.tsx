@@ -8,7 +8,8 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
 import { TypographyBold } from '@/objects/Typography'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { PromptFileNativeRef, PromptFileProps } from './PromptFileProps'
 
 const HEIGHT_ITEM = 64
@@ -18,7 +19,7 @@ const MAX_WIDTH_FILE = 264
 const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const backgroundTimes = getColorStyle(TrilogyColor.MAIN_FADE)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     cardImg: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: getRadiusStyle(RadiusValues.SMALL),

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { PopoverNativeRef, PopoverProps } from './PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { getColorStyle, TrilogyColor } from '@/objects'
 import { PopoverDirection } from './PopoverEnum'
 
@@ -12,7 +13,7 @@ import { PopoverDirection } from './PopoverEnum'
  * @param active {boolean} Is the popover active
  */
 const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(({ children, active = false, direction }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     container: {
       alignItems: 'center',
     },

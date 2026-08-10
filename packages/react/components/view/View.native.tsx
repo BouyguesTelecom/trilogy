@@ -1,5 +1,6 @@
 import * as React from "react"
-import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative, } from "react-native"
+import { ImageBackground, TouchableOpacity, View as ViewNative } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { getAlignStyle, getJustifyStyle, TrilogyColor } from "@/objects"
 import { getColorStyle } from "@/objects/facets/Color"
 import { ViewNativeRef, ViewProps } from "./ViewProps"
@@ -36,7 +37,7 @@ const View = React.forwardRef<ViewNativeRef, ViewProps>(({
   const viewColor =
     (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || "transparent"
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     view: {
       flex: flexable ? 1 : 0,
       backgroundColor: viewColor,

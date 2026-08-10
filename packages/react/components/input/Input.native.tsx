@@ -7,15 +7,8 @@ import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useState } from 'react'
-import {
-  Keyboard,
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInput,
-  TextInputSubmitEditingEventData,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Keyboard, NativeSyntheticEvent, TextInput, TextInputSubmitEditingEventData, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Spacer, SpacerSize } from '../spacer'
 import {
   InputAutoCapitalize,
@@ -165,7 +158,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     const hasIcon = iconNameLeft || iconNameRight || false
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       input: {
         paddingLeft:
           (((iconNameLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||
