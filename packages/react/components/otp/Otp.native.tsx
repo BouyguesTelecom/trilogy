@@ -100,10 +100,6 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
         width: 1,
         opacity: 0,
       },
-      icon: {
-        marginHorizontal: 8,
-        marginBottom: 8,
-      },
       currentInput: {
         width: 15,
         height: 1,

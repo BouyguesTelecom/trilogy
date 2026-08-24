@@ -57,10 +57,6 @@ const Fab = React.forwardRef<FabNativeRef, FabProps>(
         marginLeft: 10,
         marginRight: 16,
       },
-      icon: {
-        marginLeft: extended ? 16 : 0,
-        marginRight: extended ? 8 : 0,
-      },
       extended: {
         height: 56,
       },

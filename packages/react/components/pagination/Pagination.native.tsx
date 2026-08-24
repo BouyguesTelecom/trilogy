@@ -102,9 +102,6 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         borderRadius: borderFullRadius,
         justifyContent: 'center',
       },
-      currentPage: {
-        color: getColorStyle(TrilogyColor.MAIN),
-      },
       dotsLeft: {
         color: getColorStyle(TrilogyColor.BACKGROUND),
         marginRight: 12,

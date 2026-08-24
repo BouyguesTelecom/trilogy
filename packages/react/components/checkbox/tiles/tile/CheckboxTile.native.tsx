@@ -56,11 +56,6 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = StyleSheet.create({
-      container: {
-        flexDirection: 'row',
-        paddingBottom: 5,
-        justifyContent: 'flex-start',
-      },
       checkBox: {
         alignItems: 'center',
         justifyContent: 'center',

@@ -50,9 +50,6 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
       icon: {
         marginRight: small ? 3 : 6,
       },
-      button: {
-        flexDirection: 'row',
-      },
     })
 
     return (
