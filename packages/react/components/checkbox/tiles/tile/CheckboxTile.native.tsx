@@ -53,11 +53,6 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const { isGrid } = useContext(CheckboxTilesContext)
 
     const styles = StyleSheet.create({
-      container: {
-        flexDirection: 'row',
-        paddingBottom: 5,
-        justifyContent: 'flex-start',
-      },
       checkBox: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -131,7 +126,13 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
 
     if (horizontal) {
       return (
-        <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
+        <TouchableOpacity
+          testID={testId}
+          ref={ref}
+          disabled={disabled}
+          style={styles.horizontal}
+          onPress={() => handleClick()}
+        >
           {sticker && (
             <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
               <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
@@ -174,7 +175,14 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     }
 
     return (
-      <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
+      <TouchableOpacity
+        testID={testId}
+        ref={ref}
+        disabled={disabled}
+        style={styles.tile}
+        onPress={handleClick}
+        {...others}
+      >
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
             <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />

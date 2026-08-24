@@ -97,9 +97,6 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         maxHeight: 300,
         height: 'auto',
       },
-      content: {
-        padding: 16,
-      },
     })
 
     const boxTestId = testId ?? 'NotSpecified'
