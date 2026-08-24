@@ -42,9 +42,6 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
     icon: {
       marginRight: 4,
     },
-    counter: {
-      marginRight: 10,
-    },
   })
 
   const nbChild = React.useMemo<number>(() => {

@@ -10,12 +10,8 @@ import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableCo
  */
 const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
-      boxTableContainer: {},
-    })
-
     return (
-      <View ref={ref} style={[styles.boxTableContainer]} {...others} testID={testId}>
+      <View ref={ref} {...others} testID={testId}>
         {children}
       </View>
     )

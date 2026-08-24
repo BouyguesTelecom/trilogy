@@ -25,9 +25,6 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
     const styles = StyleSheet.create({
-      container: {
-        flexDirection: 'row',
-      },
       badge: {
         alignSelf: 'baseline',
         minWidth: label ? 20 : 10,
@@ -40,12 +37,6 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
       text: {
         color: !inverted ? textColor : getColorStyle(variant || TrilogyColor.MAIN),
         fontSize: 10,
-      },
-      textContent: {
-        fontSize: 15,
-        marginRight: 5,
-        marginLeft: 5,
-        color: getColorStyle(TrilogyColor.MAIN),
       },
       iconStatus: {
         position: 'absolute',
