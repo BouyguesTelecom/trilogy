@@ -172,7 +172,7 @@ $price-levels: (
       right: 0;
       border-top: 2px solid;
       border-color: getColor('font-placeholder');
-      border-radius: 5px;
+      border-radius: var(--radius-small);
       transform: rotate(-20deg);
     }
 

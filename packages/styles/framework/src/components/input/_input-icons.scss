@@ -44,8 +44,8 @@
     button[data-show-pwd], button[data-show-calendar] {
       background-color: transparent;
       border:none;
-      border-top-right-radius: $radius-small ;
-      border-bottom-right-radius: $radius-small ;
+      border-top-right-radius: var(--radius-smaller) ;
+      border-bottom-right-radius: var(--radius-smaller) ;
       &:focus-visible{
         outline: var(--border-active);
         outline-offset: -2px;
