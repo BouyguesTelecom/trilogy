@@ -5,6 +5,7 @@ import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 import { ProgressNativeRef, ProgressProps } from './ProgressProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Progress Component
@@ -25,6 +26,8 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
     ref,
   ): JSX.Element => {
     const animation = useRef(new Animated.Value(0)).current
+    const borderLargeRadius = getRadiusStyle(Radius.LARGE)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     useEffect(() => {
       if (typeof value === 'number') {
@@ -49,21 +52,21 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
         width: '100%',
         height: height,
         backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
-        borderRadius: 15,
+        borderRadius: borderLargeRadius,
       },
       percent: {
         alignSelf: 'flex-start',
         height: height,
         backgroundColor: getStatusStyle(status).color,
-        borderRadius: 15,
+        borderRadius: borderLargeRadius,
       },
       progressItemFirst: {
-        borderTopStartRadius: 6,
-        borderBottomLeftRadius: 6,
+        borderTopStartRadius: borderSmallRadius,
+        borderBottomLeftRadius: borderSmallRadius,
       },
       progressItemLast: {
-        borderTopEndRadius: 6,
-        borderBottomRightRadius: 6,
+        borderTopEndRadius: borderSmallRadius,
+        borderBottomRightRadius: borderSmallRadius,
       },
       legendCenter: {
         textAlign: 'center',

@@ -9,6 +9,7 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTilesContext } from '../context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * CheckboxTile
@@ -51,6 +52,8 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const { isGrid } = useContext(CheckboxTilesContext)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = StyleSheet.create({
       checkBox: {
@@ -62,7 +65,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderWidth: 1,
         width: 19,
         height: 19,
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
         backgroundColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : 'transparent',
         ),
@@ -79,7 +82,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         textAlign: 'center',
         alignItems: 'center',
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
@@ -100,7 +103,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
       },
       sticker: {

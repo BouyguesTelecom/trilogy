@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Pager } from './PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Pagination Component
@@ -20,6 +21,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
     const prevCurrentPage = useRef<number>(currentPage)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
 
     const [pager, setPager] = useState<Pager>({
       currentPage: currentPage,
@@ -89,7 +91,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: borderFullRadius,
         justifyContent: 'center',
       },
 
@@ -97,7 +99,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: borderFullRadius,
         justifyContent: 'center',
       },
       dotsLeft: {

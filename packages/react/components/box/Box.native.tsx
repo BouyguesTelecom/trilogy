@@ -6,6 +6,7 @@ import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facet
 import React, { useState } from 'react'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '../skeleton'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Box Component
@@ -49,12 +50,14 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const [numberOfContent, setNumberOfContent] = useState(0)
     const [header, setHeader] = useState<boolean>(false)
 
-    const boxRadius = 6
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
+
     const styles = StyleSheet.create({
       box: {
         width: '100%',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-        borderRadius: boxRadius,
+        borderRadius: borderSmallRadius,
         justifyContent: 'flex-start',
         position: 'relative',
         borderStyle: flat ? 'solid' : undefined,
@@ -80,13 +83,13 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         minHeight: 50,
         backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
         overflow: 'hidden',
-        borderRadius: boxRadius,
+        borderRadius: borderSmallRadius,
       },
       highlighted: {
         position: 'absolute',
         width: 4,
-        borderTopStartRadius: 4,
-        borderBottomStartRadius: 4,
+        borderTopStartRadius: borderSmallerRadius,
+        borderBottomStartRadius: borderSmallerRadius,
         height: boxHeight,
         backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
         overflow: 'hidden',
@@ -102,7 +105,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const boxTestId = testId ?? 'NotSpecified'
 
     const BoxSkeleton = () => (
-      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={boxRadius} testID='skeleton'>
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={borderSmallRadius} testID='skeleton'>
         {children}
       </Skeleton>
     )
@@ -136,7 +139,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           >
             {backgroundSrc ? (
               <ImageBackground
-                imageStyle={{ borderRadius: boxRadius }}
+                imageStyle={{ borderRadius: borderSmallRadius }}
                 style={styles.boxImage}
                 source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
               >
@@ -174,7 +177,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         >
           {backgroundSrc ? (
             <ImageBackground
-              imageStyle={{ borderRadius: boxRadius }}
+              imageStyle={{ borderRadius: borderSmallRadius }}
               style={styles.boxImage}
               source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
             >

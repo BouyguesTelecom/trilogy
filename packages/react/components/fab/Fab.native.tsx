@@ -5,6 +5,7 @@ import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Fab Component - Floating Action Button
@@ -26,18 +27,20 @@ const Fab = React.forwardRef<FabNativeRef, FabProps>(
     { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
     ref,
   ): JSX.Element => {
+    const borderLargeRadius = getRadiusStyle(Radius.LARGE)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const styles = StyleSheet.create({
       button: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 16,
+        borderRadius: borderLargeRadius,
         minHeight: 56,
         height: 'auto',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
-        shadowRadius: 6,
+        shadowRadius: borderSmallRadius,
         elevation: 3,
         position: top || bottom || left || right ? 'absolute' : 'relative',
         top: top ? top : 'auto',

@@ -1,8 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { RadiusValues } from '@/components/image'
 import { PromptContext } from '@/components/prompt/context'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
+import { Radius } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
@@ -19,7 +19,7 @@ const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
         minWidth: 36,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: rounded ? 36 : getRadiusStyle(RadiusValues.SMALL),
+        borderRadius: rounded ? 36 : getRadiusStyle(Radius.SMALL),
         backgroundColor: getColorStyle(
           isDisable && (others as any)?.isSubmit
             ? TrilogyColor?.DISABLED

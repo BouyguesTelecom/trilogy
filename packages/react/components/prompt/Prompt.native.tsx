@@ -3,7 +3,7 @@ import { getRadiusStyle } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ComponentName } from '../enumsComponentsName'
-import { RadiusValues } from '../image'
+import { Radius } from '@/objects/facets/Radius'
 import { PromptNativeRef, PromptProps } from './PromptProps'
 import { PromptContext, PromptProvider } from './context'
 
@@ -13,7 +13,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
   const styles = StyleSheet.create({
     view: {
       borderWidth: isFocused ? 2 : 1,
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
+      borderRadius: getRadiusStyle(Radius.SMALL),
       borderColor: getColorStyle(TrilogyColor[isFocused ? 'MAIN' : isDisabled ? 'DISABLED' : 'STROKE']),
       margin: isFocused ? -1 : undefined,
       backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),

@@ -1,4 +1,4 @@
-$file-radius: $radius;
+$file-radius: var(--radius);
 $file-name-max-width: 16em;
 $field-margin: 20px;
 $help-size: $size-small;
@@ -255,8 +255,8 @@ $label-weight: $weight-bold;
 
     .icon {
       left: 0;
-      border-top-left-radius: $radius;
-      border-bottom-left-radius: $radius;
+      border-top-left-radius: var(--radius);
+      border-bottom-left-radius: var(--radius);
       padding: 0 24px;
     }
 
@@ -292,8 +292,8 @@ $label-weight: $weight-bold;
 
     .icon {
       right: 0;
-      border-top-right-radius: $radius;
-      border-bottom-right-radius: $radius;
+      border-top-right-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
       padding: 0 24px;
     }
   }
@@ -407,8 +407,8 @@ $label-weight: $weight-bold;
 
   .is-searching {
     background-color: transparent;
-    border-top-right-radius: $radius;
-    border-bottom-right-radius: $radius;
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
     height: 100%;
     position: absolute;
     right: 0;

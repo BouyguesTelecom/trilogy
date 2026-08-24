@@ -21,6 +21,7 @@ import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
 import { ModalNativeRef, ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -61,6 +62,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
 
     const translateY = useSharedValue(SCREEN_HEIGHT)
     const backdropOpacity = useSharedValue(0)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const onCloseRef = useRef(onClose)
     onCloseRef.current = onClose
@@ -159,7 +161,16 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
             </Animated.View>
             <Animated.View
               ref={ref}
-              style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }, animatedStyle, isAndroid ? { paddingBottom: bottomInset } : {}]}
+              style={[
+                styles.body,
+                {
+                  backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+                  borderTopLeftRadius: borderSmallRadius,
+                  borderTopRightRadius: borderSmallRadius,
+                },
+                animatedStyle,
+                isAndroid ? { paddingBottom: bottomInset } : {},
+              ]}
               {...others}
             >
               <GestureDetector gesture={panGesture}>
@@ -207,7 +218,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
   },
 })

@@ -19,7 +19,7 @@ import { ImageProps, ImageRef } from './ImageProps'
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param radius {RadiusValues} Image border radius size
+ * @param radius {Radius} Image border radius size
  * @param align {Alignable} Image alignment
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image

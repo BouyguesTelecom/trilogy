@@ -15,6 +15,7 @@ import { SpacerSize } from '../spacer'
 import { Text as TrilogyText } from '../text'
 import { TextLevels } from '../text/TextEnum'
 import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Textarea Component
@@ -87,11 +88,12 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
     const counterColor = getColorStyle(TrilogyColor.MAIN)
     const counterBackground = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.BACKGROUND)
     const placeholderTextColor = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT_PLACEHOLDER)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const styles = StyleSheet.create({
       textarea: {
         borderWidth: isFocus ? 2 : 1,
-        borderRadius: 3,
+        borderRadius: borderSmallerRadius,
         borderColor: borderColorTextarea,
         height: customHeight,
         justifyContent: 'flex-start',

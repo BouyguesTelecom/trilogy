@@ -9,6 +9,7 @@ import * as React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { ButtonVariant } from './ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from './ButtonProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Button Component
@@ -69,7 +70,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: getColorStyle(background),
-        borderRadius: 4,
+        borderRadius: getRadiusStyle(Radius.SMALLER),
         minHeight: 45,
         height: loading ? 52 : 'auto',
         borderColor: getColorStyle(borderColor),

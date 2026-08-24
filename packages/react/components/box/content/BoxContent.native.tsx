@@ -4,6 +4,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Box Content
@@ -16,18 +17,19 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = StyleSheet.create({
       boxContent: {
         padding: 16,
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         flex: fullHeight ? 1 : undefined,
         marginLeft: highlighted ? 4 : 0,
-        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : 6,
-        borderTopRightRadius: header ? 0 : 6,
-        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : 6,
-        borderBottomRightRadius: numberOfContent > 1 ? 0 : 6,
+        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
+        borderTopRightRadius: header ? 0 : borderSmallRadius,
+        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
+        borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
       },
     })
 
@@ -50,7 +52,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
         <ImageBackground
           source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
           style={{ flex: 1 }}
-          imageStyle={{ borderRadius: 6 }}
+          imageStyle={{ borderRadius: borderSmallRadius }}
         >
           {content}
         </ImageBackground>

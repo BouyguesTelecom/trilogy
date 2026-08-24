@@ -5,6 +5,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, TextLevels } from '../text'
 import { RangeNativeProps, RangeNativeRef } from './RangeProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * Range Component
@@ -21,11 +22,13 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
     const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
     const [width, setWidth] = React.useState<number>(0)
 
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
+
     const styles = StyleSheet.create({
       marker: {
         width: 20,
         height: 20,
-        borderRadius: 20,
+        borderRadius: borderFullRadius,
         backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: {

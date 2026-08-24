@@ -70,7 +70,7 @@ describe('Input component', () => {
         alignSelf: 'stretch',
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
-        borderRadius: 3,
+        borderRadius: 4,
         borderColor:
           (state === 'success' && getColorStyle(StatusState.SUCCESS)) ||
           (state === 'warning' && getColorStyle(StatusState.WARNING)) ||

@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControlItem from './item'
 import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * SegmentControl Component
@@ -16,6 +17,7 @@ import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlPr
 const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(
   ({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
     const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
+    const smallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const isActive = (index: number, childPropsActive: React.ReactNode) => {
       if (typeof childPropsActive !== 'undefined' && !activateIndex) {
@@ -42,7 +44,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         flexDirection: 'row',
         width: '100%',
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 4,
+        borderRadius: smallerRadius,
         padding: 4,
         paddingRight: -4,
         borderWidth: 1,

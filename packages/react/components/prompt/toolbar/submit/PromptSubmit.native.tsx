@@ -6,6 +6,7 @@ import { StyleSheet, View } from 'react-native'
 import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
+import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -21,6 +22,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
     const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
     const isDisable = isDisabled || disabled
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const onClick = useCallback(() => {
       setIsTyping(false)
@@ -61,7 +63,9 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         {...others}
       >
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
-          <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
+          <View
+            style={{ height: 20, width: 20, borderRadius: borderSmallerRadius, backgroundColor: backgroundStopElm }}
+          />
         ) : (
           <Icon
             size={IconSize.SMALLER}

@@ -80,7 +80,7 @@ body:has(.modal.is-active) {
     @include tablet {
       max-height: calc(100vh - 120px);
       width: $modal-content-width;
-      border-radius: $radius;
+      border-radius: var(--radius);
     }
 
     // Annulation des propriétés du composant box, se trouvant dans une modal
