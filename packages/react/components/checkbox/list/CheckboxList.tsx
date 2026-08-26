@@ -7,8 +7,8 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { CheckboxListRef, CheckboxListWebProps } from '@/components/checkbox/list/CheckboxListProps'
 import { Text, TextMarkup } from '@/components/text'
-import { getJustifiedClassName } from "@/helpers/justifiable";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { getJustifiedClassName } from '@/helpers/justifiable'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * Checkbox List Component

@@ -10,8 +10,8 @@ import { Icon, IconColor, IconName, IconNameValues, IconSize } from '@/component
 import { InputStatus, InputStatusValues, InputType, InputTypeValues } from '@/components/input/InputEnum'
 import { InputProps, InputRef, InputWebEvents } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 

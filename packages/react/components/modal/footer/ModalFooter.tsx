@@ -13,14 +13,22 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
  */
-const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(({ children, className, id, testId }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  return (
-    <div ref={ref} data-modal-footer='' id={id} className={hashClass(styled, clsx('modal-footer', className))} data-testid={testId}>
-      {children}
-    </div>
-  )
-})
+const ModalFooter = React.forwardRef<ModalFooterRef, ModalFooterProps>(
+  ({ children, className, id, testId }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    return (
+      <div
+        ref={ref}
+        data-modal-footer=''
+        id={id}
+        className={hashClass(styled, clsx('modal-footer', className))}
+        data-testid={testId}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
 ModalFooter.displayName = ComponentName.ModalFooter
 export default ModalFooter

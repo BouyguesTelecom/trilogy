@@ -6,7 +6,7 @@ import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceProps, PriceRef } from '@/components/price/PriceProps'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
 
 /**
  * Price Component

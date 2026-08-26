@@ -5,7 +5,7 @@ import { has } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxContentProps, BoxContentRef } from '@/components/box/content/BoxContentProps'
-import { getBackgroundClassName } from "@/helpers/background";
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Content

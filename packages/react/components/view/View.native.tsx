@@ -5,7 +5,7 @@ import { getJustifyStyle } from '@/helpers/justifiable'
 import { getAlignStyle } from '@/helpers/alignable'
 import { ViewNativeRef, ViewProps } from '@/components/view/ViewProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * View Component (DIV EQUIVALENT)

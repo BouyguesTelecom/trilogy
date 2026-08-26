@@ -5,8 +5,8 @@ import { View } from '@/components/view'
 import { Text } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * TableTh Component

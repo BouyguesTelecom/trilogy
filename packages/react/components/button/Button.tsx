@@ -7,8 +7,8 @@ import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from '@/components/button/ButtonEnum'
 import { ButtonProps, ButtonRef } from '@/components/button/ButtonProps'
-import { getButtonVariantClassName } from "@/helpers/color";
-import { Loading, LoadingValues } from "@/interfaces/Loadable";
+import { getButtonVariantClassName } from '@/helpers/color'
+import { Loading, LoadingValues } from '@/interfaces/Loadable'
 
 /**
  * Button component

@@ -12,8 +12,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import { SwitchNativeRef, SwitchProps } from '@/components/switch/SwitchProps'
-import { TrilogyColor } from "@/interfaces/Color";
-import { Radius } from "@/interfaces/Radius";
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 const TRACK_WIDTH = 44
 const TRACK_HEIGHT = 22

@@ -6,8 +6,8 @@ import { Text } from '@/components/text'
 import { getColorStyle } from '@/helpers/color'
 import React from 'react'
 import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
 
 /**
  * Tabs Item Component

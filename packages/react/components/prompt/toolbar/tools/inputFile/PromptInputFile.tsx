@@ -6,7 +6,10 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { MouseEvent, useContext } from 'react'
-import { PromptInputFileProps, PromptInputFileRef } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
+import {
+  PromptInputFileProps,
+  PromptInputFileRef,
+} from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
 
 /**
  * PromptInputFile component - File upload button for prompt attachments

@@ -5,7 +5,7 @@ import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useContext } from 'react'
 import { PromptButtonProps, PromptButtonRef } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
-import { OnClickEvent } from "@/interfaces/OnClickEvent";
+import { OnClickEvent } from '@/interfaces/OnClickEvent'
 
 /**
  * PromptButton component - Customizable button for prompt toolbar

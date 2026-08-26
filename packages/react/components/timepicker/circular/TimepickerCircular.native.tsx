@@ -9,10 +9,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
-import { TimepickerCircularNativeRef, TimepickerCircularProps } from '@/components/timepicker/circular/TimepickerCircularProps'
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TrilogyColor } from "@/interfaces/Color";
+import {
+  TimepickerCircularNativeRef,
+  TimepickerCircularProps,
+} from '@/components/timepicker/circular/TimepickerCircularProps'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TrilogyColor } from '@/interfaces/Color'
 
 const CIRCLE_SIZE = 204
 const CIRCLE_THICKNESS = 32

@@ -10,9 +10,9 @@ import clsx from 'clsx'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { TimepickerSelector } from '@/components/timepicker/default/selector/index'
 import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
-import { Align } from "@/interfaces/Alignable";
-import { Justify } from "@/interfaces/Justifiable";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { Align } from '@/interfaces/Alignable'
+import { Justify } from '@/interfaces/Justifiable'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
 
 const APPROXIMATIVE_HEIGHT_TIMEPICKER = 300
 

@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ModalProps, ModalRef } from '@/components/modal/ModalProps'
-import { ClickEvent, OnClickEvent } from "@/interfaces/OnClickEvent";
+import { ClickEvent, OnClickEvent } from '@/interfaces/OnClickEvent'
 
 /**
  * Modal Component

@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TextareaProps, TextareaRef } from '@/components/textarea/TextareaProps'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * Textarea Component

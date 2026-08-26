@@ -5,7 +5,7 @@ import { has } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxFooterProps, BoxFooterRef } from '@/components/box/footer/BoxFooterProps'
-import { getBackgroundClassName } from "@/helpers/background";
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Footer Component

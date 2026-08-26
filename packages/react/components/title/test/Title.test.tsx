@@ -11,10 +11,10 @@ import renderer from 'react-test-renderer'
 // Component to test
 import { Title, TitleLevels } from '@/components/title/index'
 import { TitleMarkup } from '@/components/title/TitleEnum'
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { TypographyTransform } from "@/interfaces/TypographyTransform";
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { TypographyTransform } from '@/interfaces/TypographyTransform'
 
 describe('Title component', () => {
   test('should have a correct html tag', () => {

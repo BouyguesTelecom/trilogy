@@ -6,8 +6,8 @@ import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
 import { getRadiusStyle } from '@/helpers/radius'
 import { getColorStyle } from '@/helpers/color'
 import { getStatusStyle } from '@/helpers/status'
-import { TrilogyColor } from "@/interfaces/Color";
-import { Radius } from "@/interfaces/Radius";
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Tag Component

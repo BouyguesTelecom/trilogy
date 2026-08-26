@@ -6,7 +6,7 @@ import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderProps'
-import { getBackgroundClassName } from "@/helpers/background";
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Header Component

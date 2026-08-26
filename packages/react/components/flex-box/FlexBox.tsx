@@ -5,11 +5,19 @@ import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps, WrapProps } from '@/components/flex-box/FlexBoxProps'
+import {
+  AlignProps,
+  Direction,
+  FlexBoxProps,
+  FlexBoxRef,
+  FlexBoxSize,
+  JustifyProps,
+  WrapProps,
+} from '@/components/flex-box/FlexBoxProps'
 import { GapSize } from '@/components/columns'
-import { Align } from "@/interfaces/Alignable";
-import { Justify } from "@/interfaces/Justifiable";
-import { DirectionEnum, DirectionEnumValues } from "@/interfaces/Direction";
+import { Align } from '@/interfaces/Alignable'
+import { Justify } from '@/interfaces/Justifiable'
+import { DirectionEnum, DirectionEnumValues } from '@/interfaces/Direction'
 
 interface GetResponsiveClassesProp {
   value:

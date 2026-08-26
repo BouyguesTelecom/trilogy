@@ -5,7 +5,7 @@ import { TabPanelsNativeRef, TabPanelsProps } from '@/components/tabs/tab-panels
 import React from 'react'
 import { getColorStyle } from '@/helpers/color'
 import { StyleSheet, View } from 'react-native'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Tabs Nav Component

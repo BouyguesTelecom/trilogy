@@ -5,7 +5,7 @@ import { View } from '@/components/view'
 import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * TableTr Component

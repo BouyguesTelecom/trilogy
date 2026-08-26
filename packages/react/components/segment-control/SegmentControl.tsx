@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getJustifiedClassName } from "@/helpers/justifiable";
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * SegmentControl Component

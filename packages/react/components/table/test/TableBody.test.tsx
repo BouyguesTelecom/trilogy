@@ -7,7 +7,7 @@ import { getColorClassName } from '@/helpers/color'
 import Table from '@/components/table/Table'
 import TableBody from '@/components/table/body/index'
 import TableTd from '@/components/table/td/index'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 describe('TableBody', () => {
   it('renders without error', () => {

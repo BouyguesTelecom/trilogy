@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ProgressProps, ProgressRef } from '@/components/progress/ProgressProps'
-import { getStatusClassName } from "@/helpers/status";
+import { getStatusClassName } from '@/helpers/status'
 
 /**
  * Progress Component

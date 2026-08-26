@@ -20,7 +20,7 @@ import ReactDOM from 'react-dom'
 import { Modal, ModalBody } from '@/components/modal/index'
 import { Text, TextLevels, TextMarkup } from '@/components/text/index'
 import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from '@/components/datepicker/DatePickerProps'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 

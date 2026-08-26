@@ -3,8 +3,8 @@ import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, StyleSh
 import TimepickerSelectorItem from '@/components/timepicker/default/selector/item/TimepickerSelectorItem.native'
 import { getRadiusStyle } from '@/helpers/radius'
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color";
-import { Radius } from "@/interfaces/Radius";
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 interface SelectItem {
   label: string

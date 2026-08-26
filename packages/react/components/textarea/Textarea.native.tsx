@@ -14,10 +14,10 @@ import { SpacerSize } from '@/components/spacer/index'
 import { Text as TrilogyText } from '@/components/text/index'
 import { TextLevels } from '@/components/text/TextEnum'
 import { TextareaNativeProps, TextareaNativeRef } from '@/components/textarea/TextareaProps'
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { TrilogyColor } from "@/interfaces/Color";
-import { StatusState } from "@/interfaces/Status";
-import { Radius } from "@/interfaces/Radius";
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { TrilogyColor } from '@/interfaces/Color'
+import { StatusState } from '@/interfaces/Status'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Textarea Component

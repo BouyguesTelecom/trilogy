@@ -7,7 +7,13 @@ import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
+import {
+  AlertProps,
+  AlertRef,
+  ToasterAlertFloat,
+  ToasterAlertPosition,
+  ToasterStatusProps,
+} from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context/index'
 import { getStatusClassName, getStatusIconName } from '@/helpers/status'
 

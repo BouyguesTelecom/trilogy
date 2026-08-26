@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ImageProps, ImageRef } from '@/components/image/ImageProps'
-import { getJustifiedClassName } from "@/helpers/justifiable";
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * Image Component

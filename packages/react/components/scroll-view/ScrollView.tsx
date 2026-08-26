@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ScrollViewProps, ScrollViewRef } from '@/components/scroll-view/ScrollViewProps'
-import { ScrollDirectionEnum } from "@/interfaces/ScrollDirection";
+import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
 
 /**
  * ScrollView Component

@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { ButtonListDirectionEnum } from '@/components/button/list/ButtonListEnum'
 import { ButtonListRef, ButtonListWebProps } from '@/components/button/list/ButtonListProps'
-import { getJustifiedClassName } from "@/helpers/justifiable";
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * Button List Component

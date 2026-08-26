@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/index'
 import { is } from '@/helpers/classify'
 import { ProgressItemProps, ProgressItemWebRef } from '@/components/progress/item/ProgressItemProps'
-import { getStatusClassName } from "@/helpers/status";
+import { getStatusClassName } from '@/helpers/status'
 
 /**
  * Progress Item component - Only if stacked

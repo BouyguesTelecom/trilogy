@@ -3,7 +3,10 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { SegmentControlItemProps, SegmentControlItemRef } from '@/components/segment-control/item/SegmentControlItemProps'
+import {
+  SegmentControlItemProps,
+  SegmentControlItemRef,
+} from '@/components/segment-control/item/SegmentControlItemProps'
 
 /**
  * SegmentControl Item Component

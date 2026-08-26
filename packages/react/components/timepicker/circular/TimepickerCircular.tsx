@@ -5,9 +5,12 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { TimepickerCircularProps, TimepickerCircularRef } from '@/components/timepicker/circular/TimepickerCircularProps'
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import {
+  TimepickerCircularProps,
+  TimepickerCircularRef,
+} from '@/components/timepicker/circular/TimepickerCircularProps'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 const CIRCLE_SIZE = 204
 const CIRCLE_THICKNESS = 32

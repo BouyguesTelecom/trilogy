@@ -7,8 +7,8 @@ import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
 import { RadioListRef, RadioListWebProps } from '@/components/radio/list/RadioListProps'
-import { getJustifiedClassName } from "@/helpers/justifiable";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { getJustifiedClassName } from '@/helpers/justifiable'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * RadioList Component

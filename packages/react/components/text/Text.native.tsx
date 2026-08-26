@@ -7,7 +7,7 @@ import { StyleSheet, Text as TextNative } from 'react-native'
 import { Skeleton } from '@/components/skeleton/index'
 import { TextLevels, TextLevelValues } from '@/components/text/TextEnum'
 import { TextNativeRef, TextProps } from '@/components/text/TextProps'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Text Native Component

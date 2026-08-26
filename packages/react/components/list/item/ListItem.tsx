@@ -6,8 +6,8 @@ import { is } from '@/helpers/classify'
 import { Icon, IconSize } from '@/components/icon'
 import { ListItemProps, ListItemRef } from '@/components/list/item/ListItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorClassName } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorClassName } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * ListItem Component

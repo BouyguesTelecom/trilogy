@@ -7,7 +7,7 @@ import { useTrilogyContext } from '@/context/index'
 import { Title, TitleLevels } from '@/components/title/index'
 import { Text, TextLevels } from '@/components/text/index'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from "@/helpers/color";
+import { getColorStyle } from '@/helpers/color'
 
 /**
  * Progress Radial component

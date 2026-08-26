@@ -1,9 +1,12 @@
-import * as React from "react"
-import { ListItemDescriptionProps, ListItemDescriptionRef } from "@/components/list/item/description/ListItemDescriptionProps"
-import clsx from "clsx"
+import * as React from 'react'
+import {
+  ListItemDescriptionProps,
+  ListItemDescriptionRef,
+} from '@/components/list/item/description/ListItemDescriptionProps'
+import clsx from 'clsx'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from "@/context"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { useTrilogyContext } from '@/context'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItemDescription Component
@@ -12,16 +15,17 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
-  children,
-  className,
-  testId,
-  ...others
-}, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(
+  ({ children, className, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  return <dd ref={ref} className={hashClass(styled, clsx(className))} data-testid={testId} {...others}>{children}</dd>
-})
+    return (
+      <dd ref={ref} className={hashClass(styled, clsx(className))} data-testid={testId} {...others}>
+        {children}
+      </dd>
+    )
+  },
+)
 
 ListItemDescription.displayName = ComponentName.ListItemDescription
 export default ListItemDescription

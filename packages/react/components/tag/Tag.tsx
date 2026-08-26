@@ -7,7 +7,7 @@ import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon/index'
 import { TagProps, TagRef } from '@/components/tag/TagProps'
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * Tag Component
