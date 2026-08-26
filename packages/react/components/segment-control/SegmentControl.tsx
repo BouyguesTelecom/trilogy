@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SegmentControlItem from '@/components/segment-control/item/index'
 import { SegmentControlProps, SegmentControlRef } from '@/components/segment-control/SegmentControlProps'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'

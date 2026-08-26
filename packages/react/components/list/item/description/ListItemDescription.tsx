@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ListItemDescriptionProps, ListItemDescriptionRef } from "@/components/list/item/description/ListItemDescriptionProps"
 import clsx from "clsx"
-import { hashClass } from "@/helpers"
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from "@/context"
 import { ComponentName } from "@/components/enumsComponentsName"
 

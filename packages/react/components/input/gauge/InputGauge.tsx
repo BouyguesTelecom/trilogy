@@ -3,7 +3,7 @@ import React, { useId } from 'react'
 
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useGauge } from '@/components/input/gauge/hook/useGauge'
 
 interface InputGaugeProps {

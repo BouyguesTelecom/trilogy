@@ -8,7 +8,7 @@ import renderer from 'react-test-renderer'
 
 // Component to test
 import { Tag, TagList } from '@/components/tag/index'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 
 describe('TagList component', () => {
   test('should have "tags" className', () => {

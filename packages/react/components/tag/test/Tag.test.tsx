@@ -4,7 +4,7 @@ import * as React from 'react'
 // Testing methods
 import { render, screen } from '@testing-library/react'
 import { getEnumNames, getColorClassName } from '@/helpers/index'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 
 // Component to test
 import { Tag, TagVariant } from '@/components/tag'

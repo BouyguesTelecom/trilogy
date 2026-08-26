@@ -1,6 +1,7 @@
 import { Icon, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
-import { getVariantClassName, hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getVariantClassName } from '@/helpers/variant'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'

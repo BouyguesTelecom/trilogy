@@ -5,7 +5,7 @@ import { TabListProps, TabListRef } from '@/components/tabs/tab-list/TabListProp
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
 import { TabsContext } from '@/components/tabs/context/index'

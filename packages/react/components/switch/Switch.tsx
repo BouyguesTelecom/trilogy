@@ -1,5 +1,6 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass, getStatusClassName } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/helpers/status'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'

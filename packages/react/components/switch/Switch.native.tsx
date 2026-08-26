@@ -1,5 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, getStatusStyle, getRadiusStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
+import { getRadiusStyle } from '@/helpers/radius'
 import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 import Animated, {

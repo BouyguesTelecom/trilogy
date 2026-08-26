@@ -2,7 +2,9 @@ import * as React from 'react'
 import clsx from 'clsx'
 import { TagListProps, TagListRef } from '@/components/tag/list/TagListProps'
 import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName, hashClass, is } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/helpers/justifiable'
+import { is } from '@/helpers/classify'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

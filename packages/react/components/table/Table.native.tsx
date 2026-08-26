@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getColorStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
 import { TableBorderEnum, TableNativeRef, TableProps } from '@/components/table/TableProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TrilogyColor } from "@/interfaces/Color";

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { RowProps, RowRef } from '@/components/rows/row/RowProps'
 import { is } from '@/helpers/classify'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'

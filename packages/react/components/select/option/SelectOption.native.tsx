@@ -5,7 +5,7 @@ import { Text } from '@/components/text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
-import { getColorStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
 import { Alignable } from "@/interfaces/Alignable";
 import { TypographyBold } from "@/interfaces/TypographyBold";
 import { TrilogyColor } from "@/interfaces/Color";

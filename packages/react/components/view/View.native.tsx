@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
-import { getColorStyle, getJustifyStyle, getAlignStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
+import { getJustifyStyle } from '@/helpers/justifiable'
+import { getAlignStyle } from '@/helpers/alignable'
 import { ViewNativeRef, ViewProps } from '@/components/view/ViewProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TrilogyColor } from "@/interfaces/Color";

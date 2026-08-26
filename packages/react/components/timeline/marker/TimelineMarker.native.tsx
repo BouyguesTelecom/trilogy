@@ -4,7 +4,7 @@ import { SpacerSize } from '@/components/spacer'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
-import { getColorStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { TrilogyColor } from "@/interfaces/Color";

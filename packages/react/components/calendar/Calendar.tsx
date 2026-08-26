@@ -1,5 +1,6 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass, is } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
 import React from 'react'

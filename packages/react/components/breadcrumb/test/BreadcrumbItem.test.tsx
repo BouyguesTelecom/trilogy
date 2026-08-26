@@ -4,7 +4,7 @@ import * as React from 'react'
 // Testing methods
 import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 
 // Component to test
 import { BreadcrumbItem } from '@/components/breadcrumb'

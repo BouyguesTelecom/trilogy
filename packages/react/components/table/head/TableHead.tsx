@@ -4,7 +4,8 @@ import { TableHeadProps, TableHeadRef } from '@/components/table/head/TableHeadP
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
 import { has, is } from '@/helpers/classify'
-import { getBackgroundClassName, getColorClassName } from '@/helpers'
+import { getBackgroundClassName } from '@/helpers/background'
+import { getColorClassName } from '@/helpers/color'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

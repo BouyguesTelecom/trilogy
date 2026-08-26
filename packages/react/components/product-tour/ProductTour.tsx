@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { has, is, hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/helpers/classify'
 import { ProductTourRef, ProductTourWebProps } from '@/components/product-tour/ProductTourProps'
 import { Icon, IconName, IconSize } from '@/components/icon/index'
 import clsx from 'clsx'

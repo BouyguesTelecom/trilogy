@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { setTypographyAlign, getTypographyBoldStyle, setTypographyColor, getColorStyle } from '@/helpers'
+import { setTypographyAlign, getTypographyBoldStyle, setTypographyColor } from '@/helpers/typography'
+import { getColorStyle } from '@/helpers/color'
 import React, { useContext } from 'react'
 import { StyleSheet, Text as TextNative } from 'react-native'
 import { Skeleton } from '@/components/skeleton/index'

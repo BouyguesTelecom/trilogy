@@ -1,7 +1,9 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
-import { hashClass, getColorClassName, is } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName } from '@/helpers/color'
+import { is } from '@/helpers/classify'
 import { useTrilogyContext } from '@/context/index'
 import { ComponentName } from '@/components/enumsComponentsName'
 

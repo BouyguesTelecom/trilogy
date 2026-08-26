@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 
 // Testing methods
 import { render } from '@testing-library/react'

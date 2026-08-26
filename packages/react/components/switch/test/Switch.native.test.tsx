@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native'
 
 import * as React from 'react'
-import { getStatusStyle } from '@/helpers'
+import { getStatusStyle } from '@/helpers/status'
 import Switch from '@/components/switch/Switch.native'
 import { StatusState } from "@/interfaces/Status";
 

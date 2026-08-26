@@ -5,7 +5,9 @@ import { isIOS } from '@/helpers/device.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { StickerNativeRef, StickerProps } from '@/components/sticker/StickerProps'
-import { getRadiusStyle, getColorStyle, getVariantStyle } from '@/helpers'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { getVariantStyle } from '@/helpers/variant'
 import { TrilogyColor } from "@/interfaces/Color";
 import { TypographyBold } from "@/interfaces/TypographyBold";
 import { Radius } from "@/interfaces/Radius";

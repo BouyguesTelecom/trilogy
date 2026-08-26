@@ -1,7 +1,7 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useContext } from 'react'
 import { PromptButtonProps, PromptButtonRef } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'

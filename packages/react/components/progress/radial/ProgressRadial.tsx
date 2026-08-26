@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { ProgressRadialProps, ProgressRadialRef } from '@/components/progress/radial/ProgressRadialProps'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 import { hashClass } from '@/helpers/index'
 import { useTrilogyContext } from '@/context/index'
 import { Title, TitleLevels } from '@/components/title/index'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'

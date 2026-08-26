@@ -3,7 +3,9 @@ import { Icon, IconColor, IconSize } from '@/components/icon'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
-import { getRadiusStyle, getColorStyle, getStatusStyle } from '@/helpers'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
 import { TrilogyColor } from "@/interfaces/Color";
 import { Radius } from "@/interfaces/Radius";
 

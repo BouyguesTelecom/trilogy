@@ -3,7 +3,7 @@ import { TabsContext } from '@/components/tabs/context'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsNativeRef, TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import React from 'react'
-import { getColorStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
 import { StyleSheet, View } from 'react-native'
 import { TrilogyColor } from "@/interfaces/Color";
 

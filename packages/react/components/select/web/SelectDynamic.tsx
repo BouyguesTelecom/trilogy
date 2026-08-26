@@ -6,7 +6,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Input } from '@/components/input'
 import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { SelectContext } from '@/components/select/context/index'
 
 const OPTION_SIZE = 48

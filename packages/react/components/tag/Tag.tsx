@@ -1,5 +1,7 @@
 import { useTrilogyContext } from '@/context'
-import { is, getColorClassName, hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName } from '@/helpers/color'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'

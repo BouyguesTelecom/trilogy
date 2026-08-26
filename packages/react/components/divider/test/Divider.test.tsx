@@ -5,7 +5,7 @@ import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
-import { is } from '@/helpers' // Component to test
+import { is } from '@/helpers/classify' // Component to test
 import { Divider } from '@/components/divider'
 
 describe('Divider component', () => {

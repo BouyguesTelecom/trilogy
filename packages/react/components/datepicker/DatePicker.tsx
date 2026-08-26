@@ -4,7 +4,7 @@ import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has, is } from '@/helpers'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, {
   forwardRef,

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/index'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 import { ProgressItemProps, ProgressItemWebRef } from '@/components/progress/item/ProgressItemProps'
 import { getStatusClassName } from "@/helpers/status";
 

@@ -2,7 +2,7 @@
 import * as React from 'react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 
 // Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'

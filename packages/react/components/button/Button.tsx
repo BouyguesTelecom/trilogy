@@ -1,7 +1,7 @@
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/helpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'

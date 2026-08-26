@@ -4,7 +4,8 @@ import { TableBodyProps, TableBodyRef } from '@/components/table/body/TableBodyP
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import { useTrilogyContext } from '@/context/index'
-import { getColorClassName, getBackgroundClassName } from '@/helpers'
+import { getColorClassName } from '@/helpers/color'
+import { getBackgroundClassName } from '@/helpers/background'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

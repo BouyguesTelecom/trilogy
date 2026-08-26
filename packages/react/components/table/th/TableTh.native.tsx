@@ -4,7 +4,7 @@ import { TableThNativeRef, TableThProps } from '@/components/table/th/TableThPro
 import { View } from '@/components/view'
 import { Text } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/helpers'
+import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from "@/interfaces/Color";
 import { TypographyBold } from "@/interfaces/TypographyBold";
 
