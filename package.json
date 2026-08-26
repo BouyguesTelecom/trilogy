@@ -21,6 +21,8 @@
     "build:version": "node scripts/create-version.cjs",
     "build:locale-fr": "cd packages/locales/fr && npm run build",
     "build:locale-en": "cd packages/locales/en && npm run build",
+    "figma:tokens": "node scripts/export-figma-tokens.mjs",
+    "figma:tokens:css": "npm run figma:tokens && npm --workspace=@trilogy-ds/styles run tokens:figma",
     "create:autolayout": "npm --workspace=@trilogy-ds/styles run build:autolayout && npm run create:autolayout",
     "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/assets run optimise:icons",

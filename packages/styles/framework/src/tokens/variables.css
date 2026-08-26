@@ -1,0 +1,11 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --colors-base-white: #ffffff;
+  --colors-base-black: #0d121c;
+  --colors-brand-500: #91d751;
+  --colors-gray-900: #1f2937;
+  --colors-text-primary: var(--colors-gray-900);
+}

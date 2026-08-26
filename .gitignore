@@ -1,6 +1,7 @@
 # OSX
 #
 .DS_Store
+.env.example
 
 # Xcode
 #
@@ -93,3 +94,4 @@ mangled
 packages/react/components/icon/iconsPath.ts
 packages/styles/assets/icons/*.scss
 /docs/templates/
+packages/styles/framework/src/tokens/output/
