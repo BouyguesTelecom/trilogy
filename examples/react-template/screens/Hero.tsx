@@ -12,7 +12,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import React from 'react'
 
 export const HeroScreen = (): JSX.Element => {
   return (

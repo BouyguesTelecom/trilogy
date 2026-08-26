@@ -22,7 +22,7 @@ import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/inte
 import * as React from 'react'
 
 export const BoxScreen = (): JSX.Element => {
-  const [active, setActive] = React.useState(false)
+  const [active] = React.useState(false)
   const data = [1, 2, 3, 4, 5]
 
   return (
@@ -55,7 +55,7 @@ export const BoxScreen = (): JSX.Element => {
       >
         <BoxContent backgroundSrc='https://www.bouyguestelecom.fr/assets/media/original/image/CMS/ecommerce/byou/nbg.webp'>
           <Columns>
-            {data.map((item, index) => (
+            {data.map((_, index) => (
               <Column key={index}>
                 <Text>Test column in other component</Text>
               </Column>

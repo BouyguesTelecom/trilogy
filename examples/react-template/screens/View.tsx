@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Button, ButtonVariant, Section, Text, Title, TitleLevels, View } from '@trilogy-ds/react/components'
 import { ViewMarkup } from '@trilogy-ds/react/components/view/ViewProps'
 import { Alignable, Justifiable } from '@trilogy-ds/react/interfaces'

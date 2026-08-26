@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useState } from 'react'
 import {
   Box,
@@ -14,7 +13,7 @@ import {
   Section,
   Text,
 } from '@trilogy-ds/react/components'
-import { TrilogyColor, TypographyBold } from '@trilogy-ds/react/interfaces'
+import { TypographyBold } from '@trilogy-ds/react/interfaces'
 import { Spacer, SpacerSize } from '@trilogy-ds/react'
 
 export const BreadcrumScreen = (): JSX.Element => {

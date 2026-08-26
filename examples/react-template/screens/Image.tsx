@@ -1,7 +1,6 @@
-import * as React from 'react'
 import { Image, Row, Rows, Section } from '@trilogy-ds/react/components'
 import { Alignable, Divider, Title, TitleLevels } from '@trilogy-ds/react'
-import { Radius } from '@trilogy-ds/react/@/interfaces/Radius'
+import { Radius } from '@trilogy-ds/react/interfaces'
 
 export const ImageScreen = (): JSX.Element => {
   return (
